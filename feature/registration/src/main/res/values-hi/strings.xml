@@ -93,5 +93,5 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">मेरे पास मेरा पुराना फ़ोन नहीं है</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">या आप उसी डिवाइस पर Signal को फिर से इंस्टॉल कर रहे हैं</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">या आपने उसी डिवाइस पर Signal को फिर से इंस्टॉल करने की कोशिश की है</string>
 </resources>

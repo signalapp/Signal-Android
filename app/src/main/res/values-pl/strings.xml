@@ -440,7 +440,7 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">Wiadomość nie została wysłana. Dotknij, aby dowiedzieć się więcej</string>
     <string name="ConversationItem_error_partially_not_delivered">Wiadomość wysłana częściowo. Dotknij, aby dowiedzieć się więcej</string>
     <!-- Warning footer when an admin delete has not been sent to everyone -->
-    <string name="ConversationItem_error_partially_not_deleted">Usunięta częściowo. Dotknij, aby dowiedzieć się więcej.</string>
+    <string name="ConversationItem_error_partially_not_deleted">Wiadomość usunięta częściowo. Dotknij, aby dowiedzieć się więcej.</string>
     <string name="ConversationItem_error_network_not_delivered">Nie udało się wysłać</string>
     <!-- Warning footer when an admin delete has failed to send -->
     <string name="ConversationItem_error_delete_failed">Nie udało się usunąć. Dotknij, aby dowiedzieć się więcej.</string>
@@ -1333,7 +1333,7 @@
 
     <!-- GV2 access levels -->
     <string name="GroupManagement_access_level_anyone">Wszyscy</string>
-    <string name="GroupManagement_access_level_all_members">Wszyscy członkowie</string>
+    <string name="GroupManagement_access_level_all_members">Wszystkie osoby z grupy</string>
     <string name="GroupManagement_access_level_only_admins">Tylko administratorzy</string>
     <string name="GroupManagement_access_level_no_one">Nikt</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
@@ -2141,11 +2141,11 @@
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Uprawnienia do edycji składu grupy zostają zmienione na „%1$s”.</string>
 
     <!-- Shown when the current user changes the member label permission. -->
-    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">You changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">Zmieniasz uprawnienia do ustawiania ról w grupie na „%1$s”.</string>
     <!-- Shown when another group member changes the member label permission. -->
-    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s changed who can add member labels to \"%2$s\".</string>
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s zmienia uprawnienia do ustawiania ról w grupie na „%2$s”.</string>
     <!-- Shown when the member label permission is changed by an unknown admin. -->
-    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">An admin changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">Administrator zmienia uprawnienia do ustawiania ról w grupie na „%1$s”.</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">Zmieniasz ustawienia grupy tak, aby wszyscy jej członkowie mogli wysyłać wiadomości.</string>
@@ -3597,15 +3597,15 @@
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Brak uprawnień do zapisywania w pamięci zewnętrznej</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_media">Can\'t save media</string>
+    <string name="AttachmentSaver__cant_save_media">Nie można pobrać multimediów</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__media_offloaded_message">This media has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can download items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__media_offloaded_message">Te multimedia zostały usunięte z urządzenia ze względu na włączoną optymalizację pamięci. Możesz pobrać każdy plik z osobna lub wyłączyć optymalizację pamięci, aby pobrać na urządzenie wszystkie multimedia naraz.</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_all_items">Can\'t save all items</string>
+    <string name="AttachmentSaver__cant_save_all_items">Nie można pobrać wszystkich plików</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">Some media you\'ve selected has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can save items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">Niektóre z zaznaczonych przez Ciebie multimediów zostały usunięte z urządzenia ze względu na włączoną optymalizację pamięci. Możesz pobrać każdy plik z osobna lub wyłączyć optymalizację pamięci, aby pobrać na urządzenie wszystkie multimedia naraz.</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
-    <string name="AttachmentSaver__view_storage_settings">View storage settings</string>
+    <string name="AttachmentSaver__view_storage_settings">Wyświetl ustawienia pamięci</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Wyszukaj</string>
@@ -3822,7 +3822,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Zablokuj nagrywanie załącznika audio</string>
     <string name="conversation_activity__message_could_not_be_sent">Nie udało się wysłać wiadomości. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
-    <string name="conversation_activity__message_failed_to_delete_retry">Nie udało się usunąć wiadomości. Sprawdź, czy masz dostęp do internetu, i spróbuj ponownie.</string>
+    <string name="conversation_activity__message_failed_to_delete_retry">Nie udało się usunąć wiadomości. Sprawdź, czy masz połączenie z internetem, i spróbuj ponownie.</string>
     <!-- Dialog body when a message failed to delete. -->
     <string name="conversation_activity__message_failed_to_delete">Nie udało się usunąć wiadomości.</string>
 
@@ -5439,7 +5439,7 @@
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">Czy %1$s ma już nie mieć uprawnień administratora grupy?</string>
     <!-- Message shown when removing an admin will also clear their member label. -->
-    <string name="RecipientBottomSheet_remove_s_as_group_admin_and_clear_member_label">Czy %1$s ma już nie mieć uprawnień administratora grupy? Usunięta zostanie także aktualna rola tej osoby w grupie.</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin_and_clear_member_label">Czy %1$s ma już nie mieć uprawnień administratora grupy? Usunięta zostanie także obecna rola tej osoby w grupie.</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"%1$s będzie mieć możliwość edycji grupy i jej składu."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">Czy %1$s ma przestać należeć do grupy?</string>
@@ -6302,19 +6302,19 @@
     <string name="PermissionsSettingsFragment__add_members">Dodawanie osób</string>
     <string name="PermissionsSettingsFragment__edit_group_info">Edycja informacji o grupie</string>
     <string name="PermissionsSettingsFragment__send_messages">Wysyłanie wiadomości</string>
-    <string name="PermissionsSettingsFragment__all_members">Wszyscy członkowie</string>
+    <string name="PermissionsSettingsFragment__all_members">Wszystkie osoby z grupy</string>
     <string name="PermissionsSettingsFragment__only_admins">Tylko administratorzy</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Kto może dodawać nowe osoby?</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kto może edytować informacje o grupie?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">Kto może wysyłać wiadomości i rozpoczynać połączenia?</string>
     <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Add member labels</string>
+    <string name="PermissionsSettingsFragment__add_member_labels">Ustawianie ról w grupie</string>
     <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
+    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Kto może ustawiać role w grupie?</string>
     <!-- Warning title shown before restricting member labels to admins only. -->
     <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Role w grupie zostaną usunięte</string>
     <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Jeśli zmienisz to uprawnienie na „Tylko administratorzy”, role w grupie ustawione przez osoby niebędące administratorami zostaną usunięte."</string>
     <!-- Confirm button for changing member label permission after warning. -->
     <string name="PermissionsSettingsFragment__change_permission">Zmień uprawnienie</string>
 
@@ -6332,17 +6332,17 @@
     <!-- Label for the setting to configure custom notification sounds and vibration for a conversation -->
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Powiadomienia niestandardowe</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
-    <string name="SoundsAndNotificationsSettingsFragment__when_muted">Gdy wyciszono</string>
+    <string name="SoundsAndNotificationsSettingsFragment__when_muted">Gdy czat jest wyciszony</string>
     <!-- Label for the calls notification setting in conversation sounds and notifications -->
     <string name="SoundsAndNotificationsSettingsFragment__calls">Połączenia</string>
     <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
     <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Dzwoń i otrzymuj powiadomienia, gdy w wyciszonych czatach ktoś rozpocznie połączenie.</string>
     <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Powiadamiać, gdy ktoś Cię oznaczy w wyciszonym czacie?</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Powiadamiać, gdy w wyciszonym czacie ktoś Cię oznaczy?</string>
     <!-- Label for the replies notification setting in conversation sounds and notifications -->
     <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Odpowiedzi na Twoje wiadomości</string>
     <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Powiadamiać, gdy ktoś odpowie na Twoją wiadomość w wyciszonym czacie?</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Powiadamiać, gdy w wyciszonym czacie ktoś odpowie na Twoją wiadomość?</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">Ostatnio używane</string>
@@ -7124,15 +7124,15 @@
 
     <!-- StoryArchive -->
     <!-- Title for the story archive screen -->
-    <string name="StoryArchive__story_archive">Story archive</string>
+    <string name="StoryArchive__story_archive">Archiwum relacji</string>
     <!-- Section header in story settings -->
-    <string name="StoryArchive__archive">Zarchiwizuj</string>
+    <string name="StoryArchive__archive">Archiwizacja</string>
     <!-- Label for switch to enable story archiving -->
-    <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
+    <string name="StoryArchive__keep_stories_in_archive">Przechowuj relacje w archiwum</string>
     <!-- Description for the archive toggle -->
-    <string name="StoryArchive__save_stories_after_they_expire">Save your sent stories after they leave the active feed.</string>
+    <string name="StoryArchive__save_stories_after_they_expire">Zapisuj udostępnione przez siebie relacje po tym, jak przestają się wyświetlać.</string>
     <!-- Label for archive duration preference -->
-    <string name="StoryArchive__keep_stories_for">Keep stories for</string>
+    <string name="StoryArchive__keep_stories_for">Przechowuj relacje</string>
     <!-- Archive duration option: forever -->
     <string name="StoryArchive__forever">Zawsze</string>
     <!-- Archive duration option: 1 year -->
@@ -7142,9 +7142,9 @@
     <!-- Archive duration option: 30 days -->
     <string name="StoryArchive__30_days">30 dni</string>
     <!-- Empty state title when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories">No archived stories</string>
+    <string name="StoryArchive__no_archived_stories">Nie masz zarchiwizowanych relacji</string>
     <!-- Empty state message when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
+    <string name="StoryArchive__no_archived_stories_message">Aby Twoje relacje były automatycznie archiwizowane, w ustawieniach relacji włącz opcję „Przechowuj relacje w archiwum”.</string>
     <!-- Empty state button to navigate to story settings -->
     <string name="StoryArchive__go_to_settings">Przejdź do ustawień</string>
     <!-- Label for sort order menu -->
@@ -7156,20 +7156,20 @@
     <!-- Delete action in story archive multi-select bottom bar -->
     <string name="StoryArchive__delete">Usuń</string>
     <!-- Content description for selecting a story in multi-select mode -->
-    <string name="StoryArchive__select_story">Select story</string>
+    <string name="StoryArchive__select_story">Wybierz relację</string>
     <!-- Confirmation dialog body when deleting stories from archive -->
     <plurals name="StoryArchive__delete_n_stories">
-        <item quantity="one">Delete %1$d story? This cannot be undone.</item>
-        <item quantity="few">Delete %1$d stories? This cannot be undone.</item>
-        <item quantity="many">Delete %1$d stories? This cannot be undone.</item>
-        <item quantity="other">Delete %1$d stories? This cannot be undone.</item>
+        <item quantity="one">Usunąć %1$d relację? Nie będzie można tego cofnąć.</item>
+        <item quantity="few">Usunąć %1$d relacje? Nie będzie można tego cofnąć.</item>
+        <item quantity="many">Usunąć %1$d relacji? Nie będzie można tego cofnąć.</item>
+        <item quantity="other">Usunąć %1$d relacji? Nie będzie można tego cofnąć.</item>
     </plurals>
     <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
     <plurals name="StoryArchive__d_selected">
-        <item quantity="one">%1$d zaznaczony pakiet</item>
-        <item quantity="few">%1$d zaznaczone pakiety</item>
-        <item quantity="many">%1$d zaznaczonych pakietów</item>
-        <item quantity="other">%1$d zaznaczonego pakietu</item>
+        <item quantity="one">%1$d zaznaczony element</item>
+        <item quantity="few">%1$d zaznaczone elementy</item>
+        <item quantity="many">%1$d zaznaczonych elementów</item>
+        <item quantity="other">%1$d zaznaczonego elementu</item>
     </plurals>
 
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -8354,18 +8354,18 @@
     <string name="TurnOnSignalBackups__toast_not_now">Możesz włączyć kopie zapasowe w sekcji „Ustawienia”</string>
 
     <!-- Title of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__title">Nie trać historii czatów</string>
+    <string name="BackupMessagesUpsell__title">Nie strać historii czatów</string>
     <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__body">Włącz usługę bezpiecznych kopii zapasowych Signal, aby zachować dostęp do wszystkich wiadomości i multimediów.</string>
+    <string name="BackupMessagesUpsell__body">Włącz usługę bezpiecznych kopii zapasowych Signal, aby nigdy nie stracić historii wiadomości ani multimediów.</string>
     <!-- Primary button of Megaphone B -->
     <string name="BackupMessagesUpsell__turn_on">Włącz</string>
     <!-- Secondary button of Megaphone B -->
     <string name="BackupMessagesUpsell__not_now">Nie teraz</string>
 
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__title">Utwórz kopię zapasową wszystkich multimediów</string>
+    <string name="BackupMediaUpsell__title">Przechowuj wszystkie multimedia w kopii zapasowej</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans keep all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">W płatnym trybie tworzenia bezpiecznych kopii zapasowych Signal zyskujesz 100 GB miejsca na multimedia.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">Subskrybuj</string>
     <!-- Secondary button of Megaphone C -->
@@ -8383,9 +8383,9 @@
     <string name="BackupStorageUpsell__not_now">Nie teraz</string>
 
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
-    <string name="BackupUpsellBottomSheet__title">Zachowaj dostęp do wszystkich multimediów</string>
+    <string name="BackupUpsellBottomSheet__title">Przechowuj wszystkie multimedia w kopii zapasowej</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose a photo or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">W płatnym trybie tworzenia bezpiecznych kopii zapasowych Signal zyskujesz 100 GB miejsca na wszystkie multimedia ze swoich czatów. Dzięki temu nie stracisz żadnego zdjęcia ani filmu, nawet gdy zmienisz telefon lub ponownie zainstalujesz aplikację Signal.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s miesięcznie</string>
     <!-- Subtitle for the paid plan feature card -->
@@ -8395,13 +8395,13 @@
     <!-- Feature bullet: 100GB storage -->
     <string name="BackupUpsellBottomSheet__storage_100gb">100 GB miejsca w chmurze</string>
     <!-- Feature bullet: save on-device storage -->
-    <string name="BackupUpsellBottomSheet__save_on_device_storage">Oszczędzaj miejsce na urządzeniu</string>
+    <string name="BackupUpsellBottomSheet__save_on_device_storage">Oszczędność miejsca na urządzeniu</string>
     <!-- Feature bullet: thanks for supporting Signal -->
     <string name="BackupUpsellBottomSheet__thanks_for_supporting">Wsparcie dla aplikacji Signal</string>
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__subscribe_for">Subskrybuj za %1$s miesięcznie</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__no_thanks">Nie przesyłaj</string>
+    <string name="BackupUpsellBottomSheet__no_thanks">Nie teraz</string>
 
     <!-- Title of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__title">Wszystko gotowe. Możesz rozpocząć tworzenie kopii zapasowej</string>
@@ -8653,7 +8653,7 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__recovery_key_updated">Recovery key updated</string>
+    <string name="OnDeviceBackupsFragment__recovery_key_updated">Kod odzyskiwania zaktualizowany</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
     <string name="OnDeviceBackupsFragment__directory_selected">Wybrany folder: %1$s</string>
 
@@ -9202,9 +9202,9 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Tym kodem zostanie zastąpiony Twój kod do lokalnej kopii zapasowej.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your recovery key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Kod odzyskiwania, składający się z 64 znaków, umożliwi Ci przywrócenie kopii zapasowej, gdy ponownie zainstalujesz aplikację Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">To ten sam kod, co kod do lokalnej kopii zapasowej.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Użyj tego kodu, aby:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9222,7 +9222,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Ten kod będzie potrzebny do odzyskania konta i danych. Przechowuj go w bezpiecznym miejscu. Jeśli go zgubisz, stracisz możliwość przywrócenia konta.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">This key is the same as your on-device recovery key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">To ten sam kod, co kod do lokalnej kopii zapasowej. Będzie potrzebny do przywrócenia konta i danych.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Skopiuj do schowka</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->

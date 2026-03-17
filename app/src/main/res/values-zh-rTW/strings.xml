@@ -1961,11 +1961,11 @@
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">誰可以編輯群成員已變更為\"%1$s\"。</string>
 
     <!-- Shown when the current user changes the member label permission. -->
-    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">You changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">你變更了誰可以新增成員標籤為「%1$s」。</string>
     <!-- Shown when another group member changes the member label permission. -->
-    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s changed who can add member labels to \"%2$s\".</string>
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s變更了誰可以新增成員標籤為「%2$s」。</string>
     <!-- Shown when the member label permission is changed by an unknown admin. -->
-    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">An admin changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">有管理員變更了誰可以新增成員標籤為「%1$s」。</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">你變更了群組設定以允許所有成員傳送訊息。</string>
@@ -3288,15 +3288,15 @@
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">因為沒有儲存的權限，無法儲存到外部儲存空間</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_media">Can\'t save media</string>
+    <string name="AttachmentSaver__cant_save_media">無法儲存媒體</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__media_offloaded_message">This media has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can download items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__media_offloaded_message">由於裝置開啟了「最佳化裝置儲存空間」功能，此媒體已從裝置中卸載。你可以逐一下載項目，或關閉「最佳化裝置儲存空間」功能，將所有媒體下載至你的裝置。</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_all_items">Can\'t save all items</string>
+    <string name="AttachmentSaver__cant_save_all_items">無法儲存全部項目</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">Some media you\'ve selected has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can save items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">由於裝置開啟了「最佳化裝置儲存空間」功能，你所選的部分媒體已從裝置中卸載。你可以逐一儲存項目，或關閉「最佳化裝置儲存空間」功能，將所有媒體下載至你的裝置。</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
-    <string name="AttachmentSaver__view_storage_settings">View storage settings</string>
+    <string name="AttachmentSaver__view_storage_settings">檢視儲存空間設定</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">搜尋</string>
@@ -5885,13 +5885,13 @@
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">誰可以編輯此群組資訊?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">誰可以傳送訊息並發起通話？</string>
     <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Add member labels</string>
+    <string name="PermissionsSettingsFragment__add_member_labels">新增成員標籤</string>
     <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
+    <string name="PermissionsSettingsFragment__who_can_add_member_labels">誰可新增成員標籤？</string>
     <!-- Warning title shown before restricting member labels to admins only. -->
     <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">成員標籤將被清除</string>
     <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"將此權限變更為「僅限管理員」後，此群組內由非管理員設定的成員標籤將被清除。"</string>
     <!-- Confirm button for changing member label permission after warning. -->
     <string name="PermissionsSettingsFragment__change_permission">變更權限</string>
 
@@ -6677,15 +6677,15 @@
 
     <!-- StoryArchive -->
     <!-- Title for the story archive screen -->
-    <string name="StoryArchive__story_archive">Story archive</string>
+    <string name="StoryArchive__story_archive">限時動態封存</string>
     <!-- Section header in story settings -->
     <string name="StoryArchive__archive">封存</string>
     <!-- Label for switch to enable story archiving -->
-    <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
+    <string name="StoryArchive__keep_stories_in_archive">保存限時動態於封存紀錄中</string>
     <!-- Description for the archive toggle -->
-    <string name="StoryArchive__save_stories_after_they_expire">Save your sent stories after they leave the active feed.</string>
+    <string name="StoryArchive__save_stories_after_they_expire">將已發送的限時動態在離開動態消息後儲存下來。</string>
     <!-- Label for archive duration preference -->
-    <string name="StoryArchive__keep_stories_for">Keep stories for</string>
+    <string name="StoryArchive__keep_stories_for">封存限時動態時限為</string>
     <!-- Archive duration option: forever -->
     <string name="StoryArchive__forever">永久</string>
     <!-- Archive duration option: 1 year -->
@@ -6695,9 +6695,9 @@
     <!-- Archive duration option: 30 days -->
     <string name="StoryArchive__30_days">30天</string>
     <!-- Empty state title when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories">No archived stories</string>
+    <string name="StoryArchive__no_archived_stories">沒有已封存的限時動態</string>
     <!-- Empty state message when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
+    <string name="StoryArchive__no_archived_stories_message">請在限時動態設定中開啟「儲存限時動態至封存紀錄」功能，以自動封存你的限時動態。</string>
     <!-- Empty state button to navigate to story settings -->
     <string name="StoryArchive__go_to_settings">前往「設定」</string>
     <!-- Label for sort order menu -->
@@ -6709,10 +6709,10 @@
     <!-- Delete action in story archive multi-select bottom bar -->
     <string name="StoryArchive__delete">刪除</string>
     <!-- Content description for selecting a story in multi-select mode -->
-    <string name="StoryArchive__select_story">Select story</string>
+    <string name="StoryArchive__select_story">選擇限時動態</string>
     <!-- Confirmation dialog body when deleting stories from archive -->
     <plurals name="StoryArchive__delete_n_stories">
-        <item quantity="other">Delete %1$d stories? This cannot be undone.</item>
+        <item quantity="other">要刪除 %1$d 則限時動態？此操作將無法復原。</item>
     </plurals>
     <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
     <plurals name="StoryArchive__d_selected">
@@ -7837,7 +7837,7 @@
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
     <string name="BackupMediaUpsell__title">備份所有媒體</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans keep all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">付費的 Signal 安全備份計劃保存你的所有媒體，最高可達 100GB。</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">升級</string>
     <!-- Secondary button of Megaphone C -->
@@ -7857,7 +7857,7 @@
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
     <string name="BackupUpsellBottomSheet__title">升級以備份所有媒體</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose a photo or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">付費的 Signal 安全備份計劃儲存你發送和接收的所有媒體，最高可達 100GB。當你使用新手機或重新安裝 Signal 時，絕不會遺失相片或影片。</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/月</string>
     <!-- Subtitle for the paid plan feature card -->
@@ -8116,7 +8116,7 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__recovery_key_updated">Recovery key updated</string>
+    <string name="OnDeviceBackupsFragment__recovery_key_updated">恢復金鑰已更新</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
     <string name="OnDeviceBackupsFragment__directory_selected">所選目錄：%1$s</string>
 
@@ -8644,9 +8644,9 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">此金鑰將取代你裝置上備份的金鑰。</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your recovery key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">你的恢復金鑰是一組 64 個字元的代碼，可讓你在重新安裝 Signal 時還原備份。</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">這與你的裝置上恢復金鑰相同。</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">使用此金鑰來：</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -8664,7 +8664,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">需要此金鑰才能恢復你的帳戶和資料。將此金鑰存放在安全的地方。如果你將其遺失，你將會無法恢復帳戶。</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">This key is the same as your on-device recovery key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">此金鑰與你的裝置上恢復金鑰相同。需要使用它才能恢復你的帳戶和資料。</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">複製到剪貼簿</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->

@@ -6832,7 +6832,7 @@
     <!-- Label for switch to enable story archiving -->
     <string name="StoryArchive__keep_stories_in_archive">Verhalen in archief bewaren</string>
     <!-- Description for the archive toggle -->
-    <string name="StoryArchive__save_stories_after_they_expire">Sla verzonden verhalen op in het archief nadat ze niet langer actief zijn.</string>
+    <string name="StoryArchive__save_stories_after_they_expire">Sla je verzonden verhalen op in je archief nadat ze zijn verlopen.</string>
     <!-- Label for archive duration preference -->
     <string name="StoryArchive__keep_stories_for">Verhalen bewaren voor</string>
     <!-- Archive duration option: forever -->
@@ -6846,7 +6846,7 @@
     <!-- Empty state title when no archived stories exist -->
     <string name="StoryArchive__no_archived_stories">Geen gearchiveerde verhalen</string>
     <!-- Empty state message when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories_message">Schakel ‘Verhalen in het archief bewaren’ in verhaalinstellingen in om je verhalen automatisch te archiveren.</string>
+    <string name="StoryArchive__no_archived_stories_message">Schakel ‘Verhalen in archief bewaren’ in via de instellingen om je verhalen automatisch te archiveren.</string>
     <!-- Empty state button to navigate to story settings -->
     <string name="StoryArchive__go_to_settings">Ga naar instellingen</string>
     <!-- Label for sort order menu -->

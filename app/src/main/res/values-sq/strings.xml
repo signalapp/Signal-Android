@@ -2021,11 +2021,11 @@
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Te \"%1$s\" është ndryshuas se kush mund të përpunojë anëtarësi te grupi.</string>
 
     <!-- Shown when the current user changes the member label permission. -->
-    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">You changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">Ti ndryshove personat që mund të shtojnë emërtime anëtarësh tek \"%1$s\".</string>
     <!-- Shown when another group member changes the member label permission. -->
-    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s changed who can add member labels to \"%2$s\".</string>
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s ndryshoi personat që mund të shtojnë emërtime anëtarësh te \"%2$s\".</string>
     <!-- Shown when the member label permission is changed by an unknown admin. -->
-    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">An admin changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">Një administrator ndryshoi personat që mund të shtojnë emërtime anëtarësh në %1$s.</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">Ndryshuat parametrat e grupit për të lejuar krejt anëtarët të dërgojnë mesazhe.</string>
@@ -3391,15 +3391,15 @@
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">S\\’bëhet dot ruajtje në depozitë të jashtme pa leje</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_media">Can\'t save media</string>
+    <string name="AttachmentSaver__cant_save_media">Media nuk mund të ruhej</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__media_offloaded_message">This media has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can download items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__media_offloaded_message">Kjo media është hequr nga pajisja pasi opsioni \"Optimizo hapësirën në pajisje\" është i aktivizuar. Mund t\'i ruash artikujt një nga një, ose çaktivizo opsionin \"Optimizo hapësirën në pajisje\" për të shkarkuar të gjitha mediat.</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_all_items">Can\'t save all items</string>
+    <string name="AttachmentSaver__cant_save_all_items">Nuk mund të ruhet të gjitha artikujt</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">Some media you\'ve selected has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can save items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">Disa nga mediat që ke përzgjedhur janë hequr nga pajisja pasi opsioni \"Optimizo hapësirën në pajisje\" është i aktivizuar. Mund t\'i ruash artikujt një nga një, ose çaktivizo opsionin \"Optimizo hapësirën në pajisje\" për të shkarkuar të gjitha mediat.</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
-    <string name="AttachmentSaver__view_storage_settings">View storage settings</string>
+    <string name="AttachmentSaver__view_storage_settings">Shiko parametrat e hapësirës ruajtëse</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Kërko</string>
@@ -6026,15 +6026,15 @@
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Cilët mund të përpunojnë të dhënat mbi këtë grup?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">Kush mund të dërgojë mesazhe dhe të fillojë telefonatat?</string>
     <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Add member labels</string>
+    <string name="PermissionsSettingsFragment__add_member_labels">Shto emërtimin e anëtarit</string>
     <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
+    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Kush mund të shtojë emërtimet e anëtarëve?</string>
     <!-- Warning title shown before restricting member labels to admins only. -->
     <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Emërtimet e anëtarëve do të fshihen</string>
     <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Ndryshimi i kësaj lejeje në \"Vetëm administratorët\" do të fshijë emërtimet e anëtarëve të vendosur nga jo-administratorët në këtë grup."</string>
     <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Change permission</string>
+    <string name="PermissionsSettingsFragment__change_permission">Ndrysho lejet</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->
@@ -6826,15 +6826,15 @@
 
     <!-- StoryArchive -->
     <!-- Title for the story archive screen -->
-    <string name="StoryArchive__story_archive">Story archive</string>
+    <string name="StoryArchive__story_archive">Arkiva e postimeve të përkohshme</string>
     <!-- Section header in story settings -->
     <string name="StoryArchive__archive">Arkivo</string>
     <!-- Label for switch to enable story archiving -->
-    <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
+    <string name="StoryArchive__keep_stories_in_archive">Mbaj postimet e përkohshme në arkiv</string>
     <!-- Description for the archive toggle -->
-    <string name="StoryArchive__save_stories_after_they_expire">Save your sent stories after they leave the active feed.</string>
+    <string name="StoryArchive__save_stories_after_they_expire">Ruaj postimet e përkohshme të dërguara pasi ato të largohen nga transmetimi aktiv.</string>
     <!-- Label for archive duration preference -->
-    <string name="StoryArchive__keep_stories_for">Keep stories for</string>
+    <string name="StoryArchive__keep_stories_for">Mbaj postimet e përkohshme për</string>
     <!-- Archive duration option: forever -->
     <string name="StoryArchive__forever">Përgjithmonë</string>
     <!-- Archive duration option: 1 year -->
@@ -6844,9 +6844,9 @@
     <!-- Archive duration option: 30 days -->
     <string name="StoryArchive__30_days">30 ditë</string>
     <!-- Empty state title when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories">No archived stories</string>
+    <string name="StoryArchive__no_archived_stories">Nuk ka postime të përkohshme të arkivuara</string>
     <!-- Empty state message when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
+    <string name="StoryArchive__no_archived_stories_message">Aktivizo \"Ruaj postimet e përkohshme në arkiv\" te parametrat e postimit të përkohshmëm për t\'i arkivuar ato automatikisht.</string>
     <!-- Empty state button to navigate to story settings -->
     <string name="StoryArchive__go_to_settings">Shko te parametrat</string>
     <!-- Label for sort order menu -->
@@ -6858,11 +6858,11 @@
     <!-- Delete action in story archive multi-select bottom bar -->
     <string name="StoryArchive__delete">Fshij</string>
     <!-- Content description for selecting a story in multi-select mode -->
-    <string name="StoryArchive__select_story">Select story</string>
+    <string name="StoryArchive__select_story">Përzgjidh postimin e përkohshëm</string>
     <!-- Confirmation dialog body when deleting stories from archive -->
     <plurals name="StoryArchive__delete_n_stories">
-        <item quantity="one">Delete %1$d story? This cannot be undone.</item>
-        <item quantity="other">Delete %1$d stories? This cannot be undone.</item>
+        <item quantity="one">Të fshihet %1$d postim i përkohshëm? Kjo nuk mund të zhbëhet</item>
+        <item quantity="other">Të fshihen %1$d postime të përkohshme? Kjo nuk mund të zhbëhet.</item>
     </plurals>
     <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
     <plurals name="StoryArchive__d_selected">
@@ -8013,7 +8013,7 @@
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
     <string name="BackupMediaUpsell__title">Kopjeruaj të gjitha mediat</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans keep all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">Planet me pagesë për kopjeruajtjet e sigurta ruajnë të gjitha mediat deri në 100 GB.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">Përmirësojeni</string>
     <!-- Secondary button of Megaphone C -->
@@ -8033,7 +8033,7 @@
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
     <string name="BackupUpsellBottomSheet__title">Përditëso për të kopjeruajtur të gjitha mediat</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose a photo or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">Planet me pagesë për kopjeruajtjet e sigurta ruajnë të gjitha mediat që dërgon dhe merr, deri maksimumi 100 GB. Mos humb kurrë asnjë imazh apo video kur blen një telefon të ri apo riinstalon Signal.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/muaj</string>
     <!-- Subtitle for the paid plan feature card -->
@@ -8295,7 +8295,7 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__recovery_key_updated">Recovery key updated</string>
+    <string name="OnDeviceBackupsFragment__recovery_key_updated">Kodi i rikthimit i përditësua</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
     <string name="OnDeviceBackupsFragment__directory_selected">Direktoria e zgjedhur: %1$s</string>
 
@@ -8830,9 +8830,9 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Ky kod do të zëvendësojë kodin për kopjeruajtjet në pajisje.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your recovery key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Kodi i rikthimit është 64-shifror dhe të lejon ta rikthesh kopjeruajtjen kur riinstalon Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Ky është i njëjtë me kodin e rikthimit në pajisjen tënde.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Përdor këtë kod për të:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -8850,7 +8850,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Ky kod kërkohet për të rikuperuar llogarinë dhe të dhënat e tua. Ruaje kodin në një vend të sigurt. Nëse e humb, nuk do të mund të rikuperosh llogarinë.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">This key is the same as your on-device recovery key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">Ky kod është i njëjtë me kodin e rikthimit në pajisjen tënde. Ky kod kërkohet për të rikthyer llogarinë dhe të dhënat.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopjoje në të papastër</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->

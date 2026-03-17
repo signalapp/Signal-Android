@@ -1961,11 +1961,11 @@
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Топко мүчөлүктү \"%1$s\" оңдой алат деп өзгөрдү.</string>
 
     <!-- Shown when the current user changes the member label permission. -->
-    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">You changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">Катышуучулардын энбелгилерин \"%1$s\" деп кимдер кошо аларын өзгөрттүңүз.</string>
     <!-- Shown when another group member changes the member label permission. -->
-    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s changed who can add member labels to \"%2$s\".</string>
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s катышуучулардын энбелгилерин \"%2$s\" деп кимдер кошо аларын өзгөрттү.</string>
     <!-- Shown when the member label permission is changed by an unknown admin. -->
-    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">An admin changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">Администратор катышуучулардын энбелгилерин \"%1$s\" деп кимдер кошо аларын өзгөрттү.</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">Топтун параметрлерин билдирүүлөрдү топтун бардык мүчөлөрү жөнөтө алгыдай кылып өзгөрттүңүз.</string>
@@ -3288,15 +3288,15 @@
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Уруксат алмайынча, тышкы сактагычка сактай албайт.</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_media">Can\'t save media</string>
+    <string name="AttachmentSaver__cant_save_media">Медиа файлдар сакталган жок</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__media_offloaded_message">This media has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can download items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__media_offloaded_message">\"Түзмөктүн сактагычын оптималдаштыруу\" параметри күйгүзүлгөндүктөн, бул медиа файлдар түзмөгүңүздөн өчүрүлдү. Кааласаңыз, аларды бир-бирден сактасаңыз болот же бардык медиа файлдарды түзмөгүңүзгө жүктөп алуу үчүн \"Түзмөктүн сактагычын оптималдаштыруу\" параметрин өчүрүңүз.</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_all_items">Can\'t save all items</string>
+    <string name="AttachmentSaver__cant_save_all_items">Кээ бир нерселер сакталган жок</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">Some media you\'ve selected has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can save items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">\"Түзмөктүн сактагычын оптималдаштыруу\" параметри күйгүзүлгөндүктөн, кээ бир тандалган нерселер түзмөгүңүздөн өчүрүлдү. Кааласаңыз, аларды бир-бирден сактасаңыз болот же бардык медиа файлдарды түзмөгүңүзгө жүктөп алуу үчүн \"Түзмөктүн сактагычын оптималдаштыруу\" параметрин өчүрүңүз.</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
-    <string name="AttachmentSaver__view_storage_settings">View storage settings</string>
+    <string name="AttachmentSaver__view_storage_settings">Сактагычтын параметрлерин көрүү</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Издөө</string>
@@ -5885,15 +5885,15 @@
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Бул топтун маалыматын ким өзгөртө алат?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">Ким билдирүүлөрдү жөнөтүп, чала алат?</string>
     <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Add member labels</string>
+    <string name="PermissionsSettingsFragment__add_member_labels">Катышуучунун энбелгисин кошуу</string>
     <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
+    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Катышуучулардын энбелгилерин ким кошо алат?</string>
     <!-- Warning title shown before restricting member labels to admins only. -->
     <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Катышуучунун энбелгилери тазаланат</string>
     <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Бул уруксатты \"Администраторлор гана\" деп өзгөртсөңүз, ушул топтун кадимки колдонуучулары койгон катышуучулардын энбелгилери өчүп калат."</string>
     <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Change permission</string>
+    <string name="PermissionsSettingsFragment__change_permission">Уруксатты өзгөртүү</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->
@@ -6677,15 +6677,15 @@
 
     <!-- StoryArchive -->
     <!-- Title for the story archive screen -->
-    <string name="StoryArchive__story_archive">Story archive</string>
+    <string name="StoryArchive__story_archive">Окуялардын архиви</string>
     <!-- Section header in story settings -->
     <string name="StoryArchive__archive">Архивдөө</string>
     <!-- Label for switch to enable story archiving -->
-    <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
+    <string name="StoryArchive__keep_stories_in_archive">Окуяларды архивге сактоо</string>
     <!-- Description for the archive toggle -->
-    <string name="StoryArchive__save_stories_after_they_expire">Save your sent stories after they leave the active feed.</string>
+    <string name="StoryArchive__save_stories_after_they_expire">Башкы түрмөктөн өчкөн окуялар архивге сакталат.</string>
     <!-- Label for archive duration preference -->
-    <string name="StoryArchive__keep_stories_for">Keep stories for</string>
+    <string name="StoryArchive__keep_stories_for">Окуялар канча убакыт сакталсын</string>
     <!-- Archive duration option: forever -->
     <string name="StoryArchive__forever">Биротоло</string>
     <!-- Archive duration option: 1 year -->
@@ -6695,9 +6695,9 @@
     <!-- Archive duration option: 30 days -->
     <string name="StoryArchive__30_days">30 күнгө</string>
     <!-- Empty state title when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories">No archived stories</string>
+    <string name="StoryArchive__no_archived_stories">Архивделген окуялар жок</string>
     <!-- Empty state message when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
+    <string name="StoryArchive__no_archived_stories_message">Окуяларыңыз автоматтык түрдө архивделиши үчүн \"Окуяларды архивге сактоо\" дегенди күйгүзүңүз.</string>
     <!-- Empty state button to navigate to story settings -->
     <string name="StoryArchive__go_to_settings">Тууралоо бөлүмүнө өтүү</string>
     <!-- Label for sort order menu -->
@@ -6709,10 +6709,10 @@
     <!-- Delete action in story archive multi-select bottom bar -->
     <string name="StoryArchive__delete">Өчүрүү</string>
     <!-- Content description for selecting a story in multi-select mode -->
-    <string name="StoryArchive__select_story">Select story</string>
+    <string name="StoryArchive__select_story">Окуя тандоо</string>
     <!-- Confirmation dialog body when deleting stories from archive -->
     <plurals name="StoryArchive__delete_n_stories">
-        <item quantity="other">Delete %1$d stories? This cannot be undone.</item>
+        <item quantity="other">%1$d окуяны өчүрөсүзбү? Өчкөн нерселер кайра калыбына келбейт.</item>
     </plurals>
     <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
     <plurals name="StoryArchive__d_selected">
@@ -7837,7 +7837,7 @@
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
     <string name="BackupMediaUpsell__title">Бардык медиа файлдардын камдык көчүрмөсү сакталат</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans keep all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">Signal\'дын Акы алынуучу Коопсуз камдык көчүрмөлөр планында 100 ГБ чейин бардык медиа файлдарыңыз сакталат.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">Жаңыртуу</string>
     <!-- Secondary button of Megaphone C -->
@@ -7857,7 +7857,7 @@
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
     <string name="BackupUpsellBottomSheet__title">Бардык медиа файлдарыңыздын көчүрмөлөрүн сактоо үчүн башка планга өтүңүз</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose a photo or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">Signal\'дын Акы алынуучу Коопсуз камдык көчүрмөлөр пландарында 100 ГБ чейин алынган жана жөнөтүлгөн бардык медиа файлдар сакталат. Жаңы телефон алганыңызда же Signal\'ды кайра орнотконуңузда бир дагы сүрөтүңүз же видеоңуз жоголбойт.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">Айына %1$s</string>
     <!-- Subtitle for the paid plan feature card -->
@@ -8116,7 +8116,7 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__recovery_key_updated">Recovery key updated</string>
+    <string name="OnDeviceBackupsFragment__recovery_key_updated">Калыбына келтирүү ачкычы өзгөрдү</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
     <string name="OnDeviceBackupsFragment__directory_selected">Каталог тандалды: %1$s</string>
 
@@ -8644,9 +8644,9 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Бул ачкыч түзмөгүңүздөгү камдык көчүрмөнүн ачкычынын ордуна колдонулат.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your recovery key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Калыбына келтирүү ачкычы 64 орундуу код болуп, Signal\'ды кайра орнотконуңузда сакталган нерселерди калыбына келтиргенге жардам берет.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Бул ачкыч түзмөгүңүздөгү калыбына келтирүү ачкычтай.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Бул ачкыч менен:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -8664,7 +8664,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Бул ачкыч менен аккаунтуңузду жана андагы нерселерди калыбына келтиресиз. Аны коопсуз жерде сактаңыз. Жоготуп алсаңыз, аккаунтуңузду калыбына келтире албай каласыз.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">This key is the same as your on-device recovery key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">Бул ачкыч түзмөгүңүздөгү калыбына келтирүү ачкычтай. Аккаунтуңузду жана андагы нерселерди калыбына келтиришиңиз керек.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Буферге көчүрүү</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->

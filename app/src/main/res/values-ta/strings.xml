@@ -2021,11 +2021,11 @@
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">குழு உறுப்பினர்களை யார் திருத்தலாம் என்பது \"%1$s\" கு மாற்றப்பட்டுள்ளது</string>
 
     <!-- Shown when the current user changes the member label permission. -->
-    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">You changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">உறுப்பினரின் பதவி நிலையை யார் சேர்க்கலாம் என்பதை \"%1$s\" என நீங்கள் மாற்றியுள்ளீர்கள்.</string>
     <!-- Shown when another group member changes the member label permission. -->
-    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s changed who can add member labels to \"%2$s\".</string>
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">உறுப்பினரின் பதவி நிலையை யார் சேர்க்கலாம் என்பதை \"%2$s\" என %1$s மாற்றியுள்ளார்.</string>
     <!-- Shown when the member label permission is changed by an unknown admin. -->
-    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">An admin changed who can add member labels to \"%1$s\".</string>
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">உறுப்பினரின் பதவி நிலையை யார் சேர்க்கலாம் என்பதை ஒரு நிர்வாகி \"%1$s\" என மாற்றியுள்ளார்.</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">நீங்கள் குழு அமைப்பை அனைத்து உறுப்பினர்களும் செய்திகள் அனுப்ப அனுமதிக்கும்படி மாற்றினீர்கள்.</string>
@@ -3391,15 +3391,15 @@
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">அனுமதியின்றி வெளிப்புற சேமிப்பகத்தில் சேமிக்க முடியவில்லை</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_media">Can\'t save media</string>
+    <string name="AttachmentSaver__cant_save_media">ஊடகத்தைச் சேமிக்க முடியவில்லை</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__media_offloaded_message">This media has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can download items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__media_offloaded_message">சாதனச் சேமிப்பகத்தை மேம்படுத்துக\" அம்சம் ஆன் செய்யப்பட்டிருப்பதால், இந்த ஊடகம் உங்கள் சாதனத்திலிருந்து ஆஃப்லோடு செய்யப்பட்டுள்ளது. நீங்கள் உருப்படிகளை ஒவ்வொன்றாகப் பதிவிறக்கலாம் அல்லது அனைத்து ஊடகத்தையும் உங்கள் சாதனத்தில் பதிவிறக்க \"சாதனத்தில் உள்ள சேமிப்பகத்தை மேம்படுத்துக\" என்பதை ஆஃப் செய்யலாம்.</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_all_items">Can\'t save all items</string>
+    <string name="AttachmentSaver__cant_save_all_items">அனைத்து உருப்படிகளையும் சேமிக்க முடியவில்லை</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">Some media you\'ve selected has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can save items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">\"சாதனத்தில் உள்ள சேமிப்பகத்தை மேம்படுத்துக\" அம்சம் ஆன் செய்யப்பட்டிருப்பதால், நீங்கள் தேர்ந்தெடுத்த சில ஊடகங்கள் உங்கள் சாதனத்திலிருந்து ஆஃப்லோடு செய்யப்பட்டுள்ளன. நீங்கள் உருப்படிகளை ஒவ்வொன்றாகச் சேமிக்கலாம் அல்லது அனைத்து ஊடகத்தையும் உங்கள் சாதனத்தில் பதிவிறக்க \"சாதனச் சேமிப்பகத்தை மேம்படுத்துக\" என்பதை ஆஃப் செய்யலாம்.</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
-    <string name="AttachmentSaver__view_storage_settings">View storage settings</string>
+    <string name="AttachmentSaver__view_storage_settings">சேமிப்பக அமைப்புகளைக் காண்க</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">தேடு</string>
@@ -6026,15 +6026,15 @@
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">இந்த குழுவின் தகவலை யார் திருத்தலாம்?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">யாரெல்லாம் மெசேஜ்களை அனுப்பி, அழைப்புகளைத் துவங்கலாம்?</string>
     <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Add member labels</string>
+    <string name="PermissionsSettingsFragment__add_member_labels">உறுப்பினரின் பதவி நிலையைச் சேர்</string>
     <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
+    <string name="PermissionsSettingsFragment__who_can_add_member_labels">உறுப்பினரின் பதவி நிலையை யார் சேர்க்கலாம்?</string>
     <!-- Warning title shown before restricting member labels to admins only. -->
     <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">உறுப்பினரின் பதவி நிலை அழிக்கப்படும்</string>
     <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"இந்த அனுமதியை “நிர்வாகிகள் மட்டும்” என மாற்றினால், இந்தத் குழுவில் உள்ள நிர்வாகிகள் அல்லாதோர் அமைத்த உறுப்பினரின் பதவி நிலை அழிக்கப்படும்."</string>
     <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Change permission</string>
+    <string name="PermissionsSettingsFragment__change_permission">அனுமதியை மாற்று</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->
@@ -6826,15 +6826,15 @@
 
     <!-- StoryArchive -->
     <!-- Title for the story archive screen -->
-    <string name="StoryArchive__story_archive">Story archive</string>
+    <string name="StoryArchive__story_archive">ஸ்டோரி காப்பகம்</string>
     <!-- Section header in story settings -->
     <string name="StoryArchive__archive">காப்பகம் சேர்</string>
     <!-- Label for switch to enable story archiving -->
-    <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
+    <string name="StoryArchive__keep_stories_in_archive">ஸ்டோரீஸைக் காப்பகத்தில் வைத்திருக்கவும்</string>
     <!-- Description for the archive toggle -->
-    <string name="StoryArchive__save_stories_after_they_expire">Save your sent stories after they leave the active feed.</string>
+    <string name="StoryArchive__save_stories_after_they_expire">நீங்கள் அனுப்பிய ஸ்டோரீஸ் செயலில் உள்ள ஃபீடில் இருந்து மறைந்த பிறகு அவற்றைச் சேமிக்கவும்.</string>
     <!-- Label for archive duration preference -->
-    <string name="StoryArchive__keep_stories_for">Keep stories for</string>
+    <string name="StoryArchive__keep_stories_for">ஸ்டோரீஸை இவ்வளவு காலம் வைத்திருக்கவும்</string>
     <!-- Archive duration option: forever -->
     <string name="StoryArchive__forever">என்றென்றும்</string>
     <!-- Archive duration option: 1 year -->
@@ -6844,9 +6844,9 @@
     <!-- Archive duration option: 30 days -->
     <string name="StoryArchive__30_days">30 நாட்கள்</string>
     <!-- Empty state title when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories">No archived stories</string>
+    <string name="StoryArchive__no_archived_stories">காப்பகப்படுத்தப்பட்ட ஸ்டோரீஸ் இல்லை</string>
     <!-- Empty state message when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
+    <string name="StoryArchive__no_archived_stories_message">உங்களின் ஸ்டோரீஸைத் தானாகக் காப்பகப்படுத்த, ஸ்டோரி அமைப்புகளில் \"ஸ்டோரீஸைக் காப்பகத்தில் சேமித்திடுக\" என்பதை ஆன் செய்யவும்.</string>
     <!-- Empty state button to navigate to story settings -->
     <string name="StoryArchive__go_to_settings">அமைப்புகளுக்குச் செல்</string>
     <!-- Label for sort order menu -->
@@ -6858,11 +6858,11 @@
     <!-- Delete action in story archive multi-select bottom bar -->
     <string name="StoryArchive__delete">நீக்கு</string>
     <!-- Content description for selecting a story in multi-select mode -->
-    <string name="StoryArchive__select_story">Select story</string>
+    <string name="StoryArchive__select_story">ஸ்டோரியைத் தேர்ந்தெடு</string>
     <!-- Confirmation dialog body when deleting stories from archive -->
     <plurals name="StoryArchive__delete_n_stories">
-        <item quantity="one">Delete %1$d story? This cannot be undone.</item>
-        <item quantity="other">Delete %1$d stories? This cannot be undone.</item>
+        <item quantity="one">%1$d ஸ்டோரீயை நீக்கவா? இதைச் செயல்தவிர்க்க முடியாது.</item>
+        <item quantity="other">%1$d ஸ்டோரீஸை நீக்கவா? இதைச் செயல்தவிர்க்க முடியாது.</item>
     </plurals>
     <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
     <plurals name="StoryArchive__d_selected">
@@ -8013,7 +8013,7 @@
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
     <string name="BackupMediaUpsell__title">உங்களின் அனைத்து ஊடகத்தையும் காப்புப்பிரதி எடுக்கவும்</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans keep all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">கட்டண சிக்னல் பாதுகாப்பு காப்புப்பிரதித் திட்டங்கள் 100GB வரை உங்களின் அனைத்து ஊடகங்களையும் பாதுகாக்கும்.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">மேம்படுத்தல்</string>
     <!-- Secondary button of Megaphone C -->
@@ -8033,7 +8033,7 @@
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
     <string name="BackupUpsellBottomSheet__title">அனைத்து ஊடகத்தையும் காப்புப்பிரதி எடுக்க தரமேற்றவும்</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose a photo or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">கட்டண சிக்னல் பாதுகாப்புக் காப்புப்பிரதித் திட்டங்கள் நீங்கள் அனுப்பும் மற்றும் பெறும் அனைத்து ஊடகத்தையும் அதிகபட்சம் 100GB வரை சேமிக்கும். நீங்கள் புதிய தொலைபேசியை வாங்கும்போது அல்லது சிக்னலை மீண்டும் நிறுவும்போது எந்தவொரு படத்தையும் வீடியோவையும் தவறவிடாதீர்கள்.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%1$s/மாதம்</string>
     <!-- Subtitle for the paid plan feature card -->
@@ -8295,7 +8295,7 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__recovery_key_updated">Recovery key updated</string>
+    <string name="OnDeviceBackupsFragment__recovery_key_updated">மீட்புக் குறியீடு புதுப்பிக்கப்பட்டது</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
     <string name="OnDeviceBackupsFragment__directory_selected">தேர்ந்தெடுக்கப்பட்ட கோப்பகம்: %1$s</string>
 
@@ -8830,9 +8830,9 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">இந்தக் குறியீடு உங்கள் சாதனத்தில் உள்ள காப்புப்பிரதிக்கான குறியீட்டுக்கு மாற்றாக அமையும்.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your recovery key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">உங்கள் மீட்புக் குறியீடானது 64 இலக்கக் குறியீடாகும், இது சிக்னலை நீங்கள் மீண்டும் நிறுவும்போது உங்கள் காப்புப் பிரதியை மீட்டமைக்க உதவுகிறது.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">இது உங்கள் சாதனத்தில் உள்ள மீட்புக் குறியீட்டைப் போன்றதாகும்.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">இந்தக் குறியீட்டைப் பயன்படுத்தி:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -8850,7 +8850,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">உங்கள் கணக்கு மற்றும் தரவை மீட்டெடுக்க இந்தக் குறியீடு தேவை. இந்தக் குறியீட்டைப் பாதுகாப்பான இடத்தில் சேமித்து வைக்கவும். நீங்கள் அதை இழந்துவிட்டால், உங்கள் கணக்கை மீட்டெடுக்க முடியாது.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">This key is the same as your on-device recovery key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">இந்தக் குறியீடானது உங்கள் சாதனத்தில் உள்ள மீட்புக் குறியீட்டைப் போன்றதாகும். உங்கள் கணக்கு மற்றும் தரவை மீட்டெடுக்க இது அவசியமாகும்.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கவும்</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->

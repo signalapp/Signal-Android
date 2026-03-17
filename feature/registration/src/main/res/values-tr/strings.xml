@@ -93,5 +93,5 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Eski telefonum yanımda değil</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Ya da Signal\'i aynı cihaza yeniden yüklüyorsun</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">Ya da Signal\'ı aynı cihaza yeniden yüklüyorsun</string>
 </resources>

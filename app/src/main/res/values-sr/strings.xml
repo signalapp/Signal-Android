@@ -6834,7 +6834,7 @@
     <!-- Description for the archive toggle -->
     <string name="StoryArchive__save_stories_after_they_expire">Сачувајте послате приче и након што истекну на активном току.</string>
     <!-- Label for archive duration preference -->
-    <string name="StoryArchive__keep_stories_for">Сачувај причу</string>
+    <string name="StoryArchive__keep_stories_for">Сачувај приче</string>
     <!-- Archive duration option: forever -->
     <string name="StoryArchive__forever">Заувек</string>
     <!-- Archive duration option: 1 year -->
