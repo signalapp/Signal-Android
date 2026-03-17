@@ -8,7 +8,6 @@ import android.content.ActivityNotFoundException
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +33,6 @@ import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference
 import org.thoughtcrime.securesms.conversation.v2.data.AvatarDownloadStateCache
-import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelEducationSheet
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelPillView
@@ -45,11 +43,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet
 import org.thoughtcrime.securesms.util.ContextUtil
-import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.visible
-import org.signal.core.ui.R as CoreUiR
 
 /**
  * A bottom sheet that shows some simple recipient details, as well as some actions (like calling,
@@ -216,42 +211,13 @@ class RecipientBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
         tapToView.setOnClickListener(null)
       }
 
-      val name = if (recipient.isSelf) requireContext().getString(R.string.note_to_self) else recipient.getDisplayName(requireContext())
-
-      fullName.visible = name.isNotEmpty()
-      val nameBuilder = SpannableStringBuilder(name)
-      if (recipient.showVerified) {
-        SpanUtil.appendSpacer(nameBuilder, 8)
-        SpanUtil.appendCenteredImageSpanWithoutSpace(nameBuilder, ContextUtil.requireDrawable(requireContext(), R.drawable.ic_official_28), 28, 28)
-      } else if (recipient.isSystemContact) {
-        val systemContactGlyph = SignalSymbols.getSpannedString(
-          requireContext(),
-          SignalSymbols.Weight.BOLD,
-          SignalSymbols.Glyph.PERSON_CIRCLE
-        )
-
-        nameBuilder.append(" ")
-        nameBuilder.append(SpanUtil.ofSize(systemContactGlyph, 20))
+      val name = recipient.getDisplayNameForHeadline(requireContext())
+      fullName.apply {
+        text = name
+        visible = name.isNotEmpty()
       }
 
       if (!recipient.isSelf && recipient.isIndividual) {
-        val isLtr = ViewUtil.isLtr(view)
-        val chevronGlyph = SignalSymbols.getSpannedString(
-          requireContext(),
-          SignalSymbols.Weight.BOLD,
-          if (isLtr) SignalSymbols.Glyph.CHEVRON_RIGHT else SignalSymbols.Glyph.CHEVRON_LEFT,
-          CoreUiR.color.signal_colorOutline
-        )
-
-        if (isLtr) {
-          nameBuilder.append(" ")
-          nameBuilder.append(SpanUtil.ofSize(chevronGlyph, 24))
-        } else {
-          nameBuilder.insert(0, " ")
-          nameBuilder.insert(0, SpanUtil.ofSize(chevronGlyph, 24))
-        }
-
-        fullName.text = nameBuilder
         fullName.setOnClickListener {
           dismiss()
           AboutSheet.create(recipient).show(getParentFragmentManager(), null)
@@ -261,8 +227,8 @@ class RecipientBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
         nickname.setOnClickListener {
           nicknameLauncher.launch(NicknameActivity.Args(recipientId, false))
         }
-      } else if (recipient.isReleaseNotes) {
-        fullName.text = name
+      } else {
+        fullName.setOnClickListener(null)
       }
 
       noteToSelfDescription.visible = recipient.isSelf
