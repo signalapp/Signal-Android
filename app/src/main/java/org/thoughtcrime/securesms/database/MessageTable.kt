@@ -190,6 +190,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     const val UNIDENTIFIED = "unidentified"
     const val REACTIONS_UNREAD = "reactions_unread"
     const val REACTIONS_LAST_SEEN = "reactions_last_seen"
+    const val REMOTE_DELETED = "remote_deleted" // Note: Use [DELETED_BY] instead. All attempts to remove this have failed.
     const val SERVER_GUID = "server_guid"
     const val RECEIPT_TIMESTAMP = "receipt_timestamp"
     const val EXPORT_STATE = "export_state"
@@ -277,6 +278,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $VIEW_ONCE INTEGER DEFAULT 0,
         $REACTIONS_UNREAD INTEGER DEFAULT 0,
         $REACTIONS_LAST_SEEN INTEGER DEFAULT -1,
+        $REMOTE_DELETED INTEGER DEFAULT 0,
         $MENTIONS_SELF INTEGER DEFAULT 0,
         $NOTIFIED_TIMESTAMP INTEGER DEFAULT 0,
         $SERVER_GUID TEXT DEFAULT NULL,
