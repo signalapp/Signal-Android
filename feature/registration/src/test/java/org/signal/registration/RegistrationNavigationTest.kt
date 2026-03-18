@@ -6,6 +6,7 @@
 package org.signal.registration
 
 import android.app.Application
+import android.os.Looper
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -13,12 +14,14 @@ import androidx.compose.ui.test.performClick
 import androidx.lifecycle.SavedStateHandle
 import androidx.test.core.app.ApplicationProvider
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import io.mockk.coEvery
 import io.mockk.mockk
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.Shadows
 import org.robolectric.annotation.Config
 import org.signal.core.ui.CoreUiDependenciesRule
 import org.signal.core.ui.compose.theme.SignalTheme
@@ -47,13 +50,22 @@ class RegistrationNavigationTest {
   @Before
   fun setup() {
     mockRepository = mockk<RegistrationRepository>(relaxed = true)
+    coEvery { mockRepository.restoreFlowState() } returns null
+    coEvery { mockRepository.getPreExistingRegistrationData() } returns null
     viewModel = RegistrationViewModel(mockRepository, SavedStateHandle())
+    // Allow the init coroutine to complete so isRestoring becomes false.
+    Shadows.shadowOf(Looper.getMainLooper()).idle()
   }
 
   @Test
   fun `navigation starts at Welcome screen`() {
     // Given
     val permissionsState = createMockPermissionsState()
+
+    // Verify the ViewModel state is correctly initialized
+    val state = viewModel.state.value
+    assert(!state.isRestoringNavigationState) { "isRestoring should be false after init, was: ${state.isRestoringNavigationState}" }
+    assert(state.backStack == listOf(RegistrationRoute.Welcome)) { "backStack should be [Welcome], was: ${state.backStack}" }
 
     composeTestRule.setContent {
       SignalTheme(incognitoKeyboardEnabled = false) {
@@ -86,6 +98,7 @@ class RegistrationNavigationTest {
 
     // When
     composeTestRule.onNodeWithTag(TestTags.WELCOME_GET_STARTED_BUTTON).performClick()
+    Shadows.shadowOf(Looper.getMainLooper()).idle()
 
     // Then - verify Permissions screen is displayed
     composeTestRule.onNodeWithTag(TestTags.PERMISSIONS_SCREEN).assertIsDisplayed()
@@ -108,9 +121,11 @@ class RegistrationNavigationTest {
 
     // Navigate to Permissions screen first
     composeTestRule.onNodeWithTag(TestTags.WELCOME_GET_STARTED_BUTTON).performClick()
+    Shadows.shadowOf(Looper.getMainLooper()).idle()
 
     // When
     composeTestRule.onNodeWithTag(TestTags.PERMISSIONS_NEXT_BUTTON).performClick()
+    Shadows.shadowOf(Looper.getMainLooper()).idle()
 
     // Then - verify PhoneNumber screen is displayed
     composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_SCREEN).assertIsDisplayed()
@@ -133,9 +148,11 @@ class RegistrationNavigationTest {
 
     // Navigate to Permissions screen first
     composeTestRule.onNodeWithTag(TestTags.WELCOME_GET_STARTED_BUTTON).performClick()
+    Shadows.shadowOf(Looper.getMainLooper()).idle()
 
     // When
     composeTestRule.onNodeWithTag(TestTags.PERMISSIONS_NOT_NOW_BUTTON).performClick()
+    Shadows.shadowOf(Looper.getMainLooper()).idle()
 
     // Then - verify PhoneNumber screen is displayed
     composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_SCREEN).assertIsDisplayed()
@@ -164,6 +181,7 @@ class RegistrationNavigationTest {
     // When
     composeTestRule.onNodeWithTag(TestTags.WELCOME_RESTORE_OR_TRANSFER_BUTTON).performClick()
     composeTestRule.onNodeWithTag(TestTags.WELCOME_RESTORE_HAS_OLD_PHONE_BUTTON).performClick()
+    Shadows.shadowOf(Looper.getMainLooper()).idle()
 
     // Then - verify Permissions screen is displayed
     // (After permissions, user would go to RestoreViaQr screen)
@@ -188,6 +206,7 @@ class RegistrationNavigationTest {
     // When
     composeTestRule.onNodeWithTag(TestTags.WELCOME_RESTORE_OR_TRANSFER_BUTTON).performClick()
     composeTestRule.onNodeWithTag(TestTags.WELCOME_RESTORE_NO_OLD_PHONE_BUTTON).performClick()
+    Shadows.shadowOf(Looper.getMainLooper()).idle()
 
     // Then - verify Restore screen is displayed (or its expected content)
     // Note: Update this assertion based on actual Restore screen content when implemented

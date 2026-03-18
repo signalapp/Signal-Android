@@ -10,6 +10,7 @@ import android.content.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.json.Json
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
@@ -410,6 +411,81 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     return storageController.getPreExistingRegistrationData()
   }
 
+  /**
+   * Persists the current flow state as JSON in the in-progress registration data proto.
+   */
+  suspend fun saveFlowState(state: RegistrationFlowState) = withContext(Dispatchers.IO) {
+    try {
+      val json = flowStateJson.encodeToString(PersistedFlowState.serializer(), state.toPersistedFlowState())
+      storageController.updateInProgressRegistrationData {
+        flowStateJson = json
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to save flow state", e)
+    }
+  }
+
+  /**
+   * Restores the flow state from disk. Returns null if no state is saved or deserialization fails.
+   * Reconstructs [RegistrationFlowState.accountEntropyPool] and [RegistrationFlowState.temporaryMasterKey]
+   * from their dedicated proto fields, and loads [RegistrationFlowState.preExistingRegistrationData]
+   * from permanent storage.
+   */
+  suspend fun restoreFlowState(): RegistrationFlowState? = withContext(Dispatchers.IO) {
+    try {
+      val data = storageController.readInProgressRegistrationData()
+      if (data.flowStateJson.isEmpty()) return@withContext null
+
+      val persisted = flowStateJson.decodeFromString(PersistedFlowState.serializer(), data.flowStateJson)
+
+      val aep = data.accountEntropyPool.takeIf { it.isNotEmpty() }?.let { AccountEntropyPool(it) }
+      val masterKey = data.temporaryMasterKey.takeIf { it.size > 0 }?.let { MasterKey(it.toByteArray()) }
+      val preExisting = storageController.getPreExistingRegistrationData()
+
+      persisted.toRegistrationFlowState(
+        accountEntropyPool = aep,
+        temporaryMasterKey = masterKey,
+        preExistingRegistrationData = preExisting
+      )
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to restore flow state", e)
+      null
+    }
+  }
+
+  /**
+   * Clears any persisted flow state JSON from the in-progress registration data.
+   */
+  suspend fun clearFlowState() = withContext(Dispatchers.IO) {
+    try {
+      storageController.updateInProgressRegistrationData {
+        flowStateJson = ""
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to clear flow state", e)
+    }
+  }
+
+  /**
+   * Validates a registration session by fetching its current status from the server.
+   * Returns fresh [SessionMetadata] on success, or null if the session is expired/invalid.
+   */
+  suspend fun validateSession(sessionId: String): SessionMetadata? = withContext(Dispatchers.IO) {
+    when (val result = networkController.getSession(sessionId)) {
+      is RegistrationNetworkResult.Success -> result.data
+      else -> null
+    }
+  }
+
+  /**
+   * Checks whether the in-progress registration data indicates a completed registration
+   * (i.e. both ACI and PNI have been saved).
+   */
+  suspend fun isRegistered(): Boolean = withContext(Dispatchers.IO) {
+    val data = storageController.readInProgressRegistrationData()
+    data.aci.isNotEmpty() && data.pni.isNotEmpty()
+  }
+
   private fun generateKeyMaterial(
     existingAccountEntropyPool: AccountEntropyPool? = null,
     existingAciIdentityKeyPair: IdentityKeyPair? = null,
@@ -488,5 +564,6 @@ class RegistrationRepository(val context: Context, val networkController: Networ
 
   companion object {
     private val TAG = Log.tag(RegistrationRepository::class)
+    private val flowStateJson = Json { ignoreUnknownKeys = true }
   }
 }

@@ -7,8 +7,17 @@ package org.signal.registration.sample.screens.main
 
 data class MainScreenState(
   val existingRegistrationState: ExistingRegistrationState? = null,
-  val registrationExpired: Boolean = false
+  val registrationExpired: Boolean = false,
+  val pendingFlowState: PendingFlowState? = null
 ) {
+  data class PendingFlowState(
+    val e164: String?,
+    val backstackSize: Int,
+    val currentScreen: String,
+    val hasSession: Boolean,
+    val hasAccountEntropyPool: Boolean
+  )
+
   data class ExistingRegistrationState(
     val phoneNumber: String,
     val aci: String,

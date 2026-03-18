@@ -276,14 +276,17 @@ class PhoneNumberEntryViewModel(
       is NetworkController.RegistrationNetworkResult.Failure<NetworkController.CreateSessionError> -> {
         return when (response.error) {
           is NetworkController.CreateSessionError.InvalidRequest -> {
+            Log.w(TAG, "[CreateSession] Invalid request when creating session. Message: ${response.error.message}")
             state.copy(oneTimeEvent = OneTimeEvent.UnknownError)
           }
           is NetworkController.CreateSessionError.RateLimited -> {
+            Log.w(TAG, "[CreateSession] Rate limited (retryAfter: ${response.error.retryAfter}).")
             state.copy(oneTimeEvent = OneTimeEvent.RateLimited(response.error.retryAfter))
           }
         }
       }
       is NetworkController.RegistrationNetworkResult.NetworkError -> {
+        Log.w(TAG, "[CreateSession] Network error.", response.exception)
         return state.copy(oneTimeEvent = OneTimeEvent.NetworkError)
       }
       is NetworkController.RegistrationNetworkResult.ApplicationError -> {
@@ -304,23 +307,26 @@ class PhoneNumberEntryViewModel(
         Log.d(TAG, "Received push challenge token, submitting...")
         val updateResult = repository.submitPushChallengeToken(sessionMetadata.id, pushChallengeToken)
         sessionMetadata = when (updateResult) {
-          is NetworkController.RegistrationNetworkResult.Success -> updateResult.data
+          is NetworkController.RegistrationNetworkResult.Success -> {
+            Log.d(TAG, "[SubmitPushChallengeToken] Successfully submitted push challenge token.")
+            updateResult.data
+          }
           is NetworkController.RegistrationNetworkResult.Failure -> {
-            Log.w(TAG, "Failed to submit push challenge token: ${updateResult.error}")
+            Log.w(TAG, "[SubmitPushChallengeToken] Failed to submit push challenge token: ${updateResult.error}")
             sessionMetadata
           }
           is NetworkController.RegistrationNetworkResult.NetworkError -> {
-            Log.w(TAG, "Network error submitting push challenge token", updateResult.exception)
+            Log.w(TAG, "[SubmitPushChallengeToken] Network error submitting push challenge token", updateResult.exception)
             sessionMetadata
           }
           is NetworkController.RegistrationNetworkResult.ApplicationError -> {
-            Log.w(TAG, "Application error submitting push challenge token", updateResult.exception)
+            Log.w(TAG, "[SubmitPushChallengeToken] Application error submitting push challenge token", updateResult.exception)
             sessionMetadata
           }
         }
         state = state.copy(sessionMetadata = sessionMetadata)
       } else {
-        Log.d(TAG, "Push challenge token not received within timeout")
+        Log.d(TAG, "[SubmitPushChallengeToken] Push challenge token not received within timeout")
       }
     }
 
@@ -337,41 +343,49 @@ class PhoneNumberEntryViewModel(
 
     sessionMetadata = when (verificationCodeResponse) {
       is NetworkController.RegistrationNetworkResult.Success<NetworkController.SessionMetadata> -> {
+        Log.d(TAG, "[RequestVerificationCode] Successfully requested verification code.")
         verificationCodeResponse.data
       }
       is NetworkController.RegistrationNetworkResult.Failure<NetworkController.RequestVerificationCodeError> -> {
         return when (verificationCodeResponse.error) {
           is NetworkController.RequestVerificationCodeError.InvalidRequest -> {
+            Log.w(TAG, "[RequestVerificationCode] Invalid request when requesting verification code. Message: ${verificationCodeResponse.error.message}")
             state.copy(oneTimeEvent = OneTimeEvent.UnknownError)
           }
           is NetworkController.RequestVerificationCodeError.RateLimited -> {
+            Log.w(TAG, "[RequestVerificationCode] Rate limited (retryAfter: ${verificationCodeResponse.error.retryAfter}).")
             state.copy(oneTimeEvent = OneTimeEvent.RateLimited(verificationCodeResponse.error.retryAfter))
           }
           is NetworkController.RequestVerificationCodeError.CouldNotFulfillWithRequestedTransport -> {
+            Log.w(TAG, "[RequestVerificationCode] Could not fulfill with requested transport.")
             state.copy(oneTimeEvent = OneTimeEvent.CouldNotRequestCodeWithSelectedTransport)
           }
           is NetworkController.RequestVerificationCodeError.InvalidSessionId -> {
+            Log.w(TAG, "[RequestVerificationCode] Invalid session ID when requesting verification code.")
             parentEventEmitter(RegistrationFlowEvent.ResetState)
             state
           }
           is NetworkController.RequestVerificationCodeError.MissingRequestInformationOrAlreadyVerified -> {
-            Log.w(TAG, "When requesting verification code, missing request information or already verified.")
+            Log.w(TAG, "[RequestVerificationCode] Missing request information or already verified.")
             state.copy(oneTimeEvent = OneTimeEvent.NetworkError)
           }
           is NetworkController.RequestVerificationCodeError.SessionNotFound -> {
+            Log.w(TAG, "[RequestVerificationCode] Session not found when requesting verification code.")
             parentEventEmitter(RegistrationFlowEvent.ResetState)
             state
           }
           is NetworkController.RequestVerificationCodeError.ThirdPartyServiceError -> {
+            Log.w(TAG, "[RequestVerificationCode] Third party service error.")
             state.copy(oneTimeEvent = OneTimeEvent.ThirdPartyError)
           }
         }
       }
       is NetworkController.RegistrationNetworkResult.NetworkError -> {
+        Log.w(TAG, "[RequestVerificationCode] Network error.", verificationCodeResponse.exception)
         return state.copy(oneTimeEvent = OneTimeEvent.NetworkError)
       }
       is NetworkController.RegistrationNetworkResult.ApplicationError -> {
-        Log.w(TAG, "Unknown error when creating session.", verificationCodeResponse.exception)
+        Log.w(TAG, "[RequestVerificationCode] Unknown error when creating session.", verificationCodeResponse.exception)
         return state.copy(oneTimeEvent = OneTimeEvent.UnknownError)
       }
     }
@@ -383,7 +397,9 @@ class PhoneNumberEntryViewModel(
       return state
     }
 
-    parentEventEmitter.navigateTo(RegistrationRoute.VerificationCodeEntry(sessionMetadata, e164))
+    parentEventEmitter(RegistrationFlowEvent.SessionUpdated(sessionMetadata))
+    parentEventEmitter(RegistrationFlowEvent.E164Chosen(e164))
+    parentEventEmitter.navigateTo(RegistrationRoute.VerificationCodeEntry)
     return state
   }
 
@@ -470,9 +486,9 @@ class PhoneNumberEntryViewModel(
       }
     }
 
-    val e164 = "+${inputState.countryCode}${inputState.nationalNumber}"
-
-    parentEventEmitter.navigateTo(RegistrationRoute.VerificationCodeEntry(sessionMetadata, e164))
+    parentEventEmitter(RegistrationFlowEvent.SessionUpdated(sessionMetadata))
+    parentEventEmitter(RegistrationFlowEvent.E164Chosen("+${inputState.countryCode}${inputState.nationalNumber}"))
+    parentEventEmitter.navigateTo(RegistrationRoute.VerificationCodeEntry)
     return state
   }
 

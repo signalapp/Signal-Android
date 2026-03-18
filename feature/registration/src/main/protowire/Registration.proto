@@ -39,6 +39,9 @@ message RegistrationData {
 
   // Provisioning data (from saveProvisioningData)
   ProvisioningData provisioningData = 20;
+
+  // JSON-serialized flow state snapshot (from saveFlowState/restoreFlowState)
+  string flowStateJson = 21;
 }
 
 message SvrCredential {

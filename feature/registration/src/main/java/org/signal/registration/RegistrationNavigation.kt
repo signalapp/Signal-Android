@@ -8,9 +8,13 @@
 package org.signal.registration
 
 import android.os.Parcelable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -62,6 +66,7 @@ import org.signal.registration.screens.welcome.WelcomeScreenEvents
  * Navigation routes for the registration flow.
  * Using @Serializable and NavKey for type-safe navigation with Navigation 3.
  */
+@Serializable
 @Parcelize
 sealed interface RegistrationRoute : NavKey, Parcelable {
   @Serializable
@@ -77,7 +82,7 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object CountryCodePicker : RegistrationRoute
 
   @Serializable
-  data class VerificationCodeEntry(val session: NetworkController.SessionMetadata, val e164: String) : RegistrationRoute
+  data object VerificationCodeEntry : RegistrationRoute
 
   @Serializable
   data class Captcha(val session: NetworkController.SessionMetadata) : RegistrationRoute
@@ -149,6 +154,13 @@ fun RegistrationNavHost(
 
   val registrationState by viewModel.state.collectAsStateWithLifecycle()
   val permissions: MultiplePermissionsState = permissionsState ?: rememberMultiplePermissionsState(viewModel.getRequiredPermissions())
+
+  if (registrationState.isRestoringNavigationState) {
+    Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+      CircularProgressIndicator()
+    }
+    return
+  }
 
   val entryProvider = entryProvider {
     navigationEntries(

@@ -37,5 +37,8 @@ data class RegistrationFlowState(
   val preExistingRegistrationData: PreExistingRegistrationData? = null,
 
   /** If true, do not attempt any flows where we generate RRP's. Create a session instead. */
-  val doNotAttemptRecoveryPassword: Boolean = false
+  val doNotAttemptRecoveryPassword: Boolean = false,
+
+  /** If true, the ViewModel is still deciding whether to restore a previous flow or start fresh. */
+  val isRestoringNavigationState: Boolean = true
 ) : Parcelable, DebugLoggable

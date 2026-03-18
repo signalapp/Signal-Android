@@ -12,9 +12,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.registration.NetworkController
+import org.signal.registration.PersistedFlowState
 import org.signal.registration.StorageController
 import org.signal.registration.sample.storage.RegistrationPreferences
 
@@ -75,12 +77,34 @@ class MainScreenViewModel(
         } else {
           null
         },
+        pendingFlowState = loadPendingFlowState(),
         registrationExpired = false
       )
 
       if (existingData != null) {
         checkRegistrationStatus()
       }
+    }
+  }
+
+  private suspend fun loadPendingFlowState(): MainScreenState.PendingFlowState? {
+    return try {
+      val data = storageController.readInProgressRegistrationData()
+      if (data.flowStateJson.isEmpty()) return null
+
+      val json = Json { ignoreUnknownKeys = true }
+      val persisted = json.decodeFromString(PersistedFlowState.serializer(), data.flowStateJson)
+
+      MainScreenState.PendingFlowState(
+        e164 = persisted.sessionE164,
+        backstackSize = persisted.backStack.size,
+        currentScreen = persisted.backStack.lastOrNull()?.let { it::class.simpleName } ?: "Unknown",
+        hasSession = persisted.sessionMetadata != null,
+        hasAccountEntropyPool = data.accountEntropyPool.isNotEmpty()
+      )
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to load pending flow state", e)
+      null
     }
   }
 
