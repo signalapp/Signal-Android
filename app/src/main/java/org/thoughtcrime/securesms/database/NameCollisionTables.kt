@@ -366,7 +366,7 @@ class NameCollisionTables(
 
     writableDatabase
       .delete(NameCollisionMembershipTable.TABLE_NAME)
-      .where("${NameCollisionMembershipTable.COLLISION_ID} = ?")
+      .where("${NameCollisionMembershipTable.COLLISION_ID} = ?", collision.id)
       .run()
 
     if (collision.members.size < 2) {
