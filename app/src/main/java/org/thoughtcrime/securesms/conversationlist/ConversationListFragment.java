@@ -1234,6 +1234,22 @@ public class ConversationListFragment extends MainFragment implements Conversati
     });
   }
 
+  private void handleOpenIncognito(@NonNull Conversation conversation) {
+    long      threadId         = conversation.getThreadRecord().getThreadId();
+    Recipient recipient        = conversation.getThreadRecord().getRecipient();
+    int       distributionType = conversation.getThreadRecord().getDistributionType();
+
+    SimpleTask.run(getLifecycle(), () -> {
+      ChatWallpaper wallpaper = recipient.resolve().getWallpaper();
+      if (wallpaper != null && !wallpaper.prefetch(requireContext(), 250)) {
+        Log.w(TAG, "Failed to prefetch wallpaper.");
+      }
+      return null;
+    }, (nothing) -> {
+      getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1, true);
+    });
+  }
+
   private void startActionModeIfNotActive() {
     if (!mainToolbarViewModel.isInActionMode()) {
       startActionMode();
@@ -1326,6 +1342,10 @@ public class ConversationListFragment extends MainFragment implements Conversati
         items.add(new ActionItem(R.drawable.symbol_bell_24, getResources().getString(R.string.ConversationListFragment_unmute), () -> handleUnmute(Collections.singleton(conversation))));
       } else {
         items.add(new ActionItem(R.drawable.symbol_bell_slash_24, getResources().getString(R.string.ConversationListFragment_mute), () -> handleMute(Collections.singleton(conversation))));
+      }
+
+      if (SignalStore.labs().getIncognito()) {
+        items.add(new ActionItem(R.drawable.symbol_view_once_24, "Open Incognito", () -> handleOpenIncognito(conversation)));
       }
     }
 

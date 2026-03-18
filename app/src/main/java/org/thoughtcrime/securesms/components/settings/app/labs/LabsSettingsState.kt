@@ -10,5 +10,6 @@ import androidx.compose.runtime.Immutable
 @Immutable
 data class LabsSettingsState(
   val individualChatPlaintextExport: Boolean = false,
-  val storyArchive: Boolean = false
+  val storyArchive: Boolean = false,
+  val incognito: Boolean = false
 )

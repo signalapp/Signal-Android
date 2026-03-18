@@ -8,4 +8,5 @@ package org.thoughtcrime.securesms.components.settings.app.labs
 sealed interface LabsSettingsEvents {
   data class ToggleIndividualChatPlaintextExport(val enabled: Boolean) : LabsSettingsEvents
   data class ToggleStoryArchive(val enabled: Boolean) : LabsSettingsEvents
+  data class ToggleIncognito(val enabled: Boolean) : LabsSettingsEvents
 }

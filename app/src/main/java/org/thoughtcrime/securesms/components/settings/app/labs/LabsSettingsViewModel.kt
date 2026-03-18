@@ -25,13 +25,18 @@ class LabsSettingsViewModel : ViewModel() {
         SignalStore.labs.storyArchive = event.enabled
         _state.value = _state.value.copy(storyArchive = event.enabled)
       }
+      is LabsSettingsEvents.ToggleIncognito -> {
+        SignalStore.labs.incognito = event.enabled
+        _state.value = _state.value.copy(incognito = event.enabled)
+      }
     }
   }
 
   private fun loadState(): LabsSettingsState {
     return LabsSettingsState(
       individualChatPlaintextExport = SignalStore.labs.individualChatPlaintextExport,
-      storyArchive = SignalStore.labs.storyArchive
+      storyArchive = SignalStore.labs.storyArchive,
+      incognito = SignalStore.labs.incognito
     )
   }
 }

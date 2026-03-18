@@ -37,7 +37,8 @@ data class ConversationArgs(
   val isWithSearchOpen: Boolean,
   val giftBadge: Badge?,
   val shareDataTimestamp: Long,
-  val conversationScreenType: ConversationScreenType
+  val conversationScreenType: ConversationScreenType,
+  val isIncognito: Boolean = false
 ) : Parcelable {
   @IgnoredOnParcel
   val draftMediaType: SlideFactory.MediaType? = SlideFactory.MediaType.from(draftContentType)

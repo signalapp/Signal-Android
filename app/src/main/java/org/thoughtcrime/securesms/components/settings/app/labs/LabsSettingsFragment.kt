@@ -106,6 +106,15 @@ private fun LabsSettingsContent(
           onCheckChanged = { onEvent(LabsSettingsEvents.ToggleStoryArchive(it)) }
         )
       }
+
+      item {
+        Rows.ToggleRow(
+          checked = state.incognito,
+          text = "Incognito Mode",
+          label = "Adds an option to long-press a conversation to open it in incognito mode. Messages will not be marked as read and no read receipts will be sent.",
+          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleIncognito(it)) }
+        )
+      }
     }
   }
 }

@@ -48,6 +48,7 @@ class DisabledInputView @JvmOverloads constructor(
   private var announcementGroupOnly: TextView? = null
   private var inviteToSignal: View? = null
   private var releaseNoteChannel: View? = null
+  private var incognitoView: View? = null
 
   private var currentView: View? = null
 
@@ -73,6 +74,13 @@ class DisabledInputView @JvmOverloads constructor(
           }
         }
       }
+    )
+  }
+
+  fun showAsIncognito() {
+    incognitoView = show(
+      existingView = incognitoView,
+      create = { inflater.inflate(R.layout.conversation_incognito_mode, this, false) }
     )
   }
 
@@ -210,6 +218,7 @@ class DisabledInputView @JvmOverloads constructor(
     noLongerAMember = null
     requestingGroup = null
     announcementGroupOnly = null
+    incognitoView = null
   }
 
   private fun <V : View> show(existingView: V?, create: () -> V, bind: V.() -> Unit = {}): V {
