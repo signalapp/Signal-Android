@@ -27,7 +27,7 @@
     <!-- Phone calls permission row title -->
     <string name="GrantPermissionsFragment__phone_calls">Telefonata</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Bëj më të lehtë regjistrimin dhe aktivizo veçori shtesë të thirrjeve.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Bëj më të lehtë regjistrimin dhe aktivizo veçoritë shtesë të thirrjeve.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Hapësirë ruajtëse</string>
     <!-- Storage permission row description -->
@@ -37,11 +37,11 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Numër telefoni</string>
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Do të merrni një kod verifikimi. Mund të ketë tarifa operatori.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Do të marrësh kodin e verifikimit. Mund të ketë tarifa operatori.</string>
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Zgjidh shtetin</string>
     <string name="RegistrationActivity_phone_number_description">Numër telefoni</string>
-    <string name="RegistrationActivity_next">Pasuesi</string>
+    <string name="RegistrationActivity_next">Tjetër</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -49,7 +49,7 @@
     <!-- Close button content description -->
     <string name="CountryCodeSelectScreen__close">Mbyll</string>
     <!-- Search bar hint text -->
-    <string name="CountryCodeSelectScreen__search_by">Kërko sipas emrit ose prefiksit të shtetit</string>
+    <string name="CountryCodeSelectScreen__search_by">Kërko sipas emrit ose numrit</string>
     <!-- Fallback text for countries with no name -->
     <string name="CountryCodeSelectScreen__unknown_country">Shtet i panjohur</string>
 
@@ -57,7 +57,7 @@
     <!-- Title of the verification code entry screen -->
     <string name="VerificationCodeScreen__verification_code">Kod verifikimi</string>
     <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
-    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Jepni kodin që dërguam te %1$s</string>
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Fut kodin që dërguam te %1$s</string>
     <!-- Button text for wrong number action -->
     <string name="VerificationCodeScreen__wrong_number">Numër i gabuar?</string>
     <!-- Button text for resend SMS action -->

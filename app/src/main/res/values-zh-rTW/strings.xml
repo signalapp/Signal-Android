@@ -5831,7 +5831,7 @@
     <string name="ConversationSettingsFragment__start_video_call">開始視訊通話</string>
     <string name="ConversationSettingsFragment__start_audio_call">開始語音通話</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__story">報導</string>
+    <string name="ConversationSettingsFragment__story">限時動態</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__message">訊息</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->

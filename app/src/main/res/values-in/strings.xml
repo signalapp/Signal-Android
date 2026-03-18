@@ -107,9 +107,9 @@
     <!-- Option in menu to go to settings -->
     <string name="AttachmentKeyboard_go_to_settings">Buka Pengaturan</string>
     <!-- Text explaining that Signal has limited access to photos -->
-    <string name="AttachmentKeyboard_signal_has_limited_access">Signal punya akses terbatas ke foto atau video</string>
+    <string name="AttachmentKeyboard_signal_has_limited_access">Akses Signal ke foto atau video terbatas</string>
     <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
-    <string name="AttachmentKeyboard_no_photos_found">Tidak ditemukan foto, pilih foto dan video untuk ditampilkan di sini atau ubah izin</string>
+    <string name="AttachmentKeyboard_no_photos_found">Tidak ditemukan foto. Pilih foto dan video untuk ditampilkan di sini atau ubah izin</string>
 
     <!-- MediaGalleryFragment -->
     <!-- Text describing that no photos or videos are currently found in the gallery and that Signal can only access media that the user allows -->
@@ -117,8 +117,8 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Tidak bisa menemukan aplikasi untuk membuka media yang dipilih.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Anda harus mengizinkan Signal untuk mengakses penyimpanan telepon Anda untuk dapat melampirkan foto, video, atau audio. Harap buka pengaturan aplikasi, pilih \"Perizinan\", lalu izinkan Signal mengakses \"Penyimpanan\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Anda harus mengizinkan Signal untuk mengakses kontak Anda untuk dapat melampirkan informasi kontak. Harap buka pengaturan aplikasi, pilih \"Perizinan\", lalu izinkan Signal mengakses \"Kontak\".</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Anda harus mengizinkan Signal untuk mengakses penyimpanan telepon Anda untuk dapat melampirkan foto, video, atau audio. Harap buka pengaturan aplikasi, pilih \"Izin\", lalu izinkan Signal mengakses \"Penyimpanan\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Anda harus mengizinkan Signal untuk mengakses kontak Anda untuk dapat melampirkan informasi kontak. Harap buka pengaturan aplikasi, pilih \"Izin\", lalu izinkan Signal mengakses \"Kontak\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Anda harus mengizinkan Signal untuk mengakses lokasi Anda untuk dapat melampirkan informasi lokasi. Harap buka pengaturan aplikasi, pilih \"Perizinan\", lalu izinkan Signal mengakses \"Lokasi\".</string>
 
     <!-- Dialog title asking users for location permission -->
@@ -3196,7 +3196,7 @@
     <string name="MessageNotifier_signal_message">Pesan Signal</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Kontak</string>
-    <string name="MessageNotifier_reacted_s_to_s">Menanggapi %1$s pada: \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_s">Memberikan %1$s di: \"%2$s\".</string>
     <string name="MessageNotifier_reacted_s_to_your_video">Menanggapi %1$s pada video Anda.</string>
     <string name="MessageNotifier_reacted_s_to_your_image">Menanggapi %1$s pada gambar Anda.</string>
     <string name="MessageNotifier_reacted_s_to_your_gif">Menanggapi %1$s pada GIF Anda.</string>
@@ -3204,7 +3204,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Menanggapi %1$s pada audio Anda.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Menanggapi %1$s pada media sekali-lihat Anda.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Menanggapi %1$s pada pembayaran Anda.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Memberikan %1$s di pembayaran Anda.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Menanggapi %1$s pada stiker Anda.</string>
     <string name="MessageNotifier_this_message_was_deleted">Pesan ini telah dihapus.</string>
     <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
@@ -3294,7 +3294,7 @@
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_all_items">Tidak bisa menyimpan semua item</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">Beberapa media yang Anda pilih telah di-offload dari perangkat karena fitur \"Optimalkan penyimpanan di perangkat\" diaktifkan. Anda bisa menyimpan item satu per satu, atau menonaktifkan \"Optimalkan penyimpanan di perangkat\" untuk mengunduh semua media ke perangkat.</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">Beberapa media yang Anda pilih telah di-offload dari perangkat karena fitur \"Optimalkan penyimpanan di perangkat\" diaktifkan. Anda bisa menyimpan item satu per satu atau menonaktifkan \"Optimalkan penyimpanan di perangkat\" untuk mengunduh semua media ke perangkat.</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
     <string name="AttachmentSaver__view_storage_settings">Lihat pengaturan penyimpanan</string>
 
@@ -4348,7 +4348,7 @@
     <string name="PaymentsTransferFragment__check_the_wallet_address">Periksa alamat wallet yang coba Anda kirimkan dan coba lagi.</string>
     <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Anda tidak dapat mentransfer ke alamat wallet Signal Anda sendiri. Masukkan alamat wallet dari akun Anda di sebuah exchange yang didukung.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Untuk memindai kode QR, Signal membutuhkan akses ke kamera.</string>
-    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal membutuhkan perijinan Kamera untuk menangkap kode QR. Pergi ke pengaturan, pilih \"Perijinan\", dan akrifkan \"Kamera\".</string>
+    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal butuh akses ke Kamera untuk menangkap kode QR. Buka pengaturan, pilih \"Izin\", lalu aktifkan \"Kamera\".</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Untuk memindai kode QR, Signal membutuhkan akses ke kamera.</string>
     <string name="PaymentsTransferFragment__settings">Pengaturan</string>
 
@@ -4934,7 +4934,7 @@
     <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Menyiapkan untuk menghubungkan ke perangkat Android lama…</string>
     <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Sedang dalam proses, akan siap segera</string>
     <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Menunggu perangkat Android lama tersambung…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal memerlukan akses ke perijinan lokasi untuk menemukan dan menyambungkan dengan perangkat Android lama Anda.</string>
+    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal butuh akses ke izin lokasi untuk menemukan dan menjalin koneksi dengan perangkat lawas Android milik Anda.</string>
     <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal memerluhkan layanan lokasi diaktifkan untuk menemukan dan menyambungkan dengan perangkat Android lama Anda.</string>
     <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal memerlukan Wi-Fi untuk menemukan dan menyambungkan dengan perangkat Android lama Anda. Wi-Fi diperukan untuk diaktifkan namun tidak harus tersambung ke jaringan Wi-Fi.</string>
     <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Maaf, sepertinya perangkat ini tidak mendukung Wi-Fi Direct. Signal menggunakan Wi-Fi Direct untuk mencari dan menyambungkan dengan perangkat Android lama Anda. Anda tetap dapat memulihkan cadangan untuk mengembalikan akun dari perangkat Android lama Anda.</string>
@@ -4943,7 +4943,7 @@
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Mencari perangkat Android baru…</string>
-    <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal memerlukan akses ke perijinan lokasi untuk menemukan dan menyambungkan dengan perangkat Android baru Anda.</string>
+    <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal butuh akses ke izin lokasi untuk menemukan dan menjalin koneksi dengan perangkat baru Android milik Anda.</string>
     <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal memerluhkan layanan lokasi diaktifkan untuk menemukan dan menyambungkan dengan perangkat Android baru Anda.</string>
     <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal memerlukan Wi-Fi untuk menemukan dan menyambungkan dengan perangkat Android baru Anda. Wi-Fi diperukan untuk diaktifkan namun tidak harus tersambung ke jaringan Wi-Fi.</string>
     <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Maaf, sepertinya perangkat ini tidak mendukung Wi-Fi Direct. Signal menggunakan Wi-Fi Direct untuk mencari dan menyambungkan dengan perangkat Android baru Anda. Anda tetap dapat memulihkan cadangan untuk mengembalikan akun dari perangkat Android baru Anda.</string>
@@ -4967,7 +4967,7 @@
     <string name="DeviceTransferSetup__stop_transfer">Hentikan transfer</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">Tidak dapat menemukan perangkat lama</string>
     <string name="DeviceTransferSetup__unable_to_discover_new_device">Tidak dapat menemukan perangkat baru</string>
-    <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Pastikan perijinan-perijinan dan layanan berikut telah diaktifkan:</string>
+    <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Pastikan semua izin dan layanan berikut telah diaktifkan:</string>
     <string name="DeviceTransferSetup__location_permission">Izin lokasi</string>
     <string name="DeviceTransferSetup__location_services">Layanan lokasi</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
@@ -5858,7 +5858,7 @@
     <string name="ConversationSettingsFragment__add_to_a_group">Tambahkan ke grup</string>
     <string name="ConversationSettingsFragment__see_all">Lihat semua</string>
     <string name="ConversationSettingsFragment__add_members">Tambahkan anggota</string>
-    <string name="ConversationSettingsFragment__permissions">Perizinan</string>
+    <string name="ConversationSettingsFragment__permissions">Izin</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Permintaan &amp; undangan</string>
     <string name="ConversationSettingsFragment__group_link">Tautan grup</string>
     <!-- Label for button that opens the group member label permissions screen. -->
@@ -5893,7 +5893,7 @@
     <!-- Warning body shown before restricting member labels to admins only. -->
     <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Mengubah izin ini menjadi “Hanya admin” akan menghapus label anggota yang ditetapkan oleh non-admin dalam grup ini."</string>
     <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Ubah Izin</string>
+    <string name="PermissionsSettingsFragment__change_permission">Ubah izin</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->
@@ -6701,7 +6701,7 @@
     <!-- Empty state button to navigate to story settings -->
     <string name="StoryArchive__go_to_settings">Buka pengaturan</string>
     <!-- Label for sort order menu -->
-    <string name="StoryArchive__sort_by">Urutkan berdasarkan</string>
+    <string name="StoryArchive__sort_by">Urut berdasarkan</string>
     <!-- Sort order option: newest first -->
     <string name="StoryArchive__newest">Terbaru</string>
     <!-- Sort order option: oldest first -->

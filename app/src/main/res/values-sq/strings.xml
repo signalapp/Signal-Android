@@ -49,7 +49,7 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal po përditësohet…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nuk ke caktuar ende frazëkalimin!</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nuk ke vendosur ende frazëkalimin!</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Të çaktivizohet frazëkalimi?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Kjo do të zhbllokojë përgjithmonë njoftimet e Signal dhe të mesazheve.</string>
     <string name="ApplicationPreferencesActivity_disable">Çaktivizo</string>
@@ -57,9 +57,9 @@
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Numrat PIN kërkohen për kyçjen e regjistrimit. Për të çaktivizuar numrat PIN, së pari çaktivizo kyçjen e regjistrimit.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN-i u krijua.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN-i u çaktivizua.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Fraza e rikuperimit të pagesave të regjistruara</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Fraza për rikthimin e pagesave të regjistruara</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Regjistro frazën</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Përpara se të çaktivizosh numrin PIN, duhet të regjistrosh frazën e rikuperimit të pagesave, për t\'u siguruar që mund të rikuperosh llogarinë e pagesave.</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Përpara se të çaktivizosh numrin PIN, duhet të regjistrosh frazën për rikthimin e pagesave, për t\'u siguruar që mund të rikuperosh llogarinë e pagesave.</string>
     <!-- The title of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_title">Krijo kod të ri rikthimi</string>
     <!-- The body of a dialog letting the user know they have to rotate their recovery key if they want to disable PINs -->
@@ -98,7 +98,7 @@
     <string name="AttachmentKeyboard_poll">Sondazh</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal ka nevojë për leje që të shfaqë foto dhe video</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
-    <string name="AttachmentKeyboard_allow_access">Lejoje aksesin</string>
+    <string name="AttachmentKeyboard_allow_access">Lejo aksesin</string>
     <string name="AttachmentKeyboard_payment">Pagesë</string>
     <!-- Text in a button that allows users to manage which media Signal has access to -->
     <string name="AttachmentKeyboard_manage">Menaxho</string>

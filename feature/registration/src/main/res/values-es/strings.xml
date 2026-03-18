@@ -37,7 +37,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Número de teléfono</string>
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás una clave de verificación. Se aplican las tarifas de tu operador.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás una clave de verificación. Es posible que tu operador aplique algún cargo.</string>
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Selecciona un país</string>
     <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
@@ -67,11 +67,11 @@
     <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
-    <string name="VerificationCodeScreen__call_me_available_in">Llamarme (%1$02d:%2$02d)</string>
+    <string name="VerificationCodeScreen__call_me_available_in">Llámame (en %1$02d:%2$02d)</string>
     <!-- Toast shown when the user enters an incorrect verification code -->
     <string name="VerificationCodeScreen__incorrect_code">Clave incorrecta</string>
     <!-- Snackbar shown when there is a network error -->
-    <string name="VerificationCodeScreen__network_error">No se ha podido conectar con el servcio. Comprueba la conexión de red e inténtalo de nuevo.</string>
+    <string name="VerificationCodeScreen__network_error">No se ha podido conectar con el servicio. Comprueba la conexión de red e inténtalo de nuevo.</string>
     <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
     <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Demasiados intentos. Vuelve a intentarlo en %1$s.</string>
     <!-- Snackbar shown for generic/unknown errors -->

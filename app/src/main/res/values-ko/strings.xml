@@ -652,7 +652,7 @@
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">요청을 차단할까요?</string>
     <!-- Dialog message for block group link join requests -->
-    <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s 님은 그룹 링크를 통해 이 그룹에 참여하거나 참여 요청을 보낼 수 없습니다. 단, 멤버 목록에서 직접 추가하는 것은 가능합니다.</string>
+    <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s 님은 그룹 링크를 통해 이 그룹에 참가하거나 참가 요청을 보낼 수 없습니다. 단, 멤버 목록에서 직접 추가하는 것은 가능합니다.</string>
     <!-- Dialog confirm block request button -->
     <string name="ConversationFragment__block_request_button">요청 차단</string>
     <!-- Dialog cancel block request button -->
@@ -1640,7 +1640,7 @@
     <!-- Message shown when you try to get information for a group via link but an unknown issue occurred -->
     <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">그룹 링크로 참가할 수 없습니다. 나중에 다시 진행해 주세요.</string>
 
-    <string name="GroupJoinBottomSheetDialogFragment_direct_join">그룹에 참여하고 내 이름과 사진을 멤버들과 공유하시겠어요?</string>
+    <string name="GroupJoinBottomSheetDialogFragment_direct_join">그룹에 참가하고 내 이름과 사진을 멤버들과 공유하시겠어요?</string>
     <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">이 그룹에 가입하려면 그룹의 관리자가 요청을 승인해야 합니다. 가입을 요청하면 내 이름과 사진이 공유됩니다.</string>
     <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
         <item quantity="other">그룹: 멤버 %1$d명</item>
@@ -1880,7 +1880,7 @@
     <string name="MessageRecord_s_added_s">%1$s가 %2$s을 그룹에 추가하였습니다.</string>
     <string name="MessageRecord_s_added_you">%1$s 님이 나를 그룹에 추가했습니다.</string>
     <string name="MessageRecord_you_joined_the_group">그룹에 참가하였습니다.</string>
-    <string name="MessageRecord_s_joined_the_group">%1$s 님이 그룹에 참여했습니다.</string>
+    <string name="MessageRecord_s_joined_the_group">%1$s 님이 그룹에 참가했습니다.</string>
 
     <!-- GV2 member removals -->
     <string name="MessageRecord_you_removed_s">%1$s 님을 내보냈습니다.</string>
@@ -2158,8 +2158,8 @@
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">이 레거시 그룹은 더 이상 사용할 수 없습니다. 새 그룹을 만들어 @멘션 및 관리자와 같은 새로운 기능을 활성화하세요.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">레거시 그룹의 규모가 너무 커서 더 이상 사용할 수 없습니다. 최대 그룹 규모는 %1$d입니다.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s 님과 대화를 계속하고 내 이름과 사진을 공유하시겠어요?</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">그룹에 참여하고 내 이름과 사진을 멤버들과 공유하시겠어요? 수락하기 전까지는 상대방에게 메시지를 확인했다는 사실이 표시되지 않습니다.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">그룹에 참여하고 내 이름과 사진을 멤버들과 공유하시겠어요? 수락하기 전까지는 멤버의 메시지를 확인할 수 없습니다.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">그룹에 참가하고 내 이름과 사진을 멤버들과 공유하시겠어요? 수락하기 전까지는 상대방에게 메시지를 확인했다는 사실이 표시되지 않습니다.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">그룹에 참가하고 내 이름과 사진을 멤버들과 공유하시겠어요? 수락하기 전까지는 멤버의 메시지를 확인할 수 없습니다.</string>
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">이 그룹에 참가할까요? 수락하기 전까지는 상대방이 내가 메시지를 확인했는지 알 수 없습니다.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">이 그룹을 차단 해제하고 그룹 멤버에게 내 이름과 사진을 공유할까요? 차단을 해제하기 전까지는 메시지를 받을 수 없습니다.</string>
@@ -2201,7 +2201,7 @@
     <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s 외 %4$s명</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
     <plurals name="MessageRequestProfileView_other_members">
-        <item quantity="other">기타 %1$d명</item>
+        <item quantity="other">기타 %1$d</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">신고</string>
@@ -2210,7 +2210,7 @@
     <!-- Alert dialog body to review the message request carefully -->
     <string name="MessageRequestBottomView_review_requests_carefully">신중하게 요청을 검토하세요. 프로필 이름은 계정 소유자가 직접 설정하며 별도의 인증 과정을 거치지 않습니다.</string>
     <!-- Alert dialog title to accept a message request to join a group -->
-    <string name="MessageRequestBottomView_join_group">그룹에 참여할까요?</string>
+    <string name="MessageRequestBottomView_join_group">그룹에 참가할까요?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
     <string name="MessageRequestBottomView_review_requests_carefully_groups">신중하게 요청을 검토하세요. 그룹 이름은 해당 그룹의 멤버가 직접 선택하며 별도의 인증 과정을 거치지 않습니다.</string>
     <!-- Button text to join a group -->
@@ -3707,7 +3707,7 @@
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
-        <item quantity="other">%1$s 님이 그룹에 참여했습니다.</item>
+        <item quantity="other">%1$s 님이 그룹에 참가했습니다.</item>
     </plurals>
     <string name="GroupUtil_group_name_is_now">이제 그룹 이름은 \'%1$s\'입니다.</string>
 
@@ -5660,7 +5660,7 @@
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">프로필</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">프로필을 만들어 원하는 사용자와 그룹에게서만 알림을 받으세요.</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">선택한 연락처와 그룹의 알림만 받으려면 프로필을 설정하세요.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6463,7 +6463,7 @@
     <string name="SelectRecipientsFragment__add">추가</string>
 
     <!-- Notification profiles home fragment, shown when no profiles have been created yet -->
-    <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">프로필을 만들어 소식을 듣고 싶은 사용자와 그룹에게서만 알림과 통화를 받으세요.</string>
+    <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">선택한 연락처와 그룹의 알림만 받으려면 프로필을 설정하세요.</string>
     <!-- Header shown above list of all notification profiles -->
     <string name="NotificationProfilesFragment__profiles">프로필</string>
     <!-- Button that starts the create new notification profile flow -->

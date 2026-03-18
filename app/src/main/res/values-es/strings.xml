@@ -2785,7 +2785,7 @@
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Se enviará una clave de verificación a ese número. Es posible que tu operador aplique algún cargo.</string>
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás una clave de verificación. Se aplican las tarifas de tu operador.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás una clave de verificación. Es posible que tu operador aplique algún cargo.</string>
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Selecciona un país</string>
     <!-- Hint text explaining that this is where the country code should go -->
@@ -3912,20 +3912,20 @@
     <!-- Bottom sheet title when encryption is auto-verified -->
     <string name="EncryptionVerifiedSheet__title_success">El cifrado para este chat se ha verificado automáticamente</string>
     <!-- Bottom sheet body when encryption is auto-verified -->
-    <string name="EncryptionVerifiedSheet__body_success">Para los contactos con los que hayas iniciado la comunicación mediante un número de teléfono, Signal puede confirmar automáticamente si la conexión es segura usando un proceso llamado transparencia de claves. Para mayor seguridad, verifica manualmente el cifrado de extremo a extremo comparando los números en la pantalla anterior o escaneando el código que se muestra en el dispositivo de la otra persona.</string>
+    <string name="EncryptionVerifiedSheet__body_success">Para los contactos con los que hayas iniciado la comunicación mediante un número de teléfono, Signal puede confirmar automáticamente si la conexión es segura usando un proceso llamado transparencia de claves. Para mayor seguridad, verifica el cifrado de extremo a extremo manualmente comparando los números en la pantalla anterior o escaneando el código que se muestra en el dispositivo de la otra persona.</string>
     <!-- Bottom sheet title when encryption is no longer auto-verified -->
     <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">La verificación automática ya no está disponible para este chat</string>
     <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
-    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal ya no puede verificar automáticamente el cifrado de este chat. Es probable que %1$s haya cambiado su número de teléfono. Verifica manualmente el cifrado de extremo a extremo comparando los números en la pantalla anterior o escaneando el código que se muestra en su dispositivo.</string>
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal ya no puede verificar automáticamente el cifrado de este chat. Es probable que %1$s haya cambiado su número de teléfono. Verifica el cifrado de extremo a extremo manualmente comparando los números en la pantalla anterior o escaneando el código que se muestra en su dispositivo.</string>
     <!-- Bottom sheet title when encryption cannot be auto-verified -->
     <string name="EncryptionVerifiedSheet__title_unavailable">La verificación automática no está disponible para este chat</string>
     <!-- Bottom sheet body when encryption cannot be auto-verified -->
     <string name="EncryptionVerifiedSheet__body_unavailable">Signal solo puede verificar automáticamente el cifrado en los chats que hayas empezado con alguien mediante un número de teléfono. Si iniciaste un chat con alguien a través de un alias o un grupo en común, verifica el cifrado de extremo a extremo comparando los números en la pantalla anterior o escaneando el código que se muestra en su dispositivo.</string>
 
     <!-- Title for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__title">Ahora, Signal puede verificar automáticamente el cifrado</string>
+    <string name="VerifyAutomaticallyEducationSheet__title">Ahora, Signal puede verificar el cifrado automáticamente</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">Para los contactos con los que hayas iniciado la comunicación mediante un número de teléfono, Signal puede confirmar automáticamente si la conexión es segura usando un proceso llamado transparencia de claves. Para mayor seguridad, puedes seguir verificando manualmente tus contactos usando un código QR o un número de seguridad.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Para los contactos con los que hayas iniciado la comunicación mediante un número de teléfono, Signal puede confirmar automáticamente si la conexión es segura usando un proceso llamado transparencia de claves. Para mayor seguridad, puedes seguir verificando tus contactos manualmente usando un código QR o un número de seguridad.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Más información</string>
     <!-- Button to go to verification page -->
@@ -8065,7 +8065,7 @@
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__title">Usa las nuevas copias de seguridad locales</string>
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__body">Ahora, las copias de seguridad locales se guardan más rápido y consumen menos datos.</string>
+    <string name="UseNewOnDeviceBackups__body">Ahora, las copias de seguridad locales se guardan más rápido y usan menos datos.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
     <string name="UseNewOnDeviceBackups__upgrade">Actualizar</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
@@ -8381,7 +8381,7 @@
     <!-- Title of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
     <string name="CancelBackupDialog_title">¿Cancelar copia de seguridad?</string>
     <!-- Body of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
-    <string name="CancelBackupDialog_body">Puedes cancelar el proceso de copia de seguridad, pero no se eliminará tu copia de seguridad. Puedes reanudar el proceso en cualquier momento desde Ajustes de copia de seguridad.</string>
+    <string name="CancelBackupDialog_body">Si cancelas el proceso de copia de seguridad, no se eliminará tu copia de seguridad. Puedes reanudar el proceso en cualquier momento desde Ajustes de copia de seguridad.</string>
     <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will confirm canceling the currently-running backup (future backups are unaffected). -->
     <string name="CancelBackupDialog_cancel_action">Cancelar copia de seguridad</string>
     <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will continue the backup rather than cancel it. -->
@@ -8745,9 +8745,9 @@
     <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
     <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Tus copias de seguridad locales se actualizarán a un nuevo formato usando una nueva clave de recuperación</string>
     <!-- Feature description explaining backups are faster and use less data -->
-    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Ahora, las copias de seguridad se guardan más rápido y consumen menos datos</string>
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Ahora, las copias de seguridad se guardan más rápido y usan menos datos</string>
     <!-- Feature description explaining backups will be saved as a folder with many files -->
-    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Tu copia de seguridad se guardará en una carpeta con muchos archivos</string>
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Tu copia de seguridad se guardará como una carpeta con muchos archivos</string>
     <!-- Feature description explaining backups remain end-to-end encrypted -->
     <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">Todas las copias de seguridad seguirán estando cifradas de extremo a extremo</string>
     <!-- Button text to continue to the next step -->

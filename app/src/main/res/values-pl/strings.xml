@@ -6336,7 +6336,7 @@
     <!-- Label for the calls notification setting in conversation sounds and notifications -->
     <string name="SoundsAndNotificationsSettingsFragment__calls">Połączenia</string>
     <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Dzwoń i otrzymuj powiadomienia, gdy w wyciszonych czatach ktoś rozpocznie połączenie.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Powiadamiać (także dzwonkiem), gdy w wyciszonych czatach ktoś rozpocznie połączenie?</string>
     <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
     <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Powiadamiać, gdy w wyciszonym czacie ktoś Cię oznaczy?</string>
     <!-- Label for the replies notification setting in conversation sounds and notifications -->
@@ -8408,7 +8408,7 @@
     <!-- Body of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__body">Może to trochę potrwać. Podczas tworzenia kopii zapasowej możesz normalnie korzystać z aplikacji.</string>
     <!-- Label for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optymalizuj pamięć aplikacji Signal</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optymalizuj pamięć, którą zajmuje Signal</string>
     <!-- Subtitle for the optimize storage toggle -->
     <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Starsze multimedia będą usuwane z urządzenia, ale w każdej chwili można je pobrać z kopii zapasowej.</string>
     <!-- Primary button on the setup complete bottom sheet -->
