@@ -516,6 +516,7 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">حجم فایل پیوست شده بیش از اندازۀ مجاز برای این نوع پیامی است که در حال ارسال آن هستید.</string>
     <string name="ConversationActivity_unable_to_record_audio">ضبط صدا ممکن نیست!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">نمی‌توانید به این گروه پیام ارسال کنید، چون دیگر عضو آن نیستید.</string>
+    <string name="DisabledInputView__incognito_mode">Incognito mode</string>
     <string name="ConversationActivity_only_s_can_send_messages">فقط %1$s می‌تواند پیام بفرستد.</string>
     <string name="ConversationActivity_admins">مدیران</string>
     <string name="ConversationActivity_message_an_admin">به یک مدیر پیام دهید</string>
@@ -636,7 +637,10 @@
     <!-- Confirmation button to delete the message -->
     <string name="ConversationFragment_delete_for_everyone_title">برای همه حذف شود؟</string>
     <!-- Body of dialog explaining what happens during deletion -->
-    <string name="ConversationFragment_delete_for_everyone_body">اعضای گروه خواهند دید که به‌عنوان مدیر این پیام‌ها را حذف کرده‌اید.</string>
+    <plurals name="ConversationFragment_delete_for_everyone_body">
+        <item quantity="one">Group members on the latest versions of Signal will see that you deleted this message.</item>
+        <item quantity="other">Group members on the latest versions of Signal will see that you deleted these messages.</item>
+    </plurals>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">پاک کردن در این دستگاه</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
@@ -4643,6 +4647,7 @@
     <string name="conversation__menu_view_all_media">همهٔ رسانه‌ها</string>
     <string name="conversation__menu_conversation_settings">تنظیمات گفتگو</string>
     <string name="conversation__menu_add_shortcut">افزودن به صفحهٔ اصلی</string>
+    <string name="conversation__menu_export">Export</string>
     <string name="conversation__menu_create_bubble">ایجاد حباب</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">قالب‌بندی متن</string>
@@ -4651,6 +4656,13 @@
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">افزودن به مخاطبین</string>
+
+    <!-- conversation export -->
+    <string name="conversation_export__exporting">Exporting chat…</string>
+    <string name="conversation_export__export_complete">Chat exported successfully</string>
+    <string name="conversation_export__export_failed">Export failed</string>
+    <string name="conversation_export__export_cancelled">Export cancelled</string>
+    <string name="conversation_export__preparing">Preparing export…</string>
 
     <!-- conversation scheduled messages bar -->
 
@@ -4886,6 +4898,8 @@
     <string name="BackupDialog_delete_backups">پاک کردن نسخه‌های پشتیبان؟</string>
     <string name="BackupDialog_disable_and_delete_all_local_backups">غیرفعال و پاک کردن تمام پشتیبان‌های محلی؟</string>
     <string name="BackupDialog_delete_backups_statement">پاک کردن نسخه‌های پشتیبان</string>
+    <!-- Progress dialog message shown while local backup files are being deleted -->
+    <string name="BackupDialog_deleting_local_backup">Deleting local backup…</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">برای فعال کردن نسخه‌های پشتیبان، یک پوشه انتخاب کنید. نسخه‌های پشتیبان در این محل ذخیره خواهند شد.</string>
     <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">انتخاب پوشه</string>
@@ -8738,6 +8752,26 @@
     <string name="RemoteBackupsSettingsFragment__use_this_device_to_scan_qr">از این دستگاه برای اسکن کد QR روی دستگاهی که می‌خواهید به آن انتقال دهید استفاده کنید</string>
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
     <string name="RemoteBackupsSettingsFragment__scan_qr_code">کد QR را اسکن کنید</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">Processing backup…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">Preparing backup…</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">Finalizing…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">Processing messages…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Processing messages: %1$s of %2$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">Uploading media: %1$d%%</string>
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">Exporting media: %1$d%%</string>
+
+    <!-- LocalArchiveJob -->
+    <!-- Notification title shown while media attachments are being exported during a local backup -->
+    <string name="LocalArchiveJob__exporting_media">Exporting media…</string>
 
     <!-- OnDeviceBackupsImprovementsScreen -->
     <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
