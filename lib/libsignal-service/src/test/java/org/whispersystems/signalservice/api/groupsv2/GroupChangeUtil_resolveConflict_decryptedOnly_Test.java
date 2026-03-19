@@ -46,7 +46,7 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 27, maxFieldFound);
+                 28, maxFieldFound);
   }
 
   /**
@@ -59,7 +59,7 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroup.class, ProtobufTestUtils.IGNORED_DECRYPTED_GROUP_TAGS);
 
     assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + DecryptedGroup.class.getName(),
-                 13, maxFieldFound);
+                 14, maxFieldFound);
   }
 
 
@@ -784,5 +784,44 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
 
     DecryptedGroupChange resolvedChanges = GroupChangeUtil.resolveConflict(groupState, decryptedChange).build();
     assertTrue(DecryptedGroupExtensions.getChangedFields(resolvedChanges).isEmpty());
+  }
+
+  @Test
+  public void field_28__terminate_group_preserved_when_group_not_terminated() {
+    DecryptedGroup groupState = new DecryptedGroup.Builder()
+        .revision(5)
+        .terminated(false)
+        .build();
+
+    DecryptedGroupChange conflictingChange = new DecryptedGroupChange.Builder()
+        .revision(6)
+        .terminateGroup(true)
+        .build();
+
+    DecryptedGroupChange expectedResolvedChange = new DecryptedGroupChange.Builder()
+        .revision(6)
+        .terminateGroup(true)
+        .build();
+
+    assertEquals(expectedResolvedChange, GroupChangeUtil.resolveConflict(groupState, conflictingChange).build());
+  }
+
+  @Test
+  public void field_28__terminate_group_removed_when_group_already_terminated() {
+    DecryptedGroup groupState = new DecryptedGroup.Builder()
+        .revision(5)
+        .terminated(true)
+        .build();
+
+    DecryptedGroupChange conflictingChange = new DecryptedGroupChange.Builder()
+        .revision(6)
+        .terminateGroup(true)
+        .build();
+
+    DecryptedGroupChange expectedResolvedChange = new DecryptedGroupChange.Builder()
+        .revision(6)
+        .build();
+
+    assertEquals(expectedResolvedChange, GroupChangeUtil.resolveConflict(groupState, conflictingChange).build());
   }
 }

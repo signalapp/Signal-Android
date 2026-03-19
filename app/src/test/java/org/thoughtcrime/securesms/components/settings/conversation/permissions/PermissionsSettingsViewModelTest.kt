@@ -31,6 +31,7 @@ class PermissionsSettingsViewModelTest {
   ): PermissionsSettingsViewModel {
     val liveGroup = mockk<LiveGroup> {
       every { isSelfAdmin } returns MutableLiveData(false)
+      every { isActive } returns MutableLiveData(true)
       every { membershipAdditionAccessControl } returns MutableLiveData(GroupAccessControl.ONLY_ADMINS)
       every { attributesAccessControl } returns MutableLiveData(GroupAccessControl.ONLY_ADMINS)
       every { isAnnouncementGroup } returns MutableLiveData(false)

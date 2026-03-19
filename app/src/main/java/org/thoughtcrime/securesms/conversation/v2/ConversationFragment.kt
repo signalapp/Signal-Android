@@ -99,6 +99,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -1171,6 +1172,26 @@ class ConversationFragment :
 
     viewLifecycleOwner.lifecycle.addObserver(LastScrolledPositionUpdater(adapter, layoutManager, viewModel))
 
+    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+      var wasTerminated: Boolean? = null
+      viewModel
+        .groupRecordFlow
+        .collect { record ->
+          val isTerminated = record.isTerminated
+          if (wasTerminated == false && isTerminated) {
+            val terminatedByRecipientId = record.terminatedByRecipientId
+            if (terminatedByRecipientId == null || terminatedByRecipientId != Recipient.self().id) {
+              val context = context ?: return@collect
+              val adminName = terminatedByRecipientId?.let { Recipient.resolved(it).getDisplayName(context) }
+              withContext(Dispatchers.Main) {
+                TerminatedGroupBottomSheetDialog.show(childFragmentManager, adminName)
+              }
+            }
+          }
+          wasTerminated = isTerminated
+        }
+    }
+
     disposables += viewModel.recipient
       .observeOn(AndroidSchedulers.mainThread())
       .distinctUntilChanged { r1, r2 -> r1 === r2 || r1.hasSameContent(r2) }
@@ -1492,6 +1513,7 @@ class ConversationFragment :
       inputReadyState.isClientExpired || inputReadyState.isUnauthorized -> disabledInputView.showAsExpiredOrUnauthorized(inputReadyState.isClientExpired, inputReadyState.isUnauthorized)
       args.isIncognito -> disabledInputView.showAsIncognito()
       !inputReadyState.messageRequestState.isAccepted -> disabledInputView.showAsMessageRequest(inputReadyState.conversationRecipient, inputReadyState.messageRequestState)
+      inputReadyState.isTerminatedGroup -> disabledInputView.showAsTerminatedGroup()
       inputReadyState.isActiveGroup == false -> disabledInputView.showAsNoLongerAMember()
       inputReadyState.isRequestingMember == true -> disabledInputView.showAsRequestingMember()
       inputReadyState.isAnnouncementGroup == true && inputReadyState.isAdmin == false -> disabledInputView.showAsAnnouncementGroupAdminsOnly()
@@ -3424,7 +3446,9 @@ class ConversationFragment :
 
     override fun onMessageWithErrorClicked(messageRecord: MessageRecord) {
       val recipientId = viewModel.recipientSnapshot?.id ?: return
-      if (messageRecord.isFailedAdminDelete) {
+      if (conversationGroupViewModel.groupRecordSnapshot?.isTerminated == true) {
+        ConversationDialogs.displayTerminatedGroupSendFailedDialog(requireContext(), messageRecord)
+      } else if (messageRecord.isFailedAdminDelete) {
         val canRetry = MessageConstraintsUtil.isValidAdminDeleteSend(message = messageRecord, currentTime = System.currentTimeMillis(), isAdmin = conversationGroupViewModel.isAdmin(), isResend = true)
         if (messageRecord.isIdentityMismatchFailure && canRetry) {
           SafetyNumberBottomSheet

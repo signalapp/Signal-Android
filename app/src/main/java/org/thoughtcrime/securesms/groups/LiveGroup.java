@@ -137,6 +137,10 @@ public final class LiveGroup {
     return recipient;
   }
 
+  public LiveData<GroupRecord> getGroupRecord() {
+    return groupRecord;
+  }
+
   public LiveData<Boolean> isSelfAdmin() {
     return Transformations.map(groupRecord, g -> g.isAdmin(Recipient.self()));
   }
@@ -147,6 +151,14 @@ public final class LiveGroup {
 
   public LiveData<Boolean> isActive() {
     return Transformations.map(groupRecord, GroupRecord::isActive);
+  }
+
+  public LiveData<Boolean> isTerminated() {
+    return Transformations.map(groupRecord, GroupRecord::isTerminated);
+  }
+
+  public LiveData<Boolean> isMember() {
+    return Transformations.map(groupRecord, GroupRecord::isMember);
   }
 
   public LiveData<Boolean> getRecipientIsAdmin(@NonNull RecipientId recipientId) {
@@ -201,11 +213,13 @@ public final class LiveGroup {
   }
 
   public LiveData<Boolean> selfCanEditGroupAttributes() {
-    return LiveDataUtil.combineLatest(selfMemberLevel(), getAttributesAccessControl(), LiveGroup::applyAccessControl);
+    return LiveDataUtil.combineLatest(selfMemberLevel(), getAttributesAccessControl(), isActive(),
+                                      (level, access, active) -> active && applyAccessControl(level, access));
   }
 
   public LiveData<Boolean> selfCanAddMembers() {
-    return LiveDataUtil.combineLatest(selfMemberLevel(), getMembershipAdditionAccessControl(), LiveGroup::applyAccessControl);
+    return LiveDataUtil.combineLatest(selfMemberLevel(), getMembershipAdditionAccessControl(), isActive(),
+                                      (level, access, active) -> active && applyAccessControl(level, access));
   }
 
   /**

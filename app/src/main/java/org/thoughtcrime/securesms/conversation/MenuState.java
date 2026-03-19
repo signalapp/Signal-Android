@@ -171,11 +171,11 @@ public final class MenuState {
         hasPollTerminate = true;
       }
 
-      if (!messageRecord.isPending() && messageRecord.getPinnedUntil() == 0 && !conversationRecipient.isReleaseNotes() && canEditGroupInfo && !hasGift) {
+      if (!messageRecord.isPending() && messageRecord.getPinnedUntil() == 0 && !conversationRecipient.isReleaseNotes() && canEditGroupInfo && !hasGift && !conversationRecipient.isInactiveGroup()) {
         canPinMessage = true;
       }
 
-      if (messageRecord.getPinnedUntil() != 0 && !conversationRecipient.isReleaseNotes() && canEditGroupInfo && !hasGift) {
+      if (messageRecord.getPinnedUntil() != 0 && !conversationRecipient.isReleaseNotes() && canEditGroupInfo && !hasGift && !conversationRecipient.isInactiveGroup()) {
         canUnpinMessage = true;
       }
     }

@@ -186,6 +186,10 @@ public final class GroupChangeReconstruct {
                                                       })
                                                       .collect(Collectors.toList()));
 
+    if (!fromState.terminated && toState.terminated) {
+      builder.terminateGroup(true);
+    }
+
     return builder.build();
   }
 

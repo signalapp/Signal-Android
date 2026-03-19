@@ -310,4 +310,30 @@ class GroupManagerV2Test_edit {
       assertThat(other2.labelString, "Other2's label text is preserved").isEqualTo("Bar")
     }
   }
+
+  @Test
+  fun `when admin terminates group, the group state is updated with terminated flag`() {
+    given {
+      localState(
+        revision = 5,
+        members = listOf(
+          member(selfAci, role = Member.Role.ADMINISTRATOR),
+          member(otherAci)
+        )
+      )
+      groupChange(6) {
+        source(selfAci)
+        terminateGroup()
+      }
+    }
+
+    editGroup {
+      terminateGroup()
+    }
+
+    then { patchedGroup ->
+      assertThat(patchedGroup.revision, "Revision updated by one").isEqualTo(6)
+      assertThat(patchedGroup.terminated, "Group is terminated").isEqualTo(true)
+    }
+  }
 }

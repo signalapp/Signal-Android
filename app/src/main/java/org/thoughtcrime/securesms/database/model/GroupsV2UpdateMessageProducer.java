@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberRemovedUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupMembershipAccessLevelChangeUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupNameUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupSelfInvitationRevokedUpdate;
+import org.thoughtcrime.securesms.backup.v2.proto.GroupTerminateChangeUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupUnknownInviteeUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupV2AccessLevel;
 import org.thoughtcrime.securesms.backup.v2.proto.GroupV2MigrationDroppedMembersUpdate;
@@ -220,6 +221,8 @@ final class GroupsV2UpdateMessageProducer {
       describeGroupExpirationTimerUpdate(update.groupExpirationTimerUpdate, updates);
     } else if (update.groupSelfInvitationRevokedUpdate != null) {
       describeGroupSelfInvitationRevokedUpdate(update.groupSelfInvitationRevokedUpdate, updates);
+    } else if (update.groupTerminateChangeUpdate != null) {
+      describeGroupTerminateUpdate(update.groupTerminateChangeUpdate, updates);
     }
   }
 
@@ -228,6 +231,18 @@ final class GroupsV2UpdateMessageProducer {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_an_admin_revoked_your_invitation_to_the_group), Glyph.PERSON_X));
     } else {
       updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_invitation_to_the_group, update.revokerAci, Glyph.PERSON_X));
+    }
+  }
+
+  private void describeGroupTerminateUpdate(@NonNull GroupTerminateChangeUpdate update, @NonNull List<UpdateDescription> updates) {
+    if (update.updaterAci == null) {
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_was_terminated), Glyph.X_CIRCLE));
+    } else {
+      if (selfIds.matches(update.updaterAci)) {
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_terminated_the_group), Glyph.X_CIRCLE));
+      } else {
+        updates.add(updateDescription(R.string.MessageRecord_s_terminated_the_group, update.updaterAci, Glyph.X_CIRCLE));
+      }
     }
   }
 

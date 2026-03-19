@@ -58,7 +58,7 @@ public final class GroupsV2Operations_decrypt_group_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(Group.class);
 
     assertEquals("GroupOperations and its tests need updating to account for new fields on " + Group.class.getName(),
-                 13, maxFieldFound);
+                 14, maxFieldFound);
   }
 
   @Test
@@ -308,6 +308,17 @@ public final class GroupsV2Operations_decrypt_group_Test {
 
     assertEquals(1, decryptedGroup.bannedMembers.size());
     assertEquals(new DecryptedBannedMember.Builder().serviceIdBytes(member1.toByteString()).build(), decryptedGroup.bannedMembers.get(0));
+  }
+
+  @Test
+  public void pass_through_terminated_field_14() throws VerificationFailedException, InvalidGroupStateException {
+    Group group = new Group.Builder()
+        .terminated(true)
+        .build();
+
+    DecryptedGroup decryptedGroup = groupOperations.decryptGroup(group);
+
+    assertEquals(true, decryptedGroup.terminated);
   }
 
   private ByteString encryptProfileKey(ACI aci, ProfileKey profileKey) {

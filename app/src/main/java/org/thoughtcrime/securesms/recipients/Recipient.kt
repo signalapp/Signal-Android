@@ -248,7 +248,7 @@ class Recipient(
       participantIdsValue.isEmpty() || participantIdsValue.size == 1 && participantIdsValue.contains(self().id)
     }
 
-  /** Whether the group is inactive. Groups become inactive when you leave them. */
+  /** Whether the group is inactive. Groups become inactive when you leave them or when the group is terminated. */
   val isInactiveGroup: Boolean
     get() = isGroup && !isActiveGroup
 

@@ -88,7 +88,8 @@ message Group {
   bytes inviteLinkPassword = 10;
   bool announcements_only = 12;
   repeated MemberBanned members_banned = 13;
-  // next: 14
+  bool terminated = 14;
+  // next: 15
 }
 
 message GroupAttributeBlob {
@@ -238,6 +239,8 @@ message GroupChange {
       bool announcements_only = 1;
     }
 
+    message TerminateGroupAction {}
+
     bytes sourceUserId = 1;
     // clients should not provide this value; the server will provide it in the response buffer to ensure the signature is binding to a particular group
     // if clients set it during a request the server will respond with 400.
@@ -268,7 +271,8 @@ message GroupChange {
     repeated PromoteMemberPendingPniAciProfileKeyAction promote_members_pending_pni_aci_profile_key = 24;  // change epoch = 5
     repeated ModifyMemberLabelAction modifyMemberLabels = 26; // change epoch = 6;
     ModifyMemberLabelAccessControlAction modifyMemberLabelAccess = 27; // change epoch = 6
-    // next: 28
+    TerminateGroupAction terminate_group = 28; // change epoch = 7
+    // next: 29
   }
 
   bytes actions = 1;

@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.components.settings.conversation.preferences
 
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.ViewCompat
+import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.badges.BadgeImageView
@@ -25,6 +27,7 @@ object AvatarPreference {
   class Model(
     val recipient: Recipient,
     val storyViewState: StoryViewState,
+    val reduceTopMargin: Boolean = false,
     val onAvatarClick: (AvatarView) -> Unit,
     val onBadgeClick: (Badge) -> Unit
   ) : PreferenceModel<Model>() {
@@ -35,7 +38,8 @@ object AvatarPreference {
     override fun areContentsTheSame(newItem: Model): Boolean {
       return super.areContentsTheSame(newItem) &&
         recipient.hasSameContent(newItem.recipient) &&
-        storyViewState == newItem.storyViewState
+        storyViewState == newItem.storyViewState &&
+        reduceTopMargin == newItem.reduceTopMargin
     }
   }
 
@@ -49,6 +53,10 @@ object AvatarPreference {
     }
 
     override fun bind(model: Model) {
+      (itemView.layoutParams as? ViewGroup.MarginLayoutParams)?.let {
+        it.topMargin = if (model.reduceTopMargin) 0.dp else 40.dp
+      }
+
       if (model.recipient.isSelf) {
         badge.setBadge(null)
         badge.setOnClickListener(null)

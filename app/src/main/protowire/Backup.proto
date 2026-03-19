@@ -308,6 +308,7 @@ message Group {
     bytes inviteLinkPassword = 10;
     bool announcements_only = 12;
     repeated MemberBanned members_banned = 13;
+    bool terminated = 14;
   }
 
   message GroupAttributeBlob {
@@ -1078,6 +1079,7 @@ message GroupChangeChatUpdate {
       GroupSequenceOfRequestsAndCancelsUpdate groupSequenceOfRequestsAndCancelsUpdate = 33;
       GroupExpirationTimerUpdate groupExpirationTimerUpdate = 34;
       GroupMemberLabelAccessLevelChangeUpdate groupMemberLabelAccessLevelChangeUpdate = 35;
+      GroupTerminateChangeUpdate groupTerminateChangeUpdate = 36;
     }
   }
 
@@ -1132,6 +1134,10 @@ message GroupAttributesAccessLevelChangeUpdate {
 message GroupMemberLabelAccessLevelChangeUpdate {
   optional bytes updaterAci = 1;
   GroupV2AccessLevel accessLevel = 2;
+}
+
+message GroupTerminateChangeUpdate {
+  optional bytes updaterAci = 1;
 }
 
 message GroupAnnouncementOnlyChangeUpdate {

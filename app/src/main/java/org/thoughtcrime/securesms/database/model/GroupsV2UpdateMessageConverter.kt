@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.GroupMembershipAccessLevelChan
 import org.thoughtcrime.securesms.backup.v2.proto.GroupNameUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupSelfInvitationRevokedUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupSequenceOfRequestsAndCancelsUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.GroupTerminateChangeUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupUnknownInviteeUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupV2AccessLevel
 import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedOtherUserToGroupUpdate
@@ -155,6 +156,7 @@ object GroupsV2UpdateMessageConverter {
     translateAnnouncementGroupChange(change, editorUnknown, updates)
     translatePromotePendingPniAci(selfIds, change, editorUnknown, updates)
     translateMemberRemovals(selfIds, change, editorUnknown, updates)
+    translateTerminateGroup(change, editorUnknown, updates)
     if (updates.isEmpty()) {
       translateUnknownChange(change, editorUnknown, updates)
     }
@@ -681,6 +683,20 @@ object GroupsV2UpdateMessageConverter {
           )
         )
       }
+    }
+  }
+
+  @JvmStatic
+  fun translateTerminateGroup(change: DecryptedGroupChange, editorUnknown: Boolean, updates: MutableList<GroupChangeChatUpdate.Update>) {
+    if (change.terminateGroup) {
+      val editorAci = if (editorUnknown) null else change.editorServiceIdBytes
+      updates.add(
+        GroupChangeChatUpdate.Update(
+          groupTerminateChangeUpdate = GroupTerminateChangeUpdate(
+            updaterAci = editorAci
+          )
+        )
+      )
     }
   }
 

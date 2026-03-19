@@ -98,6 +98,8 @@ class MemberLabelRepository private constructor(
   suspend fun canSetLabel(groupId: GroupId.V2, recipient: Recipient): Boolean = withContext(Dispatchers.IO) {
     val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext false
 
+    if (groupRecord.isTerminated) return@withContext false
+
     val memberLevel = groupRecord.memberLevel(recipient)
     if (groupRecord.memberLabelAccessControl == GroupAccessControl.ONLY_ADMINS) {
       memberLevel == GroupTable.MemberLevel.ADMINISTRATOR

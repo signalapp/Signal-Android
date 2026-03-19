@@ -52,7 +52,8 @@ public final class GroupChangeUtil {
            change.delete_members_banned.isEmpty() &&                       // field 23
            change.promote_members_pending_pni_aci_profile_key.isEmpty() && // field 24
            change.modifyMemberLabels.isEmpty() &&                          // field 26
-           change.modifyMemberLabelAccess == null;                         // field 27
+           change.modifyMemberLabelAccess == null &&                       // field 27
+           change.terminate_group == null;                                 // field 28
   }
 
   /**
@@ -157,6 +158,7 @@ public final class GroupChangeUtil {
     resolveField24PromotePendingPniAciMembers    (conflictingChange, changeSetModifier, fullMembersByUuid);
     resolveField26ModifyMemberLabels             (conflictingChange, changeSetModifier, fullMembersByUuid);
     resolveField27ModifyMemberLabelAccess        (groupState, conflictingChange, changeSetModifier);
+    resolveField28TerminateGroup                 (groupState, conflictingChange, changeSetModifier);
   }
 
   private static void resolveField3AddMembers(DecryptedGroupChange conflictingChange, ChangeSetModifier result, HashMap<ByteString, DecryptedMember> fullMembersByUuid, HashMap<ByteString, DecryptedPendingMember> pendingMembersByServiceId) {
@@ -401,6 +403,15 @@ public final class GroupChangeUtil {
   {
     if (groupState.accessControl != null && conflictingChange.newMemberLabelAccess == groupState.accessControl.memberLabel) {
       result.clearModifyMemberLabelAccess();
+    }
+  }
+
+  private static void resolveField28TerminateGroup(@Nonnull DecryptedGroup groupState,
+                                                   @Nonnull DecryptedGroupChange conflictingChange,
+                                                   @Nonnull ChangeSetModifier result)
+  {
+    if (groupState.terminated && conflictingChange.terminateGroup) {
+      result.clearTerminateGroup();
     }
   }
 }

@@ -2861,7 +2861,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
     }
 
-    val silent = (MessageTypes.isGroupUpdate(type) && !retrieved.isGroupAdd) ||
+    val silent = (MessageTypes.isGroupUpdate(type) && !retrieved.isNotifiable) ||
       retrieved.type == MessageType.IDENTITY_DEFAULT ||
       retrieved.type == MessageType.IDENTITY_VERIFIED ||
       retrieved.type == MessageType.IDENTITY_UPDATE

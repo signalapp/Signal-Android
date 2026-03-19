@@ -50,7 +50,7 @@ class GroupArchiveExporter(private val selfAci: ServiceId.ACI, private val curso
     val extras = RecipientTableCursorUtil.getExtras(cursor)
     val showAsStoryState: GroupTable.ShowAsStoryState = GroupTable.ShowAsStoryState.deserialize(cursor.requireInt(GroupTable.SHOW_AS_STORY_STATE))
 
-    val isActive: Boolean = cursor.requireBoolean(GroupTable.ACTIVE)
+    val isMember: Boolean = cursor.requireBoolean(GroupTable.IS_MEMBER)
     val decryptedGroup: DecryptedGroup = DecryptedGroup.ADAPTER.decode(cursor.requireBlob(GroupTable.V2_DECRYPTED_GROUP)!!)
 
     return ArchiveRecipient(
@@ -61,7 +61,7 @@ class GroupArchiveExporter(private val selfAci: ServiceId.ACI, private val curso
         blocked = cursor.requireBoolean(RecipientTable.BLOCKED),
         hideStory = extras?.hideStory() ?: false,
         storySendMode = showAsStoryState.toRemote(),
-        snapshot = decryptedGroup.toRemote(isActive, selfAci),
+        snapshot = decryptedGroup.toRemote(isMember, selfAci),
         avatarColor = cursor.requireString(RecipientTable.AVATAR_COLOR)?.let { AvatarColor.deserialize(it) }?.toRemote()
       )
     )
@@ -80,9 +80,9 @@ private fun GroupTable.ShowAsStoryState.toRemote(): Group.StorySendMode {
   }
 }
 
-private fun DecryptedGroup.toRemote(isActive: Boolean, selfAci: ServiceId.ACI): Group.GroupSnapshot? {
+private fun DecryptedGroup.toRemote(isMember: Boolean, selfAci: ServiceId.ACI): Group.GroupSnapshot? {
   val selfAciBytes = selfAci.toByteString()
-  val memberFilter = { m: DecryptedMember -> isActive || m.aciBytes != selfAciBytes }
+  val memberFilter = { m: DecryptedMember -> isMember || m.aciBytes != selfAciBytes }
 
   return Group.GroupSnapshot(
     title = Group.GroupAttributeBlob(title = this.title),
@@ -96,7 +96,8 @@ private fun DecryptedGroup.toRemote(isActive: Boolean, selfAci: ServiceId.ACI): 
     inviteLinkPassword = this.inviteLinkPassword,
     description = this.description.takeUnless { it.isBlank() }?.let { Group.GroupAttributeBlob(descriptionText = it) },
     announcements_only = this.isAnnouncementGroup == EnabledState.ENABLED,
-    members_banned = this.bannedMembers.map { it.toRemote() }
+    members_banned = this.bannedMembers.map { it.toRemote() },
+    terminated = this.terminated
   )
 }
 

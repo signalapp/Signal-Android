@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.LiveGroup
 import org.thoughtcrime.securesms.util.SingleLiveEvent
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class PermissionsSettingsViewModel(
@@ -22,8 +23,8 @@ class PermissionsSettingsViewModel(
   val events: LiveData<PermissionsSettingsEvents> = internalEvents
 
   init {
-    store.update(liveGroup.isSelfAdmin) { isSelfAdmin, state ->
-      state.copy(selfCanEditSettings = isSelfAdmin)
+    store.update(LiveDataUtil.combineLatest(liveGroup.isSelfAdmin, liveGroup.isActive) { admin, active -> admin && active }) { canEdit, state ->
+      state.copy(selfCanEditSettings = canEdit)
     }
 
     store.update(liveGroup.membershipAdditionAccessControl) { membershipAdditionAccessControl, state ->

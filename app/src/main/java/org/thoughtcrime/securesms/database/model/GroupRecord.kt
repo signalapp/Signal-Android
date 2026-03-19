@@ -24,7 +24,8 @@ class GroupRecord(
   val avatarId: Long,
   val avatarKey: ByteArray?,
   val avatarContentType: String?,
-  val isActive: Boolean,
+  val isMember: Boolean,
+  private val terminatedBy: Long = 0,
   val avatarDigest: ByteArray?,
   val isMms: Boolean,
   groupMasterKeyBytes: ByteArray?,
@@ -60,6 +61,15 @@ class GroupRecord(
       null
     }
   }
+
+  val isTerminated: Boolean
+    get() = terminatedBy != 0L
+
+  val terminatedByRecipientId: RecipientId?
+    get() = if (terminatedBy > 0) RecipientId.from(terminatedBy) else null
+
+  val isActive: Boolean
+    get() = isMember && !isTerminated
 
   val description: String
     get() = v2GroupProperties?.decryptedGroup?.description ?: ""

@@ -116,7 +116,12 @@ class GroupsV2StateProcessor private constructor(
       return GroupUpdateResult.CONSISTENT_OR_AHEAD
     }
 
-    return when (val result = updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = true, forceUpdate = !groupRecord.isActive)) {
+    if (currentLocalState.terminated) {
+      Log.i(TAG, "$logPrefix Group is terminated, not updating")
+      return GroupUpdateResult.CONSISTENT_OR_AHEAD
+    }
+
+    return when (val result = updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = true, forceUpdate = !groupRecord.isMember)) {
       InternalUpdateResult.NoUpdateNeeded -> GroupUpdateResult.CONSISTENT_OR_AHEAD
       is InternalUpdateResult.Updated -> GroupUpdateResult(GroupUpdateResult.UpdateStatus.GROUP_UPDATED, result.updatedLocalState)
       is InternalUpdateResult.NotAMember -> throw result.exception
@@ -232,6 +237,11 @@ class GroupsV2StateProcessor private constructor(
       return false
     }
 
+    if (currentLocalState.terminated) {
+      Log.w(TAG, "$logPrefix Ignoring P2P group change because group is terminated")
+      return false
+    }
+
     if (notInGroupAndNotBeingAdded(groupRecord, signedGroupChange) && notHavingInviteRevoked(signedGroupChange)) {
       Log.w(TAG, "$logPrefix Ignoring P2P group change because we're not currently in the group and this change doesn't add us in.")
       return false
@@ -320,8 +330,8 @@ class GroupsV2StateProcessor private constructor(
       val applyGroupStateDiffResult: AdvanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(remoteGroupStateDiff, targetRevision)
       val updatedGroupState: DecryptedGroup? = applyGroupStateDiffResult.updatedGroupState
 
-      if (groupRecord.map { it.isActive }.orNull() == false && updatedGroupState != null && updatedGroupState == remoteGroupStateDiff.previousGroupState) {
-        Log.w(TAG, "$logPrefix Local state is not active, but server is returning state for us, apply regardless of revision")
+      if (groupRecord.map { it.isMember }.orNull() == false && updatedGroupState != null && updatedGroupState == remoteGroupStateDiff.previousGroupState) {
+        Log.w(TAG, "$logPrefix Local state is not a member, but server is returning state for us, apply regardless of revision")
       } else if (updatedGroupState == null || updatedGroupState == remoteGroupStateDiff.previousGroupState) {
         Log.i(TAG, "$logPrefix Local state is at or later than server revision: ${currentLocalState?.revision ?: "null"}")
 
@@ -436,7 +446,7 @@ class GroupsV2StateProcessor private constructor(
   }
 
   private fun notInGroupAndNotBeingAdded(groupRecord: Optional<GroupRecord>, signedGroupChange: DecryptedGroupChange): Boolean {
-    val currentlyInGroup = groupRecord.isPresent && groupRecord.get().isActive
+    val currentlyInGroup = groupRecord.isPresent && groupRecord.get().isMember
 
     val addedAsMember = signedGroupChange
       .newMembers
@@ -516,6 +526,20 @@ class GroupsV2StateProcessor private constructor(
     }
 
     saveGroupState(groupStateDiff, updatedGroupState, groupSendEndorsements)
+
+    if (updatedGroupState.terminated && (currentLocalState == null || !currentLocalState.terminated)) {
+      val terminatingChange = groupStateDiff.serverHistory
+        .mapNotNull { it.change }
+        .firstOrNull { it.terminateGroup }
+
+      if (terminatingChange != null) {
+        val editorServiceId = ServiceId.parseOrNull(terminatingChange.editorServiceIdBytes)
+        if (editorServiceId != null) {
+          val terminatorRecipientId = RecipientId.from(editorServiceId)
+          SignalDatabase.groups.setTerminatedBy(groupId, terminatorRecipientId)
+        }
+      }
+    }
 
     if (currentLocalState == null || currentLocalState.revision == RESTORE_PLACEHOLDER_REVISION) {
       Log.i(TAG, "$logPrefix Inserting single update message for no local state or restore placeholder")
@@ -707,7 +731,7 @@ class GroupsV2StateProcessor private constructor(
         Log.w(TAG, "Failed to insert leave message for $groupId", e)
       }
 
-      SignalDatabase.groups.setActive(groupId, false)
+      SignalDatabase.groups.setMember(groupId, false)
       SignalDatabase.groups.remove(groupId, Recipient.self().id)
     }
 
@@ -772,20 +796,24 @@ class GroupsV2StateProcessor private constructor(
         }
       } else {
         try {
-          val isGroupAdd = updateDescription
-            .groupChangeUpdate!!
-            .updates
+          val updates = updateDescription.groupChangeUpdate!!.updates
+
+          val isGroupAdd = updates
             .asSequence()
             .mapNotNull { it.groupMemberAddedUpdate }
             .any { serviceIds.matches(it.newMemberAci) }
 
-          val groupMessage = IncomingMessage.groupUpdate(RecipientId.from(editor.get()), timestamp, groupId, updateDescription, isGroupAdd, serverGuid)
+          val isGroupTerminate = updates.any { it.groupTerminateChangeUpdate != null }
+
+          val isNotifiable = isGroupAdd || isGroupTerminate
+
+          val groupMessage = IncomingMessage.groupUpdate(RecipientId.from(editor.get()), timestamp, groupId, updateDescription, isNotifiable, serverGuid)
           val insertResult = SignalDatabase.messages.insertMessageInbox(groupMessage)
 
           if (insertResult.isPresent) {
             SignalDatabase.threads.update(insertResult.get().threadId, unarchive = false, allowDeletion = false)
 
-            if (isGroupAdd) {
+            if (isNotifiable) {
               AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
             }
           } else {

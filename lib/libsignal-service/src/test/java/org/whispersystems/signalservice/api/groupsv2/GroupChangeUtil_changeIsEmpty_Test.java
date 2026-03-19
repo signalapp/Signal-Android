@@ -22,7 +22,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(GroupChange.Actions.class);
 
     assertEquals("GroupChangeUtil and its tests need updating to account for new fields on " + GroupChange.Actions.class.getName(),
-                 27, maxFieldFound);
+                 28, maxFieldFound);
   }
 
   @Test
@@ -241,6 +241,15 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
   public void not_empty_with_modify_member_label_access_field_27() {
     GroupChange.Actions actions = new GroupChange.Actions.Builder()
         .modifyMemberLabelAccess(new GroupChange.Actions.ModifyMemberLabelAccessControlAction())
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_terminate_group_field_28() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .terminate_group(new GroupChange.Actions.TerminateGroupAction())
         .build();
 
     assertFalse(GroupChangeUtil.changeIsEmpty(actions));

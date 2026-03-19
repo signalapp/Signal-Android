@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkUrlAndStatus;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 final class ShareableGroupLinkViewModel extends ViewModel {
 
@@ -27,7 +28,7 @@ final class ShareableGroupLinkViewModel extends ViewModel {
 
     this.repository = repository;
     this.groupLink  = liveGroup.getGroupLink();
-    this.canEdit    = liveGroup.isSelfAdmin();
+    this.canEdit    = LiveDataUtil.combineLatest(liveGroup.isSelfAdmin(), liveGroup.isActive(), (admin, active) -> admin && active);
     this.toasts     = new SingleLiveEvent<>();
     this.busy       = new SingleLiveEvent<>();
   }

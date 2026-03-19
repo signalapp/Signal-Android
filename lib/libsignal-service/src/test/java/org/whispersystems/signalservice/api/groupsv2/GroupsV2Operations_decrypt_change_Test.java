@@ -73,7 +73,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("GroupV2Operations#decryptChange and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 27,
+                 28,
                  maxFieldFound);
   }
 
@@ -540,6 +540,16 @@ public final class GroupsV2Operations_decrypt_change_Test {
 
     DecryptedGroupChange.Builder expectedDecryptedChange = new DecryptedGroupChange.Builder()
         .newMemberLabelAccess(AccessControl.AccessRequired.ADMINISTRATOR);
+
+    assertDecryption(encryptedChange, expectedDecryptedChange);
+  }
+
+  @Test
+  public void can_pass_through_terminate_group_field_28() {
+    GroupChange.Actions.Builder encryptedChange = groupOperations.createTerminateGroup();
+
+    DecryptedGroupChange.Builder expectedDecryptedChange = new DecryptedGroupChange.Builder()
+        .terminateGroup(true);
 
     assertDecryption(encryptedChange, expectedDecryptedChange);
   }

@@ -286,8 +286,8 @@ public class CommunicationActions {
     SimpleTask.run(SignalExecutors.BOUNDED, () -> {
       GroupRecord group = SignalDatabase.groups().getGroup(groupId).orElse(null);
 
-      return group != null && group.isActive() ? Recipient.resolved(group.getRecipientId())
-                                               : null;
+      return group != null && (group.isMember() || group.isTerminated()) ? Recipient.resolved(group.getRecipientId())
+                                                                         : null;
     },
     recipient -> {
       if (recipient != null) {

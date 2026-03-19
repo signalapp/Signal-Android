@@ -51,7 +51,7 @@ public final class DecryptedGroupUtil_apply_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("DecryptedGroupUtil and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 27, maxFieldFound);
+                 28, maxFieldFound);
   }
 
   @Test
@@ -1080,6 +1080,25 @@ public final class DecryptedGroupUtil_apply_Test {
                 .memberLabel(AccessControl.AccessRequired.MEMBER)
                 .build()
         )
+        .build();
+
+    assertEquals(expectedResult, DecryptedGroupUtil.apply(group, groupChange));
+  }
+
+  @Test
+  public void apply_terminate_group() throws NotAbleToApplyGroupV2ChangeException {
+    DecryptedGroup group = new DecryptedGroup.Builder()
+        .revision(10)
+        .build();
+
+    DecryptedGroupChange groupChange = new DecryptedGroupChange.Builder()
+        .revision(11)
+        .terminateGroup(true)
+        .build();
+
+    DecryptedGroup expectedResult = new DecryptedGroup.Builder()
+        .revision(11)
+        .terminated(true)
         .build();
 
     assertEquals(expectedResult, DecryptedGroupUtil.apply(group, groupChange));

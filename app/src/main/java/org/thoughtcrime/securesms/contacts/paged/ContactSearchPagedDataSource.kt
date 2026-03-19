@@ -426,7 +426,7 @@ class ContactSearchPagedDataSource(
   }
 
   private fun canSendToGroup(groupRecord: GroupRecord?): Boolean {
-    if (groupRecord == null) return false
+    if (groupRecord == null || groupRecord.isTerminated) return false
 
     return if (groupRecord.isAnnouncementGroup) {
       groupRecord.isAdmin(Recipient.self())

@@ -573,10 +573,10 @@ class ConversationAdapterV2(
         }
 
         if (groupInfo.fullMemberCount > 0 || groupInfo.pendingMemberCount > 0) {
-          if (groupInfo.fullMemberCount == 1 && recipient.isActiveGroup) {
+          if (groupInfo.fullMemberCount == 1 && groupInfo.isMember) {
             conversationBanner.hideUnverifiedNameSubtitle()
           }
-          setSubtitle(context, groupInfo.pendingMemberCount, groupInfo.fullMemberCount, groupInfo.membersPreview, recipient)
+          setSubtitle(context, groupInfo.pendingMemberCount, groupInfo.fullMemberCount, groupInfo.membersPreview, groupInfo.isMember, recipient)
         } else {
           conversationBanner.hideSubtitle()
         }
@@ -640,10 +640,10 @@ class ConversationAdapterV2(
       conversationBanner.updateOutlineBoxSize()
     }
 
-    private fun setSubtitle(context: Context, pendingMemberCount: Int, size: Int, members: List<Recipient>, recipient: Recipient) {
+    private fun setSubtitle(context: Context, pendingMemberCount: Int, size: Int, members: List<Recipient>, isMember: Boolean, recipient: Recipient) {
       val names = members.map { member -> member.getDisplayName(context) }
       val otherMembers = if (size > 3) context.resources.getQuantityString(R.plurals.MessageRequestProfileView_other_members, size - 3, size - 3) else null
-      val membersSubtitle = if (recipient.isActiveGroup) {
+      val membersSubtitle = if (isMember) {
         when (names.size) {
           0 -> context.getString(R.string.MessageRequestProfileView_group_members_zero)
           1 -> context.getString(R.string.MessageRequestProfileView_group_members_one_and_you, names[0])

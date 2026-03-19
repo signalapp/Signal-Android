@@ -37,6 +37,11 @@ object PinSendUtil {
 
     if (groupId != null) {
       val groupRecord: GroupRecord? = SignalDatabase.groups.getGroup(groupId).getOrNull()
+
+      if (groupRecord != null && !groupRecord.isActive) {
+        throw UndeliverableMessageException("Cannot pin messages in an inactive group!")
+      }
+
       if (groupRecord != null && groupRecord.attributesAccessControl == GroupAccessControl.ONLY_ADMINS && !groupRecord.isAdmin(Recipient.self())) {
         throw UndeliverableMessageException("Non-admins cannot pin messages!")
       }
@@ -83,6 +88,11 @@ object PinSendUtil {
     val groupId = if (threadRecipient.isPushV2Group) threadRecipient.requireGroupId().requireV2() else null
     if (groupId != null) {
       val groupRecord: GroupRecord? = SignalDatabase.groups.getGroup(groupId).getOrNull()
+
+      if (groupRecord != null && !groupRecord.isActive) {
+        throw UndeliverableMessageException("Cannot unpin messages in an inactive group!")
+      }
+
       if (groupRecord != null && groupRecord.attributesAccessControl == GroupAccessControl.ONLY_ADMINS && !groupRecord.isAdmin(Recipient.self())) {
         throw UndeliverableMessageException("Non-admins cannot pin messages!")
       }

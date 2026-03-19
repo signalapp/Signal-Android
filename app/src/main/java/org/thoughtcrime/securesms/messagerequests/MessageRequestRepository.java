@@ -74,11 +74,11 @@ public final class MessageRequestRepository {
         List<Recipient> membersPreview           = recipients.stream().filter(r -> !r.isSelf()).limit(MAX_MEMBER_NAMES).collect(Collectors.toList());
         DecryptedGroup  decryptedGroup           = groupRecord.get().requireV2GroupProperties().getDecryptedGroup();
 
-        groupInfo = new GroupInfo(decryptedGroup.members.size(), decryptedGroup.pendingMembers.size(), decryptedGroup.description, groupHasExistingContacts, membersPreview);
+        groupInfo = new GroupInfo(decryptedGroup.members.size(), decryptedGroup.pendingMembers.size(), decryptedGroup.description, groupHasExistingContacts, membersPreview, groupRecord.get().isMember(), groupRecord.get().isTerminated());
       } else {
         List<Recipient> membersPreview = recipients.stream().filter(r -> !r.isSelf()).limit(MAX_MEMBER_NAMES).collect(Collectors.toList());
 
-        groupInfo = new GroupInfo(groupRecord.get().getMembers().size(), 0, "", false, membersPreview);
+        groupInfo = new GroupInfo(groupRecord.get().getMembers().size(), 0, "", false, membersPreview, groupRecord.get().isActive(), false);
       }
     }
 

@@ -45,7 +45,7 @@ public final class GroupChangeReconstructTest {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroup.class, ProtobufTestUtils.IGNORED_DECRYPTED_GROUP_TAGS);
 
     assertEquals("GroupChangeReconstruct and its tests need updating to account for new fields on " + DecryptedGroup.class.getName(),
-                 13, maxFieldFound);
+                 14, maxFieldFound);
   }
 
   @Test
@@ -484,6 +484,24 @@ public final class GroupChangeReconstructTest {
     assertEquals(
         new DecryptedGroupChange.Builder()
             .newMemberLabelAccess(AccessControl.AccessRequired.MEMBER)
+            .build(),
+        decryptedGroupChange);
+  }
+
+  @Test
+  public void terminate_group() {
+    DecryptedGroup from = new DecryptedGroup.Builder()
+        .build();
+
+    DecryptedGroup to = new DecryptedGroup.Builder()
+        .terminated(true)
+        .build();
+
+    DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
+
+    assertEquals(
+        new DecryptedGroupChange.Builder()
+            .terminateGroup(true)
             .build(),
         decryptedGroupChange);
   }

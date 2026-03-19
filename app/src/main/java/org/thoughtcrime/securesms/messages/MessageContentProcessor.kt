@@ -255,6 +255,13 @@ open class MessageContentProcessor(private val context: Context) {
         return Gv2PreProcessResult.IGNORE
       }
 
+      if (groupRecord.isPresent && groupRecord.get().isTerminated) {
+        if (content.dataMessage != null && !content.dataMessage!!.hasSignedGroupChange) {
+          Log.w(TAG, "Ignoring message from ${senderRecipient.id} because the group is terminated.")
+          return Gv2PreProcessResult.IGNORE
+        }
+      }
+
       if (groupRecord.isPresent && groupRecord.get().isAnnouncementGroup && !groupRecord.get().admins.contains(senderRecipient)) {
         if (content.dataMessage != null) {
           if (content.dataMessage!!.hasDisallowedAnnouncementOnlyContent) {

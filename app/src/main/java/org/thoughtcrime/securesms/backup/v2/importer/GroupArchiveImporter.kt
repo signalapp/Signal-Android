@@ -162,6 +162,7 @@ private fun Group.GroupSnapshot.toLocal(operations: GroupsV2Operations.GroupOper
     description = this.description?.descriptionText ?: "",
     isAnnouncementGroup = if (this.announcements_only) EnabledState.ENABLED else EnabledState.DISABLED,
     bannedMembers = this.members_banned.map { it.toLocal() },
+    terminated = this.terminated,
     isPlaceholderGroup = isPlaceholder
   )
 }

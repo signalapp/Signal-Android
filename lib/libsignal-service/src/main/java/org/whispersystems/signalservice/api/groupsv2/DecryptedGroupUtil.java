@@ -341,6 +341,8 @@ public final class DecryptedGroupUtil {
 
     DecryptedGroupExtensions.setModifyMemberLabelActions(builder, change.modifyMemberLabels);
 
+    applyTerminateGroup(builder, change);
+
     return builder.build();
   }
 
@@ -532,6 +534,12 @@ public final class DecryptedGroupUtil {
     if (newAccessLevel != AccessControl.AccessRequired.UNKNOWN) {
       AccessControl.Builder accessControlBuilder = builder.accessControl != null ? builder.accessControl.newBuilder() : new AccessControl.Builder();
       builder.accessControl(accessControlBuilder.memberLabel(newAccessLevel).build());
+    }
+  }
+
+  private static void applyTerminateGroup(DecryptedGroup.Builder builder, DecryptedGroupChange change) {
+    if (change.terminateGroup) {
+      builder.terminated(true);
     }
   }
 

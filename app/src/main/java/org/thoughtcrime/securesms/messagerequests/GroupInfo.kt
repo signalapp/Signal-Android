@@ -10,7 +10,9 @@ class GroupInfo(
   val pendingMemberCount: Int = 0,
   val description: String = "",
   val hasExistingContacts: Boolean = false,
-  val membersPreview: List<Recipient> = emptyList()
+  val membersPreview: List<Recipient> = emptyList(),
+  val isMember: Boolean = false,
+  val isTerminated: Boolean = false
 ) {
   companion object {
     @JvmField

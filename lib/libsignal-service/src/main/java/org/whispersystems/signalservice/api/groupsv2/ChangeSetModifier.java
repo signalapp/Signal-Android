@@ -50,4 +50,6 @@ public interface ChangeSetModifier {
   void removeModifyMemberLabels(int i);
 
   void clearModifyMemberLabelAccess();
+
+  void clearTerminateGroup();
 }

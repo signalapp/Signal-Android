@@ -71,7 +71,11 @@ class CallLogContextMenu(
       )
   }
 
-  private fun getVideoCallActionItem(peer: Recipient): ActionItem {
+  private fun getVideoCallActionItem(peer: Recipient): ActionItem? {
+    if (peer.isGroup && !peer.isActiveGroup) {
+      return null
+    }
+
     // TODO [alex] -- Need group calling disposition to make this correct
     return ActionItem(
       iconRes = R.drawable.symbol_video_24,

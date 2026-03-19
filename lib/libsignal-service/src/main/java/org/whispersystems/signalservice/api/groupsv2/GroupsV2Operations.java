@@ -75,7 +75,7 @@ public final class GroupsV2Operations {
   public static final UUID UNKNOWN_UUID = UuidUtil.UNKNOWN_UUID;
 
   /** Highest change epoch this class knows now to decrypt */
-  public static final int HIGHEST_KNOWN_EPOCH = 6;
+  public static final int HIGHEST_KNOWN_EPOCH = 7;
 
   private final ServerPublicParams        serverPublicParams;
   private final ClientZkProfileOperations clientZkProfileOperations;
@@ -350,6 +350,12 @@ public final class GroupsV2Operations {
       );
     }
 
+    public GroupChange.Actions.Builder createTerminateGroup() {
+      return new GroupChange.Actions.Builder().terminate_group(
+          new GroupChange.Actions.TerminateGroupAction.Builder().build()
+      );
+    }
+
     public GroupChange.Actions.Builder createAnnouncementGroupChange(boolean isAnnouncementGroup) {
       return new GroupChange.Actions.Builder().modify_announcements_only(
           new GroupChange.Actions.ModifyAnnouncementsOnlyAction.Builder().announcements_only(isAnnouncementGroup).build()
@@ -493,6 +499,7 @@ public final class GroupsV2Operations {
                                .disappearingMessagesTimer(new DecryptedTimer.Builder().duration(decryptDisappearingMessagesTimer(group.disappearingMessagesTimer)).build())
                                .inviteLinkPassword(group.inviteLinkPassword)
                                .bannedMembers(decryptedBannedMembers)
+                               .terminated(group.terminated)
                                .build();
     }
 
@@ -779,6 +786,11 @@ public final class GroupsV2Operations {
       // Field 27
       if (actions.modifyMemberLabelAccess != null) {
         builder.newMemberLabelAccess(actions.modifyMemberLabelAccess.memberLabelAccess);
+      }
+
+      // Field 28
+      if (actions.terminate_group != null) {
+        builder.terminateGroup(true);
       }
 
       if (editorServiceId instanceof ServiceId.PNI) {
