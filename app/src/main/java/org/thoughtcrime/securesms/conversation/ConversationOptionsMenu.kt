@@ -164,9 +164,7 @@ internal object ConversationOptionsMenu {
         hideMenuItem(menu, R.id.menu_add_shortcut)
       }
 
-      if (SignalStore.labs.individualChatPlaintextExport) {
-        menu.findItem(R.id.menu_export)?.title = menu.findItem(R.id.menu_export)?.title.toString() + " (Labs)"
-      } else {
+      if (!SignalStore.labs.individualChatPlaintextExport) {
         hideMenuItem(menu, R.id.menu_export)
       }
 

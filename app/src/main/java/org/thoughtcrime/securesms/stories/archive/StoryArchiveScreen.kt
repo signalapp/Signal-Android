@@ -100,7 +100,7 @@ fun StoryArchiveScreen(
     title = if (state.multiSelectEnabled) {
       pluralStringResource(R.plurals.StoryArchive__d_selected, state.selectedIds.size, state.selectedIds.size)
     } else {
-      stringResource(R.string.StoryArchive__story_archive) + " (Internal Only)"
+      stringResource(R.string.StoryArchive__story_archive)
     },
     onNavigationClick = if (state.multiSelectEnabled) {
       { viewModel.clearSelection() }

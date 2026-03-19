@@ -518,7 +518,7 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Attachment exceeds size limits for the type of message you\'re sending.</string>
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">You can\'t send messages to this group because you\'re no longer a member.</string>
-    <string name="DisabledInputView__incognito_mode">Incognito mode</string>
+    <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string>
     <string name="ConversationActivity_only_s_can_send_messages">Only %1$s can send messages.</string>
     <string name="ConversationActivity_admins">admins</string>
     <string name="ConversationActivity_message_an_admin">Message an admin</string>
@@ -4652,7 +4652,7 @@
     <string name="conversation__menu_view_all_media">All media</string>
     <string name="conversation__menu_conversation_settings">Chat settings</string>
     <string name="conversation__menu_add_shortcut">Add to home screen</string>
-    <string name="conversation__menu_export">Export</string>
+    <string name="conversation__menu_export" translatable="false">Export (Labs)</string>
     <string name="conversation__menu_create_bubble">Create bubble</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">Format text</string>
@@ -4663,11 +4663,11 @@
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Add to contacts</string>
 
     <!-- conversation export -->
-    <string name="conversation_export__exporting">Exporting chat…</string>
-    <string name="conversation_export__export_complete">Chat exported successfully</string>
-    <string name="conversation_export__export_failed">Export failed</string>
-    <string name="conversation_export__export_cancelled">Export cancelled</string>
-    <string name="conversation_export__preparing">Preparing export…</string>
+    <string name="conversation_export__exporting" translatable="false">Exporting chat…</string>
+    <string name="conversation_export__export_complete" translatable="false">Chat exported successfully</string>
+    <string name="conversation_export__export_failed" translatable="false">Export failed</string>
+    <string name="conversation_export__export_cancelled" translatable="false">Export cancelled</string>
+    <string name="conversation_export__preparing" translatable="false">Preparing export…</string>
 
     <!-- conversation scheduled messages bar -->
 
@@ -6845,39 +6845,39 @@
 
     <!-- StoryArchive -->
     <!-- Title for the story archive screen -->
-    <string name="StoryArchive__story_archive">Story archive</string>
+    <string name="StoryArchive__story_archive" translatable="false">Story archive (Labs)</string>
     <!-- Section header in story settings -->
-    <string name="StoryArchive__archive">Archive</string>
+    <string name="StoryArchive__archive" translatable="false">Archive</string>
     <!-- Label for switch to enable story archiving -->
-    <string name="StoryArchive__keep_stories_in_archive">Keep stories in archive</string>
+    <string name="StoryArchive__keep_stories_in_archive" translatable="false">Keep stories in archive</string>
     <!-- Description for the archive toggle -->
-    <string name="StoryArchive__save_stories_after_they_expire">Save your sent stories after they leave the active feed.</string>
+    <string name="StoryArchive__save_stories_after_they_expire" translatable="false">Save your sent stories after they leave the active feed.</string>
     <!-- Label for archive duration preference -->
-    <string name="StoryArchive__keep_stories_for">Keep stories for</string>
+    <string name="StoryArchive__keep_stories_for" translatable="false">Keep stories for</string>
     <!-- Archive duration option: forever -->
-    <string name="StoryArchive__forever">Forever</string>
+    <string name="StoryArchive__forever" translatable="false">Forever</string>
     <!-- Archive duration option: 1 year -->
-    <string name="StoryArchive__1_year">1 year</string>
+    <string name="StoryArchive__1_year" translatable="false">1 year</string>
     <!-- Archive duration option: 6 months -->
-    <string name="StoryArchive__6_months">6 months</string>
+    <string name="StoryArchive__6_months" translatable="false">6 months</string>
     <!-- Archive duration option: 30 days -->
-    <string name="StoryArchive__30_days">30 days</string>
+    <string name="StoryArchive__30_days" translatable="false">30 days</string>
     <!-- Empty state title when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories">No archived stories</string>
+    <string name="StoryArchive__no_archived_stories" translatable="false">No archived stories</string>
     <!-- Empty state message when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories_message">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
+    <string name="StoryArchive__no_archived_stories_message" translatable="false">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
     <!-- Empty state button to navigate to story settings -->
-    <string name="StoryArchive__go_to_settings">Go to settings</string>
+    <string name="StoryArchive__go_to_settings" translatable="false">Go to settings</string>
     <!-- Label for sort order menu -->
-    <string name="StoryArchive__sort_by">Sort by</string>
+    <string name="StoryArchive__sort_by" translatable="false">Sort by</string>
     <!-- Sort order option: newest first -->
-    <string name="StoryArchive__newest">Newest</string>
+    <string name="StoryArchive__newest" translatable="false">Newest</string>
     <!-- Sort order option: oldest first -->
-    <string name="StoryArchive__oldest">Oldest</string>
+    <string name="StoryArchive__oldest" translatable="false">Oldest</string>
     <!-- Delete action in story archive multi-select bottom bar -->
-    <string name="StoryArchive__delete">Delete</string>
+    <string name="StoryArchive__delete" translatable="false">Delete</string>
     <!-- Content description for selecting a story in multi-select mode -->
-    <string name="StoryArchive__select_story">Select story</string>
+    <string name="StoryArchive__select_story" translatable="false">Select story</string>
     <!-- Confirmation dialog body when deleting stories from archive -->
     <plurals name="StoryArchive__delete_n_stories">
         <item quantity="one">Delete %d story? This cannot be undone.</item>
@@ -9649,7 +9649,7 @@
     <string name="MemberLabelsAboutOverride__body">In this group, your Member Label will be displayed beside your photo in place of your About.</string>
 
     <!-- Label for internal-only section showing groups with same members -->
-    <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Internal Only)</string>
+    <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string>
 
     <!-- EOF -->
 </resources>
