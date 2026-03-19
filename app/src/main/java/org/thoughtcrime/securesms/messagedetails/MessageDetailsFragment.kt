@@ -15,7 +15,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
+import org.signal.core.util.requireParcelableCompat
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.WrapperDialogFragment
@@ -30,6 +32,7 @@ import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.ui.edit.EditMessageHistoryDialog.Companion.show
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
@@ -92,9 +95,9 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
   }
 
   private fun initializeViewModel() {
-    val recipientId = requireArguments().getParcelable<RecipientId>(RECIPIENT_EXTRA)
-    val messageId = requireArguments().getLong(MESSAGE_ID_EXTRA, -1)
-    val factory = MessageDetailsViewModel.Factory(recipientId, messageId)
+    val recipientId = requireArguments().getParcelableCompat(RECIPIENT_EXTRA, RecipientId::class.java)
+    val messageId = requireArguments().requireParcelableCompat(MESSAGE_ID_EXTRA, MessageId::class.java)
+    val factory = MessageDetailsViewModel.Factory(recipientId, messageId.id)
 
     viewModel = ViewModelProvider(this, factory)[MessageDetailsViewModel::class.java]
     viewModel.messageDetails.observe(viewLifecycleOwner) { details: MessageDetails? ->
@@ -427,16 +430,16 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
     private const val MESSAGE_ID_EXTRA = "message_id"
     private const val RECIPIENT_EXTRA = "recipient_id"
 
-    fun args(recipientId: RecipientId, messageId: Long): Bundle {
+    fun args(recipientId: RecipientId, messageId: MessageId): Bundle {
       return bundleOf(
         MESSAGE_ID_EXTRA to messageId,
         RECIPIENT_EXTRA to recipientId
       )
     }
 
-    fun create(message: MessageRecord, recipientId: RecipientId): Dialog {
+    fun create(messageId: MessageId, recipientId: RecipientId): Dialog {
       return Dialog().apply {
-        arguments = args(recipientId, message.id)
+        arguments = args(recipientId, messageId)
       }
     }
   }

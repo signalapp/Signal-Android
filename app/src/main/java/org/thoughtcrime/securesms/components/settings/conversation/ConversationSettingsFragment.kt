@@ -120,6 +120,11 @@ private const val REQUEST_CODE_ADD_CONTACT = 2
 private const val REQUEST_CODE_ADD_MEMBERS_TO_GROUP = 3
 private const val REQUEST_CODE_RETURN_FROM_MEDIA = 4
 
+/**
+ * Settings screen for a conversation.
+ *
+ * Hosts that want shared element enter transitions should implement [TransitionCallback].
+ */
 class ConversationSettingsFragment :
   DSLSettingsFragment(
     layoutId = R.layout.conversation_settings_fragment,
@@ -156,7 +161,7 @@ class ConversationSettingsFragment :
     }
   )
 
-  private lateinit var callback: Callback
+  private var transitionCallback: TransitionCallback? = null
 
   private lateinit var toolbar: Toolbar
   private lateinit var toolbarAvatarContainer: FrameLayout
@@ -172,8 +177,7 @@ class ConversationSettingsFragment :
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
-
-    callback = context as Callback
+    transitionCallback = context as? TransitionCallback
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -300,7 +304,7 @@ class ConversationSettingsFragment :
       adapter.submitList(getConfiguration(state).toMappingModelList()) {
         if (state.isLoaded) {
           (view?.parent as? ViewGroup)?.doOnPreDraw {
-            callback.onContentWillRender()
+            transitionCallback?.onReadyForEnterTransition()
           }
         }
       }
@@ -1136,7 +1140,13 @@ class ConversationSettingsFragment :
     }
   }
 
-  interface Callback {
-    fun onContentWillRender()
+  /**
+   * Implemented by hosts that postpone enter transitions (for example, shared element flows).
+   *
+   * Called when this fragment has loaded enough UI state to safely run the postponed enter
+   * transition.
+   */
+  interface TransitionCallback {
+    fun onReadyForEnterTransition()
   }
 }

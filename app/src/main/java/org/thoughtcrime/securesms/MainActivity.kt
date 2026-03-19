@@ -118,6 +118,7 @@ import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.NewConversationActivity
+import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
 import org.thoughtcrime.securesms.conversation.v2.MotionEventRelay
 import org.thoughtcrime.securesms.conversation.v2.ShareDataTimestampViewModel
 import org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment
@@ -192,7 +193,15 @@ import org.thoughtcrime.securesms.window.rememberThreePaneScaffoldNavigatorDeleg
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.signal.core.ui.R as CoreUiR
 
-class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner, MainNavigator.NavigatorProvider, Material3OnScrollHelperBinder, ConversationListFragment.Callback, CallLogFragment.Callback, GooglePayComponent {
+class MainActivity :
+  PassphraseRequiredActivity(),
+  VoiceNoteMediaControllerOwner,
+  MainNavigator.NavigatorProvider,
+  Material3OnScrollHelperBinder,
+  ConversationListFragment.Callback,
+  ConversationFragment.NavigationHost,
+  CallLogFragment.Callback,
+  GooglePayComponent {
 
   companion object {
     private val TAG = Log.tag(MainActivity::class)
@@ -496,6 +505,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
               }
 
               is MainNavigationDetailLocation.Calls -> callsNavHostController.navigateToDetailLocation(location)
+
               is MainNavigationDetailLocation.Stories -> storiesNavHostController.navigateToDetailLocation(location)
             }
           }
@@ -1275,5 +1285,9 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         MainNavigationListLocation.ARCHIVE -> mainNavigationViewModel.onArchiveSelected()
       }
     }
+  }
+
+  override fun navigateTo(location: MainNavigationDetailLocation) {
+    mainNavigationViewModel.goTo(location)
   }
 }

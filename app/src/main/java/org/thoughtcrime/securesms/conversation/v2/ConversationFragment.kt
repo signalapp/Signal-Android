@@ -564,6 +564,8 @@ class ConversationFragment :
   private lateinit var conversationItemDecorations: ConversationItemDecorations
   private lateinit var optionsMenuCallback: ConversationOptionsMenuCallback
 
+  private var navigationHost: NavigationHost? = null
+
   private var animationsAllowed = false
   private var pinnedShortcutReceiver: BroadcastReceiver? = null
   private var searchMenuItem: MenuItem? = null
@@ -635,6 +637,11 @@ class ConversationFragment :
   val didFirstFrameRender: StateFlow<Boolean> = internalDidFirstFrameRender
 
   //region Android Lifecycle
+
+  override fun onAttach(context: Context) {
+    super.onAttach(context)
+    navigationHost = context as? NavigationHost
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -2904,11 +2911,7 @@ class ConversationFragment :
 
   private fun handleDisplayDetails(conversationMessage: ConversationMessage) {
     val recipientSnapshot = viewModel.recipientSnapshot ?: return
-    if (requireActivity() is MainActivity) {
-      mainNavigationViewModel.goTo(MainNavigationDetailLocation.Chats.MessageDetails(recipientSnapshot.id, conversationMessage.messageRecord.id))
-    } else {
-      MessageDetailsFragment.create(conversationMessage.messageRecord, recipientSnapshot.id).show(requireActivity().supportFragmentManager, MESSAGE_DETAILS_TAG)
-    }
+    navigateTo(MainNavigationDetailLocation.Chats.MessageDetails(recipientSnapshot.id, MessageId(conversationMessage.messageRecord.id)))
   }
 
   private fun handleDeleteMessages(messageParts: Set<MultiselectPart>) {
@@ -3436,10 +3439,8 @@ class ConversationFragment :
           .show(childFragmentManager)
       } else if (messageRecord.hasFailedWithNetworkFailures()) {
         ConversationDialogs.displayMessageCouldNotBeSentDialog(requireContext(), messageRecord)
-      } else if (requireActivity() is MainActivity) {
-        mainNavigationViewModel.goTo(MainNavigationDetailLocation.Chats.MessageDetails(recipientId, messageRecord.id))
       } else {
-        MessageDetailsFragment.create(messageRecord, recipientId).show(requireActivity().supportFragmentManager, MESSAGE_DETAILS_TAG)
+        navigateTo(MainNavigationDetailLocation.Chats.MessageDetails(recipientId, MessageId(messageRecord.id)))
       }
     }
 
@@ -4059,15 +4060,9 @@ class ConversationFragment :
     }
 
     override fun handleManageGroup() {
-      val recipient = viewModel.recipientSnapshot ?: return
-      val intent = ConversationSettingsActivity.forGroup(requireContext(), recipient.requireGroupId())
-      val bundle = ConversationSettingsActivity.createTransitionBundle(
-        requireContext(),
-        binding.conversationTitleView.root.findViewById(R.id.contact_photo_image),
-        binding.toolbar
-      )
-
-      requireActivity().startActivity(intent, bundle)
+      viewModel.recipientSnapshot?.let { recipient ->
+        navigateToConversationSettingsStandalone(recipient)
+      }
     }
 
     override fun handleLeavePushGroup() {
@@ -4101,24 +4096,11 @@ class ConversationFragment :
     }
 
     override fun handleConversationSettings() {
-      val recipient = viewModel.recipientSnapshot ?: return
-      if (recipient.isGroup) {
-        handleManageGroup()
-        return
+      viewModel.recipientSnapshot?.let { recipient ->
+        if (!viewModel.hasMessageRequestState || recipient.isBlocked) {
+          navigateToConversationSettingsStandalone(recipient)
+        }
       }
-
-      if (viewModel.hasMessageRequestState && !recipient.isBlocked) {
-        return
-      }
-
-      val intent = ConversationSettingsActivity.forRecipient(requireContext(), recipient.id)
-      val bundle = ConversationSettingsActivity.createTransitionBundle(
-        requireActivity(),
-        binding.conversationTitleView.root.findViewById(R.id.contact_photo_image),
-        binding.toolbar
-      )
-
-      requireActivity().startActivity(intent, bundle)
     }
 
     override fun handleSelectMessageExpiration() {
@@ -4171,6 +4153,49 @@ class ConversationFragment :
     override fun handleExportChat() {
       plaintextExportDirectoryLauncher.launch(null)
     }
+  }
+
+  /**
+   * Routes to the appropriate destination based on the current window configuration.
+   *
+   * In split-pane mode, delegates to the [NavigationHost] to display content in the detail pane. Otherwise, opens the destination as a standalone screen.
+   */
+  private fun navigateTo(location: MainNavigationDetailLocation.Chats) {
+    val host = navigationHost
+    if (host != null && resources.getWindowSizeClass().isSplitPane()) {
+      host.navigateTo(location)
+    } else {
+      when (location) {
+        is MainNavigationDetailLocation.Chats.MessageDetails -> navigateToMessageDetailsStandalone(location)
+        is MainNavigationDetailLocation.Chats.Conversation -> error("ConversationFragment shouldn't navigate to another conversation - use the main navigation infrastructure instead.")
+      }
+    }
+  }
+
+  /**
+   * Opens message details as a standalone (single-pane) screen. Use [navigateTo] as the entry point.
+   */
+  private fun navigateToMessageDetailsStandalone(location: MainNavigationDetailLocation.Chats.MessageDetails) {
+    MessageDetailsFragment.create(location.messageId, location.recipientId)
+      .show(requireActivity().supportFragmentManager, MESSAGE_DETAILS_TAG)
+  }
+
+  /**
+   * Opens conversation settings as a standalone (single-pane) screen.
+   */
+  private fun navigateToConversationSettingsStandalone(recipient: Recipient) {
+    val intent = if (recipient.isPushGroup) {
+      ConversationSettingsActivity.forGroup(requireContext(), recipient.requireGroupId())
+    } else {
+      ConversationSettingsActivity.forRecipient(requireContext(), recipient.id)
+    }
+
+    val bundle = ConversationSettingsActivity.createTransitionBundle(
+      requireActivity(),
+      binding.conversationTitleView.root.findViewById(R.id.contact_photo_image),
+      binding.toolbar
+    )
+    requireActivity().startActivity(intent, bundle)
   }
 
   private inner class OnReactionsSelectedListener : ConversationReactionOverlay.OnReactionSelectedListener {
@@ -5120,5 +5145,12 @@ class ConversationFragment :
 
   override fun onDoubleTapEditEducationSheetNext(conversationMessage: ConversationMessage) {
     handleEditMessage(conversationMessage)
+  }
+
+  /**
+   * Optional hook for host activity to intercept and handle detail navigation, used by split-pane layouts.
+   */
+  interface NavigationHost {
+    fun navigateTo(location: MainNavigationDetailLocation)
   }
 }

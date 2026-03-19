@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.compose.FragmentBackPressedState
 import org.thoughtcrime.securesms.conversation.ConversationArgs
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.serialization.JsonSerializableNavType
@@ -145,7 +146,8 @@ fun NavGraphBuilder.chatNavGraphBuilder(
 
   composable<MainNavigationDetailLocation.Chats.MessageDetails>(
     typeMap = mapOf(
-      typeOf<RecipientId>() to JsonSerializableNavType(RecipientId.serializer())
+      typeOf<RecipientId>() to JsonSerializableNavType(RecipientId.serializer()),
+      typeOf<MessageId>() to MessageId.NavType()
     )
   ) { navBackStackEntry ->
     val context = LocalContext.current
