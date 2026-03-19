@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.toBodyRangeList
+import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
@@ -69,7 +70,8 @@ object EditMessageProcessor {
     val isMediaMessage = message.isMediaMessage
     val groupId: GroupId.V2? = message.groupV2?.groupId
 
-    val originalMessage = targetMessage.originalMessageId?.let { SignalDatabase.messages.getMessageRecord(it.id) } ?: targetMessage
+    val originalMessageWithoutAttachments = targetMessage.originalMessageId?.let { SignalDatabase.messages.getMessageRecord(it.id) } ?: targetMessage
+    val originalMessage = originalMessageWithoutAttachments.withAttachments()
     val validTiming = MessageConstraintsUtil.isValidEditMessageReceive(originalMessage, senderRecipient, envelope.serverTimestamp!!)
     val validAuthor = senderRecipient.id == originalMessage.fromRecipient.id
     val validGroup = groupId == targetThreadRecipient.groupId.orNull()

@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
 
@@ -27,12 +28,18 @@ class MyStoriesRepository(context: Context) {
       .conversationList
       .toObservable()
       .map {
-        val storiesMap = mutableMapOf<Recipient, List<MessageRecord>>()
+        val allRecords = mutableListOf<MessageRecord>()
         SignalDatabase.messages.getAllOutgoingStories(true, -1).use {
           for (messageRecord in it) {
-            val currentList = storiesMap[messageRecord.toRecipient] ?: emptyList()
-            storiesMap[messageRecord.toRecipient] = (currentList + messageRecord)
+            allRecords.add(messageRecord)
           }
+        }
+
+        val withAttachments = allRecords.withAttachments()
+        val storiesMap = mutableMapOf<Recipient, List<MessageRecord>>()
+        for (record in withAttachments) {
+          val currentList = storiesMap[record.toRecipient] ?: emptyList()
+          storiesMap[record.toRecipient] = (currentList + record)
         }
 
         storiesMap.toSortedMap(MyStoryBiasComparator()).map { (r, m) -> createDistributionSet(r, m) }

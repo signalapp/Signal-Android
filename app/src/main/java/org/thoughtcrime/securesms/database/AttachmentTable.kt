@@ -20,14 +20,11 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.media.MediaDataSource
-import android.text.TextUtils
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import androidx.core.content.contentValuesOf
 import com.bumptech.glide.Glide
 import okio.ByteString.Companion.toByteString
-import org.json.JSONArray
-import org.json.JSONException
 import org.signal.blurhash.BlurHash
 import org.signal.core.models.backup.MediaId
 import org.signal.core.models.backup.MediaName
@@ -107,7 +104,6 @@ import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.BitmapDecodingException
 import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.ImageCompressionUtil
-import org.thoughtcrime.securesms.util.JsonUtils.SaneJSONObject
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource
@@ -122,7 +118,6 @@ import java.io.InputStream
 import java.security.DigestInputStream
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
-import java.util.LinkedList
 import java.util.UUID
 import kotlin.text.appendLine
 import kotlin.time.Duration
@@ -182,8 +177,6 @@ class AttachmentTable(
     const val OFFLOAD_RESTORED_AT = "offload_restored_at"
     const val QUOTE_TARGET_CONTENT_TYPE = "quote_target_content_type"
     const val METADATA_ID = "metadata_id"
-
-    const val ATTACHMENT_JSON_ALIAS = "attachment_json"
 
     private const val DIRECTORY = "parts"
 
@@ -2327,80 +2320,6 @@ class AttachmentTable(
     notifyConversationListeners(threadId)
   }
 
-  fun getAttachments(cursor: Cursor): List<DatabaseAttachment> {
-    return try {
-      if (cursor.getColumnIndex(ATTACHMENT_JSON_ALIAS) != -1) {
-        if (cursor.isNull(ATTACHMENT_JSON_ALIAS)) {
-          return LinkedList()
-        }
-
-        val result: MutableList<DatabaseAttachment> = mutableListOf()
-        val array = JSONArray(cursor.requireString(ATTACHMENT_JSON_ALIAS))
-
-        for (i in 0 until array.length()) {
-          val jsonObject = SaneJSONObject(array.getJSONObject(i))
-
-          if (!jsonObject.isNull(ID)) {
-            val contentType = jsonObject.getString(CONTENT_TYPE)
-
-            result += DatabaseAttachment(
-              attachmentId = AttachmentId(jsonObject.getLong(ID)),
-              mmsId = jsonObject.getLong(MESSAGE_ID),
-              hasData = !TextUtils.isEmpty(jsonObject.getString(DATA_FILE)),
-              hasThumbnail = MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType),
-              contentType = contentType,
-              transferProgress = jsonObject.getInt(TRANSFER_STATE),
-              size = jsonObject.getLong(DATA_SIZE),
-              fileName = jsonObject.getString(FILE_NAME),
-              cdn = Cdn.deserialize(jsonObject.getInt(CDN_NUMBER)),
-              location = jsonObject.getString(REMOTE_LOCATION),
-              key = jsonObject.getString(REMOTE_KEY),
-              digest = null,
-              incrementalDigest = null,
-              incrementalMacChunkSize = 0,
-              fastPreflightId = jsonObject.getString(FAST_PREFLIGHT_ID),
-              voiceNote = jsonObject.getInt(VOICE_NOTE) != 0,
-              borderless = jsonObject.getInt(BORDERLESS) != 0,
-              videoGif = jsonObject.getInt(VIDEO_GIF) != 0,
-              width = jsonObject.getInt(WIDTH),
-              height = jsonObject.getInt(HEIGHT),
-              quote = jsonObject.getInt(QUOTE) != 0,
-              quoteTargetContentType = if (!jsonObject.isNull(QUOTE_TARGET_CONTENT_TYPE)) jsonObject.getString(QUOTE_TARGET_CONTENT_TYPE) else null,
-              caption = jsonObject.getString(CAPTION),
-              stickerLocator = if (jsonObject.getInt(STICKER_ID) >= 0) {
-                StickerLocator(
-                  jsonObject.getString(STICKER_PACK_ID)!!,
-                  jsonObject.getString(STICKER_PACK_KEY)!!,
-                  jsonObject.getInt(STICKER_ID),
-                  jsonObject.getString(STICKER_EMOJI)
-                )
-              } else {
-                null
-              },
-              blurHash = if (MediaUtil.isAudioType(contentType)) null else BlurHash.parseOrNull(jsonObject.getString(BLUR_HASH)),
-              audioHash = if (MediaUtil.isAudioType(contentType)) AudioHash.parseOrNull(jsonObject.getString(BLUR_HASH)) else null,
-              transformProperties = parseTransformProperties(jsonObject.getString(TRANSFORM_PROPERTIES)),
-              displayOrder = jsonObject.getInt(DISPLAY_ORDER),
-              uploadTimestamp = jsonObject.getLong(UPLOAD_TIMESTAMP),
-              dataHash = jsonObject.getString(DATA_HASH_END),
-              archiveCdn = if (jsonObject.isNull(ARCHIVE_CDN)) null else jsonObject.getInt(ARCHIVE_CDN),
-              thumbnailRestoreState = ThumbnailRestoreState.deserialize(jsonObject.getInt(THUMBNAIL_RESTORE_STATE)),
-              archiveTransferState = ArchiveTransferState.deserialize(jsonObject.getInt(ARCHIVE_TRANSFER_STATE)),
-              uuid = UuidUtil.parseOrNull(jsonObject.getString(ATTACHMENT_UUID)),
-              metadata = null
-            )
-          }
-        }
-
-        result
-      } else {
-        listOf(getAttachment(cursor))
-      }
-    } catch (e: JSONException) {
-      throw AssertionError(e)
-    }
-  }
-
   fun hasStickerAttachments(): Boolean {
     return readableDatabase
       .exists(TABLE_NAME)
@@ -3395,7 +3314,7 @@ class AttachmentTable(
     """
   }
 
-  private fun getAttachment(cursor: Cursor): DatabaseAttachment {
+  internal fun getAttachment(cursor: Cursor): DatabaseAttachment {
     val contentType = cursor.requireString(CONTENT_TYPE)
 
     return DatabaseAttachment(
@@ -3438,7 +3357,7 @@ class AttachmentTable(
   }
 
   private fun Cursor.readAttachments(): List<DatabaseAttachment> {
-    return getAttachments(this)
+    return listOf(getAttachment(this))
   }
 
   private fun Cursor.readAttachment(): DatabaseAttachment {

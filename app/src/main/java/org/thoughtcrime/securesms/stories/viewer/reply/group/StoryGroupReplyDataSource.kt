@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 
@@ -16,20 +17,20 @@ class StoryGroupReplyDataSource(private val parentStoryId: Long) : PagedDataSour
   }
 
   override fun load(start: Int, length: Int, totalSize: Int, cancellationSignal: PagedDataSource.CancellationSignal): MutableList<ReplyBody> {
-    val results: MutableList<ReplyBody> = ArrayList(length)
+    val rawRecords = mutableListOf<MmsMessageRecord>()
     SignalDatabase.messages.getStoryReplies(parentStoryId).use { cursor ->
       cursor.moveToPosition(start - 1)
       val mmsReader = MessageTable.MmsReader(cursor)
       while (cursor.moveToNext() && cursor.position < start + length) {
-        results.add(readRowFromRecord(mmsReader.getCurrent() as MmsMessageRecord))
+        rawRecords.add(mmsReader.getCurrent() as MmsMessageRecord)
       }
     }
 
-    return results
+    return rawRecords.withAttachments().map { readRowFromRecord(it as MmsMessageRecord) }.toMutableList()
   }
 
   override fun load(key: MessageId): ReplyBody {
-    return readRowFromRecord(SignalDatabase.messages.getMessageRecord(key.id) as MmsMessageRecord)
+    return readRowFromRecord(SignalDatabase.messages.getMessageRecord(key.id).withAttachments() as MmsMessageRecord)
   }
 
   override fun getKey(data: ReplyBody): MessageId {

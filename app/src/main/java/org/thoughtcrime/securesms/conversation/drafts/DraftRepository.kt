@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
 import org.thoughtcrime.securesms.mms.GifSlide
@@ -219,7 +220,8 @@ class DraftRepository(
 
   private fun loadDraftMessageEditInternal(serialized: String): ConversationMessage? {
     val messageId = MessageId.deserialize(serialized)
-    val messageRecord: MessageRecord = SignalDatabase.messages.getMessageRecordOrNull(messageId.id) ?: return null
+    var messageRecord: MessageRecord = SignalDatabase.messages.getMessageRecordOrNull(messageId.id) ?: return null
+    messageRecord = messageRecord.withAttachments()
     val threadRecipient: Recipient = requireNotNull(SignalDatabase.threads.getRecipientForThreadId(messageRecord.threadId))
     if (messageRecord.hasTextSlide()) {
       val textSlide = messageRecord.requireTextSlide()

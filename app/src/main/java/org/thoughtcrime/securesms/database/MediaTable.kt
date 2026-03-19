@@ -245,10 +245,8 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     companion object {
       @JvmStatic
       fun from(cursor: Cursor): MediaRecord {
-        val attachments = SignalDatabase.attachments.getAttachments(cursor)
-
         return MediaRecord(
-          attachment = if (attachments.isNotEmpty()) attachments[0] else null,
+          attachment = SignalDatabase.attachments.getAttachment(cursor),
           recipientId = RecipientId.from(cursor.requireLong(MessageTable.FROM_RECIPIENT_ID)),
           threadId = cursor.requireLong(MessageTable.THREAD_ID),
           threadRecipientId = RecipientId.from(cursor.requireLong(THREAD_RECIPIENT_ID)),

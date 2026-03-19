@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
+import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob
@@ -58,7 +59,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
           recipient.isMyStory && it.toRecipient.isGroup
         }
 
-        emitter.onNext(results)
+        emitter.onNext(results.withAttachments())
       }
 
       val storyObserver = DatabaseObserver.Observer {
