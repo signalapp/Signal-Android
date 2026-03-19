@@ -33,6 +33,10 @@ class LabsSettingsViewModel : ViewModel() {
         SignalStore.labs.groupSuggestionsForMembers = event.enabled
         _state.value = _state.value.copy(groupSuggestionsForMembers = event.enabled)
       }
+      is LabsSettingsEvents.ToggleBetterSearch -> {
+        SignalStore.labs.betterSearch = event.enabled
+        _state.value = _state.value.copy(betterSearch = event.enabled)
+      }
     }
   }
 
@@ -41,7 +45,8 @@ class LabsSettingsViewModel : ViewModel() {
       individualChatPlaintextExport = SignalStore.labs.individualChatPlaintextExport,
       storyArchive = SignalStore.labs.storyArchive,
       incognito = SignalStore.labs.incognito,
-      groupSuggestionsForMembers = SignalStore.labs.groupSuggestionsForMembers
+      groupSuggestionsForMembers = SignalStore.labs.groupSuggestionsForMembers,
+      betterSearch = SignalStore.labs.betterSearch
     )
   }
 }

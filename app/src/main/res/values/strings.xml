@@ -9341,6 +9341,27 @@
     <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <!-- Accessibility label for search filter button in MainToolbar -->
+    <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string>
+
+    <!-- SearchFilterBottomSheet: Title -->
+    <string name="SearchFilterBottomSheet__filter_search" translatable="false">Filter search</string>
+    <!-- SearchFilterBottomSheet: Start date label -->
+    <string name="SearchFilterBottomSheet__start_date" translatable="false">Start date</string>
+    <!-- SearchFilterBottomSheet: End date label -->
+    <string name="SearchFilterBottomSheet__end_date" translatable="false">End date</string>
+    <!-- SearchFilterBottomSheet: Author label -->
+    <string name="SearchFilterBottomSheet__author" translatable="false">Author</string>
+    <!-- SearchFilterBottomSheet: Placeholder for unset date -->
+    <string name="SearchFilterBottomSheet__not_set" translatable="false">Not set</string>
+    <!-- SearchFilterBottomSheet: Placeholder for unset author -->
+    <string name="SearchFilterBottomSheet__anyone" translatable="false">Anyone</string>
+    <!-- SearchFilterBottomSheet: Apply button -->
+    <string name="SearchFilterBottomSheet__apply" translatable="false">Apply</string>
+    <!-- SearchFilterBottomSheet: Clear button -->
+    <string name="SearchFilterBottomSheet__clear" translatable="false">Clear</string>
+    <!-- SearchFilterBottomSheet: Select date dialog title -->
+    <string name="SearchFilterBottomSheet__select_date" translatable="false">Select date</string>
 
     <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
     <string name="DefaultTopAppBar__navigate_up_content_description">Navigate up</string>

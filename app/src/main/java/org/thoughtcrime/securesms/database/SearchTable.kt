@@ -130,6 +130,43 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
   }
 
+  fun queryMessages(query: String, filter: org.thoughtcrime.securesms.search.SearchFilter): Cursor? {
+    if (filter.isEmpty) {
+      return queryMessages(query)
+    }
+
+    val fullTextSearchQuery = createFullTextSearchQuery(query)
+    if (fullTextSearchQuery.isEmpty()) {
+      return null
+    }
+
+    val extraConditions = StringBuilder()
+    val args = mutableListOf<String>(fullTextSearchQuery)
+
+    if (filter.startDate != null) {
+      extraConditions.append(" AND ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} >= ?")
+      args.add(filter.startDate.toString())
+    }
+
+    if (filter.endDate != null) {
+      extraConditions.append(" AND ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} <= ?")
+      args.add(filter.endDate.toString())
+    }
+
+    if (filter.author != null) {
+      extraConditions.append(" AND ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} = ?")
+      args.add(filter.author.serialize())
+    }
+
+    @Language("sql")
+    val filteredQuery = MESSAGES_QUERY.replace(
+      "ORDER BY ${MessageTable.DATE_RECEIVED} DESC",
+      "$extraConditions ORDER BY ${MessageTable.DATE_RECEIVED} DESC"
+    )
+
+    return readableDatabase.rawQuery(filteredQuery, args.toTypedArray())
+  }
+
   fun queryMessages(query: String, threadId: Long): Cursor? {
     val fullTextSearchQuery = createFullTextSearchQuery(query)
     return if (TextUtils.isEmpty(fullTextSearchQuery)) {

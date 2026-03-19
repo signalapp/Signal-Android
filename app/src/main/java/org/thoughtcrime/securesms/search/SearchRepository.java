@@ -91,12 +91,13 @@ public class SearchRepository {
   }
 
   @WorkerThread
-  public @NonNull MessageSearchResult queryMessagesSync(@NonNull String query) {
+  public @NonNull MessageSearchResult queryMessagesSync(@NonNull String query, @NonNull SearchFilter filter) {
     long start = System.currentTimeMillis();
 
-    List<MessageResult> messages        = queryMessages(query);
-    List<MessageResult> mentionMessages = queryMentions(convertMentionsQueryToTokens(query));
-    List<MessageResult> combined        = mergeMessagesAndMentions(messages, mentionMessages);
+    List<MessageResult> messages         = queryMessages(query, filter);
+    List<MessageResult> mentionMessages  = queryMentions(convertMentionsQueryToTokens(query));
+    List<MessageResult> filteredMentions = filterMentionResults(mentionMessages, filter);
+    List<MessageResult> combined         = mergeMessagesAndMentions(messages, filteredMentions);
 
     Log.d(TAG, "[messages] Search took " + (System.currentTimeMillis() - start) + " ms");
 
@@ -161,13 +162,13 @@ public class SearchRepository {
     }
   }
 
-  private @NonNull List<MessageResult> queryMessages(@NonNull String query) {
+  private @NonNull List<MessageResult> queryMessages(@NonNull String query, @NonNull SearchFilter filter) {
     if (Util.isEmpty(query)) {
       return Collections.emptyList();
     }
 
     List<MessageResult> results;
-    try (Cursor cursor = searchDatabase.queryMessages(query)) {
+    try (Cursor cursor = searchDatabase.queryMessages(query, filter)) {
       results = readToList(cursor, new MessageModelBuilder());
     }
 
@@ -216,7 +217,6 @@ public class SearchRepository {
           MessageStyler.style(result.getReceivedTimestampMs(), BodyRangeUtil.adjustBodyRanges(ranges, bodyAdjustments), (Spannable) updatedBody);
 
           updatedSnippet = SpannableString.valueOf(updatedSnippet);
-          //noinspection ConstantConditions
           updateSnippetWithStyles(result.getReceivedTimestampMs(), updatedBody, (SpannableString) updatedSnippet, BodyRangeUtil.adjustBodyRanges(ranges, snippetAdjustments));
         }
 
@@ -409,6 +409,28 @@ public class SearchRepository {
     } else {
       return Arrays.asList(parts);
     }
+  }
+
+  private static @NonNull List<MessageResult> filterMentionResults(@NonNull List<MessageResult> mentions, @NonNull SearchFilter filter) {
+    if (filter.isEmpty()) {
+      return mentions;
+    }
+
+    List<MessageResult> filtered = new ArrayList<>();
+    for (MessageResult mention : mentions) {
+      if (filter.getStartDate() != null && mention.getReceivedTimestampMs() < filter.getStartDate()) {
+        continue;
+      }
+      if (filter.getEndDate() != null && mention.getReceivedTimestampMs() > filter.getEndDate()) {
+        continue;
+      }
+      if (filter.getAuthor() != null && !mention.getMessageRecipient().getId().equals(filter.getAuthor())) {
+        continue;
+      }
+      filtered.add(mention);
+    }
+
+    return filtered;
   }
 
   private static @NonNull List<MessageResult> mergeMessagesAndMentions(@NonNull List<MessageResult> messages, @NonNull List<MessageResult> mentionMessages) {

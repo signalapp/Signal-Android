@@ -1215,6 +1215,14 @@ class MainActivity :
       toolbarViewModel.setSearchQuery(query)
     }
 
+    override fun onSearchFilterClick() {
+      supportFragmentManager.fragments.forEach { fragment ->
+        if (fragment is ConversationListFragment) {
+          fragment.showSearchFilterBottomSheet()
+        }
+      }
+    }
+
     override fun onNotificationProfileTooltipDismissed() {
       SignalStore.notificationProfile.hasSeenTooltip = true
       toolbarViewModel.setShowNotificationProfilesTooltip(false)

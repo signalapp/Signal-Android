@@ -457,7 +457,7 @@ class ContactSearchPagedDataSource(
     check(searchRepository != null)
 
     if (searchCache.messageSearchResult == null && query != null) {
-      searchCache = searchCache.copy(messageSearchResult = searchRepository.queryMessagesSync(query))
+      searchCache = searchCache.copy(messageSearchResult = searchRepository.queryMessagesSync(query, contactConfiguration.searchFilter))
     }
 
     return if (query != null) {
