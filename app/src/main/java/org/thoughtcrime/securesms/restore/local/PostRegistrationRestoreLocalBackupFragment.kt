@@ -100,8 +100,9 @@ class PostRegistrationRestoreLocalBackupFragment : ComposeFragment() {
     }
 
     override fun submitBackupKey() {
-      val aep = AccountEntropyPool.parseOrNull(enterBackupKeyViewModel.backupKey) ?: return
-      SignalStore.account.restoreAccountEntropyPool(aep)
+      AccountEntropyPool.parseOrNull(enterBackupKeyViewModel.backupKey) ?: return
+
+      SignalStore.backup.localRestoreAccountEntropyPool = enterBackupKeyViewModel.backupKey
 
       val selectedTimestamp = restoreLocalBackupViewModel.state.value.selectedBackup?.timestamp ?: -1L
       SignalStore.backup.newLocalBackupsSelectedSnapshotTimestamp = selectedTimestamp

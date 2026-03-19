@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.stream
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.backup.BackupId
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
@@ -101,6 +102,36 @@ class EncryptedBackupReaderWriterTest {
   }
 
   @Test
+  fun `can read back all frames using BackupId directly - local`() {
+    val key = MessageBackupKey(Util.getSecretBytes(32))
+    val backupId = BackupId(Util.getSecretBytes(16))
+
+    val outputStream = ByteArrayOutputStream()
+    val frameCount = 10_000
+    EncryptedBackupWriter.createForLocalOrLinking(key, backupId, outputStream, append = { outputStream.write(it) }).use { writer ->
+      writer.write(BackupInfo(version = 1, backupTimeMs = 1000L))
+
+      for (i in 0 until frameCount) {
+        writer.write(Frame(account = AccountData(username = "username-$i")))
+      }
+    }
+
+    val ciphertext: ByteArray = outputStream.toByteArray()
+
+    val frames: List<Frame> = EncryptedBackupReader.createForLocalOrLinking(key, backupId, ciphertext.size.toLong()) { ciphertext.inputStream() }.use { reader ->
+      assertEquals(reader.backupInfo?.version, 1L)
+      assertEquals(reader.backupInfo?.backupTimeMs, 1000L)
+      reader.asSequence().toList()
+    }
+
+    assertEquals(frameCount, frames.size)
+
+    for (i in 0 until frameCount) {
+      assertEquals("username-$i", frames[i].account?.username)
+    }
+  }
+
+  @Test
   fun `can read back all of the frames we write - forward secrecy`() {
     val key = MessageBackupKey(Util.getSecretBytes(32))
     val aci = ACI.from(UUID.randomUUID())
@@ -129,6 +160,75 @@ class EncryptedBackupReaderWriterTest {
     println(ciphertext.size)
 
     val frames: List<Frame> = EncryptedBackupReader.createForSignalBackup(key, aci, forwardSecrecyToken, ciphertext.size.toLong()) { ciphertext.inputStream() }.use { reader ->
+      assertEquals(reader.backupInfo?.version, 1L)
+      assertEquals(reader.backupInfo?.backupTimeMs, 1000L)
+      reader.asSequence().toList()
+    }
+
+    assertEquals(frameCount, frames.size)
+
+    for (i in 0 until frameCount) {
+      assertEquals("username-$i", frames[i].account?.username)
+    }
+  }
+
+  @Test
+  fun `can read back all frames using BackupId directly - forward secrecy`() {
+    val key = MessageBackupKey(Util.getSecretBytes(32))
+    val backupId = BackupId(Util.getSecretBytes(16))
+    val forwardSecrecyToken = BackupForwardSecrecyToken(Util.getSecretBytes(32))
+
+    val outputStream = ByteArrayOutputStream()
+    val frameCount = 10_000
+    EncryptedBackupWriter.createForSignalBackup(
+      key = key,
+      backupId = backupId,
+      forwardSecrecyToken = forwardSecrecyToken,
+      forwardSecrecyMetadata = Util.getSecretBytes(64),
+      outputStream = outputStream,
+      append = { outputStream.write(it) }
+    ).use { writer ->
+      writer.write(BackupInfo(version = 1, backupTimeMs = 1000L))
+
+      for (i in 0 until frameCount) {
+        writer.write(Frame(account = AccountData(username = "username-$i")))
+      }
+    }
+
+    val ciphertext: ByteArray = outputStream.toByteArray()
+
+    val frames: List<Frame> = EncryptedBackupReader.createForSignalBackup(key, backupId, forwardSecrecyToken, ciphertext.size.toLong()) { ciphertext.inputStream() }.use { reader ->
+      assertEquals(reader.backupInfo?.version, 1L)
+      assertEquals(reader.backupInfo?.backupTimeMs, 1000L)
+      reader.asSequence().toList()
+    }
+
+    assertEquals(frameCount, frames.size)
+
+    for (i in 0 until frameCount) {
+      assertEquals("username-$i", frames[i].account?.username)
+    }
+  }
+
+  @Test
+  fun `can write and read using BackupId for both - local`() {
+    val key = MessageBackupKey(Util.getSecretBytes(32))
+    val backupId = BackupId(Util.getSecretBytes(16))
+
+    val outputStream = ByteArrayOutputStream()
+
+    val frameCount = 10_000
+    EncryptedBackupWriter.createForLocalOrLinking(key, backupId, outputStream, append = { outputStream.write(it) }).use { writer ->
+      writer.write(BackupInfo(version = 1, backupTimeMs = 1000L))
+
+      for (i in 0 until frameCount) {
+        writer.write(Frame(account = AccountData(username = "username-$i")))
+      }
+    }
+
+    val ciphertext: ByteArray = outputStream.toByteArray()
+
+    val frames: List<Frame> = EncryptedBackupReader.createForLocalOrLinking(key, backupId, ciphertext.size.toLong()) { ciphertext.inputStream() }.use { reader ->
       assertEquals(reader.backupInfo?.version, 1L)
       assertEquals(reader.backupInfo?.backupTimeMs, 1000L)
       reader.asSequence().toList()

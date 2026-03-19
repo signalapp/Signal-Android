@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2.stream
 
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.backup.BackupId
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Util
 import org.signal.core.util.stream.MacOutputStream
@@ -13,7 +14,6 @@ import org.signal.core.util.writeVarInt32
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
-import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader.Companion.createForSignalBackup
 import java.io.IOException
 import java.io.OutputStream
 import javax.crypto.Cipher
@@ -29,8 +29,7 @@ import javax.crypto.spec.SecretKeySpec
  * to the end of the [outputStream].
  */
 class EncryptedBackupWriter private constructor(
-  key: MessageBackupKey,
-  aci: ACI,
+  keyMaterial: MessageBackupKey.BackupKeyMaterial,
   forwardSecrecyToken: BackupForwardSecrecyToken?,
   forwardSecrecyMetadata: ByteArray?,
   private val outputStream: OutputStream,
@@ -55,9 +54,23 @@ class EncryptedBackupWriter private constructor(
       outputStream: OutputStream,
       append: (ByteArray) -> Unit
     ): EncryptedBackupWriter {
+      return createForSignalBackup(key, key.deriveBackupId(aci), forwardSecrecyToken, forwardSecrecyMetadata, outputStream, append)
+    }
+
+    /**
+     * Create a writer for a backup from the archive CDN, using a [BackupId] directly
+     * instead of deriving it from an ACI.
+     */
+    fun createForSignalBackup(
+      key: MessageBackupKey,
+      backupId: BackupId,
+      forwardSecrecyToken: BackupForwardSecrecyToken,
+      forwardSecrecyMetadata: ByteArray,
+      outputStream: OutputStream,
+      append: (ByteArray) -> Unit
+    ): EncryptedBackupWriter {
       return EncryptedBackupWriter(
-        key = key,
-        aci = aci,
+        keyMaterial = key.deriveBackupSecrets(backupId, forwardSecrecyToken),
         forwardSecrecyToken = forwardSecrecyToken,
         forwardSecrecyMetadata = forwardSecrecyMetadata,
         outputStream = outputStream,
@@ -75,9 +88,21 @@ class EncryptedBackupWriter private constructor(
       outputStream: OutputStream,
       append: (ByteArray) -> Unit
     ): EncryptedBackupWriter {
+      return createForLocalOrLinking(key, key.deriveBackupId(aci), outputStream, append)
+    }
+
+    /**
+     * Create a writer for a local backup or for a transfer to a linked device, using a [BackupId] directly
+     * instead of deriving it from an ACI.
+     */
+    fun createForLocalOrLinking(
+      key: MessageBackupKey,
+      backupId: BackupId,
+      outputStream: OutputStream,
+      append: (ByteArray) -> Unit
+    ): EncryptedBackupWriter {
       return EncryptedBackupWriter(
-        key = key,
-        aci = aci,
+        keyMaterial = key.deriveBackupSecrets(backupId, forwardSecrecyToken = null),
         forwardSecrecyToken = null,
         forwardSecrecyMetadata = null,
         outputStream = outputStream,
@@ -98,8 +123,6 @@ class EncryptedBackupWriter private constructor(
       outputStream.write(forwardSecrecyMetadata)
       outputStream.flush()
     }
-
-    val keyMaterial = key.deriveBackupSecrets(aci, forwardSecrecyToken)
 
     val iv: ByteArray = Util.getSecretBytes(16)
     outputStream.write(iv)

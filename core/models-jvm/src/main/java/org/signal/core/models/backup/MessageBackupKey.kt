@@ -34,7 +34,14 @@ class MessageBackupKey(override val value: ByteArray) : BackupKey {
    * @param forwardSecrecyToken Should be present for any backup located on the archive CDN. Absent for other uses (i.e. link+sync).
    */
   fun deriveBackupSecrets(aci: ServiceId.ACI, forwardSecrecyToken: BackupForwardSecrecyToken?): BackupKeyMaterial {
-    val backupId = deriveBackupId(aci)
+    return deriveBackupSecrets(deriveBackupId(aci), forwardSecrecyToken)
+  }
+
+  /**
+   * Derives the cryptographic material used to encrypt a backup, using a [BackupId] directly
+   * instead of deriving it from an ACI.
+   */
+  fun deriveBackupSecrets(backupId: BackupId, forwardSecrecyToken: BackupForwardSecrecyToken?): BackupKeyMaterial {
     val libsignalBackupKey = LibSignalBackupKey(value)
     val libsignalMessageMessageBackupKey = MessageBackupKey(libsignalBackupKey, backupId.value, forwardSecrecyToken)
 

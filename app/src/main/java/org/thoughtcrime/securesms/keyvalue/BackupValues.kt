@@ -107,6 +107,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_NEW_LOCAL_BACKUPS_SELECTED_SNAPSHOT_TIMESTAMP = "backup.new_local_backups_selected_snapshot_timestamp"
     private const val KEY_NEW_LOCAL_BACKUPS_CREATION_PROGRESS = "backup.new_local_backups_creation_progress"
 
+    private const val KEY_LOCAL_RESTORE_ACCOUNT_ENTROPY_POOL = "backup.local_restore_account_entropy_pool"
+
     private const val KEY_UPLOAD_BANNER_VISIBLE = "backup.upload_banner_visible"
 
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
@@ -500,6 +502,12 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
    * The snapshot timestamp selected for restore. Set before launching restore, cleared after completion.
    */
   var newLocalBackupsSelectedSnapshotTimestamp: Long by longValue(KEY_NEW_LOCAL_BACKUPS_SELECTED_SNAPSHOT_TIMESTAMP, -1L)
+
+  /**
+   * Temporary storage for the AEP used to decrypt a local backup file. This is kept separate from
+   * the account AEP because the local backup may belong to a different account (e.g., after ACI change).
+   */
+  var localRestoreAccountEntropyPool: String? by stringValue(KEY_LOCAL_RESTORE_ACCOUNT_ENTROPY_POOL, null as String?)
 
   /**
    * When we are told by the server that we are out of storage space, we should show

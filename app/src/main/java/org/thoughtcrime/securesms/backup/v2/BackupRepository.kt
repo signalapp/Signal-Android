@@ -21,6 +21,7 @@ import org.greenrobot.eventbus.EventBus
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.backup.BackupId
 import org.signal.core.models.backup.MediaName
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.backup.MessageBackupKey
@@ -1088,13 +1089,13 @@ object BackupRepository {
   /**
    * Imports a local backup file that was exported to disk.
    */
-  fun importLocal(mainStreamFactory: () -> InputStream, mainStreamLength: Long, selfData: SelfData): ImportResult {
-    val backupKey = SignalStore.backup.messageBackupKey
+  fun importLocal(mainStreamFactory: () -> InputStream, mainStreamLength: Long, selfData: SelfData, backupId: BackupId, messageBackupKey: MessageBackupKey): ImportResult {
+    val backupKey = messageBackupKey
 
     val frameReader = try {
       EncryptedBackupReader.createForLocalOrLinking(
         key = backupKey,
-        aci = selfData.aci,
+        backupId = backupId,
         length = mainStreamLength,
         dataStream = mainStreamFactory
       )

@@ -649,6 +649,11 @@ class RegistrationViewModel : ViewModel() {
     }
   }
 
+  /** Clears the recovery password from state, e.g. when a backup-key-based registration attempt fails and the stale password must not be retried. */
+  fun clearRecoveryPassword() {
+    setRecoveryPassword(null)
+  }
+
   private fun setRecoveryPassword(recoveryPassword: String?) {
     store.update {
       it.copy(recoveryPassword = recoveryPassword)
@@ -930,7 +935,7 @@ class RegistrationViewModel : ViewModel() {
       Log.w(TAG, "Unable to start auth websocket", e)
     }
 
-    if (!remoteResult.reRegistration && SignalStore.registration.restoreDecisionState.isDecisionPending) {
+    if (!remoteResult.reRegistration && SignalStore.registration.restoreDecisionState.isDecisionPending && SignalStore.backup.localRestoreAccountEntropyPool == null) {
       Log.v(TAG, "Not re-registration, and still pending restore decision, likely an account with no data to restore, skipping post register restore")
       SignalStore.registration.restoreDecisionState = RestoreDecisionState.NewAccount
     }

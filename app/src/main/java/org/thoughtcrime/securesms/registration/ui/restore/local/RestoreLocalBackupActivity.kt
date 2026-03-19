@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.contactsupport.ContactSupportCallbacks
 import org.thoughtcrime.securesms.components.contactsupport.ContactSupportDialog
 import org.thoughtcrime.securesms.components.contactsupport.ContactSupportViewModel
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.restore.RestoreActivity
 import kotlin.math.max
 
@@ -84,9 +85,11 @@ class RestoreLocalBackupActivity : BaseActivity() {
       LaunchedEffect(state.restorePhase) {
         when (state.restorePhase) {
           RestorePhase.COMPLETE -> {
-            startActivity(MainActivity.clearTop(this@RestoreLocalBackupActivity))
-            if (finishActivity) {
-              finishAffinity()
+            if (!state.showLocalBackupsDisabledDialog) {
+              startActivity(MainActivity.clearTop(this@RestoreLocalBackupActivity))
+              if (finishActivity) {
+                finishAffinity()
+              }
             }
           }
 
@@ -105,6 +108,25 @@ class RestoreLocalBackupActivity : BaseActivity() {
         RestoreLocalBackupScreen(
           state = state,
           onContactSupportClick = contactSupportViewModel::showContactSupport,
+          onLocalBackupsDisabledDialogConfirm = {
+            viewModel.dismissLocalBackupsDisabledDialog()
+            startActivities(
+              arrayOf(
+                MainActivity.clearTop(this@RestoreLocalBackupActivity),
+                AppSettingsActivity.backups(this@RestoreLocalBackupActivity)
+              )
+            )
+            if (finishActivity) {
+              finishAffinity()
+            }
+          },
+          onLocalBackupsDisabledDialogDeny = {
+            viewModel.dismissLocalBackupsDisabledDialog()
+            startActivity(MainActivity.clearTop(this@RestoreLocalBackupActivity))
+            if (finishActivity) {
+              finishAffinity()
+            }
+          },
           onFailureDialogConfirm = {
             if (finishActivity) {
               viewModel.resetRestoreState()
@@ -126,6 +148,8 @@ class RestoreLocalBackupActivity : BaseActivity() {
 private fun RestoreLocalBackupScreen(
   state: RestoreLocalBackupScreenState,
   onFailureDialogConfirm: () -> Unit,
+  onLocalBackupsDisabledDialogConfirm: () -> Unit,
+  onLocalBackupsDisabledDialogDeny: () -> Unit,
   onContactSupportClick: () -> Unit,
   contactSupportState: ContactSupportViewModel.ContactSupportState<Unit>,
   contactSupportCallbacks: ContactSupportCallbacks
@@ -241,6 +265,17 @@ private fun RestoreLocalBackupScreen(
         )
       }
     }
+
+    if (state.showLocalBackupsDisabledDialog) {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.RestoreLocalBackupActivity__turn_on_on_device_backups),
+        body = stringResource(R.string.RestoreLocalBackupActivity__to_continue_using_on_device_backups),
+        confirm = stringResource(R.string.RestoreLocalBackupActivity__turn_on_now),
+        dismiss = stringResource(R.string.RestoreLocalBackupActivity__not_now),
+        onConfirm = onLocalBackupsDisabledDialogConfirm,
+        onDeny = onLocalBackupsDisabledDialogDeny
+      )
+    }
   }
 }
 
@@ -251,6 +286,8 @@ private fun RestoreLocalBackupScreenPreview() {
     RestoreLocalBackupScreen(
       state = RestoreLocalBackupScreenState(),
       onFailureDialogConfirm = {},
+      onLocalBackupsDisabledDialogConfirm = {},
+      onLocalBackupsDisabledDialogDeny = {},
       onContactSupportClick = {},
       contactSupportState = ContactSupportViewModel.ContactSupportState(),
       contactSupportCallbacks = ContactSupportCallbacks.Empty

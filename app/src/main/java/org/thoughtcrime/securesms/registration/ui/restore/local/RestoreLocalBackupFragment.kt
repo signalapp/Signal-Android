@@ -34,6 +34,7 @@ import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
 import org.thoughtcrime.securesms.registration.ui.phonenumber.EnterPhoneNumberMode
 import org.thoughtcrime.securesms.registration.ui.restore.EnterBackupKeyViewModel
@@ -79,7 +80,18 @@ class RestoreLocalBackupFragment : ComposeFragment() {
           .filterNotNull()
           .collect {
             sharedViewModel.registerAccountErrorShown()
-            enterBackupKeyViewModel.handleRegistrationFailure(it)
+            if (it is RegisterAccountResult.IncorrectRecoveryPassword) {
+              SignalStore.account.resetAccountEntropyPool()
+              SignalStore.account.resetAciAndPniIdentityKeysAfterFailedRestore()
+              sharedViewModel.clearRecoveryPassword()
+              enterBackupKeyViewModel.cancelRegistering()
+              sharedViewModel.intendToRestore(hasOldDevice = false, fromRemote = false, fromLocalV2 = true)
+              findNavController().safeNavigate(
+                RestoreLocalBackupFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION)
+              )
+            } else {
+              enterBackupKeyViewModel.handleRegistrationFailure(it)
+            }
           }
       }
     }
@@ -137,6 +149,8 @@ class RestoreLocalBackupFragment : ComposeFragment() {
     override fun submitBackupKey() {
       enterBackupKeyViewModel.registering()
 
+      SignalStore.backup.localRestoreAccountEntropyPool = enterBackupKeyViewModel.backupKey
+
       val selectedTimestamp = restoreLocalBackupViewModel.state.value.selectedBackup?.timestamp ?: -1L
       SignalStore.backup.newLocalBackupsSelectedSnapshotTimestamp = selectedTimestamp
 
@@ -152,6 +166,8 @@ class RestoreLocalBackupFragment : ComposeFragment() {
 
     override fun onBackupKeyChanged(key: String) {
       enterBackupKeyViewModel.updateBackupKey(key)
+      val timestamp = restoreLocalBackupViewModel.state.value.selectedBackup?.timestamp ?: return
+      enterBackupKeyViewModel.verifyLocalBackupKey(timestamp)
     }
 
     override fun clearRegistrationError() {

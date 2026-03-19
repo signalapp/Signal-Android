@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.local
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.backup.BackupId
 import org.signal.core.models.backup.MediaName
+import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.Util
@@ -17,6 +18,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.local.proto.FilesFrame
 import org.thoughtcrime.securesms.backup.v2.local.proto.Metadata
+import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
@@ -152,7 +154,7 @@ object LocalArchiver {
   /**
    * Import archive data from a folder on the system. Does not restore attachments.
    */
-  fun import(snapshotFileSystem: SnapshotFileSystem, selfData: BackupRepository.SelfData): RestoreResult {
+  fun import(snapshotFileSystem: SnapshotFileSystem, selfData: BackupRepository.SelfData, messageBackupKey: MessageBackupKey): RestoreResult {
     var metadataStream: InputStream? = null
 
     try {
@@ -169,19 +171,16 @@ object LocalArchiver {
         return RestoreResult.failure(RestoreFailure.BackupIdMissing)
       }
 
-      val backupId = decryptBackupId(metadata.backupId)
-
-      if (!backupId.value.contentEquals(SignalStore.backup.messageBackupKey.deriveBackupId(SignalStore.account.requireAci()).value)) {
-        Log.w(TAG, "Local backup metadata backup id does not match derived backup id, likely from another account")
-        return RestoreResult.failure(RestoreFailure.BackupIdMismatch)
-      }
+      val backupId = decryptBackupId(metadata.backupId, messageBackupKey)
 
       val mainStreamLength = snapshotFileSystem.mainLength() ?: return ArchiveResult.failure(RestoreFailure.MainStream)
 
       BackupRepository.importLocal(
         mainStreamFactory = { snapshotFileSystem.mainInputStream()!! },
         mainStreamLength = mainStreamLength,
-        selfData = selfData
+        selfData = selfData,
+        backupId = backupId,
+        messageBackupKey = messageBackupKey
       )
     } finally {
       metadataStream?.close()
@@ -190,8 +189,41 @@ object LocalArchiver {
     return RestoreResult.success(RestoreSuccess.FullSuccess)
   }
 
-  private fun decryptBackupId(encryptedBackupId: Metadata.EncryptedBackupId): BackupId {
-    val metadataKey = SignalStore.backup.messageBackupKey.deriveLocalBackupMetadataKey()
+  /**
+   * Verifies that the provided [messageBackupKey] can decrypt and authenticate the snapshot's main archive.
+   */
+  fun canDecryptMainArchive(snapshotFileSystem: SnapshotFileSystem, messageBackupKey: MessageBackupKey): Boolean {
+    return try {
+      val backupId = getBackupId(snapshotFileSystem, messageBackupKey) ?: return false
+      val mainStreamLength = snapshotFileSystem.mainLength() ?: return false
+
+      EncryptedBackupReader.createForLocalOrLinking(
+        key = messageBackupKey,
+        backupId = backupId,
+        length = mainStreamLength,
+        dataStream = { snapshotFileSystem.mainInputStream() ?: error("Missing main archive stream") }
+      ).use { reader ->
+        reader.getHeader() != null
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Unable to verify local backup archive", e)
+      false
+    }
+  }
+
+  fun getBackupId(snapshotFileSystem: SnapshotFileSystem, messageBackupKey: MessageBackupKey): BackupId? {
+    return try {
+      val metadata = snapshotFileSystem.metadataInputStream()?.use { Metadata.ADAPTER.decode(it) } ?: return null
+      val encryptedBackupId = metadata.backupId ?: return null
+      decryptBackupId(encryptedBackupId, messageBackupKey)
+    } catch (e: Exception) {
+      Log.w(TAG, "Unable to decrypt local backup id", e)
+      null
+    }
+  }
+
+  private fun decryptBackupId(encryptedBackupId: Metadata.EncryptedBackupId, messageBackupKey: MessageBackupKey): BackupId {
+    val metadataKey = messageBackupKey.deriveLocalBackupMetadataKey()
     val iv = encryptedBackupId.iv.toByteArray()
     val backupIdCipher = encryptedBackupId.encryptedId.toByteArray()
 
@@ -227,7 +259,6 @@ object LocalArchiver {
     data object MainStream : RestoreFailure
     data object Cancelled : RestoreFailure
     data object BackupIdMissing : RestoreFailure
-    data object BackupIdMismatch : RestoreFailure
     data class VersionMismatch(val backupVersion: Int, val supportedVersion: Int) : RestoreFailure
   }
 

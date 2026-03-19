@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.stream
 import androidx.annotation.VisibleForTesting
 import com.google.common.io.CountingInputStream
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.backup.BackupId
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.readFully
 import org.signal.core.util.readNBytesOrThrow
@@ -67,8 +68,22 @@ class EncryptedBackupReader private constructor(
       length: Long,
       dataStream: () -> InputStream
     ): EncryptedBackupReader {
+      return createForSignalBackup(key, key.deriveBackupId(aci), forwardSecrecyToken, length, dataStream)
+    }
+
+    /**
+     * Create a reader for a backup from the archive CDN, using a [BackupId] directly
+     * instead of deriving it from an ACI.
+     */
+    fun createForSignalBackup(
+      key: MessageBackupKey,
+      backupId: BackupId,
+      forwardSecrecyToken: BackupForwardSecrecyToken,
+      length: Long,
+      dataStream: () -> InputStream
+    ): EncryptedBackupReader {
       return EncryptedBackupReader(
-        keyMaterial = key.deriveBackupSecrets(aci, forwardSecrecyToken),
+        keyMaterial = key.deriveBackupSecrets(backupId, forwardSecrecyToken),
         length = length,
         dataStream = dataStream
       )
@@ -79,8 +94,16 @@ class EncryptedBackupReader private constructor(
      * The key difference is that we don't require forward secrecy data.
      */
     fun createForLocalOrLinking(key: MessageBackupKey, aci: ACI, length: Long, dataStream: () -> InputStream): EncryptedBackupReader {
+      return createForLocalOrLinking(key, key.deriveBackupId(aci), length, dataStream)
+    }
+
+    /**
+     * Create a reader for a local backup or for a transfer to a linked device, using a [BackupId] directly
+     * instead of deriving it from an ACI.
+     */
+    fun createForLocalOrLinking(key: MessageBackupKey, backupId: BackupId, length: Long, dataStream: () -> InputStream): EncryptedBackupReader {
       return EncryptedBackupReader(
-        keyMaterial = key.deriveBackupSecrets(aci, forwardSecrecyToken = null),
+        keyMaterial = key.deriveBackupSecrets(backupId, forwardSecrecyToken = null),
         length = length,
         dataStream = dataStream
       )
