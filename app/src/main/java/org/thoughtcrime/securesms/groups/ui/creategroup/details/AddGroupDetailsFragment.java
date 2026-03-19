@@ -29,12 +29,16 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.bumptech.glide.RequestManager;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.EditTextUtil;
 import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment;
+import org.thoughtcrime.securesms.contacts.ContactChip;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.components.settings.app.privacy.expire.ExpireTimerSettingsFragment;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -150,6 +154,29 @@ public class AddGroupDetailsFragment extends LoggingFragment {
       startActivityForResult(RecipientDisappearingMessagesActivity.forCreateGroup(requireContext(), viewModel.getDisappearingMessagesTimer().getValue()), REQUEST_DISAPPEARING_TIMER);
     });
 
+    View      sameGroupsSection   = view.findViewById(R.id.same_groups_section);
+    ChipGroup sameGroupsChipGroup = view.findViewById(R.id.same_groups_chip_group);
+
+    if (SignalStore.labs().getGroupSuggestionsForMembers()) {
+      viewModel.getSameGroups().observe(getViewLifecycleOwner(), groups -> {
+        sameGroupsChipGroup.removeAllViews();
+        if (groups.isEmpty()) {
+          sameGroupsSection.setVisibility(View.GONE);
+        } else {
+          sameGroupsSection.setVisibility(View.VISIBLE);
+          RequestManager requestManager = Glide.with(this);
+          for (Recipient group : groups) {
+            ContactChip chip = new ContactChip(requireContext());
+            chip.setText(group.getDisplayName(requireContext()));
+            chip.setAvatar(requestManager, group, null);
+            chip.setCloseIconVisible(false);
+            chip.setOnClickListener(v -> navigateToConversation(group.getId()));
+            sameGroupsChipGroup.addView(chip);
+          }
+        }
+      });
+    }
+
     name.requestFocus();
 
     getParentFragmentManager().setFragmentResultListener(AvatarPickerFragment.REQUEST_KEY_SELECT_AVATAR,
@@ -264,6 +291,14 @@ public class AddGroupDetailsFragment extends LoggingFragment {
   private void setCreateEnabled(boolean isEnabled) {
     create.setClickable(isEnabled);
     create.setEnabled(isEnabled);
+  }
+
+  private void navigateToConversation(@NonNull RecipientId groupRecipientId) {
+    ConversationIntents.createBuilder(requireContext(), groupRecipientId, -1L)
+                       .subscribe(builder -> {
+                         startActivity(builder.build());
+                         requireActivity().finish();
+                       });
   }
 
   private void showAvatarPicker() {

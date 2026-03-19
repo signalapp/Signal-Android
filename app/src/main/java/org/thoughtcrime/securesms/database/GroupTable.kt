@@ -506,6 +506,17 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
       }
   }
 
+  @WorkerThread
+  fun getGroupsWithExactMembers(memberIds: Set<RecipientId>): List<GroupRecord> {
+    if (memberIds.isEmpty()) return emptyList()
+
+    val selfId = Recipient.self().id
+    val expectedMembers = if (selfId in memberIds) memberIds else memberIds + selfId
+
+    return getGroupsContainingMember(selfId, pushOnly = true, includeInactive = false)
+      .filter { it.members.toSet() == expectedMembers }
+  }
+
   fun getGroups(): Reader {
     val cursor = readableDatabase.query(joinedGroupSelect())
     return Reader(cursor)

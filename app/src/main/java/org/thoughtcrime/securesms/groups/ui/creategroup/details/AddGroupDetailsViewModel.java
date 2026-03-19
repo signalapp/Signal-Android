@@ -16,6 +16,7 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.signal.core.models.media.Media;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
@@ -38,6 +39,7 @@ public final class AddGroupDetailsViewModel extends ViewModel {
   private final MutableLiveData<Integer>                           disappearingMessagesTimer = new MutableLiveData<>(SignalStore.settings().getUniversalExpireTimer());
   private final LiveData<Boolean>                                  isMms;
   private final LiveData<Boolean>                                  canSubmitForm;
+  private final LiveData<List<Recipient>>                           sameGroups;
   private final AddGroupDetailsRepository                          repository;
 
   private Media avatarMedia;
@@ -53,6 +55,16 @@ public final class AddGroupDetailsViewModel extends ViewModel {
     members       = LiveDataUtil.combineLatest(initialMembers, deleted, AddGroupDetailsViewModel::filterDeletedMembers);
     isMms         = Transformations.map(members, AddGroupDetailsViewModel::isAnyForcedSms);
     canSubmitForm = LiveDataUtil.combineLatest(isMms, isValidName, (mms, validName) -> mms || validName);
+    sameGroups    = Transformations.switchMap(members, memberList -> {
+      MutableLiveData<List<Recipient>> result = new MutableLiveData<>(Collections.emptyList());
+      if (!memberList.isEmpty()) {
+        Set<RecipientId> memberIds = Stream.of(memberList)
+                                          .map(member -> member.getMember().getId())
+                                          .collect(Collectors.toSet());
+        repository.getGroupsWithSameMembers(memberIds, result::postValue);
+      }
+      return result;
+    });
 
     repository.resolveMembers(recipientIds, initialMembers::postValue);
   }
@@ -75,6 +87,10 @@ public final class AddGroupDetailsViewModel extends ViewModel {
 
   @NonNull LiveData<Boolean> getIsMms() {
     return isMms;
+  }
+
+  @NonNull LiveData<List<Recipient>> getSameGroups() {
+    return sameGroups;
   }
 
   @NonNull LiveData<Integer> getDisappearingMessagesTimer() {

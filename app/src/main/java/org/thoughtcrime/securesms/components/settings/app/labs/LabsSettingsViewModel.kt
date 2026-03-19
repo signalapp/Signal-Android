@@ -29,6 +29,10 @@ class LabsSettingsViewModel : ViewModel() {
         SignalStore.labs.incognito = event.enabled
         _state.value = _state.value.copy(incognito = event.enabled)
       }
+      is LabsSettingsEvents.ToggleGroupSuggestionsForMembers -> {
+        SignalStore.labs.groupSuggestionsForMembers = event.enabled
+        _state.value = _state.value.copy(groupSuggestionsForMembers = event.enabled)
+      }
     }
   }
 
@@ -36,7 +40,8 @@ class LabsSettingsViewModel : ViewModel() {
     return LabsSettingsState(
       individualChatPlaintextExport = SignalStore.labs.individualChatPlaintextExport,
       storyArchive = SignalStore.labs.storyArchive,
-      incognito = SignalStore.labs.incognito
+      incognito = SignalStore.labs.incognito,
+      groupSuggestionsForMembers = SignalStore.labs.groupSuggestionsForMembers
     )
   }
 }

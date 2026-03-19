@@ -7,6 +7,7 @@ class LabsValues internal constructor(store: KeyValueStore) : SignalStoreValues(
     const val INDIVIDUAL_CHAT_PLAINTEXT_EXPORT: String = "labs.individual_chat_plaintext_export"
     const val STORY_ARCHIVE: String = "labs.story_archive"
     const val INCOGNITO: String = "labs.incognito"
+    const val GROUP_SUGGESTIONS_FOR_MEMBERS: String = "labs.group_suggestions_for_members"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -18,6 +19,8 @@ class LabsValues internal constructor(store: KeyValueStore) : SignalStoreValues(
   var storyArchive by booleanValue(STORY_ARCHIVE, true).falseForExternalUsers()
 
   var incognito by booleanValue(INCOGNITO, true).falseForExternalUsers()
+
+  var groupSuggestionsForMembers by booleanValue(GROUP_SUGGESTIONS_FOR_MEMBERS, true).falseForExternalUsers()
 
   private fun SignalStoreValueDelegate<Boolean>.falseForExternalUsers(): SignalStoreValueDelegate<Boolean> {
     return this.map { actualValue -> RemoteConfig.internalUser && actualValue }

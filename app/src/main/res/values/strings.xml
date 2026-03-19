@@ -9615,5 +9615,8 @@
     <!-- Body for screen shown to let the user know that displaying their member label will take priority over their about text. -->
     <string name="MemberLabelsAboutOverride__body">In this group, your Member Label will be displayed beside your photo in place of your About.</string>
 
+    <!-- Label for internal-only section showing groups with same members -->
+    <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Internal Only)</string>
+
     <!-- EOF -->
 </resources>

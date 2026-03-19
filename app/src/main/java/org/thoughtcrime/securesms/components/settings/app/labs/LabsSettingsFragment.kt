@@ -115,6 +115,15 @@ private fun LabsSettingsContent(
           onCheckChanged = { onEvent(LabsSettingsEvents.ToggleIncognito(it)) }
         )
       }
+
+      item {
+        Rows.ToggleRow(
+          checked = state.groupSuggestionsForMembers,
+          text = "Group Suggestions for Members",
+          label = "When creating a group, show existing groups that have the exact same members.",
+          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleGroupSuggestionsForMembers(it)) }
+        )
+      }
     }
   }
 }
