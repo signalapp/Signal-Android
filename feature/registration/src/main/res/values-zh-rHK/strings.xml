@@ -97,37 +97,37 @@
 
     <!-- ArchiveRestoreSelectionScreen -->
     <!-- Title text for the archive restore selection screen -->
-    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">Restore or transfer account</string>
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">還原或轉移帳戶</string>
     <!-- Subtitle text for the archive restore selection screen -->
     <string name="ArchiveRestoreSelectionScreen__subheading">Choose how you’d like to restore your message history and account data.</string>
     <!-- Title for the Signal Backups option card -->
-    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">From Signal Backups</string>
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">從 Signal 備份</string>
     <!-- Subtitle for the Signal Backups option card -->
-    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">Your free or paid Signal Backup plan</string>
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">你的免費或付費 Signal 備份計畫</string>
     <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Restore on-device backup</string>
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">還原裝置上備份</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Restore your messages from a backup you saved on your device.</string>
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">從你儲存在裝置的備份中還原訊息。</string>
     <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Continue without transferring</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">不轉移並繼續</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Messages &amp; media won’t be transferred</string>
     <!-- Title for the backup folder option card (V2 format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">From a backup folder</string>
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">從備份資料夾</string>
     <!-- Title for the backup file option card (V1 legacy format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">From a backup file</string>
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">從備份檔案</string>
     <!-- Subtitle for the backup folder/file option cards -->
     <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Choose a backup you\'ve saved</string>
     <!-- Title for the device transfer option card -->
-    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">From your old phone</string>
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">從你的舊手機</string>
     <!-- Subtitle for the device transfer option card -->
-    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">Transfer directly from your old Android</string>
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">直接從舊的 Android 手機轉移</string>
     <!-- Skip button text -->
-    <string name="ArchiveRestoreSelectionScreen__skip">Skip</string>
+    <string name="ArchiveRestoreSelectionScreen__skip">略過</string>
     <!-- Title for the skip restore confirmation dialog -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">Skip restore?</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">要跳過還原嗎？</string>
     <!-- Warning body text for the skip restore confirmation dialog -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">若你現在跳過還原，之後將無法還原。如果你在跳過還原後重新啟用備份功能，當前的備份將會被新的訊息紀錄取代。</string>
     <!-- Confirm button text for the skip restore dialog -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">Skip restore</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">跳過還原</string>
 </resources>

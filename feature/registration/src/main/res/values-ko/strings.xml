@@ -97,37 +97,37 @@
 
     <!-- ArchiveRestoreSelectionScreen -->
     <!-- Title text for the archive restore selection screen -->
-    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">Restore or transfer account</string>
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">계정 복원 또는 이전</string>
     <!-- Subtitle text for the archive restore selection screen -->
     <string name="ArchiveRestoreSelectionScreen__subheading">Choose how you’d like to restore your message history and account data.</string>
     <!-- Title for the Signal Backups option card -->
-    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">From Signal Backups</string>
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">Signal 백업에서 복원</string>
     <!-- Subtitle for the Signal Backups option card -->
-    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">Your free or paid Signal Backup plan</string>
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">무료 또는 유료 Signal 백업 플랜</string>
     <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Restore on-device backup</string>
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">기기 백업 복원</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Restore your messages from a backup you saved on your device.</string>
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">기기에 저장한 백업에서 메시지를 복원합니다.</string>
     <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Continue without transferring</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">데이터 옮기지 않고 계속하기</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Messages &amp; media won’t be transferred</string>
     <!-- Title for the backup folder option card (V2 format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">From a backup folder</string>
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">백업 폴더에서 복원</string>
     <!-- Title for the backup file option card (V1 legacy format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">From a backup file</string>
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">백업 파일에서 복원</string>
     <!-- Subtitle for the backup folder/file option cards -->
     <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Choose a backup you\'ve saved</string>
     <!-- Title for the device transfer option card -->
-    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">From your old phone</string>
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">이전 휴대폰에서 전송</string>
     <!-- Subtitle for the device transfer option card -->
-    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">Transfer directly from your old Android</string>
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">기존 Android에서 이전하기</string>
     <!-- Skip button text -->
-    <string name="ArchiveRestoreSelectionScreen__skip">Skip</string>
+    <string name="ArchiveRestoreSelectionScreen__skip">건너뛰기</string>
     <!-- Title for the skip restore confirmation dialog -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">Skip restore?</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">복원을 건너뛸까요?</string>
     <!-- Warning body text for the skip restore confirmation dialog -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">지금 복원을 건너뛰면 나중에 복원할 수 없습니다. 복원을 건너뛴 후 백업을 다시 활성화하면, 현재 백업이 새 메시지 기록으로 바뀝니다.</string>
     <!-- Confirm button text for the skip restore dialog -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">Skip restore</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">복원 건너뛰기</string>
 </resources>

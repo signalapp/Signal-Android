@@ -97,37 +97,37 @@
 
     <!-- ArchiveRestoreSelectionScreen -->
     <!-- Title text for the archive restore selection screen -->
-    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">Restore or transfer account</string>
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">Восстановить или перенести учётную запись</string>
     <!-- Subtitle text for the archive restore selection screen -->
     <string name="ArchiveRestoreSelectionScreen__subheading">Choose how you’d like to restore your message history and account data.</string>
     <!-- Title for the Signal Backups option card -->
-    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">From Signal Backups</string>
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">Из Резервного копирования Signal</string>
     <!-- Subtitle for the Signal Backups option card -->
-    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">Your free or paid Signal Backup plan</string>
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">Ваш бесплатный или платный план Резервного копирования Signal</string>
     <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Restore on-device backup</string>
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Восстановить резервную копию на устройстве</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Restore your messages from a backup you saved on your device.</string>
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Восстановите сообщения из резервной копии, сохранённой на этом устройстве.</string>
     <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Continue without transferring</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Продолжить без переноса</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Messages &amp; media won’t be transferred</string>
     <!-- Title for the backup folder option card (V2 format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">From a backup folder</string>
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">Из папки резервных копий</string>
     <!-- Title for the backup file option card (V1 legacy format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">From a backup file</string>
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">Из файла резервной копии</string>
     <!-- Subtitle for the backup folder/file option cards -->
     <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Choose a backup you\'ve saved</string>
     <!-- Title for the device transfer option card -->
-    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">From your old phone</string>
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">Со старого телефона</string>
     <!-- Subtitle for the device transfer option card -->
-    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">Transfer directly from your old Android</string>
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">Перенесите прямо со старого телефона Android</string>
     <!-- Skip button text -->
-    <string name="ArchiveRestoreSelectionScreen__skip">Skip</string>
+    <string name="ArchiveRestoreSelectionScreen__skip">Пропустить</string>
     <!-- Title for the skip restore confirmation dialog -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">Skip restore?</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">Пропустить восстановление?</string>
     <!-- Warning body text for the skip restore confirmation dialog -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">Если вы пропустите восстановление сейчас, вы не сможете выполнить его позже. Если вы пропустите восстановление и затем повторно включите резервное копирование, текущая резервная копия будет заменена новой историей сообщений.</string>
     <!-- Confirm button text for the skip restore dialog -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">Skip restore</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">Пропустить восстановление</string>
 </resources>

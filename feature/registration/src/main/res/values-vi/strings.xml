@@ -97,37 +97,37 @@
 
     <!-- ArchiveRestoreSelectionScreen -->
     <!-- Title text for the archive restore selection screen -->
-    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">Restore or transfer account</string>
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">Khôi phục hoặc chuyển tài khoản</string>
     <!-- Subtitle text for the archive restore selection screen -->
     <string name="ArchiveRestoreSelectionScreen__subheading">Choose how you’d like to restore your message history and account data.</string>
     <!-- Title for the Signal Backups option card -->
-    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">From Signal Backups</string>
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">Bản sao lưu từ Signal</string>
     <!-- Subtitle for the Signal Backups option card -->
-    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">Your free or paid Signal Backup plan</string>
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">Gói sao lưu Signal miễn phí hoặc trả phí của bạn</string>
     <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Restore on-device backup</string>
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Khôi phục bản sao lưu trên thiết bị</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Restore your messages from a backup you saved on your device.</string>
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Khôi phục tin nhắn từ một tập tin sao lưu bạn đã lưu trên thiết bị của mình.</string>
     <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Continue without transferring</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Tiếp tục và không chuyển</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Messages &amp; media won’t be transferred</string>
     <!-- Title for the backup folder option card (V2 format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">From a backup folder</string>
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">Từ thư mục sao lưu</string>
     <!-- Title for the backup file option card (V1 legacy format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">From a backup file</string>
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">Từ tập tin sao lưu</string>
     <!-- Subtitle for the backup folder/file option cards -->
     <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Choose a backup you\'ve saved</string>
     <!-- Title for the device transfer option card -->
-    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">From your old phone</string>
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">Từ điện thoại cũ của bạn</string>
     <!-- Subtitle for the device transfer option card -->
-    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">Transfer directly from your old Android</string>
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">Chuyển trực tiếp từ điện thoại Android cũ của bạn</string>
     <!-- Skip button text -->
-    <string name="ArchiveRestoreSelectionScreen__skip">Skip</string>
+    <string name="ArchiveRestoreSelectionScreen__skip">Bỏ qua</string>
     <!-- Title for the skip restore confirmation dialog -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">Skip restore?</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">Bỏ qua khôi phục?</string>
     <!-- Warning body text for the skip restore confirmation dialog -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">Nếu bạn bỏ qua việc khôi phục bây giờ, bạn sẽ không thể khôi phục sau này. Nếu bạn bật lại tính năng sao lưu sau khi bỏ qua việc khôi phục, bản sao lưu hiện tại sẽ được thay thế bởi lịch sử tin nhắn mới.</string>
     <!-- Confirm button text for the skip restore dialog -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">Skip restore</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">Bỏ qua</string>
 </resources>

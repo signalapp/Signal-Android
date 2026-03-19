@@ -4885,7 +4885,7 @@
     <string name="conversation__menu_view_all_media">Усі медіафайли</string>
     <string name="conversation__menu_conversation_settings">Налаштування чату</string>
     <string name="conversation__menu_add_shortcut">Додати на домашній екран</string>
-    <string name="conversation__menu_export">Export</string>
+    <string name="conversation__menu_export">Експортувати</string>
     <string name="conversation__menu_create_bubble">Створити бульбашку</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">Форматувати текст</string>
@@ -9129,11 +9129,11 @@
 
     <!-- BackupCreationProgressRow -->
     <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">Processing backup…</string>
+    <string name="BackupCreationProgressRow__processing_backup">Опрацювання резервної копії…</string>
     <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">Preparing backup…</string>
+    <string name="BackupCreationProgressRow__preparing_backup">Підготовка резервної копії…</string>
     <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
-    <string name="BackupCreationProgressRow__finalizing">Finalizing…</string>
+    <string name="BackupCreationProgressRow__finalizing">Завершення…</string>
     <!-- Progress text shown while messages are being processed, with no count available yet -->
     <string name="BackupCreationProgressRow__processing_messages">Processing messages…</string>
     <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->

@@ -4647,7 +4647,7 @@
     <string name="conversation__menu_view_all_media">అన్ని మీడియా</string>
     <string name="conversation__menu_conversation_settings">చాట్ సెట్టింగులు</string>
     <string name="conversation__menu_add_shortcut">హోమ్ స్క్రీన్కు జోడించండి</string>
-    <string name="conversation__menu_export">Export</string>
+    <string name="conversation__menu_export">ఎగుమతి చేయండి</string>
     <string name="conversation__menu_create_bubble">బబుల్ సృష్టించు</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">టెక్స్ట్‌ను ఫార్మాట్ చేయండి</string>
@@ -8755,11 +8755,11 @@
 
     <!-- BackupCreationProgressRow -->
     <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">Processing backup…</string>
+    <string name="BackupCreationProgressRow__processing_backup">బ్యాకప్‌ను ప్రాసెస్ చేస్తోంది…</string>
     <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">Preparing backup…</string>
+    <string name="BackupCreationProgressRow__preparing_backup">బ్యాకప్‌ను సిద్ధం చేస్తోంది…</string>
     <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
-    <string name="BackupCreationProgressRow__finalizing">Finalizing…</string>
+    <string name="BackupCreationProgressRow__finalizing">తుది రూపం ఇస్తోంది…</string>
     <!-- Progress text shown while messages are being processed, with no count available yet -->
     <string name="BackupCreationProgressRow__processing_messages">Processing messages…</string>
     <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->

@@ -4647,7 +4647,7 @@
     <string name="conversation__menu_view_all_media">Lahat ng media</string>
     <string name="conversation__menu_conversation_settings">Chat settings</string>
     <string name="conversation__menu_add_shortcut">Idagdag sa home screen</string>
-    <string name="conversation__menu_export">Export</string>
+    <string name="conversation__menu_export">I-export</string>
     <string name="conversation__menu_create_bubble">Mag-create ng bubble</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">I-format ang text</string>
@@ -8755,9 +8755,9 @@
 
     <!-- BackupCreationProgressRow -->
     <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">Processing backup…</string>
+    <string name="BackupCreationProgressRow__processing_backup">Pinoproseso ang backup…</string>
     <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">Preparing backup…</string>
+    <string name="BackupCreationProgressRow__preparing_backup">Hinahanda ang backup…</string>
     <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
     <string name="BackupCreationProgressRow__finalizing">Finalizing…</string>
     <!-- Progress text shown while messages are being processed, with no count available yet -->

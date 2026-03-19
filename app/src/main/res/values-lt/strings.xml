@@ -4885,7 +4885,7 @@
     <string name="conversation__menu_view_all_media">Visa medija</string>
     <string name="conversation__menu_conversation_settings">Pokalbio nustatymai</string>
     <string name="conversation__menu_add_shortcut">Pridėti į pradžios ekraną</string>
-    <string name="conversation__menu_export">Export</string>
+    <string name="conversation__menu_export">Eksportuoti</string>
     <string name="conversation__menu_create_bubble">Sukurti burbulą</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">Formatuoti tekstą</string>
@@ -9129,11 +9129,11 @@
 
     <!-- BackupCreationProgressRow -->
     <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">Processing backup…</string>
+    <string name="BackupCreationProgressRow__processing_backup">Apdorojama atsarginė kopija…</string>
     <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">Preparing backup…</string>
+    <string name="BackupCreationProgressRow__preparing_backup">Ruošiama atsarginė kopija…</string>
     <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
-    <string name="BackupCreationProgressRow__finalizing">Finalizing…</string>
+    <string name="BackupCreationProgressRow__finalizing">Baigiama…</string>
     <!-- Progress text shown while messages are being processed, with no count available yet -->
     <string name="BackupCreationProgressRow__processing_messages">Processing messages…</string>
     <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->

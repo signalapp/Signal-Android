@@ -5123,7 +5123,7 @@
     <string name="conversation__menu_view_all_media">جميع الوسائط</string>
     <string name="conversation__menu_conversation_settings">إعدادات الدردشة</string>
     <string name="conversation__menu_add_shortcut">إضافة إلى الشاشة الرئيسية</string>
-    <string name="conversation__menu_export">Export</string>
+    <string name="conversation__menu_export">تصدير</string>
     <string name="conversation__menu_create_bubble">إنشاء فقاعة</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">تنسيق النص</string>
@@ -9503,11 +9503,11 @@
 
     <!-- BackupCreationProgressRow -->
     <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">Processing backup…</string>
+    <string name="BackupCreationProgressRow__processing_backup">جارٍ معاجلة النسخة الاحتياطية…</string>
     <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">Preparing backup…</string>
+    <string name="BackupCreationProgressRow__preparing_backup">جارٍ تحضير النسخة الاحتياطية…</string>
     <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
-    <string name="BackupCreationProgressRow__finalizing">Finalizing…</string>
+    <string name="BackupCreationProgressRow__finalizing">جارٍ وضع اللمسات الأخيرة…</string>
     <!-- Progress text shown while messages are being processed, with no count available yet -->
     <string name="BackupCreationProgressRow__processing_messages">Processing messages…</string>
     <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
