@@ -929,6 +929,15 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** Maximum size a video transcode should target in bytes  */
+  @JvmStatic
+  @get:JvmName("videoTranscodeTargetSizeBytes")
+  val videoTranscodeTargetSizeBytes: Long by remoteLong(
+    key = "global.videoAttachments.transcodeTargetBytes",
+    defaultValue = 100.mebiBytes.inWholeBytes,
+    hotSwappable = true
+  )
+
   /** Maximum input size when opening a video to send in bytes  */
   @JvmStatic
   @get:JvmName("maxSourceTranscodeVideoSizeBytes")
