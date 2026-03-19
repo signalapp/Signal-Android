@@ -219,11 +219,17 @@ class BackupMessagesJob private constructor(
           is SvrBApi.RestoreResult.RestoreFailedError,
           SvrBApi.RestoreResult.InvalidDataError -> {
             Log.i(TAG, "[svrb-restore] Permanent SVRB error! Continuing $result")
+            SignalStore.backup.nextBackupSecretData = null
           }
 
-          SvrBApi.RestoreResult.DataMissingError,
+          SvrBApi.RestoreResult.DataMissingError -> {
+            Log.i(TAG, "[svrb-restore] No SVRB data found, resetting local secret data: $result")
+            SignalStore.backup.nextBackupSecretData = null
+          }
+
           is SvrBApi.RestoreResult.SvrError -> {
-            Log.i(TAG, "[svrb-restore] Failed to fetch SVRB data, continuing: $result")
+            Log.w(TAG, "[svrb-restore] SVR enclave error, blocking backup until restore succeeds.", result.throwable, true)
+            return Result.retry(defaultBackoff())
           }
 
           is SvrBApi.RestoreResult.UnknownError -> {
