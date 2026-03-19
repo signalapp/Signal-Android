@@ -37,6 +37,10 @@ class LabsSettingsViewModel : ViewModel() {
         SignalStore.labs.betterSearch = event.enabled
         _state.value = _state.value.copy(betterSearch = event.enabled)
       }
+      is LabsSettingsEvents.ToggleAutoLowerHand -> {
+        SignalStore.labs.autoLowerHand = event.enabled
+        _state.value = _state.value.copy(autoLowerHand = event.enabled)
+      }
     }
   }
 
@@ -46,7 +50,8 @@ class LabsSettingsViewModel : ViewModel() {
       storyArchive = SignalStore.labs.storyArchive,
       incognito = SignalStore.labs.incognito,
       groupSuggestionsForMembers = SignalStore.labs.groupSuggestionsForMembers,
-      betterSearch = SignalStore.labs.betterSearch
+      betterSearch = SignalStore.labs.betterSearch,
+      autoLowerHand = SignalStore.labs.autoLowerHand
     )
   }
 }

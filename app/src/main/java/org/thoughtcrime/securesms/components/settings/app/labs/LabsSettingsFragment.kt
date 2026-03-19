@@ -133,6 +133,15 @@ private fun LabsSettingsContent(
           onCheckChanged = { onEvent(LabsSettingsEvents.ToggleBetterSearch(it)) }
         )
       }
+
+      item {
+        Rows.ToggleRow(
+          checked = state.autoLowerHand,
+          text = "Auto Lower Hand Suggestion",
+          label = "Show a prompt to lower your raised hand when you are speaking in a group call.",
+          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleAutoLowerHand(it)) }
+        )
+      }
     }
   }
 }
