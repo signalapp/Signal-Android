@@ -33,6 +33,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
@@ -131,30 +132,37 @@ class RestoreLocalBackupFragment : ComposeFragment() {
 
     override fun skipRestore() {
       sharedViewModel.skipRestore()
-      findNavController().safeNavigate(RestoreLocalBackupFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION))
+      if (SignalStore.account.isRegistered) {
+        viewLifecycleOwner.lifecycleScope.launch {
+          restoreLocalBackupViewModel.performStorageServiceAccountRestoreIfNeeded()
+          startActivity(MainActivity.clearTop(requireContext()))
+        }
+      } else {
+        findNavController().safeNavigate(RestoreLocalBackupFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION))
+      }
     }
 
     override fun confirmRestoreWithDifferentAccount() {
-      SignalStore.account.resetAccountEntropyPool()
-      SignalStore.account.resetAciAndPniIdentityKeysAfterFailedRestore()
-      sharedViewModel.clearRecoveryPassword()
-      enterBackupKeyViewModel.cancelRegistering()
-      sharedViewModel.intendToRestore(hasOldDevice = false, fromRemote = false, fromLocalV2 = true)
+      resetStateAfterFailedAccountMatch()
       findNavController().safeNavigate(
         RestoreLocalBackupFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION)
       )
     }
 
     override fun denyRestoreWithDifferentAccount() {
-      SignalStore.account.resetAccountEntropyPool()
-      SignalStore.account.resetAciAndPniIdentityKeysAfterFailedRestore()
+      resetStateAfterFailedAccountMatch()
       SignalStore.backup.localRestoreAccountEntropyPool = null
-      sharedViewModel.clearRecoveryPassword()
-      enterBackupKeyViewModel.cancelRegistering()
-      sharedViewModel.intendToRestore(hasOldDevice = false, fromRemote = false, fromLocalV2 = true)
       findNavController().safeNavigate(
         RestoreLocalBackupFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.COLLECT_FOR_LOCAL_V2_SIGNAL_BACKUPS_RESTORE)
       )
+    }
+
+    private fun resetStateAfterFailedAccountMatch() {
+      SignalStore.account.resetAccountEntropyPool()
+      SignalStore.account.resetAciAndPniIdentityKeysAfterFailedRestore()
+      sharedViewModel.clearRecoveryPassword()
+      enterBackupKeyViewModel.cancelRegistering()
+      sharedViewModel.intendToRestore(hasOldDevice = false, fromRemote = false, fromLocalV2 = true)
     }
 
     override fun routeToLegacyBackupRestoration(uri: Uri) {

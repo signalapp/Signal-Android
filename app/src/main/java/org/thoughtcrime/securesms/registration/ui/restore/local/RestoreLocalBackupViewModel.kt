@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
 import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
 import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.registration.ui.restore.StorageServiceRestore
 import org.thoughtcrime.securesms.util.DateUtils
 import java.util.Locale
 
@@ -105,6 +106,12 @@ class RestoreLocalBackupViewModel : ViewModel() {
       val matches = actualBackupId.value.contentEquals(expectedBackupId.value)
       Log.d(TAG, "backupBelongsToCurrentAccount: matches=$matches")
       matches
+    }
+  }
+
+  suspend fun performStorageServiceAccountRestoreIfNeeded() {
+    if (SignalStore.account.restoredAccountEntropyPool || SignalStore.svr.masterKeyForInitialDataRestore != null) {
+      StorageServiceRestore.restore()
     }
   }
 
