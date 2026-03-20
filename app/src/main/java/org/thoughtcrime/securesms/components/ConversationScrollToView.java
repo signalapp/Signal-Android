@@ -56,7 +56,8 @@ public final class ConversationScrollToView extends FrameLayout {
         unreadCount.setLayoutParams(params);
       }
 
-      int iconPadding = array.getDimensionPixelSize(R.styleable.ConversationScrollToView_cstv_icon_padding, 0);
+      int iconPadding = array.getDimensionPixelSize(
+          R.styleable.ConversationScrollToView_cstv_icon_padding, 0);
       if (iconPadding > 0) {
         scrollButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
         scrollButton.setPadding(iconPadding, iconPadding, iconPadding, iconPadding);
