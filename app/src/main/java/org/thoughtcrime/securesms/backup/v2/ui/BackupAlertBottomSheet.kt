@@ -134,7 +134,7 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
         ).show(parentFragmentManager, null)
       }
 
-      BackupAlert.CouldNotRedeemBackup -> CommunicationActions.openBrowserLink(requireContext(), requireContext().getString(R.string.backup_support_url)) // TODO [backups] final url
+      BackupAlert.CouldNotRedeemBackup -> CommunicationActions.openBrowserLink(requireContext(), requireContext().getString(R.string.remote_backup_support_url))
     }
 
     dismissAllowingStateLoss()
@@ -335,7 +335,7 @@ private fun BackupFailedBody() {
 
     withLink(
       LinkAnnotation.Clickable(tag = "learn-more") {
-        CommunicationActions.openBrowserLink(context, context.getString(R.string.backup_failed_support_url))
+        CommunicationActions.openBrowserLink(context, context.getString(R.string.remote_backup_support_url))
       }
     ) {
       withStyle(SpanStyle(color = MaterialTheme.colorScheme.primary)) {

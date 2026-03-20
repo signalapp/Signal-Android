@@ -34,7 +34,7 @@ class NoRemoteStorageSpaceAvailableBottomSheet : ComposeBottomSheetDialogFragmen
 
     NoRemoteStorageSpaceAvailableBottomSheetContent(
       onLearnMoreClick = {
-        CommunicationActions.openBrowserLink(context, context.getString(R.string.backup_failed_support_url))
+        CommunicationActions.openBrowserLink(context, context.getString(R.string.remote_backup_support_url))
       },
       onContactSupportClick = {
         ContactSupportDialogFragment.create(
