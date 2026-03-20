@@ -10,13 +10,17 @@ import android.net.Uri
 import androidx.lifecycle.ViewModel
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.withContext
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
+import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
 import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.DateUtils
@@ -77,6 +81,31 @@ class RestoreLocalBackupViewModel : ViewModel() {
 
   fun displaySkipRestoreWarning() {
     internalState.update { it.copy(dialog = RestoreLocalBackupDialog.SKIP_RESTORE_WARNING) }
+  }
+
+  fun displayDifferentAccountWarning() {
+    internalState.update { it.copy(dialog = RestoreLocalBackupDialog.CONFIRM_DIFFERENT_ACCOUNT) }
+  }
+
+  /** Returns true if the backup at [timestamp] was created by the currently registered account, false if it belongs to a different account. */
+  suspend fun backupBelongsToCurrentAccount(context: Context, backupKey: String, timestamp: Long): Boolean {
+    return withContext(Dispatchers.IO) {
+      val aep = requireNotNull(AccountEntropyPool.parseOrNull(backupKey)) { "Backup key must be valid at submission time" }
+      val messageBackupKey = aep.deriveMessageBackupKey()
+      val dirUri = requireNotNull(SignalStore.backup.newLocalBackupsDirectory) { "Backup directory must be set" }
+      val archiveFileSystem = requireNotNull(ArchiveFileSystem.fromUri(context, Uri.parse(dirUri))) { "Backup directory must be accessible" }
+      val snapshot = requireNotNull(archiveFileSystem.listSnapshots().firstOrNull { it.timestamp == timestamp }) { "Selected snapshot must still exist" }
+      val snapshotFs = SnapshotFileSystem(context, snapshot.file)
+      val actualBackupId = LocalArchiver.getBackupId(snapshotFs, messageBackupKey)
+      if (actualBackupId == null) {
+        Log.w(TAG, "backupBelongsToCurrentAccount: getBackupId returned null, treating as current account")
+        return@withContext true
+      }
+      val expectedBackupId = messageBackupKey.deriveBackupId(SignalStore.account.requireAci())
+      val matches = actualBackupId.value.contentEquals(expectedBackupId.value)
+      Log.d(TAG, "backupBelongsToCurrentAccount: matches=$matches")
+      matches
+    }
   }
 
   fun clearDialog() {

@@ -81,14 +81,7 @@ class RestoreLocalBackupFragment : ComposeFragment() {
           .collect {
             sharedViewModel.registerAccountErrorShown()
             if (it is RegisterAccountResult.IncorrectRecoveryPassword) {
-              SignalStore.account.resetAccountEntropyPool()
-              SignalStore.account.resetAciAndPniIdentityKeysAfterFailedRestore()
-              sharedViewModel.clearRecoveryPassword()
-              enterBackupKeyViewModel.cancelRegistering()
-              sharedViewModel.intendToRestore(hasOldDevice = false, fromRemote = false, fromLocalV2 = true)
-              findNavController().safeNavigate(
-                RestoreLocalBackupFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION)
-              )
+              restoreLocalBackupViewModel.displayDifferentAccountWarning()
             } else {
               enterBackupKeyViewModel.handleRegistrationFailure(it)
             }
@@ -139,6 +132,29 @@ class RestoreLocalBackupFragment : ComposeFragment() {
     override fun skipRestore() {
       sharedViewModel.skipRestore()
       findNavController().safeNavigate(RestoreLocalBackupFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION))
+    }
+
+    override fun confirmRestoreWithDifferentAccount() {
+      SignalStore.account.resetAccountEntropyPool()
+      SignalStore.account.resetAciAndPniIdentityKeysAfterFailedRestore()
+      sharedViewModel.clearRecoveryPassword()
+      enterBackupKeyViewModel.cancelRegistering()
+      sharedViewModel.intendToRestore(hasOldDevice = false, fromRemote = false, fromLocalV2 = true)
+      findNavController().safeNavigate(
+        RestoreLocalBackupFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION)
+      )
+    }
+
+    override fun denyRestoreWithDifferentAccount() {
+      SignalStore.account.resetAccountEntropyPool()
+      SignalStore.account.resetAciAndPniIdentityKeysAfterFailedRestore()
+      SignalStore.backup.localRestoreAccountEntropyPool = null
+      sharedViewModel.clearRecoveryPassword()
+      enterBackupKeyViewModel.cancelRegistering()
+      sharedViewModel.intendToRestore(hasOldDevice = false, fromRemote = false, fromLocalV2 = true)
+      findNavController().safeNavigate(
+        RestoreLocalBackupFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.COLLECT_FOR_LOCAL_V2_SIGNAL_BACKUPS_RESTORE)
+      )
     }
 
     override fun routeToLegacyBackupRestoration(uri: Uri) {

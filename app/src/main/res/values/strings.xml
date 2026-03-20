@@ -9193,6 +9193,18 @@
     <string name="RestoreLocalBackupDialog__failed_to_load_archive">Failed to load archive. Please select a different directory.</string>
     <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
     <string name="RestoreLocalBackupDialog__ok">OK</string>
+    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
+    <string name="RestoreLocalBackupDialog__skip_restore">Skip restore?</string>
+    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
+    <string name="RestoreLocalBackupDialog__skip_restore_body">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
+    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Skip restore</string>
+    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
+    <string name="RestoreLocalBackupDialog__restore_to_new_account">Restore to new account?</string>
+    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
+    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">The backup you are restoring was created using a different Signal account. You can restore this backup to a new account, but you will no longer be a member of any groups that were restored.</string>
+    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
+    <string name="RestoreLocalBackupDialog__restore">Restore</string>
 
     <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
     <string name="RestoreLocalBackupActivity__backup_restore_failed">Backup restore failed</string>

@@ -158,11 +158,23 @@ fun RestoreLocalBackupNavDisplay(
     }
   )
 
-  RestoreLocalBackupDialogDisplay(state.dialog, {
-    if (it == RestoreLocalBackupDialog.SKIP_RESTORE_WARNING) {
-      callback.skipRestore()
-    }
-  }, callback::clearDialog)
+  RestoreLocalBackupDialogDisplay(
+    dialog = state.dialog,
+    onDialogConfirmed = {
+      when (it) {
+        RestoreLocalBackupDialog.SKIP_RESTORE_WARNING -> callback.skipRestore()
+        RestoreLocalBackupDialog.CONFIRM_DIFFERENT_ACCOUNT -> callback.confirmRestoreWithDifferentAccount()
+        else -> Unit
+      }
+    },
+    onDialogDenied = {
+      when (it) {
+        RestoreLocalBackupDialog.CONFIRM_DIFFERENT_ACCOUNT -> callback.denyRestoreWithDifferentAccount()
+        else -> Unit
+      }
+    },
+    onDismiss = callback::clearDialog
+  )
 }
 
 data class RestoreLocalBackupState(
@@ -177,6 +189,8 @@ interface RestoreLocalBackupCallback {
   fun displaySkipRestoreWarning()
   fun clearDialog()
   fun skipRestore()
+  fun confirmRestoreWithDifferentAccount()
+  fun denyRestoreWithDifferentAccount()
   fun submitBackupKey()
   fun routeToLegacyBackupRestoration(uri: Uri)
   fun onBackupKeyChanged(key: String)
@@ -189,6 +203,8 @@ interface RestoreLocalBackupCallback {
     override fun displaySkipRestoreWarning() = Unit
     override fun clearDialog() = Unit
     override fun skipRestore() = Unit
+    override fun confirmRestoreWithDifferentAccount() = Unit
+    override fun denyRestoreWithDifferentAccount() = Unit
     override fun submitBackupKey() = Unit
     override fun routeToLegacyBackupRestoration(uri: Uri) = Unit
     override fun onBackupKeyChanged(key: String) = Unit
