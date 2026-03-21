@@ -45,6 +45,10 @@ class LabsSettingsViewModel : ViewModel() {
         SignalStore.labs.newApngRenderer = event.enabled
         _state.value = _state.value.copy(newApngRenderer = event.enabled)
       }
+      is LabsSettingsEvents.ToggleStarredMessages -> {
+        SignalStore.labs.starredMessages = event.enabled
+        _state.value = _state.value.copy(starredMessages = event.enabled)
+      }
     }
   }
 
@@ -56,7 +60,8 @@ class LabsSettingsViewModel : ViewModel() {
       groupSuggestionsForMembers = SignalStore.labs.groupSuggestionsForMembers,
       betterSearch = SignalStore.labs.betterSearch,
       autoLowerHand = SignalStore.labs.autoLowerHand,
-      newApngRenderer = SignalStore.labs.newApngRenderer
+      newApngRenderer = SignalStore.labs.newApngRenderer,
+      starredMessages = SignalStore.labs.starredMessages
     )
   }
 }

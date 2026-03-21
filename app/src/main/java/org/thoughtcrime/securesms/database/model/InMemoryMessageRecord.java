@@ -60,7 +60,8 @@ public class InMemoryMessageRecord extends MessageRecord {
           0,
           0,
           null,
-          null);
+          null,
+          false);
   }
 
   @Override

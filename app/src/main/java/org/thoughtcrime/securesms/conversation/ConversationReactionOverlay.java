@@ -733,6 +733,14 @@ public final class ConversationReactionOverlay extends FrameLayout {
       items.add(new ActionItem(R.drawable.symbol_pin_slash_24, getResources().getString(R.string.conversation_selection__menu_unpin_message), () -> handleActionItemClicked(Action.UNPIN_MESSAGE)));
     }
 
+    if (menuState.shouldShowStarMessage()) {
+      items.add(new ActionItem(R.drawable.symbol_star_outline_24, getResources().getString(R.string.conversation_selection__menu_star), () -> handleActionItemClicked(Action.STAR_MESSAGE)));
+    }
+
+    if (menuState.shouldShowUnstarMessage()) {
+      items.add(new ActionItem(R.drawable.symbol_star_outline_24, getResources().getString(R.string.conversation_selection__menu_unstar), () -> handleActionItemClicked(Action.UNSTAR_MESSAGE)));
+    }
+
     backgroundView.setVisibility(menuState.shouldShowReactions() ? View.VISIBLE : View.INVISIBLE);
     foregroundView.setVisibility(menuState.shouldShowReactions() ? View.VISIBLE : View.INVISIBLE);
 
@@ -920,6 +928,8 @@ public final class ConversationReactionOverlay extends FrameLayout {
     DELETE,
     END_POLL,
     PIN_MESSAGE,
-    UNPIN_MESSAGE
+    UNPIN_MESSAGE,
+    STAR_MESSAGE,
+    UNSTAR_MESSAGE
   }
 }

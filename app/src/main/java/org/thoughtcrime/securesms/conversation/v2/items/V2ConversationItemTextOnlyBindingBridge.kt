@@ -43,7 +43,11 @@ data class V2ConversationItemTextOnlyBindingBridge(
   val footerSpace: Space?,
   val alert: AlertView?,
   val isIncoming: Boolean,
-  val footerPinned: ImageView
+  val footerPinned: ImageView,
+  val footerStarred: ImageView,
+  val starredSource: TextView?,
+  val starredSourceWrapper: View?,
+  val starredSourceAvatar: AvatarImageView?
 )
 
 /**
@@ -66,7 +70,11 @@ fun V2ConversationItemTextOnlyIncomingBinding.bridge(): V2ConversationItemTextOn
     alert = null,
     footerSpace = footerEndPad,
     isIncoming = true,
-    footerPinned = conversationItemFooterPinned
+    footerPinned = conversationItemFooterPinned,
+    footerStarred = conversationItemFooterStarred,
+    starredSource = conversationItemStarredSource,
+    starredSourceWrapper = conversationItemStarredSourceWrapper,
+    starredSourceAvatar = conversationItemStarredSourceAvatar
   )
 }
 
@@ -90,6 +98,10 @@ fun V2ConversationItemTextOnlyOutgoingBinding.bridge(): V2ConversationItemTextOn
     alert = conversationItemAlert,
     footerSpace = footerEndPad,
     isIncoming = false,
-    footerPinned = conversationItemFooterPinned
+    footerPinned = conversationItemFooterPinned,
+    footerStarred = conversationItemFooterStarred,
+    starredSource = null,
+    starredSourceWrapper = null,
+    starredSourceAvatar = null
   )
 }

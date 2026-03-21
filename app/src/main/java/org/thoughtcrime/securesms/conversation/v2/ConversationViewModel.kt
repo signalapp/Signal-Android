@@ -381,6 +381,16 @@ class ConversationViewModel(
     }
   }
 
+  fun setMessageStarred(messageId: Long, starred: Boolean): Completable {
+    return setMessagesStarred(setOf(messageId), starred)
+  }
+
+  fun setMessagesStarred(messageIds: Set<Long>, starred: Boolean): Completable {
+    return repository
+      .setMessagesStarred(messageIds, starred)
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
   fun updateThreadHeader() {
     pagingController.onDataItemChanged(ConversationElementKey.threadHeader)
   }

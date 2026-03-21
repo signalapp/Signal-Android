@@ -107,6 +107,7 @@ interface MainToolbarCallback {
   fun onCloseActionModeClick()
   fun onSearchQueryUpdated(query: String)
   fun onSearchFilterClick()
+  fun onStarredMessagesClick()
   fun onNotificationProfileTooltipDismissed()
 
   object Empty : MainToolbarCallback {
@@ -130,6 +131,7 @@ interface MainToolbarCallback {
     override fun onCloseActionModeClick() = Unit
     override fun onSearchQueryUpdated(query: String) = Unit
     override fun onSearchFilterClick() = Unit
+    override fun onStarredMessagesClick() = Unit
     override fun onNotificationProfileTooltipDismissed() = Unit
   }
 }
@@ -718,6 +720,20 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
       },
       onClick = {
         callback.onClearUnreadChatsFilterClick()
+        onOptionSelected()
+      }
+    )
+  }
+
+  if (SignalStore.labs.starredMessages) {
+    DropdownMenus.Item(
+      text = {
+        Text(
+          text = stringResource(R.string.text_secure_normal__starred_messages)
+        )
+      },
+      onClick = {
+        callback.onStarredMessagesClick()
         onOptionSelected()
       }
     )

@@ -16,6 +16,7 @@ object RxDatabaseObserver {
   val conversationList: Flowable<Unit> by lazy { conversationListFlowable() }
   val notificationProfiles: Flowable<Unit> by lazy { notificationProfilesFlowable() }
   val chatFolders: Flowable<Unit> by lazy { chatFoldersFlowable() }
+  val starredMessages: Flowable<Unit> by lazy { starredMessagesFlowable() }
 
   private fun conversationListFlowable(): Flowable<Unit> {
     return databaseFlowable { listener ->
@@ -40,6 +41,12 @@ object RxDatabaseObserver {
   private fun chatFoldersFlowable(): Flowable<Unit> {
     return databaseFlowable { listener ->
       AppDependencies.databaseObserver.registerChatFolderObserver(listener)
+    }
+  }
+
+  private fun starredMessagesFlowable(): Flowable<Unit> {
+    return databaseFlowable { listener ->
+      AppDependencies.databaseObserver.registerStarredMessageObserver(listener)
     }
   }
 

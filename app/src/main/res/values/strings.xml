@@ -1849,6 +1849,16 @@
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Replies</string>
 
+    <!-- StarredMessagesFragment -->
+    <!-- Title for the starred messages screen -->
+    <string name="StarredMessagesActivity__starred_messages" translatable="false">Starred messages</string>
+    <!-- Empty state text when there are no starred messages -->
+    <string name="StarredMessagesFragment__no_starred_messages" translatable="false">No starred messages</string>
+    <!-- Empty state description when there are no starred messages -->
+    <string name="StarredMessagesFragment__tap_and_hold_on_a_message_to_star_it" translatable="false">Tap and hold on a message to star it.</string>
+    <!-- Format for starred message source label, e.g. "Alice › Book Club" -->
+    <string name="StarredMessages__s_chevron_s" translatable="false">%1$s \u203A %2$s</string>
+
     <!-- NotificationBarManager -->
     <string name="NotificationBarManager__establishing_signal_call">Establishing Signal call</string>
     <!-- Temporary notification shown when starting the calling service -->
@@ -4593,6 +4603,10 @@
     <string name="conversation_selection__menu_copy">Copy</string>
     <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">Delete</string>
+    <!-- Button to star a message to save it for later; Action item -->
+    <string name="conversation_selection__menu_star" translatable="false">Star (Labs)</string>
+    <!-- Button to remove the star from a message; Action item -->
+    <string name="conversation_selection__menu_unstar" translatable="false">Unstar (Labs)</string>
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Forward</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4705,6 +4719,8 @@
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">New group</string>
     <string name="text_secure_normal__menu_settings">Settings</string>
+    <!-- Menu item in the main conversation list to view all starred messages -->
+    <string name="text_secure_normal__starred_messages" translatable="false">Starred messages (Labs)</string>
     <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
     <string name="text_secure_normal__mark_all_as_read">Mark all read</string>
     <string name="text_secure_normal__invite_friends">Invite friends</string>
@@ -6017,6 +6033,8 @@
     <string name="ConversationSettingsFragment__search">Search</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Disappearing messages</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sounds &amp; notifications</string>
+    <!-- Label for the starred messages option in conversation settings -->
+    <string name="ConversationSettingsFragment__starred_messages" translatable="false">Starred messages</string>
     <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
     <string name="ConversationSettingsFragment__contact_details">Phone contact info</string>
     <string name="ConversationSettingsFragment__view_safety_number">View safety number</string>

@@ -55,6 +55,37 @@
         app:layout_constraintTop_toTopOf="@id/contact_photo"
         tools:visibility="gone" />
 
+    <!-- Starred source label (above bubble) -->
+    <LinearLayout
+        android:id="@+id/conversation_item_starred_source_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <org.thoughtcrime.securesms.components.AvatarImageView
+            android:id="@+id/conversation_item_starred_source_avatar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="6dp"
+            app:fallbackImageSize="small" />
+
+        <TextView
+            android:id="@+id/conversation_item_starred_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Signal.Text.BodyMedium"
+            android:textColor="@color/signal_text_secondary"
+            tools:text="Alice › Book Club" />
+
+    </LinearLayout>
+
     <!-- Body -->
     <org.thoughtcrime.securesms.conversation.v2.items.ShrinkWrapLinearLayout
         android:id="@+id/conversation_item_body_wrapper"
@@ -68,7 +99,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/contact_photo"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/conversation_item_starred_source_wrapper"
         app:layout_goneMarginStart="16dp"
         tools:background="@color/black">
 
@@ -127,6 +158,18 @@
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="@dimen/message_bubble_footer_bottom_padding"
         android:src="@drawable/symbol_pin_filled_12"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/conversation_item_footer_date"
+        app:layout_constraintEnd_toStartOf="@id/conversation_item_footer_starred"
+        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date" />
+
+    <ImageView
+        android:id="@+id/conversation_item_footer_starred"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="@dimen/message_bubble_footer_bottom_padding"
+        android:src="@drawable/symbol_star_filled_12"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_footer_date"
         app:layout_constraintEnd_toStartOf="@id/conversation_item_footer_date"

@@ -1955,6 +1955,22 @@ class ConversationFragment :
       )
   }
 
+  private fun handleStarMessages(messageIds: Set<Long>) {
+    disposables += viewModel
+      .setMessagesStarred(messageIds, true)
+      .subscribeBy(
+        onError = { Log.w(TAG, "Error starring message!", it) }
+      )
+  }
+
+  private fun handleUnstarMessages(messageIds: Set<Long>) {
+    disposables += viewModel
+      .setMessagesStarred(messageIds, false)
+      .subscribeBy(
+        onError = { Log.w(TAG, "Error unstarring message!", it) }
+      )
+  }
+
   private fun handleVideoCall() {
     val recipient = viewModel.recipientSnapshot ?: return
     if (!recipient.isGroup) {
@@ -2600,6 +2616,24 @@ class ConversationFragment :
       items.add(
         ActionItem(CoreUiR.drawable.symbol_info_24, resources.getString(R.string.conversation_selection__menu_message_details)) {
           handleDisplayDetails(getSelectedConversationMessage())
+          finishActionMode()
+        }
+      )
+    }
+
+    if (menuState.shouldShowStarMessage()) {
+      items.add(
+        ActionItem(R.drawable.symbol_star_outline_24, resources.getString(R.string.conversation_selection__menu_star)) {
+          handleStarMessages(selectedParts.map { it.conversationMessage.messageRecord.id }.toSet())
+          finishActionMode()
+        }
+      )
+    }
+
+    if (menuState.shouldShowUnstarMessage()) {
+      items.add(
+        ActionItem(R.drawable.symbol_star_outline_24, resources.getString(R.string.conversation_selection__menu_unstar)) {
+          handleUnstarMessages(selectedParts.map { it.conversationMessage.messageRecord.id }.toSet())
           finishActionMode()
         }
       )
@@ -4275,6 +4309,8 @@ class ConversationFragment :
         ConversationReactionOverlay.Action.END_POLL -> handleEndPoll(conversationMessage.messageRecord.getPoll()?.id)
         ConversationReactionOverlay.Action.PIN_MESSAGE -> handlePinMessage(conversationMessage)
         ConversationReactionOverlay.Action.UNPIN_MESSAGE -> handleUnpinMessage(conversationMessage.messageRecord.id)
+        ConversationReactionOverlay.Action.STAR_MESSAGE -> handleStarMessages(setOf(conversationMessage.messageRecord.id))
+        ConversationReactionOverlay.Action.UNSTAR_MESSAGE -> handleUnstarMessages(setOf(conversationMessage.messageRecord.id))
       }
     }
   }

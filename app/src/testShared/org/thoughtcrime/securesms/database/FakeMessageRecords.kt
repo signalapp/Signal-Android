@@ -210,7 +210,8 @@ object FakeMessageRecords {
       false,
       0,
       deletedBy,
-      null
+      null,
+      false
     )
   }
 }

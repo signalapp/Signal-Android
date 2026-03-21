@@ -431,6 +431,16 @@ class ConversationRepository(
     }.subscribeOn(Schedulers.io())
   }
 
+  fun setMessageStarred(messageId: Long, starred: Boolean): Completable {
+    return setMessagesStarred(setOf(messageId), starred)
+  }
+
+  fun setMessagesStarred(messageIds: Set<Long>, starred: Boolean): Completable {
+    return Completable.fromAction {
+      SignalDatabase.messages.setStarred(messageIds, starred)
+    }.subscribeOn(Schedulers.io())
+  }
+
   private fun applyUniversalExpireTimerIfNecessary(context: Context, recipient: Recipient, outgoingMessage: OutgoingMessage, threadId: Long): OutgoingMessage {
     if (!outgoingMessage.isExpirationUpdate && outgoingMessage.expiresIn == 0L) {
       val expireTimerVersion = RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, recipient, threadId)

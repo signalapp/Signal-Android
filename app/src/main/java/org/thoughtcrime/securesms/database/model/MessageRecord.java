@@ -116,6 +116,7 @@ public abstract class MessageRecord extends DisplayRecord {
   private final long                     pinnedUntil;
   private final RecipientId              deletedBy;
   private final MessageExtras            messageExtras;
+  private final boolean                  starred;
 
   protected Boolean isJumboji = null;
 
@@ -138,7 +139,8 @@ public abstract class MessageRecord extends DisplayRecord {
                 int revisionNumber,
                 long pinnedUntil,
                 @Nullable RecipientId deletedBy,
-                @Nullable MessageExtras messageExtras)
+                @Nullable MessageExtras messageExtras,
+                boolean starred)
   {
     super(body, fromRecipient, toRecipient, dateSent, dateReceived,
           threadId, deliveryStatus, hasDeliveryReceipt, type,
@@ -161,6 +163,7 @@ public abstract class MessageRecord extends DisplayRecord {
     this.pinnedUntil         = pinnedUntil;
     this.deletedBy           = deletedBy;
     this.messageExtras       = messageExtras;
+    this.starred             = starred;
   }
 
   public abstract boolean isMms();
@@ -797,6 +800,10 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public @Nullable RecipientId getDeletedBy() {
     return deletedBy;
+  }
+
+  public boolean isStarred() {
+    return starred;
   }
 
   public boolean isPendingAdminDelete() {

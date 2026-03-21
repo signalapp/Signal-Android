@@ -227,6 +227,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     const val PINNED_AT = "pinned_at"
     const val DELETED_BY = "deleted_by"
     const val STORY_ARCHIVED = "story_archived"
+    const val STARRED = "starred"
 
     const val QUOTE_NOT_PRESENT_ID = 0L
     const val QUOTE_TARGET_MISSING_ID = -1L
@@ -299,7 +300,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $PINNING_MESSAGE_ID INTEGER DEFAULT 0,
         $PINNED_AT INTEGER DEFAULT 0,
         $DELETED_BY INTEGER DEFAULT NULL REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
-        $STORY_ARCHIVED INTEGER DEFAULT 0
+        $STORY_ARCHIVED INTEGER DEFAULT 0,
+        $STARRED INTEGER DEFAULT 0
       )
     """
 
@@ -334,7 +336,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       "CREATE INDEX IF NOT EXISTS message_pinned_until_index ON $TABLE_NAME ($PINNED_UNTIL)",
       "CREATE INDEX IF NOT EXISTS message_pinned_at_index ON $TABLE_NAME ($PINNED_AT)",
       "CREATE INDEX IF NOT EXISTS message_deleted_by_index ON $TABLE_NAME ($DELETED_BY)",
-      "CREATE INDEX IF NOT EXISTS message_story_archived_index ON $TABLE_NAME ($STORY_ARCHIVED, $STORY_TYPE, $DATE_SENT) WHERE $STORY_TYPE > 0 AND $STORY_ARCHIVED > 0"
+      "CREATE INDEX IF NOT EXISTS message_story_archived_index ON $TABLE_NAME ($STORY_ARCHIVED, $STORY_TYPE, $DATE_SENT) WHERE $STORY_TYPE > 0 AND $STORY_ARCHIVED > 0",
+      "CREATE INDEX IF NOT EXISTS message_starred_index ON $TABLE_NAME ($STARRED) WHERE $STARRED > 0"
     )
 
     private val MMS_PROJECTION_BASE = arrayOf(
@@ -390,7 +393,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       VOTES_UNREAD,
       VOTES_LAST_SEEN,
       PINNED_UNTIL,
-      DELETED_BY
+      DELETED_BY,
+      STARRED
     )
 
     private val MMS_PROJECTION: Array<String> = MMS_PROJECTION_BASE
@@ -2150,6 +2154,47 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
+  fun setStarred(messageId: Long, starred: Boolean) {
+    setStarred(setOf(messageId), starred)
+  }
+
+  fun setStarred(messageIds: Set<Long>, starred: Boolean) {
+    writableDatabase.withinTransaction { db ->
+      for (messageId in messageIds) {
+        db.update(TABLE_NAME)
+          .values(STARRED to if (starred) 1 else 0)
+          .where("$ID = ?", messageId)
+          .run()
+      }
+    }
+
+    val threadIds = messageIds.map { getThreadIdForMessage(it) }.toSet()
+    for (threadId in threadIds) {
+      notifyConversationListeners(threadId)
+    }
+    for (messageId in messageIds) {
+      AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
+    }
+    AppDependencies.databaseObserver.notifyStarredMessageObservers()
+  }
+
+  fun getStarredMessages(threadId: Long? = null): List<MessageRecord> {
+    val where: String
+    val args: Array<String>?
+
+    if (threadId != null) {
+      where = "$STARRED > 0 AND $THREAD_ID = ? AND $LATEST_REVISION_ID IS NULL"
+      args = buildArgs(threadId)
+    } else {
+      where = "$STARRED > 0 AND $LATEST_REVISION_ID IS NULL"
+      args = null
+    }
+
+    return mmsReaderFor(queryMessages(where, args, reverse = true)).use { reader ->
+      reader.mapNotNull { it }
+    }.withAttachments()
+  }
+
   fun getRecentPendingMessages(): MmsReader {
     val now = System.currentTimeMillis()
     val oneDayAgo = now.milliseconds - 1.days
@@ -2301,7 +2346,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           LINK_PREVIEWS to null,
           SHARED_CONTACTS to null,
           ORIGINAL_MESSAGE_ID to null,
-          LATEST_REVISION_ID to null
+          LATEST_REVISION_ID to null,
+          STARRED to 0
         )
         .where("$ID = ?", messageId)
         .run()
@@ -2925,6 +2971,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .readToSingleInt(0)
 
       contentValues.put(NOTIFIED, notified.toInt())
+      contentValues.put(STARRED, if (editedMessage.isStarred) 1 else 0)
     } else if (MessageTypes.isPinnedMessageUpdate(type)) {
       contentValues.put(NOTIFIED, 1)
     }
@@ -3343,6 +3390,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       contentValues.put(ORIGINAL_MESSAGE_ID, editedMessage.getOriginalOrOwnMessageId().id)
       contentValues.put(REVISION_NUMBER, editedMessage.revisionNumber + 1)
       contentValues.put(EXPIRE_STARTED, editedMessage.expireStarted)
+      contentValues.put(STARRED, if (editedMessage.isStarred) 1 else 0)
     } else {
       contentValues.putNull(ORIGINAL_MESSAGE_ID)
     }
@@ -6402,6 +6450,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val isRead = cursor.requireBoolean(READ)
       val pinnedUntil = cursor.requireLong(PINNED_UNTIL)
       val deletedBy = cursor.requireLongOrNull(DELETED_BY)?.let { RecipientId.from(it) }
+      val isStarred = cursor.requireBoolean(STARRED)
       val messageExtraBytes = cursor.requireBlob(MESSAGE_EXTRAS)
       val messageExtras = messageExtraBytes?.let { MessageExtras.ADAPTER.decode(it) }
 
@@ -6497,7 +6546,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         isRead,
         pinnedUntil,
         deletedBy,
-        messageExtras
+        messageExtras,
+        isStarred
       )
     }
 

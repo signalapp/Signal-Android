@@ -151,6 +151,15 @@ private fun LabsSettingsContent(
           onCheckChanged = { onEvent(LabsSettingsEvents.ToggleNewApngRenderer(it)) }
         )
       }
+
+      item {
+        Rows.ToggleRow(
+          checked = state.starredMessages,
+          text = "Starred Messages",
+          label = "Enables starring messages for later reference. Adds star/unstar to the long-press menu and a starred messages screen accessible from conversation settings and the main menu.",
+          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleStarredMessages(it)) }
+        )
+      }
     }
   }
 }

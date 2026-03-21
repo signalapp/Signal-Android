@@ -170,6 +170,7 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
 import org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment
 import org.thoughtcrime.securesms.service.BackupMediaRestoreService
 import org.thoughtcrime.securesms.service.KeyCachingService
+import org.thoughtcrime.securesms.starred.StarredMessagesActivity
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.archive.StoryArchiveActivity
 import org.thoughtcrime.securesms.stories.landing.StoriesLandingFragment
@@ -1156,6 +1157,10 @@ class MainActivity :
 
     override fun onClearUnreadChatsFilterClick() {
       toolbarViewModel.setChatFilter(ConversationFilter.OFF)
+    }
+
+    override fun onStarredMessagesClick() {
+      startActivity(StarredMessagesActivity.createIntent(this@MainActivity))
     }
 
     override fun onSettingsClick() {

@@ -162,6 +162,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V305_AddStoryArchiv
 import org.thoughtcrime.securesms.database.helpers.migration.V306_AddRemoteDeletedColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V308_AddBackRemoteDeletedColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V309_GroupTerminatedColumnMigration
+import org.thoughtcrime.securesms.database.helpers.migration.V310_AddStarredColumn
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
@@ -331,10 +332,11 @@ object SignalDatabaseMigrations {
     306 to V306_AddRemoteDeletedColumn,
 //    307 to V307_RemoveRemoteDeletedColumn - Removed due to unsolvable OOM crashes. [TODO]: Attempt to fix in the future
     308 to V308_AddBackRemoteDeletedColumn,
-    309 to V309_GroupTerminatedColumnMigration
+    309 to V309_GroupTerminatedColumnMigration,
+    310 to V310_AddStarredColumn
   )
 
-  const val DATABASE_VERSION = 309
+  const val DATABASE_VERSION = 310
 
   @JvmStatic
   fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {

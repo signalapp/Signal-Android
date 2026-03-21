@@ -89,6 +89,7 @@ import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndR
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupInviteSentDialog
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupsLearnMoreBottomSheetDialogFragment
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
@@ -100,6 +101,7 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
+import org.thoughtcrime.securesms.starred.StarredMessagesActivity
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
@@ -630,6 +632,16 @@ class ConversationSettingsFragment :
             }
 
             navController.safeNavigate(action)
+          }
+        )
+      }
+
+      if (!state.recipient.isReleaseNotes && SignalStore.labs.starredMessages) {
+        clickPref(
+          title = DSLSettingsText.from(R.string.ConversationSettingsFragment__starred_messages),
+          icon = DSLSettingsIcon.from(R.drawable.symbol_star_outline_24),
+          onClick = {
+            startActivity(StarredMessagesActivity.createIntent(requireContext(), state.threadId))
           }
         )
       }
