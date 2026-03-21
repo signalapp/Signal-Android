@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -151,7 +152,7 @@ private fun StarredMessagesScreen(
   onNavigateBack: () -> Unit,
   onNavigateToMessage: (MessageRecord) -> Unit
 ) {
-  val messages by viewModel.getMessages().collectAsStateWithLifecycle(initialValue = emptyList())
+  val messages by viewModel.getMessages().collectAsStateWithLifecycle(initialValue = null)
   val scope = rememberCoroutineScope()
   val context = LocalContext.current
   val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -174,24 +175,37 @@ private fun StarredMessagesScreen(
         .padding(padding)
         .fillMaxSize()
     ) {
-      StarredMessageList(
-        messages = messages,
-        onItemClick = onNavigateToMessage,
-        onQuoteClick = onNavigateToMessage,
-        onUnstarMessage = { messageId ->
-          scope.launch {
-            try {
-              viewModel.unstarMessage(messageId)
-            } catch (e: Exception) {
-              Toast.makeText(context, "Failed to unstar message", Toast.LENGTH_SHORT).show()
-            }
+      when {
+        messages == null -> {
+          Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+          ) {
+            CircularProgressIndicator()
           }
-        },
-        modifier = Modifier.fillMaxSize()
-      )
+        }
 
-      if (messages.isEmpty()) {
-        EmptyState(modifier = Modifier.fillMaxSize())
+        messages.isNullOrEmpty() -> {
+          EmptyState(modifier = Modifier.fillMaxSize())
+        }
+
+        else -> {
+          StarredMessageList(
+            messages = messages!!,
+            onItemClick = onNavigateToMessage,
+            onQuoteClick = onNavigateToMessage,
+            onUnstarMessage = { messageId ->
+              scope.launch {
+                try {
+                  viewModel.unstarMessage(messageId)
+                } catch (e: Exception) {
+                  Toast.makeText(context, "Failed to unstar message", Toast.LENGTH_SHORT).show()
+                }
+              }
+            },
+            modifier = Modifier.fillMaxSize()
+          )
+        }
       }
     }
   }

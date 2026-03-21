@@ -7,6 +7,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.launch
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
@@ -99,7 +100,7 @@ class StoryArchiveViewModel : ViewModel() {
 
     pagedDataJob?.cancel()
     pagedDataJob = viewModelScope.launch {
-      newPagedData.data.collectLatest { stories ->
+      newPagedData.data.drop(1).collectLatest { stories ->
         _state.value = _state.value.copy(stories = stories, isLoading = false)
       }
     }
