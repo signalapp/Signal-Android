@@ -45,6 +45,7 @@ import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
@@ -222,13 +223,18 @@ object Rows {
     onSelectionChanged: (Array<String>) -> Unit
   ) {
     var displayDialog by remember { mutableStateOf(false) }
+    val none = stringResource(R.string.core__none)
 
     TextRow(
       text = text,
-      label = selection.joinToString(", ") {
-        val index = values.indexOf(it)
-        if (index == -1) error("not found: $it in ${values.joinToString(", ")}")
-        labels[index]
+      label = if (selection.isEmpty()) {
+        none
+      } else {
+        selection.joinToString(", ") {
+          val index = values.indexOf(it)
+          if (index == -1) error("not found: $it in ${values.joinToString(", ")}")
+          labels[index]
+        }
       },
       onClick = {
         displayDialog = true

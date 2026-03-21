@@ -21,4 +21,8 @@
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
+
+    <!-- General -->
+    <!-- Label displayed when no option is selected or when a value is absent -->
+    <string name="core__none">None</string>
 </resources>
