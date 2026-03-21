@@ -26,7 +26,7 @@ class PlayerActivity : ComponentActivity() {
     val nextButton = findViewById<Button>(R.id.next_button)
     frameMetadata = findViewById<TextView>(R.id.frame_metadata)
 
-    val decoder = ApngDecoder(assets.open("broken03.png"))
+    val decoder = ApngDecoder.create { assets.open("broken03.png") }
     val drawable = ApngDrawable(decoder).apply {
       stop()
       debugDrawBounds = true

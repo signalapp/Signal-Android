@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
 import org.thoughtcrime.securesms.glide.cache.ApngDrawableTranscoder;
 import org.thoughtcrime.securesms.glide.cache.ApngFrameDrawableTranscoder;
 import org.thoughtcrime.securesms.glide.cache.ApngInputStreamFactoryResourceDecoder;
-import org.thoughtcrime.securesms.glide.cache.ApngInputStreamResourceDecoder;
+import org.thoughtcrime.securesms.glide.cache.EncryptedApngCacheDecoder;
 import org.thoughtcrime.securesms.glide.cache.ByteBufferApngDecoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedApngCacheEncoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedApngResourceEncoder;
@@ -93,10 +93,9 @@ public class SignalGlideComponents implements RegisterGlideComponents {
 
 
     if (SignalStore.labs().getNewApngRenderer()) {
-      registry.prepend(InputStream.class, ApngDecoder.class, new ApngInputStreamResourceDecoder());
       registry.prepend(InputStreamFactory.class, ApngDecoder.class, new ApngInputStreamFactoryResourceDecoder());
       registry.prepend(ApngDecoder.class, new EncryptedApngResourceEncoder(secret));
-      registry.prepend(File.class, ApngDecoder.class, new EncryptedCacheDecoder<>(secret, new ApngInputStreamResourceDecoder()));
+      registry.prepend(File.class, ApngDecoder.class, new EncryptedApngCacheDecoder(secret));
       registry.register(ApngDecoder.class, Drawable.class, new ApngDrawableTranscoder());
     } else {
       ByteBufferApngDecoder    byteBufferApngDecoder    = new ByteBufferApngDecoder();

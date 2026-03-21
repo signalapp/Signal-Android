@@ -33,25 +33,24 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
   }
 
   val currentFrame: ApngDecoder.Frame
-    get() = frames[position]
+    get() = decoder.frames[position]
   var position = 0
     private set
   val frameCount: Int
-    get() = frames.size
+    get() = decoder.frames.size
 
   var debugDrawBounds = false
   var loopForever = false
 
-  private val frames: List<ApngDecoder.Frame> = decoder.debugGetAllFrames()
   private var playCount = 0
 
   private val frameRect = Rect(0, 0, 0, 0)
 
   private var timeForNextFrame = 0L
 
-  private val activeBitmap = Bitmap.createBitmap(decoder.metadata?.width ?: 0, decoder.metadata?.height ?: 0, Bitmap.Config.ARGB_8888)
-  private val pendingBitmap = Bitmap.createBitmap(decoder.metadata?.width ?: 0, decoder.metadata?.height ?: 0, Bitmap.Config.ARGB_8888)
-  private val disposeOpBitmap = Bitmap.createBitmap(decoder.metadata?.width ?: 0, decoder.metadata?.height ?: 0, Bitmap.Config.ARGB_8888)
+  private val activeBitmap = Bitmap.createBitmap(decoder.metadata.width, decoder.metadata.height, Bitmap.Config.ARGB_8888)
+  private val pendingBitmap = Bitmap.createBitmap(decoder.metadata.width, decoder.metadata.height, Bitmap.Config.ARGB_8888)
+  private val disposeOpBitmap = Bitmap.createBitmap(decoder.metadata.width, decoder.metadata.height, Bitmap.Config.ARGB_8888)
 
   private val pendingCanvas = Canvas(pendingBitmap)
   private val activeCanvas = Canvas(activeBitmap)
@@ -71,17 +70,17 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
       return
     }
 
-    val totalPlays = decoder.metadata?.numPlays ?: Int.MAX_VALUE
+    val totalPlays = decoder.metadata.numPlays
     if (playCount >= totalPlays && !loopForever) {
       canvas.drawBitmap(activeBitmap, 0f, 0f, null)
       return
     }
 
-    val frame = frames[position]
-    drawFrame(frame)
+    val frame = decoder.frames[position]
+    drawFrame(frame, position)
     canvas.drawBitmap(activeBitmap, 0f, 0f, null)
 
-    position = (position + 1) % frames.size
+    position = (position + 1) % decoder.frames.size
     if (position == 0) {
       playCount++
     }
@@ -91,11 +90,11 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
   }
 
   override fun getIntrinsicWidth(): Int {
-    return decoder.metadata?.width ?: 0
+    return decoder.metadata.width
   }
 
   override fun getIntrinsicHeight(): Int {
-    return decoder.metadata?.height ?: 0
+    return decoder.metadata.height
   }
 
   override fun setAlpha(alpha: Int) {
@@ -108,6 +107,16 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
 
   override fun getOpacity(): Int {
     return PixelFormat.OPAQUE
+  }
+
+  override fun setVisible(visible: Boolean, restart: Boolean): Boolean {
+    val changed = super.setVisible(visible, restart)
+    if (visible) {
+      start()
+    } else {
+      stop()
+    }
+    return changed
   }
 
   override fun start() {
@@ -124,30 +133,31 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
   }
 
   fun nextFrame() {
-    position = (position + 1) % frames.size
+    position = (position + 1) % decoder.frames.size
     if (position == 0) {
       playCount++
     }
-    drawFrame(frames[position])
+    drawFrame(decoder.frames[position], position)
   }
 
   fun prevFrame() {
     if (position == 0) {
-      position = frames.size - 1
+      position = decoder.frames.size - 1
       playCount--
     } else {
       position--
     }
-    drawFrame(frames[position])
+    drawFrame(decoder.frames[position], position)
   }
 
   fun recycle() {
+    decoder.close()
     activeBitmap.recycle()
     pendingBitmap.recycle()
     disposeOpBitmap.recycle()
   }
 
-  private fun drawFrame(frame: ApngDecoder.Frame) {
+  private fun drawFrame(frame: ApngDecoder.Frame, frameIndex: Int) {
     frameRect.updateBoundsFrom(frame)
 
     // If the disposeOp is PREVIOUS, then we need to save the contents of the frame before we draw into it
@@ -157,7 +167,7 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
     }
 
     // Start with a clean slate if this is the first frame
-    if (position == 0) {
+    if (frameIndex == 0) {
       pendingCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
     }
 
@@ -174,7 +184,7 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
       }
     }
 
-    val frameBitmap = frame.decodeBitmap()
+    val frameBitmap = decoder.decodeFrame(frameIndex)
     pendingCanvas.drawBitmap(frameBitmap, frame.fcTL.xOffset.toFloat(), frame.fcTL.yOffset.toFloat(), null)
     frameBitmap.recycle()
 
@@ -198,7 +208,7 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
         // This disposeOp means we want to reset the drawing region of the frame to the content that was there before it was drawn.
 
         // Per spec, if the first frame has a disposeOp of DISPOSE_OP_PREVIOUS, we treat it as DISPOSE_OP_BACKGROUND
-        if (position == 0) {
+        if (frameIndex == 0) {
           pendingCanvas.drawRect(frameRect, CLEAR_PAINT)
         } else {
           pendingCanvas.drawRect(frameRect, CLEAR_PAINT)

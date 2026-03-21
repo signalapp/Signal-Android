@@ -17,11 +17,11 @@ internal class EncryptedApngResourceEncoder(private val secret: ByteArray) : Enc
 
   override fun encode(data: Resource<ApngDecoder>, file: File, options: Options): Boolean {
     try {
-      val input = data.get().inputStream
+      val input = data.get().streamFactory()
       val output = createEncryptedOutputStream(secret, file)
 
-      input.reset()
       input.copyTo(output)
+      input.close()
 
       return true
     } catch (e: IOException) {

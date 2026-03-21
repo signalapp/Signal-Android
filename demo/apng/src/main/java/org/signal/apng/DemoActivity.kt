@@ -289,7 +289,8 @@ class DemoActivity : ComponentActivity() {
 
         description.text = testModel.description
 
-        val decoder = ApngDecoder(itemView.context.assets.open(testModel.filename))
+        val context = itemView.context
+        val decoder = ApngDecoder.create { context.assets.open(testModel.filename) }
         val drawable = ApngDrawable(decoder)
         image.setImageDrawable(drawable)
       }

@@ -140,6 +140,27 @@ fun InputStream.copyTo(outputStream: OutputStream, closeInputStream: Boolean = t
 }
 
 /**
+ * Skips exactly [n] bytes from this stream. Unlike [InputStream.skip], this method
+ * guarantees all bytes are skipped by looping and falling back to [read] if needed.
+ *
+ * @throws IOException if the stream ends before [n] bytes have been skipped.
+ */
+@Throws(IOException::class)
+fun InputStream.skipNBytesOrThrow(n: Long) {
+  var remaining = n
+  while (remaining > 0) {
+    val skipped = skip(remaining)
+    if (skipped > 0) {
+      remaining -= skipped
+    } else if (read() == -1) {
+      throw IOException("Stream ended before $n bytes could be skipped (${n - remaining} skipped)")
+    } else {
+      remaining--
+    }
+  }
+}
+
+/**
  * Returns true if every byte in this stream matches the predicate, otherwise false.
  */
 fun InputStream.allMatch(predicate: (Byte) -> Boolean): Boolean {

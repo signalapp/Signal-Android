@@ -9,10 +9,8 @@ import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.ResourceDecoder
 import com.bumptech.glide.load.engine.Resource
 import org.signal.apng.ApngDecoder
-import org.signal.core.util.readFully
 import org.signal.glide.apng.ApngOptions
 import org.signal.glide.common.io.InputStreamFactory
-import java.io.ByteArrayInputStream
 import java.io.IOException
 
 class ApngInputStreamFactoryResourceDecoder : ResourceDecoder<InputStreamFactory, ApngDecoder> {
@@ -27,8 +25,7 @@ class ApngInputStreamFactoryResourceDecoder : ResourceDecoder<InputStreamFactory
 
   @Throws(IOException::class)
   override fun decode(source: InputStreamFactory, width: Int, height: Int, options: Options): Resource<ApngDecoder>? {
-    val data: ByteArray = source.create().readFully()
-    val decoder = ApngDecoder(ByteArrayInputStream(data))
-    return ApngResource(decoder, data.size)
+    val decoder = ApngDecoder.create { source.create() }
+    return ApngResource(decoder)
   }
 }

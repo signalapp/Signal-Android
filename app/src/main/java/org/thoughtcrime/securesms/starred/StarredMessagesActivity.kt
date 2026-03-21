@@ -88,7 +88,6 @@ import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.viewModel
 import java.util.Locale
-import org.signal.core.ui.R as CoreUiR
 
 class StarredMessagesActivity : PassphraseRequiredActivity() {
 
