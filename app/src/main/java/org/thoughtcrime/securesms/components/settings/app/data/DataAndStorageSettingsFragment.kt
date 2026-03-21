@@ -142,6 +142,7 @@ private fun DataAndStorageSettingsScreen(
           labels = stringArrayResource(R.array.pref_media_download_entries),
           values = stringArrayResource(R.array.pref_media_download_values),
           selection = state.mobileAutoDownloadValues.toTypedArray(),
+          noSelectionLabel = stringResource(R.string.preferences__none),
           onSelectionChanged = callbacks::onMobileDataAutoDownloadSelectionChanged
         )
       }
@@ -152,6 +153,7 @@ private fun DataAndStorageSettingsScreen(
           labels = stringArrayResource(R.array.pref_media_download_entries),
           values = stringArrayResource(R.array.pref_media_download_values),
           selection = state.wifiAutoDownloadValues.toTypedArray(),
+          noSelectionLabel = stringResource(R.string.preferences__none),
           onSelectionChanged = callbacks::onWifiDataAutoDownloadSelectionChanged
         )
       }
@@ -162,6 +164,7 @@ private fun DataAndStorageSettingsScreen(
           labels = stringArrayResource(R.array.pref_media_download_entries),
           values = stringArrayResource(R.array.pref_media_download_values),
           selection = state.roamingAutoDownloadValues.toTypedArray(),
+          noSelectionLabel = stringResource(R.string.preferences__none),
           onSelectionChanged = callbacks::onRoamingDataAutoDownloadSelectionChanged
         )
       }
