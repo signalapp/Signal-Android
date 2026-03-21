@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option java_package = "org.thoughtcrime.securesms.backup.v2.proto";
+option java_package = "org.signal.archive.proto";
 
 message BackupDebugInfo {
   message AttachmentDetails {

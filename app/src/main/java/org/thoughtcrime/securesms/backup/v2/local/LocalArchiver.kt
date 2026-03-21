@@ -6,6 +6,10 @@
 package org.thoughtcrime.securesms.backup.v2.local
 
 import okio.ByteString.Companion.toByteString
+import org.signal.archive.local.ArchivedFilesWriter
+import org.signal.archive.local.proto.FilesFrame
+import org.signal.archive.local.proto.Metadata
+import org.signal.archive.stream.EncryptedBackupReader
 import org.signal.core.models.backup.BackupId
 import org.signal.core.models.backup.MediaName
 import org.signal.core.models.backup.MessageBackupKey
@@ -16,9 +20,6 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.readFully
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.local.proto.FilesFrame
-import org.thoughtcrime.securesms.backup.v2.local.proto.Metadata
-import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
@@ -166,12 +167,13 @@ object LocalArchiver {
         return RestoreResult.failure(RestoreFailure.VersionMismatch(metadata.version, VERSION))
       }
 
-      if (metadata.backupId == null) {
+      val encryptedBackupId = metadata.backupId
+      if (encryptedBackupId == null) {
         Log.w(TAG, "Local backup metadata missing encrypted backup id")
         return RestoreResult.failure(RestoreFailure.BackupIdMissing)
       }
 
-      val backupId = decryptBackupId(metadata.backupId, messageBackupKey)
+      val backupId = decryptBackupId(encryptedBackupId, messageBackupKey)
 
       val mainStreamLength = snapshotFileSystem.mainLength() ?: return ArchiveResult.failure(RestoreFailure.MainStream)
 

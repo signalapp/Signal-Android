@@ -3,13 +3,13 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.backup.v2.stream
+package org.signal.archive.stream
 
 import com.google.common.io.CountingInputStream
+import org.signal.archive.proto.BackupInfo
+import org.signal.archive.proto.Frame
 import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.readVarInt32
-import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
-import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import java.io.EOFException
 import java.io.InputStream
 

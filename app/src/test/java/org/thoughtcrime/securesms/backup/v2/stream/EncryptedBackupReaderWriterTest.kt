@@ -7,6 +7,11 @@ package org.thoughtcrime.securesms.backup.v2.stream
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.signal.archive.proto.AccountData
+import org.signal.archive.proto.BackupInfo
+import org.signal.archive.proto.Frame
+import org.signal.archive.stream.EncryptedBackupReader
+import org.signal.archive.stream.EncryptedBackupWriter
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.backup.BackupId
 import org.signal.core.models.backup.MessageBackupKey
@@ -14,9 +19,6 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
-import org.thoughtcrime.securesms.backup.v2.proto.AccountData
-import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
-import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import java.io.ByteArrayOutputStream
 import java.util.UUID
 

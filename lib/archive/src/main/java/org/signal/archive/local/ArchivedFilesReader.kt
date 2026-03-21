@@ -3,11 +3,11 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.backup.v2.local
+package org.signal.archive.local
 
+import org.signal.archive.local.proto.FilesFrame
 import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.readVarInt32
-import org.thoughtcrime.securesms.backup.v2.local.proto.FilesFrame
 import java.io.EOFException
 import java.io.InputStream
 

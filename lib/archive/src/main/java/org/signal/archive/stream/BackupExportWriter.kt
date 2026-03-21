@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.backup.v2.stream
+package org.signal.archive.stream
 
-import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
-import org.thoughtcrime.securesms.backup.v2.proto.Frame
+import org.signal.archive.proto.BackupInfo
+import org.signal.archive.proto.Frame
 
 interface BackupExportWriter : AutoCloseable {
   fun write(header: BackupInfo)

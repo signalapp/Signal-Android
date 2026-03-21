@@ -5,12 +5,12 @@
 
 package org.thoughtcrime.securesms.backup.v2.util
 
+import org.signal.archive.proto.ChatStyle
+import org.signal.archive.proto.FilePointer
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.BackupMode
 import org.thoughtcrime.securesms.backup.v2.ImportState
-import org.thoughtcrime.securesms.backup.v2.proto.ChatStyle
-import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -122,6 +122,7 @@ fun ChatStyle.toLocal(importState: ImportState): ChatColors? {
       ChatStyle.BubbleColorPreset.GRADIENT_SEA -> ChatColorsPalette.Bubbles.SEA
       ChatStyle.BubbleColorPreset.GRADIENT_TANGERINE -> ChatColorsPalette.Bubbles.TANGERINE
       ChatStyle.BubbleColorPreset.UNKNOWN_BUBBLE_COLOR_PRESET, ChatStyle.BubbleColorPreset.SOLID_ULTRAMARINE -> ChatColorsPalette.Bubbles.ULTRAMARINE
+      else -> ChatColorsPalette.Bubbles.ULTRAMARINE
     }
   }
 
@@ -198,8 +199,9 @@ fun ChatStyle.WallpaperPreset.toLocal(): ChatWallpaper? {
 }
 
 fun ChatStyle.parseChatWallpaper(wallpaperAttachmentId: AttachmentId?): ChatWallpaper? {
-  val chatWallpaper = if (this.wallpaperPreset != null) {
-    this.wallpaperPreset.toLocal()
+  val localWallpaperPreset = this.wallpaperPreset
+  val chatWallpaper = if (localWallpaperPreset != null) {
+    localWallpaperPreset.toLocal()
   } else if (wallpaperAttachmentId != null) {
     UriChatWallpaper(PartAuthority.getAttachmentDataUri(wallpaperAttachmentId), 0f)
   } else {

@@ -22,6 +22,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.archive.stream.EncryptedBackupReader
+import org.signal.archive.stream.EncryptedBackupReader.Companion.MAC_SIZE
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Hex
@@ -42,8 +44,6 @@ import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.DebugBackupMetadata
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.RemoteRestoreResult
-import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
-import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader.Companion.MAC_SIZE
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.AttachmentTable.DebugAttachmentStats
 import org.thoughtcrime.securesms.database.SignalDatabase

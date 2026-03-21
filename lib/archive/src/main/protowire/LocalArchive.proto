@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package signal.backup.local;
 
-option java_package = "org.thoughtcrime.securesms.backup.v2.local.proto";
+option java_package = "org.signal.archive.local.proto";
 option swift_prefix = "LocalBackupProto_";
 
 message Metadata {

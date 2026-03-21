@@ -7,10 +7,10 @@ package org.thoughtcrime.securesms.backup.v2.database
 
 import android.database.Cursor
 import okio.ByteString.Companion.toByteString
+import org.signal.archive.proto.CallLink
 import org.signal.core.util.nullIfEmpty
 import org.signal.ringrtc.CallLinkState
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
-import org.thoughtcrime.securesms.backup.v2.proto.CallLink
 import org.thoughtcrime.securesms.backup.v2.util.clampToValidBackupRange
 import org.thoughtcrime.securesms.database.CallLinkTable
 import java.io.Closeable

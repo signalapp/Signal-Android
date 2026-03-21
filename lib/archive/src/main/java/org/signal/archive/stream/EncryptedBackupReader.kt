@@ -3,10 +3,12 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.backup.v2.stream
+package org.signal.archive.stream
 
 import androidx.annotation.VisibleForTesting
 import com.google.common.io.CountingInputStream
+import org.signal.archive.proto.BackupInfo
+import org.signal.archive.proto.Frame
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.backup.BackupId
 import org.signal.core.models.backup.MessageBackupKey
@@ -17,8 +19,6 @@ import org.signal.core.util.stream.LimitedInputStream
 import org.signal.core.util.stream.MacInputStream
 import org.signal.core.util.writeVarInt32
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
-import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
-import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import java.io.ByteArrayOutputStream
 import java.io.EOFException
 import java.io.IOException

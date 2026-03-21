@@ -92,6 +92,7 @@ wire {
 
   protoPath {
     srcDir("${project.rootDir}/lib/libsignal-service/src/main/protowire")
+    srcDir("${project.rootDir}/lib/archive/src/main/protowire")
   }
   // Handled by libsignal
   prune("signalservice.DecryptionErrorMessage")
@@ -594,6 +595,7 @@ dependencies {
   ktlintRuleset(libs.ktlint.twitter.compose)
   coreLibraryDesugaring(libs.android.tools.desugar)
 
+  implementation(project(":lib:archive"))
   implementation(project(":lib:libsignal-service"))
   implementation(project(":lib:paging"))
   implementation(project(":core:util"))

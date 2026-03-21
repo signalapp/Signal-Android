@@ -13,6 +13,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
+import org.signal.archive.local.ArchivedFilesReader
 import org.signal.core.models.backup.MediaName
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.androidx.DocumentFileInfo

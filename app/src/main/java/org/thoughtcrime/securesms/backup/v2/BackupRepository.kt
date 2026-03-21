@@ -18,6 +18,15 @@ import kotlinx.coroutines.withContext
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.greenrobot.eventbus.EventBus
+import org.signal.archive.proto.BackupDebugInfo
+import org.signal.archive.proto.BackupInfo
+import org.signal.archive.proto.Frame
+import org.signal.archive.stream.BackupExportWriter
+import org.signal.archive.stream.BackupImportReader
+import org.signal.archive.stream.EncryptedBackupReader
+import org.signal.archive.stream.EncryptedBackupWriter
+import org.signal.archive.stream.PlainTextBackupReader
+import org.signal.archive.stream.PlainTextBackupWriter
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
@@ -76,15 +85,6 @@ import org.thoughtcrime.securesms.backup.v2.processor.ChatItemArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.NotificationProfileArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.RecipientArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.StickerArchiveProcessor
-import org.thoughtcrime.securesms.backup.v2.proto.BackupDebugInfo
-import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
-import org.thoughtcrime.securesms.backup.v2.proto.Frame
-import org.thoughtcrime.securesms.backup.v2.stream.BackupExportWriter
-import org.thoughtcrime.securesms.backup.v2.stream.BackupImportReader
-import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
-import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
-import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
-import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
@@ -1311,51 +1311,59 @@ object BackupRepository {
       val totalLength = frameReader.getStreamLength()
       var frameCount = 0
       for (frame in frameReader) {
+        val frameAccount = frame.account
+        val frameRecipient = frame.recipient
+        val frameChat = frame.chat
+        val frameAdHocCall = frame.adHocCall
+        val frameStickerPack = frame.stickerPack
+        val frameNotificationProfile = frame.notificationProfile
+        val frameChatFolder = frame.chatFolder
+        val frameChatItem = frame.chatItem
         when {
-          frame.account != null -> {
-            AccountDataArchiveProcessor.import(frame.account, selfId, importState)
+          frameAccount != null -> {
+            AccountDataArchiveProcessor.import(frameAccount, selfId, importState)
             eventTimer.emit("account")
             frameCount++
           }
 
-          frame.recipient != null -> {
-            RecipientArchiveProcessor.import(frame.recipient, importState)
+          frameRecipient != null -> {
+            RecipientArchiveProcessor.import(frameRecipient, importState)
             eventTimer.emit("recipient")
             frameCount++
           }
 
-          frame.chat != null -> {
-            ChatArchiveProcessor.import(frame.chat, importState)
+          frameChat != null -> {
+            ChatArchiveProcessor.import(frameChat, importState)
             eventTimer.emit("chat")
             frameCount++
           }
 
-          frame.adHocCall != null -> {
-            AdHocCallArchiveProcessor.import(frame.adHocCall, importState)
+          frameAdHocCall != null -> {
+            AdHocCallArchiveProcessor.import(frameAdHocCall, importState)
             eventTimer.emit("call")
             frameCount++
           }
 
-          frame.stickerPack != null -> {
-            StickerArchiveProcessor.import(frame.stickerPack)
+          frameStickerPack != null -> {
+            StickerArchiveProcessor.import(frameStickerPack)
             eventTimer.emit("sticker-pack")
             frameCount++
           }
 
-          frame.notificationProfile != null -> {
-            NotificationProfileArchiveProcessor.import(frame.notificationProfile, importState)
+          frameNotificationProfile != null -> {
+            NotificationProfileArchiveProcessor.import(frameNotificationProfile, importState)
             eventTimer.emit("notification-profile")
             frameCount++
           }
 
-          frame.chatFolder != null -> {
-            ChatFolderArchiveProcessor.import(frame.chatFolder, importState)
+          frameChatFolder != null -> {
+            ChatFolderArchiveProcessor.import(frameChatFolder, importState)
             eventTimer.emit("chat-folder")
             frameCount++
           }
 
-          frame.chatItem != null -> {
-            chatItemInserter.import(frame.chatItem)
+          frameChatItem != null -> {
+            chatItemInserter.import(frameChatItem)
             eventTimer.emit("chatItem")
             frameCount++
 

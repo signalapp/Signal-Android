@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package signal.backup;
 
-option java_package = "org.thoughtcrime.securesms.backup.v2.proto";
+option java_package = "org.signal.archive.proto";
 option swift_prefix = "BackupProto_";
 
 message BackupInfo {
