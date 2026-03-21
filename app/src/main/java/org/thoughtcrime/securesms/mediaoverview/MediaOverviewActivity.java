@@ -128,7 +128,7 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
       }
     });
 
-    viewPager.setCurrentItem(allThreads ? 3 : 0);
+    viewPager.setCurrentItem(allThreads ? viewPager.getAdapter().getCount() - 1 : 0);
   }
 
   private static boolean allowGridSelectionOnPage(int page) {
@@ -264,10 +264,15 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
     MediaOverviewPagerAdapter(FragmentManager fragmentManager) {
       super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
-      pages = new ArrayList<>(4);
+      boolean allThreads = threadId == MediaTable.ALL_THREADS;
+
+      pages = new ArrayList<>(allThreads ? 4 : 5);
       pages.add(new Pair<>(MediaLoader.MediaType.GALLERY,  getString(R.string.MediaOverviewActivity_Media)));
       pages.add(new Pair<>(MediaLoader.MediaType.DOCUMENT, getString(R.string.MediaOverviewActivity_Files)));
       pages.add(new Pair<>(MediaLoader.MediaType.AUDIO,    getString(R.string.MediaOverviewActivity_Audio)));
+      if (!allThreads) {
+        pages.add(new Pair<>(MediaLoader.MediaType.LINK,   getString(R.string.MediaOverviewActivity_Links)));
+      }
       pages.add(new Pair<>(MediaLoader.MediaType.ALL,      getString(R.string.MediaOverviewActivity_All)));
     }
 

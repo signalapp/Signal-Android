@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:viewBindingIgnore="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/media_overview_detail_item_height">
+
+    <FrameLayout
+        android:id="@+id/image_container"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/link_fallback_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:background="@drawable/media_overview_link_fallback_bg"
+            android:importantForAccessibility="no"
+            android:padding="12dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/symbol_link_24"
+            app:tint="@color/signal_icon_tint_secondary" />
+
+        <org.thoughtcrime.securesms.components.ThumbnailView
+            android:id="@+id/image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/media_preview_activity__media_content_description"
+            app:thumbnail_radius="8dp"
+            app:transparent_overlay_color="@color/transparent_black_08" />
+
+    </FrameLayout>
+
+    <include layout="@layout/media_overview_selected_overlay" />
+
+    <LinearLayout
+        android:id="@+id/media_overview_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image_container"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:textAppearance="@style/Signal.Text.Body"
+            tools:text="Article Title - Sent by Alice" />
+
+        <TextView
+            android:id="@+id/link_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textColor="@color/signal_text_secondary"
+            tools:text="https://example.com/some/long/article/path" />
+
+        <TextView
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textColor="@color/signal_text_secondary"
+            tools:text="11.06.19 at 5:25 AM" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

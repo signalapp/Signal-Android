@@ -1780,6 +1780,8 @@
     <string name="MediaOverviewActivity_Files">Files</string>
     <string name="MediaOverviewActivity_Audio">Audio</string>
     <string name="MediaOverviewActivity_All">All</string>
+    <string name="MediaOverviewActivity_Links">Links</string>
+    <string name="MediaOverviewActivity_link">Link</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
         <item quantity="one">Delete selected item?</item>
         <item quantity="other">Delete selected items?</item>
