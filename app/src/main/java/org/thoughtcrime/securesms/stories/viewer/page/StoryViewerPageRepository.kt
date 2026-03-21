@@ -104,7 +104,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
       val messageUpdateObserver = DatabaseObserver.MessageObserver {
         if (it.id == recordId) {
           try {
-            val messageRecord = SignalDatabase.messages.getMessageRecord(recordId)
+            val messageRecord = SignalDatabase.messages.getMessageRecord(recordId).withAttachments()
             if (messageRecord.isRemoteDelete) {
               emitter.onComplete()
             } else {
@@ -118,7 +118,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
 
       val conversationObserver = DatabaseObserver.Observer {
         try {
-          refresh(SignalDatabase.messages.getMessageRecord(recordId))
+          refresh(SignalDatabase.messages.getMessageRecord(recordId).withAttachments())
         } catch (e: NoSuchMessageException) {
           Log.w(TAG, "Message deleted during content refresh.", e)
         }
@@ -128,7 +128,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
       AppDependencies.databaseObserver.registerMessageUpdateObserver(messageUpdateObserver)
 
       val messageInsertObserver = DatabaseObserver.MessageObserver {
-        refresh(SignalDatabase.messages.getMessageRecord(recordId))
+        refresh(SignalDatabase.messages.getMessageRecord(recordId).withAttachments())
       }
 
       if (recipient.isGroup) {
@@ -156,7 +156,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
     val records = if (isFromArchive && initialStoryId > 0) {
       Observable.fromCallable {
         try {
-          listOf(SignalDatabase.messages.getMessageRecord(initialStoryId))
+          listOf(SignalDatabase.messages.getMessageRecord(initialStoryId).withAttachments())
         } catch (e: NoSuchMessageException) {
           emptyList()
         }
