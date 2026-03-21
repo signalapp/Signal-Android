@@ -72,6 +72,8 @@ class RegistrationViewModel(private val repository: RegistrationRepository, save
       is RegistrationFlowEvent.NavigateToScreen -> applyNavigationToScreenEvent(state, event)
       is RegistrationFlowEvent.NavigateBack -> state.copy(backStack = state.backStack.dropLast(1))
       is RegistrationFlowEvent.RecoveryPasswordInvalid -> state.copy(doNotAttemptRecoveryPassword = true)
+      is RegistrationFlowEvent.PendingRestoreOptionSelected -> state.copy(pendingRestoreOption = event.option)
+      is RegistrationFlowEvent.AepSubmittedViaLocalBackupRestore -> state.copy(unverifiedRestoredAep = event.aep)
     }
   }
 
@@ -156,7 +158,9 @@ class RegistrationViewModel(private val repository: RegistrationRepository, save
       is RegistrationFlowEvent.NavigateBack,
       is RegistrationFlowEvent.SessionUpdated,
       is RegistrationFlowEvent.E164Chosen,
-      is RegistrationFlowEvent.RecoveryPasswordInvalid -> repository.saveFlowState(_state.value)
+      is RegistrationFlowEvent.RecoveryPasswordInvalid,
+      is RegistrationFlowEvent.PendingRestoreOptionSelected,
+      is RegistrationFlowEvent.AepSubmittedViaLocalBackupRestore -> repository.saveFlowState(_state.value)
 
       // No need to persist anything new, fields accounted for in proto already
       is RegistrationFlowEvent.Registered,

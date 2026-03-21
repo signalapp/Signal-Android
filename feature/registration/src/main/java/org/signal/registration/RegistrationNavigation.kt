@@ -41,6 +41,13 @@ import org.signal.registration.screens.countrycode.Country
 import org.signal.registration.screens.countrycode.CountryCodePickerRepository
 import org.signal.registration.screens.countrycode.CountryCodePickerScreen
 import org.signal.registration.screens.countrycode.CountryCodePickerViewModel
+import org.signal.registration.screens.localbackuprestore.EnterAepScreen
+import org.signal.registration.screens.localbackuprestore.EnterAepViewModel
+import org.signal.registration.screens.localbackuprestore.EnterLocalBackupV1PassphaseScreen
+import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreEvents
+import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreResult
+import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreScreen
+import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreViewModel
 import org.signal.registration.screens.permissions.PermissionsScreen
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryScreenEvents
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryViewModel
@@ -115,6 +122,15 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object ChooseRestoreOptionAfterRegistration : RegistrationRoute
 
   @Serializable
+  data class LocalBackupRestore(val isPreRegistration: Boolean) : RegistrationRoute
+
+  @Serializable
+  data object EnterLocalBackupV1Passphrase : RegistrationRoute
+
+  @Serializable
+  data object EnterAepScreen : RegistrationRoute
+
+  @Serializable
   data object QuickRestoreQrScan : RegistrationRoute
 
   @Serializable
@@ -129,6 +145,8 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
 
 private const val CAPTCHA_RESULT = "captcha_token"
 private const val COUNTRY_CODE_RESULT = "country_code_result"
+private const val BACKUP_CREDENTIAL_RESULT = "backup_credential_result"
+private const val LOCAL_BACKUP_RESTORE_RESULT = "local_backup_restore_result"
 
 /**
  * Sets up the navigation graph for the registration flow using Navigation 3.
@@ -193,17 +211,25 @@ fun RegistrationNavHost(
       }
     },
     popTransitionSpec = {
-      if (initialState.key == RegistrationRoute.CountryCodePicker.toString()) {
-        TransitionSpecs.VerticalSlide.popTransitionSpec.invoke(this)
-      } else {
-        TransitionSpecs.HorizontalSlide.popTransitionSpec.invoke(this)
+      when {
+        initialState.key == RegistrationRoute.CountryCodePicker.toString() -> {
+          TransitionSpecs.VerticalSlide.popTransitionSpec.invoke(this)
+        }
+        initialState.key == RegistrationRoute.EnterAepScreen.toString() -> {
+          TransitionSpecs.HorizontalSlide.transitionSpec.invoke(this)
+        }
+        initialState.key == RegistrationRoute.LocalBackupRestore.toString() && targetState.key == RegistrationRoute.PhoneNumberEntry.toString() -> {
+          TransitionSpecs.HorizontalSlide.transitionSpec.invoke(this)
+        }
+        else -> {
+          TransitionSpecs.HorizontalSlide.popTransitionSpec.invoke(this)
+        }
       }
     },
     predictivePopTransitionSpec = {
-      if (initialState.key == RegistrationRoute.CountryCodePicker.toString()) {
-        TransitionSpecs.VerticalSlide.predictivePopTransitionSpec.invoke(this, it)
-      } else {
-        TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec.invoke(this, it)
+      when (initialState.key) {
+        RegistrationRoute.CountryCodePicker.toString() -> TransitionSpecs.VerticalSlide.predictivePopTransitionSpec.invoke(this, it)
+        else -> TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec.invoke(this, it)
       }
     }
   )
@@ -261,6 +287,10 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       if (country != null) {
         viewModel.onEvent(PhoneNumberEntryScreenEvents.CountrySelected(country.countryCode, country.regionCode, country.name, country.emoji))
       }
+    }
+
+    ResultEffect<LocalBackupRestoreResult>(registrationViewModel.resultBus, LOCAL_BACKUP_RESTORE_RESULT) { result ->
+      viewModel.onEvent(PhoneNumberEntryScreenEvents.LocalBackupRestoreCompleted(result))
     }
 
     PhoneNumberScreen(
@@ -420,7 +450,26 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       factory = ArchiveRestoreSelectionViewModel.Factory(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
-        parentEventEmitter = registrationViewModel::onEvent
+        parentEventEmitter = registrationViewModel::onEvent,
+        isPreRegistration = false
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    ArchiveRestoreSelectionScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  // -- Choose Restore Option Before Registration (saves selection, then navigates to phone number entry)
+  entry<RegistrationRoute.ChooseRestoreOptionBeforeRegistration> {
+    val viewModel: ArchiveRestoreSelectionViewModel = viewModel(
+      factory = ArchiveRestoreSelectionViewModel.Factory(
+        repository = registrationRepository,
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent,
+        isPreRegistration = true
       )
     )
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -432,7 +481,63 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   }
 
   entry<RegistrationRoute.ChooseRestoreOptionAfterRegistration> {
-    // TODO: Implement RestoreScreen
+    TODO("Implement RestoreScreen")
+  }
+
+  // -- Local Backup Restore Screen
+  entry<RegistrationRoute.LocalBackupRestore> { key ->
+    val viewModel: LocalBackupRestoreViewModel = viewModel(
+      factory = LocalBackupRestoreViewModel.Factory(
+        repository = registrationRepository,
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent,
+        isPreRegistration = key.isPreRegistration,
+        resultBus = registrationViewModel.resultBus,
+        resultKey = LOCAL_BACKUP_RESTORE_RESULT
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    ResultEffect<String?>(registrationViewModel.resultBus, BACKUP_CREDENTIAL_RESULT) { passphrase ->
+      if (passphrase != null) {
+        viewModel.onEvent(LocalBackupRestoreEvents.PassphraseSubmitted(passphrase))
+      }
+    }
+
+    LocalBackupRestoreScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  // -- Enter Backup Passphrase (V1)
+  entry<RegistrationRoute.EnterLocalBackupV1Passphrase> {
+    EnterLocalBackupV1PassphaseScreen(
+      onSubmit = { passphrase ->
+        registrationViewModel.resultBus.sendResult(BACKUP_CREDENTIAL_RESULT, passphrase)
+        parentEventEmitter.navigateBack()
+      },
+      onCancel = {
+        parentEventEmitter.navigateBack()
+      }
+    )
+  }
+
+  // -- Enter AEP
+  entry<RegistrationRoute.EnterAepScreen> {
+    val viewModel: EnterAepViewModel = viewModel(
+      factory = EnterAepViewModel.Factory(
+        parentEventEmitter = registrationViewModel::onEvent,
+        resultBus = registrationViewModel.resultBus,
+        resultKey = BACKUP_CREDENTIAL_RESULT
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    EnterAepScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
   }
 
   entry<RegistrationRoute.QuickRestoreQrScan> {

@@ -24,6 +24,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -48,7 +49,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
-import org.signal.core.ui.compose.CircularProgressWrapper
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.registration.R
@@ -164,14 +164,18 @@ private fun ScreenContent(state: PhoneNumberEntryState, onEvent: (PhoneNumberEnt
       horizontalArrangement = Arrangement.End,
       verticalAlignment = Alignment.CenterVertically
     ) {
-      CircularProgressWrapper(
-        isLoading = state.showSpinner
+      Buttons.LargeTonal(
+        onClick = { onEvent(PhoneNumberEntryScreenEvents.PhoneNumberSubmitted) },
+        enabled = !state.showSpinner && state.countryCode.isNotEmpty() && state.nationalNumber.isNotEmpty(),
+        modifier = Modifier.testTag(TestTags.PHONE_NUMBER_NEXT_BUTTON)
       ) {
-        Buttons.LargeTonal(
-          onClick = { onEvent(PhoneNumberEntryScreenEvents.PhoneNumberSubmitted) },
-          enabled = state.countryCode.isNotEmpty() && state.nationalNumber.isNotEmpty(),
-          modifier = Modifier.testTag(TestTags.PHONE_NUMBER_NEXT_BUTTON)
-        ) {
+        if (state.showSpinner) {
+          CircularProgressIndicator(
+            modifier = Modifier.size(20.dp),
+            strokeWidth = 2.dp,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+          )
+        } else {
           Text(stringResource(R.string.RegistrationActivity_next))
         }
       }

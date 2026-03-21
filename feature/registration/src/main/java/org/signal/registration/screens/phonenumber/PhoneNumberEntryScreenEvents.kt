@@ -5,6 +5,7 @@
 
 package org.signal.registration.screens.phonenumber
 
+import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreResult
 import org.signal.registration.util.DebugLoggableModel
 
 sealed class PhoneNumberEntryScreenEvents : DebugLoggableModel() {
@@ -18,5 +19,8 @@ sealed class PhoneNumberEntryScreenEvents : DebugLoggableModel() {
       return "CaptchaCompleted(token=***)"
     }
   }
+
+  /** The pre-registration local backup restore flow returned a result. */
+  data class LocalBackupRestoreCompleted(val result: LocalBackupRestoreResult) : PhoneNumberEntryScreenEvents()
   data object ConsumeOneTimeEvent : PhoneNumberEntryScreenEvents()
 }

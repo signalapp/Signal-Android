@@ -7,6 +7,7 @@ package org.signal.registration.screens.phonenumber
 
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.SessionMetadata
+import org.signal.registration.PendingRestoreOption
 import org.signal.registration.PreExistingRegistrationData
 import org.signal.registration.util.DebugLoggable
 import org.signal.registration.util.DebugLoggableModel
@@ -24,7 +25,8 @@ data class PhoneNumberEntryState(
   val showSpinner: Boolean = false,
   val oneTimeEvent: OneTimeEvent? = null,
   val preExistingRegistrationData: PreExistingRegistrationData? = null,
-  val restoredSvrCredentials: List<NetworkController.SvrCredentials> = emptyList()
+  val restoredSvrCredentials: List<NetworkController.SvrCredentials> = emptyList(),
+  val pendingRestoreOption: PendingRestoreOption? = null
 ) : DebugLoggableModel() {
   sealed interface OneTimeEvent : DebugLoggable {
     data object NetworkError : OneTimeEvent

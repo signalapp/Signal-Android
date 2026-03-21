@@ -70,8 +70,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(
       initialState,
       PhoneNumberEntryScreenEvents.PhoneNumberChanged("555-123-4567"),
-      stateEmitter,
-      parentEventEmitter
+      parentEventEmitter,
+      stateEmitter
     )
 
     assertThat(emittedStates).hasSize(1)
@@ -86,8 +86,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(
       initialState,
       PhoneNumberEntryScreenEvents.PhoneNumberChanged("5551234567"),
-      stateEmitter,
-      parentEventEmitter
+      parentEventEmitter,
+      stateEmitter
     )
 
     assertThat(emittedStates).hasSize(1)
@@ -99,25 +99,25 @@ class PhoneNumberEntryViewModelTest {
   fun `PhoneNumberChanged formats progressively as digits are added`() = runTest {
     var state = PhoneNumberEntryState()
 
-    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberChanged("5"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberChanged("5"), parentEventEmitter, stateEmitter)
     state = emittedStates.last()
     assertThat(state.nationalNumber).isEqualTo("5")
 
-    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberChanged("55"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberChanged("55"), parentEventEmitter, stateEmitter)
     state = emittedStates.last()
     assertThat(state.nationalNumber).isEqualTo("55")
 
-    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberChanged("555"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberChanged("555"), parentEventEmitter, stateEmitter)
     state = emittedStates.last()
     assertThat(state.nationalNumber).isEqualTo("555")
 
-    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberChanged("5551"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberChanged("5551"), parentEventEmitter, stateEmitter)
     state = emittedStates.last()
     assertThat(state.nationalNumber).isEqualTo("5551")
     // libphonenumber formats progressively - at 4 digits it's still building the format
     assertThat(state.formattedNumber).isEqualTo("555-1")
 
-    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberChanged("55512"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberChanged("55512"), parentEventEmitter, stateEmitter)
     state = emittedStates.last()
     assertThat(state.nationalNumber).isEqualTo("55512")
     assertThat(state.formattedNumber).isEqualTo("555-12")
@@ -130,8 +130,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(
       initialState,
       PhoneNumberEntryScreenEvents.PhoneNumberChanged("(555) abc 123-4567!"),
-      stateEmitter,
-      parentEventEmitter
+      parentEventEmitter,
+      stateEmitter
     )
 
     assertThat(emittedStates).hasSize(1)
@@ -145,8 +145,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(
       initialState,
       PhoneNumberEntryScreenEvents.PhoneNumberChanged("555-123-4567"),
-      stateEmitter,
-      parentEventEmitter
+      parentEventEmitter,
+      stateEmitter
     )
 
     // Should emit the same state since digits haven't changed
@@ -161,8 +161,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(
       initialState,
       PhoneNumberEntryScreenEvents.CountryCodeChanged("44"),
-      stateEmitter,
-      parentEventEmitter
+      parentEventEmitter,
+      stateEmitter
     )
 
     assertThat(emittedStates).hasSize(1)
@@ -177,8 +177,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(
       initialState,
       PhoneNumberEntryScreenEvents.CountryCodeChanged("+44abc"),
-      stateEmitter,
-      parentEventEmitter
+      parentEventEmitter,
+      stateEmitter
     )
 
     assertThat(emittedStates).hasSize(1)
@@ -192,8 +192,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(
       initialState,
       PhoneNumberEntryScreenEvents.CountryCodeChanged("12345"),
-      stateEmitter,
-      parentEventEmitter
+      parentEventEmitter,
+      stateEmitter
     )
 
     assertThat(emittedStates).hasSize(1)
@@ -211,7 +211,7 @@ class PhoneNumberEntryViewModelTest {
     )
 
     // Change to UK
-    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.CountryCodeChanged("44"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.CountryCodeChanged("44"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedStates).hasSize(1)
     assertThat(emittedStates.last().countryCode).isEqualTo("44")
@@ -227,8 +227,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(
       initialState,
       PhoneNumberEntryScreenEvents.CountryPicker,
-      stateEmitter,
-      parentEventEmitter
+      parentEventEmitter,
+      stateEmitter
     )
 
     assertThat(emittedEvents).hasSize(1)
@@ -246,8 +246,8 @@ class PhoneNumberEntryViewModelTest {
     viewModel.applyEvent(
       initialState,
       PhoneNumberEntryScreenEvents.ConsumeOneTimeEvent,
-      stateEmitter,
-      parentEventEmitter
+      parentEventEmitter,
+      stateEmitter
     )
 
     assertThat(emittedStates).hasSize(1)
@@ -259,12 +259,12 @@ class PhoneNumberEntryViewModelTest {
     var state = PhoneNumberEntryState()
 
     // Set German country code
-    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.CountryCodeChanged("49"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.CountryCodeChanged("49"), parentEventEmitter, stateEmitter)
     state = emittedStates.last()
     assertThat(state.regionCode).isEqualTo("DE")
 
     // Enter a German number
-    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberChanged("15123456789"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.PhoneNumberChanged("15123456789"), parentEventEmitter, stateEmitter)
     state = emittedStates.last()
     assertThat(state.nationalNumber).isEqualTo("15123456789")
   }
@@ -285,7 +285,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -313,7 +313,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -338,7 +338,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -362,7 +362,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -381,7 +381,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -400,7 +400,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -421,7 +421,7 @@ class PhoneNumberEntryViewModelTest {
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(existingSession)
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -453,7 +453,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -478,7 +478,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -504,7 +504,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -531,7 +531,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -560,7 +560,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -594,7 +594,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -632,7 +632,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -665,7 +665,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -698,7 +698,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -730,7 +730,7 @@ class PhoneNumberEntryViewModelTest {
       nationalNumber = "5551234567"
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Verify spinner states
     assertThat(emittedStates.first().showSpinner).isTrue()
@@ -756,7 +756,7 @@ class PhoneNumberEntryViewModelTest {
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedEvents).hasSize(3)
     assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.SessionUpdated>()
@@ -771,7 +771,7 @@ class PhoneNumberEntryViewModelTest {
   fun `CaptchaCompleted returns error when no session exists`() = runTest {
     val initialState = PhoneNumberEntryState(sessionMetadata = null)
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedStates).hasSize(1)
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PhoneNumberEntryState.OneTimeEvent.UnknownError)
@@ -785,7 +785,7 @@ class PhoneNumberEntryViewModelTest {
     coEvery { mockRepository.submitCaptchaToken(any(), any()) } returns
       NetworkController.RegistrationNetworkResult.Success(sessionWithCaptcha)
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first())
@@ -804,7 +804,7 @@ class PhoneNumberEntryViewModelTest {
         NetworkController.UpdateSessionError.RateLimited(45.seconds, sessionMetadata)
       )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedStates).hasSize(1)
     assertThat(emittedStates.last().oneTimeEvent).isNotNull()
@@ -823,7 +823,7 @@ class PhoneNumberEntryViewModelTest {
         NetworkController.UpdateSessionError.RejectedUpdate("Invalid captcha")
       )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedStates).hasSize(1)
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PhoneNumberEntryState.OneTimeEvent.UnknownError)
@@ -837,7 +837,7 @@ class PhoneNumberEntryViewModelTest {
     coEvery { mockRepository.submitCaptchaToken(any(), any()) } returns
       NetworkController.RegistrationNetworkResult.NetworkError(java.io.IOException("Connection lost"))
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedStates).hasSize(1)
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PhoneNumberEntryState.OneTimeEvent.NetworkError)
@@ -902,7 +902,7 @@ class PhoneNumberEntryViewModelTest {
       preExistingRegistrationData = preExistingData
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     assertThat(emittedEvents.first()).isInstanceOf<RegistrationFlowEvent.Registered>()
     assertThat(emittedEvents[1])
@@ -929,7 +929,7 @@ class PhoneNumberEntryViewModelTest {
       preExistingRegistrationData = preExistingData
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     assertThat(emittedEvents.first()).isInstanceOf<RegistrationFlowEvent.Registered>()
     assertThat(emittedEvents[1])
@@ -956,7 +956,7 @@ class PhoneNumberEntryViewModelTest {
       preExistingRegistrationData = preExistingData
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.ResetState)
@@ -980,7 +980,7 @@ class PhoneNumberEntryViewModelTest {
       preExistingRegistrationData = preExistingData
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.ResetState)
@@ -1009,7 +1009,7 @@ class PhoneNumberEntryViewModelTest {
       preExistingRegistrationData = preExistingData
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first())
@@ -1036,7 +1036,7 @@ class PhoneNumberEntryViewModelTest {
       preExistingRegistrationData = preExistingData
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     assertThat(emittedStates.last().oneTimeEvent).isNotNull()
       .isInstanceOf<PhoneNumberEntryState.OneTimeEvent.RateLimited>()
@@ -1067,7 +1067,7 @@ class PhoneNumberEntryViewModelTest {
       preExistingRegistrationData = preExistingData
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Should emit RecoveryPasswordInvalid and then continue to session creation
     assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.RecoveryPasswordInvalid)
@@ -1098,7 +1098,7 @@ class PhoneNumberEntryViewModelTest {
       preExistingRegistrationData = preExistingData
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.RecoveryPasswordInvalid)
     assertThat(emittedStates.last().preExistingRegistrationData).isNull()
@@ -1120,7 +1120,7 @@ class PhoneNumberEntryViewModelTest {
       preExistingRegistrationData = preExistingData
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PhoneNumberEntryState.OneTimeEvent.NetworkError)
   }
@@ -1141,7 +1141,7 @@ class PhoneNumberEntryViewModelTest {
       preExistingRegistrationData = preExistingData
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PhoneNumberEntryState.OneTimeEvent.UnknownError)
   }
@@ -1165,7 +1165,7 @@ class PhoneNumberEntryViewModelTest {
       preExistingRegistrationData = preExistingData
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Should skip RRP and go to session creation flow
     coVerify(exactly = 0) { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any()) }
@@ -1196,7 +1196,7 @@ class PhoneNumberEntryViewModelTest {
       restoredSvrCredentials = svrCredentials
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     assertThat(emittedEvents).hasSize(2)
     assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.E164Chosen>()
@@ -1229,7 +1229,7 @@ class PhoneNumberEntryViewModelTest {
       restoredSvrCredentials = svrCredentials
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Should fall through to session creation
     assertThat(emittedEvents.last())
@@ -1258,7 +1258,7 @@ class PhoneNumberEntryViewModelTest {
       restoredSvrCredentials = svrCredentials
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     // Should ignore error and fall through
     assertThat(emittedEvents.last())
@@ -1287,7 +1287,7 @@ class PhoneNumberEntryViewModelTest {
       restoredSvrCredentials = svrCredentials
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     assertThat(emittedEvents.last())
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
@@ -1317,7 +1317,7 @@ class PhoneNumberEntryViewModelTest {
       restoredSvrCredentials = svrCredentials
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     assertThat(emittedEvents.last())
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
@@ -1347,7 +1347,7 @@ class PhoneNumberEntryViewModelTest {
       restoredSvrCredentials = svrCredentials
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     assertThat(emittedEvents.last())
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
@@ -1370,7 +1370,7 @@ class PhoneNumberEntryViewModelTest {
       restoredSvrCredentials = emptyList()
     )
 
-    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
     coVerify(exactly = 0) { mockRepository.checkSvrCredentials(any(), any()) }
     assertThat(emittedEvents.last())

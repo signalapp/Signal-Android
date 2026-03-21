@@ -19,12 +19,16 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.util.logging.Log
 import org.signal.registration.NetworkController
+import org.signal.registration.PendingRestoreOption
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
+import org.signal.registration.screens.EventDrivenViewModel
+import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreResult
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryState.OneTimeEvent
 import org.signal.registration.screens.util.navigateTo
 
@@ -32,7 +36,7 @@ class PhoneNumberEntryViewModel(
   val repository: RegistrationRepository,
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : ViewModel() {
+) : EventDrivenViewModel<PhoneNumberEntryScreenEvents>(TAG) {
 
   companion object {
     private val TAG = Log.tag(PhoneNumberEntryViewModel::class)
@@ -56,18 +60,14 @@ class PhoneNumberEntryViewModel(
     }
   }
 
-  fun onEvent(event: PhoneNumberEntryScreenEvents) {
-    Log.d(TAG, "[Event] $event")
-    viewModelScope.launch {
-      val stateEmitter: (PhoneNumberEntryState) -> Unit = { state ->
-        _state.value = state
-      }
-      applyEvent(state.value, event, stateEmitter, parentEventEmitter)
+  override suspend fun processEvent(event: PhoneNumberEntryScreenEvents) {
+    applyEvent(state.value, event, parentEventEmitter) {
+      _state.value = it
     }
   }
 
   @VisibleForTesting
-  suspend fun applyEvent(state: PhoneNumberEntryState, event: PhoneNumberEntryScreenEvents, stateEmitter: (PhoneNumberEntryState) -> Unit, parentEventEmitter: (RegistrationFlowEvent) -> Unit) {
+  suspend fun applyEvent(state: PhoneNumberEntryState, event: PhoneNumberEntryScreenEvents, parentEventEmitter: (RegistrationFlowEvent) -> Unit, stateEmitter: (PhoneNumberEntryState) -> Unit) {
     when (event) {
       is PhoneNumberEntryScreenEvents.CountryCodeChanged -> {
         stateEmitter(applyCountryCodeChanged(state, event.value))
@@ -90,6 +90,19 @@ class PhoneNumberEntryViewModel(
       is PhoneNumberEntryScreenEvents.CaptchaCompleted -> {
         stateEmitter(applyCaptchaCompleted(state, event.token, parentEventEmitter))
       }
+      is PhoneNumberEntryScreenEvents.LocalBackupRestoreCompleted -> {
+        when (event.result) {
+          is LocalBackupRestoreResult.Success -> {
+            var localState = state.copy(showSpinner = true)
+            stateEmitter(localState)
+            localState = applyLocalBackupRestoreCompleted(localState, event.result.aep, parentEventEmitter)
+            stateEmitter(localState.copy(showSpinner = false))
+          }
+          is LocalBackupRestoreResult.Canceled -> {
+            parentEventEmitter(RegistrationFlowEvent.PendingRestoreOptionSelected(null))
+          }
+        }
+      }
       is PhoneNumberEntryScreenEvents.ConsumeOneTimeEvent -> {
         stateEmitter(state.copy(oneTimeEvent = null))
       }
@@ -102,7 +115,8 @@ class PhoneNumberEntryViewModel(
       sessionE164 = parentState.sessionE164,
       sessionMetadata = parentState.sessionMetadata,
       preExistingRegistrationData = parentState.preExistingRegistrationData,
-      restoredSvrCredentials = state.restoredSvrCredentials.takeUnless { parentState.doNotAttemptRecoveryPassword } ?: emptyList()
+      restoredSvrCredentials = state.restoredSvrCredentials.takeUnless { parentState.doNotAttemptRecoveryPassword } ?: emptyList(),
+      pendingRestoreOption = parentState.pendingRestoreOption
     )
   }
 
@@ -161,6 +175,18 @@ class PhoneNumberEntryViewModel(
   ): PhoneNumberEntryState {
     val e164 = "+${inputState.countryCode}${inputState.nationalNumber}"
     var state = inputState.copy()
+
+    // If the user selected a restore option before entering their phone number, navigate to the restore flow
+    if (state.pendingRestoreOption != null) {
+      parentEventEmitter(RegistrationFlowEvent.E164Chosen(e164))
+      when (state.pendingRestoreOption) {
+        PendingRestoreOption.LocalBackup -> parentEventEmitter.navigateTo(RegistrationRoute.LocalBackupRestore(isPreRegistration = true))
+        PendingRestoreOption.RemoteBackup -> {
+          Log.w(TAG, "[PendingRestore] Remote backup restore not yet implemented")
+        }
+      }
+      return state
+    }
 
     // If we're re-registering for the same number we used to be registered for, we should try to skip right to registration
     if (state.preExistingRegistrationData?.e164 == e164) {
@@ -230,6 +256,105 @@ class PhoneNumberEntryViewModel(
         }
       }
     }
+
+    return applySessionBasedRegistration(state, e164, parentEventEmitter)
+  }
+
+  /**
+   * Handles the result of a pre-registration local backup restore.
+   * If an AEP was obtained (V2 backup), attempts RRP-based registration.
+   * Falls back to SVR check and SMS verification if RRP fails or no AEP is available.
+   */
+  private suspend fun applyLocalBackupRestoreCompleted(
+    inputState: PhoneNumberEntryState,
+    aep: AccountEntropyPool?,
+    parentEventEmitter: (RegistrationFlowEvent) -> Unit
+  ): PhoneNumberEntryState {
+    val e164 = inputState.sessionE164 ?: "+${inputState.countryCode}${inputState.nationalNumber}"
+    val state = inputState.copy()
+
+    if (aep == null) {
+      Log.i(TAG, "[LocalRestore] No AEP available (V1 backup). Proceeding to session-based registration.")
+      return applySessionBasedRegistration(state, e164, parentEventEmitter)
+    }
+
+    parentEventEmitter(RegistrationFlowEvent.AepSubmittedViaLocalBackupRestore(aep))
+
+    Log.i(TAG, "[LocalRestore] Attempting registration with RRP derived from restored AEP.")
+
+    val recoveryPassword = aep.deriveMasterKey().deriveRegistrationRecoveryPassword()
+
+    return when (val result = repository.registerAccountWithRecoveryPassword(e164, recoveryPassword, existingAccountEntropyPool = aep)) {
+      is NetworkController.RegistrationNetworkResult.Success -> {
+        Log.i(TAG, "[LocalRestore] Successfully registered using RRP from restored AEP.")
+        val (response, keyMaterial) = result.data
+
+        parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool))
+
+        if (response.storageCapable) {
+          parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSvrRestore)
+        } else {
+          parentEventEmitter.navigateTo(RegistrationRoute.PinCreate)
+        }
+        state
+      }
+      is NetworkController.RegistrationNetworkResult.Failure -> {
+        when (result.error) {
+          is NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
+            Log.w(TAG, "[LocalRestore] RRP incorrect. Falling back to session-based registration.")
+            parentEventEmitter(RegistrationFlowEvent.RecoveryPasswordInvalid)
+            applySessionBasedRegistration(state, e164, parentEventEmitter)
+          }
+          is NetworkController.RegisterAccountError.InvalidRequest -> {
+            Log.w(TAG, "[LocalRestore] Invalid request. Falling back to session-based registration. Message: ${result.error.message}")
+            parentEventEmitter(RegistrationFlowEvent.RecoveryPasswordInvalid)
+            applySessionBasedRegistration(state, e164, parentEventEmitter)
+          }
+          is NetworkController.RegisterAccountError.RegistrationLock -> {
+            Log.w(TAG, "[LocalRestore] Registration locked.")
+            parentEventEmitter.navigateTo(
+              RegistrationRoute.PinEntryForRegistrationLock(
+                timeRemaining = result.error.data.timeRemaining,
+                svrCredentials = result.error.data.svr2Credentials
+              )
+            )
+            state
+          }
+          is NetworkController.RegisterAccountError.RateLimited -> {
+            Log.w(TAG, "[LocalRestore] Rate limited (retryAfter: ${result.error.retryAfter}).")
+            state.copy(oneTimeEvent = OneTimeEvent.RateLimited(result.error.retryAfter))
+          }
+          is NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified -> {
+            Log.w(TAG, "[LocalRestore] Session not found. Falling back to session-based registration.")
+            applySessionBasedRegistration(state, e164, parentEventEmitter)
+          }
+          is NetworkController.RegisterAccountError.DeviceTransferPossible -> {
+            Log.w(TAG, "[LocalRestore] Device transfer possible. Falling back to session-based registration.")
+            applySessionBasedRegistration(state, e164, parentEventEmitter)
+          }
+        }
+      }
+      is NetworkController.RegistrationNetworkResult.NetworkError -> {
+        Log.w(TAG, "[LocalRestore] Network error.", result.exception)
+        state.copy(oneTimeEvent = OneTimeEvent.NetworkError)
+      }
+      is NetworkController.RegistrationNetworkResult.ApplicationError -> {
+        Log.w(TAG, "[LocalRestore] Application error.", result.exception)
+        state.copy(oneTimeEvent = OneTimeEvent.UnknownError)
+      }
+    }
+  }
+
+  /**
+   * Checks SVR credentials, then creates a session and requests an SMS verification code.
+   * This is the shared fallback path used by both phone number submission and local backup restore completion.
+   */
+  private suspend fun applySessionBasedRegistration(
+    inputState: PhoneNumberEntryState,
+    e164: String,
+    parentEventEmitter: (RegistrationFlowEvent) -> Unit
+  ): PhoneNumberEntryState {
+    var state = inputState.copy()
 
     // Detect if we have valid SVR credentials for the current number. If so, we can go right to the PIN entry screen.
     // If they successfully restore the master key at that screen, we can use that to build the RRP and register without SMS.

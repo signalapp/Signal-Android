@@ -50,4 +50,12 @@ object TestTags {
   const val ARCHIVE_RESTORE_SELECTION_FROM_BACKUP_FILE = "archive_restore_selection_from_backup_file"
   const val ARCHIVE_RESTORE_SELECTION_DEVICE_TRANSFER = "archive_restore_selection_device_transfer"
   const val ARCHIVE_RESTORE_SELECTION_SKIP = "archive_restore_selection_skip"
+
+  // Local Backup Restore Screen
+  const val LOCAL_BACKUP_RESTORE_SCREEN = "local_backup_restore_screen"
+  const val LOCAL_BACKUP_RESTORE_SELECT_FOLDER_BUTTON = "local_backup_restore_select_folder_button"
+  const val LOCAL_BACKUP_RESTORE_BACKUP_INFO_CARD = "local_backup_restore_backup_info_card"
+  const val LOCAL_BACKUP_RESTORE_RESTORE_BUTTON = "local_backup_restore_restore_button"
+  const val LOCAL_BACKUP_RESTORE_PROGRESS_BAR = "local_backup_restore_progress_bar"
+  const val LOCAL_BACKUP_RESTORE_CONTINUE_BUTTON = "local_backup_restore_continue_button"
 }

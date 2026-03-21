@@ -7,11 +7,13 @@ package org.signal.registration
 
 import android.app.backup.BackupManager
 import android.content.Context
+import android.net.Uri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import okio.ByteString.Companion.toByteString
+import org.signal.archive.LocalBackupRestoreProgress
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.util.Base64
@@ -38,6 +40,8 @@ import org.signal.registration.NetworkController.SvrCredentials
 import org.signal.registration.NetworkController.UpdateSessionError
 import org.signal.registration.proto.ProvisioningData
 import org.signal.registration.proto.SvrCredential
+import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
+import org.signal.registration.screens.restoreselection.ArchiveRestoreOption
 import org.signal.registration.util.SensitiveLog
 import java.security.SecureRandom
 import java.util.Locale
@@ -46,6 +50,11 @@ import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
 class RegistrationRepository(val context: Context, val networkController: NetworkController, val storageController: StorageController) {
+
+  companion object {
+    private val TAG = Log.tag(RegistrationRepository::class)
+    private val json = Json { ignoreUnknownKeys = true }
+  }
 
   suspend fun createSession(e164: String): RegistrationNetworkResult<SessionMetadata, CreateSessionError> = withContext(Dispatchers.IO) {
     val fcmToken = networkController.getFcmToken()
@@ -178,7 +187,8 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     recoveryPassword: String,
     registrationLock: String? = null,
     skipDeviceTransfer: Boolean = true,
-    preExistingRegistrationData: PreExistingRegistrationData? = null
+    preExistingRegistrationData: PreExistingRegistrationData? = null,
+    existingAccountEntropyPool: AccountEntropyPool? = null
   ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
     registerAccount(
       e164 = e164,
@@ -186,7 +196,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
       recoveryPassword = recoveryPassword,
       registrationLock = registrationLock,
       skipDeviceTransfer = skipDeviceTransfer,
-      existingAccountEntropyPool = preExistingRegistrationData?.aep,
+      existingAccountEntropyPool = existingAccountEntropyPool ?: preExistingRegistrationData?.aep,
       existingAciIdentityKeyPair = preExistingRegistrationData?.aciIdentityKeyPair,
       existingPniIdentityKeyPair = preExistingRegistrationData?.pniIdentityKeyPair
     )
@@ -415,13 +425,14 @@ class RegistrationRepository(val context: Context, val networkController: Networ
    * Persists the current flow state as JSON in the in-progress registration data proto.
    */
   suspend fun saveFlowState(state: RegistrationFlowState) = withContext(Dispatchers.IO) {
+    Log.d(TAG, "[saveFlowState] Saving flow state: $state")
     try {
-      val json = flowStateJson.encodeToString(PersistedFlowState.serializer(), state.toPersistedFlowState())
+      val json = json.encodeToString(PersistedFlowState.serializer(), state.toPersistedFlowState())
       storageController.updateInProgressRegistrationData {
         flowStateJson = json
       }
     } catch (e: Exception) {
-      Log.w(TAG, "Failed to save flow state", e)
+      Log.w(TAG, "[saveFlowState] Failed to save flow state.", e)
     }
   }
 
@@ -436,7 +447,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
       val data = storageController.readInProgressRegistrationData()
       if (data.flowStateJson.isEmpty()) return@withContext null
 
-      val persisted = flowStateJson.decodeFromString(PersistedFlowState.serializer(), data.flowStateJson)
+      val persisted = json.decodeFromString(PersistedFlowState.serializer(), data.flowStateJson)
 
       val aep = data.accountEntropyPool.takeIf { it.isNotEmpty() }?.let { AccountEntropyPool(it) }
       val masterKey = data.temporaryMasterKey.takeIf { it.size > 0 }?.let { MasterKey(it.toByteArray()) }
@@ -484,6 +495,22 @@ class RegistrationRepository(val context: Context, val networkController: Networ
   suspend fun isRegistered(): Boolean = withContext(Dispatchers.IO) {
     val data = storageController.readInProgressRegistrationData()
     data.aci.isNotEmpty() && data.pni.isNotEmpty()
+  }
+
+  suspend fun getAvailableRestoreOptions(): Set<ArchiveRestoreOption> = withContext(Dispatchers.IO) {
+    storageController.getAvailableRestoreOptions()
+  }
+
+  fun restoreV1Backup(uri: Uri, passphrase: String): Flow<LocalBackupRestoreProgress> {
+    return storageController.restoreLocalBackupV1(uri, passphrase)
+  }
+
+  fun restoreV2Backup(rootUri: Uri, backupUri: Uri, aep: String): Flow<LocalBackupRestoreProgress> {
+    return storageController.restoreLocalBackupV2(rootUri, backupUri, aep)
+  }
+
+  suspend fun scanLocalBackupFolder(folderUri: Uri): List<LocalBackupInfo> = withContext(Dispatchers.IO) {
+    storageController.scanLocalBackupFolder(folderUri)
   }
 
   private fun generateKeyMaterial(
@@ -560,10 +587,5 @@ class RegistrationRepository(val context: Context, val networkController: Networ
 
     val ciphertext = cipher.doFinal(input)
     return ciphertext.copyOf(16)
-  }
-
-  companion object {
-    private val TAG = Log.tag(RegistrationRepository::class)
-    private val flowStateJson = Json { ignoreUnknownKeys = true }
   }
 }

@@ -33,4 +33,10 @@ sealed interface RegistrationFlowEvent : DebugLoggable {
 
   /** We've discovered that RRP-based registration is not possible for this account. */
   data object RecoveryPasswordInvalid : RegistrationFlowEvent
+
+  /** The user selected (or cleared) a restore option before entering their phone number. */
+  data class PendingRestoreOptionSelected(val option: PendingRestoreOption?) : RegistrationFlowEvent
+
+  /** An AEP was obtained from a local backup restore. It has not yet been verified against the server. */
+  data class AepSubmittedViaLocalBackupRestore(val aep: AccountEntropyPool) : RegistrationFlowEvent
 }

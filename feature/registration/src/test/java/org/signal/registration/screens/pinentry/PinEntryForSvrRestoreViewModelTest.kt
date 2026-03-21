@@ -69,7 +69,7 @@ class PinEntryForSvrRestoreViewModelTest {
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
       NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(2)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
@@ -90,7 +90,7 @@ class PinEntryForSvrRestoreViewModelTest {
         NetworkController.GetSvrCredentialsError.NoServiceCredentialsAvailable
       )
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(1)
     assertThat(emittedParentEvents.first()).isEqualTo(RegistrationFlowEvent.ResetState)
@@ -105,7 +105,7 @@ class PinEntryForSvrRestoreViewModelTest {
         NetworkController.GetSvrCredentialsError.Unauthorized
       )
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(1)
     assertThat(emittedParentEvents.first()).isEqualTo(RegistrationFlowEvent.ResetState)
@@ -118,7 +118,7 @@ class PinEntryForSvrRestoreViewModelTest {
     coEvery { mockRepository.getSvrCredentials() } returns
       NetworkController.RegistrationNetworkResult.NetworkError(java.io.IOException("Network error"))
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(0)
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PinEntryState.OneTimeEvent.NetworkError)
@@ -131,7 +131,7 @@ class PinEntryForSvrRestoreViewModelTest {
     coEvery { mockRepository.getSvrCredentials() } returns
       NetworkController.RegistrationNetworkResult.ApplicationError(RuntimeException("Unexpected"))
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(0)
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PinEntryState.OneTimeEvent.UnknownError)
@@ -155,7 +155,7 @@ class PinEntryForSvrRestoreViewModelTest {
         NetworkController.RestoreMasterKeyError.WrongPin(triesRemaining)
       )
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("wrong-pin"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("wrong-pin"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(0)
     assertThat(emittedStates.last().triesRemaining).isEqualTo(triesRemaining)
@@ -176,7 +176,7 @@ class PinEntryForSvrRestoreViewModelTest {
         NetworkController.RestoreMasterKeyError.NoDataFound
       )
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(1)
     assertThat(emittedParentEvents.first())
@@ -198,7 +198,7 @@ class PinEntryForSvrRestoreViewModelTest {
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
       NetworkController.RegistrationNetworkResult.NetworkError(java.io.IOException("Network error"))
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(0)
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PinEntryState.OneTimeEvent.NetworkError)
@@ -217,7 +217,7 @@ class PinEntryForSvrRestoreViewModelTest {
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
       NetworkController.RegistrationNetworkResult.ApplicationError(RuntimeException("Unexpected"))
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(0)
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PinEntryState.OneTimeEvent.UnknownError)
@@ -229,7 +229,7 @@ class PinEntryForSvrRestoreViewModelTest {
   fun `ToggleKeyboard toggles isAlphanumericKeyboard from false to true`() = runTest {
     val initialState = PinEntryState(isAlphanumericKeyboard = false)
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.ToggleKeyboard, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.ToggleKeyboard, parentEventEmitter, stateEmitter)
 
     assertThat(emittedStates.last().isAlphanumericKeyboard).isEqualTo(true)
   }
@@ -238,7 +238,7 @@ class PinEntryForSvrRestoreViewModelTest {
   fun `ToggleKeyboard toggles isAlphanumericKeyboard from true to false`() = runTest {
     val initialState = PinEntryState(isAlphanumericKeyboard = true)
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.ToggleKeyboard, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.ToggleKeyboard, parentEventEmitter, stateEmitter)
 
     assertThat(emittedStates.last().isAlphanumericKeyboard).isEqualTo(false)
   }

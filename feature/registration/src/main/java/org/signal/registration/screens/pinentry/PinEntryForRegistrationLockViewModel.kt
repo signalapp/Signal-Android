@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 import org.signal.core.models.MasterKey
 import org.signal.core.util.logging.Log
 import org.signal.registration.NetworkController
@@ -22,6 +21,7 @@ import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
+import org.signal.registration.screens.EventDrivenViewModel
 import org.signal.registration.screens.util.navigateTo
 
 /**
@@ -36,7 +36,7 @@ class PinEntryForRegistrationLockViewModel(
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val timeRemaining: Long,
   private val svrCredentials: NetworkController.SvrCredentials
-) : ViewModel() {
+) : EventDrivenViewModel<PinEntryScreenEvents>(TAG) {
 
   companion object {
     private val TAG = Log.tag(PinEntryForRegistrationLockViewModel::class)
@@ -52,18 +52,12 @@ class PinEntryForRegistrationLockViewModel(
     .onEach { Log.d(TAG, "[State] $it") }
     .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PinEntryState(showNeedHelp = true))
 
-  fun onEvent(event: PinEntryScreenEvents) {
-    Log.d(TAG, "[Event] $event")
-    viewModelScope.launch {
-      val stateEmitter: (PinEntryState) -> Unit = { state ->
-        _state.value = state
-      }
-      applyEvent(state.value, event, stateEmitter, parentEventEmitter)
-    }
+  override suspend fun processEvent(event: PinEntryScreenEvents) {
+    applyEvent(state.value, event, parentEventEmitter) { _state.value = it }
   }
 
   @VisibleForTesting
-  suspend fun applyEvent(state: PinEntryState, event: PinEntryScreenEvents, stateEmitter: (PinEntryState) -> Unit, parentEventEmitter: (RegistrationFlowEvent) -> Unit) {
+  suspend fun applyEvent(state: PinEntryState, event: PinEntryScreenEvents, parentEventEmitter: (RegistrationFlowEvent) -> Unit, stateEmitter: (PinEntryState) -> Unit) {
     when (event) {
       is PinEntryScreenEvents.PinEntered -> {
         var localState = state.copy(loading = true)

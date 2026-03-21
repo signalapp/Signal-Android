@@ -15,13 +15,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
+import org.signal.registration.screens.EventDrivenViewModel
 import org.signal.registration.screens.util.navigateTo
 
 /**
@@ -33,7 +33,7 @@ class PinCreationViewModel(
   private val repository: RegistrationRepository,
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : ViewModel() {
+) : EventDrivenViewModel<PinCreationScreenEvents>(TAG) {
 
   companion object {
     private val TAG = Log.tag(PinCreationViewModel::class)
@@ -50,11 +50,8 @@ class PinCreationViewModel(
     .onEach { Log.d(TAG, "[State] $it") }
     .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PinCreationState(inputLabel = "PIN must be at least 4 digits"))
 
-  fun onEvent(event: PinCreationScreenEvents) {
-    Log.d(TAG, "[Event] $event")
-    viewModelScope.launch {
-      applyEvent(state.value, event)
-    }
+  override suspend fun processEvent(event: PinCreationScreenEvents) {
+    applyEvent(state.value, event)
   }
 
   @VisibleForTesting

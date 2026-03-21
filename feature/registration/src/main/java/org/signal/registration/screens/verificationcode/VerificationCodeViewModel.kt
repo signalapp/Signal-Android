@@ -15,13 +15,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
+import org.signal.registration.screens.EventDrivenViewModel
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 import org.signal.registration.screens.verificationcode.VerificationCodeState.OneTimeEvent
@@ -34,7 +34,7 @@ class VerificationCodeViewModel(
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val clock: () -> Long = { System.currentTimeMillis() }
-) : ViewModel() {
+) : EventDrivenViewModel<VerificationCodeScreenEvents>(TAG) {
 
   companion object {
     private val TAG = Log.tag(VerificationCodeViewModel::class)
@@ -48,14 +48,8 @@ class VerificationCodeViewModel(
   private var nextSmsAvailableAt: Duration = 0.seconds
   private var nextCallAvailableAt: Duration = 0.seconds
 
-  fun onEvent(event: VerificationCodeScreenEvents) {
-    Log.d(TAG, "[Event] $event")
-    viewModelScope.launch {
-      val stateEmitter: (VerificationCodeState) -> Unit = { newState ->
-        _localState.value = newState
-      }
-      applyEvent(state.value, event, stateEmitter)
-    }
+  override suspend fun processEvent(event: VerificationCodeScreenEvents) {
+    applyEvent(state.value, event) { _localState.value = it }
   }
 
   @VisibleForTesting

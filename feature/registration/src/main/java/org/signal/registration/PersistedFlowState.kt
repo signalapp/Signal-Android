@@ -21,7 +21,9 @@ data class PersistedFlowState(
   val backStack: List<RegistrationRoute>,
   val sessionMetadata: NetworkController.SessionMetadata?,
   val sessionE164: String?,
-  val doNotAttemptRecoveryPassword: Boolean
+  val doNotAttemptRecoveryPassword: Boolean,
+  val pendingRestoreOption: PendingRestoreOption? = null,
+  val restoredAepValue: String? = null
 )
 
 /**
@@ -32,7 +34,9 @@ fun RegistrationFlowState.toPersistedFlowState(): PersistedFlowState {
     backStack = backStack,
     sessionMetadata = sessionMetadata,
     sessionE164 = sessionE164,
-    doNotAttemptRecoveryPassword = doNotAttemptRecoveryPassword
+    doNotAttemptRecoveryPassword = doNotAttemptRecoveryPassword,
+    pendingRestoreOption = pendingRestoreOption,
+    restoredAepValue = unverifiedRestoredAep?.value
   )
 }
 
@@ -55,6 +59,8 @@ fun PersistedFlowState.toRegistrationFlowState(
     accountEntropyPool = accountEntropyPool,
     temporaryMasterKey = temporaryMasterKey,
     preExistingRegistrationData = preExistingRegistrationData,
-    doNotAttemptRecoveryPassword = doNotAttemptRecoveryPassword
+    doNotAttemptRecoveryPassword = doNotAttemptRecoveryPassword,
+    pendingRestoreOption = pendingRestoreOption,
+    unverifiedRestoredAep = restoredAepValue?.let { AccountEntropyPool(it) }
   )
 }

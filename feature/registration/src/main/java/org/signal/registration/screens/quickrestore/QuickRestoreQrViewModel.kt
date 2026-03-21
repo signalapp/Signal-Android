@@ -20,13 +20,14 @@ import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
+import org.signal.registration.screens.EventDrivenViewModel
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 
 class QuickRestoreQrViewModel(
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : ViewModel() {
+) : EventDrivenViewModel<QuickRestoreQrEvents>(TAG) {
 
   companion object {
     private val TAG = Log.tag(QuickRestoreQrViewModel::class)
@@ -41,14 +42,8 @@ class QuickRestoreQrViewModel(
     startProvisioning()
   }
 
-  fun onEvent(event: QuickRestoreQrEvents) {
-    Log.d(TAG, "[Event] $event")
-    viewModelScope.launch {
-      val stateEmitter: (QuickRestoreQrState) -> Unit = { newState ->
-        _localState.value = newState
-      }
-      applyEvent(state.value, event, stateEmitter)
-    }
+  override suspend fun processEvent(event: QuickRestoreQrEvents) {
+    applyEvent(state.value, event) { _localState.value = it }
   }
 
   @VisibleForTesting

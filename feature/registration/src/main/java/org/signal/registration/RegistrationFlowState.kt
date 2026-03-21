@@ -10,8 +10,9 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.TypeParceler
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
+import org.signal.core.util.censor
 import org.signal.registration.util.AccountEntropyPoolParceler
-import org.signal.registration.util.DebugLoggable
+import org.signal.registration.util.DebugLoggableModel
 import org.signal.registration.util.MasterKeyParceler
 
 @Parcelize
@@ -39,6 +40,16 @@ data class RegistrationFlowState(
   /** If true, do not attempt any flows where we generate RRP's. Create a session instead. */
   val doNotAttemptRecoveryPassword: Boolean = false,
 
+  /** If set, the user selected a restore option before entering their phone number. After phone number entry, the flow will navigate to this restore flow. */
+  val pendingRestoreOption: PendingRestoreOption? = null,
+
+  /** The AEP obtained from a local backup restore. May or may not be valid for the current phone number. */
+  val unverifiedRestoredAep: AccountEntropyPool? = null,
+
   /** If true, the ViewModel is still deciding whether to restore a previous flow or start fresh. */
   val isRestoringNavigationState: Boolean = true
-) : Parcelable, DebugLoggable
+) : Parcelable, DebugLoggableModel() {
+  override fun toSafeString(): String {
+    return "RegistrationFlowState(backStack=${backStack.joinToString()}, sessionMetadata=${sessionMetadata.let { "present" }}, sessionE164=$sessionE164, accountEntropyPool=${accountEntropyPool?.toString()?.censor()}, temporaryMasterKey=${temporaryMasterKey?.toString()?.censor()}, preExistingRegistrationData=${preExistingRegistrationData?.let { "present" }}, doNotAttemptRecoveryPassword=$doNotAttemptRecoveryPassword, pendingRestoreOption=$pendingRestoreOption, unverifiedRestoredAep=${unverifiedRestoredAep?.toString()?.censor()}, isRestoringNavigation=$isRestoringNavigationState)"
+  }
+}
