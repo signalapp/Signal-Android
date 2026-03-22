@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.SignalE164Util
-import org.thoughtcrime.securesms.util.Triple
 import org.whispersystems.signalservice.api.push.DistributionId
 import java.io.File
 import java.io.IOException
