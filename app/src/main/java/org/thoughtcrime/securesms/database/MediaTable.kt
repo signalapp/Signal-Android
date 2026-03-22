@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.database.Cursor
 import androidx.compose.runtime.Immutable
+import org.signal.core.util.logging.Log
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.util.MediaUtil.SlideType
 class MediaTable internal constructor(context: Context?, databaseHelper: SignalDatabase?) : DatabaseTable(context, databaseHelper) {
 
   companion object {
+    private val TAG = Log.tag(MediaTable::class)
     const val ALL_THREADS = -1
     private const val THREAD_RECIPIENT_ID = "THREAD_RECIPIENT_ID"
     private val BASE_MEDIA_QUERY = """
@@ -64,16 +66,12 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID},
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} as $THREAD_RECIPIENT_ID,
         ${MessageTable.TABLE_NAME}.${MessageTable.LINK_PREVIEWS}
-      FROM 
-        ${AttachmentTable.TABLE_NAME} 
-        LEFT JOIN ${MessageTable.TABLE_NAME} ON ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID} 
-        LEFT JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} = ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} 
-      WHERE 
-        ${AttachmentTable.MESSAGE_ID} IN (
-          SELECT ${MessageTable.ID} 
-          FROM ${MessageTable.TABLE_NAME} 
-          WHERE ${MessageTable.THREAD_ID} __EQUALITY__ ?
-        ) AND 
+      FROM
+        ${AttachmentTable.TABLE_NAME} __INDEX_HINT__
+        LEFT JOIN ${MessageTable.TABLE_NAME} ON ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
+        LEFT JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} = ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID}
+      WHERE
+        __THREAD_FILTER__ AND
         (%s) AND 
         ${MessageTable.VIEW_ONCE} = 0 AND 
         ${MessageTable.STORY_TYPE} = 0 AND
@@ -216,7 +214,25 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     )
 
     private fun applyEqualityOperator(threadId: Long, query: String): String {
-      return query.replace("__EQUALITY__", if (threadId == ALL_THREADS.toLong()) "!=" else "=")
+      val isAllThreads = threadId == ALL_THREADS.toLong()
+      return query
+        .replace(
+          "__THREAD_FILTER__",
+          if (isAllThreads) {
+            "${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} != ?"
+          } else {
+            "${AttachmentTable.MESSAGE_ID} IN (SELECT ${MessageTable.ID} FROM ${MessageTable.TABLE_NAME} WHERE ${MessageTable.THREAD_ID} = ?)"
+          }
+        )
+        .replace("__EQUALITY__", if (isAllThreads) "!=" else "=")
+        .replace("__INDEX_HINT__", "")
+    }
+
+    private fun applyIndexHint(query: String, threadId: Long, sorting: Sorting): String {
+      if (threadId == ALL_THREADS.toLong() && sorting == Sorting.Largest) {
+        return query.replace("__INDEX_HINT__", "INDEXED BY attachment_media_overview_size")
+      }
+      return query.replace("__INDEX_HINT__", "")
     }
   }
 
@@ -232,15 +248,27 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     return readableDatabase.rawQuery(query, args)
   }
 
-  fun getDocumentMediaForThread(threadId: Long, sorting: Sorting): Cursor {
-    val query = sorting.applyToQuery(applyEqualityOperator(threadId, DOCUMENT_MEDIA_QUERY))
+  @JvmOverloads
+  fun getDocumentMediaForThread(threadId: Long, sorting: Sorting, limit: Int = 0): Cursor {
+    var query = sorting.applyToQuery(applyEqualityOperator(threadId, DOCUMENT_MEDIA_QUERY))
     val args = arrayOf(threadId.toString() + "")
+
+    if (limit > 0) {
+      query = "$query LIMIT $limit"
+    }
+
     return readableDatabase.rawQuery(query, args)
   }
 
-  fun getAudioMediaForThread(threadId: Long, sorting: Sorting): Cursor {
-    val query = sorting.applyToQuery(applyEqualityOperator(threadId, AUDIO_MEDIA_QUERY))
+  @JvmOverloads
+  fun getAudioMediaForThread(threadId: Long, sorting: Sorting, limit: Int = 0): Cursor {
+    var query = sorting.applyToQuery(applyEqualityOperator(threadId, AUDIO_MEDIA_QUERY))
     val args = arrayOf(threadId.toString() + "")
+
+    if (limit > 0) {
+      query = "$query LIMIT $limit"
+    }
+
     return readableDatabase.rawQuery(query, args)
   }
 
@@ -255,9 +283,15 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     return readableDatabase.rawQuery(query, args)
   }
 
-  fun getAllMediaForThread(threadId: Long, sorting: Sorting): Cursor {
-    val query = sorting.applyToQuery(applyEqualityOperator(threadId, ALL_MEDIA_QUERY))
+  @JvmOverloads
+  fun getAllMediaForThread(threadId: Long, sorting: Sorting, limit: Int = 0): Cursor {
+    var query = sorting.applyToQuery(applyEqualityOperator(threadId, applyIndexHint(ALL_MEDIA_QUERY, threadId, sorting)))
     val args = arrayOf(threadId.toString() + "")
+
+    if (limit > 0) {
+      query = "$query LIMIT $limit"
+    }
+
     return readableDatabase.rawQuery(query, args)
   }
 

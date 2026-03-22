@@ -70,9 +70,11 @@ public final class MediaOverviewPageFragment extends LoggingFragment
 
   private static final String TAG = Log.tag(MediaOverviewPageFragment.class);
 
-  private static final String THREAD_ID_EXTRA  = "thread_id";
-  private static final String MEDIA_TYPE_EXTRA = "media_type";
-  private static final String GRID_MODE        = "grid_mode";
+  private static final String THREAD_ID_EXTRA       = "thread_id";
+  private static final String MEDIA_TYPE_EXTRA      = "media_type";
+  private static final String GRID_MODE             = "grid_mode";
+  private static final int    INITIAL_LOAD_LIMIT    = 500;
+  private static final int    LOAD_MORE_THRESHOLD   = 50;
 
   private final ActionModeCallback            actionModeCallback = new ActionModeCallback();
   private       MediaTable.Sorting            sorting            = MediaTable.Sorting.Newest;
@@ -88,6 +90,10 @@ public final class MediaOverviewPageFragment extends LoggingFragment
   private       VoiceNoteMediaController      voiceNoteMediaController;
   private       SignalBottomActionBar         bottomActionBar;
   private       LifecycleDisposable           lifecycleDisposable;
+  private       boolean                       pendingLoad = true;
+  private       int                           loadLimit;
+  private       boolean                       allLoaded;
+  private       boolean                       loadingMore;
 
   public static @NonNull Fragment newInstance(long threadId,
                                               @NonNull MediaLoader.MediaType mediaType,
@@ -115,7 +121,8 @@ public final class MediaOverviewPageFragment extends LoggingFragment
 
     if (threadId == Long.MIN_VALUE) throw new AssertionError();
 
-    LoaderManager.getInstance(this).initLoader(0, null, this);
+    loadLimit = threadId == MediaTable.ALL_THREADS ? INITIAL_LOAD_LIMIT : 0;
+    allLoaded = loadLimit == 0;
   }
 
   @Override
@@ -123,6 +130,15 @@ public final class MediaOverviewPageFragment extends LoggingFragment
     super.onActivityCreated(savedInstanceState);
 
     voiceNoteMediaController = new VoiceNoteMediaController(requireActivity(), false);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    if (pendingLoad) {
+      pendingLoad = false;
+      LoaderManager.getInstance(this).restartLoader(0, null, this);
+    }
   }
 
   @Override
@@ -151,6 +167,22 @@ public final class MediaOverviewPageFragment extends LoggingFragment
     this.recyclerView.setHasFixedSize(true);
     this.recyclerView.addItemDecoration(new MediaGridDividerDecoration(spans, ViewUtil.dpToPx(4), adapter));
     this.recyclerView.addItemDecoration(new BottomOffsetDecoration(ViewUtil.dpToPx(160)));
+    this.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+      @Override
+      public void onScrolled(@NonNull RecyclerView rv, int dx, int dy) {
+        if (allLoaded || loadingMore) return;
+
+        int scrollRange  = rv.computeVerticalScrollRange();
+        int scrollOffset = rv.computeVerticalScrollOffset();
+        int scrollExtent = rv.computeVerticalScrollExtent();
+
+        if (scrollRange > 0 && scrollOffset + scrollExtent * 2 >= scrollRange) {
+          loadingMore = true;
+          loadLimit *= 2;
+          LoaderManager.getInstance(MediaOverviewPageFragment.this).restartLoader(0, null, MediaOverviewPageFragment.this);
+        }
+      }
+    });
 
     MediaOverviewViewModel viewModel = MediaOverviewViewModel.getMediaOverviewViewModel(requireActivity());
 
@@ -158,8 +190,14 @@ public final class MediaOverviewPageFragment extends LoggingFragment
       .observe(getViewLifecycleOwner(), sorting -> {
         if (sorting != null) {
           this.sorting = sorting;
+          this.loadLimit = threadId == MediaTable.ALL_THREADS ? INITIAL_LOAD_LIMIT : 0;
+          this.allLoaded = loadLimit == 0;
           adapter.setShowFileSizes(sorting.isRelatedToFileSize());
-          LoaderManager.getInstance(this).restartLoader(0, null, this);
+          if (isResumed()) {
+            LoaderManager.getInstance(this).restartLoader(0, null, this);
+          } else {
+            pendingLoad = true;
+          }
           updateMultiSelect();
         }
       });
@@ -196,7 +234,7 @@ public final class MediaOverviewPageFragment extends LoggingFragment
 
   @Override
   public @NonNull Loader<GroupedThreadMediaLoader.GroupedThreadMedia> onCreateLoader(int i, Bundle bundle) {
-    return new GroupedThreadMediaLoader(requireContext(), threadId, mediaType, sorting);
+    return new GroupedThreadMediaLoader(requireContext(), threadId, mediaType, sorting, loadLimit);
   }
 
   @Override
@@ -204,6 +242,15 @@ public final class MediaOverviewPageFragment extends LoggingFragment
     ((MediaGalleryAllAdapter) recyclerView.getAdapter()).setMedia(groupedThreadMedia);
     ((MediaGalleryAllAdapter) recyclerView.getAdapter()).notifyAllSectionsDataSetChanged();
 
+    if (loadLimit > 0) {
+      int totalMediaItems = 0;
+      for (int i = 0; i < groupedThreadMedia.getSectionCount(); i++) {
+        totalMediaItems += groupedThreadMedia.getSectionItemCount(i);
+      }
+      allLoaded = totalMediaItems < loadLimit;
+    }
+
+    loadingMore = false;
     noMedia.setVisibility(recyclerView.getAdapter().getItemCount() > 0 ? View.GONE : View.VISIBLE);
     getActivity().invalidateOptionsMenu();
   }
