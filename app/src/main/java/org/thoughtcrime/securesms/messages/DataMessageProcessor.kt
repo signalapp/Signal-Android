@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.database.model.databaseprotos.PinnedMessage
 import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.database.model.toBodyRangeList
+import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupAccessControl
@@ -458,7 +459,7 @@ object DataMessageProcessor {
         if (groupId != null) {
           parentStoryId = GroupReply(storyId)
         } else if (SignalDatabase.storySends.canReply(senderRecipientId, sentTimestamp)) {
-          val story = SignalDatabase.messages.getMessageRecord(storyId) as MmsMessageRecord
+          val story = SignalDatabase.messages.getMessageRecord(storyId).withAttachments() as MmsMessageRecord
           var displayText = ""
           var bodyRanges: BodyRangeList? = null
 
@@ -771,7 +772,7 @@ object DataMessageProcessor {
           storyMessageId = SignalDatabase.messages.getStoryId(storyAuthorRecipientId, sentTimestamp)
         }
 
-        val story: MmsMessageRecord = SignalDatabase.messages.getMessageRecord(storyMessageId.id) as MmsMessageRecord
+        val story: MmsMessageRecord = SignalDatabase.messages.getMessageRecord(storyMessageId.id).withAttachments() as MmsMessageRecord
         var threadRecipient: Recipient = SignalDatabase.threads.getRecipientForThreadId(story.threadId)!!
         val groupRecord: GroupRecord? = SignalDatabase.groups.getGroup(threadRecipient.id).orNull()
         val groupStory: Boolean = groupRecord?.isActive ?: false

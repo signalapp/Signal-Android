@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.StoryResult
 import org.thoughtcrime.securesms.database.model.StoryViewState
+import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -74,7 +75,7 @@ class StoriesLandingRepository(context: Context) {
           .take(if (recipient.isMyStory) 2 else 1)
           .mapNotNull {
             try {
-              SignalDatabase.messages.getMessageRecord(it.messageId)
+              SignalDatabase.messages.getMessageRecord(it.messageId).withAttachments()
             } catch (e: NoSuchMessageException) {
               Log.w(TAG, "Failed to find message record ${it.messageId} sent at ${it.messageSentTimestamp} for story.", e)
               null
