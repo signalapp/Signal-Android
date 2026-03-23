@@ -85,7 +85,7 @@ class RestoreLocalBackupActivity : BaseActivity() {
       LaunchedEffect(state.restorePhase) {
         when (state.restorePhase) {
           RestorePhase.COMPLETE -> {
-            if (!state.showLocalBackupsDisabledDialog) {
+            if (state.dialog == null) {
               startActivity(MainActivity.clearTop(this@RestoreLocalBackupActivity))
               if (finishActivity) {
                 finishAffinity()
@@ -108,8 +108,34 @@ class RestoreLocalBackupActivity : BaseActivity() {
         RestoreLocalBackupScreen(
           state = state,
           onContactSupportClick = contactSupportViewModel::showContactSupport,
+          onConfirmBackupLocation = {
+            viewModel.enableLocalBackupsAndDismissDialog()
+            startActivity(MainActivity.clearTop(this@RestoreLocalBackupActivity))
+            if (finishActivity) {
+              finishAffinity()
+            }
+          },
+          onDisableBackups = {
+            viewModel.changeBackupLocation()
+            startActivity(MainActivity.clearTop(this@RestoreLocalBackupActivity))
+            if (finishActivity) {
+              finishAffinity()
+            }
+          },
+          onChangeBackupLocation = {
+            viewModel.changeBackupLocation()
+            startActivities(
+              arrayOf(
+                MainActivity.clearTop(this@RestoreLocalBackupActivity),
+                AppSettingsActivity.backups(this@RestoreLocalBackupActivity)
+              )
+            )
+            if (finishActivity) {
+              finishAffinity()
+            }
+          },
           onLocalBackupsDisabledDialogConfirm = {
-            viewModel.dismissLocalBackupsDisabledDialog()
+            viewModel.dismissDialog()
             startActivities(
               arrayOf(
                 MainActivity.clearTop(this@RestoreLocalBackupActivity),
@@ -121,7 +147,7 @@ class RestoreLocalBackupActivity : BaseActivity() {
             }
           },
           onLocalBackupsDisabledDialogDeny = {
-            viewModel.dismissLocalBackupsDisabledDialog()
+            viewModel.dismissDialog()
             startActivity(MainActivity.clearTop(this@RestoreLocalBackupActivity))
             if (finishActivity) {
               finishAffinity()
@@ -148,6 +174,9 @@ class RestoreLocalBackupActivity : BaseActivity() {
 private fun RestoreLocalBackupScreen(
   state: RestoreLocalBackupScreenState,
   onFailureDialogConfirm: () -> Unit,
+  onConfirmBackupLocation: () -> Unit,
+  onChangeBackupLocation: () -> Unit,
+  onDisableBackups: () -> Unit,
   onLocalBackupsDisabledDialogConfirm: () -> Unit,
   onLocalBackupsDisabledDialogDeny: () -> Unit,
   onContactSupportClick: () -> Unit,
@@ -266,15 +295,30 @@ private fun RestoreLocalBackupScreen(
       }
     }
 
-    if (state.showLocalBackupsDisabledDialog) {
-      Dialogs.SimpleAlertDialog(
-        title = stringResource(R.string.RestoreLocalBackupActivity__turn_on_on_device_backups),
-        body = stringResource(R.string.RestoreLocalBackupActivity__to_continue_using_on_device_backups),
-        confirm = stringResource(R.string.RestoreLocalBackupActivity__turn_on_now),
-        dismiss = stringResource(R.string.RestoreLocalBackupActivity__not_now),
-        onConfirm = onLocalBackupsDisabledDialogConfirm,
-        onDeny = onLocalBackupsDisabledDialogDeny
-      )
+    when (state.dialog) {
+      RestoreLocalBackupActivityDialog.CONFIRM_BACKUP_LOCATION -> {
+        Dialogs.AdvancedAlertDialog(
+          title = stringResource(R.string.RestoreLocalBackupActivity__restore_complete),
+          body = stringResource(R.string.RestoreLocalBackupActivity__choose_a_folder_for_backups),
+          positive = stringResource(R.string.RestoreLocalBackupActivity__use_current_folder),
+          neutral = stringResource(R.string.RestoreLocalBackupActivity__choose_new_folder),
+          negative = stringResource(R.string.RestoreLocalBackupActivity__disable_backups),
+          onPositive = onConfirmBackupLocation,
+          onNeutral = onChangeBackupLocation,
+          onNegative = onDisableBackups
+        )
+      }
+      RestoreLocalBackupActivityDialog.LOCAL_BACKUPS_DISABLED -> {
+        Dialogs.SimpleAlertDialog(
+          title = stringResource(R.string.RestoreLocalBackupActivity__turn_on_on_device_backups),
+          body = stringResource(R.string.RestoreLocalBackupActivity__to_continue_using_on_device_backups),
+          confirm = stringResource(R.string.RestoreLocalBackupActivity__turn_on_now),
+          dismiss = stringResource(R.string.RestoreLocalBackupActivity__not_now),
+          onConfirm = onLocalBackupsDisabledDialogConfirm,
+          onDeny = onLocalBackupsDisabledDialogDeny
+        )
+      }
+      null -> Unit
     }
   }
 }
@@ -286,6 +330,9 @@ private fun RestoreLocalBackupScreenPreview() {
     RestoreLocalBackupScreen(
       state = RestoreLocalBackupScreenState(),
       onFailureDialogConfirm = {},
+      onConfirmBackupLocation = {},
+      onChangeBackupLocation = {},
+      onDisableBackups = {},
       onLocalBackupsDisabledDialogConfirm = {},
       onLocalBackupsDisabledDialogDeny = {},
       onContactSupportClick = {},

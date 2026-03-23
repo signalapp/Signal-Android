@@ -140,7 +140,6 @@ class RestoreLocalBackupActivityViewModel : ViewModel() {
         val backupIdMatchesCurrentAccount = actualBackupId?.value?.contentEquals(expectedBackupId.value) == true
         if (backupIdMatchesCurrentAccount) {
           SignalStore.account.restoreAccountEntropyPool(localAepPool)
-          SignalStore.backup.newLocalBackupsEnabled = true
         } else {
           Log.w(TAG, "Local backup does not match current account, not re-enabling local backups")
         }
@@ -151,7 +150,9 @@ class RestoreLocalBackupActivityViewModel : ViewModel() {
         internalState.update {
           it.copy(
             restorePhase = RestorePhase.COMPLETE,
-            showLocalBackupsDisabledDialog = !backupIdMatchesCurrentAccount
+            backupDirectory = if (backupIdMatchesCurrentAccount) backupDirectory else null,
+            dialog = if (backupIdMatchesCurrentAccount) RestoreLocalBackupActivityDialog.CONFIRM_BACKUP_LOCATION
+            else RestoreLocalBackupActivityDialog.LOCAL_BACKUPS_DISABLED
           )
         }
       } else {
@@ -161,8 +162,18 @@ class RestoreLocalBackupActivityViewModel : ViewModel() {
     }
   }
 
-  fun dismissLocalBackupsDisabledDialog() {
-    internalState.update { it.copy(showLocalBackupsDisabledDialog = false) }
+  fun enableLocalBackupsAndDismissDialog() {
+    SignalStore.backup.newLocalBackupsEnabled = true
+    internalState.update { it.copy(dialog = null) }
+  }
+
+  fun changeBackupLocation() {
+    SignalStore.backup.newLocalBackupsDirectory = null
+    internalState.update { it.copy(dialog = null) }
+  }
+
+  fun dismissDialog() {
+    internalState.update { it.copy(dialog = null) }
   }
 
   fun resetRestoreState() {
@@ -175,7 +186,8 @@ data class RestoreLocalBackupScreenState(
   val bytesRead: ByteSize = 0L.bytes,
   val totalBytes: ByteSize = 0L.bytes,
   val progress: Float = 0f,
-  val showLocalBackupsDisabledDialog: Boolean = false
+  val dialog: RestoreLocalBackupActivityDialog? = null,
+  val backupDirectory: String? = null
 )
 
 enum class RestorePhase {
@@ -183,4 +195,9 @@ enum class RestorePhase {
   FINALIZING,
   COMPLETE,
   FAILED
+}
+
+enum class RestoreLocalBackupActivityDialog {
+  LOCAL_BACKUPS_DISABLED,
+  CONFIRM_BACKUP_LOCATION
 }
