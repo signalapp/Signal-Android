@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.messagerequests
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.text.Html
 import android.util.AttributeSet
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -12,7 +13,6 @@ import org.thoughtcrime.securesms.messagerequests.MessageRequestBarColorTheme.Co
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.Debouncer
-import org.thoughtcrime.securesms.util.HtmlUtil
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView
 import org.thoughtcrime.securesms.util.visible
 
@@ -64,7 +64,7 @@ class MessageRequestsBottomView @JvmOverloads constructor(context: Context, attr
         question.text = HtmlCompat.fromHtml(
           context.getString(
             message,
-            HtmlUtil.bold(recipient.getShortDisplayName(context))
+            bold(recipient.getShortDisplayName(context))
           ),
           0
         )
@@ -95,7 +95,7 @@ class MessageRequestsBottomView @JvmOverloads constructor(context: Context, attr
         question.text = HtmlCompat.fromHtml(
           context.getString(
             R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept,
-            HtmlUtil.bold(recipient.getShortDisplayName(context))
+            bold(recipient.getShortDisplayName(context))
           ),
           0
         )
@@ -106,7 +106,7 @@ class MessageRequestsBottomView @JvmOverloads constructor(context: Context, attr
         question.text = HtmlCompat.fromHtml(
           context.getString(
             R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before,
-            HtmlUtil.bold(recipient.getShortDisplayName(context))
+            bold(recipient.getShortDisplayName(context))
           ),
           0
         )
@@ -165,4 +165,9 @@ class MessageRequestsBottomView @JvmOverloads constructor(context: Context, attr
   fun setReportOnClickListener(reportOnClickListener: OnClickListener?) {
     report.setOnClickListener(reportOnClickListener)
   }
+
+  fun bold(target: String): String {
+    return "<b>" + Html.escapeHtml(target) + "</b>"
+  }
+
 }
