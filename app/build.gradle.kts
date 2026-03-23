@@ -750,6 +750,7 @@ dependencies {
   testImplementation(testFixtures(project(":lib:libsignal-service")))
   testImplementation(testLibs.espresso.core)
   testImplementation(testLibs.kotlinx.coroutines.test)
+  testImplementation(testLibs.sqlite.jdbc)
   testImplementation(libs.androidx.compose.ui.test.junit4)
 
   "perfImplementation"(libs.androidx.compose.ui.test.manifest)
