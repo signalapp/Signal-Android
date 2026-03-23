@@ -842,6 +842,18 @@ class ConversationRepository(
       .subscribeOn(Schedulers.io())
   }
 
+  fun collapseEvents(messageId: Long) {
+    SignalDatabase.messages.collapseEvents(messageId)
+  }
+
+  fun collapseAllEvents() {
+    SignalDatabase.messages.collapseAllEvents()
+  }
+
+  fun expandEvents(messageId: Long) {
+    SignalDatabase.messages.expandEvents(messageId)
+  }
+
   /**
    * Glide target for a contact photo which expects an error drawable, and publishes
    * the result to the given emitter.

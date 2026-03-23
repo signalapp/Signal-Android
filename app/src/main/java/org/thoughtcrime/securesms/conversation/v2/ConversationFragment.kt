@@ -811,6 +811,7 @@ class ConversationFragment :
   }
 
   override fun onDestroyView() {
+    viewModel.collapseAllEvents()
     keyboardEvents?.let {
       container.removeInputListener(it)
       container.removeKeyboardStateListener(it)
@@ -3765,6 +3766,14 @@ class ConversationFragment :
       } else {
         EditMessageHistoryDialog.show(childFragmentManager, messageRecord.fromRecipient.id, messageRecord)
       }
+    }
+
+    override fun onExpandEvents(messageId: Long) {
+      viewModel.onExpandEvents(messageId)
+    }
+
+    override fun onCollapseEvents(messageId: Long) {
+      viewModel.onCollapseEvents(messageId)
     }
 
     override fun onItemClick(item: MultiselectPart) {

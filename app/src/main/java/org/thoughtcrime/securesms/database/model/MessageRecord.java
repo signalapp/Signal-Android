@@ -43,6 +43,7 @@ import org.signal.archive.proto.GroupCreationUpdate;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
+import org.thoughtcrime.securesms.database.CollapsedState;
 import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
@@ -115,6 +116,8 @@ public abstract class MessageRecord extends DisplayRecord {
   private final int                      revisionNumber;
   private final long                     pinnedUntil;
   private final RecipientId              deletedBy;
+  private final CollapsedState           collapsedState;
+  private final long                     collapsedHeadId;
   private final MessageExtras            messageExtras;
   private final boolean                  starred;
 
@@ -139,6 +142,8 @@ public abstract class MessageRecord extends DisplayRecord {
                 int revisionNumber,
                 long pinnedUntil,
                 @Nullable RecipientId deletedBy,
+                CollapsedState collapsedState,
+                long collapsedHeadId,
                 @Nullable MessageExtras messageExtras,
                 boolean starred)
   {
@@ -162,6 +167,8 @@ public abstract class MessageRecord extends DisplayRecord {
     this.revisionNumber      = revisionNumber;
     this.pinnedUntil         = pinnedUntil;
     this.deletedBy           = deletedBy;
+    this.collapsedState      = collapsedState;
+    this.collapsedHeadId     = collapsedHeadId;
     this.messageExtras       = messageExtras;
     this.starred             = starred;
   }
@@ -816,6 +823,14 @@ public abstract class MessageRecord extends DisplayRecord {
     return messageExtras != null &&
            messageExtras.adminDeleteStatus != null &&
            messageExtras.adminDeleteStatus.status == AdminDeleteStatus.Status.FAILED;
+  }
+
+  public CollapsedState getCollapsedState() {
+    return collapsedState;
+  }
+
+  public long getCollapsedHeadId() {
+    return collapsedHeadId;
   }
 
   public boolean isInMemoryMessageRecord() {

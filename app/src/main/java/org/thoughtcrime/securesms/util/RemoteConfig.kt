@@ -1315,5 +1315,16 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /**
+   * Whether to collapse update events
+   */
+  @JvmStatic
+  @get:JvmName("collapseEvents")
+  val collapseEvents: Boolean by remoteBoolean(
+    key = "android.collapseEvents",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   // endregion
 }

@@ -12,11 +12,13 @@ import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
@@ -36,6 +38,8 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
+import org.thoughtcrime.securesms.database.CollapsibleEvents;
+import org.thoughtcrime.securesms.database.CollapsedState;
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
@@ -43,6 +47,7 @@ import org.thoughtcrime.securesms.database.model.LiveUpdateMessage;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
+import org.thoughtcrime.securesms.fonts.SignalSymbols;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
@@ -93,6 +98,7 @@ public final class ConversationUpdateItem extends FrameLayout
   private MessageRecord             messageRecord;
   private boolean                   isMessageRequestAccepted;
   private EventListener             eventListener;
+  private Button                    collapsedButton;
 
   private final UpdateObserver updateObserver = new UpdateObserver();
 
@@ -124,9 +130,10 @@ public final class ConversationUpdateItem extends FrameLayout
   @Override
   public void onFinishInflate() {
     super.onFinishInflate();
-    this.body         = findViewById(R.id.conversation_update_body);
-    this.actionButton = findViewById(R.id.conversation_update_action);
-    this.background   = findViewById(R.id.conversation_update_background);
+    this.body            = findViewById(R.id.conversation_update_body);
+    this.actionButton    = findViewById(R.id.conversation_update_action);
+    this.background      = findViewById(R.id.conversation_update_background);
+    this.collapsedButton = findViewById(R.id.conversation_update_collapsed);
 
     body.setOnClickListener(v -> performClick());
     body.setOnLongClickListener(v -> performLongClick());
@@ -210,6 +217,7 @@ public final class ConversationUpdateItem extends FrameLayout
                       hasWallpaper);
 
     presentActionButton(hasWallpaper, conversationMessage.getMessageRecord().isReleaseChannelDonationRequest());
+    presentCollapsedHead(conversationMessage.getMessageRecord().getCollapsedState());
 
     updateSelectedState();
   }
@@ -442,7 +450,9 @@ public final class ConversationUpdateItem extends FrameLayout
   }
 
   private void setBodyText(@Nullable CharSequence text) {
-    if (text == null) {
+    if (CollapsedState.isCollapsed(conversationMessage.getMessageRecord().getCollapsedState()) && conversationMessage.getCollapsedSize() > 1) {
+      body.setVisibility(GONE);
+    } else if (text == null) {
       body.setVisibility(INVISIBLE);
     } else {
       body.setText(text);
@@ -459,7 +469,10 @@ public final class ConversationUpdateItem extends FrameLayout
 
     setSelected(!Sets.intersection(multiselectParts, batchSelected).isEmpty());
 
-    if (conversationMessage.getMessageRecord().isGroupV1MigrationEvent() &&
+    if (CollapsedState.isCollapsed(conversationMessage.getMessageRecord().getCollapsedState()) && conversationMessage.getCollapsedSize() > 1) {
+      actionButton.setVisibility(GONE);
+      actionButton.setOnClickListener(null);
+    } else if (conversationMessage.getMessageRecord().isGroupV1MigrationEvent() &&
         (!nextMessageRecord.isPresent() || !nextMessageRecord.get().isGroupV1MigrationEvent()))
     {
       actionButton.setText(R.string.ConversationUpdateItem_learn_more);
@@ -805,6 +818,49 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setBackgroundTintList(AppCompatResources.getColorStateList(getContext(), R.color.conversation_update_item_button_background_normal));
       actionButton.setTextColor(AppCompatResources.getColorStateList(getContext(), R.color.conversation_update_item_button_text_color_normal));
     }
+  }
+
+  private void presentCollapsedHead(CollapsedState collapsedState) {
+    CollapsibleEvents.CollapsibleType collapsibleType = CollapsibleEvents.getCollapsibleType(messageRecord.getType(), messageRecord.getMessageExtras());
+    if (CollapsedState.isHead(collapsedState) && conversationMessage.getCollapsedSize() > 1 && collapsibleType != null) {
+      SpannableStringBuilder text = new SpannableStringBuilder()
+                                        .append(SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, getCollapsibleSymbol(collapsibleType), org.signal.core.ui.R.color.signal_colorOnSurfaceVariant))
+                                        .append(" ")
+                                        .append(getContext().getString(getCollapsibleString(collapsibleType), conversationMessage.getCollapsedSize()))
+                                        .append(" ")
+                                        .append(SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, collapsedState == CollapsedState.HEAD_EXPANDED ? SignalSymbols.Glyph.CHEVRON_UP : SignalSymbols.Glyph.CHEVRON_DOWN, org.signal.core.ui.R.color.signal_colorOnSurfaceVariant));
+      collapsedButton.setText(text);
+      collapsedButton.setOnClickListener(v -> {
+        if (eventListener != null) {
+          if (CollapsedState.isCollapsed(collapsedState)) {
+            eventListener.onExpandEvents(conversationMessage.getMessageRecord().getId());
+          } else {
+            eventListener.onCollapseEvents(conversationMessage.getMessageRecord().getId());
+          }
+        } else {
+          passthroughClickListener.onClick(v);
+        }
+      });
+      collapsedButton.setVisibility(VISIBLE);
+    } else {
+      collapsedButton.setVisibility(GONE);
+    }
+  }
+
+  private @StringRes int getCollapsibleString(CollapsibleEvents.CollapsibleType type) {
+    return switch (type) {
+      case CALL_EVENT -> R.string.CollapsedEvent__call_event;
+      case DISAPPEARING_TIMER -> R.string.CollapsedEvent__disappearing_timer;
+      case GROUP_UPDATE -> R.string.CollapsedEvent__group_update;
+    };
+  }
+
+  private SignalSymbols.Glyph getCollapsibleSymbol(CollapsibleEvents.CollapsibleType type) {
+    return switch (type) {
+      case CALL_EVENT -> SignalSymbols.Glyph.PHONE;
+      case DISAPPEARING_TIMER -> SignalSymbols.Glyph.TIMER;
+      case GROUP_UPDATE -> SignalSymbols.Glyph.GROUP;
+    };
   }
 
   private static boolean isSameType(@NonNull MessageRecord current, @NonNull MessageRecord candidate) {

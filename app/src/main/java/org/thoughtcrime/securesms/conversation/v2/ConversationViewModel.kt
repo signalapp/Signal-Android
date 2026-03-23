@@ -43,6 +43,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.models.ServiceId
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.paging.ProxyPagingController
@@ -433,6 +434,20 @@ class ConversationViewModel(
       .flowOn(Dispatchers.IO)
   }
 
+  fun onCollapseEvents(messageId: Long) {
+    viewModelScope.launch(Dispatchers.IO) {
+      repository.collapseEvents(messageId)
+      pagingController.onDataInvalidated()
+    }
+  }
+
+  fun onExpandEvents(messageId: Long) {
+    viewModelScope.launch(Dispatchers.IO) {
+      repository.expandEvents(messageId)
+      pagingController.onDataInvalidated()
+    }
+  }
+
   fun onChatBoundsChanged(bounds: Rect) {
     chatBounds.onNext(bounds)
   }
@@ -783,6 +798,12 @@ class ConversationViewModel(
 
   fun clearPlaintextExportState() {
     _plaintextExportState.value = PlaintextExportState.None
+  }
+
+  fun collapseAllEvents() {
+    viewModelScope.launch(SignalDispatchers.IO) {
+      repository.collapseAllEvents()
+    }
   }
 
   sealed interface PlaintextExportState {

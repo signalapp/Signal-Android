@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.conversation.v2.computed.FormattedDate;
 import org.thoughtcrime.securesms.database.BodyRangeUtil;
+import org.thoughtcrime.securesms.database.CollapsedState;
 import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -54,6 +55,7 @@ public class ConversationMessage {
   @Nullable private final MemberLabel            memberLabel;
   @Nullable private final MemberLabel            quoteMemberLabel;
   @Nullable private final Recipient              deletedByRecipient;
+            private final int                    collapsedSize;
 
   private ConversationMessage(@NonNull MessageRecord messageRecord,
                               @Nullable CharSequence body,
@@ -65,7 +67,8 @@ public class ConversationMessage {
                               @NonNull ComputedProperties computedProperties,
                               @Nullable MemberLabel memberLabel,
                               @Nullable MemberLabel quoteMemberLabel,
-                              @Nullable Recipient deletedByRecipient)
+                              @Nullable Recipient deletedByRecipient,
+                              int collapsedSize)
   {
     this.messageRecord      = messageRecord;
     this.hasBeenQuoted      = hasBeenQuoted;
@@ -77,6 +80,7 @@ public class ConversationMessage {
     this.memberLabel        = memberLabel;
     this.quoteMemberLabel   = quoteMemberLabel;
     this.deletedByRecipient = deletedByRecipient;
+    this.collapsedSize      = collapsedSize;
 
     if (body != null) {
       this.body = SpannableString.valueOf(body);
@@ -123,6 +127,10 @@ public class ConversationMessage {
 
   public @Nullable Recipient getDeletedByRecipient() {
     return deletedByRecipient;
+  }
+
+  public int getCollapsedSize() {
+    return collapsedSize;
   }
 
   @Override
@@ -282,6 +290,11 @@ public class ConversationMessage {
       MemberLabel   quoteMemberLabel = getQuoteMemberLabel(messageRecord, threadRecipient, prefetchedLabels);
       Recipient     deletedBy        = messageRecord.getDeletedBy() != null ? Recipient.resolved(messageRecord.getDeletedBy()) : null;
 
+      int collapsedSize = 0;
+      if (CollapsedState.isHead(messageRecord.getCollapsedState())) {
+        collapsedSize = SignalDatabase.messages().getCollapsedCount(messageRecord.getId());
+      }
+
       return new ConversationMessage(messageRecord,
                                      styledAndMentionBody != null ? styledAndMentionBody : mentionsUpdate != null ? mentionsUpdate.getBody() : body,
                                      mentionsUpdate != null ? mentionsUpdate.getMentions() : null,
@@ -292,7 +305,8 @@ public class ConversationMessage {
                                      new ComputedProperties(formattedDate),
                                      memberLabel,
                                      quoteMemberLabel,
-                                     deletedBy);
+                                     deletedBy,
+                                     collapsedSize);
     }
 
     /**

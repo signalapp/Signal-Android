@@ -417,6 +417,14 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
     Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
   }
 
+  override fun onExpandEvents(messageId: Long) {
+    Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
+  }
+
+  override fun onCollapseEvents(messageId: Long) {
+    Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
+  }
+
   class Dialog : WrapperDialogFragment() {
     override fun getWrappedFragment(): Fragment {
       return MessageDetailsFragment().apply {

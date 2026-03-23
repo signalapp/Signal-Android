@@ -24,6 +24,20 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/conversation_update_collapsed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="32dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/rounded_rectangle_38"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/signal_colorOnSurfaceVariant"
+            android:textAllCaps="false"
+            style="?android:attr/borderlessButtonStyle"
+            android:backgroundTint="@color/signal_colorSurfaceVariant"
+            tools:text="12 group updates" />
+
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/conversation_update_body"
             style="@style/Signal.Text.BodySmall"

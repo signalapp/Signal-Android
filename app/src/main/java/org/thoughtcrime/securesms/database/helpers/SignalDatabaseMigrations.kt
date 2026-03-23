@@ -165,6 +165,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V309_GroupTerminate
 import org.thoughtcrime.securesms.database.helpers.migration.V310_AddStarredColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V311_AddAttachmentMediaOverviewSizeIndex
 import org.thoughtcrime.securesms.database.helpers.migration.V312_RefactorNameCollisionTables
+import org.thoughtcrime.securesms.database.helpers.migration.V313_AddCollapsingUpdateColumns
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
@@ -337,10 +338,11 @@ object SignalDatabaseMigrations {
     309 to V309_GroupTerminatedColumnMigration,
     310 to V310_AddStarredColumn,
     311 to V311_AddAttachmentMediaOverviewSizeIndex,
-    312 to V312_RefactorNameCollisionTables
+    312 to V312_RefactorNameCollisionTables,
+    313 to V313_AddCollapsingUpdateColumns
   )
 
-  const val DATABASE_VERSION = 312
+  const val DATABASE_VERSION = 313
 
   @JvmStatic
   fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {

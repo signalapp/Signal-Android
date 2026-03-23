@@ -8,6 +8,7 @@ import org.signal.spinner.Spinner
 import org.signal.spinner.Spinner.DatabaseConfig
 import org.signal.spinner.SpinnerLogger
 import org.thoughtcrime.securesms.database.AttachmentTransformer
+import org.thoughtcrime.securesms.database.CollapsedStateTransformer
 import org.thoughtcrime.securesms.database.DatabaseMonitor
 import org.thoughtcrime.securesms.database.GV2Transformer
 import org.thoughtcrime.securesms.database.GV2UpdateTransformer
@@ -74,7 +75,8 @@ class SpinnerApplicationContext : ApplicationContext() {
             RecipientTransformer,
             AttachmentTransformer,
             PollTransformer,
-            IdPopupTransformer
+            IdPopupTransformer,
+            CollapsedStateTransformer
           )
         ),
         "jobmanager" to DatabaseConfig(db = { JobDatabase.getInstance(this).sqlCipherDatabase }, columnTransformers = listOf(TimestampTransformer)),

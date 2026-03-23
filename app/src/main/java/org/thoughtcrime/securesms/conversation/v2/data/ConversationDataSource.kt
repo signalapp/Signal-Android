@@ -97,7 +97,7 @@ class ConversationDataSource(
     val stopwatch = Stopwatch(title = "load($start, $length), thread $threadId", decimalPlaces = 2)
     var records: MutableList<MessageRecord> = ArrayList(length)
 
-    MessageTable.mmsReaderFor(SignalDatabase.messages.getConversation(threadId, start.toLong(), length.toLong()))
+    MessageTable.mmsReaderFor(SignalDatabase.messages.getConversation(threadId, start.toLong(), length.toLong(), filterCollapsed = true))
       .use { reader ->
         reader.forEach { record ->
           if (cancellationSignal.isCanceled) {

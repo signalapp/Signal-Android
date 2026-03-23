@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationM
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
 import org.thoughtcrime.securesms.conversation.v2.data.IncomingTextOnly
 import org.thoughtcrime.securesms.conversation.v2.data.OutgoingTextOnly
+import org.thoughtcrime.securesms.database.CollapsedState
 import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.StoryType
@@ -122,6 +123,8 @@ class ConversationElementGenerator {
       false,
       0,
       null,
+      CollapsedState.NONE,
+      0,
       null,
       false
     )

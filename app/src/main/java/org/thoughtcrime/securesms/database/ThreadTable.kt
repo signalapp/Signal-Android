@@ -450,6 +450,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       if (deletes > 0) {
         Log.i(TAG, "Trimming deleted $deletes messages thread: $threadId")
+        messages.fixPotentialDanglingCollapsibleEvent(threadId)
         setLastScrolled(threadId, 0)
         val threadDeleted = update(threadId = threadId, unarchive = false, syncThreadDelete = syncThreadTrimDeletes)
         notifyConversationListeners(threadId)
@@ -499,6 +500,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     messages.setAllReactionsSeen()
     messages.setAllVotesSeen()
+    messages.collapseAllPendingCollapsibleEvents()
     notifyConversationListListeners()
 
     return messageRecords
@@ -561,6 +563,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
         messages.setReactionsSeen(threadId, sinceTimestamp)
         messages.setVoteSeen(threadId, sinceTimestamp)
+        messages.collapsePendingCollapsibleEvents(threadId, sinceTimestamp)
 
         val unreadCount = messages.getUnreadCount(threadId)
         val unreadMentionsCount = messages.getUnreadMentionCount(threadId)
