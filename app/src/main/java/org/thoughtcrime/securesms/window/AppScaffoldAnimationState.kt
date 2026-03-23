@@ -81,10 +81,6 @@ class AppScaffoldAnimationStateFactory(
     private val EMPTY_STATE = AppScaffoldAnimationState(
       alpha = mutableStateOf(1f)
     )
-
-    private val HIDDEN_STATE = AppScaffoldAnimationState(
-      alpha = mutableStateOf(0f)
-    )
   }
 
   private var latestListSeekState: AppScaffoldAnimationState = EMPTY_STATE
@@ -104,7 +100,6 @@ class AppScaffoldAnimationStateFactory(
       }
 
       AppScaffoldNavigator.NavigationState.RELEASE -> defaultListReleaseAnimationState(latestListSeekState)
-      AppScaffoldNavigator.NavigationState.CANCEL -> HIDDEN_STATE
     }
   }
 
@@ -122,7 +117,6 @@ class AppScaffoldAnimationStateFactory(
       }
 
       AppScaffoldNavigator.NavigationState.RELEASE -> defaultDetailReleaseAnimationState(latestDetailSeekState)
-      AppScaffoldNavigator.NavigationState.CANCEL -> defaultDetailInitAnimationState()
     }
   }
 }

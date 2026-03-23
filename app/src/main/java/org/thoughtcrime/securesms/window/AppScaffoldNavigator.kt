@@ -58,8 +58,7 @@ open class AppScaffoldNavigator<T> @RememberInComposition constructor(private va
     if (fraction > 0f && state != NavigationState.SEEK) {
       wasSeekInProgress = true
       state = NavigationState.SEEK
-    } else if (fraction == 0f && state == NavigationState.SEEK) {
-      state = NavigationState.CANCEL
+    } else if (fraction < 0.001f && state == NavigationState.SEEK) {
       state = NavigationState.ENTER
     }
 
@@ -88,12 +87,7 @@ open class AppScaffoldNavigator<T> @RememberInComposition constructor(private va
     /**
      * The user has let go of a seek and will go back.
      */
-    RELEASE,
-
-    /**
-     * The user has cancelled the back gesture.
-     */
-    CANCEL
+    RELEASE
   }
 }
 
