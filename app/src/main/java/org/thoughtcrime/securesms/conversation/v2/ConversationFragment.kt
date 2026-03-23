@@ -288,6 +288,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
 import org.thoughtcrime.securesms.longmessage.LongMessageFragment
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
 import org.thoughtcrime.securesms.main.MainNavigationListLocation
+import org.thoughtcrime.securesms.main.MainNavigationRouter
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.main.MainSnackbarHostKey
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
@@ -565,7 +566,7 @@ class ConversationFragment :
   private lateinit var conversationItemDecorations: ConversationItemDecorations
   private lateinit var optionsMenuCallback: ConversationOptionsMenuCallback
 
-  private var navigationHost: NavigationHost? = null
+  private var mainNavRouter: MainNavigationRouter? = null
 
   private var animationsAllowed = false
   private var pinnedShortcutReceiver: BroadcastReceiver? = null
@@ -641,7 +642,7 @@ class ConversationFragment :
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
-    navigationHost = context as? NavigationHost
+    mainNavRouter = context as? MainNavigationRouter
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -4216,12 +4217,12 @@ class ConversationFragment :
   /**
    * Routes to the appropriate destination based on the current window configuration.
    *
-   * In split-pane mode, delegates to the [NavigationHost] to display content in the detail pane. Otherwise, opens the destination as a standalone screen.
+   * In split-pane mode, delegates to the [MainNavigationRouter] to display content in the detail pane. Otherwise, opens the destination as a standalone screen.
    */
   private fun navigateTo(location: MainNavigationDetailLocation.Chats) {
-    val host = navigationHost
-    if (host != null && resources.getWindowSizeClass().isSplitPane()) {
-      host.navigateTo(location)
+    val router = mainNavRouter
+    if (router != null && resources.getWindowSizeClass().isSplitPane()) {
+      router.goTo(location)
     } else {
       when (location) {
         is MainNavigationDetailLocation.Chats.MessageDetails -> navigateToMessageDetailsStandalone(location)
@@ -5205,12 +5206,5 @@ class ConversationFragment :
 
   override fun onDoubleTapEditEducationSheetNext(conversationMessage: ConversationMessage) {
     handleEditMessage(conversationMessage)
-  }
-
-  /**
-   * Optional hook for host activity to intercept and handle detail navigation, used by split-pane layouts.
-   */
-  interface NavigationHost {
-    fun navigateTo(location: MainNavigationDetailLocation)
   }
 }

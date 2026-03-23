@@ -41,6 +41,7 @@ import org.signal.core.util.requireParcelableCompat
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.AvatarPreviewActivity
 import org.thoughtcrime.securesms.BlockUnblockDialog
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.PushContactSelectionActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
@@ -90,6 +91,8 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescription
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupInviteSentDialog
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupsLearnMoreBottomSheetDialogFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
+import org.thoughtcrime.securesms.main.MainNavigationRouter
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
@@ -175,6 +178,7 @@ class ConversationSettingsFragment :
   )
 
   private var transitionCallback: TransitionCallback? = null
+  private var mainNavRouter: MainNavigationRouter? = null
 
   private lateinit var toolbar: Toolbar
   private lateinit var toolbarAvatarContainer: FrameLayout
@@ -191,6 +195,7 @@ class ConversationSettingsFragment :
   override fun onAttach(context: Context) {
     super.onAttach(context)
     transitionCallback = context as? TransitionCallback
+    mainNavRouter = context as? MainNavigationRouter
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -981,7 +986,11 @@ class ConversationSettingsFragment :
               lifecycleScope.launch {
                 viewModel.deleteChat()
                 progressDialog.dismissAllowingStateLoss()
-                onToolbarNavigationClicked()
+                if (mainNavRouter != null) {
+                  mainNavRouter?.goTo(MainNavigationDetailLocation.Empty)
+                } else {
+                  startActivity(MainActivity.clearTopAndOpenDetail(requireContext(), MainNavigationDetailLocation.Empty))
+                }
               }
             }
           )

@@ -90,6 +90,7 @@ import org.signal.core.ui.isSplitPane
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.getSerializableCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
@@ -118,7 +119,6 @@ import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.NewConversationActivity
-import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
 import org.thoughtcrime.securesms.conversation.v2.MotionEventRelay
 import org.thoughtcrime.securesms.conversation.v2.ShareDataTimestampViewModel
 import org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment
@@ -143,6 +143,7 @@ import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocationEffect
 import org.thoughtcrime.securesms.main.MainNavigationListLocation
 import org.thoughtcrime.securesms.main.MainNavigationRail
+import org.thoughtcrime.securesms.main.MainNavigationRouter
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.main.MainSnackbar
 import org.thoughtcrime.securesms.main.MainSnackbarHostKey
@@ -200,7 +201,7 @@ class MainActivity :
   MainNavigator.NavigatorProvider,
   Material3OnScrollHelperBinder,
   ConversationListFragment.Callback,
-  ConversationFragment.NavigationHost,
+  MainNavigationRouter,
   CallLogFragment.Callback,
   GooglePayComponent {
 
@@ -208,6 +209,7 @@ class MainActivity :
     private val TAG = Log.tag(MainActivity::class)
 
     private const val KEY_STARTING_TAB = "STARTING_TAB"
+    private const val KEY_DETAIL_LOCATION = "DETAIL_LOCATION"
     const val RESULT_CONFIG_CHANGED = Activity.RESULT_FIRST_USER + 901
 
     @JvmStatic
@@ -219,6 +221,11 @@ class MainActivity :
     @JvmStatic
     fun clearTopAndOpenTab(context: Context, startingTab: MainNavigationListLocation): Intent {
       return clearTop(context).putExtra(KEY_STARTING_TAB, startingTab)
+    }
+
+    @JvmStatic
+    fun clearTopAndOpenDetail(context: Context, location: MainNavigationDetailLocation): Intent {
+      return clearTop(context).putExtra(KEY_DETAIL_LOCATION, location)
     }
   }
 
@@ -822,6 +829,13 @@ class MainActivity :
     handleDeepLinkIntent(intent)
 
     val extras = intent.extras ?: return
+
+    val detailLocation = extras.getParcelableCompat(KEY_DETAIL_LOCATION, MainNavigationDetailLocation::class.java)
+    if (detailLocation != null) {
+      mainNavigationViewModel.goTo(detailLocation)
+      return
+    }
+
     val startingTab = extras.getSerializableCompat(KEY_STARTING_TAB, MainNavigationListLocation::class.java)
 
     when (startingTab) {
@@ -1300,7 +1314,6 @@ class MainActivity :
     }
   }
 
-  override fun navigateTo(location: MainNavigationDetailLocation) {
-    mainNavigationViewModel.goTo(location)
-  }
+  override fun goTo(location: MainNavigationListLocation) = mainNavigationViewModel.goTo(location)
+  override fun goTo(location: MainNavigationDetailLocation) = mainNavigationViewModel.goTo(location)
 }
