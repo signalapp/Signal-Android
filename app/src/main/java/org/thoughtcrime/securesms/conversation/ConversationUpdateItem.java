@@ -135,7 +135,13 @@ public final class ConversationUpdateItem extends FrameLayout
     this.background      = findViewById(R.id.conversation_update_background);
     this.collapsedButton = findViewById(R.id.conversation_update_collapsed);
 
-    body.setOnClickListener(v -> performClick());
+    body.setOnClickListener(v -> {
+      if ((messageRecord.isIdentityUpdate() || messageRecord.isIdentityDefault() || messageRecord.isIdentityVerified()) && batchSelected.isEmpty()) {
+        onSafetyNumberClicked();
+      } else {
+        performClick();
+      }
+    });
     body.setOnLongClickListener(v -> performLongClick());
 
     this.setOnClickListener(new InternalClickListener(null));
@@ -882,6 +888,24 @@ public final class ConversationUpdateItem extends FrameLayout
     }
   }
 
+  private void onSafetyNumberClicked() {
+    Recipient recipient = messageRecord.isIdentityUpdate() ? messageRecord.getFromRecipient() : messageRecord.getToRecipient();
+
+    IdentityUtil.getRemoteIdentityKey(getContext(), recipient).addListener(new ListenableFuture.Listener<>() {
+      @Override
+      public void onSuccess(Optional<IdentityRecord> result) {
+        if (result.isPresent()) {
+          getContext().startActivity(VerifyIdentityActivity.newIntent(getContext(), result.get()));
+        }
+      }
+
+      @Override
+      public void onFailure(ExecutionException e) {
+        Log.w(TAG, e);
+      }
+    });
+  }
+
   @Override
   public void setOnClickListener(View.OnClickListener l) {
     super.setOnClickListener(new InternalClickListener(l));
@@ -947,27 +971,9 @@ public final class ConversationUpdateItem extends FrameLayout
       if ((!messageRecord.isIdentityUpdate()  &&
            !messageRecord.isIdentityDefault() &&
            !messageRecord.isIdentityVerified()) ||
-          !batchSelected.isEmpty())
-      {
+          !batchSelected.isEmpty()) {
         if (parent != null) parent.onClick(v);
-        return;
       }
-
-      Recipient recipient = messageRecord.isIdentityUpdate() ? messageRecord.getFromRecipient() : messageRecord.getToRecipient();
-
-      IdentityUtil.getRemoteIdentityKey(getContext(), recipient).addListener(new ListenableFuture.Listener<>() {
-        @Override
-        public void onSuccess(Optional<IdentityRecord> result) {
-          if (result.isPresent()) {
-            getContext().startActivity(VerifyIdentityActivity.newIntent(getContext(), result.get()));
-          }
-        }
-
-        @Override
-        public void onFailure(ExecutionException e) {
-          Log.w(TAG, e);
-        }
-      });
     }
   }
 }
