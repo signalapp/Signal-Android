@@ -3692,6 +3692,8 @@
     <string name="ConversationUpdateItem_update">Update</string>
     <!-- Update item button text to show how many group updates there are. -->
     <string name="CollapsedEvent__group_update">%1$d group updates</string>
+    <!-- Update item button text to show how many group updates there are. -->
+    <string name="CollapsedEvent__chat_update">%1$d chat updates</string>
     <!-- Update item button text to show how many disappearing message timer changes are. -->
     <string name="CollapsedEvent__disappearing_timer">%1$d disappearing message timer changes</string>
     <!-- Update item button text to show how many call events are. -->

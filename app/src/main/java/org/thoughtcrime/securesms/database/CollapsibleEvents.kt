@@ -27,18 +27,18 @@ object CollapsibleEvents {
       return if (groupChangeUpdate?.updates?.any { it.groupExpirationTimerUpdate != null } == true) {
         CollapsibleType.DISAPPEARING_TIMER
       } else if (groupChangeUpdate?.updates?.none { it.groupTerminateChangeUpdate != null } == true) {
-        CollapsibleType.GROUP_UPDATE
+        CollapsibleType.CHAT_UPDATE
       } else {
         null
       }
     }
 
     if (MessageTypes.isProfileChange(type)) {
-      return CollapsibleType.GROUP_UPDATE
+      return CollapsibleType.CHAT_UPDATE
     }
 
     if (MessageTypes.isIdentityUpdate(type) || MessageTypes.isIdentityVerified(type) || MessageTypes.isIdentityDefault(type)) {
-      return CollapsibleType.GROUP_UPDATE
+      return CollapsibleType.CHAT_UPDATE
     }
 
     return null
@@ -46,7 +46,7 @@ object CollapsibleEvents {
 
   enum class CollapsibleType {
     DISAPPEARING_TIMER,
-    GROUP_UPDATE,
+    CHAT_UPDATE,
     CALL_EVENT
   }
 }

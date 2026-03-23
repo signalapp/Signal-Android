@@ -851,7 +851,7 @@ public final class ConversationUpdateItem extends FrameLayout
     return switch (type) {
       case CALL_EVENT -> R.string.CollapsedEvent__call_event;
       case DISAPPEARING_TIMER -> R.string.CollapsedEvent__disappearing_timer;
-      case GROUP_UPDATE -> R.string.CollapsedEvent__group_update;
+      case CHAT_UPDATE -> conversationRecipient.isGroup() ? R.string.CollapsedEvent__group_update : R.string.CollapsedEvent__chat_update;
     };
   }
 
@@ -859,7 +859,7 @@ public final class ConversationUpdateItem extends FrameLayout
     return switch (type) {
       case CALL_EVENT -> SignalSymbols.Glyph.PHONE;
       case DISAPPEARING_TIMER -> SignalSymbols.Glyph.TIMER;
-      case GROUP_UPDATE -> SignalSymbols.Glyph.GROUP;
+      case CHAT_UPDATE -> conversationRecipient.isGroup() ? SignalSymbols.Glyph.GROUP : SignalSymbols.Glyph.THREAD;
     };
   }
 
