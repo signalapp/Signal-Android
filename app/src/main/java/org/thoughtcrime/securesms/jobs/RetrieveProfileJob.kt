@@ -492,7 +492,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
 
       if (recipient.isIndividual &&
         !recipient.isSystemContact &&
-        !recipient.nickname.isEmpty &&
+        recipient.nickname.isEmpty &&
         !recipient.isProfileSharing &&
         !recipient.isBlocked &&
         !recipient.isSelf &&
