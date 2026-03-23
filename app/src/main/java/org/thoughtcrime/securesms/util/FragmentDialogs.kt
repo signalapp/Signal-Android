@@ -17,24 +17,6 @@ import androidx.fragment.app.Fragment
  */
 object FragmentDialogs {
 
-  fun Fragment.displayInDialogAboveAnchor(
-    anchorView: View,
-    @LayoutRes contentLayoutId: Int,
-    windowDim: Float = -1f,
-    onShow: (DialogInterface, View) -> Unit = { _, _ -> }
-  ): DialogInterface {
-    val contentView = LayoutInflater.from(anchorView.context).inflate(contentLayoutId, requireView() as ViewGroup, false)
-
-    contentView.measure(
-      View.MeasureSpec.makeMeasureSpec(contentView.layoutParams.width, View.MeasureSpec.EXACTLY),
-      View.MeasureSpec.makeMeasureSpec(contentView.layoutParams.height, View.MeasureSpec.EXACTLY)
-    )
-
-    contentView.layout(0, 0, contentView.measuredWidth, contentView.measuredHeight)
-
-    return displayInDialogAboveAnchor(anchorView, contentView, windowDim, onShow)
-  }
-
   @SuppressLint("AlertDialogBuilderUsage")
   fun Fragment.displayInDialogAboveAnchor(
     anchorView: View,
