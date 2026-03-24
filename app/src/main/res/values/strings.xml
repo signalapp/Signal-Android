@@ -1680,6 +1680,8 @@
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Unable to join group. Please try again later</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Encountered a network error.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">This group link is not active</string>
+    <!-- Toast message shown when trying to join a group via link but the group has been ended -->
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">The group has been ended, unable to join group.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -3637,6 +3639,8 @@
     <string name="conversation_activity__message_could_not_be_sent">Message could not be sent. Check your connection and try again.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
     <string name="conversation_activity__send_failed_group_ended">Send failed because the group was ended. You can no longer send and receive messages in this group.</string>
+    <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
+    <string name="conversation_activity__group_action_not_allowed_group_ended">You can no longer invite friends or add members to this group.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
     <string name="conversation_activity__message_failed_to_delete_retry">Message failed to delete. Check your connection and try again.</string>
     <!-- Dialog body when a message failed to delete. -->
@@ -8578,8 +8582,6 @@
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has been ended</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">You can no longer send and receive messages or calls in this group.</string>
-    <!-- Button label on terminated group bottom sheet -->
-    <string name="TerminatedGroupBottomSheet__okay">Okay</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>

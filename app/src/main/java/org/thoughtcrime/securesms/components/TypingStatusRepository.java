@@ -101,6 +101,19 @@ public class TypingStatusRepository {
     return threadsNotifier;
   }
 
+  public synchronized void stopAllTypingForThread(long threadId) {
+    Set<Typist> typists = typistMap.remove(threadId);
+    if (typists != null) {
+      for (Typist typist : typists) {
+        Runnable timer = timers.remove(typist);
+        if (timer != null) {
+          ThreadUtil.cancelRunnableOnMain(timer);
+        }
+      }
+      notifyThread(threadId, Collections.emptySet(), false);
+    }
+  }
+
   public synchronized void clear() {
     TypingState empty = new TypingState(Collections.emptyList(), false);
     for (MutableLiveData<TypingState> notifier : notifiers.values()) {

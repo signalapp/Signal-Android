@@ -82,7 +82,7 @@ private fun TerminatedGroupSheetContent(adminName: String?, onOkClick: () -> Uni
         .defaultMinSize(minWidth = 220.dp)
         .padding(bottom = 24.dp)
     ) {
-      Text(text = stringResource(R.string.TerminatedGroupBottomSheet__okay))
+      Text(text = stringResource(android.R.string.ok))
     }
   }
 }

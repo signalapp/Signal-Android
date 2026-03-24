@@ -81,6 +81,7 @@ import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenExcept
 import org.whispersystems.signalservice.internal.push.exceptions.GroupExistsException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupNotFoundException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
+import org.whispersystems.signalservice.internal.push.exceptions.GroupTerminatedException;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException;
@@ -1887,6 +1888,10 @@ public class PushServiceSocket {
 
       throw message != null ? new GroupPatchNotAcceptedException(message) : new GroupPatchNotAcceptedException();
     }
+
+    if (responseCode == 423) {
+      throw new GroupTerminatedException();
+    }
   };
 
   private static final ResponseCodeHandler GROUPS_V2_GET_JOIN_INFO_HANDLER  = (responseCode, body, getHeader) -> {
@@ -1896,6 +1901,10 @@ public class PushServiceSocket {
 
     if (responseCode == 403) {
       throw new ForbiddenException(Optional.ofNullable(getHeader.apply("X-Signal-Forbidden-Reason")));
+    }
+
+    if (responseCode == 423) {
+      throw new GroupTerminatedException();
     }
   };
 

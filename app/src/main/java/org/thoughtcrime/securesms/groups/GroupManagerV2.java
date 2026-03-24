@@ -744,7 +744,8 @@ final class GroupManagerV2 {
         throw new IOException(e);
       }
 
-      groupDatabase.update(groupId, decryptedGroupState, groupsV2Operations.forGroup(groupSecretParams).receiveGroupSendEndorsements(selfAci, decryptedGroupState, changeResponse.group_send_endorsements_response));
+      RecipientId terminatorRecipientId = (decryptedGroupState.terminated && !previousGroupState.terminated) ? Recipient.self().getId() : null;
+      groupDatabase.update(groupId, decryptedGroupState, groupsV2Operations.forGroup(groupSecretParams).receiveGroupSendEndorsements(selfAci, decryptedGroupState, changeResponse.group_send_endorsements_response), terminatorRecipientId);
 
       GroupMutation      groupMutation      = new GroupMutation(previousGroupState, decryptedChange, decryptedGroupState);
       RecipientAndThread recipientAndThread = sendGroupUpdateHelper.sendGroupUpdate(groupMasterKey, groupMutation, signedGroupChange, sendToMembers);
@@ -986,7 +987,7 @@ final class GroupManagerV2 {
         }
       } else if (groupAlreadyExists && requestToJoin) {
         Log.i(TAG, "Group already exists, but we are requesting to join, updating with new placeholder, alreadyPending: " + isAlreadyPendingApproval);
-        groupDatabase.update(groupMasterKey, decryptedGroup, null);
+        groupDatabase.update(groupMasterKey, decryptedGroup, null, null);
       }
 
       RecipientId groupRecipientId = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
@@ -1250,7 +1251,7 @@ final class GroupManagerV2 {
         DecryptedGroupChange decryptedChange = groupOperations.decryptChange(signedGroupChange, DecryptChangeVerificationMode.alreadyTrusted()).get();
         DecryptedGroup       newGroup        = DecryptedGroupUtil.applyWithoutRevisionCheck(decryptedGroup, decryptedChange);
 
-        groupDatabase.update(groupId, resetRevision(newGroup, decryptedGroup.revision), null);
+        groupDatabase.update(groupId, resetRevision(newGroup, decryptedGroup.revision), null, null);
 
         sendGroupUpdateHelper.sendGroupUpdate(groupMasterKey, new GroupMutation(decryptedGroup, decryptedChange, newGroup), signedGroupChange, false);
       } catch (VerificationFailedException | InvalidGroupStateException | NotAbleToApplyGroupV2ChangeException e) {

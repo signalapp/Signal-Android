@@ -406,7 +406,7 @@ class ConversationViewModel(
     val pendingGroupJoinFlow: Flow<PendingGroupJoinRequestsBanner> = groupRecordFlow
       .map {
         PendingGroupJoinRequestsBanner(
-          suggestionsSize = it.actionableRequestingMembersCount,
+          suggestionsSize = if (it.isTerminated) 0 else it.actionableRequestingMembersCount,
           onViewClicked = groupJoinClickListener
         )
       }

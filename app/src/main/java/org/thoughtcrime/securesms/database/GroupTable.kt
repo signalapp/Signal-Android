@@ -787,11 +787,11 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     notifyConversationListListeners()
   }
 
-  fun update(groupMasterKey: GroupMasterKey, decryptedGroup: DecryptedGroup, groupSendEndorsements: ReceivedGroupSendEndorsements?) {
-    update(GroupId.v2(groupMasterKey), decryptedGroup, groupSendEndorsements)
+  fun update(groupMasterKey: GroupMasterKey, decryptedGroup: DecryptedGroup, groupSendEndorsements: ReceivedGroupSendEndorsements?, terminatorRecipientId: RecipientId? = null) {
+    update(GroupId.v2(groupMasterKey), decryptedGroup, groupSendEndorsements, terminatorRecipientId)
   }
 
-  fun update(groupId: GroupId.V2, decryptedGroup: DecryptedGroup, receivedGroupSendEndorsements: ReceivedGroupSendEndorsements?) {
+  fun update(groupId: GroupId.V2, decryptedGroup: DecryptedGroup, receivedGroupSendEndorsements: ReceivedGroupSendEndorsements?, terminatorRecipientId: RecipientId? = null) {
     val groupRecipientId: RecipientId = recipients.getOrInsertFromGroupId(groupId)
     val existingGroup: Optional<GroupRecord> = getGroup(groupId)
     val title: String = decryptedGroup.title
@@ -801,7 +801,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     contentValues.put(V2_REVISION, decryptedGroup.revision)
     contentValues.put(V2_DECRYPTED_GROUP, decryptedGroup.encode())
     contentValues.put(IS_MEMBER, if (isGroupMember(decryptedGroup)) 1 else 0)
-    contentValues.put(TERMINATED_BY, if (decryptedGroup.terminated) -1 else 0)
+    contentValues.put(TERMINATED_BY, terminatorRecipientId?.toLong() ?: if (decryptedGroup.terminated) -1 else 0)
 
     if (receivedGroupSendEndorsements != null) {
       contentValues.put(GROUP_SEND_ENDORSEMENTS_EXPIRATION, receivedGroupSendEndorsements.expirationMs)

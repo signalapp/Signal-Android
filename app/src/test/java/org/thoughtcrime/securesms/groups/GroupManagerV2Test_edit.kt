@@ -129,7 +129,8 @@ class GroupManagerV2Test_edit {
 
     every { groupTable.getGroup(groupId) } returns data.groupRecord
     every { groupTable.requireGroup(groupId) } returns data.groupRecord.get()
-    every { groupTable.update(any<GroupId.V2>(), any(), any()) } returns Unit
+    every { groupTable.update(any<GroupId.V2>(), any(), any(), anyNullable()) } returns Unit
+    every { Recipient.self() } returns RecipientDatabaseTestUtils.createRecipient(isSelf = true, recipientId = RecipientId.from(1L))
     every { sendGroupUpdateHelper.sendGroupUpdate(masterKey, any(), any(), any()) } returns GroupManagerV2.RecipientAndThread(Recipient.UNKNOWN, 1)
     every { groupsV2API.patchGroup(any(), any(), any()) } returns GroupChangeResponse(group_change = data.groupChange!!)
     every { Recipient.externalGroupExact(groupId) } returns RecipientDatabaseTestUtils.createRecipient(resolved = true)
@@ -141,7 +142,7 @@ class GroupManagerV2Test_edit {
 
   private fun then(then: (DecryptedGroup) -> Unit) {
     val decryptedGroupArg = slot<DecryptedGroup>()
-    verify { groupTable.update(groupId, capture(decryptedGroupArg), any()) }
+    verify { groupTable.update(groupId, capture(decryptedGroupArg), any(), anyNullable()) }
     then(decryptedGroupArg.captured)
   }
 

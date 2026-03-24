@@ -8,6 +8,8 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.Util;
+import org.signal.core.util.UuidUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
@@ -35,7 +37,6 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
-import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
@@ -50,7 +51,6 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
-import org.signal.core.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.BodyRange;
 import org.whispersystems.signalservice.internal.push.DataMessage;
 

@@ -175,6 +175,10 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
         groupName.setText(R.string.GroupJoinBottomSheetDialogFragment_link_error);
         groupDetails.setText(R.string.GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later);
         break;
+      case GroupTerminated:
+        groupName.setText(R.string.GroupJoinBottomSheetDialogFragment_cant_join_group);
+        groupDetails.setText(R.string.GroupJoinBottomSheetDialogFragment_this_group_has_been_ended);
+        break;
     }
   }
 
@@ -184,6 +188,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
       case BANNED               : return getString(R.string.GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you);
       case NETWORK_ERROR        : return getString(R.string.GroupJoinBottomSheetDialogFragment_encountered_a_network_error);
       case LIMIT_REACHED        : return getString(R.string.GroupJoinBottomSheetDialogFragment_group_limit_reached);
+      case GROUP_TERMINATED     : return getString(R.string.GroupJoinBottomSheetDialogFragment_this_group_has_been_ended);
       default                   : return getString(R.string.GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later);
     }
   }

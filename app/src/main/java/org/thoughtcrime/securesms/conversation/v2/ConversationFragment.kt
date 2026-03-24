@@ -1514,10 +1514,10 @@ class ConversationFragment :
     when {
       inputReadyState.isClientExpired || inputReadyState.isUnauthorized -> disabledInputView.showAsExpiredOrUnauthorized(inputReadyState.isClientExpired, inputReadyState.isUnauthorized)
       args.isIncognito -> disabledInputView.showAsIncognito()
-      !inputReadyState.messageRequestState.isAccepted -> disabledInputView.showAsMessageRequest(inputReadyState.conversationRecipient, inputReadyState.messageRequestState)
       inputReadyState.isTerminatedGroup -> disabledInputView.showAsTerminatedGroup()
-      inputReadyState.isActiveGroup == false -> disabledInputView.showAsNoLongerAMember()
+      !inputReadyState.messageRequestState.isAccepted -> disabledInputView.showAsMessageRequest(inputReadyState.conversationRecipient, inputReadyState.messageRequestState)
       inputReadyState.isRequestingMember == true -> disabledInputView.showAsRequestingMember()
+      inputReadyState.isActiveGroup == false -> disabledInputView.showAsNoLongerAMember()
       inputReadyState.isAnnouncementGroup == true && inputReadyState.isAdmin == false -> disabledInputView.showAsAnnouncementGroupAdminsOnly()
       inputReadyState.conversationRecipient.isReleaseNotes -> disabledInputView.showAsReleaseNotesChannel(inputReadyState.conversationRecipient)
       inputReadyState.shouldShowInviteToSignal() -> disabledInputView.showAsInviteToSignal(requireContext(), inputReadyState.conversationRecipient, inputReadyState.threadContainsSms)
@@ -3609,7 +3609,14 @@ class ConversationFragment :
     }
 
     override fun onInviteFriendsToGroupClicked(groupId: GroupId.V2) {
-      GroupLinkInviteFriendsBottomSheetDialogFragment.show(requireActivity().supportFragmentManager, groupId)
+      if (conversationGroupViewModel.groupRecordSnapshot?.isTerminated == true) {
+        MaterialAlertDialogBuilder(requireContext())
+          .setMessage(R.string.conversation_activity__group_action_not_allowed_group_ended)
+          .setPositiveButton(android.R.string.ok) { d, _ -> d.dismiss() }
+          .show()
+      } else {
+        GroupLinkInviteFriendsBottomSheetDialogFragment.show(requireActivity().supportFragmentManager, groupId)
+      }
     }
 
     @SuppressLint("NotifyDataSetChanged")

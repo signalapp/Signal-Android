@@ -161,7 +161,7 @@ class GroupsV2StateProcessorTest {
     every { groupsV2Authorization.getAuthorizationForToday(serviceIds, secretParams) } returns null
 
     if (data.expectTableUpdate) {
-      justRun { groupTable.update(any<GroupMasterKey>(), any<DecryptedGroup>(), any<ReceivedGroupSendEndorsements>()) }
+      justRun { groupTable.update(any<GroupMasterKey>(), any<DecryptedGroup>(), anyNullable<ReceivedGroupSendEndorsements>(), anyNullable<RecipientId>()) }
     }
 
     if (data.expectTableCreate) {
@@ -171,6 +171,7 @@ class GroupsV2StateProcessorTest {
     if (data.expectTableUpdate || data.expectTableCreate) {
       justRun { profileAndMessageHelper.storeMessage(any(), any(), any()) }
       justRun { profileAndMessageHelper.persistLearnedProfileKeys(any<ProfileKeySet>()) }
+      justRun { profileAndMessageHelper.stopAllTypingForGroup() }
     }
 
     data.serverState?.let { serverState ->
@@ -1052,7 +1053,7 @@ class GroupsV2StateProcessorTest {
   }
 
   @Test
-  fun `when P2P change terminates group with known editor, then setTerminatedBy is called`() {
+  fun `when P2P change terminates group with known editor, then update is called with terminator recipient id`() {
     val adminAci: ACI = ACI.from(UUID.randomUUID())
     val adminRecipientId = RecipientId.from(200)
 
@@ -1065,7 +1066,6 @@ class GroupsV2StateProcessorTest {
     }
 
     every { recipientTable.getAndPossiblyMerge(adminAci, null) } returns adminRecipientId
-    justRun { groupTable.setTerminatedBy(groupId, adminRecipientId) }
 
     val signedChange = DecryptedGroupChange(
       revision = 6,
@@ -1087,7 +1087,7 @@ class GroupsV2StateProcessorTest {
         assertThat(it.terminated, "group should be terminated").isEqualTo(true)
       }
 
-    verify { groupTable.setTerminatedBy(groupId, adminRecipientId) }
+    verify { groupTable.update(masterKey, match { it.terminated }, null, adminRecipientId) }
   }
 
   @Test

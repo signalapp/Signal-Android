@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException;
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.groups.MembershipNotSuitableForV2Exception;
+import org.whispersystems.signalservice.internal.push.exceptions.GroupTerminatedException;
 
 import java.io.IOException;
 
@@ -18,11 +19,13 @@ public enum GroupChangeFailureReason {
   NOT_A_MEMBER,
   BUSY,
   NETWORK,
+  GROUP_TERMINATED,
   OTHER;
 
   @SuppressLint("SuspiciousIndentation")
   public static @NonNull GroupChangeFailureReason fromException(@NonNull Throwable e) {
     if (e instanceof MembershipNotSuitableForV2Exception) return GroupChangeFailureReason.NOT_GV2_CAPABLE;
+    if (e instanceof GroupTerminatedException)            return GroupChangeFailureReason.GROUP_TERMINATED;
     if (e instanceof IOException)                         return GroupChangeFailureReason.NETWORK;
     if (e instanceof GroupNotAMemberException)            return GroupChangeFailureReason.NOT_A_MEMBER;
     if (e instanceof GroupChangeBusyException)            return GroupChangeFailureReason.BUSY;
