@@ -4129,7 +4129,7 @@ class ConversationFragment :
 
     override fun handleManageGroup() {
       viewModel.recipientSnapshot?.let { recipient ->
-        navigateToConversationSettingsStandalone(recipient)
+        navigateTo(MainNavigationDetailLocation.Chats.ConversationSettings(recipient.id))
       }
     }
 
@@ -4166,7 +4166,7 @@ class ConversationFragment :
     override fun handleConversationSettings() {
       viewModel.recipientSnapshot?.let { recipient ->
         if (!viewModel.hasMessageRequestState || recipient.isBlocked) {
-          navigateToConversationSettingsStandalone(recipient)
+          navigateTo(MainNavigationDetailLocation.Chats.ConversationSettings(recipient.id))
         }
       }
     }
@@ -4235,6 +4235,7 @@ class ConversationFragment :
     } else {
       when (location) {
         is MainNavigationDetailLocation.Chats.MessageDetails -> navigateToMessageDetailsStandalone(location)
+        is MainNavigationDetailLocation.Chats.ConversationSettings -> navigateToConversationSettingsStandalone(viewModel.recipientSnapshot!!)
         is MainNavigationDetailLocation.Chats.Conversation -> error("ConversationFragment shouldn't navigate to another conversation - use the main navigation infrastructure instead.")
       }
     }

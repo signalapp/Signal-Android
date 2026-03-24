@@ -30,6 +30,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.launch
+import org.signal.core.ui.getWindowSizeClass
+import org.signal.core.ui.isSplitPane
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.Result
@@ -117,6 +119,7 @@ import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
@@ -261,8 +264,25 @@ class ConversationSettingsFragment :
     }
   }
 
+  private fun goToConversationList() {
+    if (mainNavRouter != null) {
+      mainNavRouter?.goTo(MainNavigationDetailLocation.Empty)
+    } else {
+      startActivity(MainActivity.clearTopAndOpenDetail(requireContext(), MainNavigationDetailLocation.Empty))
+    }
+  }
+
   override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper {
-    return object : Material3OnScrollHelper(activity = requireActivity(), views = listOf(toolbar!!), lifecycleOwner = viewLifecycleOwner) {
+    return object : Material3OnScrollHelper(
+      activity = requireActivity(),
+      views = listOf(toolbar!!),
+      lifecycleOwner = viewLifecycleOwner,
+      setStatusBarColor = { color ->
+        if (!resources.getWindowSizeClass().isSplitPane() || activity is ConversationSettingsActivity) {
+          WindowUtil.setStatusBarColor(requireActivity().window, color)
+        }
+      }
+    ) {
       override val inactiveColorSet = ColorSet(
         toolbarColorRes = CoreUiR.color.signal_colorBackground_0,
         statusBarColorRes = CoreUiR.color.signal_colorBackground
@@ -972,7 +992,7 @@ class ConversationSettingsFragment :
               icon = DSLSettingsIcon.from(R.drawable.symbol_archive_24),
               onClick = {
                 viewModel.toggleArchive()
-                onToolbarNavigationClicked()
+                goToConversationList()
               }
             )
           }
@@ -986,11 +1006,7 @@ class ConversationSettingsFragment :
               lifecycleScope.launch {
                 viewModel.deleteChat()
                 progressDialog.dismissAllowingStateLoss()
-                if (mainNavRouter != null) {
-                  mainNavRouter?.goTo(MainNavigationDetailLocation.Empty)
-                } else {
-                  startActivity(MainActivity.clearTopAndOpenDetail(requireContext(), MainNavigationDetailLocation.Empty))
-                }
+                goToConversationList()
               }
             }
           )
@@ -1059,7 +1075,7 @@ class ConversationSettingsFragment :
                     .onReportSpam()
                     .subscribeBy {
                       Toast.makeText(requireContext(), R.string.ConversationFragment_reported_as_spam, Toast.LENGTH_SHORT).show()
-                      onToolbarNavigationClicked()
+                      goToConversationList()
                     }
                     .addTo(lifecycleDisposable)
                 },
@@ -1073,7 +1089,7 @@ class ConversationSettingsFragment :
                         when (result) {
                           is Result.Success -> {
                             Toast.makeText(requireContext(), R.string.ConversationFragment_reported_as_spam_and_blocked, Toast.LENGTH_SHORT).show()
-                            onToolbarNavigationClicked()
+                            goToConversationList()
                           }
 
                           is Result.Failure -> {
@@ -1108,7 +1124,7 @@ class ConversationSettingsFragment :
                     .onReportSpam()
                     .subscribeBy {
                       Toast.makeText(requireContext(), R.string.ConversationFragment_reported_as_spam, Toast.LENGTH_SHORT).show()
-                      onToolbarNavigationClicked()
+                      goToConversationList()
                     }
                     .addTo(lifecycleDisposable)
                 },
