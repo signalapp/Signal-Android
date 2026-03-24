@@ -1326,5 +1326,16 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /**
+   * Whether to use the new custom APNG renderer instead of the existing third-party library.
+   */
+  @JvmStatic
+  @get:JvmName("newApngRenderer")
+  val newApngRenderer: Boolean by remoteBoolean(
+    key = "android.newApngRenderer",
+    defaultValue = false,
+    hotSwappable = false
+  )
+
   // endregion
 }

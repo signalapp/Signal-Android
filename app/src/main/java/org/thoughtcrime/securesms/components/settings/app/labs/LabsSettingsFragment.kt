@@ -145,15 +145,6 @@ private fun LabsSettingsContent(
 
       item {
         Rows.ToggleRow(
-          checked = state.newApngRenderer,
-          text = "New APNG Renderer",
-          label = "Use the new custom APNG renderer instead of the existing third-party library. Requires an app restart to take effect.",
-          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleNewApngRenderer(it)) }
-        )
-      }
-
-      item {
-        Rows.ToggleRow(
           checked = state.starredMessages,
           text = "Starred Messages",
           label = "Enables starring messages for later reference. Adds star/unstar to the long-press menu and a starred messages screen accessible from conversation settings and the main menu.",

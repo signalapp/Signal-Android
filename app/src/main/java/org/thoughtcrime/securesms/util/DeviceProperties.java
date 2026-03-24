@@ -12,7 +12,7 @@ import androidx.annotation.RequiresApi;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
+
 
 /**
  * Easy access to various properties of the device, typically to make performance-related decisions.
@@ -26,7 +26,7 @@ public final class DeviceProperties {
    * large numbers of APNGs simultaneously.
    */
   public static boolean shouldAllowApngStickerAnimation(@NonNull Context context) {
-    if (SignalStore.labs().getNewApngRenderer()) {
+    if (RemoteConfig.newApngRenderer()) {
       return true;
     }
 

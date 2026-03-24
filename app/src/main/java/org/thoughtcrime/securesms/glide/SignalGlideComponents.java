@@ -51,7 +51,7 @@ import org.signal.glide.decryptableuri.DecryptableUri;
 import org.signal.glide.decryptableuri.DecryptableUriStreamLoader;
 import org.thoughtcrime.securesms.mms.RegisterGlideComponents;
 import org.thoughtcrime.securesms.mms.SignalGlideModule;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUriLoader;
 import org.thoughtcrime.securesms.stories.StoryTextPostModel;
@@ -92,7 +92,7 @@ public class SignalGlideComponents implements RegisterGlideComponents {
     registry.prepend(BitmapDrawable.class, new BitmapDrawableEncoder(glide.getBitmapPool(), encryptedBitmapResourceEncoder));
 
 
-    if (SignalStore.labs().getNewApngRenderer()) {
+    if (RemoteConfig.newApngRenderer()) {
       registry.prepend(InputStreamFactory.class, ApngDecoder.class, new ApngInputStreamFactoryResourceDecoder());
       registry.prepend(ApngDecoder.class, new EncryptedApngResourceEncoder(secret));
       registry.prepend(File.class, ApngDecoder.class, new EncryptedApngCacheDecoder(secret));
