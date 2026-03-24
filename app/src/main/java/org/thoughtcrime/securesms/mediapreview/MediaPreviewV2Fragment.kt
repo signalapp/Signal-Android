@@ -513,8 +513,9 @@ class MediaPreviewV2Fragment :
   }
 
   override fun onMediaNotAvailable() {
-    Toast.makeText(requireContext(), R.string.MediaPreviewActivity_media_no_longer_available, Toast.LENGTH_LONG).show()
-    requireActivity().finish()
+    val context = context ?: return
+    Toast.makeText(context, R.string.MediaPreviewActivity_media_no_longer_available, Toast.LENGTH_LONG).show()
+    activity?.finish()
   }
 
   override fun onMediaReady() {
@@ -545,8 +546,9 @@ class MediaPreviewV2Fragment :
   }
 
   override fun unableToPlayMedia() {
-    Toast.makeText(requireContext(), R.string.MediaPreviewActivity_unable_to_play_media, Toast.LENGTH_LONG).show()
-    requireActivity().finish()
+    val context = context ?: return
+    Toast.makeText(context, R.string.MediaPreviewActivity_unable_to_play_media, Toast.LENGTH_LONG).show()
+    activity?.finish()
   }
 
   private fun forward(mediaItem: MediaTable.MediaRecord) {
