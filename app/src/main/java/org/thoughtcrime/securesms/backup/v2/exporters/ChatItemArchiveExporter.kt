@@ -1741,19 +1741,24 @@ private fun ChatUpdateMessage.canOnlyBeAuthoredBySelf(): Boolean {
 }
 
 private fun List<ChatItem>.repairRevisions(current: ChatItem.Builder): List<ChatItem> {
+  val authorFiltered = this.filter { it.authorId == current.authorId }
+  if (authorFiltered.size != this.size) {
+    Log.w(TAG, ExportOddities.mismatchedRevisionAuthor(current.dateSent))
+  }
+
   return if (current.standardMessage != null) {
-    val filtered = this
+    val filtered = authorFiltered
       .filter { it.standardMessage != null }
       .map { it.withDowngradeVoiceNotes() }
 
-    if (this.size != filtered.size) {
+    if (authorFiltered.size != filtered.size) {
       Log.w(TAG, ExportOddities.mismatchedRevisionHistory(current.dateSent))
     }
 
     filtered
   } else if (current.directStoryReplyMessage != null) {
-    val filtered = this.filter { it.directStoryReplyMessage != null }
-    if (this.size != filtered.size) {
+    val filtered = authorFiltered.filter { it.directStoryReplyMessage != null }
+    if (authorFiltered.size != filtered.size) {
       Log.w(TAG, ExportOddities.mismatchedRevisionHistory(current.dateSent))
     }
     filtered
