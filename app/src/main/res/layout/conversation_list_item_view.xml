@@ -133,8 +133,8 @@
         android:id="@+id/conversation_list_item_status_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
         android:layout_marginTop="6dp"
+        android:layout_marginStart="12dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -161,6 +161,21 @@
             app:srcCompat="@drawable/ic_at_12"
             app:tint="@color/signal_colorOnPrimary"
             tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/conversation_list_item_unread_reactions_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/unread_count_background_new"
+            android:includeFontPadding="false"
+            android:minWidth="18dp"
+            android:minHeight="18dp"
+            android:padding="3dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_heart_12"
+            app:tint="@color/signal_colorOnPrimary"
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/conversation_list_item_unread_indicator"

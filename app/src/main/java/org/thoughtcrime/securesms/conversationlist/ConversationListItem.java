@@ -136,6 +136,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
   private View                uncheckedView;
   private View                checkedView;
   private View                unreadMentions;
+  private View                unreadReactions;
   private View                pinnedView;
   private int                 thumbSize;
   private GlideLiveDataTarget thumbTarget;
@@ -173,6 +174,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     this.uncheckedView           = findViewById(R.id.conversation_list_item_unchecked);
     this.checkedView             = findViewById(R.id.conversation_list_item_checked);
     this.unreadMentions          = findViewById(R.id.conversation_list_item_unread_mentions_indicator);
+    this.unreadReactions         = findViewById(R.id.conversation_list_item_unread_reactions_indicator);
     this.thumbSize               = (int) DimensionUnit.SP.toPixels(16f);
     this.thumbTarget             = new GlideLiveDataTarget(thumbSize, thumbSize);
     this.searchStyleFactory      = () -> new CharacterStyle[] { new ForegroundColorSpan(ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorOnSurface)), SpanUtil.getBoldSpan() };
@@ -333,6 +335,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);
     unreadMentions.setVisibility(GONE);
+    unreadReactions.setVisibility(GONE);
     deliveryStatusIndicator.setNone();
     alertView.setNone();
 
@@ -373,6 +376,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);
     unreadMentions.setVisibility(GONE);
+    unreadReactions.setVisibility(GONE);
     deliveryStatusIndicator.setNone();
     alertView.setNone();
 
@@ -561,15 +565,30 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     if (thread.isRead()) {
       unreadIndicator.setVisibility(View.GONE);
       unreadMentions.setVisibility(View.GONE);
+      unreadReactions.setVisibility(View.GONE);
       return;
     }
 
     if (thread.getUnreadSelfMentionsCount() > 0) {
+      // we have mentions, show those and unread indicator if there are multiple unread messages
       unreadMentions.setVisibility(View.VISIBLE);
       unreadIndicator.setVisibility(thread.getUnreadCount() == 1 ? View.GONE : View.VISIBLE);
+      unreadReactions.setVisibility(View.GONE);
     } else {
+      // no mentions, hide the mention indicator
       unreadMentions.setVisibility(View.GONE);
-      unreadIndicator.setVisibility(View.VISIBLE);
+      // check for unread messages and reactions separately since either could cause
+      // the thread to be unread
+      if (thread.getUnreadCount() > 0) {
+        unreadIndicator.setVisibility(View.VISIBLE);
+      } else {
+        unreadIndicator.setVisibility(View.GONE);
+      }
+      if (thread.getUnreadReactionToSelfCount() > 0) {
+        unreadReactions.setVisibility(View.VISIBLE);
+      } else {
+        unreadReactions.setVisibility(View.GONE);
+      }
     }
 
     unreadIndicator.setText(unreadCount > 0 ? String.valueOf(unreadCount) : " ");

@@ -120,6 +120,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     const val LAST_SCROLLED = "last_scrolled"
     const val PINNED_ORDER = "pinned_order"
     const val UNREAD_SELF_MENTION_COUNT = "unread_self_mention_count"
+    const val UNREAD_REACTION_TO_SELF_COUNT = "unread_reaction_to_self_count"
     const val ACTIVE = "active"
 
     const val MAX_CACHE_SIZE = 1000
@@ -150,6 +151,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         $LAST_SCROLLED INTEGER DEFAULT 0, 
         $PINNED_ORDER INTEGER UNIQUE DEFAULT NULL, 
         $UNREAD_SELF_MENTION_COUNT INTEGER DEFAULT 0,
+        $UNREAD_REACTION_TO_SELF_COUNT INTEGER DEFAULT 0,
         $ACTIVE INTEGER DEFAULT 0,
         $SNIPPET_MESSAGE_EXTRAS BLOB DEFAULT NULL,
         $SNIPPET_MESSAGE_ID INTEGER DEFAULT 0
@@ -188,7 +190,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       HAS_READ_RECEIPT,
       LAST_SCROLLED,
       PINNED_ORDER,
-      UNREAD_SELF_MENTION_COUNT
+      UNREAD_SELF_MENTION_COUNT,
+      UNREAD_REACTION_TO_SELF_COUNT
     )
 
     private val TYPED_THREAD_PROJECTION: List<String> = THREAD_PROJECTION
@@ -241,6 +244,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     readReceiptCount: Int,
     unreadCount: Int,
     unreadMentionCount: Int,
+    unreadReactionToSelfCount: Int,
     messageExtras: MessageExtras?
   ) {
     var extraSerialized: String? = null
@@ -268,6 +272,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       ACTIVE to 1,
       UNREAD_COUNT to unreadCount,
       UNREAD_SELF_MENTION_COUNT to unreadMentionCount,
+      UNREAD_REACTION_TO_SELF_COUNT to unreadReactionToSelfCount,
       SNIPPET_MESSAGE_EXTRAS to messageExtras?.encode(),
       SNIPPET_MESSAGE_ID to messageId
     )
@@ -474,7 +479,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       .values(
         READ to ReadStatus.READ.serialize(),
         UNREAD_COUNT to 0,
-        UNREAD_SELF_MENTION_COUNT to 0
+        UNREAD_SELF_MENTION_COUNT to 0,
+        UNREAD_REACTION_TO_SELF_COUNT to 0
       )
       .run()
 
@@ -564,12 +570,14 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
         val unreadCount = messages.getUnreadCount(threadId)
         val unreadMentionsCount = messages.getUnreadMentionCount(threadId)
+        val unreadReactionToSelfCount = messages.getUnreadReactionsToSelfCount(threadId)
         val lastSeenTimestamp = messages.getMostRecentReadMessageDateReceived(threadId) ?: System.currentTimeMillis()
 
         val contentValues = contentValuesOf(
           READ to ReadStatus.READ.serialize(),
           UNREAD_COUNT to unreadCount,
           UNREAD_SELF_MENTION_COUNT to unreadMentionsCount,
+          UNREAD_REACTION_TO_SELF_COUNT to unreadReactionToSelfCount,
           LAST_SEEN to lastSeenTimestamp
         )
 
@@ -771,17 +779,18 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       .use(mapCursorToType)
   }
 
-  fun incrementUnread(threadId: Long, unreadAmount: Int, unreadSelfMentionAmount: Int) {
+  fun incrementUnread(threadId: Long, unreadAmount: Int, unreadSelfMentionAmount: Int, unreadReactionToSelfAmount: Int) {
     writableDatabase.execSQL(
       """
       UPDATE $TABLE_NAME 
       SET $READ = ${ReadStatus.UNREAD.serialize()}, 
           $UNREAD_COUNT = $UNREAD_COUNT + ?, 
           $UNREAD_SELF_MENTION_COUNT = $UNREAD_SELF_MENTION_COUNT + ?, 
+          $UNREAD_REACTION_TO_SELF_COUNT = $UNREAD_REACTION_TO_SELF_COUNT + ?,
           $LAST_SCROLLED = ? 
       WHERE $ID = ?
       """,
-      SqlUtil.buildArgs(unreadAmount, unreadSelfMentionAmount, 0, threadId)
+      SqlUtil.buildArgs(unreadAmount, unreadSelfMentionAmount, unreadReactionToSelfAmount, 0, threadId)
     )
   }
 
@@ -1561,13 +1570,15 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val previous = getThreadRecord(threadId)
     val unreadCount = messages.getUnreadCount(threadId)
     val unreadMentionsCount = messages.getUnreadMentionCount(threadId)
+    val unreadReactionToSelfCount = messages.getUnreadReactionsToSelfCount(threadId)
 
     writableDatabase
       .update(TABLE_NAME)
       .values(
         READ to if (unreadCount == 0) ReadStatus.READ.serialize() else ReadStatus.UNREAD.serialize(),
         UNREAD_COUNT to unreadCount,
-        UNREAD_SELF_MENTION_COUNT to unreadMentionsCount
+        UNREAD_SELF_MENTION_COUNT to unreadMentionsCount,
+        UNREAD_REACTION_TO_SELF_COUNT to unreadReactionToSelfCount
       )
       .where("$ID = ?", threadId)
       .run()
@@ -1656,10 +1667,12 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     } else if (threadId != null) {
       val unreadCount = messages.getUnreadCount(threadId)
       val unreadMentionsCount = messages.getUnreadMentionCount(threadId)
+      val unreadReactionToSelfCount = messages.getUnreadReactionsToSelfCount(threadId)
 
       values.put(READ, if (unreadCount == 0) ReadStatus.READ.serialize() else ReadStatus.UNREAD.serialize())
       values.put(UNREAD_COUNT, unreadCount)
       values.put(UNREAD_SELF_MENTION_COUNT, unreadMentionsCount)
+      values.put(UNREAD_REACTION_TO_SELF_COUNT, unreadReactionToSelfCount)
     }
 
     writableDatabase
@@ -1806,6 +1819,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             readReceiptCount = 0,
             unreadCount = 0,
             unreadMentionCount = 0,
+            unreadReactionToSelfCount = 0,
             messageExtras = null
           )
         }
@@ -1819,6 +1833,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       val threadBody: ThreadBody = ThreadBodyUtil.getFormattedBodyFor(context, record)
       val unreadCount: Int = messages.getUnreadCount(threadId)
       val unreadMentionCount: Int = messages.getUnreadMentionCount(threadId)
+      val unreadReactionToSelfCount: Int = messages.getUnreadReactionsToSelfCount(threadId)
 
       updateThread(
         threadId = threadId,
@@ -1837,6 +1852,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         readReceiptCount = record.hasReadReceipt().toInt(),
         unreadCount = unreadCount,
         unreadMentionCount = unreadMentionCount,
+        unreadReactionToSelfCount = unreadReactionToSelfCount,
         messageExtras = record.messageExtras
       )
 
@@ -2017,6 +2033,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       LAST_SCROLLED to 0,
       PINNED_ORDER to null,
       UNREAD_SELF_MENTION_COUNT to 0,
+      UNREAD_REACTION_TO_SELF_COUNT to 0,
       ACTIVE to 0
     )
 
@@ -2320,6 +2337,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         .setForcedUnread(cursor.requireInt(READ) == ReadStatus.FORCED_UNREAD.serialize())
         .setPinned(cursor.requireBoolean(PINNED_ORDER))
         .setUnreadSelfMentionsCount(cursor.requireInt(UNREAD_SELF_MENTION_COUNT))
+        .setUnreadReactionToSelfCount(cursor.requireInt(UNREAD_REACTION_TO_SELF_COUNT))
         .setExtra(extra)
         .setSnippetMessageExtras(messageExtras)
         .build()
