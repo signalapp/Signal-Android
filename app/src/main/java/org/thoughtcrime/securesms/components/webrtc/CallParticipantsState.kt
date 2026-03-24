@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.webrtc
 
 import android.content.Context
+import androidx.annotation.Discouraged
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 import com.annimon.stream.OptionalLong
@@ -14,7 +15,6 @@ import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.ringrtc.CameraState
 import org.thoughtcrime.securesms.service.webrtc.collections.ParticipantCollection
@@ -49,8 +49,11 @@ data class CallParticipantsState(
 
   val allRemoteParticipants: List<CallParticipant> = remoteParticipants.allParticipants
   val isFolded: Boolean = foldableState.isFolded
-  val isLargeVideoGroup: Boolean = allRemoteParticipants.size > SMALL_GROUP_MAX && !isInPipMode && !isFolded
   val hideAvatar: Boolean = callState.isIncomingOrHandledElsewhere
+
+  @get:Discouraged("Only for backwards-compatibility with View code. Compose UI determines large group dynamically.")
+  val isLargeGroup: Boolean
+    get() = allRemoteParticipants.size > SMALL_GROUP_MAX
 
   val raisedHands: List<GroupCallRaiseHandEvent>
     get() {
@@ -79,9 +82,7 @@ data class CallParticipantsState(
       } else {
         listParticipants.addAll(remoteParticipants.listParticipants)
       }
-      if (foldableState.isFlat && !SignalStore.internal.newCallingUi) {
-        listParticipants.add(CallParticipant.EMPTY)
-      }
+
       listParticipants.reverse()
       return listParticipants
     }
@@ -196,6 +197,7 @@ data class CallParticipantsState(
 
   companion object {
     const val SMALL_GROUP_MAX = 6
+    const val PRE_JOIN_MUTE_THRESHOLD = 8
 
     @JvmField
     val MAX_OUTGOING_GROUP_RING_DURATION = TimeUnit.MINUTES.toMillis(1)

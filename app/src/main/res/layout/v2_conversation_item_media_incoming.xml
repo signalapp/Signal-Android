@@ -69,33 +69,28 @@
         app:layout_goneMarginStart="16dp"
         tools:background="@color/black">
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-            android:id="@+id/group_message_sender"
-            style="@style/TextAppearance.Signal.Subtitle"
+        <org.thoughtcrime.securesms.conversation.v2.items.SenderNameWithLabelView
+            android:id="@+id/group_sender_name_with_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="4sp"
-            android:layout_marginBottom="-6dp"
-            android:ellipsize="end"
-            android:maxLines="1"
+            android:layout_marginTop="@dimen/message_bubble_top_padding"
             android:paddingStart="@dimen/message_bubble_horizontal_padding"
             android:paddingEnd="@dimen/message_bubble_horizontal_padding"
-            android:textColor="@color/signal_text_primary"
-            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toTopOf="@id/conversation_item_content_spacer"
             app:layout_constraintEnd_toEndOf="@id/conversation_item_body"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="+14152222222"
             tools:visibility="visible" />
 
         <Space
             android:id="@+id/conversation_item_content_spacer"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/message_bubble_top_padding"
+            android:layout_height="@dimen/message_bubble_top_image_margin"
             app:layout_constraintBottom_toTopOf="@id/conversation_item_quote_stub"
-            app:layout_constraintTop_toBottomOf="@id/group_message_sender" />
+            app:layout_constraintTop_toBottomOf="@id/group_sender_name_with_label" />
 
         <ViewStub
             android:id="@+id/conversation_item_quote_stub"
@@ -172,11 +167,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="@dimen/message_bubble_footer_bottom_padding"
-        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date"
+        android:src="@drawable/symbol_pin_filled_12"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_footer_date"
         app:layout_constraintEnd_toStartOf="@id/conversation_item_footer_date"
-        android:visibility="gone"
-        android:src="@drawable/symbol_pin_filled_12" />
+        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date" />
 
     <TextView
         android:id="@+id/conversation_item_footer_date"

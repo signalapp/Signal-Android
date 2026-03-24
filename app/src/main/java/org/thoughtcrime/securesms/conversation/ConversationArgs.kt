@@ -9,10 +9,10 @@ import android.os.Parcelable
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
+import org.signal.core.models.media.Media
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.conversation.ConversationIntents.ConversationScreenType
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mms.SlideFactory
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.resolved
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -37,7 +37,8 @@ data class ConversationArgs(
   val isWithSearchOpen: Boolean,
   val giftBadge: Badge?,
   val shareDataTimestamp: Long,
-  val conversationScreenType: ConversationScreenType
+  val conversationScreenType: ConversationScreenType,
+  val isIncognito: Boolean = false
 ) : Parcelable {
   @IgnoredOnParcel
   val draftMediaType: SlideFactory.MediaType? = SlideFactory.MediaType.from(draftContentType)

@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.stories
 import android.net.Uri
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import org.thoughtcrime.securesms.blurhash.BlurHash
+import org.signal.blurhash.BlurHash
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
@@ -23,7 +23,8 @@ data class StoryViewerArgs(
   val isFromInfoContextMenuAction: Boolean = false,
   val isFromQuote: Boolean = false,
   val isFromMyStories: Boolean = false,
-  val isJumpToUnviewed: Boolean = false
+  val isJumpToUnviewed: Boolean = false,
+  val isFromArchive: Boolean = false
 ) : Parcelable {
 
   class Builder(private val recipientId: RecipientId, private val isInHiddenStoryMode: Boolean) {

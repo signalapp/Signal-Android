@@ -61,13 +61,18 @@ class SignalProgressDialog private constructor(
       message: CharSequence? = null,
       indeterminate: Boolean = false,
       cancelable: Boolean = false,
-      cancelListener: DialogInterface.OnCancelListener? = null
+      cancelListener: DialogInterface.OnCancelListener? = null,
+      negativeButtonText: CharSequence? = null,
+      negativeButtonListener: DialogInterface.OnClickListener? = null
     ): SignalProgressDialog {
       val builder = MaterialAlertDialogBuilder(context).apply {
         setTitle(null)
         setMessage(null)
         setCancelable(cancelable)
         setOnCancelListener(cancelListener)
+        if (negativeButtonText != null) {
+          setNegativeButton(negativeButtonText, negativeButtonListener)
+        }
       }
 
       val customView = LayoutInflater.from(context).inflate(R.layout.signal_progress_dialog, null) as ConstraintLayout

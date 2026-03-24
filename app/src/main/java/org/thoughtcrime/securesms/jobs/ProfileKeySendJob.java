@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler;
@@ -48,6 +49,7 @@ public class ProfileKeySendJob extends BaseJob {
             .setMaxInstancesForQueue(Parameters.UNLIMITED)
             .addConstraint(NetworkConstraint.KEY)
             .addConstraint(DecryptionsDrainedConstraint.KEY)
+            .addConstraint(SealedSenderConstraint.KEY)
             .setLifespan(TimeUnit.DAYS.toMillis(1))
             .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
@@ -104,6 +106,7 @@ public class ProfileKeySendJob extends BaseJob {
                                                  .setMaxInstancesForQueue(1)
                                                  .addConstraint(NetworkConstraint.KEY)
                                                  .addConstraint(DecryptionsDrainedConstraint.KEY)
+                                                 .addConstraint(SealedSenderConstraint.KEY)
                                                  .setLifespan(TimeUnit.DAYS.toMillis(1))
                                                  .setMaxAttempts(Parameters.UNLIMITED)
                                                  .build(), threadId, recipients);
@@ -111,6 +114,7 @@ public class ProfileKeySendJob extends BaseJob {
       return new ProfileKeySendJob(new Parameters.Builder()
                                                  .setQueue(conversationRecipient.getId().toQueueKey())
                                                  .addConstraint(NetworkConstraint.KEY)
+                                                 .addConstraint(SealedSenderConstraint.KEY)
                                                  .setLifespan(TimeUnit.DAYS.toMillis(1))
                                                  .setMaxAttempts(Parameters.UNLIMITED)
                                                  .build(), threadId, recipients);
@@ -159,6 +163,11 @@ public class ProfileKeySendJob extends BaseJob {
     if (e instanceof NotPushRegisteredException) return false;
     return e instanceof IOException ||
            e instanceof RetryLaterException;
+  }
+
+  @Override
+  public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
+    return SendJobUtil.getBackoffMillisFromException(this, TAG, pastAttemptCount, exception, () -> super.getNextRunAttemptBackoff(pastAttemptCount, exception));
   }
 
   @Override

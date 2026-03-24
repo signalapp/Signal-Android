@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.views.Stub;
+import org.signal.core.ui.view.Stub;
 
 /**
  * Delegate class that mimics the ConversationReactionOverlay public API

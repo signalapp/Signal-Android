@@ -53,13 +53,13 @@ public class InMemoryMessageRecord extends MessageRecord {
           false,
           false,
           Collections.emptyList(),
-          false,
           0,
           false,
           -1,
           null,
           0,
           0,
+          null,
           null);
   }
 

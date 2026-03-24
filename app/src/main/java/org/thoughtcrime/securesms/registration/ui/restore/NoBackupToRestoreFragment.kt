@@ -36,12 +36,13 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
 import org.thoughtcrime.securesms.registration.ui.shared.RegistrationScreen
@@ -138,9 +139,9 @@ private fun NoBackupToRestoreContent(
     ) {
       StepRow(icon = painterResource(R.drawable.symbol_device_phone_24), text = stringResource(id = R.string.NoBackupToRestore_step1))
 
-      StepRow(icon = painterResource(R.drawable.symbol_backup_24), text = stringResource(id = R.string.NoBackupToRestore_step2))
+      StepRow(icon = SignalIcons.Backup.painter, text = stringResource(id = R.string.NoBackupToRestore_step2))
 
-      StepRow(icon = painterResource(R.drawable.symbol_check_circle_24), text = stringResource(id = R.string.NoBackupToRestore_step3))
+      StepRow(icon = SignalIcons.CheckCircle.painter, text = stringResource(id = R.string.NoBackupToRestore_step3))
     }
 
     if (state.isRegistering) {

@@ -2,6 +2,7 @@ package org.thoughtcrime.benchmark
 
 import android.Manifest
 import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.benchmark.macro.CompilationMode
 import androidx.benchmark.macro.ExperimentalMetricApi
 import androidx.benchmark.macro.TraceSectionMetric
@@ -14,6 +15,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
+@RequiresApi(31)
 class ConversationBenchmarks {
   @get:Rule
   val benchmarkRule = MacrobenchmarkRule()
@@ -23,7 +25,7 @@ class ConversationBenchmarks {
   fun simpleConversationOpen() {
     var setup = false
     benchmarkRule.measureRepeated(
-      packageName = "org.thoughtcrime.securesms",
+      packageName = "org.thoughtcrime.securesms.benchmark",
       metrics = listOf(
         TraceSectionMetric("6-ConversationOpen"),
         TraceSectionMetric("1-ConversationOpen-ViewModel-Init"),
@@ -32,7 +34,7 @@ class ConversationBenchmarks {
         TraceSectionMetric("4-ConversationOpen-Data-Posted"),
         TraceSectionMetric("5-ConversationOpen-Render"),
       ),
-      iterations = 10,
+      iterations = 3,
       compilationMode = CompilationMode.Partial(),
       setupBlock = {
         if (!setup) {

@@ -10,27 +10,30 @@ public class UiHintValues extends SignalStoreValues {
   private static final int NEVER_DISPLAY_PULL_TO_FILTER_TIP_THRESHOLD = 3;
   private static final int HAS_SEEN_PINNED_MESSAGE_SHEET_THRESHOLD    = 3;
 
-  private static final String HAS_SEEN_GROUP_SETTINGS_MENU_TOAST       = "uihints.has_seen_group_settings_menu_toast";
-  private static final String HAS_CONFIRMED_DELETE_FOR_EVERYONE_ONCE   = "uihints.has_confirmed_delete_for_everyone_once";
-  private static final String HAS_SET_OR_SKIPPED_USERNAME_CREATION     = "uihints.has_set_or_skipped_username_creation";
-  private static final String NEVER_DISPLAY_PULL_TO_FILTER_TIP         = "uihints.never_display_pull_to_filter_tip";
-  private static final String HAS_SEEN_SCHEDULED_MESSAGES_INFO_ONCE    = "uihints.has_seen_scheduled_messages_info_once";
-  private static final String HAS_SEEN_SAFETY_NUMBER_NUX               = "uihints.has_seen_safety_number_nux";
-  private static final String DECLINED_NOTIFICATION_LOGS_PROMPT        = "uihints.declined_notification_logs";
-  private static final String LAST_NOTIFICATION_LOGS_PROMPT_TIME       = "uihints.last_notification_logs_prompt";
-  private static final String DISMISSED_BATTERY_SAVER_PROMPT           = "uihints.declined_battery_saver_prompt";
-  private static final String LAST_BATTERY_SAVER_PROMPT                = "uihints.last_battery_saver_prompt";
-  private static final String LAST_CRASH_PROMPT                        = "uihints.last_crash_prompt";
-  private static final String HAS_COMPLETED_USERNAME_ONBOARDING        = "uihints.has_completed_username_onboarding";
-  private static final String HAS_SEEN_DOUBLE_TAP_EDIT_EDUCATION_SHEET = "uihints.has_seen_double_tap_edit_education_sheet";
-  private static final String DISMISSED_CONTACTS_PERMISSION_BANNER     = "uihints.dismissed_contacts_permission_banner";
-  private static final String HAS_SEEN_DELETE_SYNC_EDUCATION_SHEET     = "uihints.has_seen_delete_sync_education_sheet";
-  private static final String LAST_SUPPORT_VERSION_SEEN                = "uihints.last_support_version_seen";
-  private static final String HAS_EVER_ENABLED_REMOTE_BACKUPS          = "uihints.has_ever_enabled_remote_backups";
-  private static final String HAS_SEEN_CHAT_FOLDERS_EDUCATION_SHEET    = "uihints.has_seen_chat_folders_education_sheet";
-  private static final String HAS_SEEN_LINK_DEVICE_QR_EDUCATION_SHEET  = "uihints.has_seen_link_device_qr_education_sheet";
-  private static final String HAS_DISMISSED_SAVE_STORAGE_WARNING       = "uihints.has_dismissed_save_storage_warning";
-  private static final String HAS_SEEN_PINNED_MESSAGE_SHEET            = "uihints.has_seen_pinned_message_sheet";
+  private static final String HAS_SEEN_GROUP_SETTINGS_MENU_TOAST                = "uihints.has_seen_group_settings_menu_toast";
+  private static final String HAS_CONFIRMED_DELETE_FOR_EVERYONE_ONCE            = "uihints.has_confirmed_delete_for_everyone_once";
+  private static final String HAS_SET_OR_SKIPPED_USERNAME_CREATION              = "uihints.has_set_or_skipped_username_creation";
+  private static final String NEVER_DISPLAY_PULL_TO_FILTER_TIP                  = "uihints.never_display_pull_to_filter_tip";
+  private static final String HAS_SEEN_SCHEDULED_MESSAGES_INFO_ONCE             = "uihints.has_seen_scheduled_messages_info_once";
+  private static final String HAS_SEEN_SAFETY_NUMBER_NUX                        = "uihints.has_seen_safety_number_nux";
+  private static final String DECLINED_NOTIFICATION_LOGS_PROMPT                 = "uihints.declined_notification_logs";
+  private static final String LAST_NOTIFICATION_LOGS_PROMPT_TIME                = "uihints.last_notification_logs_prompt";
+  private static final String DISMISSED_BATTERY_SAVER_PROMPT                    = "uihints.declined_battery_saver_prompt";
+  private static final String LAST_BATTERY_SAVER_PROMPT                         = "uihints.last_battery_saver_prompt";
+  private static final String LAST_CRASH_PROMPT                                 = "uihints.last_crash_prompt";
+  private static final String HAS_COMPLETED_USERNAME_ONBOARDING                 = "uihints.has_completed_username_onboarding";
+  private static final String HAS_SEEN_DOUBLE_TAP_EDIT_EDUCATION_SHEET          = "uihints.has_seen_double_tap_edit_education_sheet";
+  private static final String DISMISSED_CONTACTS_PERMISSION_BANNER              = "uihints.dismissed_contacts_permission_banner";
+  private static final String HAS_SEEN_DELETE_SYNC_EDUCATION_SHEET              = "uihints.has_seen_delete_sync_education_sheet";
+  private static final String LAST_SUPPORT_VERSION_SEEN                         = "uihints.last_support_version_seen";
+  private static final String HAS_EVER_ENABLED_REMOTE_BACKUPS                   = "uihints.has_ever_enabled_remote_backups";
+  private static final String HAS_SEEN_CHAT_FOLDERS_EDUCATION_SHEET             = "uihints.has_seen_chat_folders_education_sheet";
+  private static final String HAS_SEEN_LINK_DEVICE_QR_EDUCATION_SHEET           = "uihints.has_seen_link_device_qr_education_sheet";
+  private static final String HAS_DISMISSED_SAVE_STORAGE_WARNING                = "uihints.has_dismissed_save_storage_warning";
+  private static final String HAS_SEEN_PINNED_MESSAGE_SHEET                     = "uihints.has_seen_pinned_message_sheet";
+  private static final String HAS_SEEN_VERIFY_AUTO_SHEET                        = "uihints.has_seen_verify_auto_sheet";
+  private static final String HAS_DISMISSED_MEMBER_LABEL_ABOUT_OVERRIDE_WARNING = "uihints.has_dismissed_member_label_about_override_warning";
+  private static final String HAS_SEEN_ADMIN_DELETE_EDUCATION_DIALOG            = "uihints.has_seen_admin_delete_education_dialog";
 
   UiHintValues(@NonNull KeyValueStore store) {
     super(store);
@@ -231,5 +234,29 @@ public class UiHintValues extends SignalStoreValues {
 
   private int getSeenPinnedSheetCount() {
     return getInteger(HAS_SEEN_PINNED_MESSAGE_SHEET, 0);
+  }
+
+  public boolean hasSeenVerifyAutomaticallySheet() {
+    return getBoolean(HAS_SEEN_VERIFY_AUTO_SHEET, false);
+  }
+
+  public void setSeenVerifyAutomaticallySheet() {
+    putBoolean(HAS_SEEN_VERIFY_AUTO_SHEET, true);
+  }
+
+  public boolean hasDismissedMemberLabelAboutOverrideWarning() {
+    return getBoolean(HAS_DISMISSED_MEMBER_LABEL_ABOUT_OVERRIDE_WARNING, false);
+  }
+
+  public void markMemberLabelAboutOverrideWarningDismissed() {
+    putBoolean(HAS_DISMISSED_MEMBER_LABEL_ABOUT_OVERRIDE_WARNING, true);
+  }
+
+  public boolean hasSeenAdminDeleteEducationDialog() {
+    return getBoolean(HAS_SEEN_ADMIN_DELETE_EDUCATION_DIALOG, false);
+  }
+
+  public void setHasSeenAdminDeleteEducationDialog() {
+    putBoolean(HAS_SEEN_ADMIN_DELETE_EDUCATION_DIALOG, true);
   }
 }

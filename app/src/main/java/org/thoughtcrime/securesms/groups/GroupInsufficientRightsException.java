@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.groups;
 
 public final class GroupInsufficientRightsException extends GroupChangeException {
 
-  GroupInsufficientRightsException(Throwable throwable) {
+  public GroupInsufficientRightsException(Throwable throwable) {
     super(throwable);
   }
 }

@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.database.model
 
 import androidx.annotation.WorkerThread
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
-import org.signal.storageservice.protos.groups.AccessControl
-import org.signal.storageservice.protos.groups.local.EnabledState
+import org.signal.storageservice.storage.protos.groups.AccessControl
+import org.signal.storageservice.storage.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.groups.GroupAccessControl
@@ -115,6 +115,27 @@ class GroupRecord(
         GroupAccessControl.NO_ONE
       } else {
         GroupAccessControl.ALL_MEMBERS
+      }
+    }
+
+  /**
+   * Who is allowed to add member labels in this group.
+   *
+   * Defaults to ALL_MEMBERS for groups created before this permission was added.
+   */
+  val memberLabelAccessControl: GroupAccessControl
+    get() {
+      if (!isV2Group) {
+        return GroupAccessControl.ALL_MEMBERS
+      }
+
+      return when ((requireV2GroupProperties().decryptedGroup.accessControl ?: AccessControl()).memberLabel) {
+        AccessControl.AccessRequired.ADMINISTRATOR -> GroupAccessControl.ONLY_ADMINS
+
+        AccessControl.AccessRequired.MEMBER,
+        AccessControl.AccessRequired.UNKNOWN, // groups predating this permission
+        AccessControl.AccessRequired.ANY,
+        AccessControl.AccessRequired.UNSATISFIABLE -> GroupAccessControl.ALL_MEMBERS
       }
     }
 

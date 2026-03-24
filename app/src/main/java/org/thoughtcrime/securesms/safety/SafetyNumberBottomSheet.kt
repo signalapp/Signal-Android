@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.util.Preconditions
 
@@ -73,17 +74,32 @@ object SafetyNumberBottomSheet {
   }
 
   /**
-   * Create a factory to generate a sheet for the given message record. This will try
+   * Create a factory to generate a sheet for an outgoing message record. This will try
    * to resend the message automatically when the user confirms.
    *
    * @param context Not held on to, so any context is fine.
    * @param messageRecord The message record containing failed identities.
    */
   @JvmStatic
-  fun forMessageRecord(context: Context, messageRecord: MessageRecord): Factory {
+  fun forOutgoingMessageRecord(context: Context, messageRecord: MessageRecord): Factory {
     val args = SafetyNumberBottomSheetArgs(
       untrustedRecipients = messageRecord.identityKeyMismatches.map { it.recipientId },
       destinations = getDestinationFromRecord(messageRecord),
+      messageId = MessageId(messageRecord.id)
+    )
+
+    return SheetFactory(args)
+  }
+
+  /**
+   * Create a factory to generate a sheet for an incoming message record. This will try
+   * to resend the message automatically when the user confirms.
+   */
+  @JvmStatic
+  fun forIncomingMessageRecord(messageRecord: MessageRecord, conversationRecipient: Recipient): Factory {
+    val args = SafetyNumberBottomSheetArgs(
+      untrustedRecipients = messageRecord.identityKeyMismatches.map { it.recipientId },
+      destinations = listOf(ContactSearchKey.RecipientSearchKey(conversationRecipient.id, false)),
       messageId = MessageId(messageRecord.id)
     )
 

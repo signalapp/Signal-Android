@@ -8,7 +8,13 @@ package org.thoughtcrime.securesms.backup.v2.local
 import android.content.Context
 import android.net.Uri
 import androidx.documentfile.provider.DocumentFile
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
 import org.signal.core.models.backup.MediaName
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.androidx.DocumentFileInfo
 import org.signal.core.util.androidx.DocumentFileUtil.delete
 import org.signal.core.util.androidx.DocumentFileUtil.hasFile
@@ -27,6 +33,8 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * Provide a domain-specific interface to the root file system backing a local directory based archive.
@@ -37,6 +45,7 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
   companion object {
     val TAG = Log.tag(ArchiveFileSystem::class.java)
 
+    const val MAIN_DIRECTORY_NAME = "SignalBackups"
     const val BACKUP_DIRECTORY_PREFIX: String = "signal-backup"
     const val TEMP_BACKUP_DIRECTORY_SUFFIX: String = "tmp"
 
@@ -75,7 +84,7 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
   val filesFileSystem: FilesFileSystem
 
   init {
-    signalBackups = root.mkdirp("SignalBackups") ?: throw IOException("Unable to create main backups directory")
+    signalBackups = root.mkdirp(MAIN_DIRECTORY_NAME) ?: throw IOException("Unable to create main backups directory")
     val filesDirectory = signalBackups.mkdirp("files") ?: throw IOException("Unable to create files directory")
     filesFileSystem = FilesFileSystem(context, filesDirectory)
   }
@@ -160,10 +169,10 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
    * Clean up unused files in the shared files directory leveraged across all current snapshots. A file
    * is unused if it is not referenced directly by any current snapshots.
    */
-  fun deleteUnusedFiles() {
+  fun deleteUnusedFiles(allFilesProgressListener: AllFilesProgressListener? = null) {
     Log.i(TAG, "Deleting unused files")
 
-    val allFiles: MutableMap<String, DocumentFileInfo> = filesFileSystem.allFiles().toMutableMap()
+    val allFiles: MutableMap<String, DocumentFileInfo> = filesFileSystem.allFiles(allFilesProgressListener).toMutableMap()
     val snapshots: List<SnapshotInfo> = listSnapshots()
 
     snapshots
@@ -250,6 +259,10 @@ class SnapshotFileSystem(private val context: Context, private val snapshotDirec
  */
 class FilesFileSystem(private val context: Context, private val root: DocumentFile) {
 
+  companion object {
+    private val TAG = Log.tag(FilesFileSystem::class.java)
+  }
+
   private val subFolders: Map<String, DocumentFile>
 
   init {
@@ -267,14 +280,37 @@ class FilesFileSystem(private val context: Context, private val root: DocumentFi
   /**
    * Enumerate all files in the directory.
    */
-  fun allFiles(): Map<String, DocumentFileInfo> {
-    val allFiles = HashMap<String, DocumentFileInfo>()
+  fun allFiles(allFilesProgressListener: AllFilesProgressListener? = null): Map<String, DocumentFileInfo> {
+    val stopwatch = Stopwatch("allFiles")
 
-    for (subfolder in subFolders.values) {
-      val subFiles = subfolder.listFiles(context)
-      for (file in subFiles) {
-        allFiles[file.name] = file
-      }
+    val asyncResult = runBlocking { allFilesAsync(allFilesProgressListener) }
+    stopwatch.split("async")
+    stopwatch.stop(TAG)
+
+    return asyncResult
+  }
+
+  private suspend fun allFilesAsync(allFilesProgressListener: AllFilesProgressListener? = null, batchCount: Int = Runtime.getRuntime().availableProcessors()): Map<String, DocumentFileInfo> {
+    val allFiles = ConcurrentHashMap<String, DocumentFileInfo>()
+    val total = subFolders.values.size
+    val completed = AtomicInteger(0)
+    val chunkSize = (total + batchCount - 1) / batchCount
+
+    Log.d(TAG, "allFilesAsync: $batchCount")
+
+    coroutineScope {
+      subFolders.values.chunked(chunkSize).map { chunk ->
+        async(Dispatchers.IO) {
+          for (subfolder in chunk) {
+            val subFiles = subfolder.listFiles(context)
+            for (file in subFiles) {
+              allFiles[file.name] = file
+            }
+
+            allFilesProgressListener?.onProgress(completed.incrementAndGet(), total)
+          }
+        }
+      }.awaitAll()
     }
 
     return allFiles
@@ -328,4 +364,8 @@ private fun String.toMilliseconds(): Long {
   }
 
   return -1
+}
+
+fun interface AllFilesProgressListener {
+  fun onProgress(completed: Int, total: Int)
 }

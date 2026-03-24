@@ -3,12 +3,21 @@ package org.thoughtcrime.securesms.conversation.v2
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.TextUtils
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -16,7 +25,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -40,21 +48,22 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.view.doOnPreDraw
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.glide.compose.GlideImage
+import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
-import org.thoughtcrime.securesms.compose.GlideImage
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.fonts.SignalSymbols.getSpannedString
 import org.thoughtcrime.securesms.mms.AudioSlide
-import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.mms.DocumentSlide
 import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.mms.VideoSlide
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.hasSharedContact
+import org.thoughtcrime.securesms.util.hasSticker
 import org.thoughtcrime.securesms.util.isPoll
 import org.thoughtcrime.securesms.util.isViewOnceMessage
 import org.whispersystems.signalservice.api.payments.FormatterOptions
@@ -78,11 +87,15 @@ fun PinnedMessagesBanner(
   val message = conversationMessage.messageRecord as MmsMessageRecord
   val (glyph, body, showThumbnail) = getMessageMetadata(conversationMessage)
 
-  Column {
-    HorizontalDivider(
-      thickness = 1.dp,
-      color = if (DynamicTheme.isDarkTheme(LocalContext.current)) Color(0XFF4A4C52) else Color(0XFFCCCFD5)
-    )
+  Column(
+    modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 54.dp)
+  ) {
+    Row(
+      modifier = Modifier
+        .fillMaxWidth()
+        .height(1.dp)
+        .background(color = if (DynamicTheme.isDarkTheme(LocalContext.current)) Color(0XFF4A4C52) else Color(0XFFCCCFD5))
+    ) {}
     Row(
       verticalAlignment = Alignment.CenterVertically,
       modifier = Modifier
@@ -92,61 +105,91 @@ fun PinnedMessagesBanner(
           index = (index + 1) % messages.size
           onGoToMessage(message.id)
         }
-        .padding(8.dp)
         .height(IntrinsicSize.Min)
     ) {
       if (messages.size > 1) {
         Heading(index, messages.size)
+      } else {
+        Spacer(modifier = Modifier.size(16.dp))
       }
 
-      if (showThumbnail && message.slideDeck.firstSlide?.uri != null) {
-        GlideImage(
-          model = DecryptableUri(message.slideDeck.firstSlide!!.uri!!),
-          modifier = Modifier
-            .padding(start = 8.dp)
-            .size(32.dp)
-            .clip(RoundedCornerShape(12.dp))
-        )
-      }
-
-      Column(
-        modifier = Modifier
-          .weight(1f)
-          .padding(start = 8.dp)
-      ) {
-        Text(
-          text = if (message.fromRecipient.isSelf) {
-            stringResource(R.string.Recipient_you)
-          } else {
-            message.fromRecipient.getDisplayName(LocalContext.current)
-          },
-          fontWeight = FontWeight.Bold,
-          color = MaterialTheme.colorScheme.onSurface
-        )
-
-        val displayBody = if (glyph != null) {
-          SpannableStringBuilder()
-            .append(getSpannedString(LocalContext.current, SignalSymbols.Weight.REGULAR, glyph, -1))
-            .append(" ")
-            .append(body)
-        } else {
-          body
+      AnimatedContent(
+        modifier = Modifier.weight(1f),
+        targetState = message,
+        transitionSpec = {
+          slideIntoContainer(towards = AnimatedContentTransitionScope.SlideDirection.Up, animationSpec = tween(150)) togetherWith
+            slideOutOfContainer(towards = AnimatedContentTransitionScope.SlideDirection.Up, animationSpec = tween(150))
         }
+      ) { message ->
+        Row(
+          verticalAlignment = Alignment.CenterVertically,
+          modifier = Modifier
+            .clickable(
+              onClick = {
+                index = (index + 1) % messages.size
+                onGoToMessage(message.id)
+              },
+              indication = null,
+              interactionSource = remember { MutableInteractionSource() },
+              onClickLabel = stringResource(R.string.SignalCheckbox_accessibility_on_click_label),
+              enabled = true
+            )
+            .padding(vertical = 7.dp)
+        ) {
+          if (showThumbnail &&
+            !message.hasSticker() &&
+            message.slideDeck.firstSlide?.uri != null &&
+            !message.slideDeck.firstSlide!!.isVideoGif
+          ) {
+            GlideImage(
+              model = DecryptableUri(message.slideDeck.firstSlide!!.uri!!),
+              modifier = Modifier
+                .padding(end = 8.dp)
+                .size(32.dp)
+                .clip(RoundedCornerShape(10.dp))
+            )
+          }
 
-        AndroidView(
-          factory = ::EmojiTextView
-        ) { view ->
-          view.enableRenderSpoilers()
-          view.text = displayBody
-          view.ellipsize = TextUtils.TruncateAt.END
-          view.maxLines = 1
-          view.doOnPreDraw {
-            (it as EmojiTextView).ellipsizeEmojiTextForMaxLines()
+          Column(
+            modifier = Modifier
+              .weight(1f)
+          ) {
+            Text(
+              text = if (message.fromRecipient.isSelf) {
+                stringResource(R.string.Recipient_you)
+              } else {
+                message.fromRecipient.getDisplayName(LocalContext.current)
+              },
+              fontWeight = FontWeight.Bold,
+              color = MaterialTheme.colorScheme.onSurface,
+              style = MaterialTheme.typography.bodySmall
+            )
+
+            val displayBody = if (glyph != null) {
+              SpannableStringBuilder()
+                .append(getSpannedString(LocalContext.current, SignalSymbols.Weight.REGULAR, glyph, -1))
+                .append(" ")
+                .append(body)
+            } else {
+              body
+            }
+
+            AndroidView(
+              factory = ::EmojiTextView
+            ) { view ->
+              view.enableRenderSpoilers()
+              view.text = displayBody
+              view.ellipsize = TextUtils.TruncateAt.END
+              view.maxLines = 1
+              view.doOnPreDraw {
+                (it as EmojiTextView).ellipsizeEmojiTextForMaxLines()
+              }
+            }
           }
         }
       }
 
-      Box(modifier = Modifier.padding(horizontal = 8.dp)) {
+      Box(modifier = Modifier.padding(vertical = 7.dp, horizontal = 8.dp).padding(end = 8.dp)) {
         Icon(
           imageVector = ImageVector.vectorResource(R.drawable.symbol_pin_24),
           contentDescription = stringResource(R.string.PinnedMessage__pinned),
@@ -175,26 +218,34 @@ fun PinnedMessagesBanner(
  */
 @Composable
 fun Heading(selectedIndex: Int, size: Int) {
-  Column(
-    modifier = Modifier.fillMaxHeight()
-  ) {
-    for (i in 0 until size) {
-      Box(
-        modifier = Modifier
-          .padding(vertical = 2.dp)
-          .width(2.dp)
-          .weight(1f)
-          .background(
-            color = if (i == selectedIndex) {
-              MaterialTheme.colorScheme.onSurface
-            } else if (DynamicTheme.isDarkTheme(LocalContext.current)) {
-              MaterialTheme.colorScheme.secondaryContainer
-            } else {
-              SignalTheme.colors.colorTransparentInverse2
-            },
-            shape = RoundedCornerShape(16.dp)
-          )
-      )
+  AnimatedContent(
+    targetState = selectedIndex,
+    transitionSpec = {
+      fadeIn(tween(durationMillis = 150)).togetherWith(fadeOut(tween(durationMillis = 150)))
+    }
+  ) { selectedIndex ->
+    Column(
+      modifier = Modifier.fillMaxHeight().padding(vertical = 8.dp)
+    ) {
+      for (i in 0 until size) {
+        Box(
+          modifier = Modifier
+            .padding(vertical = 2.dp)
+            .padding(horizontal = 7.dp)
+            .width(2.dp)
+            .weight(1f)
+            .background(
+              color = if (i == selectedIndex) {
+                MaterialTheme.colorScheme.onSurface
+              } else if (DynamicTheme.isDarkTheme(LocalContext.current)) {
+                MaterialTheme.colorScheme.secondaryContainer
+              } else {
+                SignalTheme.colors.colorTransparentInverse2
+              },
+              shape = RoundedCornerShape(16.dp)
+            )
+        )
+      }
     }
   }
 }

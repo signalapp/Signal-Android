@@ -28,6 +28,16 @@
         app:popUpTo="@id/restore"
         app:popUpToInclusive="true" />
 
+    <action
+        android:id="@+id/go_directly_to_restore_local_backup"
+        app:destination="@id/restore_local_backup_fragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/restore"
+        app:popUpToInclusive="true" />
+
     <fragment
         android:id="@+id/selectRestoreMethod"
         android:name="org.thoughtcrime.securesms.restore.selection.SelectRestoreMethodFragment"
@@ -44,6 +54,14 @@
         <action
             android:id="@+id/go_to_local_backup_restore"
             app:destination="@id/choose_local_backup_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/go_to_local_backup_restore_v2"
+            app:destination="@id/choose_local_backup_fragment_v2"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -80,6 +98,17 @@
 
         <action
             android:id="@+id/action_choose_local_backup_fragment_to_restore_local_backup_fragment"
+            app:destination="@id/restore_local_backup_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/choose_local_backup_fragment_v2"
+        android:name="org.thoughtcrime.securesms.restore.local.PostRegistrationRestoreLocalBackupFragment"
+        android:label="choose_local_backup"
+        tools:layout="@layout/fragment_choose_backup">
+
+        <action
+            android:id="@+id/restore_local_v1_backup"
             app:destination="@id/restore_local_backup_fragment" />
     </fragment>
 

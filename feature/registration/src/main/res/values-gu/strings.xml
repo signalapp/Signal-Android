@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ગોપનીયતા તમારી સાથે રાખો.\nદરેક મેસેજમાં તમે લખતા હોય તેવી રીતે લખો.</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">Signal બિનનફાકારક સંસ્થા છે\nનિયમો અને ગોપનીયતા નીતિ</string>
+    <string name="RegistrationActivity_continue">ચાલુ રાખો</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">રિસ્ટોર અથવા ટ્રાન્સફર કરો</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">પરવાનગીઓને મંજૂરી આપો</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">તમે જાણતા હોય તેવા લોકોને મેસેજ મોકલવામાં તમારી સહાય કરવા માટે, Signal આ પરવાનગીઓની વિનંતી કરશે. </string>
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">અત્યારે નહીં</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">આગળ</string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">નોટિફિકેશન</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">નવા મેસેજ આવે નોટિફિકેશન મેળવો.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">સંપર્કો</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">તમે જાણતા હો તે લોકોને શોધો. તમારા સંપર્કો એન્ક્રિપ્ટેડ છે અને Signal સેવાને દેખાતા નથી.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">ફોન કૉલ</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">રજિસ્ટર કરવાનું સરળ બનાવો અને વધારાના કૉલિંગ ફીચર સક્ષમ કરો.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">સ્ટોરેજ</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">તમારા ડિવાઇસમાંથી ફોટા, વીડિયો અને ફાઇલો મોકલો.</string>
+
+    <!-- PhoneNumberEntryScreen -->
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">ફોન નંબર</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">તમને એક વેરિફિકેશન કોડ મળશે. કેરિયરના દર લાગુ થઈ શકે છે.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">દેશ પસંદ કરો</string>
+    <string name="RegistrationActivity_phone_number_description">ફોન નંબર</string>
+    <string name="RegistrationActivity_next">આગળ</string>
+
+    <!-- CountryCodePickerScreen -->
+    <!-- Title of the country code selection screen -->
+    <string name="CountryCodeSelectScreen__your_country">તમારો દેશ</string>
+    <!-- Close button content description -->
+    <string name="CountryCodeSelectScreen__close">બંધ કરો</string>
+    <!-- Search bar hint text -->
+    <string name="CountryCodeSelectScreen__search_by">દેશના નામ કે નંબરથી શોધો</string>
+    <!-- Fallback text for countries with no name -->
+    <string name="CountryCodeSelectScreen__unknown_country">અજાણ્યો દેશ</string>
+
+    <!-- VerificationCodeScreen -->
+    <!-- Title of the verification code entry screen -->
+    <string name="VerificationCodeScreen__verification_code">વેરિફિકેશન કોડ</string>
+    <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">%1$sમાં અમે મોકલેલો કોડ દાખલ કરો</string>
+    <!-- Button text for wrong number action -->
+    <string name="VerificationCodeScreen__wrong_number">નંબર ખોટો છે?</string>
+    <!-- Button text for resend SMS action -->
+    <string name="VerificationCodeScreen__resend_code">કોડ ફરીથી મોકલો</string>
+    <!-- Button text for call me action -->
+    <string name="VerificationCodeScreen__call_me_instead">તેના બદલે મને ફોન કરો</string>
+    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__call_me_available_in">મને કૉલ કરો (%1$02d:%2$02d)</string>
+    <!-- Toast shown when the user enters an incorrect verification code -->
+    <string name="VerificationCodeScreen__incorrect_code">ખોટો કોડ</string>
+    <!-- Snackbar shown when there is a network error -->
+    <string name="VerificationCodeScreen__network_error">કનેક્ટ કરવામાં અસમર્થ. કૃપા કરીને તમારું નેટવર્ક તપાસો અને ફરી પ્રયાસ કરો.</string>
+    <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">ઘણા બધા પ્રયત્નો. %1$sમાં ફરી પ્રયાસ કરો.</string>
+    <!-- Snackbar shown for generic/unknown errors -->
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">કોઈ અનપેક્ષિત ભૂલ આવી. કૃપા કરીને ફરીથી પ્રયાસ કરો.</string>
+    <!-- Snackbar shown when the SMS provider has an error -->
+    <string name="VerificationCodeScreen__sms_provider_error">તમારો વેરિફિકેશન કોડ મોકલવામાં સમસ્યા આવી હતી. કૃપા કરીને ફરીથી પ્રયાસ કરો.</string>
+    <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">પસંદ કરેલી પદ્ધતિ દ્વારા કોડ મોકલી શકાયો નથી. કૃપા કરીને અન્ય વિકલ્પ અજમાવી જુઓ.</string>
+    <!-- Snackbar shown for registration errors -->
+    <string name="VerificationCodeScreen__registration_error">રજિસ્ટ્રેશન નિષ્ફળ થયું. કૃપા કરીને ફરીથી પ્રયાસ કરો.</string>
+    <!-- Button text for having trouble with verification -->
+    <string name="VerificationCodeScreen__having_trouble">સમસ્યા આવી રહી છે?</string>
+
+    <!-- RestoreWelcomeBottomSheet -->
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">મારી પાસે મારો જૂનો ફોન છે</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">ઝડપથી શરૂ કરવા માટે તમારા વર્તમાન Signal એકાઉન્ટમાંથી QR કોડ સ્કેન કરો</string>
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">મારી પાસે મારો જૂનો ફોન નથી</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">અથવા તમે તે જ ડિવાઇસ પર Signal ફરીથી ઇન્સ્ટોલ કરી રહ્યાં છો</string>
+
+    <!-- ArchiveRestoreSelectionScreen -->
+    <!-- Title text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">એકાઉન્ટ રિસ્ટોર અથવા ટ્રાન્સફર કરો</string>
+    <!-- Subtitle text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__subheading">Choose how you’d like to restore your message history and account data.</string>
+    <!-- Title for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">Signal બેકઅપમાંથી</string>
+    <!-- Subtitle for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">તમારો મફત અથવા ચુકવણી સાથેનો Signal બેકઅપ પ્લાન</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">ઓન-ડિવાઇસ બેકઅપ રિસ્ટોર કરો</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">તમે તમારા ડિવાઇસ પર સેવ કરેલા બેકઅપમાંથી તમારા મેસેજ રિસ્ટોર કરો.</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">ટ્રાન્સફર કર્યા વિના ચાલુ રાખો</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Messages &amp; media won’t be transferred</string>
+    <!-- Title for the backup folder option card (V2 format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">બેકઅપ ફોલ્ડરમાંથી</string>
+    <!-- Title for the backup file option card (V1 legacy format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">બેકઅપ ફાઈલમાંથી</string>
+    <!-- Subtitle for the backup folder/file option cards -->
+    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Choose a backup you\'ve saved</string>
+    <!-- Title for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">તમારા જૂના ફોનમાંથી</string>
+    <!-- Subtitle for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">તમારા જૂના Android પરથી સીધા જ ટ્રાન્સફર કરો</string>
+    <!-- Skip button text -->
+    <string name="ArchiveRestoreSelectionScreen__skip">અવગણો</string>
+    <!-- Title for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">રિસ્ટોર કરવાનું સ્કિપ કરવું છે?</string>
+    <!-- Warning body text for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">જો તમે હમણાં રિસ્ટોર કરવાનું સ્કિપ કરો છો, તો તમે પછીથી રિસ્ટોર કરી શકશો નહીં. જો તમે રિસ્ટોર છોડી દીધા પછી બેકઅપ ફરીથી સક્ષમ કરો છો, તો તમારા વર્તમાન બેકઅપને તમારા નવી મેસેજિંગ હિસ્ટ્રીથી બદલવામાં આવશે.</string>
+    <!-- Confirm button text for the skip restore dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">રિસ્ટોર કરવાનું સ્કિપ કરો</string>
+</resources>

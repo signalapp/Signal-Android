@@ -51,24 +51,31 @@ class CreateReleaseChannelJob private constructor(parameters: Parameters) : Base
     }
 
     if (SignalStore.releaseChannel.releaseChannelRecipientId != null) {
-      Log.i(TAG, "Already created Release Channel recipient ${SignalStore.releaseChannel.releaseChannelRecipientId}")
+      val existingId = SignalStore.releaseChannel.releaseChannelRecipientId!!
+      val recipient = Recipient.resolved(existingId)
 
-      val recipient = Recipient.resolved(SignalStore.releaseChannel.releaseChannelRecipientId!!)
-      if (recipient.profileAvatar.isNullOrEmpty() || !SignalStore.releaseChannel.hasUpdatedAvatar) {
-        SignalStore.releaseChannel.hasUpdatedAvatar = true
-        setAvatar(recipient.id)
+      if (recipient.hasServiceId || recipient.hasE164 || recipient.isGroup || recipient.isDistributionList || recipient.isCallLink) {
+        Log.w(TAG, "Release channel recipient $existingId is not a valid release channel recipient (hasServiceId: ${recipient.hasServiceId}, hasE164: ${recipient.hasE164}, isGroup: ${recipient.isGroup}, isDistributionList: ${recipient.isDistributionList}, isCallLink: ${recipient.isCallLink}). Clearing and recreating.")
+        SignalStore.releaseChannel.clearReleaseChannelRecipientId()
+      } else {
+        Log.i(TAG, "Already created Release Channel recipient $existingId")
+        if (recipient.profileAvatar.isNullOrEmpty() || !SignalStore.releaseChannel.hasUpdatedAvatar) {
+          SignalStore.releaseChannel.hasUpdatedAvatar = true
+          setAvatar(recipient.id)
+        }
+        return
       }
-    } else {
-      val recipients = SignalDatabase.recipients
-
-      val releaseChannelId: RecipientId = recipients.insertReleaseChannelRecipient()
-      SignalStore.releaseChannel.setReleaseChannelRecipientId(releaseChannelId)
-      SignalStore.releaseChannel.hasUpdatedAvatar = true
-
-      recipients.setProfileName(releaseChannelId, ProfileName.asGiven("Signal"))
-      recipients.setMuted(releaseChannelId, Long.MAX_VALUE)
-      setAvatar(releaseChannelId)
     }
+
+    val recipients = SignalDatabase.recipients
+
+    val releaseChannelId: RecipientId = recipients.insertReleaseChannelRecipient()
+    SignalStore.releaseChannel.setReleaseChannelRecipientId(releaseChannelId)
+    SignalStore.releaseChannel.hasUpdatedAvatar = true
+
+    recipients.setProfileName(releaseChannelId, ProfileName.asGiven("Signal"))
+    recipients.setMuted(releaseChannelId, Long.MAX_VALUE)
+    setAvatar(releaseChannelId)
   }
 
   private fun setAvatar(id: RecipientId) {

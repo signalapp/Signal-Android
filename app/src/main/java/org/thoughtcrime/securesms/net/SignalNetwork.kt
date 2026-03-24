@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.net
 
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.dependencies.KeyTransparencyApi
 import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
@@ -98,4 +99,7 @@ object SignalNetwork {
 
   val svrB: SvrBApi
     get() = AppDependencies.svrBApi
+
+  val keyTransparency: KeyTransparencyApi
+    get() = AppDependencies.keyTransparencyApi
 }

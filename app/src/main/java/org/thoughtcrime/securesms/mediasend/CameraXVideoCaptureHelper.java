@@ -28,7 +28,7 @@ import androidx.fragment.app.Fragment;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXModePolicy;
-import org.thoughtcrime.securesms.permissions.Permissions;
+import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.RemoteConfig;
@@ -238,8 +238,15 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   @Override
   public void onZoomIncremented(float increment) {
     ZoomState zoomState = Objects.requireNonNull(cameraController.getZoomState().getValue());
-    float range = zoomState.getMaxZoomRatio() - getDefaultVideoZoomRatio();
-    cameraController.setZoomRatio((range * increment) + getDefaultVideoZoomRatio());
+    float     base      = getDefaultVideoZoomRatio();
+
+    if (increment >= 0f) {
+      float range = zoomState.getMaxZoomRatio() - base;
+      cameraController.setZoomRatio(base + range * increment);
+    } else {
+      float range = base - zoomState.getMinZoomRatio();
+      cameraController.setZoomRatio(base + range * increment);
+    }
   }
 
   @Override

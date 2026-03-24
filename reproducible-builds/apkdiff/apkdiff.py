@@ -56,7 +56,10 @@ def compare(apk1, apk2) -> bool:
     zip1 = ZipFile(apk1, "r")
     zip2 = ZipFile(apk2, "r")
 
-    return compare_entry_names(zip1, zip2) and compare_entry_contents(zip1, zip2) == True
+    entry_names = compare_entry_names(zip1, zip2)
+    entry_contents = compare_entry_contents(zip1, zip2)
+
+    return entry_names and entry_contents
 
 
 def compare_entry_names(zip1: ZipFile, zip2: ZipFile) -> bool:
@@ -70,15 +73,34 @@ def compare_entry_names(zip1: ZipFile, zip2: ZipFile) -> bool:
         while ignoreFile in name_list_sorted_2:
             name_list_sorted_2.remove(ignoreFile)
 
+    success = True
     if len(name_list_sorted_1) != len(name_list_sorted_2):
-        print("Manifest lengths differ!")
+        print(f"Manifest lengths differ! {len(name_list_sorted_1)} vs {len(name_list_sorted_2)}")
+        success = False
 
-    for entry_name_1, entry_name_2 in zip(name_list_sorted_1, name_list_sorted_2):
-        if entry_name_1 != entry_name_2:
-            print("Sorted manifests don't match, %s vs %s" % (entry_name_1, entry_name_2))
-            return False
+    only_in_first = sorted(list(set(name_list_sorted_1) - set(name_list_sorted_2)))
+    only_in_second = sorted(list(set(name_list_sorted_2) - set(name_list_sorted_1)))
 
-    return True
+    if only_in_first:
+        print(f"Files present only in {zip1.filename}:")
+        for name in only_in_first:
+            print(f"  - {name}")
+        success = False
+
+    if only_in_second:
+        print(f"Files present only in {zip2.filename}:")
+        for name in only_in_second:
+            print(f"  - {name}")
+        success = False
+
+    # If sets are identical but ordering differs, still report ordering mismatches
+    if success:
+        for entry_name_1, entry_name_2 in zip(name_list_sorted_1, name_list_sorted_2):
+            if entry_name_1 != entry_name_2:
+                print(f"Sorted manifests don't match: {entry_name_1} vs {entry_name_2}")
+                success = False
+
+    return success
 
 
 def compare_entry_contents(zip1: ZipFile, zip2: ZipFile) -> bool:
@@ -86,11 +108,11 @@ def compare_entry_contents(zip1: ZipFile, zip2: ZipFile) -> bool:
     info_list_1 = list(filter(lambda info: info.filename not in IGNORE_FILES, zip1.infolist()))
     info_list_2 = list(filter(lambda info: info.filename not in IGNORE_FILES, zip2.infolist()))
 
-    if len(info_list_1) != len(info_list_2):
-        print("APK info lists of different length!")
-        return False
-
     success = True
+    if len(info_list_1) != len(info_list_2):
+        print(f"APK info lists of different length! {len(info_list_1)} vs {len(info_list_2)}")
+        success = False
+
     for entry_info_1 in info_list_1:
         for entry_info_2 in list(info_list_2):
             if entry_info_1.filename == entry_info_2.filename:
@@ -134,11 +156,11 @@ def compare_android_xml(bytes1: bytes, bytes2: bytes) -> bool:
     bad_differences = []
 
     for diff in all_differences:
-        is_split_attr = diff.diff_type == "attribute" and diff.path in ["manifest", "manifest/application"] and "split" in diff.attribute_name.lower()
+        is_split_attr = diff.diff_type == "attribute" and diff.path in ["manifest", "manifest/application"] and diff.attribute_name is not None and "split" in diff.attribute_name.lower()
         is_meta_attr = diff.diff_type == "attribute" and diff.path == "manifest/application/meta-data"
         is_meta_child_count = diff.diff_type == "child_count" and diff.child_tag == "meta-data"
 
-        if not is_split_attr and not is_meta_attr and not is_meta_child_count and not is_meta_attr:
+        if not is_split_attr and not is_meta_attr and not is_meta_child_count:
             bad_differences.append(diff)
 
     if bad_differences:
@@ -204,7 +226,7 @@ def compare_resources_arsc(first_entry_bytes: bytes, second_entry_bytes: bytes) 
             pkg1 = packages1[i]
             pkg2 = packages2[i]
 
-            if type(pkg1) != type(pkg2):
+            if type(pkg1) is not type(pkg2):
                 print(f"Element type mismatch at index {i}: {type(pkg1).__name__} vs {type(pkg2).__name__}")
                 success = False
                 continue
@@ -286,7 +308,7 @@ def compare_xml(bytes1: bytes, bytes2: bytes) -> list[XmlDifference]:
     entry_text_2 = printer.get_xml().decode("utf-8")
 
     if entry_text_1 == entry_text_2:
-        return True
+        return []
 
     root1 = ET.fromstring(entry_text_1)
     root2 = ET.fromstring(entry_text_2)
@@ -329,11 +351,11 @@ def compare_xml_elements(elem1: Element, elem2: Element, path: str = "") -> list
     children2 = list(elem2)
 
     # Try to match children by tag name for comparison
-    children1_by_tag = {}
+    children1_by_tag: dict[str, list[Element]] = {}
     for child in children1:
         children1_by_tag.setdefault(child.tag, []).append(child)
 
-    children2_by_tag = {}
+    children2_by_tag: dict[str, list[Element]] = {}
     for child in children2:
         children2_by_tag.setdefault(child.tag, []).append(child)
 

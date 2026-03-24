@@ -20,6 +20,7 @@ import org.signal.core.util.CursorUtil
 import org.signal.core.util.Hex
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.Stopwatch
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.color.MaterialColor
@@ -46,7 +47,6 @@ import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.Triple
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.DistributionId
 import java.io.File
 import java.io.IOException

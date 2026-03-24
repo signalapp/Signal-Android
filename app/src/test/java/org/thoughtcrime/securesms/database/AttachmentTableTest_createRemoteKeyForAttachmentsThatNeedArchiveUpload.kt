@@ -273,6 +273,41 @@ class AttachmentTableTest_createRemoteKeyForAttachmentsThatNeedArchiveUpload {
     assertThat(SignalDatabase.attachments.getAttachment(targetAttachmentId)?.remoteKey).isNotNull()
   }
 
+  @Test
+  fun whenTwoAttachmentsShareDataFileAndBothNeedNewKey_bothGetSameKey() {
+    val sharedDataFile = "/shared/path/attachment.jpg"
+
+    // Create two attachments sharing the same data file, neither with a remote key
+    val attachmentId1 = insertAttachmentDirectly(
+      dataFile = sharedDataFile,
+      transferState = AttachmentTable.TRANSFER_PROGRESS_DONE,
+      archiveTransferState = AttachmentTable.ArchiveTransferState.NONE.value,
+      remoteKey = null
+    )
+
+    val attachmentId2 = insertAttachmentDirectly(
+      dataFile = sharedDataFile,
+      transferState = AttachmentTable.TRANSFER_PROGRESS_DONE,
+      archiveTransferState = AttachmentTable.ArchiveTransferState.NONE.value,
+      remoteKey = null
+    )
+
+    // Verify neither has a remote key initially
+    assertThat(SignalDatabase.attachments.getAttachment(attachmentId1)?.remoteKey).isNull()
+    assertThat(SignalDatabase.attachments.getAttachment(attachmentId2)?.remoteKey).isNull()
+
+    val result = SignalDatabase.attachments.createRemoteKeyForAttachmentsThatNeedArchiveUpload()
+    assertThat(result.totalCount).isEqualTo(2)
+
+    // Verify both attachments got the SAME remote key
+    val attachment1 = SignalDatabase.attachments.getAttachment(attachmentId1)!!
+    val attachment2 = SignalDatabase.attachments.getAttachment(attachmentId2)!!
+
+    assertThat(attachment1.remoteKey).isNotNull()
+    assertThat(attachment2.remoteKey).isNotNull()
+    assertThat(attachment1.remoteKey).isEqualTo(attachment2.remoteKey)
+  }
+
   /**
    * Creates an attachment that meets all criteria for archive upload:
    * - ARCHIVE_TRANSFER_STATE = NONE (0)

@@ -63,12 +63,17 @@ class ArchiveImportExportTests {
 
 //  @Test
   fun chat() {
-    runTests { it.startsWith("chat_") && !it.contains("_item") }
+    runTests { it.matches(Regex("^chat_%d%d.binproto$")) }
   }
 
 //  @Test
   fun chatFolders() {
     runTests { it.startsWith("chat_folder_") }
+  }
+
+//  @Test
+  fun chatItemAdminDelete() {
+    runTests { it.startsWith("chat_item_admin_deleted_") }
   }
 
 //  @Test
@@ -214,6 +219,11 @@ class ArchiveImportExportTests {
 //  @Test
   fun chatItemPoll() {
     runTests { it.startsWith("chat_item_poll_") }
+  }
+
+//  @Test
+  fun chatItemPinMessage() {
+    runTests { it.startsWith("chat_item_pin_message_") }
   }
 
 //  @Test

@@ -6,13 +6,15 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig;
-import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.video.TranscodingPreset;
 import org.thoughtcrime.securesms.video.videoconverter.utils.DeviceCapabilities;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 
 import java.util.Arrays;
 
@@ -65,7 +67,10 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public long getCompressedVideoMaxSize(Context context) {
-    return getMaxAttachmentSize();
+    long maxCipherTextSize = RemoteConfig.videoTranscodeTargetSizeBytes();
+    long maxPaddedSize     = AttachmentCipherStreamUtil.getPlaintextLength(maxCipherTextSize);
+
+    return Math.min(PaddingInputStream.getMaxUnpaddedSize(maxPaddedSize), getMaxAttachmentSize());
   }
 
   @Override

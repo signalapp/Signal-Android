@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.database
 
+import org.signal.blurhash.BlurHash
+import org.signal.core.models.media.TransformProperties
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
-import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch
 import org.thoughtcrime.securesms.database.documents.NetworkFailure
@@ -18,7 +19,9 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.payments.Payment
+import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.MediaUtil
 
@@ -56,7 +59,7 @@ object FakeMessageRecords {
     stickerLocator: StickerLocator? = null,
     blurHash: BlurHash? = null,
     audioHash: AudioHash? = null,
-    transformProperties: AttachmentTable.TransformProperties? = null,
+    transformProperties: TransformProperties? = null,
     displayOrder: Int = 0,
     uploadTimestamp: Long = 200,
     dataHash: String? = null,
@@ -101,7 +104,8 @@ object FakeMessageRecords {
       thumbnailRestoreState = thumbnailRestoreState,
       archiveTransferState = archiveTransferState,
       uuid = null,
-      quoteTargetContentType = null
+      quoteTargetContentType = null,
+      metadata = null
     )
   }
 
@@ -158,7 +162,9 @@ object FakeMessageRecords {
     parentStoryId: ParentStoryId? = null,
     giftBadge: GiftBadge? = null,
     payment: Payment? = null,
-    call: CallTable.Call? = null
+    call: CallTable.Call? = null,
+    poll: PollRecord? = null,
+    deletedBy: RecipientId? = null
   ): MmsMessageRecord {
     return MmsMessageRecord(
       id,
@@ -186,7 +192,6 @@ object FakeMessageRecords {
       linkPreviews,
       unidentified,
       reactions,
-      remoteDelete,
       mentionsSelf,
       notifiedTimestamp,
       viewed,
@@ -197,13 +202,14 @@ object FakeMessageRecords {
       giftBadge,
       payment,
       call,
-      null,
+      poll,
       -1,
       null,
       null,
       0,
       false,
       0,
+      deletedBy,
       null
     )
   }

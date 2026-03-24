@@ -11,15 +11,15 @@ import org.signal.core.util.Base64
 import org.signal.core.util.toInt
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
-import org.signal.storageservice.protos.groups.AccessControl
-import org.signal.storageservice.protos.groups.Member
-import org.signal.storageservice.protos.groups.local.DecryptedBannedMember
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedMember
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
-import org.signal.storageservice.protos.groups.local.DecryptedTimer
-import org.signal.storageservice.protos.groups.local.EnabledState
+import org.signal.storageservice.storage.protos.groups.AccessControl
+import org.signal.storageservice.storage.protos.groups.Member
+import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer
+import org.signal.storageservice.storage.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.backup.v2.ArchiveGroup
 import org.thoughtcrime.securesms.backup.v2.proto.Group
 import org.thoughtcrime.securesms.backup.v2.util.toLocal
@@ -104,7 +104,12 @@ private fun Group.AccessControl.AccessRequired.toLocal(): AccessControl.AccessRe
 }
 
 private fun Group.AccessControl.toLocal(): AccessControl {
-  return AccessControl(members = this.members.toLocal(), attributes = this.attributes.toLocal(), addFromInviteLink = this.addFromInviteLink.toLocal())
+  return AccessControl(
+    members = this.members.toLocal(),
+    attributes = this.attributes.toLocal(),
+    addFromInviteLink = this.addFromInviteLink.toLocal(),
+    memberLabel = this.memberLabel.toLocal()
+  )
 }
 
 private fun Group.Member.Role.toLocal(): Member.Role {
@@ -116,7 +121,13 @@ private fun Group.Member.Role.toLocal(): Member.Role {
 }
 
 private fun Group.Member.toLocal(): DecryptedMember {
-  return DecryptedMember(aciBytes = userId, role = role.toLocal(), joinedAtRevision = joinedAtVersion)
+  return DecryptedMember(
+    aciBytes = userId,
+    role = role.toLocal(),
+    joinedAtRevision = joinedAtVersion,
+    labelEmoji = labelEmoji,
+    labelString = labelString
+  )
 }
 
 private fun Group.MemberPendingAdminApproval.toLocal(): DecryptedRequestingMember {

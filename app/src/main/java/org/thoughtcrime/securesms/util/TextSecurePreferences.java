@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.hardware.Camera.CameraInfo;
 import android.net.Uri;
 import android.provider.Settings;
 
@@ -88,7 +87,6 @@ public class TextSecurePreferences {
 
   public  static final String SYSTEM_EMOJI_PREF                = "pref_system_emoji";
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
-  public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
   public  static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
   public  static final String READ_RECEIPTS_PREF               = "pref_read_receipts";
   public  static final String INCOGNITO_KEYBOARD_PREF          = "pref_incognito_keyboard";
@@ -445,15 +443,6 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, ALWAYS_RELAY_CALLS_PREF, false);
   }
 
-  public static void setDirectCaptureCameraId(Context context, int value) {
-    setIntegerPrefrence(context, DIRECT_CAPTURE_CAMERA_ID, value);
-  }
-
-  @SuppressWarnings("deprecation")
-  public static int getDirectCaptureCameraId(Context context) {
-    return getIntegerPreference(context, DIRECT_CAPTURE_CAMERA_ID, CameraInfo.CAMERA_FACING_FRONT);
-  }
-
   @Deprecated
   public static NotificationPrivacyPreference getNotificationPrivacy(Context context) {
     return new NotificationPrivacyPreference(getStringPreference(context, NOTIFICATION_PRIVACY_PREF, "all"));
@@ -509,6 +498,10 @@ public class TextSecurePreferences {
 
   public static boolean isUniversalUnidentifiedAccess(Context context) {
     return getBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, false);
+  }
+
+  public static void setIsUniversalUnidentifiedAccess(Context context, boolean enabled) {
+    setBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, enabled);
   }
 
   public static void setShowUnidentifiedDeliveryIndicatorsEnabled(Context context, boolean enabled) {
@@ -595,7 +588,7 @@ public class TextSecurePreferences {
    */
   @Deprecated
   public static void setLanguage(Context context, String language) {
-    setStringPreference(context, LANGUAGE_PREF, language);
+    getSharedPreferences(context).edit().putString(LANGUAGE_PREF, language).commit();
   }
 
   @Deprecated

@@ -74,7 +74,8 @@ class StoryViewerFragment :
           storyViewerArgs.isFromNotification -> StoryViewerPageArgs.Source.NOTIFICATION
           else -> StoryViewerPageArgs.Source.UNKNOWN
         },
-        groupReplyStartPosition = storyViewerArgs.groupReplyStartPosition
+        groupReplyStartPosition = storyViewerArgs.groupReplyStartPosition,
+        isFromArchive = storyViewerArgs.isFromArchive
       )
     )
 

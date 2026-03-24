@@ -189,7 +189,7 @@ object SignalSymbols {
     VIEW_ONCE_DASH('\uE079'),
     VIEW_ONCE_VIEWED('\uE07A'),
     X('\u00D7'),
-    X_CIRCLE('\u2297'),
+    X_CIRCLE('\uE1EE'),
     X_SQUARE('\u2327'),
 
     REFRESH('\uE000'),

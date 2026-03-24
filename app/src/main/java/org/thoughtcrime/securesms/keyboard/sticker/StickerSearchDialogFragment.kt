@@ -79,7 +79,17 @@ class StickerSearchDialogFragment : DialogFragment(), KeyboardStickerListAdapter
   }
 
   override fun onLayoutChange(v: View?, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
-    layoutManager.spanCount = calculateColumnCount(view?.width ?: 0)
+    val width = right - left
+    if (width <= 0) {
+      return
+    }
+
+    val newSpanCount = calculateColumnCount(width)
+    if (layoutManager.spanCount != newSpanCount) {
+      list.post {
+        layoutManager.spanCount = newSpanCount
+      }
+    }
   }
 
   private fun calculateColumnCount(@Px screenWidth: Int): Int {

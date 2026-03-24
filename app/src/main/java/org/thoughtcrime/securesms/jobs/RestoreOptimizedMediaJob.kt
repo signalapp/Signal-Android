@@ -66,6 +66,8 @@ class RestoreOptimizedMediaJob private constructor(parameters: Parameters) : Job
 
     ArchiveRestoreProgress.onStartMediaRestore()
 
+    BackupMediaRestoreService.start(context, context.getString(R.string.BackupStatus__restoring_media))
+
     restorableAttachments
       .forEach {
         val job = RestoreAttachmentJob.forOffloadedRestore(
@@ -78,7 +80,6 @@ class RestoreOptimizedMediaJob private constructor(parameters: Parameters) : Job
         jobManager.add(job)
       }
 
-    BackupMediaRestoreService.start(context, context.getString(R.string.BackupStatus__restoring_media))
     ArchiveRestoreProgress.onRestoringMedia()
 
     RestoreAttachmentJob.Queues.OFFLOAD_RESTORE.forEach { queue ->

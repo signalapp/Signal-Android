@@ -80,10 +80,17 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
     CallParticipant oldParticipant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
     CallParticipant newParticipant = oldParticipant.withVideoEnabled(enable);
 
-    return currentState.builder()
-                       .changeCallInfoState()
-                       .putParticipant(activePeer.getRecipient(), newParticipant)
-                       .build();
+    currentState = currentState.builder()
+                               .changeCallInfoState()
+                               .putParticipant(activePeer.getRecipient(), newParticipant)
+                               .build();
+
+    if (currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_CONNECTED) {
+      boolean localVideoEnabled = currentState.getLocalDeviceState().getCameraState().isEnabled();
+      webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, enable));
+    }
+
+    return currentState;
   }
 
   @Override

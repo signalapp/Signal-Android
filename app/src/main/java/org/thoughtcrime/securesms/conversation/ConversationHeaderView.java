@@ -16,7 +16,6 @@ import android.view.View;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
@@ -33,11 +32,9 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarGradientColors;
 import org.thoughtcrime.securesms.conversation.v2.data.AvatarDownloadStateCache;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.databinding.ConversationHeaderViewBinding;
-import org.thoughtcrime.securesms.fonts.SignalSymbols;
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -130,23 +127,9 @@ public class ConversationHeaderView extends ConstraintLayout {
   }
 
   public String setTitle(@NonNull Recipient recipient, @NonNull Runnable onTitleClicked) {
-    SpannableStringBuilder title = new SpannableStringBuilder(recipient.isSelf() ? getContext().getString(R.string.note_to_self) : recipient.getDisplayName(getContext()));
-    if (recipient.getShowVerified()) {
-      SpanUtil.appendCenteredImageSpan(title, ContextUtil.requireDrawable(getContext(), R.drawable.ic_official_28), 28, 28);
-    }
+    CharSequence title = recipient.getDisplayNameForHeadline(getContext());
 
     if (recipient.isIndividual() && !recipient.isSelf()) {
-      boolean isLtr = ViewUtil.isLtr(this);
-      CharSequence chevron = SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, isLtr ? SignalSymbols.Glyph.CHEVRON_RIGHT : SignalSymbols.Glyph.CHEVRON_LEFT, R.color.signal_colorOutline);
-
-      if (isLtr) {
-        title.append(" ");
-        title.append(SpanUtil.ofSize(chevron, 24));
-      } else {
-        title.insert(0, " ");
-        title.insert(0, SpanUtil.ofSize(chevron, 24));
-      }
-
       binding.messageRequestTitle.setOnClickListener(v -> onTitleClicked.run());
     } else {
       binding.messageRequestTitle.setOnClickListener(null);
@@ -181,7 +164,7 @@ public class ConversationHeaderView extends ConstraintLayout {
           subtitle,
           substring,
           listener -> onClick.run(),
-          ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface),
+          ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorOnSurface),
           true
       );
       binding.messageRequestSubtitle.setText(prependIcon(builder, iconRes));
@@ -225,8 +208,8 @@ public class ConversationHeaderView extends ConstraintLayout {
     binding.messageRequestProfileNameUnverified.setVisibility(View.VISIBLE);
     binding.messageRequestProfileNameUnverified.setOnClickListener(view -> onClick.run());
 
-    String substring  = forGroup ? getContext().getString(R.string.ConversationFragment_group_names)
-                                 : getContext().getString(R.string.ConversationFragment_profile_names);
+    String substring = forGroup ? getContext().getString(R.string.ConversationFragment_group_names)
+                                : getContext().getString(R.string.ConversationFragment_profile_names);
 
     String fullString = forGroup ? getContext().getString(R.string.ConversationFragment_group_names_not_verified, substring)
                                  : getContext().getString(R.string.ConversationFragment_profile_names_not_verified, substring);
@@ -273,8 +256,8 @@ public class ConversationHeaderView extends ConstraintLayout {
   }
 
   private void animateAvatarLoading(@NonNull Recipient recipient) {
-    Drawable loadingProfile = AppCompatResources.getDrawable(getContext(), R.drawable.circle_profile_photo);
-    ObjectAnimator animator = ObjectAnimator.ofFloat(binding.messageRequestAvatar, "alpha", 1f, 0f).setDuration(FADE_DURATION);
+    Drawable       loadingProfile = AppCompatResources.getDrawable(getContext(), R.drawable.circle_profile_photo);
+    ObjectAnimator animator       = ObjectAnimator.ofFloat(binding.messageRequestAvatar, "alpha", 1f, 0f).setDuration(FADE_DURATION);
     animator.addListener(new AnimatorListenerAdapter() {
       @Override
       public void onAnimationEnd(Animator animation) {
@@ -334,7 +317,7 @@ public class ConversationHeaderView extends ConstraintLayout {
     Preconditions.checkNotNull(drawable);
     int width = useIntrinsicWidth ? drawable.getIntrinsicWidth() : (int) DimensionUnit.SP.toPixels(16);
     drawable.setBounds(0, 0, width, (int) DimensionUnit.SP.toPixels(16));
-    drawable.setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface), PorterDuff.Mode.SRC_ATOP);
+    drawable.setColorFilter(ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorOnSurface), PorterDuff.Mode.SRC_ATOP);
 
     return new SpannableStringBuilder()
         .append(SpanUtil.buildCenteredImageSpan(drawable))

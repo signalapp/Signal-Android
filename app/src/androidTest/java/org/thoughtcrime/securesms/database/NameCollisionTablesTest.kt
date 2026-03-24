@@ -12,8 +12,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.signal.storageservice.protos.groups.Member
-import org.signal.storageservice.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.Member
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -53,6 +54,8 @@ class NameCollisionTablesTest {
     setProfileName(bob, ProfileName.fromParts("Bob", "Android"))
     setProfileName(alice, ProfileName.fromParts("Bob", "Android"))
 
+    AppDependencies.recipientCache.clear()
+
     val actualAlice = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(alice)
     val actualBob = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(bob)
 
@@ -80,6 +83,8 @@ class NameCollisionTablesTest {
     setProfileName(charlie, ProfileName.fromParts("Bob", "Android"))
     setProfileName(alice, ProfileName.fromParts("Alice", "Android"))
 
+    AppDependencies.recipientCache.clear()
+
     val actualAlice = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(alice)
     val actualBob = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(bob)
     val actualCharlie = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(charlie)
@@ -97,6 +102,8 @@ class NameCollisionTablesTest {
 
     setProfileName(alice, ProfileName.fromParts("Alice", "Android"))
     setProfileName(alice, ProfileName.fromParts("Bob", "Android"))
+
+    AppDependencies.recipientCache.clear()
 
     val actualAlice = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(alice)
 
@@ -136,6 +143,8 @@ class NameCollisionTablesTest {
     setProfileName(bob, ProfileName.fromParts("Bob", "Android"))
     SignalDatabase.nameCollisions.markCollisionsForThreadRecipientDismissed(alice)
 
+    AppDependencies.recipientCache.clear()
+
     val actualCollisions = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(bob)
 
     assertThat(actualCollisions).hasSize(2)
@@ -152,6 +161,8 @@ class NameCollisionTablesTest {
 
     SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(info.recipientId))
     SignalDatabase.messages.insertProfileNameChangeMessages(alice, "Bob Android", "Alice Android")
+
+    AppDependencies.recipientCache.clear()
 
     val collisions = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(info.recipientId)
 
@@ -217,6 +228,7 @@ class NameCollisionTablesTest {
 
   private fun setProfileName(recipientId: RecipientId, name: ProfileName) {
     SignalDatabase.recipients.setProfileName(recipientId, name)
+    Recipient.live(recipientId).refresh()
     SignalDatabase.nameCollisions.handleIndividualNameCollision(recipientId)
   }
 

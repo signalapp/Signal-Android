@@ -14,6 +14,7 @@ import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Serves as the separator between the original message and other messages. Used in [MessageQuotesBottomSheet] and [EditMessageHistoryDialog]
@@ -29,7 +30,7 @@ class OriginalMessageSeparatorDecoration(
   private val dividerRect = Rect()
   private val dividerPaint: Paint = Paint().apply {
     style = Paint.Style.FILL
-    color = ContextCompat.getColor(context, R.color.signal_colorSurfaceVariant)
+    color = ContextCompat.getColor(context, CoreUiR.color.signal_colorSurfaceVariant)
   }
 
   private var cachedHeader: View? = null

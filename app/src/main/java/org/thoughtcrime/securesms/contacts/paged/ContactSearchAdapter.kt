@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.visible
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Default contact search adapter, using the models defined in `ContactSearchItems`
@@ -285,7 +286,7 @@ open class ContactSearchAdapter(
 
     private fun getMyStoryContextMenuActions(model: StoryModel, callbacks: StoryContextMenuCallbacks): List<ActionItem> {
       return listOf(
-        ActionItem(R.drawable.symbol_settings_android_24, context.getString(R.string.ContactSearchItems__story_settings)) {
+        ActionItem(CoreUiR.drawable.symbol_settings_android_24, context.getString(R.string.ContactSearchItems__story_settings)) {
           callbacks.onOpenStorySettings(model.story)
         }
       )
@@ -301,10 +302,10 @@ open class ContactSearchAdapter(
 
     private fun getPrivateStoryContextMenuActions(model: StoryModel, callbacks: StoryContextMenuCallbacks): List<ActionItem> {
       return listOf(
-        ActionItem(R.drawable.symbol_settings_android_24, context.getString(R.string.ContactSearchItems__story_settings)) {
+        ActionItem(CoreUiR.drawable.symbol_settings_android_24, context.getString(R.string.ContactSearchItems__story_settings)) {
           callbacks.onOpenStorySettings(model.story)
         },
-        ActionItem(R.drawable.symbol_trash_24, context.getString(R.string.ContactSearchItems__delete_story), R.color.signal_colorError) {
+        ActionItem(CoreUiR.drawable.symbol_trash_24, context.getString(R.string.ContactSearchItems__delete_story), CoreUiR.color.signal_colorError) {
           callbacks.onDeletePrivateStory(model.story, model.isSelected)
         }
       )
@@ -543,7 +544,7 @@ open class ContactSearchAdapter(
       val suffix: CharSequence? = if (recipient.isSystemContact && !recipient.showVerified) {
         SpannableStringBuilder().apply {
           val drawable = ContextUtil.requireDrawable(context, R.drawable.symbol_person_circle_24).apply {
-            setTint(ContextCompat.getColor(context, R.color.signal_colorOnSurface))
+            setTint(ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurface))
           }
           SpanUtil.appendCenteredImageSpan(this, drawable, 16, 16)
         }

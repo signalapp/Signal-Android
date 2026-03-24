@@ -37,13 +37,13 @@ public class AlertView extends AppCompatImageView {
 
   public void setFailed() {
     setVisibility(View.VISIBLE);
-    setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_colorError));
+    setColorFilter(ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorError));
     setContentDescription(getContext().getString(R.string.conversation_item_sent__send_failed_indicator_description));
   }
 
   public void setRateLimited() {
     setVisibility(View.VISIBLE);
-    setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurfaceVariant));
+    setColorFilter(ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorOnSurfaceVariant));
     setContentDescription(getContext().getString(R.string.conversation_item_sent__pending_approval_description));
   }
 }

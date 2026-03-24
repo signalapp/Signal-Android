@@ -81,8 +81,7 @@ class CallLinkTableTest {
         roomId = CallLinkRoomId.fromBytes(roomId),
         credentials = CallLinkCredentials(
           linkKeyBytes = roomId,
-          adminPassBytes = null,
-          epochBytes = null
+          adminPassBytes = null
         ),
         state = SignalCallLinkState(),
         deletionTimestamp = 0L

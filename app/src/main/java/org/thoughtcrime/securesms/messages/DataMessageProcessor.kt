@@ -9,12 +9,10 @@ import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.UuidUtil
-import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
-import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.LocalStickerAttachment
@@ -67,6 +65,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob
 import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.jobs.TrimThreadJob
+import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
 import org.thoughtcrime.securesms.jobs.protos.GroupCallPeekJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -103,7 +102,9 @@ import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
+import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.isStory
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.payments.Money
@@ -123,6 +124,7 @@ import kotlin.time.Duration.Companion.seconds
 object DataMessageProcessor {
 
   private const val BODY_RANGE_PROCESSING_LIMIT = 250
+  private const val POLL_QUESTION_CHARACTER_LIMIT = 200
   private const val POLL_CHARACTER_LIMIT = 100
   private const val POLL_OPTIONS_LIMIT = 10
 
@@ -135,14 +137,15 @@ object DataMessageProcessor {
     metadata: EnvelopeMetadata,
     receivedTime: Long,
     earlyMessageCacheEntry: EarlyMessageCacheEntry?,
-    localMetrics: SignalLocalMetrics.MessageReceive?
+    localMetrics: SignalLocalMetrics.MessageReceive?,
+    batchCache: BatchCache
   ) {
     val message: DataMessage = content.dataMessage!!
-    val groupSecretParams = if (message.hasGroupContext) GroupSecretParams.deriveFromMasterKey(message.groupV2!!.groupMasterKey) else null
-    val groupId: GroupId.V2? = if (groupSecretParams != null) GroupId.v2(groupSecretParams.publicParams.groupIdentifier) else null
+    val (groupSecretParams, groupId) = batchCache.getGroupInfo(message)
 
     var groupProcessResult: MessageContentProcessor.Gv2PreProcessResult? = null
     if (groupId != null) {
+      SignalTrace.beginSection("DataMessageProcessor#gv2PreProcessing")
       groupProcessResult = MessageContentProcessor.handleGv2PreProcessing(
         context = context,
         timestamp = envelope.timestamp!!,
@@ -152,8 +155,10 @@ object DataMessageProcessor {
         groupV2 = message.groupV2!!,
         senderRecipient = senderRecipient,
         groupSecretParams = groupSecretParams,
-        serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary)
+        serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
+        batchCache = batchCache
       )
+      SignalTrace.endSection()
 
       if (groupProcessResult == MessageContentProcessor.Gv2PreProcessResult.IGNORE) {
         return
@@ -163,6 +168,7 @@ object DataMessageProcessor {
 
     var insertResult: InsertResult? = null
     var messageId: MessageId? = null
+    SignalTrace.beginSection("DataMessageProcessor#messageInsert")
     when {
       message.isInvalid -> handleInvalidMessage(context, senderRecipient.id, groupId, envelope.timestamp!!)
       message.isEndSession -> insertResult = handleEndSessionMessage(context, senderRecipient.id, envelope, metadata)
@@ -175,16 +181,19 @@ object DataMessageProcessor {
       message.payment != null -> insertResult = handlePayment(context, envelope, metadata, message, senderRecipient.id, receivedTime)
       message.storyContext != null -> insertResult = handleStoryReply(context, envelope, metadata, message, senderRecipient, groupId, receivedTime)
       message.giftBadge != null -> insertResult = handleGiftMessage(context, envelope, metadata, message, senderRecipient, threadRecipient.id, receivedTime)
-      message.isMediaMessage -> insertResult = handleMediaMessage(context, envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime, localMetrics)
-      message.body != null -> insertResult = handleTextMessage(context, envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime, localMetrics)
-      message.groupCallUpdate != null -> handleGroupCallUpdateMessage(envelope, message, senderRecipient.id, groupId)
+      message.isMediaMessage -> insertResult = handleMediaMessage(context, envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime, localMetrics, batchCache)
+      message.body != null -> insertResult = handleTextMessage(context, envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime, localMetrics, batchCache)
+      message.groupCallUpdate != null -> handleGroupCallUpdateMessage(envelope, senderRecipient.id, groupId)
       message.pollCreate != null -> insertResult = handlePollCreate(context, envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime)
       message.pollTerminate != null -> insertResult = handlePollTerminate(context, envelope, metadata, message, senderRecipient, earlyMessageCacheEntry, threadRecipient, groupId, receivedTime)
       message.pollVote != null -> messageId = handlePollVote(context, envelope, message, senderRecipient, earlyMessageCacheEntry)
       message.pinMessage != null -> insertResult = handlePinMessage(envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime, earlyMessageCacheEntry)
       message.unpinMessage != null -> messageId = handleUnpinMessage(envelope, message, senderRecipient, threadRecipient, earlyMessageCacheEntry)
+      message.adminDelete != null -> messageId = handleAdminRemoteDelete(context, envelope, message, senderRecipient, threadRecipient, earlyMessageCacheEntry)
     }
+    SignalTrace.endSection()
 
+    SignalTrace.beginSection("DataMessageProcessor#postProcess")
     messageId = messageId ?: insertResult?.messageId?.let { MessageId(it) }
     if (messageId != null) {
       log(envelope.timestamp!!, "Inserted as messageId $messageId")
@@ -209,7 +218,7 @@ object DataMessageProcessor {
     }
 
     if (metadata.sealedSender && messageId != null) {
-      SignalExecutors.BOUNDED.execute { AppDependencies.jobManager.add(SendDeliveryReceiptJob(senderRecipient.id, message.timestamp!!, messageId)) }
+      batchCache.addJob(SendDeliveryReceiptJob(senderRecipient.id, message.timestamp!!, messageId))
     } else if (!metadata.sealedSender) {
       if (RecipientUtil.shouldHaveProfileKey(threadRecipient)) {
         Log.w(MessageContentProcessor.TAG, "Received an unsealed sender message from " + senderRecipient.id + ", but they should already have our profile key. Correcting.")
@@ -248,6 +257,7 @@ object DataMessageProcessor {
 
     localMetrics?.onPostProcessComplete()
     localMetrics?.complete(groupId != null)
+    SignalTrace.endSection()
   }
 
   private fun handleProfileKey(
@@ -596,7 +606,7 @@ object DataMessageProcessor {
     val targetMessage: MessageRecord? = SignalDatabase.messages.getMessageFor(targetSentTimestamp, senderRecipientId)
 
     return if (targetMessage != null && MessageConstraintsUtil.isValidRemoteDeleteReceive(targetMessage, senderRecipientId, envelope.serverTimestamp!!)) {
-      SignalDatabase.messages.markAsRemoteDelete(targetMessage)
+      SignalDatabase.messages.markAsRemoteDelete(targetMessage, senderRecipientId)
       if (targetMessage.isStory()) {
         SignalDatabase.messages.deleteRemotelyDeletedStory(targetMessage.id)
       }
@@ -903,7 +913,8 @@ object DataMessageProcessor {
     threadRecipient: Recipient,
     groupId: GroupId.V2?,
     receivedTime: Long,
-    localMetrics: SignalLocalMetrics.MessageReceive?
+    localMetrics: SignalLocalMetrics.MessageReceive?,
+    batchCache: BatchCache
   ): InsertResult? {
     log(envelope.timestamp!!, "Media message.")
 
@@ -943,9 +954,12 @@ object DataMessageProcessor {
         messageRanges = messageRanges
       )
 
-      insertResult = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
+      insertResult = SignalDatabase.messages.insertMessageInbox(retrieved = mediaMessage, candidateThreadId = -1, skipThreadUpdate = batchCache.batchThreadUpdates).orNull()
       if (insertResult != null) {
         SignalDatabase.messages.setTransactionSuccessful()
+        if (insertResult.needsThreadUpdate) {
+          batchCache.addIncomingMessageInsertThreadUpdate(insertResult.threadId)
+        }
       }
     } catch (e: MmsException) {
       throw StorageFailedException(e, metadata.sourceServiceId.toString(), metadata.sourceDeviceId)
@@ -960,15 +974,20 @@ object DataMessageProcessor {
           val downloadJobs: List<AttachmentDownloadJob> = insertResult.insertedAttachments.mapNotNull { (attachment, attachmentId) ->
             if (attachment.isSticker) {
               if (attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE) {
-                AttachmentDownloadJob(insertResult.messageId, attachmentId, true)
+                AttachmentDownloadJob(messageId = insertResult.messageId, attachmentId = attachmentId, forceDownload = true)
               } else {
                 null
               }
             } else {
-              AttachmentDownloadJob(insertResult.messageId, attachmentId, false)
+              AttachmentDownloadJob(messageId = insertResult.messageId, attachmentId = attachmentId, forceDownload = false)
             }
           }
           AppDependencies.jobManager.addAll(downloadJobs)
+        }
+
+        if (insertResult.quoteAttachmentId != null && SignalStore.backup.backsUpMedia) {
+          SignalDatabase.attachments.createRemoteKeyIfNecessary(insertResult.quoteAttachmentId)
+          AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(insertResult.quoteAttachmentId))
         }
 
         AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
@@ -995,7 +1014,8 @@ object DataMessageProcessor {
     threadRecipient: Recipient,
     groupId: GroupId.V2?,
     receivedTime: Long,
-    localMetrics: SignalLocalMetrics.MessageReceive?
+    localMetrics: SignalLocalMetrics.MessageReceive?,
+    batchCache: BatchCache
   ): InsertResult? {
     log(envelope.timestamp!!, "Text message.")
 
@@ -1018,10 +1038,13 @@ object DataMessageProcessor {
       serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary)
     )
 
-    val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(textMessage).orNull()
+    val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(textMessage, skipThreadUpdate = batchCache.batchThreadUpdates).orNull()
     localMetrics?.onInsertedTextMessage()
 
     return if (insertResult != null) {
+      if (insertResult.needsThreadUpdate) {
+        batchCache.addIncomingMessageInsertThreadUpdate(insertResult.threadId)
+      }
       AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
       insertResult
     } else {
@@ -1031,16 +1054,18 @@ object DataMessageProcessor {
 
   fun handleGroupCallUpdateMessage(
     envelope: Envelope,
-    message: DataMessage,
     senderRecipientId: RecipientId,
     groupId: GroupId.V2?
   ) {
     log(envelope.timestamp!!, "Group call update message.")
 
-    val groupCallUpdate: DataMessage.GroupCallUpdate = message.groupCallUpdate!!
-
     if (groupId == null) {
       warn(envelope.timestamp!!, "Invalid group for group call update message")
+      return
+    }
+
+    if (!SignalDatabase.groups.groupExists(groupId)) {
+      warn(envelope.timestamp!!, "Received group call update message for unknown groupId: $groupId")
       return
     }
 
@@ -1065,28 +1090,23 @@ object DataMessageProcessor {
     groupId: GroupId.V2?,
     receivedTime: Long
   ): InsertResult? {
-    if (!RemoteConfig.receivePolls) {
-      log(envelope.timestamp!!, "Poll creation not allowed due to remote config.")
-      return null
-    }
-
     log(envelope.timestamp!!, "Handle poll creation")
     val poll: DataMessage.PollCreate = message.pollCreate!!
 
     handlePossibleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime)
 
-    if (groupId == null) {
-      warn(envelope.timestamp!!, "[handlePollCreate] Polls can only be sent to groups. author: $senderRecipient")
+    if (groupId != null) {
+      val groupRecord = SignalDatabase.groups.getGroup(groupId).orNull()
+      if (groupRecord != null && !groupRecord.members.contains(senderRecipient.id)) {
+        warn(envelope.timestamp!!, "[handlePollCreate] Poll author is not in the group. author $senderRecipient")
+        return null
+      }
+    } else if (senderRecipient.id != threadRecipient.id && senderRecipient.id != Recipient.self().id) {
+      warn(envelope.timestamp!!, "[handlePollCreate] Sender is not a part of the 1:1 thread!")
       return null
     }
 
-    val groupRecord = SignalDatabase.groups.getGroup(groupId).orNull()
-    if (groupRecord == null || !groupRecord.members.contains(senderRecipient.id)) {
-      warn(envelope.timestamp!!, "[handlePollCreate] Poll author is not in the group. author $senderRecipient")
-      return null
-    }
-
-    if (poll.question == null || poll.question!!.isEmpty() || poll.question!!.length > POLL_CHARACTER_LIMIT) {
+    if (poll.question == null || poll.question!!.isEmpty() || poll.question!!.length > POLL_QUESTION_CHARACTER_LIMIT) {
       warn(envelope.timestamp!!, "[handlePollCreate] Poll question is invalid.")
       return null
     }
@@ -1135,11 +1155,6 @@ object DataMessageProcessor {
     groupId: GroupId.V2?,
     receivedTime: Long
   ): InsertResult? {
-    if (!RemoteConfig.receivePolls) {
-      log(envelope.timestamp!!, "Poll terminate not allowed due to remote config.")
-      return null
-    }
-
     val pollTerminate: DataMessage.PollTerminate = message.pollTerminate!!
     val targetSentTimestamp = pollTerminate.targetSentTimestamp!!
 
@@ -1188,11 +1203,6 @@ object DataMessageProcessor {
     senderRecipient: Recipient,
     earlyMessageCacheEntry: EarlyMessageCacheEntry?
   ): MessageId? {
-    if (!RemoteConfig.receivePolls) {
-      log(envelope.timestamp!!, "Poll vote not allowed due to remote config.")
-      return null
-    }
-
     val pollVote: DataMessage.PollVote = message.pollVote!!
     val targetSentTimestamp = pollVote.targetSentTimestamp!!
 
@@ -1262,11 +1272,6 @@ object DataMessageProcessor {
     receivedTime: Long,
     earlyMessageCacheEntry: EarlyMessageCacheEntry? = null
   ): InsertResult? {
-    if (!RemoteConfig.receivePinnedMessages) {
-      log(envelope.timestamp!!, "Pinned message not allowed due to remote config.")
-      return null
-    }
-
     val pinMessage = message.pinMessage!!
     log(envelope.timestamp!!, "[handlePinMessage] Pin message for " + pinMessage.targetSentTimestamp)
 
@@ -1295,9 +1300,19 @@ object DataMessageProcessor {
       return null
     }
 
+    if (targetMessage.hasGiftBadge()) {
+      warn(envelope.timestamp!!, "[handlePinMessage] Cannot pin a gift badge")
+      return null
+    }
+
     val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
     if (targetThread == null) {
       warn(envelope.timestamp!!, "[handlePinMessage] Could not find a thread for the message! timestamp: ${pinMessage.targetSentTimestamp}")
+      return null
+    }
+
+    if (targetThread.recipient.id != threadRecipient.id) {
+      warn(envelope.timestamp!!, "[handlePinMessage] Target message is in a different thread than the thread recipient! timestamp: ${pinMessage.targetSentTimestamp}")
       return null
     }
 
@@ -1335,6 +1350,9 @@ object DataMessageProcessor {
 
     return if (insertResult != null) {
       log(envelope.timestamp!!, "Inserted a pinned message update at ${insertResult.messageId}")
+      if (duration != MessageTable.PIN_FOREVER) {
+        AppDependencies.pinnedMessageManager.scheduleIfNecessary()
+      }
       insertResult
     } else {
       null
@@ -1348,11 +1366,6 @@ object DataMessageProcessor {
     threadRecipient: Recipient,
     earlyMessageCacheEntry: EarlyMessageCacheEntry? = null
   ): MessageId? {
-    if (!RemoteConfig.receivePinnedMessages) {
-      log(envelope.timestamp!!, "Unpinning message is not allowed due to remote config.")
-      return null
-    }
-
     val unpinMessage = message.unpinMessage!!
     log(envelope.timestamp!!, "[handleUnpinMessage] Unpin message for ${unpinMessage.targetSentTimestamp}")
 
@@ -1379,9 +1392,19 @@ object DataMessageProcessor {
       return null
     }
 
+    if (targetMessage.hasGiftBadge()) {
+      warn(envelope.timestamp!!, "[handleUnpinMessage] Cannot pin a gift badge")
+      return null
+    }
+
     val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
     if (targetThread == null) {
       warn(envelope.timestamp!!, "[handleUnpinMessage] Could not find a thread for the message! timestamp: ${unpinMessage.targetSentTimestamp}")
+      return null
+    }
+
+    if (targetThread.recipient.id != threadRecipient.id) {
+      warn(envelope.timestamp!!, "[handleUnpinMessage] Target message is in a different thread than the thread recipient! timestamp: ${unpinMessage.targetSentTimestamp}")
       return null
     }
 
@@ -1404,6 +1427,62 @@ object DataMessageProcessor {
     SignalDatabase.messages.unpinMessage(targetMessageId, targetMessage.threadId)
 
     return MessageId(targetMessageId)
+  }
+
+  fun handleAdminRemoteDelete(context: Context, envelope: Envelope, message: DataMessage, senderRecipient: Recipient, threadRecipient: Recipient, earlyMessageCacheEntry: EarlyMessageCacheEntry?): MessageId? {
+    if (!RemoteConfig.receiveAdminDelete) {
+      log(envelope.timestamp!!, "Admin delete is not allowed due to remote config.")
+      return null
+    }
+
+    val delete = message.adminDelete!!
+
+    log(envelope.timestamp!!, "Admin delete for message ${delete.targetSentTimestamp}")
+
+    val targetSentTimestamp: Long = delete.targetSentTimestamp!!
+    val targetAuthorServiceId: ServiceId = ACI.parseOrThrow(delete.targetAuthorAciBinary!!)
+    if (targetAuthorServiceId.isUnknown) {
+      warn(envelope.timestamp!!, "[handleAdminRemoteDelete] Invalid author.")
+      return null
+    }
+    val targetAuthor = Recipient.externalPush(targetAuthorServiceId)
+
+    val targetMessage: MessageRecord? = SignalDatabase.messages.getMessageFor(targetSentTimestamp, targetAuthor.id)
+    if (targetMessage == null) {
+      warn(envelope.timestamp!!, "[handleAdminRemoteDelete] Could not find matching message! timestamp: $targetSentTimestamp")
+      if (earlyMessageCacheEntry != null) {
+        AppDependencies.earlyMessageCache.store(targetAuthor.id, targetSentTimestamp, earlyMessageCacheEntry)
+        PushProcessEarlyMessagesJob.enqueue()
+      }
+      return null
+    }
+
+    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
+    if (targetThread == null) {
+      warn(envelope.timestamp!!, "[handleAdminRemoteDelete] Could not find a thread for the message! timestamp: $targetSentTimestamp author: ${targetAuthor.id}")
+      return null
+    }
+
+    val targetThreadRecipientId = targetThread.recipient.id
+    if (targetThreadRecipientId != threadRecipient.id) {
+      warn(envelope.timestamp!!, "[handleAdminRemoteDelete] Target message is in a different thread than the admin delete! timestamp: $targetSentTimestamp")
+      return null
+    }
+
+    val groupRecord = SignalDatabase.groups.getGroup(targetThreadRecipientId).orNull()
+    if (groupRecord == null || !groupRecord.isV2Group) {
+      warn(envelope.timestamp!!, "[handleAdminRemoteDelete] Invalid group.")
+      return null
+    }
+
+    return if (MessageConstraintsUtil.isValidAdminDeleteReceive(targetMessage, senderRecipient, envelope.serverTimestamp!!, groupRecord)) {
+      SignalDatabase.messages.markAsRemoteDelete(targetMessage, senderRecipient.id)
+      AppDependencies.messageNotifier.updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
+      MessageId(targetMessage.id)
+    } else {
+      warn(envelope.timestamp!!, "[handleAdminRemoteDelete] Invalid admin delete! deleteTime: ${envelope.serverTimestamp!!}, targetTime: ${targetMessage.serverTimestamp}, deleteAuthor: ${senderRecipient.id}, targetAuthor: ${targetMessage.fromRecipient.id}, isAdmin: ${groupRecord.isAdmin(senderRecipient)}")
+      null
+    }
   }
 
   fun notifyTypingStoppedFromIncomingMessage(context: Context, senderRecipient: Recipient, threadRecipientId: RecipientId, device: Int) {
@@ -1514,7 +1593,7 @@ object DataMessageProcessor {
       attachment = quote.attachments.firstNotNullOfOrNull { PointerAttachment.forPointer(it).orNull() },
       mentions = getMentions(quote.bodyRanges),
       type = QuoteModel.Type.fromProto(quote.type),
-      bodyRanges = quote.bodyRanges.filter { it.mentionAci == null }.toBodyRangeList()
+      bodyRanges = quote.bodyRanges.filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toBodyRangeList()
     )
   }
 
@@ -1567,13 +1646,11 @@ object DataMessageProcessor {
     }
 
     val groupRecord = SignalDatabase.groups.getGroup(targetThread.recipient.id).orNull()
-    if (groupRecord == null) {
-      warn(envelope.timestamp!!, "[handlePollValidation] Target thread needs to be a group. timestamp: $targetSentTimestamp  author: ${targetAuthor.id}")
-      return null
-    }
-
-    if (!groupRecord.members.contains(senderRecipient.id)) {
+    if (groupRecord != null && !groupRecord.members.contains(senderRecipient.id)) {
       warn(envelope.timestamp!!, "[handlePollValidation] Sender is not in the group. timestamp: $targetSentTimestamp author: ${targetAuthor.id}")
+      return null
+    } else if (groupRecord == null && senderRecipient.id != targetThread.recipient.id && senderRecipient.id != Recipient.self().id) {
+      warn(envelope.timestamp!!, "[handlePollValidation] Sender is not a part of the 1:1 thread!")
       return null
     }
 

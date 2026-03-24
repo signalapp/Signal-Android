@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.webrtc.audio
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.audio.AudioDeviceUpdatedListener
 import org.thoughtcrime.securesms.audio.SignalBluetoothManager
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil
 import org.thoughtcrime.securesms.util.safeUnregisterReceiver
 import org.whispersystems.signalservice.api.util.Preconditions
 
@@ -46,10 +48,16 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
 
   private val stateChangeUpSoundId = soundPool.load(context, R.raw.notification_simple_01, 1)
 
+  protected var savedAudioMode = AudioManager.MODE_INVALID
+  protected var savedIsMicrophoneMute = false
+
   companion object {
+    @SuppressLint("NewApi")
     @JvmStatic
-    fun create(context: Context, eventListener: EventListener?): SignalAudioManager {
-      return if (Build.VERSION.SDK_INT >= 31) {
+    fun create(context: Context, eventListener: EventListener?, canUseTelecom: Boolean): SignalAudioManager {
+      return if (canUseTelecom && AndroidTelecomUtil.telecomSupported) {
+        TelecomAudioManager(context, eventListener)
+      } else if (Build.VERSION.SDK_INT >= 31) {
         FullSignalAudioManagerApi31(context, eventListener)
       } else {
         FullSignalAudioManager(context, eventListener)
@@ -94,12 +102,30 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
   protected abstract fun stop(playDisconnect: Boolean)
   protected abstract fun setDefaultAudioDevice(recipientId: RecipientId?, newDefaultDevice: AudioDevice, clearUserEarpieceSelection: Boolean)
   protected abstract fun selectAudioDevice(recipientId: RecipientId?, device: Int, isId: Boolean)
-  protected abstract fun startIncomingRinger(ringtoneUri: Uri?, vibrate: Boolean)
-  protected abstract fun startOutgoingRinger()
+
+  protected open fun startIncomingRinger(ringtoneUri: Uri?, vibrate: Boolean) {
+    Log.i(TAG, "startIncomingRinger(): uri: ${if (ringtoneUri != null) "present" else "null"} vibrate: $vibrate")
+    androidAudioManager.mode = AudioManager.MODE_RINGTONE
+    setMicrophoneMute(false)
+    incomingRinger.start(ringtoneUri, vibrate)
+  }
+
+  protected open fun startOutgoingRinger() {
+    Log.i(TAG, "startOutgoingRinger(): currentDevice: $selectedAudioDevice")
+    androidAudioManager.mode = AudioManager.MODE_IN_COMMUNICATION
+    setMicrophoneMute(false)
+    outgoingRinger.start(OutgoingRinger.Type.RINGING)
+  }
 
   protected open fun silenceIncomingRinger() {
     Log.i(TAG, "silenceIncomingRinger():")
     incomingRinger.stop()
+  }
+
+  protected fun setMicrophoneMute(on: Boolean) {
+    if (androidAudioManager.isMicrophoneMute != on) {
+      androidAudioManager.isMicrophoneMute = on
+    }
   }
 
   enum class AudioDevice {
@@ -141,6 +167,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
   interface EventListener {
     @JvmSuppressWildcards
     fun onAudioDeviceChanged(activeDevice: AudioDevice, devices: Set<AudioDevice>)
+    fun onAudioDeviceChangeFailed()
     fun onBluetoothPermissionDenied()
   }
 }
@@ -167,9 +194,7 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
   private var userSelectedAudioDevice: AudioDevice = AudioDevice.NONE
   private var previousBluetoothState: SignalBluetoothManager.State? = null
 
-  private var savedAudioMode = AudioManager.MODE_INVALID
   private var savedIsSpeakerPhoneOn = false
-  private var savedIsMicrophoneMute = false
   private var hasWiredHeadset = false
   private var autoSwitchToWiredHeadset = true
   private var autoSwitchToBluetooth = true
@@ -309,7 +334,8 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
     }
 
     val needBluetoothAudioStart = signalBluetoothManager.state == SignalBluetoothManager.State.AVAILABLE &&
-      (userSelectedAudioDevice == AudioDevice.NONE || userSelectedAudioDevice == AudioDevice.BLUETOOTH || autoSwitchToBluetooth) && !androidAudioManager.isBluetoothScoOn
+      (userSelectedAudioDevice == AudioDevice.NONE || userSelectedAudioDevice == AudioDevice.BLUETOOTH || autoSwitchToBluetooth) &&
+      !androidAudioManager.isBluetoothScoOn
 
     val needBluetoothAudioStop = (signalBluetoothManager.state == SignalBluetoothManager.State.CONNECTED || signalBluetoothManager.state == SignalBluetoothManager.State.CONNECTING) &&
       (userSelectedAudioDevice != AudioDevice.NONE && userSelectedAudioDevice != AudioDevice.BLUETOOTH)
@@ -353,8 +379,11 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
     if (newAudioDevice != selectedAudioDevice || audioDeviceSetUpdated) {
       setAudioDevice(newAudioDevice)
       Log.i(TAG, "New device status: available: $audioDevices, selected: $newAudioDevice")
-      eventListener?.onAudioDeviceChanged(selectedAudioDevice, audioDevices)
     }
+
+    // Always notify listener to clear any pending audio device change state,
+    // even if the device didn't actually change
+    eventListener?.onAudioDeviceChanged(selectedAudioDevice, audioDevices)
   }
 
   override fun setDefaultAudioDevice(recipientId: RecipientId?, newDefaultDevice: AudioDevice, clearUserEarpieceSelection: Boolean) {
@@ -412,30 +441,6 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
     if (androidAudioManager.isSpeakerphoneOn != on) {
       androidAudioManager.isSpeakerphoneOn = on
     }
-  }
-
-  private fun setMicrophoneMute(on: Boolean) {
-    if (androidAudioManager.isMicrophoneMute != on) {
-      androidAudioManager.isMicrophoneMute = on
-    }
-  }
-
-  override fun startIncomingRinger(ringtoneUri: Uri?, vibrate: Boolean) {
-    Log.i(TAG, "startIncomingRinger(): uri: ${if (ringtoneUri != null) "present" else "null"} vibrate: $vibrate")
-    androidAudioManager.mode = AudioManager.MODE_RINGTONE
-    setMicrophoneMute(false)
-    setDefaultAudioDevice(recipientId = null, newDefaultDevice = AudioDevice.SPEAKER_PHONE, clearUserEarpieceSelection = false)
-
-    incomingRinger.start(ringtoneUri, vibrate)
-  }
-
-  override fun startOutgoingRinger() {
-    Log.i(TAG, "startOutgoingRinger(): currentDevice: $selectedAudioDevice")
-
-    androidAudioManager.mode = AudioManager.MODE_IN_COMMUNICATION
-    setMicrophoneMute(false)
-
-    outgoingRinger.start(OutgoingRinger.Type.RINGING)
   }
 
   private fun onWiredHeadsetChange(pluggedIn: Boolean, hasMic: Boolean) {

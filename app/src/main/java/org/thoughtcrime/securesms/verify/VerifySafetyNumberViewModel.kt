@@ -10,13 +10,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.fingerprint.Fingerprint
 import org.signal.libsignal.protocol.fingerprint.NumericFingerprintGenerator
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.database.IdentityTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -38,17 +45,67 @@ class VerifySafetyNumberViewModel(
 
   val recipient: LiveRecipient = Recipient.live(recipientId)
 
-  private val fingerprintListLiveData = MutableLiveData<List<SafetyNumberFingerprint>>()
+  private val fingerprintLiveData = MutableLiveData<SafetyNumberFingerprint?>()
+  private val automaticVerificationLiveData = MutableLiveData(AutomaticVerificationStatus.NONE)
 
   init {
     initializeFingerprints()
+    checkAutomaticVerificationEligibility()
+  }
+
+  private fun checkAutomaticVerificationEligibility() {
+    if (recipient.get().e164.isEmpty ||
+      recipient.get().aci.isEmpty ||
+      ProfileKeyUtil.profileKeyOrNull(recipient.get().profileKey) == null ||
+      SignalStore.misc.hasKeyTransparencyFailure
+    ) {
+      automaticVerificationLiveData.postValue(AutomaticVerificationStatus.UNAVAILABLE_PERMANENT)
+    }
+  }
+
+  fun verifyAutomatically(canRetry: Boolean = true) {
+    viewModelScope.launch(SignalDispatchers.IO) {
+      if (automaticVerificationLiveData.value == AutomaticVerificationStatus.UNAVAILABLE_PERMANENT || !isActive) {
+        return@launch
+      }
+
+      automaticVerificationLiveData.postValue(AutomaticVerificationStatus.VERIFYING)
+
+      when (val result = VerifySafetyNumberRepository.verifyAutomatically(recipient.get())) {
+        VerifySafetyNumberRepository.VerifyResult.Success -> {
+          automaticVerificationLiveData.postValue(AutomaticVerificationStatus.VERIFIED)
+        }
+        is VerifySafetyNumberRepository.VerifyResult.RetryableFailure -> {
+          if (canRetry) {
+            delay(result.duration.toMillis())
+            verifyAutomatically(canRetry = false)
+          } else {
+            Log.i(TAG, "Got a retryable exception, but we already retried once. Ignoring.")
+            automaticVerificationLiveData.postValue(AutomaticVerificationStatus.UNAVAILABLE_TEMPORARY)
+          }
+        }
+        VerifySafetyNumberRepository.VerifyResult.CorruptedFailure -> {
+          Log.w(TAG, "KT store was corrupted. Clearing everything and starting again.")
+          SignalStore.account.distinguishedHead = null
+          SignalDatabase.recipients.setKeyTransparencyData(recipient.get().requireAci(), null)
+          if (canRetry) {
+            verifyAutomatically(canRetry = false)
+          } else {
+            Log.i(TAG, "Store was corrupted and we can retry, but we already retried once. Ignoring.")
+            automaticVerificationLiveData.postValue(AutomaticVerificationStatus.UNAVAILABLE_TEMPORARY)
+          }
+        }
+        VerifySafetyNumberRepository.VerifyResult.UnretryableFailure -> {
+          automaticVerificationLiveData.postValue(AutomaticVerificationStatus.UNAVAILABLE_TEMPORARY)
+        }
+      }
+    }
   }
 
   private fun initializeFingerprints() {
     SignalExecutors.UNBOUNDED.execute {
       val resolved = recipient.resolve()
 
-      val fingerprintList: MutableList<SafetyNumberFingerprint> = ArrayList(2)
       val generator = NumericFingerprintGenerator(5200)
 
       var aciFingerprint: SafetyNumberFingerprint? = null
@@ -61,15 +118,17 @@ class VerifySafetyNumberViewModel(
       }
 
       if (aciFingerprint != null) {
-        fingerprintList.add(aciFingerprint)
+        fingerprintLiveData.postValue(aciFingerprint)
       }
-
-      fingerprintListLiveData.postValue(fingerprintList)
     }
   }
 
-  fun getFingerprints(): LiveData<List<SafetyNumberFingerprint>> {
-    return fingerprintListLiveData
+  fun getFingerprint(): LiveData<SafetyNumberFingerprint?> {
+    return fingerprintLiveData
+  }
+
+  fun getAutomaticVerification(): LiveData<AutomaticVerificationStatus> {
+    return automaticVerificationLiveData
   }
 
   fun updateSafetyNumberVerification(verified: Boolean) {
@@ -161,4 +220,12 @@ data class SafetyNumberFingerprint(
     result = 31 * result + fingerprint.hashCode()
     return result
   }
+}
+
+enum class AutomaticVerificationStatus {
+  NONE,
+  VERIFYING,
+  UNAVAILABLE_PERMANENT,
+  UNAVAILABLE_TEMPORARY,
+  VERIFIED
 }

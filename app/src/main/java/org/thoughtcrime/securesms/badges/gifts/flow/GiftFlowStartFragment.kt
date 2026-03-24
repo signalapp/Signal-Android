@@ -19,8 +19,8 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.activityViewModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.thoughtcrime.securesms.util.viewModel
 import java.util.concurrent.TimeUnit
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Landing fragment for sending gifts.
@@ -72,7 +72,7 @@ class GiftFlowStartFragment : DSLSettingsFragment(
         title = DSLSettingsText.from(
           R.string.GiftFlowStartFragment__donate_for_a_friend,
           DSLSettingsText.CenterModifier,
-          DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_Headline)
+          DSLSettingsText.TextAppearanceModifier(CoreUiR.style.Signal_Text_Headline)
         )
       )
 

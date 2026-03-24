@@ -30,7 +30,7 @@ class SystemOutPrintLnDetectorTest {
       .run()
       .expect(
         """
-        src/foo/Example.java:4: Error: Using 'System.out.println' instead of proper logging [SystemOutPrintLnUsage]
+        src/foo/Example.java:4: Error: Using 'System.out.println' instead of Signal Logger [SystemOutPrintLnUsage]
             System.out.println("Hello World");
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         1 errors, 0 warnings
@@ -66,7 +66,7 @@ class SystemOutPrintLnDetectorTest {
       .run()
       .expect(
         """
-        src/foo/Example.java:4: Error: Using 'System.out.print' instead of proper logging [SystemOutPrintLnUsage]
+        src/foo/Example.java:4: Error: Using 'System.out.print' instead of Signal Logger [SystemOutPrintLnUsage]
             System.out.print("Hello");
             ~~~~~~~~~~~~~~~~~~~~~~~~~
         1 errors, 0 warnings
@@ -104,7 +104,7 @@ class SystemOutPrintLnDetectorTest {
       .run()
       .expect(
         """
-        src/foo/Example.kt:5: Error: Using 'kotlin.io.println' instead of proper logging [KotlinIOPrintLnUsage]
+        src/foo/Example.kt:5: Error: Using 'kotlin.io.println' instead of Signal Logger. [KotlinIOPrintLnUsage]
             println("Hello World")
             ~~~~~~~~~~~~~~~~~~~~~~
         1 errors, 0 warnings
@@ -139,7 +139,7 @@ class SystemOutPrintLnDetectorTest {
       .run()
       .expect(
         """
-        src/foo/test.kt:3: Error: Using 'kotlin.io.println' instead of proper logging [KotlinIOPrintLnUsage]
+        src/foo/test.kt:3: Error: Using 'kotlin.io.println' instead of Signal Logger. [KotlinIOPrintLnUsage]
           println("Hello World")
           ~~~~~~~~~~~~~~~~~~~~~~
         1 errors, 0 warnings
@@ -175,7 +175,7 @@ class SystemOutPrintLnDetectorTest {
       .run()
       .expect(
         """
-        src/foo/Example.java:4: Error: Using 'System.out.println' instead of proper logging [SystemOutPrintLnUsage]
+        src/foo/Example.java:4: Error: Using 'System.out.println' instead of Signal Logger [SystemOutPrintLnUsage]
             System.out.println();
             ~~~~~~~~~~~~~~~~~~~~
         1 errors, 0 warnings

@@ -25,14 +25,15 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.blurhash.BlurHash;
+import org.signal.core.models.media.TransformProperties;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.audio.AudioHash;
-import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 
 import java.security.SecureRandom;
 import java.util.Optional;
@@ -211,7 +212,7 @@ public abstract class Slide {
                                                                    boolean        borderless,
                                                                    boolean        gif,
                                                                    boolean        quote,
-                                                         @Nullable AttachmentTable.TransformProperties transformProperties)
+                                                         @Nullable TransformProperties transformProperties)
   {
     String                 resolvedType    = Optional.ofNullable(MediaUtil.getMimeType(context, uri)).orElse(defaultMime);
     String                 fastPreflightId = String.valueOf(new SecureRandom().nextLong());

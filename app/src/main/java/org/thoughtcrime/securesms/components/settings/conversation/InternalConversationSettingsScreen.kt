@@ -14,15 +14,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.AnnotatedString
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.util.Hex.fromStringCondensed
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
@@ -34,6 +33,7 @@ private enum class Dialog {
   NONE,
   DISABLE_PROFILE_SHARING,
   CLEAR_SENDER_KEY,
+  CLEAR_SENDER_KEY_AND_ARCHIVE_SESSIONS,
   DELETE_SESSIONS,
   ARCHIVE_SESSIONS,
   DELETE_AVATAR,
@@ -57,7 +57,7 @@ fun InternalConversationSettingsScreen(
   Scaffolds.Settings(
     title = stringResource(R.string.ConversationSettingsFragment__internal_details),
     onNavigationClick = callbacks::onNavigationClick,
-    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(R.string.CallScreenTopBar__go_back)
   ) { paddingValues ->
     LazyColumn(
@@ -205,6 +205,16 @@ fun InternalConversationSettingsScreen(
             label = "Resets any sender key state, meaning the next message will require re-distributing sender key material.",
             onClick = {
               dialog = Dialog.CLEAR_SENDER_KEY
+            }
+          )
+        }
+
+        item {
+          Rows.TextRow(
+            text = "Clear sender key and archive sessions",
+            label = "Resets any sender key state and archives all sessions for group members, will force creating new sessions and re-distributing sender key material.",
+            onClick = {
+              dialog = Dialog.CLEAR_SENDER_KEY_AND_ARCHIVE_SESSIONS
             }
           )
         }
@@ -376,6 +386,9 @@ private fun rememberOnConfirm(
       Dialog.CLEAR_SENDER_KEY -> {
         { callbacks.clearSenderKey(state.recipientId) }
       }
+      Dialog.CLEAR_SENDER_KEY_AND_ARCHIVE_SESSIONS -> {
+        { callbacks.clearSenderKeyAndArchiveSessions(state.recipientId) }
+      }
     }
   }
 }
@@ -474,6 +487,7 @@ interface InternalConversationSettingsScreenCallbacks {
   fun splitAndCreateThreads(recipientId: RecipientId) = Unit
   fun splitWithoutCreatingThreads(recipientId: RecipientId) = Unit
   fun clearSenderKey(recipientId: RecipientId) = Unit
+  fun clearSenderKeyAndArchiveSessions(recipientId: RecipientId) = Unit
 
   object Empty : InternalConversationSettingsScreenCallbacks
 }

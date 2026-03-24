@@ -9,8 +9,8 @@ import android.net.Uri
 import androidx.annotation.MainThread
 import androidx.appcompat.content.res.AppCompatResources
 import com.airbnb.lottie.SimpleColorFilter
+import org.signal.core.models.media.Media
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.providers.BlobProvider

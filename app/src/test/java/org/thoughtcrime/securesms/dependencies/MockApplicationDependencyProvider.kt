@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageManager
 import org.thoughtcrime.securesms.service.DeletedCallEventManager
+import org.thoughtcrime.securesms.service.ExpiringArchivedStoriesManager
 import org.thoughtcrime.securesms.service.ExpiringMessageManager
 import org.thoughtcrime.securesms.service.ExpiringStoriesManager
 import org.thoughtcrime.securesms.service.PendingRetryReceiptManager
@@ -132,6 +133,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideExpiringStoriesManager(): ExpiringStoriesManager {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideExpiringArchivedStoriesManager(): ExpiringArchivedStoriesManager {
     return mockk(relaxed = true)
   }
 
@@ -308,6 +313,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideSvrBApi(libSignalNetwork: Network): SvrBApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideKeyTransparencyApi(unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): KeyTransparencyApi {
     return mockk(relaxed = true)
   }
 }

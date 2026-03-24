@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
+import org.thoughtcrime.securesms.events.WebRtcViewModel.State;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -132,7 +133,15 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
 
     builder.remoteDevicesCount(remoteDevices.size());
 
-    return builder.build();
+    WebRtcServiceState updatedState = builder.build();
+
+    if (updatedState.getCallInfoState().getCallState() == State.CALL_CONNECTED) {
+      boolean localVideoEnabled  = updatedState.getLocalDeviceState().getCameraState().isEnabled();
+      boolean remoteVideoEnabled = updatedState.getCallInfoState().getRemoteCallParticipantsMap().values().stream().anyMatch(CallParticipant::isVideoEnabled);
+      webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, remoteVideoEnabled));
+    }
+
+    return updatedState;
   }
 
   @Override

@@ -6,7 +6,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import kotlinx.parcelize.Parcelize
-import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Represents a set of colors to be applied to the foreground and background of a view.
@@ -20,13 +20,13 @@ data class ViewColorSet(
 ) : Parcelable {
   companion object {
     val PRIMARY = ViewColorSet(
-      foreground = ViewColor.ColorResource(R.color.signal_colorOnPrimary),
-      background = ViewColor.ColorResource(R.color.signal_colorPrimary)
+      foreground = ViewColor.ColorResource(CoreUiR.color.signal_colorOnPrimary),
+      background = ViewColor.ColorResource(CoreUiR.color.signal_colorPrimary)
     )
 
     fun forCustomColor(@ColorInt customColor: Int): ViewColorSet {
       return ViewColorSet(
-        foreground = ViewColor.ColorResource(R.color.signal_colorOnCustom),
+        foreground = ViewColor.ColorResource(CoreUiR.color.signal_colorOnCustom),
         background = ViewColor.ColorValue(customColor)
       )
     }

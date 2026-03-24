@@ -3,9 +3,11 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.PollVoteJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.GroupSendUtil
@@ -49,7 +51,11 @@ class PollVoteJob(
         return null
       }
 
-      val recipients = conversationRecipient.participantIds.filter { it != Recipient.self().id }.map { it.toLong() }
+      val recipients = if (conversationRecipient.isGroup) {
+        conversationRecipient.participantIds.filter { it != Recipient.self().id }.map { it.toLong() }
+      } else {
+        listOf(conversationRecipient.id.toLong())
+      }
 
       return PollVoteJob(
         messageId = messageId,
@@ -61,6 +67,7 @@ class PollVoteJob(
         parameters = Parameters.Builder()
           .setQueue(conversationRecipient.id.toQueueKey())
           .addConstraint(NetworkConstraint.KEY)
+          .addConstraint(SealedSenderConstraint.KEY)
           .setMaxAttempts(Parameters.UNLIMITED)
           .setLifespan(1.days.inWholeMilliseconds)
           .build()
@@ -108,7 +115,7 @@ class PollVoteJob(
 
     val targetSentTimestamp = message.dateSent
 
-    val recipients = Recipient.resolvedList(recipientIds.filter { it != Recipient.self().id.toLong() }.map { RecipientId.from(it) })
+    val recipients = Recipient.resolvedList(recipientIds.map { RecipientId.from(it) })
     val registered = RecipientUtil.getEligibleForSending(recipients)
     val unregistered = recipients - registered.toSet()
     val completions: List<Recipient> = deliver(conversationRecipient, registered, targetAuthor, targetSentTimestamp, poll)
@@ -140,23 +147,31 @@ class PollVoteJob(
         )
       )
 
-    GroupUtil.setDataMessageGroupContext(context, dataMessageBuilder, conversationRecipient.requireGroupId().requirePush())
+    if (conversationRecipient.isPushV2Group) {
+      GroupUtil.setDataMessageGroupContext(context, dataMessageBuilder, conversationRecipient.requireGroupId().requirePush())
+    }
 
     val dataMessage = dataMessageBuilder.build()
+    val nonSelfDestinations = destinations.filter { !it.isSelf }
 
     val results = GroupSendUtil.sendResendableDataMessage(
       context,
       conversationRecipient.groupId.map { obj: GroupId -> obj.requireV2() }.orElse(null),
       null,
-      destinations,
+      nonSelfDestinations,
       false,
       ContentHint.RESENDABLE,
       MessageId(messageId),
       dataMessage,
       true,
       false,
+      null,
       null
     )
+
+    if (conversationRecipient.isSelf) {
+      results.add(AppDependencies.signalServiceMessageSender.sendSyncMessage(dataMessage))
+    }
 
     val groupResult = GroupSendJobHelper.getCompletedSends(destinations, results)
 

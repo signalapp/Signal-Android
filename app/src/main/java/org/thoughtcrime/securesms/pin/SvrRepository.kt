@@ -257,6 +257,7 @@ object SvrRepository {
           BackupResponse.ExposeFailure -> it
           is BackupResponse.NetworkError -> it
           BackupResponse.ServerRejected -> it
+          is BackupResponse.RateLimited -> it
           BackupResponse.EnclaveNotFound -> null
           is BackupResponse.Success -> null
         }
@@ -423,12 +424,13 @@ object SvrRepository {
         false
       }
 
-      newToken = newToken || if (Svr3Migration.shouldWriteToSvr2) {
-        val credentials: AuthCredentials = svr2.authorization()
-        SignalStore.svr.appendSvr2AuthTokenToList(credentials.asBasic())
-      } else {
-        false
-      }
+      newToken = newToken ||
+        if (Svr3Migration.shouldWriteToSvr2) {
+          val credentials: AuthCredentials = svr2.authorization()
+          SignalStore.svr.appendSvr2AuthTokenToList(credentials.asBasic())
+        } else {
+          false
+        }
 
       if (newToken && SignalStore.svr.hasPin()) {
         BackupManager(AppDependencies.application).dataChanged()

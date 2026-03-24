@@ -9,26 +9,26 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.annimon.stream.ComparatorCompat;
 import com.annimon.stream.Stream;
 
+import org.signal.core.models.ServiceId;
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.signal.storageservice.protos.groups.AccessControl;
-import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
+import org.signal.storageservice.storage.protos.groups.AccessControl;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
+import org.thoughtcrime.securesms.groups.ui.GroupMemberOrder;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkUrlAndStatus;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
-import org.signal.core.models.ServiceId;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -37,14 +37,12 @@ import java.util.Set;
 
 public final class LiveGroup {
 
-  private static final Comparator<GroupMemberEntry.FullMember>         LOCAL_FIRST       = (m1, m2) -> Boolean.compare(m2.getMember().isSelf(), m1.getMember().isSelf());
-  private static final Comparator<GroupMemberEntry.FullMember>         ADMIN_FIRST       = (m1, m2) -> Boolean.compare(m2.isAdmin(), m1.isAdmin());
-  private static final Comparator<GroupMemberEntry.FullMember>         HAS_DISPLAY_NAME  = (m1, m2) -> Boolean.compare(m2.getMember().hasAUserSetDisplayName(AppDependencies.getApplication()), m1.getMember().hasAUserSetDisplayName(AppDependencies.getApplication()));
-  private static final Comparator<GroupMemberEntry.FullMember>         ALPHABETICAL      = (m1, m2) -> m1.getMember().getDisplayName(AppDependencies.getApplication()).compareToIgnoreCase(m2.getMember().getDisplayName(AppDependencies.getApplication()));
-  private static final Comparator<? super GroupMemberEntry.FullMember> MEMBER_ORDER      = ComparatorCompat.chain(LOCAL_FIRST)
-                                                                                                           .thenComparing(ADMIN_FIRST)
-                                                                                                           .thenComparing(HAS_DISPLAY_NAME)
-                                                                                                           .thenComparing(ALPHABETICAL);
+  private static final Comparator<GroupMemberEntry.FullMember> MEMBER_ORDER = GroupMemberOrder.comparator(
+      it -> it.getMember().isSelf(),
+      it -> it.isAdmin(),
+      it -> it.getMember().hasAUserSetDisplayName(AppDependencies.getApplication()),
+      it -> it.getMember().getDisplayName(AppDependencies.getApplication())
+  );
 
   private final GroupTable                                  groupDatabase;
   private final LiveData<Recipient>                         recipient;
@@ -178,6 +176,11 @@ public final class LiveGroup {
     return Transformations.map(groupRecord, GroupRecord::getAttributesAccessControl);
   }
 
+  @NonNull
+  public LiveData<GroupAccessControl> getMemberLabelAccessControl() {
+    return Transformations.map(groupRecord, GroupRecord::getMemberLabelAccessControl);
+  }
+
   public LiveData<List<GroupMemberEntry.FullMember>> getNonAdminFullMembers() {
     return Transformations.map(fullMembers,
                                members -> Stream.of(members)
@@ -239,12 +242,7 @@ public final class LiveGroup {
   }
 
   private static boolean applyAccessControl(@NonNull GroupTable.MemberLevel memberLevel, @NonNull GroupAccessControl rights) {
-    switch (rights) {
-      case ALL_MEMBERS: return memberLevel.isInGroup();
-      case ONLY_ADMINS: return memberLevel == GroupTable.MemberLevel.ADMINISTRATOR;
-      case NO_ONE     : return false;
-      default:          throw new AssertionError();
-    }
+    return rights.allows(memberLevel);
   }
 
   public LiveData<GroupLinkUrlAndStatus> getGroupLink() {

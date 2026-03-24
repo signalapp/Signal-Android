@@ -10,7 +10,7 @@
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/9708267671322</string> -->
   <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
   <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
   <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
@@ -107,9 +107,9 @@
     <!-- Option in menu to go to settings -->
     <string name="AttachmentKeyboard_go_to_settings">Buka Pengaturan</string>
     <!-- Text explaining that Signal has limited access to photos -->
-    <string name="AttachmentKeyboard_signal_has_limited_access">Signal punya akses terbatas ke foto atau video</string>
+    <string name="AttachmentKeyboard_signal_has_limited_access">Akses Signal ke foto atau video terbatas</string>
     <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
-    <string name="AttachmentKeyboard_no_photos_found">Tidak ditemukan foto, pilih foto dan video untuk ditampilkan di sini atau ubah izin</string>
+    <string name="AttachmentKeyboard_no_photos_found">Tidak ditemukan foto. Pilih foto dan video untuk ditampilkan di sini atau ubah izin</string>
 
     <!-- MediaGalleryFragment -->
     <!-- Text describing that no photos or videos are currently found in the gallery and that Signal can only access media that the user allows -->
@@ -117,8 +117,8 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Tidak bisa menemukan aplikasi untuk membuka media yang dipilih.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Anda harus mengizinkan Signal untuk mengakses penyimpanan telepon Anda untuk dapat melampirkan foto, video, atau audio. Harap buka pengaturan aplikasi, pilih \"Perizinan\", lalu izinkan Signal mengakses \"Penyimpanan\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Anda harus mengizinkan Signal untuk mengakses kontak Anda untuk dapat melampirkan informasi kontak. Harap buka pengaturan aplikasi, pilih \"Perizinan\", lalu izinkan Signal mengakses \"Kontak\".</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Anda harus mengizinkan Signal untuk mengakses penyimpanan telepon Anda untuk dapat melampirkan foto, video, atau audio. Harap buka pengaturan aplikasi, pilih \"Izin\", lalu izinkan Signal mengakses \"Penyimpanan\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Anda harus mengizinkan Signal untuk mengakses kontak Anda untuk dapat melampirkan informasi kontak. Harap buka pengaturan aplikasi, pilih \"Izin\", lalu izinkan Signal mengakses \"Kontak\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Anda harus mengizinkan Signal untuk mengakses lokasi Anda untuk dapat melampirkan informasi lokasi. Harap buka pengaturan aplikasi, pilih \"Perizinan\", lalu izinkan Signal mengakses \"Lokasi\".</string>
 
     <!-- Dialog title asking users for location permission -->
@@ -311,6 +311,20 @@
     <string name="CameraXFragment_to_capture_videos">Untuk mengambil video dengan suara:</string>
     <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
     <string name="CameraXFragment_to_scan_qr_codes">Untuk memindai kode QR:</string>
+    <!-- Error message shown when we try to take a photo, but fail -->
+    <string name="CameraXFragment_photo_capture_failed">Gagal mengambil foto. Silakan coba lagi.</string>
+    <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
+    <string name="CameraXFragment_photo_processing_failed">Gagal memproses foto. Silakan coba lagi.</string>
+    <!-- Accessibility label for the switch camera button -->
+    <string name="CameraXFragment_switch_camera">Ganti kamera</string>
+    <!-- Accessibility label for flash button when flash is off -->
+    <string name="CameraXFragment_flash_off">Flash mati</string>
+    <!-- Accessibility label for flash button when flash is on -->
+    <string name="CameraXFragment_flash_on">Flash nyala</string>
+    <!-- Accessibility label for flash button when flash is set to auto -->
+    <string name="CameraXFragment_flash_auto">Flash otomatis</string>
+    <!-- Accessibility label for the send button in media selection -->
+    <string name="CameraXFragment_send">Kirim</string>
 
     <!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">Kontak terbaru</string>
@@ -363,9 +377,9 @@
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Anda sudah berada dalam panggilan</string>
     <!-- Title on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_title">Transfer account to new device?</string>
+    <string name="CommunicationActions__transfer_dialog_title">Transfer akun ke perangkat baru?</string>
     <!-- Message on dialog when quick restore qr code is scanned in system camera -->
-    <string name="CommunicationActions__transfer_dialog_message">To transfer this account to a new device, tap \"Continue\" and scan the QR code again with the Signal camera. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="CommunicationActions__transfer_dialog_message">Untuk mentransfer akun ini ke perangkat baru, ketuk \"Lanjutkan\" dan pindai kode QR sekali lagi dengan kamera Signal. Pastikan Anda hanya memindai kode QR yang diperoleh langsung dari Signal.</string>
     <string name="CommunicationActions__dont_transfer">Jangan transfer</string>
 
     <!-- ConfirmIdentityDialog -->
@@ -408,7 +422,7 @@
     <string name="ContactShareEditActivity_type_work">Kantor</string>
     <string name="ContactShareEditActivity_type_missing">Kontak lain</string>
     <string name="ContactShareEditActivity_invalid_contact">Kontak yang dipilih tidak valid</string>
-    <!-- Content descrption for name edit button on contact share edit activity -->
+    <!-- Content description for name edit button on contact share edit activity -->
     <string name="ContactShareEditActivity__edit_name">Edit nama</string>
     <!-- Content description for user avatar in edit activity -->
     <string name="ContactShareEditActivity__avatar">Avatar</string>
@@ -416,7 +430,11 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_sent_tap_for_details">Tidak terkirim. Ketuk untuk detailnya.</string>
     <string name="ConversationItem_error_partially_not_delivered">Terkirim sebagian. Ketuk untuk detailnya.</string>
+    <!-- Warning footer when an admin delete has not been sent to everyone -->
+    <string name="ConversationItem_error_partially_not_deleted">Terhapus sebagian, ketuk untuk detailnya</string>
     <string name="ConversationItem_error_network_not_delivered">Gagal terkirim</string>
+    <!-- Warning footer when an admin delete has failed to send -->
+    <string name="ConversationItem_error_delete_failed">Gagal menghapus, ketuk untuk detailnya</string>
     <string name="ConversationItem_group_action_left">%1$s telah meninggalkan grup.</string>
     <string name="ConversationItem_send_paused">Pengiriman tertunda</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Alihkan pengiriman ke SMS tanpa enkripsi?</string>
@@ -431,8 +449,12 @@
     <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  Unduh lebih banyak</string>
     <string name="ConversationItem_pending">  Tertunda</string>
-    <string name="ConversationItem_this_message_was_deleted">Pesan ini telah dihapus.</string>
-    <string name="ConversationItem_you_deleted_this_message">Anda menghapus pesan ini.</string>
+    <string name="ConversationItem_this_message_was_deleted">Pesan ini telah dihapus</string>
+    <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
+    <string name="ConversationItem_s_deleted_this_message">%1$s menghapus pesan ini</string>
+    <string name="ConversationItem_you_deleted_this_message">Anda menghapus pesan ini</string>
+    <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
+    <string name="ConversationItem_admin_s_deleted_this_message">Admin %1$s menghapus pesan ini</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Tidak dapat mengunduh pesan. %1$s harus mengirimnya lagi.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -463,7 +485,6 @@
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Alamat penerima SMS atau email tidak valid!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Pesan kosong!</string>
-    <string name="ConversationActivity_group_members">Anggota grup</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="other">Pengeditan hanya dapat diterapkan dalam %1$d jam sejak Anda mengirimkan pesan ini.</item>
@@ -490,6 +511,7 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Lampiran Anda melebihi batas ukuran.</string>
     <string name="ConversationActivity_unable_to_record_audio">Tidak bisa merekam audio!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Anda tidak dapat mengirim pesan ke grup ini karena Anda bukan anggota.</string>
+    <string name="DisabledInputView__incognito_mode">Incognito mode</string>
     <string name="ConversationActivity_only_s_can_send_messages">Hanya %1$s yang dapat mengirimkan pesan.</string>
     <string name="ConversationActivity_admins">admin</string>
     <string name="ConversationActivity_message_an_admin">Kirimkan pesan ke admin</string>
@@ -592,6 +614,20 @@
     <string name="ConversationFragment_deleting_messages">Menghapus pesan…</string>
     <string name="ConversationFragment_delete_for_me">Hapus untuk saya</string>
     <string name="ConversationFragment_delete_for_everyone">Hapus untuk semua</string>
+    <!-- Title of dialog confirming whether to delete the message -->
+    <plurals name="ConversationFragment_delete_selected_title">
+        <item quantity="other">Hapus pesan terpilih?</item>
+    </plurals>
+    <!-- Body of dialog confirming whether to delete the message -->
+    <plurals name="ConversationFragment_delete_selected_body">
+        <item quantity="other">Pesan ini mau dihapus untuk siapa saja?</item>
+    </plurals>
+    <!-- Confirmation button to delete the message -->
+    <string name="ConversationFragment_delete_for_everyone_title">Hapus untuk semua?</string>
+    <!-- Body of dialog explaining what happens during deletion -->
+    <plurals name="ConversationFragment_delete_for_everyone_body">
+        <item quantity="other">Group members on the latest versions of Signal will see that you deleted these messages.</item>
+    </plurals>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Hapus di perangkat ini</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
@@ -671,9 +707,9 @@
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Foto gagal diunduh. Coba lagi.</string>
     <!-- Dialog for how to long to keep a messaged pinned for -->
-    <string name="ConversationFragment__keep_pinned">Keep pinned for…</string>
+    <string name="ConversationFragment__keep_pinned">Tetap sematkan selama …</string>
     <!-- Dialog option to keep message pin for 24 hours -->
-    <string name="ConversationFragment__24_hours">24 hours</string>
+    <string name="ConversationFragment__24_hours">24 jam</string>
     <!-- Dialog option to keep message pin for 7 days -->
     <string name="ConversationFragment__7_days">7 hari</string>
     <!-- Dialog option to keep message pin for 30 days -->
@@ -681,9 +717,9 @@
     <!-- Dialog option to keep message pin forever -->
     <string name="ConversationFragment__forever">Selamanya</string>
     <!-- Dialog title when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_title">Replace oldest pin?</string>
+    <string name="ConversationFragment__replace_title">Ganti sematan terlama?</string>
     <!-- Dialog body when replacing the oldest pin -->
-    <string name="ConversationFragment__replace_body">Pinning message will replace the oldest one</string>
+    <string name="ConversationFragment__replace_body">Menyematkan pesan akan menggantikan sematan terlama</string>
     <!-- Dialog button when replacing the oldest pin -->
     <string name="ConversationFragment__replace">Ganti</string>
 
@@ -920,7 +956,7 @@
     <string name="BackupsPreferenceFragment__backup_time">Waktu pencadangan</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verifikasi frasa sandi cadangan</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Uji frasa sandi cadangan Anda dan verifikasi kecocokannya</string>
-    <string name="BackupsPreferenceFragment__turn_on">Aktifkan</string>
+    <string name="BackupsPreferenceFragment__turn_on">Aktifkan pencadangan</string>
     <string name="BackupsPreferenceFragment__turn_off">Nonaktifkan</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Silakan instal ulang Signal untuk memulihkan cadangan. Buka aplikasinya dan ketuk \"Pulihkan cadangan\", lalu temukan berkas cadangannya. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Selengkapnya</string>
@@ -948,6 +984,10 @@
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Sekarang</string>
     <string name="DateUtils_minutes_ago">%1$dmenit</string>
+    <!-- Content description when describing how many minutes ago something has happened -->
+    <plurals name="DateUtils_minutes_ago_content_description">
+        <item quantity="other">%1$d menit</item>
+    </plurals>
     <string name="DateUtils_today">Hari ini</string>
     <string name="DateUtils_yesterday">Kemarin</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
@@ -1314,7 +1354,7 @@
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Kami melihat notifikasi tertunda. Kirim catatan debug?</string>
     <!-- Message for dialog asking user to submit logs for debugging a crash -->
-    <string name="PromptLogsSlowNotificationsDialog__message">Catatan debug membantu kami mendiagnosis dan memperbaiki masalah, dan tidak berisi informasi identifikasi.</string>
+    <string name="PromptLogsSlowNotificationsDialog__message">Catatan debug membantu kami mendiagnosis dan memperbaiki masalah, catatan ini tidak berisi informasi identifikasi.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal mengalami masalah. Kirim catatan debug?</string>
     <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
@@ -1590,6 +1630,8 @@
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Tidak dapat bergabung ke grup. Mohon coba lagi nanti</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Terjadi kesalahan jaringan.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tautan grup ini tidak aktif</string>
+    <!-- Toast message shown when trying to join a group by link but the group is full -->
+    <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Tak dapat bergabung, anggota grup sudah maksimal</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Tidak dapat bergabung dengan grup</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
@@ -1920,6 +1962,13 @@
     <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Anda memberikan akses kepada \"%1$s\" untuk dapat mengubah keanggotaan grup.</string>
     <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s memberikan akses kepada \"%2$s\" untuk mengedit keanggotaan grup.</string>
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Anggota yang dapat mengedit keanggotaan grup berubah menjadi \"%1$s\".</string>
+
+    <!-- Shown when the current user changes the member label permission. -->
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">Anda mengganti siapa yang bisa menambahkan label anggota menjadi \"%1$s\".</string>
+    <!-- Shown when another group member changes the member label permission. -->
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s mengganti siapa yang bisa menambahkan label anggota menjadi \"%2$s\".</string>
+    <!-- Shown when the member label permission is changed by an unknown admin. -->
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">Admin mengganti siapa yang bisa menambahkan label anggota menjadi \"%1$s\".</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">Anda mengubah pengaturan grup. Semua anggota kini dapat mengirimkan pesan.</string>
@@ -2479,6 +2528,8 @@
     <string name="WebRtcCallView__s_remotely_muted_s">%1$s membisukan %2$s.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
     <string name="WebRtcCallView__you_muted_yourself">Anda membisukan diri sendiri dari perangkat lain.</string>
+    <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
+    <string name="WebRtcCallView__youve_been_muted_large_group">Mikrofon Anda disenyapkan karena ada banyak peserta dalam panggilan ini.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Terjadi kesalahan UI. Mohon laporkan kesalahan ini ke pengembang.</string>
@@ -2574,6 +2625,8 @@
     <string name="AboutSheet__you">Anda</string>
     <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
     <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
+    <!-- Placeholder text in the group member label row when the user has no label set. -->
+    <string name="AboutSheet__add_group_member_label">Tambahkan label anggota</string>
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
@@ -2602,6 +2655,16 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Tidak dapat menerima audio &amp; video dari %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Tidak dapat menerima audio dan video dari %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ini mungkin terjadi karena mereka belum memverifikasi pergantian nomor keamanan, ada masalah dengan perangkat mereka, atau mereka memblokir Anda.</string>
+
+    <!-- SwitchCameraButton -->
+    <!-- Content description for the button that switches between front and back camera during a call -->
+    <string name="SwitchCameraButton__switch_camera_direction">Ganti arah kamera</string>
+
+    <!-- CallQualityDiagnosticsScreen -->
+    <!-- Title for the call quality diagnostics screen -->
+    <string name="CallQualityDiagnosticsScreen__diagnostic_information">Informasi diagnostik</string>
+    <!-- Content description for the close/back navigation button -->
+    <string name="CallQualityDiagnosticsScreen__close">Tutup</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Usap untuk melihat layar yang dibagikan</string>
@@ -2646,7 +2709,6 @@
     <string name="RegistrationActivity_i_understand">Saya mengerti</string>
     <string name="RegistrationActivity_play_services_error">Play Services gagal</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services diperbarui atau untuk sementara tidak tersedia. Silahkan coba lagi.</string>
-    <string name="RegistrationActivity_terms_and_privacy">Istilah &amp; Kebijakan Privasi</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal memerlukan akses ke kontak dan media agar dapat terhubung dengan teman dan mengirimkan pesan. Kontak Anda diunggah menggunakan pendeteksi kontak privat Signal, yang dienkripsi ujung-ke-ujung dan tidak akan terlihat pada layanan Signal.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal memerlukan akses ke kontak agar dapat terhubung dengan teman Anda. Kontak Anda diunggah menggunakan pendeteksi kontak privat Signal, yang dienkripsi ujung-ke-ujung dan tidak akan terlihat pada layanan Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Anda membuat terlalu banyak percobaan untuk mendaftarkan nomor ini. Mohon coba lagi nanti.</string>
@@ -2678,8 +2740,6 @@
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">Batal</string>
     <string name="RegistrationActivity_next">Berikutnya</string>
-    <string name="RegistrationActivity_continue">Lanjutkan</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Jaga privasimu.\nJadilah dirimu sendiri pada setiap pesan.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Nomor telepon</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -2906,8 +2966,14 @@
     <string name="ThreadRecord_view_once_photo">Foto satu-tayangan</string>
     <string name="ThreadRecord_view_once_video">Video satu-tayangan</string>
     <string name="ThreadRecord_view_once_media">Media satu-tayangan</string>
-    <string name="ThreadRecord_this_message_was_deleted">Pesan ini telah dihapus.</string>
-    <string name="ThreadRecord_you_deleted_this_message">Anda menghapus pesan ini.</string>
+    <!-- Thread preview when someone has deleted their own message -->
+    <string name="ThreadRecord_this_message_was_deleted">Pesan ini telah dihapus</string>
+    <!-- Thread preview when someone has deleted their own message. Placeholder is the name of the person. -->
+    <string name="ThreadRecord_s_deleted_this_message">%1$s menghapus pesan ini</string>
+    <!-- Thread preview when you deleted a message -->
+    <string name="ThreadRecord_you_deleted_this_message">Anda menghapus pesan ini</string>
+    <!-- Thread preview when an admin has deleted a message -->
+    <string name="ThreadRecord_admin_deleted_this_message">Admin %1$s menghapus pesan ini</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Anda mengirimkan permintaan untuk mengaktifkan Pembayaran</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -3055,7 +3121,22 @@
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Pesan dienkripsi untuk sesi yang tidak ada</string>
 
     <!-- MuteDialog -->
+    <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Bisukan notifikasi</string>
+    <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
+    <string name="MuteDialog__mute_until">Senyapkan hingga …</string>
+
+    <!-- MuteUntilTimePickerBottomSheet -->
+    <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
+    <string name="MuteUntilTimePickerBottomSheet__dialog_title">Senyapkan notifikasi hingga …</string>
+    <!-- Label for a data selector where the user chooses how long they\'d like to mute notifications for -->
+    <string name="MuteUntilTimePickerBottomSheet__select_date_title">Pilih tanggal</string>
+    <!-- Label for a time selector where the user chooses how long they\'d like to mute notifications for -->
+    <string name="MuteUntilTimePickerBottomSheet__select_time_title">Pilih waktu</string>
+    <!-- Label for a button that, when pressed, will confirm the user\'s choice on how long to mute notifications for -->
+    <string name="MuteUntilTimePickerBottomSheet__mute_notifications">Senyapkan notifikasi</string>
+    <!-- Subtitle in a dialog that describes the timezone the user is picking times in. The first placeholder is a UTC offset, and the second placeholder is a user-friendly name for the timezone, e.g. "All times in (GMT-05:00) Eastern Standard Time" -->
+    <string name="MuteUntilTimePickerBottomSheet__timezone_disclaimer">Semua waktu dalam (%1$s) %2$s</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Sentuh untuk membuka.</string>
@@ -3118,7 +3199,7 @@
     <string name="MessageNotifier_signal_message">Pesan Signal</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Kontak</string>
-    <string name="MessageNotifier_reacted_s_to_s">Menanggapi %1$s pada: \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_s">Memberikan %1$s di: \"%2$s\".</string>
     <string name="MessageNotifier_reacted_s_to_your_video">Menanggapi %1$s pada video Anda.</string>
     <string name="MessageNotifier_reacted_s_to_your_image">Menanggapi %1$s pada gambar Anda.</string>
     <string name="MessageNotifier_reacted_s_to_your_gif">Menanggapi %1$s pada GIF Anda.</string>
@@ -3126,7 +3207,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Menanggapi %1$s pada audio Anda.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Menanggapi %1$s pada media sekali-lihat Anda.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Menanggapi %1$s pada pembayaran Anda.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Memberikan %1$s di pembayaran Anda.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Menanggapi %1$s pada stiker Anda.</string>
     <string name="MessageNotifier_this_message_was_deleted">Pesan ini telah dihapus.</string>
     <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
@@ -3208,6 +3289,17 @@
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Tidak bisa menyimpan ke penyimpanan eksternal tanpa izin</string>
+
+    <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__cant_save_media">Tidak bisa menyimpan media</string>
+    <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__media_offloaded_message">Media ini telah di-offload dari perangkat karena fitur \"Optimalkan penyimpanan di perangkat\" diaktifkan. Anda bisa mengunduh item satu per satu, atau menonaktifkan \"Optimalkan penyimpanan di perangkat\" untuk mengunduh semua media ke perangkat.</string>
+    <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__cant_save_all_items">Tidak bisa menyimpan semua item</string>
+    <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__some_media_offloaded_message">Beberapa media yang Anda pilih telah di-offload dari perangkat karena fitur \"Optimalkan penyimpanan di perangkat\" diaktifkan. Anda bisa menyimpan item satu per satu atau menonaktifkan \"Optimalkan penyimpanan di perangkat\" untuk mengunduh semua media ke perangkat.</string>
+    <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
+    <string name="AttachmentSaver__view_storage_settings">Lihat pengaturan penyimpanan</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Cari</string>
@@ -3411,6 +3503,10 @@
     <!-- Accessibility content description describing how a user can lock voice note recording. -->
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Kunci rekaman dari lampiran audio</string>
     <string name="conversation_activity__message_could_not_be_sent">Tidak dapat mengirim pesan. Cek koneksi Anda dan coba lagi.</string>
+    <!-- Dialog body when a message failed to delete and retry is possible. -->
+    <string name="conversation_activity__message_failed_to_delete_retry">Pesan gagal dihapus. Periksa koneksi internet dan coba lagi.</string>
+    <!-- Dialog body when a message failed to delete. -->
+    <string name="conversation_activity__message_failed_to_delete">Pesan gagal dihapus.</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">Geser untuk membatalkan</string>
@@ -3688,6 +3784,55 @@
     <string name="verify_display_fragment__loading">Memuat…</string>
     <string name="verify_display_fragment__mark_as_verified">Tandai terverifikasi</string>
     <string name="verify_display_fragment__clear_verification">Hapus verifikasi</string>
+    <!-- Header title for automatic key verification -->
+    <string name="verify_display_fragment__automatic">Verifikasi Kunci Otomatis</string>
+    <!-- Button text to verify automatically    -->
+    <string name="verify_display_fragment__verify_automatic">Verifikasi otomatis</string>
+    <!-- Loading text when verifying -->
+    <string name="verify_display_fragment__verifying">Memverifikasi enkripsi …</string>
+    <!-- Success text shown when encryption is verified -->
+    <string name="verify_display_fragment__encryption_verified">Enkripsi terverifikasi</string>
+    <!-- Text shown when verification fails -->
+    <string name="verify_display_fragment__encryption_unavailable">Verifikasi otomatis tidak tersedia</string>
+    <!-- Caption text explaining more about automatic verification   -->
+    <string name="verify_display_fragment__auto_verify_not_available">Verifikasi otomatis tidak tersedia untuk semua chat.</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://support.signal.org/hc/articles/10223569377562</string> -->
+
+    <!-- Bottom sheet title when encryption is auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_success">Enkripsi diverifikasi otomatis untuk chat ini</string>
+    <!-- Bottom sheet body when encryption is auto-verified -->
+    <string name="EncryptionVerifiedSheet__body_success">Untuk kontak yang terhubung dengan Anda lewat nomor telepon, Signal dapat mengonfirmasi otomatis apakah koneksinya aman lewat proses yang disebut transparansi kunci. Untuk keamanan tambahan, lakukan enkripsi menyeluruh secara manual dengan membandingkan nomor di layar sebelumnya atau memindai kode di perangkat milik kontak Anda.</string>
+    <!-- Bottom sheet title when encryption is no longer auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Verifikasi otomatis sudah tidak tersedia untuk chat ini</string>
+    <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal sudah tidak dapat memverifikasi enkripsi untuk chat ini secara otomatis. Ini mungkin karena %1$s mengganti nomor teleponnya. Verifikasi enkripsi menyeluruh secara manual dengan membandingkan nomor di layar sebelumnya atau memindai kode di perangkat milik kontak Anda.</string>
+    <!-- Bottom sheet title when encryption cannot be auto-verified -->
+    <string name="EncryptionVerifiedSheet__title_unavailable">Verifikasi otomatis tidak tersedia untuk chat ini</string>
+    <!-- Bottom sheet body when encryption cannot be auto-verified -->
+    <string name="EncryptionVerifiedSheet__body_unavailable">Signal hanya bisa memverifikasi enkripsi dalam chat secara otomatis jika Anda terhubung dengan seseorang lewat nomor telepon. Jika suatu chat dimulai dengan nama pengguna atau grup yang sama, lakukan verifikasi menyeluruh dengan membandingkan nomor di layar sebelumnya atau memindai kode di perangkat milik kontak Anda.</string>
+
+    <!-- Title for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__title">Signal sekarang dapat memverifikasi enkripsi secara otomatis</string>
+    <!-- Body for auto verification education sheet -->
+    <string name="VerifyAutomaticallyEducationSheet__body">Untuk kontak yang terhubung dengan Anda melalui nomor telepon, Signal dapat mengonfirmasi otomatis apakah koneksinya aman lewat suatu proses yang disebut transparansi kunci. Untuk tambahan keamanan, koneksi masih dapat diverifikasi manual menggunakan kode QR atau dengan cara membandingkan nomor keamanan.</string>
+    <!-- Button to learn more about automatic verification -->
+    <string name="VerifyAutomaticallyEducationSheet__learn_more">Pelajari selengkapnya</string>
+    <!-- Button to go to verification page -->
+    <string name="VerifyAutomaticallyEducationSheet__continue">Lanjutkan</string>
+
+    <!-- Title for bottom sheet when self verification fails -->
+    <string name="SelfVerificationFailureSheet__title">Verifikasi Kunci Otomatis saat ini tidak tersedia untuk perangkat Anda. Kirim catatan debug?</string>
+    <!-- Body for bottom sheet when self verification fails -->
+    <string name="SelfVerificationFailureSheet__body">Catatan debug membantu kami mendiagnosis dan memperbaiki masalah, catatan ini tidak berisi informasi identifikasi.</string>
+    <!-- Button to decline submitting logs -->
+    <string name="SelfVerificationFailureSheet__no_thanks">Tidak, terima kasih</string>
+    <!-- Button to submit logs -->
+    <string name="SelfVerificationFailureSheet__submit">Kirimkan</string>
+    <!-- Email subject line when submitting logs following a verification failure -->
+    <string name="SelfVerificationFailureSheet__email_subject">Verifikasi Kunci Otomatis Gagal</string>
+  <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
+    <!-- Link to learn more about debug logs -->
+    <string name="SelfVerificationFailureSheet__learn_more">Pelajari selengkapnya</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Pindai kode QR pada perangkat kontak Anda.</string>
@@ -3840,7 +3985,7 @@
     <string name="preferences__pref_use_address_book_photos">Gunakan foto dari kontak</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Tampilkan foto dari kontak jika tersedia</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Biarkan Obrolan yang Dibisukan tetap Diarsipkan</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Biarkan obrolan yang dibisukan tetap dalam arsip</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Obrolan dibisukan yang diarsipkan akan tetap diarsipkan saat ada pesan baru yang masuk.</string>
     <string name="preferences__generate_link_previews">Buat pratinjau tautan</string>
@@ -4059,6 +4204,12 @@
     <string name="preferences_normal">Normal</string>
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Ringkas</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">Aplikasi akan dimulai ulang untuk menerapkan pengaturan bahasa baru.</string>
+    <!-- Preference title for automatic key verification -->
+    <string name="preferences_automatic_key_verification">Verifikasi kunci otomatis</string>
+    <!-- Preference summary for automatic key verification -->
+    <string name="preferences_automatic_key_verification_body">Jika diaktifkan, Signal akan mencoba proses verifikasi enkripsi chat 1:1 secara otomatis.</string>
 
 
     <string name="configurable_single_select__customize_option">Sesuaikan opsi</string>
@@ -4135,43 +4286,6 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">Perbarui sekarang</string>
 
-    <!-- GrantPermissionsFragment -->
-    <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Tidak sekarang</string>
-    <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Berikutnya</string>
-    <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Berikan Perizinan</string>
-    <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Untuk membantu Anda mengirim pesan kepada orang yang dikenal, Signal akan meminta izin berikut. </string>
-    <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifikasi</string>
-    <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Terima notifikasi saat ada pesan baru yang masuk.</string>
-    <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Kontak</string>
-    <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Temukan orang yang Anda kenal. Kontak Anda dienkripsi dan tidak terlihat oleh layanan Signal.</string>
-    <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Panggilan telepon</string>
-    <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Mempermudah pendaftaran dan mengaktifkan fitur panggilan tambahan.</string>
-    <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Penyimpanan</string>
-    <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Kirim foto, video, dan file dari perangkat Anda.</string>
-
-    <!-- PermissionDeniedBottomSheet -->
-    <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. Ketuk “Pengaturan” di bawah</string>
-    <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s Beri izin</string>
-    <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
-    <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. Ketuk “Izin”</string>
-    <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s Beri izin \"Foto dan video\"</string>
-    <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
-    <string name="PermissionDeniedBottomSheet__settings">Pengaturan</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4237,7 +4351,7 @@
     <string name="PaymentsTransferFragment__check_the_wallet_address">Periksa alamat wallet yang coba Anda kirimkan dan coba lagi.</string>
     <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Anda tidak dapat mentransfer ke alamat wallet Signal Anda sendiri. Masukkan alamat wallet dari akun Anda di sebuah exchange yang didukung.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Untuk memindai kode QR, Signal membutuhkan akses ke kamera.</string>
-    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal membutuhkan perijinan Kamera untuk menangkap kode QR. Pergi ke pengaturan, pilih \"Perijinan\", dan akrifkan \"Kamera\".</string>
+    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal butuh akses ke Kamera untuk menangkap kode QR. Buka pengaturan, pilih \"Izin\", lalu aktifkan \"Kamera\".</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Untuk memindai kode QR, Signal membutuhkan akses ke kamera.</string>
     <string name="PaymentsTransferFragment__settings">Pengaturan</string>
 
@@ -4363,9 +4477,9 @@
     <!-- Button to end a poll -->
     <string name="conversation_selection__menu_end_poll">Akhiri polling</string>
     <!-- Button to pin a message -->
-    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <string name="conversation_selection__menu_pin_message">Sematkan</string>
     <!-- Button to unpin a message -->
-    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
+    <string name="conversation_selection__menu_unpin_message">Lepas Sematan</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4414,6 +4528,7 @@
     <string name="conversation__menu_view_all_media">Semua media</string>
     <string name="conversation__menu_conversation_settings">Pengaturan obrolan</string>
     <string name="conversation__menu_add_shortcut">Tambahkan ke layar utama</string>
+    <string name="conversation__menu_export">Ekspor</string>
     <string name="conversation__menu_create_bubble">Buat gelembung</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">Format teks</string>
@@ -4422,6 +4537,13 @@
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Tambah ke kontak</string>
+
+    <!-- conversation export -->
+    <string name="conversation_export__exporting">Exporting chat…</string>
+    <string name="conversation_export__export_complete">Chat exported successfully</string>
+    <string name="conversation_export__export_failed">Export failed</string>
+    <string name="conversation_export__export_cancelled">Export cancelled</string>
+    <string name="conversation_export__preparing">Preparing export…</string>
 
     <!-- conversation scheduled messages bar -->
 
@@ -4433,7 +4555,6 @@
     </plurals>
 
     <!-- conversation_group_options -->
-    <string name="convesation_group_options__recipients_list">Daftar Penerima</string>
     <string name="conversation_group_options__delivery">Pengiriman</string>
     <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">Obrolan</string>
@@ -4616,9 +4737,6 @@
     <!-- transport_selection_list_item -->
     <string name="ConversationListFragment_loading">Memuat…</string>
     <string name="CallNotificationBuilder_connecting">Menyambungkan…</string>
-    <string name="Permissions_permission_required">Izin diperlukan</string>
-    <string name="Permissions_continue">Lanjutkan</string>
-    <string name="Permissions_not_now">Nanti saja</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Memindahkan basis data Signal</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Frasa sandi cadangan</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Cadangan akan disimpan ke penyimpanan eksternal dan terenkripsi dengan frasa di bawah. Anda mesti memiliki frasa sandi ini untuk memulihkan cadangan.</string>
@@ -4627,8 +4745,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Saya telah mencatat frasa ini. Tanpa ini, saya tidak dapat memulihkan cadangan.</string>
     <string name="registration_activity__restore_backup">Pulihkan cadangan</string>
     <string name="registration_activity__transfer_or_restore_account">Transfer atau pulihkan akun</string>
-    <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Pulihkan atau transfer</string>
     <string name="registration_activity__transfer_account">Transfer akun</string>
     <string name="registration_activity__skip">Lewati</string>
     <!-- Text label button to skip restoring -->
@@ -4655,6 +4771,8 @@
     <string name="BackupDialog_delete_backups">Hapus cadangan?</string>
     <string name="BackupDialog_disable_and_delete_all_local_backups">Nonaktifkan dan hapus semua cadangan lokal?</string>
     <string name="BackupDialog_delete_backups_statement">Hapus cadangan</string>
+    <!-- Progress dialog message shown while local backup files are being deleted -->
+    <string name="BackupDialog_deleting_local_backup">Deleting local backup…</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Untuk mengaktifkan pencadangan, pilih folder terlebih dahulu. Data hasil cadangan akan disimpan di lokasi itu.</string>
     <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Pilih folder</string>
@@ -4741,13 +4859,6 @@
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Kamu telah membuat banyak kesalahan, coba lagi nanti.</string>
     <string name="RegistrationActivity_error_connecting_to_service">Gagal menyambung ke layanan</string>
     <string name="preferences_chats__backups">Cadangan</string>
-
-    <!-- Button label to indicate that a feature is in beta mode -->
-    <string name="Beta__beta_title">Beta</string>
-    <!-- Content description for info icon -->
-    <string name="Beta__info">Info</string>
-    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">Ini adalah fitur beta dan akan terus disempurnakan seiring waktu.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Buka kunci Signal</string>
@@ -4836,7 +4947,7 @@
     <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Menyiapkan untuk menghubungkan ke perangkat Android lama…</string>
     <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Sedang dalam proses, akan siap segera</string>
     <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Menunggu perangkat Android lama tersambung…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal memerlukan akses ke perijinan lokasi untuk menemukan dan menyambungkan dengan perangkat Android lama Anda.</string>
+    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal butuh akses ke izin lokasi untuk menemukan dan menjalin koneksi dengan perangkat lawas Android milik Anda.</string>
     <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal memerluhkan layanan lokasi diaktifkan untuk menemukan dan menyambungkan dengan perangkat Android lama Anda.</string>
     <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal memerlukan Wi-Fi untuk menemukan dan menyambungkan dengan perangkat Android lama Anda. Wi-Fi diperukan untuk diaktifkan namun tidak harus tersambung ke jaringan Wi-Fi.</string>
     <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Maaf, sepertinya perangkat ini tidak mendukung Wi-Fi Direct. Signal menggunakan Wi-Fi Direct untuk mencari dan menyambungkan dengan perangkat Android lama Anda. Anda tetap dapat memulihkan cadangan untuk mengembalikan akun dari perangkat Android lama Anda.</string>
@@ -4845,7 +4956,7 @@
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Mencari perangkat Android baru…</string>
-    <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal memerlukan akses ke perijinan lokasi untuk menemukan dan menyambungkan dengan perangkat Android baru Anda.</string>
+    <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal butuh akses ke izin lokasi untuk menemukan dan menjalin koneksi dengan perangkat baru Android milik Anda.</string>
     <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal memerluhkan layanan lokasi diaktifkan untuk menemukan dan menyambungkan dengan perangkat Android baru Anda.</string>
     <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal memerlukan Wi-Fi untuk menemukan dan menyambungkan dengan perangkat Android baru Anda. Wi-Fi diperukan untuk diaktifkan namun tidak harus tersambung ke jaringan Wi-Fi.</string>
     <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Maaf, sepertinya perangkat ini tidak mendukung Wi-Fi Direct. Signal menggunakan Wi-Fi Direct untuk mencari dan menyambungkan dengan perangkat Android baru Anda. Anda tetap dapat memulihkan cadangan untuk mengembalikan akun dari perangkat Android baru Anda.</string>
@@ -4869,7 +4980,7 @@
     <string name="DeviceTransferSetup__stop_transfer">Hentikan transfer</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">Tidak dapat menemukan perangkat lama</string>
     <string name="DeviceTransferSetup__unable_to_discover_new_device">Tidak dapat menemukan perangkat baru</string>
-    <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Pastikan perijinan-perijinan dan layanan berikut telah diaktifkan:</string>
+    <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Pastikan semua izin dan layanan berikut telah diaktifkan:</string>
     <string name="DeviceTransferSetup__location_permission">Izin lokasi</string>
     <string name="DeviceTransferSetup__location_services">Layanan lokasi</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
@@ -4962,6 +5073,8 @@
     <string name="RecipientBottomSheet_remove_from_group">Keluarkan dari grup</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">Hapus %1$s dari admin grup?</string>
+    <!-- Message shown when removing an admin will also clear their member label. -->
+    <string name="RecipientBottomSheet_remove_s_as_group_admin_and_clear_member_label">Hapus %1$s dari admin grup? Tindakan ini juga akan menghapus label anggota mereka.</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" akan dapat mengubah grup ini beserta anggotanya."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">Hapus %1$s dari grup?</string>
@@ -4974,6 +5087,8 @@
     <!-- Button text to approve a user that has requested to join a group -->
     <string name="GroupRecipientListItem_approve_description">Terima</string>
     <string name="GroupRecipientListItem_deny_description">Tolak</string>
+    <!-- Placeholder shown in the group member list when the user has not yet set a member label. -->
+    <string name="GroupRecipientListItem__add_member_label">Tambahkan label anggota</string>
 
 
     <!-- GroupsLearnMoreBottomSheetDialogFragment -->
@@ -5002,8 +5117,6 @@
     <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
     <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s hingga %2$s</string>
 
-    <!-- StorageUtil -->
-    <string name="StorageUtil__s_s">%1$s/%2$s</string>
     <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" telah diblokir.</string>
     <string name="BlockedUsersActivity__failed_to_block_s">Gagal memblokir \"%1$s\"</string>
     <string name="BlockedUsersActivity__s_has_been_unblocked">Blokir \"%1$s\" telah dibuka.</string>
@@ -5089,7 +5202,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">Menghapus akun…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Membatalkan langganan Anda…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Membatalkan langganan Anda …</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Tergantung dari berapa jumlah grup yang Anda ikuti, ini mungkin memakan waktu beberapa menit</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -5139,7 +5252,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Pratinjau gambar latar</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Apakah Anda ingin menimpa semua warna obrolan?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Apakah Anda ingin mengganti semua gambar latar?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Atur ulang warna bawaan</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset warna default</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Atur ulang semua warna</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Atur ulang gambar latar bawaan</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Kembalikan semua gambar latar.</string>
@@ -5629,6 +5742,8 @@
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Istilah &amp; Kebijakan Privasi</string>
     <string name="HelpFragment__copyright_signal_messenger">Hak Cipta Signal Messenger</string>
     <string name="HelpFragment__licenced_under_the_agplv3">Berlisensi GNU AGPLv3</string>
+    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal berstatus nirlaba</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Kualitas media</string>
@@ -5739,7 +5854,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Panggil</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Bisukan</string>
+    <string name="ConversationSettingsFragment__mute">Senyapkan</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Dibisukan</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -5756,9 +5871,11 @@
     <string name="ConversationSettingsFragment__add_to_a_group">Tambahkan ke grup</string>
     <string name="ConversationSettingsFragment__see_all">Lihat semua</string>
     <string name="ConversationSettingsFragment__add_members">Tambahkan anggota</string>
-    <string name="ConversationSettingsFragment__permissions">Perizinan</string>
+    <string name="ConversationSettingsFragment__permissions">Izin</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Permintaan &amp; undangan</string>
     <string name="ConversationSettingsFragment__group_link">Tautan grup</string>
+    <!-- Label for button that opens the group member label permissions screen. -->
+    <string name="ConversationSettingsFragment__group_member_label">Label Anggota</string>
     <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Tambahkan sebagai kontak</string>
     <string name="ConversationSettingsFragment__unmute">Bunyikan</string>
@@ -5780,15 +5897,42 @@
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Siapa yang dapat menambahkan anggota baru?</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Siapa yang dapat menyunting informasi grup?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">Siapa yang dapat mengirim pesan dan memulai panggilan?</string>
+    <!-- Label for the member labels permission button in the group permissions settings screen. -->
+    <string name="PermissionsSettingsFragment__add_member_labels">Tambahkan label anggota</string>
+    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Siapa yang bisa menambahkan label anggota?</string>
+    <!-- Warning title shown before restricting member labels to admins only. -->
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Label anggota akan dihapus</string>
+    <!-- Warning body shown before restricting member labels to admins only. -->
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Mengubah izin ini menjadi “Hanya admin” akan menghapus label anggota yang ditetapkan oleh non-admin dalam grup ini."</string>
+    <!-- Confirm button for changing member label permission after warning. -->
+    <string name="PermissionsSettingsFragment__change_permission">Ubah izin</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
+    <!-- Label for the setting to mute notifications for a conversation -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Bisukan notifikasi</string>
+    <!-- Summary text shown when a conversation is not muted -->
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Tidak dibisukan</string>
+    <!-- Label for the mentions notification setting in conversation sounds and notifications -->
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Menyebut</string>
+    <!-- Dialog option to always send notifications for the selected category even when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Selalu berikan notifikasi</string>
-    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
+    <!-- Dialog option to not send notifications for the selected category when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Jangan berikan notifikasi</string>
+    <!-- Label for the setting to configure custom notification sounds and vibration for a conversation -->
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notifikasi khusus</string>
+    <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
+    <string name="SoundsAndNotificationsSettingsFragment__when_muted">Saat disenyapkan</string>
+    <!-- Label for the calls notification setting in conversation sounds and notifications -->
+    <string name="SoundsAndNotificationsSettingsFragment__calls">Panggilan</string>
+    <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
+    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Berdering dan terima notifikasi saat panggilan dimulai dalam chat yang disenyapkan.</string>
+    <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
+    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Terima notifikasi saat Anda disebut dalam chat yang disenyapkan.</string>
+    <!-- Label for the replies notification setting in conversation sounds and notifications -->
+    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Membalas Anda</string>
+    <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
+    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Terima notifikasi saat seseorang membalas pesan Anda di chat yang disenyapkan.</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">Terakhir digunakan</string>
@@ -6007,13 +6151,13 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Gagal memperbarui profil</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
-    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Donasi sekarang</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Donasi</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s mendukung Signal</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s mendukung Signal dengan donasi bulanan. Signal adalah organisasi nirlaba tanpa pengiklan dan investor, didukung hanya oleh orang seperti Anda.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s mendukung Signal dengan donasi bulanan. Signal adalah organisasi nirlaba tanpa pengiklan atau investor, hanya didukung orang baik seperti Anda.</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s mendukung Signal dengan donasi. Signal adalah organisasi nirlaba tanpa pengiklan dan investor, didukung hanya oleh orang seperti Anda.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s mendukung Signal dengan donasi. Signal adalah organisasi nirlaba tanpa pengiklan atau investor, hanya didukung orang baik seperti Anda.</string>
 
     <string name="ImageView__badge">Lencana</string>
 
@@ -6030,18 +6174,20 @@
 
     <string name="Subscription__s_per_month">%1$s/bulan</string>
     <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Memperpanjang %1$s</string>
+    <string name="Subscription__renews_s">Ditagih lagi %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Kedaluwarsa %1$s</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal itu berbeda.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Dengan status nirlaba dan independen, Signal berkomitmen menyediakan layanan perpesanan dan panggilan privat. Tanpa iklan, tanpa pelacak, tanpa pengawasan. Beri donasi sekarang untuk mendukung Signal.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Perpesanan privat. Tanpa iklan, tanpa pelacak, tanpa pengawasan.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal didukung oleh donasi, yang berarti bahwa privasi Anda merupakan inti dari semua yang kami lakukan. Signal dibuat untuk Anda; bukan untuk data Anda dan bukan pula demi keuntungan.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">Dapatkan lencana opsional di profil setelah berdonasi</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">Jika bisa, silakan berdonasi hari ini agar Signal tetap menyenangkan, dapat diandalkan, dan tersedia untuk semua orang.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_privacy_is_our_mission">Privasi Anda adalah misi kami</string>
+    <!-- Fourth small text blurb on learn more sheet. Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_501c3">Signal berstatus nirlaba.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Terima kasih untuk Dukungan Anda!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
@@ -6065,13 +6211,14 @@
     <string name="ManageDonationsFragment__my_support">Dukungan saya</string>
     <string name="ManageDonationsFragment__manage_subscription">Kelola langganan</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Resi Donasi</string>
+    <string name="ManageDonationsFragment__donation_receipts">Struk donasi</string>
     <string name="ManageDonationsFragment__badges">Lencana</string>
-    <string name="ManageDonationsFragment__subscription_faq">Pertanyaan Umum Langganan</string>
+    <!-- Label that externally links to Signal Donor FAQ page -->
+    <string name="ManageDonationsFragment__subscription_faq">Pertanyaan Umum tentang Donatur</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Cara lain untuk memberi</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donasi untuk Teman</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Donasi untuk teman</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Tidak dapat mengonfirmasi donasi</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -6084,7 +6231,7 @@
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">Jumlah minimal donasi yang dapat diberikan adalah %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/bulan</string>
-    <string name="MySupportPreference__renews_s">Memperpanjang %1$s</string>
+    <string name="MySupportPreference__renews_s">Ditagih lagi %1$s</string>
     <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">Memproses transaksi…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
@@ -6540,6 +6687,51 @@
     <string name="MyStories__this_story_will_be_deleted">Cerita ini akan dihapus untuk Anda dan untuk semua yang menerimanya.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Tidak dapat menyimpan</string>
+
+    <!-- StoryArchive -->
+    <!-- Title for the story archive screen -->
+    <string name="StoryArchive__story_archive">Arsip story</string>
+    <!-- Section header in story settings -->
+    <string name="StoryArchive__archive">Arsip</string>
+    <!-- Label for switch to enable story archiving -->
+    <string name="StoryArchive__keep_stories_in_archive">Simpan story di arsip</string>
+    <!-- Description for the archive toggle -->
+    <string name="StoryArchive__save_stories_after_they_expire">Simpan story terkirim setelah hilang dari umpan aktif.</string>
+    <!-- Label for archive duration preference -->
+    <string name="StoryArchive__keep_stories_for">Simpan story selama</string>
+    <!-- Archive duration option: forever -->
+    <string name="StoryArchive__forever">Selamanya</string>
+    <!-- Archive duration option: 1 year -->
+    <string name="StoryArchive__1_year">1 tahun</string>
+    <!-- Archive duration option: 6 months -->
+    <string name="StoryArchive__6_months">6 bulan</string>
+    <!-- Archive duration option: 30 days -->
+    <string name="StoryArchive__30_days">30 hari</string>
+    <!-- Empty state title when no archived stories exist -->
+    <string name="StoryArchive__no_archived_stories">Tidak ada arsip story</string>
+    <!-- Empty state message when no archived stories exist -->
+    <string name="StoryArchive__no_archived_stories_message">Aktifkan \"Simpan Story ke Arsip\" di pengaturan story untuk mengarsipkan otomatis story Anda.</string>
+    <!-- Empty state button to navigate to story settings -->
+    <string name="StoryArchive__go_to_settings">Buka pengaturan</string>
+    <!-- Label for sort order menu -->
+    <string name="StoryArchive__sort_by">Urut berdasarkan</string>
+    <!-- Sort order option: newest first -->
+    <string name="StoryArchive__newest">Terbaru</string>
+    <!-- Sort order option: oldest first -->
+    <string name="StoryArchive__oldest">Terlama</string>
+    <!-- Delete action in story archive multi-select bottom bar -->
+    <string name="StoryArchive__delete">Hapus</string>
+    <!-- Content description for selecting a story in multi-select mode -->
+    <string name="StoryArchive__select_story">Pilih story</string>
+    <!-- Confirmation dialog body when deleting stories from archive -->
+    <plurals name="StoryArchive__delete_n_stories">
+        <item quantity="other">Hapus %1$d story? Tindakan ini tidak bisa diurungkan.</item>
+    </plurals>
+    <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
+    <plurals name="StoryArchive__d_selected">
+        <item quantity="other">%1$d dipilih</item>
+    </plurals>
+
     <!-- Displayed at bottom of story viewer when current item has views -->
     <plurals name="StoryViewerFragment__d_views">
         <item quantity="other">%1$d penonton</item>
@@ -7051,11 +7243,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Privasi lebih utama daripada keuntungan</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Bangga Berstatus Nirlaba</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Lanjutkan</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">Perpesanan privat, didanai oleh Anda. Tanpa iklan, tanpa pelacak, tanpa kompromi. Donasi sekarang untuk mendukung Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">Beri donasi untuk mendukung perpesanan privat. Bantu Signal tetap independen dan bebas iklan.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Anda memiliki donasi yang tertunda</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -7141,8 +7333,8 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">Kode negara IBAN tidak didukung</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">IBAN tidak valid</string>
-    <!-- Error label for name field when name is not at least two characters long -->
-    <string name="BankTransferDetailsFragment__minimum_2_characters">Minimal 2 karakter</string>
+    <!-- Error label for name field when name is not at least three characters long (Stripe API enforced minimum) -->
+    <string name="BankTransferDetailsFragment__minimum_3_characters">Minimal 3 karakter</string>
     <!-- Error label for email field when email is not valid -->
     <string name="BankTransferDetailsFragment__invalid_email_address">Alamat email salah</string>
 
@@ -7207,7 +7399,7 @@
     <string name="DonationCompleteBottomSheet__done">Selesai</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Membatalkan…</string>
+    <string name="StripePaymentInProgressFragment__cancelling">Membatalkan …</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. -->
     <string name="CdsTemporaryErrorBottomSheet_title">Terlalu banyak daftar kontak yang telah diproses</string>
@@ -7327,8 +7519,10 @@
     <string name="CallLogAdapter__outgoing">Panggilan Keluar</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Panggilan Tidak Terjawab</string>
-    <!-- Displayed for missed calls declined by notification profile -->
+    <!-- Displayed for one missed call declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Tidak terjawab saat profil notifikasi aktif</string>
+    <!-- Displayed for multiple missed calls declined by notification profile -->
+    <string name="CallLogAdapter__missed_notification_profile_multiple">Tidak terjawab saat profil notifikasi aktif</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Gabung</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -7461,6 +7655,14 @@
     <string name="CallLinkInfoSheet__remove">Hapus</string>
     <!-- Dialog action to block participant from the call -->
     <string name="CallLinkInfoSheet__block_from_call">Blokir dari panggilan</string>
+
+    <!-- CallParticipantSheet -->
+    <!-- Action to mute a participant\'s audio in a group call -->
+    <string name="CallParticipantSheet__mute_audio">Senyapkan audio</string>
+    <!-- Action to remove a participant from a call -->
+    <string name="CallParticipantSheet__remove_from_call">Keluarkan dari panggilan</string>
+    <!-- Action to view contact details for a participant -->
+    <string name="CallParticipantSheet__contact_details">Detail kontak</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -7627,8 +7829,6 @@
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Aktifkan Signal Secure Backups</string>
-    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups. Special string for the beta period. -->
-    <string name="TurnOnSignalBackups__title_beta">Coba Signal Secure Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Jangan sampai kehilangan pesan saat Anda berganti ponsel atau menginstal ulang Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7637,6 +7837,79 @@
     <string name="TurnOnSignalBackups__not_now">Nanti</string>
     <!-- Text for a "toast" that pops up at the bottom of the user\'s screen after they respond "not now" to a prompt asking them to enable backups -->
     <string name="TurnOnSignalBackups__toast_not_now">Anda dapat mengaktifkan pencadangan di \"Pengaturan\"</string>
+
+    <!-- Title of Megaphone B: upsell to enable backups when user has many messages -->
+    <string name="BackupMessagesUpsell__title">Jangan sampai kehilangan pesan</string>
+    <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
+    <string name="BackupMessagesUpsell__body">Aktifkan Signal Secure Backups untuk menyimpan file pesan dan media Anda.</string>
+    <!-- Primary button of Megaphone B -->
+    <string name="BackupMessagesUpsell__turn_on">Aktifkan</string>
+    <!-- Secondary button of Megaphone B -->
+    <string name="BackupMessagesUpsell__not_now">Nanti saja</string>
+
+    <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
+    <string name="BackupMediaUpsell__title">Cadangkan semua media Anda</string>
+    <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
+    <string name="BackupMediaUpsell__body">Paket Signal Secure Backups berbayar dapat menyimpan semua file media Anda, hingga 100 GB.</string>
+    <!-- Primary button of Megaphone C -->
+    <string name="BackupMediaUpsell__upgrade">Upgrade</string>
+    <!-- Secondary button of Megaphone C -->
+    <string name="BackupMediaUpsell__not_now">Nanti saja</string>
+
+    <!-- Title of Megaphone D: upsell backups when device storage is low -->
+    <string name="BackupStorageUpsell__title">Hemat ruang penyimpanan dengan pencadangan berbayar</string>
+    <!-- Body of Megaphone D: upsell backups when device storage is low -->
+    <string name="BackupStorageUpsell__body">Paket pencadangan aman berbayar dapat menghemat ruang penyimpanan di perangkat dengan meng-offload media.</string>
+    <!-- Primary button of Megaphone D when user has free tier backups -->
+    <string name="BackupStorageUpsell__upgrade">Upgrade</string>
+    <!-- Primary button of Megaphone D when user has no backups -->
+    <string name="BackupStorageUpsell__turn_on">Aktifkan</string>
+    <!-- Secondary button of Megaphone D -->
+    <string name="BackupStorageUpsell__not_now">Nanti saja</string>
+
+    <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
+    <string name="BackupUpsellBottomSheet__title">Upgrade untuk mencadangkan semua media</string>
+    <!-- Body of the backup upsell bottom sheet -->
+    <string name="BackupUpsellBottomSheet__body">Paket Signal Secure Backups berbayar dapat menyimpan semua media yang Anda kirim dan terima, hingga maksimum 100 GB. Foto atau video tidak akan ada yang hilang saat Anda berganti ponsel atau menginstal ulang Signal.</string>
+    <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
+    <string name="BackupUpsellBottomSheet__price_per_month">%1$s/bulan</string>
+    <!-- Subtitle for the paid plan feature card -->
+    <string name="BackupUpsellBottomSheet__text_and_all_media">Teks + semua media Anda</string>
+    <!-- Feature bullet: full text and media backup -->
+    <string name="BackupUpsellBottomSheet__full_text_media_backup">Pencadangan penuh pesan teks + media</string>
+    <!-- Feature bullet: 100GB storage -->
+    <string name="BackupUpsellBottomSheet__storage_100gb">Penyimpanan 100 GB</string>
+    <!-- Feature bullet: save on-device storage -->
+    <string name="BackupUpsellBottomSheet__save_on_device_storage">Hemat kapasitas simpan di perangkat</string>
+    <!-- Feature bullet: thanks for supporting Signal -->
+    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Terima kasih telah mendukung Signal</string>
+    <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
+    <string name="BackupUpsellBottomSheet__subscribe_for">Kontribusi langganan: %1$s/bulan</string>
+    <!-- Secondary/dismiss button for the upsell bottom sheet -->
+    <string name="BackupUpsellBottomSheet__no_thanks">Tidak, terima kasih</string>
+
+    <!-- Title of the backup setup complete bottom sheet -->
+    <string name="BackupSetupCompleteBottomSheet__title">Semua sudah siap. Mulai pencadangan sekarang.</string>
+    <!-- Body of the backup setup complete bottom sheet -->
+    <string name="BackupSetupCompleteBottomSheet__body">Proses ini butuh waktu. Anda dapat menggunakan Signal seperti biasa sementara pencadangan berlangsung.</string>
+    <!-- Label for the optimize storage toggle -->
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimalkan penyimpanan Signal</string>
+    <!-- Subtitle for the optimize storage toggle -->
+    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Media yang lebih lama akan di-offload, tetapi dapat diunduh dari cadangan Anda kapan saja.</string>
+    <!-- Primary button on the setup complete bottom sheet -->
+    <string name="BackupSetupCompleteBottomSheet__back_up_now">Cadangkan sekarang</string>
+
+    <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__title">Gunakan cadangan di perangkat yang baru</string>
+    <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__body">Cadangan di perangkat kini dapat disimpan dengan lebih cepat dan menggunakan data lebih sedikit.</string>
+    <!-- Button of a megaphone that will take the user to the upgrade flow -->
+    <string name="UseNewOnDeviceBackups__upgrade">Upgrade</string>
+    <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
+    <string name="UseNewOnDeviceBackups__not_now">Lain kali</string>
+
+    <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Silakan instal ulang Signal untuk memulihkan cadangan. Buka aplikasinya dan ketuk \"Pulihkan cadangan\", lalu temukan file cadangannya."</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Verifikasi kunci pemulihan</string>
@@ -7854,6 +8127,12 @@
     <!-- Backup redemption error sheet bullet point 2 -->
     <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Menggunakan langganan yang sama di banyak perangkat.</string>
 
+    <!-- OnDeviceBackupsFragment -->
+    <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
+    <string name="OnDeviceBackupsFragment__recovery_key_updated">Kunci pemulihan diperbarui</string>
+    <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
+    <string name="OnDeviceBackupsFragment__directory_selected">Direktori dipilih: %1$s</string>
+
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Kosongkan penyimpanan sebesar %1$s untuk memulihkan media Anda.</string>
@@ -7870,6 +8149,15 @@
     <!-- Status action label for resume restore from a paused state -->
     <string name="BackupStatus__resume">Lanjutkan</string>
 
+    <!-- Status subtitle for banner when we are creating a backup file -->
+    <string name="BackupStatus__status_creating_backup">Membuat cadangan …</string>
+    <!-- Status title for banner when user is actively uploading backup data -->
+    <string name="BackupStatus__uploading_backup">Mengunggah cadangan</string>
+    <!-- Status title for banner when user is temporarily unable to upload a backup -->
+    <string name="BackupStatus__upload_paused">Pencadangan dijeda</string>
+    <!-- Status title for banner when user has finished creating a backup -->
+    <string name="BackupStatus__upload_complete">Pencadangan selesai</string>
+
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Menunggu Wi-Fi …</string>
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
@@ -7878,6 +8166,10 @@
     <string name="BackupStatus__status_device_has_low_battery">Daya perangkat rendah</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%1$s dari %2$s</string>
+    <!-- Label for a context menu item that, when pressed, will hide a banner so it will no longer be shown. -->
+    <string name="BackupStatus__hide">Sembunyikan</string>
+    <!-- Label for a context menu item that, when pressed, will cancel the ongoing backup. -->
+    <string name="BackupStatus__cancel_upload">Batalkan pencadangan</string>
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
@@ -7919,6 +8211,15 @@
     <string name="ResumeRestoreCellular_resume_using_cellular_title">Lanjutkan dengan data seluler?</string>
     <!-- Dialog message to prompt resuming media restore over cellular -->
     <string name="ResumeRestoreCellular_resume_using_cellular_message">Pemulihan media via jaringan data seluler bisa jadi akan dikenakan biaya data.Hubungkan perangkat ke jaringan Wi-Fi untuk melanjutkan secara otomatis.</string>
+
+    <!-- Title of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
+    <string name="CancelBackupDialog_title">Batalkan pencadangan?</string>
+    <!-- Body of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
+    <string name="CancelBackupDialog_body">Membatalkan pencadangan tidak akan menghapus file cadangan. Anda dapat melanjutkan pencadangan kapan saja di Pengaturan Cadangan.</string>
+    <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will confirm canceling the currently-running backup (future backups are unaffected). -->
+    <string name="CancelBackupDialog_cancel_action">Batalkan pencadangan</string>
+    <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will continue the backup rather than cancel it. -->
+    <string name="CancelBackupDialog_continue_action">Lanjutkan pencadangan</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8257,6 +8558,57 @@
     <!-- Button label to open storage management screen -->
     <string name="RemoteBackupsSettingsFragment__manage_storage">Kelola penyimpanan</string>
 
+    <!-- ReadyToTransferBottomSheet -->
+    <!-- Title for a bottom sheet letting people know that they can transfer their back to their new device  -->
+    <string name="RemoteBackupsSettingsFragment__ready_to_transfer">Siap transfer</string>
+    <!-- Body for bottom sheet telling the user to scan a QR code to continue transferring their backup to a new device -->
+    <string name="RemoteBackupsSettingsFragment__use_this_device_to_scan_qr">Gunakan perangkat ini untuk memindai kode QR yang ada di perangkat destinasi transfer</string>
+    <!-- Button label to open QR scanner to scan a device and transfer a backup -->
+    <string name="RemoteBackupsSettingsFragment__scan_qr_code">Pindai kode QR</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">Memproses pencadangan …</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">Menyiapkan pencadangan …</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">Menyelesaikan …</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">Processing messages…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Processing messages: %1$s of %2$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">Uploading media: %1$d%%</string>
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">Exporting media: %1$d%%</string>
+
+    <!-- LocalArchiveJob -->
+    <!-- Notification title shown while media attachments are being exported during a local backup -->
+    <string name="LocalArchiveJob__exporting_media">Exporting media…</string>
+
+    <!-- OnDeviceBackupsImprovementsScreen -->
+    <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
+    <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Penyempurnaan pada pencadangan di perangkat</string>
+    <!-- Subtitle describing that the backup will be upgraded to a new format with a new recovery key -->
+    <string name="OnDeviceBackupsImprovementsScreen__your_on_device_backup_will_be_upgraded">Pencadangan di perangkat Anda akan di-upgrade ke format baru menggunakan kunci pemulihan baru</string>
+    <!-- Feature description explaining backups are faster and use less data -->
+    <string name="OnDeviceBackupsImprovementsScreen__backups_now_save_faster">Pencadangan kini lebih cepat dan memakai data lebih sedikit</string>
+    <!-- Feature description explaining backups will be saved as a folder with many files -->
+    <string name="OnDeviceBackupsImprovementsScreen__your_backup_will_be_saved_as_a_folder">Data cadangan Anda akan disimpan sebagai folder yang berisi banyak file</string>
+    <!-- Feature description explaining backups remain end-to-end encrypted -->
+    <string name="OnDeviceBackupsImprovementsScreen__all_backups_remain_end_to_end_encrypted">Semua data cadangan tetap terenkripsi menyeluruh</string>
+    <!-- Button text to continue to the next step -->
+    <string name="OnDeviceBackupsImprovementsScreen__continue">Lanjutkan</string>
+
+    <!-- OnDeviceBackupsSettingsScreen -->
+    <!-- Card text prompting user to update to a new recovery key for faster backups -->
+    <string name="OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key">Perbarui ke kunci pemulihan baru untuk mempercepat penyimpanan cadangan</string>
+    <!-- Button text to update to a new recovery key -->
+    <string name="OnDeviceBackupsSettingsScreen__update">Perbarui</string>
+
+    <!-- UnifiedOnDeviceBackupsSettingsScreen -->
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_recovery_key">Lihat kunci pemulihan</string>
+
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
     <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Unduh data cadangan Anda hari ini</string>
@@ -8310,12 +8662,32 @@
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Kunci pemulihan</string>
+    <!-- Screen headline shown when upgrading on-device backups to a new recovery key. -->
+    <string name="MessageBackupsKeyEducationScreen__your_new_recovery_key">Kunci pemulihan baru Anda</string>
+    <!-- Screen headline shown when the user already has an on-device recovery key set. -->
+    <string name="MessageBackupsKeyEducationScreen__your_recovery_key">Kunci pemulihan Anda</string>
     <!-- Screen body part 1 -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Kunci pemulihan adalah kode 64 karakter yang diperlukan untuk memulihkan data cadangan.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Simpan kunci pemulihan di tempat yang aman seperti pengelola kata sandi tepercaya dan jangan bagikan dengan siapa pun.</string>
     <!-- Screen body part 3 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">Jika Anda kehilangan kunci pemulihan, arsip pesan tak bisa dipulihkan.</string>
+    <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 1). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description">Kunci pemulihan adalah kode 64 karakter yang memungkinkan Anda memulihkan semua jenis data cadangan.</string>
+    <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Kunci ini akan menggantikan kunci untuk cadangan di perangkat Anda.</string>
+    <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Kunci pemulihan adalah kode 64 karakter yang memungkinkan Anda memulihkan data cadangan saat menginstal ulang Signal.</string>
+    <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Kunci ini sama seperti kunci pemulihan di perangkat.</string>
+    <!-- Label shown above a list of actions that the recovery key can be used for. -->
+    <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Gunakan kunci ini untuk:</string>
+    <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_on_device_backup">Pulihkan cadangan di perangkat</string>
+    <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup">Pulihkan Signal Secure Backups</string>
+    <!-- Row label indicating that the recovery key can be used to restore a Signal Secure Backup. -->
+    <string name="MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup">Pulihkan Signal Secure Backups</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__view_recovery_key">Lihat kunci pemulihan</string>
 
@@ -8324,6 +8696,8 @@
     <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Catat kunci pemulihan Anda</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Kunci ini diperlukan untuk memulihkan akun dan data Anda. Simpan kunci di tempat yang aman. Jika Anda kehilangan kunci, akun tidak dapat dipulihkan.</string>
+    <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">Kunci ini sama seperti kunci pemulihan di perangkat. Kunci tersebut diperlukan untuk memulihkan akun dan data Anda.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Salin ke papan klip</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -8401,7 +8775,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Masukkan kunci pemulihan</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Masukkan kode 64 digit yang Anda catat saat mengaktifkan pencadangan.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Masukkan kode 64 karakter yang Anda catat saat mengaktifkan Backups.</string>
     <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Lupa kunci?</string>
 
@@ -8485,11 +8859,13 @@
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Transfer akun dan riwayat pesan Signal Anda ke perangkat ini.</string>
     <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Dari Signal Secure Backups</string>
+    <string name="SelectRestoreMethodFragment__restore_signal_backup">Pulihkan cadangan Signal</string>
     <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Paket Pencadangan Signal gratis atau berbayar</string>
-    <!-- Option title for restoring via a local backup folder -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_folder">Dari folder cadangan</string>
+    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Pulihkan pesan teks dan media dari paket cadangan Signal.</string>
+    <!-- Option title for restoring via a local backup file or folder -->
+    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Pulihkan cadangan di perangkat</string>
+    <!-- Option subtitle fdor restoring via a local backup file or folder -->
+    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Pulihkan pesan dari cadangan yang disimpan di perangkat Anda.</string>
     <!-- Option title for restoring via a local backup file -->
     <string name="SelectRestoreMethodFragment__from_a_backup_file">Dari file cadangan</string>
     <!-- Option subtitle for restoring via a local backup -->
@@ -8564,6 +8940,96 @@
     <string name="EnterBackupKey_permanent_failure_support_email">Kegagalan permanen pemulihan data cadangan di Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
+    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
+    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Masukkan kunci pemulihan</string>
+    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
+    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Kunci pemulihan adalah kode 64 karakter yang diperlukan untuk memulihkan akun dan data Anda.</string>
+    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
+    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Tidak punya kunci pemulihan?</string>
+    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
+    <string name="EnterLocalBackupKeyScreen__next">Berikutnya</string>
+
+    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
+    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Gagal memuat arsip. Harap pilih direktori yang berbeda.</string>
+    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
+    <string name="RestoreLocalBackupDialog__ok">Oke</string>
+
+    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
+    <string name="RestoreLocalBackupActivity__backup_restore_failed">Pemulihan cadangan gagal</string>
+    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
+    <string name="RestoreLocalBackupActivity__restoring_backup">Memulihkan cadangan</string>
+    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
+    <string name="RestoreLocalBackupActivity__depending_on_the_size">Tergantung seberapa besar data cadangan Anda, proses ini mungkin butuh waktu.</string>
+    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
+    <string name="RestoreLocalBackupActivity__restoring_messages">Memulihkan pesan …</string>
+    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
+    <string name="RestoreLocalBackupActivity__finalizing">Menyelesaikan …</string>
+    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
+    <string name="RestoreLocalBackupActivity__restore_complete">Pemulihan selesai</string>
+    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
+    <string name="RestoreLocalBackupActivity__restore_failed">Pemulihan gagal</string>
+    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
+    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s dari %2$s (%3$d%%)</string>
+
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
+    <string name="RestoreLocalBackupActivity__cant_restore_backup">Tidak bisa memulihkan cadangan</string>
+
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
+    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Terjadi kesalahan saat memulihkan data cadangan. Data cadangan Anda tidak dapat dipulihkan. Hubungi tim dukungan untuk mendapatkan bantuan.</string>
+
+    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
+    <string name="RestoreLocalBackupActivity__contact_support">Hubungi tim dukungan</string>
+
+    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
+    <string name="SelectInstructionsSheet__select_your_backup_folder">Pilih folder cadangan</string>
+    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
+    <string name="SelectInstructionsSheet__tap_select_this_folder">Ketuk \"Pilih folder ini\"</string>
+    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
+    <string name="SelectInstructionsSheet__do_not_select_individual_files">Jangan pilih file satu per satu</string>
+    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
+    <string name="SelectInstructionsSheet__select_your_backup_file">Pilih file cadangan</string>
+    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
+    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Ketuk file cadangan yang Anda simpan di perangkat</string>
+    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
+    <string name="SelectInstructionsSheet__after_tapping_continue">Setelah mengetuk \"Lanjutkan\", berikut cara mengakses cadangan:</string>
+    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
+    <string name="SelectInstructionsSheet__select_the_top_level_folder">Pilih folder tingkat atas tempat cadangan disimpan</string>
+    <!-- SelectInstructionsSheet: Continue button text -->
+    <string name="SelectInstructionsSheet__continue_button">Lanjutkan</string>
+
+    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
+    <string name="SelectLocalBackupScreen__restore_on_device_backup">Pulihkan cadangan di perangkat</string>
+    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
+    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Pulihkan pesan dari folder cadangan yang disimpan di perangkat Anda. Jika tidak dipulihkan sekarang, nanti tidak bisa dipulihkan sama sekali.</string>
+    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
+    <string name="SelectLocalBackupScreen__restore_backup">Pulihkan cadangan</string>
+    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
+    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Pilih cadangan yang lebih lawas</string>
+    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
+    <string name="SelectLocalBackupScreen__choose_a_different_backup">Pilih cadangan yang berbeda</string>
+    <!-- SelectLocalBackupScreen: Label for latest backup card -->
+    <string name="SelectLocalBackupScreen__your_latest_backup">Cadangan terbaru:</string>
+    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
+    <string name="SelectLocalBackupScreen__your_backup">Cadangan Anda:</string>
+
+    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
+    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Pilih cadangan yang ingin dipulihkan</string>
+    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
+    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Memilih cadangan yang lebih lawas bisa berakibat hilangnya pesan atau media.</string>
+    <!-- SelectLocalBackupSheet: Continue button text -->
+    <string name="SelectLocalBackupSheet__continue_button">Lanjutkan</string>
+
+    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
+    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Pulihkan cadangan di perangkat</string>
+    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
+    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Pulihkan pesan dari cadangan yang disimpan di perangkat Anda. Jika tidak dipulihkan sekarang, nanti tidak bisa dipulihkan sama sekali.</string>
+    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
+    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Saya menyimpan cadangan sebagai satu file</string>
+    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
+    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Pilih folder cadangan</string>
+    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
+    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Pilih folder di perangkat tempat cadangan Anda disimpan</string>
+
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Terjadi kesalahan jaringan saat mengekspor Cadangan Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8611,6 +9077,19 @@
     <string name="TransferAccount_continue_on_your_other_device">Lanjutkan di perangkat yang lain</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">Lanjut transfer akun Anda di perangkat yang lain.</string>
+
+    <!-- Prepare Device screen title for quick restore flow -->
+    <string name="PrepareDevice_title">Menyiapkan perangkat Anda</string>
+    <!-- Prepare Device screen body text explaining backup recommendation -->
+    <string name="PrepareDevice_body">Cadangkan data sekarang sebelum mentransfer. Anda mungkin telah menerima pesan yang belum dicadangkan.</string>
+    <!-- Prepare Device screen last backup text format, %1$s is the date and %2$s is the time -->
+    <string name="PrepareDevice_last_backup">Pencadangan terakhir Anda dibuat pada %1$s pukul %2$s.</string>
+    <!-- Prepare Device screen back up now button -->
+    <string name="PrepareDevice_back_up_now">Cadangkan sekarang</string>
+    <!-- Prepare Device screen skip and continue button -->
+    <string name="PrepareDevice_skip_and_continue">Lewati dan lanjutkan</string>
+    <!-- A string describing the last time the user\'s backup was made. The placeholder represents a date-time. An example would be "Your last backup was made on July 18, 2025 at 9:00am." -->
+    <string name="PrepareDevice_last_backup_description">Pencadangan terakhir Anda dibuat %1$s. </string>
 
     <!-- Restore Complete bottom sheet dialog title -->
     <string name="RestoreCompleteBottomSheet_restore_complete">Selesaikan di perangkat Anda yang lain</string>
@@ -8734,7 +9213,7 @@
     <!-- Dialog title when you go to end a poll -->
     <string name="Poll__end_poll_title">Akhiri polling?</string>
     <!-- Dialog body when you go to end a poll -->
-    <string name="Poll__end_poll_body">Anggota grup sudah tidak bisa memilih dalam polling ini.</string>
+    <string name="Poll__end_poll_body">Para anggota di chat ini sudah tidak bisa memberi suara untuk polling ini.</string>
     <!-- Body used in dialog when we are waiting for network -->
     <string name="Poll__waiting_for_network">Menunggu jaringan …</string>
     <!-- Header when creating a new poll -->
@@ -8761,7 +9240,7 @@
     <!-- Bottom sheet title telling users to scan a qr code -->
     <string name="QuickRestoreInfoDialog__scan_qr_code">Pindai kode QR</string>
     <!-- Bottom sheet description telling users how to scan a qr code -->
-    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Use this device to scan the QR code on the device you want to transfer to</string>
+    <string name="QuickRestoreInfoDialog__use_this_device_to_scan_qr_code">Gunakan perangkat ini untuk memindai kode QR yang ada di perangkat destinasi transfer</string>
     <!-- Confirmation button to dismiss bottom sheet dialog -->
     <string name="QuickRestoreInfoDialog__okay">Oke</string>
 
@@ -8791,7 +9270,7 @@
 
     <!-- CallQualitySomethingElseScreen -->
     <!-- Title for the "Something else" call quality issue screen -->
-    <string name="CallQualitySomethingElseScreen__title">Lainnya</string>
+    <string name="CallQualitySomethingElseScreen__title">Jelaskan masalah</string>
     <!-- Label for text field where user describes their call quality issue -->
     <string name="CallQualitySomethingElseScreen__describe_your_issue">Jelaskan masalah yang Anda alami</string>
     <!-- Privacy notice explaining that issue details will be kept private and used to improve Signal calls -->
@@ -8821,11 +9300,15 @@
     <!-- Title asking user to help improve Signal -->
     <string name="CallQualitySheet__help_us_improve">Bantu kami meningkatkan kualitas</string>
     <!-- First part of description explaining diagnostics help improve call quality -->
-    <string name="CallQualitySheet__help_us_improve_description_prefix">Kirimkan info diagnostik untuk membantu kami meningkatkan kualitas panggilan. Anda dapat </string>
+    <string name="CallQualitySheet__help_us_improve_description_prefix">Dengan mengirim ini, Anda akan memberikan masukan lengkap dengan</string>
+    <!-- Clickable text to launch diagnostic fragment -->
+    <string name="CallQualitySheet__diagnostic_information_about_your_call">informasi diagnostik terkait panggilan Anda</string>
+    <!-- End of description explaining diagnostics help improve call quality -->
+    <string name="CallQualitySheet__help_us_improve_description_suffix">Anda bebas menentukan apakah ingin berbagi catatan debug atau tidak, yang berguna membantu kami meningkatkan kualitas panggilan.</string>
+    <!-- Text explaining the debug log -->
+    <string name="CallQualitySheet__information_shared_with_us">Informasi yang dibagikan kepada kami berisi informasi aplikasi tingkat rendah dan tidak mencakup isi panggilan Anda.</string>
     <!-- Link text to view debug log -->
-    <string name="CallQualitySheet__view_your_debug_log">melihat catatan debug</string>
-    <!-- Last part of description about viewing debug log before submitting -->
-    <string name="CallQualitySheet__help_us_improve_description_suffix"> sebelum mengirim</string>
+    <string name="CallQualitySheet__view_debug_log">Lihat catatan debug</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Bagikan catatan debug</string>
     <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
@@ -8834,15 +9317,23 @@
     <string name="CallQualitySheet__submit">Kirimkan</string>
     <!-- Displayed as a snackbar after submitting feedback -->
     <string name="CallQualitySheet__thanks_for_your_feedback">Terima kasih atas masukannya!</string>
+    <!-- Content description for the thumbs down button indicating user had issues with the call -->
+    <string name="CallQualitySheet__had_issues_content_description">Saya mengalami masalah saat melakukan panggilan</string>
+    <!-- Content description for the thumbs up button indicating the call was great -->
+    <string name="CallQualitySheet__great_content_description">Panggilan berjalan lancar</string>
+    <!-- Dialog body shown when feedback submission fails due to network issues -->
+    <string name="CallQualitySheet__your_feedback_failed_to_send">Masukan Anda gagal terkirim.</string>
+    <!-- Dialog button to retry sending feedback after a failure -->
+    <string name="CallQualitySheet__try_again">Coba lagi</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
-    <string name="PinnedMessage__s_pinned_a_message">%1$s pinned a message</string>
+    <string name="PinnedMessage__s_pinned_a_message">%1$s menyematkan sebuah pesan</string>
     <!-- Message body when you pin a message -->
-    <string name="PinnedMessage__you_pinned_a_message">You pinned a message</string>
+    <string name="PinnedMessage__you_pinned_a_message">Anda menyematkan sebuah pesan</string>
     <!-- Button body to go to the pinned message -->
-    <string name="PinnedMessage__go_to_message">Buka Pesan</string>
+    <string name="PinnedMessage__go_to_message">Buka pesan</string>
     <!-- Toast shown when a pinned message is not found -->
-    <string name="PinnedMessage__not_found">Message not found</string>
+    <string name="PinnedMessage__not_found">Pesan tidak ditemukan</string>
     <!-- Content description for the pin icon -->
     <string name="PinnedMessage__pinned">Disematkan</string>
     <!-- Caption shown when the pinned message is a photo -->
@@ -8856,29 +9347,76 @@
     <!-- Caption shown when the pinned message is a gif -->
     <string name="PinnedMessage__gif">GIF</string>
     <!-- Caption shown when the pinned message is a view once media -->
-    <string name="PinnedMessage__view_once">Media satu-tayangan</string>
+    <string name="PinnedMessage__view_once">Media sekali lihat</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Unpin message</string>
+    <string name="PinnedMessage__unpin_message">Lepas Sematan</string>
     <!-- Context menu option to view all the message -->
-    <string name="PinnedMessage__view_all_messages">View all messages</string>
+    <string name="PinnedMessage__view_all_messages">Lihat semua pesan</string>
     <!-- Text to unpin all messages -->
-    <string name="PinnedMessage__unpin_all_messages">Unpin All Messages</string>
+    <string name="PinnedMessage__unpin_all_messages">Lepas Sematan Semua Pesan</string>
     <!-- Title of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_title">Pinning disappearing messages</string>
+    <string name="PinnedMessage__disappearing_message_title">Menyematkan pesan terhapus otomatis</string>
     <!-- Body of bottom sheet when pinning a disappearing message -->
-    <string name="PinnedMessage__disappearing_message_body">Disappearing messages will be unpinned when their timer expires and the message is removed from the chat.</string>
+    <string name="PinnedMessage__disappearing_message_body">Pesan terhapus otomatis akan dilepas sematannya saat sudah melewati waktu timer dan pesan dihapus dari chat.</string>
     <!-- Confirmation button for bottom sheet -->
     <string name="PinnedMessage__got_it">Mengerti</string>
     <!-- Content description of disappearing timer icon -->
-    <string name="PinnedMessage__disappearing_message_content_description">Disappearing message</string>
+    <string name="PinnedMessage__disappearing_message_content_description">Pesan terhapus otomatis</string>
     <!-- Title of bottom sheet -->
-    <string name="PinnedMessage__pinned_messages">Pinned messages</string>
+    <string name="PinnedMessage__pinned_messages">Pesan disematkan</string>
     <!-- Context menu option to unpin message -->
     <string name="PinnedMessage__unpin">Lepas Sematan</string>
     <!-- Title of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_title">Unpin all messages?</string>
+    <string name="PinnedMessage__unpin_title">Lepas sematan semua pesan?</string>
     <!-- Body of dialog to unpin all messages -->
-    <string name="PinnedMessage__unpin_body">Messages will be unpinned for all members.</string>
+    <string name="PinnedMessage__unpin_body">Pesan akan dilepas sematannya untuk semua anggota.</string>
+    <!-- Dialog title when failing to pin a message -->
+    <string name="PinnedMessage__couldnt_pin">Tidak dapat menyematkan pesan</string>
+    <!-- Dialog title when failing to unpin a message -->
+    <string name="PinnedMessage__couldnt_unpin">Tidak dapat melepas sematan pesan</string>
+    <!-- Dialog title when failing to unpin all messages -->
+    <string name="PinnedMessage__couldnt_unpin_all">Tidak dapat melepas sematan pesan</string>
+    <!-- Dialog body when failing to pin a message -->
+    <string name="PinnedMessage__check_connection">Periksa koneksi Anda dan coba lagi.</string>
+
+    <!-- Group member label screen title. -->
+    <string name="GroupMemberLabel__title">Label anggota</string>
+    <!-- Group member label text field placeholder. -->
+    <string name="GroupMemberLabel__label_text_placeholder">Tambahkan label Anda</string>
+    <!-- Group member label preview section header. -->
+    <string name="GroupMemberLabel__preview_section_header">Pratinjau</string>
+    <!-- Sample message shown in the group member label message preview. -->
+    <string name="GroupMemberLabel__preview_sample_message">Halo!</string>
+    <!-- Group member label save button label. -->
+    <string name="GroupMemberLabel__save">Simpan</string>
+    <!-- Description explaining the group member labels feature. -->
+    <string name="GroupMemberLabel__description">Tambahkan label anggota untuk mendeskripsikan diri atau peran Anda dalam grup ini. Label hanya terlihat dalam grup ini.</string>
+    <!-- Error message shown when the group member label fails to save due to a network error. -->
+    <string name="GroupMemberLabel__error_cant_save_no_network">Tidak dapat menyimpan label. Periksa koneksi internet dan coba lagi.</string>
+    <!-- Error message shown when trying to edit a member label without adequate permission. -->
+    <string name="GroupMemberLabel__error_no_edit_permission">Hanya admin yang bisa menambahkan label anggota di grup ini.</string>
+    <!-- Accessibility label for the button to open the group member label emoji picker. -->
+    <string name="GroupMemberLabel__accessibility_select_emoji">Pilih emoji</string>
+    <!-- Accessibility label for the group member label close screen button. -->
+    <string name="GroupMemberLabel__accessibility_close_screen">Tutup layar</string>
+    <!-- Accessibility label for the group member label text field clear button. -->
+    <string name="GroupMemberLabel__accessibility_clear_label">Hapus label</string>
+    <!-- Section header for the list of group members who have labels set. -->
+    <string name="GroupMemberLabel__group_members_with_labels">Anggota grup dengan label</string>
+
+    <!-- Title for the member labels education sheet. -->
+    <string name="MemberLabelsEducation__title">Label anggota</string>
+    <!-- Body for the member labels education sheet. -->
+    <string name="MemberLabelsEducation__body">Gunakan label anggota untuk mendeskripsikan diri atau peran Anda dalam grup ini. Label anggota hanya terlihat dalam grup ini.</string>
+    <!-- Button to set a new member label. -->
+    <string name="MemberLabelsEducation__set_label">Set label anggota</string>
+    <!-- Button to edit an existing member label. -->
+    <string name="MemberLabelsEducation__edit_label">Edit label</string>
+
+    <!-- Title for screen shown to let the user know that displaying their member label will take priority over their about text. -->
+    <string name="MemberLabelsAboutOverride__title">Tampilan label anggota</string>
+    <!-- Body for screen shown to let the user know that displaying their member label will take priority over their about text. -->
+    <string name="MemberLabelsAboutOverride__body">Dalam grup ini, Label Anggota akan ditampilkan di samping foto sebagai pengganti informasi Tentang Anda.</string>
 
     <!-- EOF -->
 </resources>

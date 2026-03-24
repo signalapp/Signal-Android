@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -15,6 +16,7 @@ import kotlinx.collections.immutable.toImmutableList
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil
 import org.thoughtcrime.securesms.webrtc.audio.AudioDeviceMapping
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 import org.signal.core.ui.R as CoreUiR
@@ -28,17 +30,49 @@ class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputC
 
   companion object {
     const val TAG = "WebRtcAudioPicker31"
+
+    private fun WebRtcAudioOutput.toSignalAudioDevice(): SignalAudioManager.AudioDevice {
+      return when (this) {
+        WebRtcAudioOutput.HANDSET -> SignalAudioManager.AudioDevice.EARPIECE
+        WebRtcAudioOutput.SPEAKER -> SignalAudioManager.AudioDevice.SPEAKER_PHONE
+        WebRtcAudioOutput.BLUETOOTH_HEADSET -> SignalAudioManager.AudioDevice.BLUETOOTH
+        WebRtcAudioOutput.WIRED_HEADSET -> SignalAudioManager.AudioDevice.WIRED_HEADSET
+      }
+    }
+
+    private fun getDeviceList(context: Context): Pair<List<AudioOutputOption>, Int>? {
+      val telecomDevices = AndroidTelecomUtil.getAvailableAudioOutputOptions()
+      if (telecomDevices != null) {
+        return telecomDevices to AndroidTelecomUtil.getCurrentEndpointDeviceId()
+      }
+
+      val am = AppDependencies.androidCallAudioManager
+      val devices = am.availableCommunicationDevices
+        .map { AudioOutputOption(it.toFriendlyName(context).toString(), AudioDeviceMapping.fromPlatformType(it.type), it.id) }
+        .distinctBy { it.deviceType.name }
+        .filterNot { it.deviceType == SignalAudioManager.AudioDevice.NONE }
+      if (devices.isEmpty()) return null
+      return devices to (am.communicationDevice?.id ?: -1)
+    }
+
+    private fun AudioDeviceInfo.toFriendlyName(context: Context): CharSequence {
+      return when (this.type) {
+        AudioDeviceInfo.TYPE_BUILTIN_EARPIECE -> context.getString(R.string.WebRtcAudioOutputToggle__phone_earpiece)
+        AudioDeviceInfo.TYPE_BUILTIN_SPEAKER -> context.getString(R.string.WebRtcAudioOutputToggle__speaker)
+        AudioDeviceInfo.TYPE_WIRED_HEADPHONES -> context.getString(R.string.WebRtcAudioOutputToggle__wired_headphones)
+        AudioDeviceInfo.TYPE_WIRED_HEADSET -> context.getString(R.string.WebRtcAudioOutputToggle__wired_headset)
+        AudioDeviceInfo.TYPE_USB_HEADSET -> context.getString(R.string.WebRtcAudioOutputToggle__wired_headset_usb)
+        else -> this.productName
+      }
+    }
   }
 
   fun showPicker(fragmentActivity: FragmentActivity, threshold: Int, onDismiss: (DialogInterface) -> Unit): DialogInterface? {
-    val am = AppDependencies.androidCallAudioManager
-    if (am.availableCommunicationDevices.isEmpty()) {
+    val (devices, currentDeviceId) = getDeviceList(fragmentActivity) ?: run {
       Toast.makeText(fragmentActivity, R.string.WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected, Toast.LENGTH_LONG).show()
       return null
     }
 
-    val devices: List<AudioOutputOption> = am.availableCommunicationDevices.map { AudioOutputOption(it.toFriendlyName(fragmentActivity).toString(), AudioDeviceMapping.fromPlatformType(it.type), it.id) }.distinctBy { it.deviceType.name }.filterNot { it.deviceType == SignalAudioManager.AudioDevice.NONE }
-    val currentDeviceId = am.communicationDevice?.id ?: -1
     if (devices.size < threshold) {
       Log.d(TAG, "Only found $devices devices, not showing picker.")
       if (devices.isEmpty()) return null
@@ -58,22 +92,21 @@ class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputC
   fun Picker(threshold: Int) {
     val context = LocalContext.current
 
-    val am = AppDependencies.androidCallAudioManager
-    if (am.availableCommunicationDevices.isEmpty()) {
-      Toast.makeText(context, R.string.WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected, Toast.LENGTH_LONG).show()
+    val deviceList = getDeviceList(context)
+    if (deviceList == null) {
+      LaunchedEffect(Unit) {
+        Toast.makeText(context, R.string.WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected, Toast.LENGTH_LONG).show()
+        stateUpdater.hidePicker()
+      }
       return
     }
 
-    val devices: List<AudioOutputOption> = am.availableCommunicationDevices.map { AudioOutputOption(it.toFriendlyName(context).toString(), AudioDeviceMapping.fromPlatformType(it.type), it.id) }.distinctBy { it.deviceType.name }.filterNot { it.deviceType == SignalAudioManager.AudioDevice.NONE }
-    val currentDeviceId = am.communicationDevice?.id ?: -1
+    val (devices, currentDeviceId) = deviceList
     if (devices.size < threshold) {
-      Log.d(TAG, "Only found $devices devices, not showing picker.")
-      if (devices.isEmpty()) return
-
-      val index = devices.indexOfFirst { it.deviceId == currentDeviceId }
-      if (index == -1) return
-
-      onAudioDeviceSelected(devices[(index + 1) % devices.size])
+      LaunchedEffect(Unit) {
+        Log.d(TAG, "Only found $devices devices, not showing picker.")
+        cycleToNextDevice()
+      }
       return
     } else {
       Log.d(TAG, "Found $devices devices, showing picker.")
@@ -91,7 +124,12 @@ class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputC
   @RequiresApi(31)
   val onAudioDeviceSelected: (AudioOutputOption) -> Unit = {
     Log.d(TAG, "User selected audio device of type ${it.deviceType}")
-    audioOutputChangedListener.audioOutputChanged(WebRtcAudioDevice(it.toWebRtcAudioOutput(), it.deviceId))
+    val webRtcDevice = if (AndroidTelecomUtil.hasActiveController()) {
+      WebRtcAudioDevice(it.toWebRtcAudioOutput(), null)
+    } else {
+      WebRtcAudioDevice(it.toWebRtcAudioOutput(), it.deviceId)
+    }
+    audioOutputChangedListener.audioOutputChanged(webRtcDevice)
 
     when (it.deviceType) {
       SignalAudioManager.AudioDevice.WIRED_HEADSET -> {
@@ -113,14 +151,32 @@ class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputC
     }
   }
 
-  private fun AudioDeviceInfo.toFriendlyName(context: Context): CharSequence {
-    return when (this.type) {
-      AudioDeviceInfo.TYPE_BUILTIN_EARPIECE -> context.getString(R.string.WebRtcAudioOutputToggle__phone_earpiece)
-      AudioDeviceInfo.TYPE_BUILTIN_SPEAKER -> context.getString(R.string.WebRtcAudioOutputToggle__speaker)
-      AudioDeviceInfo.TYPE_WIRED_HEADPHONES -> context.getString(R.string.WebRtcAudioOutputToggle__wired_headphones)
-      AudioDeviceInfo.TYPE_WIRED_HEADSET -> context.getString(R.string.WebRtcAudioOutputToggle__wired_headset)
-      AudioDeviceInfo.TYPE_USB_HEADSET -> context.getString(R.string.WebRtcAudioOutputToggle__wired_headset_usb)
-      else -> this.productName
+  /**
+   * Cycles to the next audio device without showing a picker.
+   * Uses the system device list to resolve the actual device ID, falling back to
+   * type-based lookup from app-tracked state when the current communication device is unknown.
+   */
+  fun cycleToNextDevice() {
+    val (devices, currentDeviceId) = getDeviceList(AppDependencies.application) ?: run {
+      Log.w(TAG, "cycleToNextDevice: no available communication devices")
+      return
+    }
+
+    if (devices.isEmpty()) {
+      Log.w(TAG, "cycleToNextDevice: no available communication devices")
+      return
+    }
+
+    val index = devices.indexOfFirst { it.deviceId == currentDeviceId }
+
+    if (index != -1) {
+      onAudioDeviceSelected(devices[(index + 1) % devices.size])
+    } else {
+      val nextOutput = outputState.peekNext()
+      val targetDeviceType = nextOutput.toSignalAudioDevice()
+      val targetDevice = devices.firstOrNull { it.deviceType == targetDeviceType } ?: devices.first()
+      Log.d(TAG, "cycleToNextDevice: communicationDevice unknown, selecting ${targetDevice.deviceType} by type")
+      onAudioDeviceSelected(targetDevice)
     }
   }
 

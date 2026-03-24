@@ -64,6 +64,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescrip
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.database.model.databaseprotos.PaymentTombstone
+import org.thoughtcrime.securesms.database.model.databaseprotos.PinnedMessage
 import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
@@ -120,7 +121,6 @@ class ChatItemArchiveImporter(
       MessageTable.EXPIRES_IN,
       MessageTable.EXPIRE_STARTED,
       MessageTable.UNIDENTIFIED,
-      MessageTable.REMOTE_DELETED,
       MessageTable.NETWORK_FAILURES,
       MessageTable.QUOTE_ID,
       MessageTable.QUOTE_AUTHOR,
@@ -137,7 +137,11 @@ class ChatItemArchiveImporter(
       MessageTable.LATEST_REVISION_ID,
       MessageTable.REVISION_NUMBER,
       MessageTable.PARENT_STORY_ID,
-      MessageTable.NOTIFIED
+      MessageTable.NOTIFIED,
+      MessageTable.PINNED_UNTIL,
+      MessageTable.PINNING_MESSAGE_ID,
+      MessageTable.PINNED_AT,
+      MessageTable.DELETED_BY
     )
 
     private val REACTION_COLUMNS = arrayOf(
@@ -189,6 +193,12 @@ class ChatItemArchiveImporter(
       Log.w(TAG, ImportSkips.chatIdRemoteRecipientNotFound(chatItem.dateSent, chatItem.chatId))
       return
     }
+
+    if (chatItem.adminDeletedMessage != null && importState.remoteToLocalRecipientId[chatItem.adminDeletedMessage.adminId] == null) {
+      Log.w(TAG, ImportSkips.missingAdminDeleteRecipient(chatItem.dateSent, chatItem.chatId))
+      return
+    }
+
     val messageInsert = chatItem.toMessageInsert(fromLocalRecipientId, chatLocalRecipientId, localThreadId)
     if (chatItem.revisions.isNotEmpty()) {
       // Flush to avoid having revisions cross batch boundaries, which will cause a foreign key failure
@@ -341,6 +351,32 @@ class ChatItemArchiveImporter(
 
           if (pollId != null) {
             SignalDatabase.polls.endPoll(pollId = pollId, endingMessageId = endPollMessageId)
+          }
+        }
+      } else if (this.updateMessage.pinMessage != null) {
+        followUps += { pinUpdateMessageId ->
+          val targetAuthorId = importState.remoteToLocalRecipientId[updateMessage.pinMessage.authorId]
+          if (targetAuthorId != null) {
+            val pinnedMessageId = SignalDatabase.messages.getMessageFor(updateMessage.pinMessage.targetSentTimestamp, targetAuthorId)?.id ?: -1
+            val messageExtras = MessageExtras(
+              pinnedMessage = PinnedMessage(
+                pinnedMessageId = pinnedMessageId,
+                targetAuthorAci = recipients.getRecord(targetAuthorId).aci!!.toByteString(),
+                targetTimestamp = updateMessage.pinMessage.targetSentTimestamp
+              )
+            )
+
+            db.update(MessageTable.TABLE_NAME)
+              .values(MessageTable.MESSAGE_EXTRAS to messageExtras.encode())
+              .where("${MessageTable.ID} = ?", pinUpdateMessageId)
+              .run()
+
+            if (pinnedMessageId != -1L) {
+              db.update(MessageTable.TABLE_NAME)
+                .values(MessageTable.PINNING_MESSAGE_ID to pinUpdateMessageId)
+                .where("${MessageTable.ID} = ?", pinnedMessageId)
+                .run()
+            }
           }
         }
       }
@@ -642,17 +678,23 @@ class ChatItemArchiveImporter(
     contentValues.put(MessageTable.QUOTE_MISSING, 0)
     contentValues.put(MessageTable.QUOTE_TYPE, 0)
     contentValues.put(MessageTable.VIEW_ONCE, 0)
-    contentValues.put(MessageTable.REMOTE_DELETED, 0)
     contentValues.put(MessageTable.PARENT_STORY_ID, 0)
+
+    if (this.pinDetails != null) {
+      val pinnedUntil = if (this.pinDetails.pinNeverExpires == true) MessageTable.PIN_FOREVER else this.pinDetails.pinExpiresAtTimestamp
+      contentValues.put(MessageTable.PINNED_UNTIL, pinnedUntil ?: 0)
+      contentValues.put(MessageTable.PINNED_AT, this.pinDetails.pinnedAtTimestamp)
+    }
 
     when {
       this.standardMessage != null -> contentValues.addStandardMessage(this.standardMessage)
-      this.remoteDeletedMessage != null -> contentValues.put(MessageTable.REMOTE_DELETED, 1)
+      this.remoteDeletedMessage != null -> contentValues.put(MessageTable.DELETED_BY, fromRecipientId.toLong())
       this.updateMessage != null -> contentValues.addUpdateMessage(this.updateMessage, fromRecipientId, toRecipientId)
       this.paymentNotification != null -> contentValues.addPaymentNotification(this, chatRecipientId)
       this.giftBadge != null -> contentValues.addGiftBadge(this.giftBadge)
       this.viewOnceMessage != null -> contentValues.addViewOnce(this.viewOnceMessage)
       this.directStoryReplyMessage != null -> contentValues.addDirectStoryReply(this.directStoryReplyMessage, toRecipientId)
+      this.adminDeletedMessage != null -> contentValues.put(MessageTable.DELETED_BY, importState.remoteToLocalRecipientId[this.adminDeletedMessage.adminId]!!.toLong())
     }
 
     return contentValues
@@ -845,6 +887,9 @@ class ChatItemArchiveImporter(
       }
       updateMessage.pollTerminate != null -> {
         typeFlags = MessageTypes.SPECIAL_TYPE_POLL_TERMINATE or (getAsLong(MessageTable.TYPE) and MessageTypes.BASE_TYPE_MASK.inv())
+      }
+      updateMessage.pinMessage != null -> {
+        typeFlags = MessageTypes.SPECIAL_TYPE_PINNED_MESSAGE or (getAsLong(MessageTable.TYPE) and MessageTypes.BASE_TYPE_MASK.inv())
       }
       updateMessage.sessionSwitchover != null -> {
         typeFlags = MessageTypes.SESSION_SWITCHOVER_TYPE or (getAsLong(MessageTable.TYPE) and MessageTypes.BASE_TYPE_MASK.inv())

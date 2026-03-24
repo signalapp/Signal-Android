@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.util.RemoteConfig;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 
 import java.util.Map;
 

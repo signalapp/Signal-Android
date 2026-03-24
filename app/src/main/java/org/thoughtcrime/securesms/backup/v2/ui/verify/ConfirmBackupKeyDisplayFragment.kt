@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.backup.v2.ui.verify
 
 import android.app.Activity.RESULT_OK
 import androidx.compose.runtime.Composable
+import org.signal.core.ui.compose.ComposeFragment
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyVerifyScreen
-import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**

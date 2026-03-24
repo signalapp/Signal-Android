@@ -8,7 +8,7 @@ import org.signal.core.util.isNotEmpty
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
@@ -54,7 +54,10 @@ object SignalServiceProtoUtil {
         hasRemoteDelete ||
         pollCreate != null ||
         pollVote != null ||
-        pollTerminate != null
+        pollTerminate != null ||
+        pinMessage != null ||
+        unpinMessage != null ||
+        adminDelete != null
     }
 
   val DataMessage.hasDisallowedAnnouncementOnlyContent: Boolean

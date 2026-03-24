@@ -159,12 +159,22 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
 
   @Override
   public void onPause(@NonNull LifecycleOwner owner) {
-    if (player.getExoPlayer() != null) {
-      player.getExoPlayer().stop();
-      player.getExoPlayer().clearMediaItems();
-      player.getExoPlayer().removeListener(this);
-      AppDependencies.getExoPlayerPool().pool(player.getExoPlayer());
+    returnPlayerToPool();
+  }
+
+  @Override
+  public void onStop(@NonNull LifecycleOwner owner) {
+    returnPlayerToPool();
+  }
+
+  private void returnPlayerToPool() {
+    ExoPlayer exoPlayer = player.getExoPlayer();
+    if (exoPlayer != null) {
+      exoPlayer.stop();
+      exoPlayer.clearMediaItems();
+      exoPlayer.removeListener(this);
       player.setExoPlayer(null);
+      AppDependencies.getExoPlayerPool().pool(exoPlayer);
     }
   }
 

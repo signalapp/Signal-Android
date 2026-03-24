@@ -42,7 +42,7 @@ class InternalSettingsRepository(context: Context) {
     }
   }
 
-  fun addSampleReleaseNote() {
+  fun addSampleReleaseNote(callToAction: String) {
     SignalExecutors.UNBOUNDED.execute {
       AppDependencies.jobManager.runSynchronously(CreateReleaseChannelJob.create(), 5000)
 
@@ -52,7 +52,7 @@ class InternalSettingsRepository(context: Context) {
       val bodyRangeList = BodyRangeList.Builder()
         .addStyle(BodyRangeList.BodyRange.Style.BOLD, 0, title.length)
 
-      bodyRangeList.addButton("Call to Action Text", "action", body.lastIndex, 0)
+      bodyRangeList.addButton("Call to Action Text", callToAction, body.lastIndex, 0)
 
       val recipientId = SignalStore.releaseChannel.releaseChannelRecipientId!!
       val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))

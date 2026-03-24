@@ -57,6 +57,7 @@ fun RecipientTable.getContactsForBackup(selfId: Long): ContactArchiveExporter {
       "${RecipientTable.TABLE_NAME}.${RecipientTable.CUSTOM_CHAT_COLORS_ID}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.AVATAR_COLOR}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.EXTRAS}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.KEY_TRANSPARENCY_DATA}",
       "${IdentityTable.TABLE_NAME}.${IdentityTable.IDENTITY_KEY}",
       "${IdentityTable.TABLE_NAME}.${IdentityTable.VERIFIED}"
     )

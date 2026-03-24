@@ -23,6 +23,22 @@ class KeyboardPagerViewModel : ViewModel() {
     pages = DefaultValueLiveData(startingPages)
     page = DefaultValueLiveData(startingPages.first())
 
+    checkStickerAvailability()
+  }
+
+  fun resetPages() {
+    val defaultPages: MutableSet<KeyboardPage> = KeyboardPage.entries.toMutableSet()
+
+    if (!RemoteConfig.gifSearchAvailable) {
+      defaultPages.remove(KeyboardPage.GIF)
+    }
+
+    pages.value = defaultPages
+
+    checkStickerAvailability()
+  }
+
+  private fun checkStickerAvailability() {
     StickerSearchRepository().getStickerFeatureAvailability { available ->
       if (!available) {
         val updatedPages = pages.value.toMutableSet().apply { remove(KeyboardPage.STICKER) }

@@ -71,6 +71,7 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.TextFields
 import org.signal.core.ui.compose.Tooltips
 import org.signal.core.ui.compose.circularReveal
@@ -80,6 +81,7 @@ import org.thoughtcrime.securesms.calls.log.CallLogFilter
 import org.thoughtcrime.securesms.components.compose.ActionModeTopBar
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageSmall
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
 
@@ -98,6 +100,7 @@ interface MainToolbarCallback {
   fun onFilterMissedCallsClick()
   fun onClearCallFilterClick()
   fun onStoryPrivacyClick()
+  fun onStoryArchiveClick()
   fun onCloseSearchClick()
   fun onCloseArchiveClick()
   fun onCloseActionModeClick()
@@ -119,6 +122,7 @@ interface MainToolbarCallback {
     override fun onFilterMissedCallsClick() = Unit
     override fun onClearCallFilterClick() = Unit
     override fun onStoryPrivacyClick() = Unit
+    override fun onStoryArchiveClick() = Unit
     override fun onCloseSearchClick() = Unit
     override fun onCloseArchiveClick() = Unit
     override fun onCloseActionModeClick() = Unit
@@ -255,7 +259,7 @@ private fun SearchToolbar(
           onClick = callback::onCloseSearchClick
         ) {
           Icon(
-            imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+            imageVector = SignalIcons.ArrowStart.imageVector,
             contentDescription = stringResource(R.string.MainToolbar__close_search_content_description)
           )
         }
@@ -326,7 +330,7 @@ private fun ArchiveToolbar(
         callback.onCloseArchiveClick()
       }) {
         Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
+          imageVector = SignalIcons.ArrowStart.imageVector,
           contentDescription = stringResource(R.string.CallScreenTopBar__go_back)
         )
       }
@@ -404,6 +408,17 @@ private fun PrimaryToolbar(
       NotificationProfileAction(state, callback)
       ProxyAction(state, callback)
 
+      if (state.destination == MainNavigationListLocation.STORIES && SignalStore.labs.storyArchive) {
+        IconButtons.IconButton(
+          onClick = callback::onStoryArchiveClick
+        ) {
+          Icon(
+            imageVector = ImageVector.vectorResource(R.drawable.symbol_story_archive_24),
+            contentDescription = stringResource(R.string.StoryArchive__story_archive)
+          )
+        }
+      }
+
       IconButtons.IconButton(
         onClick = callback::onSearchClick,
         modifier = Modifier.onPlaced {
@@ -411,7 +426,7 @@ private fun PrimaryToolbar(
         }
       ) {
         Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_search_24),
+          imageVector = SignalIcons.Search.imageVector,
           contentDescription = stringResource(R.string.conversation_list_search_description)
         )
       }

@@ -10,6 +10,7 @@ import org.signal.ringrtc.CallSummary
 import org.signal.ringrtc.GroupCall
 import org.signal.storageservice.protos.calls.quality.SubmitCallQualitySurveyRequest
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.LocaleRemoteConfig
 import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
@@ -60,10 +61,10 @@ object CallQuality {
         .video_recv_jitter_median(callSummary.qualityStats.videoStats.jitterMedianRecvMillis)
         .audio_send_jitter_median(callSummary.qualityStats.audioStats.jitterMedianSendMillis)
         .video_send_jitter_median(callSummary.qualityStats.videoStats.jitterMedianSendMillis)
-        .audio_send_packet_loss_fraction(callSummary.qualityStats.audioStats.packetLossPercentageSend)
-        .video_send_packet_loss_fraction(callSummary.qualityStats.videoStats.packetLossPercentageSend)
-        .audio_recv_packet_loss_fraction(callSummary.qualityStats.audioStats.packetLossPercentageRecv)
-        .video_recv_packet_loss_fraction(callSummary.qualityStats.videoStats.packetLossPercentageRecv)
+        .audio_send_packet_loss_fraction(callSummary.qualityStats.audioStats.packetLossFractionSend)
+        .video_send_packet_loss_fraction(callSummary.qualityStats.videoStats.packetLossFractionSend)
+        .audio_recv_packet_loss_fraction(callSummary.qualityStats.audioStats.packetLossFractionRecv)
+        .video_recv_packet_loss_fraction(callSummary.qualityStats.videoStats.packetLossFractionRecv)
         .call_telemetry(callSummary.rawStats?.toByteString())
         .build()
     } else {
@@ -71,10 +72,19 @@ object CallQuality {
     }
   }
 
+  /**
+   * Consumes any pending request. We will automatically filter out requests if they're over five minutes old.
+   */
   fun consumeQualityRequest(): SubmitCallQualitySurveyRequest? {
-    val request = SignalStore.callQuality.surveyRequest
+    val request = SignalStore.callQuality.surveyRequest ?: return null
     SignalStore.callQuality.surveyRequest = null
-    return if (isFeatureEnabled()) request else null
+
+    val fiveMinutesAgo = System.currentTimeMillis().milliseconds - 5.minutes
+    return if (!isFeatureEnabled() || request.end_timestamp.milliseconds < fiveMinutesAgo) {
+      null
+    } else {
+      request
+    }
   }
 
   private fun isCallQualitySurveyRequired(callSummary: CallSummary): Boolean {
@@ -101,16 +111,8 @@ object CallQuality {
         return false
       }
 
-      val callLength = callSummary.endTime.milliseconds - callSummary.startTime.milliseconds
-      val isLongerThanTenMinutes = callLength > 10.minutes
-      val isLessThanOneMinute = callLength < 1.minutes
-
-      if (isLongerThanTenMinutes || isLessThanOneMinute) {
-        return true
-      }
-
-      val chance = RemoteConfig.callQualitySurveyPercent
-      val roll = (0 until 100).random()
+      val chance = LocaleRemoteConfig.getCallQualitySurveyPartsPerMillion()
+      val roll = (0 until 1_000_000).random()
 
       if (roll < chance) {
         return true
@@ -125,7 +127,7 @@ object CallQuality {
   }
 
   private fun isFeatureEnabled(): Boolean {
-    return (RemoteConfig.callQualitySurvey || SignalStore.internal.callQualitySurveys) && SignalStore.callQuality.isQualitySurveyEnabled
+    return RemoteConfig.callQualitySurvey && SignalStore.callQuality.isQualitySurveyEnabled
   }
 
   private enum class CallType(val code: String) {

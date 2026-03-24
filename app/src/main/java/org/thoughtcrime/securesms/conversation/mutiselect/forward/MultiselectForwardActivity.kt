@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FragmentWrapperActivity
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment.Companion.RESULT_SELECTION
+import org.signal.core.ui.R as CoreUiR
 
 open class MultiselectForwardActivity : FragmentWrapperActivity(), MultiselectForwardFragment.Callback, SearchConfigurationProvider {
 
@@ -61,7 +62,7 @@ open class MultiselectForwardActivity : FragmentWrapperActivity(), MultiselectFo
   }
 
   override fun getDialogBackgroundColor(): Int {
-    return ContextCompat.getColor(this, R.color.signal_colorBackground)
+    return ContextCompat.getColor(this, CoreUiR.color.signal_colorBackground)
   }
 
   class SelectionContract : ActivityResultContract<MultiselectForwardFragmentArgs, List<ContactSearchKey.RecipientSearchKey>>() {

@@ -9,11 +9,13 @@ import kotlin.reflect.full.memberProperties
 /**
  * Ensures we don't release with forced values which is intended for local development only.
  */
+@Suppress("ClassName")
 class RemoteConfig_StaticValuesTest {
 
   @Before
   fun setup() {
     RemoteConfig.initialized = true
+    RemoteConfig.underTest = true
   }
 
   /**
@@ -34,23 +36,26 @@ class RemoteConfig_StaticValuesTest {
       "1",
       "100",
       "12345678910111213141516",
-      "*"
+      "*",
+      "1.0.0"
     )
 
     val configKeys = RemoteConfig.configsByKey.keys
 
     val ignoreList = setOf(
-      "initialized",
-      "REMOTE_VALUES",
       "configsByKey",
-      "debugMemoryValues",
       "debugDiskValues",
+      "debugMemoryValues",
       "debugPendingDiskValues",
+      "initialized",
+      "internalUserDisabled",
       "libsignalConfigs",
+      "underTest",
       "CRASH_PROMPT_CONFIG",
+      "DEVICE_SPECIFIC_NOTIFICATION_CONFIG",
       "PROMPT_BATTERY_SAVER",
       "PROMPT_FOR_NOTIFICATION_LOGS",
-      "DEVICE_SPECIFIC_NOTIFICATION_CONFIG"
+      "REMOTE_VALUES"
     )
 
     val publicVals: List<KProperty1<*, *>> = RemoteConfig::class.memberProperties

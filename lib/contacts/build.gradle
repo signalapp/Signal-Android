@@ -1,0 +1,11 @@
+plugins {
+    id 'signal-library'
+}
+
+android {
+    namespace 'org.signal.contacts'
+}
+
+dependencies {
+    implementation project(':core:util')
+}

@@ -1,0 +1,248 @@
+package org.whispersystems.signalservice.api.groupsv2;
+
+import org.junit.Test;
+import org.signal.storageservice.storage.protos.groups.GroupChange;
+
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.whispersystems.signalservice.api.groupsv2.ProtobufTestUtils.getMaxDeclaredFieldNumber;
+
+@SuppressWarnings("NewClassNamingConvention")
+public final class GroupChangeUtil_changeIsEmpty_Test {
+  /**
+   * Reflects over the generated protobuf class and ensures that no new fields have been added since we wrote this.
+   * <p>
+   * If we didn't, newly added fields would easily affect {@link GroupChangeUtil}'s ability to detect empty change states and resolve conflicts.
+   */
+  @Test
+  public void ensure_GroupChangeUtil_knows_about_all_fields_of_GroupChange_Actions() {
+    int maxFieldFound = getMaxDeclaredFieldNumber(GroupChange.Actions.class);
+
+    assertEquals("GroupChangeUtil and its tests need updating to account for new fields on " + GroupChange.Actions.class.getName(),
+                 27, maxFieldFound);
+  }
+
+  @Test
+  public void empty_change_set() {
+    assertTrue(GroupChangeUtil.changeIsEmpty(new GroupChange.Actions.Builder().build()));
+  }
+
+  @Test
+  public void not_empty_with_add_member_field_3() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .addMembers(List.of(new GroupChange.Actions.AddMemberAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_delete_member_field_4() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .deleteMembers(List.of(new GroupChange.Actions.DeleteMemberAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_modify_member_roles_field_5() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .modifyMemberRoles(List.of(new GroupChange.Actions.ModifyMemberRoleAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_modify_profile_keys_field_6() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .modifyMemberProfileKeys(List.of(new GroupChange.Actions.ModifyMemberProfileKeyAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_add_pending_members_field_7() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .addMembersPendingProfileKey(List.of(new GroupChange.Actions.AddMemberPendingProfileKeyAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_delete_pending_members_field_8() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .deleteMembersPendingProfileKey(List.of(new GroupChange.Actions.DeleteMemberPendingProfileKeyAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_promote_delete_pending_members_field_9() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .promoteMembersPendingProfileKey(List.of(new GroupChange.Actions.PromoteMemberPendingProfileKeyAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_modify_title_field_10() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .modifyTitle(new GroupChange.Actions.ModifyTitleAction())
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_modify_avatar_field_11() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .modifyAvatar(new GroupChange.Actions.ModifyAvatarAction())
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_modify_disappearing_message_timer_field_12() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .modifyDisappearingMessageTimer(new GroupChange.Actions.ModifyDisappearingMessageTimerAction())
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_modify_attributes_field_13() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .modifyAttributesAccess(new GroupChange.Actions.ModifyAttributesAccessControlAction())
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_modify_member_access_field_14() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .modifyMemberAccess(new GroupChange.Actions.ModifyMembersAccessControlAction())
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_modify_add_from_invite_link_field_15() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .modifyAddFromInviteLinkAccess(new GroupChange.Actions.ModifyAddFromInviteLinkAccessControlAction())
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_add_requesting_members_field_16() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .addMembersPendingAdminApproval(List.of(new GroupChange.Actions.AddMemberPendingAdminApprovalAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_delete_requesting_members_field_17() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .deleteMembersPendingAdminApproval(List.of(new GroupChange.Actions.DeleteMemberPendingAdminApprovalAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_promote_requesting_members_field_18() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .promoteMembersPendingAdminApproval(List.of(new GroupChange.Actions.PromoteMemberPendingAdminApprovalAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_promote_requesting_members_field_19() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .modifyInviteLinkPassword(new GroupChange.Actions.ModifyInviteLinkPasswordAction())
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_modify_description_field_20() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .modifyDescription(new GroupChange.Actions.ModifyDescriptionAction())
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_modify_description_field_21() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .modify_announcements_only(new GroupChange.Actions.ModifyAnnouncementsOnlyAction())
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_add_banned_member_field_22() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .add_members_banned(List.of(new GroupChange.Actions.AddMemberBannedAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_delete_banned_member_field_23() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .delete_members_banned(List.of(new GroupChange.Actions.DeleteMemberBannedAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_promote_pending_pni_aci_members_field_24() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .promote_members_pending_pni_aci_profile_key(List.of(new GroupChange.Actions.PromoteMemberPendingPniAciProfileKeyAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_modify_member_label_field_26() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .modifyMemberLabels(List.of(new GroupChange.Actions.ModifyMemberLabelAction()))
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+
+  @Test
+  public void not_empty_with_modify_member_label_access_field_27() {
+    GroupChange.Actions actions = new GroupChange.Actions.Builder()
+        .modifyMemberLabelAccess(new GroupChange.Actions.ModifyMemberLabelAccessControlAction())
+        .build();
+
+    assertFalse(GroupChangeUtil.changeIsEmpty(actions));
+  }
+}

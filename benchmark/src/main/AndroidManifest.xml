@@ -2,6 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <queries>
-        <package android:name="org.thoughtcrime.securesms" />
+        <package android:name="org.thoughtcrime.securesms.benchmark" />
     </queries>
 </manifest>

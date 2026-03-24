@@ -8,12 +8,12 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.signal.core.ui.util.ThemeUtil;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.thoughtcrime.securesms.util.ThemeUtil.isDarkTheme;
+import static org.signal.core.ui.util.ThemeUtil.isDarkTheme;
 
 public enum MaterialColor {
   CRIMSON    (R.color.conversation_crimson,     R.color.conversation_crimson_tint,     R.color.conversation_crimson_shade,     "red"),

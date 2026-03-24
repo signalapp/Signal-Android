@@ -13,13 +13,13 @@ import kotlinx.serialization.Transient
 import okio.ByteString
 import org.signal.core.util.DatabaseId
 import org.signal.core.util.Hex
+import org.signal.core.util.LRUCache
+import org.signal.core.util.Util
 import org.signal.libsignal.protocol.kdf.HKDF
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupIdentifier
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
-import org.thoughtcrime.securesms.util.LRUCache
-import org.thoughtcrime.securesms.util.Util
 import java.io.IOException
 import java.security.SecureRandom
 
@@ -242,6 +242,10 @@ sealed class GroupId(private val encodedId: String) : DatabaseId, Parcelable {
   fun requireV2(): V2 {
     assert(this is V2)
     return this as V2
+  }
+
+  fun v2OrNull(): V2? {
+    return if (isV2) (this as V2) else null
   }
 
   fun requirePush(): Push {

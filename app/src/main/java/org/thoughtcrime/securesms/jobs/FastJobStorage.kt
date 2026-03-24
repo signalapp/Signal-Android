@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs
 
 import androidx.annotation.VisibleForTesting
 import kotlinx.collections.immutable.toImmutableSet
+import org.signal.core.util.LRUCache
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.JobDatabase
@@ -11,7 +12,6 @@ import org.thoughtcrime.securesms.jobmanager.persistence.DependencySpec
 import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage
-import org.thoughtcrime.securesms.util.LRUCache
 import java.util.TreeSet
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.function.Predicate

@@ -23,12 +23,12 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.horizontalGutters
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.DslBannerBinding
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingViewHolder
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Displays a banner to notify the user of certain state or action that needs to be taken.
@@ -72,7 +72,7 @@ fun Banner(
 ) {
   OutlinedCard(
     shape = RoundedCornerShape(18.dp),
-    border = BorderStroke(width = 1.dp, color = colorResource(R.color.signal_colorOutline_38)),
+    border = BorderStroke(width = 1.dp, color = colorResource(CoreUiR.color.signal_colorOutline_38)),
     modifier = Modifier
       .horizontalGutters()
       .fillMaxWidth()

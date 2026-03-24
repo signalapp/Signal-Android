@@ -392,6 +392,16 @@
         <item>@string/SoundsAndNotificationsSettingsFragment__do_not_notify</item>
     </string-array>
 
+    <string-array name="SoundsAndNotificationsSettingsFragment__call_labels">
+        <item>@string/SoundsAndNotificationsSettingsFragment__always_notify</item>
+        <item>@string/SoundsAndNotificationsSettingsFragment__do_not_notify</item>
+    </string-array>
+
+    <string-array name="SoundsAndNotificationsSettingsFragment__reply_labels">
+        <item>@string/SoundsAndNotificationsSettingsFragment__always_notify</item>
+        <item>@string/SoundsAndNotificationsSettingsFragment__do_not_notify</item>
+    </string-array>
+
     <integer-array name="PlaybackSpeedToggleTextView__speeds">
         <item>100</item>
         <item>150</item>

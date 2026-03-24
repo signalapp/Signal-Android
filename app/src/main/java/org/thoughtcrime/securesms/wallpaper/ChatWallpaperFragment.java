@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.conversation.colors.ColorizerView;
 import org.thoughtcrime.securesms.util.DisplayMetricsUtil;
 import org.thoughtcrime.securesms.util.Projection;
-import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.signal.core.ui.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
@@ -111,7 +111,7 @@ public class ChatWallpaperFragment extends Fragment {
     if (viewModel.isGlobal()) {
       resetAllWallpaper.setOnClickListener(unused -> {
         new MaterialAlertDialogBuilder(requireContext())
-            .setTitle(R.string.ChatWallpaperFragment__reset_wallpaper)
+            .setTitle(R.string.ChatWallpaperFragment__reset_wallpapers)
             .setMessage(R.string.ChatWallpaperFragment__would_you_like_to_override_all_wallpapers)
             .setPositiveButton(R.string.ChatWallpaperFragment__reset_default_wallpaper, (dialog, which) -> {
               viewModel.setWallpaper(null);

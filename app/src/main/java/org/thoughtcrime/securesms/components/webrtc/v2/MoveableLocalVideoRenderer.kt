@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
+import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
@@ -24,19 +25,18 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.dropShadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -44,7 +44,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.NightPreview
+import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
@@ -57,23 +57,18 @@ import org.thoughtcrime.securesms.events.CallParticipant
 fun MoveableLocalVideoRenderer(
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState,
+  savedLocalParticipantLandscape: Boolean,
   onClick: () -> Unit,
   onToggleCameraDirectionClick: () -> Unit,
   onFocusLocalParticipantClick: () -> Unit,
-  modifier: Modifier = Modifier.Companion
+  modifier: Modifier = Modifier
 ) {
-  // 1. We need to remember our small and expanded sizes based off of the call size.
-  val size = remember(localRenderState) {
-    when (localRenderState) {
-      WebRtcLocalRenderState.GONE -> DpSize.Zero
-      WebRtcLocalRenderState.SMALL_RECTANGLE -> CallScreenMetrics.NormalRendererDpSize
-      WebRtcLocalRenderState.SMALLER_RECTANGLE -> CallScreenMetrics.SmallRendererDpSize
-      WebRtcLocalRenderState.LARGE -> DpSize.Zero
-      WebRtcLocalRenderState.LARGE_NO_VIDEO -> DpSize.Zero
-      WebRtcLocalRenderState.EXPANDED -> CallScreenMetrics.ExpandedRendererDpSize
-      WebRtcLocalRenderState.FOCUSED -> DpSize.Unspecified
-    }
-  }
+  val size = rememberSelfPipSize(localRenderState)
+  val isFocused = localRenderState == WebRtcLocalRenderState.FOCUSED
+
+  val localAspectRatio = rememberParticipantAspectRatio(localParticipant.videoSink)
+  val configurationLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
+  val isVideoLandscape = localAspectRatio?.let { it > 1f } ?: configurationLandscape
 
   BoxWithConstraints(
     modifier = Modifier
@@ -82,59 +77,77 @@ fun MoveableLocalVideoRenderer(
       .statusBarsPadding()
       .displayCutoutPadding()
   ) {
-    val targetSize = size.let {
-      if (it == DpSize.Unspecified) {
-        DpSize(maxWidth - 32.dp, maxHeight - 32.dp)
+    val focusedSize = remember(maxWidth, maxHeight, isVideoLandscape) {
+      val desiredWidth = maxWidth - 32.dp
+      val desiredHeight = maxHeight - 32.dp
+
+      val aspectRatio = if (isVideoLandscape) {
+        16f / 9f
       } else {
-        it
+        9f / 16f
+      }
+
+      val widthFromHeight = desiredHeight * aspectRatio
+      val heightFromWidth = desiredWidth / aspectRatio
+
+      if (widthFromHeight <= desiredWidth) {
+        DpSize(widthFromHeight, desiredHeight)
+      } else {
+        DpSize(desiredWidth, heightFromWidth)
       }
     }
+
+    val targetSize = if (isFocused) focusedSize else size.rotateForVideoOrientation(isVideoLandscape)
 
     val state = remember { PictureInPictureState(initialContentSize = targetSize) }
     state.animateTo(targetSize)
 
     val selfPipMode = when (localRenderState) {
-      WebRtcLocalRenderState.EXPANDED -> {
-        SelfPipMode.EXPANDED_SELF_PIP
-      } WebRtcLocalRenderState.FOCUSED -> {
-        SelfPipMode.FOCUSED_SELF_PIP
-      }
-      WebRtcLocalRenderState.SMALLER_RECTANGLE -> {
-        SelfPipMode.MINI_SELF_PIP
-      }
-      else -> {
-        SelfPipMode.NORMAL_SELF_PIP
-      }
+      WebRtcLocalRenderState.EXPANDED -> SelfPipMode.EXPANDED_SELF_PIP
+      WebRtcLocalRenderState.FOCUSED -> SelfPipMode.FOCUSED_SELF_PIP
+      WebRtcLocalRenderState.SMALLER_RECTANGLE -> SelfPipMode.MINI_SELF_PIP
+      else -> SelfPipMode.NORMAL_SELF_PIP
     }
 
     val clip by animateClip(localRenderState)
-    val shadow by animateShadow(localRenderState)
+    val showFocusButton = localRenderState == WebRtcLocalRenderState.EXPANDED || isFocused
 
     PictureInPicture(
       state = state,
+      isFocused = isFocused,
       modifier = Modifier
         .padding(16.dp)
         .fillMaxSize()
     ) {
-      CallParticipantRenderer(
-        callParticipant = localParticipant,
-        renderInPip = true,
+      SelfPipContent(
+        participant = localParticipant,
         selfPipMode = selfPipMode,
-        onToggleCameraDirection = onToggleCameraDirectionClick,
+        isMoreThanOneCameraAvailable = localParticipant.cameraState.cameraCount > 1,
+        onSwitchCameraClick = onToggleCameraDirectionClick,
         modifier = Modifier
           .fillMaxSize()
           .dropShadow(
             shape = RoundedCornerShape(clip),
-            shadow = shadow
+            shadow = Shadow(
+              radius = 32.dp,
+              color = Color.Black.copy(alpha = 0.12f),
+              offset = DpOffset(x = 0.dp, y = 4.dp)
+            )
+          )
+          .dropShadow(
+            shape = RoundedCornerShape(clip),
+            shadow = Shadow(
+              radius = 12.dp,
+              color = Color.Black.copy(alpha = 0.32f),
+              offset = androidx.compose.ui.unit.DpOffset(x = 0.dp, y = 4.dp)
+            )
           )
           .clip(RoundedCornerShape(clip))
-          .clickable(onClick = {
-            onClick()
-          })
+          .clickable(onClick = onClick)
       )
 
       AnimatedVisibility(
-        visible = localRenderState == WebRtcLocalRenderState.EXPANDED || localRenderState == WebRtcLocalRenderState.FOCUSED,
+        visible = showFocusButton,
         modifier = Modifier
           .align(Alignment.TopEnd)
           .padding(8.dp)
@@ -147,15 +160,14 @@ fun MoveableLocalVideoRenderer(
         ) {
           Icon(
             imageVector = ImageVector.vectorResource(
-              when (localRenderState) {
-                WebRtcLocalRenderState.FOCUSED -> R.drawable.symbol_minimize_24
-                else -> R.drawable.symbol_maximize_24
-              }
+              if (isFocused) R.drawable.symbol_minimize_24 else R.drawable.symbol_maximize_24
             ),
+            tint = MaterialTheme.colorScheme.onSecondaryContainer,
             contentDescription = stringResource(
-              when (localRenderState) {
-                WebRtcLocalRenderState.FOCUSED -> R.string.MoveableLocalVideoRenderer__shrink_local_video
-                else -> R.string.MoveableLocalVideoRenderer__expand_local_video
+              if (isFocused) {
+                R.string.MoveableLocalVideoRenderer__shrink_local_video
+              } else {
+                R.string.MoveableLocalVideoRenderer__expand_local_video
               }
             )
           )
@@ -170,54 +182,19 @@ private fun animateClip(localRenderState: WebRtcLocalRenderState): State<Dp> {
   val targetDp = when (localRenderState) {
     WebRtcLocalRenderState.FOCUSED -> CallScreenMetrics.FocusedRendererCornerSize
     WebRtcLocalRenderState.EXPANDED -> CallScreenMetrics.ExpandedRendererCornerSize
-    else -> CallScreenMetrics.SmallRendererCornerSize
+    else -> CallScreenMetrics.OverflowParticipantRendererCornerSize
   }
 
   return animateDpAsState(targetValue = targetDp)
 }
 
-@Composable
-private fun animateShadow(localRenderState: WebRtcLocalRenderState): State<Shadow> {
-  val targetShadowRadius = when (localRenderState) {
-    WebRtcLocalRenderState.EXPANDED, WebRtcLocalRenderState.FOCUSED, WebRtcLocalRenderState.SMALLER_RECTANGLE -> {
-      14.dp
-    }
-    else -> {
-      0.dp
-    }
-  }
-
-  val targetShadowOffset = when (localRenderState) {
-    WebRtcLocalRenderState.EXPANDED, WebRtcLocalRenderState.FOCUSED, WebRtcLocalRenderState.SMALLER_RECTANGLE -> {
-      4.dp
-    }
-    else -> {
-      0.dp
-    }
-  }
-
-  val shadowRadius by animateDpAsState(targetShadowRadius)
-  val shadowOffset by animateDpAsState(targetShadowOffset)
-  return remember {
-    derivedStateOf { Shadow(radius = shadowRadius, offset = DpOffset(0.dp, shadowOffset)) }
-  }
-}
-
-@NightPreview
+@AllNightPreviews
 @Composable
 private fun MoveableLocalVideoRendererPreview() {
   var localRenderState by remember { mutableStateOf(WebRtcLocalRenderState.SMALL_RECTANGLE) }
 
   Previews.Preview {
-    val blur by animateDpAsState(
-      if (localRenderState == WebRtcLocalRenderState.FOCUSED) {
-        20.dp
-      } else {
-        0.dp
-      }
-    )
-
-    Box(modifier = Modifier.background(color = Color.Green)) {
+    Box {
       BlurContainer(
         isBlurred = localRenderState == WebRtcLocalRenderState.FOCUSED
       ) {
@@ -226,7 +203,7 @@ private fun MoveableLocalVideoRendererPreview() {
           contentDescription = null,
           modifier = Modifier
             .fillMaxSize()
-            .blur(blur)
+            .background(color = Color.Green)
         )
       }
 
@@ -235,6 +212,7 @@ private fun MoveableLocalVideoRendererPreview() {
           CallParticipant()
         },
         localRenderState = localRenderState,
+        savedLocalParticipantLandscape = false,
         onClick = {
           localRenderState = when (localRenderState) {
             WebRtcLocalRenderState.SMALL_RECTANGLE -> {
@@ -258,5 +236,39 @@ private fun MoveableLocalVideoRendererPreview() {
         }
       )
     }
+  }
+}
+
+@Composable
+fun rememberSelfPipSize(
+  localRenderState: WebRtcLocalRenderState
+): DpSize {
+  val callScreenMetrics = rememberCallScreenMetrics()
+  return remember(localRenderState, callScreenMetrics) {
+    when (localRenderState) {
+      WebRtcLocalRenderState.GONE -> DpSize.Zero
+      WebRtcLocalRenderState.SMALL_RECTANGLE -> callScreenMetrics.normalRendererDpSize
+      WebRtcLocalRenderState.SMALLER_RECTANGLE -> callScreenMetrics.overflowParticipantRendererDpSize
+      WebRtcLocalRenderState.LARGE -> DpSize.Zero
+      WebRtcLocalRenderState.LARGE_NO_VIDEO -> DpSize.Zero
+      WebRtcLocalRenderState.EXPANDED -> callScreenMetrics.expandedRendererDpSize
+      WebRtcLocalRenderState.FOCUSED -> DpSize.Unspecified
+    }
+  }
+}
+
+/**
+ * Sets the proper DpSize rotation based off the video aspect ratio.
+ *
+ * Call-Screen DpSizes for the movable pip are expected to be in portrait by default.
+ * When the video is landscape (aspect ratio > 1), the width and height are swapped.
+ *
+ * @param isVideoLandscape Whether the video is in landscape orientation (width > height)
+ */
+private fun DpSize.rotateForVideoOrientation(isVideoLandscape: Boolean): DpSize {
+  return if (isVideoLandscape) {
+    DpSize(this.height, this.width)
+  } else {
+    this
   }
 }

@@ -136,7 +136,7 @@ class InMemorySignalServiceAccountDataStore : SignalServiceAccountDataStore {
   }
 
   override fun storeKyberPreKey(kyberPreKeyId: Int, record: KyberPreKeyRecord?) {
-    error("Not used")
+    kyberPreKeys[kyberPreKeyId] = record!!
   }
 
   override fun containsKyberPreKey(kyberPreKeyId: Int): Boolean {

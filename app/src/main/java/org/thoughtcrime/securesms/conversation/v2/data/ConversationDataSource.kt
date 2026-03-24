@@ -118,7 +118,7 @@ class ConversationDataSource(
 
     stopwatch.split("messages")
 
-    val extraData = MessageDataFetcher.fetch(records)
+    val extraData = MessageDataFetcher.fetch(records, threadRecipient)
     stopwatch.split("extra-data")
 
     records = MessageDataFetcher.updateModelsWithData(records, extraData).toMutableList()
@@ -136,7 +136,8 @@ class ConversationDataSource(
         record.getDisplayBody(localContext),
         extraData.mentionsById[record.id],
         extraData.hasBeenQuoted.contains(record.id),
-        threadRecipient
+        threadRecipient,
+        extraData.memberLabels
       ).toMappingModel()
     }
 
@@ -186,7 +187,7 @@ class ConversationDataSource(
       if (record == null) {
         return null
       } else {
-        extraData = MessageDataFetcher.fetch(record)
+        extraData = MessageDataFetcher.fetch(record, threadRecipient)
         stopwatch.split("extra-data")
 
         record = MessageDataFetcher.updateModelWithData(record, extraData)
@@ -198,7 +199,8 @@ class ConversationDataSource(
           record.getDisplayBody(AppDependencies.application),
           extraData.mentionsById[record.id],
           extraData.hasBeenQuoted.contains(record.id),
-          threadRecipient
+          threadRecipient,
+          extraData.memberLabels
         ).toMappingModel()
       }
     } finally {

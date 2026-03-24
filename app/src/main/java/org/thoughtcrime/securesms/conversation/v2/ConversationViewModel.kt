@@ -46,6 +46,7 @@ import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.paging.ProxyPagingController
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.banners.BubbleOptOutBanner
 import org.thoughtcrime.securesms.banner.banners.GroupsV1MigrationSuggestionsBanner
@@ -58,6 +59,7 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ScheduledMessagesRepository
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
+import org.thoughtcrime.securesms.conversation.plaintext.PlaintextExportRepository
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
 import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.database.DatabaseObserver
@@ -77,7 +79,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.PollVoteJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
-import org.thoughtcrime.securesms.jobs.UnpinMessageJob
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -201,7 +202,7 @@ class ConversationViewModel(
 
   private val startExpiration = BehaviorSubject.create<MessageTable.ExpirationInfo>()
 
-  private val _jumpToDateValidator: JumpToDateValidator by lazy { JumpToDateValidator(threadId) }
+  private val _jumpToDateValidator: JumpToDateValidator by lazy { JumpToDateValidator.create(threadId) }
   val jumpToDateValidator: JumpToDateValidator
     get() = _jumpToDateValidator
 
@@ -210,6 +211,11 @@ class ConversationViewModel(
 
   private val internalPinnedMessages = MutableStateFlow<List<ConversationMessage>>(emptyList())
   val pinnedMessages: StateFlow<List<ConversationMessage>> = internalPinnedMessages
+
+  private val _plaintextExportState = MutableStateFlow<PlaintextExportState>(PlaintextExportState.None)
+  val plaintextExportState: StateFlow<PlaintextExportState> = _plaintextExportState
+
+  private val plaintextExportCancelled = java.util.concurrent.atomic.AtomicBoolean(false)
 
   init {
     disposables += recipient
@@ -356,19 +362,22 @@ class ConversationViewModel(
   }
 
   fun pinMessage(messageRecord: MessageRecord, duration: Duration, threadRecipient: Recipient): Completable {
-    return repository
-      .pinMessage(messageRecord, duration, threadRecipient)
-      .observeOn(AndroidSchedulers.mainThread())
+    return if (!NetworkUtil.isConnected(AppDependencies.application)) {
+      Completable.error(Exception("Connection required to pin message"))
+    } else {
+      repository
+        .pinMessage(messageRecord, duration, threadRecipient)
+        .observeOn(AndroidSchedulers.mainThread())
+    }
   }
 
-  fun unpinMessage(messageId: Long) {
-    viewModelScope.launch(Dispatchers.IO) {
-      val unpinJob = UnpinMessageJob.create(messageId = messageId)
-      if (unpinJob != null) {
-        AppDependencies.jobManager.add(unpinJob)
-      } else {
-        Log.w(TAG, "Unable to create unpin job, ignoring.")
-      }
+  fun unpinMessage(messageId: Long): Completable {
+    return if (!NetworkUtil.isConnected(AppDependencies.application)) {
+      Completable.error(Exception("Connection required to unpin message"))
+    } else {
+      repository
+        .unpinMessage(messageId)
+        .observeOn(AndroidSchedulers.mainThread())
     }
   }
 
@@ -719,6 +728,60 @@ class ConversationViewModel(
         Log.w(TAG, "Unable to create poll vote job, ignoring.")
       }
     }
+  }
+
+  fun startPlaintextExport(context: Context, directoryUri: Uri) {
+    val recipient = recipientSnapshot ?: return
+    val chatName = if (recipient.isSelf) context.getString(R.string.note_to_self) else recipient.getDisplayName(context)
+
+    plaintextExportCancelled.set(false)
+    _plaintextExportState.value = PlaintextExportState.Preparing
+
+    viewModelScope.launch(Dispatchers.IO) {
+      val success = PlaintextExportRepository.export(
+        context = context,
+        threadId = threadId,
+        directoryUri = directoryUri,
+        chatName = chatName,
+        progressListener = { messagesProcessed, messageCount, attachmentsProcessed, attachmentCount ->
+          val messagePercent = if (messageCount > 0) (messagesProcessed * 25) / messageCount else 25
+          val attachmentPercent = if (attachmentCount > 0) (attachmentsProcessed * 75) / attachmentCount else 75
+          val percent = messagePercent + attachmentPercent
+
+          val status = if (attachmentsProcessed > 0 || messagesProcessed >= messageCount) {
+            "Exporting media ($attachmentsProcessed/$attachmentCount)..."
+          } else {
+            "Exporting messages ($messagesProcessed/$messageCount)..."
+          }
+
+          _plaintextExportState.value = PlaintextExportState.InProgress(percent = percent, status = status)
+        },
+        cancellationSignal = { plaintextExportCancelled.get() }
+      )
+
+      _plaintextExportState.value = when {
+        plaintextExportCancelled.get() -> PlaintextExportState.Cancelled
+        success -> PlaintextExportState.Complete
+        else -> PlaintextExportState.Failed
+      }
+    }
+  }
+
+  fun cancelExport() {
+    plaintextExportCancelled.set(true)
+  }
+
+  fun clearPlaintextExportState() {
+    _plaintextExportState.value = PlaintextExportState.None
+  }
+
+  sealed interface PlaintextExportState {
+    data object None : PlaintextExportState
+    data object Preparing : PlaintextExportState
+    data class InProgress(val percent: Int, val status: String) : PlaintextExportState
+    data object Complete : PlaintextExportState
+    data object Failed : PlaintextExportState
+    data object Cancelled : PlaintextExportState
   }
 
   data class BackPressedState(

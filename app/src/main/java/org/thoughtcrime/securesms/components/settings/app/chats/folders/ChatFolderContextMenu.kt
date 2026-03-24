@@ -7,6 +7,7 @@ import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * A context menu shown when long pressing on a chat folder.
@@ -86,7 +87,7 @@ object ChatFolderContextMenu {
         )
       } else {
         add(
-          ActionItem(R.drawable.symbol_edit_24, context.getString(R.string.ChatFoldersFragment__edit_folder)) {
+          ActionItem(CoreUiR.drawable.symbol_edit_24, context.getString(R.string.ChatFoldersFragment__edit_folder)) {
             callbacks.onEdit()
           }
         )

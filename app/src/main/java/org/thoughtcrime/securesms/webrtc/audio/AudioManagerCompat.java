@@ -34,7 +34,15 @@ public abstract class AudioManagerCompat {
 
   @SuppressWarnings("CodeBlock2Expr")
   protected final AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = focusChange -> {
-    Log.i(TAG, "onAudioFocusChangeListener: " + focusChange);
+    String focusName;
+    switch (focusChange) {
+      case AudioManager.AUDIOFOCUS_GAIN:                    focusName = "GAIN"; break;
+      case AudioManager.AUDIOFOCUS_LOSS:                    focusName = "LOSS"; break;
+      case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:          focusName = "LOSS_TRANSIENT"; break;
+      case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK: focusName = "LOSS_TRANSIENT_CAN_DUCK"; break;
+      default:                                              focusName = "UNKNOWN(" + focusChange + ")"; break;
+    }
+    Log.i(TAG, "onAudioFocusChangeListener: " + focusName);
     hasFocus = focusChange == AudioManager.AUDIOFOCUS_GAIN;
   };
 
@@ -180,6 +188,16 @@ public abstract class AudioManagerCompat {
     audioManager.unregisterAudioDeviceCallback(deviceCallback);
   }
 
+  @RequiresApi(24)
+  public void registerAudioRecordingCallback(@NonNull AudioManager.AudioRecordingCallback callback, @NonNull Handler handler) {
+    audioManager.registerAudioRecordingCallback(callback, handler);
+  }
+
+  @RequiresApi(24)
+  public void unregisterAudioRecordingCallback(@NonNull AudioManager.AudioRecordingCallback callback) {
+    audioManager.unregisterAudioRecordingCallback(callback);
+  }
+
   @SuppressLint("WrongConstant")
   public boolean isWiredHeadsetOn() {
     AudioDeviceInfo[] devices = audioManager.getDevices(AudioManager.GET_DEVICES_ALL);
@@ -220,11 +238,38 @@ public abstract class AudioManagerCompat {
   abstract public void abandonCallAudioFocus();
 
   public static AudioManagerCompat create(@NonNull Context context) {
-    if (Build.VERSION.SDK_INT >= 26) {
+    if (Build.VERSION.SDK_INT >= 31) {
+      return new Api31AudioManagerCompat(context);
+    } else if (Build.VERSION.SDK_INT >= 26) {
       return new Api26AudioManagerCompat(context);
     } else {
       return new Api21AudioManagerCompat(context);
     }
+  }
+
+  @RequiresApi(31)
+  static class Api31AudioManagerCompat extends Api26AudioManagerCompat {
+
+    private Api31AudioManagerCompat(@NonNull Context context) {
+      super(context);
+    }
+
+    public void addOnModeChangedListener(@NonNull java.util.concurrent.Executor executor, @NonNull AudioManager.OnModeChangedListener listener) {
+      audioManager.addOnModeChangedListener(executor, listener);
+    }
+
+    public void removeOnModeChangedListener(@NonNull AudioManager.OnModeChangedListener listener) {
+      audioManager.removeOnModeChangedListener(listener);
+    }
+
+    public void addOnCommunicationDeviceChangedListener(@NonNull java.util.concurrent.Executor executor, @NonNull AudioManager.OnCommunicationDeviceChangedListener listener) {
+      audioManager.addOnCommunicationDeviceChangedListener(executor, listener);
+    }
+
+    public void removeOnCommunicationDeviceChangedListener(@NonNull AudioManager.OnCommunicationDeviceChangedListener listener) {
+      audioManager.removeOnCommunicationDeviceChangedListener(listener);
+    }
+
   }
 
   @RequiresApi(26)

@@ -64,8 +64,8 @@ sealed interface AppSettingsRoute : Parcelable {
   @Parcelize
   sealed interface BackupsRoute : AppSettingsRoute {
     data object Backups : BackupsRoute
-    data object Local : BackupsRoute
-    data class Remote(val backupLaterSelected: Boolean = false) : BackupsRoute
+    data class Local(val triggerUpdateFlow: Boolean = false) : BackupsRoute
+    data class Remote(val backupLaterSelected: Boolean = false, val forQuickRestore: Boolean = false) : BackupsRoute
     data object DisplayKey : BackupsRoute
   }
 
@@ -112,6 +112,11 @@ sealed interface AppSettingsRoute : Parcelable {
     data class Receipt(val id: Long) : DonationsRoute
     data object LearnMore : DonationsRoute
     data object Featured : DonationsRoute
+  }
+
+  @Parcelize
+  sealed interface LabsRoute : AppSettingsRoute {
+    data object Labs : LabsRoute
   }
 
   @Parcelize

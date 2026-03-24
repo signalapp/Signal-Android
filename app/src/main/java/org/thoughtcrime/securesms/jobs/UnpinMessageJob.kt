@@ -3,10 +3,12 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.UnpinJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.GroupSendUtil
@@ -34,7 +36,10 @@ class UnpinMessageJob(
     const val KEY: String = "UnpinMessageJob"
     private val TAG = Log.tag(UnpinMessageJob::class.java)
 
-    fun create(messageId: Long): UnpinMessageJob? {
+    /**
+     * If [initialRecipientIds] is set, the message will only be sent to those recipients. Otherwise, it is sent to everyone who is eligible.
+     */
+    fun create(messageId: Long, initialRecipientIds: Set<RecipientId> = emptySet()): UnpinMessageJob? {
       val message = SignalDatabase.messages.getMessageRecordOrNull(messageId)
       if (message == null) {
         Log.w(TAG, "Unable to find corresponding message")
@@ -47,7 +52,9 @@ class UnpinMessageJob(
         return null
       }
 
-      val recipients = if (conversationRecipient.isGroup) {
+      val recipients = if (initialRecipientIds.isNotEmpty()) {
+        initialRecipientIds.map { it.toLong() }
+      } else if (conversationRecipient.isGroup) {
         conversationRecipient.participantIds.filter { it != Recipient.self().id }.map { it.toLong() }
       } else {
         listOf(conversationRecipient.id.toLong())
@@ -60,6 +67,7 @@ class UnpinMessageJob(
         parameters = Parameters.Builder()
           .setQueue(conversationRecipient.id.toQueueKey())
           .addConstraint(NetworkConstraint.KEY)
+          .addConstraint(SealedSenderConstraint.KEY)
           .setMaxAttempts(Parameters.UNLIMITED)
           .setLifespan(1.days.inWholeMilliseconds)
           .build()
@@ -109,7 +117,7 @@ class UnpinMessageJob(
 
     val targetSentTimestamp = message.dateSent
 
-    val recipients = Recipient.resolvedList(recipientIds.filter { it != Recipient.self().id.toLong() }.map { RecipientId.from(it) })
+    val recipients = Recipient.resolvedList(recipientIds.map { RecipientId.from(it) })
     val registered = RecipientUtil.getEligibleForSending(recipients)
     val unregistered = recipients - registered.toSet()
     val completions: List<Recipient> = deliver(conversationRecipient, registered, message.threadId, targetAuthor, targetSentTimestamp)
@@ -143,19 +151,27 @@ class UnpinMessageJob(
 
     val dataMessage = dataMessageBuilder.build()
 
+    val nonSelfRecipients = destinations.filterNot { it.isSelf }
+    val includeSelf = destinations.size != nonSelfRecipients.size
+
     val results = GroupSendUtil.sendResendableDataMessage(
       context,
       conversationRecipient.groupId.map { obj: GroupId -> obj.requireV2() }.orElse(null),
       null,
-      destinations,
+      nonSelfRecipients,
       false,
       ContentHint.RESENDABLE,
       MessageId(messageId),
       dataMessage,
       false,
       false,
+      null,
       null
     )
+
+    if (includeSelf) {
+      results.add(AppDependencies.signalServiceMessageSender.sendSyncMessage(dataMessage))
+    }
 
     val result = GroupSendJobHelper.getCompletedSends(destinations, results)
 

@@ -41,6 +41,9 @@ public class EmojiParser {
     this.emojiTree = emojiTree;
   }
 
+  /**
+   * Returns an ordered list of every emoji occurrence found in the given text.
+   */
   public @NonNull CandidateList findCandidates(@Nullable CharSequence text) {
     List<Candidate> results = new LinkedList<>();
 

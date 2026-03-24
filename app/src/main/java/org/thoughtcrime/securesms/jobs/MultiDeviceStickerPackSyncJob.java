@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -38,6 +39,7 @@ public class MultiDeviceStickerPackSyncJob extends BaseJob {
     this(new Parameters.Builder()
                            .setQueue("MultiDeviceStickerPackSyncJob")
                            .addConstraint(NetworkConstraint.KEY)
+                           .addConstraint(SealedSenderConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .build());
   }

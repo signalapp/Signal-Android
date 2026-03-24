@@ -16,8 +16,8 @@ import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.GroupsV2UpdateMessageConverter
@@ -48,6 +48,8 @@ import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException
 import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2ChangeException
 import org.whispersystems.signalservice.api.groupsv2.ReceivedGroupSendEndorsements
+import org.whispersystems.signalservice.api.groupsv2.getChangedFields
+import org.whispersystems.signalservice.api.groupsv2.isSilent
 import org.whispersystems.signalservice.api.push.ServiceIds
 import org.whispersystems.signalservice.internal.push.exceptions.GroupNotFoundException
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException
@@ -107,7 +109,7 @@ class GroupsV2StateProcessor private constructor(
   @Throws(IOException::class, GroupNotAMemberException::class)
   fun forceSanityUpdateFromServer(timestamp: Long): GroupUpdateResult {
     val groupRecord = SignalDatabase.groups.getGroup(groupId).orNull()
-    val currentLocalState: DecryptedGroup? = groupRecord?.requireV2GroupProperties()?.decryptedGroup
+    val currentLocalState: DecryptedGroup? = groupRecord?.requireV2GroupProperties()?.decryptedGroup?.let { if (it.isEmptyPlaceholder()) null else it }
 
     if (currentLocalState == null) {
       Log.i(TAG, "$logPrefix No local state to force update")
@@ -171,7 +173,7 @@ class GroupsV2StateProcessor private constructor(
       return GroupUpdateResult(GroupUpdateResult.UpdateStatus.GROUP_CONSISTENT_OR_AHEAD, null)
     }
 
-    val currentLocalState: DecryptedGroup? = groupRecord.map { it.requireV2GroupProperties().decryptedGroup }.orNull()
+    val currentLocalState: DecryptedGroup? = groupRecord.map { it.requireV2GroupProperties().decryptedGroup }.orNull()?.let { if (it.isEmptyPlaceholder()) null else it }
 
     if (signedGroupChange != null && canApplyP2pChange(targetRevision, signedGroupChange, currentLocalState, groupRecord)) {
       when (val p2pUpdateResult = updateViaPeerGroupChange(timestamp, serverGuid, signedGroupChange, currentLocalState!!, forceApply = false)) {
@@ -273,7 +275,7 @@ class GroupsV2StateProcessor private constructor(
     serverGuid: String?,
     groupRecord: Optional<GroupRecord> = SignalDatabase.groups.getGroup(groupId)
   ): InternalUpdateResult {
-    var currentLocalState: DecryptedGroup? = groupRecord.map { it.requireV2GroupProperties().decryptedGroup }.orNull()
+    var currentLocalState: DecryptedGroup? = groupRecord.map { it.requireV2GroupProperties().decryptedGroup }.orNull()?.let { if (it.isEmptyPlaceholder()) null else it }
 
     if (targetRevision == LATEST && (currentLocalState == null || currentLocalState.revision == RESTORE_PLACEHOLDER_REVISION)) {
       Log.i(TAG, "$logPrefix Latest revision only, update to latest directly")
@@ -419,6 +421,18 @@ class GroupsV2StateProcessor private constructor(
     }
 
     return revision <= groupRecord.get().requireV2GroupProperties().groupRevision
+  }
+
+  private fun DecryptedGroup.isEmptyPlaceholder(): Boolean {
+    if (!this.isPlaceholderGroup) {
+      return false
+    }
+
+    val isMember = this.members.asSequence().mapNotNull { ACI.parseOrNull(it.aciBytes) }.any { serviceIds.matches(it) }
+    val isPending = this.pendingMembers.asSequence().mapNotNull { ACI.parseOrNull(it.serviceIdBytes) }.any { serviceIds.matches(it) }
+    val isRequesting = this.requestingMembers.asSequence().mapNotNull { ACI.parseOrNull(it.aciBytes) }.any { serviceIds.matches(it) }
+
+    return !isMember && !isPending && !isRequesting
   }
 
   private fun notInGroupAndNotBeingAdded(groupRecord: Optional<GroupRecord>, signedGroupChange: DecryptedGroupChange): Boolean {
@@ -621,15 +635,24 @@ class GroupsV2StateProcessor private constructor(
       var runningGroupState = previousGroupState
 
       for (entry in processedLogEntries) {
-        if (entry.change != null && DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(entry.change) && !DecryptedGroupUtil.changeIsEmpty(entry.change)) {
-          Log.d(TAG, "Skipping profile key changes only update message")
-        } else if (entry.change != null && DecryptedGroupUtil.changeIsEmptyExceptForBanChangesAndOptionalProfileKeyChanges(entry.change)) {
-          Log.d(TAG, "Skipping ban changes only update message")
-        } else {
-          if (entry.change != null && DecryptedGroupUtil.changeIsEmpty(entry.change) && runningGroupState != null) {
+        val changedFields = entry.change?.getChangedFields().orEmpty()
+        val changeSilently = entry.change?.isSilent(changedFields) == true
+
+        when {
+          entry.change != null && changeSilently && changedFields.isNotEmpty() -> {
+            Log.d(TAG, "Skipping silent changes: $changedFields")
+          }
+
+          entry.change != null && changedFields.isEmpty() && runningGroupState != null -> {
             Log.w(TAG, "Empty group update message seen. Not inserting.")
-          } else {
-            storeMessage(GroupProtoUtil.createDecryptedGroupV2Context(masterKey, GroupMutation(runningGroupState, entry.change, entry.group), null), runningTimestamp, serverGuid)
+          }
+
+          else -> {
+            storeMessage(
+              decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, GroupMutation(runningGroupState, entry.change, entry.group), null),
+              timestamp = runningTimestamp,
+              serverGuid = serverGuid
+            )
             runningTimestamp++
           }
         }

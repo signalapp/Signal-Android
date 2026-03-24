@@ -50,7 +50,8 @@ object InAppDonations {
       InAppPaymentType.ONE_TIME_GIFT -> true
       InAppPaymentType.RECURRING_DONATION -> true
       InAppPaymentType.RECURRING_BACKUP -> false
-    } && !LocaleRemoteConfig.isPayPalDisabled()
+    } &&
+      !LocaleRemoteConfig.isPayPalDisabled()
   }
 
   /**

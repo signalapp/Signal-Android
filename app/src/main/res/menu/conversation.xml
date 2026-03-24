@@ -26,6 +26,10 @@
         android:title="@string/conversation__menu_create_bubble" />
 
     <item
+        android:id="@+id/menu_export"
+        android:title="@string/conversation__menu_export" />
+
+    <item
         android:id="@+id/menu_format_text_submenu"
         android:title="@string/conversation__menu_format_text"
         android:orderInCategory="9999">

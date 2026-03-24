@@ -29,11 +29,11 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
@@ -99,9 +99,9 @@ private fun AddToGroupsScreen(
   closeScreen: () -> Unit
 ) {
   val callbacks = remember {
-    object : UiCallbacks {
+    object : AddToGroupsUiCallbacks {
       override fun onSearchQueryChanged(query: String) = viewModel.onSearchQueryChanged(query)
-      override fun onSelectionChanged(newSelections: List<SelectedContact>, totalMembersCount: Int) = viewModel.selectGroups(newSelections)
+      override fun onSelectionChanged(newSelections: List<SelectedContact>) = viewModel.selectGroups(newSelections)
       override fun addToSelectedGroups() = viewModel.addToSelectedGroups()
       override fun onAddConfirmed(groupRecipient: Recipient) = viewModel.addToGroups(listOf(groupRecipient))
       override fun onUserMessageDismissed(userMessage: UserMessage) = viewModel.clearUserMessage()
@@ -121,7 +121,7 @@ private fun AddToGroupsScreen(
 @Composable
 private fun AddToGroupsScreenUi(
   uiState: AddToGroupsUiState,
-  callbacks: UiCallbacks
+  callbacks: AddToGroupsUiCallbacks
 ) {
   val title = if (uiState.isMultiSelectEnabled) {
     stringResource(R.string.AddToGroupActivity_add_to_groups)
@@ -154,7 +154,7 @@ private fun AddToGroupsScreenUi(
 
 private fun getDoneButton(
   uiState: AddToGroupsUiState,
-  callbacks: UiCallbacks
+  callbacks: AddToGroupsUiCallbacks
 ): (@Composable () -> Unit)? {
   return if (uiState.isMultiSelectEnabled) {
     {
@@ -173,14 +173,14 @@ private fun getDoneButton(
 @Composable
 private fun AddToGroupsRecipientPicker(
   uiState: AddToGroupsUiState,
-  callbacks: UiCallbacks,
+  callbacks: AddToGroupsUiCallbacks,
   modifier: Modifier = Modifier
 ) {
   RecipientPicker(
     searchBarHint = stringResource(R.string.AddToGroupActivity_search),
     searchQuery = uiState.searchQuery,
     enabledKeyboardTypes = listOf(RecipientPicker.KeyboardType.Text),
-    displayModes = setOf(RecipientPicker.DisplayMode.ACTIVE_GROUPS, RecipientPicker.DisplayMode.GROUPS_AFTER_CONTACTS),
+    displayModes = setOf(RecipientPicker.DisplayMode.ACTIVE_GROUPS, RecipientPicker.DisplayMode.GROUPS_AFTER_CONTACTS, RecipientPicker.DisplayMode.HIDE_NEW),
     selectionLimits = uiState.selectionLimits,
     preselectedRecipients = uiState.existingGroupMemberships,
     includeRecents = true,
@@ -194,7 +194,7 @@ private fun AddToGroupsRecipientPicker(
   )
 }
 
-private interface UiCallbacks : RecipientPickerCallbacks.ListActions {
+private interface AddToGroupsUiCallbacks : RecipientPickerCallbacks.ListActions {
   override suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = true
   override fun onRecipientSelected(selection: RecipientSelection) = Unit
   override fun onPendingRecipientSelectionsConsumed() = Unit
@@ -203,7 +203,7 @@ private interface UiCallbacks : RecipientPickerCallbacks.ListActions {
   fun onUserMessageDismissed(userMessage: UserMessage)
   fun onBackPressed()
 
-  object Empty : UiCallbacks {
+  object Empty : AddToGroupsUiCallbacks {
     override fun onSearchQueryChanged(query: String) = Unit
     override fun addToSelectedGroups() = Unit
     override fun onAddConfirmed(groupRecipient: Recipient) = Unit
@@ -287,7 +287,7 @@ private fun AddToSingleGroupScreenPreview() {
         forceSplitPane = false,
         selectionLimits = null
       ),
-      callbacks = UiCallbacks.Empty
+      callbacks = AddToGroupsUiCallbacks.Empty
     )
   }
 }
@@ -301,7 +301,7 @@ private fun AddToMultipleGroupsScreenPreview() {
         forceSplitPane = false,
         selectionLimits = SelectionLimits.NO_LIMITS
       ),
-      callbacks = UiCallbacks.Empty
+      callbacks = AddToGroupsUiCallbacks.Empty
     )
   }
 }

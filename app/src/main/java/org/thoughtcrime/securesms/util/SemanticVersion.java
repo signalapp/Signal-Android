@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.util;
 
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.Util;
+
 import com.annimon.stream.ComparatorCompat;
 
 import java.util.Comparator;

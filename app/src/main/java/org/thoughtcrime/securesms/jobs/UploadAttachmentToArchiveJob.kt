@@ -5,7 +5,10 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.models.backup.MediaName
 import org.signal.core.util.Base64
+import org.signal.core.util.Base64.decodeBase64
+import org.signal.core.util.Util
 import org.signal.core.util.inRoundedDays
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
@@ -28,7 +31,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.service.AttachmentProgressService
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.Util
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatusCodes
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
@@ -133,29 +136,47 @@ class UploadAttachmentToArchiveJob private constructor(
       return Result.failure()
     }
 
+    val mediaIdLog: String = if (RemoteConfig.internalUser && attachment.remoteKey != null && attachment.dataHash != null) {
+      val mediaId = MediaName.fromPlaintextHashAndRemoteKey(attachment.dataHash.decodeBase64()!!, attachment.remoteKey.decodeBase64()!!).toMediaId(SignalStore.backup.mediaRootBackupKey)
+      "[$mediaId]"
+    } else {
+      ""
+    }
+
     if (attachment.uri == null) {
-      Log.w(TAG, "[$attachmentId] Attachment has no uri! Cannot upload.")
+      Log.w(TAG, "[$attachmentId]$mediaIdLog Attachment has no uri! Cannot upload.")
+      ArchiveDatabaseExecutor.runBlocking {
+        setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+      }
+      return Result.failure()
+    }
+
+    if (attachment.size == 0L) {
+      Log.w(TAG, "[$attachmentId]$mediaIdLog Attachment has no data (size is 0)! Cannot upload.")
+      ArchiveDatabaseExecutor.runBlocking {
+        setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+      }
       return Result.failure()
     }
 
     if (attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
-      Log.i(TAG, "[$attachmentId] Already finished. Skipping.")
+      Log.i(TAG, "[$attachmentId]$mediaIdLog Already finished. Skipping.")
       return Result.success()
     }
 
     if (attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE) {
-      Log.i(TAG, "[$attachmentId] Already marked as a permanent failure. Skipping.")
+      Log.i(TAG, "[$attachmentId]$mediaIdLog Already marked as a permanent failure. Skipping.")
       return Result.failure()
     }
 
     if (attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.COPY_PENDING) {
-      Log.i(TAG, "[$attachmentId] Already marked as pending transfer. Enqueueing a copy job just in case.")
+      Log.i(TAG, "[$attachmentId]$mediaIdLog Already marked as pending transfer. Enqueueing a copy job just in case.")
       AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachment.attachmentId))
       return Result.success()
     }
 
     if (SignalDatabase.messages.isStory(attachment.mmsId)) {
-      Log.i(TAG, "[$attachmentId] Attachment is a story. Resetting transfer state to none and skipping.")
+      Log.i(TAG, "[$attachmentId]$mediaIdLog Attachment is a story. Resetting transfer state to none and skipping.")
       ArchiveDatabaseExecutor.runBlocking {
         setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
       }
@@ -163,7 +184,7 @@ class UploadAttachmentToArchiveJob private constructor(
     }
 
     if (SignalDatabase.messages.isViewOnce(attachment.mmsId)) {
-      Log.i(TAG, "[$attachmentId] Attachment is a view-once. Resetting transfer state to none and skipping.")
+      Log.i(TAG, "[$attachmentId]$mediaIdLog Attachment is a view-once. Resetting transfer state to none and skipping.")
       ArchiveDatabaseExecutor.runBlocking {
         setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
       }
@@ -171,7 +192,7 @@ class UploadAttachmentToArchiveJob private constructor(
     }
 
     if (SignalDatabase.messages.willMessageExpireBeforeCutoff(attachment.mmsId)) {
-      Log.i(TAG, "[$attachmentId] Message will expire within 24 hours. Resetting transfer state to none and skipping.")
+      Log.i(TAG, "[$attachmentId]$mediaIdLog Message will expire within 24 hours. Resetting transfer state to none and skipping.")
       ArchiveDatabaseExecutor.runBlocking {
         setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
       }
@@ -179,7 +200,7 @@ class UploadAttachmentToArchiveJob private constructor(
     }
 
     if (attachment.contentType == MediaUtil.LONG_TEXT) {
-      Log.i(TAG, "[$attachmentId] Attachment is long text. Resetting transfer state to none and skipping.")
+      Log.i(TAG, "[$attachmentId]$mediaIdLog Attachment is long text. Resetting transfer state to none and skipping.")
       ArchiveDatabaseExecutor.runBlocking {
         setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
       }
@@ -187,7 +208,7 @@ class UploadAttachmentToArchiveJob private constructor(
     }
 
     if (attachment.remoteKey == null || attachment.remoteKey.isBlank()) {
-      Log.w(TAG, "[$attachmentId] Attachment is missing remote key! Cannot upload.")
+      Log.w(TAG, "[$attachmentId]$mediaIdLog Attachment is missing remote key! Cannot upload.")
       return Result.failure()
     }
 
@@ -199,12 +220,12 @@ class UploadAttachmentToArchiveJob private constructor(
     }
 
     if (uploadSpec != null && System.currentTimeMillis() > uploadSpec!!.timeout) {
-      Log.w(TAG, "[$attachmentId] Upload spec expired! Clearing.")
+      Log.w(TAG, "[$attachmentId]$mediaIdLog Upload spec expired! Clearing.")
       uploadSpec = null
     }
 
     if (uploadSpec == null) {
-      Log.d(TAG, "[$attachmentId] Need an upload spec. Fetching...")
+      Log.d(TAG, "[$attachmentId]$mediaIdLog Need an upload spec. Fetching...")
 
       val (spec, result) = fetchResumableUploadSpec(key = Base64.decode(attachment.remoteKey), iv = Util.getSecretBytes(16))
       if (result != null) {
@@ -213,7 +234,7 @@ class UploadAttachmentToArchiveJob private constructor(
 
       uploadSpec = spec
     } else {
-      Log.d(TAG, "[$attachmentId] Already have an upload spec. Continuing...")
+      Log.d(TAG, "[$attachmentId]$mediaIdLog Already have an upload spec. Continuing...")
     }
 
     val progressServiceController = if (attachment.size >= AttachmentUploadUtil.FOREGROUND_LIMIT_BYTES) {
@@ -240,37 +261,37 @@ class UploadAttachmentToArchiveJob private constructor(
         }
       )
     } catch (e: FileNotFoundException) {
-      Log.w(TAG, "[$attachmentId] No file exists for this attachment! Marking as a permanent failure.", e)
+      Log.w(TAG, "[$attachmentId]$mediaIdLog No file exists for this attachment! Marking as a permanent failure.", e)
       ArchiveDatabaseExecutor.runBlocking {
         setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
       }
       return Result.failure()
     } catch (e: IOException) {
-      Log.w(TAG, "[$attachmentId] Failed while reading the stream.", e)
+      Log.w(TAG, "[$attachmentId]$mediaIdLog Failed while reading the stream.", e)
       return Result.retry(defaultBackoff())
     }
 
-    Log.d(TAG, "[$attachmentId] Beginning upload...")
+    Log.d(TAG, "[$attachmentId]$mediaIdLog Beginning upload...")
     progressServiceController.use {
       val uploadResult: AttachmentUploadResult = attachmentStream.use { managedAttachmentStream ->
         when (val result = SignalNetwork.attachments.uploadAttachmentV4(managedAttachmentStream)) {
           is NetworkResult.Success -> result.result
           is NetworkResult.ApplicationError -> throw result.throwable
           is NetworkResult.NetworkError -> {
-            Log.w(TAG, "[$attachmentId] Failed to upload due to network error.", result.exception)
+            Log.w(TAG, "[$attachmentId]$mediaIdLog Failed to upload due to network error.", result.exception)
 
             if (result.exception.cause is ProtocolException) {
-              Log.w(TAG, "[$attachmentId] Length may be incorrect. Recalculating.", result.exception)
+              Log.w(TAG, "[$attachmentId]$mediaIdLog Length may be incorrect. Recalculating.", result.exception)
 
               val actualLength = SignalDatabase.attachments.getAttachmentStream(attachmentId, 0)
                 .use { it.readLength() }
               if (actualLength != attachment.size) {
-                Log.w(TAG, "[$attachmentId] Length was incorrect! Will update. Previous: ${attachment.size}, Newly-Calculated: $actualLength", result.exception)
+                Log.w(TAG, "[$attachmentId]$mediaIdLog Length was incorrect! Will update. Previous: ${attachment.size}, Newly-Calculated: $actualLength", result.exception)
                 ArchiveDatabaseExecutor.runBlocking {
                   SignalDatabase.attachments.updateAttachmentLength(attachmentId, actualLength)
                 }
               } else {
-                Log.i(TAG, "[$attachmentId] Length was correct. No action needed. Will retry.")
+                Log.i(TAG, "[$attachmentId]$mediaIdLog Length was correct. No action needed. Will retry.")
               }
             }
 
@@ -278,11 +299,19 @@ class UploadAttachmentToArchiveJob private constructor(
           }
 
           is NetworkResult.StatusCodeError -> {
-            Log.w(TAG, "[$attachmentId] Failed to upload due to status code error. Code: ${result.code}", result.exception)
+            Log.w(TAG, "[$attachmentId]$mediaIdLog Failed to upload due to status code error. Code: ${result.code}", result.exception)
             when (result.code) {
               400 -> {
-                Log.w(TAG, "[$attachmentId] 400 likely means bad resumable state. Clearing upload spec before retrying.")
+                Log.w(TAG, "[$attachmentId]$mediaIdLog 400 likely means bad resumable state. Clearing upload spec before retrying.")
                 uploadSpec = null
+              }
+              413 -> {
+                Log.w(TAG, "[$attachmentId]$mediaIdLog 413 means the attachment was too large. We've seen this happen with frankenstein imports using third party tools. This can never succeed.")
+                ArchiveDatabaseExecutor.runBlocking {
+                  setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+                }
+                uploadSpec = null
+                return Result.failure()
               }
             }
             return Result.retry(defaultBackoff())
@@ -290,7 +319,7 @@ class UploadAttachmentToArchiveJob private constructor(
         }
       }
 
-      Log.d(TAG, "[$attachmentId] Upload complete!")
+      Log.d(TAG, "[$attachmentId]$mediaIdLog Upload complete!")
       ArchiveDatabaseExecutor.runBlocking {
         SignalDatabase.attachments.finalizeAttachmentAfterUpload(attachment.attachmentId, uploadResult)
       }
@@ -299,7 +328,7 @@ class UploadAttachmentToArchiveJob private constructor(
     if (!isCanceled) {
       AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachment.attachmentId))
     } else {
-      Log.d(TAG, "[$attachmentId] Job was canceled. Skipping copy job.")
+      Log.d(TAG, "[$attachmentId]$mediaIdLog Job was canceled. Skipping copy job.")
     }
 
     return Result.success()
@@ -346,9 +375,12 @@ class UploadAttachmentToArchiveJob private constructor(
         when (ArchiveMediaUploadFormStatusCodes.from(uploadSpec.code)) {
           ArchiveMediaUploadFormStatusCodes.BadArguments,
           ArchiveMediaUploadFormStatusCodes.InvalidPresentationOrSignature,
-          ArchiveMediaUploadFormStatusCodes.InsufficientPermissions,
-          ArchiveMediaUploadFormStatusCodes.RateLimited -> {
+          ArchiveMediaUploadFormStatusCodes.InsufficientPermissions -> {
             return null to Result.retry(defaultBackoff())
+          }
+          ArchiveMediaUploadFormStatusCodes.RateLimited -> {
+            Log.w(TAG, "[$attachmentId] Rate limited when getting upload form.")
+            return null to Result.retry(uploadSpec.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
           }
 
           ArchiveMediaUploadFormStatusCodes.Unknown -> {

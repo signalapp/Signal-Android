@@ -35,6 +35,7 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.nullIfBlank
@@ -42,7 +43,6 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.PushContactSelectionActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsEvent
-import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.groups.GroupId
@@ -116,12 +116,12 @@ private fun AddMembersScreen(
   )
 
   val callbacks = remember {
-    object : UiCallbacks {
+    object : AddMembersUiCallbacks {
       override fun onSearchQueryChanged(query: String) = viewModel.onSearchQueryChanged(query)
       override fun onFindByUsername() = findByLauncher.launch(FindByMode.USERNAME)
       override fun onFindByPhoneNumber() = findByLauncher.launch(FindByMode.PHONE_NUMBER)
       override suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = viewModel.shouldAllowSelection(selection)
-      override fun onSelectionChanged(newSelections: List<SelectedContact>, totalMembersCount: Int) = viewModel.onSelectionChanged(newSelections)
+      override fun onSelectionChanged(newSelections: List<SelectedContact>) = viewModel.onSelectionChanged(newSelections)
       override fun onPendingRecipientSelectionsConsumed() = viewModel.clearPendingRecipientSelections()
       override fun onDoneClicked() = viewModel.addSelectedMembers()
       override fun onAddConfirmed(recipientIds: Set<RecipientId>) {
@@ -151,7 +151,7 @@ private fun AddMembersScreen(
 @Composable
 private fun AddMembersScreenUi(
   uiState: AddMembersUiState,
-  callbacks: UiCallbacks
+  callbacks: AddMembersUiCallbacks
 ) {
   val title = if (uiState.totalMembersCount > 0) {
     pluralStringResource(
@@ -199,7 +199,7 @@ private fun AddMembersScreenUi(
 @Composable
 private fun AddMembersRecipientPicker(
   uiState: AddMembersUiState,
-  callbacks: UiCallbacks,
+  callbacks: AddMembersUiCallbacks,
   modifier: Modifier = Modifier
 ) {
   RecipientPicker(
@@ -220,7 +220,7 @@ private fun AddMembersRecipientPicker(
   )
 }
 
-private interface UiCallbacks :
+private interface AddMembersUiCallbacks :
   RecipientPickerCallbacks.ListActions,
   RecipientPickerCallbacks.FindByUsername,
   RecipientPickerCallbacks.FindByPhoneNumber {
@@ -231,7 +231,7 @@ private interface UiCallbacks :
   fun onUserMessageDismissed(userMessage: UserMessage)
   fun onBackPressed()
 
-  object Empty : UiCallbacks {
+  object Empty : AddMembersUiCallbacks {
     override fun onSearchQueryChanged(query: String) = Unit
     override fun onFindByUsername() = Unit
     override fun onFindByPhoneNumber() = Unit
@@ -323,7 +323,7 @@ private fun AddMembersScreenPreview() {
         forceSplitPane = false,
         selectionLimits = SelectionLimits.NO_LIMITS
       ),
-      callbacks = UiCallbacks.Empty
+      callbacks = AddMembersUiCallbacks.Empty
     )
   }
 }

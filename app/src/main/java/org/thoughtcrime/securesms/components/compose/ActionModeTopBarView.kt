@@ -16,8 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.AbstractComposeView
-import org.thoughtcrime.securesms.compose.SignalTheme
-import org.thoughtcrime.securesms.util.DynamicTheme
+import org.signal.core.ui.compose.theme.SignalTheme
 
 /**
  * A View wrapper for [ActionModeTopBar] so that we can use the same UI element in View and Compose land.
@@ -33,7 +32,7 @@ class ActionModeTopBarView @JvmOverloads constructor(
 
   @Composable
   override fun Content() {
-    SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(context)) {
+    SignalTheme {
       Surface(
         color = Color.Transparent,
         contentColor = MaterialTheme.colorScheme.onSurface

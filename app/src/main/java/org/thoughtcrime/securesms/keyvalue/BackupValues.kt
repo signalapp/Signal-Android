@@ -18,8 +18,8 @@ import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollecti
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraintObserver
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.keyvalue.protos.BackupDownloadNotifierState
+import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
 import org.whispersystems.signalservice.internal.util.JsonUtil
@@ -48,6 +48,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_LAST_CHECK_IN_MILLIS = "backup.lastCheckInMilliseconds"
     private const val KEY_LAST_CHECK_IN_SNOOZE_MILLIS = "backup.lastCheckInSnoozeMilliseconds"
     private const val KEY_FIRST_APP_VERSION = "backup.firstAppVersion"
+    private const val KEY_FINISHED_INITIAL_BACKUP = "backup.finishedInitialBackup"
 
     private const val KEY_NEXT_BACKUP_TIME = "backup.nextBackupTime"
     private const val KEY_LAST_BACKUP_TIME = "backup.lastBackupTime"
@@ -100,6 +101,14 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_MESSAGE_CUTOFF_DURATION = "backup.message_cutoff_duration"
     private const val KEY_LAST_USED_MESSAGE_CUTOFF_TIME = "backup.last_used_message_cutoff_time"
 
+    private const val KEY_NEW_LOCAL_BACKUPS_ENABLED = "backup.new_local_backups_enabled"
+    private const val KEY_NEW_LOCAL_BACKUPS_DIRECTORY = "backup.new_local_backups_directory"
+    private const val KEY_NEW_LOCAL_BACKUPS_LAST_BACKUP_TIME = "backup.new_local_backups_last_backup_time"
+    private const val KEY_NEW_LOCAL_BACKUPS_SELECTED_SNAPSHOT_TIMESTAMP = "backup.new_local_backups_selected_snapshot_timestamp"
+    private const val KEY_NEW_LOCAL_BACKUPS_CREATION_PROGRESS = "backup.new_local_backups_creation_progress"
+
+    private const val KEY_UPLOAD_BANNER_VISIBLE = "backup.upload_banner_visible"
+
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
 
     private val lock = ReentrantLock()
@@ -126,7 +135,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   val deletionStateFlow: Flow<DeletionState> = deletionStateValue.toFlow()
 
-  var optimizeStorage: Boolean by booleanValue(KEY_OPTIMIZE_STORAGE, false).withPrecondition { RemoteConfig.internalUser || Environment.IS_STAGING || Environment.IS_INSTRUMENTATION }
+  var optimizeStorage: Boolean by booleanValue(KEY_OPTIMIZE_STORAGE, false)
   var backupWithCellular: Boolean
     get() = getBoolean(KEY_BACKUP_OVER_CELLULAR, false)
     set(value) {
@@ -154,6 +163,16 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
         _lastBackupTimeFlow.value.tryEmit(value)
       }
     }
+
+  /**
+   * Whether or not the user has completed their initial backup. This if enabling backups for the first time or going from free -> paid tier.
+   * It is initialized to 'true' to account for pre-existing backup users.
+   * Users who newly-enable backups will set this to 'false' via the aforementioned mechanism.
+   */
+  var finishedInitialBackup: Boolean by booleanValue(KEY_FINISHED_INITIAL_BACKUP, true)
+
+  /** Whether or not the user chose to hide the uplaod banner that appears on the chat list. */
+  var uploadBannerVisible: Boolean by booleanValue(KEY_UPLOAD_BANNER_VISIBLE, false)
 
   private val _lastBackupTimeFlow: Lazy<MutableStateFlow<Long>> = lazy { MutableStateFlow(lastBackupTime) }
   val lastBackupTimeFlow by lazy { _lastBackupTimeFlow.value }
@@ -265,6 +284,13 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
           clearNotEnoughRemoteStorageSpace()
           clearMessageBackupFailureSheetWatermark()
           backupCreationError = null
+
+          if (storedValue == null) {
+            Log.i(TAG, "Enabling backups. Resetting 'finished initial backup' state.")
+          } else if (value == MessageBackupTier.PAID) {
+            Log.i(TAG, "Moving to PAID backups. Resetting 'finished initial backup' state.")
+            finishedInitialBackup = false
+          }
         }
 
         deletionState = DeletionState.NONE
@@ -441,6 +467,39 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
    * size limit, which is *extraordinarily* rare, so this value is almost always 0.
    */
   var lastUsedMessageCutoffTime: Long by longValue(KEY_LAST_USED_MESSAGE_CUTOFF_TIME, 0)
+
+  /**
+   * True if the new local backup system is enabled, otherwise false.
+   */
+  private val newLocalBackupsEnabledValue = booleanValue(KEY_NEW_LOCAL_BACKUPS_ENABLED, false)
+  var newLocalBackupsEnabled: Boolean by newLocalBackupsEnabledValue
+  val newLocalBackupsEnabledFlow: Flow<Boolean> by lazy { newLocalBackupsEnabledValue.toFlow() }
+
+  /**
+   * Progress values for local backup progress.
+   */
+  private val newLocalBackupProgressValue = protoValue(KEY_NEW_LOCAL_BACKUPS_CREATION_PROGRESS, LocalBackupCreationProgress(), LocalBackupCreationProgress.ADAPTER)
+  var newLocalBackupProgress: LocalBackupCreationProgress by newLocalBackupProgressValue
+  val newLocalBackupProgressFlow: Flow<LocalBackupCreationProgress> by lazy { newLocalBackupProgressValue.toFlow() }
+
+  /**IT
+   * The directory URI path selected for new local backups.
+   */
+  private val newLocalBackupsDirectoryValue = stringValue(KEY_NEW_LOCAL_BACKUPS_DIRECTORY, null as String?)
+  var newLocalBackupsDirectory: String? by newLocalBackupsDirectoryValue
+  val newLocalBackupsDirectoryFlow: Flow<String?> by lazy { newLocalBackupsDirectoryValue.toFlow() }
+
+  /**
+   * The timestamp of the last successful new local backup.
+   */
+  private val newLocalBackupsLastBackupTimeValue = longValue(KEY_NEW_LOCAL_BACKUPS_LAST_BACKUP_TIME, -1)
+  var newLocalBackupsLastBackupTime: Long by newLocalBackupsLastBackupTimeValue
+  val newLocalBackupsLastBackupTimeFlow: Flow<Long> by lazy { newLocalBackupsLastBackupTimeValue.toFlow() }
+
+  /**
+   * The snapshot timestamp selected for restore. Set before launching restore, cleared after completion.
+   */
+  var newLocalBackupsSelectedSnapshotTimestamp: Long by longValue(KEY_NEW_LOCAL_BACKUPS_SELECTED_SNAPSHOT_TIMESTAMP, -1L)
 
   /**
    * When we are told by the server that we are out of storage space, we should show

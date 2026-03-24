@@ -25,6 +25,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleEmitter
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.StreamUtil
+import org.signal.core.util.Util
 import org.signal.core.util.concurrent.MaybeCompat
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.dp
@@ -71,6 +72,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies.expiringMessageMa
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException
 import org.thoughtcrime.securesms.jobs.GroupSendJobHelper
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
+import org.thoughtcrime.securesms.jobs.UnpinMessageJob
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore.Companion.settings
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -95,7 +97,6 @@ import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.hasLinkPreview
 import org.thoughtcrime.securesms.util.hasSharedContact
 import org.thoughtcrime.securesms.util.hasTextSlide
@@ -217,12 +218,11 @@ class ConversationRepository(
       val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(messageRecord.threadId)!!
       val pollSentTimestamp = messageRecord.dateSent
 
-      if (threadRecipient.groupId.getOrNull()?.isV2 != true) {
+      if (threadRecipient.isPushV2Group && threadRecipient.groupId.getOrNull()?.isV2 != true) {
         Log.w(TAG, "Missing group id")
         emitter.tryOnError(Exception("Poll terminate failed"))
       }
 
-      val groupId = threadRecipient.requireGroupId().requireV2()
       val message = OutgoingMessage.pollTerminateMessage(
         threadRecipient = threadRecipient,
         sentTimeMillis = System.currentTimeMillis(),
@@ -232,12 +232,17 @@ class ConversationRepository(
 
       Log.i(TAG, "Sending poll terminate to " + message.threadRecipient.id + ", thread: " + messageRecord.threadId)
 
-      val possibleTargets: List<Recipient> = SignalDatabase.groups.getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)
-        .map { it.resolve() }
-        .distinctBy { it.id }
+      val possibleTargets: List<Recipient> = if (threadRecipient.isPushV2Group) {
+        SignalDatabase.groups.getGroupMembers(threadRecipient.requireGroupId().requireV2(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)
+          .map { it.resolve() }
+          .distinctBy { it.id }
+      } else {
+        listOf(threadRecipient)
+      }
+      val isSelf = threadRecipient.isSelf
 
       val eligibleTargets: List<Recipient> = RecipientUtil.getEligibleForSending(possibleTargets)
-      val results = sendEndPoll(threadRecipient, message, eligibleTargets)
+      val results = sendEndPoll(threadRecipient, message, eligibleTargets, isSelf, poll.messageId)
       val sendResults = GroupSendJobHelper.getCompletedSends(eligibleTargets, results)
 
       if (sendResults.completed.isNotEmpty() || possibleTargets.isEmpty()) {
@@ -270,9 +275,9 @@ class ConversationRepository(
   }
 
   @Throws(IOException::class, GroupNotAMemberException::class, UndeliverableMessageException::class)
-  fun sendEndPoll(group: Recipient, message: OutgoingMessage, destinations: List<Recipient>): List<SendMessageResult?> {
-    val groupId = group.requireGroupId().requireV2()
-    val groupRecord: GroupRecord? = SignalDatabase.groups.getGroup(group.requireGroupId()).getOrNull()
+  fun sendEndPoll(threadRecipient: Recipient, message: OutgoingMessage, destinations: List<Recipient>, isSelf: Boolean, messageId: Long): List<SendMessageResult?> {
+    val groupId = if (threadRecipient.isPushV2Group) threadRecipient.requireGroupId().requireV2() else null
+    val groupRecord: GroupRecord? = if (threadRecipient.isPushV2Group) SignalDatabase.groups.getGroup(threadRecipient.requireGroupId()).getOrNull() else null
 
     if (groupRecord != null && groupRecord.isAnnouncementGroup && !groupRecord.isAdmin(Recipient.self())) {
       throw UndeliverableMessageException("Non-admins cannot send messages in announcement groups!")
@@ -280,25 +285,35 @@ class ConversationRepository(
 
     val builder = newBuilder()
 
-    GroupUtil.setDataMessageGroupContext(AppDependencies.application, builder, groupId)
+    if (groupId != null) {
+      GroupUtil.setDataMessageGroupContext(AppDependencies.application, builder, groupId)
+    }
 
     val sentTime = System.currentTimeMillis()
-    val groupMessage = builder
+    val message = builder
       .withTimestamp(sentTime)
       .withExpiration((message.expiresIn / 1000).toInt())
       .withProfileKey(ProfileKeyUtil.getSelfProfileKey().serialize())
       .withPollTerminate(SignalServiceDataMessage.PollTerminate(message.messageExtras!!.pollTerminate!!.targetTimestamp))
       .build()
 
-    return GroupSendUtil.sendUnresendableDataMessage(
-      applicationContext,
-      groupId,
-      destinations,
-      false,
-      ContentHint.DEFAULT,
-      groupMessage,
-      false
-    ) { System.currentTimeMillis() - sentTime > POLL_TERMINATE_TIMEOUT.inWholeMilliseconds }
+    return if (isSelf) {
+      listOf(AppDependencies.signalServiceMessageSender.sendSyncMessage(message))
+    } else {
+      GroupSendUtil.sendResendableDataMessage(
+        applicationContext,
+        groupId,
+        null,
+        destinations,
+        false,
+        ContentHint.RESENDABLE,
+        MessageId(messageId),
+        message,
+        true,
+        false,
+        null
+      ) { System.currentTimeMillis() - sentTime > POLL_TERMINATE_TIMEOUT.inWholeMilliseconds }
+    }
   }
 
   fun getPinnedMessages(threadId: Long): List<MmsMessageRecord> {
@@ -307,6 +322,11 @@ class ConversationRepository(
 
   fun pinMessage(messageRecord: MessageRecord, duration: Duration, threadRecipient: Recipient): Completable {
     return Completable.create { emitter ->
+      val isGroup = threadRecipient.isPushV2Group
+      if (isGroup && threadRecipient.groupId.getOrNull()?.isV2 != true) {
+        emitter.tryOnError(Exception("Pin message failed - missing group id"))
+      }
+
       val message = OutgoingMessage.pinMessage(
         threadRecipient = threadRecipient,
         sentTimeMillis = System.currentTimeMillis(),
@@ -323,13 +343,91 @@ class ConversationRepository(
 
       Log.i(TAG, "Sending pin create to ${message.threadRecipient.id}, thread: ${messageRecord.threadId}")
 
-      MessageSender.send(
-        AppDependencies.application,
-        message,
-        messageRecord.threadId,
-        MessageSender.SendType.SIGNAL,
-        null
-      ) { emitter.onComplete() }
+      val possibleTargets: List<Recipient> = if (isGroup) {
+        SignalDatabase.groups.getGroupMembers(threadRecipient.requireGroupId().requireV2(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF).map { it.resolve() }.distinctBy { it.id }
+      } else {
+        listOf(threadRecipient)
+      }
+
+      val includeSelf = threadRecipient.isSelf
+      val eligibleTargets = RecipientUtil.getEligibleForSending(possibleTargets)
+      val results = PinSendUtil.sendPinMessage(applicationContext, threadRecipient, message, eligibleTargets, includeSelf, messageRecord.id)
+
+      val sendResults = GroupSendJobHelper.getCompletedSends(eligibleTargets, results)
+
+      if (sendResults.completed.isNotEmpty() || possibleTargets.isEmpty()) {
+        val allocatedThreadId = SignalDatabase.threads.getOrCreateValidThreadId(threadRecipient, messageRecord.threadId, message.distributionType)
+        val outgoingMessage = applyUniversalExpireTimerIfNecessary(applicationContext, threadRecipient, message, allocatedThreadId)
+        val insertResult = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, allocatedThreadId, false, null)
+
+        SignalDatabase.threads.update(threadId = allocatedThreadId, unarchive = true, syncThreadDelete = true)
+        databaseObserver.notifyConversationListeners(messageRecord.threadId)
+        if (outgoingMessage.expiresIn > 0) {
+          SignalDatabase.messages.markExpireStarted(insertResult.messageId)
+          expiringMessageManager.scheduleDeletion(insertResult.messageId, true, message.expiresIn)
+        }
+
+        if (sendResults.skipped.isNotEmpty()) {
+          val messageRecord = SignalDatabase.messages.getMessageRecord(insertResult.messageId)
+          val filterRecipientIds = (sendResults.skipped - sendResults.completed.map { it.id }).toSet()
+          Log.i(TAG, "Some recipients skipped when sending pin message. Resending to $filterRecipientIds")
+          MessageSender.resendGroupMessage(applicationContext, messageRecord, filterRecipientIds)
+        } else {
+          SignalDatabase.messages.markAsSent(insertResult.messageId, true)
+        }
+        emitter.onComplete()
+      } else {
+        emitter.tryOnError(Exception("Pin message failed"))
+      }
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun unpinMessage(messageId: Long): Completable {
+    return Completable.create { emitter ->
+      val message = SignalDatabase.messages.getMessageRecordOrNull(messageId)
+      if (message == null) {
+        emitter.tryOnError(Exception("Unpin message failed - missing message"))
+      }
+
+      val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(message!!.threadId)
+      if (threadRecipient == null) {
+        emitter.tryOnError(Exception("Unpin message failed - missing thread recipient"))
+      }
+
+      val isGroup = threadRecipient!!.isPushV2Group
+      if (isGroup && threadRecipient.groupId.getOrNull()?.isV2 != true) {
+        emitter.tryOnError(Exception("Unpin message failed - missing group id"))
+      }
+
+      Log.i(TAG, "Sending unpin message to ${threadRecipient.id}")
+
+      val possibleTargets: List<Recipient> = if (isGroup) {
+        SignalDatabase.groups.getGroupMembers(threadRecipient.requireGroupId().requireV2(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF).map { it.resolve() }.distinctBy { it.id }
+      } else {
+        listOf(threadRecipient)
+      }
+
+      val includeSelf = threadRecipient.isSelf
+      val eligibleTargets: List<Recipient> = RecipientUtil.getEligibleForSending(possibleTargets)
+      val results = PinSendUtil.sendUnpinMessage(applicationContext, threadRecipient, message.fromRecipient.requireServiceId(), message.dateSent, eligibleTargets, includeSelf, messageId)
+      val sendResults = GroupSendJobHelper.getCompletedSends(eligibleTargets, results)
+
+      if (sendResults.completed.isNotEmpty() || possibleTargets.isEmpty()) {
+        SignalDatabase.messages.unpinMessage(messageId = messageId, threadId = message.threadId)
+        databaseObserver.notifyConversationListeners(message.threadId)
+
+        if (sendResults.skipped.isNotEmpty()) {
+          val filterRecipientIds = (sendResults.skipped - sendResults.completed.map { it.id }).toSet()
+          Log.i(TAG, "Some recipients skipped when sending unpin message. Resending to $filterRecipientIds")
+          val unpinJob = UnpinMessageJob.create(messageId = messageId, initialRecipientIds = filterRecipientIds)
+          if (unpinJob != null) {
+            AppDependencies.jobManager.add(unpinJob)
+          }
+        }
+        emitter.onComplete()
+      } else {
+        emitter.tryOnError(Exception("Unpin message failed"))
+      }
     }.subscribeOn(Schedulers.io())
   }
 

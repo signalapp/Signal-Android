@@ -33,9 +33,12 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.models.Ne
 import org.thoughtcrime.securesms.components.settings.app.subscription.thanks.ThanksForYourSupportBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.help.HelpFragment
+import org.thoughtcrime.securesms.jobs.InAppPaymentKeepAliveJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
@@ -44,9 +47,8 @@ import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
-import java.util.Currency
-import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.seconds
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Fragment displayed when a user enters "Subscriptions" via app settings but is already
@@ -67,10 +69,10 @@ class ManageDonationsFragment :
   private lateinit var launcher: ActivityResultLauncher<InAppPaymentType>
 
   private val supportTechSummary: CharSequence by lazy {
-    SpannableStringBuilder(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant), requireContext().getString(R.string.DonateToSignalFragment__private_messaging)))
-      .append(" ")
+    SpannableStringBuilder(SpanUtil.color(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant), requireContext().getString(R.string.DonateToSignalFragment__private_messaging)))
+      .append("\n")
       .append(
-        SpanUtil.readMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary)) {
+        SpanUtil.readMore(requireContext(), ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorPrimary)) {
           findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscribeLearnMoreBottomSheetDialog())
         }
       )
@@ -150,8 +152,8 @@ class ManageDonationsFragment :
 
   override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper {
     return object : Material3OnScrollHelper(activity = requireActivity(), views = listOf(toolbar!!), lifecycleOwner = viewLifecycleOwner) {
-      override val activeColorSet: ColorSet = ColorSet(R.color.transparent, R.color.signal_colorBackground)
-      override val inactiveColorSet: ColorSet = ColorSet(R.color.transparent, R.color.signal_colorBackground)
+      override val activeColorSet: ColorSet = ColorSet(R.color.transparent, CoreUiR.color.signal_colorBackground)
+      override val inactiveColorSet: ColorSet = ColorSet(R.color.transparent, CoreUiR.color.signal_colorBackground)
     }
   }
 
@@ -192,13 +194,16 @@ class ManageDonationsFragment :
 
       space(16.dp)
 
-      if (state.subscriptionTransactionState is ManageDonationsState.TransactionState.NotInTransaction) {
-        val activeSubscription = state.subscriptionTransactionState.activeSubscription.activeSubscription
-
-        if (activeSubscription != null && !activeSubscription.isCanceled) {
-          val subscription: Subscription? = state.availableSubscriptions.firstOrNull { it.level == activeSubscription.level }
+      if (!state.isLoaded) {
+        customPref(IndeterminateLoadingCircle)
+      } else if (state.networkError) {
+        presentNetworkFailureSettings(state, state.hasReceipts)
+      } else {
+        val payment = state.activeSubscription
+        if (payment != null && payment.data.cancellation == null) {
+          val subscription: Subscription? = state.availableSubscriptions.firstOrNull { it.level == payment.data.level.toInt() }
           if (subscription != null) {
-            presentSubscriptionSettings(activeSubscription, subscription, state)
+            presentSubscriptionSettings(payment, subscription, state)
           } else {
             customPref(IndeterminateLoadingCircle)
           }
@@ -214,10 +219,6 @@ class ManageDonationsFragment :
         } else {
           presentNotADonorSettings(state.hasReceipts)
         }
-      } else if (state.subscriptionTransactionState == ManageDonationsState.TransactionState.NetworkFailure) {
-        presentNetworkFailureSettings(state, state.hasReceipts)
-      } else {
-        customPref(IndeterminateLoadingCircle)
       }
     }
   }
@@ -274,28 +275,31 @@ class ManageDonationsFragment :
   }
 
   private fun DSLConfiguration.presentSubscriptionSettings(
-    activeSubscription: ActiveSubscription.Subscription,
+    payment: InAppPaymentTable.InAppPayment,
     subscription: Subscription,
     state: ManageDonationsState
   ) {
+    val price = payment.data.amount!!.toFiatMoney()
+    val renewalTimestamp = payment.endOfPeriodSeconds.seconds.inWholeMilliseconds
+    val isPaymentFailure = payment.data.error?.let {
+      it.type != InAppPaymentData.Error.Type.REDEMPTION && it.data_ != InAppPaymentKeepAliveJob.KEEP_ALIVE
+    } ?: false
+
     presentSubscriptionSettingsWithState(state) {
       customPref(
         ActiveSubscriptionPreference.Model(
-          price = FiatMoney.fromSignalNetworkAmount(activeSubscription.amount, Currency.getInstance(activeSubscription.currency)),
+          price = price,
           subscription = subscription,
-          renewalTimestamp = TimeUnit.SECONDS.toMillis(activeSubscription.endOfCurrentPeriod),
-          redemptionState = state.getMonthlyDonorRedemptionState(),
+          renewalTimestamp = renewalTimestamp,
+          redemptionState = state.subscriptionRedemptionState,
           onContactSupport = {
             requireActivity().finish()
             requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
           },
-          activeSubscription = activeSubscription,
+          isPaymentFailure = isPaymentFailure,
           subscriberRequiresCancel = state.subscriberRequiresCancel,
           onRowClick = {
             launcher.launch(InAppPaymentType.RECURRING_DONATION)
-          },
-          onPendingClick = {
-            displayPendingDialog(it)
           }
         )
       )
@@ -314,9 +318,7 @@ class ManageDonationsFragment :
           subscription = subscription,
           redemptionState = ManageDonationsState.RedemptionState.IN_PROGRESS,
           onContactSupport = {},
-          activeSubscription = null,
           subscriberRequiresCancel = state.subscriberRequiresCancel,
-          onPendingClick = {},
           onRowClick = {}
         )
       )

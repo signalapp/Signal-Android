@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.restore.restorelocalbackup.PassphraseAsYouType
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
 public class BackupDialog {

@@ -1,0 +1,379 @@
+/**
+ * Copyright (C) 2019 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+syntax = "proto3";
+
+package signalservice;
+
+option java_package         = "org.whispersystems.signalservice.internal.storage.protos";
+option java_multiple_files  = true;
+
+enum OptionalBool {
+  UNSET    = 0;
+  ENABLED  = 1;
+  DISABLED = 2;
+}
+
+message StorageManifest {
+  uint64 version = 1;
+  bytes  value   = 2;
+}
+
+message StorageItem {
+  bytes key   = 1;
+  bytes value = 2;
+}
+
+message StorageItems {
+  repeated StorageItem items = 1;
+}
+
+message ReadOperation {
+  repeated bytes readKey = 1;
+}
+
+message WriteOperation {
+           StorageManifest manifest   = 1;
+  repeated StorageItem     insertItem = 2;
+  repeated bytes           deleteKey  = 3;
+           bool            clearAll   = 4;
+}
+
+message ManifestRecord {
+  message Identifier {
+    enum Type {
+      UNKNOWN                 = 0;
+      CONTACT                 = 1;
+      GROUPV1                 = 2;
+      GROUPV2                 = 3;
+      ACCOUNT                 = 4;
+      STORY_DISTRIBUTION_LIST = 5;
+      CALL_LINK               = 7;
+      CHAT_FOLDER             = 8;
+      NOTIFICATION_PROFILE    = 9;
+    }
+
+    bytes raw  = 1;
+    Type  type = 2;
+  }
+
+           uint64     version      = 1;
+           uint32     sourceDevice = 3;
+  repeated Identifier identifiers  = 2;
+           bytes      recordIkm    = 4;
+  // Next ID: 5
+}
+
+message StorageRecord {
+  oneof record {
+    ContactRecord               contact               = 1;
+    GroupV1Record               groupV1               = 2;
+    GroupV2Record               groupV2               = 3;
+    AccountRecord               account               = 4;
+    StoryDistributionListRecord storyDistributionList = 5;
+    CallLinkRecord              callLink              = 7;
+    ChatFolderRecord            chatFolder            = 8;
+    NotificationProfile         notificationProfile   = 9;
+  }
+}
+
+
+// If unset - computed as the value of the first byte of SHA-256(msg=CONTACT_ID)
+// modulo the count of colors. Once set the avatar color for a recipient is
+// never recomputed or changed.
+//
+// `CONTACT_ID` is the first available identifier from the list:
+// - ServiceIdToBinary(ACI)
+// - E164
+// - ServiceIdToBinary(PNI)
+// - Group Id
+enum AvatarColor {
+  A100 = 0;
+  A110 = 1;
+  A120 = 2;
+  A130 = 3;
+  A140 = 4;
+  A150 = 5;
+  A160 = 6;
+  A170 = 7;
+  A180 = 8;
+  A190 = 9;
+  A200 = 10;
+  A210 = 11;
+}
+
+message ContactRecord {
+  enum IdentityState {
+    DEFAULT    = 0;
+    VERIFIED   = 1;
+    UNVERIFIED = 2;
+  }
+
+  message Name {
+    string given  = 1;
+    string family = 2;
+  }
+
+  string        aci                     = 1;
+  string        e164                    = 2;
+  string        pni                     = 15;
+  bytes         profileKey              = 3;
+  bytes         identityKey             = 4;
+  IdentityState identityState           = 5;
+  string        givenName               = 6;
+  string        familyName              = 7;
+  string        username                = 8;
+  bool          blocked                 = 9;
+  bool          whitelisted             = 10;
+  bool          archived                = 11;
+  bool          markedUnread            = 12;
+  uint64        mutedUntilTimestamp     = 13;
+  bool          hideStory               = 14;
+  uint64        unregisteredAtTimestamp = 16;
+  string        systemGivenName         = 17;
+  string        systemFamilyName        = 18;
+  string        systemNickname          = 19;
+  bool          hidden                  = 20;
+  bool          pniSignatureVerified    = 21;
+  Name          nickname                = 22;
+  string        note                    = 23;
+  optional AvatarColor avatarColor      = 24;
+  bytes         aciBinary               = 25; // 16-byte UUID
+  bytes         pniBinary               = 26; // 16-byte UUID
+  // Next ID: 27
+}
+
+message GroupV1Record {
+  bytes  id                  = 1;
+  bool   blocked             = 2;
+  bool   whitelisted         = 3;
+  bool   archived            = 4;
+  bool   markedUnread        = 5;
+  uint64 mutedUntilTimestamp = 6;
+}
+
+message GroupV2Record {
+  enum StorySendMode {
+    DEFAULT  = 0;
+    DISABLED = 1;
+    ENABLED  = 2;
+  }
+
+  bytes         masterKey                    = 1;
+  bool          blocked                      = 2;
+  bool          whitelisted                  = 3;
+  bool          archived                     = 4;
+  bool          markedUnread                 = 5;
+  uint64        mutedUntilTimestamp          = 6;
+  bool          dontNotifyForMentionsIfMuted = 7;
+  bool          hideStory                    = 8;
+  reserved   /* storySendEnabled */            9;
+  StorySendMode storySendMode                = 10;
+  optional AvatarColor avatarColor           = 11;
+}
+
+message Payments {
+  bool  enabled = 1;
+  bytes entropy = 2;
+}
+
+message AccountRecord {
+
+  enum PhoneNumberSharingMode {
+    UNKNOWN   = 0;
+    EVERYBODY = 1;
+    NOBODY    = 2;
+  }
+
+  message PinnedConversation {
+    message Contact {
+      string serviceId       = 1;
+      string e164            = 2;
+      bytes  serviceIdBinary = 3; // service ID binary (i.e. 16 byte UUID for ACI, 1 byte prefix + 16 byte UUID for PNI)
+    }
+
+    oneof identifier {
+      Contact contact        = 1;
+      bytes   legacyGroupId  = 3;
+      bytes   groupMasterKey = 4;
+    }
+  }
+
+  message UsernameLink {
+    enum Color {
+      UNKNOWN = 0;
+      BLUE = 1;
+      WHITE = 2;
+      GREY = 3;
+      OLIVE = 4;
+      GREEN = 5;
+      ORANGE = 6;
+      PINK = 7;
+      PURPLE = 8;
+    }
+
+    bytes entropy  = 1; // 32 bytes of entropy used for encryption
+    bytes serverId = 2; // 16 bytes of encoded UUID provided by the server
+    Color color    = 3;
+  }
+
+  message IAPSubscriberData {
+    bytes subscriberId = 1;
+
+    oneof iapSubscriptionId {
+      // Identifies an Android Play Store IAP subscription.
+      string purchaseToken         = 2;
+      // Identifies an iOS App Store IAP subscription.
+      uint64 originalTransactionId = 3;
+    }
+  }
+
+  message BackupTierHistory {
+    // See zkgroup for integer particular values. Unset if backups are not enabled.
+    optional uint64 backupTier = 1;
+    optional uint64 endedAtTimestamp = 2;
+  }
+
+  message NotificationProfileManualOverride {
+    message ManuallyEnabled {
+      bytes id = 1;
+
+      // This will be unset if no timespan was chosen in the UI.
+      uint64 endAtTimestampMs = 3;
+    }
+
+    oneof override {
+      uint64 disabledAtTimestampMs = 1;
+      ManuallyEnabled enabled = 2;
+    }
+  }
+
+           bytes                             profileKey                                 = 1;
+           string                            givenName                                  = 2;
+           string                            familyName                                 = 3;
+           string                            avatarUrlPath                              = 4;
+           bool                              noteToSelfArchived                         = 5;
+           bool                              readReceipts                               = 6;
+           bool                              sealedSenderIndicators                     = 7;
+           bool                              typingIndicators                           = 8;
+           reserved                          /* proxiedLinkPreviews */                    9;
+           bool                              noteToSelfMarkedUnread                     = 10;
+           bool                              linkPreviews                               = 11;
+           PhoneNumberSharingMode            phoneNumberSharingMode                     = 12;
+           bool                              unlistedPhoneNumber                        = 13;
+  repeated PinnedConversation                pinnedConversations                        = 14;
+           bool                              preferContactAvatars                       = 15;
+           Payments                          payments                                   = 16;
+           uint32                            universalExpireTimer                       = 17;
+           bool                              primarySendsSms                            = 18;
+           reserved                          /* e164 */                                   19;
+  repeated string                            preferredReactionEmoji                     = 20;
+           bytes                             subscriberId                               = 21;
+           string                            subscriberCurrencyCode                     = 22;
+           bool                              displayBadgesOnProfile                     = 23;
+           bool                              subscriptionManuallyCancelled              = 24;
+           bool                              keepMutedChatsArchived                     = 25;
+           bool                              hasSetMyStoriesPrivacy                     = 26;
+           bool                              hasViewedOnboardingStory                   = 27;
+           reserved                          /* storiesDisabled */                        28;
+           bool                              storiesDisabled                            = 29;
+           OptionalBool                      storyViewReceiptsEnabled                   = 30;
+           reserved                          /* hasReadOnboardingStory */                 31;
+           bool                              hasSeenGroupStoryEducationSheet            = 32;
+           string                            username                                   = 33;
+           bool                              hasCompletedUsernameOnboarding             = 34;
+           UsernameLink                      usernameLink                               = 35;
+           reserved                          /* backupsSubscriberId */                    36;
+           reserved                          /* backupsSubscriberCurrencyCode */          37;
+           reserved                          /* backupsSubscriptionManuallyCancelled */   38;
+  optional bool                              hasBackup                                  = 39; // Set to true after backups are enabled and one is uploaded.
+  optional uint64                            backupTier                                 = 40; // See zkgroup for integer particular values. Unset if backups are not enabled.
+           IAPSubscriberData                 backupSubscriberData                       = 41;
+  optional AvatarColor                       avatarColor                                = 42;
+           BackupTierHistory                 backupTierHistory                          = 43;
+           NotificationProfileManualOverride notificationProfileManualOverride          = 44;
+           bool                              notificationProfileSyncDisabled            = 45;
+           bool                              automaticKeyVerificationDisabled           = 46;
+           bool                              hasSeenAdminDeleteEducationDialog          = 47;
+}
+
+message StoryDistributionListRecord {
+           bytes  identifier                = 1;
+           string name                      = 2;
+  repeated string recipientServiceIds       = 3;
+           uint64 deletedAtTimestamp        = 4;
+           bool   allowsReplies             = 5;
+           bool   isBlockList               = 6;
+  repeated bytes  recipientServiceIdsBinary = 7; // service ID binary (i.e. 16 byte UUID for ACI, 1 byte prefix + 16 byte UUID for PNI)
+}
+
+message CallLinkRecord {
+  bytes rootKey               = 1;
+  bytes adminPasskey          = 2;
+  uint64 deletedAtTimestampMs = 3;
+  reserved                      4; // was epoch field, never used
+}
+
+message Recipient {
+  message Contact {
+    string serviceId      = 1;
+    string e164           = 2;
+    bytes serviceIdBinary = 3; // service ID binary (i.e. 16 byte UUID for ACI, 1 byte prefix + 16 byte UUID for PNI)
+  }
+
+  oneof identifier {
+    Contact contact = 1;
+    bytes legacyGroupId = 2;
+    bytes groupMasterKey = 3;
+  }
+}
+
+message ChatFolderRecord {
+  // Represents the default "All chats" folder record vs all other custom folders
+  enum FolderType {
+    UNKNOWN = 0;
+    ALL = 1;
+    CUSTOM = 2;
+  }
+
+  bytes identifier = 1;
+  string name = 2;
+  uint32 position = 3;
+  bool showOnlyUnread = 4;
+  bool showMutedChats = 5;
+  bool includeAllIndividualChats = 6; // Folder includes all 1:1 chats, unless excluded
+  bool includeAllGroupChats = 7;      // Folder includes all group chats, unless excluded
+  FolderType folderType = 8;
+  repeated Recipient includedRecipients = 9;
+  repeated Recipient excludedRecipients = 10;
+  uint64 deletedAtTimestampMs = 11;   // When non-zero, `position` should be set to -1 and includedRecipients should be empty
+}
+
+message NotificationProfile {
+  enum DayOfWeek {
+    UNKNOWN = 0; // Interpret as "Monday"
+    MONDAY = 1;
+    TUESDAY = 2;
+    WEDNESDAY = 3;
+    THURSDAY = 4;
+    FRIDAY = 5;
+    SATURDAY = 6;
+    SUNDAY = 7;
+  }
+
+  bytes id = 1;
+  string name = 2;
+  optional string emoji = 3;
+  fixed32 color = 4; // 0xAARRGGBB
+  uint64 createdAtMs = 5;
+  bool allowAllCalls = 6;
+  bool allowAllMentions = 7;
+  repeated Recipient allowedMembers = 8;
+  bool scheduleEnabled = 9;
+  uint32 scheduleStartTime = 10; // 24-hour clock int, 0000-2359 (e.g., 15, 900, 1130, 2345)
+  uint32 scheduleEndTime = 11; // 24-hour clock int, 0000-2359 (e.g., 15, 900, 1130, 2345)
+  repeated DayOfWeek scheduleDaysEnabled = 12;
+  uint64 deletedAtTimestampMs = 13;
+}

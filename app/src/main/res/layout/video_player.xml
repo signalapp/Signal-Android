@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
-        app:surface_type="texture_view"
+        app:surface_type="surface_view"
         app:player_layout_id="@layout/media_preview_exoplayer_layout"/>
 
     <ProgressBar

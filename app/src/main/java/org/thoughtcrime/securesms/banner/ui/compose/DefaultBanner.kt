@@ -28,16 +28,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * A layout intended to display an in-app notification at the top of their screen,
@@ -68,7 +68,7 @@ fun DefaultBanner(
       )
       .border(
         width = 1.dp,
-        color = colorResource(id = R.color.signal_colorOutline_38),
+        color = colorResource(id = CoreUiR.color.signal_colorOutline_38),
         shape = RoundedCornerShape(12.dp)
       )
   ) {
@@ -89,7 +89,7 @@ fun DefaultBanner(
                 text = title,
                 color = when (importance) {
                   Importance.NORMAL -> MaterialTheme.colorScheme.onSurface
-                  Importance.ERROR -> colorResource(id = R.color.signal_light_colorOnSurface)
+                  Importance.ERROR -> colorResource(id = CoreUiR.color.signal_light_colorOnSurface)
                 },
                 style = MaterialTheme.typography.bodyLarge
               )
@@ -99,7 +99,7 @@ fun DefaultBanner(
               text = body,
               color = when (importance) {
                 Importance.NORMAL -> MaterialTheme.colorScheme.onSurfaceVariant
-                Importance.ERROR -> colorResource(id = R.color.signal_light_colorOnSurface)
+                Importance.ERROR -> colorResource(id = CoreUiR.color.signal_light_colorOnSurface)
               },
               style = MaterialTheme.typography.bodyMedium
             )
@@ -110,7 +110,7 @@ fun DefaultBanner(
                   progress = { progressPercent / 100f },
                   color = when (importance) {
                     Importance.NORMAL -> MaterialTheme.colorScheme.primary
-                    Importance.ERROR -> colorResource(id = R.color.signal_light_colorPrimary)
+                    Importance.ERROR -> colorResource(id = CoreUiR.color.signal_light_colorPrimary)
                   },
                   trackColor = MaterialTheme.colorScheme.primaryContainer,
                   modifier = Modifier
@@ -121,7 +121,7 @@ fun DefaultBanner(
                 LinearProgressIndicator(
                   color = when (importance) {
                     Importance.NORMAL -> MaterialTheme.colorScheme.primary
-                    Importance.ERROR -> colorResource(id = R.color.signal_light_colorPrimary)
+                    Importance.ERROR -> colorResource(id = CoreUiR.color.signal_light_colorPrimary)
                   },
                   trackColor = MaterialTheme.colorScheme.primaryContainer,
                   modifier = Modifier.padding(vertical = 12.dp)
@@ -133,7 +133,7 @@ fun DefaultBanner(
               style = MaterialTheme.typography.bodySmall,
               color = when (importance) {
                 Importance.NORMAL -> MaterialTheme.colorScheme.onSurfaceVariant
-                Importance.ERROR -> colorResource(id = R.color.signal_light_colorOnSurface)
+                Importance.ERROR -> colorResource(id = CoreUiR.color.signal_light_colorOnSurface)
               }
             )
           }
@@ -148,11 +148,11 @@ fun DefaultBanner(
                 modifier = Modifier.size(48.dp)
               ) {
                 Icon(
-                  imageVector = ImageVector.vectorResource(id = R.drawable.symbol_x_24),
+                  imageVector = SignalIcons.X.imageVector,
                   contentDescription = stringResource(id = R.string.InviteActivity_cancel),
                   tint = when (importance) {
                     Importance.NORMAL -> MaterialTheme.colorScheme.onSurfaceVariant
-                    Importance.ERROR -> colorResource(id = R.color.signal_light_colorOnSurface)
+                    Importance.ERROR -> colorResource(id = CoreUiR.color.signal_light_colorOnSurface)
                   }
                 )
               }
@@ -170,7 +170,7 @@ fun DefaultBanner(
               onClick = action.onClick,
               colors = when (importance) {
                 Importance.NORMAL -> ButtonDefaults.textButtonColors()
-                Importance.ERROR -> ButtonDefaults.textButtonColors(contentColor = colorResource(R.color.signal_light_colorPrimary))
+                Importance.ERROR -> ButtonDefaults.textButtonColors(contentColor = colorResource(CoreUiR.color.signal_light_colorPrimary))
               }
             ) {
               Text(

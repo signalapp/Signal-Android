@@ -5,5 +5,6 @@ enum JoinGroupError {
   GROUP_LINK_NOT_ACTIVE,
   BANNED,
   FAILED,
+  LIMIT_REACHED,
   NETWORK_ERROR,
 }

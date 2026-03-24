@@ -1,0 +1,15 @@
+# Lefthook git hooks configuration
+#
+# ========== SETUP ==========
+# 1. Install lefthook: https://lefthook.dev/installation/
+# 2. Enable hooks: lefthook install
+#
+# ========== CUSTOMIZATION ==========
+# Create lefthook-local.yml (gitignored) to override settings locally.
+# https://lefthook.dev/examples/lefthook-local.html
+
+pre-push:
+  commands:
+    format:
+      run: ./gradlew format --quiet && test -z "$(git status --porcelain)"
+      fail_text: "Formatting changes detected. Please commit them and push again."

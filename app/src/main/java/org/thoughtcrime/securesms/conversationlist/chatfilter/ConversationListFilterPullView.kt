@@ -26,6 +26,7 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Encapsulates the push / pull latch for enabling and disabling
@@ -78,8 +79,8 @@ class ConversationListFilterPullView @JvmOverloads constructor(
   private var animateHelpText = 0
   private var helpTextStartFraction = 0.35f
 
-  private val pillDefaultBackgroundTint = ContextCompat.getColor(context, R.color.signal_colorSecondaryContainer)
-  private val pillWillCloseBackgroundTint = ContextCompat.getColor(context, R.color.signal_colorSurface1)
+  private val pillDefaultBackgroundTint = ContextCompat.getColor(context, CoreUiR.color.signal_colorSecondaryContainer)
+  private val pillWillCloseBackgroundTint = ContextCompat.getColor(context, CoreUiR.color.signal_colorSurface1)
 
   fun setPillText(@StringRes textId: Int) {
     binding.filterText.setText(textId)

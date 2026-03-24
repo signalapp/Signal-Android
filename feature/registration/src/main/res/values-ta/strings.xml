@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">உங்களுடன் தனியுரிமையைப் பெறுங்கள். ஒவ்வொரு செய்தியிலும் நீங்கள் நீங்கலாய் இருங்கள் .</string>
+    <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
+    <string name="RegistrationActivity_terms_and_privacy">சிக்னல் ஓர் இலாப நோக்கற்ற அமைப்பாகும்\nவிதிமுறைகள் &amp; தனியுரிமைக் கொள்கை</string>
+    <string name="RegistrationActivity_continue">தொடர்</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">மீட்டெடு அல்லது இடமாற்று</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">பெர்மீஷன்களை அனுமதித்தல்</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">உங்களுக்குத் தெரிந்தவர்களுக்கு மெசேஜ் அனுப்ப உதவ, Signal இந்த அனுமதிகளைக் கோரும். </string>
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">இப்போது வேண்டாம்</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">அடுத்து</string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">அறிவிப்புகள்</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">புதிய மெசேஜ்கள் வரும்போது அறிவிப்பைப் பெறவும்.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">தொடர்புகள்</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">உங்களுக்குத் தெரிந்தவர்களைக் கண்டறியவும். உங்கள் தொடர்புகள் குறியாக்கம் செய்யப்பட்டுள்ளது, மேலும் Signal சேவைக்குக் காண்பிக்கப்படாது.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">ஃபோன் அழைப்புகள்</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">பதிவுசெய்தலை எளிதாக்கி கூடுதல் அழைப்பு அம்சங்களை செயல்படுத்தலாம்.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">சேமிப்பகம்</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">உங்கள் டிவைஸில் இருந்து புகைப்படங்கள், வீடியோக்கள் மற்றும் கோப்புகளை அனுப்பலாம்.</string>
+
+    <!-- PhoneNumberEntryScreen -->
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">தொலைபேசி எண்</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">சரிபார்ப்புக் குறியீட்டைப் பெறுவீர்கள். கேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">ஒரு நாட்டைத் தேர்வு செய்யுங்கள்</string>
+    <string name="RegistrationActivity_phone_number_description">தொலைபேசி எண்</string>
+    <string name="RegistrationActivity_next">அடுத்தது</string>
+
+    <!-- CountryCodePickerScreen -->
+    <!-- Title of the country code selection screen -->
+    <string name="CountryCodeSelectScreen__your_country">உங்கள் நாடு</string>
+    <!-- Close button content description -->
+    <string name="CountryCodeSelectScreen__close">நெருக்கமான</string>
+    <!-- Search bar hint text -->
+    <string name="CountryCodeSelectScreen__search_by">நாட்டின் பெயர் அல்லது பேசி குறியீட்டு எண் வாரியாகத் தேடுக</string>
+    <!-- Fallback text for countries with no name -->
+    <string name="CountryCodeSelectScreen__unknown_country">அறியப்படாத நாடு</string>
+
+    <!-- VerificationCodeScreen -->
+    <!-- Title of the verification code entry screen -->
+    <string name="VerificationCodeScreen__verification_code">சரிபார்ப்புக் குறியீடு</string>
+    <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">நாங்கள் அனுப்பிய குறியீட்டை %1$s க்கு உள்ளிடவும்</string>
+    <!-- Button text for wrong number action -->
+    <string name="VerificationCodeScreen__wrong_number">தவறான எண்?</string>
+    <!-- Button text for resend SMS action -->
+    <string name="VerificationCodeScreen__resend_code">குறியீட்டை மீண்டும் அனுப்பு</string>
+    <!-- Button text for call me action -->
+    <string name="VerificationCodeScreen__call_me_instead">அதற்குப் பதிலாக என்னை அழைக்கவும்</string>
+    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__call_me_available_in">என்னை அழைக்கவும் (%1$02d:%2$02d)</string>
+    <!-- Toast shown when the user enters an incorrect verification code -->
+    <string name="VerificationCodeScreen__incorrect_code">தவறான குறியீடு</string>
+    <!-- Snackbar shown when there is a network error -->
+    <string name="VerificationCodeScreen__network_error">இணைக்க முடியவில்லை. உங்கள் நெட்வொர்க்கைச் சரிபார்த்துவிட்டு மீண்டும் முயற்சிக்கவும்.</string>
+    <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
+    <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">அதிக அளவிலான முயற்சிகள். %1$s-இல் மீண்டும் முயலுங்கள்.</string>
+    <!-- Snackbar shown for generic/unknown errors -->
+    <string name="VerificationCodeScreen__an_unexpected_error_occurred">எதிர்பாராத பிழை ஏற்பட்டது. மீண்டும் முயலுங்கள்.</string>
+    <!-- Snackbar shown when the SMS provider has an error -->
+    <string name="VerificationCodeScreen__sms_provider_error">உங்கள் சரிபார்ப்புக் குறியீட்டை அனுப்புவதில் சிக்கல் ஏற்பட்டது. மீண்டும் முயலுங்கள்.</string>
+    <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
+    <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">தேர்ந்தெடுக்கப்பட்ட முறையின் வழியாகக் குறியீட்டை அனுப்ப முடியவில்லை. வேறொரு விருப்பத்தேர்வை முயற்சிக்கவும்.</string>
+    <!-- Snackbar shown for registration errors -->
+    <string name="VerificationCodeScreen__registration_error">பதிவுசெய்தல் தோல்வியடைந்தது. மீண்டும் முயலுங்கள்.</string>
+    <!-- Button text for having trouble with verification -->
+    <string name="VerificationCodeScreen__having_trouble">சிக்கல் உள்ளதா?</string>
+
+    <!-- RestoreWelcomeBottomSheet -->
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">என் பழைய ஃபோன் என்னிடம் உள்ளது</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">விரைவாகத் தொடங்க, உங்கள் தற்போதைய சிக்னல் கணக்கிலிருந்து QR குறியீட்டை ஸ்கேன் செய்யவும்</string>
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">என்னிடம் என் பழைய ஃபோன் இல்லை</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">அல்லது அதே சாதனத்தில் நீங்கள் சிக்னலை மீண்டும் நிறுவுகிறீர்கள்</string>
+
+    <!-- ArchiveRestoreSelectionScreen -->
+    <!-- Title text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">கணக்கை மீட்டெடுக்கவும் அல்லது இடமாற்றவும்</string>
+    <!-- Subtitle text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__subheading">Choose how you’d like to restore your message history and account data.</string>
+    <!-- Title for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">சிக்னல் காப்புப்பிரதிகளில் இருந்து</string>
+    <!-- Subtitle for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">உங்கள் இலவச அல்லது கட்டண சிக்னல் காப்புப்பிரதி திட்டம்</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">சாதனத்திலுள்ள காப்புப்பிரதியை மீட்டெடு</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">உங்கள் சாதனத்தில் நீங்கள் சேமித்த காப்புப்பிரதியிலிருந்து மெசேஜ்களை மீட்டெடுக்கவும்.</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">இடமாற்றாமல் தொடர்க</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Messages &amp; media won’t be transferred</string>
+    <!-- Title for the backup folder option card (V2 format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">காப்புப்பிரதி கோப்புறையிலிருந்து</string>
+    <!-- Title for the backup file option card (V1 legacy format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">காப்புப் பிரதி கோப்பிலிருந்து</string>
+    <!-- Subtitle for the backup folder/file option cards -->
+    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Choose a backup you\'ve saved</string>
+    <!-- Title for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">உங்களின் பழைய ஃபோனிலிருந்து</string>
+    <!-- Subtitle for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">உங்களின் பழைய Android சாதானத்திலிருந்து நேரடியாக இடமாற்றம் செய்யவும்</string>
+    <!-- Skip button text -->
+    <string name="ArchiveRestoreSelectionScreen__skip">தவிர்</string>
+    <!-- Title for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">மீட்டமைப்பதைத் தவிர்ப்பதா?</string>
+    <!-- Warning body text for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">நீங்கள் இப்போது மீட்டெடுக்கவில்லை எனில், பின்னர் மீட்டெடுக்க முடியாது. மீட்டெடுப்பதைத் தவிர்த்த பிறகு நீங்கள் காப்புப்பிரதிகளை மீண்டும் செயல்படுத்தினால், உங்கள் தற்போதைய காப்புப்பிரதி உங்கள் புதிய செய்தி வரலாற்றுடன் மாற்றப்படும்.</string>
+    <!-- Confirm button text for the skip restore dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">மீட்டமைப்பதைத் தவிர்</string>
+</resources>

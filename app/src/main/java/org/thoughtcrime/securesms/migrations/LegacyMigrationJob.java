@@ -217,12 +217,12 @@ public class LegacyMigrationJob extends MigrationJob {
 //        }
 //      }
 
-    if (lastSeenVersion < COLOR_MIGRATION) {
-      long startTime = System.currentTimeMillis();
-      //noinspection deprecation
-      SignalDatabase.recipients().updateSystemContactColors();
-      Log.i(TAG, "Color migration took " + (System.currentTimeMillis() - startTime) + " ms");
-    }
+//    if (lastSeenVersion < COLOR_MIGRATION) {
+//      long startTime = System.currentTimeMillis();
+//      //noinspection deprecation
+//      SignalDatabase.recipients().updateSystemContactColors();
+//      Log.i(TAG, "Color migration took " + (System.currentTimeMillis() - startTime) + " ms");
+//    }
 
     if (lastSeenVersion < UNIDENTIFIED_DELIVERY) {
       Log.i(TAG, "Scheduling UD attributes refresh.");

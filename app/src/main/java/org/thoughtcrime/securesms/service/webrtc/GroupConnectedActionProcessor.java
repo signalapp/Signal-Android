@@ -103,6 +103,10 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
                                .cameraState(camera.getCameraState())
                                .build();
 
+    boolean localVideoEnabled  = currentState.getLocalDeviceState().getCameraState().isEnabled();
+    boolean remoteVideoEnabled = currentState.getCallInfoState().getRemoteCallParticipantsMap().values().stream().anyMatch(CallParticipant::isVideoEnabled);
+    webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, remoteVideoEnabled));
+
     WebRtcUtil.enableSpeakerPhoneIfNeeded(webRtcInteractor, currentState);
 
     return currentState;
@@ -249,7 +253,10 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     String eraId = WebRtcUtil.getGroupCallEraId(groupCall);
     webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), eraId, null, false, false);
 
-    List<UUID> members = Stream.of(currentState.getCallInfoState().getRemoteCallParticipants()).map(p -> p.getRecipient().requireServiceId().getRawUuid()).toList();
+    List<UUID> members = Stream.of(currentState.getCallInfoState().getRemoteCallParticipants())
+                               .filter(p -> p.getRecipient().getHasServiceId())
+                               .map(p -> p.getRecipient().requireServiceId().getRawUuid())
+                               .toList();
     webRtcInteractor.updateGroupCallUpdateMessage(currentState.getCallInfoState().getCallRecipient().getId(), eraId, members, false);
 
     currentState = currentState.builder()
@@ -356,6 +363,19 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
       webRtcInteractor.playStateChangeUp();
     }
 
+    return currentState;
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleSendRemoteMuteRequest(@NonNull WebRtcServiceState currentState, @NonNull CallParticipant participant) {
+    Log.i(tag, "handleSendRemoteMuteRequest():");
+
+    GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
+    try {
+      groupCall.sendRemoteMuteRequest(participant.getCallParticipantId().demuxId);
+    } catch (CallException e) {
+      Log.w(tag, "Failed to send remote mute request.", e);
+    }
     return currentState;
   }
 

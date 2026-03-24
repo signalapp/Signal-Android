@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivity;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
-import org.thoughtcrime.securesms.mediasend.Media;
+import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
@@ -47,6 +47,7 @@ public class ConversationIntents {
   private static final String EXTRA_GIFT_BADGE                       = "gift_badge";
   private static final String EXTRA_SHARE_DATA_TIMESTAMP             = "share_data_timestamp";
   private static final String EXTRA_CONVERSATION_TYPE                = "conversation_type";
+  private static final String EXTRA_INCOGNITO                        = "incognito";
   private static final String INTENT_DATA                            = "intent_data";
   private static final String INTENT_TYPE                            = "intent_type";
 
@@ -152,7 +153,8 @@ public class ConversationIntents {
                                   false,
                                   null,
                                   -1L,
-                                  ConversationScreenType.BUBBLE);
+                                  ConversationScreenType.BUBBLE,
+                                  false);
     }
 
     return new ConversationArgs(RecipientId.from(Objects.requireNonNull(arguments.getString(EXTRA_RECIPIENT))),
@@ -169,7 +171,8 @@ public class ConversationIntents {
                                 arguments.getBoolean(EXTRA_WITH_SEARCH_OPEN, false),
                                 arguments.getParcelable(EXTRA_GIFT_BADGE),
                                 arguments.getLong(EXTRA_SHARE_DATA_TIMESTAMP, -1L),
-                                ConversationScreenType.from(arguments.getInt(EXTRA_CONVERSATION_TYPE, 0)));
+                                ConversationScreenType.from(arguments.getInt(EXTRA_CONVERSATION_TYPE, 0)),
+                                arguments.getBoolean(EXTRA_INCOGNITO, false));
   }
 
   public final static class Builder {
@@ -191,6 +194,7 @@ public class ConversationIntents {
     private boolean                withSearchOpen;
     private Badge                  giftBadge;
     private long                   shareDataTimestamp = -1L;
+    private boolean                incognito;
 
     private Builder(@NonNull Context context,
                     @NonNull Class<? extends Activity> conversationActivityClass,
@@ -218,6 +222,7 @@ public class ConversationIntents {
       withSearchOpen = args.isWithSearchOpen();
       giftBadge = args.getGiftBadge();
       shareDataTimestamp = args.getShareDataTimestamp();
+      incognito = args.isIncognito();
 
       return this;
     }
@@ -282,6 +287,11 @@ public class ConversationIntents {
       return this;
     }
 
+    public @NonNull Builder asIncognito(boolean incognito) {
+      this.incognito = incognito;
+      return this;
+    }
+
     public @NonNull ConversationArgs toConversationArgs() {
       return new ConversationArgs(
           recipientId,
@@ -298,7 +308,8 @@ public class ConversationIntents {
           withSearchOpen,
           giftBadge,
           shareDataTimestamp,
-          conversationScreenType
+          conversationScreenType,
+          incognito
       );
     }
 
@@ -329,6 +340,7 @@ public class ConversationIntents {
       intent.putExtra(EXTRA_GIFT_BADGE, giftBadge);
       intent.putExtra(EXTRA_SHARE_DATA_TIMESTAMP, shareDataTimestamp);
       intent.putExtra(EXTRA_CONVERSATION_TYPE, conversationScreenType.code);
+      intent.putExtra(EXTRA_INCOGNITO, incognito);
 
       if (draftText != null) {
         intent.putExtra(EXTRA_TEXT, draftText);

@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.components
 import android.os.Parcelable
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
+import org.signal.core.ui.view.Stub
 import org.thoughtcrime.securesms.mms.SlidesClickedListener
-import org.thoughtcrime.securesms.util.views.Stub
 
 @Parcelize
 data class LinkPreviewViewThumbnailState(

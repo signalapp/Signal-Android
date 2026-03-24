@@ -6,6 +6,7 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64.encodeWithPadding
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.Util
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toByteArray
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.payments.Entropy
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.self
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
@@ -195,6 +195,8 @@ object StorageSyncHelper {
       }
 
       safeSetPayments(SignalStore.payments.mobileCoinPaymentsEnabled(), Optional.ofNullable(SignalStore.payments.paymentsEntropy).map { obj: Entropy -> obj.bytes }.orElse(null))
+      automaticKeyVerificationDisabled = !SignalStore.settings.automaticVerificationEnabled
+      hasSeenAdminDeleteEducationDialog = SignalStore.uiHints.hasSeenAdminDeleteEducationDialog()
     }
 
     return accountRecord.toSignalAccountRecord(StorageId.forAccount(storageId)).toSignalStorageRecord()
@@ -208,7 +210,7 @@ object StorageSyncHelper {
     }
   }
 
-  private fun getNotificationProfileManualOverride(): AccountRecord.NotificationProfileManualOverride {
+  private fun getNotificationProfileManualOverride(): AccountRecord.NotificationProfileManualOverride? {
     val profile = SignalDatabase.notificationProfiles.getProfile(SignalStore.notificationProfile.manuallyEnabledProfile)
     return if (profile != null && profile.deletedTimestampMs == 0L) {
       Log.i(TAG, "Setting a manually enabled profile ${profile.id}")
@@ -226,7 +228,7 @@ object StorageSyncHelper {
         disabledAtTimestampMs = SignalStore.notificationProfile.manuallyDisabledAt
       )
     } else {
-      AccountRecord.NotificationProfileManualOverride()
+      null
     }
   }
 
@@ -257,6 +259,15 @@ object StorageSyncHelper {
     SignalStore.story.isFeatureDisabled = update.new.proto.storiesDisabled
     SignalStore.story.userHasSeenGroupStoryEducationSheet = update.new.proto.hasSeenGroupStoryEducationSheet
     SignalStore.uiHints.setHasCompletedUsernameOnboarding(update.new.proto.hasCompletedUsernameOnboarding)
+
+    if (SignalStore.settings.automaticVerificationEnabled && update.new.proto.automaticKeyVerificationDisabled) {
+      SignalDatabase.recipients.clearAllKeyTransparencyData()
+    }
+    SignalStore.settings.automaticVerificationEnabled = !update.new.proto.automaticKeyVerificationDisabled
+
+    if (update.new.proto.hasSeenAdminDeleteEducationDialog) {
+      SignalStore.uiHints.setHasSeenAdminDeleteEducationDialog()
+    }
 
     if (update.new.proto.storyViewReceiptsEnabled == OptionalBool.UNSET) {
       SignalStore.story.viewedReceiptsEnabled = update.new.proto.readReceipts

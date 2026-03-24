@@ -9,5 +9,3 @@ buildscript {
   }
 }
 
-apply(from = "${rootDir}/../constants.gradle.kts")
-

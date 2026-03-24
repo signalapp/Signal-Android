@@ -51,6 +51,44 @@ message ArchiveUploadProgressState {
     uint64 mediaTotalBytes = 8;
 }
 
+message LocalBackupCreationProgress {
+    message Idle {}
+    message Canceled {}
+
+    message Exporting {
+        ExportPhase phase = 1;
+        uint64 frameExportCount = 2;
+        uint64 frameTotalCount = 3;
+    }
+
+    message Transferring {
+        uint64 completed = 1;
+        uint64 total = 2;
+        bool mediaPhase = 3;
+    }
+
+    enum ExportPhase {
+        NONE = 0;
+        INITIALIZING = 1;
+        ACCOUNT = 2;
+        RECIPIENT = 3;
+        THREAD = 4;
+        CALL = 5;
+        STICKER = 6;
+        NOTIFICATION_PROFILE = 7;
+        CHAT_FOLDER = 8;
+        MESSAGE = 9;
+        FINALIZING = 10;
+    }
+
+    oneof state {
+        Idle idle = 1;
+        Canceled canceled = 2;
+        Exporting exporting = 3;
+        Transferring transferring = 4;
+    }
+}
+
 message BackupDownloadNotifierState {
     enum Type {
       SHEET = 0;

@@ -21,6 +21,7 @@ import org.signal.core.util.exists
 import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalString
+import org.signal.core.util.orNull
 import org.signal.core.util.readToList
 import org.signal.core.util.readToMap
 import org.signal.core.util.readToSingleInt
@@ -41,9 +42,11 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsement
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken
-import org.signal.storageservice.protos.groups.Member
-import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
+import org.signal.storageservice.storage.protos.groups.AccessControl
+import org.signal.storageservice.storage.protos.groups.Member
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
+import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil
@@ -54,6 +57,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupId.Push
+import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -311,18 +315,12 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
    * @return local db group revision or -1 if not present.
    */
   fun getGroupV2Revision(groupId: GroupId.V2): Int {
-    readableDatabase
-      .select()
+    return readableDatabase
+      .select(V2_REVISION)
       .from(TABLE_NAME)
       .where("$GROUP_ID = ?", groupId.toString())
       .run()
-      .use { cursor ->
-        return if (cursor.moveToNext()) {
-          cursor.getInt(cursor.getColumnIndexOrThrow(V2_REVISION))
-        } else {
-          -1
-        }
-      }
+      .readToSingleInt(-1)
   }
 
   fun isUnknownGroup(groupId: GroupId): Boolean {
@@ -657,7 +655,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     val membershipValues = mutableListOf<ContentValues>()
     val groupRecipientId = recipients.getOrInsertFromGroupId(groupId)
     val members: List<RecipientId> = memberCollection.toSet().sorted()
-    var groupMembers: List<RecipientId> = members
+    var groupMembers: Collection<RecipientId> = members
 
     val values = ContentValues()
 
@@ -813,7 +811,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     val groupMembers = getV2GroupMembers(decryptedGroup, true)
     var groupSendEndorsementRecords: GroupSendEndorsementRecords? = receivedGroupSendEndorsements?.toGroupSendEndorsementRecords() ?: getGroupSendEndorsements(groupId)
 
-    val addedMembers: List<RecipientId> = if (existingGroup.isPresent && existingGroup.get().isV2Group) {
+    val addedMembers: Collection<RecipientId> = if (existingGroup.isPresent && existingGroup.get().isV2Group) {
       val change = GroupChangeReconstruct.reconstructGroupChange(existingGroup.get().requireV2GroupProperties().decryptedGroup, decryptedGroup)
       val removed: List<ServiceId> = DecryptedGroupUtil.removedMembersServiceIdList(change)
 
@@ -1271,6 +1269,52 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
         .sortedBy { it.toString() }
         .toList()
     }
+
+    /**
+     * Gets the member label for a specific member in the group, or null if the member is not found.
+     */
+    fun memberLabel(aci: ACI): MemberLabel? {
+      val member = decryptedGroup
+        .members
+        .findMemberByAci(aci)
+        .orNull()
+
+      return if (member != null && member.labelString.isNotBlank()) {
+        MemberLabel(member.labelEmoji, member.labelString)
+      } else {
+        null
+      }
+    }
+
+    /**
+     * Gets all member labels in the group. Only includes members that have a non-blank label.
+     */
+    fun memberLabelsByAci(): Map<ACI, MemberLabel> = buildMap {
+      decryptedGroup.members.forEach { member ->
+        if (member.labelString.isNotBlank()) {
+          val aci = ACI.parseOrNull(member.aciBytes) ?: return@forEach
+          put(aci, MemberLabel(member.labelEmoji, member.labelString))
+        }
+      }
+    }
+
+    fun nonAdminMembersWithLabels(): List<DecryptedMember> {
+      return decryptedGroup.members
+        .filter { it.role != Member.Role.ADMINISTRATOR && it.hasLabel() }
+    }
+
+    /**
+     * Returns true if demoting [aci] from admin should cause their member label to be cleared.
+     */
+    fun adminDemotionClearsLabel(aci: ACI): Boolean {
+      val accessRequired = decryptedGroup.accessControl?.memberLabel ?: AccessControl.AccessRequired.UNKNOWN
+      return when {
+        accessRequired != AccessControl.AccessRequired.ADMINISTRATOR -> false
+        else -> decryptedGroup.members.findMemberByAci(aci).orNull()?.hasLabel() == true
+      }
+    }
+
+    private fun DecryptedMember.hasLabel(): Boolean = labelString.isNotBlank() || labelEmoji.isNotBlank()
   }
 
   @Throws(BadGroupIdException::class)
@@ -1390,7 +1434,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
       .toMutableList()
   }
 
-  private fun getV2GroupMembers(decryptedGroup: DecryptedGroup, shouldRetry: Boolean): List<RecipientId> {
+  private fun getV2GroupMembers(decryptedGroup: DecryptedGroup, shouldRetry: Boolean): Set<RecipientId> {
     val ids: List<RecipientId> = decryptedGroup.members.toAciList().toRecipientIds()
 
     return if (RemappedRecords.getInstance().areAnyRemapped(ids)) {
@@ -1403,7 +1447,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
         throw IllegalStateException("Remapped records in group membership!")
       }
     } else {
-      ids
+      ids.toSet()
     }
   }
 

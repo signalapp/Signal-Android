@@ -14,11 +14,14 @@ import androidx.core.app.NotificationManagerCompat;
 import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
 
+import org.signal.core.util.DiskUtil;
 import org.signal.core.util.MapUtil;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.TranslationDetection;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier;
+import org.thoughtcrime.securesms.backup.v2.ui.BackupUpsellBottomSheet;
 import org.thoughtcrime.securesms.backup.v2.ui.verify.VerifyBackupKeyActivity;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -40,6 +43,7 @@ import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity;
 import org.thoughtcrime.securesms.profiles.username.NewWaysToConnectDialogFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Environment;
 import org.thoughtcrime.securesms.util.RemoteConfig;
@@ -123,14 +127,22 @@ public final class Megaphones {
       put(Event.TURN_OFF_CENSORSHIP_CIRCUMVENTION, shouldShowTurnOffCircumventionMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(7)) : NEVER);
       put(Event.REMOTE_MEGAPHONE, shouldShowRemoteMegaphone(records) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(1)) : NEVER);
       put(Event.LINKED_DEVICE_INACTIVE, shouldShowLinkedDeviceInactiveMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(3)): NEVER);
+
+      // Specifically putting backup reminders here, above PIN reminders
+      put(Event.BACKUP_LOW_STORAGE_UPSELL, shouldShowBackupLowStorageUpsell(context) ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60), TimeUnit.DAYS.toMillis(120)) : NEVER);
+      put(Event.BACKUP_MEDIA_SIZE_UPSELL, shouldShowBackupMediaSizeUpsell() ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60), TimeUnit.DAYS.toMillis(120)) : NEVER);
+      put(Event.BACKUP_MESSAGE_COUNT_UPSELL, shouldShowBackupMessageCountUpsell(context) ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60)) : NEVER);
+      put(Event.BACKUPS_GENERIC_UPSELL, shouldShowGenericBackupsMegaphone(context) ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60)) : NEVER);
+      put(Event.VERIFY_BACKUP_KEY, new VerifyBackupKeyReminderSchedule());
+      put(Event.USE_NEW_ON_DEVICE_BACKUPS, shouldShowUseNewOnDeviceBackupsMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(14)) : NEVER);
+
+      // The Great Wall of PIN Reminder -- megaphones below this may not be seen by users who never do reminders
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
-      put(Event.SET_UP_YOUR_USERNAME, shouldShowSetUpYourUsernameMegaphone(records) ? ALWAYS : NEVER);
 
       // Feature-introduction megaphones should *probably* be added below this divider
+      put(Event.SET_UP_YOUR_USERNAME, shouldShowSetUpYourUsernameMegaphone(records) ? ALWAYS : NEVER);
       put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
       put(Event.PNP_LAUNCH, shouldShowPnpLaunchMegaphone() ? ALWAYS : NEVER);
-      put(Event.TURN_ON_SIGNAL_BACKUPS, shouldShowTurnOnBackupsMegaphone(context) ? new RecurringSchedule(TimeUnit.DAYS.toMillis(30), TimeUnit.DAYS.toMillis(90)) : NEVER);
-      put(Event.VERIFY_BACKUP_KEY, new VerifyBackupKeyReminderSchedule());
     }};
   }
 
@@ -180,10 +192,18 @@ public final class Megaphones {
         return buildPnpLaunchMegaphone();
       case NEW_LINKED_DEVICE:
         return buildNewLinkedDeviceMegaphone(context);
-      case TURN_ON_SIGNAL_BACKUPS:
-        return buildTurnOnSignalBackupsMegaphone();
+      case BACKUPS_GENERIC_UPSELL:
+        return buildBackupGenericUpsellMegaphone();
+      case BACKUP_MESSAGE_COUNT_UPSELL:
+        return buildBackupMessageCountUpsellMegaphone();
+      case BACKUP_MEDIA_SIZE_UPSELL:
+        return buildBackupMediaSizeUpsellMegaphone();
+      case BACKUP_LOW_STORAGE_UPSELL:
+        return buildBackupLowStorageUpsellMegaphone();
       case VERIFY_BACKUP_KEY:
         return buildVerifyBackupKeyMegaphone();
+      case USE_NEW_ON_DEVICE_BACKUPS:
+        return buildUseNewOnDeviceBackupsMegaphone();
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -451,20 +471,20 @@ public final class Megaphones {
         .build();
   }
 
-  public static @NonNull Megaphone buildTurnOnSignalBackupsMegaphone() {
-    return new Megaphone.Builder(Event.TURN_ON_SIGNAL_BACKUPS, Megaphone.Style.BASIC)
+  public static @NonNull Megaphone buildBackupGenericUpsellMegaphone() {
+    return new Megaphone.Builder(Event.BACKUPS_GENERIC_UPSELL, Megaphone.Style.BASIC)
         .setImage(R.drawable.backups_megaphone_image)
-        .setTitle(R.string.TurnOnSignalBackups__title_beta)
+        .setTitle(R.string.TurnOnSignalBackups__title)
         .setBody(R.string.TurnOnSignalBackups__body)
         .setActionButton(R.string.TurnOnSignalBackups__turn_on, (megaphone, controller) -> {
           Intent intent = AppSettingsActivity.remoteBackups(controller.getMegaphoneActivity());
 
           controller.onMegaphoneNavigationRequested(intent);
-          controller.onMegaphoneSnooze(Event.TURN_ON_SIGNAL_BACKUPS);
+          controller.onMegaphoneSnooze(Event.BACKUPS_GENERIC_UPSELL);
         })
         .setSecondaryButton(R.string.TurnOnSignalBackups__not_now, (megaphone, controller) -> {
           controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(R.string.TurnOnSignalBackups__toast_not_now));
-          controller.onMegaphoneSnooze(Event.TURN_ON_SIGNAL_BACKUPS);
+          controller.onMegaphoneSnooze(Event.BACKUPS_GENERIC_UPSELL);
         })
         .build();
   }
@@ -489,6 +509,23 @@ public final class Megaphones {
     }
 
     return builder.build();
+  }
+
+  public static @NonNull Megaphone buildUseNewOnDeviceBackupsMegaphone() {
+    return new Megaphone.Builder(Event.USE_NEW_ON_DEVICE_BACKUPS, Megaphone.Style.BASIC)
+        .setImage(R.drawable.backups_megaphone_image)
+        .setTitle(R.string.UseNewOnDeviceBackups__title)
+        .setBody(R.string.UseNewOnDeviceBackups__body)
+        .setActionButton(R.string.UseNewOnDeviceBackups__upgrade, (megaphone, controller) -> {
+          Intent intent = AppSettingsActivity.upgradeLocalBackups(controller.getMegaphoneActivity());
+
+          controller.onMegaphoneNavigationRequested(intent);
+          controller.onMegaphoneSnooze(Event.USE_NEW_ON_DEVICE_BACKUPS);
+        })
+        .setSecondaryButton(R.string.UseNewOnDeviceBackups__not_now, (megaphone, controller) -> {
+          controller.onMegaphoneSnooze(Event.USE_NEW_ON_DEVICE_BACKUPS);
+        })
+        .build();
   }
 
   private static boolean shouldShowOnboardingMegaphone(@NonNull Context context) {
@@ -559,8 +596,8 @@ public final class Megaphones {
     return SignalStore.account().isPrimaryDevice() && TextUtils.isEmpty(SignalStore.account().getUsername()) && !SignalStore.uiHints().hasCompletedUsernameOnboarding();
   }
 
-  private static boolean shouldShowTurnOnBackupsMegaphone(@NonNull Context context) {
-    if (!RemoteConfig.backupsBetaMegaphone()) {
+  private static boolean shouldShowGenericBackupsMegaphone(@NonNull Context context) {
+    if (!RemoteConfig.backupsMegaphone()) {
       return false;
     }
 
@@ -573,6 +610,10 @@ public final class Megaphones {
     }
 
     return VersionTracker.getDaysSinceFirstInstalled(context) > 7;
+  }
+
+  private static boolean shouldShowUseNewOnDeviceBackupsMegaphone() {
+    return Environment.Backups.isNewFormatSupportedForLocalBackup() && SignalStore.settings().isBackupEnabled();
   }
 
   private static boolean shouldShowGrantFullScreenIntentPermission(@NonNull Context context) {
@@ -607,6 +648,92 @@ public final class Megaphones {
     return System.currentTimeMillis() - lastSeenDonatePrompt;
   }
 
+  private static boolean shouldShowBackupMessageCountUpsell(@NonNull Context context) {
+    if (!SignalStore.account().isRegistered() || TextSecurePreferences.isUnauthorizedReceived(context) || SignalStore.account().isLinkedDevice()) {
+      return false;
+    }
+
+    if (SignalStore.backup().getLatestBackupTier() != null) {
+      return false;
+    }
+
+    return SignalDatabase.messages().getApproximateTotalMessageCount() > 1000;
+  }
+
+  private static boolean shouldShowBackupMediaSizeUpsell() {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().isLinkedDevice() || !Environment.Backups.supportsGooglePlayBilling()) {
+      return false;
+    }
+
+    if (SignalStore.backup().getLatestBackupTier() != MessageBackupTier.FREE) {
+      return false;
+    }
+
+    return SignalDatabase.attachments().getApproximateTotalMediaSize() > ByteUnit.GIGABYTES.toBytes(1);
+  }
+
+  private static boolean shouldShowBackupLowStorageUpsell(@NonNull Context context) {
+    if (!SignalStore.account().isRegistered() || TextSecurePreferences.isUnauthorizedReceived(context) || SignalStore.account().isLinkedDevice() || !Environment.Backups.supportsGooglePlayBilling()) {
+      return false;
+    }
+
+    if (SignalStore.backup().getLatestBackupTier() == MessageBackupTier.PAID) {
+      return false;
+    }
+
+    long available = DiskUtil.getAvailableSpace(context).getBytes();
+    long total     = DiskUtil.getTotalDiskSize(context).getBytes();
+
+    return total > 0 && ((double) available / total) < 0.10;
+  }
+
+  private static @NonNull Megaphone buildBackupMessageCountUpsellMegaphone() {
+    return new Megaphone.Builder(Event.BACKUP_MESSAGE_COUNT_UPSELL, Megaphone.Style.BASIC)
+        .setImage(R.drawable.megaphone_backup_message_count)
+        .setTitle(R.string.BackupMessagesUpsell__title)
+        .setBody(R.string.BackupMessagesUpsell__body)
+        .setActionButton(R.string.BackupMessagesUpsell__turn_on, (megaphone, controller) -> {
+          Intent intent = AppSettingsActivity.remoteBackups(controller.getMegaphoneActivity());
+          controller.onMegaphoneNavigationRequested(intent);
+          controller.onMegaphoneSnooze(Event.BACKUP_MESSAGE_COUNT_UPSELL);
+        })
+        .setSecondaryButton(R.string.BackupMessagesUpsell__not_now, (megaphone, controller) -> {
+          controller.onMegaphoneSnooze(Event.BACKUP_MESSAGE_COUNT_UPSELL);
+        })
+        .build();
+  }
+
+  private static @NonNull Megaphone buildBackupMediaSizeUpsellMegaphone() {
+    return new Megaphone.Builder(Event.BACKUP_MEDIA_SIZE_UPSELL, Megaphone.Style.BASIC)
+        .setImage(R.drawable.megaphone_backup_media_size)
+        .setTitle(R.string.BackupMediaUpsell__title)
+        .setBody(R.string.BackupMediaUpsell__body)
+        .setActionButton(R.string.BackupMediaUpsell__upgrade, (megaphone, controller) -> {
+          controller.onMegaphoneDialogFragmentRequested(BackupUpsellBottomSheet.create(false));
+          controller.onMegaphoneSnooze(Event.BACKUP_MEDIA_SIZE_UPSELL);
+        })
+        .setSecondaryButton(R.string.BackupMediaUpsell__not_now, (megaphone, controller) -> {
+          controller.onMegaphoneSnooze(Event.BACKUP_MEDIA_SIZE_UPSELL);
+        })
+        .build();
+  }
+
+  private static @NonNull Megaphone buildBackupLowStorageUpsellMegaphone() {
+    boolean hasBackups = SignalStore.backup().getLatestBackupTier() != null;
+
+    return new Megaphone.Builder(Event.BACKUP_LOW_STORAGE_UPSELL, Megaphone.Style.BASIC)
+        .setImage(R.drawable.megaphone_backup_storage_low)
+        .setTitle(R.string.BackupStorageUpsell__title)
+        .setBody(R.string.BackupStorageUpsell__body)
+        .setActionButton(hasBackups ? R.string.BackupStorageUpsell__upgrade : R.string.BackupStorageUpsell__turn_on, (megaphone, controller) -> {
+          controller.onMegaphoneDialogFragmentRequested(BackupUpsellBottomSheet.create(true));
+          controller.onMegaphoneSnooze(Event.BACKUP_LOW_STORAGE_UPSELL);
+        })
+        .setSecondaryButton(R.string.BackupStorageUpsell__not_now, (megaphone, controller) -> {
+          controller.onMegaphoneSnooze(Event.BACKUP_LOW_STORAGE_UPSELL);
+        })
+        .build();
+  }
 
   public enum Event {
     PINS_FOR_ALL("pins_for_all"),
@@ -625,8 +752,12 @@ public final class Megaphones {
     PNP_LAUNCH("pnp_launch"),
     GRANT_FULL_SCREEN_INTENT("grant_full_screen_intent"),
     NEW_LINKED_DEVICE("new_linked_device"),
-    TURN_ON_SIGNAL_BACKUPS("turn_on_signal_backups"),
-    VERIFY_BACKUP_KEY("verify_backup_key");
+    BACKUPS_GENERIC_UPSELL("turn_on_signal_backups"),
+    BACKUP_MESSAGE_COUNT_UPSELL("backup_messages_upsell"),
+    BACKUP_MEDIA_SIZE_UPSELL("backup_media_upsell"),
+    BACKUP_LOW_STORAGE_UPSELL("backup_storage_upsell"),
+    VERIFY_BACKUP_KEY("verify_backup_key"),
+    USE_NEW_ON_DEVICE_BACKUPS("use_new_on_device_backups");
 
     private final String key;
 

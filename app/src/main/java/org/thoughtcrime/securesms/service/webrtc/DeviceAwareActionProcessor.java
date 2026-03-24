@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
+import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 
@@ -27,18 +28,19 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleAudioDeviceChanged(@NonNull WebRtcServiceState currentState, @NonNull SignalAudioManager.AudioDevice activeDevice, @NonNull Set<SignalAudioManager.AudioDevice> availableDevices) {
     Log.i(tag, "handleAudioDeviceChanged(): active: " + activeDevice + " available: " + availableDevices);
 
-    if (!currentState.getLocalDeviceState().getCameraState().isEnabled()) {
-      if (currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_CONNECTED) {
-        webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
-      } else {
-        Log.i(tag, "handleAudioDeviceChanged(): call not connected, not updating phone state");
-      }
+    if (currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_CONNECTED) {
+      boolean localVideoEnabled  = currentState.getLocalDeviceState().getCameraState().isEnabled();
+      boolean remoteVideoEnabled = currentState.getCallInfoState().getRemoteCallParticipantsMap().values().stream().anyMatch(CallParticipant::isVideoEnabled);
+      webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, remoteVideoEnabled));
+    } else {
+      Log.i(tag, "handleAudioDeviceChanged(): call not connected, not updating phone state");
     }
 
     return currentState.builder()
                        .changeLocalDeviceState()
                        .setActiveDevice(activeDevice)
                        .setAvailableDevices(availableDevices)
+                       .setAudioDeviceChangePending(false)
                        .build();
   }
 
@@ -49,7 +51,10 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
     RemotePeer activePeer = currentState.getCallInfoState().getActivePeer();
     webRtcInteractor.setUserAudioDevice(activePeer != null ? activePeer.getId() : null, userDevice);
 
-    return currentState;
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .setAudioDeviceChangePending(true)
+                       .build();
   }
 
   @Override

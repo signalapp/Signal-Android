@@ -63,6 +63,7 @@ import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
+import org.thoughtcrime.securesms.backup.isIdle
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.copyAttachmentToArchive
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.exportForDebugging
 import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
@@ -85,7 +86,6 @@ import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
-import org.thoughtcrime.securesms.backup.v2.util.ArchiveAttachmentInfo
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
@@ -106,12 +106,15 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
 import org.thoughtcrime.securesms.jobs.ArchiveAttachmentBackfillJob
+import org.thoughtcrime.securesms.jobs.ArchiveThumbnailBackfillJob
+import org.thoughtcrime.securesms.jobs.ArchiveThumbnailUploadJob
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.BackupDeleteJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.CancelRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
+import org.thoughtcrime.securesms.jobs.LocalArchiveJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
@@ -128,6 +131,7 @@ import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
+import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -588,12 +592,21 @@ object BackupRepository {
   }
 
   @JvmStatic
+  fun maybeFixAnyDanglingLocalExportProgress() {
+    if (!SignalStore.backup.newLocalBackupProgress.isIdle && AppDependencies.jobManager.find { it.factoryKey == LocalArchiveJob.KEY }.isEmpty()) {
+      Log.w(TAG, "Found stale local backup progress with no active job. Resetting to idle.")
+      SignalStore.backup.newLocalBackupProgress = LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle())
+    }
+  }
+
+  @JvmStatic
   fun maybeFixAnyDanglingUploadProgress() {
     if (SignalStore.account.isLinkedDevice) {
       return
     }
 
     if (SignalStore.backup.archiveUploadState?.backupPhase == ArchiveUploadProgressState.BackupPhase.Message && AppDependencies.jobManager.find { it.factoryKey == BackupMessagesJob.KEY }.isEmpty()) {
+      Log.w(TAG, "Found a situation where message backup was in progress, but there's no active BackupMessageJob! Re-enqueueing.")
       SignalStore.backup.archiveUploadState = null
       BackupMessagesJob.enqueue()
       return
@@ -605,9 +618,16 @@ object BackupRepository {
 
     if (!AppDependencies.jobManager.areQueuesEmpty(UploadAttachmentToArchiveJob.QUEUES)) {
       if (SignalStore.backup.archiveUploadState?.state == ArchiveUploadProgressState.State.None) {
+        Log.w(TAG, "Found a situation where attachment uploads are in progress, but the progress state was None! Fixing.")
         ArchiveUploadProgress.onAttachmentSectionStarted(SignalDatabase.attachments.getPendingArchiveUploadBytes())
       }
       return
+    }
+
+    if (AppDependencies.jobManager.areQueuesEmpty(ArchiveThumbnailUploadJob.QUEUES) && SignalDatabase.attachments.areAnyThumbnailsPendingUpload()) {
+      Log.w(TAG, "Found a situation where there's no thumbnail jobs in progress, but thumbnails are in the pending upload state! Clearing the pending state and re-enqueueing.")
+      SignalDatabase.attachments.clearArchiveThumbnailTransferStateForInProgressItems()
+      AppDependencies.jobManager.add(ArchiveThumbnailBackfillJob())
     }
 
     val pendingBytes = SignalDatabase.attachments.getPendingArchiveUploadBytes()
@@ -760,24 +780,20 @@ object BackupRepository {
       append = { main.write(it) }
     )
 
-    val maxBufferSize = 10_000
-    var totalAttachmentCount = 0
-    val attachmentInfos: MutableSet<ArchiveAttachmentInfo> = mutableSetOf()
-
     export(
       currentTime = System.currentTimeMillis(),
       isLocal = true,
       writer = writer,
       progressEmitter = localBackupProgressEmitter,
       cancellationSignal = cancellationSignal,
-      forTransfer = false,
+      backupMode = BackupMode.LOCAL,
       extraFrameOperation = null,
       messageInclusionCutoffTime = 0
     ) { dbSnapshot ->
       val localArchivableAttachments = dbSnapshot
         .attachmentTable
         .getLocalArchivableAttachments()
-        .associateBy { MediaName.fromPlaintextHashAndRemoteKey(it.plaintextHash, it.remoteKey) }
+        .associateBy { MediaName.forLocalBackupFilename(it.plaintextHash, it.localBackupKey.key) }
 
       localBackupProgressEmitter.onAttachment(0, localArchivableAttachments.size.toLong())
 
@@ -824,7 +840,7 @@ object BackupRepository {
       currentTime = currentTime,
       isLocal = false,
       writer = writer,
-      forTransfer = false,
+      backupMode = BackupMode.REMOTE,
       progressEmitter = progressEmitter,
       cancellationSignal = cancellationSignal,
       extraFrameOperation = extraFrameOperation,
@@ -855,7 +871,7 @@ object BackupRepository {
       currentTime = currentTime,
       isLocal = false,
       writer = writer,
-      forTransfer = true,
+      backupMode = BackupMode.LINK_SYNC,
       progressEmitter = progressEmitter,
       cancellationSignal = cancellationSignal,
       extraFrameOperation = null,
@@ -872,7 +888,6 @@ object BackupRepository {
     messageBackupKey: MessageBackupKey = SignalStore.backup.messageBackupKey,
     plaintext: Boolean = false,
     currentTime: Long = System.currentTimeMillis(),
-    forTransfer: Boolean = false,
     progressEmitter: ExportProgressListener? = null,
     cancellationSignal: () -> Boolean = { false }
   ) {
@@ -891,7 +906,7 @@ object BackupRepository {
       currentTime = currentTime,
       isLocal = false,
       writer = writer,
-      forTransfer = forTransfer,
+      backupMode = BackupMode.REMOTE,
       progressEmitter = progressEmitter,
       cancellationSignal = cancellationSignal,
       extraFrameOperation = null,
@@ -915,7 +930,7 @@ object BackupRepository {
     currentTime: Long,
     isLocal: Boolean,
     writer: BackupExportWriter,
-    forTransfer: Boolean,
+    backupMode: BackupMode,
     messageInclusionCutoffTime: Long,
     progressEmitter: ExportProgressListener?,
     cancellationSignal: () -> Boolean,
@@ -935,7 +950,7 @@ object BackupRepository {
 
       val selfAci = signalStoreSnapshot.accountValues.aci!!
       val selfRecipientId = dbSnapshot.recipientTable.getByAci(selfAci).get().toLong().let { RecipientId.from(it) }
-      val exportState = ExportState(backupTime = currentTime, forTransfer = forTransfer, selfRecipientId = selfRecipientId)
+      val exportState = ExportState(backupTime = currentTime, backupMode = backupMode, selfRecipientId = selfRecipientId)
 
       var frameCount = 0L
 
@@ -1214,6 +1229,7 @@ object BackupRepository {
     }
     SignalStore.backup.hasInvalidBackupVersion = false
 
+    var transactionSuccessful = false
     try {
       // Removing all the data from the various tables is *very* expensive (i.e. can take *several* minutes) if we don't do some pre-work.
       // SQLite optimizes deletes if there's no foreign keys, triggers, or WHERE clause, so that's the environment we're gonna create.
@@ -1402,9 +1418,15 @@ object BackupRepository {
       stopwatch.split("fk-check")
 
       SignalDatabase.rawDatabase.setTransactionSuccessful()
+      transactionSuccessful = true
     } finally {
       if (SignalDatabase.rawDatabase.inTransaction()) {
         SignalDatabase.rawDatabase.endTransaction()
+      }
+
+      if (!transactionSuccessful) {
+        Log.w(TAG, "[import] Transaction failed, clearing release channel recipient ID from key-value store.")
+        SignalStore.releaseChannel.clearReleaseChannelRecipientId()
       }
 
       Log.d(TAG, "[import] Re-enabling foreign keys...")
@@ -2425,7 +2447,7 @@ data class ArchivedMediaObject(val mediaId: String, val cdn: Int)
 
 class ExportState(
   val backupTime: Long,
-  val forTransfer: Boolean,
+  val backupMode: BackupMode,
   val selfRecipientId: RecipientId
 ) {
   val recipientIds: MutableSet<Long> = hashSetOf()
@@ -2495,6 +2517,18 @@ sealed interface RestoreTimestampResult {
   data object VerificationFailure : RestoreTimestampResult
   data class RateLimited(val retryAfter: Duration?) : RestoreTimestampResult
   data object Failure : RestoreTimestampResult
+}
+
+enum class BackupMode {
+  REMOTE,
+  LINK_SYNC,
+  LOCAL;
+
+  val isLinkAndSync: Boolean
+    get() = this == LINK_SYNC
+
+  val isLocalBackup: Boolean
+    get() = this == LOCAL
 }
 
 /**

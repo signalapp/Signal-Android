@@ -5,17 +5,21 @@
 
 package org.thoughtcrime.securesms.backup.v2.local
 
-import org.greenrobot.eventbus.EventBus
+import okio.ByteString.Companion.toByteString
+import org.signal.core.models.backup.BackupId
 import org.signal.core.models.backup.MediaName
-import org.signal.core.util.Base64
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.StreamUtil
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
+import org.signal.core.util.readFully
+import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.LocalBackupV2Event
 import org.thoughtcrime.securesms.backup.v2.local.proto.FilesFrame
 import org.thoughtcrime.securesms.backup.v2.local.proto.Metadata
 import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
@@ -23,8 +27,12 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.Collections
+import javax.crypto.Cipher
+import javax.crypto.spec.IvParameterSpec
+import javax.crypto.spec.SecretKeySpec
 
-typealias ArchiveResult = org.signal.core.util.Result<Unit, LocalArchiver.FailureCause>
+typealias ArchiveResult = org.signal.core.util.Result<LocalArchiver.ArchiveSuccess, LocalArchiver.ArchiveFailure>
+typealias RestoreResult = org.signal.core.util.Result<LocalArchiver.RestoreSuccess, LocalArchiver.RestoreFailure>
 
 /**
  * Handle importing and exporting folder-based archives using backupv2 format.
@@ -33,6 +41,8 @@ object LocalArchiver {
 
   private val TAG = Log.tag(LocalArchiver::class)
   private const val VERSION = 1
+
+  private const val MAX_CREATE_FAILURES = 10
 
   /**
    * Export archive to the provided [snapshotFileSystem] and store new files in [filesFileSystem].
@@ -44,26 +54,32 @@ object LocalArchiver {
     var mainStream: OutputStream? = null
     var filesStream: OutputStream? = null
 
+    val createFailures: MutableSet<AttachmentId> = Collections.synchronizedSet(HashSet())
+    val readWriteFailures: MutableSet<AttachmentId> = Collections.synchronizedSet(HashSet())
+
     try {
-      metadataStream = snapshotFileSystem.metadataOutputStream() ?: return ArchiveResult.failure(FailureCause.METADATA_STREAM)
-      metadataStream.use { it.write(Metadata(VERSION).encode()) }
+      metadataStream = snapshotFileSystem.metadataOutputStream() ?: return ArchiveResult.failure(ArchiveFailure.MetadataStream)
+      metadataStream.use { it.write(Metadata(version = VERSION, backupId = getEncryptedBackupId()).encode()) }
       stopwatch.split("metadata")
 
-      mainStream = snapshotFileSystem.mainOutputStream() ?: return ArchiveResult.failure(FailureCause.MAIN_STREAM)
+      mainStream = snapshotFileSystem.mainOutputStream() ?: return ArchiveResult.failure(ArchiveFailure.MainStream)
 
       Log.i(TAG, "Listing all current files")
-      val allFiles = filesFileSystem.allFiles()
+      val allFiles = filesFileSystem.allFiles { completed, total ->
+        SignalStore.backup.newLocalBackupProgress = LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.INITIALIZING, frameExportCount = completed.toLong(), frameTotalCount = total.toLong()))
+      }
       stopwatch.split("files-list")
+      SignalStore.backup.newLocalBackupProgress = LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.INITIALIZING))
 
       val mediaNames: MutableSet<MediaName> = Collections.synchronizedSet(HashSet())
 
       Log.i(TAG, "Starting frame export")
       BackupRepository.exportForLocalBackup(mainStream, LocalExportProgressListener(), cancellationSignal) { attachment, source ->
-        if (cancellationSignal()) {
+        if (cancellationSignal() || createFailures.size > MAX_CREATE_FAILURES) {
           return@exportForLocalBackup
         }
 
-        val mediaName = MediaName.fromPlaintextHashAndRemoteKey(attachment.plaintextHash, attachment.remoteKey)
+        val mediaName = MediaName.forLocalBackupFilename(attachment.plaintextHash, attachment.localBackupKey.key)
 
         mediaNames.add(mediaName)
 
@@ -73,23 +89,21 @@ object LocalArchiver {
           }
 
           source()?.use { sourceStream ->
-            val combinedKey = Base64.decode(attachment.remoteKey)
             val destination: OutputStream? = filesFileSystem.fileOutputStream(mediaName)
 
             if (destination == null) {
-              Log.w(TAG, "Unable to create output file for attachment")
-              // todo [local-backup] should we abort here?
+              Log.w(TAG, "Unable to create output file for ${attachment.attachmentId}")
+              createFailures.add(attachment.attachmentId)
             } else {
-              // todo [local-backup] but deal with attachment disappearing/deleted by normal app use
               try {
                 PaddingInputStream(sourceStream, attachment.size).use { input ->
-                  AttachmentCipherOutputStream(combinedKey, null, destination).use { output ->
-                    StreamUtil.copy(input, output)
+                  AttachmentCipherOutputStream(attachment.localBackupKey.key, null, destination).use { output ->
+                    StreamUtil.copy(input, output, false, false)
                   }
                 }
               } catch (e: IOException) {
-                Log.w(TAG, "Unable to save attachment", e)
-                // todo [local-backup] should we abort here?
+                Log.w(TAG, "Unable to save ${attachment.attachmentId}", e)
+                readWriteFailures.add(attachment.attachmentId)
               }
             }
           }
@@ -97,7 +111,11 @@ object LocalArchiver {
       }
       stopwatch.split("frames-and-files")
 
-      filesStream = snapshotFileSystem.filesOutputStream() ?: return ArchiveResult.failure(FailureCause.FILES_STREAM)
+      if (createFailures.size > MAX_CREATE_FAILURES) {
+        return ArchiveResult.failure(ArchiveFailure.TooManyCreateFailures(createFailures))
+      }
+
+      filesStream = snapshotFileSystem.filesOutputStream() ?: return ArchiveResult.failure(ArchiveFailure.FilesStream)
       ArchivedFilesWriter(filesStream).use { writer ->
         mediaNames.forEach { name -> writer.write(FilesFrame(mediaName = name.name)) }
       }
@@ -109,22 +127,56 @@ object LocalArchiver {
     }
 
     if (cancellationSignal()) {
-      return ArchiveResult.failure(FailureCause.CANCELLED)
+      return ArchiveResult.failure(ArchiveFailure.Cancelled)
     }
 
-    return ArchiveResult.success(Unit)
+    return if (createFailures.isNotEmpty() || readWriteFailures.isNotEmpty()) {
+      ArchiveResult.success(ArchiveSuccess.PartialSuccess(createFailures, readWriteFailures))
+    } else {
+      ArchiveResult.success(ArchiveSuccess.FullSuccess)
+    }
+  }
+
+  private fun getEncryptedBackupId(): Metadata.EncryptedBackupId {
+    val metadataKey = SignalStore.backup.messageBackupKey.deriveLocalBackupMetadataKey()
+    val iv = Util.getSecretBytes(12)
+    val backupId = SignalStore.backup.messageBackupKey.deriveBackupId(SignalStore.account.requireAci())
+
+    val cipher = Cipher.getInstance("AES/CTR/NoPadding")
+    cipher.init(Cipher.ENCRYPT_MODE, SecretKeySpec(metadataKey, "AES"), IvParameterSpec(iv))
+    val cipherText = cipher.doFinal(backupId.value)
+
+    return Metadata.EncryptedBackupId(iv = iv.toByteString(), encryptedId = cipherText.toByteString())
   }
 
   /**
    * Import archive data from a folder on the system. Does not restore attachments.
    */
-  fun import(snapshotFileSystem: SnapshotFileSystem, selfData: BackupRepository.SelfData): ArchiveResult {
+  fun import(snapshotFileSystem: SnapshotFileSystem, selfData: BackupRepository.SelfData): RestoreResult {
     var metadataStream: InputStream? = null
 
     try {
-      metadataStream = snapshotFileSystem.metadataInputStream() ?: return ArchiveResult.failure(FailureCause.METADATA_STREAM)
+      metadataStream = snapshotFileSystem.metadataInputStream() ?: return RestoreResult.failure(RestoreFailure.MetadataStream)
+      val metadata = Metadata.ADAPTER.decode(metadataStream.readFully(autoClose = false))
 
-      val mainStreamLength = snapshotFileSystem.mainLength() ?: return ArchiveResult.failure(FailureCause.MAIN_STREAM)
+      if (metadata.version > VERSION) {
+        Log.w(TAG, "Local backup version does not match, bailing supported: $VERSION backup: ${metadata.version}")
+        return RestoreResult.failure(RestoreFailure.VersionMismatch(metadata.version, VERSION))
+      }
+
+      if (metadata.backupId == null) {
+        Log.w(TAG, "Local backup metadata missing encrypted backup id")
+        return RestoreResult.failure(RestoreFailure.BackupIdMissing)
+      }
+
+      val backupId = decryptBackupId(metadata.backupId)
+
+      if (!backupId.value.contentEquals(SignalStore.backup.messageBackupKey.deriveBackupId(SignalStore.account.requireAci()).value)) {
+        Log.w(TAG, "Local backup metadata backup id does not match derived backup id, likely from another account")
+        return RestoreResult.failure(RestoreFailure.BackupIdMismatch)
+      }
+
+      val mainStreamLength = snapshotFileSystem.mainLength() ?: return ArchiveResult.failure(RestoreFailure.MainStream)
 
       BackupRepository.importLocal(
         mainStreamFactory = { snapshotFileSystem.mainInputStream()!! },
@@ -135,58 +187,102 @@ object LocalArchiver {
       metadataStream?.close()
     }
 
-    return ArchiveResult.success(Unit)
+    return RestoreResult.success(RestoreSuccess.FullSuccess)
+  }
+
+  private fun decryptBackupId(encryptedBackupId: Metadata.EncryptedBackupId): BackupId {
+    val metadataKey = SignalStore.backup.messageBackupKey.deriveLocalBackupMetadataKey()
+    val iv = encryptedBackupId.iv.toByteArray()
+    val backupIdCipher = encryptedBackupId.encryptedId.toByteArray()
+
+    val cipher = Cipher.getInstance("AES/CTR/NoPadding")
+    cipher.init(Cipher.DECRYPT_MODE, SecretKeySpec(metadataKey, "AES"), IvParameterSpec(iv))
+    val plaintext = cipher.doFinal(backupIdCipher)
+
+    return BackupId(plaintext)
   }
 
   private val AttachmentTable.LocalArchivableAttachment.cipherLength: Long
     get() = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(size))
 
-  enum class FailureCause {
-    METADATA_STREAM, MAIN_STREAM, FILES_STREAM, CANCELLED
+  sealed interface ArchiveSuccess {
+    data object FullSuccess : ArchiveSuccess
+    data class PartialSuccess(val createFailures: Set<AttachmentId>, val readWriteFailures: Set<AttachmentId>) : ArchiveSuccess
+  }
+
+  sealed interface ArchiveFailure {
+    data object MetadataStream : ArchiveFailure
+    data object MainStream : ArchiveFailure
+    data object FilesStream : ArchiveFailure
+    data object Cancelled : ArchiveFailure
+    data class TooManyCreateFailures(val attachmentId: Set<AttachmentId>) : ArchiveFailure
+  }
+
+  sealed interface RestoreSuccess {
+    data object FullSuccess : RestoreSuccess
+  }
+
+  sealed interface RestoreFailure {
+    data object MetadataStream : RestoreFailure
+    data object MainStream : RestoreFailure
+    data object Cancelled : RestoreFailure
+    data object BackupIdMissing : RestoreFailure
+    data object BackupIdMismatch : RestoreFailure
+    data class VersionMismatch(val backupVersion: Int, val supportedVersion: Int) : RestoreFailure
   }
 
   private class LocalExportProgressListener : BackupRepository.ExportProgressListener {
-    private var lastAttachmentUpdate: Long = 0
+    private var lastVerboseUpdate: Long = 0
 
     override fun onAccount() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_ACCOUNT))
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.ACCOUNT)))
     }
 
     override fun onRecipient() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_RECIPIENT))
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.RECIPIENT)))
     }
 
     override fun onThread() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_THREAD))
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.THREAD)))
     }
 
     override fun onCall() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_CALL))
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.CALL)))
     }
 
     override fun onSticker() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_STICKER))
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.STICKER)))
     }
 
     override fun onNotificationProfile() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.NOTIFICATION_PROFILE))
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.NOTIFICATION_PROFILE)))
     }
 
     override fun onChatFolder() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.CHAT_FOLDER))
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.CHAT_FOLDER)))
     }
 
     override fun onMessage(currentProgress: Long, approximateCount: Long) {
-      if (currentProgress == 0L) {
-        EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_MESSAGE))
-      }
+      if (shouldThrottle(currentProgress >= approximateCount)) return
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.MESSAGE, frameExportCount = currentProgress, frameTotalCount = approximateCount)))
     }
 
     override fun onAttachment(currentProgress: Long, totalCount: Long) {
-      if (lastAttachmentUpdate > System.currentTimeMillis() || lastAttachmentUpdate + 1000 < System.currentTimeMillis() || currentProgress >= totalCount) {
-        EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_ATTACHMENT, currentProgress, totalCount))
-        lastAttachmentUpdate = System.currentTimeMillis()
+      if (shouldThrottle(currentProgress >= totalCount)) return
+      post(LocalBackupCreationProgress(transferring = LocalBackupCreationProgress.Transferring(completed = currentProgress, total = totalCount, mediaPhase = true)))
+    }
+
+    private fun shouldThrottle(forceUpdate: Boolean): Boolean {
+      val now = System.currentTimeMillis()
+      if (forceUpdate || lastVerboseUpdate > now || lastVerboseUpdate + 1000 < now) {
+        lastVerboseUpdate = now
+        return false
       }
+      return true
+    }
+
+    private fun post(progress: LocalBackupCreationProgress) {
+      SignalStore.backup.newLocalBackupProgress = progress
     }
   }
 }

@@ -15,7 +15,6 @@ import org.signal.core.util.CursorUtil;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.contacts.ContactRepository;
 import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.database.BodyAdjustment;
 import org.thoughtcrime.securesms.database.BodyRangeUtil;
@@ -35,7 +34,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
 
 import java.util.ArrayList;
@@ -63,7 +62,6 @@ public class SearchRepository {
   private final Context           context;
   private final String            noteToSelfTitle;
   private final SearchTable       searchDatabase;
-  private final ContactRepository contactRepository;
   private final ThreadTable       threadTable;
   private final RecipientTable    recipientTable;
   private final MentionTable      mentionTable;
@@ -79,7 +77,6 @@ public class SearchRepository {
     this.recipientTable    = SignalDatabase.recipients();
     this.mentionTable      = SignalDatabase.mentions();
     this.messageTable      = SignalDatabase.messages();
-    this.contactRepository = new ContactRepository(noteToSelfTitle);
     this.serialExecutor    = new SerialExecutor(SignalExecutors.BOUNDED);
   }
 
@@ -434,15 +431,6 @@ public class SearchRepository {
     Collections.sort(combined, Collections.reverseOrder((left, right) -> Long.compare(left.getReceivedTimestampMs(), right.getReceivedTimestampMs())));
 
     return combined;
-  }
-
-  private static class RecipientModelBuilder implements ModelBuilder<Recipient> {
-
-    @Override
-    public Recipient build(@NonNull Cursor cursor) {
-      long recipientId = cursor.getLong(cursor.getColumnIndexOrThrow(ContactRepository.ID_COLUMN));
-      return Recipient.resolved(RecipientId.from(recipientId));
-    }
   }
 
   private static class ThreadModelBuilder implements ModelBuilder<ThreadRecord> {

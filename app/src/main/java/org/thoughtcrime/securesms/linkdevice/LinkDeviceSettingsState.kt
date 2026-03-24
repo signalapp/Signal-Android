@@ -21,7 +21,8 @@ data class LinkDeviceSettingsState(
   val bottomSheetVisible: Boolean = false,
   val deviceToEdit: Device? = null,
   val shouldCancelArchiveUpload: Boolean = false,
-  val debugLogUrl: String? = null
+  val debugLogUrl: String? = null,
+  val isInternalUser: Boolean = false
 ) {
   sealed interface DialogState {
     data object None : DialogState

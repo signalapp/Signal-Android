@@ -10,7 +10,9 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask
 
 object DeleteDialog {
@@ -32,7 +34,8 @@ object DeleteDialog {
     messageRecords: Set<MessageRecord>,
     title: CharSequence? = null,
     message: CharSequence = context.resources.getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messageRecords.size, messageRecords.size),
-    forceRemoteDelete: Boolean = false
+    forceRemoteDelete: Boolean = false,
+    isAdmin: Boolean = false
   ): Single<Pair<Boolean, Boolean>> = Single.create { emitter ->
     val builder = MaterialAlertDialogBuilder(context)
 
@@ -43,7 +46,7 @@ object DeleteDialog {
     val isNoteToSelfDelete = isNoteToSelfDelete(messageRecords)
 
     if (forceRemoteDelete) {
-      builder.setPositiveButton(R.string.ConversationFragment_delete_for_everyone) { _, _ -> deleteForEveryone(messageRecords, emitter) }
+      builder.setPositiveButton(R.string.ConversationFragment_delete_for_everyone) { _, _ -> deleteForEveryone(messageRecords = messageRecords, emitter = emitter) }
     } else {
       val positiveButton = if (isNoteToSelfDelete) {
         R.string.ConversationFragment_delete
@@ -58,7 +61,9 @@ object DeleteDialog {
       }
 
       if (MessageConstraintsUtil.isValidRemoteDeleteSend(messageRecords, System.currentTimeMillis()) && !isNoteToSelfDelete) {
-        builder.setNeutralButton(R.string.ConversationFragment_delete_for_everyone) { _, _ -> handleDeleteForEveryone(context, messageRecords, emitter) }
+        builder.setNeutralButton(R.string.ConversationFragment_delete_for_everyone) { _, _ -> handleDeleteForEveryone(context = context, messageRecords = messageRecords, emitter = emitter) }
+      } else if (MessageConstraintsUtil.isValidAdminDeleteSend(messageRecords, System.currentTimeMillis(), isAdmin) && !isNoteToSelfDelete) {
+        builder.setNeutralButton(R.string.ConversationFragment_delete_for_everyone) { _, _ -> handleAdminDeleteForEveryone(context, messageRecords, emitter) }
       }
     }
 
@@ -69,6 +74,27 @@ object DeleteDialog {
 
   private fun isNoteToSelfDelete(messageRecords: Set<MessageRecord>): Boolean {
     return messageRecords.all { messageRecord: MessageRecord -> messageRecord.isOutgoing && messageRecord.toRecipient.isSelf }
+  }
+
+  private fun handleAdminDeleteForEveryone(context: Context, messageRecords: Set<MessageRecord>, emitter: SingleEmitter<Pair<Boolean, Boolean>>) {
+    if (SignalStore.uiHints.hasSeenAdminDeleteEducationDialog()) {
+      handleDeleteForEveryone(context = context, messageRecords = messageRecords, emitter = emitter)
+    } else {
+      MaterialAlertDialogBuilder(context)
+        .setTitle("${context.getString(R.string.ConversationFragment_delete_for_everyone_title)} - INTERNAL ONLY")
+        .setMessage(context.resources.getQuantityString(R.plurals.ConversationFragment_delete_for_everyone_body, messageRecords.size, messageRecords.size))
+        .setPositiveButton(R.string.ConversationFragment_delete_for_everyone) { _, _ ->
+          SignalStore.uiHints.setHasSeenAdminDeleteEducationDialog()
+          SignalExecutors.BOUNDED.execute {
+            SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+            StorageSyncHelper.scheduleSyncForDataChange()
+          }
+          handleDeleteForEveryone(context = context, messageRecords = messageRecords, emitter = emitter)
+        }
+        .setNegativeButton(android.R.string.cancel) { _, _ -> emitter.onSuccess(Pair(false, false)) }
+        .setOnCancelListener { emitter.onSuccess(Pair(false, false)) }
+        .show()
+    }
   }
 
   private fun handleDeleteForEveryone(context: Context, messageRecords: Set<MessageRecord>, emitter: SingleEmitter<Pair<Boolean, Boolean>>) {
@@ -90,7 +116,11 @@ object DeleteDialog {
   private fun deleteForEveryone(messageRecords: Set<MessageRecord>, emitter: SingleEmitter<Pair<Boolean, Boolean>>) {
     SignalExecutors.BOUNDED.execute {
       messageRecords.forEach { message ->
-        MessageSender.sendRemoteDelete(message.id)
+        if (MessageConstraintsUtil.isValidRemoteDeleteSend(message, System.currentTimeMillis())) {
+          MessageSender.sendRemoteDelete(message.id)
+        } else {
+          MessageSender.sendAdminDelete(message.id)
+        }
       }
 
       emitter.onSuccess(Pair(true, false))

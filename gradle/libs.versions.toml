@@ -2,27 +2,38 @@
 # ./gradlew --write-verification-metadata sha256 qa --rerun-tasks
 
 [versions]
+# SDK & Build Versions
+buildTools = "35.0.0"
+compileSdk = "android-36"
+targetSdk = "35"
+minSdk = "23"
+ndk = "28.0.13004108"
+javaVersion = "17"
+kotlinJvmTarget = "17"
+gradle = "8.13.2"
+kotlin = "2.2.20"
+android-gradle-plugin = "8.13.2"
+
+# Other versions
 androidx-appcompat = "1.7.0"
 androidx-activity = "1.12.0"
-androidx-camera = "1.3.4"
+androidx-camera = "1.5.2"
 androidx-fragment = "1.8.5"
 androidx-lifecycle = "2.8.7"
 androidx-lifecycle-navigation3 = "2.10.0"
-androidx-media3 = "1.5.1"
+androidx-media3 = "1.9.1"
 androidx-navigation = "2.8.5"
 androidx-navigation3-core = "1.0.0"
+androidx-core-telecom = "1.0.1"
 androidx-window = "1.3.0"
 glide = "4.15.1"
-gradle = "8.9.0"
-kotlin = "2.2.20"
-libsignal-client = "0.86.4"
+libsignal-client = "0.89.1"
 mp4parser = "1.9.39"
-android-gradle-plugin = "8.10.1"
 accompanist = "0.28.0"
 nanohttpd = "2.3.1"
 navigation-safe-args-gradle-plugin = "2.8.5"
 protobuf-gradle-plugin = "0.9.0"
-ktlint = "12.1.1"
+ktlint = "14.0.1"
 ui-test-junit4 = "1.9.4"
 
 [plugins]
@@ -48,6 +59,7 @@ androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-material3-adaptive = { module = "androidx.compose.material3.adaptive:adaptive"}
 androidx-compose-material3-adaptive-layout = { module = "androidx.compose.material3.adaptive:adaptive-layout"}
 androidx-compose-material3-adaptive-navigation = { module = "androidx.compose.material3.adaptive:adaptive-navigation"}
+androidx-compose-material-icons-extended = "androidx.compose.material:material-icons-extended:1.7.8"
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-compose-ui-tooling-core = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
@@ -116,16 +128,19 @@ androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.r
 androidx-camera-extensions = { module = "androidx.camera:camera-extensions", version.ref = "androidx-camera" }
 androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "androidx-camera" }
 androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "androidx-camera" }
+androidx-camera-video = { module = "androidx.camera:camera-video", version.ref = "androidx-camera" }
+androidx-camera-compose = { module = "androidx.camera:camera-compose", version.ref = "androidx-camera" }
 androidx-concurrent-futures = "androidx.concurrent:concurrent-futures:1.2.0"
 androidx-autofill = "androidx.autofill:autofill:1.1.0"
 androidx-biometric = "androidx.biometric:biometric:1.1.0"
 androidx-sharetarget = "androidx.sharetarget:sharetarget:1.2.0"
-androidx-sqlite = "androidx.sqlite:sqlite:2.4.0"
-androidx-sqlite-framework = "androidx.sqlite:sqlite-framework:2.4.0"
+androidx-sqlite = "androidx.sqlite:sqlite:2.6.2"
+androidx-sqlite-framework = "androidx.sqlite:sqlite-framework:2.6.2"
 androidx-profileinstaller = "androidx.profileinstaller:profileinstaller:1.4.1"
 androidx-asynclayoutinflater = "androidx.asynclayoutinflater:asynclayoutinflater:1.1.0-alpha01"
 androidx-asynclayoutinflater-appcompat = "androidx.asynclayoutinflater:asynclayoutinflater-appcompat:1.1.0-alpha01"
 androidx-emoji2 = "androidx.emoji2:emoji2:1.5.0"
+androidx-core-telecom = { module = "androidx.core:core-telecom", version.ref = "androidx-core-telecom" }
 androidx-documentfile = "androidx.documentfile:documentfile:1.0.1"
 androidx-credentials = "androidx.credentials:credentials:1.5.0"
 androidx-credentials-compat = "androidx.credentials:credentials-play-services-auth:1.5.0"
@@ -136,6 +151,7 @@ material-material = "com.google.android.material:material:1.12.0"
 
 # Google
 google-libphonenumber = "com.googlecode.libphonenumber:libphonenumber:8.13.50"
+google-play-services-base = "com.google.android.gms:play-services-base:18.5.0"
 google-play-services-maps = "com.google.android.gms:play-services-maps:19.0.0"
 google-play-services-auth = "com.google.android.gms:play-services-auth:21.3.0"
 google-play-services-wallet = "com.google.android.gms:play-services-wallet:19.4.0"
@@ -156,10 +172,10 @@ libsignal-client = { module = "org.signal:libsignal-client", version.ref = "libs
 libsignal-android = { module = "org.signal:libsignal-android", version.ref = "libsignal-client" }
 protobuf-gradle-plugin = { module = "com.google.protobuf:protobuf-gradle-plugin", version.ref = "protobuf-gradle-plugin" }
 signal-aesgcmprovider = "org.signal:aesgcmprovider:0.0.4"
-signal-ringrtc = "org.signal:ringrtc-android:2.60.5"
-signal-android-database-sqlcipher = "org.signal:sqlcipher-android:4.6.0-S1"
+signal-ringrtc = "org.signal:ringrtc-android:2.67.0"
 
 # Third Party
+signal-android-database-sqlcipher = "net.zetetic:sqlcipher-android:4.13.0"
 greenrobot-eventbus = "org.greenrobot:eventbus:3.0.0"
 jackson-core = "com.fasterxml.jackson.core:jackson-databind:2.12.0"
 jackson-module-kotlin = "com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0"

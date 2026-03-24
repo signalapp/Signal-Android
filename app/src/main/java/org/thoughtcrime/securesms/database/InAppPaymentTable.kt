@@ -355,10 +355,8 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
     return readableDatabase.select()
       .from(TABLE_NAME)
       .where(
-        "($STATE = ? OR $STATE = ? OR $STATE = ?) AND $TYPE = ?",
-        State.serialize(State.PENDING),
-        State.serialize(State.WAITING_FOR_AUTHORIZATION),
-        State.serialize(State.END),
+        "$STATE != ? AND $TYPE = ?",
+        State.serialize(State.CREATED),
         InAppPaymentType.serialize(type)
       )
       .orderBy("$INSERTED_AT DESC")

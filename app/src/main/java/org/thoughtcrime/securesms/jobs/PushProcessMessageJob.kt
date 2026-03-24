@@ -4,12 +4,14 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.messages.BatchCache
 import org.thoughtcrime.securesms.messages.MessageContentProcessor
 import org.thoughtcrime.securesms.messages.MessageDecryptor
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
@@ -47,7 +49,8 @@ class PushProcessMessageJob private constructor(
         sourceDeviceId = metadata.sourceDeviceId,
         sealedSender = metadata.sealedSender,
         groupId = if (metadata.groupId != null) metadata.groupId!!.toByteString() else null,
-        destinationServiceId = ByteString.of(*metadata.destinationServiceId.toByteArray())
+        destinationServiceId = ByteString.of(*metadata.destinationServiceId.toByteArray()),
+        ciphertextMessageType = metadata.ciphertextMessageType
       ),
       serverDeliveredTimestamp = serverDeliveredTimestamp
     ).encode()
@@ -84,7 +87,8 @@ class PushProcessMessageJob private constructor(
             sourceDeviceId = completeMessage.metadata.sourceDeviceId,
             sealedSender = completeMessage.metadata.sealedSender,
             groupId = completeMessage.metadata.groupId?.toByteArray(),
-            destinationServiceId = ServiceId.parseOrThrow(completeMessage.metadata.destinationServiceId.toByteArray())
+            destinationServiceId = ServiceId.parseOrThrow(completeMessage.metadata.destinationServiceId.toByteArray()),
+            ciphertextMessageType = completeMessage.metadata.ciphertextMessageType ?: CiphertextMessage.WHISPER_TYPE
           ),
           serverDeliveredTimestamp = completeMessage.serverDeliveredTimestamp
         )
@@ -113,14 +117,14 @@ class PushProcessMessageJob private constructor(
       return QUEUE_PREFIX + recipientId.toQueueKey()
     }
 
-    fun processOrDefer(messageProcessor: MessageContentProcessor, result: MessageDecryptor.Result.Success, localReceiveMetric: SignalLocalMetrics.MessageReceive): PushProcessMessageJob? {
+    fun processOrDefer(messageProcessor: MessageContentProcessor, result: MessageDecryptor.Result.Success, localReceiveMetric: SignalLocalMetrics.MessageReceive, batchCache: BatchCache): PushProcessMessageJob? {
       val groupContext = GroupUtil.getGroupContextIfPresent(result.content)
       val groupId = groupContext?.groupId
       var requireNetwork = false
 
       val queueName: String = if (groupId != null) {
         if (groupId.isV2) {
-          val localRevision = groups.getGroupV2Revision(groupId.requireV2())
+          val localRevision = batchCache.groupRevisionCache.getOrPut(groupId) { groups.getGroupV2Revision(groupId.requireV2()) }
 
           if (groupContext.revision!! > localRevision) {
             Log.i(TAG, "Adding network constraint to group-related job.")
@@ -137,7 +141,7 @@ class PushProcessMessageJob private constructor(
         getQueueName(RecipientId.from(result.metadata.sourceServiceId))
       }
 
-      return if (requireNetwork || !isQueueEmpty(queueName = queueName, isGroup = groupId != null)) {
+      return if (requireNetwork || !isQueueEmpty(queueName = queueName, cache = if (groupId != null) batchCache.groupQueueEmptyCache else empty1to1QueueCache)) {
         val builder = Parameters.Builder()
           .setMaxAttempts(Parameters.UNLIMITED)
           .addConstraint(ChangeNumberConstraint.KEY)
@@ -145,10 +149,11 @@ class PushProcessMessageJob private constructor(
         if (requireNetwork) {
           builder.addConstraint(NetworkConstraint.KEY).setLifespan(TimeUnit.DAYS.toMillis(30))
         }
+        batchCache.groupQueueEmptyCache.remove(queueName)
         PushProcessMessageJob(builder.build(), result.envelope.newBuilder().content(null).build(), result.content, result.metadata, result.serverDeliveredTimestamp)
       } else {
         try {
-          messageProcessor.process(result.envelope, result.content, result.metadata, result.serverDeliveredTimestamp, localMetric = localReceiveMetric)
+          messageProcessor.process(result.envelope, result.content, result.metadata, result.serverDeliveredTimestamp, localMetric = localReceiveMetric, batchCache = batchCache)
         } catch (e: Exception) {
           Log.e(TAG, "Failed to process message with timestamp ${result.envelope.timestamp}. Dropping.", e)
         }
@@ -156,13 +161,13 @@ class PushProcessMessageJob private constructor(
       }
     }
 
-    private fun isQueueEmpty(queueName: String, isGroup: Boolean): Boolean {
-      if (!isGroup && empty1to1QueueCache.contains(queueName)) {
+    private fun isQueueEmpty(queueName: String, cache: HashSet<String>): Boolean {
+      if (cache.contains(queueName)) {
         return true
       }
       val queueEmpty = AppDependencies.jobManager.isQueueEmpty(queueName)
-      if (!isGroup && queueEmpty) {
-        empty1to1QueueCache.add(queueName)
+      if (queueEmpty) {
+        cache.add(queueName)
       }
       return queueEmpty
     }

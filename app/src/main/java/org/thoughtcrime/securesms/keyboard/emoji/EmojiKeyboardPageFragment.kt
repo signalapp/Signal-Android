@@ -104,6 +104,7 @@ class EmojiKeyboardPageFragment : Fragment(), EmojiEventListener, EmojiPageViewG
 
   override fun onPageSelected() {
     viewModel.refreshRecentEmoji()
+    appBarLayout.setExpanded(false, false)
   }
 
   private fun updateCategoryTab(key: String) {

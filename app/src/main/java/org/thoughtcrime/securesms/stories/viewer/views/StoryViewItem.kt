@@ -51,14 +51,16 @@ object StoryViewItem {
     override fun bind(model: Model) {
       avatarView.setAvatar(model.storyViewItemData.recipient)
       nameView.text = model.storyViewItemData.recipient.getDisplayName(context)
-      viewedAtView.text = formatDate(model.storyViewItemData.timeViewedInMillis)
+      val (dateString, dateContentDesc) = formatDate(model.storyViewItemData.timeViewedInMillis)
+      viewedAtView.text = dateString
+      viewedAtView.contentDescription = dateContentDesc
 
       itemView.setOnClickListener {
         showContextMenu(model)
       }
     }
 
-    private fun formatDate(dateInMilliseconds: Long): String {
+    private fun formatDate(dateInMilliseconds: Long): Pair<String, String> {
       return DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), dateInMilliseconds)
     }
 

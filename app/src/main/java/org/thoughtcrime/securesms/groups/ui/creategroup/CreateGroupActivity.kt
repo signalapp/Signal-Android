@@ -45,9 +45,9 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.SignalTheme
 import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupUiState.NavTarget
@@ -112,12 +112,12 @@ private fun CreateGroupScreen(
   )
 
   val callbacks = remember {
-    object : UiCallbacks {
+    object : CreateGroupUiCallbacks {
       override fun onSearchQueryChanged(query: String) = viewModel.onSearchQueryChanged(query)
       override fun onFindByUsername() = findByLauncher.launch(FindByMode.USERNAME)
       override fun onFindByPhoneNumber() = findByLauncher.launch(FindByMode.PHONE_NUMBER)
       override suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean = viewModel.shouldAllowSelection(selection)
-      override fun onSelectionChanged(newSelections: List<SelectedContact>, totalMembersCount: Int) = viewModel.onSelectionChanged(newSelections, totalMembersCount)
+      override fun onSelectionChanged(newSelections: List<SelectedContact>) = viewModel.onSelectionChanged(newSelections)
       override fun onPendingRecipientSelectionsConsumed() = viewModel.clearPendingRecipientSelections()
       override fun onNextClicked(): Unit = viewModel.continueToGroupDetails()
       override fun onUserMessageDismissed(userMessage: UserMessage) = viewModel.clearUserMessage()
@@ -150,13 +150,13 @@ private fun CreateGroupScreen(
 @Composable
 private fun CreateGroupScreenUi(
   uiState: CreateGroupUiState,
-  callbacks: UiCallbacks
+  callbacks: CreateGroupUiCallbacks
 ) {
   val title = if (uiState.newSelections.isNotEmpty()) {
     pluralStringResource(
       id = R.plurals.CreateGroupActivity__s_members,
-      count = uiState.totalMembersCount,
-      NumberFormat.getInstance().format(uiState.totalMembersCount)
+      count = uiState.newSelections.size,
+      NumberFormat.getInstance().format(uiState.newSelections.size)
     )
   } else {
     stringResource(R.string.CreateGroupActivity__select_members)
@@ -218,7 +218,7 @@ private fun CreateGroupScreenUi(
 @Composable
 private fun CreateGroupRecipientPicker(
   uiState: CreateGroupUiState,
-  callbacks: UiCallbacks,
+  callbacks: CreateGroupUiCallbacks,
   modifier: Modifier = Modifier
 ) {
   RecipientPicker(
@@ -240,7 +240,7 @@ private fun CreateGroupRecipientPicker(
   )
 }
 
-private interface UiCallbacks :
+private interface CreateGroupUiCallbacks :
   RecipientPickerCallbacks.ListActions,
   RecipientPickerCallbacks.FindByUsername,
   RecipientPickerCallbacks.FindByPhoneNumber {
@@ -251,7 +251,7 @@ private interface UiCallbacks :
   fun onBackPressed()
   fun onPendingDestinationConsumed()
 
-  object Empty : UiCallbacks {
+  object Empty : CreateGroupUiCallbacks {
     override fun onSearchQueryChanged(query: String) = Unit
     override fun onFindByUsername() = Unit
     override fun onFindByPhoneNumber() = Unit
@@ -290,7 +290,7 @@ private fun CreateGroupScreenPreview() {
         forceSplitPane = false,
         selectionLimits = SelectionLimits.NO_LIMITS
       ),
-      callbacks = UiCallbacks.Empty
+      callbacks = CreateGroupUiCallbacks.Empty
     )
   }
 }

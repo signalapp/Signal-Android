@@ -6,7 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Consumer;
 
+import org.signal.core.models.ServiceId;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.database.GroupTable;
@@ -21,7 +23,6 @@ import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.signal.core.util.concurrent.SimpleTask;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -102,6 +103,24 @@ final class RecipientDialogRepository {
                      return false;
                    },
                    onComplete::accept);
+  }
+
+  void willAdminDemotionClearLabel(@NonNull Consumer<Boolean> onComplete) {
+    SimpleTask.BackgroundTask<Boolean> hasLabelToClear = () -> {
+      if (groupId == null || !groupId.isV2()) {
+        return false;
+      }
+
+      GroupRecord   groupRecord = SignalDatabase.groups().getGroup(groupId.requireV2()).orElse(null);
+      ServiceId.ACI aci         = Recipient.resolved(recipientId).getAci().orElse(null);
+
+      if (groupRecord != null && aci != null) {
+        return groupRecord.requireV2GroupProperties().adminDemotionClearsLabel(aci);
+      }
+      return false;
+    };
+
+    SimpleTask.run(SignalExecutors.UNBOUNDED, hasLabelToClear, onComplete::accept);
   }
 
   void getGroupMembership(@NonNull Consumer<List<RecipientId>> onComplete) {
