@@ -10,6 +10,7 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -36,6 +37,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
 import org.thoughtcrime.securesms.database.CollapsibleEvents;
@@ -99,6 +101,7 @@ public final class ConversationUpdateItem extends FrameLayout
   private boolean                   isMessageRequestAccepted;
   private EventListener             eventListener;
   private Button                    collapsedButton;
+  private float                     lastYDownRelativeToThis;
 
   private final UpdateObserver updateObserver = new UpdateObserver();
 
@@ -408,13 +411,34 @@ public final class ConversationUpdateItem extends FrameLayout
   }
 
   @Override
+  public boolean onInterceptTouchEvent(MotionEvent ev) {
+    if (ev.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+      lastYDownRelativeToThis = ev.getY();
+    }
+    return super.onInterceptTouchEvent(ev);
+  }
+
+  @Override
   public @NonNull MultiselectPart getMultiselectPartForLatestTouch() {
-    return conversationMessage.getMultiselectCollection().asSingle().getSinglePart();
+    MultiselectCollection parts = conversationMessage.getMultiselectCollection();
+    if (parts.isSingle()) {
+      return parts.asSingle().getSinglePart();
+    } else if (isTouchAboveCollapsedButton()) {
+      return parts.asDouble().getTopPart();
+    } else {
+      return parts.asDouble().getBottomPart();
+    }
   }
 
   @Override
   public int getTopBoundaryOfMultiselectPart(@NonNull MultiselectPart multiselectPart) {
-    return getTop();
+    if (multiselectPart instanceof MultiselectPart.CollapsedHead) {
+      return getTop();
+    } else if (multiselectPart instanceof MultiselectPart.Update && conversationMessage.isActiveCollapsibleHead()) {
+      return getCollapsedButtonBottom();
+    } else {
+      return getTop();
+    }
   }
 
   @Override
@@ -425,6 +449,17 @@ public final class ConversationUpdateItem extends FrameLayout
   @Override
   public boolean hasNonSelectableMedia() {
     return false;
+  }
+
+  private boolean isTouchAboveCollapsedButton() {
+    return conversationMessage.isActiveCollapsibleHead() && lastYDownRelativeToThis <= collapsedButton.getBottom();
+  }
+
+  private int getCollapsedButtonBottom() {
+    Projection projection = Projection.relativeToViewRoot(collapsedButton, null);
+    int        bottom     = (int) projection.getY() + projection.getHeight();
+    projection.release();
+    return bottom;
   }
 
   private void observeDisplayBody(@NonNull LifecycleOwner lifecycleOwner, @Nullable LiveData<SpannableString> message) {
@@ -840,7 +875,7 @@ public final class ConversationUpdateItem extends FrameLayout
         if (eventListener != null) {
           if (CollapsedState.isCollapsed(collapsedState)) {
             eventListener.onExpandEvents(conversationMessage.getMessageRecord().getId());
-          } else {
+          } else if (!anyCollapsibleChildrenSelected()) {
             eventListener.onCollapseEvents(conversationMessage.getMessageRecord().getId());
           }
         } else {
@@ -904,6 +939,16 @@ public final class ConversationUpdateItem extends FrameLayout
         Log.w(TAG, e);
       }
     });
+  }
+
+  private boolean anyCollapsibleChildrenSelected() {
+    long messageId = conversationMessage.getMessageRecord().getId();
+    for (MultiselectPart part : batchSelected) {
+      if (part.getMessageRecord().getCollapsedHeadId() == messageId) {
+        return true;
+      }
+    }
+    return false;
   }
 
   @Override

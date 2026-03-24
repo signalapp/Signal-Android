@@ -3785,7 +3785,11 @@ class ConversationFragment :
 
     override fun onItemClick(item: MultiselectPart) {
       if (isActionModeStarted()) {
-        adapter.toggleSelection(item)
+        if (item.conversationMessage.isActiveCollapsedHead) {
+          viewModel.onExpandEvents(item.conversationMessage.messageRecord.id)
+        } else {
+          adapter.toggleSelection(item)
+        }
         binding.conversationItemRecycler.invalidateItemDecorations()
 
         if (adapter.selectedItems.isEmpty()) {
@@ -3931,6 +3935,8 @@ class ConversationFragment :
             }
           )
         }
+      } else if (item.conversationMessage.isActiveCollapsedHead) {
+        viewModel.onExpandEvents(item.conversationMessage.messageRecord.id)
       } else {
         clearFocusedItem()
         adapter.toggleSelection(item)

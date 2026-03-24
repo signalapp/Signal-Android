@@ -35,4 +35,9 @@ sealed class MultiselectPart(open val conversationMessage: ConversationMessage) 
    * Represents the entire message, for use when we've not yet enabled multiforward.
    */
   data class Message(override val conversationMessage: ConversationMessage) : MultiselectPart(conversationMessage)
+
+  /**
+   * Represents the collapsed update head button. While it is not selectable, selecting it triggers the selection of other [MultiselectPart]
+   */
+  data class CollapsedHead(override val conversationMessage: ConversationMessage) : MultiselectPart(conversationMessage)
 }

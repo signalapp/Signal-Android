@@ -197,6 +197,14 @@ public class ConversationMessage {
     return threadRecipient;
   }
 
+  public boolean isActiveCollapsibleHead() {
+    return collapsedSize > 1 && CollapsedState.isHead(messageRecord.getCollapsedState());
+  }
+
+  public boolean isActiveCollapsedHead() {
+    return collapsedSize > 1 && messageRecord.getCollapsedState() == CollapsedState.HEAD_COLLAPSED;
+  }
+
   public static @NonNull FormattedDate getFormattedDate(@NonNull Context context, @NonNull MessageRecord messageRecord) {
     if (MessageRecordUtil.isScheduled(messageRecord)) {
       String time = DateUtils.getOnlyTimeString(context, ((MmsMessageRecord) messageRecord).getScheduledDate());

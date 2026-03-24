@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -9,7 +10,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -270,9 +270,10 @@ public final class MenuState {
 
   private static boolean onlyContainsCompleteMessages(@NonNull Set<MultiselectPart> multiselectParts) {
     return multiselectParts.stream()
-                           .map(MultiselectPart::getConversationMessage)
-                           .map(ConversationMessage::getMultiselectCollection)
-                           .allMatch(collection -> multiselectParts.containsAll(collection.toSet()));
+                           .allMatch(part -> {
+                             MultiselectCollection collection = part.getConversationMessage().getMultiselectCollection();
+                             return part instanceof MultiselectPart.Update || multiselectParts.containsAll(collection.toSet());
+                           });
   }
 
   public static boolean canReplyToMessage(@NonNull Recipient conversationRecipient,

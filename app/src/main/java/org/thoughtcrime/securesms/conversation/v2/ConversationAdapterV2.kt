@@ -84,6 +84,7 @@ class ConversationAdapterV2(
   }
 
   private val _selected = hashSetOf<MultiselectPart>()
+  private var adapterPosition = RecyclerView.NO_POSITION
 
   override val selectedItems: Set<MultiselectPart>
     get() = _selected.toSet()
@@ -308,7 +309,23 @@ class ConversationAdapterV2(
   fun toggleSelection(multiselectPart: MultiselectPart) {
     if (multiselectPart.getMessageRecord().isInMemoryMessageRecord) { return }
 
-    if (multiselectPart in _selected) {
+    if (multiselectPart is MultiselectPart.CollapsedHead) {
+      val collapsedChildren: List<MultiselectPart> = mutableListOf<MultiselectPart>().apply {
+        add(getConversationMessage(adapterPosition)!!.multiselectCollection.asDouble().bottomPart)
+        addAll(
+          (1 until multiselectPart.conversationMessage.collapsedSize).mapNotNull { i ->
+            getConversationMessage(adapterPosition - i)?.multiselectCollection?.asSingle()?.singlePart
+          }
+        )
+      }
+
+      val isSelecting = collapsedChildren.any { it !in _selected }
+      if (isSelecting) {
+        _selected.addAll(collapsedChildren)
+      } else {
+        _selected.removeAll(collapsedChildren.toSet())
+      }
+    } else if (multiselectPart in _selected) {
       _selected.remove(multiselectPart)
     } else {
       _selected.add(multiselectPart)
@@ -451,10 +468,12 @@ class ConversationAdapterV2(
 
     init {
       itemView.setOnClickListener {
+        this@ConversationAdapterV2.adapterPosition = bindingAdapterPosition
         clickListener.onItemClick(bindable.getMultiselectPartForLatestTouch())
       }
 
       itemView.setOnLongClickListener {
+        this@ConversationAdapterV2.adapterPosition = bindingAdapterPosition
         clickListener.onItemLongClick(
           it,
           bindable.getMultiselectPartForLatestTouch()
