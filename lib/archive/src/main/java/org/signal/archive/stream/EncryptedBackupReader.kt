@@ -227,10 +227,11 @@ class EncryptedBackupReader private constructor(
     try {
       val length = stream.readVarInt32().also { if (it < 0) return null }
       val frameBytes: ByteArray = stream.readNBytesOrThrow(length)
-
       return Frame.ADAPTER.decode(frameBytes)
     } catch (e: EOFException) {
       return null
+    } catch (e: IOException) {
+      return read()
     }
   }
 

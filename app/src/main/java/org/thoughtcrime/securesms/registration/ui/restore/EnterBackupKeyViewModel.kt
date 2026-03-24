@@ -86,7 +86,7 @@ class EnterBackupKeyViewModel : ViewModel() {
       val aep = AccountEntropyPool.parseOrNull(backupKey) ?: return false
 
       val dirUri = SignalStore.backup.newLocalBackupsDirectory ?: return false
-      val archiveFileSystem = ArchiveFileSystem.fromUri(AppDependencies.application, Uri.parse(dirUri)) ?: return false
+      val archiveFileSystem = ArchiveFileSystem.openForRestore(AppDependencies.application, Uri.parse(dirUri)) ?: return false
       val snapshot = archiveFileSystem.listSnapshots().firstOrNull { it.timestamp == selectedTimestamp } ?: return false
 
       val snapshotFs = SnapshotFileSystem(AppDependencies.application, snapshot.file)

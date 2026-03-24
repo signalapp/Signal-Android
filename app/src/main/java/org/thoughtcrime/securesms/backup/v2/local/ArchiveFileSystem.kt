@@ -26,6 +26,7 @@ import org.signal.core.util.androidx.DocumentFileUtil.newFile
 import org.signal.core.util.androidx.DocumentFileUtil.outputStream
 import org.signal.core.util.androidx.DocumentFileUtil.renameTo
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.R
 import java.io.File
 import java.io.IOException
 import java.io.InputStream
@@ -41,7 +42,7 @@ import java.util.concurrent.atomic.AtomicInteger
  * Provide a domain-specific interface to the root file system backing a local directory based archive.
  */
 @Suppress("JoinDeclarationAndAssignment")
-class ArchiveFileSystem private constructor(private val context: Context, root: DocumentFile) {
+class ArchiveFileSystem private constructor(private val context: Context, root: DocumentFile, readOnly: Boolean = false) {
 
   companion object {
     val TAG = Log.tag(ArchiveFileSystem::class.java)
@@ -51,7 +52,8 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
     const val TEMP_BACKUP_DIRECTORY_SUFFIX: String = "tmp"
 
     /**
-     * Attempt to create an [ArchiveFileSystem] from a tree [Uri].
+     * Attempt to create an [ArchiveFileSystem] from a tree [Uri], creating the necessary directory
+     * structure if it does not already exist. Use this when writing backups.
      *
      * Should likely only be called on API29+
      */
@@ -62,7 +64,25 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
         return null
       }
 
-      return ArchiveFileSystem(context, root)
+      return ArchiveFileSystem(context, root, readOnly = false)
+    }
+
+    /**
+     * Attempt to open an existing [ArchiveFileSystem] from a tree [Uri] without creating any
+     * directories or files. Use this when reading/restoring backups.
+     *
+     * Should likely only be called on API29+
+     */
+    fun openForRestore(context: Context, uri: Uri): ArchiveFileSystem? {
+      val root = DocumentFile.fromTreeUri(context, uri) ?: return null
+      if (!root.canRead()) return null
+      if (root.findFile(MAIN_DIRECTORY_NAME) == null) return null
+      return try {
+        ArchiveFileSystem(context, root, readOnly = true)
+      } catch (e: IOException) {
+        Log.w(TAG, "Unable to open backup directory for restore: $uri", e)
+        null
+      }
     }
 
     /**
@@ -71,7 +91,7 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
      * Should likely only be called on < API29.
      */
     fun fromFile(context: Context, backupDirectory: File): ArchiveFileSystem {
-      return ArchiveFileSystem(context, DocumentFile.fromFile(backupDirectory))
+      return ArchiveFileSystem(context, DocumentFile.fromFile(backupDirectory), readOnly = false)
     }
 
     fun openInputStream(context: Context, uri: Uri): InputStream? {
@@ -85,9 +105,22 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
   val filesFileSystem: FilesFileSystem
 
   init {
-    signalBackups = root.mkdirp(MAIN_DIRECTORY_NAME) ?: throw IOException("Unable to create main backups directory")
-    val filesDirectory = signalBackups.mkdirp("files") ?: throw IOException("Unable to create files directory")
-    filesFileSystem = FilesFileSystem(context, filesDirectory)
+    if (readOnly) {
+      signalBackups = root.findFile(MAIN_DIRECTORY_NAME) ?: throw IOException("SignalBackups directory not found in $root")
+      val filesDirectory = signalBackups.findFile("files") ?: throw IOException("files directory not found in $signalBackups")
+      filesFileSystem = FilesFileSystem(context, filesDirectory, readOnly = true)
+    } else {
+      signalBackups = root.mkdirp(MAIN_DIRECTORY_NAME) ?: throw IOException("Unable to create main backups directory")
+      val filesDirectory = signalBackups.mkdirp("files") ?: throw IOException("Unable to create files directory")
+      filesFileSystem = FilesFileSystem(context, filesDirectory)
+
+      val hintFileName = context.getString(R.string.ArchiveFileSystem__select_this_folder_hint_name)
+      if (!root.hasFile(hintFileName)) {
+        root.createFile("text/plain", hintFileName)
+          ?.outputStream(context)
+          ?.use { out -> out.write(context.getString(R.string.ArchiveFileSystem__select_this_folder_hint_body).toByteArray()) }
+      }
+    }
   }
 
   /**
@@ -258,7 +291,7 @@ class SnapshotFileSystem(private val context: Context, private val snapshotDirec
 /**
  * Domain specific file system access for accessing backup files (e.g., attachments, media, etc.).
  */
-class FilesFileSystem(private val context: Context, private val root: DocumentFile) {
+class FilesFileSystem(private val context: Context, private val root: DocumentFile, readOnly: Boolean = false) {
 
   companion object {
     private val TAG = Log.tag(FilesFileSystem::class.java)
@@ -271,11 +304,15 @@ class FilesFileSystem(private val context: Context, private val root: DocumentFi
       .mapNotNull { f -> f.name?.let { name -> name to f } }
       .toMap()
 
-    subFolders = (0..255)
-      .map { i -> i.toString(16).padStart(2, '0') }
-      .associateWith { name ->
-        existingFolders[name] ?: root.createDirectory(name)!!
-      }
+    subFolders = if (readOnly) {
+      existingFolders
+    } else {
+      (0..255)
+        .map { i -> i.toString(16).padStart(2, '0') }
+        .associateWith { name ->
+          existingFolders[name] ?: root.createDirectory(name)!!
+        }
+    }
   }
 
   /**

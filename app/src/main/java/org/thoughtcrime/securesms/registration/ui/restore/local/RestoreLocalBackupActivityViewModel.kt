@@ -93,7 +93,7 @@ class RestoreLocalBackupActivityViewModel : ViewModel() {
         return@launch
       }
 
-      val archiveFileSystem = ArchiveFileSystem.fromUri(AppDependencies.application, Uri.parse(backupDirectory))
+      val archiveFileSystem = ArchiveFileSystem.openForRestore(AppDependencies.application, Uri.parse(backupDirectory))
       if (archiveFileSystem == null) {
         Log.w(TAG, "Unable to access backup directory: $backupDirectory")
         internalState.update { it.copy(restorePhase = RestorePhase.FAILED) }

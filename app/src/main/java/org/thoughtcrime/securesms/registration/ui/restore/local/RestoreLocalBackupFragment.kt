@@ -118,7 +118,7 @@ class RestoreLocalBackupFragment : ComposeFragment() {
       restoreLocalBackupViewModel.setSelectedBackup(backup)
     }
 
-    override fun setSelectedBackupDirectory(context: Context, uri: Uri): Boolean {
+    override suspend fun setSelectedBackupDirectory(context: Context, uri: Uri): Boolean {
       return restoreLocalBackupViewModel.setSelectedBackupDirectory(context, uri)
     }
 

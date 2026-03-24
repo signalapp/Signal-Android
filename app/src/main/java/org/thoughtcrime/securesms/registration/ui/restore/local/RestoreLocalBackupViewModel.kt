@@ -40,41 +40,51 @@ class RestoreLocalBackupViewModel : ViewModel() {
     internalState.update { it.copy(selectedBackup = backup) }
   }
 
-  fun setSelectedBackupDirectory(context: Context, uri: Uri): Boolean {
+  suspend fun setSelectedBackupDirectory(context: Context, uri: Uri): Boolean {
     SignalStore.backup.newLocalBackupsDirectory = uri.toString()
+    internalState.update { it.copy(isLoadingBackupDirectory = true) }
 
-    val archiveFileSystem = ArchiveFileSystem.fromUri(context, uri)
+    val archiveFileSystem = withContext(Dispatchers.IO) { ArchiveFileSystem.openForRestore(context, uri) }
 
     if (archiveFileSystem == null) {
       Log.w(TAG, "Unable to access backup directory: $uri")
-      internalState.update { it.copy(selectedBackup = null, selectableBackups = persistentListOf(), dialog = RestoreLocalBackupDialog.FAILED_TO_LOAD_ARCHIVE) }
+      internalState.update { it.copy(isLoadingBackupDirectory = false, selectedBackup = null, selectableBackups = persistentListOf(), dialog = RestoreLocalBackupDialog.FAILED_TO_LOAD_ARCHIVE) }
       return false
     }
 
-    val selectableBackups = archiveFileSystem
-      .listSnapshots()
-      .take(2)
-      .map { snapshot ->
-        val dateLabel = if (DateUtils.isSameDay(System.currentTimeMillis(), snapshot.timestamp)) {
-          context.getString(R.string.DateUtils_today)
-        } else {
-          DateUtils.formatDateWithYear(Locale.getDefault(), snapshot.timestamp)
-        }
-        val timeLabel = DateUtils.getOnlyTimeString(context, snapshot.timestamp)
-        val sizeBytes = SnapshotFileSystem(context, snapshot.file).mainLength() ?: 0L
+    val selectableBackups = withContext(Dispatchers.IO) {
+      archiveFileSystem
+        .listSnapshots()
+        .take(2)
+        .map { snapshot ->
+          val dateLabel = if (DateUtils.isSameDay(System.currentTimeMillis(), snapshot.timestamp)) {
+            context.getString(R.string.DateUtils_today)
+          } else {
+            DateUtils.formatDateWithYear(Locale.getDefault(), snapshot.timestamp)
+          }
+          val timeLabel = DateUtils.getOnlyTimeString(context, snapshot.timestamp)
+          val sizeBytes = SnapshotFileSystem(context, snapshot.file).mainLength() ?: 0L
 
-        SelectableBackup(
-          timestamp = snapshot.timestamp,
-          backupTime = "$dateLabel • $timeLabel",
-          backupSize = sizeBytes.bytes.toUnitString()
-        )
-      }
-      .toPersistentList()
+          SelectableBackup(
+            timestamp = snapshot.timestamp,
+            backupTime = "$dateLabel • $timeLabel",
+            backupSize = sizeBytes.bytes.toUnitString()
+          )
+        }
+        .toPersistentList()
+    }
+
+    if (selectableBackups.isEmpty()) {
+      Log.w(TAG, "No snapshots found in backup directory: $uri")
+      internalState.update { it.copy(isLoadingBackupDirectory = false, selectedBackup = null, selectableBackups = persistentListOf(), dialog = RestoreLocalBackupDialog.FAILED_TO_LOAD_ARCHIVE) }
+      return false
+    }
 
     internalState.update {
       it.copy(
+        isLoadingBackupDirectory = false,
         selectableBackups = selectableBackups,
-        selectedBackup = selectableBackups.firstOrNull()
+        selectedBackup = selectableBackups.first()
       )
     }
     return true
@@ -94,7 +104,7 @@ class RestoreLocalBackupViewModel : ViewModel() {
       val aep = requireNotNull(AccountEntropyPool.parseOrNull(backupKey)) { "Backup key must be valid at submission time" }
       val messageBackupKey = aep.deriveMessageBackupKey()
       val dirUri = requireNotNull(SignalStore.backup.newLocalBackupsDirectory) { "Backup directory must be set" }
-      val archiveFileSystem = requireNotNull(ArchiveFileSystem.fromUri(context, Uri.parse(dirUri))) { "Backup directory must be accessible" }
+      val archiveFileSystem = requireNotNull(ArchiveFileSystem.openForRestore(context, Uri.parse(dirUri))) { "Backup directory must be accessible" }
       val snapshot = requireNotNull(archiveFileSystem.listSnapshots().firstOrNull { it.timestamp == timestamp }) { "Selected snapshot must still exist" }
       val snapshotFs = SnapshotFileSystem(context, snapshot.file)
       val actualBackupId = LocalArchiver.getBackupId(snapshotFs, messageBackupKey)

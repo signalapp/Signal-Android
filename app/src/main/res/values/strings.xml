@@ -4937,6 +4937,8 @@
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Please acknowledge your understanding by marking the confirmation check box.</string>
     <string name="BackupDialog_delete_backups">Delete backups?</string>
     <string name="BackupDialog_disable_and_delete_all_local_backups">Disable and delete all local backups?</string>
+    <string name="ArchiveFileSystem__select_this_folder_hint_name">Select this folder, not SignalBackups</string>
+    <string name="ArchiveFileSystem__select_this_folder_hint_body">When configuring Signal backup storage, select this folder — not the SignalBackups subfolder.</string>
     <string name="BackupDialog_delete_backups_statement">Delete backups</string>
     <!-- Progress dialog message shown while local backup files are being deleted -->
     <string name="BackupDialog_deleting_local_backup">Deleting local backup…</string>
