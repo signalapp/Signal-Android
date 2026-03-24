@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.badges.models.Badge;
-import org.thoughtcrime.securesms.conversation.v2.ConversationActivity;
+import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.signal.core.models.media.Media;
@@ -94,13 +94,15 @@ public class ConversationIntents {
    */
   public static @NonNull Builder createBuilderSync(@NonNull Context context, @NonNull RecipientId recipientId, long threadId) {
     Preconditions.checkArgument(threadId > 0, "threadId is invalid");
-    return new Builder(context, ConversationActivity.class, recipientId, threadId, ConversationScreenType.NORMAL);
+    return new Builder(context, MainActivity.class, recipientId, threadId, ConversationScreenType.NORMAL)
+        .withFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
   }
 
   public static @NonNull Builder createBuilderSync(@NonNull Context context, @NonNull ConversationArgs conversationArgs) {
     Preconditions.checkArgument(conversationArgs.threadId > 0, "threadId is invalid");
-    return new Builder(context, ConversationActivity.class, conversationArgs.getRecipientId(), conversationArgs.threadId, ConversationScreenType.NORMAL)
-        .withArgs(conversationArgs);
+    return new Builder(context, MainActivity.class, conversationArgs.getRecipientId(), conversationArgs.threadId, ConversationScreenType.NORMAL)
+        .withArgs(conversationArgs)
+        .withFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
   }
 
   static @Nullable Uri getIntentData(@NonNull Bundle bundle) {
@@ -195,6 +197,7 @@ public class ConversationIntents {
     private Badge                  giftBadge;
     private long                   shareDataTimestamp = -1L;
     private boolean                incognito;
+    private int                    flags;
 
     private Builder(@NonNull Context context,
                     @NonNull Class<? extends Activity> conversationActivityClass,
@@ -292,6 +295,11 @@ public class ConversationIntents {
       return this;
     }
 
+    public @NonNull Builder withFlags(int flags) {
+      this.flags = flags;
+      return this;
+    }
+
     public @NonNull ConversationArgs toConversationArgs() {
       return new ConversationArgs(
           recipientId,
@@ -320,6 +328,10 @@ public class ConversationIntents {
 
       Intent intent = new Intent(context, conversationActivityClass);
       intent.setAction(ConversationIntents.ACTION);
+
+      if (flags != 0) {
+        intent.addFlags(flags);
+      }
 
       if (conversationScreenType.isInBubble()) {
         intent.setData(new Uri.Builder().authority(BUBBLE_AUTHORITY)
