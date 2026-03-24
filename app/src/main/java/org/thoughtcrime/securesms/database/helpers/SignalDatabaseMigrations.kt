@@ -330,7 +330,7 @@ object SignalDatabaseMigrations {
     305 to V305_AddStoryArchivedColumn,
     306 to V306_AddRemoteDeletedColumn,
 //    307 to V307_RemoveRemoteDeletedColumn - Removed due to unsolvable OOM crashes. [TODO]: Attempt to fix in the future
-    308 to V308_AddBackRemoteDeletedColumn
+    308 to V308_AddBackRemoteDeletedColumn,
     309 to V309_ThreadUnreadReactionToSelfCount
   )
 
