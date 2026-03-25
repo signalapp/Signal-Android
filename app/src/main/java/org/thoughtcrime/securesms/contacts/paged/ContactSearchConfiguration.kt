@@ -200,7 +200,7 @@ class ContactSearchConfiguration private constructor(
     /**
      * Chat types that are displayed when creating a chat folder.
      *
-     * Key: [ContactSearchKey.ChatType]
+     * Key: [ContactSearchKey.ChatTypeSearchKey]
      * Data: [ContactSearchData.ChatTypeRow]
      * Model: [ContactSearchAdapter.ChatTypeModel]
      */
