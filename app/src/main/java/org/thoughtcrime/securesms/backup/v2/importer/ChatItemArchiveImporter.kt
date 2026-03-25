@@ -472,6 +472,7 @@ class ChatItemArchiveImporter(
           val ids = SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, listOf(longTextAttachment), emptyList())
           ids.values.firstOrNull()?.let { attachmentId ->
             SignalDatabase.attachments.setTransferState(messageRowId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_DONE)
+            SignalDatabase.attachments.createRemoteKeyIfNecessary(attachmentId)
           }
         }
       }
@@ -511,6 +512,7 @@ class ChatItemArchiveImporter(
           if (longTextAttachment != null) {
             attachmentMap[longTextAttachment]?.let { attachmentId ->
               SignalDatabase.attachments.setTransferState(messageRowId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_DONE)
+              SignalDatabase.attachments.createRemoteKeyIfNecessary(attachmentId)
             }
           }
 
