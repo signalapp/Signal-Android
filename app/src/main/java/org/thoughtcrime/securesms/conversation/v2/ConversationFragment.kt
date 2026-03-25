@@ -3675,11 +3675,18 @@ class ConversationFragment :
     }
 
     override fun onBlockJoinRequest(recipient: Recipient) {
-      MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.ConversationFragment__block_request)
-        .setMessage(getString(R.string.ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link, recipient.getDisplayName(requireContext())))
-        .setNegativeButton(R.string.ConversationFragment__cancel, null)
-        .setPositiveButton(R.string.ConversationFragment__block_request_button) { _, _ -> handleBlockJoinRequest(recipient) }
-        .show()
+      if (conversationGroupViewModel.groupRecordSnapshot?.isTerminated == true) {
+        MaterialAlertDialogBuilder(requireContext())
+          .setMessage(R.string.conversation_activity__group_action_not_allowed_group_ended)
+          .setPositiveButton(android.R.string.ok) { d, _ -> d.dismiss() }
+          .show()
+      } else {
+        MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.ConversationFragment__block_request)
+          .setMessage(getString(R.string.ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link, recipient.getDisplayName(requireContext())))
+          .setNegativeButton(R.string.ConversationFragment__cancel, null)
+          .setPositiveButton(R.string.ConversationFragment__block_request_button) { _, _ -> handleBlockJoinRequest(recipient) }
+          .show()
+      }
     }
 
     override fun onRecipientNameClicked(target: RecipientId) {

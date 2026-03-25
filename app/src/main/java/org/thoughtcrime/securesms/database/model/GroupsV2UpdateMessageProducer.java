@@ -236,12 +236,12 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeGroupTerminateUpdate(@NonNull GroupTerminateChangeUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.updaterAci == null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_was_terminated), Glyph.X_CIRCLE));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_was_terminated), Glyph.GROUP_X));
     } else {
       if (selfIds.matches(update.updaterAci)) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_terminated_the_group), Glyph.X_CIRCLE));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_terminated_the_group), Glyph.GROUP_X));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_terminated_the_group, update.updaterAci, Glyph.X_CIRCLE));
+        updates.add(updateDescription(R.string.MessageRecord_s_terminated_the_group, update.updaterAci, Glyph.GROUP_X));
       }
     }
   }

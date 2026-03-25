@@ -73,7 +73,6 @@ import org.thoughtcrime.securesms.components.settings.conversation.preferences.L
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.LegacyGroupPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.RecipientPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.SharedMediaPreference
-import org.thoughtcrime.securesms.components.settings.conversation.preferences.TerminatedBannerPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.Utils.formatMutedUntil
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.colors.ColorizerV2
@@ -306,7 +305,6 @@ class ConversationSettingsFragment :
     InternalPreference.register(adapter)
     GroupDescriptionPreference.register(adapter)
     LegacyGroupPreference.register(adapter)
-    TerminatedBannerPreference.register(adapter)
     CallPreference.register(adapter)
 
     val recipientId = args.recipientId
@@ -369,17 +367,10 @@ class ConversationSettingsFragment :
         return@configure
       }
 
-      state.withGroupSettingsState {
-        if (it.isTerminated) {
-          customPref(TerminatedBannerPreference.Model())
-        }
-      }
-
       customPref(
         AvatarPreference.Model(
           recipient = state.recipient,
           storyViewState = state.storyViewState,
-          reduceTopMargin = state.isTerminatedGroup,
           onAvatarClick = { avatar ->
             val viewAvatarIntent = AvatarPreviewActivity.intentFromRecipientId(requireContext(), state.recipient.id)
             val viewAvatarTransitionBundle = AvatarPreviewActivity.createTransitionBundle(requireActivity(), avatar)
@@ -434,7 +425,8 @@ class ConversationSettingsFragment :
         customPref(
           BioTextPreference.GroupModel(
             groupTitle = groupState.groupTitle,
-            groupMembershipDescription = groupMembershipDescription
+            groupMembershipDescription = groupMembershipDescription,
+            isTerminated = groupState.isTerminated
           )
         )
 

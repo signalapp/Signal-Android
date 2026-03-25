@@ -3640,7 +3640,7 @@
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
     <string name="conversation_activity__send_failed_group_ended">Send failed because the group was ended. You can no longer send and receive messages in this group.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
-    <string name="conversation_activity__group_action_not_allowed_group_ended">You can no longer invite friends or add members to this group.</string>
+    <string name="conversation_activity__group_action_not_allowed_group_ended">This action is unavailable because the group has ended.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
     <string name="conversation_activity__message_failed_to_delete_retry">Message failed to delete. Check your connection and try again.</string>
     <!-- Dialog body when a message failed to delete. -->

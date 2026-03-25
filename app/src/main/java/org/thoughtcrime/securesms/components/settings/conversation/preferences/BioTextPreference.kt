@@ -2,11 +2,13 @@ package org.thoughtcrime.securesms.components.settings.conversation.preferences
 
 import android.content.ClipData
 import android.content.Context
+import android.text.SpannableStringBuilder
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
+import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
@@ -61,7 +63,8 @@ object BioTextPreference {
 
   class GroupModel(
     val groupTitle: String,
-    val groupMembershipDescription: String?
+    val groupMembershipDescription: String?,
+    val isTerminated: Boolean = false
   ) : BioTextPreferenceModel<GroupModel>() {
     override fun getHeadlineText(context: Context): CharSequence = groupTitle
 
@@ -72,7 +75,8 @@ object BioTextPreference {
     override fun areContentsTheSame(newItem: GroupModel): Boolean {
       return super.areContentsTheSame(newItem) &&
         groupTitle == newItem.groupTitle &&
-        groupMembershipDescription == newItem.groupMembershipDescription
+        groupMembershipDescription == newItem.groupMembershipDescription &&
+        isTerminated == newItem.isTerminated
     }
 
     override fun areItemsTheSame(newItem: GroupModel): Boolean {
@@ -85,6 +89,7 @@ object BioTextPreference {
     private val headline: TextView = itemView.findViewById(R.id.bio_preference_headline)
     private val subhead1: TextView = itemView.findViewById(R.id.bio_preference_subhead_1)
     protected val subhead2: TextView = itemView.findViewById(R.id.bio_preference_subhead_2)
+    private val terminatedPill: TextView = itemView.findViewById(R.id.bio_preference_terminated_pill)
 
     override fun bind(model: T) {
       headline.text = model.getHeadlineText(context)
@@ -92,6 +97,17 @@ object BioTextPreference {
       val clickListener = model.onHeadlineClickListener
       if (clickListener != null) {
         headline.setOnClickListener { clickListener() }
+      }
+
+      if (model is GroupModel && model.isTerminated) {
+        val glyphSpan = SignalSymbols.getSpannedString(context, SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.GROUP_X)
+        terminatedPill.text = SpannableStringBuilder()
+          .append(glyphSpan)
+          .append(" ")
+          .append(context.getString(R.string.ConversationSettingsFragment__this_group_was_ended))
+        terminatedPill.visibility = View.VISIBLE
+      } else {
+        terminatedPill.visibility = View.GONE
       }
 
       model.getSubhead1Text(context).let {

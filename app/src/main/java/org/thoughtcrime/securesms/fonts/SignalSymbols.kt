@@ -113,6 +113,7 @@ object SignalSymbols {
     GIF('\uE037'),
     GIF_RECTANGLE('\uE097'),
     GROUP('\uE038'),
+    GROUP_X('\uE0AE'),
     HEART('\uE039'),
     INCOMING('\uE03A'),
     INFO('\uE03B'),
