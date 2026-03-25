@@ -35,6 +35,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import java.util.TimeZone
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -157,7 +158,7 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
    * Attempt to create a [SnapshotFileSystem] to represent a single backup snapshot.
    */
   fun createSnapshot(): SnapshotFileSystem? {
-    val timestamp = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(Date())
+    val timestamp = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).apply { timeZone = TimeZone.getTimeZone("UTC") }.format(Date())
     val snapshotDirectoryName = "${BACKUP_DIRECTORY_PREFIX}-$timestamp"
 
     if (signalBackups.hasFile(snapshotDirectoryName)) {
@@ -386,7 +387,7 @@ private fun String.toMilliseconds(): Long {
 
   if (parts.size == 7) {
     try {
-      val calendar = Calendar.getInstance(Locale.US)
+      val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"), Locale.US)
       calendar[Calendar.YEAR] = parts[1].toInt()
       calendar[Calendar.MONTH] = parts[2].toInt() - 1
       calendar[Calendar.DAY_OF_MONTH] = parts[3].toInt()
