@@ -195,9 +195,10 @@ public class ApplicationMigrations {
     static final int STICKER_PACK_ADDITION_2       = 151;
     static final int DELETED_BY_DB_MIGRATION       = 152;
     static final int RELEASE_CHANNEL_RECIPIENT_FIX = 153;
+    static final int EMOJI_VERSION_13              = 154;
   }
 
-  public static final int CURRENT_VERSION = 153;
+  public static final int CURRENT_VERSION = 154;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -902,6 +903,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.RELEASE_CHANNEL_RECIPIENT_FIX) {
       jobs.put(Version.RELEASE_CHANNEL_RECIPIENT_FIX, new ReleaseChannelRecipientFixMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.EMOJI_VERSION_13) {
+      jobs.put(Version.EMOJI_VERSION_13, new EmojiDownloadMigrationJob());
     }
 
     return jobs;
