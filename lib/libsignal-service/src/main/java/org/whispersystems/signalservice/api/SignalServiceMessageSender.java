@@ -1749,10 +1749,6 @@ public class SignalServiceMessageSender {
     SyncMessage.Builder      syncMessage = createSyncMessageBuilder();
     SyncMessage.Keys.Builder builder     = new SyncMessage.Keys.Builder();
 
-    if (keysMessage.getMaster() != null) {
-      builder.master(ByteString.of(keysMessage.getMaster().serialize()));
-    }
-
     if (keysMessage.getAccountEntropyPool() != null) {
       builder.accountEntropyPool(keysMessage.getAccountEntropyPool().getValue());
     }

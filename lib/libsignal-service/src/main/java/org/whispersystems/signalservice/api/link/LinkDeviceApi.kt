@@ -120,7 +120,6 @@ class LinkDeviceApi(
       userAgent = null,
       profileKey = profileKey.serialize().toByteString(),
       provisioningVersion = ProvisioningVersion.CURRENT.value,
-      masterKey = masterKey.serialize().toByteString(),
       ephemeralBackupKey = ephemeralMessageBackupKey?.value?.toByteString(),
       accountEntropyPool = accountEntropyPool.value,
       mediaRootBackupKey = mediaRootBackupKey.value.toByteString(),

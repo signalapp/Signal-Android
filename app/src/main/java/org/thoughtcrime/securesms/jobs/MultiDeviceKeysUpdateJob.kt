@@ -56,7 +56,6 @@ class MultiDeviceKeysUpdateJob private constructor(parameters: Parameters) : Bas
     val syncMessage = SignalServiceSyncMessage.forKeys(
       KeysMessage(
         storageService = SignalStore.storageService.storageKey,
-        master = SignalStore.svr.masterKey,
         accountEntropyPool = SignalStore.account.accountEntropyPool,
         mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
       )

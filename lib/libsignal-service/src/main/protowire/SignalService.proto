@@ -588,7 +588,7 @@ message SyncMessage {
 
   message Keys {
     reserved /* storageService */ 1;
-    optional bytes master = 2; // deprecated: this field will be removed in a future release.
+    reserved /* master */ 2;
     optional string accountEntropyPool = 3;
     optional bytes mediaRootBackupKey = 4;
   }
