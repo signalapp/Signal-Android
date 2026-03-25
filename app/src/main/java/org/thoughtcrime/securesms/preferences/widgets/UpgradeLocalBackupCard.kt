@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
@@ -26,6 +27,7 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.util.DynamicTheme
 
 object UpgradeLocalBackupCard {
 
@@ -34,7 +36,7 @@ object UpgradeLocalBackupCard {
     onClick: () -> Unit
   ) {
     setContent {
-      SignalTheme {
+      SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)) {
         UpgradeLocalBackupCardComponent(onClick = onClick)
       }
     }
