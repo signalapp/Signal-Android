@@ -16,7 +16,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
 import org.signal.core.models.AccountEntropyPool
-import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
@@ -63,12 +62,10 @@ class RestoreLocalBackupViewModel : ViewModel() {
             DateUtils.formatDateWithYear(Locale.getDefault(), snapshot.timestamp)
           }
           val timeLabel = DateUtils.getOnlyTimeString(context, snapshot.timestamp)
-          val sizeBytes = SnapshotFileSystem(context, snapshot.file).mainLength() ?: 0L
 
           SelectableBackup(
             timestamp = snapshot.timestamp,
-            backupTime = "$dateLabel • $timeLabel",
-            backupSize = sizeBytes.bytes.toUnitString()
+            backupTime = "$dateLabel • $timeLabel"
           )
         }
         .toPersistentList()

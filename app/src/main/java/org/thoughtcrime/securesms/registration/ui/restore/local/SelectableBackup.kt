@@ -7,6 +7,5 @@ package org.thoughtcrime.securesms.registration.ui.restore.local
 
 data class SelectableBackup(
   val timestamp: Long,
-  val backupTime: String,
-  val backupSize: String
+  val backupTime: String
 )
