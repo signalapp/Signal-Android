@@ -3698,8 +3698,8 @@
     <string name="CollapsedEvent__group_update">%1$d group updates</string>
     <!-- Update item button text to show how many group updates there are. -->
     <string name="CollapsedEvent__chat_update">%1$d chat updates</string>
-    <!-- Update item button text to show how many disappearing message timer changes are. -->
-    <string name="CollapsedEvent__disappearing_timer">%1$d disappearing message timer changes</string>
+    <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
+    <string name="CollapsedEvent__disappearing_timer">%1$d disappearing message timer changes · %2$s</string>
     <!-- Update item button text to show how many call events are. -->
     <string name="CollapsedEvent__call_event">%1$d call events</string>
 

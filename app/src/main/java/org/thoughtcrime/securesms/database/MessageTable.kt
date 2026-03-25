@@ -4724,6 +4724,37 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
+  /**
+   * Gets the final disappearing timer value for a collapsed set of timer changes
+   *
+   * This should only be called when you know the id belongs to a set of disappearing messages
+   * and will return 0 if no timer update is found.
+   */
+  fun getDisappearingTimerStateForCollapsedSet(id: Long): Long {
+    readableDatabase
+      .select(DATE_RECEIVED, TYPE, EXPIRES_IN, MESSAGE_EXTRAS)
+      .from(TABLE_NAME)
+      .where("$COLLAPSED_HEAD_ID = ? AND $COLLAPSED_STATE != ?", id, CollapsedState.PENDING_COLLAPSED.id)
+      .orderBy("$DATE_RECEIVED DESC")
+      .limit(1)
+      .run()
+      .use { cursor ->
+        if (cursor.moveToFirst()) {
+          if (MessageTypes.isExpirationTimerUpdate(cursor.requireLong(TYPE))) {
+            return cursor.requireLong(EXPIRES_IN)
+          } else {
+            val messageExtras = cursor.requireBlob(MESSAGE_EXTRAS)?.let { MessageExtras.ADAPTER.decode(it) }
+            if (messageExtras?.gv2UpdateDescription?.groupChangeUpdate?.updates?.isNotEmpty() == true) {
+              return messageExtras.gv2UpdateDescription.groupChangeUpdate.updates.findLast { update ->
+                update.groupExpirationTimerUpdate != null
+              }?.groupExpirationTimerUpdate?.expiresInMs ?: 0L
+            }
+          }
+        }
+      }
+    return 0
+  }
+
   fun setNotifiedTimestamp(timestamp: Long, ids: List<Long>) {
     if (ids.isEmpty()) {
       return

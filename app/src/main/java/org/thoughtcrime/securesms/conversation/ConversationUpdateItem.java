@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DrawableUtil;
+import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Projection;
@@ -867,7 +868,7 @@ public final class ConversationUpdateItem extends FrameLayout
       SpannableStringBuilder text = new SpannableStringBuilder()
                                         .append(SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, getCollapsibleSymbol(collapsibleType), org.signal.core.ui.R.color.signal_colorOnSurfaceVariant))
                                         .append(" ")
-                                        .append(getContext().getString(getCollapsibleString(collapsibleType), conversationMessage.getCollapsedSize()))
+                                        .append(getCollapsibleString(collapsibleType))
                                         .append(" ")
                                         .append(SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, collapsedState == CollapsedState.HEAD_EXPANDED ? SignalSymbols.Glyph.CHEVRON_UP : SignalSymbols.Glyph.CHEVRON_DOWN, org.signal.core.ui.R.color.signal_colorOnSurfaceVariant));
       collapsedButton.setText(text);
@@ -888,11 +889,14 @@ public final class ConversationUpdateItem extends FrameLayout
     }
   }
 
-  private @StringRes int getCollapsibleString(CollapsibleEvents.CollapsibleType type) {
+  private @NonNull String getCollapsibleString(CollapsibleEvents.CollapsibleType type) {
     return switch (type) {
-      case CALL_EVENT -> R.string.CollapsedEvent__call_event;
-      case DISAPPEARING_TIMER -> R.string.CollapsedEvent__disappearing_timer;
-      case CHAT_UPDATE -> conversationRecipient.isGroup() ? R.string.CollapsedEvent__group_update : R.string.CollapsedEvent__chat_update;
+      case CALL_EVENT -> getContext().getString(R.string.CollapsedEvent__call_event, conversationMessage.getCollapsedSize());
+      case DISAPPEARING_TIMER -> {
+        String time = ExpirationUtil.getExpirationAbbreviatedDisplayValue(getContext(), (int) (conversationMessage.getCollapsedExpirationInMs() / 1000));
+        yield getContext().getString(R.string.CollapsedEvent__disappearing_timer, conversationMessage.getCollapsedSize(), time) ;
+      }
+      case CHAT_UPDATE ->  getContext().getString(conversationRecipient.isGroup() ? R.string.CollapsedEvent__group_update : R.string.CollapsedEvent__chat_update, conversationMessage.getCollapsedSize());
     };
   }
 
