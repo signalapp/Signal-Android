@@ -137,16 +137,16 @@ class LocalBackupsFragment : ComposeFragment() {
                 backupKey = state.accountEntropyPool.displayValue,
                 onNavigationClick = { requireActivity().onBackPressedDispatcher.onBackPressed() },
                 onNextClick = {
-                  if (!backstack.contains(LocalBackupsNavKey.SETTINGS)) {
-                    backstack.add(0, LocalBackupsNavKey.SETTINGS)
-                  }
-
-                  backstack.removeAll { it != LocalBackupsNavKey.SETTINGS }
-
                   scope.launch {
                     upgradeInProgress = true
                     viewModel.handleUpgrade(requireContext())
                     upgradeInProgress = false
+
+                    if (!backstack.contains(LocalBackupsNavKey.SETTINGS)) {
+                      backstack.add(0, LocalBackupsNavKey.SETTINGS)
+                    }
+
+                    backstack.removeAll { it != LocalBackupsNavKey.SETTINGS }
 
                     snackbarHostState.showSnackbar(
                       message = backupKeyUpdatedMessage
