@@ -110,6 +110,7 @@ import org.thoughtcrime.securesms.jobs.ArchiveAttachmentBackfillJob
 import org.thoughtcrime.securesms.jobs.ArchiveThumbnailBackfillJob
 import org.thoughtcrime.securesms.jobs.ArchiveThumbnailUploadJob
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
+import org.thoughtcrime.securesms.jobs.BackfillCollapsedMessageJob
 import org.thoughtcrime.securesms.jobs.BackupDeleteJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
@@ -1499,6 +1500,10 @@ object BackupRepository {
     }
     AppDependencies.jobManager.addAll(groupJobs)
     stopwatch.split("group-jobs")
+
+    if (RemoteConfig.collapseEvents) {
+      AppDependencies.jobManager.add(BackfillCollapsedMessageJob())
+    }
 
     SignalStore.backup.firstAppVersion = header.firstAppVersion
     SignalStore.internal.importedBackupDebugInfo = header.debugInfo.let { BackupDebugInfo.ADAPTER.decodeOrNull(it.toByteArray()) }

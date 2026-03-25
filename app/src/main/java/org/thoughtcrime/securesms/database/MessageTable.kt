@@ -3620,18 +3620,22 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
-  // TODO(michelle): Maybe reduce to the fields you actually need instead of everything
-  private fun getMessageDirectlyBefore(messageId: Long, threadId: Long, dateReceived: Long): MessageRecord? {
-    val message = readableDatabase
-      .select(*MMS_PROJECTION)
+  private fun getMessageDirectlyBefore(messageId: Long, threadId: Long, dateReceived: Long): PotentialCollapsibleMessage? {
+    return readableDatabase
+      .select(DATE_RECEIVED, TYPE, COLLAPSED_HEAD_ID, MESSAGE_EXTRAS)
       .from(TABLE_NAME)
       .where("$ID < ? AND $THREAD_ID = ?", messageId, threadId)
       .orderBy("$DATE_RECEIVED DESC")
       .limit(1)
       .run()
-      .readToSingleObject { MmsReader(it).getCurrent() }
-
-    return message?.takeIf { DateUtils.isSameDay(message.dateReceived, dateReceived) }
+      .readToSingleObject { cursor ->
+        PotentialCollapsibleMessage(
+          type = cursor.requireLong(TYPE),
+          dateReceived = cursor.requireLong(DATE_RECEIVED),
+          collapsedHeadId = cursor.requireLong(COLLAPSED_HEAD_ID),
+          messageExtras = cursor.requireBlob(MESSAGE_EXTRAS)?.let { MessageExtras.ADAPTER.decode(it) }
+        )
+      }?.takeIf { DateUtils.isSameDay(it.dateReceived, dateReceived) }
   }
 
   private fun hasAudioAttachment(attachments: List<Attachment>): Boolean {
@@ -6546,6 +6550,16 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   private data class QuoteDescriptor(
     private val timestamp: Long,
     private val author: RecipientId
+  )
+
+  /**
+   * All the data required to calculate if a message is collapsible
+   */
+  private data class PotentialCollapsibleMessage(
+    val type: Long,
+    val dateReceived: Long,
+    val collapsedHeadId: Long,
+    val messageExtras: MessageExtras?
   )
 
   private class TimestampReadResult(

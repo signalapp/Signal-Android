@@ -118,6 +118,10 @@ message RestoreLocalAttachmentJobData {
   uint64 fileSize = 4;
 }
 
+message BackfillCollapsedMessageJobData {
+  int64 lastDateReceived = 1;
+}
+
 message BackfillDigestJobData {
   uint64 attachmentId = 1;
 }
