@@ -26,9 +26,7 @@ object Environment {
     }
 
     @JvmStatic
-    fun isNewFormatSupportedForLocalBackup(): Boolean {
-      return isInternal()
-    }
+    fun isNewFormatSupportedForLocalBackup(): Boolean = true
   }
 
   object Donations {
