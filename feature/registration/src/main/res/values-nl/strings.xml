@@ -99,25 +99,25 @@
     <!-- Title text for the archive restore selection screen -->
     <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">Account herstellen of overzetten</string>
     <!-- Subtitle text for the archive restore selection screen -->
-    <string name="ArchiveRestoreSelectionScreen__subheading">Choose how you’d like to restore your message history and account data.</string>
+    <string name="ArchiveRestoreSelectionScreen__subheading">Kies hoe je je chatgeschiedenis en accountgegevens wilt herstellen.</string>
     <!-- Title for the Signal Backups option card -->
-    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">Vanaf Signal back-ups</string>
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">Vanuit Signal back-ups</string>
     <!-- Subtitle for the Signal Backups option card -->
     <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">Je gratis of betaalde Signal back-upabonnement</string>
     <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
     <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Lokale back-up herstellen</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Herstel je berichten vanaf een back-up die je op je apparaat hebt opgeslagen.</string>
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Herstel je berichten vanuit een back-up die je op je apparaat hebt opgeslagen.</string>
     <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Doorgaan zonder over te zetten</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Messages &amp; media won’t be transferred</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Berichten en media worden niet overgezet</string>
     <!-- Title for the backup folder option card (V2 format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">Vanaf een back-upmap</string>
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">Vanuit een back-upmap</string>
     <!-- Title for the backup file option card (V1 legacy format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">Vanaf een back-upbestand</string>
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">Vanuit een back-upbestand</string>
     <!-- Subtitle for the backup folder/file option cards -->
-    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Choose a backup you\'ve saved</string>
+    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Kies een back-up die je hebt opgeslagen</string>
     <!-- Title for the device transfer option card -->
     <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">Vanaf je oude telefoon</string>
     <!-- Subtitle for the device transfer option card -->

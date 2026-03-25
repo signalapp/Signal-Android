@@ -99,29 +99,29 @@
     <!-- Title text for the archive restore selection screen -->
     <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">Відновлення або перенесення акаунту</string>
     <!-- Subtitle text for the archive restore selection screen -->
-    <string name="ArchiveRestoreSelectionScreen__subheading">Choose how you’d like to restore your message history and account data.</string>
+    <string name="ArchiveRestoreSelectionScreen__subheading">Виберіть спосіб відновлення історії повідомлень і даних акаунту.</string>
     <!-- Title for the Signal Backups option card -->
     <string name="ArchiveRestoreSelectionScreen__from_signal_backups">Зі сховища резервних копій Signal</string>
     <!-- Subtitle for the Signal Backups option card -->
-    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">Безкоштовне або платне резервне копіювання від Signal</string>
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">З безкоштовної або платної резервної копії від Signal</string>
     <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Відновити дані з резервної копії на пристрої</string>
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">З резервної копії на пристрої</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Відновіть повідомлення з резервної копії, збереженої на пристрої.</string>
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Дані буде відновлено з резервної копії, збереженої на пристрої.</string>
     <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Продовжити без перенесення</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Messages &amp; media won’t be transferred</string>
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Повідомлення і медіафайли не буде перенесено</string>
     <!-- Title for the backup folder option card (V2 format) -->
     <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">З папки з резервною копією</string>
     <!-- Title for the backup file option card (V1 legacy format) -->
     <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">З файлу резервної копії</string>
     <!-- Subtitle for the backup folder/file option cards -->
-    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Choose a backup you\'ve saved</string>
+    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Виберіть збережену резервну копію</string>
     <!-- Title for the device transfer option card -->
     <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">Зі старого телефона</string>
     <!-- Subtitle for the device transfer option card -->
-    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">Перенесіть безпосередньо зі старого пристрою з ОС Android</string>
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">Перенести безпосередньо зі старого пристрою з ОС Android</string>
     <!-- Skip button text -->
     <string name="ArchiveRestoreSelectionScreen__skip">Пропустити</string>
     <!-- Title for the skip restore confirmation dialog -->

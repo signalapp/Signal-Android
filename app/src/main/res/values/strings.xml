@@ -8576,7 +8576,7 @@
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Try again</string>
 
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin's display name -->
+    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s Ended the Group</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has been ended</string>
