@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.database
 
 import androidx.core.content.contentValuesOf
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import io.mockk.every
+import io.mockk.mockkStatic
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -12,6 +14,7 @@ import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.SignalDatabaseRule
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.UUID
 import kotlin.time.Duration.Companion.days
 
@@ -32,6 +35,10 @@ class CollapsingMessagesTests {
 
   @Before
   fun setUp() {
+    mockkStatic(RemoteConfig::class)
+
+    every { RemoteConfig.collapseEvents } returns true
+
     message = SignalDatabase.messages
     message.deleteAllThreads()
 
