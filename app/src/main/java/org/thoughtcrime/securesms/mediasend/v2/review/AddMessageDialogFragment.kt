@@ -1,12 +1,14 @@
 package org.thoughtcrime.securesms.mediasend.v2.review
 
 import android.content.DialogInterface
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
@@ -226,6 +228,9 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
 
     Recipient.live(recipientId).observe(viewLifecycleOwner) { recipient ->
       this.recipient = recipient
+
+      val confirmButton = requireView().findViewById<View>(R.id.confirm_button)
+      ViewCompat.setBackgroundTintList(confirmButton, ColorStateList.valueOf(recipient.chatColors.asSingleColor()))
       mentionsViewModel.onRecipientChange(recipient)
 
       binding.content.addAMessageInput.setMentionValidator { annotations ->
