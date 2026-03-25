@@ -77,6 +77,16 @@ public final class LocalBackupJob extends BaseJob {
     jobManager.add(new LocalArchiveJob(parameters.build()));
   }
 
+  public static void enqueuePlaintextArchive(String destinationUri, boolean includeMedia) {
+    JobManager         jobManager = AppDependencies.getJobManager();
+    Parameters.Builder parameters = new Parameters.Builder()
+        .setQueue(QUEUE)
+        .setMaxInstancesForFactory(1)
+        .setMaxAttempts(3);
+
+    jobManager.add(new LocalPlaintextArchiveJob(destinationUri, includeMedia, parameters.build()));
+  }
+
   private LocalBackupJob(@NonNull Job.Parameters parameters) {
     super(parameters);
   }

@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2.local
 
+import android.webkit.MimeTypeMap
 import okio.ByteString.Companion.toByteString
 import org.signal.archive.local.ArchivedFilesWriter
 import org.signal.archive.local.proto.FilesFrame
@@ -18,9 +19,11 @@ import org.signal.core.util.StreamUtil
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readFully
+import org.signal.core.util.toJson
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream
@@ -30,6 +33,8 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.Collections
+import java.util.zip.ZipEntry
+import java.util.zip.ZipOutputStream
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
@@ -138,6 +143,73 @@ object LocalArchiver {
     } else {
       ArchiveResult.success(ArchiveSuccess.FullSuccess)
     }
+  }
+
+  /**
+   * Export a plaintext archive to the provided [zipOutputStream].
+   */
+  fun exportPlaintext(
+    zipOutputStream: ZipOutputStream,
+    includeMedia: Boolean,
+    stopwatch: Stopwatch,
+    cancellationSignal: () -> Boolean = { false }
+  ): ArchiveResult {
+    try {
+      zipOutputStream.putNextEntry(ZipEntry("metadata.json"))
+      zipOutputStream.write(Metadata(version = VERSION, backupId = getEncryptedBackupId()).toJson().toByteArray())
+      zipOutputStream.closeEntry()
+      stopwatch.split("metadata")
+
+      zipOutputStream.putNextEntry(ZipEntry("main.jsonl"))
+      val progressListener = LocalPlaintextExportProgressListener()
+      val attachments = BackupRepository.exportForLocalPlaintextArchive(
+        outputStream = zipOutputStream,
+        progressEmitter = progressListener,
+        cancellationSignal = cancellationSignal,
+        includeMedia = includeMedia
+      )
+      zipOutputStream.closeEntry()
+      stopwatch.split("frames")
+
+      if (includeMedia) {
+        val total = attachments.size.toLong()
+        var completed = 0L
+        progressListener.onAttachment(0, total)
+        val writtenEntries = HashSet<String>()
+        for (attachment in attachments) {
+          if (cancellationSignal()) break
+          val mediaName = MediaName.forLocalBackupFilename(attachment.plaintextHash, attachment.localBackupKey.key)
+
+          try {
+            val ext = attachment.contentType
+              ?.let { MimeTypeMap.getSingleton().getExtensionFromMimeType(it) }
+              ?.let { ".$it" }
+              ?: ""
+            val prefix = mediaName.name.substring(0..1)
+            val entryName = "files/$prefix/${mediaName.name}$ext"
+            if (!writtenEntries.add(entryName)) continue
+            zipOutputStream.putNextEntry(ZipEntry(entryName))
+            SignalDatabase.attachments.getAttachmentStream(attachment).use { input ->
+              StreamUtil.copy(input, zipOutputStream, false, false)
+            }
+            zipOutputStream.closeEntry()
+          } catch (e: IOException) {
+            Log.w(TAG, "Unable to export attachment ${attachment.attachmentId}, skipping", e)
+          }
+          progressListener.onAttachment(++completed, total)
+        }
+        stopwatch.split("media")
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Unable to create plaintext archive", e)
+      return ArchiveResult.failure(ArchiveFailure.MainStream)
+    }
+
+    if (cancellationSignal()) {
+      return ArchiveResult.failure(ArchiveFailure.Cancelled)
+    }
+
+    return ArchiveResult.success(ArchiveSuccess.FullSuccess)
   }
 
   private fun getEncryptedBackupId(): Metadata.EncryptedBackupId {
@@ -316,6 +388,61 @@ object LocalArchiver {
 
     private fun post(progress: LocalBackupCreationProgress) {
       SignalStore.backup.newLocalBackupProgress = progress
+    }
+  }
+
+  private class LocalPlaintextExportProgressListener : BackupRepository.ExportProgressListener {
+    private var lastVerboseUpdate: Long = 0
+
+    override fun onAccount() {
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.ACCOUNT)))
+    }
+
+    override fun onRecipient() {
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.RECIPIENT)))
+    }
+
+    override fun onThread() {
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.THREAD)))
+    }
+
+    override fun onCall() {
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.CALL)))
+    }
+
+    override fun onSticker() {
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.STICKER)))
+    }
+
+    override fun onNotificationProfile() {
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.NOTIFICATION_PROFILE)))
+    }
+
+    override fun onChatFolder() {
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.CHAT_FOLDER)))
+    }
+
+    override fun onMessage(currentProgress: Long, approximateCount: Long) {
+      if (shouldThrottle(currentProgress >= approximateCount)) return
+      post(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.MESSAGE, frameExportCount = currentProgress, frameTotalCount = approximateCount)))
+    }
+
+    override fun onAttachment(currentProgress: Long, totalCount: Long) {
+      if (shouldThrottle(currentProgress >= totalCount)) return
+      post(LocalBackupCreationProgress(transferring = LocalBackupCreationProgress.Transferring(completed = currentProgress, total = totalCount, mediaPhase = true)))
+    }
+
+    private fun shouldThrottle(forceUpdate: Boolean): Boolean {
+      val now = System.currentTimeMillis()
+      if (forceUpdate || lastVerboseUpdate > now || lastVerboseUpdate + 1000 < now) {
+        lastVerboseUpdate = now
+        return false
+      }
+      return true
+    }
+
+    private fun post(progress: LocalBackupCreationProgress) {
+      SignalStore.backup.newLocalPlaintextBackupProgress = progress
     }
   }
 }

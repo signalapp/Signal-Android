@@ -606,7 +606,32 @@ class AttachmentTable(
           random = it.requireNonNullBlob(DATA_RANDOM),
           size = it.requireLong(DATA_SIZE),
           localBackupKey = AttachmentMetadataTable.getMetadata(it)!!.localBackupKey!!,
-          plaintextHash = Base64.decode(it.requireNonNullString(DATA_HASH_END))
+          plaintextHash = Base64.decode(it.requireNonNullString(DATA_HASH_END)),
+          contentType = it.requireString(CONTENT_TYPE)
+        )
+      }
+  }
+
+  fun getLocalArchivableAttachmentsForPlaintextExport(): List<LocalArchivableAttachment> {
+    return readableDatabase
+      .select(*PROJECTION_WITH_METADATA)
+      .from("$TABLE_NAME_WITH_METADTA INNER JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.${MESSAGE_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
+      .where(
+        "$DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} IS NOT NULL" +
+          " AND ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} = 0" +
+          " AND ${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} = 0"
+      )
+      .orderBy("$TABLE_NAME.$ID DESC")
+      .run()
+      .readToList {
+        LocalArchivableAttachment(
+          attachmentId = AttachmentId(it.requireLong(ID)),
+          file = File(it.requireNonNullString(DATA_FILE)),
+          random = it.requireNonNullBlob(DATA_RANDOM),
+          size = it.requireLong(DATA_SIZE),
+          localBackupKey = AttachmentMetadataTable.getMetadata(it)!!.localBackupKey!!,
+          plaintextHash = Base64.decode(it.requireNonNullString(DATA_HASH_END)),
+          contentType = it.requireString(CONTENT_TYPE)
         )
       }
   }
@@ -3853,7 +3878,8 @@ class AttachmentTable(
     val random: ByteArray,
     val size: Long,
     val plaintextHash: ByteArray,
-    val localBackupKey: LocalBackupKey
+    val localBackupKey: LocalBackupKey,
+    val contentType: String? = null
   )
 
   data class RestorableAttachment(

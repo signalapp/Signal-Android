@@ -814,6 +814,34 @@ object BackupRepository {
     }
   }
 
+  @WorkerThread
+  fun exportForLocalPlaintextArchive(
+    outputStream: OutputStream,
+    progressEmitter: ExportProgressListener?,
+    cancellationSignal: () -> Boolean,
+    includeMedia: Boolean
+  ): List<AttachmentTable.LocalArchivableAttachment> {
+    val writer = LibSignalJsonBackupWriter(NonClosingOutputStream(outputStream))
+    val collectedAttachments = mutableListOf<AttachmentTable.LocalArchivableAttachment>()
+
+    export(
+      currentTime = System.currentTimeMillis(),
+      isLocal = true,
+      writer = writer,
+      backupMode = BackupMode.PLAINTEXT_EXPORT,
+      progressEmitter = progressEmitter,
+      cancellationSignal = cancellationSignal,
+      extraFrameOperation = null,
+      messageInclusionCutoffTime = 0
+    ) { dbSnapshot ->
+      if (includeMedia) {
+        collectedAttachments.addAll(dbSnapshot.attachmentTable.getLocalArchivableAttachmentsForPlaintextExport())
+      }
+    }
+
+    return collectedAttachments
+  }
+
   /**
    * Export a backup that will be uploaded to the archive CDN.
    */
@@ -2536,7 +2564,8 @@ sealed interface RestoreTimestampResult {
 enum class BackupMode {
   REMOTE,
   LINK_SYNC,
-  LOCAL;
+  LOCAL,
+  PLAINTEXT_EXPORT;
 
   val isLinkAndSync: Boolean
     get() = this == LINK_SYNC

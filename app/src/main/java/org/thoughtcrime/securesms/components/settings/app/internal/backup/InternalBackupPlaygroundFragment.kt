@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -71,9 +72,11 @@ import org.signal.core.util.Hex
 import org.signal.core.util.Util
 import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.MainActivity
+import org.thoughtcrime.securesms.backup.isIdle
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet
+import org.thoughtcrime.securesms.backup.v2.ui.status.BackupCreationProgressRow
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.DialogState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -111,10 +114,7 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
     savePlaintextBackupToDiskLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
       if (result.resultCode == RESULT_OK) {
         result.data?.data?.let { uri ->
-          viewModel.exportPlaintext(
-            openStream = { requireContext().contentResolver.openOutputStream(uri)!! },
-            appendStream = { requireContext().contentResolver.openOutputStream(uri, "wa")!! }
-          )
+          viewModel.exportPlaintextZip(uri)
         } ?: Toast.makeText(requireContext(), "No URI selected", Toast.LENGTH_SHORT).show()
       }
     }
@@ -173,14 +173,20 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
             saveEncryptedBackupToDiskLauncher.launch(intent)
           },
           onSavePlaintextBackupToDiskClicked = {
-            val intent = Intent().apply {
-              action = Intent.ACTION_CREATE_DOCUMENT
-              type = "application/octet-stream"
-              addCategory(Intent.CATEGORY_OPENABLE)
-              putExtra(Intent.EXTRA_TITLE, "backup-plaintext-${System.currentTimeMillis()}.bin")
-            }
-
+            viewModel.showPlaintextExportDialog()
+          },
+          onPlaintextExportWithMedia = {
+            viewModel.onPlaintextExportMediaChoiceSelected(includeMedia = true)
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
             savePlaintextBackupToDiskLauncher.launch(intent)
+          },
+          onPlaintextExportWithoutMedia = {
+            viewModel.onPlaintextExportMediaChoiceSelected(includeMedia = false)
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+            savePlaintextBackupToDiskLauncher.launch(intent)
+          },
+          onPlaintextExportDismissed = {
+            viewModel.dismissPlaintextExportDialog()
           },
           onSavePlaintextCopyOfRemoteBackupClicked = {
             val intent = Intent().apply {
@@ -352,6 +358,9 @@ fun Screen(
   onValidateBackupClicked: () -> Unit = {},
   onSaveEncryptedBackupToDiskClicked: () -> Unit = {},
   onSavePlaintextBackupToDiskClicked: () -> Unit = {},
+  onPlaintextExportWithMedia: () -> Unit = {},
+  onPlaintextExportWithoutMedia: () -> Unit = {},
+  onPlaintextExportDismissed: () -> Unit = {},
   onImportEncryptedBackupFromDiskClicked: () -> Unit = {},
   onImportEncryptedBackupFromDiskDismissed: () -> Unit = {},
   onImportEncryptedBackupFromDiskConfirmed: (aci: String, backupKey: String) -> Unit = { _, _ -> },
@@ -368,6 +377,19 @@ fun Screen(
       ImportCredentialsDialog(
         onSubmit = onImportEncryptedBackupFromDiskConfirmed,
         onDismissed = onImportEncryptedBackupFromDiskDismissed
+      )
+    }
+    DialogState.PlaintextExportMediaChoice -> {
+      AlertDialog(
+        onDismissRequest = onPlaintextExportDismissed,
+        title = { Text("Plaintext backup") },
+        text = { Text("Include media in the backup?") },
+        confirmButton = {
+          TextButton(onClick = onPlaintextExportWithMedia) { Text("With media") }
+        },
+        dismissButton = {
+          TextButton(onClick = onPlaintextExportWithoutMedia) { Text("Without media") }
+        }
       )
     }
   }
@@ -446,11 +468,18 @@ fun Screen(
         onClick = onSaveEncryptedBackupToDiskClicked
       )
 
-      Rows.TextRow(
-        text = "Save plaintext backup to disk",
-        label = "Generates a plaintext, uncompressed backup and saves it to your local disk.",
-        onClick = onSavePlaintextBackupToDiskClicked
-      )
+      if (state.plaintextProgress.isIdle) {
+        Rows.TextRow(
+          text = "Save plaintext backup to disk",
+          label = "Generates a plaintext backup as a zip file in the selected directory.",
+          onClick = onSavePlaintextBackupToDiskClicked
+        )
+      } else {
+        BackupCreationProgressRow(
+          progress = state.plaintextProgress,
+          isRemote = false
+        )
+      }
 
       Rows.TextRow(
         text = "Save plaintext copy of remote backup",
@@ -602,7 +631,7 @@ private fun ImportCredentialsDialog(onSubmit: (aci: String, backupKey: String) -
     keyboardType = KeyboardType.Ascii,
     imeAction = ImeAction.Next
   )
-  androidx.compose.material3.AlertDialog(
+  AlertDialog(
     onDismissRequest = onDismissed,
     title = { Text(text = "Are you sure?") },
     text = {
