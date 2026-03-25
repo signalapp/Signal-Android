@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.registration.ui.restore.local
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -38,7 +39,12 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
@@ -51,6 +57,7 @@ import org.thoughtcrime.securesms.components.contactsupport.ContactSupportCallba
 import org.thoughtcrime.securesms.components.contactsupport.ContactSupportDialog
 import org.thoughtcrime.securesms.components.contactsupport.ContactSupportViewModel
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.registration.ui.restore.RemoteRestoreWakeLock
 import org.thoughtcrime.securesms.restore.RestoreActivity
 import kotlin.math.max
 
@@ -76,8 +83,31 @@ class RestoreLocalBackupActivity : BaseActivity() {
     intent.getBooleanExtra(KEY_FINISH, false)
   }
 
+  private lateinit var wakeLock: RemoteRestoreWakeLock
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    wakeLock = RemoteRestoreWakeLock(this, "localRestore")
+
+    lifecycleScope.launch {
+      lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        viewModel.state
+          .map { it.restorePhase }
+          .collect { phase ->
+            when (phase) {
+              RestorePhase.RESTORING, RestorePhase.FINALIZING -> {
+                wakeLock.acquire()
+                window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+              }
+              else -> {
+                wakeLock.release()
+                window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+              }
+            }
+          }
+      }
+    }
 
     setContent {
       val state by viewModel.state.collectAsStateWithLifecycle()

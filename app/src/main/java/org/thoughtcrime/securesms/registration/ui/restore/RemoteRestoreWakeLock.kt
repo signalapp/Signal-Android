@@ -8,10 +8,11 @@ import org.thoughtcrime.securesms.util.WakeLockUtil
 import kotlin.time.Duration.Companion.minutes
 
 /**
- * Holds on to and manages a wake-lock when restoring a remote backup.
+ * Holds on to and manages a wake-lock when restoring a backup.
  */
 class RemoteRestoreWakeLock(
-  private val activity: ComponentActivity
+  private val activity: ComponentActivity,
+  private val tag: String = "remoteRestore"
 ) : DefaultLifecycleObserver {
 
   companion object {
@@ -30,7 +31,7 @@ class RemoteRestoreWakeLock(
         return
       }
 
-      wakeLock = WakeLockUtil.acquire(activity, PowerManager.PARTIAL_WAKE_LOCK, TIMEOUT, "remoteRestore")
+      wakeLock = WakeLockUtil.acquire(activity, PowerManager.PARTIAL_WAKE_LOCK, TIMEOUT, tag)
     }
   }
 
