@@ -18,6 +18,8 @@ import org.signal.archive.local.ArchivedFilesReader
 import org.signal.core.models.backup.MediaName
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.androidx.DocumentFileInfo
+import org.signal.core.util.androidx.DocumentFileUtil
+import org.signal.core.util.androidx.DocumentFileUtil.OperationResult
 import org.signal.core.util.androidx.DocumentFileUtil.delete
 import org.signal.core.util.androidx.DocumentFileUtil.hasFile
 import org.signal.core.util.androidx.DocumentFileUtil.inputStream
@@ -59,9 +61,18 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
      * Should likely only be called on API29+
      */
     fun fromUri(context: Context, uri: Uri): ArchiveFileSystem? {
-      val root = DocumentFile.fromTreeUri(context, uri)
+      val root = DocumentFile.fromTreeUri(context, uri) ?: return null
 
-      if (root == null || !root.canWrite()) {
+      val result = DocumentFileUtil.retryDocumentFileOperation<Unit> { attempt, maxAttempts ->
+        Log.d(TAG, "canWrite() check attempt ${attempt + 1}/$maxAttempts")
+        if (root.canWrite()) {
+          OperationResult.Success(true)
+        } else {
+          OperationResult.Retry
+        }
+      }
+
+      if (!result.isSuccess()) {
         return null
       }
 
