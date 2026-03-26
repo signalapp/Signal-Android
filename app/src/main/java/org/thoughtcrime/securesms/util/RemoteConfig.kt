@@ -1337,5 +1337,16 @@ object RemoteConfig {
     hotSwappable = false
   )
 
+  /**
+   * Whether the backups upgrade megaphone can be displayed
+   */
+  @JvmStatic
+  @get:JvmName("upgradeBackupsMegaphone")
+  val upgradeBackupsMegaphone: Boolean by remoteBoolean(
+    key = "android.upgradeBackupsMegaphone",
+    defaultValue = false,
+    hotSwappable = false
+  )
+
   // endregion
 }

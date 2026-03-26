@@ -613,7 +613,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowUseNewOnDeviceBackupsMegaphone() {
-    return Environment.Backups.isNewFormatSupportedForLocalBackup() && SignalStore.settings().isBackupEnabled();
+    return Environment.Backups.isNewFormatSupportedForLocalBackup() && SignalStore.settings().isBackupEnabled() && (RemoteConfig.upgradeBackupsMegaphone() || RemoteConfig.internalUser());
   }
 
   private static boolean shouldShowGrantFullScreenIntentPermission(@NonNull Context context) {
