@@ -12,6 +12,7 @@ import org.signal.core.util.logging.logW
 import org.signal.core.util.toByteArray
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.ecc.ECPublicKey
+import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
 import org.thoughtcrime.securesms.backup.BackupFileIOError
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.jobs.DeviceNameChangeJob
 import org.thoughtcrime.securesms.jobs.E164FormattingJob
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.createAndUploadArchive
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.registration.secondary.DeviceNameCipher
@@ -393,23 +395,25 @@ object LinkDeviceRepository {
    * Handles uploading the archive for [createAndUploadArchive]. Handles resumable uploads and making multiple upload attempts.
    */
   private fun uploadArchive(backupFile: File, uploadForm: AttachmentUploadForm): NetworkResult<Unit> {
-    val resumableUploadUrl = when (val result = NetworkResult.withRetry { SignalNetwork.attachments.getResumableUploadUrl(uploadForm) }) {
-      is NetworkResult.Success -> result.result
-      is NetworkResult.NetworkError -> return result.map { Unit }.logW(TAG, "Network error when fetching upload URL.", result.exception)
-      is NetworkResult.StatusCodeError -> return result.map { Unit }.logW(TAG, "Status code error when fetching upload URL.", result.exception)
-      is NetworkResult.ApplicationError -> throw result.throwable
-    }
+    val checksumSha256 = FileInputStream(backupFile).use { AttachmentUploadUtil.computeRawChecksum(it) }
+    var resumeUrl: String? = null
 
     val uploadResult = NetworkResult.withRetry(
       logAttempt = { attempt, maxAttempts -> Log.i(TAG, "Starting upload attempt ${attempt + 1}/$maxAttempts") }
     ) {
       FileInputStream(backupFile).use {
-        SignalNetwork.attachments.uploadPreEncryptedFileToAttachmentV4(
+        val result = SignalNetwork.archive.uploadBackupFile(
           uploadForm = uploadForm,
-          resumableUploadUrl = resumableUploadUrl,
-          inputStream = it,
-          inputStreamLength = backupFile.length()
+          data = it,
+          dataLength = backupFile.length(),
+          checksumSha256 = checksumSha256,
+          existingResumeUrl = resumeUrl,
+          onResumeUrlCreated = { url -> resumeUrl = url }
         )
+        if (result !is NetworkResult.Success) {
+          resumeUrl = null
+        }
+        result
       }
     }
 

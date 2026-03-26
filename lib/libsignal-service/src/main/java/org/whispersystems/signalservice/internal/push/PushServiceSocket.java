@@ -930,6 +930,10 @@ public class PushServiceSocket {
   }
 
   public String getResumableUploadUrl(AttachmentUploadForm uploadForm) throws IOException {
+    return getResumableUploadUrl(uploadForm, null);
+  }
+
+  public String getResumableUploadUrl(AttachmentUploadForm uploadForm, @Nullable String checksumSha256) throws IOException {
     ConnectionHolder connectionHolder = getRandom(cdnClientsMap.get(uploadForm.cdn), random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
                                                         .newBuilder()
@@ -957,6 +961,9 @@ public class PushServiceSocket {
     } else if (uploadForm.cdn == 3) {
       request.addHeader("Upload-Defer-Length", "1")
              .addHeader("Tus-Resumable", "1.0.0");
+      if (checksumSha256 != null) {
+        request.addHeader("x-signal-checksum-sha256", checksumSha256);
+      }
     } else {
       throw new AssertionError("Unknown CDN version: " + uploadForm.cdn);
     }
@@ -982,6 +989,75 @@ public class PushServiceSocket {
         connections.remove(call);
       }
     }
+  }
+
+  public AttachmentDigest createAndUploadToCdn3(AttachmentUploadForm uploadForm,
+                                                @Nullable String checksumSha256,
+                                                PushAttachmentData attachmentData)
+      throws IOException
+  {
+    ConnectionHolder     connectionHolder = getRandom(cdnClientsMap.get(3), random);
+    OkHttpClient         okHttpClient     = connectionHolder.getClient()
+                                                            .newBuilder()
+                                                            .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                            .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                            .build();
+    DigestingRequestBody file             = new DigestingRequestBody(attachmentData.getData(), attachmentData.getOutputStreamFactory(), "application/offset+octet-stream", attachmentData.getDataSize(), attachmentData.getIncremental(), attachmentData.getListener(), attachmentData.getCancelationSignal(), 0);
+
+    Request.Builder request = new Request.Builder().url(buildConfiguredUrl(connectionHolder, uploadForm.signedUploadLocation))
+                                                   .post(file)
+                                                   .addHeader("Upload-Length", String.valueOf(attachmentData.getDataSize()))
+                                                   .addHeader("Tus-Resumable", "1.0.0");
+
+    for (Map.Entry<String, String> header : uploadForm.headers.entrySet()) {
+      if (!header.getKey().equalsIgnoreCase("host")) {
+        request.header(header.getKey(), header.getValue());
+      }
+    }
+
+    if (checksumSha256 != null) {
+      request.addHeader("x-signal-checksum-sha256", checksumSha256);
+    }
+
+    if (connectionHolder.getHostHeader().isPresent()) {
+      request.header("host", connectionHolder.getHostHeader().get());
+    }
+
+    Call call = okHttpClient.newCall(request.build());
+
+    synchronized (connections) {
+      connections.add(call);
+    }
+
+    try (Response response = call.execute()) {
+      if (response.isSuccessful()) {
+        return file.getAttachmentDigest();
+      } else {
+        throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response, response.body().string());
+      }
+    } catch (PushNetworkException | NonSuccessfulResponseCodeException e) {
+      throw e;
+    } catch (IOException e) {
+      if (e instanceof StreamResetException) {
+        throw e;
+      }
+      throw new PushNetworkException(e);
+    } finally {
+      synchronized (connections) {
+        connections.remove(call);
+      }
+    }
+  }
+
+  public void uploadBackupFile(AttachmentUploadForm uploadForm,
+                               @Nullable String checksumSha256,
+                               InputStream data,
+                               long length,
+                               ProgressListener progressListener,
+                               CancelationSignal cancelationSignal)
+      throws IOException
+  {
+    createAndUploadToCdn3(uploadForm, checksumSha256, new PushAttachmentData(null, data, length, false, new NoCipherOutputStreamFactory(), progressListener, cancelationSignal, null));
   }
 
   private AttachmentDigest uploadToCdn2(String resumableUrl, InputStream data, String contentType, long length, boolean incremental, OutputStreamFactory outputStreamFactory, ProgressListener progressListener, CancelationSignal cancelationSignal) throws IOException {
@@ -1042,7 +1118,7 @@ public class PushServiceSocket {
     if (uploadForm.cdn == 2) {
       uploadToCdn2(resumableUploadUrl, data, "application/octet-stream", dataLength, false, new NoCipherOutputStreamFactory(), progressListener, null);
     } else {
-      uploadToCdn3(resumableUploadUrl, data, "application/octet-stream", dataLength, false, new NoCipherOutputStreamFactory(), progressListener, null, uploadForm.headers);
+      uploadToCdn3(resumableUploadUrl, data, "application/offset+octet-stream", dataLength, false, new NoCipherOutputStreamFactory(), progressListener, null, uploadForm.headers);
     }
   }
 
@@ -1211,6 +1287,9 @@ public class PushServiceSocket {
     } catch (PushNetworkException | NonSuccessfulResponseCodeException e) {
       throw e;
     } catch (IOException e) {
+      if (e instanceof StreamResetException || e instanceof ResumeLocationInvalidException) {
+        throw e;
+      }
       throw new PushNetworkException(e);
     } finally {
       synchronized (connections) {

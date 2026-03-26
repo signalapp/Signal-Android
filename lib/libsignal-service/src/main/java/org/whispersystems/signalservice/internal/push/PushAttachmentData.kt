@@ -22,5 +22,5 @@ data class PushAttachmentData(
   val outputStreamFactory: OutputStreamFactory,
   val listener: SignalServiceAttachment.ProgressListener?,
   val cancelationSignal: CancelationSignal?,
-  val resumableUploadSpec: ResumableUploadSpec
+  val resumableUploadSpec: ResumableUploadSpec? = null
 )

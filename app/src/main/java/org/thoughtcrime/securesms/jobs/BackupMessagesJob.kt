@@ -25,6 +25,7 @@ import org.signal.libsignal.net.SvrBStoreResponse
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
@@ -294,49 +295,45 @@ class BackupMessagesJob private constructor(
     this.syncTime = currentTime
     this.dataFile = tempBackupFile.path
 
-    val backupSpec: ResumableMessagesBackupUploadSpec = resumableMessagesBackupUploadSpec ?: when (val result = BackupRepository.getResumableMessagesBackupUploadSpec(tempBackupFile.length())) {
-      is NetworkResult.Success -> {
-        Log.i(TAG, "Successfully generated a new upload spec.", true)
+    val existingSpec = resumableMessagesBackupUploadSpec
+    val form: AttachmentUploadForm = if (existingSpec == null) {
+      when (val result = BackupRepository.getMessageBackupUploadForm(tempBackupFile.length())) {
+        is NetworkResult.Success -> result.result
+        is NetworkResult.NetworkError -> {
+          Log.i(TAG, "Network failure", result.getCause(), true)
+          return Result.retry(defaultBackoff())
+        }
+        is NetworkResult.StatusCodeError -> {
+          when (result.code) {
+            413 -> {
+              Log.i(TAG, "Backup file is too large! Size: ${tempBackupFile.length()} bytes. Current threshold: ${SignalStore.backup.messageCuttoffDuration}", result.getCause(), true)
+              tempBackupFile.delete()
+              this.dataFile = ""
+              BackupRepository.markBackupCreationFailed(BackupValues.BackupCreationError.BACKUP_FILE_TOO_LARGE)
+              backupErrorHandled = true
 
-        val spec = result.result
-        resumableMessagesBackupUploadSpec = spec
-        spec
-      }
-
-      is NetworkResult.NetworkError -> {
-        Log.i(TAG, "Network failure", result.getCause(), true)
-        return Result.retry(defaultBackoff())
-      }
-
-      is NetworkResult.StatusCodeError -> {
-        when (result.code) {
-          413 -> {
-            Log.i(TAG, "Backup file is too large! Size: ${tempBackupFile.length()} bytes. Current threshold: ${SignalStore.backup.messageCuttoffDuration}", result.getCause(), true)
-            tempBackupFile.delete()
-            this.dataFile = ""
-            BackupRepository.markBackupCreationFailed(BackupValues.BackupCreationError.BACKUP_FILE_TOO_LARGE)
-            backupErrorHandled = true
-
-            if (SignalStore.backup.messageCuttoffDuration == null) {
-              Log.i(TAG, "Setting message cuttoff duration to $TOO_LARGE_MESSAGE_CUTTOFF_DURATION", true)
-              SignalStore.backup.messageCuttoffDuration = TOO_LARGE_MESSAGE_CUTTOFF_DURATION
+              if (SignalStore.backup.messageCuttoffDuration == null) {
+                Log.i(TAG, "Setting message cuttoff duration to $TOO_LARGE_MESSAGE_CUTTOFF_DURATION", true)
+                SignalStore.backup.messageCuttoffDuration = TOO_LARGE_MESSAGE_CUTTOFF_DURATION
+                return Result.retry(defaultBackoff())
+              } else {
+                return Result.failure()
+              }
+            }
+            429 -> {
+              Log.i(TAG, "Rate limited when getting upload form.", result.getCause(), true)
+              return Result.retry(result.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+            }
+            else -> {
+              Log.i(TAG, "Status code failure", result.getCause(), true)
               return Result.retry(defaultBackoff())
-            } else {
-              return Result.failure()
             }
           }
-          429 -> {
-            Log.i(TAG, "Rate limited when getting upload spec.", result.getCause(), true)
-            return Result.retry(result.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
-          }
-          else -> {
-            Log.i(TAG, "Status code failure", result.getCause(), true)
-            return Result.retry(defaultBackoff())
-          }
         }
+        is NetworkResult.ApplicationError -> throw result.throwable
       }
-
-      is NetworkResult.ApplicationError -> throw result.throwable
+    } else {
+      existingSpec.attachmentUploadForm
     }
 
     val progressListener = object : SignalServiceAttachment.ProgressListener {
@@ -347,56 +344,58 @@ class BackupMessagesJob private constructor(
       override fun shouldCancel(): Boolean = isCanceled
     }
 
-    FileInputStream(tempBackupFile).use { fileStream ->
-      val uploadResult = SignalNetwork.archive.uploadBackupFile(
-        uploadForm = backupSpec.attachmentUploadForm,
-        resumableUploadUrl = backupSpec.resumableUri,
+    val checksumSha256 = if (existingSpec == null) {
+      FileInputStream(tempBackupFile).use { AttachmentUploadUtil.computeRawChecksum(it) }
+    } else {
+      null
+    }
+
+    val uploadResult = FileInputStream(tempBackupFile).use { fileStream ->
+      SignalNetwork.archive.uploadBackupFile(
+        uploadForm = form,
         data = fileStream,
         dataLength = tempBackupFile.length(),
-        progressListener = progressListener
+        checksumSha256 = checksumSha256,
+        progressListener = progressListener,
+        existingResumeUrl = existingSpec?.resumableUri,
+        onResumeUrlCreated = { url ->
+          resumableMessagesBackupUploadSpec = ResumableMessagesBackupUploadSpec(attachmentUploadForm = form, resumableUri = url)
+        }
       )
-
-      when (uploadResult) {
-        is NetworkResult.Success -> {
-          Log.i(TAG, "Successfully uploaded backup file.", true)
-          if (!SignalStore.backup.hasBackupBeenUploaded) {
-            Log.i(TAG, "First time making a backup - scheduling a storage sync.", true)
-            SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
-            StorageSyncHelper.scheduleSyncForDataChange()
-          }
-          SignalStore.backup.hasBackupBeenUploaded = true
-        }
-
-        is NetworkResult.NetworkError -> {
-          Log.i(TAG, "Network failure", uploadResult.getCause(), true)
-          return if (isCanceled) {
-            Result.failure()
-          } else {
-            Result.retry(defaultBackoff())
-          }
-        }
-
-        is NetworkResult.StatusCodeError -> {
-          when (uploadResult.code) {
-            400 -> {
-              Log.w(TAG, "400 likely means bad resumable state. Resetting the upload spec before retrying.", true)
-              resumableMessagesBackupUploadSpec = null
-              return Result.retry(defaultBackoff())
-            }
-            429 -> {
-              Log.w(TAG, "Rate limited when uploading backup file.", uploadResult.getCause(), true)
-              return Result.retry(uploadResult.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
-            }
-            else -> {
-              Log.i(TAG, "Status code failure (${uploadResult.code})", uploadResult.getCause(), true)
-              return Result.retry(defaultBackoff())
-            }
-          }
-        }
-
-        is NetworkResult.ApplicationError -> throw uploadResult.throwable
-      }
     }
+    when (uploadResult) {
+      is NetworkResult.Success -> Unit
+      is NetworkResult.NetworkError -> {
+        Log.i(TAG, "Network failure", uploadResult.getCause(), true)
+        return if (isCanceled) Result.failure() else Result.retry(defaultBackoff())
+      }
+      is NetworkResult.StatusCodeError -> {
+        when (uploadResult.code) {
+          400 -> {
+            Log.w(TAG, "400 likely means bad resumable state. Resetting the upload spec before retrying.", true)
+            resumableMessagesBackupUploadSpec = null
+            return Result.retry(defaultBackoff())
+          }
+          429 -> {
+            Log.w(TAG, "Rate limited when uploading backup file.", uploadResult.getCause(), true)
+            return Result.retry(uploadResult.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+          }
+          else -> {
+            Log.i(TAG, "Status code failure (${uploadResult.code})", uploadResult.getCause(), true)
+            return Result.retry(defaultBackoff())
+          }
+        }
+      }
+      is NetworkResult.ApplicationError -> throw uploadResult.throwable
+    }
+
+    Log.i(TAG, "Successfully uploaded backup file.", true)
+    if (!SignalStore.backup.hasBackupBeenUploaded) {
+      Log.i(TAG, "First time making a backup - scheduling a storage sync.", true)
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
+    SignalStore.backup.hasBackupBeenUploaded = true
     stopwatch.split("upload")
 
     SignalStore.backup.nextBackupSecretData = svrBMetadata.nextBackupSecretData

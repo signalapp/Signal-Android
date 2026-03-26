@@ -67,7 +67,6 @@ import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -1649,6 +1648,13 @@ object BackupRepository {
       }
   }
 
+  fun getMessageBackupUploadForm(backupFileSize: Long): NetworkResult<AttachmentUploadForm> {
+    return initBackupAndFetchAuth()
+      .then { credential ->
+        SignalNetwork.archive.getMessageBackupUploadForm(SignalStore.account.requireAci(), credential.messageBackupAccess, backupFileSize)
+      }
+  }
+
   fun downloadBackupFile(destination: File, listener: ProgressListener? = null): NetworkResult<Unit> {
     return initBackupAndFetchAuth()
       .then { credential ->
@@ -1688,7 +1694,6 @@ object BackupRepository {
 
   /**
    * Retrieves an [AttachmentUploadForm] that can be used to upload an attachment to the transit cdn.
-   * To continue the upload, use [org.whispersystems.signalservice.api.attachment.AttachmentApi.getResumableUploadSpec].
    *
    * It's important to note that in order to get this to the archive cdn, you still need to use [copyAttachmentToArchive].
    */
@@ -1726,10 +1731,10 @@ object BackupRepository {
   /**
    * Copies a thumbnail that has been uploaded to the transit cdn to the archive cdn.
    */
-  fun copyThumbnailToArchive(thumbnailAttachment: Attachment, parentAttachment: DatabaseAttachment): NetworkResult<ArchiveMediaResponse> {
+  fun copyThumbnailToArchive(thumbnail: UploadedThumbnailInfo, parentAttachment: DatabaseAttachment): NetworkResult<ArchiveMediaResponse> {
     return initBackupAndFetchAuth()
       .then { credential ->
-        val request = thumbnailAttachment.toArchiveMediaRequest(parentAttachment.requireThumbnailMediaName(), credential.mediaBackupAccess.backupKey)
+        val request = buildArchiveMediaRequest(thumbnail.cdnNumber, thumbnail.remoteLocation, thumbnail.size, parentAttachment.requireThumbnailMediaName(), credential.mediaBackupAccess.backupKey)
 
         SignalNetwork.archive.copyAttachmentToArchive(
           aci = SignalStore.account.requireAci(),
@@ -1746,7 +1751,7 @@ object BackupRepository {
     return initBackupAndFetchAuth()
       .then { credential ->
         val mediaName = attachment.requireMediaName()
-        val request = attachment.toArchiveMediaRequest(mediaName, credential.mediaBackupAccess.backupKey)
+        val request = buildArchiveMediaRequest(attachment.cdn.cdnNumber, attachment.remoteLocation!!, attachment.size, mediaName, credential.mediaBackupAccess.backupKey)
         SignalNetwork.archive
           .copyAttachmentToArchive(
             aci = SignalStore.account.requireAci(),
@@ -2197,15 +2202,15 @@ object BackupRepository {
     val profileKey: ProfileKey
   )
 
-  private fun Attachment.toArchiveMediaRequest(mediaName: MediaName, mediaRootBackupKey: MediaRootBackupKey): ArchiveMediaRequest {
+  private fun buildArchiveMediaRequest(cdnNumber: Int, remoteLocation: String, plaintextSize: Long, mediaName: MediaName, mediaRootBackupKey: MediaRootBackupKey): ArchiveMediaRequest {
     val mediaSecrets = mediaRootBackupKey.deriveMediaSecrets(mediaName)
 
     return ArchiveMediaRequest(
       sourceAttachment = ArchiveMediaRequest.SourceAttachment(
-        cdn = cdn.cdnNumber,
-        key = remoteLocation!!
+        cdn = cdnNumber,
+        key = remoteLocation
       ),
-      objectLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(size)).toInt(),
+      objectLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(plaintextSize)).toInt(),
       mediaId = mediaSecrets.id.encode(),
       hmacKey = Base64.encodeWithPadding(mediaSecrets.macKey),
       encryptionKey = Base64.encodeWithPadding(mediaSecrets.aesKey)
@@ -2618,3 +2623,9 @@ class ArchiveMediaItemIterator(private val cursor: Cursor) : Iterator<ArchiveMed
     )
   }
 }
+
+data class UploadedThumbnailInfo(
+  val cdnNumber: Int,
+  val remoteLocation: String,
+  val size: Long
+)
