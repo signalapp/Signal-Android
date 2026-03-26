@@ -46,6 +46,7 @@ class ApngDecoder private constructor(
 
   companion object {
     private val PNG_MAGIC = byteArrayOf(0x89.toByte(), 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A)
+    private const val MAX_DIMENSION: UInt = 4096u
 
     @Throws(IOException::class)
     fun isApng(inputStream: InputStream): Boolean {
@@ -219,7 +220,7 @@ class ApngDecoder private constructor(
         chunkType = scanner.readBytes(4).toString(Charsets.US_ASCII)
       }
 
-      if (earlyFctl != null) {
+      if (earlyFctl != null && isValidFrame(earlyFctl, ihdr)) {
         frames += Frame(fcTL = earlyFctl, dataRegions = idatRegions, isIdat = true)
       }
 
@@ -258,7 +259,7 @@ class ApngDecoder private constructor(
           chunkType = scanner.readBytes(4).toString(Charsets.US_ASCII)
         }
 
-        if (fdatRegions.isNotEmpty()) {
+        if (fdatRegions.isNotEmpty() && isValidFrame(fctl, ihdr)) {
           frames += Frame(fcTL = fctl, dataRegions = fdatRegions, isIdat = false)
         }
       }
@@ -270,6 +271,13 @@ class ApngDecoder private constructor(
         ihdr = ihdr,
         prefixChunks = framePrefixChunks
       )
+    }
+
+    private fun isValidFrame(fctl: Chunk.fcTL, ihdr: Chunk.IHDR): Boolean {
+      return fctl.width in 1u..MAX_DIMENSION &&
+        fctl.height in 1u..MAX_DIMENSION &&
+        fctl.xOffset + fctl.width <= ihdr.width &&
+        fctl.yOffset + fctl.height <= ihdr.height
     }
 
     private fun parseFctl(data: ByteArray): Chunk.fcTL {
