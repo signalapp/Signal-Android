@@ -122,6 +122,10 @@ message BackfillCollapsedMessageJobData {
   int64 lastDateReceived = 1;
 }
 
+message LocalBackupRestoreMediaJobData {
+  string backupDirectoryUri = 1;
+}
+
 message BackfillDigestJobData {
   uint64 attachmentId = 1;
 }
