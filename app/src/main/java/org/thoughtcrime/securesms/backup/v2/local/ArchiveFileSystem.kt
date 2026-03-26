@@ -27,7 +27,6 @@ import org.signal.core.util.androidx.DocumentFileUtil.newFile
 import org.signal.core.util.androidx.DocumentFileUtil.outputStream
 import org.signal.core.util.androidx.DocumentFileUtil.renameTo
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.R
 import java.io.File
 import java.io.IOException
 import java.io.InputStream
@@ -144,13 +143,6 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
       signalBackups = root.mkdirp(MAIN_DIRECTORY_NAME) ?: throw IOException("Unable to create main backups directory")
       val filesDirectory = signalBackups.mkdirp("files") ?: throw IOException("Unable to create files directory")
       filesFileSystem = FilesFileSystem(context, filesDirectory)
-
-      val hintFileName = context.getString(R.string.ArchiveFileSystem__select_this_folder_hint_name)
-      if (!root.hasFile(hintFileName)) {
-        root.createFile("text/plain", hintFileName)
-          ?.outputStream(context)
-          ?.use { out -> out.write(context.getString(R.string.ArchiveFileSystem__select_this_folder_hint_body).toByteArray()) }
-      }
     }
   }
 
