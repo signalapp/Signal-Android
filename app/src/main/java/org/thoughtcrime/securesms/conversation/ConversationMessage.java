@@ -310,7 +310,7 @@ public class ConversationMessage {
       long collapsedExpirationInMs = 0;
       if (CollapsedState.isHead(messageRecord.getCollapsedState())) {
         collapsedSize = SignalDatabase.messages().getCollapsedCount(messageRecord.getId());
-        if (CollapsibleEvents.getCollapsibleType(messageRecord.getType(), messageRecord.getMessageExtras()) == CollapsibleEvents.CollapsibleType.DISAPPEARING_TIMER) {
+        if (CollapsibleEvents.getCollapsibleType(messageRecord.getType(), messageRecord.getMessageExtras()) == CollapsibleEvents.CollapsibleType.DISAPPEARING_TIMER && collapsedSize > 1) {
           collapsedExpirationInMs = SignalDatabase.messages().getDisappearingTimerStateForCollapsedSet(messageRecord.getId());
         }
       }

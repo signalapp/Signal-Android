@@ -6212,7 +6212,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   /**
-   * Returns the number of updates that belong in a collapsed update set where [messageId] is the head (first update) in that set
+   * Returns the number of updates that belong in a collapsed update set where [messageId] is the head (first update) in that set.
    * If an event is [PENDING_COLLAPSED], we do not want to consider it part of the count until it is seen.
    */
   fun getCollapsedCount(messageId: Long): Int {
