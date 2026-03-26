@@ -69,7 +69,7 @@ class ApngDecoder private constructor(
           }
 
           // Skip over data + CRC for chunks we don't care about
-          inputStream.skip(length.toLong() + 4)
+          inputStream.skipNBytesOrThrow(length.toLong() + 4)
         }
       } catch (e: EOFException) {
         return false
