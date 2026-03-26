@@ -41,15 +41,15 @@ object CallMessageProcessor {
 
     if (metadata.destinationServiceId is ServiceId.PNI) {
       if (RecipientUtil.isCallRequestAccepted(senderRecipient) && callMessage.offer != null) {
-        log(envelope.timestamp!!, "Received call offer message at our PNI from trusted sender, responding with profile and pni signature")
+        log(envelope.clientTimestamp!!, "Received call offer message at our PNI from trusted sender, responding with profile and pni signature")
         RecipientUtil.shareProfileIfFirstSecureMessage(senderRecipient)
         ProfileKeySendJob.create(senderRecipient, false)?.let { AppDependencies.jobManager.add(it) }
       }
 
       if (callMessage.offer != null) {
-        log(envelope.timestamp!!, "Call message at our PNI is an offer, continuing.")
+        log(envelope.clientTimestamp!!, "Call message at our PNI is an offer, continuing.")
       } else {
-        log(envelope.timestamp!!, "Call message at our PNI is not an offer, ignoring.")
+        log(envelope.clientTimestamp!!, "Call message at our PNI is not an offer, ignoring.")
         return
       }
     }
@@ -65,12 +65,12 @@ object CallMessageProcessor {
   }
 
   private fun handleCallOfferMessage(envelope: Envelope, metadata: EnvelopeMetadata, offer: Offer, senderRecipientId: RecipientId, serverDeliveredTimestamp: Long) {
-    log(envelope.timestamp!!, "handleCallOfferMessage...")
+    log(envelope.clientTimestamp!!, "handleCallOfferMessage...")
 
     val offerId = if (offer.id != null && offer.type != null && offer.opaque != null) {
       offer.id!!
     } else {
-      warn(envelope.timestamp!!, "Invalid offer, missing id, type, or opaque")
+      warn(envelope.clientTimestamp!!, "Invalid offer, missing id, type, or opaque")
       return
     }
 
@@ -96,12 +96,12 @@ object CallMessageProcessor {
     answer: CallMessage.Answer,
     senderRecipientId: RecipientId
   ) {
-    log(envelope.timestamp!!, "handleCallAnswerMessage...")
+    log(envelope.clientTimestamp!!, "handleCallAnswerMessage...")
 
     val answerId = if (answer.id != null && answer.opaque != null) {
       answer.id!!
     } else {
-      warn(envelope.timestamp!!, "Invalid answer, missing id or opaque")
+      warn(envelope.clientTimestamp!!, "Invalid answer, missing id or opaque")
       return
     }
 
@@ -122,7 +122,7 @@ object CallMessageProcessor {
     iceUpdateList: List<CallMessage.IceUpdate>,
     senderRecipientId: RecipientId
   ) {
-    log(envelope.timestamp!!, "handleCallIceUpdateMessage... " + iceUpdateList.size)
+    log(envelope.clientTimestamp!!, "handleCallIceUpdateMessage... " + iceUpdateList.size)
 
     val iceCandidates: MutableList<ByteArray> = ArrayList(iceUpdateList.size)
     var callId: Long = -1
@@ -142,7 +142,7 @@ object CallMessageProcessor {
           iceCandidates
         )
     } else {
-      warn(envelope.timestamp!!, "Invalid ice updates, all missing opaque and/or call id")
+      warn(envelope.clientTimestamp!!, "Invalid ice updates, all missing opaque and/or call id")
     }
   }
 
@@ -152,12 +152,12 @@ object CallMessageProcessor {
     hangup: CallMessage.Hangup?,
     senderRecipientId: RecipientId
   ) {
-    log(envelope.timestamp!!, "handleCallHangupMessage")
+    log(envelope.clientTimestamp!!, "handleCallHangupMessage")
 
     val (hangupId: Long, hangupDeviceId: Int?) = if (hangup?.id != null) {
       hangup.id!! to hangup.deviceId
     } else {
-      warn(envelope.timestamp!!, "Invalid hangup, null message or missing id/deviceId")
+      warn(envelope.clientTimestamp!!, "Invalid hangup, null message or missing id/deviceId")
       return
     }
 
@@ -170,12 +170,12 @@ object CallMessageProcessor {
   }
 
   private fun handleCallBusyMessage(envelope: Envelope, metadata: EnvelopeMetadata, busy: CallMessage.Busy, senderRecipientId: RecipientId) {
-    log(envelope.timestamp!!, "handleCallBusyMessage")
+    log(envelope.clientTimestamp!!, "handleCallBusyMessage")
 
     val busyId = if (busy.id != null) {
       busy.id!!
     } else {
-      warn(envelope.timestamp!!, "Invalid busy, missing call id")
+      warn(envelope.clientTimestamp!!, "Invalid busy, missing call id")
       return
     }
 
@@ -184,12 +184,12 @@ object CallMessageProcessor {
   }
 
   private fun handleCallOpaqueMessage(envelope: Envelope, metadata: EnvelopeMetadata, opaque: Opaque, senderServiceId: ServiceId, serverDeliveredTimestamp: Long) {
-    log(envelope.timestamp!!, "handleCallOpaqueMessage")
+    log(envelope.clientTimestamp!!, "handleCallOpaqueMessage")
 
     val data = if (opaque.data_ != null) {
       opaque.data_!!.toByteArray()
     } else {
-      warn(envelope.timestamp!!, "Invalid opaque message, null data")
+      warn(envelope.clientTimestamp!!, "Invalid opaque message, null data")
       return
     }
 

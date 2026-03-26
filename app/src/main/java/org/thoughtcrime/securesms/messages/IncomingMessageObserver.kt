@@ -291,8 +291,8 @@ class IncomingMessageObserver(
         null
       }
 
-      Envelope.Type.PREKEY_BUNDLE,
-      Envelope.Type.CIPHERTEXT,
+      Envelope.Type.PREKEY_MESSAGE,
+      Envelope.Type.DOUBLE_RATCHET,
       Envelope.Type.UNIDENTIFIED_SENDER,
       Envelope.Type.PLAINTEXT_CONTENT -> {
         SignalTrace.beginSection("IncomingMessageObserver#processMessage")
@@ -343,7 +343,7 @@ class IncomingMessageObserver(
           jobs += PushProcessMessageErrorJob(
             result.toMessageState(),
             result.errorMetadata.toExceptionMetadata(),
-            result.envelope.timestamp!!
+            result.envelope.clientTimestamp!!
           )
 
           AppDependencies.jobManager.startChain(jobs)
@@ -369,9 +369,9 @@ class IncomingMessageObserver(
 
     val senderId = RecipientId.from(serviceId)
 
-    Log.i(TAG, "Received server receipt. Sender: $senderId, Device: ${envelope.sourceDevice}, Timestamp: ${envelope.timestamp}")
-    SignalDatabase.messages.incrementDeliveryReceiptCount(envelope.timestamp!!, senderId, System.currentTimeMillis())
-    SignalDatabase.messageLog.deleteEntryForRecipient(envelope.timestamp!!, senderId, envelope.sourceDevice!!)
+    Log.i(TAG, "Received server receipt. Sender: $senderId, Device: ${envelope.sourceDeviceId}, Timestamp: ${envelope.clientTimestamp}")
+    SignalDatabase.messages.incrementDeliveryReceiptCount(envelope.clientTimestamp!!, senderId, System.currentTimeMillis())
+    SignalDatabase.messageLog.deleteEntryForRecipient(envelope.clientTimestamp!!, senderId, envelope.sourceDeviceId!!)
   }
 
   private fun MessageDecryptor.Result.toMessageState(): MessageState {

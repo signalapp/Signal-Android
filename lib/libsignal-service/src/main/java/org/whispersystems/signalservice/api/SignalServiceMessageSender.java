@@ -112,7 +112,6 @@ import org.whispersystems.signalservice.internal.push.OutgoingPushMessage;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList;
 import org.whispersystems.signalservice.internal.push.PniSignatureMessage;
 import org.whispersystems.signalservice.internal.push.Preview;
-import org.whispersystems.signalservice.internal.push.ProvisioningVersion;
 import org.whispersystems.signalservice.internal.push.PushAttachmentData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.ReceiptMessage;
@@ -1601,8 +1600,6 @@ public class SignalServiceMessageSender {
     if (configuration.getLinkPreviews().isPresent()) {
       configurationMessage.linkPreviews(configuration.getLinkPreviews().get());
     }
-
-    configurationMessage.provisioningVersion(ProvisioningVersion.CURRENT.getValue());
 
     return container.syncMessage(syncMessage.configuration(configurationMessage.build()).build()).build();
   }

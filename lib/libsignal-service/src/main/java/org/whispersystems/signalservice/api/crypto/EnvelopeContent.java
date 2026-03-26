@@ -104,8 +104,8 @@ public interface EnvelopeContent {
       int type;
 
       switch (message.getType()) {
-        case CiphertextMessage.PREKEY_TYPE:  type = Type.PREKEY_BUNDLE.getValue(); break;
-        case CiphertextMessage.WHISPER_TYPE: type = Type.CIPHERTEXT.getValue();    break;
+        case CiphertextMessage.PREKEY_TYPE:  type = Type.PREKEY_MESSAGE.getValue(); break;
+        case CiphertextMessage.WHISPER_TYPE: type = Type.DOUBLE_RATCHET.getValue();    break;
         default: throw new AssertionError("Bad type: " + message.getType());
       }
 

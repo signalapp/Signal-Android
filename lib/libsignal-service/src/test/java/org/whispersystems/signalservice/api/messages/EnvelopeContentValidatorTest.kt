@@ -23,7 +23,7 @@ class EnvelopeContentValidatorTest {
   @Test
   fun `validate - ensure mismatched timestamps are marked invalid`() {
     val envelope = Envelope(
-      timestamp = 1234
+      clientTimestamp = 1234
     )
 
     val content = Content(
@@ -172,11 +172,10 @@ class EnvelopeContentValidatorTest {
   fun `validate - plaintext content via envelope type with unexpected DataMessage is invalid`() {
     val envelope = Envelope(
       type = Envelope.Type.PLAINTEXT_CONTENT,
-      timestamp = 1234
+      clientTimestamp = 1234
     )
 
     val content = Content(
-      decryptionErrorMessage = createValidDecryptionErrorMessage(),
       dataMessage = DataMessage(timestamp = 1234)
     )
 
@@ -188,11 +187,10 @@ class EnvelopeContentValidatorTest {
   fun `validate - plaintext content via ciphertext message type (sealed sender) with unexpected DataMessage is invalid`() {
     val envelope = Envelope(
       type = Envelope.Type.UNIDENTIFIED_SENDER,
-      timestamp = 1234
+      clientTimestamp = 1234
     )
 
     val content = Content(
-      decryptionErrorMessage = createValidDecryptionErrorMessage(),
       dataMessage = DataMessage(timestamp = 1234)
     )
 
@@ -231,7 +229,6 @@ class EnvelopeContentValidatorTest {
     )
 
     val content = Content(
-      decryptionErrorMessage = createValidDecryptionErrorMessage(),
       syncMessage = org.whispersystems.signalservice.internal.push.SyncMessage()
     )
 
@@ -242,8 +239,8 @@ class EnvelopeContentValidatorTest {
   @Test
   fun `validate - regular encrypted message is not subject to plaintext validation`() {
     val envelope = Envelope(
-      type = Envelope.Type.CIPHERTEXT,
-      timestamp = 1234
+      type = Envelope.Type.DOUBLE_RATCHET,
+      clientTimestamp = 1234
     )
 
     val content = Content(

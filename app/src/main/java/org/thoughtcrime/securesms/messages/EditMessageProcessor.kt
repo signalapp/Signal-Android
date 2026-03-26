@@ -50,13 +50,13 @@ object EditMessageProcessor {
   ) {
     val editMessage = content.editMessage!!
 
-    log(envelope.timestamp!!, "[handleEditMessage] Edit message for " + editMessage.targetSentTimestamp)
+    log(envelope.clientTimestamp!!, "[handleEditMessage] Edit message for " + editMessage.targetSentTimestamp)
 
     var targetMessage: MmsMessageRecord? = SignalDatabase.messages.getMessageFor(editMessage.targetSentTimestamp!!, senderRecipient.id) as? MmsMessageRecord
     val targetThreadRecipient: Recipient? = if (targetMessage != null) SignalDatabase.threads.getRecipientForThreadId(targetMessage.threadId) else null
 
     if (targetMessage == null || targetThreadRecipient == null) {
-      warn(envelope.timestamp!!, "[handleEditMessage] Could not find matching message! timestamp: ${editMessage.targetSentTimestamp}  author: ${senderRecipient.id}")
+      warn(envelope.clientTimestamp!!, "[handleEditMessage] Could not find matching message! timestamp: ${editMessage.targetSentTimestamp}  author: ${senderRecipient.id}")
 
       if (earlyMessageCacheEntry != null) {
         AppDependencies.earlyMessageCache.store(senderRecipient.id, editMessage.targetSentTimestamp!!, earlyMessageCacheEntry)
@@ -78,12 +78,12 @@ object EditMessageProcessor {
     val validTarget = !originalMessage.isViewOnce && !originalMessage.hasAudio() && !originalMessage.hasSharedContact()
 
     if (!validTiming || !validAuthor || !validGroup || !validTarget) {
-      warn(envelope.timestamp!!, "[handleEditMessage] Invalid message edit! editTime: ${envelope.serverTimestamp}, targetTime: ${originalMessage.serverTimestamp}, editAuthor: ${senderRecipient.id}, targetAuthor: ${originalMessage.fromRecipient.id}, editThread: ${threadRecipient.id}, targetThread: ${targetThreadRecipient.id}, validity: (timing: $validTiming, author: $validAuthor, group: $validGroup, target: $validTarget)")
+      warn(envelope.clientTimestamp!!, "[handleEditMessage] Invalid message edit! editTime: ${envelope.serverTimestamp}, targetTime: ${originalMessage.serverTimestamp}, editAuthor: ${senderRecipient.id}, targetAuthor: ${originalMessage.fromRecipient.id}, editThread: ${threadRecipient.id}, targetThread: ${targetThreadRecipient.id}, validity: (timing: $validTiming, author: $validAuthor, group: $validGroup, target: $validTarget)")
       return
     }
 
-    if (groupId != null && MessageContentProcessor.handleGv2PreProcessing(context, envelope.timestamp!!, content, metadata, groupId, message.groupV2!!, senderRecipient) == MessageContentProcessor.Gv2PreProcessResult.IGNORE) {
-      warn(envelope.timestamp!!, "[handleEditMessage] Group processor indicated we should ignore this.")
+    if (groupId != null && MessageContentProcessor.handleGv2PreProcessing(context, envelope.clientTimestamp!!, content, metadata, groupId, message.groupV2!!, senderRecipient) == MessageContentProcessor.Gv2PreProcessResult.IGNORE) {
+      warn(envelope.clientTimestamp!!, "[handleEditMessage] Group processor indicated we should ignore this.")
       return
     }
 
@@ -187,8 +187,8 @@ object EditMessageProcessor {
     val textMessage = IncomingMessage(
       type = MessageType.NORMAL,
       from = senderRecipientId,
-      sentTimeMillis = envelope.timestamp!!,
-      serverTimeMillis = envelope.timestamp!!,
+      sentTimeMillis = envelope.clientTimestamp!!,
+      serverTimeMillis = envelope.clientTimestamp!!,
       receivedTimeMillis = targetMessage.dateReceived,
       body = message.body,
       groupId = groupId,

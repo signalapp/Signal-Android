@@ -67,9 +67,9 @@ class PushProcessMessageJobMigration : JobMigration(10) {
 
       val envelope = Envelope.Builder()
         .sourceServiceId(sourceServiceId.toString())
-        .sourceDevice(proto.metadata!!.senderDevice)
+        .sourceDeviceId(proto.metadata!!.senderDevice)
         .destinationServiceId(destinationServiceId.toString())
-        .timestamp(proto.metadata!!.timestamp)
+        .clientTimestamp(proto.metadata!!.timestamp)
         .serverGuid(proto.metadata!!.serverGuid)
         .serverTimestamp(proto.metadata!!.serverReceivedTimestamp)
 
