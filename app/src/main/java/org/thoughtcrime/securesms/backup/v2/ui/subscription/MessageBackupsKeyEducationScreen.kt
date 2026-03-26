@@ -50,9 +50,9 @@ import org.signal.core.ui.R as CoreUiR
 
 enum class MessageBackupsKeyEducationScreenMode {
   /**
-   * Displayed when the user is enabling remote backups and does not have unified local backups enabled
+   * Displayed when the user is enabling remote backups, or local backups without remote enabled.
    */
-  REMOTE_BACKUP_WITH_LOCAL_DISABLED,
+  DEFAULT,
 
   /**
    * Displayed when the user is upgrading legacy to unified local backup
@@ -60,9 +60,14 @@ enum class MessageBackupsKeyEducationScreenMode {
   LOCAL_BACKUP_UPGRADE,
 
   /**
-   * Displayed when the user has unified local backup and is enabling remote backups
+   * Displayed when the user has remote backups enabled and is enabling local backups
    */
-  REMOTE_BACKUP_WITH_LOCAL_ENABLED
+  LOCAL_WITH_REMOTE_ENABLED,
+
+  /**
+   * Displayed when the user has local backups enabled and is enabling remote backups
+   */
+  REMOTE_WITH_LOCAL_ENABLED
 }
 
 /**
@@ -72,7 +77,7 @@ enum class MessageBackupsKeyEducationScreenMode {
 fun MessageBackupsKeyEducationScreen(
   onNavigationClick: () -> Unit = {},
   onNextClick: () -> Unit = {},
-  mode: MessageBackupsKeyEducationScreenMode = MessageBackupsKeyEducationScreenMode.REMOTE_BACKUP_WITH_LOCAL_DISABLED
+  mode: MessageBackupsKeyEducationScreenMode = MessageBackupsKeyEducationScreenMode.DEFAULT
 ) {
   val scrollState = rememberScrollState()
 
@@ -105,14 +110,19 @@ fun MessageBackupsKeyEducationScreen(
       )
 
       when (mode) {
-        MessageBackupsKeyEducationScreenMode.REMOTE_BACKUP_WITH_LOCAL_DISABLED -> {
+        MessageBackupsKeyEducationScreenMode.DEFAULT -> {
           RemoteBackupWithLocalDisabledInfo()
         }
 
         MessageBackupsKeyEducationScreenMode.LOCAL_BACKUP_UPGRADE -> {
           LocalBackupUpgradeInfo()
         }
-        MessageBackupsKeyEducationScreenMode.REMOTE_BACKUP_WITH_LOCAL_ENABLED -> {
+
+        MessageBackupsKeyEducationScreenMode.LOCAL_WITH_REMOTE_ENABLED -> {
+          LocalBackupWithRemoteEnabledInfo()
+        }
+
+        MessageBackupsKeyEducationScreenMode.REMOTE_WITH_LOCAL_ENABLED -> {
           RemoteBackupWithLocalEnabledInfo()
         }
       }
@@ -145,9 +155,8 @@ fun MessageBackupsKeyEducationScreen(
 @Composable
 private fun getTitleText(mode: MessageBackupsKeyEducationScreenMode): String {
   return when (mode) {
-    MessageBackupsKeyEducationScreenMode.REMOTE_BACKUP_WITH_LOCAL_DISABLED -> stringResource(R.string.MessageBackupsKeyEducationScreen__your_backup_key)
     MessageBackupsKeyEducationScreenMode.LOCAL_BACKUP_UPGRADE -> stringResource(R.string.MessageBackupsKeyEducationScreen__your_new_recovery_key)
-    MessageBackupsKeyEducationScreenMode.REMOTE_BACKUP_WITH_LOCAL_ENABLED -> stringResource(R.string.MessageBackupsKeyEducationScreen__your_recovery_key)
+    else -> stringResource(R.string.MessageBackupsKeyEducationScreen__your_recovery_key)
   }
 }
 
@@ -172,6 +181,31 @@ private fun LocalBackupUpgradeInfo() {
     UseThisKeyToRow(
       icon = ImageVector.vectorResource(CoreUiR.drawable.symbol_backup_24),
       text = stringResource(R.string.MessageBackupsKeyEducationScreen__restore_a_signal_secure_backup)
+    )
+  }
+}
+
+@Composable
+private fun LocalBackupWithRemoteEnabledInfo() {
+  val normalText = stringResource(R.string.MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description)
+  val boldText = stringResource(R.string.MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold)
+
+  DescriptionText(
+    normalText = normalText,
+    boldText = boldText
+  )
+
+  UseThisKeyToContainer {
+    UseThisKeyToRow(
+      icon = ImageVector.vectorResource(R.drawable.symbol_folder_24),
+      text = stringResource(R.string.MessageBackupsKeyEducationScreen__restore_on_device_backup)
+    )
+
+    Spacer(modifier = Modifier.padding(vertical = 16.dp))
+
+    UseThisKeyToRow(
+      icon = ImageVector.vectorResource(CoreUiR.drawable.symbol_backup_24),
+      text = stringResource(R.string.MessageBackupsKeyEducationScreen__restore_your_signal_secure_backup)
     )
   }
 }
@@ -313,10 +347,10 @@ private fun InfoRow(@DrawableRes iconId: Int, @StringRes textId: Int) {
 
 @DayNightPreviews
 @Composable
-private fun MessageBackupsKeyEducationScreenRemoteBackupWithLocalDisabledPreview() {
+private fun MessageBackupsKeyEducationScreenDefaultPreview() {
   Previews.Preview {
     MessageBackupsKeyEducationScreen(
-      mode = MessageBackupsKeyEducationScreenMode.REMOTE_BACKUP_WITH_LOCAL_DISABLED
+      mode = MessageBackupsKeyEducationScreenMode.DEFAULT
     )
   }
 }
@@ -333,10 +367,20 @@ private fun MessageBackupsKeyEducationScreenLocalBackupUpgradePreview() {
 
 @DayNightPreviews
 @Composable
+private fun MessageBackupsKeyEducationScreenLocalBackupWithRemoteEnabledPreview() {
+  Previews.Preview {
+    MessageBackupsKeyEducationScreen(
+      mode = MessageBackupsKeyEducationScreenMode.LOCAL_WITH_REMOTE_ENABLED
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
 private fun MessageBackupsKeyEducationScreenRemoteBackupWithLocalEnabledPreview() {
   Previews.Preview {
     MessageBackupsKeyEducationScreen(
-      mode = MessageBackupsKeyEducationScreenMode.REMOTE_BACKUP_WITH_LOCAL_ENABLED
+      mode = MessageBackupsKeyEducationScreenMode.REMOTE_WITH_LOCAL_ENABLED
     )
   }
 }

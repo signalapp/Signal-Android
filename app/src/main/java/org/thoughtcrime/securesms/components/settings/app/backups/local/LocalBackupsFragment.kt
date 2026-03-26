@@ -110,7 +110,13 @@ class LocalBackupsFragment : ComposeFragment() {
               MessageBackupsKeyEducationScreen(
                 onNavigationClick = { backPressedDispatcher?.onBackPressedDispatcher?.onBackPressed() },
                 onNextClick = { backstack.add(LocalBackupsNavKey.RECORD_RECOVERY_KEY) },
-                mode = MessageBackupsKeyEducationScreenMode.LOCAL_BACKUP_UPGRADE
+                mode = if (args.triggerUpdateFlow) {
+                  MessageBackupsKeyEducationScreenMode.LOCAL_BACKUP_UPGRADE
+                } else if (SignalStore.backup.areBackupsEnabled) {
+                  MessageBackupsKeyEducationScreenMode.LOCAL_WITH_REMOTE_ENABLED
+                } else {
+                  MessageBackupsKeyEducationScreenMode.DEFAULT
+                }
               )
             }
 

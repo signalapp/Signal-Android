@@ -142,7 +142,12 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       composable(route = MessageBackupsStage.Route.BACKUP_KEY_EDUCATION.name) {
         MessageBackupsKeyEducationScreen(
           onNavigationClick = viewModel::goToPreviousStage,
-          onNextClick = viewModel::goToNextStage
+          onNextClick = viewModel::goToNextStage,
+          mode = if (SignalStore.backup.newLocalBackupsEnabled) {
+            MessageBackupsKeyEducationScreenMode.REMOTE_WITH_LOCAL_ENABLED
+          } else {
+            MessageBackupsKeyEducationScreenMode.DEFAULT
+          }
         )
       }
 
