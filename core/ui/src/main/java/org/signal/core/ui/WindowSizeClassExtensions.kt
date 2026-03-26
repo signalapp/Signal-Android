@@ -40,7 +40,7 @@ fun WindowSizeClass.isSplitPane(
   }
 
   return isAtLeastBreakpoint(
-    widthDpBreakpoint = WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND,
+    widthDpBreakpoint = WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND,
     heightDpBreakpoint = WindowSizeClass.HEIGHT_DP_MEDIUM_LOWER_BOUND
   )
 }
