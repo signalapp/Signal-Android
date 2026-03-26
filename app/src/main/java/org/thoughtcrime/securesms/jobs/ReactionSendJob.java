@@ -169,6 +169,11 @@ public class ReactionSendJob extends BaseJob {
       return;
     }
 
+    if (conversationRecipient.isPushV2Group() && !SignalDatabase.groups().isActive(conversationRecipient.requireGroupId())) {
+      Log.w(TAG, "Cannot send reactions to terminated or inactive groups.");
+      return;
+    }
+
     List<Recipient>   resolved     = recipients.stream().map(Recipient::resolved).collect(Collectors.toList());
     List<RecipientId> unregistered = resolved.stream().filter(Recipient::isUnregistered).map(Recipient::getId).collect(Collectors.toList());
     List<Recipient>   destinations = resolved.stream().filter(Recipient::isMaybeRegistered).collect(Collectors.toList());

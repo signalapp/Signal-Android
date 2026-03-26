@@ -153,6 +153,11 @@ public class RemoteDeleteSendJob extends BaseJob {
       return;
     }
 
+    if (conversationRecipient.isPushV2Group() && !SignalDatabase.groups().isActive(conversationRecipient.requireGroupId())) {
+      Log.w(TAG, "Unable to remote delete messages in terminated or inactive groups");
+      return;
+    }
+
     List<Recipient>   possible = Stream.of(recipients).map(Recipient::resolved).toList();
     List<Recipient>   eligible = RecipientUtil.getEligibleForSending(Stream.of(recipients).map(Recipient::resolved).filter(Recipient::getHasServiceId).toList());
     List<RecipientId> skipped  = Stream.of(SetUtil.difference(possible, eligible)).map(Recipient::getId).toList();

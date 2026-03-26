@@ -1256,7 +1256,7 @@ class StoryViewerPageFragment :
       },
       onDelete = {
         viewModel.setIsDisplayingDeleteDialog(true)
-        lifecycleDisposable += StoryContextMenu.delete(requireContext(), setOf(it.conversationMessage.messageRecord)).subscribe { _ ->
+        lifecycleDisposable += StoryContextMenu.delete(requireContext(), it.conversationMessage.messageRecord).subscribe { _ ->
           viewModel.setIsDisplayingDeleteDialog(false)
           viewModel.refresh()
         }

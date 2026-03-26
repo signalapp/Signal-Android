@@ -6894,6 +6894,8 @@
     <string name="MyStories__delete_story">Delete story?</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">This story will be deleted for you and everyone who received it.</string>
+    <!-- Message of dialog to confirm deletion of story in a terminated group -->
+    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Unable to save</string>
 

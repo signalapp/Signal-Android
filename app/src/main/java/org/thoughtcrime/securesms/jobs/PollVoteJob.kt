@@ -101,6 +101,11 @@ class PollVoteJob(
       return Result.failure()
     }
 
+    if (conversationRecipient.isPushV2Group && !SignalDatabase.groups.isActive(conversationRecipient.requireGroupId())) {
+      Log.w(TAG, "Cannot send poll vote to terminated or inactive group.")
+      return Result.failure()
+    }
+
     val poll = SignalDatabase.polls.getPoll(messageId)
     if (poll == null) {
       Log.w(TAG, "Unable to find corresponding poll")

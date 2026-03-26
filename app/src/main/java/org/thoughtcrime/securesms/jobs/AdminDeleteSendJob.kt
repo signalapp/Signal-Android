@@ -108,6 +108,11 @@ class AdminDeleteSendJob private constructor(
     }
 
     val groupRecord = SignalDatabase.groups.getGroup(conversationRecipient.requireGroupId())
+    if (groupRecord.isPresent && groupRecord.get().isTerminated) {
+      Log.w(TAG, "Cannot admin delete in a terminated group.")
+      return Result.failure()
+    }
+
     if (groupRecord.isEmpty || !groupRecord.get().isAdmin(Recipient.self())) {
       Log.w(TAG, "Cannot delete because you are not an admin.")
       return Result.failure()

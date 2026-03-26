@@ -109,6 +109,10 @@ class UnpinMessageJob(
 
     if (conversationRecipient.isPushV2Group) {
       val groupRecord = SignalDatabase.groups.getGroup(conversationRecipient.id)
+      if (groupRecord.isPresent && groupRecord.get().isTerminated) {
+        Log.w(TAG, "Cannot send unpin messages to terminated group.")
+        return Result.failure()
+      }
       if (groupRecord.isPresent && groupRecord.get().attributesAccessControl == GroupAccessControl.ONLY_ADMINS && !groupRecord.get().isAdmin(self())) {
         Log.w(TAG, "Non-admins cannot send unpin messages to group.")
         return Result.failure()

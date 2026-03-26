@@ -7,9 +7,10 @@ import androidx.annotation.WorkerThread;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
@@ -119,6 +120,11 @@ public class GroupCallUpdateSendJob extends BaseJob {
 
     if (!conversationRecipient.isPushV2Group()) {
       throw new AssertionError("We have a recipient, but it's not a V2 Group");
+    }
+
+    if (!SignalDatabase.groups().isActive(conversationRecipient.requireGroupId())) {
+      Log.w(TAG, "Not sending group call update to terminated or inactive group.");
+      return;
     }
 
     List<Recipient> destinations = Stream.of(recipients).map(Recipient::resolved).toList();

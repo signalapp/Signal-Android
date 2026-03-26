@@ -109,6 +109,11 @@ public class TypingSendJob extends BaseJob {
       return;
     }
 
+    if (recipient.isPushV2Group() && !SignalDatabase.groups().isActive(recipient.requireGroupId())) {
+      Log.w(TAG, "Not sending typing indicators to terminated or inactive groups.");
+      return;
+    }
+
     if (!recipient.isRegistered()) {
       Log.w(TAG, "Not sending typing indicators to non-Signal recipients.");
       return;
