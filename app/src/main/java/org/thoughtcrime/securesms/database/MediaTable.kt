@@ -288,8 +288,17 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
   @JvmOverloads
   fun getAllMediaForThread(threadId: Long, sorting: Sorting, limit: Int = 0): Cursor {
-    var query = sorting.applyToQuery(applyEqualityOperator(threadId, applyIndexHint(ALL_MEDIA_QUERY, threadId, sorting)))
-    val args = arrayOf(threadId.toString() + "")
+    val allMediaSubquery = applyEqualityOperator(threadId, applyIndexHint(ALL_MEDIA_QUERY, threadId, sorting))
+    val linkSubquery = applyEqualityOperator(threadId, LINK_MEDIA_QUERY)
+
+    val orderBy = when (sorting) {
+      Sorting.Newest -> " ORDER BY $MEDIA_MESSAGE_ID DESC"
+      Sorting.Oldest -> " ORDER BY $MEDIA_MESSAGE_ID ASC"
+      Sorting.Largest -> " ORDER BY ${AttachmentTable.DATA_SIZE} DESC"
+    }
+
+    var query = "$allMediaSubquery UNION ALL $linkSubquery$orderBy"
+    val args = arrayOf(threadId.toString(), threadId.toString())
 
     if (limit > 0) {
       query = "$query LIMIT $limit"
