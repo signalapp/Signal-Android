@@ -52,9 +52,13 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.BottomOffsetDecoration;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.OffloadedMediaDialogUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -292,12 +296,20 @@ public final class MediaOverviewPageFragment extends LoggingFragment
   }
 
   private void handleMediaPreviewClick(@NonNull View view, @NonNull MediaTable.MediaRecord mediaRecord) {
-    if (mediaRecord.getAttachment().getDisplayUri() == null) {
+    Context context = getContext();
+    if (context == null) {
       return;
     }
 
-    Context context = getContext();
-    if (context == null) {
+    if (mediaRecord.getLinkPreviewJson() != null) {
+      String url = parseLinkUrl(mediaRecord.getLinkPreviewJson());
+      if (url != null && !url.isEmpty()) {
+        CommunicationActions.openBrowserLink(context, url);
+      }
+      return;
+    }
+
+    if (mediaRecord.getAttachment() == null || mediaRecord.getAttachment().getDisplayUri() == null) {
       return;
     }
 
@@ -353,6 +365,18 @@ public final class MediaOverviewPageFragment extends LoggingFragment
         Toast.makeText(context, R.string.ConversationItem_unable_to_open_media, Toast.LENGTH_LONG).show();
       }
     }
+
+  private static @Nullable String parseLinkUrl(@NonNull String linkPreviewJson) {
+    try {
+      JSONArray json = new JSONArray(linkPreviewJson);
+      if (json.length() > 0) {
+        return json.getJSONObject(0).optString("url", "");
+      }
+    } catch (JSONException e) {
+      // ignore
+    }
+    return null;
+  }
 
   @Override
   public void onMediaLongClicked(MediaTable.MediaRecord mediaRecord) {

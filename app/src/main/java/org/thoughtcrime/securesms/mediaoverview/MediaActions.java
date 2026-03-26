@@ -11,6 +11,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.AttachmentSaver;
 import org.thoughtcrime.securesms.database.MediaTable;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
@@ -59,9 +60,17 @@ final class MediaActions {
 
           Set<MessageRecord> deletedMessageRecords = new HashSet<>(records.length);
           for (MediaTable.MediaRecord record : records) {
-            MessageRecord deleted = AttachmentUtil.deleteAttachment(record.getAttachment());
-            if (deleted != null) {
-              deletedMessageRecords.add(deleted);
+            if (record.getAttachment() != null) {
+              MessageRecord deleted = AttachmentUtil.deleteAttachment(record.getAttachment());
+              if (deleted != null) {
+                deletedMessageRecords.add(deleted);
+              }
+            } else {
+              MessageRecord deleted = SignalDatabase.messages().getMessageRecordOrNull(record.getMessageId());
+              SignalDatabase.messages().deleteMessage(record.getMessageId());
+              if (deleted != null) {
+                deletedMessageRecords.add(deleted);
+              }
             }
           }
 

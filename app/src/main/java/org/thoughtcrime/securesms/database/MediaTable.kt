@@ -20,65 +20,67 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     private val TAG = Log.tag(MediaTable::class)
     const val ALL_THREADS = -1
     private const val THREAD_RECIPIENT_ID = "THREAD_RECIPIENT_ID"
+    private const val MEDIA_MESSAGE_ID = "media_message_id"
     private val BASE_MEDIA_QUERY = """
-      SELECT 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ID} AS ${AttachmentTable.ID}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CONTENT_TYPE}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.TRANSFER_STATE}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_SIZE}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.FILE_NAME}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_FILE}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.THUMBNAIL_FILE}, 
+      SELECT
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ID} AS ${AttachmentTable.ID},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CONTENT_TYPE},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.TRANSFER_STATE},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_SIZE},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.FILE_NAME},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_FILE},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.THUMBNAIL_FILE},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CDN_NUMBER},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_LOCATION},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_KEY},
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_DIGEST}, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_DIGEST},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.FAST_PREFLIGHT_ID},
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.VOICE_NOTE}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.BORDERLESS}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.VIDEO_GIF}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.WIDTH}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.HEIGHT}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.QUOTE}, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.VOICE_NOTE},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.BORDERLESS},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.VIDEO_GIF},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.WIDTH},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.HEIGHT},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.QUOTE},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.QUOTE_TARGET_CONTENT_TYPE},
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_PACK_ID}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_PACK_KEY}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_ID}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_EMOJI}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.BLUR_HASH}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.TRANSFORM_PROPERTIES}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DISPLAY_ORDER}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CAPTION}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.UPLOAD_TIMESTAMP}, 
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_INCREMENTAL_DIGEST}, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_PACK_ID},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_PACK_KEY},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_ID},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_EMOJI},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.BLUR_HASH},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.TRANSFORM_PROPERTIES},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DISPLAY_ORDER},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CAPTION},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.UPLOAD_TIMESTAMP},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_INCREMENTAL_DIGEST},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_HASH_END},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_CDN},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.THUMBNAIL_RESTORE_STATE},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_TRANSFER_STATE},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ATTACHMENT_UUID},
-        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE}, 
-        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_SENT}, 
-        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
-        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_SERVER}, 
-        ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID}, 
+        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE},
+        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_SENT},
+        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED},
+        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_SERVER},
+        ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID},
         ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID},
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} as $THREAD_RECIPIENT_ID,
-        ${MessageTable.TABLE_NAME}.${MessageTable.LINK_PREVIEWS}
+        ${MessageTable.TABLE_NAME}.${MessageTable.LINK_PREVIEWS},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} as $MEDIA_MESSAGE_ID
       FROM
         ${AttachmentTable.TABLE_NAME} __INDEX_HINT__
         LEFT JOIN ${MessageTable.TABLE_NAME} ON ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
         LEFT JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} = ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID}
       WHERE
         __THREAD_FILTER__ AND
-        (%s) AND 
-        ${MessageTable.VIEW_ONCE} = 0 AND 
+        (%s) AND
+        ${MessageTable.VIEW_ONCE} = 0 AND
         ${MessageTable.STORY_TYPE} = 0 AND
-        ${MessageTable.LATEST_REVISION_ID} IS NULL AND 
-        ${AttachmentTable.QUOTE} = 0 AND 
-        ${AttachmentTable.STICKER_PACK_ID} IS NULL AND 
-        ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} > 0 AND 
+        ${MessageTable.LATEST_REVISION_ID} IS NULL AND
+        ${AttachmentTable.QUOTE} = 0 AND
+        ${AttachmentTable.STICKER_PACK_ID} IS NULL AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} > 0 AND
         $THREAD_RECIPIENT_ID > 0
       """
 
@@ -179,7 +181,8 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID},
         ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID},
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} as $THREAD_RECIPIENT_ID,
-        ${MessageTable.TABLE_NAME}.${MessageTable.LINK_PREVIEWS}
+        ${MessageTable.TABLE_NAME}.${MessageTable.LINK_PREVIEWS},
+        ${MessageTable.TABLE_NAME}.${MessageTable.ID} as $MEDIA_MESSAGE_ID
       FROM
         ${MessageTable.TABLE_NAME}
         LEFT JOIN ${AttachmentTable.TABLE_NAME} ON ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
@@ -344,6 +347,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     val recipientId: RecipientId,
     val threadRecipientId: RecipientId,
     val threadId: Long,
+    val messageId: Long,
     val date: Long,
     val isOutgoing: Boolean,
     val linkPreviewJson: String? = null
@@ -363,6 +367,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
           recipientId = RecipientId.from(cursor.requireLong(MessageTable.FROM_RECIPIENT_ID)),
           threadId = cursor.requireLong(MessageTable.THREAD_ID),
           threadRecipientId = RecipientId.from(cursor.requireLong(THREAD_RECIPIENT_ID)),
+          messageId = cursor.requireLong(MEDIA_MESSAGE_ID),
           date = if (MessageTypes.isPushType(cursor.requireLong(MessageTable.TYPE))) {
             cursor.requireLong(MessageTable.DATE_SENT)
           } else {

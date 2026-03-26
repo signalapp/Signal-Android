@@ -43,7 +43,7 @@ import com.codewaves.stickyheadergrid.StickyHeaderGridAdapter;
 
 import org.signal.core.util.ByteSize;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
+
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
@@ -57,7 +57,7 @@ import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.CommunicationActions;
+
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.signal.core.util.Util;
@@ -79,12 +79,12 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
   private static final long SELECTION_ANIMATION_DURATION = TimeUnit.MILLISECONDS.toMillis(150);
 
-  private final Context                        context;
-  private final boolean                        showThread;
-  private final RequestManager                 requestManager;
-  private final ItemClickListener              itemClickListener;
-  private final Map<AttachmentId, MediaRecord> selected = new HashMap<>();
-  private final AudioItemListener              audioItemListener;
+  private final Context                             context;
+  private final boolean                             showThread;
+  private final RequestManager                      requestManager;
+  private final ItemClickListener                   itemClickListener;
+  private final Map<MediaSelectionKey, MediaRecord> selected = new HashMap<>();
+  private final AudioItemListener                   audioItemListener;
 
   private GroupedThreadMedia media;
   private boolean            showFileSizes;
@@ -221,12 +221,10 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   }
 
   public void toggleSelection(@NonNull MediaRecord mediaRecord) {
-    if (mediaRecord.getAttachment() == null) return;
-
-    AttachmentId           attachmentId = mediaRecord.getAttachment().attachmentId;
-    MediaTable.MediaRecord removed      = selected.remove(attachmentId);
+    MediaSelectionKey      key     = MediaSelectionKey.from(mediaRecord);
+    MediaTable.MediaRecord removed = selected.remove(key);
     if (removed == null) {
-      selected.put(attachmentId, mediaRecord);
+      selected.put(key, mediaRecord);
     }
 
     notifyItemRangeChanged(0, getItemCount(), PAYLOAD_SELECTED);
@@ -237,9 +235,8 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   }
 
   public long getSelectedMediaTotalFileSize() {
-    //noinspection ConstantConditions attacment cannot be null if selected
     return Stream.of(selected.values())
-                 .collect(Collectors.summingLong(a -> a.getAttachment().size));
+                 .collect(Collectors.summingLong(a -> a.getAttachment() != null ? a.getAttachment().size : 0));
   }
 
   @NonNull
@@ -258,9 +255,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
       int sectionItemCount = media.getSectionItemCount(section);
       for (int item = 0; item < sectionItemCount; item++) {
         MediaRecord mediaRecord = media.get(section, item);
-        if (mediaRecord.getAttachment() != null) {
-          selected.put(mediaRecord.getAttachment().attachmentId, mediaRecord);
-        }
+        selected.put(MediaSelectionKey.from(mediaRecord), mediaRecord);
       }
     }
     this.notifyItemRangeChanged(0, getItemCount(), PAYLOAD_SELECTED);
@@ -273,6 +268,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   void setDetailView(boolean detailView) {
     this.detailView = detailView;
   }
+
 
   class SelectableViewHolder extends ItemViewHolder {
 
@@ -304,7 +300,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     }
 
     protected boolean isSelected() {
-      return mediaRecord.getAttachment() != null && selected.containsKey(mediaRecord.getAttachment().attachmentId);
+      return selected.containsKey(MediaSelectionKey.from(mediaRecord));
     }
 
     protected void updateSelectedView() {
@@ -707,15 +703,8 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
         thumbnailView.setVisibility(View.GONE);
       }
 
+      thumbnailView.setOnClickListener(view -> itemClickListener.onMediaClicked(getTransitionAnchor(), mediaRecord));
       thumbnailView.setOnLongClickListener(view -> onLongClick());
-
-      View.OnClickListener openLink = view -> {
-        if (linkUrl != null && !linkUrl.isEmpty()) {
-          CommunicationActions.openBrowserLink(context, linkUrl);
-        }
-      };
-      thumbnailView.setOnClickListener(openLink);
-      itemView.setOnClickListener(openLink);
 
       if (linkUrl != null && !linkUrl.isEmpty()) {
         linkUrlView.setText(linkUrl);
