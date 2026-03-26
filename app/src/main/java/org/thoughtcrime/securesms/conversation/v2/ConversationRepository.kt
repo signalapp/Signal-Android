@@ -221,6 +221,13 @@ class ConversationRepository(
       if (threadRecipient.isPushV2Group && threadRecipient.groupId.getOrNull()?.isV2 != true) {
         Log.w(TAG, "Missing group id")
         emitter.tryOnError(Exception("Poll terminate failed"))
+        return@create
+      }
+
+      if (threadRecipient.isPushV2Group && !SignalDatabase.groups.isActive(threadRecipient.requireGroupId())) {
+        Log.w(TAG, "Cannot end poll in terminated or inactive group")
+        emitter.tryOnError(Exception("Poll terminate failed"))
+        return@create
       }
 
       val message = OutgoingMessage.pollTerminateMessage(

@@ -3003,6 +3003,14 @@ class ConversationFragment :
       return
     }
 
+    if (conversationGroupViewModel.groupRecordSnapshot?.isTerminated == true) {
+      MaterialAlertDialogBuilder(requireContext())
+        .setMessage(R.string.conversation_activity__group_action_not_allowed_group_ended)
+        .setPositiveButton(android.R.string.ok) { d, _ -> d.dismiss() }
+        .show()
+      return
+    }
+
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(getString(R.string.Poll__end_poll_title))
       .setMessage(getString(R.string.Poll__end_poll_body))
@@ -3434,7 +3442,7 @@ class ConversationFragment :
       context ?: return
       val reactionsTag = "REACTIONS"
       if (parentFragmentManager.findFragmentByTag(reactionsTag) == null) {
-        ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(childFragmentManager, reactionsTag)
+        ReactionsBottomSheetDialogFragment.create(messageId, isMms, conversationGroupViewModel.groupRecordSnapshot?.isTerminated == true).show(childFragmentManager, reactionsTag)
       }
     }
 
@@ -3590,6 +3598,13 @@ class ConversationFragment :
     }
 
     override fun onToggleVote(poll: PollRecord, pollOption: PollOption, isChecked: Boolean) {
+      if (conversationGroupViewModel.groupRecordSnapshot?.isTerminated == true) {
+        MaterialAlertDialogBuilder(requireContext())
+          .setMessage(R.string.conversation_activity__group_action_not_allowed_group_ended)
+          .setPositiveButton(android.R.string.ok) { d, _ -> d.dismiss() }
+          .show()
+        return
+      }
       viewModel.toggleVote(poll, pollOption, isChecked)
     }
 

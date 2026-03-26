@@ -258,7 +258,7 @@ public final class MenuState {
 
     return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText && !hasGift && !hasPayment && !hasPoll)
                   .shouldShowDeleteAction(!hasInMemory && onlyContainsCompleteMessages(selectedParts))
-                  .shouldShowReactions(!conversationRecipient.isReleaseNotes())
+                  .shouldShowReactions(!conversationRecipient.isReleaseNotes() && !conversationRecipient.isInactiveGroup())
                   .shouldShowPaymentDetails(hasPayment)
                   .shouldShowPollTerminate(hasPollTerminate)
                   .shouldShowPinMessage(canPinMessage)
