@@ -257,7 +257,7 @@ private fun Wallpaper.LinearGradient.toRemoteWallpaperPreset(): ChatStyle.Wallpa
 
 private fun Wallpaper.File.toFilePointer(db: SignalDatabase, backupMode: BackupMode): FilePointer? {
   val attachmentId: AttachmentId = UriUtil.parseOrNull(this.uri)?.let { PartUriParser(it).partId } ?: return null
-  val attachment = db.attachmentTable.getAttachment(attachmentId)
+  val attachment = db.attachmentTable.getAttachmentWithMetadata(attachmentId)
   return attachment?.toRemoteFilePointer(backupMode = backupMode)
 }
 
