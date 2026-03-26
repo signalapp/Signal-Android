@@ -147,11 +147,13 @@ class RestoreLocalBackupActivityViewModel : ViewModel() {
         StorageServiceRestore.restore()
         RegistrationUtil.maybeMarkRegistrationComplete()
 
+        val canReenableBackups = backupIdMatchesCurrentAccount && !archiveFileSystem.isRootedAtSignalBackups
+
         internalState.update {
           it.copy(
             restorePhase = RestorePhase.COMPLETE,
-            backupDirectory = if (backupIdMatchesCurrentAccount) backupDirectory else null,
-            dialog = if (backupIdMatchesCurrentAccount) RestoreLocalBackupActivityDialog.CONFIRM_BACKUP_LOCATION
+            backupDirectory = if (canReenableBackups) backupDirectory else null,
+            dialog = if (canReenableBackups) RestoreLocalBackupActivityDialog.CONFIRM_BACKUP_LOCATION
             else RestoreLocalBackupActivityDialog.LOCAL_BACKUPS_DISABLED
           )
         }

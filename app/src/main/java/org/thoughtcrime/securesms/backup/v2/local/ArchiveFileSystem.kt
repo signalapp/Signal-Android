@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.local
 
 import android.content.Context
 import android.net.Uri
+import androidx.annotation.VisibleForTesting
 import androidx.documentfile.provider.DocumentFile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -77,13 +78,26 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
     fun openForRestore(context: Context, uri: Uri): ArchiveFileSystem? {
       val root = DocumentFile.fromTreeUri(context, uri) ?: return null
       if (!root.canRead()) return null
-      if (root.findFile(MAIN_DIRECTORY_NAME) == null) return null
+      return openForRestore(context, root)
+    }
+
+    @VisibleForTesting
+    fun openForRestore(context: Context, root: DocumentFile): ArchiveFileSystem? {
+      if (root.findFile(MAIN_DIRECTORY_NAME) == null && !looksLikeSignalBackupsDirectory(root)) return null
       return try {
         ArchiveFileSystem(context, root, readOnly = true)
       } catch (e: IOException) {
-        Log.w(TAG, "Unable to open backup directory for restore: $uri", e)
+        Log.w(TAG, "Unable to open backup directory for restore", e)
         null
       }
+    }
+
+    /**
+     * Returns true if [dir] appears to be a SignalBackups directory based on its name and
+     * expected internal structure (presence of the "files" subdirectory).
+     */
+    private fun looksLikeSignalBackupsDirectory(dir: DocumentFile): Boolean {
+      return dir.name == MAIN_DIRECTORY_NAME && dir.findFile("files") != null
     }
 
     /**
@@ -105,12 +119,28 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
   /** File access to shared super-set of archive related files (e.g., media + attachments) */
   val filesFileSystem: FilesFileSystem
 
+  /**
+   * True if this file system was opened directly from the SignalBackups directory itself (rather than its parent).
+   * In this case, the URI cannot be reused as a backup destination since we lack access to the parent directory.
+   */
+  val isRootedAtSignalBackups: Boolean
+
   init {
     if (readOnly) {
-      signalBackups = root.findFile(MAIN_DIRECTORY_NAME) ?: throw IOException("SignalBackups directory not found in $root")
+      val child = root.findFile(MAIN_DIRECTORY_NAME)
+      if (child != null) {
+        signalBackups = child
+        isRootedAtSignalBackups = false
+      } else if (looksLikeSignalBackupsDirectory(root)) {
+        signalBackups = root
+        isRootedAtSignalBackups = true
+      } else {
+        throw IOException("SignalBackups directory not found in $root")
+      }
       val filesDirectory = signalBackups.findFile("files") ?: throw IOException("files directory not found in $signalBackups")
       filesFileSystem = FilesFileSystem(context, filesDirectory, readOnly = true)
     } else {
+      isRootedAtSignalBackups = false
       signalBackups = root.mkdirp(MAIN_DIRECTORY_NAME) ?: throw IOException("Unable to create main backups directory")
       val filesDirectory = signalBackups.mkdirp("files") ?: throw IOException("Unable to create files directory")
       filesFileSystem = FilesFileSystem(context, filesDirectory)
