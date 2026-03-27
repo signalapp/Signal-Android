@@ -109,15 +109,7 @@ class BackupMessagesJob private constructor(
         return
       }
 
-      val jobManager = AppDependencies.jobManager
-
-      val chain = jobManager.startChain(BackupMessagesJob())
-
-      if (SignalStore.backup.optimizeStorage && SignalStore.backup.backsUpMedia) {
-        chain.then(OptimizeMediaJob())
-      }
-
-      chain.enqueue()
+      AppDependencies.jobManager.add(BackupMessagesJob())
     }
 
     fun cancel() {
@@ -159,6 +151,14 @@ class BackupMessagesJob private constructor(
   }
 
   override fun run(): Result {
+    val result = doWork()
+    if (result.isSuccess && !isCanceled && SignalStore.backup.optimizeStorage && SignalStore.backup.backsUpMedia) {
+      AppDependencies.jobManager.add(OptimizeMediaJob())
+    }
+    return result
+  }
+
+  private fun doWork(): Result {
     if (!isBackupAllowed()) {
       Log.d(TAG, "Skip running BackupMessagesJob.", true)
       return Result.success()
