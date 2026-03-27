@@ -414,19 +414,8 @@ private fun AppSettingsContent(
         if (state.isPrimaryDevice) {
           item {
             Rows.TextRow(
-              text = {
-                Text(
-                  text = stringResource(R.string.preferences_chats__backups),
-                  style = MaterialTheme.typography.bodyLarge
-                )
-              },
-              icon = {
-                Icon(
-                  imageVector = SignalIcons.Backup.imageVector,
-                  contentDescription = stringResource(R.string.preferences_chats__backups),
-                  tint = MaterialTheme.colorScheme.onSurface
-                )
-              },
+              icon = SignalIcons.Backup.imageVector,
+              text = stringResource(R.string.preferences_chats__backups),
               onClick = {
                 callbacks.navigate(AppSettingsRoute.BackupsRoute.Backups)
               },
