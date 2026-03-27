@@ -407,6 +407,8 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (this.slide != null && this.slide.getFastPreflightId() != null &&
+        this.slide.isInProgress() == slide.isInProgress() &&
+        image.getDrawable() != null &&
         (!slide.hasVideo() || Util.equals(this.slide.getUri(), slide.getUri())) &&
         Util.equals(this.slide.getFastPreflightId(), slide.getFastPreflightId()))
     {
