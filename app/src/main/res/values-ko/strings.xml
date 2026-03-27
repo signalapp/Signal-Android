@@ -512,7 +512,7 @@
     <string name="ConversationActivity_unable_to_record_audio">오디오를 녹음할 수 없어요</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">현재 이 그룹의 멤버가 아니어서 메시지를 보낼 수 없어요.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group was ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
     <string name="ConversationActivity_only_s_can_send_messages">%1$s만 메시지를 전송할 수 있습니다.</string>
     <string name="ConversationActivity_admins">관리자</string>
     <string name="ConversationActivity_message_an_admin">관리자에게 메시지 전송</string>
@@ -741,7 +741,7 @@
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">암호화폐 또는 금융 사기</string>
     <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">모르는 사람이 암호화폐(예: 비트코인) 또는 금융 기회에 관해 메시지 할 경우 조심하세요. 사기일 가능성이 높습니다.</string>
+    <string name="SafetyTips_tip1_message">모르는 사람으로부터 암호화폐(비트코인 등)나 금융 투자 제안 메시지를 받으셨다면 스팸일 가능성이 높으니 각별히 주의하시기 바랍니다.</string>
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">모호하거나 관련이 없는 메시지</string>
     <!-- Message of tip 2 -->
@@ -749,11 +749,11 @@
     <!-- Title of tip 3 -->
     <string name="SafetyTips_tip3_title">링크가 있는 메시지</string>
     <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">모르는 사람이 보내는 링크나 웹사이트가 있는 메시지를 조심하세요. 신뢰할 수 없는 사람이 보내는 링크를 절대 방문하지 마세요.</string>
+    <string name="SafetyTips_tip3_message">모르는 사람이 보낸 웹사이트 링크가 포함된 메시지에 주의하세요. 신뢰할 수 없는 출처의 링크는 절대 클릭하지 마시기 바랍니다.</string>
     <!-- Title of tip 4 -->
     <string name="SafetyTips_tip4_title">가짜 비즈니스 또는 기관</string>
     <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">비즈니스 또는 정부 기관에서 오는 연락을 조심하세요. 국세청, 배송 업체 등과 관련된 메시지는 스팸일 수 있습니다.</string>
+    <string name="SafetyTips_tip4_message">기업이나 정부 기관을 사칭한 연락에 주의하세요. 국세청 등의 공공기관이나 배송 업체와 관련된 메시지는 스팸일 가능성이 높습니다.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal의 %1$s은 해당 계정 보유자가 선택합니다.</string>
@@ -1283,7 +1283,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">새 그룹이 무엇인가요?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">새 그룹에는 @멘션 및 그룹 관리자와 같은 기능이 있으며 향후 더 많은 기능을 지원할 예정입니다.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">모든 업그레이드 전 메시지 기록과 미디어를 보관했습니다.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">업그레이드 이전의 모든 메시지 기록과 미디어가 보관되었습니다.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">이 그룹에 다시 참가하려면 초대를 수락해야 하며, 수락 전까지는 그룹 메시지를 받을 수 없습니다.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="other">다음 멤버들은 그룹 초대를 수락해야 다시 참가할 수 있으며, 수락 전까지는 그룹 메시지를 받을 수 없습니다.</item>
@@ -1296,7 +1296,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">새 그룹으로 업그레이드</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">그룹 업그레이드</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">새 그룹에는 @멘션 및 그룹 관리자와 같은 기능이 있으며 향후 더 많은 기능을 지원할 예정입니다.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">모든 업그레이드 전 메시지 기록과 미디어를 보관합니다.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">업그레이드 이전의 모든 메시지 기록과 미디어는 그대로 보관됩니다.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">네트워크 오류가 발생했습니다. 나중에 다시 시도하세요.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">업그레이드하지 못했습니다.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -1632,7 +1632,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">네트워크 오류가 발생했습니다.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">이 그룹 링크가 비활성화 되었습니다.</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">The group has been ended, unable to join group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">그룹 제한에 도달하여 그룹에 참가할 수 없음</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1731,8 +1731,8 @@
     <string name="MediaOverviewActivity_Files">파일</string>
     <string name="MediaOverviewActivity_Audio">오디오</string>
     <string name="MediaOverviewActivity_All">전체</string>
-    <string name="MediaOverviewActivity_Links">Links</string>
-    <string name="MediaOverviewActivity_link">Link</string>
+    <string name="MediaOverviewActivity_Links">링크</string>
+    <string name="MediaOverviewActivity_link">링크</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
         <item quantity="other">선택한 항목을 삭제할까요?</item>
     </plurals>
@@ -1842,7 +1842,7 @@
     <string name="MessageRecord_you_updated_group">그룹을 업데이트했습니다.</string>
     <string name="MessageRecord_the_group_was_updated">그룹이 업데이트 되었습니다.</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group has been ended</string>
+    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s ended the group</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -3525,7 +3525,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">오디오 첨부 파일 녹음 잠금</string>
     <string name="conversation_activity__message_could_not_be_sent">메시지를 보낼 수 없습니다. 연결을 확인하고 다시 시도하세요.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">Send failed because the group was ended. You can no longer send and receive messages in this group.</string>
+    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">This action is unavailable because the group has ended.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -4809,8 +4809,6 @@
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">다음 체크 박스를 체크하여 이해했음을 확인해 주세요.</string>
     <string name="BackupDialog_delete_backups">백업을 삭제할까요?</string>
     <string name="BackupDialog_disable_and_delete_all_local_backups">모든 로컬 백업을 비활성화하고 삭제할까요?</string>
-    <string name="ArchiveFileSystem__select_this_folder_hint_name">Select this folder, not SignalBackups</string>
-    <string name="ArchiveFileSystem__select_this_folder_hint_body">When configuring Signal backup storage, select this folder — not the SignalBackups subfolder.</string>
     <string name="BackupDialog_delete_backups_statement">백업 삭제</string>
     <!-- Progress dialog message shown while local backup files are being deleted -->
     <string name="BackupDialog_deleting_local_backup">로컬 백업 삭제 중…</string>
@@ -5933,11 +5931,11 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">End group</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group was ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
     <!-- Archive chat option in group conversation settings screen -->
-    <string name="ConversationSettingsFragment__archive_chat">Archive chat</string>
+    <string name="ConversationSettingsFragment__archive_chat">대화 보관</string>
     <!-- Delete chat option in group conversation settings screen -->
-    <string name="ConversationSettingsFragment__delete_chat">Delete chat</string>
+    <string name="ConversationSettingsFragment__delete_chat">대화 삭제</string>
     <!-- Member section header for terminated groups. %1$d is the member count -->
     <plurals name="ConversationSettingsFragment__d_former_members">
         <item quantity="other">%1$d former members</item>
@@ -6740,6 +6738,8 @@
     <string name="MyStories__delete_story">스토리를 삭제할까요?</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">나를 포함해 이 스토리를 받은 모든 사람에게서 해당 스토리를 삭제합니다.</string>
+    <!-- Message of dialog to confirm deletion of story in a terminated group -->
+    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">저장할 수 없음</string>
 
@@ -8385,14 +8385,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">Ending group…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Ending the group failed. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
     <!-- Retry button shown when ending a group fails -->
-    <string name="EndGroupDialog__try_again">Try again</string>
+    <string name="EndGroupDialog__try_again">다시 시도</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s Ended the Group</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has been ended</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">You can no longer send and receive messages or calls in this group.</string>
 
@@ -8757,6 +8757,8 @@
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">복구 키는 Signal을 다시 설치할 경우 백업을 복원하는 데 사용할 수 있는 64자리 코드입니다.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">이 키는 기존의 기기 복구 키와 동일합니다.</string>
+    <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">키 사용 용도:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9031,17 +9033,17 @@
     <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
     <string name="RestoreLocalBackupDialog__ok">확인</string>
     <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Skip restore?</string>
+    <string name="RestoreLocalBackupDialog__skip_restore">복원을 건너뛸까요?</string>
     <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="RestoreLocalBackupDialog__skip_restore_body">지금 복원을 건너뛰면 나중에 복원할 수 없습니다. 복원을 건너뛴 후 백업을 다시 활성화하면, 현재 백업이 새 메시지 기록으로 바뀝니다.</string>
     <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Skip restore</string>
+    <string name="RestoreLocalBackupDialog__skip_restore_confirm">복원 건너뛰기</string>
     <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
     <string name="RestoreLocalBackupDialog__restore_to_new_account">Restore to new account?</string>
     <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
     <string name="RestoreLocalBackupDialog__restore_to_new_account_body">The backup you are restoring was created using a different Signal account. You can restore this backup to a new account, but you will no longer be a member of any groups that were restored.</string>
     <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Restore</string>
+    <string name="RestoreLocalBackupDialog__restore">복원</string>
 
     <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
     <string name="RestoreLocalBackupActivity__backup_restore_failed">백업 복원 실패</string>
@@ -9079,7 +9081,7 @@
     <string name="RestoreLocalBackupActivity__turn_on_now">Turn on now</string>
 
     <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Not now</string>
+    <string name="RestoreLocalBackupActivity__not_now">나중에</string>
 
     <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
     <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">To continue using on-device backups, choose a folder on your device where new backups will be saved.</string>

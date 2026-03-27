@@ -517,7 +517,7 @@
     <string name="ConversationActivity_unable_to_record_audio">Äänen tallennus ei onnistunut!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Et voi lähettää viestejä tälle ryhmälle, koska et enää ole sen jäsen.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group was ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Vain %1$s voi(vat) lähettää viestejä.</string>
     <string name="ConversationActivity_admins">ylläpitäjät</string>
     <string name="ConversationActivity_message_an_admin">Lähetä viesti ylläpitäjälle</string>
@@ -1679,7 +1679,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Verkkovirhe.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tämä ryhmälinkki ei ole aktiivinen</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">The group has been ended, unable to join group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Ryhmän yläraja saavutettu. Ryhmään liittyminen ei onnistu</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1780,8 +1780,8 @@
     <string name="MediaOverviewActivity_Files">Tiedostot</string>
     <string name="MediaOverviewActivity_Audio">Ääni</string>
     <string name="MediaOverviewActivity_All">Kaikki</string>
-    <string name="MediaOverviewActivity_Links">Links</string>
-    <string name="MediaOverviewActivity_link">Link</string>
+    <string name="MediaOverviewActivity_Links">Linkit</string>
+    <string name="MediaOverviewActivity_link">Linkki</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
         <item quantity="one">Poistetaanko valittu?</item>
         <item quantity="other">Poistetaanko valitut?</item>
@@ -1896,7 +1896,7 @@
     <string name="MessageRecord_you_updated_group">Päivitit ryhmää.</string>
     <string name="MessageRecord_the_group_was_updated">Ryhmä päivitettiin.</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group has been ended</string>
+    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s ended the group</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -3633,7 +3633,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lukitse ääniviestin tallennus</string>
     <string name="conversation_activity__message_could_not_be_sent">Viestin lähetys ei onnistunut. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">Send failed because the group was ended. You can no longer send and receive messages in this group.</string>
+    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">This action is unavailable because the group has ended.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -4936,8 +4936,6 @@
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ilmaisen ymmärtäneeni tämän valitsemalla valintaruudun.</string>
     <string name="BackupDialog_delete_backups">Poistetaanko varmuuskopiot?</string>
     <string name="BackupDialog_disable_and_delete_all_local_backups">Otetaanko paikalliset varmuuskopiot pois käytöstä ja poistetaanko ne?</string>
-    <string name="ArchiveFileSystem__select_this_folder_hint_name">Select this folder, not SignalBackups</string>
-    <string name="ArchiveFileSystem__select_this_folder_hint_body">When configuring Signal backup storage, select this folder — not the SignalBackups subfolder.</string>
     <string name="BackupDialog_delete_backups_statement">Poista varmuuskopiot</string>
     <!-- Progress dialog message shown while local backup files are being deleted -->
     <string name="BackupDialog_deleting_local_backup">Poistetaan paikallista varmuuskopiota…</string>
@@ -6075,11 +6073,11 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">End group</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group was ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
     <!-- Archive chat option in group conversation settings screen -->
-    <string name="ConversationSettingsFragment__archive_chat">Archive chat</string>
+    <string name="ConversationSettingsFragment__archive_chat">Arkistoi keskustelu</string>
     <!-- Delete chat option in group conversation settings screen -->
-    <string name="ConversationSettingsFragment__delete_chat">Delete chat</string>
+    <string name="ConversationSettingsFragment__delete_chat">Poista keskustelu</string>
     <!-- Member section header for terminated groups. %1$d is the member count -->
     <plurals name="ConversationSettingsFragment__d_former_members">
         <item quantity="one">%1$d former member</item>
@@ -6891,6 +6889,8 @@
     <string name="MyStories__delete_story">Poistetaanko tarina?</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Tämä tarina poistetaan sinulta ja kaikilta sen vastaanottaneilta.</string>
+    <!-- Message of dialog to confirm deletion of story in a terminated group -->
+    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Tallennus ei onnistu</string>
 
@@ -8567,14 +8567,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">Ending group…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Ending the group failed. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
     <!-- Retry button shown when ending a group fails -->
-    <string name="EndGroupDialog__try_again">Try again</string>
+    <string name="EndGroupDialog__try_again">Yritä uudelleen</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s Ended the Group</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has been ended</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">You can no longer send and receive messages or calls in this group.</string>
 
@@ -8945,6 +8945,8 @@
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Palautusavain on 64 merkkiä sisältävä koodi, jonka avulla voit palauttaa varmuuskopiot, kun asennat Signalin uudelleen.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Avain on sama kuin laitteellasi oleva palautusavain.</string>
+    <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Tällä avaimella voit:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9221,17 +9223,17 @@
     <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
     <string name="RestoreLocalBackupDialog__ok">OK</string>
     <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Skip restore?</string>
+    <string name="RestoreLocalBackupDialog__skip_restore">Ohitetaanko palauttaminen?</string>
     <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="RestoreLocalBackupDialog__skip_restore_body">Jos ohitat palauttamisen nyt, et voi tehdä palautusta enää myöhemmin. Jos otat varmuuskopiot uudelleen käyttöön palautuksen ohittamisen jälkeen, nykyinen varmuuskopio korvataan uudella viestihistoriallasi.</string>
     <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Skip restore</string>
+    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Ohita palautus</string>
     <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
     <string name="RestoreLocalBackupDialog__restore_to_new_account">Restore to new account?</string>
     <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
     <string name="RestoreLocalBackupDialog__restore_to_new_account_body">The backup you are restoring was created using a different Signal account. You can restore this backup to a new account, but you will no longer be a member of any groups that were restored.</string>
     <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Restore</string>
+    <string name="RestoreLocalBackupDialog__restore">Palauta</string>
 
     <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
     <string name="RestoreLocalBackupActivity__backup_restore_failed">Varmuuskopion palautus epäonnistui</string>
@@ -9269,7 +9271,7 @@
     <string name="RestoreLocalBackupActivity__turn_on_now">Turn on now</string>
 
     <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Not now</string>
+    <string name="RestoreLocalBackupActivity__not_now">Ei nyt</string>
 
     <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
     <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">To continue using on-device backups, choose a folder on your device where new backups will be saved.</string>
