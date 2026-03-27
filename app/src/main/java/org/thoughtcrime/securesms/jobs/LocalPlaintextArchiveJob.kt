@@ -2,6 +2,11 @@ package org.thoughtcrime.securesms.jobs
 
 import android.net.Uri
 import androidx.documentfile.provider.DocumentFile
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -95,13 +100,24 @@ class LocalPlaintextArchiveJob internal constructor(
           return Result.failure()
         }
 
-        ZipOutputStream(outputStream).use { zipOutputStream ->
-          val result = LocalArchiver.exportPlaintext(zipOutputStream, includeMedia, stopwatch, cancellationSignal = { isCanceled })
-          Log.i(TAG, "Plaintext archive finished with result: $result")
-          if (result !is org.signal.core.util.Result.Success) {
-            zipFile.delete()
-            return Result.failure()
+        val progressScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+        progressScope.launch {
+          SignalStore.backup.newLocalPlaintextBackupProgressFlow.collect { progress ->
+            updateNotification(progress, notification)
           }
+        }
+
+        try {
+          ZipOutputStream(outputStream).use { zipOutputStream ->
+            val result = LocalArchiver.exportPlaintext(zipOutputStream, includeMedia, stopwatch, cancellationSignal = { isCanceled })
+            Log.i(TAG, "Plaintext archive finished with result: $result")
+            if (result !is org.signal.core.util.Result.Success) {
+              zipFile.delete()
+              return Result.failure()
+            }
+          }
+        } finally {
+          progressScope.cancel()
         }
 
         stopwatch.split("archive-create")
@@ -141,8 +157,25 @@ class LocalPlaintextArchiveJob internal constructor(
     when {
       exporting != null -> {
         val phase = NotificationPhase.Export(exporting.phase)
-        if (previousPhase != phase) {
-          notification.replaceTitle(exporting.phase.toString())
+        val title = when (exporting.phase) {
+          LocalBackupCreationProgress.ExportPhase.MESSAGE -> {
+            if (exporting.frameTotalCount > 0) {
+              context.getString(
+                R.string.BackupCreationProgressRow__processing_messages_s_of_s_d,
+                "%,d".format(exporting.frameExportCount),
+                "%,d".format(exporting.frameTotalCount),
+                (exporting.frameExportCount * 100 / exporting.frameTotalCount).toInt()
+              )
+            } else {
+              context.getString(R.string.BackupCreationProgressRow__processing_messages)
+            }
+          }
+          LocalBackupCreationProgress.ExportPhase.FINALIZING -> context.getString(R.string.BackupCreationProgressRow__finalizing)
+          LocalBackupCreationProgress.ExportPhase.NONE -> context.getString(R.string.BackupCreationProgressRow__processing_backup)
+          else -> context.getString(R.string.BackupCreationProgressRow__preparing_backup)
+        }
+        if (previousPhase != phase || exporting.phase == LocalBackupCreationProgress.ExportPhase.MESSAGE) {
+          notification.replaceTitle(title)
           previousPhase = phase
         }
         if (exporting.frameTotalCount == 0L) {
