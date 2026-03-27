@@ -519,7 +519,7 @@
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">You can\'t send messages to this group because you\'re no longer a member.</string>
     <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string>
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group was ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Only %1$s can send messages.</string>
     <string name="ConversationActivity_admins">admins</string>
     <string name="ConversationActivity_message_an_admin">Message an admin</string>
@@ -1681,7 +1681,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Encountered a network error.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">This group link is not active</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">The group has been ended, unable to join group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1898,7 +1898,7 @@
     <string name="MessageRecord_you_updated_group">You updated the group.</string>
     <string name="MessageRecord_the_group_was_updated">The group was updated.</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group has been ended</string>
+    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s ended the group</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -3638,7 +3638,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lock recording of audio attachment</string>
     <string name="conversation_activity__message_could_not_be_sent">Message could not be sent. Check your connection and try again.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">Send failed because the group was ended. You can no longer send and receive messages in this group.</string>
+    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">This action is unavailable because the group has ended.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -6078,7 +6078,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">End group</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group was ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Archive chat</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -8572,14 +8572,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">Ending group\u2026</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Ending the group failed. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Try again</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s Ended the Group</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has been ended</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">You can no longer send and receive messages or calls in this group.</string>
 
