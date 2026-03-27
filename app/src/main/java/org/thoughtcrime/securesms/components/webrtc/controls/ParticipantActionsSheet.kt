@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.SignalE164Util
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -179,11 +180,10 @@ private fun ParticipantHeader(recipient: Recipient) {
       style = MaterialTheme.typography.titleLarge
     )
 
-    val e164 = recipient.e164
-    if (e164.isPresent) {
+    if (recipient.shouldShowE164) {
       Spacer(modifier = Modifier.size(2.dp))
       Text(
-        text = e164.get(),
+        text = SignalE164Util.prettyPrint(recipient.requireE164()),
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant
       )
