@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.net.KeyTransparency
+import org.signal.libsignal.net.KeyTransparency.CheckMode
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.usernames.Username
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
@@ -110,25 +110,16 @@ class CheckKeyTransparencyJob private constructor(
     SignalStore.misc.lastKeyTransparencyTime = System.currentTimeMillis()
 
     val recipient = SignalDatabase.recipients.getRecord(Recipient.self().id)
-    val aciIdentityKey = SignalStore.account.aciIdentityKey.publicKey
-    val aci = recipient.aci!!.libSignalAci
 
-    val (e164, unidentifiedAccessKey) = if (SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.DISCOVERABLE) {
-      Pair(recipient.e164!!, ProfileKeyUtil.profileKeyOrNull(recipient.profileKey).let { UnidentifiedAccess.deriveAccessKeyFrom(it) })
-    } else {
-      Pair(null, null)
-    }
-
-    val usernameHash = SignalStore.account.username?.let { Username(it).hash }
-    val firstSearch = recipient.keyTransparencyData == null
-
-    val result = if (firstSearch) {
-      Log.i(TAG, "First search in key transparency")
-      SignalNetwork.keyTransparency.search(aci, aciIdentityKey, e164, unidentifiedAccessKey, usernameHash, KeyTransparencyStore)
-    } else {
-      Log.i(TAG, "Monitoring search in key transparency")
-      SignalNetwork.keyTransparency.monitor(KeyTransparency.MonitorMode.SELF, aci, aciIdentityKey, e164, unidentifiedAccessKey, usernameHash, KeyTransparencyStore)
-    }
+    val result = SignalNetwork.keyTransparency.check(
+      checkMode = CheckMode.Self(isE164Discoverable = SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.DISCOVERABLE),
+      aci = recipient.aci!!.libSignalAci,
+      aciIdentityKey = SignalStore.account.aciIdentityKey.publicKey,
+      e164 = recipient.e164!!,
+      unidentifiedAccessKey = ProfileKeyUtil.profileKeyOrNull(recipient.profileKey).let { UnidentifiedAccess.deriveAccessKeyFrom(it) },
+      usernameHash = SignalStore.account.username?.let { Username(it).hash },
+      keyTransparencyStore = KeyTransparencyStore
+    )
 
     Log.i(TAG, "Key transparency complete, result: $result")
     return when (result) {
