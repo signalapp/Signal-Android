@@ -655,8 +655,10 @@ class ConversationFragment :
     if (args.conversationScreenType == ConversationScreenType.BUBBLE) {
       binding.root.setNavigationBarInsetOverride(0)
       view.post {
-        ViewCompat.requestApplyInsets(binding.root)
-        binding.root.requestLayout()
+        if (view.isAttachedToWindow) {
+          ViewCompat.requestApplyInsets(binding.root)
+          binding.root.requestLayout()
+        }
       }
     }
 
