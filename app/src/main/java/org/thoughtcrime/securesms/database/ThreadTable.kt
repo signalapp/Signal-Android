@@ -910,6 +910,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     where += " AND $ARCHIVED = 0"
     where += " AND ${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED} = 0"
+    where += " AND ${RecipientTable.TABLE_NAME}.${RecipientTable.HIDDEN} = 0"
 
     if (SignalStore.releaseChannel.releaseChannelRecipientId != null) {
       where += " AND $TABLE_NAME.$RECIPIENT_ID != ${SignalStore.releaseChannel.releaseChannelRecipientId!!.toLong()}"

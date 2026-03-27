@@ -29,24 +29,39 @@ class ThreadTableTest_recents {
   }
 
   @Test
-  fun givenARecentRecipient_whenIBlockAndGetRecents_thenIDoNotExpectToSeeThatRecipient() {
-    // GIVEN
+  fun getRecentConversationList_excludes_blocked_recipients() {
+    createActiveThreadFor(recipient)
+
+    SignalDatabase.recipients.setBlocked(recipient.id, true)
+
+    assertFalse(recipient.id in getRecentConversationRecipients(limit = 10))
+  }
+
+  @Test
+  fun getRecentConversationList_excludes_hidden_recipients() {
+    createActiveThreadFor(recipient)
+
+    SignalDatabase.recipients.markHidden(recipient.id)
+
+    assertFalse(recipient.id in getRecentConversationRecipients(limit = 10))
+  }
+
+  private fun createActiveThreadFor(recipient: Recipient) {
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
     MmsHelper.insert(recipient = recipient, threadId = threadId)
     SignalDatabase.threads.update(threadId, true)
+  }
 
-    // WHEN
-    SignalDatabase.recipients.setBlocked(recipient.id, true)
-    val results: MutableList<RecipientId> = SignalDatabase.threads.getRecentConversationList(10, false, false, false, false, false, false).use { cursor ->
-      val ids = mutableListOf<RecipientId>()
-      while (cursor.moveToNext()) {
-        ids.add(RecipientId.from(CursorUtil.requireLong(cursor, ThreadTable.RECIPIENT_ID)))
+  @Suppress("SameParameterValue")
+  private fun getRecentConversationRecipients(limit: Int = 10): Set<RecipientId> {
+    return SignalDatabase.threads
+      .getRecentConversationList(limit = limit, includeInactiveGroups = false, individualsOnly = false, groupsOnly = false, hideV1Groups = false, hideSms = false, hideSelf = false)
+      .use { cursor ->
+        buildSet {
+          while (cursor.moveToNext()) {
+            add(RecipientId.from(CursorUtil.requireLong(cursor, ThreadTable.RECIPIENT_ID)))
+          }
+        }
       }
-
-      ids
-    }
-
-    // THEN
-    assertFalse(recipient.id in results)
   }
 }
