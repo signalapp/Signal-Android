@@ -499,7 +499,14 @@ class RegistrationViewModel : ViewModel() {
       Log.d(TAG, "Requesting push challenge token…")
       val pushSubmissionResult = RegistrationRepository.requestAndVerifyPushToken(context, session.sessionId, e164, password)
       Log.d(TAG, "Push challenge token submitted.", true)
-      handleSessionStateResult(context, pushSubmissionResult)
+      val success = handleSessionStateResult(context, pushSubmissionResult)
+
+      if (!success) {
+        Log.i(TAG, "Push challenge was not successful, removing from challenge list to allow fallback.")
+        store.update {
+          it.copy(challengesRequested = it.challengesRequested.minus(Challenge.PUSH), inProgress = false)
+        }
+      }
     }
   }
 
