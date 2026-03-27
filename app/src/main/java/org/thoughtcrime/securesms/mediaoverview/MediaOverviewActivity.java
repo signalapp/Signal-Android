@@ -250,8 +250,11 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
         maxWidth = Math.max(maxWidth, tabWidth);
       }
 
-      int viewWidth = right - left;
-      if (totalWidth < viewWidth) {
+      int viewWidth    = right - left;
+      int tabCount     = tabLayout.getTabCount();
+      int fixedTabSize = tabCount > 0 ? viewWidth / tabCount : 0;
+
+      if (totalWidth < viewWidth && maxWidth <= fixedTabSize) {
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
       }
     });
