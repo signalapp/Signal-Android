@@ -490,7 +490,9 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
         Log.i(TAG, "Name changed, but wasn't relevant to write an event. blocked: ${recipient.isBlocked}, group: ${recipient.isGroup}, self: ${recipient.isSelf}, firstSet: ${localDisplayName.isEmpty()}, displayChange: ${remoteDisplayName != localDisplayName}")
       }
 
-      if (recipient.isIndividual &&
+      val individualCollisionsEnabled = false
+      if (individualCollisionsEnabled &&
+        recipient.isIndividual &&
         !recipient.isSystemContact &&
         recipient.nickname.isEmpty &&
         !recipient.isProfileSharing &&
