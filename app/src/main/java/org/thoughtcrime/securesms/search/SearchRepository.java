@@ -475,8 +475,8 @@ public class SearchRepository {
     public MessageResult build(@NonNull Cursor cursor) {
       RecipientId conversationRecipientId = RecipientId.from(CursorUtil.requireLong(cursor, SearchTable.CONVERSATION_RECIPIENT));
       RecipientId messageRecipientId      = RecipientId.from(CursorUtil.requireLong(cursor, SearchTable.MESSAGE_RECIPIENT));
-      Recipient   conversationRecipient   = Recipient.live(conversationRecipientId).get();
-      Recipient   messageRecipient        = Recipient.live(messageRecipientId).get();
+      Recipient   conversationRecipient   = Recipient.resolved(conversationRecipientId);
+      Recipient   messageRecipient        = Recipient.resolved(messageRecipientId);
       String      body                    = CursorUtil.requireString(cursor, SearchTable.BODY);
       String      bodySnippet             = CursorUtil.requireString(cursor, SearchTable.SNIPPET);
       long        receivedMs              = CursorUtil.requireLong(cursor, MessageTable.DATE_RECEIVED);
