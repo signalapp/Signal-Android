@@ -891,12 +891,12 @@ public final class ConversationUpdateItem extends FrameLayout
 
   private @NonNull String getCollapsibleString(CollapsibleEvents.CollapsibleType type) {
     return switch (type) {
-      case CALL_EVENT -> getContext().getString(R.string.CollapsedEvent__call_event, conversationMessage.getCollapsedSize());
+      case CALL_EVENT -> getContext().getResources().getQuantityString(R.plurals.CollapsedEvent__call_event, conversationMessage.getCollapsedSize(), conversationMessage.getCollapsedSize());
       case DISAPPEARING_TIMER -> {
         String time = ExpirationUtil.getExpirationAbbreviatedDisplayValue(getContext(), (int) (conversationMessage.getCollapsedExpirationInMs() / 1000));
-        yield getContext().getString(R.string.CollapsedEvent__disappearing_timer, conversationMessage.getCollapsedSize(), time) ;
+        yield getContext().getResources().getQuantityString(R.plurals.CollapsedEvent__disappearing_timer, conversationMessage.getCollapsedSize(), conversationMessage.getCollapsedSize(), time) ;
       }
-      case CHAT_UPDATE ->  getContext().getString(conversationRecipient.isGroup() ? R.string.CollapsedEvent__group_update : R.string.CollapsedEvent__chat_update, conversationMessage.getCollapsedSize());
+      case CHAT_UPDATE ->  getContext().getResources().getQuantityString(conversationRecipient.isGroup() ? R.plurals.CollapsedEvent__group_update : R.plurals.CollapsedEvent__chat_update, conversationMessage.getCollapsedSize(), conversationMessage.getCollapsedSize());
     };
   }
 
