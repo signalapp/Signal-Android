@@ -425,14 +425,6 @@ public class MessageSender {
         }
       }
 
-      for (AttachmentId attachmentId : attachmentsWithPreuploadId) {
-        long messageId = SignalDatabase.attachments().getMessageId(attachmentId);
-        if (BackupRepository.shouldCopyAttachmentToArchive(attachmentId, messageId)) {
-          Log.i(TAG, "[" + attachmentId + "] Was previously preuploaded and should now be copied to the archive.");
-          jobManager.add(new CopyAttachmentToArchiveJob(attachmentId));
-        }
-      }
-
       onMessageSent();
       mmsDatabase.setTransactionSuccessful();
     } catch (MmsException e) {
@@ -440,6 +432,14 @@ public class MessageSender {
       return;
     } finally {
       mmsDatabase.endTransaction();
+    }
+
+    for (AttachmentId attachmentId : attachmentsWithPreuploadId) {
+      long messageId = SignalDatabase.attachments().getMessageId(attachmentId);
+      if (BackupRepository.shouldCopyAttachmentToArchive(attachmentId, messageId)) {
+        Log.i(TAG, "[" + attachmentId + "] Was previously preuploaded and should now be copied to the archive.");
+        jobManager.add(new CopyAttachmentToArchiveJob(attachmentId));
+      }
     }
 
     for (int i = 0; i < messageIds.size(); i++) {
