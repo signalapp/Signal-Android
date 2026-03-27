@@ -37,6 +37,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.components.SignalProgressDialog;
 import org.thoughtcrime.securesms.components.compose.DeleteSyncEducationDialog;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
@@ -93,11 +94,13 @@ public final class MediaOverviewPageFragment extends LoggingFragment
   private       GridMode                      gridMode;
   private       VoiceNoteMediaController      voiceNoteMediaController;
   private       SignalBottomActionBar         bottomActionBar;
+  private       SignalProgressDialog          selectAllProgress;
   private       LifecycleDisposable           lifecycleDisposable;
   private       boolean                       pendingLoad = true;
   private       int                           loadLimit;
   private       boolean                       allLoaded;
   private       boolean                       loadingMore;
+  private       boolean                       pendingSelectAll;
 
   public static @NonNull Fragment newInstance(long threadId,
                                               @NonNull MediaLoader.MediaType mediaType,
@@ -252,9 +255,19 @@ public final class MediaOverviewPageFragment extends LoggingFragment
         totalMediaItems += groupedThreadMedia.getSectionItemCount(i);
       }
       allLoaded = totalMediaItems < loadLimit;
+    } else {
+      allLoaded = true;
     }
 
     loadingMore = false;
+
+    if (pendingSelectAll) {
+      pendingSelectAll = false;
+      dismissSelectAllProgress();
+      getListAdapter().selectAllMedia();
+      updateMultiSelect();
+    }
+
     noMedia.setVisibility(recyclerView.getAdapter().getItemCount() > 0 ? View.GONE : View.VISIBLE);
     getActivity().invalidateOptionsMenu();
   }
@@ -401,8 +414,15 @@ public final class MediaOverviewPageFragment extends LoggingFragment
   }
 
   private void handleSelectAllMedia() {
-    getListAdapter().selectAllMedia();
-    updateMultiSelect();
+    if (allLoaded) {
+      getListAdapter().selectAllMedia();
+      updateMultiSelect();
+    } else {
+      pendingSelectAll = true;
+      selectAllProgress = SignalProgressDialog.show(requireContext(), null, null, true);
+      loadLimit = 0;
+      LoaderManager.getInstance(this).restartLoader(0, null, this);
+    }
   }
 
   private String getActionModeTitle() {
@@ -428,9 +448,18 @@ public final class MediaOverviewPageFragment extends LoggingFragment
     updateMultiSelect();
   }
 
+  private void dismissSelectAllProgress() {
+    if (selectAllProgress != null && selectAllProgress.isShowing()) {
+      selectAllProgress.dismiss();
+    }
+    selectAllProgress = null;
+  }
+
   private void exitMultiSelect() {
     actionMode.finish();
     actionMode = null;
+    pendingSelectAll = false;
+    dismissSelectAllProgress();
     ViewUtil.animateOut(bottomActionBar, bottomActionBar.getExitAnimation());
   }
 
