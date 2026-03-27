@@ -118,6 +118,11 @@ object GroupsV2UpdateMessageConverter {
       }
     }
 
+    if (group != null && group.terminated) {
+      updates.add(GroupChangeChatUpdate.Update(groupTerminateChangeUpdate = GroupTerminateChangeUpdate(updaterAci = null)))
+      return GroupChangeChatUpdate(updates = updates)
+    }
+
     if (group != null && DecryptedGroupUtil.findMemberByAci(group.members, selfIds.aci).isPresent) {
       updates.add(GroupChangeChatUpdate.Update(groupMemberJoinedUpdate = GroupMemberJoinedUpdate(newMemberAci = selfIds.aci.toByteString())))
     }
