@@ -709,7 +709,7 @@ class Recipient(
 
   fun getFallbackAvatar(): FallbackAvatar {
     return if (isSelf) {
-      FallbackAvatar.Resource.Local(avatarColor)
+      FallbackAvatar.Resource.NoteToSelf(avatarColor)
     } else if (isResolving) {
       FallbackAvatar.Transparent
     } else if (isDistributionList) {

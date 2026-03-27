@@ -30,6 +30,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.AvatarGradientColors;
@@ -126,7 +127,12 @@ public final class AvatarUtil {
    */
   @WorkerThread
   public static @NonNull IconCompat getIconCompatForShortcut(@NonNull Context context, @NonNull Recipient recipient) {
-    return IconCompat.createWithBitmap(getBitmapForNotification(context, recipient, AdaptiveBitmapMetrics.getInnerWidth()));
+    int size = AdaptiveBitmapMetrics.getInnerWidth();
+    if (recipient.isSelf()) {
+      Drawable noteToSelfDrawable = getNoteToSelfDrawable(context, recipient.getAvatarColor(), size);
+      return IconCompat.createWithBitmap(DrawableUtil.toBitmap(noteToSelfDrawable, size, size));
+    }
+    return IconCompat.createWithBitmap(getBitmapForNotification(context, recipient, size));
   }
 
   @WorkerThread
@@ -137,10 +143,6 @@ public final class AvatarUtil {
   @WorkerThread
   public static @NonNull Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient, int size) {
     ThreadUtil.assertNotMainThread();
-
-    if (recipient.isSelf()) {
-      return DrawableUtil.toBitmap(getFallback(context, recipient, size), size, size);
-    }
 
     try {
       AvatarTarget   avatarTarget   = new AvatarTarget(size);
@@ -193,18 +195,23 @@ public final class AvatarUtil {
     }
   }
 
+  @NonNull
   private static Drawable getFallback(@NonNull Context context, @NonNull Recipient recipient, int targetSize) {
-    FallbackAvatar fallbackAvatar;
-    if (recipient.isSelf()) {
-      fallbackAvatar = recipient.getFallbackAvatar();
-    } else {
-      fallbackAvatar = FallbackAvatar.forTextOrDefault(recipient.getDisplayName(context), recipient.getAvatarColor());
-    }
+    FallbackAvatar fallbackAvatar = recipient.isSelf() ? recipient.getFallbackAvatar()
+                                                       : FallbackAvatar.forTextOrDefault(recipient.getDisplayName(context), recipient.getAvatarColor());
+    return createFallbackDrawable(context, fallbackAvatar, targetSize);
+  }
 
-    Drawable avatar = new FallbackAvatarDrawable(context, fallbackAvatar).circleCrop();
-    avatar.setBounds(0, 0, targetSize, targetSize);
+  @NonNull
+  private static Drawable getNoteToSelfDrawable(@NonNull Context context, @NonNull AvatarColor avatarColor, int size) {
+    return createFallbackDrawable(context, new FallbackAvatar.Resource.NoteToSelf(avatarColor), size);
+  }
 
-    return avatar;
+  @NonNull
+  private static Drawable createFallbackDrawable(@NonNull Context context, @NonNull FallbackAvatar avatar, int size) {
+    Drawable drawable = new FallbackAvatarDrawable(context, avatar).circleCrop();
+    drawable.setBounds(0, 0, size, size);
+    return drawable;
   }
 
   /**
