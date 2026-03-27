@@ -133,7 +133,7 @@ private fun DecryptedMember.toRemote(): Group.Member {
     userId = aciBytes,
     role = role.toRemote(),
     joinedAtVersion = joinedAtRevision,
-    labelEmoji = labelEmoji,
+    labelEmoji = if (labelString.isNotBlank()) labelEmoji else "",
     labelString = labelString
   )
 }
