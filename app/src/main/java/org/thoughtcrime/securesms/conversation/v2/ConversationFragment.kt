@@ -48,12 +48,12 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.MainThread
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -713,7 +713,6 @@ class ConversationFragment :
       startActivity(MemberLabelActivity.createIntent(requireContext(), groupId))
     }
 
-    ToolbarDependentMarginListener(binding.toolbar)
     initializeMediaKeyboard()
 
     binding.conversationVideoContainer.setClipToOutline(true)
@@ -726,8 +725,15 @@ class ConversationFragment :
       viewModel.onChatBoundsChanged(Rect(left, top, right, bottom))
     }
 
-    binding.toolbar.addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, _ ->
+    binding.toolbar.addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, oldBottom ->
       binding.conversationItemRecycler.padding(top = bottom)
+      if (bottom != oldBottom && ::threadHeaderMarginDecoration.isInitialized) {
+        val newMargin = bottom + 16.dp
+        if (threadHeaderMarginDecoration.toolbarMargin != newMargin) {
+          threadHeaderMarginDecoration.toolbarMargin = newMargin
+          binding.conversationItemRecycler.invalidateItemDecorations()
+        }
+      }
     }
 
     binding.conversationItemRecycler.addItemDecoration(ChatColorsDrawable.ChatColorsItemDecoration)
@@ -806,7 +812,6 @@ class ConversationFragment :
 
   override fun onConfigurationChanged(newConfig: Configuration) {
     super.onConfigurationChanged(newConfig)
-    ToolbarDependentMarginListener(binding.toolbar)
     inlineQueryController.onWindowSizeClassChanged(resources.getWindowSizeClass())
   }
 
@@ -2175,6 +2180,9 @@ class ConversationFragment :
     )
 
     threadHeaderMarginDecoration = ThreadHeaderMarginDecoration()
+
+    val statusBarInset = ViewCompat.getRootWindowInsets(binding.root)?.getInsets(WindowInsetsCompat.Type.systemBars())?.top ?: 0
+    threadHeaderMarginDecoration.toolbarMargin = statusBarInset + resources.getDimensionPixelSize(R.dimen.signal_m3_toolbar_height) + 16.dp
     binding.conversationItemRecycler.addItemDecoration(threadHeaderMarginDecoration)
 
     conversationItemDecorations = ConversationItemDecorations(hasWallpaper = args.wallpaper != null)
@@ -5150,25 +5158,6 @@ class ConversationFragment :
 
         datePicker.show(childFragmentManager, "DATE_PICKER")
       }
-    }
-  }
-
-  private inner class ToolbarDependentMarginListener(private val toolbar: Toolbar) : ViewTreeObserver.OnGlobalLayoutListener {
-
-    init {
-      toolbar.viewTreeObserver.addOnGlobalLayoutListener(this)
-    }
-
-    override fun onGlobalLayout() {
-      if (!isAdded || view == null) {
-        return
-      }
-
-      val rect = Rect()
-      toolbar.getGlobalVisibleRect(rect)
-      threadHeaderMarginDecoration.toolbarMargin = rect.bottom + 16.dp
-      binding.conversationItemRecycler.invalidateItemDecorations()
-      toolbar.viewTreeObserver.removeOnGlobalLayoutListener(this)
     }
   }
 
