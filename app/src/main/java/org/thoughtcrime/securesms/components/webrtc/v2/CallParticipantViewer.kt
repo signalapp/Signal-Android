@@ -91,7 +91,7 @@ fun RemoteParticipantContent(
   val isBlocked = recipient.isBlocked
   val isMissingMediaKeys = !participant.isMediaKeysReceived &&
     (System.currentTimeMillis() - participant.addedToCallTime) > 5000
-  val infoMode = isBlocked || isMissingMediaKeys
+  val infoMode = !participant.isSelf && (isBlocked || isMissingMediaKeys)
 
   Box(modifier = modifier) {
     BlurredBackgroundAvatar(recipient = recipient)
