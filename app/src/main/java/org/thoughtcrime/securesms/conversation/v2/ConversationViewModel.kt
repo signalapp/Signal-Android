@@ -733,6 +733,10 @@ class ConversationViewModel(
     }
   }
 
+  fun resetBackPressedState() {
+    internalBackPressedState.value = BackPressedState()
+  }
+
   fun toggleVote(poll: PollRecord, pollOption: PollOption, isChecked: Boolean) {
     viewModelScope.launch(Dispatchers.IO) {
       val voteCount = if (isChecked) {

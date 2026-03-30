@@ -650,6 +650,7 @@ class ConversationFragment :
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    viewModel.resetBackPressedState()
     binding.toolbar.isBackInvokedCallbackEnabled = false
     binding.root.setUseWindowTypes(args.conversationScreenType == ConversationScreenType.NORMAL && !resources.getWindowSizeClass().isSplitPane())
     if (args.conversationScreenType == ConversationScreenType.BUBBLE) {
@@ -1042,7 +1043,14 @@ class ConversationFragment :
 
       state.isInActionMode -> finishActionMode()
 
-      state.isMediaKeyboardShowing -> container.hideInput()
+      state.isMediaKeyboardShowing -> {
+        if (container.isInputShowing) {
+          container.hideInput()
+        } else {
+          Log.d(TAG, "handleBackPressed() - media keyboard state was stale, clearing")
+          viewModel.setIsMediaKeyboardShowing(false)
+        }
+      }
 
       else -> {
         // State has changed since the back handler was enabled. Let the back press proceed
