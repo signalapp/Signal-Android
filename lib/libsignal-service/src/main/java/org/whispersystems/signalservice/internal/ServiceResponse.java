@@ -3,11 +3,9 @@ package org.whispersystems.signalservice.internal;
 
 
 import org.whispersystems.signalservice.api.NetworkResult;
-import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.util.Preconditions;
-import org.whispersystems.signalservice.internal.websocket.WebsocketResponse;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -27,14 +25,6 @@ public final class ServiceResponse<Result> {
   private final Optional<Result> result;
   private final Optional<Throwable> applicationError;
   private final Optional<Throwable> executionError;
-
-  private ServiceResponse(Result result, WebsocketResponse response) {
-    this(response.getStatus(), response.getBody(), result, null, null);
-  }
-
-  private ServiceResponse(Throwable applicationError, WebsocketResponse response) {
-    this(response.getStatus(), response.getBody(), null, applicationError, null);
-  }
 
   public ServiceResponse(int status,
                          String body,
@@ -118,16 +108,8 @@ public final class ServiceResponse<Result> {
     }
   }
 
-  public static <T> ServiceResponse<T> forResult(T result, WebsocketResponse response) {
-    return new ServiceResponse<>(result, response);
-  }
-
   public static <T> ServiceResponse<T> forResult(T result, int status, String body) {
     return new ServiceResponse<>(status, body, result, null, null);
-  }
-
-  public static <T> ServiceResponse<T> forApplicationError(Throwable throwable, WebsocketResponse response) {
-    return new ServiceResponse<T>(throwable, response);
   }
 
   public static <T> ServiceResponse<T> forApplicationError(Throwable throwable, int status, String body) {
@@ -148,12 +130,5 @@ public final class ServiceResponse<Result> {
     } else {
       return forExecutionError(throwable);
     }
-  }
-
-  public static <T, I> ServiceResponse<T> coerceError(ServiceResponse<I> response) {
-    if (response.applicationError.isPresent()) {
-      return ServiceResponse.forApplicationError(response.applicationError.get(), response.status, response.body.orElse(null));
-    }
-    return ServiceResponse.forExecutionError(response.executionError.orElse(null));
   }
 }
