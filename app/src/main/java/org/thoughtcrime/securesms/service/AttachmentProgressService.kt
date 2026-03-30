@@ -9,6 +9,7 @@ import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.core.app.NotificationCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -112,7 +113,16 @@ class AttachmentProgressService : SafeForegroundService() {
   }
 
   val listener = {
-    startForeground(notificationId, getForegroundNotification(Intent()))
+    try {
+      startForeground(notificationId, getForegroundNotification(Intent()))
+    } catch (e: Exception) {
+      if (Build.VERSION.SDK_INT >= 31 && e.message?.contains("Time limit", ignoreCase = true) == true) {
+        Log.w(TAG, "Foreground service timed out, but not in onTimeout call", e)
+        stopDueToTimeout()
+      } else {
+        throw e
+      }
+    }
   }
 
   override val tag: String = TAG
@@ -141,7 +151,10 @@ class AttachmentProgressService : SafeForegroundService() {
 
   override fun onTimeout(startId: Int, fgsType: Int) {
     Log.w(TAG, "AttachmentProgressService has timed out. Removing all controllers. startId: $startId, foregroundServiceType: $fgsType")
+    stopDueToTimeout()
+  }
 
+  private fun stopDueToTimeout() {
     controllerLock.withLock {
       controllers.forEach { it.closeFromTimeout() }
       stop(context = this, fromTimeout = true)
