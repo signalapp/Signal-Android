@@ -212,7 +212,7 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
       verb = "PUT",
       path = "/api/v1/message",
       id = Random.nextLong(),
-      headers = listOf("X-Signal-Timestamp: ${this.timestamp}"),
+      headers = listOf("X-Signal-Timestamp: ${this.serverTimestamp}"),
       body = this.encodeByteString()
     )
   }
