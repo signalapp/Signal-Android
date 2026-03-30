@@ -109,7 +109,13 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
               .ifNecessary()
               .onAllGranted { callbacks.onNavigateToCamera() }
               .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), R.drawable.ic_camera_24)
-              .withPermanentDenialDialog(getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos_videos, getParentFragmentManager())
+              .withPermanentDenialDialog(
+                getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos),
+                null,
+                R.string.CameraXFragment_allow_access_camera,
+                R.string.CameraXFragment_to_capture_photos_videos,
+                getParentFragmentManager()
+              )
               .onAnyDenied { Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show() }
               .execute()
           }
@@ -212,7 +218,11 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     ) { galleryItems, selectedMedia ->
       galleryItems.map {
         if (it is MediaGallerySelectableItem.FileModel) {
-          it.copy(isSelected = selectedMedia.contains(it.media), selectionOneBasedIndex = selectedMedia.indexOf(it.media) + 1)
+          val selectedIndex = selectedMedia.indexOfFirst { selected -> selected.uri == it.media.uri }
+          it.copy(
+            isSelected = selectedIndex >= 0,
+            selectionOneBasedIndex = selectedIndex + 1
+          )
         } else {
           it
         }
@@ -291,7 +301,14 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
       .request(*PermissionCompat.forImagesAndVideos())
       .ifNecessary()
       .onAnyResult { refreshMediaGallery() }
-      .withPermanentDenialDialog(getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio), null, R.string.AttachmentManager_signal_allow_storage, R.string.AttachmentManager_signal_to_show_photos, true, parentFragmentManager)
+      .withPermanentDenialDialog(
+        getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio),
+        null,
+        R.string.AttachmentManager_signal_allow_storage,
+        R.string.AttachmentManager_signal_to_show_photos,
+        true,
+        parentFragmentManager
+      )
       .onSomeDenied {
         val deniedPermission = PermissionCompat.getRequiredPermissionsForDenial()
         if (it.containsAll(deniedPermission.toList())) {
