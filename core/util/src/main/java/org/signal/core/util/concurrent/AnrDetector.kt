@@ -119,10 +119,9 @@ object AnrDetector {
     }
 
     private fun getMainThreadDump(): String {
-      val dump: Map<Thread, Array<StackTraceElement>> = Thread.getAllStackTraces()
       val mainThread = Looper.getMainLooper().thread
       val date = dateFormat.format(Date())
-      val dumpString = dump[mainThread]?.joinToString(separator = "\n") ?: "Not available."
+      val dumpString = mainThread.stackTrace.takeIf { it.isNotEmpty() }?.joinToString(separator = "\n") ?: "Not available."
 
       return "--- $date:\n$dumpString"
     }
