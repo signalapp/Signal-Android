@@ -424,6 +424,12 @@ object BackupRepository {
   }
 
   fun markOutOfRemoteStorageSpaceError() {
+    if (SignalStore.backup.isNotEnoughRemoteStorageSpace) {
+      return
+    }
+
+    SignalStore.backup.markNotEnoughRemoteStorageSpace()
+
     val context = AppDependencies.application
 
     val pendingIntent = PendingIntent.getActivity(context, 0, AppSettingsActivity.remoteBackups(context), cancelCurrent())
@@ -436,8 +442,6 @@ object BackupRepository {
       .build()
 
     ServiceUtil.getNotificationManager(context).notify(NotificationIds.OUT_OF_REMOTE_STORAGE, notification)
-
-    SignalStore.backup.markNotEnoughRemoteStorageSpace()
   }
 
   fun clearOutOfRemoteStorageSpaceError() {

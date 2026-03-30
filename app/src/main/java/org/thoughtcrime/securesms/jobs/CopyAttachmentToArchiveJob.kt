@@ -86,6 +86,11 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       return Result.success()
     }
 
+    if (SignalStore.backup.isNotEnoughRemoteStorageSpace) {
+      Log.w(TAG, "[$attachmentId] Already marked as out of remote storage space. Failing.")
+      return Result.failure()
+    }
+
     val attachment: DatabaseAttachment? = SignalDatabase.attachments.getAttachment(attachmentId)
 
     if (attachment == null) {
