@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFoldersRepository
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
@@ -44,7 +45,7 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
 
   init {
     viewModelScope.launch {
-      SignalStore.backup.newLocalPlaintextBackupProgressFlow.collect { progress ->
+      LocalExportProgress.plaintextProgress.collect { progress ->
         store.update {
           it.copy(
             plaintextExportProgress = progress,

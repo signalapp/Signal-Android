@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.chats
 
-import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 
 data class ChatsSettingsState(
@@ -14,7 +14,7 @@ data class ChatsSettingsState(
   val userUnregistered: Boolean,
   val clientDeprecated: Boolean,
   val isPlaintextExportEnabled: Boolean,
-  val plaintextExportProgress: LocalBackupCreationProgress = SignalStore.backup.newLocalPlaintextBackupProgress,
+  val plaintextExportProgress: LocalBackupCreationProgress = LocalExportProgress.plaintextProgress.value,
   val chatExportState: ChatExportState = ChatExportState.None,
   val includeMediaInExport: Boolean = false
 ) {

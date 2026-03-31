@@ -10,12 +10,12 @@ import kotlinx.coroutines.launch
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.service.GenericForegroundService
@@ -104,7 +104,7 @@ class LocalPlaintextArchiveJob internal constructor(
 
         val progressScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
         progressScope.launch {
-          SignalStore.backup.newLocalPlaintextBackupProgressFlow.collect { progress ->
+          LocalExportProgress.plaintextProgress.collect { progress ->
             updateNotification(progress, notification)
           }
         }
@@ -146,14 +146,14 @@ class LocalPlaintextArchiveJob internal constructor(
 
   override fun onFailure() {
     zipFile?.delete()
-    val current = SignalStore.backup.newLocalPlaintextBackupProgress
+    val current = LocalExportProgress.plaintextProgress.value
     if (current.canceled == null && current.failed == null) {
-      SignalStore.backup.newLocalPlaintextBackupProgress = LocalBackupCreationProgress(failed = LocalBackupCreationProgress.Failed())
+      LocalExportProgress.setPlaintextProgress(LocalBackupCreationProgress(failed = LocalBackupCreationProgress.Failed()))
     }
   }
 
   private fun setProgress(progress: LocalBackupCreationProgress, notification: NotificationController?) {
-    SignalStore.backup.newLocalPlaintextBackupProgress = progress
+    LocalExportProgress.setPlaintextProgress(progress)
     updateNotification(progress, notification)
   }
 

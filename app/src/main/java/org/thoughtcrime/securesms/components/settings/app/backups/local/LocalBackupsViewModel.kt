@@ -18,6 +18,7 @@ import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.BackupPassphrase
+import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyCredentialManagerHandler
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -74,7 +75,7 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
     }
 
     viewModelScope.launch {
-      SignalStore.backup.newLocalBackupProgressFlow.collect { progress ->
+      LocalExportProgress.encryptedProgress.collect { progress ->
         internalSettingsState.update { it.copy(progress = progress) }
       }
     }
@@ -108,7 +109,7 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
   }
 
   fun onBackupStarted() {
-    SignalStore.backup.newLocalBackupProgress = LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.NONE))
+    LocalExportProgress.setEncryptedProgress(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.NONE)))
   }
 
   fun turnOffAndDelete(context: Context) {

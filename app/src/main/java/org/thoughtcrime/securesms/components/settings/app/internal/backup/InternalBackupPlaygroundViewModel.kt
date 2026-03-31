@@ -40,6 +40,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
+import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.DebugBackupMetadata
@@ -92,7 +93,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
   init {
     viewModelScope.launch {
-      SignalStore.backup.newLocalPlaintextBackupProgressFlow.collect { progress ->
+      LocalExportProgress.plaintextProgress.collect { progress ->
         _state.value = _state.value.copy(plaintextProgress = progress)
       }
     }

@@ -72,7 +72,6 @@ import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
-import org.thoughtcrime.securesms.backup.isIdle
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.copyAttachmentToArchive
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.exportForDebugging
 import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
@@ -115,7 +114,6 @@ import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.CancelRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
-import org.thoughtcrime.securesms.jobs.LocalArchiveJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
@@ -132,7 +130,6 @@ import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
-import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -590,14 +587,6 @@ object BackupRepository {
 
   fun snoozeDownloadYourBackupData() {
     SignalStore.backup.snoozeDownloadNotifier()
-  }
-
-  @JvmStatic
-  fun maybeFixAnyDanglingLocalExportProgress() {
-    if (!SignalStore.backup.newLocalBackupProgress.isIdle && AppDependencies.jobManager.find { it.factoryKey == LocalArchiveJob.KEY }.isEmpty()) {
-      Log.w(TAG, "Found stale local backup progress with no active job. Resetting to idle.")
-      SignalStore.backup.newLocalBackupProgress = LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle())
-    }
   }
 
   @JvmStatic

@@ -11,6 +11,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.BackupFileIOError
 import org.thoughtcrime.securesms.backup.FullBackupExporter.BackupCanceledException
+import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
 import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
 import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
@@ -92,7 +93,7 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
 
         val progressScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
         progressScope.launch {
-          SignalStore.backup.newLocalBackupProgressFlow.collect { progress ->
+          LocalExportProgress.encryptedProgress.collect { progress ->
             updateNotification(progress, notification)
           }
         }
@@ -153,11 +154,11 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
   }
 
   override fun onFailure() {
-    SignalStore.backup.newLocalBackupProgress = LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle())
+    LocalExportProgress.setEncryptedProgress(LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle()))
   }
 
   private fun setProgress(progress: LocalBackupCreationProgress, notification: NotificationController?) {
-    SignalStore.backup.newLocalBackupProgress = progress
+    LocalExportProgress.setEncryptedProgress(progress)
     updateNotification(progress, notification)
   }
 

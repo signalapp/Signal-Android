@@ -22,6 +22,7 @@ import org.signal.core.util.readFully
 import org.signal.core.util.toJson
 import org.signal.libsignal.crypto.Aes256Ctr32
 import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -72,10 +73,10 @@ object LocalArchiver {
 
       Log.i(TAG, "Listing all current files")
       val allFiles = filesFileSystem.allFiles { completed, total ->
-        SignalStore.backup.newLocalBackupProgress = LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.INITIALIZING, frameExportCount = completed.toLong(), frameTotalCount = total.toLong()))
+        LocalExportProgress.setEncryptedProgress(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.INITIALIZING, frameExportCount = completed.toLong(), frameTotalCount = total.toLong())))
       }
       stopwatch.split("files-list")
-      SignalStore.backup.newLocalBackupProgress = LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.INITIALIZING))
+      LocalExportProgress.setEncryptedProgress(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.INITIALIZING)))
 
       val mediaNames: MutableSet<MediaName> = Collections.synchronizedSet(HashSet())
 
@@ -387,7 +388,7 @@ object LocalArchiver {
     }
 
     private fun post(progress: LocalBackupCreationProgress) {
-      SignalStore.backup.newLocalBackupProgress = progress
+      LocalExportProgress.setEncryptedProgress(progress)
     }
   }
 
@@ -442,7 +443,7 @@ object LocalArchiver {
     }
 
     private fun post(progress: LocalBackupCreationProgress) {
-      SignalStore.backup.newLocalPlaintextBackupProgress = progress
+      LocalExportProgress.setPlaintextProgress(progress)
     }
   }
 }
