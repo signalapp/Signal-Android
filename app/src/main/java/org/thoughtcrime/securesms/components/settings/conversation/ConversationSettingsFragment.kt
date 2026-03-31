@@ -96,7 +96,7 @@ import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
 import org.thoughtcrime.securesms.main.MainNavigationRouter
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.nicknames.NicknameActivity
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
@@ -486,7 +486,7 @@ class ConversationSettingsFragment :
                 .setMessage(R.string.ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story)
                 .setPositiveButton(android.R.string.ok) { d, _ -> d.dismiss() }
                 .show()
-            } else if (CameraXUtil.isSupported()) {
+            } else if (CameraXRemoteConfig.isSupported()) {
               addToGroupStoryDelegate.addToStory(state.recipient.id)
             } else {
               Permissions.with(this@ConversationSettingsFragment)

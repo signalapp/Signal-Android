@@ -159,7 +159,7 @@ import org.thoughtcrime.securesms.main.navigateToDetailLocation
 import org.thoughtcrime.securesms.main.rememberDetailNavHostController
 import org.thoughtcrime.securesms.main.rememberFocusRequester
 import org.thoughtcrime.securesms.main.storiesNavGraphBuilder
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
@@ -1125,7 +1125,7 @@ class MainActivity :
       }
     }
 
-    if (CameraXUtil.isSupported()) {
+    if (CameraXRemoteConfig.isSupported()) {
       onGranted()
     } else {
       Permissions.with(this@MainActivity)

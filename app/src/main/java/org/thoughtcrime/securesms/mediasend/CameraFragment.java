@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil;
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 
 import java.io.FileDescriptor;
@@ -24,7 +24,7 @@ public interface CameraFragment {
 
   @SuppressLint({ "RestrictedApi", "UnsafeOptInUsageError" })
   static Fragment newInstance(boolean qrScanEnabled) {
-    if (CameraXUtil.isSupported()) {
+    if (CameraXRemoteConfig.isSupported()) {
       return CameraXFragment.newInstance(qrScanEnabled);
     } else {
       return Camera1Fragment.newInstance();
@@ -32,7 +32,7 @@ public interface CameraFragment {
   }
 
   static Class<? extends Fragment> getFragmentClass() {
-    if (CameraXUtil.isSupported()) {
+    if (CameraXRemoteConfig.isSupported()) {
       return CameraXFragment.class;
     } else {
       return Camera1Fragment.class;
@@ -41,7 +41,7 @@ public interface CameraFragment {
 
   @SuppressLint({ "RestrictedApi", "UnsafeOptInUsageError" })
   static Fragment newInstanceForAvatarCapture() {
-    if (CameraXUtil.isSupported()) {
+    if (CameraXRemoteConfig.isSupported()) {
       return CameraXFragment.newInstanceForAvatarCapture();
     } else {
       return Camera1Fragment.newInstance();

@@ -14,7 +14,7 @@ sealed interface CameraScreenEvents {
     val cameraProvider: ProcessCameraProvider,
     val surfaceProvider: Preview.SurfaceProvider,
     val context: Context,
-    val enableVideoCapture: Boolean = true,
+    val captureMode: CameraCaptureMode = CameraCaptureMode.ImageAndVideoSimultaneous,
     val enableQrScanning: Boolean = false
   ) : CameraScreenEvents
 

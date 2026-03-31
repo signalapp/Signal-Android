@@ -17,7 +17,7 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.qr.QrScannerView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.LinkDeviceResult
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXModelBlocklist
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig
 import org.thoughtcrime.securesms.qr.QrScanScreens
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.concurrent.TimeUnit
@@ -104,7 +104,7 @@ fun LinkDeviceQrScanScreen(
           view
         },
         update = { view: QrScannerView ->
-          view.start(lifecycleOwner = lifecycleOwner, forceLegacy = CameraXModelBlocklist.isBlocklisted())
+          view.start(lifecycleOwner = lifecycleOwner, forceLegacy = CameraXRemoteConfig.isBlocklisted())
           if (showFrontCamera != null) {
             view.toggleCamera()
           }

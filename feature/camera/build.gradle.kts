@@ -21,7 +21,7 @@ dependencies {
   lintChecks(project(":lintchecks"))
 
   // Signal Core
-  implementation(project(":core:util-jvm"))
+  implementation(project(":core:util"))
   implementation(project(":core:ui"))
   implementation(project(":lib:glide"))
 

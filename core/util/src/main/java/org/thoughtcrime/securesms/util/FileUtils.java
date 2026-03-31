@@ -17,7 +17,7 @@ public final class FileUtils {
 
   public static native int getFileDescriptorOwner(FileDescriptor fileDescriptor);
 
-  static native int createMemoryFileDescriptor(String name);
+  public static native int createMemoryFileDescriptor(String name);
 
   public static byte[] getFileDigest(FileInputStream fin) throws IOException {
     try {

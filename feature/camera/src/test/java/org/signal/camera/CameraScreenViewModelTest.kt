@@ -86,7 +86,7 @@ class CameraScreenViewModelTest {
   // ===========================================================================
 
   private fun bindCamera(
-    enableVideoCapture: Boolean = true,
+    captureMode: CameraCaptureMode = CameraCaptureMode.ImageAndVideoSimultaneous,
     enableQrScanning: Boolean = false
   ) = viewModel.onEvent(
     CameraScreenEvents.BindCamera(
@@ -94,7 +94,7 @@ class CameraScreenViewModelTest {
       cameraProvider = mockCameraProvider,
       surfaceProvider = mockSurfaceProvider,
       context = RuntimeEnvironment.getApplication(),
-      enableVideoCapture = enableVideoCapture,
+      captureMode = captureMode,
       enableQrScanning = enableQrScanning
     )
   )
@@ -145,7 +145,7 @@ class CameraScreenViewModelTest {
   fun `binding with all use cases binds video and QR on the first attempt`() {
     val attempts = captureBindingAttempts()
 
-    bindCamera(enableVideoCapture = true, enableQrScanning = true)
+    bindCamera(captureMode = CameraCaptureMode.ImageAndVideoSimultaneous, enableQrScanning = true)
 
     assertThat(attempts.size).isEqualTo(1)
     assertThat(attempts[0].hasVideoCapture()).isTrue()
@@ -156,7 +156,7 @@ class CameraScreenViewModelTest {
   fun `binding with no optional use cases binds only preview and image capture`() {
     val attempts = captureBindingAttempts(failCount = 0)
 
-    bindCamera(enableVideoCapture = false, enableQrScanning = false)
+    bindCamera(captureMode = CameraCaptureMode.ImageOnly, enableQrScanning = false)
 
     assertThat(attempts.size).isEqualTo(1)
     assertThat(attempts[0].hasVideoCapture()).isFalse()
@@ -171,7 +171,7 @@ class CameraScreenViewModelTest {
   fun `when first attempt fails with video and QR, second attempt drops video but keeps QR`() {
     val attempts = captureBindingAttempts(failCount = 1)
 
-    bindCamera(enableVideoCapture = true, enableQrScanning = true)
+    bindCamera(captureMode = CameraCaptureMode.ImageAndVideoSimultaneous, enableQrScanning = true)
 
     assertThat(attempts.size).isEqualTo(2)
     assertThat(attempts[0].hasVideoCapture()).isTrue()
@@ -184,7 +184,7 @@ class CameraScreenViewModelTest {
   fun `when first two attempts fail with video and QR, third attempt drops both`() {
     val attempts = captureBindingAttempts(failCount = 2)
 
-    bindCamera(enableVideoCapture = true, enableQrScanning = true)
+    bindCamera(captureMode = CameraCaptureMode.ImageAndVideoSimultaneous, enableQrScanning = true)
 
     assertThat(attempts.size).isEqualTo(3)
     assertThat(attempts[2].hasVideoCapture()).isFalse()
@@ -195,7 +195,7 @@ class CameraScreenViewModelTest {
   fun `when all attempts fail, all three use case combinations are tried`() {
     val attempts = captureBindingAttempts(failCount = Int.MAX_VALUE)
 
-    bindCamera(enableVideoCapture = true, enableQrScanning = true)
+    bindCamera(captureMode = CameraCaptureMode.ImageAndVideoSimultaneous, enableQrScanning = true)
 
     assertThat(attempts.size).isEqualTo(3)
   }
@@ -204,7 +204,7 @@ class CameraScreenViewModelTest {
   fun `with only video requested, fallback drops video and nothing else`() {
     val attempts = captureBindingAttempts(failCount = Int.MAX_VALUE)
 
-    bindCamera(enableVideoCapture = true, enableQrScanning = false)
+    bindCamera(captureMode = CameraCaptureMode.ImageAndVideoSimultaneous, enableQrScanning = false)
 
     assertThat(attempts.size).isEqualTo(2)
     assertThat(attempts[0].hasVideoCapture()).isTrue()
@@ -216,7 +216,7 @@ class CameraScreenViewModelTest {
   fun `with only QR requested, fallback drops QR and nothing else`() {
     val attempts = captureBindingAttempts(failCount = Int.MAX_VALUE)
 
-    bindCamera(enableVideoCapture = false, enableQrScanning = true)
+    bindCamera(captureMode = CameraCaptureMode.ImageOnly, enableQrScanning = true)
 
     assertThat(attempts.size).isEqualTo(2)
     assertThat(attempts[0].hasImageAnalysis()).isTrue()
@@ -228,7 +228,7 @@ class CameraScreenViewModelTest {
   fun `each failed binding attempt calls unbindAll before retrying`() {
     captureBindingAttempts(failCount = 2)
 
-    bindCamera(enableVideoCapture = true, enableQrScanning = true)
+    bindCamera(captureMode = CameraCaptureMode.ImageAndVideoSimultaneous, enableQrScanning = true)
 
     // unbindAll called once before each of the 3 attempts
     verify(exactly = 3) { mockCameraProvider.unbindAll() }
@@ -242,7 +242,7 @@ class CameraScreenViewModelTest {
   fun `when video was dropped during initial binding, startRecording rebinds with video`() {
     // Initial bind: first attempt (with video) fails, second (without) succeeds → limited mode
     captureBindingAttempts(failCount = 1)
-    bindCamera(enableVideoCapture = true, enableQrScanning = false)
+    bindCamera(captureMode = CameraCaptureMode.ImageAndVideoSimultaneous, enableQrScanning = false)
 
     val postInitAttempts = captureBindingAttempts()
 
@@ -259,7 +259,7 @@ class CameraScreenViewModelTest {
   @Test
   fun `in normal binding mode, startRecording does not rebind`() {
     captureBindingAttempts()
-    bindCamera(enableVideoCapture = true, enableQrScanning = false)
+    bindCamera(captureMode = CameraCaptureMode.ImageAndVideoSimultaneous, enableQrScanning = false)
 
     val postInitAttempts = captureBindingAttempts()
 
@@ -275,7 +275,7 @@ class CameraScreenViewModelTest {
   @Test
   fun `when the video rebind fails, restores the last successful use case set`() {
     captureBindingAttempts(failCount = 1)
-    bindCamera(enableVideoCapture = true, enableQrScanning = false)
+    bindCamera(captureMode = CameraCaptureMode.ImageAndVideoSimultaneous, enableQrScanning = false)
 
     // Both the failed video rebind and the restore attempt are captured here
     val postInitAttempts = captureBindingAttempts(failCount = Int.MAX_VALUE)

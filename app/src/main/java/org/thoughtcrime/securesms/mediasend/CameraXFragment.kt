@@ -42,9 +42,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import org.signal.camera.CameraCaptureMode
 import org.signal.camera.CameraScreen
 import org.signal.camera.CameraScreenEvents
 import org.signal.camera.CameraScreenViewModel
+import org.signal.camera.CameraXUtil
 import org.signal.camera.VideoCaptureResult
 import org.signal.camera.VideoOutput
 import org.signal.camera.hud.GalleryThumbnailButton
@@ -55,12 +57,14 @@ import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.permissions.PermissionDeniedBottomSheet.Companion.showPermissionFragment
 import org.signal.core.ui.permissions.Permissions
+import org.signal.core.util.MemoryFileDescriptor
+import org.signal.core.util.asListContains
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXModePolicy
+import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.MemoryFileDescriptor
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.video.VideoUtil
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -99,7 +103,7 @@ class CameraXFragment : ComposeFragment(), CameraFragment {
 
   private var controller: CameraFragment.Controller? = null
   private var videoFileDescriptor: MemoryFileDescriptor? = null
-  private var cameraXModePolicy: CameraXModePolicy? = null
+  private var captureMode: CameraCaptureMode = CameraCaptureMode.ImageOnly
 
   private val isVideoEnabled: Boolean
     get() = requireArguments().getBoolean(IS_VIDEO_ENABLED, true)
@@ -121,24 +125,17 @@ class CameraXFragment : ComposeFragment(), CameraFragment {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-
-    cameraXModePolicy = CameraXModePolicy.acquire(
-      requireContext(),
-      controller!!.mediaConstraints,
-      isVideoEnabled,
-      isQrScanEnabled
-    )
-
-    Log.d(TAG, "Starting CameraX with mode policy ${cameraXModePolicy?.javaClass?.simpleName}")
+    captureMode = resolveCaptureMode()
+    Log.d(TAG, "Starting CameraX with capture mode $captureMode")
   }
 
   @Composable
   override fun FragmentContent() {
     CameraXScreen(
       controller = controller,
-      isVideoEnabled = isVideoEnabled && Build.VERSION.SDK_INT >= 26,
+      isVideoEnabled = captureMode != CameraCaptureMode.ImageOnly,
       isQrScanEnabled = isQrScanEnabled,
-      isVideoCaptureBindingEnabled = cameraXModePolicy is CameraXModePolicy.Mixed,
+      captureMode = captureMode,
       controlsVisible = controlsVisible.value,
       selectedMediaCount = selectedMediaCount.intValue,
       onCheckPermissions = { checkPermissions(isVideoEnabled) },
@@ -265,8 +262,8 @@ class CameraXFragment : ComposeFragment(), CameraFragment {
 
     return try {
       closeVideoFileDescriptor()
-      videoFileDescriptor = CameraXVideoCaptureHelper.createFileDescriptor(requireContext())
-      videoFileDescriptor?.parcelFileDescriptor
+      videoFileDescriptor = CameraXUtil.createVideoFileDescriptor(requireContext())
+      videoFileDescriptor?.parcelFd
     } catch (e: IOException) {
       Log.w(TAG, "Failed to create video file descriptor", e)
       null
@@ -292,6 +289,22 @@ class CameraXFragment : ComposeFragment(), CameraFragment {
     }
     return maxDuration
   }
+
+  private fun resolveCaptureMode(): CameraCaptureMode {
+    val isVideoSupported = Build.VERSION.SDK_INT >= 26 &&
+      isVideoEnabled &&
+      MediaConstraints.isVideoTranscodeAvailable()
+
+    val isMixedModeSupported = isVideoSupported &&
+      CameraXUtil.isMixedModeSupported(requireContext()) &&
+      !RemoteConfig.cameraXMixedModelBlocklist.asListContains(Build.MODEL)
+
+    return when {
+      isMixedModeSupported -> CameraCaptureMode.ImageAndVideoSimultaneous
+      isVideoSupported -> CameraCaptureMode.ImageAndVideoExclusive
+      else -> CameraCaptureMode.ImageOnly
+    }
+  }
 }
 
 @Composable
@@ -299,7 +312,7 @@ private fun CameraXScreen(
   controller: CameraFragment.Controller?,
   isVideoEnabled: Boolean,
   isQrScanEnabled: Boolean,
-  isVideoCaptureBindingEnabled: Boolean,
+  captureMode: CameraCaptureMode,
   controlsVisible: Boolean,
   selectedMediaCount: Int,
   onCheckPermissions: () -> Unit,
@@ -406,7 +419,7 @@ private fun CameraXScreen(
         emitter = { event -> cameraViewModel.onEvent(event) },
         roundCorners = cameraDisplay.roundViewFinderCorners,
         contentAlignment = cameraAlignment,
-        enableVideoCapture = isVideoCaptureBindingEnabled,
+        captureMode = captureMode,
         enableQrScanning = isQrScanEnabled,
         modifier = Modifier.padding(bottom = viewportBottomMargin)
       ) {
@@ -615,7 +628,7 @@ private fun CameraXScreenPreview_20_9() {
       controller = null,
       isVideoEnabled = true,
       isQrScanEnabled = false,
-      isVideoCaptureBindingEnabled = true,
+      captureMode = CameraCaptureMode.ImageAndVideoSimultaneous,
       controlsVisible = true,
       selectedMediaCount = 0,
       onCheckPermissions = {},
@@ -643,7 +656,7 @@ private fun CameraXScreenPreview_19_9() {
       controller = null,
       isVideoEnabled = true,
       isQrScanEnabled = false,
-      isVideoCaptureBindingEnabled = true,
+      captureMode = CameraCaptureMode.ImageAndVideoSimultaneous,
       controlsVisible = true,
       selectedMediaCount = 0,
       onCheckPermissions = {},
@@ -671,7 +684,7 @@ private fun CameraXScreenPreview_18_9() {
       controller = null,
       isVideoEnabled = true,
       isQrScanEnabled = false,
-      isVideoCaptureBindingEnabled = true,
+      captureMode = CameraCaptureMode.ImageAndVideoSimultaneous,
       controlsVisible = true,
       selectedMediaCount = 0,
       onCheckPermissions = {},
@@ -699,7 +712,7 @@ private fun CameraXScreenPreview_16_9() {
       controller = null,
       isVideoEnabled = true,
       isQrScanEnabled = false,
-      isVideoCaptureBindingEnabled = true,
+      captureMode = CameraCaptureMode.ImageAndVideoSimultaneous,
       controlsVisible = true,
       selectedMediaCount = 0,
       onCheckPermissions = {},
@@ -727,7 +740,7 @@ private fun CameraXScreenPreview_6_5() {
       controller = null,
       isVideoEnabled = true,
       isQrScanEnabled = false,
-      isVideoCaptureBindingEnabled = true,
+      captureMode = CameraCaptureMode.ImageAndVideoSimultaneous,
       controlsVisible = true,
       selectedMediaCount = 0,
       onCheckPermissions = {},

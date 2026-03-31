@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.conversation.ManageContextMenu
 import org.thoughtcrime.securesms.databinding.V2MediaGalleryFragmentBinding
 import org.thoughtcrime.securesms.mediasend.MediaRepository
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaGalleryGridItemTouchListener
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
@@ -101,7 +101,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     if (callbacks.isCameraEnabled()) {
       binding.mediaGalleryToolbar.setOnMenuItemClickListener { item ->
         if (item.itemId == R.id.action_camera) {
-          if (CameraXUtil.isSupported()) {
+          if (CameraXRemoteConfig.isSupported()) {
             callbacks.onNavigateToCamera()
           } else {
             Permissions.with(this)
