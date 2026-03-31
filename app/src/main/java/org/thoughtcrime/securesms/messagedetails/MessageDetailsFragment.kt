@@ -417,11 +417,11 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
     Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
   }
 
-  override fun onExpandEvents(messageId: Long) {
+  override fun onExpandEvents(messageId: Long, itemView: View, collapsedSize: Int) {
     Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
   }
 
-  override fun onCollapseEvents(messageId: Long) {
+  override fun onCollapseEvents(messageId: Long, itemView: View, collapsedSize: Int) {
     Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
   }
 

@@ -875,9 +875,9 @@ public final class ConversationUpdateItem extends FrameLayout
       collapsedButton.setOnClickListener(v -> {
         if (eventListener != null) {
           if (CollapsedState.isCollapsed(collapsedState)) {
-            eventListener.onExpandEvents(conversationMessage.getMessageRecord().getId());
+            eventListener.onExpandEvents(conversationMessage.getMessageRecord().getId(), ConversationUpdateItem.this, conversationMessage.getCollapsedSize());
           } else if (!anyCollapsibleChildrenSelected()) {
-            eventListener.onCollapseEvents(conversationMessage.getMessageRecord().getId());
+            eventListener.onCollapseEvents(conversationMessage.getMessageRecord().getId(), ConversationUpdateItem.this, conversationMessage.getCollapsedSize());
           }
         } else {
           passthroughClickListener.onClick(v);

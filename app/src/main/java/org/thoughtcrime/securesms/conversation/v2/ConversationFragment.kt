@@ -587,6 +587,7 @@ class ConversationFragment :
   private var progressDialog: ProgressCardDialogFragment? = null
   private var firstPinRender: Boolean = true
   private var skipNextBackPressHandling: Boolean = false
+  private var collapsibleEventScrollPosition: CollapsibleEventScrollPosition? = null
 
   private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
     override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
@@ -1146,6 +1147,13 @@ class ConversationFragment :
               (context as? MainActivity)?.onFirstRender()
               doAfterFirstRender()
             }
+          }
+
+          if (collapsibleEventScrollPosition != null) {
+            val scrollState = collapsibleEventScrollPosition!!
+            val offset = binding.conversationItemRecycler.height - scrollState.top - scrollState.height
+            layoutManager.scrollToPositionWithOffset(scrollState.position, offset)
+            collapsibleEventScrollPosition = null
           }
         }
       })
@@ -3812,11 +3820,19 @@ class ConversationFragment :
       }
     }
 
-    override fun onExpandEvents(messageId: Long) {
+    override fun onExpandEvents(messageId: Long, itemView: View, collapsedSize: Int) {
+      val position = binding.conversationItemRecycler.getChildAdapterPosition(itemView)
+      if (position != RecyclerView.NO_POSITION && position != 0) {
+        collapsibleEventScrollPosition = CollapsibleEventScrollPosition(position = position + (collapsedSize - 1), top = itemView.top, height = itemView.height)
+      }
       viewModel.onExpandEvents(messageId)
     }
 
-    override fun onCollapseEvents(messageId: Long) {
+    override fun onCollapseEvents(messageId: Long, itemView: View, collapsedSize: Int) {
+      val position = binding.conversationItemRecycler.getChildAdapterPosition(itemView)
+      if (position != RecyclerView.NO_POSITION) {
+        collapsibleEventScrollPosition = CollapsibleEventScrollPosition(position = position - (collapsedSize - 1), top = itemView.top, height = itemView.height)
+      }
       viewModel.onCollapseEvents(messageId)
     }
 
@@ -5241,4 +5257,9 @@ class ConversationFragment :
   override fun onDoubleTapEditEducationSheetNext(conversationMessage: ConversationMessage) {
     handleEditMessage(conversationMessage)
   }
+
+  /**
+   * Tracks the scroll position so that after collapsing/expanding, we can restore it properly
+   */
+  private data class CollapsibleEventScrollPosition(val position: Int, val top: Int, val height: Int)
 }

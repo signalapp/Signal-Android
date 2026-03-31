@@ -359,8 +359,8 @@ class V2ConversationItemShapeTest {
 
     override fun onViewPinnedMessage(messageId: Long) = Unit
 
-    override fun onExpandEvents(messageId: Long) = Unit
+    override fun onExpandEvents(messageId: Long, itemView: View, collapsedSize: Int) = Unit
 
-    override fun onCollapseEvents(messageId: Long) = Unit
+    override fun onCollapseEvents(messageId: Long, itemView: View, collapsedSize: Int) = Unit
   }
 }

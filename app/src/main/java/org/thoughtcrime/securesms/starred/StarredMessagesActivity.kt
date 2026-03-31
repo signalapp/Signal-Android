@@ -421,6 +421,6 @@ private class StarredMessageClickListener(
   override fun onUpdateSignalClicked() = Unit
   override fun onViewPollClicked(messageId: Long) = Unit
   override fun onViewPinnedMessage(messageId: Long) = Unit
-  override fun onCollapseEvents(messageId: Long) = Unit
-  override fun onExpandEvents(messageId: Long) = Unit
+  override fun onCollapseEvents(messageId: Long, itemView: View, collapsedSize: Int) = Unit
+  override fun onExpandEvents(messageId: Long, itemView: View, collapsedSize: Int) = Unit
 }

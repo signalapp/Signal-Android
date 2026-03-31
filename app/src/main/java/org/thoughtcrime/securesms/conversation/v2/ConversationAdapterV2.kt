@@ -387,6 +387,7 @@ class ConversationAdapterV2(
         return
       }
 
+      bindable.setParentScrolling(true)
       bindable.bind(
         lifecycleOwner,
         model.conversationMessage,
@@ -404,6 +405,7 @@ class ConversationAdapterV2(
         colorizer,
         displayMode
       )
+      bindable.setParentScrolling(isParentInScroll)
     }
   }
 
@@ -415,6 +417,7 @@ class ConversationAdapterV2(
         return
       }
 
+      bindable.setParentScrolling(true)
       bindable.bind(
         lifecycleOwner,
         model.conversationMessage,
@@ -432,6 +435,7 @@ class ConversationAdapterV2(
         colorizer,
         displayMode
       )
+      bindable.setParentScrolling(isParentInScroll)
     }
   }
 
