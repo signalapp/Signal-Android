@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public final class SupportEmailUtil {
 
@@ -68,7 +69,9 @@ public final class SupportEmailUtil {
            "\n" +
            context.getString(R.string.SupportEmailUtil_registration_lock) + " " + getRegistrationLockEnabled() +
            "\n" +
-           context.getString(R.string.SupportEmailUtil_locale) + " " + Locale.getDefault().toString();
+           context.getString(R.string.SupportEmailUtil_locale) + " " + Locale.getDefault().toString() +
+           "\n" +
+           context.getString(R.string.SupportEmailUtil_challenge_received) + " " + getChallengeReceived();
   }
 
   private static CharSequence getDeviceInfo() {
@@ -89,5 +92,12 @@ public final class SupportEmailUtil {
 
   private static CharSequence getRegistrationLockEnabled() {
     return String.valueOf(SignalStore.svr().isRegistrationLockEnabled());
+  }
+
+  private static String getChallengeReceived() {
+    long    captchaLastViewedAt = SignalStore.misc().getCaptchaLastViewedAt();
+    boolean receivedRecently    = captchaLastViewedAt > 0 && (System.currentTimeMillis() - captchaLastViewedAt) <= TimeUnit.DAYS.toMillis(3);
+
+    return receivedRecently ? "yes" : "no";
   }
 }

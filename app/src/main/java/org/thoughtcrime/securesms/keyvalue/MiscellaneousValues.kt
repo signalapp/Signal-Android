@@ -47,6 +47,7 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val HAS_KEY_TRANSPARENCY_FAILURE = "misc.has_key_transparency_failure"
     private const val HAS_SEEN_KEY_TRANSPARENCY_FAILURE = "misc.has_seen_key_transparency_failure"
     private const val CAMERA_FACING_FRONT = "misc.camera_facing_front"
+    private const val CAPTCHA_LAST_VIEWED_AT = "misc.captcha_last_viewed_at"
     private const val COMPLETED_COLLAPSED_EVENTS_MIGRATION = "misc.completed_collapsed_events_migration"
   }
 
@@ -318,4 +319,9 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
   var isCameraFacingFront: Boolean by booleanValue(CAMERA_FACING_FRONT, true)
 
   var completedCollapsedEventsMigration: Boolean by booleanValue(COMPLETED_COLLAPSED_EVENTS_MIGRATION, false)
+
+  /**
+   * The last time the user viewed the captcha/recaptcha proof activity.
+   */
+  var captchaLastViewedAt: Long by longValue(CAPTCHA_LAST_VIEWED_AT, 0)
 }
