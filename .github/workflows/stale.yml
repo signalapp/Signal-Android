@@ -18,6 +18,7 @@ jobs:
           days-before-stale: 60
           days-before-close: 7
           exempt-issue-labels: 'acknowledged'
+          exempt-pr-labels: 'acknowledged'
           stale-issue-label: 'wontfix'
           stale-pr-label: 'wontfix'
           stale-issue-message: >
