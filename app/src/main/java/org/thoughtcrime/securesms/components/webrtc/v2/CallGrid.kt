@@ -5,16 +5,21 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,32 +30,27 @@ import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.Layout
-import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.window.core.layout.WindowSizeClass
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink
@@ -110,9 +110,6 @@ data class GridCell(
   val height: Float
 )
 
-/**
- * Internal helper for grid layout parameters
- */
 private data class GridLayoutParams(
   val rows: Int,
   val cols: Int,
@@ -226,9 +223,6 @@ sealed class CallGridStrategy(val maxTiles: Int) {
   }
 }
 
-/**
- * Remembers the appropriate CallGridStrategy based on current window size
- */
 private const val WIDTH_DP_LARGE_LOWER_BOUND = 1200
 
 @Composable
@@ -365,7 +359,6 @@ private fun calculateGridCells(
     val actualItemsInRow = min(itemsInThisRow, remainingItems)
     val isPartialRow = actualItemsInRow < config.columns
 
-    // Stretch items in partial rows to fill width (compact mode only)
     val cellWidthForRow = if (config.aspectRatio == null && isPartialRow) {
       (totalGridWidth - (spacing * (actualItemsInRow - 1))) / actualItemsInRow
     } else {
@@ -422,7 +415,6 @@ private fun calculateGridCellsWithSpanningColumn(
   val gridStartX = padding + (availableWidth - totalGridWidth) / 2
   val gridStartY = padding + (availableHeight - totalGridHeight) / 2
 
-  // Place regular items in column-major order (fills columns top-to-bottom, left-to-right)
   var index = 0
   for (col in 0 until columnsForRegularItems) {
     for (row in 0 until config.rows) {
@@ -444,7 +436,6 @@ private fun calculateGridCellsWithSpanningColumn(
     }
   }
 
-  // Spanning item takes full height
   val spanningX = gridStartX + columnsForRegularItems * (cellWidth + spacing)
   val spanningY = gridStartY
   val spanningHeight = totalGridHeight
@@ -463,14 +454,9 @@ private fun calculateGridCellsWithSpanningColumn(
 }
 
 /**
- * State for an item that is exiting the grid with animation
+ * Holds an item being tracked by [CallGrid], along with whether it should animate in on entry.
  */
-private data class ExitingItem<T>(
-  val item: T,
-  val key: Any,
-  val lastPosition: IntOffset,
-  val lastSize: IntSize
-)
+private data class ManagedItem<T>(val item: T, val animateEnter: Boolean)
 
 /**
  * An animated grid layout for call participants.
@@ -479,7 +465,6 @@ private data class ExitingItem<T>(
  * - Smooth position animations when items move
  * - Fade-in/scale-in animation for new items (0% to 100% opacity, 90% to 100% scale)
  * - Fade-out/scale-out animation for removed items (100% to 0% opacity, 100% to 90% scale)
- * - Crossfade for swapped items (same position, different participant)
  * - Device-aware grid configurations
  *
  * @param items List of items to display, each with a stable key
@@ -499,20 +484,9 @@ fun <T> CallGrid(
   content: @Composable (item: T, modifier: Modifier) -> Unit
 ) {
   val strategy = rememberCallGridStrategy()
-  val scope = rememberCoroutineScope()
-
-  val positionAnimatables: SnapshotStateMap<Any, Animatable<IntOffset, *>> = remember { mutableStateMapOf() }
-  val sizeAnimatables: SnapshotStateMap<Any, Animatable<IntSize, *>> = remember { mutableStateMapOf() }
-  val alphaAnimatables: SnapshotStateMap<Any, Animatable<Float, *>> = remember { mutableStateMapOf() }
-  val scaleAnimatables: SnapshotStateMap<Any, Animatable<Float, *>> = remember { mutableStateMapOf() }
-  val knownKeys = remember { mutableSetOf<Any>() }
-  var exitingItems: List<ExitingItem<T>> by remember { mutableStateOf(emptyList()) }
-  val previousItems = remember { mutableStateMapOf<Any, T>() }
-
   val displayCount = min(items.size, strategy.maxTiles)
   val displayItems = items.take(displayCount)
   val baseConfig = remember(strategy, displayCount) { strategy.getConfig(displayCount) }
-
   val config = if (displayCount == 1 && singleParticipantAspectRatio != null && baseConfig.aspectRatio != null) {
     baseConfig.copy(aspectRatio = singleParticipantAspectRatio)
   } else {
@@ -525,224 +499,93 @@ fun <T> CallGrid(
     label = "cornerRadius"
   )
 
+  var containerSize by remember { mutableStateOf(IntSize.Zero) }
+  val density = LocalDensity.current
+
+  val cells = remember(config, containerSize, displayCount) {
+    if (containerSize == IntSize.Zero) emptyList()
+    else calculateGridCells(
+      config = config,
+      containerWidth = containerSize.width.toFloat(),
+      containerHeight = containerSize.height.toFloat(),
+      itemCount = displayCount
+    )
+  }
+
+  // Holds all items currently in the grid, including those still animating out.
+  val managedItems: SnapshotStateMap<Any, ManagedItem<T>> = remember { mutableStateMapOf() }
+
+  // lastKnownCells freezes the last grid position for items that are animating out so they
+  // stay in place (rather than jumping to zero) while their exit animation plays.
+  val lastKnownCells = remember { mutableMapOf<Any, GridCell>() }
+
   val currentKeys = displayItems.map { itemKey(it) }.toSet()
-  val newKeys = currentKeys - knownKeys
-  val hasExistingItems = knownKeys.isNotEmpty()
+  val hasExistingItems = managedItems.isNotEmpty()
 
-  newKeys.forEach { key ->
-    if (exitingItems.any { it.key == key }) {
-      exitingItems = exitingItems.filterNot { it.key == key }
-    }
-    if (hasExistingItems) {
-      alphaAnimatables[key] = Animatable(0f)
-      scaleAnimatables[key] = Animatable(CallGridDefaults.ENTER_SCALE_START)
-    }
-    knownKeys.add(key)
-  }
-
-  displayItems.forEach { item ->
-    previousItems[itemKey(item)] = item
-  }
-
-  fun removeAnimationState(key: Any) {
-    positionAnimatables.remove(key)
-    sizeAnimatables.remove(key)
-    alphaAnimatables.remove(key)
-    scaleAnimatables.remove(key)
-    previousItems.remove(key)
-  }
-
-  val removedKeys = knownKeys - currentKeys
-  removedKeys.forEach { key ->
-    val exitingItem = previousItems[key]
-    val position = positionAnimatables[key]?.value
-    val size = sizeAnimatables[key]?.value
-
-    if (exitingItem != null && position != null && size != null) {
-      exitingItems = exitingItems + ExitingItem(
-        item = exitingItem,
-        key = key,
-        lastPosition = position,
-        lastSize = size
-      )
-
-      scope.launch {
-        coroutineScope {
-          launch { alphaAnimatables[key]?.animateTo(0f, CallGridDefaults.alphaAnimationSpec) }
-          launch { scaleAnimatables[key]?.animateTo(CallGridDefaults.EXIT_SCALE_END, CallGridDefaults.scaleAnimationSpec) }
-        }
-        exitingItems = exitingItems.filterNot { it.key == key }
-        if (key !in knownKeys) {
-          removeAnimationState(key)
-        }
+  SideEffect {
+    displayItems.forEach { item ->
+      val key = itemKey(item)
+      if (key !in managedItems) {
+        managedItems[key] = ManagedItem(item, animateEnter = hasExistingItems)
+      } else {
+        managedItems[key] = managedItems[key]!!.copy(item = item)
       }
-    } else {
-      removeAnimationState(key)
     }
-    knownKeys.remove(key)
   }
 
-  BoxWithConstraints(
-    modifier = modifier,
-    contentAlignment = Alignment.Center
-  ) {
-    val containerWidthPx = constraints.maxWidth.toFloat()
-    val containerHeightPx = constraints.maxHeight.toFloat()
+  Box(modifier = modifier.onSizeChanged { containerSize = it }) {
+    managedItems.entries.toList().forEach { (key, managed) ->
+      val index = displayItems.indexOfFirst { itemKey(it) == key }
+      val targetCell = cells.getOrNull(index)
+      if (targetCell != null) lastKnownCells[key] = targetCell
+      val effectiveCell = targetCell ?: lastKnownCells[key] ?: return@forEach
 
-    val cells = remember(config, containerWidthPx, containerHeightPx, displayCount) {
-      calculateGridCells(
-        config = config,
-        containerWidth = containerWidthPx,
-        containerHeight = containerHeightPx,
-        itemCount = displayCount
-      )
-    }
+      key(key) {
+        var isVisible by remember { mutableStateOf(!managed.animateEnter) }
+        LaunchedEffect(Unit) { isVisible = true }
 
-    val density = LocalDensity.current
+        AnimatedVisibility(
+          visible = isVisible && key in currentKeys,
+          enter = scaleIn(
+            initialScale = CallGridDefaults.ENTER_SCALE_START,
+            animationSpec = CallGridDefaults.scaleAnimationSpec
+          ) + fadeIn(animationSpec = CallGridDefaults.alphaAnimationSpec),
+          exit = scaleOut(
+            targetScale = CallGridDefaults.EXIT_SCALE_END,
+            animationSpec = CallGridDefaults.scaleAnimationSpec
+          ) + fadeOut(animationSpec = CallGridDefaults.alphaAnimationSpec)
+        ) {
+          DisposableEffect(Unit) {
+            onDispose { managedItems.remove(key) }
+          }
 
-    val enteringKeys = newKeys.filter { key ->
-      val alpha = alphaAnimatables[key]?.value ?: 1f
-      alpha < 1f
-    }.toSet()
+          val targetPosition = IntOffset(effectiveCell.x.roundToInt(), effectiveCell.y.roundToInt())
+          val targetSize = IntSize(effectiveCell.width.roundToInt(), effectiveCell.height.roundToInt())
 
-    // Internal to capture closure variables: alphaAnimatables, scaleAnimatables, density, animatedCornerRadius, content
-    @Composable
-    fun RenderItem(item: T, itemKeyValue: Any, widthPx: Int, heightPx: Int) {
-      val alpha = alphaAnimatables[itemKeyValue]?.value ?: 1f
-      val itemScale = scaleAnimatables[itemKeyValue]?.value ?: 1f
+          val positionAnim = remember { Animatable(targetPosition, IntOffset.VectorConverter) }
+          val sizeAnim = remember { Animatable(targetSize, IntSize.VectorConverter) }
 
-      Box(
-        modifier = Modifier
-          .layoutId(itemKeyValue)
-          .alpha(alpha)
-          .scale(itemScale)
-      ) {
-        content(
-          item,
-          Modifier
-            .size(
-              width = with(density) { widthPx.toDp() },
-              height = with(density) { heightPx.toDp() }
+          // LaunchedEffect is tied to this composable's lifecycle and cancels automatically
+          // when the item leaves composition, preventing any deactivated-node interaction.
+          LaunchedEffect(targetPosition) {
+            positionAnim.animateTo(targetPosition, CallGridDefaults.positionAnimationSpec)
+          }
+          LaunchedEffect(targetSize) {
+            sizeAnim.animateTo(targetSize, CallGridDefaults.sizeAnimationSpec)
+          }
+
+          Box(modifier = Modifier.absoluteOffset { positionAnim.value }) {
+            content(
+              managed.item,
+              Modifier
+                .size(
+                  width = with(density) { sizeAnim.value.width.toDp() },
+                  height = with(density) { sizeAnim.value.height.toDp() }
+                )
+                .clip(RoundedCornerShape(animatedCornerRadius))
             )
-            .clip(RoundedCornerShape(animatedCornerRadius))
-        )
-      }
-    }
-
-    // Pre-filter items by entering status, preserving indices for cell lookup
-    val (enteringIndexedItems, nonEnteringIndexedItems) = displayItems
-      .withIndex()
-      .partition { (_, item) -> itemKey(item) in enteringKeys }
-
-    @Composable
-    fun RenderDisplayItems(indexedItems: List<IndexedValue<T>>) {
-      indexedItems.forEach { (index, item) ->
-        val itemKeyValue = itemKey(item)
-        key(itemKeyValue) {
-          val animatedSize = sizeAnimatables[itemKeyValue]?.value
-          val cell = cells.getOrNull(index)
-          if (cell != null) {
-            val widthPx = animatedSize?.width ?: cell.width.roundToInt()
-            val heightPx = animatedSize?.height ?: cell.height.roundToInt()
-            RenderItem(item, itemKeyValue, widthPx, heightPx)
           }
         }
-      }
-    }
-
-    Layout(
-      content = {
-        exitingItems.forEach { exitingItem ->
-          key(exitingItem.key) {
-            RenderItem(exitingItem.item, exitingItem.key, exitingItem.lastSize.width, exitingItem.lastSize.height)
-          }
-        }
-
-        RenderDisplayItems(enteringIndexedItems)
-        RenderDisplayItems(nonEnteringIndexedItems)
-      }
-    ) { measurables, constraints ->
-      displayItems.forEachIndexed { index, item ->
-        val itemKeyValue = itemKey(item)
-        val cell = cells.getOrNull(index) ?: return@forEachIndexed
-        val targetPosition = IntOffset(cell.x.roundToInt(), cell.y.roundToInt())
-        val targetSize = IntSize(cell.width.roundToInt(), cell.height.roundToInt())
-
-        val existingPosition = positionAnimatables[itemKeyValue]
-        if (existingPosition == null) {
-          positionAnimatables[itemKeyValue] = Animatable(targetPosition, IntOffset.VectorConverter)
-          if (hasExistingItems && itemKeyValue in newKeys) {
-            scope.launch {
-              coroutineScope {
-                launch { alphaAnimatables[itemKeyValue]?.animateTo(1f, CallGridDefaults.alphaAnimationSpec) }
-                launch { scaleAnimatables[itemKeyValue]?.animateTo(CallGridDefaults.ENTER_SCALE_END, CallGridDefaults.scaleAnimationSpec) }
-              }
-            }
-          } else {
-            if (alphaAnimatables[itemKeyValue] == null) {
-              alphaAnimatables[itemKeyValue] = Animatable(1f)
-            }
-            if (scaleAnimatables[itemKeyValue] == null) {
-              scaleAnimatables[itemKeyValue] = Animatable(1f)
-            }
-          }
-        } else if (existingPosition.targetValue != targetPosition) {
-          scope.launch {
-            existingPosition.animateTo(targetPosition, CallGridDefaults.positionAnimationSpec)
-          }
-        }
-
-        val existingSize = sizeAnimatables[itemKeyValue]
-        if (existingSize == null) {
-          sizeAnimatables[itemKeyValue] = Animatable(targetSize, IntSize.VectorConverter)
-        } else if (existingSize.targetValue != targetSize) {
-          scope.launch {
-            existingSize.animateTo(targetSize, CallGridDefaults.sizeAnimationSpec)
-          }
-        }
-      }
-
-      val placeables = measurables.map { measurable ->
-        val itemKeyValue = measurable.layoutId
-        val animatedSize = sizeAnimatables[itemKeyValue]?.value
-        val exitingItem = exitingItems.find { it.key == itemKeyValue }
-
-        when {
-          animatedSize != null -> {
-            measurable.measure(Constraints.fixed(animatedSize.width, animatedSize.height))
-          }
-          exitingItem != null -> {
-            measurable.measure(Constraints.fixed(exitingItem.lastSize.width, exitingItem.lastSize.height))
-          }
-          else -> {
-            measurable.measure(Constraints())
-          }
-        }
-      }
-
-      val keyToPlaceable = measurables.zip(placeables).associate { (measurable, placeable) ->
-        measurable.layoutId to placeable
-      }
-
-      layout(constraints.maxWidth, constraints.maxHeight) {
-        fun placeDisplayItems(indexedItems: List<IndexedValue<T>>) {
-          indexedItems.forEach { (_, item) ->
-            val itemKeyValue = itemKey(item)
-            val placeable = keyToPlaceable[itemKeyValue]
-            val position = positionAnimatables[itemKeyValue]?.value
-            if (placeable != null && position != null) {
-              placeable.place(position.x, position.y)
-            }
-          }
-        }
-
-        exitingItems.forEach { exitingItem ->
-          val placeable = keyToPlaceable[exitingItem.key]
-          placeable?.place(exitingItem.lastPosition.x, exitingItem.lastPosition.y)
-        }
-
-        placeDisplayItems(enteringIndexedItems)
-        placeDisplayItems(nonEnteringIndexedItems)
       }
     }
   }
@@ -775,10 +618,7 @@ private fun CallGridPreview() {
     val windowSizeClass = currentWindowAdaptiveInfo(supportLargeAndXLargeWidth = true).windowSizeClass
     val strategy = rememberCallGridStrategy()
 
-    BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
-      val widthDp = maxWidth
-      val heightDp = maxHeight
-
+    Box(modifier = Modifier.fillMaxSize()) {
       CallGrid(
         items = items,
         modifier = Modifier.fillMaxSize(),
@@ -796,8 +636,7 @@ private fun CallGridPreview() {
       }
 
       Text(
-        text = "${widthDp.value.toInt()} x ${heightDp.value.toInt()} dp\n" +
-          "WSC: ${windowSizeClass.minWidthDp}x${windowSizeClass.minHeightDp}\n" +
+        text = "WSC: ${windowSizeClass.minWidthDp}x${windowSizeClass.minHeightDp}\n" +
           "Strategy: ${strategy::class.simpleName}",
         color = MaterialTheme.colorScheme.onSurface,
         modifier = Modifier.align(Alignment.TopEnd)

@@ -13,11 +13,11 @@ import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -28,7 +28,7 @@ import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 /**
@@ -108,38 +108,57 @@ fun AnimatedFlowRow(
   positionAnimationSpec: FiniteAnimationSpec<IntOffset> = AnimatedFlowRowDefaults.positionAnimationSpec,
   content: AnimatedFlowRowScope.() -> Unit
 ) {
-  val scope = rememberCoroutineScope()
-  val positionAnimatables: SnapshotStateMap<Any, Animatable<IntOffset, *>> = remember { mutableStateMapOf() }
+  // Plain map (not snapshot state) so initialization inside the Layout measurement lambda is safe.
+  val positionAnimatables: MutableMap<Any, Animatable<IntOffset, *>> = remember { mutableMapOf() }
   val alphaAnimatables: SnapshotStateMap<Any, Animatable<Float, *>> = remember { mutableStateMapOf() }
   val knownKeys = remember { mutableSetOf<Any>() }
+  val firstSeenInLayout = remember { mutableSetOf<Any>() }
+
+  // MutableStateFlow (not snapshot state) bridges Layout measurement to composition-phase
+  // animation launches, so position writes inside Layout measurement are safe.
+  val pendingPositions = remember { MutableStateFlow<Map<Any, IntOffset>>(emptyMap()) }
 
   val flowRowScope = remember { AnimatedFlowRowScope() }
   flowRowScope.items.clear()
   flowRowScope.content()
 
-  // Key operations run each recomposition to track additions/removals synchronously
   val itemKeys = flowRowScope.items.map { it.first }
   val currentKeysSet = itemKeys.toSet()
-
-  // Determine which keys are new (not seen before) - check synchronously
   val newKeys = currentKeysSet - knownKeys
   val hasExistingItems = knownKeys.isNotEmpty()
 
-  // Pre-initialize alpha for new items to 0 if there are existing items
-  // This prevents flicker by ensuring they start invisible BEFORE first render
   newKeys.forEach { key ->
-    if (hasExistingItems) {
-      alphaAnimatables[key] = Animatable(0f)
-    }
+    alphaAnimatables[key] = if (hasExistingItems) Animatable(0f) else Animatable(1f)
     knownKeys.add(key)
   }
 
-  // Clean up animatables for removed items
   val removedKeys = knownKeys - currentKeysSet
   removedKeys.forEach { key ->
     positionAnimatables.remove(key)
     alphaAnimatables.remove(key)
+    firstSeenInLayout.remove(key)
     knownKeys.remove(key)
+  }
+
+  // Animation launches live here, not inside the Layout measurement lambda, so the Layout
+  // remains free of side effects that can interact with Compose's node deactivation.
+  LaunchedEffect(Unit) {
+    pendingPositions.collect { positions ->
+      positions.forEach { (key, targetPos) ->
+        val posAnim = positionAnimatables[key] ?: return@forEach
+        val isFirstSeen = firstSeenInLayout.add(key)
+        if (isFirstSeen) {
+          if (alphaAnimatables[key]?.value == 0f) {
+            launch {
+              kotlinx.coroutines.delay(AnimatedFlowRowDefaults.ANIMATION_DURATION_MS)
+              alphaAnimatables[key]?.animateTo(1f, AnimatedFlowRowDefaults.alphaAnimationSpec)
+            }
+          }
+        } else if (posAnim.targetValue != targetPos) {
+          launch { posAnim.animateTo(targetPos, positionAnimationSpec) }
+        }
+      }
+    }
   }
 
   val layoutModifier = if (sizeAnimationSpec != null) {
@@ -170,34 +189,16 @@ fun AnimatedFlowRow(
       measurable.layoutId to placeable
     }
 
-    // Calculate flow row positions (centered, wrapping)
     val (totalHeight, positions) = calculateFlowRowPositions(measurables, placeables, constraints.maxWidth)
 
-    // Initialize animatables for new items and trigger animations for existing items
+    // Plain map mutation is safe inside Layout measurement; snapshot state mutation is not.
     positions.forEach { (key, targetPosition) ->
-      val existingPosition = positionAnimatables[key]
-      if (existingPosition == null) {
-        // New item - start at target position
+      if (positionAnimatables[key] == null) {
         positionAnimatables[key] = Animatable(targetPosition, IntOffset.VectorConverter)
-        if (hasExistingItems) {
-          // Fade in after position animations complete
-          scope.launch {
-            delay(AnimatedFlowRowDefaults.ANIMATION_DURATION_MS)
-            alphaAnimatables[key]?.animateTo(1f, AnimatedFlowRowDefaults.alphaAnimationSpec)
-          }
-        } else {
-          // First layout, appear immediately
-          if (alphaAnimatables[key] == null) {
-            alphaAnimatables[key] = Animatable(1f)
-          }
-        }
-      } else if (existingPosition.targetValue != targetPosition) {
-        // Item is moving - animate to new position
-        scope.launch {
-          existingPosition.animateTo(targetPosition, positionAnimationSpec)
-        }
       }
     }
+
+    pendingPositions.value = positions.toMap()
 
     layout(constraints.maxWidth, totalHeight) {
       positions.forEach { (key, _) ->
@@ -227,7 +228,6 @@ private fun calculateFlowRowPositions(
   var currentRow = mutableListOf<Triple<Any, Measurable, Placeable>>()
   var currentRowWidth = 0
 
-  // Group items into rows
   measurables.zip(placeables).forEach { (measurable, placeable) ->
     val key = measurable.layoutId ?: return@forEach
     if (currentRowWidth + placeable.width > maxWidth && currentRow.isNotEmpty()) {
@@ -242,10 +242,8 @@ private fun calculateFlowRowPositions(
     rows.add(currentRow)
   }
 
-  // Calculate total height first
   val totalHeight = rows.sumOf { row -> row.maxOf { it.third.height } }
 
-  // Calculate positions (centered per row, from top to bottom)
   var y = 0
   rows.forEach { row ->
     val rowWidth = row.sumOf { it.third.width }
