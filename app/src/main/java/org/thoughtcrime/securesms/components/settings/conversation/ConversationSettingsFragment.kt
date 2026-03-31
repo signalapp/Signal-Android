@@ -718,7 +718,9 @@ class ConversationSettingsFragment :
             mediaRecords = state.sharedMedia,
             mediaIds = state.sharedMediaIds,
             onMediaRecordClick = { view, mediaRecord, isLtr ->
-              if (mediaRecord.attachment?.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE) {
+              if (mediaRecord.attachment?.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE &&
+                mediaRecord.attachment?.transferState != AttachmentTable.TRANSFER_RESTORE_OFFLOADED
+              ) {
                 Toast.makeText(context, R.string.ConversationSettingsFragment__this_media_is_not_sent_yet, Toast.LENGTH_LONG).show()
                 return@Model
               }

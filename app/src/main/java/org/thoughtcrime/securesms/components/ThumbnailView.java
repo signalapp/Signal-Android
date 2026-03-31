@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.UiThread;
 import androidx.appcompat.widget.AppCompatImageView;
+import com.google.android.material.color.MaterialColors;
 
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
@@ -347,6 +348,7 @@ public class ThumbnailView extends FrameLayout {
 
       transferControlViewStub.setVisibility(View.GONE);
       playOverlay.setVisibility(View.GONE);
+      setBackgroundColor(Color.TRANSPARENT);
 
       requestManager.clear(blurHash);
       blurHash.setImageDrawable(null);
@@ -486,6 +488,12 @@ public class ThumbnailView extends FrameLayout {
     } else {
       requestManager.clear(image);
       image.setImageDrawable(null);
+    }
+
+    if (slide.getTransferState() == AttachmentTable.TRANSFER_RESTORE_OFFLOADED && slide.getDisplayUri() == null) {
+      setBackgroundColor(MaterialColors.getColor(this, com.google.android.material.R.attr.colorSurfaceVariant, Color.GRAY));
+    } else {
+      setBackgroundColor(Color.TRANSPARENT);
     }
 
     if (!resultHandled) {

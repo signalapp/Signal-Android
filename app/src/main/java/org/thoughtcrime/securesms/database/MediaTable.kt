@@ -109,8 +109,8 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     private val GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS = String.format(
       BASE_MEDIA_QUERY,
       """
-        (${AttachmentTable.DATA_FILE} IS NOT NULL OR (${AttachmentTable.CONTENT_TYPE} LIKE 'video/%' AND ${AttachmentTable.REMOTE_INCREMENTAL_DIGEST} IS NOT NULL) OR (${AttachmentTable.THUMBNAIL_FILE} IS NOT NULL)) AND
-        ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/svg%' AND 
+        (${AttachmentTable.DATA_FILE} IS NOT NULL OR (${AttachmentTable.CONTENT_TYPE} LIKE 'video/%' AND ${AttachmentTable.REMOTE_INCREMENTAL_DIGEST} IS NOT NULL) OR ${AttachmentTable.THUMBNAIL_FILE} IS NOT NULL OR ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_RESTORE_OFFLOADED}) AND
+        ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/svg%' AND
         (${AttachmentTable.CONTENT_TYPE} LIKE 'image/%' OR ${AttachmentTable.CONTENT_TYPE} LIKE 'video/%') AND
         ${MessageTable.LINK_PREVIEWS} IS NULL AND
         ${MessageTable.SCHEDULED_DATE} < 0
@@ -120,7 +120,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     private val AUDIO_MEDIA_QUERY = String.format(
       BASE_MEDIA_QUERY,
       """
-        ${AttachmentTable.DATA_FILE} IS NOT NULL AND
+        (${AttachmentTable.DATA_FILE} IS NOT NULL OR ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_RESTORE_OFFLOADED}) AND
         ${AttachmentTable.CONTENT_TYPE} LIKE 'audio/%' AND
         ${MessageTable.SCHEDULED_DATE} < 0
       """
@@ -129,7 +129,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     private val ALL_MEDIA_QUERY = String.format(
       BASE_MEDIA_QUERY,
       """
-        ${AttachmentTable.DATA_FILE} IS NOT NULL AND
+        (${AttachmentTable.DATA_FILE} IS NOT NULL OR ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_RESTORE_OFFLOADED}) AND
         ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain' AND
         ${MessageTable.LINK_PREVIEWS} IS NULL AND
         ${MessageTable.SCHEDULED_DATE} < 0
@@ -203,13 +203,13 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     private val DOCUMENT_MEDIA_QUERY = String.format(
       BASE_MEDIA_QUERY,
       """
-        ${AttachmentTable.DATA_FILE} IS NOT NULL AND
+        (${AttachmentTable.DATA_FILE} IS NOT NULL OR ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_RESTORE_OFFLOADED}) AND
         (
-          ${AttachmentTable.CONTENT_TYPE} LIKE 'image/svg%' OR 
+          ${AttachmentTable.CONTENT_TYPE} LIKE 'image/svg%' OR
           (
-            ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/%' AND 
-            ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'video/%' AND 
-            ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'audio/%' AND 
+            ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/%' AND
+            ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'video/%' AND
+            ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'audio/%' AND
             ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain' AND
             ${MessageTable.SCHEDULED_DATE} < 0
           )
@@ -232,9 +232,6 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     }
 
     private fun applyIndexHint(query: String, threadId: Long, sorting: Sorting): String {
-      if (threadId == ALL_THREADS.toLong() && sorting == Sorting.Largest) {
-        return query.replace("__INDEX_HINT__", "INDEXED BY attachment_media_overview_size")
-      }
       return query.replace("__INDEX_HINT__", "")
     }
   }

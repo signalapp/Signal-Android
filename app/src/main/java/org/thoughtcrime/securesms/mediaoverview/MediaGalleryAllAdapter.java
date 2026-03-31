@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
+import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.signal.core.util.Util;
@@ -584,6 +585,11 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
       audioItemListener.unregisterPlaybackStateObserver(audioView.getPlaybackStateObserver());
       audioView.setAudio((AudioSlide) slide, new AudioViewCallbacksAdapter(audioItemListener, mmsId), true, true);
+      audioView.setDownloadClickListener((v, s) -> {
+        if (s.asAttachment() instanceof DatabaseAttachment) {
+          AttachmentDownloadJob.downloadAttachmentIfNeeded((DatabaseAttachment) s.asAttachment());
+        }
+      });
       audioItemListener.registerPlaybackStateObserver(audioView.getPlaybackStateObserver());
 
       audioView.setOnClickListener(view -> itemClickListener.onMediaClicked(audioView, mediaRecord));
