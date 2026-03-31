@@ -41,6 +41,8 @@ class LocalPlaintextArchiveJob internal constructor(
     private const val KEY_INCLUDE_MEDIA = "include_media"
   }
 
+  private var zipFile: DocumentFile? = null
+
   override fun serialize(): ByteArray? {
     return JsonJobData.Builder()
       .putString(KEY_DESTINATION_URI, destinationUri)
@@ -82,8 +84,8 @@ class LocalPlaintextArchiveJob internal constructor(
       val timestamp = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(Date())
       val fileName = "signal-export-$timestamp"
 
-      val zipFile = root.createFile("application/zip", fileName)
-      if (zipFile == null) {
+      zipFile = root.createFile("application/zip", fileName)
+      val zipFile = this.zipFile ?: run {
         Log.w(TAG, "Unable to create zip file")
         return Result.failure()
       }
@@ -111,8 +113,13 @@ class LocalPlaintextArchiveJob internal constructor(
           ZipOutputStream(outputStream).use { zipOutputStream ->
             val result = LocalArchiver.exportPlaintext(zipOutputStream, includeMedia, stopwatch, cancellationSignal = { isCanceled })
             Log.i(TAG, "Plaintext archive finished with result: $result")
-            if (result !is org.signal.core.util.Result.Success) {
+            if (isCanceled) {
               zipFile.delete()
+              setProgress(LocalBackupCreationProgress(canceled = LocalBackupCreationProgress.Canceled()), notification)
+              return Result.failure()
+            } else if (result !is org.signal.core.util.Result.Success) {
+              zipFile.delete()
+              setProgress(LocalBackupCreationProgress(failed = LocalBackupCreationProgress.Failed()), notification)
               return Result.failure()
             }
           }
@@ -121,10 +128,10 @@ class LocalPlaintextArchiveJob internal constructor(
         }
 
         stopwatch.split("archive-create")
-        setProgress(LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle()), notification)
+        setProgress(LocalBackupCreationProgress(succeeded = LocalBackupCreationProgress.Succeeded()), notification)
       } catch (e: IOException) {
         Log.w(TAG, "Error during plaintext archive!", e)
-        setProgress(LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle()), notification)
+        setProgress(LocalBackupCreationProgress(failed = LocalBackupCreationProgress.Failed()), notification)
         zipFile.delete()
         throw e
       }
@@ -138,7 +145,11 @@ class LocalPlaintextArchiveJob internal constructor(
   }
 
   override fun onFailure() {
-    SignalStore.backup.newLocalPlaintextBackupProgress = LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle())
+    zipFile?.delete()
+    val current = SignalStore.backup.newLocalPlaintextBackupProgress
+    if (current.canceled == null && current.failed == null) {
+      SignalStore.backup.newLocalPlaintextBackupProgress = LocalBackupCreationProgress(failed = LocalBackupCreationProgress.Failed())
+    }
   }
 
   private fun setProgress(progress: LocalBackupCreationProgress, notification: NotificationController?) {

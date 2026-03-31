@@ -27,6 +27,10 @@ object Environment {
 
     @JvmStatic
     fun isNewFormatSupportedForLocalBackup(): Boolean = true
+
+    fun isLocalPlaintextBackupExportEnabled(): Boolean {
+      return isInternal()
+    }
   }
 
   object Donations {

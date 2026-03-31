@@ -10,6 +10,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.exportProgress
 import org.thoughtcrime.securesms.backup.transferProgress
@@ -32,7 +35,8 @@ import org.signal.core.ui.R as CoreUiR
 fun BackupCreationProgressRow(
   progress: LocalBackupCreationProgress,
   isRemote: Boolean,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  onCancel: (() -> Unit)? = null
 ) {
   Row(
     modifier = modifier
@@ -42,7 +46,7 @@ fun BackupCreationProgressRow(
     Column(
       modifier = Modifier.weight(1f)
     ) {
-      BackupCreationProgressIndicator(progress = progress)
+      BackupCreationProgressIndicator(progress = progress, onCancel = onCancel)
 
       Text(
         text = getProgressMessage(progress, isRemote),
@@ -55,7 +59,8 @@ fun BackupCreationProgressRow(
 
 @Composable
 private fun BackupCreationProgressIndicator(
-  progress: LocalBackupCreationProgress
+  progress: LocalBackupCreationProgress,
+  onCancel: (() -> Unit)? = null
 ) {
   val exporting = progress.exporting
   val transferring = progress.transferring
@@ -92,6 +97,15 @@ private fun BackupCreationProgressIndicator(
           .weight(1f)
           .padding(vertical = 12.dp)
       )
+    }
+
+    if (onCancel != null) {
+      IconButton(onClick = onCancel) {
+        Icon(
+          imageVector = SignalIcons.X.imageVector,
+          contentDescription = "Cancel"
+        )
+      }
     }
   }
 }
@@ -224,7 +238,8 @@ private fun TransferringRemotePreview() {
           mediaPhase = true
         )
       ),
-      isRemote = true
+      isRemote = true,
+      onCancel = {}
     )
   }
 }

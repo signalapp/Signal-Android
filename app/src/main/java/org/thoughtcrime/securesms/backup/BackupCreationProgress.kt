@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.backup
 import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 
 val LocalBackupCreationProgress.isIdle: Boolean
-  get() = idle != null || (exporting == null && transferring == null && canceled == null)
+  get() = idle != null || succeeded != null || failed != null || canceled != null || (exporting == null && transferring == null)
 
 fun LocalBackupCreationProgress.exportProgress(): Float {
   val exporting = exporting ?: return 0f

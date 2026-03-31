@@ -54,6 +54,8 @@ message ArchiveUploadProgressState {
 message LocalBackupCreationProgress {
     message Idle {}
     message Canceled {}
+    message Succeeded {}
+    message Failed {}
 
     message Exporting {
         ExportPhase phase = 1;
@@ -86,6 +88,8 @@ message LocalBackupCreationProgress {
         Canceled canceled = 2;
         Exporting exporting = 3;
         Transferring transferring = 4;
+        Succeeded succeeded = 5;
+        Failed failed = 6;
     }
 }
 
