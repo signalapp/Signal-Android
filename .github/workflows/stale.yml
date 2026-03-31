@@ -18,16 +18,18 @@ jobs:
           days-before-stale: 60
           days-before-close: 7
           exempt-issue-labels: 'acknowledged'
+          stale-issue-label: 'wontfix'
+          stale-pr-label: 'wontfix'
           stale-issue-message: >
             This issue has been automatically marked as stale because it has not had
             recent activity. It will be closed if no further activity occurs. Thank you
             for your contributions!
-          close-issue-message: >
-            This issue has been closed due to inactivity.
           stale-pr-message: >
             This pull request has been automatically marked as stale because it has not had
             recent activity. It will be closed if no further activity occurs. Thank you
             for your contributions!
+          close-issue-message: >
+            This issue has been closed due to inactivity.
           close-pr-message: >
             This pull request has been closed due to inactivity.
           operations-per-run: 30
