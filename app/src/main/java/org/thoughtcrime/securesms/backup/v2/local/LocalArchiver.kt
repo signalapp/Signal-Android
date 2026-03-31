@@ -20,6 +20,7 @@ import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readFully
 import org.signal.core.util.toJson
+import org.signal.libsignal.crypto.Aes256Ctr32
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -35,9 +36,6 @@ import java.io.OutputStream
 import java.util.Collections
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
-import javax.crypto.Cipher
-import javax.crypto.spec.IvParameterSpec
-import javax.crypto.spec.SecretKeySpec
 
 typealias ArchiveResult = org.signal.core.util.Result<LocalArchiver.ArchiveSuccess, LocalArchiver.ArchiveFailure>
 typealias RestoreResult = org.signal.core.util.Result<LocalArchiver.RestoreSuccess, LocalArchiver.RestoreFailure>
@@ -216,12 +214,17 @@ object LocalArchiver {
     val metadataKey = SignalStore.backup.messageBackupKey.deriveLocalBackupMetadataKey()
     val iv = Util.getSecretBytes(12)
     val backupId = SignalStore.backup.messageBackupKey.deriveBackupId(SignalStore.account.requireAci())
-
-    val cipher = Cipher.getInstance("AES/CTR/NoPadding")
-    cipher.init(Cipher.ENCRYPT_MODE, SecretKeySpec(metadataKey, "AES"), IvParameterSpec(iv))
-    val cipherText = cipher.doFinal(backupId.value)
+    val cipherText = applyCipher(backupId.value, metadataKey, iv)
 
     return Metadata.EncryptedBackupId(iv = iv.toByteString(), encryptedId = cipherText.toByteString())
+  }
+
+  private fun applyCipher(input: ByteArray, metadataKey: ByteArray, iv: ByteArray): ByteArray {
+    val data = input.copyOf()
+    val cipher = Aes256Ctr32(metadataKey, iv, 0)
+    cipher.process(data)
+
+    return data
   }
 
   /**
@@ -300,10 +303,7 @@ object LocalArchiver {
     val metadataKey = messageBackupKey.deriveLocalBackupMetadataKey()
     val iv = encryptedBackupId.iv.toByteArray()
     val backupIdCipher = encryptedBackupId.encryptedId.toByteArray()
-
-    val cipher = Cipher.getInstance("AES/CTR/NoPadding")
-    cipher.init(Cipher.DECRYPT_MODE, SecretKeySpec(metadataKey, "AES"), IvParameterSpec(iv))
-    val plaintext = cipher.doFinal(backupIdCipher)
+    val plaintext = applyCipher(backupIdCipher, metadataKey, iv)
 
     return BackupId(plaintext)
   }
