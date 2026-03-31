@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.Environment
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ThrottledDebouncer
 
@@ -35,7 +35,7 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
       folderCount = 0,
       userUnregistered = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application) || !SignalStore.account.isRegistered,
       clientDeprecated = SignalStore.misc.isClientDeprecated,
-      isPlaintextExportEnabled = Environment.Backups.isLocalPlaintextBackupExportEnabled(),
+      isPlaintextExportEnabled = RemoteConfig.localPlaintextExport,
       chatExportState = ChatExportState.None
     )
   )

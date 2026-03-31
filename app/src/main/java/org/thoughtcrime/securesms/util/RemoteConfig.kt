@@ -1348,5 +1348,16 @@ object RemoteConfig {
     hotSwappable = false
   )
 
+  /**
+   * Whether local plaintext export is available
+   */
+  @JvmStatic
+  @get:JvmName("localPlaintextExport")
+  val localPlaintextExport: Boolean by remoteBoolean(
+    key = "android.localPlaintextExport",
+    defaultValue = false,
+    hotSwappable = false
+  )
+
   // endregion
 }
