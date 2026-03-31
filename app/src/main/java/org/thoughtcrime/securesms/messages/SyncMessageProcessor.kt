@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.messages
 
 import android.content.Context
+import androidx.annotation.WorkerThread
 import com.mobilecoin.lib.exceptions.SerializationException
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId
@@ -139,7 +140,6 @@ import org.whispersystems.signalservice.internal.push.SyncMessage.StickerPackOpe
 import org.whispersystems.signalservice.internal.push.SyncMessage.ViewOnceOpen
 import org.whispersystems.signalservice.internal.push.Verified
 import java.io.IOException
-import java.util.Optional
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
@@ -149,6 +149,7 @@ import org.whispersystems.signalservice.internal.util.Util as Utils
 
 object SyncMessageProcessor {
 
+  @WorkerThread
   fun process(
     context: Context,
     senderRecipient: Recipient,
@@ -352,7 +353,12 @@ object SyncMessageProcessor {
     } else if (MessageConstraintsUtil.isValidEditMessageReceive(targetMessage, senderRecipient, envelope.serverTimestamp!!)) {
       val message: DataMessage = editMessage.dataMessage!!
       val toRecipient: Recipient = if (message.hasGroupContext) {
-        Recipient.externalPossiblyMigratedGroup(GroupId.v2(message.groupV2!!.groupMasterKey))
+        val groupRecipient = Recipient.externalPossiblyMigratedGroup(GroupId.v2(message.groupV2!!.groupMasterKey))
+        if (!groupRecipient.isActiveGroup) {
+          warn(envelope.clientTimestamp!!, "[handleSynchronizeSentEditMessage] Group is inactive, skipping sync edit message")
+          return
+        }
+        groupRecipient
       } else {
         Recipient.externalPush(ServiceId.parseOrThrow(sent.destinationServiceId, sent.destinationServiceIdBinary))
       }
@@ -523,9 +529,15 @@ object SyncMessageProcessor {
     val storyMessage: StoryMessage = sent.storyMessage!!
     val distributionIds: Set<DistributionId> = manifest.getDistributionIdSet()
     val groupId: GroupId.V2? = storyMessage.group?.groupId
+    val groupRecipient: Recipient? = groupId?.let { SignalDatabase.recipients.getByGroupId(groupId) }?.map { Recipient.resolved(it) }?.orElse(null)
     val textStoryBody: String? = StoryMessageProcessor.serializeTextAttachment(storyMessage)
     val bodyRanges: BodyRangeList? = storyMessage.bodyRanges.toBodyRangeList()
     val storyType: StoryType = storyMessage.type
+
+    if (groupRecipient != null && !groupRecipient.isActiveGroup) {
+      warn(envelope.clientTimestamp!!, "Group recipient is not active! Skipping story send sync")
+      return
+    }
 
     val linkPreviews: List<LinkPreview> = DataMessageProcessor.getLinkPreviews(
       previews = listOfNotNull(storyMessage.textAttachment?.preview),
@@ -541,11 +553,8 @@ object SyncMessageProcessor {
       insertSentStoryMessage(sent, distributionListRecipient, null, textStoryBody, attachments, sent.timestamp!!, storyType, linkPreviews, bodyRanges)
     }
 
-    if (groupId != null) {
-      val groupRecipient: Optional<RecipientId> = SignalDatabase.recipients.getByGroupId(groupId)
-      if (groupRecipient.isPresent) {
-        insertSentStoryMessage(sent, Recipient.resolved(groupRecipient.get()), groupId, textStoryBody, attachments, sent.timestamp!!, storyType, linkPreviews, bodyRanges)
-      }
+    if (groupRecipient != null) {
+      insertSentStoryMessage(sent, groupRecipient, groupId, textStoryBody, attachments, sent.timestamp!!, storyType, linkPreviews, bodyRanges)
     }
 
     SignalDatabase.storySends.applySentStoryManifest(manifest, sent.timestamp!!)

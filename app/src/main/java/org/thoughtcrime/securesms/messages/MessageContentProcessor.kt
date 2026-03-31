@@ -570,6 +570,12 @@ open class MessageContentProcessor(private val context: Context) {
       }
 
       val groupRecipient = Recipient.externalPossiblyMigratedGroup(groupId)
+
+      if (!groupRecipient.isActiveGroup) {
+        warn(envelope.clientTimestamp!!, "Seen typing indicator for inactive group " + senderRecipient.id)
+        return
+      }
+
       SignalDatabase.threads.getOrCreateThreadIdFor(groupRecipient)
     } else {
       SignalDatabase.threads.getOrCreateThreadIdFor(senderRecipient)
