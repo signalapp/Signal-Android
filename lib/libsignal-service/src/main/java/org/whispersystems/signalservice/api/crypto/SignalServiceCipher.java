@@ -118,7 +118,8 @@ public class SignalServiceCipher {
       throws UntrustedIdentityException, InvalidKeyException
   {
     try {
-      SignalSessionCipher sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, destination));
+      SignalProtocolAddress localProtocolAddress = new SignalProtocolAddress(localAddress.getIdentifier(), localDeviceId);
+      SignalSessionCipher   sessionCipher        = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, localProtocolAddress, destination));
       if (sealedSenderAccess != null) {
         SignalSealedSessionCipher sealedSessionCipher = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getServiceId().getRawUuid(), localAddress.getNumber()
                                                                                                                                                                                                       .orElse(null), localDeviceId));
@@ -187,9 +188,11 @@ public class SignalServiceCipher {
         throw new InvalidMessageStructureException("Non-UD envelope is missing a UUID!");
       }
 
+      SignalProtocolAddress localProtocolAddress = new SignalProtocolAddress(localAddress.getIdentifier(), localDeviceId);
+
       if (envelope.type == Envelope.Type.PREKEY_MESSAGE) {
         SignalProtocolAddress sourceAddress = new SignalProtocolAddress(sourceServiceId.toString(), envelope.sourceDeviceId);
-        SignalSessionCipher   sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, sourceAddress));
+        SignalSessionCipher   sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, localProtocolAddress, sourceAddress));
 
         paddedMessage         = sessionCipher.decrypt(new PreKeySignalMessage(envelope.content.toByteArray()));
         metadata              = new SignalServiceMetadata(getSourceAddress(envelope), envelope.sourceDeviceId, envelope.clientTimestamp, envelope.serverTimestamp, serverDeliveredTimestamp, false, serverGuid, Optional.empty(), destinationStr);
@@ -198,7 +201,7 @@ public class SignalServiceCipher {
         signalProtocolStore.clearSenderKeySharedWith(Collections.singleton(sourceAddress));
       } else if (envelope.type == Envelope.Type.DOUBLE_RATCHET) {
         SignalProtocolAddress sourceAddress = new SignalProtocolAddress(sourceServiceId.toString(), envelope.sourceDeviceId);
-        SignalSessionCipher   sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, sourceAddress));
+        SignalSessionCipher   sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, localProtocolAddress,  sourceAddress));
 
         paddedMessage         = sessionCipher.decrypt(new SignalMessage(envelope.content.toByteArray()));
         metadata              = new SignalServiceMetadata(getSourceAddress(envelope), envelope.sourceDeviceId, envelope.clientTimestamp, envelope.serverTimestamp, serverDeliveredTimestamp, false, serverGuid, Optional.empty(), destinationStr);
