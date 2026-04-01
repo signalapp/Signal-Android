@@ -134,13 +134,19 @@ class VerifySafetyNumberViewModel(
     val context: Context = AppDependencies.application
 
     SignalExecutors.BOUNDED.execute {
+      val resolved = recipient.resolve()
+      if (resolved.aci.isEmpty) {
+        Log.w(TAG, "Cannot update safety number verification -- recipient has no ACI")
+        return@execute
+      }
+
       ReentrantSessionLock.INSTANCE.acquire().use { _ ->
         if (verified) {
           Log.i(TAG, "Saving identity: $recipientId")
           AppDependencies.protocolStore.aci().identities()
             .saveIdentityWithoutSideEffects(
               recipientId,
-              recipient.resolve().requireAci(),
+              resolved.requireAci(),
               remoteIdentity,
               IdentityTable.VerifiedStatus.VERIFIED,
               false,
