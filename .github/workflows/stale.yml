@@ -11,6 +11,7 @@ jobs:
     permissions:
       issues: write
       pull-requests: write
+      actions: write
 
     steps:
       - uses: actions/stale@v10
@@ -33,4 +34,4 @@ jobs:
             This issue has been closed due to inactivity.
           close-pr-message: >
             This pull request has been closed due to inactivity.
-          operations-per-run: 30
+          operations-per-run: 150
