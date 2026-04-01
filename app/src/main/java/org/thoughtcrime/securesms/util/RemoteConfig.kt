@@ -1321,7 +1321,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("collapseEvents")
   val collapseEvents: Boolean by remoteBoolean(
-    key = "android.collapseEvents",
+    key = "android.collapseEvents.2",
     defaultValue = false,
     hotSwappable = true
   )
