@@ -3949,6 +3949,10 @@ class ConversationFragment :
             selectedConversationModel,
             object : OnHideListener {
               override fun startHide(focusedView: View?) {
+                if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED) || activity == null || activity?.isFinishing == true) {
+                  return
+                }
+
                 multiselectItemDecoration.hideShade(binding.conversationItemRecycler)
                 ViewUtil.fadeOut(binding.reactionsShade, resources.getInteger(R.integer.reaction_scrubber_hide_duration), View.GONE)
 
