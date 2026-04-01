@@ -32,6 +32,7 @@ import com.bumptech.glide.RequestManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.common.collect.Sets;
 
+import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BindableConversationItem;
@@ -863,29 +864,35 @@ public final class ConversationUpdateItem extends FrameLayout
   }
 
   private void presentCollapsedHead(CollapsedState collapsedState) {
-    CollapsibleEvents.CollapsibleType collapsibleType = CollapsibleEvents.getCollapsibleType(messageRecord.getType(), messageRecord.getMessageExtras());
-    if (CollapsedState.isHead(collapsedState) && conversationMessage.getCollapsedSize() > 1 && collapsibleType != null) {
-      SpannableStringBuilder text = new SpannableStringBuilder()
-                                        .append(SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, getCollapsibleSymbol(collapsibleType), org.signal.core.ui.R.color.signal_colorOnSurfaceVariant))
-                                        .append(" ")
-                                        .append(getCollapsibleString(collapsibleType))
-                                        .append(" ")
-                                        .append(SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, collapsedState == CollapsedState.HEAD_EXPANDED ? SignalSymbols.Glyph.CHEVRON_UP : SignalSymbols.Glyph.CHEVRON_DOWN, org.signal.core.ui.R.color.signal_colorOnSurfaceVariant));
-      collapsedButton.setText(text);
-      collapsedButton.setOnClickListener(v -> {
-        if (eventListener != null) {
-          if (CollapsedState.isCollapsed(collapsedState)) {
-            eventListener.onExpandEvents(conversationMessage.getMessageRecord().getId(), ConversationUpdateItem.this, conversationMessage.getCollapsedSize());
-          } else if (!anyCollapsibleChildrenSelected()) {
-            eventListener.onCollapseEvents(conversationMessage.getMessageRecord().getId(), ConversationUpdateItem.this, conversationMessage.getCollapsedSize());
-          }
-        } else {
-          passthroughClickListener.onClick(v);
-        }
-      });
-      collapsedButton.setVisibility(VISIBLE);
-    } else {
+    if (!conversationMessage.isActiveCollapsibleHead()) {
       collapsedButton.setVisibility(GONE);
+    } else {
+      CollapsibleEvents.CollapsibleType collapsibleType = CollapsibleEvents.getCollapsibleType(messageRecord.getType(), messageRecord.getMessageExtras());
+      if (collapsibleType != null) {
+        SpannableStringBuilder text = new SpannableStringBuilder()
+                                          .append(SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, getCollapsibleSymbol(collapsibleType), org.signal.core.ui.R.color.signal_colorOnSurfaceVariant))
+                                          .append(" ")
+                                          .append(getCollapsibleString(collapsibleType))
+                                          .append(" ")
+                                          .append(SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, collapsedState == CollapsedState.HEAD_EXPANDED ? SignalSymbols.Glyph.CHEVRON_UP : SignalSymbols.Glyph.CHEVRON_DOWN, org.signal.core.ui.R.color.signal_colorOnSurfaceVariant));
+        collapsedButton.setText(text);
+        collapsedButton.setOnClickListener(v -> {
+          if (eventListener != null) {
+            if (CollapsedState.isCollapsed(collapsedState)) {
+              eventListener.onExpandEvents(conversationMessage.getMessageRecord().getId(), ConversationUpdateItem.this, conversationMessage.getCollapsedSize());
+            } else if (!anyCollapsibleChildrenSelected()) {
+              eventListener.onCollapseEvents(conversationMessage.getMessageRecord().getId(), ConversationUpdateItem.this, conversationMessage.getCollapsedSize());
+            }
+          } else {
+            passthroughClickListener.onClick(v);
+          }
+        });
+        ViewUtil.setBottomMargin(collapsedButton, (int) DimensionUnit.DP.toPixels(conversationMessage.isActiveCollapsedHead() ? 0 : 12));
+        collapsedButton.setVisibility(VISIBLE);
+      } else {
+        Log.w(TAG, "Found a message that is a collapsible head but does not have a collapsible type.");
+        collapsedButton.setVisibility(GONE);
+      }
     }
   }
 
