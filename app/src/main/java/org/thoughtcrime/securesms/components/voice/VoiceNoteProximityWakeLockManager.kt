@@ -15,7 +15,9 @@ import androidx.media3.common.Player
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionCommand
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.ServiceUtil
+import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat
 import java.util.concurrent.TimeUnit
 
 private val TAG = Log.tag(VoiceNoteProximityWakeLockManager::class.java)
@@ -31,6 +33,7 @@ class VoiceNoteProximityWakeLockManager(
 
   private val wakeLock: PowerManager.WakeLock? = ServiceUtil.getPowerManager(activity.applicationContext).newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TAG)
 
+  private val audioManager: AudioManagerCompat = AppDependencies.androidCallAudioManager
   private val sensorManager: SensorManager = ServiceUtil.getSensorManager(activity)
   private val proximitySensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
 
@@ -98,13 +101,17 @@ class VoiceNoteProximityWakeLockManager(
 
         if (player.isPlaying) {
           if (startTime == -1L) {
-            Log.d(TAG, "[onPlaybackStateChanged] Player became active with start time $startTime, registering sensor listener.")
-            startTime = System.currentTimeMillis()
-            if (wakeLock?.isHeld == false) {
-              Log.d(TAG, "[onPlaybackStateChanged] Acquiring wakelock")
-              wakeLock.acquire(TimeUnit.MINUTES.toMillis(30))
+            if (audioManager.isHeadsetConnected) {
+              Log.d(TAG, "[onPlaybackStateChanged] Headset connected, skipping proximity sensor registration.")
+            } else {
+              Log.d(TAG, "[onPlaybackStateChanged] Player became active with start time $startTime, registering sensor listener.")
+              startTime = System.currentTimeMillis()
+              if (wakeLock?.isHeld == false) {
+                Log.d(TAG, "[onPlaybackStateChanged] Acquiring wakelock")
+                wakeLock.acquire(TimeUnit.MINUTES.toMillis(30))
+              }
+              sensorManager.registerListener(hardwareSensorEventListener, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL)
             }
-            sensorManager.registerListener(hardwareSensorEventListener, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL)
           } else {
             Log.d(TAG, "[onPlaybackStateChanged] Player became active without start time, skipping sensor registration")
           }
@@ -122,7 +129,8 @@ class VoiceNoteProximityWakeLockManager(
         System.currentTimeMillis() - startTime <= 500 ||
         !isActivityResumed() ||
         !mediaController.isPlaying ||
-        event.sensor.type != Sensor.TYPE_PROXIMITY
+        event.sensor.type != Sensor.TYPE_PROXIMITY ||
+        audioManager.isHeadsetConnected()
       ) {
         return
       }

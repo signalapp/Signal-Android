@@ -211,6 +211,22 @@ public abstract class AudioManagerCompat {
     }
     return false;
   }
+  
+  public boolean isHeadsetConnected() {
+    AudioDeviceInfo[] devices = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS);
+    for (AudioDeviceInfo device : devices) {
+      final int type = device.getType();
+      if (type == AudioDeviceInfo.TYPE_WIRED_HEADSET ||
+          type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES ||
+          type == AudioDeviceInfo.TYPE_USB_HEADSET ||
+          type == AudioDeviceInfo.TYPE_BLUETOOTH_A2DP ||
+          type == AudioDeviceInfo.TYPE_BLUETOOTH_SCO) {
+        Log.i(TAG, "Headset connected: " + type);
+        return true;
+      }
+    }
+    return false;
+  }
 
   public float ringVolumeWithMinimum() {
     int   currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_RING);
