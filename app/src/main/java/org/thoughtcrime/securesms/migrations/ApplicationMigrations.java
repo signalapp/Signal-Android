@@ -196,9 +196,10 @@ public class ApplicationMigrations {
     static final int DELETED_BY_DB_MIGRATION       = 152;
     static final int RELEASE_CHANNEL_RECIPIENT_FIX = 153;
     static final int EMOJI_VERSION_13              = 154;
+    static final int COLLAPSED_EVENTS              = 155;
   }
 
-  public static final int CURRENT_VERSION = 154;
+  public static final int CURRENT_VERSION = 155;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -907,6 +908,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.EMOJI_VERSION_13) {
       jobs.put(Version.EMOJI_VERSION_13, new EmojiDownloadMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.COLLAPSED_EVENTS) {
+      jobs.put(Version.COLLAPSED_EVENTS, new BackfillCollapsedEventsMigrationJob());
     }
 
     return jobs;

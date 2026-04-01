@@ -3,7 +3,9 @@ package org.thoughtcrime.securesms.database
 import androidx.core.content.contentValuesOf
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.mockk.every
+import io.mockk.mockkObject
 import io.mockk.mockkStatic
+import io.mockk.unmockkObject
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -297,5 +299,25 @@ class CollapsingMessagesTests {
     assertEquals(CollapsedState.HEAD_COLLAPSED, msgCall3.collapsedState)
     assertEquals(CollapsedState.COLLAPSED, msgCall4.collapsedState)
     assertEquals(call3.messageId, msgCall4.collapsedHeadId)
+  }
+
+  @Test
+  fun givenMaxCollapsedSet_whenIAddAnotherEvent_thenIExpectANewHead() {
+    mockkObject(CollapsibleEvents)
+    every { CollapsibleEvents.MAX_SIZE } returns 2
+
+    val messageId1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
+    val messageId2 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false).messageId
+    val messageId3 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false).messageId
+
+    val msg1 = message.getMessageRecord(messageId1)
+    val msg2 = message.getMessageRecord(messageId2)
+    val msg3 = message.getMessageRecord(messageId3)
+
+    assertEquals(CollapsedState.HEAD_COLLAPSED, msg1.collapsedState)
+    assertEquals(CollapsedState.PENDING_COLLAPSED, msg2.collapsedState)
+    assertEquals(CollapsedState.HEAD_COLLAPSED, msg3.collapsedState)
+    assertEquals(messageId3, msg3.collapsedHeadId)
+    unmockkObject(CollapsibleEvents)
   }
 }

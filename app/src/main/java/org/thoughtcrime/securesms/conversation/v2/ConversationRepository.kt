@@ -155,7 +155,7 @@ class ConversationRepository(
         metadata.threadSize
       )
       val config = PagingConfig.Builder().setPageSize(25)
-        .setBufferPages(2)
+        .setBufferPages(3)
         .setStartIndex(max(metadata.getStartPosition(), 0))
         .build()
 

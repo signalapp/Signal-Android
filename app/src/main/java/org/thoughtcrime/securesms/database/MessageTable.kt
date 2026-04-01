@@ -3631,12 +3631,29 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .limit(1)
       .run()
       .readToSingleObject { cursor ->
-        PotentialCollapsibleMessage(
+        val message = PotentialCollapsibleMessage(
           type = cursor.requireLong(TYPE),
           dateReceived = cursor.requireLong(DATE_RECEIVED),
           collapsedHeadId = cursor.requireLong(COLLAPSED_HEAD_ID),
           messageExtras = cursor.requireBlob(MESSAGE_EXTRAS)?.let { MessageExtras.ADAPTER.decode(it) }
         )
+
+        val collapsedSize = if (message.collapsedHeadId != 0L) {
+          readableDatabase
+            .count()
+            .from(TABLE_NAME)
+            .where("$COLLAPSED_HEAD_ID = ?", message.collapsedHeadId)
+            .run()
+            .readToSingleInt()
+        } else {
+          -1
+        }
+
+        if (collapsedSize in 1..<CollapsibleEvents.MAX_SIZE) {
+          message
+        } else {
+          null
+        }
       }?.takeIf { DateUtils.isSameDay(it.dateReceived, dateReceived) }
   }
 

@@ -7,6 +7,8 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
  */
 object CollapsibleEvents {
 
+  const val MAX_SIZE = 50
+
   @JvmStatic
   fun isCollapsibleType(type: Long, messageExtras: MessageExtras?): Boolean {
     return getCollapsibleType(type, messageExtras) != null
@@ -38,6 +40,18 @@ object CollapsibleEvents {
     }
 
     if (MessageTypes.isIdentityUpdate(type) || MessageTypes.isIdentityVerified(type) || MessageTypes.isIdentityDefault(type)) {
+      return CollapsibleType.CHAT_UPDATE
+    }
+
+    if (MessageTypes.isPinnedMessageUpdate(type)) {
+      return CollapsibleType.CHAT_UPDATE
+    }
+
+    if (MessageTypes.isPollTerminate(type)) {
+      return CollapsibleType.CHAT_UPDATE
+    }
+
+    if (MessageTypes.isChangeNumber(type)) {
       return CollapsibleType.CHAT_UPDATE
     }
 

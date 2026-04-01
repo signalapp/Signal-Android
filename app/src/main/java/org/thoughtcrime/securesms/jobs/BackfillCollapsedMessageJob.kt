@@ -82,11 +82,11 @@ class BackfillCollapsedMessageJob private constructor(
       } else {
         val previous = lastMessageByThread[message.threadId]
 
-        val (collapsedState, headId) = if ((previous?.collapsibleType == collapsibleType) && DateUtils.isSameDay(previous.dateReceived, message.dateReceived)) {
+        val (collapsedState, headId, size) = if ((previous?.collapsibleType == collapsibleType) && DateUtils.isSameDay(previous.dateReceived, message.dateReceived) && previous.collapsedSetSize < CollapsibleEvents.MAX_SIZE) {
           val state = if (message.read) CollapsedState.COLLAPSED.id else CollapsedState.PENDING_COLLAPSED.id
-          Pair(state, previous.headId)
+          Triple(state, previous.headId, previous.collapsedSetSize)
         } else {
-          Pair(CollapsedState.HEAD_COLLAPSED.id, message.id)
+          Triple(CollapsedState.HEAD_COLLAPSED.id, message.id, 0)
         }
 
         db.update(MessageTable.TABLE_NAME)
@@ -96,7 +96,7 @@ class BackfillCollapsedMessageJob private constructor(
           )
           .where("${MessageTable.ID} = ?", message.id)
           .run()
-        lastMessageByThread[message.threadId] = LastMessage(collapsibleType, headId, message.dateReceived)
+        lastMessageByThread[message.threadId] = LastMessage(collapsibleType, headId, message.dateReceived, size + 1)
       }
     }
 
@@ -134,7 +134,8 @@ class BackfillCollapsedMessageJob private constructor(
   private data class LastMessage(
     val collapsibleType: CollapsibleEvents.CollapsibleType?,
     val headId: Long,
-    val dateReceived: Long
+    val dateReceived: Long,
+    val collapsedSetSize: Int
   )
 
   class Factory : Job.Factory<BackfillCollapsedMessageJob> {

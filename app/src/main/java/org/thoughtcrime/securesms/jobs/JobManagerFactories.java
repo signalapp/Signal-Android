@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.migrations.AttributesMigrationJob;
 import org.thoughtcrime.securesms.migrations.AvatarColorStorageServiceMigrationJob;
 import org.thoughtcrime.securesms.migrations.AvatarIdRemovalMigrationJob;
 import org.thoughtcrime.securesms.migrations.AvatarMigrationJob;
+import org.thoughtcrime.securesms.migrations.BackfillCollapsedEventsMigrationJob;
 import org.thoughtcrime.securesms.migrations.BackfillDigestsForDuplicatesMigrationJob;
 import org.thoughtcrime.securesms.migrations.BackupJitterMigrationJob;
 import org.thoughtcrime.securesms.migrations.BackupNotificationMigrationJob;
@@ -313,6 +314,7 @@ public final class JobManagerFactories {
       put(AvatarColorStorageServiceMigrationJob.KEY,      new AvatarColorStorageServiceMigrationJob.Factory());
       put(AvatarIdRemovalMigrationJob.KEY,                new AvatarIdRemovalMigrationJob.Factory());
       put(AvatarMigrationJob.KEY,                         new AvatarMigrationJob.Factory());
+      put(BackfillCollapsedEventsMigrationJob.KEY,        new BackfillCollapsedEventsMigrationJob.Factory());
       put(BackfillDigestsForDuplicatesMigrationJob.KEY,   new BackfillDigestsForDuplicatesMigrationJob.Factory());
       put(BackupJitterMigrationJob.KEY,                   new BackupJitterMigrationJob.Factory());
       put(BackupNotificationMigrationJob.KEY,             new BackupNotificationMigrationJob.Factory());
