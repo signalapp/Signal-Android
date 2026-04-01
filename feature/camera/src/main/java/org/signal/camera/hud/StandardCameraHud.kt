@@ -172,6 +172,7 @@ fun BoxScope.StandardCameraHud(
                 isRecordingFromVolumeKey = false
               }
             } else if (keyCode == activeVolumeKeyCode &&
+              !state.isRecording &&
               !isRecordingFromVolumeKey &&
               volumeKeyPressStartTime > 0 &&
               nativeEvent.eventTime - volumeKeyPressStartTime >= viewConfiguration.longPressTimeoutMillis
@@ -192,7 +193,7 @@ fun BoxScope.StandardCameraHud(
               if (isRecordingFromVolumeKey) {
                 isRecordingFromVolumeKey = false
                 emitter(StandardCameraHudEvents.VideoCaptureStopped)
-              } else if (volumeKeyPressStartTime > 0) {
+              } else if (volumeKeyPressStartTime > 0 && !state.isRecording) {
                 emitter(StandardCameraHudEvents.PhotoCaptureTriggered)
               }
               volumeKeyPressStartTime = 0
