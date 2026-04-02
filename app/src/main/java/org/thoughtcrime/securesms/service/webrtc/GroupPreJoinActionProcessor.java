@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
+import android.os.ResultReceiver;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
@@ -44,8 +47,21 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
   }
 
   @Override
+  protected @NonNull WebRtcServiceState handleIsInCallQuery(@NonNull WebRtcServiceState currentState, @Nullable ResultReceiver resultReceiver) {
+    if (resultReceiver != null) {
+      resultReceiver.send(1, ActiveCallData.fromCallState(currentState).toBundle());
+    }
+    return currentState;
+  }
+
+  @Override
   protected @NonNull WebRtcServiceState handlePreJoinCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
     Log.i(tag, "handlePreJoinCall():");
+
+    if (currentState.getCallInfoState().getGroupCall() != null) {
+      Log.w(tag, "handlePreJoinCall(): Group call already exists, ignoring duplicate pre-join request");
+      return currentState;
+    }
 
     byte      dredDuration = (byte) RemoteConfig.dredDuration();
     byte[]    groupId      = currentState.getCallInfoState().getCallRecipient().requireGroupId().getDecodedId();
