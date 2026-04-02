@@ -7,7 +7,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
  */
 object CollapsibleEvents {
 
-  const val MAX_SIZE = 50
+  val MAX_SIZE = 50
 
   @JvmStatic
   fun isCollapsibleType(type: Long, messageExtras: MessageExtras?): Boolean {
