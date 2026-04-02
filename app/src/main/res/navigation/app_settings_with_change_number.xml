@@ -819,6 +819,16 @@
         app:popUpToInclusive="true" />
 
     <action
+        android:id="@+id/action_direct_to_chatsSettingsFragment"
+        app:destination="@id/chatsSettingsFragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/app_settings"
+        app:popUpToInclusive="true" />
+
+    <action
         android:id="@+id/action_direct_to_inviteFragment"
         app:destination="@id/inviteFragment"
         app:enterAnim="@anim/fragment_open_enter"

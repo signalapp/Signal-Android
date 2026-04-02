@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
+import android.app.PendingIntent
+import android.content.Intent
 import android.net.Uri
 import androidx.documentfile.provider.DocumentFile
 import kotlinx.coroutines.CoroutineScope
@@ -7,11 +9,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import org.signal.core.util.PendingIntentFlags.immutable
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -24,7 +28,6 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import java.util.zip.ZipOutputStream
 
 class LocalPlaintextArchiveJob internal constructor(
   private val destinationUri: String,
@@ -41,7 +44,7 @@ class LocalPlaintextArchiveJob internal constructor(
     private const val KEY_INCLUDE_MEDIA = "include_media"
   }
 
-  private var zipFile: DocumentFile? = null
+  private var exportDir: DocumentFile? = null
 
   override fun serialize(): ByteArray? {
     return JsonJobData.Builder()
@@ -57,13 +60,21 @@ class LocalPlaintextArchiveJob internal constructor(
   override fun run(): Result {
     Log.i(TAG, "Executing plaintext archive job...")
 
+    val contentIntent = PendingIntent.getActivity(
+      context,
+      0,
+      AppSettingsActivity.chats(context).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP),
+      immutable()
+    )
+
     var notification: NotificationController? = null
     try {
       notification = GenericForegroundService.startForegroundTask(
         context,
         context.getString(R.string.LocalBackupJob_creating_signal_backup),
         NotificationChannels.getInstance().BACKUPS,
-        R.drawable.ic_signal_backup
+        R.drawable.ic_signal_backup,
+        contentIntent
       )
     } catch (e: UnableToStartException) {
       Log.w(TAG, "Unable to start foreground service, continuing without service")
@@ -84,23 +95,16 @@ class LocalPlaintextArchiveJob internal constructor(
       val timestamp = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(Date())
       val fileName = "signal-export-$timestamp"
 
-      zipFile = root.createFile("application/zip", fileName)
-      val zipFile = this.zipFile ?: run {
-        Log.w(TAG, "Unable to create zip file")
+      exportDir = root.createDirectory(fileName)
+      val exportDir = this.exportDir ?: run {
+        Log.w(TAG, "Unable to create export directory")
         return Result.failure()
       }
 
-      stopwatch.split("create-file")
+      stopwatch.split("create-dir")
 
       try {
         SignalDatabase.attachmentMetadata.insertNewKeysForExistingAttachments()
-
-        val outputStream = context.contentResolver.openOutputStream(zipFile.uri)
-        if (outputStream == null) {
-          Log.w(TAG, "Unable to open output stream for zip file")
-          zipFile.delete()
-          return Result.failure()
-        }
 
         val progressScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
         progressScope.launch {
@@ -110,18 +114,16 @@ class LocalPlaintextArchiveJob internal constructor(
         }
 
         try {
-          ZipOutputStream(outputStream).use { zipOutputStream ->
-            val result = LocalArchiver.exportPlaintext(zipOutputStream, includeMedia, stopwatch, cancellationSignal = { isCanceled })
-            Log.i(TAG, "Plaintext archive finished with result: $result")
-            if (isCanceled) {
-              zipFile.delete()
-              setProgress(LocalBackupCreationProgress(canceled = LocalBackupCreationProgress.Canceled()), notification)
-              return Result.failure()
-            } else if (result !is org.signal.core.util.Result.Success) {
-              zipFile.delete()
-              setProgress(LocalBackupCreationProgress(failed = LocalBackupCreationProgress.Failed()), notification)
-              return Result.failure()
-            }
+          val result = LocalArchiver.exportPlaintext(exportDir, context.contentResolver, includeMedia, stopwatch, cancellationSignal = { isCanceled })
+          Log.i(TAG, "Plaintext archive finished with result: $result")
+          if (isCanceled) {
+            exportDir.delete()
+            setProgress(LocalBackupCreationProgress(canceled = LocalBackupCreationProgress.Canceled()), notification)
+            return Result.failure()
+          } else if (result !is org.signal.core.util.Result.Success) {
+            exportDir.delete()
+            setProgress(LocalBackupCreationProgress(failed = LocalBackupCreationProgress.Failed()), notification)
+            return Result.failure()
           }
         } finally {
           progressScope.cancel()
@@ -132,7 +134,7 @@ class LocalPlaintextArchiveJob internal constructor(
       } catch (e: IOException) {
         Log.w(TAG, "Error during plaintext archive!", e)
         setProgress(LocalBackupCreationProgress(failed = LocalBackupCreationProgress.Failed()), notification)
-        zipFile.delete()
+        exportDir.delete()
         throw e
       }
 
@@ -145,7 +147,7 @@ class LocalPlaintextArchiveJob internal constructor(
   }
 
   override fun onFailure() {
-    zipFile?.delete()
+    exportDir?.delete()
     val current = LocalExportProgress.plaintextProgress.value
     if (current.canceled == null && current.failed == null) {
       LocalExportProgress.setPlaintextProgress(LocalBackupCreationProgress(failed = LocalBackupCreationProgress.Failed()))

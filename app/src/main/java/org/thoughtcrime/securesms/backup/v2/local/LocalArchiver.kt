@@ -5,7 +5,9 @@
 
 package org.thoughtcrime.securesms.backup.v2.local
 
+import android.content.ContentResolver
 import android.webkit.MimeTypeMap
+import androidx.documentfile.provider.DocumentFile
 import okio.ByteString.Companion.toByteString
 import org.signal.archive.local.ArchivedFilesWriter
 import org.signal.archive.local.proto.FilesFrame
@@ -35,8 +37,6 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.Collections
-import java.util.zip.ZipEntry
-import java.util.zip.ZipOutputStream
 
 typealias ArchiveResult = org.signal.core.util.Result<LocalArchiver.ArchiveSuccess, LocalArchiver.ArchiveFailure>
 typealias RestoreResult = org.signal.core.util.Result<LocalArchiver.RestoreSuccess, LocalArchiver.RestoreFailure>
@@ -145,36 +145,44 @@ object LocalArchiver {
   }
 
   /**
-   * Export a plaintext archive to the provided [zipOutputStream].
+   * Export a plaintext archive to the provided [directory].
    */
   fun exportPlaintext(
-    zipOutputStream: ZipOutputStream,
+    directory: DocumentFile,
+    contentResolver: ContentResolver,
     includeMedia: Boolean,
     stopwatch: Stopwatch,
     cancellationSignal: () -> Boolean = { false }
   ): ArchiveResult {
     try {
-      zipOutputStream.putNextEntry(ZipEntry("metadata.json"))
-      zipOutputStream.write(Metadata(version = VERSION, backupId = getEncryptedBackupId()).toJson().toByteArray())
-      zipOutputStream.closeEntry()
+      val metadataFile = directory.createFile("application/octet-stream", "metadata.json")
+        ?: return ArchiveResult.failure(ArchiveFailure.MetadataStream)
+      contentResolver.openOutputStream(metadataFile.uri)?.use { out ->
+        out.write(Metadata(version = VERSION, backupId = getEncryptedBackupId()).toJson().toByteArray())
+      } ?: return ArchiveResult.failure(ArchiveFailure.MetadataStream)
       stopwatch.split("metadata")
 
-      zipOutputStream.putNextEntry(ZipEntry("main.jsonl"))
+      val mainFile = directory.createFile("application/octet-stream", "main.jsonl")
+        ?: return ArchiveResult.failure(ArchiveFailure.MainStream)
       val progressListener = LocalPlaintextExportProgressListener()
-      val attachments = BackupRepository.exportForLocalPlaintextArchive(
-        outputStream = zipOutputStream,
-        progressEmitter = progressListener,
-        cancellationSignal = cancellationSignal,
-        includeMedia = includeMedia
-      )
-      zipOutputStream.closeEntry()
+      val attachments = contentResolver.openOutputStream(mainFile.uri)?.use { mainStream ->
+        BackupRepository.exportForLocalPlaintextArchive(
+          outputStream = mainStream,
+          progressEmitter = progressListener,
+          cancellationSignal = cancellationSignal,
+          includeMedia = includeMedia
+        )
+      } ?: return ArchiveResult.failure(ArchiveFailure.MainStream)
       stopwatch.split("frames")
 
       if (includeMedia) {
+        val filesDir = directory.createDirectory("files")
+          ?: return ArchiveResult.failure(ArchiveFailure.FilesStream)
         val total = attachments.size.toLong()
         var completed = 0L
         progressListener.onAttachment(0, total)
         val writtenEntries = HashSet<String>()
+        val prefixDirs = HashMap<String, DocumentFile>()
         for (attachment in attachments) {
           if (cancellationSignal()) break
           val mediaName = MediaName.forLocalBackupFilename(attachment.plaintextHash, attachment.localBackupKey.key)
@@ -185,13 +193,21 @@ object LocalArchiver {
               ?.let { ".$it" }
               ?: ""
             val prefix = mediaName.name.substring(0..1)
-            val entryName = "files/$prefix/${mediaName.name}$ext"
+            val entryName = "$prefix/${mediaName.name}$ext"
             if (!writtenEntries.add(entryName)) continue
-            zipOutputStream.putNextEntry(ZipEntry(entryName))
-            SignalDatabase.attachments.getAttachmentStream(attachment).use { input ->
-              StreamUtil.copy(input, zipOutputStream, false, false)
+            val prefixDir = prefixDirs[prefix]
+              ?: filesDir.createDirectory(prefix)?.also { prefixDirs[prefix] = it }
+              ?: run {
+                Log.w(TAG, "Unable to create prefix directory $prefix, skipping attachment ${attachment.attachmentId}")
+                progressListener.onAttachment(++completed, total)
+                continue
+              }
+            val mediaFile = prefixDir.createFile("application/octet-stream", "${mediaName.name}$ext") ?: continue
+            contentResolver.openOutputStream(mediaFile.uri)?.use { out ->
+              SignalDatabase.attachments.getAttachmentStream(attachment).use { input ->
+                StreamUtil.copy(input, out, false, false)
+              }
             }
-            zipOutputStream.closeEntry()
           } catch (e: IOException) {
             Log.w(TAG, "Unable to export attachment ${attachment.attachmentId}, skipping", e)
           }
