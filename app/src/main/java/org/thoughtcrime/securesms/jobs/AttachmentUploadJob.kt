@@ -12,6 +12,9 @@ import org.signal.core.util.Util
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.inRoundedDays
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.net.RetryLaterException
+import org.signal.libsignal.net.UploadTooLargeException
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -171,8 +174,15 @@ class AttachmentUploadJob private constructor(
     try {
       val existingSpec = uploadSpec?.let { ResumableUploadSpec.from(it) }
 
+      val ciphertextLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(databaseAttachment.size))
+
       val uploadForm = if (existingSpec == null) {
-        SignalNetwork.attachments.getAttachmentV4UploadForm().successOrThrow()
+        when (val result = SignalNetwork.attachments.getAttachmentV4UploadForm(ciphertextLength)) {
+          is RequestResult.Success -> result.result
+          is RequestResult.NonSuccess -> throw result.error
+          is RequestResult.RetryableNetworkError -> throw RetryLaterException(result.retryAfter)
+          is RequestResult.ApplicationError -> throw result.cause
+        }
       } else {
         null
       }
@@ -288,8 +298,16 @@ class AttachmentUploadJob private constructor(
     database.setTransferProgressFailed(attachmentId, databaseAttachment.mmsId)
   }
 
+  override fun getNextRunAttemptBackoff(pastAttemptCount: Int, exception: java.lang.Exception): Long {
+    if (exception is RetryLaterException && exception.duration != null) {
+      return exception.duration.toMillis()
+    }
+
+    return super.getNextRunAttemptBackoff(pastAttemptCount, exception)
+  }
+
   override fun onShouldRetry(exception: Exception): Boolean {
-    return exception is IOException && exception !is NotPushRegisteredException
+    return exception is IOException && exception !is NotPushRegisteredException && exception !is UploadTooLargeException
   }
 
   @Throws(InvalidAttachmentException::class)

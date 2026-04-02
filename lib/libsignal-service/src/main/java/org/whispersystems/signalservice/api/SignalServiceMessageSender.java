@@ -17,6 +17,7 @@ import org.signal.libsignal.net.MultiRecipientSendAuthorization;
 import org.signal.libsignal.net.MultiRecipientSendFailure;
 import org.signal.libsignal.net.RequestResult;
 import org.signal.libsignal.net.RequestUnauthorizedException;
+import org.signal.libsignal.net.UploadTooLargeException;
 import org.signal.libsignal.net.RetryLaterException;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.IdentityKeyPair;
@@ -832,11 +833,22 @@ public class SignalServiceMessageSender {
     return uploadAttachmentV4(attachment, attachmentKey, attachmentData);
   }
 
-  public ResumableUploadSpec getResumableUploadSpec() throws IOException {
+  public ResumableUploadSpec getResumableUploadSpec(long uploadSizeBytes) throws IOException {
     Log.d(TAG, "Using pipe to retrieve attachment upload attributes...");
-    AttachmentUploadForm v4UploadAttributes = NetworkResultUtil.toBasicLegacy(attachmentApi.getAttachmentV4UploadForm());
+    RequestResult<AttachmentUploadForm, UploadTooLargeException> result = attachmentApi.getAttachmentV4UploadForm(uploadSizeBytes);
 
-    return socket.getResumableUploadSpec(v4UploadAttributes);
+    if (result instanceof RequestResult.Success) {
+      AttachmentUploadForm v4UploadAttributes = ((RequestResult.Success<AttachmentUploadForm>) result).getResult();
+      return socket.getResumableUploadSpec(v4UploadAttributes);
+    } else if (result instanceof RequestResult.NonSuccess) {
+      throw ((RequestResult.NonSuccess<UploadTooLargeException>) result).getError();
+    } else if (result instanceof RequestResult.RetryableNetworkError) {
+      throw new PushNetworkException(((RequestResult.RetryableNetworkError) result).getNetworkError());
+    } else if (result instanceof RequestResult.ApplicationError) {
+      throw new RuntimeException(((RequestResult.ApplicationError) result).getCause());
+    } else {
+      throw new IOException("Unexpected RequestResult type: " + result.getClass().getSimpleName());
+    }
   }
 
   private SignalServiceAttachmentPointer uploadAttachmentV4(SignalServiceAttachmentStream attachment, byte[] attachmentKey, PushAttachmentData attachmentData) throws IOException {

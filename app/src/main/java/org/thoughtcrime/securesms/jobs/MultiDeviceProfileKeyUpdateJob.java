@@ -17,7 +17,9 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
 import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage;
@@ -26,6 +28,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsO
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
+import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -88,11 +91,14 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
     out.close();
 
     SignalServiceMessageSender    messageSender    = AppDependencies.getSignalServiceMessageSender();
+    long                          dataLength       = baos.toByteArray().length;
+    long                          ciphertextLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(dataLength));
+    ResumableUploadSpec           uploadSpec       = messageSender.getResumableUploadSpec(ciphertextLength);
     SignalServiceAttachmentStream attachmentStream = SignalServiceAttachment.newStreamBuilder()
                                                                             .withStream(new ByteArrayInputStream(baos.toByteArray()))
                                                                             .withContentType("application/octet-stream")
-                                                                            .withLength(baos.toByteArray().length)
-                                                                            .withResumableUploadSpec(messageSender.getResumableUploadSpec())
+                                                                            .withLength(dataLength)
+                                                                            .withResumableUploadSpec(uploadSpec)
                                                                             .build();
 
     SignalServiceSyncMessage syncMessage = SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, false));

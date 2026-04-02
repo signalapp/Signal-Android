@@ -35,7 +35,9 @@ import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
 import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage;
@@ -288,7 +290,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                                                                         .withStream(stream)
                                                                                         .withContentType("application/octet-stream")
                                                                                         .withLength(length)
-                                                                                        .withResumableUploadSpec(messageSender.getResumableUploadSpec());
+                                                                                        .withResumableUploadSpec(messageSender.getResumableUploadSpec(AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(length))));
 
         messageSender.sendSyncMessage(SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream.build(), complete))
         );
