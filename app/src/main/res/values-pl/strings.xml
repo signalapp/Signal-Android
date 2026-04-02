@@ -683,7 +683,13 @@
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Multimedia jednorazowe są usuwane po wysłaniu</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Wiadomość została już wyświetlona</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">W tym czacie możesz robić notatki dla siebie. Jeśli z Twoim kontem są połączone inne urządzenia, nowe notatki będą na nich synchronizowane.</string>
-    <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d członków grupy nazywa się tak samo.</string>
+    <!-- Text in banner to show how many people have the same name. -->
+    <plurals name="ConversationFragment__d_group_members_have_the_same_name">
+        <item quantity="one">%1$d osoba w grupie nazywa się tak samo.</item>
+        <item quantity="few">%1$d osoby w grupie nazywają się tak samo.</item>
+        <item quantity="many">%1$d osób w grupie nazywa się tak samo.</item>
+        <item quantity="other">%1$d osoby w grupie nazywa się tak samo.</item>
+    </plurals>
     <string name="ConversationFragment__tap_to_review">Dotknij, aby to sprawdzić</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
     <string name="ConversationFragment__review_banner_body">Ta osoba nazywa się tak samo jak inny kontakt</string>
@@ -2006,9 +2012,9 @@
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
     <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
-    <string name="MessageRecord_s_terminated_the_group">%1$s ended the group</string>
+    <string name="MessageRecord_s_terminated_the_group">%1$s rozwiązuje tę grupę</string>
     <!-- Update message shown when a group is terminated by you -->
-    <string name="MessageRecord_you_terminated_the_group">You ended the group</string>
+    <string name="MessageRecord_you_terminated_the_group">Rozwiązujesz tę grupę</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">Wychodzące połączenie głosowe</string>
     <!-- Update message shown when placing an outgoing 1:1 video call -->
@@ -3851,7 +3857,7 @@
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
     <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
-    <string name="conversation_activity__group_action_not_allowed_group_ended">This action is unavailable because the group has ended.</string>
+    <string name="conversation_activity__group_action_not_allowed_group_ended">Ta opcja jest niedostępna, ponieważ grupa została rozwiązana.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
     <string name="conversation_activity__message_failed_to_delete_retry">Nie udało się usunąć wiadomości. Sprawdź, czy masz połączenie z internetem, i spróbuj ponownie.</string>
     <!-- Dialog body when a message failed to delete. -->
@@ -3906,13 +3912,33 @@
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">Zmień</string>
     <!-- Update item button text to show how many group updates there are. -->
-    <string name="CollapsedEvent__group_update">%1$d group updates</string>
+    <plurals name="CollapsedEvent__group_update">
+        <item quantity="one">%1$d group update</item>
+        <item quantity="few">%1$d group updates</item>
+        <item quantity="many">%1$d group updates</item>
+        <item quantity="other">%1$d group updates</item>
+    </plurals>
     <!-- Update item button text to show how many group updates there are. -->
-    <string name="CollapsedEvent__chat_update">%1$d chat updates</string>
+    <plurals name="CollapsedEvent__chat_update">
+        <item quantity="one">%1$d chat update</item>
+        <item quantity="few">%1$d chat updates</item>
+        <item quantity="many">%1$d chat updates</item>
+        <item quantity="other">%1$d chat updates</item>
+    </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
-    <string name="CollapsedEvent__disappearing_timer">%1$d disappearing message timer changes · %2$s</string>
+    <plurals name="CollapsedEvent__disappearing_timer">
+        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
+        <item quantity="few">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="many">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+    </plurals>
     <!-- Update item button text to show how many call events are. -->
-    <string name="CollapsedEvent__call_event">%1$d call events</string>
+    <plurals name="CollapsedEvent__call_event">
+        <item quantity="one">%1$d call event</item>
+        <item quantity="few">%1$d call events</item>
+        <item quantity="many">%1$d call events</item>
+        <item quantity="other">%1$d call events</item>
+    </plurals>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Odtwórz … Wstrzymaj odtwarzanie</string>
@@ -6000,6 +6026,41 @@
         <item quantity="other">%1$d folderu</item>
     </plurals>
 
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">Wyeksportuj historię czatów</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">Wyeksportuj kopię wszystkich czatów w formacie JSON do odczytu maszynowego. Znikające wiadomości nie zostaną wyeksportowane.</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">Nie udało się uwierzytelnić</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">Wyeksportować historię czatu?</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">Wybierz folder</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">Wybierz folder</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
     <string name="ChatFoldersEducationSheet__create_folders_for_family">Twórz osobne foldery dla rodziny, znajomych, współpracowników itp.</string>
@@ -6355,7 +6416,7 @@
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Te multimedia nie zostały jeszcze wysłane.</string>
     <!-- End group option in group conversation settings screen -->
-    <string name="ConversationSettingsFragment__end_group">End group</string>
+    <string name="ConversationSettingsFragment__end_group">Rozwiąż grupę</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
     <!-- Archive chat option in group conversation settings screen -->
@@ -6364,10 +6425,10 @@
     <string name="ConversationSettingsFragment__delete_chat">Usuń czat</string>
     <!-- Member section header for terminated groups. %1$d is the member count -->
     <plurals name="ConversationSettingsFragment__d_former_members">
-        <item quantity="one">%1$d former member</item>
-        <item quantity="few">%1$d former members</item>
-        <item quantity="many">%1$d former members</item>
-        <item quantity="other">%1$d former members</item>
+        <item quantity="one">Do grupy należała %1$d osoba</item>
+        <item quantity="few">Do grupy należały %1$d osoby</item>
+        <item quantity="many">Do grupy należało %1$d osób</item>
+        <item quantity="other">Do grupy należało %1$d osób</item>
     </plurals>
 
     <!-- PermissionsSettingsFragment -->
@@ -8491,7 +8552,7 @@
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__title">Nowe lokalne kopie zapasowe</string>
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__body">Teraz lokalne kopie zapasowe zapisują się szybciej i zużywają mniej danych.</string>
+    <string name="UseNewOnDeviceBackups__body">Teraz lokalne kopie zapasowe zapisują się szybciej i zajmują mniej miejsca.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
     <string name="UseNewOnDeviceBackups__upgrade">Zaktualizuj</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
@@ -8921,26 +8982,26 @@
     <string name="MediaNoLongerAvailableSheet__not_now">Nie teraz</string>
 
     <!-- End group button label shown in confirmation dialogs -->
-    <string name="EndGroupDialog__end_group">End group</string>
+    <string name="EndGroupDialog__end_group">Rozwiąż grupę</string>
     <!-- Title of first end group confirmation dialog. %1$s is the group name -->
-    <string name="EndGroupDialog__end_s">End \"%1$s\"?</string>
+    <string name="EndGroupDialog__end_s">Rozwiązać grupę „%1$s”?</string>
     <!-- Body of first end group confirmation dialog -->
-    <string name="EndGroupDialog__members_will_no_longer_be_able_to_send">Members will no longer be able to send messages or start calls in the group. They will be notified that you ended the group, and will still have access to message history.</string>
+    <string name="EndGroupDialog__members_will_no_longer_be_able_to_send">Jeśli to zrobisz, w tej grupie nie będzie już można wysyłać nowych wiadomości ani rozpoczynać połączeń. Osoby z grupy zostaną powiadomienie o rozwiązaniu grupy i nadal będą mieć dostęp do historii wiadomości.</string>
     <!-- Body of second/final end group confirmation dialog -->
-    <string name="EndGroupDialog__this_will_end_the_group_permanently">This will end the group permanently. Are you sure you want to proceed?</string>
+    <string name="EndGroupDialog__this_will_end_the_group_permanently">Grupa zostanie rozwiązana na stałe. Chcesz kontynuować?</string>
     <!-- Progress message shown while ending a group -->
-    <string name="EndGroupDialog__ending_group">Ending group…</string>
+    <string name="EndGroupDialog__ending_group">Rozwiązywanie grupy…</string>
     <!-- Message shown when ending a group fails -->
     <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Spróbuj ponownie</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
-    <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s Ended the Group</string>
+    <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s rozwiązuje tę grupę</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
-    <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">You can no longer send and receive messages or calls in this group.</string>
+    <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">W tej grupie nie można już wysyłać i odbierać wiadomości ani rozpoczynać i odbierać połączeń.</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Usuwanie zsynchronizowane na wszystkich urządzeniach</string>
@@ -9609,9 +9670,9 @@
     <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
     <string name="RestoreLocalBackupDialog__skip_restore_confirm">Pomiń przywracanie</string>
     <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Restore to new account?</string>
+    <string name="RestoreLocalBackupDialog__restore_to_new_account">Przywrócić na nowym koncie?</string>
     <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">The backup you are restoring was created using a different Signal account. You can restore this backup to a new account, but you will no longer be a member of any groups that were restored.</string>
+    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Wybrana kopia zapasowa została utworzona przy użyciu innego konta Signal. Możesz ją przywrócić na nowym koncie, ale przestaniesz należeć do przywróconych wcześniej grup.</string>
     <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
     <string name="RestoreLocalBackupDialog__restore">Przywróć</string>
 
@@ -9642,28 +9703,28 @@
     <string name="RestoreLocalBackupActivity__contact_support">Skontaktuj się z pomocą techniczną</string>
 
     <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Turn on on-device backups?</string>
+    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Włączyć tworzenie lokalnych kopii zapasowych?</string>
 
     <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">To continue using on-device backups, you need to enable them for this account and record your new recovery key. You can do this at any time from Settings &gt; Backups.</string>
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Jeśli chcesz nadal tworzyć lokalne kopie zapasowe, włącz tę opcję na tym koncie i zapisz nowy kod odzyskiwania. Możesz to zrobić w dowolnym momencie – w tym celu przejdź do sekcji Ustawienia &gt; Kopie zapasowe.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Turn on now</string>
+    <string name="RestoreLocalBackupActivity__turn_on_now">Włącz teraz</string>
 
     <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__not_now">Nie teraz</string>
 
     <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">To continue using on-device backups, choose a folder on your device where new backups will be saved.</string>
+    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Jeśli chcesz tworzyć kolejne lokalne kopie zapasowe, wskaż folder na urządzeniu, w którym mają być zapisywane.</string>
 
     <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Use current folder</string>
+    <string name="RestoreLocalBackupActivity__use_current_folder">Użyj bieżącego folderu</string>
 
     <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Choose new folder</string>
+    <string name="RestoreLocalBackupActivity__choose_new_folder">Wybierz nowy folder</string>
 
     <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Disable backups</string>
+    <string name="RestoreLocalBackupActivity__disable_backups">Wyłącz tworzenie kopii zapasowych</string>
 
     <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
     <string name="SelectInstructionsSheet__select_your_backup_folder">Wybierz folder z kopią zapasową</string>
@@ -10135,6 +10196,15 @@
 
     <!-- Label for internal-only section showing groups with same members -->
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
+
+    <!-- Title of the sheet shown when a local backup restore could not be completed -->
+    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+
+    <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+
+    <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
 
     <!-- EOF -->
 </resources>

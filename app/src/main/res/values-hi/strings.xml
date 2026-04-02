@@ -557,7 +557,7 @@
     <string name="ConversationActivity_delete_conversation">चैट डिलीट करनी है?</string>
     <string name="ConversationActivity_delete_and_leave_group">डिलीट करें और समूह छोड़ दें?</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">यह चैट आपके सभी डिवाइस से डिलीट हो जाएगी।</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">आप इस ग्रूप को छोङ देंगे और यह ग्रूप आपके सभी डिवाइस से डिलीट कर दिया जाएगा।</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">ऐसा करने से आप ग्रुप में मौजूद नहीं रहेंगे और यह आपके सभी डिवाइस से डिलीट हो जाएगा।</string>
     <string name="ConversationActivity_delete">डिलीट करें</string>
     <string name="ConversationActivity_delete_and_leave">डिलीट करें और छोड़ दें</string>
 
@@ -657,7 +657,11 @@
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">भेजने के बाद सिर्फ़ एक बार देखे जा सकने वाला मीडिया डिलीट किया गया</string>
     <string name="ConversationFragment_you_already_viewed_this_message">आपने यह संदेश पहले ही देख लिया है</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">इस चैट में खुद के लिए भी नोट जोड़े जा सकते हैं। अगर आपके अकाउंट से कोई डिवाइस लिंक है, तो नए नोट वहां भी सिंक हो जाएंगे।</string>
-    <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ग्रुप मेंबर के नाम एक जैसे हैं।</string>
+    <!-- Text in banner to show how many people have the same name. -->
+    <plurals name="ConversationFragment__d_group_members_have_the_same_name">
+        <item quantity="one">ग्रुप के %1$d सदस्य का एक ही नाम है।</item>
+        <item quantity="other">ग्रुप के %1$d सदस्यों का एक ही नाम है।</item>
+    </plurals>
     <string name="ConversationFragment__tap_to_review">देखने के लिए टैप करें</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
     <string name="ConversationFragment__review_banner_body">इस व्यक्ति का नाम आपके दूसरे कॉन्टैक्ट से मिलता है</string>
@@ -1184,7 +1188,7 @@
     <!-- Confirmation button to dismiss bottom sheet dialog -->
     <string name="AddLinkDeviceFragment__okay">ठीक है</string>
     <!-- Dialog text describing the consequences of linking a device -->
-    <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">यह डिवाइस आपके ग्रुप और कॉन्टैक्ट देख सकता है, आपकी चैट ऐक्सेस कर सकता है, और आपके नाम से मैसेज भेज सकता है।</string>
+    <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">इस डिवाइस पर आपके ग्रुप और कॉन्टैक्ट दिखते रहेंगे, आपकी चैट ऐक्सेस होती रहेगी, और पहले की तरह मैसेज भी भेजे जा सकेंगे।</string>
     <!-- Bottom sheet title telling users to complete the linking process on the other device  -->
     <string name="AddLinkDeviceFragment__finish_linking_on_other_device">अपने दूसरे डिवाइस पर लिंक करने की प्रक्रिया पूरी करें</string>
     <!-- Bottom sheet description telling users to complete the linking process -->
@@ -1787,8 +1791,8 @@
         <item quantity="other">चयनित आइटम डिलीट करें?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">यह चयनित फ़ाइल को स्थायी रूप से डिलीट कर देगा। इस आइटम से जुड़ा कोई भी मेसेज टेक्स्ट भी डिलीट कर दिया जाएगा।</item>
-        <item quantity="other">%1$d यह सभी चयनित फ़ाइलों को स्थायी रूप से हटा देगा। इन आइटम से जुड़ा कोई भी मेसेज पाठ भी हटा दिया जाएगा।</item>
+        <item quantity="one">इससे चुनी गई फ़ाइल हमेशा के लिए डिलीट हो जाएंगी। इन आइटम से जुड़े सभी मैसेज भी डिलीट हो जाएंगे।</item>
+        <item quantity="other">इससे चुनी गई सभी %1$d फ़ाइल हमेशा के लिए डिलीट हो जाएंगी। इन आइटम से जुड़े सभी मैसेज भी डिलीट हो जाएंगे।</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">डिलीट किया जा रहा है</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">मैसेज डिलीट किए जा रहे हैं…</string>
@@ -1898,9 +1902,9 @@
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
     <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
-    <string name="MessageRecord_s_terminated_the_group">%1$s ended the group</string>
+    <string name="MessageRecord_s_terminated_the_group">%1$s ने यह ग्रुप बंद कर दिया है</string>
     <!-- Update message shown when a group is terminated by you -->
-    <string name="MessageRecord_you_terminated_the_group">You ended the group</string>
+    <string name="MessageRecord_you_terminated_the_group">आपने यह ग्रुप बंद कर दिया है</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">आउटगोइंग वॉइस कॉल</string>
     <!-- Update message shown when placing an outgoing 1:1 video call -->
@@ -2237,7 +2241,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">क्या %1$s को यह अनुमित देनी है कि वह आपको मैसेज भेज सकें और आपका नाम और फ़ोटो देख सकें? आपने पहले इस व्यक्ति को हटाया था।</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">क्या %1$s को यह अनुमति देनी है कि वह आपको मैसेज भेज सकें और आपका नाम और फ़ोटो देख सकें? आपकी ओर से अनुरोध स्वीकार करने के बाद ही उन्हें पता चल पाएगा कि आपने उनका मैसेज देखा है।</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s को आपको मेसेज करने देना है और उनके साथ अपना नाम और तस्वीर शेयर करनी है? आप कोई भी मेसेज प्राप्त नहीं करेंगे जब तक आप उन्हें अनब्लॉक नहीं करते।</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">क्या %1$s को अनुमति देना है कि वह आपको मैसेज भेज सकें और आपका नाम और फ़ोटो देख सकें? अगर आपको उनसे मैसेज पाना है, तो पहले अनब्लॉक करना होगा।</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s को आपको संदेश भेजने दें? जब तक आप उनको अनब्लॉक नहीं करते, तब तक आपको कोई संदेश नहीं मिलेगा।</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
@@ -2250,7 +2254,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">क्या आपको इस ग्रुप से जुड़ना है और अपना नाम और फ़ोटो इसके सदस्यों के साथ शेयर करनी है? स्वीकार करने के बाद ही आपको उनके मैसेज दिख पाएंगे।</string>
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">इस ग्रुप में जुड़ना है? आपकी ओर से स्वीकार करने के बाद ही ग्रुप के सदस्यों को पता चल पाएगा कि आपने उनके मैसेज देखे हैं।</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">इस ग्रुप को अनब्लॉक करना है और इसके मेंबर्स के साथ अपना नाम और तस्वीर शेयर करनी है? आप कोई भी मेसेज प्राप्त नहीं करेंगे जब तक आप उन्हें अनब्लॉक नहीं करते।</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">क्या इस ग्रुप को अनब्लॉक करके अपना नाम और फ़ोटो इसके सदस्यों के साथ शेयर करना है? अगर आपको इस ग्रुप से मैसेज पाना है, तो पहले इसे अनब्लॉक करना होगा।</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">देखें</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s का सदस्य</string>
@@ -2447,7 +2451,7 @@
     <string name="RedPhone_network_failed">नेटवर्क नहीं है! कृपया अपना इंटरनेट कनेक्शन देखें और दोबारा कोशिश करें।</string>
     <string name="RedPhone_number_not_registered">नंबर रजिस्टर नहीं है!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">डायल किए गए नंबर पर सिक्योर वॉइस की सुविधा मौजूद नहीं है!</string>
-    <string name="RedPhone_got_it">समझ गया</string>
+    <string name="RedPhone_got_it">ठीक है</string>
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
@@ -2767,7 +2771,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">आपको उनका ऑडियो या वीडियो नहीं मिलेगा और उन्हें आपका।</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s से ऑडियो और वीडियो नहीं मिल रहे हैं</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s से ऑडियो और वीडियो नहीं मिल रहे हैं</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">यह इसलिए हो सकता है क्योंकि उन्होंने आपके सुरक्षा नंबर में परिवर्तन को वेरिफाई नहीं किया है, उनके डिवाइस के साथ कोई समस्या है, या उन्होंने आपको ब्लॉक कर दिया है।</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ऐसा इसलिए हो सकता है, क्योंकि मुमकिन है कि उन्होंने आपके सेफ़्टी नंबर में हुए बदलाव को वेरिफ़ाई नहीं किया होगा या फिर उनके डिवाइस में कोई गड़बड़ी होगी या उन्होंने आपको ब्लॉक कर दिया है।</string>
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
@@ -3635,7 +3639,7 @@
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
     <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
-    <string name="conversation_activity__group_action_not_allowed_group_ended">This action is unavailable because the group has ended.</string>
+    <string name="conversation_activity__group_action_not_allowed_group_ended">ऐसा नहीं किया जा सकता, क्योंकि यह ग्रुप बंद कर दिया गया है।</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
     <string name="conversation_activity__message_failed_to_delete_retry">मैसेज डिलीट नहीं हो पाया। अपना इंटरनेट कनेक्शन देखें और दोबारा कोशिश करें।</string>
     <!-- Dialog body when a message failed to delete. -->
@@ -3690,13 +3694,25 @@
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">अपडेट करें</string>
     <!-- Update item button text to show how many group updates there are. -->
-    <string name="CollapsedEvent__group_update">%1$d group updates</string>
+    <plurals name="CollapsedEvent__group_update">
+        <item quantity="one">%1$d group update</item>
+        <item quantity="other">%1$d group updates</item>
+    </plurals>
     <!-- Update item button text to show how many group updates there are. -->
-    <string name="CollapsedEvent__chat_update">%1$d chat updates</string>
+    <plurals name="CollapsedEvent__chat_update">
+        <item quantity="one">%1$d chat update</item>
+        <item quantity="other">%1$d chat updates</item>
+    </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
-    <string name="CollapsedEvent__disappearing_timer">%1$d disappearing message timer changes · %2$s</string>
+    <plurals name="CollapsedEvent__disappearing_timer">
+        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
+        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+    </plurals>
     <!-- Update item button text to show how many call events are. -->
-    <string name="CollapsedEvent__call_event">%1$d call events</string>
+    <plurals name="CollapsedEvent__call_event">
+        <item quantity="one">%1$d call event</item>
+        <item quantity="other">%1$d call events</item>
+    </plurals>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">चलाएं … रोकें</string>
@@ -5728,6 +5744,41 @@
         <item quantity="other">%1$d फ़ोल्डर</item>
     </plurals>
 
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">पुरानी चैट एक्सपोर्ट करें</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">अपनी सभी चैट्स की मशीन-रीडेबल JSON कॉपी एक्सपोर्ट करें। गायब होने वाले मैसेज एक्सपोर्ट नहीं किए जाएंगे।</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">ऑथेंटिकेशन नहीं हो पाया</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">पुरानी चैट एक्सपोर्ट करनी है?</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">कोई फ़ोल्डर चुनें</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">फ़ोल्डर चुनें</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
     <string name="ChatFoldersEducationSheet__create_folders_for_family">परिवार, दोस्तों, ऑफ़िस वगैरह के लिए फ़ोल्डर बनाएं</string>
@@ -5892,7 +5943,7 @@
 
     <!-- ExpireTimerSettingsFragment -->
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">इसके चालू होने पर, आपके द्वारा शुरू की गई नई चैट में भेजे गए और मिले नए संदेश देखे जाने के बाद ग़ायब हो जाएँगे।</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">इसके चालू होने पर, इस चैट में भेजे गए और मिले नए संदेश देखे जाने के बाद ग़ायब हो जाएँगे।</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">इसके चालू होने पर, इस चैट में भेजे गए और मिले नए मैसेज देखे जाने के बाद ग़ायब हो जाएंगे।</string>
     <string name="ExpireTimerSettingsFragment__off">बंद है</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 हफ़्ते</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 हफ़्ता</string>
@@ -6071,17 +6122,17 @@
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">यह मीडिया अभी तक भेजा नहीं गया।</string>
     <!-- End group option in group conversation settings screen -->
-    <string name="ConversationSettingsFragment__end_group">End group</string>
+    <string name="ConversationSettingsFragment__end_group">ग्रुप बंद करें</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
     <!-- Archive chat option in group conversation settings screen -->
-    <string name="ConversationSettingsFragment__archive_chat">चैट को संग्रहीत करें</string>
+    <string name="ConversationSettingsFragment__archive_chat">चैट आर्काइव करें</string>
     <!-- Delete chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__delete_chat">चैट डिलीट करें</string>
     <!-- Member section header for terminated groups. %1$d is the member count -->
     <plurals name="ConversationSettingsFragment__d_former_members">
-        <item quantity="one">%1$d former member</item>
-        <item quantity="other">%1$d former members</item>
+        <item quantity="one">%1$d एक्स-मेंबर</item>
+        <item quantity="other">%1$d एक्स-मेंबर</item>
     </plurals>
 
     <!-- PermissionsSettingsFragment -->
@@ -6615,7 +6666,7 @@
     <!-- Stripe decline code incorrect_cvc and invalid_cvc for credit cards displayed in a notification or dialog -->
     <string name="DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details">आपके कार्ड का CVV नंबर गलत है। पुष्टि करें कि आपका कार्ड विवरण सही है और फिर से प्रयास करें।</string>
     <!-- Stripe decline code invalid_expiry_month for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__the_expiration_month_on_your_card_is_incorrect">आपके कार्ड पर दिया वैधता समाप्ति का माह गलत है। पुष्टि करें कि आपके कार्ड की जानकारी सही है और दोबारा कोशिश करें।</string>
+    <string name="DeclineCode__the_expiration_month_on_your_card_is_incorrect">आपके कार्ड के एक्सपायरी महीने की जानकारी गलत है।वेरिफ़ाई करें कि आपके कार्ड की जानकारी सही है और इसके बाद दोबारा कोशिश करें।</string>
     <!-- Stripe decline code invalid_expiry_year for credit cards displayed in a notification or dialog -->
     <string name="DeclineCode__the_expiration_year_on_your_card_is_incorrect">आपके कार्ड पर दी गई एक्सपायरी डेट सही नहीं है। पुष्टि करें कि आपके कार्ड की जानकारी सही है और दोबारा कोशिश करें।</string>
     <!-- Stripe decline code incorrect_number and invalid_number for credit cards displayed in a notification or dialog -->
@@ -7249,7 +7300,7 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">बैज रिडीम हो जा रहा है…</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_made_a_donation">आपने %1$s की ओर से Signal को डोनेट किया है। अगर उन्हें अपनी प्रोफ़ाइल पर इस सहयोग को दिखाना है, तो ऐसा करने के लिए उन्हें विकल्प दिया जाएगा।</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">आपने %1$s की ओर से Signal को डोनेट किया है। उन्हें इस सहयोग को अपनी प्रोफ़ाइल पर दिखाने का विकल्प दिया जाएगा।</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">आपके बैज की समयसीमा खत्म हो गई है</string>
     <!-- Expired gift sheet top description text -->
@@ -7332,7 +7383,7 @@
     <!-- Label indicating swipe direction to exit story viewer -->
     <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">बाहर निकलने के लिए दाईं ओर स्वाइप करें</string>
     <!-- Button label to confirm understanding of story navigation -->
-    <string name="StoryFirstTimeNagivationView__got_it">समझ गया</string>
+    <string name="StoryFirstTimeNagivationView__got_it">ठीक है</string>
     <!-- Content description for vertical context menu button in safety number sheet rows -->
     <string name="SafetyNumberRecipientRowItem__open_context_menu">कंटेक्स्ट मेन्यू खोलें</string>
     <!-- Sub-line when a user is verified. -->
@@ -8319,7 +8370,7 @@
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">अभी बैकअप लें</string>
     <!-- Primary action button when user doesn\'t have enough space -->
-    <string name="BackupAlertBottomSheet__got_it">समझ गया</string>
+    <string name="BackupAlertBottomSheet__got_it">ठीक है</string>
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">सब्सक्रिप्शन मैनेज करें</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
@@ -8557,26 +8608,26 @@
     <string name="MediaNoLongerAvailableSheet__not_now">अभी नहीं</string>
 
     <!-- End group button label shown in confirmation dialogs -->
-    <string name="EndGroupDialog__end_group">End group</string>
+    <string name="EndGroupDialog__end_group">ग्रुप बंद करें</string>
     <!-- Title of first end group confirmation dialog. %1$s is the group name -->
-    <string name="EndGroupDialog__end_s">End \"%1$s\"?</string>
+    <string name="EndGroupDialog__end_s">\"%1$s\" ग्रुप बंद करना है?</string>
     <!-- Body of first end group confirmation dialog -->
-    <string name="EndGroupDialog__members_will_no_longer_be_able_to_send">Members will no longer be able to send messages or start calls in the group. They will be notified that you ended the group, and will still have access to message history.</string>
+    <string name="EndGroupDialog__members_will_no_longer_be_able_to_send">ऐसा करने पर, मेंबर ना तो ग्रुप में मैसेज भेज पाएंगे और ना ही कॉल कर पाएंगे। उन्हें यह सूचना दी जाएगी कि आपने यह ग्रुप बंद कर दिया है। हालांकि, इसके बावजूद वे पुराने मैसेज देख पाएंगे।</string>
     <!-- Body of second/final end group confirmation dialog -->
-    <string name="EndGroupDialog__this_will_end_the_group_permanently">This will end the group permanently. Are you sure you want to proceed?</string>
+    <string name="EndGroupDialog__this_will_end_the_group_permanently">इससे यह ग्रुप हमेशा के लिए बंद हो जाएगा। क्या आपको अब भी इसे बंद करना है?</string>
     <!-- Progress message shown while ending a group -->
-    <string name="EndGroupDialog__ending_group">Ending group…</string>
+    <string name="EndGroupDialog__ending_group">ग्रुप बंद किया जा रहा है…</string>
     <!-- Message shown when ending a group fails -->
     <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">फिर से कोशिश करें</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
-    <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s Ended the Group</string>
+    <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s ने यह ग्रुप बंद कर दिया है</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
-    <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">You can no longer send and receive messages or calls in this group.</string>
+    <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">अब आपके लिए इस ग्रुप में कॉल करना या कॉल रिसीव करना और मैसेज भेजना या रिसीव करना मुमकिन नहीं है।</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">डिलीट करने की यह सुविधा आपके सभी डिवाइसों से सिंक हो गई है</string>
@@ -9229,9 +9280,9 @@
     <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
     <string name="RestoreLocalBackupDialog__skip_restore_confirm">रीस्टोर करना छोड़ें</string>
     <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Restore to new account?</string>
+    <string name="RestoreLocalBackupDialog__restore_to_new_account">नए अकाउंट पर रीस्टोर करना है?</string>
     <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">The backup you are restoring was created using a different Signal account. You can restore this backup to a new account, but you will no longer be a member of any groups that were restored.</string>
+    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">ध्यान दें कि जिस बैकअप को रीस्टोर किया जा रहा वह किसी दूसरे Signal अकाउंट का इस्तेमाल करके बनाया गया था। आप चाहें तो इस बैकअप को किसी नए अकाउंट पर रीस्टोर कर लें। हालांकि, आपके लिए रीस्टोर किए गए ग्रुप्स का मेंबर रह पाना मुमकिन नहीं होगा।</string>
     <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
     <string name="RestoreLocalBackupDialog__restore">रीस्टोर करें</string>
 
@@ -9262,28 +9313,28 @@
     <string name="RestoreLocalBackupActivity__contact_support">सपोर्ट टीम से संपर्क करें</string>
 
     <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Turn on on-device backups?</string>
+    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">ऑन-डिवाइस बैकअप चालू करना है?</string>
 
     <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">To continue using on-device backups, you need to enable them for this account and record your new recovery key. You can do this at any time from Settings &gt; Backups.</string>
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">ऑन-डिवाइस बैकअप का इस्तेमाल जारी रखने के लिए, इस अकाउंट के लिए बैकअप चालू करें और अपनी नई \'रिकवरी की\' नोट करके रख लें। ऐसा करने के लिए किसी भी समय सेटिंग &gt; बैकअप पर जाएं।</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Turn on now</string>
+    <string name="RestoreLocalBackupActivity__turn_on_now">अभी चालू करें</string>
 
     <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__not_now">अभी नहीं</string>
 
     <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">To continue using on-device backups, choose a folder on your device where new backups will be saved.</string>
+    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">ऑन-डिवाइस बैकअप इस्तेमाल करना जारी रखने के लिए, अपने डिवाइस पर कोई ऐसा फ़ोल्डर चुनें जहां नए बैकअप सेव किए जाएंगे।</string>
 
     <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Use current folder</string>
+    <string name="RestoreLocalBackupActivity__use_current_folder">मौजूदा फ़ोल्डर का इस्तेमाल करें</string>
 
     <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Choose new folder</string>
+    <string name="RestoreLocalBackupActivity__choose_new_folder">नया फ़ोल्डर चुनें</string>
 
     <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Disable backups</string>
+    <string name="RestoreLocalBackupActivity__disable_backups">बैकअप बंद करें</string>
 
     <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
     <string name="SelectInstructionsSheet__select_your_backup_folder">अपना बैकअप फ़ोल्डर चुनें</string>
@@ -9749,6 +9800,15 @@
 
     <!-- Label for internal-only section showing groups with same members -->
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
+
+    <!-- Title of the sheet shown when a local backup restore could not be completed -->
+    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+
+    <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+
+    <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
 
     <!-- EOF -->
 </resources>
