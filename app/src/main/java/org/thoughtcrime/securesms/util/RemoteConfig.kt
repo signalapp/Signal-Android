@@ -1354,7 +1354,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("localPlaintextExport")
   val localPlaintextExport: Boolean by remoteBoolean(
-    key = "android.localPlaintextExport",
+    key = "android.localPlaintextExport.2",
     defaultValue = false,
     hotSwappable = false
   )
