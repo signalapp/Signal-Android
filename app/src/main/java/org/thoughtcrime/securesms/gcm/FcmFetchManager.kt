@@ -141,6 +141,7 @@ object FcmFetchManager {
   @JvmStatic
   fun onForeground(context: Context) {
     cancelMayHaveMessagesNotification(context)
+    FcmFetchForegroundService.stopServiceIfNecessary(context)
   }
 
   @JvmStatic
