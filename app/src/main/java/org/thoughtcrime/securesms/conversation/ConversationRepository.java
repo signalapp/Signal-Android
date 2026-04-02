@@ -12,7 +12,9 @@ import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -125,11 +127,23 @@ public class ConversationRepository {
   @NonNull
   public Single<ConversationMessage> resolveMessageToEdit(@NonNull ConversationMessage message) {
     return Single.fromCallable(() -> {
-                   MessageRecord messageRecord = message.getMessageRecord();
+                   ConversationMessage latestMessage = message;
+                   MessageRecord       messageRecord = latestMessage.getMessageRecord();
+
+                   MessageId latestRevisionId = messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getLatestRevisionId() : null;
+                   if (latestRevisionId != null) {
+                     MessageRecord latestRecord = SignalDatabase.messages().getMessageRecordOrNull(latestRevisionId.getId());
+                     if (latestRecord != null) {
+                       Log.e(TAG, "Resolving edit to latest revision: " + latestRevisionId.getId() + " (was: " + messageRecord.getId() + ")");
+                       messageRecord = latestRecord;
+                       latestMessage = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, messageRecord, messageRecord.getDisplayBody(context).toString(), message.getThreadRecipient());
+                     }
+                   }
+
                    if (MessageRecordUtil.hasTextSlide(messageRecord)) {
                      TextSlide textSlide = MessageRecordUtil.requireTextSlide(messageRecord);
                      if (textSlide.getUri() == null) {
-                       return message;
+                       return latestMessage;
                      }
 
                      try (InputStream stream = PartAuthority.getAttachmentStream(context, textSlide.getUri())) {
@@ -139,7 +153,7 @@ public class ConversationRepository {
                        Log.w(TAG, "Failed to read text slide data.");
                      }
                    }
-                   return message;
+                   return latestMessage;
                  }).subscribeOn(Schedulers.io())
                  .observeOn(AndroidSchedulers.mainThread());
   }
