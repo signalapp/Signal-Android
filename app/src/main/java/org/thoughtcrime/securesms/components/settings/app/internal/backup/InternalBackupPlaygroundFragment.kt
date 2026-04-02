@@ -73,6 +73,7 @@ import org.signal.core.util.Util
 import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.backup.isIdle
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet
@@ -270,6 +271,10 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
               .setNegativeButton("Cancel", null)
               .show()
           },
+          onTriggerLocalRestoreDirectoryError = {
+            SignalStore.backup.localRestoreDirectoryError = true
+            ArchiveRestoreProgress.forceUpdate()
+          },
           onDisplayInitialBackupFailureSheet = {
             BackupRepository.displayInitialBackupFailureNotification()
             BackupAlertBottomSheet
@@ -366,6 +371,7 @@ fun Screen(
   onImportEncryptedBackupFromDiskConfirmed: (aci: String, backupKey: String) -> Unit = { _, _ -> },
   onClearLocalMediaBackupState: () -> Unit = {},
   onDeleteRemoteBackup: () -> Unit = {},
+  onTriggerLocalRestoreDirectoryError: () -> Unit = {},
   onDisplayInitialBackupFailureSheet: () -> Unit = {}
 ) {
   val context = LocalContext.current
@@ -582,6 +588,12 @@ fun Screen(
         text = "Clear local media backup state",
         label = "Resets local state tracking so you think you haven't uploaded any media. The media still exists on the server.",
         onClick = onClearLocalMediaBackupState
+      )
+
+      Rows.TextRow(
+        text = "Trigger local restore directory error",
+        label = "Simulates the restore directory becoming inaccessible during a local backup restore.",
+        onClick = onTriggerLocalRestoreDirectoryError
       )
 
       Dividers.Default()

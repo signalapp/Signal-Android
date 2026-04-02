@@ -96,6 +96,8 @@ import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
 import org.signal.mediasend.MediaSendActivityContract
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState
+import org.thoughtcrime.securesms.backup.v2.ui.CouldNotCompleteBackupRestoreSheet
 import org.thoughtcrime.securesms.backup.v2.ui.verify.VerifyBackupKeyActivity
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar.show
 import org.thoughtcrime.securesms.calls.log.CallLogFilter
@@ -339,6 +341,19 @@ class MainActivity :
               Log.i(TAG, "Still restoring media, launching a service. Remaining restoration size: ${it.remainingRestoreSize} out of ${it.totalRestoreSize} ")
               BackupMediaRestoreService.resetTimeout()
               BackupMediaRestoreService.start(this@MainActivity, resources.getString(R.string.BackupStatus__restoring_media))
+            }
+        }
+      }
+
+      launch {
+        repeatOnLifecycle(Lifecycle.State.STARTED) {
+          ArchiveRestoreProgress
+            .stateFlow
+            .filter { it.restoreStatus == ArchiveRestoreProgressState.RestoreStatus.LOCAL_RESTORE_DIRECTORY_UNAVAILABLE }
+            .collect {
+              ArchiveRestoreProgress.clearLocalRestoreDirectoryError()
+              CouldNotCompleteBackupRestoreSheet().show(supportFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+              Log.i(TAG, "Local restore directory became unavailable.")
             }
         }
       }

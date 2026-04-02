@@ -157,6 +157,11 @@ object ArchiveRestoreProgress {
     update()
   }
 
+  fun clearLocalRestoreDirectoryError() {
+    SignalStore.backup.localRestoreDirectoryError = false
+    update()
+  }
+
   fun clearFinishedStatus() {
     store.update { state ->
       if (state.restoreStatus == ArchiveRestoreProgressState.RestoreStatus.FINISHED) {
@@ -193,7 +198,11 @@ object ArchiveRestoreProgress {
         !NetworkConstraint.isMet(AppDependencies.application) -> ArchiveRestoreProgressState.RestoreStatus.WAITING_FOR_INTERNET
         !BatteryNotLowConstraint.isMet() -> ArchiveRestoreProgressState.RestoreStatus.LOW_BATTERY
         !DiskSpaceNotLowConstraint.isMet() -> ArchiveRestoreProgressState.RestoreStatus.NOT_ENOUGH_DISK_SPACE
-        restoreState == RestoreState.NONE -> if (state.hasActivelyRestoredThisRun) ArchiveRestoreProgressState.RestoreStatus.FINISHED else ArchiveRestoreProgressState.RestoreStatus.NONE
+        restoreState == RestoreState.NONE -> when {
+          SignalStore.backup.localRestoreDirectoryError -> ArchiveRestoreProgressState.RestoreStatus.LOCAL_RESTORE_DIRECTORY_UNAVAILABLE
+          state.hasActivelyRestoredThisRun -> ArchiveRestoreProgressState.RestoreStatus.FINISHED
+          else -> ArchiveRestoreProgressState.RestoreStatus.NONE
+        }
         else -> {
           val availableBytes = SignalStore.backup.spaceAvailableOnDiskBytes
 

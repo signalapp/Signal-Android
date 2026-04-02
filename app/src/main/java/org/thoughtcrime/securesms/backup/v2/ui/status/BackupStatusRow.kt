@@ -217,7 +217,8 @@ private fun progressColor(backupStatusData: ArchiveRestoreProgressState): Color 
     RestoreStatus.LOW_BATTERY,
     RestoreStatus.NOT_ENOUGH_DISK_SPACE -> BackupsIconColors.Warning.foreground
     RestoreStatus.FINISHED -> BackupsIconColors.Success.foreground
-    RestoreStatus.NONE -> BackupsIconColors.Normal.foreground
+    RestoreStatus.NONE,
+    RestoreStatus.LOCAL_RESTORE_DIRECTORY_UNAVAILABLE -> BackupsIconColors.Normal.foreground
   }
 }
 

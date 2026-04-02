@@ -6,9 +6,11 @@ package org.thoughtcrime.securesms.jobs
 
 import android.net.Uri
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.protos.LocalBackupRestoreMediaJobData
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import java.io.File
 
 /**
@@ -46,6 +48,7 @@ class LocalBackupRestoreMediaJob private constructor(
     val archiveFileSystem = when (backupDirectoryUri.scheme) {
       "content" -> ArchiveFileSystem.openForRestore(context, backupDirectoryUri) ?: run {
         Log.w(TAG, "Unable to open backup directory: $backupDirectoryUri")
+        SignalStore.backup.localRestoreDirectoryError = true
         return Result.failure()
       }
       else -> ArchiveFileSystem.fromFile(context, File(backupDirectoryUri.path!!))
@@ -56,7 +59,11 @@ class LocalBackupRestoreMediaJob private constructor(
     return Result.success()
   }
 
-  override fun onFailure() = Unit
+  override fun onFailure() {
+    ArchiveRestoreProgress.allMediaRestored()
+    // forceUpdate in case restoreState was already NONE and allMediaRestored() skipped its update()
+    ArchiveRestoreProgress.forceUpdate()
+  }
 
   class Factory : Job.Factory<LocalBackupRestoreMediaJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): LocalBackupRestoreMediaJob {
