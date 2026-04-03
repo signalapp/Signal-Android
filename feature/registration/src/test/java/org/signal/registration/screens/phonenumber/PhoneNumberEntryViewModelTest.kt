@@ -319,8 +319,10 @@ class PhoneNumberEntryViewModelTest {
     assertThat(emittedStates.first().showSpinner).isTrue()
     assertThat(emittedStates.last().showSpinner).isFalse()
 
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first())
+    assertThat(emittedEvents).hasSize(3)
+    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.SessionUpdated>()
+    assertThat(emittedEvents[1]).isInstanceOf<RegistrationFlowEvent.E164Chosen>()
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.Captcha>()
@@ -737,8 +739,10 @@ class PhoneNumberEntryViewModelTest {
     assertThat(emittedStates.last().showSpinner).isFalse()
 
     // Verify navigation to captcha
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first())
+    assertThat(emittedEvents).hasSize(3)
+    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.SessionUpdated>()
+    assertThat(emittedEvents[1]).isInstanceOf<RegistrationFlowEvent.E164Chosen>()
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.Captcha>()

@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.ui.RegistrationActivity;
+import org.thoughtcrime.securesms.util.Environment;
 import org.thoughtcrime.securesms.restore.RestoreActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
@@ -134,8 +135,12 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
     Intent    intent           = getIntentForState(applicationState);
     if (intent != null) {
       Log.d(TAG, "routeApplicationState(), intent: " + intent.getComponent());
-      startActivity(intent);
-      finish();
+      if (applicationState == STATE_WELCOME_PUSH_SCREEN && Environment.USE_NEW_REGISTRATION) {
+        startActivity(intent);
+      } else {
+        startActivity(intent);
+        finish();
+      }
     }
   }
 
@@ -221,7 +226,11 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private Intent getPushRegistrationIntent() {
-    return RegistrationActivity.newIntentForNewRegistration(this, getIntent());
+    if (Environment.USE_NEW_REGISTRATION) {
+      return org.signal.registration.RegistrationActivity.createIntent(this);
+    } else {
+      return RegistrationActivity.newIntentForNewRegistration(this, getIntent());
+    }
   }
 
   private Intent getEnterSignalPinIntent() {

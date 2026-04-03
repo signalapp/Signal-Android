@@ -271,7 +271,7 @@ class DemoStorageController(private val context: Context) : StorageController {
     Log.d(TAG, "Simulated V1 restore complete.")
   }.flowOn(Dispatchers.IO)
 
-  override fun restoreLocalBackupV2(rootUri: Uri, backupUri: Uri, aep: String): Flow<LocalBackupRestoreProgress> = flow {
+  override fun restoreLocalBackupV2(rootUri: Uri, backupUri: Uri, aep: AccountEntropyPool): Flow<LocalBackupRestoreProgress> = flow {
     Log.d(TAG, "Starting simulated V2 local backup restore from backup=$backupUri, root=$rootUri")
 
     require(DocumentFile.fromTreeUri(context, backupUri)?.exists() == true) { "Backup directory does not exist: $backupUri" }

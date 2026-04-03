@@ -131,7 +131,10 @@ class DebugNetworkController(
   }
 
   override suspend fun awaitPushChallengeToken(): String? {
-    // No override support for simple value methods
+    if (NetworkDebugState.skipPushChallenge.value) {
+      Log.d(TAG, "[awaitPushChallengeToken] Skipping push challenge (debug override)")
+      return null
+    }
     return delegate.awaitPushChallengeToken()
   }
 

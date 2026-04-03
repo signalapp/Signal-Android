@@ -106,7 +106,7 @@ interface StorageController {
    * @return A [Flow] of [LocalBackupRestoreProgress] that reports the state of the restore operation
    *   from preparation through completion or error.
    */
-  fun restoreLocalBackupV2(rootUri: Uri, backupUri: Uri, aep: String): Flow<LocalBackupRestoreProgress>
+  fun restoreLocalBackupV2(rootUri: Uri, backupUri: Uri, aep: AccountEntropyPool): Flow<LocalBackupRestoreProgress>
 
   /**
    * Scans the given folder URI for local backup files, checking for both modern

@@ -345,6 +345,10 @@ object AppDependencies {
     get() = networkModule.linkDeviceApi
 
   @JvmStatic
+  val pushServiceSocket: PushServiceSocket
+    get() = networkModule.pushServiceSocket
+
+  @JvmStatic
   val registrationApi: RegistrationApi
     get() = networkModule.registrationApi
 

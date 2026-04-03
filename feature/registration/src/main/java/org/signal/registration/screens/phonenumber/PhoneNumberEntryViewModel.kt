@@ -456,6 +456,8 @@ class PhoneNumberEntryViewModel(
     }
 
     if (sessionMetadata.requestedInformation.contains("captcha")) {
+      parentEventEmitter(RegistrationFlowEvent.SessionUpdated(sessionMetadata))
+      parentEventEmitter(RegistrationFlowEvent.E164Chosen(e164))
       parentEventEmitter.navigateTo(RegistrationRoute.Captcha(sessionMetadata))
       return state
     }

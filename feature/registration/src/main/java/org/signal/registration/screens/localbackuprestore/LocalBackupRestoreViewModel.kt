@@ -109,12 +109,13 @@ class LocalBackupRestoreViewModel(
 
   private fun applyPassphraseSubmitted(state: LocalBackupRestoreState, credential: String, stateEmitter: (LocalBackupRestoreState) -> Unit) {
     val backup = state.backupInfo ?: return
+    val aep = if (backup.type == LocalBackupInfo.BackupType.V2) AccountEntropyPool(credential) else null
     val updatedState = when (backup.type) {
       LocalBackupInfo.BackupType.V1 -> state.copy(v1Passphrase = credential)
-      LocalBackupInfo.BackupType.V2 -> state.copy(aep = AccountEntropyPool(credential))
+      LocalBackupInfo.BackupType.V2 -> state.copy(aep = aep)
     }
     stateEmitter(updatedState)
-    startRestore(backup, state.selectedFolderUri, credential)
+    startRestore(backup, state.selectedFolderUri, credential, aep)
   }
 
   private fun onRestoreComplete(state: LocalBackupRestoreState) {
@@ -163,13 +164,13 @@ class LocalBackupRestoreViewModel(
     }
   }
 
-  private fun startRestore(backup: LocalBackupInfo, rootUri: Uri?, credential: String) {
+  private fun startRestore(backup: LocalBackupInfo, rootUri: Uri?, credential: String, aep: AccountEntropyPool?) {
     restoreJob?.cancel()
     restoreJob = viewModelScope.launch {
       val currentState = _localState.value
       val restoreFlow = when (backup.type) {
         LocalBackupInfo.BackupType.V1 -> repository.restoreV1Backup(backup.uri, passphrase = credential)
-        LocalBackupInfo.BackupType.V2 -> repository.restoreV2Backup(rootUri = rootUri!!, backupUri = backup.uri, aep = credential)
+        LocalBackupInfo.BackupType.V2 -> repository.restoreV2Backup(rootUri = rootUri!!, backupUri = backup.uri, aep = aep!!)
       }
       restoreFlow.collect { progress ->
         _localState.value = when (progress) {

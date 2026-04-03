@@ -16,6 +16,14 @@ import kotlinx.coroutines.flow.update
  */
 object NetworkDebugState {
 
+  /** When true, [NetworkController.awaitPushChallengeToken] will always return null, forcing the captcha path. */
+  private val _skipPushChallenge = MutableStateFlow(false)
+  val skipPushChallenge: StateFlow<Boolean> = _skipPushChallenge.asStateFlow()
+
+  fun setSkipPushChallenge(skip: Boolean) {
+    _skipPushChallenge.value = skip
+  }
+
   /**
    * Map of method name to the selected option name (e.g., "createSession" -> "success")
    * A value of "unset" or absence means no override is active.

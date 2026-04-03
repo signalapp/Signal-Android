@@ -403,55 +403,13 @@ public class PushServiceSocket {
    * V2 API: Submits registration request and returns the raw Response for manual handling.
    * Caller is responsible for closing the response.
    */
-  public Response submitRegistrationRequestV2(@Nullable String sessionId, @Nullable String recoveryPassword, AccountAttributes attributes, PreKeyCollection aciPreKeys, PreKeyCollection pniPreKeys, @Nullable String fcmToken, boolean skipDeviceTransfer) throws IOException {
-    String path = REGISTRATION_PATH;
-    if (sessionId == null && recoveryPassword == null) {
-      throw new IllegalArgumentException("Neither Session ID nor Recovery Password provided.");
-    }
-
-    if (sessionId != null && recoveryPassword != null) {
-      throw new IllegalArgumentException("You must supply one and only one of either: Session ID, or Recovery Password.");
-    }
-
-    GcmRegistrationId gcmRegistrationId;
-    if (attributes.getFetchesMessages()) {
-      gcmRegistrationId = null;
-    } else {
-      gcmRegistrationId = new GcmRegistrationId(fcmToken, true);
-    }
-
-    RegistrationSessionRequestBody body;
-    try {
-      final SignedPreKeyEntity aciSignedPreKey = new SignedPreKeyEntity(Objects.requireNonNull(aciPreKeys.getSignedPreKey()).getId(),
-                                                                        aciPreKeys.getSignedPreKey().getKeyPair().getPublicKey(),
-                                                                        aciPreKeys.getSignedPreKey().getSignature());
-      final SignedPreKeyEntity pniSignedPreKey = new SignedPreKeyEntity(Objects.requireNonNull(pniPreKeys.getSignedPreKey()).getId(),
-                                                                        pniPreKeys.getSignedPreKey().getKeyPair().getPublicKey(),
-                                                                        pniPreKeys.getSignedPreKey().getSignature());
-      final KyberPreKeyEntity aciLastResortKyberPreKey = new KyberPreKeyEntity(Objects.requireNonNull(aciPreKeys.getLastResortKyberPreKey()).getId(),
-                                                                               aciPreKeys.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
-                                                                               aciPreKeys.getLastResortKyberPreKey().getSignature());
-      final KyberPreKeyEntity pniLastResortKyberPreKey = new KyberPreKeyEntity(Objects.requireNonNull(pniPreKeys.getLastResortKyberPreKey()).getId(),
-                                                                               pniPreKeys.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
-                                                                               pniPreKeys.getLastResortKyberPreKey().getSignature());
-
-      body = new RegistrationSessionRequestBody(sessionId,
-                                                recoveryPassword,
-                                                attributes,
-                                                Base64.encodeWithoutPadding(aciPreKeys.getIdentityKey().serialize()),
-                                                Base64.encodeWithoutPadding(pniPreKeys.getIdentityKey().serialize()),
-                                                aciSignedPreKey,
-                                                pniSignedPreKey,
-                                                aciLastResortKyberPreKey,
-                                                pniLastResortKyberPreKey,
-                                                gcmRegistrationId,
-                                                skipDeviceTransfer,
-                                                true);
-    } catch (InvalidKeyException e) {
-      throw new AssertionError("unexpected invalid key", e);
-    }
-
-    return makeServiceRequestWithoutValidation(path, "POST", jsonRequestBody(JsonUtil.toJson(body)), NO_HEADERS, SealedSenderAccess.NONE, false);
+  /**
+   * V2 API: Checks SVR2 auth credentials and returns the raw Response for manual handling.
+   * Caller is responsible for closing the response.
+   */
+  public Response checkSvr2AuthCredentialsV2(@Nullable String number, @Nonnull List<String> passwords) throws IOException {
+    String jsonBody = JsonUtil.toJson(new BackupAuthCheckRequest(number, passwords));
+    return makeServiceRequestWithoutValidation(BACKUP_AUTH_CHECK_V2, "POST", jsonRequestBody(jsonBody), NO_HEADERS, SealedSenderAccess.NONE, false);
   }
 
   /**

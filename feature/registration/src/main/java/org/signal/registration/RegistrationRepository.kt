@@ -505,7 +505,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     return storageController.restoreLocalBackupV1(uri, passphrase)
   }
 
-  fun restoreV2Backup(rootUri: Uri, backupUri: Uri, aep: String): Flow<LocalBackupRestoreProgress> {
+  fun restoreV2Backup(rootUri: Uri, backupUri: Uri, aep: AccountEntropyPool): Flow<LocalBackupRestoreProgress> {
     return storageController.restoreLocalBackupV2(rootUri, backupUri, aep)
   }
 

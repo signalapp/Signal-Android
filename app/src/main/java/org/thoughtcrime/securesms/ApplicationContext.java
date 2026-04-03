@@ -110,6 +110,7 @@ import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.Environment;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
@@ -403,6 +404,20 @@ public class ApplicationContext extends Application implements AppForegroundObse
       AppDependencies.init(this, new ApplicationDependencyProvider(this));
     }
     AppForegroundObserver.begin();
+
+    if (Environment.USE_NEW_REGISTRATION) {
+      initializeRegistrationDependencies();
+    }
+  }
+
+  private void initializeRegistrationDependencies() {
+    org.signal.registration.RegistrationDependencies.Companion.provide(
+      new org.signal.registration.RegistrationDependencies(
+        new org.thoughtcrime.securesms.registration.v2.AppRegistrationNetworkController(this, AppDependencies.getPushServiceSocket()),
+        new org.thoughtcrime.securesms.registration.v2.AppRegistrationStorageController(this),
+        null
+      )
+    );
   }
 
   private void initializeFirstEverAppLaunch() {

@@ -19,6 +19,8 @@ object Environment {
     return !IS_INSTRUMENTATION && (BuildConfig.DEBUG || IS_NIGHTLY || IS_PERF || IS_STAGING)
   }
 
+  const val USE_NEW_REGISTRATION: Boolean = false
+
   object Backups {
     @JvmStatic
     fun supportsGooglePlayBilling(): Boolean {
