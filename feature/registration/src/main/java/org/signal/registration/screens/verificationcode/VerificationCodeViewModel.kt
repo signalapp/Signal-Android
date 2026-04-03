@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.RequestResult
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
@@ -115,26 +116,26 @@ class VerificationCodeViewModel(
     val result = repository.submitVerificationCode(sessionMetadata.id, code)
 
     sessionMetadata = when (result) {
-      is NetworkController.RegistrationNetworkResult.Success -> {
-        result.data
+      is RequestResult.Success -> {
+        result.result
       }
-      is NetworkController.RegistrationNetworkResult.Failure -> {
-        when (result.error) {
+      is RequestResult.NonSuccess -> {
+        when (val error = result.error) {
           is NetworkController.SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode -> {
-            Log.w(TAG, "[SubmitCode] Invalid sessionId or verification code entered. This is distinct from an *incorrect* verification code. Body: ${result.error.message}")
+            Log.w(TAG, "[SubmitCode] Invalid sessionId or verification code entered. This is distinct from an *incorrect* verification code. Body: ${error.message}")
             val newAttempts = state.incorrectCodeAttempts + 1
             return state.copy(oneTimeEvent = OneTimeEvent.IncorrectVerificationCode, incorrectCodeAttempts = newAttempts)
           }
           is NetworkController.SubmitVerificationCodeError.SessionNotFound -> {
-            Log.w(TAG, "[SubmitCode] Session not found: ${result.error.message}")
+            Log.w(TAG, "[SubmitCode] Session not found: ${error.message}")
             // TODO don't start over, go back to phone number entry
             parentEventEmitter(RegistrationFlowEvent.ResetState)
             return state
           }
           is NetworkController.SubmitVerificationCodeError.SessionAlreadyVerifiedOrNoCodeRequested -> {
-            if (result.error.session.verified) {
+            if (error.session.verified) {
               Log.i(TAG, "[SubmitCode] Session already had number verified, continuing with registration.")
-              result.error.session
+              error.session
             } else {
               Log.w(TAG, "[SubmitCode] No code was requested for this session? Need to have user re-submit.")
               parentEventEmitter.navigateBack()
@@ -142,17 +143,17 @@ class VerificationCodeViewModel(
             }
           }
           is NetworkController.SubmitVerificationCodeError.RateLimited -> {
-            Log.w(TAG, "[SubmitCode] Rate limited  (retryAfter: ${result.error.retryAfter}).")
-            return state.copy(oneTimeEvent = OneTimeEvent.RateLimited(result.error.retryAfter))
+            Log.w(TAG, "[SubmitCode] Rate limited  (retryAfter: ${error.retryAfter}).")
+            return state.copy(oneTimeEvent = OneTimeEvent.RateLimited(error.retryAfter))
           }
         }
       }
-      is NetworkController.RegistrationNetworkResult.NetworkError -> {
-        Log.w(TAG, "[SubmitCode] Network error.", result.exception)
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "[SubmitCode] Network error.", result.networkError)
         return state.copy(oneTimeEvent = OneTimeEvent.NetworkError)
       }
-      is NetworkController.RegistrationNetworkResult.ApplicationError -> {
-        Log.w(TAG, "[SubmitCode] Unknown error when submitting verification code.", result.exception)
+      is RequestResult.ApplicationError -> {
+        Log.w(TAG, "[SubmitCode] Unknown error when submitting verification code.", result.cause)
         return state.copy(oneTimeEvent = OneTimeEvent.UnknownError)
       }
     }
@@ -169,8 +170,8 @@ class VerificationCodeViewModel(
     val registerResult = repository.registerAccountWithSession(e164 = state.e164, sessionId = sessionMetadata.id, skipDeviceTransfer = true)
 
     return when (registerResult) {
-      is NetworkController.RegistrationNetworkResult.Success -> {
-        val (response, keyMaterial) = registerResult.data
+      is RequestResult.Success -> {
+        val (response, keyMaterial) = registerResult.result
 
         parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool))
 
@@ -181,8 +182,8 @@ class VerificationCodeViewModel(
         }
         state
       }
-      is NetworkController.RegistrationNetworkResult.Failure -> {
-        when (registerResult.error) {
+      is RequestResult.NonSuccess -> {
+        when (val error = registerResult.error) {
           is NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified -> {
             // TODO [registration] Handle session not found or not verified case.
             throw NotImplementedError("Handle session not found or not verified case.")
@@ -196,33 +197,33 @@ class VerificationCodeViewModel(
             Log.w(TAG, "[Register] Reglocked.")
             parentEventEmitter.navigateTo(
               RegistrationRoute.PinEntryForRegistrationLock(
-                timeRemaining = registerResult.error.data.timeRemaining,
-                svrCredentials = registerResult.error.data.svr2Credentials
+                timeRemaining = error.data.timeRemaining,
+                svrCredentials = error.data.svr2Credentials
               )
             )
             state
           }
           is NetworkController.RegisterAccountError.RateLimited -> {
-            Log.w(TAG, "[Register] Rate limited (retryAfter: ${registerResult.error.retryAfter}).")
-            state.copy(oneTimeEvent = OneTimeEvent.RateLimited(registerResult.error.retryAfter))
+            Log.w(TAG, "[Register] Rate limited (retryAfter: ${error.retryAfter}).")
+            state.copy(oneTimeEvent = OneTimeEvent.RateLimited(error.retryAfter))
           }
           is NetworkController.RegisterAccountError.InvalidRequest -> {
-            Log.w(TAG, "[Register] Invalid request when registering account: ${registerResult.error.message}")
+            Log.w(TAG, "[Register] Invalid request when registering account: ${error.message}")
             state.copy(oneTimeEvent = OneTimeEvent.RegistrationError)
           }
           is NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
-            Log.w(TAG, "[Register] Got told the registration recovery password incorrect. We don't use the RRP in this flow, and should never get this error. Resetting. Message: ${registerResult.error.message}")
+            Log.w(TAG, "[Register] Got told the registration recovery password incorrect. We don't use the RRP in this flow, and should never get this error. Resetting. Message: ${error.message}")
             parentEventEmitter(RegistrationFlowEvent.ResetState)
             state
           }
         }
       }
-      is NetworkController.RegistrationNetworkResult.NetworkError -> {
-        Log.w(TAG, "[Register] Network error.", registerResult.exception)
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "[Register] Network error.", registerResult.networkError)
         state.copy(oneTimeEvent = OneTimeEvent.NetworkError)
       }
-      is NetworkController.RegistrationNetworkResult.ApplicationError -> {
-        Log.w(TAG, "[Register] Unknown error when registering account.", registerResult.exception)
+      is RequestResult.ApplicationError -> {
+        Log.w(TAG, "[Register] Unknown error when registering account.", registerResult.cause)
         state.copy(oneTimeEvent = OneTimeEvent.UnknownError)
       }
     }
@@ -244,71 +245,71 @@ class VerificationCodeViewModel(
     )
 
     return when (result) {
-      is NetworkController.RegistrationNetworkResult.Success -> {
+      is RequestResult.Success -> {
         Log.i(TAG, "[RequestCode][$transport] Successfully requested verification code.")
-        parentEventEmitter(RegistrationFlowEvent.SessionUpdated(result.data))
+        parentEventEmitter(RegistrationFlowEvent.SessionUpdated(result.result))
         state.copy(
-          sessionMetadata = result.data,
-          rateLimits = computeRateLimits(result.data)
+          sessionMetadata = result.result,
+          rateLimits = computeRateLimits(result.result)
         )
       }
-      is NetworkController.RegistrationNetworkResult.Failure -> {
-        when (result.error) {
+      is RequestResult.NonSuccess -> {
+        when (val error = result.error) {
           is NetworkController.RequestVerificationCodeError.InvalidRequest -> {
-            Log.w(TAG, "[RequestCode][$transport] Invalid request: ${result.error.message}")
+            Log.w(TAG, "[RequestCode][$transport] Invalid request: ${error.message}")
             state.copy(oneTimeEvent = OneTimeEvent.UnknownError)
           }
           is NetworkController.RequestVerificationCodeError.RateLimited -> {
-            Log.w(TAG, "[RequestCode][$transport] Rate limited (retryAfter: ${result.error.retryAfter}).")
-            parentEventEmitter(RegistrationFlowEvent.SessionUpdated(result.error.session))
+            Log.w(TAG, "[RequestCode][$transport] Rate limited (retryAfter: ${error.retryAfter}).")
+            parentEventEmitter(RegistrationFlowEvent.SessionUpdated(error.session))
             state.copy(
-              oneTimeEvent = OneTimeEvent.RateLimited(result.error.retryAfter),
-              sessionMetadata = result.error.session,
-              rateLimits = computeRateLimits(result.error.session)
+              oneTimeEvent = OneTimeEvent.RateLimited(error.retryAfter),
+              sessionMetadata = error.session,
+              rateLimits = computeRateLimits(error.session)
             )
           }
           is NetworkController.RequestVerificationCodeError.CouldNotFulfillWithRequestedTransport -> {
             Log.w(TAG, "[RequestCode][$transport] Could not fulfill with requested transport.")
-            parentEventEmitter(RegistrationFlowEvent.SessionUpdated(result.error.session))
+            parentEventEmitter(RegistrationFlowEvent.SessionUpdated(error.session))
             state.copy(
               oneTimeEvent = OneTimeEvent.CouldNotRequestCodeWithSelectedTransport,
-              sessionMetadata = result.error.session,
-              rateLimits = computeRateLimits(result.error.session)
+              sessionMetadata = error.session,
+              rateLimits = computeRateLimits(error.session)
             )
           }
           is NetworkController.RequestVerificationCodeError.InvalidSessionId -> {
-            Log.w(TAG, "[RequestCode][$transport] Invalid session ID: ${result.error.message}")
+            Log.w(TAG, "[RequestCode][$transport] Invalid session ID: ${error.message}")
             // TODO don't start over, go back to phone number entry
             parentEventEmitter(RegistrationFlowEvent.ResetState)
             state
           }
           is NetworkController.RequestVerificationCodeError.MissingRequestInformationOrAlreadyVerified -> {
             Log.w(TAG, "[RequestCode][$transport] Missing request information or already verified.")
-            parentEventEmitter(RegistrationFlowEvent.SessionUpdated(result.error.session))
+            parentEventEmitter(RegistrationFlowEvent.SessionUpdated(error.session))
             state.copy(
               oneTimeEvent = OneTimeEvent.NetworkError,
-              sessionMetadata = result.error.session,
-              rateLimits = computeRateLimits(result.error.session)
+              sessionMetadata = error.session,
+              rateLimits = computeRateLimits(error.session)
             )
           }
           is NetworkController.RequestVerificationCodeError.SessionNotFound -> {
-            Log.w(TAG, "[RequestCode][$transport] Session not found: ${result.error.message}")
+            Log.w(TAG, "[RequestCode][$transport] Session not found: ${error.message}")
             // TODO don't start over, go back to phone number entry
             parentEventEmitter(RegistrationFlowEvent.ResetState)
             state
           }
           is NetworkController.RequestVerificationCodeError.ThirdPartyServiceError -> {
-            Log.w(TAG, "[RequestCode][$transport] Third party service error. ${result.error.data}")
+            Log.w(TAG, "[RequestCode][$transport] Third party service error. ${error.data}")
             state.copy(oneTimeEvent = OneTimeEvent.ThirdPartyError)
           }
         }
       }
-      is NetworkController.RegistrationNetworkResult.NetworkError -> {
-        Log.w(TAG, "[RequestCode][$transport] Network error.", result.exception)
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "[RequestCode][$transport] Network error.", result.networkError)
         state.copy(oneTimeEvent = OneTimeEvent.NetworkError)
       }
-      is NetworkController.RegistrationNetworkResult.ApplicationError -> {
-        Log.w(TAG, "[RequestCode][$transport] Unknown application error.", result.exception)
+      is RequestResult.ApplicationError -> {
+        Log.w(TAG, "[RequestCode][$transport] Unknown application error.", result.cause)
         state.copy(oneTimeEvent = OneTimeEvent.UnknownError)
       }
     }

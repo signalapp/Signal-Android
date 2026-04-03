@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import org.signal.core.models.MasterKey
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.util.Hex
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
@@ -102,16 +103,16 @@ class PinEntryForSmsBypassViewModel(
     }
 
     return when (val result = repository.restoreMasterKeyFromSvr(svrCredentials, event.pin, state.isAlphanumericKeyboard, forRegistrationLock = false)) {
-      is NetworkController.RegistrationNetworkResult.Success -> {
+      is RequestResult.Success -> {
         Log.i(TAG, "[PinEntered] Successfully restored master key from SVR.")
-        parentEventEmitter(RegistrationFlowEvent.MasterKeyRestoredFromSvr(result.data.masterKey))
-        attemptToRegister(state, state.e164, result.data.masterKey, provideRegistrationLock = false, parentEventEmitter)
+        parentEventEmitter(RegistrationFlowEvent.MasterKeyRestoredFromSvr(result.result.masterKey))
+        attemptToRegister(state, state.e164, result.result.masterKey, provideRegistrationLock = false, parentEventEmitter)
       }
-      is NetworkController.RegistrationNetworkResult.Failure -> {
-        when (result.error) {
+      is RequestResult.NonSuccess -> {
+        when (val error = result.error) {
           is NetworkController.RestoreMasterKeyError.WrongPin -> {
-            Log.w(TAG, "[PinEntered] Wrong PIN. Tries remaining: ${result.error.triesRemaining}")
-            state.copy(triesRemaining = result.error.triesRemaining)
+            Log.w(TAG, "[PinEntered] Wrong PIN. Tries remaining: ${error.triesRemaining}")
+            state.copy(triesRemaining = error.triesRemaining)
           }
           is NetworkController.RestoreMasterKeyError.NoDataFound -> {
             Log.w(TAG, "[PinEntered] No SVR data found for sms-bypass credential. Marking RRP as invalid and navigating back.")
@@ -121,12 +122,12 @@ class PinEntryForSmsBypassViewModel(
           }
         }
       }
-      is NetworkController.RegistrationNetworkResult.NetworkError -> {
-        Log.w(TAG, "[PinEntered] Network error when restoring master key (sms-bypass).", result.exception)
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "[PinEntered] Network error when restoring master key (sms-bypass).", result.networkError)
         state.copy(oneTimeEvent = PinEntryState.OneTimeEvent.NetworkError)
       }
-      is NetworkController.RegistrationNetworkResult.ApplicationError -> {
-        Log.w(TAG, "[PinEntered] Application error when restoring master key (sms-bypass).", result.exception)
+      is RequestResult.ApplicationError -> {
+        Log.w(TAG, "[PinEntered] Application error when restoring master key (sms-bypass).", result.cause)
         state.copy(oneTimeEvent = PinEntryState.OneTimeEvent.UnknownError)
       }
     }
@@ -150,33 +151,33 @@ class PinEntryForSmsBypassViewModel(
     SensitiveLog.d(TAG, "Attempting registration using master key [${Hex.toStringCondensed(masterKey.serialize())}] and RRP [$recoveryPassword]")
 
     return when (val result = repository.registerAccountWithRecoveryPassword(e164, recoveryPassword, registrationLock, skipDeviceTransfer = true)) {
-      is NetworkController.RegistrationNetworkResult.Success -> {
+      is RequestResult.Success -> {
         parentEventEmitter.navigateTo(RegistrationRoute.FullyComplete)
         repository.enqueueSvrResetGuessCountJob()
         state
       }
-      is NetworkController.RegistrationNetworkResult.NetworkError -> {
+      is RequestResult.RetryableNetworkError -> {
         state.copy(oneTimeEvent = PinEntryState.OneTimeEvent.NetworkError)
       }
-      is NetworkController.RegistrationNetworkResult.ApplicationError -> {
+      is RequestResult.ApplicationError -> {
         state.copy(oneTimeEvent = PinEntryState.OneTimeEvent.UnknownError)
       }
-      is NetworkController.RegistrationNetworkResult.Failure -> {
-        when (result.error) {
+      is RequestResult.NonSuccess -> {
+        when (val error = result.error) {
           NetworkController.RegisterAccountError.DeviceTransferPossible -> {
             Log.w(TAG, "[Register] Got told a device transfer is possible. We should never get into this state. Resetting.")
             parentEventEmitter(RegistrationFlowEvent.ResetState)
             state
           }
           is NetworkController.RegisterAccountError.InvalidRequest -> {
-            Log.w(TAG, "[Register] Invalid request when registering account with RRP. Marking RRP as invalid and navigating back. Message: ${result.error.message}")
+            Log.w(TAG, "[Register] Invalid request when registering account with RRP. Marking RRP as invalid and navigating back. Message: ${error.message}")
             parentEventEmitter(RegistrationFlowEvent.RecoveryPasswordInvalid)
             parentEventEmitter.navigateBack()
             state
           }
           is NetworkController.RegisterAccountError.RateLimited -> {
-            Log.w(TAG, "[Register] Rate limited (retryAfter: ${result.error.retryAfter}).")
-            state.copy(oneTimeEvent = PinEntryState.OneTimeEvent.RateLimited(result.error.retryAfter))
+            Log.w(TAG, "[Register] Rate limited (retryAfter: ${error.retryAfter}).")
+            state.copy(oneTimeEvent = PinEntryState.OneTimeEvent.RateLimited(error.retryAfter))
           }
           is NetworkController.RegisterAccountError.RegistrationLock -> {
             if (provideRegistrationLock) {

@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import org.signal.core.models.MasterKey
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.RequestResult
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
@@ -81,15 +82,15 @@ class PinEntryForRegistrationLockViewModel(
     val restoreResult = repository.restoreMasterKeyFromSvr(svrCredentials, event.pin, state.isAlphanumericKeyboard, forRegistrationLock = true)
 
     val masterKey: MasterKey = when (restoreResult) {
-      is NetworkController.RegistrationNetworkResult.Success -> {
+      is RequestResult.Success -> {
         Log.i(TAG, "[PinEntered] Successfully restored master key from SVR.")
-        restoreResult.data.masterKey
+        restoreResult.result.masterKey
       }
-      is NetworkController.RegistrationNetworkResult.Failure -> {
-        return when (restoreResult.error) {
+      is RequestResult.NonSuccess -> {
+        return when (val error = restoreResult.error) {
           is NetworkController.RestoreMasterKeyError.WrongPin -> {
-            Log.w(TAG, "[PinEntered] Wrong PIN. Tries remaining: ${restoreResult.error.triesRemaining}")
-            state.copy(triesRemaining = restoreResult.error.triesRemaining)
+            Log.w(TAG, "[PinEntered] Wrong PIN. Tries remaining: ${error.triesRemaining}")
+            state.copy(triesRemaining = error.triesRemaining)
           }
           is NetworkController.RestoreMasterKeyError.NoDataFound -> {
             Log.w(TAG, "[PinEntered] No SVR data found. Account is locked.")
@@ -98,12 +99,12 @@ class PinEntryForRegistrationLockViewModel(
           }
         }
       }
-      is NetworkController.RegistrationNetworkResult.NetworkError -> {
-        Log.w(TAG, "[PinEntered] Network error when restoring master key.", restoreResult.exception)
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "[PinEntered] Network error when restoring master key.", restoreResult.networkError)
         return state.copy(oneTimeEvent = PinEntryState.OneTimeEvent.NetworkError)
       }
-      is NetworkController.RegistrationNetworkResult.ApplicationError -> {
-        Log.w(TAG, "[PinEntered] Application error when restoring master key.", restoreResult.exception)
+      is RequestResult.ApplicationError -> {
+        Log.w(TAG, "[PinEntered] Application error when restoring master key.", restoreResult.cause)
         return state.copy(oneTimeEvent = PinEntryState.OneTimeEvent.UnknownError)
       }
     }
@@ -130,9 +131,9 @@ class PinEntryForRegistrationLockViewModel(
     )
 
     return when (registerResult) {
-      is NetworkController.RegistrationNetworkResult.Success -> {
+      is RequestResult.Success -> {
         Log.i(TAG, "[PinEntered] Successfully registered!")
-        val (response, keyMaterial) = registerResult.data
+        val (response, keyMaterial) = registerResult.result
         parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool))
         // TODO storage service restore + profile screen
         when {
@@ -141,10 +142,10 @@ class PinEntryForRegistrationLockViewModel(
         }
         state
       }
-      is NetworkController.RegistrationNetworkResult.Failure -> {
-        when (registerResult.error) {
+      is RequestResult.NonSuccess -> {
+        when (val error = registerResult.error) {
           is NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified -> {
-            Log.w(TAG, "[PinEntered] Session not found or verified: ${registerResult.error.message}")
+            Log.w(TAG, "[PinEntered] Session not found or verified: ${error.message}")
             // TODO [registration] - Handle session not found or verified.
             throw NotImplementedError("Handle session not found or verified")
           }
@@ -154,11 +155,11 @@ class PinEntryForRegistrationLockViewModel(
             state
           }
           is NetworkController.RegisterAccountError.RateLimited -> {
-            Log.w(TAG, "[PinEntered] Rate limited when registering. Retry After: ${registerResult.error.retryAfter}")
-            state.copy(oneTimeEvent = PinEntryState.OneTimeEvent.RateLimited(registerResult.error.retryAfter))
+            Log.w(TAG, "[PinEntered] Rate limited when registering. Retry After: ${error.retryAfter}")
+            state.copy(oneTimeEvent = PinEntryState.OneTimeEvent.RateLimited(error.retryAfter))
           }
           is NetworkController.RegisterAccountError.InvalidRequest -> {
-            Log.w(TAG, "[PinEntered] Invalid request when registering: ${registerResult.error.message}")
+            Log.w(TAG, "[PinEntered] Invalid request when registering: ${error.message}")
             state.copy(oneTimeEvent = PinEntryState.OneTimeEvent.UnknownError)
           }
           is NetworkController.RegisterAccountError.DeviceTransferPossible -> {
@@ -166,18 +167,18 @@ class PinEntryForRegistrationLockViewModel(
             state.copy(oneTimeEvent = PinEntryState.OneTimeEvent.UnknownError)
           }
           is NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
-            Log.w(TAG, "[PinEntered] Registration recovery password incorrect: ${registerResult.error.message}")
+            Log.w(TAG, "[PinEntered] Registration recovery password incorrect: ${error.message}")
             // TODO [registration] - Handle incorrect password
             throw NotImplementedError("Handle incorrect password")
           }
         }
       }
-      is NetworkController.RegistrationNetworkResult.NetworkError -> {
-        Log.w(TAG, "[PinEntered] Network error when registering.", registerResult.exception)
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "[PinEntered] Network error when registering.", registerResult.networkError)
         state.copy(oneTimeEvent = PinEntryState.OneTimeEvent.NetworkError)
       }
-      is NetworkController.RegistrationNetworkResult.ApplicationError -> {
-        Log.w(TAG, "[PinEntered] Application error when registering.", registerResult.exception)
+      is RequestResult.ApplicationError -> {
+        Log.w(TAG, "[PinEntered] Application error when registering.", registerResult.cause)
         state.copy(oneTimeEvent = PinEntryState.OneTimeEvent.UnknownError)
       }
     }

@@ -22,6 +22,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
+import org.signal.libsignal.net.RequestResult
 import org.signal.registration.KeyMaterial
 import org.signal.registration.NetworkController
 import org.signal.registration.PreExistingRegistrationData
@@ -276,9 +277,9 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
 
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -306,7 +307,7 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata(requestedInformation = listOf("captcha"))
 
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -331,7 +332,7 @@ class PhoneNumberEntryViewModelTest {
   @Test
   fun `PhoneNumberSubmitted handles rate limiting from createSession`() = runTest {
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.CreateSessionError.RateLimited(60.seconds)
       )
 
@@ -355,7 +356,7 @@ class PhoneNumberEntryViewModelTest {
   @Test
   fun `PhoneNumberSubmitted handles invalid request from createSession`() = runTest {
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.CreateSessionError.InvalidRequest("Bad request")
       )
 
@@ -376,7 +377,7 @@ class PhoneNumberEntryViewModelTest {
   @Test
   fun `PhoneNumberSubmitted handles network error`() = runTest {
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.NetworkError(java.io.IOException("Network error"))
+      RequestResult.RetryableNetworkError(java.io.IOException("Network error"))
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -395,7 +396,7 @@ class PhoneNumberEntryViewModelTest {
   @Test
   fun `PhoneNumberSubmitted handles application error`() = runTest {
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.ApplicationError(RuntimeException("Unexpected error"))
+      RequestResult.ApplicationError(RuntimeException("Unexpected error"))
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -421,7 +422,7 @@ class PhoneNumberEntryViewModelTest {
     )
 
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(existingSession)
+      RequestResult.Success(existingSession)
 
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
 
@@ -444,9 +445,9 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata()
 
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RequestVerificationCodeError.RateLimited(30.seconds, sessionMetadata)
       )
 
@@ -469,9 +470,9 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata()
 
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RequestVerificationCodeError.SessionNotFound("Session expired")
       )
 
@@ -495,9 +496,9 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata()
 
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RequestVerificationCodeError.CouldNotFulfillWithRequestedTransport(sessionMetadata)
       )
 
@@ -520,9 +521,9 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata()
 
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RequestVerificationCodeError.ThirdPartyServiceError(
           NetworkController.ThirdPartyServiceErrorResponse("Provider error", false)
         )
@@ -550,12 +551,12 @@ class PhoneNumberEntryViewModelTest {
     val sessionAfterPushChallenge = createSessionMetadata(requestedInformation = emptyList())
 
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionWithPushChallenge)
+      RequestResult.Success(sessionWithPushChallenge)
     coEvery { mockRepository.awaitPushChallengeToken() } returns "test-push-challenge-token"
     coEvery { mockRepository.submitPushChallengeToken(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionAfterPushChallenge)
+      RequestResult.Success(sessionAfterPushChallenge)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionAfterPushChallenge)
+      RequestResult.Success(sessionAfterPushChallenge)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -586,10 +587,10 @@ class PhoneNumberEntryViewModelTest {
     val sessionWithPushChallenge = createSessionMetadata(requestedInformation = listOf("pushChallenge"))
 
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionWithPushChallenge)
+      RequestResult.Success(sessionWithPushChallenge)
     coEvery { mockRepository.awaitPushChallengeToken() } returns null
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionWithPushChallenge)
+      RequestResult.Success(sessionWithPushChallenge)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -620,14 +621,14 @@ class PhoneNumberEntryViewModelTest {
     val sessionWithPushChallenge = createSessionMetadata(requestedInformation = listOf("pushChallenge"))
 
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionWithPushChallenge)
+      RequestResult.Success(sessionWithPushChallenge)
     coEvery { mockRepository.awaitPushChallengeToken() } returns "test-push-challenge-token"
     coEvery { mockRepository.submitPushChallengeToken(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.UpdateSessionError.RejectedUpdate("Invalid token")
       )
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionWithPushChallenge)
+      RequestResult.Success(sessionWithPushChallenge)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -655,12 +656,12 @@ class PhoneNumberEntryViewModelTest {
     val sessionWithPushChallenge = createSessionMetadata(requestedInformation = listOf("pushChallenge"))
 
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionWithPushChallenge)
+      RequestResult.Success(sessionWithPushChallenge)
     coEvery { mockRepository.awaitPushChallengeToken() } returns "test-push-challenge-token"
     coEvery { mockRepository.submitPushChallengeToken(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.NetworkError(java.io.IOException("Connection lost"))
+      RequestResult.RetryableNetworkError(java.io.IOException("Connection lost"))
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionWithPushChallenge)
+      RequestResult.Success(sessionWithPushChallenge)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -688,12 +689,12 @@ class PhoneNumberEntryViewModelTest {
     val sessionWithPushChallenge = createSessionMetadata(requestedInformation = listOf("pushChallenge"))
 
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionWithPushChallenge)
+      RequestResult.Success(sessionWithPushChallenge)
     coEvery { mockRepository.awaitPushChallengeToken() } returns "test-push-challenge-token"
     coEvery { mockRepository.submitPushChallengeToken(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.ApplicationError(RuntimeException("Unexpected error"))
+      RequestResult.ApplicationError(RuntimeException("Unexpected error"))
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionWithPushChallenge)
+      RequestResult.Success(sessionWithPushChallenge)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -722,10 +723,10 @@ class PhoneNumberEntryViewModelTest {
     val sessionAfterPushChallenge = createSessionMetadata(requestedInformation = listOf("captcha"))
 
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionWithPushChallenge)
+      RequestResult.Success(sessionWithPushChallenge)
     coEvery { mockRepository.awaitPushChallengeToken() } returns "test-push-challenge-token"
     coEvery { mockRepository.submitPushChallengeToken(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionAfterPushChallenge)
+      RequestResult.Success(sessionAfterPushChallenge)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -756,9 +757,9 @@ class PhoneNumberEntryViewModelTest {
     val initialState = PhoneNumberEntryState(sessionMetadata = sessionMetadata)
 
     coEvery { mockRepository.submitCaptchaToken(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
 
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), parentEventEmitter, stateEmitter)
 
@@ -787,7 +788,7 @@ class PhoneNumberEntryViewModelTest {
     val initialState = PhoneNumberEntryState(sessionMetadata = sessionWithCaptcha)
 
     coEvery { mockRepository.submitCaptchaToken(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionWithCaptcha)
+      RequestResult.Success(sessionWithCaptcha)
 
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), parentEventEmitter, stateEmitter)
 
@@ -804,7 +805,7 @@ class PhoneNumberEntryViewModelTest {
     val initialState = PhoneNumberEntryState(sessionMetadata = sessionMetadata)
 
     coEvery { mockRepository.submitCaptchaToken(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.UpdateSessionError.RateLimited(45.seconds, sessionMetadata)
       )
 
@@ -823,7 +824,7 @@ class PhoneNumberEntryViewModelTest {
     val initialState = PhoneNumberEntryState(sessionMetadata = sessionMetadata)
 
     coEvery { mockRepository.submitCaptchaToken(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.UpdateSessionError.RejectedUpdate("Invalid captcha")
       )
 
@@ -839,7 +840,7 @@ class PhoneNumberEntryViewModelTest {
     val initialState = PhoneNumberEntryState(sessionMetadata = sessionMetadata)
 
     coEvery { mockRepository.submitCaptchaToken(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.NetworkError(java.io.IOException("Connection lost"))
+      RequestResult.RetryableNetworkError(java.io.IOException("Connection lost"))
 
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), parentEventEmitter, stateEmitter)
 
@@ -898,7 +899,7 @@ class PhoneNumberEntryViewModelTest {
     val registerResponse = createRegisterAccountResponse(storageCapable = true)
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(registerResponse to keyMaterial)
+      RequestResult.Success(registerResponse to keyMaterial)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -925,7 +926,7 @@ class PhoneNumberEntryViewModelTest {
     val registerResponse = createRegisterAccountResponse(storageCapable = false)
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(registerResponse to keyMaterial)
+      RequestResult.Success(registerResponse to keyMaterial)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -950,7 +951,7 @@ class PhoneNumberEntryViewModelTest {
     }
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified("Not found")
       )
 
@@ -974,7 +975,7 @@ class PhoneNumberEntryViewModelTest {
     }
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RegisterAccountError.DeviceTransferPossible
       )
 
@@ -1003,7 +1004,7 @@ class PhoneNumberEntryViewModelTest {
     )
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RegisterAccountError.RegistrationLock(registrationLockData)
       )
 
@@ -1030,7 +1031,7 @@ class PhoneNumberEntryViewModelTest {
     }
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RegisterAccountError.RateLimited(30.seconds)
       )
 
@@ -1057,13 +1058,13 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RegisterAccountError.InvalidRequest("Bad request")
       )
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -1088,13 +1089,13 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect("Wrong password")
       )
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -1116,7 +1117,7 @@ class PhoneNumberEntryViewModelTest {
     }
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.NetworkError(IOException("Network error"))
+      RequestResult.RetryableNetworkError(IOException("Network error"))
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -1137,7 +1138,7 @@ class PhoneNumberEntryViewModelTest {
     }
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.ApplicationError(RuntimeException("Unexpected"))
+      RequestResult.ApplicationError(RuntimeException("Unexpected"))
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -1159,9 +1160,9 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
 
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -1192,7 +1193,7 @@ class PhoneNumberEntryViewModelTest {
     )
 
     coEvery { mockRepository.checkSvrCredentials(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(checkResponse)
+      RequestResult.Success(checkResponse)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -1221,11 +1222,11 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
 
     coEvery { mockRepository.checkSvrCredentials(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(checkResponse)
+      RequestResult.Success(checkResponse)
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -1250,11 +1251,11 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
 
     coEvery { mockRepository.checkSvrCredentials(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.NetworkError(IOException("Network error"))
+      RequestResult.RetryableNetworkError(IOException("Network error"))
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -1279,11 +1280,11 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
 
     coEvery { mockRepository.checkSvrCredentials(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.ApplicationError(RuntimeException("Unexpected"))
+      RequestResult.ApplicationError(RuntimeException("Unexpected"))
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -1307,13 +1308,13 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
 
     coEvery { mockRepository.checkSvrCredentials(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.CheckSvrCredentialsError.InvalidRequest("Bad request")
       )
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -1337,13 +1338,13 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
 
     coEvery { mockRepository.checkSvrCredentials(any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.CheckSvrCredentialsError.Unauthorized
       )
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -1364,9 +1365,9 @@ class PhoneNumberEntryViewModelTest {
     val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
 
     coEvery { mockRepository.createSession(any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(sessionMetadata)
+      RequestResult.Success(sessionMetadata)
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",

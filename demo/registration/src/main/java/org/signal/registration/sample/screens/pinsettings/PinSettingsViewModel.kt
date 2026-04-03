@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.RequestResult
 import org.signal.registration.NetworkController
-import org.signal.registration.NetworkController.RegistrationNetworkResult
 import org.signal.registration.sample.storage.RegistrationPreferences
 
 /**
@@ -75,7 +75,7 @@ class PinSettingsViewModel(
       }
 
       when (val result = networkController.setPinAndMasterKeyOnSvr(pin, masterKey)) {
-        is RegistrationNetworkResult.Success -> {
+        is RequestResult.Success -> {
           Log.i(TAG, "Successfully backed up PIN to SVR")
           RegistrationPreferences.pin = pin
           _state.value = _state.value.copy(
@@ -84,25 +84,25 @@ class PinSettingsViewModel(
             toastMessage = "PIN has been set successfully"
           )
         }
-        is RegistrationNetworkResult.Failure -> {
+        is RequestResult.NonSuccess -> {
           Log.w(TAG, "Failed to backup PIN: ${result.error}")
           _state.value = _state.value.copy(
             loading = false,
             toastMessage = "Failed to set PIN: ${result.error::class.simpleName}"
           )
         }
-        is RegistrationNetworkResult.NetworkError -> {
-          Log.w(TAG, "Network error while setting PIN", result.exception)
+        is RequestResult.RetryableNetworkError -> {
+          Log.w(TAG, "Network error while setting PIN", result.networkError)
           _state.value = _state.value.copy(
             loading = false,
             toastMessage = "Network error. Please check your connection."
           )
         }
-        is RegistrationNetworkResult.ApplicationError -> {
-          Log.w(TAG, "Application error while setting PIN", result.exception)
+        is RequestResult.ApplicationError -> {
+          Log.w(TAG, "Application error while setting PIN", result.cause)
           _state.value = _state.value.copy(
             loading = false,
-            toastMessage = "An error occurred: ${result.exception.message}"
+            toastMessage = "An error occurred: ${result.cause.message}"
           )
         }
       }
@@ -120,7 +120,7 @@ class PinSettingsViewModel(
       }
 
       when (result) {
-        is RegistrationNetworkResult.Success -> {
+        is RequestResult.Success -> {
           val newEnabled = !currentlyEnabled
           RegistrationPreferences.registrationLockEnabled = newEnabled
           Log.i(TAG, "Registration lock ${if (newEnabled) "enabled" else "disabled"}")
@@ -130,25 +130,25 @@ class PinSettingsViewModel(
             toastMessage = if (newEnabled) "Registration lock enabled" else "Registration lock disabled"
           )
         }
-        is RegistrationNetworkResult.Failure -> {
+        is RequestResult.NonSuccess -> {
           Log.w(TAG, "Failed to toggle registration lock: ${result.error}")
           _state.value = _state.value.copy(
             loading = false,
             toastMessage = "Failed to update registration lock"
           )
         }
-        is RegistrationNetworkResult.NetworkError -> {
-          Log.w(TAG, "Network error while toggling registration lock", result.exception)
+        is RequestResult.RetryableNetworkError -> {
+          Log.w(TAG, "Network error while toggling registration lock", result.networkError)
           _state.value = _state.value.copy(
             loading = false,
             toastMessage = "Network error. Please check your connection."
           )
         }
-        is RegistrationNetworkResult.ApplicationError -> {
-          Log.w(TAG, "Application error while toggling registration lock", result.exception)
+        is RequestResult.ApplicationError -> {
+          Log.w(TAG, "Application error while toggling registration lock", result.cause)
           _state.value = _state.value.copy(
             loading = false,
-            toastMessage = "An error occurred: ${result.exception.message}"
+            toastMessage = "An error occurred: ${result.cause.message}"
           )
         }
       }
@@ -182,7 +182,7 @@ class PinSettingsViewModel(
       )
 
       when (val result = networkController.setAccountAttributes(attributes)) {
-        is RegistrationNetworkResult.Success -> {
+        is RequestResult.Success -> {
           RegistrationPreferences.pinsOptedOut = newOptedOut
           Log.i(TAG, "PINs opt-out ${if (newOptedOut) "enabled" else "disabled"}")
           _state.value = _state.value.copy(
@@ -191,25 +191,25 @@ class PinSettingsViewModel(
             toastMessage = if (newOptedOut) "Opted out of PINs" else "Opted back into PINs"
           )
         }
-        is RegistrationNetworkResult.Failure -> {
+        is RequestResult.NonSuccess -> {
           Log.w(TAG, "Failed to toggle PINs opt-out: ${result.error}")
           _state.value = _state.value.copy(
             loading = false,
             toastMessage = "Failed to update PIN settings"
           )
         }
-        is RegistrationNetworkResult.NetworkError -> {
-          Log.w(TAG, "Network error while toggling PINs opt-out", result.exception)
+        is RequestResult.RetryableNetworkError -> {
+          Log.w(TAG, "Network error while toggling PINs opt-out", result.networkError)
           _state.value = _state.value.copy(
             loading = false,
             toastMessage = "Network error. Please check your connection."
           )
         }
-        is RegistrationNetworkResult.ApplicationError -> {
-          Log.w(TAG, "Application error while toggling PINs opt-out", result.exception)
+        is RequestResult.ApplicationError -> {
+          Log.w(TAG, "Application error while toggling PINs opt-out", result.cause)
           _state.value = _state.value.copy(
             loading = false,
-            toastMessage = "An error occurred: ${result.exception.message}"
+            toastMessage = "An error occurred: ${result.cause.message}"
           )
         }
       }

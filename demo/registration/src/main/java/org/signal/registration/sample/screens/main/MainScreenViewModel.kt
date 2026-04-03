@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.RequestResult
 import org.signal.registration.NetworkController
 import org.signal.registration.PersistedFlowState
 import org.signal.registration.StorageController
@@ -110,10 +111,10 @@ class MainScreenViewModel(
 
   private suspend fun checkRegistrationStatus() {
     when (val result = networkController.getSvrCredentials()) {
-      is NetworkController.RegistrationNetworkResult.Success -> {
+      is RequestResult.Success -> {
         Log.d(TAG, "[CheckRegistration] Still registered.")
       }
-      is NetworkController.RegistrationNetworkResult.Failure -> {
+      is RequestResult.NonSuccess -> {
         when (result.error) {
           NetworkController.GetSvrCredentialsError.Unauthorized -> {
             Log.w(TAG, "[CheckRegistration] No longer registered (401).")
@@ -125,11 +126,11 @@ class MainScreenViewModel(
           }
         }
       }
-      is NetworkController.RegistrationNetworkResult.NetworkError -> {
-        Log.w(TAG, "[CheckRegistration] Network error, can't verify status.", result.exception)
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "[CheckRegistration] Network error, can't verify status.", result.networkError)
       }
-      is NetworkController.RegistrationNetworkResult.ApplicationError -> {
-        Log.w(TAG, "[CheckRegistration] Application error, can't verify status.", result.exception)
+      is RequestResult.ApplicationError -> {
+        Log.w(TAG, "[CheckRegistration] Application error, can't verify status.", result.cause)
       }
     }
   }
