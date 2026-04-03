@@ -1364,6 +1364,13 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     return new SignalCallLinkManager(Objects.requireNonNull(callManager));
   }
 
+  public void addAsset(String assetGroup, byte[] content) throws CallException {
+    if (callManager == null) {
+      throw new CallException("Unable to add asset, call manager is not initialized");
+    }
+    callManager.addAsset(assetGroup, content);
+  }
+
   public void relaunchPipOnForeground() {
     AppForegroundObserver.addListener(new RelaunchListener(AppForegroundObserver.isForegrounded()));
   }

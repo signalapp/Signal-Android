@@ -47,8 +47,9 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val HAS_KEY_TRANSPARENCY_FAILURE = "misc.has_key_transparency_failure"
     private const val HAS_SEEN_KEY_TRANSPARENCY_FAILURE = "misc.has_seen_key_transparency_failure"
     private const val CAMERA_FACING_FRONT = "misc.camera_facing_front"
-    private const val CAPTCHA_LAST_VIEWED_AT = "misc.captcha_last_viewed_at"
     private const val COMPLETED_COLLAPSED_EVENTS_MIGRATION = "misc.completed_collapsed_events_migration"
+    private const val CAPTCHA_LAST_VIEWED_AT = "misc.captcha_last_viewed_at"
+    private const val CALLING_ASSETS_VERSION = "misc.calling_assets_version"
   }
 
   public override fun onFirstEverAppLaunch() {
@@ -324,4 +325,11 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
    * The last time the user viewed the captcha/recaptcha proof activity.
    */
   var captchaLastViewedAt: Long by longValue(CAPTCHA_LAST_VIEWED_AT, 0)
+
+  /**
+   * The last successfully-downloaded calling assets version. Compared against
+   * [org.thoughtcrime.securesms.service.webrtc.CallingAssets.CURRENT_VERSION] to determine
+   * if new assets need to be fetched.
+   */
+  var callingAssetsVersion: Int by integerValue(CALLING_ASSETS_VERSION, 0)
 }
