@@ -1087,14 +1087,6 @@ object RemoteConfig {
   }
 
   @JvmStatic
-  @get:JvmName("libsignalEnforceMinTlsVersion")
-  val libsignalEnforceMinTlsVersion by remoteBoolean(
-    key = "android.libsignalEnforceMinTlsVersion",
-    defaultValue = false,
-    hotSwappable = false
-  )
-
-  @JvmStatic
   val backgroundMessageProcessInterval: Long by remoteValue(
     key = "android.messageProcessor.alarmIntervalMins",
     hotSwappable = true,
