@@ -207,6 +207,8 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
       player.setAudioAttributes(attributes, newStreamType == AudioManager.STREAM_MUSIC)
       if (newStreamType == AudioManager.STREAM_VOICE_CALL) {
         player.playWhenReady = true
+      } else {
+        Log.i(TAG, "Audio stream set to $newStreamType. Not playing when ready.")
       }
     }
     return Futures.immediateFuture(SessionResult(SessionResult.RESULT_SUCCESS))

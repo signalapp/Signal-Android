@@ -61,7 +61,7 @@ class VoiceNoteProximityWakeLockManager(
   }
 
   fun unregisterCallbacksAndRelease() {
-    mediaController.addListener(mediaControllerCallback)
+    mediaController.removeListener(mediaControllerCallback)
     cleanUpWakeLock()
   }
 
@@ -94,7 +94,7 @@ class VoiceNoteProximityWakeLockManager(
   inner class ProximityListener : Player.Listener {
     override fun onEvents(player: Player, events: Player.Events) {
       super.onEvents(player, events)
-      if (events.contains(Player.EVENT_PLAYBACK_STATE_CHANGED)) {
+      if (events.containsAny(Player.EVENT_PLAYBACK_STATE_CHANGED, Player.EVENT_IS_PLAYING_CHANGED)) {
         if (!isActivityResumed()) {
           return
         }
@@ -125,8 +125,10 @@ class VoiceNoteProximityWakeLockManager(
 
   inner class HardwareSensorEventListener : SensorEventListener {
     override fun onSensorChanged(event: SensorEvent) {
-      if (startTime == -1L ||
-        System.currentTimeMillis() - startTime <= 500 ||
+      if (System.currentTimeMillis() - startTime <= 500) {
+        Log.i(TAG, "Ignoring sensor change because it's too close to start time.")
+        return
+      } else if (startTime == -1L ||
         !isActivityResumed() ||
         !mediaController.isPlaying ||
         event.sensor.type != Sensor.TYPE_PROXIMITY ||
