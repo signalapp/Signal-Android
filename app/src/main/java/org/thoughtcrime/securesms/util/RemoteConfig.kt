@@ -1123,14 +1123,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /** Whether or not to show chat folders. */
-  @JvmStatic
-  val showChatFolders: Boolean by remoteBoolean(
-    key = "android.showChatFolders.2",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** Whether or not to use the new pinned chat UI. */
   @JvmStatic
   val inlinePinnedChats: Boolean by remoteBoolean(
