@@ -5,7 +5,9 @@
 
 package org.signal.registration.screens.verificationcode
 
-sealed class VerificationCodeScreenEvents {
+import org.signal.registration.util.DebugLoggableModel
+
+sealed class VerificationCodeScreenEvents : DebugLoggableModel() {
   data class CodeEntered(val code: String) : VerificationCodeScreenEvents()
   data object WrongNumber : VerificationCodeScreenEvents()
   data object ResendSms : VerificationCodeScreenEvents()

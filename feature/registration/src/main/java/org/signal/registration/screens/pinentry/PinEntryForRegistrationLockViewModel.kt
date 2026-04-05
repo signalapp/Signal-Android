@@ -53,6 +53,7 @@ class PinEntryForRegistrationLockViewModel(
     .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PinEntryState(showNeedHelp = true))
 
   fun onEvent(event: PinEntryScreenEvents) {
+    Log.d(TAG, "[Event] $event")
     viewModelScope.launch {
       val stateEmitter: (PinEntryState) -> Unit = { state ->
         _state.value = state
@@ -140,7 +141,10 @@ class PinEntryForRegistrationLockViewModel(
         val (response, keyMaterial) = registerResult.data
         parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool))
         // TODO storage service restore + profile screen
-        parentEventEmitter.navigateTo(RegistrationRoute.FullyComplete)
+        when {
+          response.reregistration -> parentEventEmitter.navigateTo(RegistrationRoute.ChooseRestoreOptionAfterRegistration)
+          else -> parentEventEmitter.navigateTo(RegistrationRoute.FullyComplete)
+        }
         state
       }
       is NetworkController.RegistrationNetworkResult.Failure -> {

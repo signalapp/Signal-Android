@@ -50,7 +50,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
-import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.registration.R
 import org.signal.registration.test.TestTags
@@ -438,7 +438,7 @@ private fun DigitField(
   )
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
 private fun VerificationCodeScreenPreview() {
   Previews.Preview {
@@ -451,7 +451,7 @@ private fun VerificationCodeScreenPreview() {
   }
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
 private fun VerificationCodeScreenWithCountdownPreview() {
   Previews.Preview {
@@ -468,7 +468,7 @@ private fun VerificationCodeScreenWithCountdownPreview() {
   }
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
 private fun VerificationCodeScreenSubmittingPreview() {
   Previews.Preview {

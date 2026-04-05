@@ -15,13 +15,14 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.greenrobot.eventbus.EventBus;
+import org.signal.blurhash.BlurHash;
+import org.signal.core.models.ServiceId.ACI;
+import org.signal.core.util.Base64;
 import org.signal.core.util.Hex;
+import org.signal.core.util.Util;
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
-import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
-import org.signal.blurhash.BlurHash;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -45,8 +46,6 @@ import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobTracker;
-import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
-import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
@@ -60,10 +59,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.signal.core.util.Base64;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -71,20 +67,15 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemo
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServicePreview;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
-import org.signal.core.models.ServiceId.ACI;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
-import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.internal.push.BodyRange;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -93,7 +84,6 @@ import java.util.stream.Collectors;
 public abstract class PushSendJob extends SendJob {
 
   private static final String TAG                           = Log.tag(PushSendJob.class);
-  private static final long   CERTIFICATE_EXPIRATION_BUFFER = TimeUnit.DAYS.toMillis(1);
   private static final long   PUSH_CHALLENGE_TIMEOUT        = TimeUnit.SECONDS.toMillis(10);
 
   protected PushSendJob(Job.Parameters parameters) {
@@ -165,29 +155,7 @@ public abstract class PushSendJob extends SendJob {
 
   @Override
   public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
-    if (exception instanceof ProofRequiredException) {
-      long backoff = ((ProofRequiredException) exception).getRetryAfterSeconds();
-      warn(TAG, "[Proof Required] Retry-After is " + backoff + " seconds.");
-      if (backoff >= 0) {
-        return TimeUnit.SECONDS.toMillis(backoff);
-      }
-    } else if (exception instanceof RateLimitException) {
-      long backoff = ((RateLimitException) exception).getRetryAfterMilliseconds().orElse(-1L);
-      if (backoff >= 0) {
-        return backoff;
-      }
-    } else if (exception instanceof NonSuccessfulResponseCodeException) {
-      if (((NonSuccessfulResponseCodeException) exception).is5xx()) {
-        return BackoffUtil.exponentialBackoff(pastAttemptCount, RemoteConfig.getServerErrorMaxBackoff());
-      }
-    } else if (exception instanceof RetryLaterException) {
-      long backoff = ((RetryLaterException) exception).getBackoff();
-      if (backoff >= 0) {
-        return backoff;
-      }
-    }
-
-    return super.getNextRunAttemptBackoff(pastAttemptCount, exception);
+    return SendJobUtil.getBackoffMillisFromException(this, TAG, pastAttemptCount, exception, () -> super.getNextRunAttemptBackoff(pastAttemptCount, exception));
   }
 
   protected Optional<byte[]> getProfileKey(@NonNull Recipient recipient) {
@@ -553,39 +521,6 @@ public abstract class PushSendJob extends SendJob {
       return new SignalServiceDataMessage.PinnedMessage(ACI.parseOrNull(pinnedMessage.targetAuthorAci), pinnedMessage.targetTimestamp, null, true);
     } else {
       return new SignalServiceDataMessage.PinnedMessage(ACI.parseOrNull(pinnedMessage.targetAuthorAci), pinnedMessage.targetTimestamp, (int) pinnedMessage.pinDurationInSeconds, null);
-    }
-  }
-
-  protected void rotateSenderCertificateIfNecessary() throws IOException {
-    try {
-      Collection<CertificateType> requiredCertificateTypes = SignalStore.phoneNumberPrivacy()
-                                                                        .getRequiredCertificateTypes();
-
-      Log.i(TAG, "Ensuring we have these certificates " + requiredCertificateTypes);
-
-      for (CertificateType certificateType : requiredCertificateTypes) {
-
-        byte[] certificateBytes = SignalStore.certificate()
-                                             .getUnidentifiedAccessCertificate(certificateType);
-
-        if (certificateBytes == null) {
-          throw new InvalidCertificateException(String.format("No certificate %s was present.", certificateType));
-        }
-
-        SenderCertificate certificate = new SenderCertificate(certificateBytes);
-
-        if (System.currentTimeMillis() > (certificate.getExpiration() - CERTIFICATE_EXPIRATION_BUFFER)) {
-          throw new InvalidCertificateException(String.format(Locale.US, "Certificate %s is expired, or close to it. Expires on: %d, currently: %d", certificateType, certificate.getExpiration(), System.currentTimeMillis()));
-        }
-        Log.d(TAG, String.format("Certificate %s is valid", certificateType));
-      }
-
-      Log.d(TAG, "All certificates are valid.");
-    } catch (InvalidCertificateException e) {
-      Log.w(TAG, "A certificate was invalid at send time. Fetching new ones.", e);
-      if (!AppDependencies.getJobManager().runSynchronously(new RotateCertificateJob(), 5000).isPresent()) {
-        throw new IOException("Timeout rotating certificate");
-      }
     }
   }
 

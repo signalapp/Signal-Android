@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.SignalNetwork;
@@ -75,6 +76,8 @@ public final class RotateCertificateJob extends BaseJob {
                    .setUnidentifiedAccessCertificate(certificateType, certificate);
       }
     }
+
+    SealedSenderConstraint.markValid();
   }
 
   @Override

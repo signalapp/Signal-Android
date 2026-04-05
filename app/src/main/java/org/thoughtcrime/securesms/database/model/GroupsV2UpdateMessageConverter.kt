@@ -6,6 +6,40 @@
 package org.thoughtcrime.securesms.database.model
 
 import okio.ByteString
+import org.signal.archive.proto.GenericGroupUpdate
+import org.signal.archive.proto.GroupAdminStatusUpdate
+import org.signal.archive.proto.GroupAnnouncementOnlyChangeUpdate
+import org.signal.archive.proto.GroupAttributesAccessLevelChangeUpdate
+import org.signal.archive.proto.GroupAvatarUpdate
+import org.signal.archive.proto.GroupChangeChatUpdate
+import org.signal.archive.proto.GroupCreationUpdate
+import org.signal.archive.proto.GroupDescriptionUpdate
+import org.signal.archive.proto.GroupExpirationTimerUpdate
+import org.signal.archive.proto.GroupInvitationAcceptedUpdate
+import org.signal.archive.proto.GroupInvitationDeclinedUpdate
+import org.signal.archive.proto.GroupInvitationRevokedUpdate
+import org.signal.archive.proto.GroupInviteLinkAdminApprovalUpdate
+import org.signal.archive.proto.GroupInviteLinkDisabledUpdate
+import org.signal.archive.proto.GroupInviteLinkEnabledUpdate
+import org.signal.archive.proto.GroupInviteLinkResetUpdate
+import org.signal.archive.proto.GroupJoinRequestApprovalUpdate
+import org.signal.archive.proto.GroupJoinRequestCanceledUpdate
+import org.signal.archive.proto.GroupJoinRequestUpdate
+import org.signal.archive.proto.GroupMemberAddedUpdate
+import org.signal.archive.proto.GroupMemberJoinedByLinkUpdate
+import org.signal.archive.proto.GroupMemberJoinedUpdate
+import org.signal.archive.proto.GroupMemberLabelAccessLevelChangeUpdate
+import org.signal.archive.proto.GroupMemberLeftUpdate
+import org.signal.archive.proto.GroupMemberRemovedUpdate
+import org.signal.archive.proto.GroupMembershipAccessLevelChangeUpdate
+import org.signal.archive.proto.GroupNameUpdate
+import org.signal.archive.proto.GroupSelfInvitationRevokedUpdate
+import org.signal.archive.proto.GroupSequenceOfRequestsAndCancelsUpdate
+import org.signal.archive.proto.GroupTerminateChangeUpdate
+import org.signal.archive.proto.GroupUnknownInviteeUpdate
+import org.signal.archive.proto.GroupV2AccessLevel
+import org.signal.archive.proto.SelfInvitedOtherUserToGroupUpdate
+import org.signal.archive.proto.SelfInvitedToGroupUpdate
 import org.signal.core.models.ServiceId
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.UuidUtil
@@ -18,38 +52,6 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChang
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember
 import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember
 import org.signal.storageservice.storage.protos.groups.local.EnabledState
-import org.thoughtcrime.securesms.backup.v2.proto.GenericGroupUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupAdminStatusUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupAnnouncementOnlyChangeUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupAttributesAccessLevelChangeUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupAvatarUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupChangeChatUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupCreationUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupDescriptionUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupExpirationTimerUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupInvitationAcceptedUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupInvitationDeclinedUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupInvitationRevokedUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupInviteLinkAdminApprovalUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupInviteLinkDisabledUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupInviteLinkEnabledUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupInviteLinkResetUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupJoinRequestApprovalUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupJoinRequestCanceledUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupJoinRequestUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberAddedUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberJoinedByLinkUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberJoinedUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberLeftUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberRemovedUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupMembershipAccessLevelChangeUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupNameUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupSelfInvitationRevokedUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupSequenceOfRequestsAndCancelsUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupUnknownInviteeUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.GroupV2AccessLevel
-import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedOtherUserToGroupUpdate
-import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedToGroupUpdate
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 import org.whispersystems.signalservice.api.push.ServiceIds
@@ -116,6 +118,11 @@ object GroupsV2UpdateMessageConverter {
       }
     }
 
+    if (group != null && group.terminated) {
+      updates.add(GroupChangeChatUpdate.Update(groupTerminateChangeUpdate = GroupTerminateChangeUpdate(updaterAci = null)))
+      return GroupChangeChatUpdate(updates = updates)
+    }
+
     if (group != null && DecryptedGroupUtil.findMemberByAci(group.members, selfIds.aci).isPresent) {
       updates.add(GroupChangeChatUpdate.Update(groupMemberJoinedUpdate = GroupMemberJoinedUpdate(newMemberAci = selfIds.aci.toByteString())))
     }
@@ -146,6 +153,7 @@ object GroupsV2UpdateMessageConverter {
     translateNewTimer(change, editorUnknown, updates)
     translateNewAttributeAccess(change, editorUnknown, updates)
     translateNewMembershipAccess(change, editorUnknown, updates)
+    translateNewMemberLabelAccess(change, editorUnknown, updates)
     translateNewGroupInviteLinkAccess(previousGroupState, change, editorUnknown, updates)
     translateRequestingMembers(selfIds, change, editorUnknown, updates)
     translateRequestingMemberApprovals(selfIds, change, editorUnknown, updates)
@@ -153,6 +161,7 @@ object GroupsV2UpdateMessageConverter {
     translateAnnouncementGroupChange(change, editorUnknown, updates)
     translatePromotePendingPniAci(selfIds, change, editorUnknown, updates)
     translateMemberRemovals(selfIds, change, editorUnknown, updates)
+    translateTerminateGroup(change, editorUnknown, updates)
     if (updates.isEmpty()) {
       translateUnknownChange(change, editorUnknown, updates)
     }
@@ -438,6 +447,21 @@ object GroupsV2UpdateMessageConverter {
   }
 
   @JvmStatic
+  fun translateNewMemberLabelAccess(change: DecryptedGroupChange, editorUnknown: Boolean, updates: MutableList<GroupChangeChatUpdate.Update>) {
+    if (change.newMemberLabelAccess !== AccessRequired.UNKNOWN) {
+      val editorAci = if (editorUnknown) null else change.editorServiceIdBytes
+      updates.add(
+        GroupChangeChatUpdate.Update(
+          groupMemberLabelAccessLevelChangeUpdate = GroupMemberLabelAccessLevelChangeUpdate(
+            updaterAci = editorAci,
+            accessLevel = translateGv2AccessLevel(change.newMemberLabelAccess)
+          )
+        )
+      )
+    }
+  }
+
+  @JvmStatic
   fun translateNewGroupInviteLinkAccess(previousGroupState: DecryptedGroup?, change: DecryptedGroupChange, editorUnknown: Boolean, updates: MutableList<GroupChangeChatUpdate.Update>) {
     var previousAccessControl: AccessRequired? = null
 
@@ -664,6 +688,20 @@ object GroupsV2UpdateMessageConverter {
           )
         )
       }
+    }
+  }
+
+  @JvmStatic
+  fun translateTerminateGroup(change: DecryptedGroupChange, editorUnknown: Boolean, updates: MutableList<GroupChangeChatUpdate.Update>) {
+    if (change.terminateGroup) {
+      val editorAci = if (editorUnknown) null else change.editorServiceIdBytes
+      updates.add(
+        GroupChangeChatUpdate.Update(
+          groupTerminateChangeUpdate = GroupTerminateChangeUpdate(
+            updaterAci = editorAci
+          )
+        )
+      )
     }
   }
 

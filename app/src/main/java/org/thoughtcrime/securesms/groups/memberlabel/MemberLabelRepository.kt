@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.groups.memberlabel
 import android.content.Context
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.signal.core.models.ServiceId
 import org.signal.core.util.orNull
@@ -17,13 +16,13 @@ import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.UiHintValues
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 
 /**
@@ -54,41 +53,22 @@ class MemberLabelRepository private constructor(
    * Gets the member label for a specific recipient in the group (blocking version for Java compatibility).
    */
   @WorkerThread
-  fun getLabelJava(groupId: GroupId.V2, recipient: Recipient): MemberLabel? = runBlocking { getLabel(groupId, recipient) }
+  fun getLabelSync(groupId: GroupId.V2, recipient: Recipient): MemberLabel? {
+    val aci = recipient.serviceId.orNull() as? ServiceId.ACI ?: return null
+    val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return null
+
+    return groupRecord.requireV2GroupProperties().memberLabel(aci)?.sanitized()
+  }
 
   /**
    * Gets member labels for a list of recipients in a group (blocking version for Java compatibility).
    */
   @WorkerThread
-  fun getLabelsJava(groupId: GroupId.V2, recipients: List<Recipient>): Map<RecipientId, MemberLabel> = runBlocking { getLabels(groupId, recipients) }
-
-  /**
-   * Gets the member label for a specific recipient in the group.
-   */
-  suspend fun getLabel(groupId: GroupId.V2, recipient: Recipient): MemberLabel? = withContext(Dispatchers.IO) {
-    if (!RemoteConfig.receiveMemberLabels) {
-      return@withContext null
-    }
-
-    val aci = recipient.serviceId.orNull() as? ServiceId.ACI ?: return@withContext null
-    val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext null
-    groupRecord.requireV2GroupProperties().memberLabel(aci)?.sanitized()
-  }
-
-  /**
-   * Gets member labels for a list of recipients in a group.
-   *
-   * Returns a map of [RecipientId] to [MemberLabel] for members that have labels.
-   */
-  suspend fun getLabels(groupId: GroupId.V2, recipients: List<Recipient>): Map<RecipientId, MemberLabel> = withContext(Dispatchers.IO) {
-    if (!RemoteConfig.receiveMemberLabels) {
-      return@withContext emptyMap()
-    }
-
-    val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext emptyMap()
+  fun getLabelsSync(groupId: GroupId.V2, recipients: Collection<Recipient>): Map<RecipientId, MemberLabel> {
+    val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return emptyMap()
     val labelsByAci = groupRecord.requireV2GroupProperties().memberLabelsByAci()
 
-    buildMap {
+    return buildMap {
       recipients.forEach { recipient ->
         val aci = recipient.serviceId.orNull() as? ServiceId.ACI
         labelsByAci[aci]?.let { label -> put(recipient.id, label.sanitized()) }
@@ -97,12 +77,35 @@ class MemberLabelRepository private constructor(
   }
 
   /**
+   * Gets the member label for a specific recipient in the group.
+   */
+  suspend fun getLabel(groupId: GroupId.V2, recipient: Recipient): MemberLabel? = withContext(Dispatchers.IO) {
+    getLabelSync(groupId, recipient)
+  }
+
+  /**
+   * Gets member labels for a list of recipients in a group.
+   *
+   * Returns a map of [RecipientId] to [MemberLabel] for members that have labels.
+   */
+  suspend fun getLabels(groupId: GroupId.V2, recipients: List<Recipient>): Map<RecipientId, MemberLabel> = withContext(Dispatchers.IO) {
+    getLabelsSync(groupId, recipients)
+  }
+
+  /**
    * Checks whether [recipient] has permission to set their member label in the given group.
    */
   suspend fun canSetLabel(groupId: GroupId.V2, recipient: Recipient): Boolean = withContext(Dispatchers.IO) {
-    if (!RemoteConfig.sendMemberLabels) return@withContext false
     val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext false
-    groupRecord.memberLevel(recipient).isInGroup
+
+    if (groupRecord.isTerminated) return@withContext false
+
+    val memberLevel = groupRecord.memberLevel(recipient)
+    if (groupRecord.memberLabelAccessControl == GroupAccessControl.ONLY_ADMINS) {
+      memberLevel == GroupTable.MemberLevel.ADMINISTRATOR
+    } else {
+      memberLevel.isInGroup
+    }
   }
 
   /**
@@ -117,13 +120,33 @@ class MemberLabelRepository private constructor(
   }
 
   /**
+   * Returns all group members who have labels set for the given group.
+   */
+  suspend fun getMembersWithLabels(groupId: GroupId.V2): List<GroupMemberWithLabel> = withContext(Dispatchers.IO) {
+    val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext emptyList()
+    val groupProperties = groupRecord.requireV2GroupProperties()
+
+    val allMembers = groupProperties.getMemberRecipients(GroupTable.MemberSet.FULL_MEMBERS_INCLUDING_SELF)
+    val colorizer = ColorizerV2(groupMemberIds = allMembers.mapNotNull { it.serviceId.orNull() })
+    val labelsByAci = groupProperties.memberLabelsByAci()
+
+    allMembers.mapNotNull { member ->
+      val aci = member.serviceId.orNull() as? ServiceId.ACI
+      val label = labelsByAci[aci]?.sanitized() ?: return@mapNotNull null
+
+      GroupMemberWithLabel(
+        recipient = member,
+        isAdmin = groupProperties.isAdmin(member),
+        label = label,
+        nameColor = colorizer.getNameColor(context, member)
+      )
+    }
+  }
+
+  /**
    * Sets the group member label for the current user.
    */
   suspend fun setLabel(groupId: GroupId.V2, label: MemberLabel): NetworkResult<Unit> = withContext(Dispatchers.IO) {
-    if (!RemoteConfig.sendMemberLabels) {
-      throw IllegalStateException("Set member label not allowed due to remote config.")
-    }
-
     val sanitizedLabel = label.sanitized()
     NetworkResult.fromFetch {
       GroupManager.updateMemberLabel(context, groupId, sanitizedLabel.text, sanitizedLabel.emoji.orEmpty())

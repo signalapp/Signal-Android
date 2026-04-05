@@ -6,13 +6,13 @@
 package org.thoughtcrime.securesms.backup.v2.processor
 
 import okio.ByteString.Companion.toByteString
+import org.signal.archive.proto.Frame
+import org.signal.archive.proto.StickerPack
+import org.signal.archive.stream.BackupFrameEmitter
 import org.signal.core.util.Hex
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.ExportSkips
-import org.thoughtcrime.securesms.backup.v2.proto.Frame
-import org.thoughtcrime.securesms.backup.v2.proto.StickerPack
-import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.StickerTable

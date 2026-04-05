@@ -119,3 +119,11 @@ fun String.splitByByteLength(byteLength: Int): Pair<String, String?> {
   val remainder = this.substring(firstPart.length)
   return firstPart to remainder
 }
+
+/**
+ * Returns a new string with the same length, but all chars replaced with the [censorChar].
+ * e.g. "abc".censor() -> "***"
+ */
+fun String.censor(censorChar: Char = '*'): String {
+  return String(CharArray(this.length) { censorChar })
+}

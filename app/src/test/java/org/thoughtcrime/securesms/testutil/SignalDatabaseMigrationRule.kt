@@ -5,13 +5,11 @@
 
 package org.thoughtcrime.securesms.testutil
 
-import androidx.sqlite.db.SupportSQLiteDatabase
-import androidx.sqlite.db.SupportSQLiteOpenHelper
-import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
 import androidx.test.core.app.ApplicationProvider
 import org.junit.rules.ExternalResource
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations
+import org.thoughtcrime.securesms.testing.JdbcSqliteDatabase
 import org.thoughtcrime.securesms.testing.TestSignalSQLiteDatabase
 
 class SignalDatabaseMigrationRule(private val upgradedVersion: Int = 286) : ExternalResource() {
@@ -40,25 +38,14 @@ class SignalDatabaseMigrationRule(private val upgradedVersion: Int = 286) : Exte
 
   companion object {
     /**
-     * Create an in-memory only database of a snapshot of V286. This includes
-     * all non-FTS tables, indexes, and triggers.
+     * Create an in-memory only database of a snapshot of V286. Uses sqlite-jdbc (org.xerial) to
+     * provide a modern SQLite with FTS5 and JSON1 support. This includes all non-FTS tables,
+     * indexes, and triggers.
      */
     private fun inMemoryUpgradedDatabase(): SQLiteDatabase {
-      val configuration = SupportSQLiteOpenHelper.Configuration(
-        context = ApplicationProvider.getApplicationContext(),
-        name = "snapshot",
-        callback = object : SupportSQLiteOpenHelper.Callback(286) {
-          override fun onCreate(db: SupportSQLiteDatabase) {
-            SNAPSHOT_V286.forEach { db.execSQL(it.sql) }
-          }
-          override fun onUpgrade(db: SupportSQLiteDatabase, oldVersion: Int, newVersion: Int) = Unit
-        },
-        useNoBackupDirectory = false,
-        allowDataLossOnRecovery = true
-      )
-
-      val helper = FrameworkSQLiteOpenHelperFactory().create(configuration)
-      return TestSignalSQLiteDatabase(helper.writableDatabase)
+      val db = JdbcSqliteDatabase.createInMemory()
+      SNAPSHOT_V286.forEach { db.execSQL(it.sql) }
+      return TestSignalSQLiteDatabase(db)
     }
 
     private val SNAPSHOT_V286 = listOf(

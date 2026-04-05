@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -47,6 +48,7 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
   private DeviceTransferServer     server;
   private DeviceTransferClient     client;
   private PowerManager.WakeLock    wakeLock;
+  private WifiManager.WifiLock     wifiLock;
 
   public static void startServer(@NonNull Context context,
                                  @NonNull ServerTask serverTask,
@@ -119,6 +121,10 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
 
     if (wakeLock != null) {
       wakeLock.release();
+    }
+
+    if (wifiLock != null && wifiLock.isHeld()) {
+      wifiLock.release();
     }
 
     super.onDestroy();
@@ -206,6 +212,17 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
 
     if (!wakeLock.isHeld()) {
       wakeLock.acquire(TimeUnit.HOURS.toMillis(2));
+    }
+
+    if (wifiLock == null) {
+      WifiManager wifiManager = ContextCompat.getSystemService(this, WifiManager.class);
+      if (wifiManager != null) {
+        wifiLock = wifiManager.createWifiLock(WifiManager.WIFI_MODE_FULL_HIGH_PERF, "signal:d2dwifi");
+      }
+    }
+
+    if (wifiLock != null && !wifiLock.isHeld()) {
+      wifiLock.acquire();
     }
   }
 

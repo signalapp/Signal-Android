@@ -75,7 +75,12 @@ public class BackupUtil {
 
   public static boolean canUserAccessUnifiedBackupDirectory(@NonNull Context context) {
     if (isUserSelectionRequired(context)) {
-      Uri backupDirectoryUri = Uri.parse(SignalStore.backup().getNewLocalBackupsDirectory());
+      String backupDirectoryPath = SignalStore.backup().getNewLocalBackupsDirectory();
+      if (backupDirectoryPath == null) {
+        return false;
+      }
+
+      Uri backupDirectoryUri = Uri.parse(backupDirectoryPath);
       if (backupDirectoryUri == null) {
         return false;
       }

@@ -117,9 +117,7 @@ class VerifySafetyNumberViewModel(
         aciFingerprint = SafetyNumberFingerprint(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity, generator.createFor(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity))
       }
 
-      if (aciFingerprint != null) {
-        fingerprintLiveData.postValue(aciFingerprint)
-      }
+      fingerprintLiveData.postValue(aciFingerprint)
     }
   }
 

@@ -18,6 +18,7 @@ public interface MessageNotifier {
   void setVisibleThread(@Nullable ConversationId conversationId);
   @NonNull Optional<ConversationId> getVisibleThread();
   void clearVisibleThread();
+  void clearVisibleThread(@NonNull ConversationId conversationId);
   void setVisibleBubbleThread(@Nullable ConversationId conversationId);
   void clearVisibleBubbleThread();
   void setLastDesktopActivityTimestamp(long timestamp);

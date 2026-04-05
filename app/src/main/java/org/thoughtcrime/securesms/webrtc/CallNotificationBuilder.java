@@ -16,6 +16,7 @@ import org.signal.core.util.PendingIntentFlags;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.webrtc.ActiveCallManager;
@@ -93,7 +94,7 @@ public class CallNotificationBuilder {
         .setSmallIcon(R.drawable.ic_call_secure_white_24dp)
         .setContentIntent(pendingIntent)
         .setOngoing(true)
-        .setContentTitle(recipient.getDisplayName(context));
+        .setContentTitle(SignalStore.settings().getMessageNotificationsPrivacy().isDisplayContact() ? recipient.getDisplayName(context) : context.getString(R.string.Recipient_signal_call));
 
     if (type == TYPE_INCOMING_CONNECTING) {
       builder.setContentText(context.getString(R.string.CallNotificationBuilder_connecting));
@@ -106,8 +107,15 @@ public class CallNotificationBuilder {
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
       builder.setFullScreenIntent(pendingIntent, true);
 
-      Person person = skipPersonIcon ? ConversationUtil.buildPersonWithoutIcon(context, recipient)
-                                     : ConversationUtil.buildPerson(context.getApplicationContext(), recipient);
+      Person person;
+
+      if (SignalStore.settings().getMessageNotificationsPrivacy().isDisplayContact()) {
+        person = skipPersonIcon ? ConversationUtil.buildPersonWithoutIcon(context, recipient)
+                                : ConversationUtil.buildPerson(context.getApplicationContext(), recipient);
+      } else {
+        person = new Person.Builder().setName(context.getString(R.string.Recipient_signal_call))
+                                     .build();
+      }
 
       builder.addPerson(person);
 
@@ -130,8 +138,15 @@ public class CallNotificationBuilder {
       builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
 
-      Person person = skipPersonIcon ? ConversationUtil.buildPersonWithoutIcon(context, recipient)
-                                     : ConversationUtil.buildPerson(context.getApplicationContext(), recipient);
+      Person person;
+
+      if (SignalStore.settings().getMessageNotificationsPrivacy().isDisplayContact()) {
+        person = skipPersonIcon ? ConversationUtil.buildPersonWithoutIcon(context, recipient)
+                                : ConversationUtil.buildPerson(context.getApplicationContext(), recipient);
+      } else {
+        person = new Person.Builder().setName(context.getString(R.string.Recipient_signal_call))
+                                     .build();
+      }
 
       builder.addPerson(person);
 

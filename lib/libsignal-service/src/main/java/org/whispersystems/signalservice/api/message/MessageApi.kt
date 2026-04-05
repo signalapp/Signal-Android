@@ -5,16 +5,21 @@
 
 package org.whispersystems.signalservice.api.message
 
+import kotlinx.coroutines.runBlocking
 import org.signal.core.models.ServiceId
+import org.signal.libsignal.net.MultiRecipientMessageResponse
+import org.signal.libsignal.net.MultiRecipientSendAuthorization
+import org.signal.libsignal.net.MultiRecipientSendFailure
+import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.net.UnauthMessagesService
+import org.signal.libsignal.net.getOrError
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.post
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList
-import org.whispersystems.signalservice.internal.push.SendGroupMessageResponse
 import org.whispersystems.signalservice.internal.push.SendMessageResponse
 import org.whispersystems.signalservice.internal.put
-import org.whispersystems.signalservice.internal.putCustom
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
 
@@ -70,24 +75,14 @@ class MessageApi(
   }
 
   /**
-   * Sends a common message to multiple recipients and requires some form of [sealedSenderAccess] unless it's a story.
-   *
-   * PUT /v1/messages/multi_recipient?ts=[timestamp]&online=[online]&urgent=[urgent]&story=[story]
-   * - 200: Success
-   * - 400: Message specified delivery to the same recipient device multiple times
-   * - 401: Message is not a story and [sealedSenderAccess] is missing or incorrect
-   * - 404: Message is not a story and some of the recipients are not registered Signal users
-   * - 409: Incorrect set of devices supplied for some recipients
-   * - 410: Stale devices supplied for some recipients
+   * Sends a common message to multiple recipients using the libsignal-net [UnauthMessagesService].
    */
-  fun sendGroupMessage(body: ByteArray, sealedSenderAccess: SealedSenderAccess, timestamp: Long, online: Boolean, urgent: Boolean, story: Boolean): NetworkResult<SendGroupMessageResponse> {
-    val request = WebSocketRequestMessage.putCustom(
-      path = "/v1/messages/multi_recipient?ts=$timestamp&online=${online.toQueryParam()}&urgent=${urgent.toQueryParam()}&story=${story.toQueryParam()}",
-      body = body,
-      headers = mapOf("content-type" to "application/vnd.signal-messenger.mrm")
-    )
-
-    return NetworkResult.fromWebSocket { unauthWebSocket.request(request, sealedSenderAccess) }
+  fun sendGroupMessage(body: ByteArray, auth: MultiRecipientSendAuthorization, timestamp: Long, online: Boolean, urgent: Boolean): RequestResult<MultiRecipientMessageResponse, MultiRecipientSendFailure> {
+    return runBlocking {
+      unauthWebSocket.runCatchingWithUnauthChatConnection { chatConnection ->
+        UnauthMessagesService(chatConnection).sendMultiRecipientMessage(body, timestamp, auth, online, urgent)
+      }.getOrError()
+    }
   }
 
   /**
@@ -102,4 +97,8 @@ class MessageApi(
   }
 
   private fun Boolean.toQueryParam(): String = if (this) "true" else "false"
+}
+
+fun MultiRecipientMessageResponse.unsentTargets(): Set<ServiceId> {
+  return unregisteredIds.mapTo(HashSet(unregisteredIds.size)) { ServiceId.fromLibSignal(it) }
 }

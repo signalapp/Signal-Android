@@ -236,36 +236,35 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
    * Retrieves all InAppPayment objects for donations that have been marked NOTIFIED = 0, and then marks them
    * all as notified.
    */
-  fun consumeDonationPaymentsToNotifyUser(): List<InAppPayment> {
-    return writableDatabase.withinTransaction { db ->
-      val payments = db.select()
-        .from(TABLE_NAME)
-        .where("$NOTIFIED = ? AND $TYPE != ?", 0, InAppPaymentType.serialize(InAppPaymentType.RECURRING_BACKUP))
-        .run()
-        .readToList(mapper = { InAppPayment.deserialize(it) })
-
-      db.update(TABLE_NAME).values(NOTIFIED to 1)
-        .where("$TYPE != ?", InAppPaymentType.serialize(InAppPaymentType.RECURRING_BACKUP))
-        .run()
-
-      payments
-    }
-  }
+  fun consumeDonationPaymentsToNotifyUser(): List<InAppPayment> = consumePaymentsToNotifyUser(
+    where = "$NOTIFIED = ? AND $TYPE != ?",
+    args = arrayOf(0, InAppPaymentType.serialize(InAppPaymentType.RECURRING_BACKUP))
+  )
 
   /**
    * Retrieves all InAppPayment objects for backups that have been marked NOTIFIED = 0, and then marks them
    * all as notified.
    */
-  fun consumeBackupPaymentsToNotifyUser(): List<InAppPayment> {
+  fun consumeBackupPaymentsToNotifyUser(): List<InAppPayment> = consumePaymentsToNotifyUser(
+    where = "$NOTIFIED = ? AND $TYPE = ?",
+    args = arrayOf(0, InAppPaymentType.serialize(InAppPaymentType.RECURRING_BACKUP))
+  )
+
+  private fun consumePaymentsToNotifyUser(where: String, args: Array<Any>): List<InAppPayment> {
+    val hasUnnotified = readableDatabase.exists(TABLE_NAME)
+      .where(where, *args)
+      .run()
+    if (!hasUnnotified) return emptyList()
+
     return writableDatabase.withinTransaction { db ->
       val payments = db.select()
         .from(TABLE_NAME)
-        .where("$NOTIFIED = ? AND $TYPE = ?", 0, InAppPaymentType.serialize(InAppPaymentType.RECURRING_BACKUP))
+        .where(where, *args)
         .run()
         .readToList(mapper = { InAppPayment.deserialize(it) })
 
       db.update(TABLE_NAME).values(NOTIFIED to 1)
-        .where("$TYPE = ?", InAppPaymentType.serialize(InAppPaymentType.RECURRING_BACKUP))
+        .where(where, *args)
         .run()
 
       payments
@@ -355,10 +354,8 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
     return readableDatabase.select()
       .from(TABLE_NAME)
       .where(
-        "($STATE = ? OR $STATE = ? OR $STATE = ?) AND $TYPE = ?",
-        State.serialize(State.PENDING),
-        State.serialize(State.WAITING_FOR_AUTHORIZATION),
-        State.serialize(State.END),
+        "$STATE != ? AND $TYPE = ?",
+        State.serialize(State.CREATED),
         InAppPaymentType.serialize(type)
       )
       .orderBy("$INSERTED_AT DESC")

@@ -8,16 +8,19 @@ package org.thoughtcrime.securesms.attachments
 import android.content.Context
 import android.graphics.Bitmap
 import org.signal.blurhash.BlurHashEncoder
+import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
-import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream
-import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import java.io.IOException
+import java.io.InputStream
+import java.security.MessageDigest
 import java.util.Objects
 
 /**
@@ -33,13 +36,35 @@ object AttachmentUploadUtil {
   val FOREGROUND_LIMIT_BYTES: Long = 10.mebiBytes.inWholeBytes
 
   /**
+   * Computes the base64-encoded SHA-256 checksum of the ciphertext that would result from encrypting [plaintextStream]
+   * with the given [key] and [iv], including padding, IV prefix, and HMAC suffix.
+   */
+  fun computeCiphertextChecksum(key: ByteArray, iv: ByteArray, plaintextStream: InputStream, plaintextSize: Long): String {
+    val paddedStream = PaddingInputStream(plaintextStream, plaintextSize)
+    return Base64.encodeWithPadding(AttachmentCipherStreamUtil.computeCiphertextSha256(key, iv, paddedStream))
+  }
+
+  /**
+   * Computes the base64-encoded SHA-256 checksum of the raw bytes in [inputStream].
+   * Used for pre-encrypted uploads where the data is already in its final form.
+   */
+  fun computeRawChecksum(inputStream: InputStream): String {
+    val digest = MessageDigest.getInstance("SHA-256")
+    val buffer = ByteArray(16 * 1024)
+    var read: Int
+    while (inputStream.read(buffer).also { read = it } != -1) {
+      digest.update(buffer, 0, read)
+    }
+    return Base64.encodeWithPadding(digest.digest())
+  }
+
+  /**
    * Builds a [SignalServiceAttachmentStream] from the provided data, which can then be provided to various upload methods.
    */
   @Throws(IOException::class)
   fun buildSignalServiceAttachmentStream(
     context: Context,
     attachment: Attachment,
-    uploadSpec: ResumableUpload,
     cancellationSignal: (() -> Boolean)? = null,
     progressListener: ProgressListener? = null
   ): SignalServiceAttachmentStream {
@@ -57,7 +82,6 @@ object AttachmentUploadUtil {
       .withHeight(attachment.height)
       .withUploadTimestamp(System.currentTimeMillis())
       .withCaption(attachment.caption)
-      .withResumableUploadSpec(ResumableUploadSpec.from(uploadSpec))
       .withCancelationSignal(cancellationSignal)
       .withListener(progressListener)
       .withUuid(attachment.uuid)

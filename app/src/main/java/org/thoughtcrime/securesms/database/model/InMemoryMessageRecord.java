@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.database.CollapsedState;
 import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -60,7 +61,10 @@ public class InMemoryMessageRecord extends MessageRecord {
           0,
           0,
           null,
-          null);
+          CollapsedState.NONE,
+          0,
+          null,
+          false);
   }
 
   @Override

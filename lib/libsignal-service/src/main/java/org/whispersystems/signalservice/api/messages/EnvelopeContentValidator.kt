@@ -83,8 +83,8 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Missing timestamp!")
     }
 
-    if (dataMessage.timestamp != envelope.timestamp) {
-      return Result.Invalid("[DataMessage] Timestamps don't match! envelope: ${envelope.timestamp}, content: ${dataMessage.timestamp}")
+    if (dataMessage.timestamp != envelope.clientTimestamp) {
+      return Result.Invalid("[DataMessage] Timestamps don't match! envelope: ${envelope.clientTimestamp}, content: ${dataMessage.timestamp}")
     }
 
     if (dataMessage.quote != null && ACI.parseOrNull(dataMessage.quote.authorAci, dataMessage.quote.authorAciBinary).isNullOrInvalidServiceId()) {
@@ -276,8 +276,8 @@ object EnvelopeContentValidator {
   private fun validateTypingMessage(envelope: Envelope, typingMessage: TypingMessage): Result {
     return if (typingMessage.timestamp == null) {
       return Result.Invalid("[TypingMessage] Missing timestamp!")
-    } else if (typingMessage.timestamp != envelope.timestamp) {
-      Result.Invalid("[TypingMessage] Timestamps don't match! envelope: ${envelope.timestamp}, content: ${typingMessage.timestamp}")
+    } else if (typingMessage.timestamp != envelope.clientTimestamp) {
+      Result.Invalid("[TypingMessage] Timestamps don't match! envelope: ${envelope.clientTimestamp}, content: ${typingMessage.timestamp}")
     } else if (typingMessage.action == null) {
       Result.Invalid("[TypingMessage] Missing action!")
     } else {

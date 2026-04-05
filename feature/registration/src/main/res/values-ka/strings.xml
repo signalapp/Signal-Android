@@ -84,4 +84,50 @@
     <string name="VerificationCodeScreen__registration_error">რეგისტრაცია ვერ მოხერხდა. გთხოვთ, თავიდან სცადო.</string>
     <!-- Button text for having trouble with verification -->
     <string name="VerificationCodeScreen__having_trouble">პრობლემას გადააწყდი?</string>
+
+    <!-- RestoreWelcomeBottomSheet -->
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">ჩემი ძველი მობილური მაქვს</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">სწრაფად დასაწყებად დაასკანირე QR კოდი შენი ახლანდელი Signal-ის ანგარიშიდან</string>
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">ჩემი ძველი მობილური არ მაქვს</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">ან Signal-ს თავიდან იწერ იმავე მოწყობილობაზე</string>
+
+    <!-- ArchiveRestoreSelectionScreen -->
+    <!-- Title text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">აღდგენა ან ანგარიშის გადატანა</string>
+    <!-- Subtitle text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__subheading">აირჩიე, როგორ გსურს შენი მიმოწერის ისტორიისა და ანგარიშის მონაცემების აღდგენა.</string>
+    <!-- Title for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">Signal-ის სათადარიგო ასლებიდან</string>
+    <!-- Subtitle for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">შენი უფასო ან ფასიანი Signal-ის სათადარიგო ასლების გამოწერა</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">მოწყობილობის სათადარიგო ასლების აღდგენა</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">აღადგინე შენი შეტყობინებები შენს მოწყობილობაში შენახული სათადარიგო ასლიდან.</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">გადატანის გარეშე გაგრძელება</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">წერილები &amp; მედია ფაილები არ გადავა</string>
+    <!-- Title for the backup folder option card (V2 format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">სათადარიგო ასლების საქაღალდიდან</string>
+    <!-- Title for the backup file option card (V1 legacy format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">სათადარიგო ასლების ფაილიდან</string>
+    <!-- Subtitle for the backup folder/file option cards -->
+    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">აირჩიე შენი შენახული სათადარიგო ასლი</string>
+    <!-- Title for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">შენი ძველი მობილურიდან</string>
+    <!-- Subtitle for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">გადმოიტანე პირდაპირ შენი ძველი მობილურიდან</string>
+    <!-- Skip button text -->
+    <string name="ArchiveRestoreSelectionScreen__skip">გამოტოვება</string>
+    <!-- Title for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">გსურს აღდგენის გამოტოვება?</string>
+    <!-- Warning body text for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">თუ ახლა აღდგენას გამოტოვებ, მომავალში ვეღარ შეძლებ. თუ აღდგენის გამოტოვების შემდეგ სათადარიგო ასლებს ისევ ჩართავ, შენი ამჟამინდელი სათადარიგო ასლები შენი ახალი მიმოწერის ისტორიით ჩანაცვლდება.</string>
+    <!-- Confirm button text for the skip restore dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">აღდგენის გამოტოვება</string>
 </resources>

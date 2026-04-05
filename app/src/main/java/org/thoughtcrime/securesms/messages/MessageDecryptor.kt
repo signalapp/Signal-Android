@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.asChain
 import org.whispersystems.signalservice.api.InvalidMessageStructureException
 import org.whispersystems.signalservice.api.crypto.ContentHint
@@ -141,7 +142,7 @@ object MessageDecryptor {
 
     val followUpOperations: MutableList<FollowUpOperation> = mutableListOf()
 
-    if (envelope.type == Envelope.Type.PREKEY_BUNDLE) {
+    if (envelope.type == Envelope.Type.PREKEY_MESSAGE) {
       Log.i(TAG, "${logPrefix(envelope)} Prekey message. Scheduling a prekey sync job.")
       followUpOperations += FollowUpOperation {
         PreKeysSyncJob.create().asChain()
@@ -154,14 +155,16 @@ object MessageDecryptor {
 
     return try {
       val startTimeNanos = System.nanoTime()
+      SignalTrace.beginSection("MessageDecryptor#cipherDecrypt")
       val cipherResult: SignalServiceCipherResult? = cipher.decrypt(envelope, serverDeliveredTimestamp)
+      SignalTrace.endSection()
       val endTimeNanos = System.nanoTime()
 
       val envelope = if (cipherResult?.metadata?.sourceServiceId != null) {
         envelope.newBuilder()
           .sourceServiceId(if (BuildConfig.USE_STRING_ID) cipherResult.metadata.sourceServiceId.toString() else null)
           .sourceServiceIdBinary(if (RemoteConfig.useBinaryId) cipherResult.metadata.sourceServiceId.toByteString() else null)
-          .sourceDevice(cipherResult.metadata.sourceDeviceId)
+          .sourceDeviceId(cipherResult.metadata.sourceDeviceId)
           .build()
       } else {
         envelope
@@ -252,7 +255,7 @@ object MessageDecryptor {
 
             followUpOperations += FollowUpOperation {
               Recipient.external(e.sender)?.let {
-                AutomaticSessionResetJob(it.id, e.senderDevice, envelope.timestamp!!).asChain()
+                AutomaticSessionResetJob(it.id, e.senderDevice, envelope.clientTimestamp!!).asChain()
               } ?: null.logW(TAG, "${logPrefix(envelope, e)} Failed to create a recipient with the provided identifier!")
             }
 
@@ -273,7 +276,7 @@ object MessageDecryptor {
         }
 
         is SelfSendException -> {
-          Log.i(TAG, "[${envelope.timestamp}] Dropping sealed sender message from self!", e)
+          Log.i(TAG, "[${envelope.clientTimestamp}] Dropping sealed sender message from self!", e)
           Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
         }
 
@@ -317,7 +320,7 @@ object MessageDecryptor {
       Log.w(TAG, "${logPrefix(envelope)} Decryption error for a sync message! Enqueuing a session reset job.", true)
 
       followUpOperations += FollowUpOperation {
-        AutomaticSessionResetJob(sender.id, senderDevice, envelope.timestamp!!).asChain()
+        AutomaticSessionResetJob(sender.id, senderDevice, envelope.clientTimestamp!!).asChain()
       }
 
       return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations)
@@ -352,7 +355,7 @@ object MessageDecryptor {
 
       // Note: if the message is sealed sender, it's envelope type will be UNIDENTIFIED_SENDER. The only way we can currently check if the error is
       // prekey-related in that situation is using a string match.
-      if (envelope.type == Envelope.Type.PREKEY_BUNDLE || protocolException.message?.lowercase()?.contains("prekey") == true) {
+      if (envelope.type == Envelope.Type.PREKEY_MESSAGE || protocolException.message?.lowercase()?.contains("prekey") == true) {
         Log.w(TAG, "${logPrefix(envelope, senderServiceId)} Got a decryption error on a prekey message. Forcing a prekey rotation before requesting the retry.", true)
         PreKeysSyncJob.create(forceRotationRequested = true).asChain().then(retryJob)
       } else {
@@ -389,7 +392,7 @@ object MessageDecryptor {
             return@FollowUpOperation null
           }
 
-          AppDependencies.pendingRetryReceiptCache.insert(sender.id, senderDevice, envelope.timestamp!!, receivedTimestamp, threadId)
+          AppDependencies.pendingRetryReceiptCache.insert(sender.id, senderDevice, envelope.clientTimestamp!!, receivedTimestamp, threadId)
           AppDependencies.pendingRetryReceiptManager.scheduleIfNecessary()
           null
         }
@@ -488,26 +491,26 @@ object MessageDecryptor {
   }
 
   private fun logPrefix(envelope: Envelope): String {
-    return logPrefix(envelope.timestamp!!, ServiceId.parseOrNull(envelope.sourceServiceId, envelope.sourceServiceIdBinary)?.logString() ?: "<sealed>", envelope.sourceDevice)
+    return logPrefix(envelope.clientTimestamp!!, ServiceId.parseOrNull(envelope.sourceServiceId, envelope.sourceServiceIdBinary)?.logString() ?: "<sealed>", envelope.sourceDeviceId)
   }
 
   private fun logPrefix(envelope: Envelope, sender: ServiceId?): String {
-    return logPrefix(envelope.timestamp!!, sender?.logString() ?: "?", envelope.sourceDevice)
+    return logPrefix(envelope.clientTimestamp!!, sender?.logString() ?: "?", envelope.sourceDeviceId)
   }
 
   private fun logPrefix(envelope: Envelope, sender: String): String {
-    return logPrefix(envelope.timestamp!!, ServiceId.parseOrNull(sender)?.logString() ?: "?", envelope.sourceDevice)
+    return logPrefix(envelope.clientTimestamp!!, ServiceId.parseOrNull(sender)?.logString() ?: "?", envelope.sourceDeviceId)
   }
 
   private fun logPrefix(envelope: Envelope, cipherResult: SignalServiceCipherResult): String {
-    return logPrefix(envelope.timestamp!!, cipherResult.metadata.sourceServiceId.logString(), cipherResult.metadata.sourceDeviceId)
+    return logPrefix(envelope.clientTimestamp!!, cipherResult.metadata.sourceServiceId.logString(), cipherResult.metadata.sourceDeviceId)
   }
 
   private fun logPrefix(envelope: Envelope, exception: ProtocolException): String {
     return if (exception.sender != null) {
-      logPrefix(envelope.timestamp!!, ServiceId.parseOrNull(exception.sender)?.logString() ?: "?", exception.senderDevice)
+      logPrefix(envelope.clientTimestamp!!, ServiceId.parseOrNull(exception.sender)?.logString() ?: "?", exception.senderDevice)
     } else {
-      logPrefix(envelope.timestamp!!, ServiceId.parseOrNull(envelope.sourceServiceId, envelope.sourceServiceIdBinary).toString(), envelope.sourceDevice)
+      logPrefix(envelope.clientTimestamp!!, ServiceId.parseOrNull(envelope.sourceServiceId, envelope.sourceServiceIdBinary).toString(), envelope.sourceDeviceId)
     }
   }
 
@@ -528,7 +531,7 @@ object MessageDecryptor {
       envelopeType = envelope.type!!.value.toCiphertextMessageType()
     }
 
-    val decryptionErrorMessage: DecryptionErrorMessage = DecryptionErrorMessage.forOriginalMessage(originalContent, envelopeType, envelope.timestamp!!, protocolException.senderDevice)
+    val decryptionErrorMessage: DecryptionErrorMessage = DecryptionErrorMessage.forOriginalMessage(originalContent, envelopeType, envelope.clientTimestamp!!, protocolException.senderDevice)
     val groupId: GroupId? = protocolException.parseGroupId(envelope)
     return SendRetryReceiptJob(sender.id, Optional.ofNullable(groupId), decryptionErrorMessage)
   }
@@ -538,7 +541,7 @@ object MessageDecryptor {
       try {
         GroupId.push(this.groupId.get())
       } catch (e: BadGroupIdException) {
-        Log.w(TAG, "[${envelope.timestamp}] Bad groupId!", true)
+        Log.w(TAG, "[${envelope.clientTimestamp}] Bad groupId!", true)
         null
       }
     } else {
@@ -548,8 +551,8 @@ object MessageDecryptor {
 
   private fun Int.toCiphertextMessageType(): Int {
     return when (this) {
-      Envelope.Type.CIPHERTEXT.value -> CiphertextMessage.WHISPER_TYPE
-      Envelope.Type.PREKEY_BUNDLE.value -> CiphertextMessage.PREKEY_TYPE
+      Envelope.Type.DOUBLE_RATCHET.value -> CiphertextMessage.WHISPER_TYPE
+      Envelope.Type.PREKEY_MESSAGE.value -> CiphertextMessage.PREKEY_TYPE
       Envelope.Type.UNIDENTIFIED_SENDER.value -> CiphertextMessage.SENDERKEY_TYPE
       Envelope.Type.PLAINTEXT_CONTENT.value -> CiphertextMessage.PLAINTEXT_CONTENT_TYPE
       else -> CiphertextMessage.WHISPER_TYPE

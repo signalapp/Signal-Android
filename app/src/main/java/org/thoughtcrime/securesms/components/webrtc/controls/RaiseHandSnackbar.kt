@@ -217,11 +217,11 @@ private fun getSnackbarText(state: RaiseHandState): String {
 
   val shouldDisplayLowerYourHand = remember(state) {
     val now = System.currentTimeMillis().milliseconds
-    val hasUnexpiredSelf = state.raisedHands.any { it.sender.isSelf && it.sender.isPrimary && it.getCollapseTimestamp() >= now }
+    val hasSelfRaisedHand = state.raisedHands.any { it.sender.isSelf && it.sender.isPrimary }
     val expiration = state.speechEvent?.getCollapseTimestamp() ?: Duration.ZERO
     val isUnexpired = expiration >= now
 
-    state.speechEvent?.speechEvent == GroupCall.SpeechEvent.LOWER_HAND_SUGGESTION && isUnexpired && hasUnexpiredSelf
+    state.speechEvent?.speechEvent == GroupCall.SpeechEvent.LOWER_HAND_SUGGESTION && isUnexpired && hasSelfRaisedHand
   }
 
   if (shouldDisplayLowerYourHand && state.isExpanded) {

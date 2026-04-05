@@ -19,7 +19,7 @@
 
         <receiver
             android:name=".apkupdate.ApkUpdatePackageInstallerReceiver"
-            android:exported="true" />
+            android:exported="false" />
 
         <receiver
             android:name=".apkupdate.ApkUpdateNotificationReceiver"

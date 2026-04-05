@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
-import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import kotlin.time.Duration.Companion.days
@@ -52,7 +51,7 @@ class RetryPendingSendsJob private constructor(parameters: Parameters) : Job(par
       reader.forEach { message ->
         val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(message.threadId)
         if (threadRecipient != null) {
-          val hasMedia = (message as? MmsMessageRecord)?.slideDeck?.slides?.isNotEmpty() == true
+          val hasMedia = SignalDatabase.attachments.getAttachmentsForMessage(message.id).isNotEmpty()
           Log.d(TAG, "[${message.dateSent}] Found pending message MessageId::${message.id}, enqueueing second check job")
           AppDependencies.jobManager.add(RetryPendingSendSecondCheckJob(MessageId(message.id), threadRecipient, hasMedia))
         }

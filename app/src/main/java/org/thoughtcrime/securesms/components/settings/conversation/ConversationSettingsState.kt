@@ -20,6 +20,7 @@ data class ConversationSettingsState(
   val buttonStripState: ButtonStripPreference.State = ButtonStripPreference.State(),
   val disappearingMessagesLifespan: Int = 0,
   val canModifyBlockedState: Boolean = false,
+  val isArchived: Boolean = false,
   val sharedMedia: List<MediaTable.MediaRecord> = emptyList(),
   val sharedMediaIds: List<Long> = listOf(),
   val displayInternalRecipientDetails: Boolean = false,
@@ -29,6 +30,7 @@ data class ConversationSettingsState(
 ) {
 
   val isLoaded: Boolean = recipient != Recipient.UNKNOWN && sharedMediaLoaded && specificSettingsState.isLoaded
+  val isTerminatedGroup: Boolean = (specificSettingsState as? SpecificSettingsState.GroupSettingsState)?.isTerminated == true
 
   fun withRecipientSettingsState(consumer: (SpecificSettingsState.RecipientSettingsState) -> Unit) {
     if (specificSettingsState is SpecificSettingsState.RecipientSettingsState) {
@@ -72,6 +74,8 @@ sealed class SpecificSettingsState {
     val isSelfAdmin: Boolean = false,
     val canAddToGroup: Boolean = false,
     val canEditGroupAttributes: Boolean = false,
+    val isActive: Boolean = false,
+    val isTerminated: Boolean = false,
     val canLeave: Boolean = false,
     val canShowMoreGroupMembers: Boolean = false,
     val groupMembersExpanded: Boolean = false,
@@ -87,6 +91,8 @@ sealed class SpecificSettingsState {
     val memberLabelsByRecipientId: Map<RecipientId, MemberLabel> = emptyMap(),
     val canSetOwnMemberLabel: Boolean = false
   ) : SpecificSettingsState() {
+
+    val canEndGroup: Boolean get() = isActive && groupId.isV2 && isSelfAdmin
 
     override val isLoaded: Boolean = groupTitleLoaded && groupDescriptionLoaded
 

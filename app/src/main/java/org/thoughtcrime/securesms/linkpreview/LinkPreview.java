@@ -21,6 +21,8 @@ import java.util.Optional;
 
 public class LinkPreview implements Parcelable {
 
+  private static final int MAX_FIELD_LENGTH = 500;
+
   @JsonProperty
   private final String       url;
 
@@ -41,8 +43,8 @@ public class LinkPreview implements Parcelable {
 
   public LinkPreview(@NonNull String url, @NonNull String title, @NonNull String description, long date, @NonNull DatabaseAttachment thumbnail) {
     this.url          = url;
-    this.title        = title;
-    this.description  = description;
+    this.title        = truncate(title);
+    this.description  = truncate(description);
     this.date         = date;
     this.thumbnail    = Optional.of(thumbnail);
     this.attachmentId = thumbnail.attachmentId;
@@ -50,8 +52,8 @@ public class LinkPreview implements Parcelable {
 
   public LinkPreview(@NonNull String url, @NonNull String title, @NonNull String description, long date, @NonNull Optional<Attachment> thumbnail) {
     this.url          = url;
-    this.title        = title;
-    this.description  = description;
+    this.title        = truncate(title);
+    this.description  = truncate(description);
     this.date         = date;
     this.thumbnail    = thumbnail;
     this.attachmentId = null;
@@ -64,8 +66,8 @@ public class LinkPreview implements Parcelable {
                      @JsonProperty("attachmentId") @Nullable AttachmentId attachmentId)
   {
     this.url          = url;
-    this.title        = title;
-    this.description  = Optional.ofNullable(description).orElse("");
+    this.title        = truncate(title);
+    this.description  = truncate(Optional.ofNullable(description).orElse(""));
     this.date         = date;
     this.attachmentId = attachmentId;
     this.thumbnail    = Optional.empty();
@@ -73,8 +75,8 @@ public class LinkPreview implements Parcelable {
 
   protected LinkPreview(Parcel in) {
     url          = in.readString();
-    title        = in.readString();
-    description  = in.readString();
+    title        = truncate(in.readString());
+    description  = truncate(in.readString());
     date         = in.readLong();
     attachmentId = ParcelCompat.readParcelable(in, AttachmentId.class.getClassLoader(), AttachmentId.class);
     thumbnail    = Optional.ofNullable(ParcelCompat.readParcelable(in, Attachment.class.getClassLoader(), Attachment.class));
@@ -133,6 +135,10 @@ public class LinkPreview implements Parcelable {
 
   public @Nullable AttachmentId getAttachmentId() {
     return attachmentId;
+  }
+
+  private static @NonNull String truncate(@NonNull String value) {
+    return value.length() > MAX_FIELD_LENGTH ? value.substring(0, MAX_FIELD_LENGTH) : value;
   }
 
   public @NonNull String serialize() throws IOException {

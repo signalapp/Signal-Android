@@ -11,7 +11,8 @@ data class StoryViewerPageArgs(
   val isOutgoingOnly: Boolean,
   val isJumpForwardToUnviewed: Boolean,
   val source: Source,
-  val groupReplyStartPosition: Int
+  val groupReplyStartPosition: Int,
+  val isFromArchive: Boolean = false
 ) : Parcelable {
   enum class Source {
     UNKNOWN,

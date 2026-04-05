@@ -80,10 +80,10 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         $FTS_TABLE_NAME.$BODY, 
         $FTS_TABLE_NAME.$ID AS $MESSAGE_ID, 
         1 AS $IS_MMS 
-      FROM 
-        ${MessageTable.TABLE_NAME} 
-          INNER JOIN $FTS_TABLE_NAME ON $FTS_TABLE_NAME.$ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID} 
-          INNER JOIN ${ThreadTable.TABLE_NAME} ON $FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} 
+      FROM
+        $FTS_TABLE_NAME
+          CROSS JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $FTS_TABLE_NAME.$ID
+          INNER JOIN ${ThreadTable.TABLE_NAME} ON $FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID}
       WHERE 
         $FTS_TABLE_NAME MATCH ? AND 
         ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.GROUP_V2_BIT} = 0 AND 
@@ -105,10 +105,10 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         $FTS_TABLE_NAME.$BODY, 
         $FTS_TABLE_NAME.$ID AS $MESSAGE_ID,
         1 AS $IS_MMS 
-      FROM 
-        ${MessageTable.TABLE_NAME} 
-          INNER JOIN $FTS_TABLE_NAME ON $FTS_TABLE_NAME.$ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID} 
-          INNER JOIN ${ThreadTable.TABLE_NAME} ON $FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} 
+      FROM
+        $FTS_TABLE_NAME
+          CROSS JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $FTS_TABLE_NAME.$ID
+          INNER JOIN ${ThreadTable.TABLE_NAME} ON $FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID}
       WHERE 
         $FTS_TABLE_NAME MATCH ? AND 
         ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} = ? AND
@@ -128,6 +128,43 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     } else {
       readableDatabase.rawQuery(MESSAGES_QUERY, SqlUtil.buildArgs(fullTextSearchQuery))
     }
+  }
+
+  fun queryMessages(query: String, filter: org.thoughtcrime.securesms.search.SearchFilter): Cursor? {
+    if (filter.isEmpty) {
+      return queryMessages(query)
+    }
+
+    val fullTextSearchQuery = createFullTextSearchQuery(query)
+    if (fullTextSearchQuery.isEmpty()) {
+      return null
+    }
+
+    val extraConditions = StringBuilder()
+    val args = mutableListOf<String>(fullTextSearchQuery)
+
+    if (filter.startDate != null) {
+      extraConditions.append(" AND ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} >= ?")
+      args.add(filter.startDate.toString())
+    }
+
+    if (filter.endDate != null) {
+      extraConditions.append(" AND ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} <= ?")
+      args.add(filter.endDate.toString())
+    }
+
+    if (filter.author != null) {
+      extraConditions.append(" AND ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} = ?")
+      args.add(filter.author.serialize())
+    }
+
+    @Language("sql")
+    val filteredQuery = MESSAGES_QUERY.replace(
+      "ORDER BY ${MessageTable.DATE_RECEIVED} DESC",
+      "$extraConditions ORDER BY ${MessageTable.DATE_RECEIVED} DESC"
+    )
+
+    return readableDatabase.rawQuery(filteredQuery, args.toTypedArray())
   }
 
   fun queryMessages(query: String, threadId: Long): Cursor? {

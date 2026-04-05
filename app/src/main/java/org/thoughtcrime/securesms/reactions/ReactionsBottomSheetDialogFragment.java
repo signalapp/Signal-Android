@@ -33,8 +33,9 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
-  private static final String ARGS_MESSAGE_ID = "reactions.args.message.id";
-  private static final String ARGS_IS_MMS     = "reactions.args.is.mms";
+  private static final String ARGS_MESSAGE_ID          = "reactions.args.message.id";
+  private static final String ARGS_IS_MMS              = "reactions.args.is.mms";
+  private static final String ARGS_IS_GROUP_TERMINATED = "reactions.args.is.group.terminated";
 
   private ViewPager2               recipientPagerView;
   private ReactionViewPagerAdapter recipientsAdapter;
@@ -44,11 +45,16 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
   private final LifecycleDisposable disposables = new LifecycleDisposable();
 
   public static DialogFragment create(long messageId, boolean isMms) {
+    return create(messageId, isMms, false);
+  }
+
+  public static DialogFragment create(long messageId, boolean isMms, boolean isGroupTerminated) {
     Bundle         args     = new Bundle();
     DialogFragment fragment = new ReactionsBottomSheetDialogFragment();
 
     args.putLong(ARGS_MESSAGE_ID, messageId);
     args.putBoolean(ARGS_IS_MMS, isMms);
+    args.putBoolean(ARGS_IS_GROUP_TERMINATED, isGroupTerminated);
 
     fragment.setArguments(args);
 
@@ -144,7 +150,8 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
   }
 
   private void setUpRecipientsRecyclerView() {
-    recipientsAdapter = new ReactionViewPagerAdapter(() -> viewModel.removeReactionEmoji());
+    boolean isGroupTerminated = requireArguments().getBoolean(ARGS_IS_GROUP_TERMINATED, false);
+    recipientsAdapter = new ReactionViewPagerAdapter(() -> viewModel.removeReactionEmoji(), isGroupTerminated);
 
     recipientPagerView.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
       @Override

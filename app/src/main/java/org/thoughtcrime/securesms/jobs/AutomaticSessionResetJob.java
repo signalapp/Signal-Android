@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -52,6 +53,7 @@ public class AutomaticSessionResetJob extends BaseJob {
     this(new Parameters.Builder()
                        .setQueue(PushProcessMessageJob.getQueueName(recipientId))
                        .addConstraint(DecryptionsDrainedConstraint.KEY)
+                       .addConstraint(SealedSenderConstraint.KEY)
                        .setMaxInstancesForQueue(1)
                        .build(),
          recipientId,

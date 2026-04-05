@@ -32,8 +32,6 @@ public class CameraButtonView extends View {
   private static final int          PROGRESS_ARC_STROKE_WIDTH      = 4;
   private static final int          HALF_PROGRESS_ARC_STROKE_WIDTH = PROGRESS_ARC_STROKE_WIDTH / 2;
   private static final float        DEADZONE_REDUCTION_PERCENT     = 0.35f;
-  private static final int          DRAG_DISTANCE_MULTIPLIER       = 3;
-  private static final Interpolator ZOOM_INTERPOLATOR              = new DecelerateInterpolator();
 
   private final @NonNull Paint outlinePaint     = outlinePaint();
   private final @NonNull Paint backgroundPaint  = backgroundPaint();
@@ -49,21 +47,12 @@ public class CameraButtonView extends View {
   private float   progressPercent = 0f;
 
   private @NonNull  CameraButtonMode     cameraButtonMode = CameraButtonMode.IMAGE;
-  private @Nullable VideoCaptureListener videoCaptureListener;
 
   private final float imageCaptureSize;
   private final float recordSize;
   private final RectF progressRect = new RectF();
   private final Rect  deadzoneRect = new Rect();
 
-  private final @NonNull OnLongClickListener internalLongClickListener = v -> {
-    notifyVideoCaptureStarted();
-    shrinkAnimation.cancel();
-    setScaleX(1f);
-    setScaleY(1f);
-    isRecordingVideo = true;
-    return true;
-  };
 
   public CameraButtonView(@NonNull Context context) {
     this(context, null);
@@ -186,20 +175,6 @@ public class CameraButtonView extends View {
     canvas.drawArc(progressRect, 270f, 360f * progressPercent, false, progressPaint);
   }
 
-  public void setVideoCaptureListener(@Nullable VideoCaptureListener videoCaptureListener) {
-    if (isRecordingVideo) throw new IllegalStateException("Cannot set video capture listener while recording");
-
-    if (videoCaptureListener != null) {
-      this.cameraButtonMode = CameraButtonMode.MIXED;
-      this.videoCaptureListener = videoCaptureListener;
-      super.setOnLongClickListener(internalLongClickListener);
-    } else {
-      this.cameraButtonMode = CameraButtonMode.IMAGE;
-      this.videoCaptureListener = null;
-      super.setOnLongClickListener(null);
-    }
-  }
-
   public void setProgress(float percentage) {
     progressPercent = Util.clamp(percentage, 0f, 1f);
     invalidate();
@@ -257,63 +232,15 @@ public class CameraButtonView extends View {
           startAnimation(shrinkAnimation);
         }
       case MotionEvent.ACTION_MOVE:
-        if (isRecordingVideo) {
-          float maxRange = getHeight() * DRAG_DISTANCE_MULTIPLIER;
-
-          if (eventIsAboveDeadzone(event)) {
-            float deltaY    = Math.abs(event.getY() - deadzoneRect.top);
-            float increment = Math.min(1f, deltaY / maxRange);
-            notifyZoomPercent(ZOOM_INTERPOLATOR.getInterpolation(increment));
-            invalidate();
-          } else if (eventIsBelowDeadzone(event)) {
-            float deltaY    = Math.abs(event.getY() - deadzoneRect.bottom);
-            float increment = Math.min(1f, deltaY / maxRange);
-            notifyZoomPercent(-ZOOM_INTERPOLATOR.getInterpolation(increment));
-            invalidate();
-          }
-        }
         break;
       case MotionEvent.ACTION_CANCEL:
       case MotionEvent.ACTION_UP:
         if (!isRecordingVideo) {
           startAnimation(growAnimation);
         }
-        notifyVideoCaptureEnded();
         break;
     }
 
     return super.onTouchEvent(event);
-  }
-
-  private boolean eventIsAboveDeadzone(MotionEvent event) {
-    return Math.round(event.getY()) < deadzoneRect.top;
-  }
-
-  private boolean eventIsBelowDeadzone(MotionEvent event) {
-    return Math.round(event.getY()) > deadzoneRect.bottom;
-  }
-
-  private void notifyVideoCaptureStarted() {
-    if (!isRecordingVideo && videoCaptureListener != null) {
-      videoCaptureListener.onVideoCaptureStarted();
-    }
-  }
-
-  private void notifyVideoCaptureEnded() {
-    if (isRecordingVideo && videoCaptureListener != null) {
-      videoCaptureListener.onVideoCaptureComplete();
-    }
-  }
-
-  private void notifyZoomPercent(float percent) {
-    if (isRecordingVideo && videoCaptureListener != null) {
-      videoCaptureListener.onZoomIncremented(percent);
-    }
-  }
-
-  interface VideoCaptureListener {
-    void onVideoCaptureStarted();
-    void onVideoCaptureComplete();
-    void onZoomIncremented(float percent);
   }
 }

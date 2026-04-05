@@ -7,6 +7,7 @@ import org.signal.core.util.Base64
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
+import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.fonts.TextToScript
@@ -15,7 +16,7 @@ import org.thoughtcrime.securesms.fonts.TypefaceCache
 class StoryTextPostRepository {
   fun getRecord(recordId: Long): Single<MmsMessageRecord> {
     return Single.fromCallable {
-      SignalDatabase.messages.getMessageRecord(recordId) as MmsMessageRecord
+      SignalDatabase.messages.getMessageRecord(recordId).withAttachments() as MmsMessageRecord
     }.subscribeOn(Schedulers.io())
   }
 

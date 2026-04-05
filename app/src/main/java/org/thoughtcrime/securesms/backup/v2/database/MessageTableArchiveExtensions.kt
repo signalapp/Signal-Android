@@ -164,7 +164,13 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
           MessageTable.DELETED_BY
         )
         .from("${MessageTable.TABLE_NAME} INDEXED BY $dateReceivedIndex")
-        .where("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND ($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds}) AND $DATE_RECEIVED >= $lastSeenReceivedTime $cutoffQuery")
+        .where(
+          buildString {
+            append("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND ")
+            append("($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds})")
+            append(" AND $DATE_RECEIVED >= $lastSeenReceivedTime $cutoffQuery")
+          }
+        )
         .limit(count)
         .orderBy("$DATE_RECEIVED ASC")
         .run()

@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.CallTable;
+import org.thoughtcrime.securesms.database.CollapsedState;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MessageTable.Status;
 import org.thoughtcrime.securesms.database.MessageTypes;
@@ -121,12 +122,15 @@ public class MmsMessageRecord extends MessageRecord {
                           boolean isRead,
                           long pinnedUntil,
                           @Nullable RecipientId deletedBy,
-                          @Nullable MessageExtras messageExtras)
+                          @NonNull CollapsedState collapsedState,
+                          long collapsedHeadId,
+                          @Nullable MessageExtras messageExtras,
+                          boolean starred)
   {
     super(id, body, fromRecipient, fromDeviceId, toRecipient,
           dateSent, dateReceived, dateServer, threadId, Status.STATUS_NONE, hasDeliveryReceipt,
           mailbox, mismatches, failures, subscriptionId, expiresIn, expireStarted, expireTimerVersion, hasReadReceipt,
-          unidentified, reactions, notifiedTimestamp, viewed, receiptTimestamp, originalMessageId, revisionNumber, pinnedUntil, deletedBy, messageExtras);
+          unidentified, reactions, notifiedTimestamp, viewed, receiptTimestamp, originalMessageId, revisionNumber, pinnedUntil, deletedBy, collapsedState, collapsedHeadId, messageExtras, starred);
 
     this.slideDeck        = slideDeck;
     this.quote            = quote;
@@ -334,12 +338,21 @@ public class MmsMessageRecord extends MessageRecord {
            (parentStoryId == null || parentStoryId.isDirectReply());
   }
 
+  public @NonNull MmsMessageRecord withIncomingType() {
+    long incomingType = (getType() & ~MessageTypes.BASE_TYPE_MASK) | MessageTypes.BASE_INBOX_TYPE;
+    return new MmsMessageRecord(getId(), getFromRecipient(), getFromDeviceId(), getToRecipient(), getDateSent(), getDateReceived(), getServerTimestamp(), hasDeliveryReceipt(), getThreadId(), getBody(), getSlideDeck(),
+                                incomingType, getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), getExpireTimerVersion(), isViewOnce(),
+                                hasReadReceipt(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), mentionsSelf,
+                                getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getPoll(), getScheduledDate(), getLatestRevisionId(),
+                                getOriginalMessageId(), getRevisionNumber(), isRead(), getPinnedUntil(), getDeletedBy(), getCollapsedState(), getCollapsedHeadId(), getMessageExtras(), isStarred());
+  }
+
   public @NonNull MmsMessageRecord withReactions(@NonNull List<ReactionRecord> reactions) {
     return new MmsMessageRecord(getId(), getFromRecipient(), getFromDeviceId(), getToRecipient(), getDateSent(), getDateReceived(), getServerTimestamp(), hasDeliveryReceipt(), getThreadId(), getBody(), getSlideDeck(),
                                 getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), getExpireTimerVersion(), isViewOnce(),
                                 hasReadReceipt(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), reactions, mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getPoll(), getScheduledDate(), getLatestRevisionId(),
-                                getOriginalMessageId(), getRevisionNumber(), isRead(), getPinnedUntil(), getDeletedBy(), getMessageExtras());
+                                getOriginalMessageId(), getRevisionNumber(), isRead(), getPinnedUntil(), getDeletedBy(), getCollapsedState(), getCollapsedHeadId(), getMessageExtras(), isStarred());
   }
 
   public @NonNull MmsMessageRecord withoutQuote() {
@@ -347,7 +360,7 @@ public class MmsMessageRecord extends MessageRecord {
                                 getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), getExpireTimerVersion(), isViewOnce(),
                                 hasReadReceipt(), null, getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getPoll(), getScheduledDate(), getLatestRevisionId(),
-                                getOriginalMessageId(), getRevisionNumber(), isRead(), getPinnedUntil(), getDeletedBy(), getMessageExtras());
+                                getOriginalMessageId(), getRevisionNumber(), isRead(), getPinnedUntil(), getDeletedBy(), getCollapsedState(), getCollapsedHeadId(), getMessageExtras(), isStarred());
   }
 
   public @NonNull MmsMessageRecord withAttachments(@NonNull List<DatabaseAttachment> attachments) {
@@ -369,7 +382,7 @@ public class MmsMessageRecord extends MessageRecord {
                                 getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), getExpireTimerVersion(), isViewOnce(),
                                 hasReadReceipt(), quote, contacts, linkPreviews, isUnidentified(), getReactions(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getPoll(), getScheduledDate(), getLatestRevisionId(),
-                                getOriginalMessageId(), getRevisionNumber(), isRead(), getPinnedUntil(), getDeletedBy(), getMessageExtras());
+                                getOriginalMessageId(), getRevisionNumber(), isRead(), getPinnedUntil(), getDeletedBy(), getCollapsedState(), getCollapsedHeadId(), getMessageExtras(), isStarred());
   }
 
   public @NonNull MmsMessageRecord withPayment(@NonNull Payment payment) {
@@ -377,7 +390,7 @@ public class MmsMessageRecord extends MessageRecord {
                                 getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), getExpireTimerVersion(), isViewOnce(),
                                 hasReadReceipt(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), payment, getCall(), getPoll(), getScheduledDate(), getLatestRevisionId(),
-                                getOriginalMessageId(), getRevisionNumber(), isRead(), getPinnedUntil(), getDeletedBy(), getMessageExtras());
+                                getOriginalMessageId(), getRevisionNumber(), isRead(), getPinnedUntil(), getDeletedBy(), getCollapsedState(), getCollapsedHeadId(), getMessageExtras(), isStarred());
   }
 
 
@@ -386,7 +399,7 @@ public class MmsMessageRecord extends MessageRecord {
                                 getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), getExpireTimerVersion(), isViewOnce(),
                                 hasReadReceipt(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), call, getPoll(), getScheduledDate(), getLatestRevisionId(),
-                                getOriginalMessageId(), getRevisionNumber(), isRead(), getPinnedUntil(), getDeletedBy(), getMessageExtras());
+                                getOriginalMessageId(), getRevisionNumber(), isRead(), getPinnedUntil(), getDeletedBy(), getCollapsedState(), getCollapsedHeadId(), getMessageExtras(), isStarred());
   }
 
   public @NonNull MmsMessageRecord withPoll(@Nullable PollRecord poll) {
@@ -394,7 +407,7 @@ public class MmsMessageRecord extends MessageRecord {
                                 getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), getExpireTimerVersion(), isViewOnce(),
                                 hasReadReceipt(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), mentionsSelf,
                                 getNotifiedTimestamp(), isViewed(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), poll, getScheduledDate(), getLatestRevisionId(),
-                                getOriginalMessageId(), getRevisionNumber(), isRead(), getPinnedUntil(), getDeletedBy(), getMessageExtras());
+                                getOriginalMessageId(), getRevisionNumber(), isRead(), getPinnedUntil(), getDeletedBy(), getCollapsedState(), getCollapsedHeadId(), getMessageExtras(), isStarred());
   }
 
   private static @NonNull List<Contact> updateContacts(@NonNull List<Contact> contacts, @NonNull Map<AttachmentId, DatabaseAttachment> attachmentIdMap) {

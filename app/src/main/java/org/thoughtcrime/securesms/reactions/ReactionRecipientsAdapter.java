@@ -23,6 +23,12 @@ final class ReactionRecipientsAdapter extends RecyclerView.Adapter<ReactionRecip
   private ReactionViewPagerAdapter.EventListener listener = null;
   private List<ReactionDetails>                  data     = Collections.emptyList();
 
+  private final boolean isGroupTerminated;
+
+  ReactionRecipientsAdapter(boolean isGroupTerminated) {
+    this.isGroupTerminated = isGroupTerminated;
+  }
+
   void setListener(ReactionViewPagerAdapter.EventListener listener) {
     this.listener = listener;
   }
@@ -42,7 +48,7 @@ final class ReactionRecipientsAdapter extends RecyclerView.Adapter<ReactionRecip
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-    holder.bind(data.get(position), listener);
+    holder.bind(data.get(position), listener, isGroupTerminated);
   }
 
   @Override
@@ -68,7 +74,7 @@ final class ReactionRecipientsAdapter extends RecyclerView.Adapter<ReactionRecip
       tapToRemoveText = itemView.findViewById(R.id.reactions_bottom_view_recipient_tap_to_remove_action_text);
     }
 
-    void bind(@NonNull ReactionDetails reaction, ReactionViewPagerAdapter.EventListener listener) {
+    void bind(@NonNull ReactionDetails reaction, ReactionViewPagerAdapter.EventListener listener, boolean isGroupTerminated) {
       this.emoji.setText(reaction.getDisplayEmoji());
 
       if (reaction.getSender().isSelf()) {
@@ -76,8 +82,13 @@ final class ReactionRecipientsAdapter extends RecyclerView.Adapter<ReactionRecip
         this.avatar.setAvatar(Glide.with(avatar), null, false);
         this.badge.setBadge(null);
         AvatarUtil.loadIconIntoImageView(reaction.getSender(), avatar);
-        itemView.setOnClickListener((view) -> listener.onClick());
-        tapToRemoveText.setVisibility(View.VISIBLE);
+        if (isGroupTerminated) {
+          itemView.setOnClickListener(null);
+          tapToRemoveText.setVisibility(View.GONE);
+        } else {
+          itemView.setOnClickListener((view) -> listener.onClick());
+          tapToRemoveText.setVisibility(View.VISIBLE);
+        }
       } else {
         this.recipient.setText(reaction.getSender().getDisplayName(itemView.getContext()));
         this.avatar.setAvatar(Glide.with(avatar), reaction.getSender(), false);

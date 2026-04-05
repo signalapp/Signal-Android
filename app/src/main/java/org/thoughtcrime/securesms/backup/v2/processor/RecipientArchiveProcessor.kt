@@ -5,6 +5,9 @@
 
 package org.thoughtcrime.securesms.backup.v2.processor
 
+import org.signal.archive.proto.Frame
+import org.signal.archive.proto.ReleaseNotes
+import org.signal.archive.stream.BackupFrameEmitter
 import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.update
@@ -22,9 +25,6 @@ import org.thoughtcrime.securesms.backup.v2.importer.CallLinkArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.importer.ContactArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.importer.DistributionListArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.importer.GroupArchiveImporter
-import org.thoughtcrime.securesms.backup.v2.proto.Frame
-import org.thoughtcrime.securesms.backup.v2.proto.ReleaseNotes
-import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
 import org.thoughtcrime.securesms.backup.v2.util.toLocal
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -110,16 +110,21 @@ object RecipientArchiveProcessor {
   }
 
   fun import(recipient: ArchiveRecipient, importState: ImportState) {
+    val recipientContact = recipient.contact
+    val recipientGroup = recipient.group
+    val recipientDistributionList = recipient.distributionList
+    val recipientCallLink = recipient.callLink
+    val recipientSelf = recipient.self
     val newId: RecipientId? = when {
-      recipient.contact != null -> ContactArchiveImporter.import(recipient.contact)
-      recipient.group != null -> GroupArchiveImporter.import(recipient.group)
-      recipient.distributionList != null -> DistributionListArchiveImporter.import(recipient.distributionList, importState)
+      recipientContact != null -> ContactArchiveImporter.import(recipientContact)
+      recipientGroup != null -> GroupArchiveImporter.import(recipientGroup)
+      recipientDistributionList != null -> DistributionListArchiveImporter.import(recipientDistributionList, importState)
       recipient.releaseNotes != null -> SignalDatabase.recipients.restoreReleaseNotes()
-      recipient.callLink != null -> CallLinkArchiveImporter.import(recipient.callLink)
-      recipient.self != null -> {
+      recipientCallLink != null -> CallLinkArchiveImporter.import(recipientCallLink)
+      recipientSelf != null -> {
         SignalDatabase.writableDatabase
           .update(RecipientTable.TABLE_NAME)
-          .values(RecipientTable.AVATAR_COLOR to recipient.self.avatarColor?.toLocal()?.serialize())
+          .values(RecipientTable.AVATAR_COLOR to recipientSelf.avatarColor?.toLocal()?.serialize())
           .where("${RecipientTable.ID} = ?", Recipient.self().id)
           .run()
         Recipient.self().id

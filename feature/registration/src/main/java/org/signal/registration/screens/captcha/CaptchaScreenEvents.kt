@@ -5,7 +5,14 @@
 
 package org.signal.registration.screens.captcha
 
-sealed class CaptchaScreenEvents {
-  data class CaptchaCompleted(val token: String) : CaptchaScreenEvents()
+import org.signal.core.util.censor
+import org.signal.registration.util.DebugLoggableModel
+
+sealed class CaptchaScreenEvents : DebugLoggableModel() {
+  data class CaptchaCompleted(val token: String) : CaptchaScreenEvents() {
+    override fun toSafeString(): String {
+      return "CaptchaCompleted(token=${token.censor()})"
+    }
+  }
   data object Cancel : CaptchaScreenEvents()
 }

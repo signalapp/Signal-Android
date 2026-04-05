@@ -30,7 +30,8 @@ class InputReadyState(
   }
 
   val isAnnouncementGroup: Boolean? = groupRecord?.isAnnouncementGroup
-  val isActiveGroup: Boolean? = if (selfMemberLevel == null) null else selfMemberLevel != GroupTable.MemberLevel.NOT_A_MEMBER
+  val isActiveGroup: Boolean? = groupRecord?.isActive
+  val isTerminatedGroup: Boolean = groupRecord?.isTerminated == true
   val isAdmin: Boolean? = selfMemberLevel?.equals(GroupTable.MemberLevel.ADMINISTRATOR)
   val isRequestingMember: Boolean? = selfMemberLevel?.equals(GroupTable.MemberLevel.REQUESTING_MEMBER)
 

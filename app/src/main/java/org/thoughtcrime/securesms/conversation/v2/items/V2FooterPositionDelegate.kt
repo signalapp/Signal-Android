@@ -36,7 +36,8 @@ class V2FooterPositionDelegate private constructor(
       binding.deliveryStatus,
       binding.footerExpiry,
       binding.footerSpace,
-      binding.footerPinned
+      binding.footerPinned,
+      binding.footerStarred
     ),
     binding.bodyWrapper,
     binding.body,

@@ -7,6 +7,9 @@ package org.thoughtcrime.securesms.backup.v2.processor
 
 import androidx.core.content.contentValuesOf
 import okio.ByteString.Companion.toByteString
+import org.signal.archive.proto.ChatFolder
+import org.signal.archive.proto.Frame
+import org.signal.archive.stream.BackupFrameEmitter
 import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.UuidUtil
@@ -15,16 +18,13 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportSkips
 import org.thoughtcrime.securesms.backup.v2.ImportState
-import org.thoughtcrime.securesms.backup.v2.proto.ChatFolder
-import org.thoughtcrime.securesms.backup.v2.proto.Frame
-import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.database.ChatFolderTables.ChatFolderMembershipTable
 import org.thoughtcrime.securesms.database.ChatFolderTables.ChatFolderTable
 import org.thoughtcrime.securesms.database.ChatFolderTables.MembershipType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.backup.v2.proto.ChatFolder as ChatFolderProto
+import org.signal.archive.proto.ChatFolder as ChatFolderProto
 
 /**
  * Handles exporting and importing [ChatFolderRecord]s.

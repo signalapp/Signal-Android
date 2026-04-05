@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.AvatarPreviewActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
+import org.thoughtcrime.securesms.components.emoji.Emojifier
 import org.thoughtcrime.securesms.conversation.v2.UnverifiedProfileNameBottomSheet
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel
@@ -373,20 +374,26 @@ private fun MemberLabelRow(
     text = {
       if (memberLabel != null) {
         if (!memberLabel.emoji.isNullOrEmpty()) {
-          Text(
-            text = memberLabel.emoji,
-            style = MaterialTheme.typography.bodyLarge
-          )
+          Emojifier(text = memberLabel.emoji) { annotatedText, inlineContent ->
+            Text(
+              text = annotatedText,
+              inlineContent = inlineContent,
+              style = MaterialTheme.typography.bodyLarge
+            )
+          }
           Spacer(modifier = Modifier.size(4.dp))
         }
 
-        Text(
-          text = memberLabel.displayText,
-          style = MaterialTheme.typography.bodyLarge,
-          maxLines = 1,
-          overflow = TextOverflow.Ellipsis,
-          modifier = Modifier.weight(1f, false)
-        )
+        Emojifier(text = memberLabel.displayText) { annotatedText, inlineContent ->
+          Text(
+            text = annotatedText,
+            inlineContent = inlineContent,
+            style = MaterialTheme.typography.bodyLarge,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.weight(1f, false)
+          )
+        }
       } else {
         Text(
           text = stringResource(id = R.string.AboutSheet__add_group_member_label),

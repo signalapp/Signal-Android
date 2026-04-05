@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:alpha="1"
         android:gravity="center"
-        android:maxLines="2"
+        android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_text_secondary"
         tools:text="Media" />
@@ -23,7 +23,7 @@
         android:alpha="0"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:maxLines="2"
+        android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_text_primary"
         tools:text="Media" />

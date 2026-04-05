@@ -115,7 +115,7 @@ class ProfileApi(
    * - 404: Recipient is not a registered Signal user
    * - 429: Rate-limited
    */
-  fun getVersionedProfileAndCredential(aci: ServiceId.ACI, profileKey: ProfileKey, sealedSenderAccess: SealedSenderAccess?): NetworkResult<Pair<SignalServiceProfile, ExpiringProfileKeyCredential>> {
+  fun getVersionedProfileAndCredential(aci: ServiceId.ACI, profileKey: ProfileKey, sealedSenderAccess: SealedSenderAccess?): NetworkResult<Pair<SignalServiceProfile, ExpiringProfileKeyCredential?>> {
     val profileVersion = profileKey.getProfileKeyVersion(aci.libSignalAci).serialize()
     val profileRequestContext = clientZkProfileOperations.createProfileKeyCredentialRequestContext(SecureRandom(), aci.libSignalAci, profileKey)
     val serializedProfileRequest = Hex.toStringCondensed(profileRequestContext.request.serialize())
@@ -186,23 +186,28 @@ class ProfileApi(
   private class ProfileAndCredentialResponseConverter(
     private val clientZkProfileOperations: ClientZkProfileOperations,
     private val requestContext: ProfileKeyCredentialRequestContext
-  ) : NetworkResult.WebSocketResponseConverter<Pair<SignalServiceProfile, ExpiringProfileKeyCredential>> {
+  ) : NetworkResult.WebSocketResponseConverter<Pair<SignalServiceProfile, ExpiringProfileKeyCredential?>> {
 
-    override fun convert(response: WebsocketResponse): NetworkResult<Pair<SignalServiceProfile, ExpiringProfileKeyCredential>> {
+    override fun convert(response: WebsocketResponse): NetworkResult<Pair<SignalServiceProfile, ExpiringProfileKeyCredential?>> {
       if (response.status != 200) {
         return response.toStatusCodeError()
       }
 
-      return try {
-        response
-          .toSuccess(SignalServiceProfile::class)
-          .map {
-            val credential = clientZkProfileOperations.receiveExpiringProfileKeyCredential(requestContext, it.expiringProfileKeyCredentialResponse)
-            it to credential
+      return response
+        .toSuccess(SignalServiceProfile::class)
+        .map {
+          if (it.expiringProfileKeyCredentialResponse != null) {
+            try {
+              val credential = clientZkProfileOperations.receiveExpiringProfileKeyCredential(requestContext, it.expiringProfileKeyCredentialResponse)
+              it to credential
+            } catch (_: VerificationFailedException) {
+              Log.w(TAG, "Failed to verify profile key credential! Ignoring it.")
+              it to null
+            }
+          } else {
+            it to null
           }
-      } catch (e: VerificationFailedException) {
-        NetworkResult.ApplicationError(e)
-      }
+        }
     }
   }
 }

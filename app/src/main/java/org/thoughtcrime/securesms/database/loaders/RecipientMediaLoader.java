@@ -37,7 +37,7 @@ public final class RecipientMediaLoader extends MediaLoader {
 
     long threadId = SignalDatabase.threads().getOrCreateThreadIdFor(Recipient.resolved(recipientId));
 
-    return ThreadMediaLoader.createThreadMediaCursor(context, threadId, mediaType, sorting);
+    return ThreadMediaLoader.createThreadMediaCursor(context, threadId, mediaType, sorting, 0);
   }
 
 }

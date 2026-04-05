@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.internal.backup
 
+import android.net.Uri
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -22,7 +23,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.signal.core.models.ServiceId.ACI
+import org.signal.archive.stream.EncryptedBackupReader
+import org.signal.archive.stream.EncryptedBackupReader.Companion.MAC_SIZE
+import org.signal.core.models.ServiceId
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Hex
 import org.signal.core.util.ThreadUtil
@@ -37,19 +40,20 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
+import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.DebugBackupMetadata
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.RemoteRestoreResult
-import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
-import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader.Companion.MAC_SIZE
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.AttachmentTable.DebugAttachmentStats
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
+import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -87,9 +91,12 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
   val statsState: MutableStateFlow<StatsState> = MutableStateFlow(StatsState())
 
-  enum class DialogState {
-    None,
-    ImportCredentials
+  init {
+    viewModelScope.launch {
+      LocalExportProgress.plaintextProgress.collect { progress ->
+        _state.value = _state.value.copy(plaintextProgress = progress)
+      }
+    }
   }
 
   fun exportEncrypted(openStream: () -> OutputStream, appendStream: () -> OutputStream) {
@@ -108,21 +115,23 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       }
   }
 
-  fun exportPlaintext(openStream: () -> OutputStream, appendStream: () -> OutputStream) {
-    _state.value = _state.value.copy(statusMessage = "Exporting plaintext backup to disk...")
-    disposables += Single
-      .fromCallable {
-        BackupRepository.exportForDebugging(
-          outputStream = openStream(),
-          append = { bytes -> appendStream().use { it.write(bytes) } },
-          plaintext = true
-        )
-      }
-      .subscribeOn(Schedulers.io())
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { data ->
-        _state.value = _state.value.copy(statusMessage = "Plaintext backup complete!")
-      }
+  private var plaintextIncludeMedia: Boolean = false
+
+  fun showPlaintextExportDialog() {
+    _state.value = _state.value.copy(dialog = DialogState.PlaintextExportMediaChoice)
+  }
+
+  fun dismissPlaintextExportDialog() {
+    _state.value = _state.value.copy(dialog = DialogState.None)
+  }
+
+  fun onPlaintextExportMediaChoiceSelected(includeMedia: Boolean) {
+    plaintextIncludeMedia = includeMedia
+    _state.value = _state.value.copy(dialog = DialogState.None)
+  }
+
+  fun exportPlaintextZip(directoryUri: Uri) {
+    LocalBackupJob.enqueuePlaintextArchive(directoryUri.toString(), plaintextIncludeMedia)
   }
 
   fun validateBackup() {
@@ -289,7 +298,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
   /** True if data is valid, else false */
   fun onImportConfirmed(aci: String, backupKey: String): Boolean {
-    val parsedAci: ACI? = ACI.parseOrNull(aci)
+    val parsedAci: ServiceId.ACI? = ServiceId.ACI.parseOrNull(aci)
 
     if (aci.isNotBlank() && parsedAci == null) {
       _state.value = _state.value.copy(statusMessage = "Invalid ACI! Cannot import.")
@@ -332,6 +341,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
           _state.value = _state.value.copy(statusMessage = "Import complete!")
           ThreadUtil.runOnMain { afterDbRestoreCallback() }
         }
+
         RemoteRestoreResult.Canceled,
         RemoteRestoreResult.Failure,
         RemoteRestoreResult.PermanentSvrBFailure,
@@ -382,6 +392,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
         SignalStore.backup.cachedMediaCdnPath = null
         return@withContext true
       }
+
       else -> Log.w(TAG, "Unable to delete remote data", result.getCause())
     }
 
@@ -400,6 +411,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     val canReadWriteBackupDirectory: Boolean = false,
     val backupTier: MessageBackupTier? = null,
     val statusMessage: String? = null,
+    val plaintextProgress: LocalBackupCreationProgress = LocalBackupCreationProgress(),
     val customBackupCredentials: ImportCredentials? = null,
     val dialog: DialogState = DialogState.None
   )
@@ -470,7 +482,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
   data class ImportCredentials(
     val messageBackupKey: MessageBackupKey,
-    val aci: ACI
+    val aci: ServiceId.ACI
   )
 
   data class StatsState(
@@ -480,5 +492,11 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     val remoteFailureMsg: String? = null
   ) {
     val valid = attachmentStats != null
+  }
+
+  enum class DialogState {
+    None,
+    ImportCredentials,
+    PlaintextExportMediaChoice
   }
 }

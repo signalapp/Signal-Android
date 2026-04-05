@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.util.adapter.mapping.BindingFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingViewHolder
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.visible
-import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.util.Locale
 
 /**
@@ -31,7 +30,7 @@ object ActiveSubscriptionPreference {
     val subscription: Subscription,
     val renewalTimestamp: Long = -1L,
     val redemptionState: ManageDonationsState.RedemptionState,
-    val activeSubscription: ActiveSubscription.Subscription?,
+    val isPaymentFailure: Boolean = false,
     val subscriberRequiresCancel: Boolean,
     val onContactSupport: () -> Unit,
     val onRowClick: (ManageDonationsState.RedemptionState) -> Unit
@@ -46,7 +45,7 @@ object ActiveSubscriptionPreference {
         renewalTimestamp == newItem.renewalTimestamp &&
         redemptionState == newItem.redemptionState &&
         FiatMoney.equals(price, newItem.price) &&
-        activeSubscription == newItem.activeSubscription
+        isPaymentFailure == newItem.isPaymentFailure
     }
   }
 
@@ -112,7 +111,7 @@ object ActiveSubscriptionPreference {
     }
 
     private fun presentFailureState(model: Model) {
-      if (model.activeSubscription?.isFailedPayment == true || model.subscriberRequiresCancel) {
+      if (model.isPaymentFailure || model.subscriberRequiresCancel) {
         presentPaymentFailureState(model)
       } else {
         presentRedemptionFailureState(model)

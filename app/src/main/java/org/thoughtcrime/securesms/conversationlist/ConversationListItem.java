@@ -72,6 +72,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.glide.targets.GlideLiveDataTarget;
 import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
@@ -318,7 +319,9 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     setSubjectViewText(null);
 
     fromView.setText(recipient.get(), recipient.get().getDisplayName(getContext()), null, false);
-    setSubjectViewText(SearchUtil.getHighlightedSpan(locale, searchStyleFactory, messageResult.getBodySnippet(), highlightSubstring, SearchUtil.MATCH_ALL));
+    CharSequence snippet = SearchUtil.getHighlightedSpan(locale, searchStyleFactory, messageResult.getBodySnippet(), highlightSubstring, SearchUtil.MATCH_ALL);
+    snippet = createGroupMessageUpdateString(getContext(), snippet, messageResult.getMessageRecipient());
+    setSubjectViewText(snippet);
 
     updateDateView = () -> {
       Pair<String, String> date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.getReceivedTimestampMs());

@@ -8,12 +8,12 @@ package org.thoughtcrime.securesms.database.helpers.migration
 import android.app.Application
 import androidx.core.content.contentValuesOf
 import okio.IOException
+import org.signal.archive.proto.GroupInvitationRevokedUpdate
 import org.signal.core.models.ServiceId
 import org.signal.core.util.forEach
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireLong
-import org.thoughtcrime.securesms.backup.v2.proto.GroupInvitationRevokedUpdate
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 
@@ -50,8 +50,9 @@ object V258_FixGroupRevokedInviteeUpdate : SignalDatabaseMigration {
 
         updates
           .replaceAll { change ->
-            if (change.groupInvitationRevokedUpdate != null) {
-              val invitees = change.groupInvitationRevokedUpdate.invitees.toMutableList()
+            val revokedUpdate = change.groupInvitationRevokedUpdate
+            if (revokedUpdate != null) {
+              val invitees = revokedUpdate.invitees.toMutableList()
 
               invitees.replaceAll { invitee ->
                 val inviteeAciFieldServiceId = ServiceId.parseOrNull(invitee.inviteeAci)
@@ -69,7 +70,7 @@ object V258_FixGroupRevokedInviteeUpdate : SignalDatabaseMigration {
                 }
               }
 
-              change.copy(groupInvitationRevokedUpdate = change.groupInvitationRevokedUpdate.copy(invitees = invitees))
+              change.copy(groupInvitationRevokedUpdate = revokedUpdate.copy(invitees = invitees))
             } else {
               change
             }

@@ -472,7 +472,7 @@ class MediaSelectionViewModel(
   }
 
   private fun shouldPreUpload(metered: Boolean): Boolean {
-    return !metered
+    return !metered && !isContactSelectionRequired
   }
 
   fun onSaveState(outState: Bundle) {

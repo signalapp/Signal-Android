@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.groups.v2;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.models.ServiceId.ACI;
+import org.signal.core.util.Util;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.storageservice.storage.protos.groups.AccessControl;
@@ -16,8 +18,6 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMem
 import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedString;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer;
-import org.signal.core.util.Util;
-import org.signal.core.models.ServiceId.ACI;
 
 import kotlin.collections.CollectionsKt;
 import okio.ByteString;
@@ -125,6 +125,11 @@ public final class ChangeBuilder {
 
   public ChangeBuilder membershipAccess(@NonNull AccessControl.AccessRequired accessRequired) {
     builder.newMemberAccess(accessRequired);
+    return this;
+  }
+
+  public ChangeBuilder memberLabelAccess(@NonNull AccessControl.AccessRequired accessRequired) {
+    builder.newMemberLabelAccess(accessRequired);
     return this;
   }
 

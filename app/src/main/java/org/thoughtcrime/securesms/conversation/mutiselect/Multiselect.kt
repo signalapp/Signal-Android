@@ -17,8 +17,11 @@ object Multiselect {
   @JvmStatic
   fun getParts(conversationMessage: ConversationMessage): MultiselectCollection {
     val messageRecord = conversationMessage.messageRecord
-
-    if (messageRecord.isUpdate) {
+    if (conversationMessage.isActiveCollapsedHead) {
+      return MultiselectCollection.Single(MultiselectPart.CollapsedHead(conversationMessage))
+    } else if (conversationMessage.isActiveCollapsibleHead) {
+      return MultiselectCollection.Double(MultiselectPart.CollapsedHead(conversationMessage), MultiselectPart.Update(conversationMessage))
+    } else if (messageRecord.isUpdate) {
       return MultiselectCollection.Single(MultiselectPart.Update(conversationMessage))
     }
 

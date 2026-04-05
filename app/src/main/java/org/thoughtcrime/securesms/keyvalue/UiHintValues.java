@@ -33,6 +33,7 @@ public class UiHintValues extends SignalStoreValues {
   private static final String HAS_SEEN_PINNED_MESSAGE_SHEET                     = "uihints.has_seen_pinned_message_sheet";
   private static final String HAS_SEEN_VERIFY_AUTO_SHEET                        = "uihints.has_seen_verify_auto_sheet";
   private static final String HAS_DISMISSED_MEMBER_LABEL_ABOUT_OVERRIDE_WARNING = "uihints.has_dismissed_member_label_about_override_warning";
+  private static final String HAS_SEEN_ADMIN_DELETE_EDUCATION_DIALOG            = "uihints.has_seen_admin_delete_education_dialog";
 
   UiHintValues(@NonNull KeyValueStore store) {
     super(store);
@@ -249,5 +250,13 @@ public class UiHintValues extends SignalStoreValues {
 
   public void markMemberLabelAboutOverrideWarningDismissed() {
     putBoolean(HAS_DISMISSED_MEMBER_LABEL_ABOUT_OVERRIDE_WARNING, true);
+  }
+
+  public boolean hasSeenAdminDeleteEducationDialog() {
+    return getBoolean(HAS_SEEN_ADMIN_DELETE_EDUCATION_DIALOG, false);
+  }
+
+  public void setHasSeenAdminDeleteEducationDialog() {
+    putBoolean(HAS_SEEN_ADMIN_DELETE_EDUCATION_DIALOG, true);
   }
 }

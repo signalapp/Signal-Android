@@ -84,4 +84,50 @@
     <string name="VerificationCodeScreen__registration_error">నమోదు విఫలమైంది. దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Button text for having trouble with verification -->
     <string name="VerificationCodeScreen__having_trouble">సమస్య ఉందా?</string>
+
+    <!-- RestoreWelcomeBottomSheet -->
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">నా దగ్గర నా పాత ఫోన్ ఉంది</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">త్వరగా ప్రారంభించడానికి మీ ప్రస్తుత Signal ఖాతా నుండి QR కోడ్‌ను స్కాన్ చేయండి</string>
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">నా దగ్గర నా పాత ఫోన్ లేదు</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">లేదా మీరు అదే పరికరంలో Signal ను మళ్ళీ ఇన్‌స్టాల్ చేస్తున్నారు</string>
+
+    <!-- ArchiveRestoreSelectionScreen -->
+    <!-- Title text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">ఖాతాను పునరుద్ధరించండి లేదా బదిలీ చేయండి</string>
+    <!-- Subtitle text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__subheading">మీ సందేశ చరిత్ర మరియు ఖాతా డేటాను మీరు ఎలా పునరుద్ధరించాలనుకుంటున్నారో ఎంచుకోండి.</string>
+    <!-- Title for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">Signal బ్యాకప్‌ల నుండి</string>
+    <!-- Subtitle for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">మీ ఉచిత లేదా చెల్లింపు Signal బ్యాకప్ ప్లాన్</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">పరికరంలోని బ్యాకప్‌ను పునరుద్ధరించండి</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">మీ పరికరంలో మీరు సేవ్ చేసిన బ్యాకప్ నుండి మీ సందేశాలను పునరుద్ధరించండి.</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">బదిలీ చేయకుండానే కొనసాగించండి</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">సందేశాలు మరియు మీడియా బదిలీ చేయబడవు</string>
+    <!-- Title for the backup folder option card (V2 format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">బ్యాకప్ ఫోల్డర్ నుండి</string>
+    <!-- Title for the backup file option card (V1 legacy format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">బ్యాకప్ ఫైల్ నుండి</string>
+    <!-- Subtitle for the backup folder/file option cards -->
+    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">మీరు సేవ్ చేసిన బ్యాకప్‌ను ఎంచుకోండి</string>
+    <!-- Title for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">మీ పాత ఫోన్ నుండి</string>
+    <!-- Subtitle for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">మీ పాత Android నుండి నేరుగా బదిలీ చేయండి</string>
+    <!-- Skip button text -->
+    <string name="ArchiveRestoreSelectionScreen__skip">దాటవేయి</string>
+    <!-- Title for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">పునరుద్ధరించడాన్ని దాటవేసేదా?</string>
+    <!-- Warning body text for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">ఒకవేళ మీరు ఇప్పుడు పునరుద్ధరించడాన్ని దాటవేస్తే, మీరు తరువాత పునరుద్ధరించలేరు. ఒకవేళ మీరు పునరుద్ధరణను దాటవేసిన తర్వాత బ్యాకప్‌లను మళ్ళీ ప్రారంభిస్తే, మీ ప్రస్తుత బ్యాకప్ మీ కొత్త సందేశ చరిత్రతో భర్తీ చేయబడుతుంది.</string>
+    <!-- Confirm button text for the skip restore dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">పునరుద్ధరించడాన్ని దాటవేయండి</string>
 </resources>

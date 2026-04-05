@@ -1,0 +1,13 @@
+<!--
+  ~ Copyright 2024 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+<resources>
+    <string name="app_name">apng-app</string>
+    <string name="apng_description_placeholder">idk</string>
+    <string name="apng_demo">Demo</string>
+    <string name="apng_player">Player</string>
+    <string name="apng_prev">Prev</string>
+    <string name="apng_next">Next</string>
+</resources>

@@ -8,12 +8,12 @@ package org.thoughtcrime.securesms.database.helpers.migration
 import android.app.Application
 import androidx.core.content.contentValuesOf
 import okio.IOException
+import org.signal.archive.proto.GroupMemberAddedUpdate
 import org.signal.core.models.ServiceId
 import org.signal.core.util.forEach
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireLong
-import org.thoughtcrime.securesms.backup.v2.proto.GroupMemberAddedUpdate
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 
@@ -50,9 +50,10 @@ object V264_FixGroupAddMemberUpdate : SignalDatabaseMigration {
 
         updates
           .replaceAll { change ->
-            if (change.groupMemberAddedUpdate != null && ServiceId.parseOrNull(change.groupMemberAddedUpdate.updaterAci) is ServiceId.PNI) {
+            val addedUpdate = change.groupMemberAddedUpdate
+            if (addedUpdate != null && ServiceId.parseOrNull(addedUpdate.updaterAci) is ServiceId.PNI) {
               dataMigrated = true
-              change.copy(groupMemberAddedUpdate = change.groupMemberAddedUpdate.copy(updaterAci = null))
+              change.copy(groupMemberAddedUpdate = addedUpdate.copy(updaterAci = null))
             } else {
               change
             }

@@ -18,6 +18,7 @@ import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.TestDbUtils
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.internal.push.Envelope
@@ -75,7 +76,7 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
 
     runBlocking {
       launch(Dispatchers.IO) {
-        Log.i(TAG, "Sending initial message form Bob to establish session.")
+        Log.i(TAG, "Sending initial message from Bob to establish session.")
         BenchmarkWebSocketConnection.addPendingMessages(listOf(encryptedEnvelope.toWebSocketPayload()))
         BenchmarkWebSocketConnection.releaseMessages()
 
@@ -83,6 +84,10 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
         ThreadUtil.sleep(1000)
       }
     }
+
+    // Complete the session handshake so both sides have a proper double-ratchet session
+    Log.i(TAG, "Completing session handshake with reply.")
+    client.completeSession()
 
     // Have Bob generate N messages that will be received by Alice
     val messageCount = 500
@@ -102,7 +107,7 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
 
     runBlocking {
       launch(Dispatchers.IO) {
-        Log.i(TAG, "Sending initial group messages from client to establish sessions.")
+        Log.i(TAG, "Sending initial group messages from clients to establish sessions.")
         BenchmarkWebSocketConnection.addPendingMessages(encryptedEnvelopes.map { it.toWebSocketPayload() })
         BenchmarkWebSocketConnection.releaseMessages()
 
@@ -110,6 +115,10 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
         ThreadUtil.sleep(1000)
       }
     }
+
+    // Complete session handshakes so both sides have proper double-ratchet sessions
+    Log.i(TAG, "Completing session handshakes with Alice replies.")
+    clients.forEach { it.completeSession() }
 
     // Have clients generate N group messages that will be received by Alice
     val allClientMessages = clients.map { client ->
@@ -149,20 +158,28 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
         ThreadUtil.sleep(1000)
       }
     }
+
+    Log.i(TAG, "Completing session handshakes with Alice replies.")
+    clients.forEach { it.completeSession() }
   }
 
   private fun handleDeleteThread() {
-    val threadId = SignalDatabase.threads.getRecentConversationList(1, false, false).use { cursor ->
+    val threadId = SignalDatabase.rawDatabase.rawQuery("SELECT thread_id, COUNT(*) AS msg_count FROM message GROUP BY thread_id ORDER BY msg_count DESC LIMIT 1").use { cursor ->
       if (cursor.moveToFirst()) {
-        cursor.getLong(cursor.getColumnIndexOrThrow("_id"))
+        val id = cursor.getLong(0)
+        val count = cursor.getLong(1)
+        Log.i(TAG, "Found largest thread $id with $count messages")
+        id
       } else {
-        Log.w(TAG, "No active threads found for deletion benchmark")
+        Log.w(TAG, "No threads found for deletion benchmark")
         return
       }
     }
-    Log.i(TAG, "Deleting thread $threadId")
+    val recipientName = SignalDatabase.threads.getRecipientForThreadId(threadId)
+      ?.getDisplayName(AppDependencies.application) ?: "unknown"
+    Log.i(TAG, "Deleting thread $threadId (recipient: $recipientName)")
     SignalDatabase.threads.deleteConversation(threadId, syncThreadDelete = false)
-    Log.i(TAG, "Thread $threadId deleted")
+    Log.i(TAG, "Thread $threadId deleted (recipient: $recipientName)")
   }
 
   private fun getOutgoingGroupMessageTimestamps(): List<Long> {
@@ -195,7 +212,7 @@ class BenchmarkCommandReceiver : BroadcastReceiver() {
       verb = "PUT",
       path = "/api/v1/message",
       id = Random.nextLong(),
-      headers = listOf("X-Signal-Timestamp: ${this.timestamp}"),
+      headers = listOf("X-Signal-Timestamp: ${this.serverTimestamp}"),
       body = this.encodeByteString()
     )
   }

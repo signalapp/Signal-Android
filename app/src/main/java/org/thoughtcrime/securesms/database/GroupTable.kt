@@ -34,7 +34,6 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.select
-import org.signal.core.util.toInt
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.InvalidInputException
@@ -42,8 +41,10 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsement
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken
+import org.signal.storageservice.storage.protos.groups.AccessControl
 import org.signal.storageservice.storage.protos.groups.Member
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
+import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
@@ -101,7 +102,8 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     const val AVATAR_CONTENT_TYPE = "avatar_content_type"
     const val AVATAR_DIGEST = "avatar_digest"
     const val TIMESTAMP = "timestamp"
-    const val ACTIVE = "active"
+    const val IS_MEMBER = "active"
+    const val TERMINATED_BY = "terminated_by"
     const val MMS = "mms"
     const val EXPECTED_V2_ID = "expected_v2_id"
     const val UNMIGRATED_V1_MEMBERS = "unmigrated_v1_members"
@@ -131,17 +133,18 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
         $AVATAR_CONTENT_TYPE TEXT DEFAULT NULL, 
         $AVATAR_DIGEST BLOB DEFAULT NULL, 
         $TIMESTAMP INTEGER DEFAULT 0,
-        $ACTIVE INTEGER DEFAULT 1,
-        $MMS INTEGER DEFAULT 0, 
-        $V2_MASTER_KEY BLOB DEFAULT NULL, 
-        $V2_REVISION BLOB DEFAULT NULL, 
-        $V2_DECRYPTED_GROUP BLOB DEFAULT NULL, 
-        $EXPECTED_V2_ID TEXT UNIQUE DEFAULT NULL, 
-        $UNMIGRATED_V1_MEMBERS TEXT DEFAULT NULL, 
-        $DISTRIBUTION_ID TEXT UNIQUE DEFAULT NULL, 
-        $SHOW_AS_STORY_STATE INTEGER DEFAULT ${ShowAsStoryState.IF_ACTIVE.code}, 
+        $IS_MEMBER INTEGER DEFAULT 1,
+        $MMS INTEGER DEFAULT 0,
+        $V2_MASTER_KEY BLOB DEFAULT NULL,
+        $V2_REVISION BLOB DEFAULT NULL,
+        $V2_DECRYPTED_GROUP BLOB DEFAULT NULL,
+        $EXPECTED_V2_ID TEXT UNIQUE DEFAULT NULL,
+        $UNMIGRATED_V1_MEMBERS TEXT DEFAULT NULL,
+        $DISTRIBUTION_ID TEXT UNIQUE DEFAULT NULL,
+        $SHOW_AS_STORY_STATE INTEGER DEFAULT ${ShowAsStoryState.IF_ACTIVE.code},
         $LAST_FORCE_UPDATE_TIMESTAMP INTEGER DEFAULT 0,
-        $GROUP_SEND_ENDORSEMENTS_EXPIRATION INTEGER DEFAULT 0
+        $GROUP_SEND_ENDORSEMENTS_EXPIRATION INTEGER DEFAULT 0,
+        $TERMINATED_BY INTEGER DEFAULT 0
       )
     """
 
@@ -158,7 +161,8 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
       AVATAR_CONTENT_TYPE,
       AVATAR_DIGEST,
       TIMESTAMP,
-      ACTIVE,
+      IS_MEMBER,
+      TERMINATED_BY,
       MMS,
       V2_MASTER_KEY,
       V2_REVISION,
@@ -346,7 +350,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
       FROM $TABLE_NAME          
       INNER JOIN ${MembershipTable.TABLE_NAME} ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
       INNER JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$RECIPIENT_ID
-      WHERE $TABLE_NAME.$ACTIVE = 1 AND ${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID} IN (${subquery.where})
+      WHERE $TABLE_NAME.$IS_MEMBER = 1 AND $TABLE_NAME.$TERMINATED_BY = 0 AND ${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID} IN (${subquery.where})
       GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}
       ORDER BY $TITLE COLLATE NOCASE ASC
     """
@@ -402,9 +406,9 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     }
 
     query = if (includeInactive) {
-      "($searchQuery) AND ($TABLE_NAME.$ACTIVE = ? OR $TABLE_NAME.$RECIPIENT_ID IN (SELECT ${ThreadTable.RECIPIENT_ID} FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.TABLE_NAME}.${ThreadTable.ACTIVE} = 1))"
+      "($searchQuery) AND ($TABLE_NAME.$IS_MEMBER = ? OR $TABLE_NAME.$RECIPIENT_ID IN (SELECT ${ThreadTable.RECIPIENT_ID} FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.TABLE_NAME}.${ThreadTable.ACTIVE} = 1))"
     } else {
-      "($searchQuery) AND $TABLE_NAME.$ACTIVE = ?"
+      "($searchQuery) AND $TABLE_NAME.$IS_MEMBER = ? AND $TABLE_NAME.$TERMINATED_BY = 0"
     }
 
     queryArgs = buildArgs(*searchTokens.toTypedArray(), 1)
@@ -493,8 +497,11 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     }
 
     if (!includeInactive) {
-      query += " AND $TABLE_NAME.$ACTIVE = ?"
+      query += " AND $TABLE_NAME.$IS_MEMBER = ?"
       args = appendArg(args, "1")
+
+      query += " AND $TABLE_NAME.$TERMINATED_BY = ?"
+      args = appendArg(args, "0")
     }
 
     return readableDatabase
@@ -504,25 +511,37 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
       }
   }
 
+  @WorkerThread
+  fun getGroupsWithExactMembers(memberIds: Set<RecipientId>): List<GroupRecord> {
+    if (memberIds.isEmpty()) return emptyList()
+
+    val selfId = Recipient.self().id
+    val expectedMembers = if (selfId in memberIds) memberIds else memberIds + selfId
+
+    return getGroupsContainingMember(selfId, pushOnly = true, includeInactive = false)
+      .filter { it.members.toSet() == expectedMembers }
+  }
+
   fun getGroups(): Reader {
     val cursor = readableDatabase.query(joinedGroupSelect())
     return Reader(cursor)
-  }
-
-  fun getInactiveGroups(): Reader {
-    val query = SqlUtil.buildQuery("$TABLE_NAME.$ACTIVE = ?", false.toInt())
-    val select = "${joinedGroupSelect()} WHERE ${query.where}"
-
-    return Reader(readableDatabase.query(select, query.whereArgs))
   }
 
   fun getActiveGroupCount(): Int {
     return readableDatabase
       .select("COUNT(*)")
       .from(TABLE_NAME)
-      .where("$ACTIVE = ?", 1)
+      .where("$IS_MEMBER = ? AND $TERMINATED_BY = ?", 1, 0)
       .run()
       .readToSingleInt(0)
+  }
+
+  fun setTerminatedBy(groupId: GroupId, recipientId: RecipientId) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(TERMINATED_BY to recipientId.serialize())
+      .where("$GROUP_ID = ?", groupId)
+      .run()
   }
 
   @WorkerThread
@@ -675,14 +694,15 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     values.put(TIMESTAMP, System.currentTimeMillis())
 
     if (groupId.isV2) {
-      values.put(ACTIVE, if (groupState != null && gv2GroupActive(groupState)) 1 else 0)
+      values.put(IS_MEMBER, if (groupState != null && isGroupMember(groupState)) 1 else 0)
+      values.put(TERMINATED_BY, if (groupState?.terminated == true) -1 else 0)
       values.put(DISTRIBUTION_ID, DistributionId.create().toString())
       values.put(GROUP_SEND_ENDORSEMENTS_EXPIRATION, receivedGroupSendEndorsements?.expirationMs ?: 0)
     } else if (groupId.isV1) {
-      values.put(ACTIVE, 1)
+      values.put(IS_MEMBER, 1)
       values.put(EXPECTED_V2_ID, groupId.requireV1().deriveV2MigrationGroupId().toString())
     } else {
-      values.put(ACTIVE, 1)
+      values.put(IS_MEMBER, 1)
     }
 
     if (groupMasterKey != null) {
@@ -767,11 +787,11 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     notifyConversationListListeners()
   }
 
-  fun update(groupMasterKey: GroupMasterKey, decryptedGroup: DecryptedGroup, groupSendEndorsements: ReceivedGroupSendEndorsements?) {
-    update(GroupId.v2(groupMasterKey), decryptedGroup, groupSendEndorsements)
+  fun update(groupMasterKey: GroupMasterKey, decryptedGroup: DecryptedGroup, groupSendEndorsements: ReceivedGroupSendEndorsements?, terminatorRecipientId: RecipientId? = null) {
+    update(GroupId.v2(groupMasterKey), decryptedGroup, groupSendEndorsements, terminatorRecipientId)
   }
 
-  fun update(groupId: GroupId.V2, decryptedGroup: DecryptedGroup, receivedGroupSendEndorsements: ReceivedGroupSendEndorsements?) {
+  fun update(groupId: GroupId.V2, decryptedGroup: DecryptedGroup, receivedGroupSendEndorsements: ReceivedGroupSendEndorsements?, terminatorRecipientId: RecipientId? = null) {
     val groupRecipientId: RecipientId = recipients.getOrInsertFromGroupId(groupId)
     val existingGroup: Optional<GroupRecord> = getGroup(groupId)
     val title: String = decryptedGroup.title
@@ -780,7 +800,8 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     contentValues.put(TITLE, title)
     contentValues.put(V2_REVISION, decryptedGroup.revision)
     contentValues.put(V2_DECRYPTED_GROUP, decryptedGroup.encode())
-    contentValues.put(ACTIVE, if (gv2GroupActive(decryptedGroup)) 1 else 0)
+    contentValues.put(IS_MEMBER, if (isGroupMember(decryptedGroup)) 1 else 0)
+    contentValues.put(TERMINATED_BY, terminatorRecipientId?.toLong() ?: if (decryptedGroup.terminated) -1 else 0)
 
     if (receivedGroupSendEndorsements != null) {
       contentValues.put(GROUP_SEND_ENDORSEMENTS_EXPIRATION, receivedGroupSendEndorsements.expirationMs)
@@ -925,10 +946,15 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     return record.isPresent && record.get().isActive
   }
 
-  fun setActive(groupId: GroupId, active: Boolean) {
+  fun isMember(groupId: GroupId): Boolean {
+    val record = getGroup(groupId)
+    return record.isPresent && record.get().isMember
+  }
+
+  fun setMember(groupId: GroupId, isMember: Boolean) {
     writableDatabase
       .update(TABLE_NAME)
-      .values(ACTIVE to if (active) 1 else 0)
+      .values(IS_MEMBER to if (isMember) 1 else 0)
       .where("$GROUP_ID = ?", groupId)
       .run()
   }
@@ -1066,6 +1092,12 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(TERMINATED_BY to toId.toLong())
+      .where("$TERMINATED_BY = ?", fromId.toLong())
+      .run()
+
     // Remap all recipients that would not result in conflicts
     writableDatabase.execSQL(
       """
@@ -1126,7 +1158,8 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
           avatarId = cursor.requireLong(AVATAR_ID),
           avatarKey = cursor.requireBlob(AVATAR_KEY),
           avatarContentType = cursor.requireString(AVATAR_CONTENT_TYPE),
-          isActive = cursor.requireBoolean(ACTIVE),
+          isMember = cursor.requireBoolean(IS_MEMBER),
+          terminatedBy = cursor.requireLong(TERMINATED_BY),
           avatarDigest = cursor.requireBlob(AVATAR_DIGEST),
           isMms = cursor.requireBoolean(MMS),
           groupMasterKeyBytes = cursor.requireBlob(V2_MASTER_KEY),
@@ -1295,6 +1328,24 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
         }
       }
     }
+
+    fun nonAdminMembersWithLabels(): List<DecryptedMember> {
+      return decryptedGroup.members
+        .filter { it.role != Member.Role.ADMINISTRATOR && it.hasLabel() }
+    }
+
+    /**
+     * Returns true if demoting [aci] from admin should cause their member label to be cleared.
+     */
+    fun adminDemotionClearsLabel(aci: ACI): Boolean {
+      val accessRequired = decryptedGroup.accessControl?.memberLabel ?: AccessControl.AccessRequired.UNKNOWN
+      return when {
+        accessRequired != AccessControl.AccessRequired.ADMINISTRATOR -> false
+        else -> decryptedGroup.members.findMemberByAci(aci).orNull()?.hasLabel() == true
+      }
+    }
+
+    private fun DecryptedMember.hasLabel(): Boolean = labelString.isNotBlank() || labelEmoji.isNotBlank()
   }
 
   @Throws(BadGroupIdException::class)
@@ -1314,7 +1365,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
         ) AS active_timestamp 
       FROM $TABLE_NAME INNER JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$RECIPIENT_ID 
       WHERE 
-        $TABLE_NAME.$ACTIVE = 1 AND 
+        $TABLE_NAME.$IS_MEMBER = 1 AND $TABLE_NAME.$TERMINATED_BY = 0 AND
         (
           $SHOW_AS_STORY_STATE = ${ShowAsStoryState.ALWAYS.code} OR 
           (
@@ -1363,7 +1414,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     }
   }
 
-  private fun gv2GroupActive(decryptedGroup: DecryptedGroup): Boolean {
+  private fun isGroupMember(decryptedGroup: DecryptedGroup): Boolean {
     val aci = SignalStore.account.requireAci()
 
     return decryptedGroup.members.findMemberByAci(aci).isPresent ||

@@ -41,10 +41,12 @@ import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct
 import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage
+import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException
 import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2ChangeException
 import org.whispersystems.signalservice.api.groupsv2.ReceivedGroupSendEndorsements
@@ -52,6 +54,7 @@ import org.whispersystems.signalservice.api.groupsv2.getChangedFields
 import org.whispersystems.signalservice.api.groupsv2.isSilent
 import org.whispersystems.signalservice.api.push.ServiceIds
 import org.whispersystems.signalservice.internal.push.exceptions.GroupNotFoundException
+import org.whispersystems.signalservice.internal.push.exceptions.GroupTerminatedException
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException
 import java.io.IOException
 import java.util.Optional
@@ -116,7 +119,12 @@ class GroupsV2StateProcessor private constructor(
       return GroupUpdateResult.CONSISTENT_OR_AHEAD
     }
 
-    return when (val result = updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = true, forceUpdate = !groupRecord.isActive)) {
+    if (currentLocalState.terminated) {
+      Log.i(TAG, "$logPrefix Group is terminated, not updating")
+      return GroupUpdateResult.CONSISTENT_OR_AHEAD
+    }
+
+    return when (val result = updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = true, forceUpdate = !groupRecord.isMember)) {
       InternalUpdateResult.NoUpdateNeeded -> GroupUpdateResult.CONSISTENT_OR_AHEAD
       is InternalUpdateResult.Updated -> GroupUpdateResult(GroupUpdateResult.UpdateStatus.GROUP_UPDATED, result.updatedLocalState)
       is InternalUpdateResult.NotAMember -> throw result.exception
@@ -209,6 +217,21 @@ class GroupsV2StateProcessor private constructor(
 
     if (currentLocalState != null && DecryptedGroupUtil.isPendingOrRequesting(currentLocalState, serviceIds)) {
       Log.w(TAG, "$logPrefix Unable to query server for group. Server says we're not in group, but we think we are a pending or requesting member")
+      try {
+        groupsApi.getGroupJoinInfo(groupSecretParams, Optional.empty(), groupsV2Authorization.getAuthorizationForToday(serviceIds, groupSecretParams))
+      } catch (e: GroupTerminatedException) {
+        Log.i(TAG, "$logPrefix Group was terminated while join request was pending, marking locally")
+        profileAndMessageHelper.markTerminatedLocally()
+      } catch (e: GroupLinkNotActiveException) {
+        if (e.reason == GroupLinkNotActiveException.Reason.BANNED) {
+          Log.i(TAG, "$logPrefix Join request was rejected (banned) while pending, marking locally")
+          profileAndMessageHelper.markJoinRequestRejectedLocally()
+        } else {
+          Log.i(TAG, "$logPrefix Group link not active while checking pending join for group termination")
+        }
+      } catch (e: IOException) {
+        Log.w(TAG, "$logPrefix Network error while checking if group terminated", e)
+      }
     } else {
       Log.w(TAG, "$logPrefix Unable to query server for group $groupId server says we're not in group, we agree, inserting leave message")
       profileAndMessageHelper.leaveGroupLocally(serviceIds)
@@ -229,6 +252,11 @@ class GroupsV2StateProcessor private constructor(
     }
 
     if (currentLocalState == null || currentLocalState.revision + 1 != signedGroupChange.revision || targetRevision != signedGroupChange.revision) {
+      return false
+    }
+
+    if (currentLocalState.terminated) {
+      Log.w(TAG, "$logPrefix Ignoring P2P group change because group is terminated")
       return false
     }
 
@@ -320,8 +348,8 @@ class GroupsV2StateProcessor private constructor(
       val applyGroupStateDiffResult: AdvanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(remoteGroupStateDiff, targetRevision)
       val updatedGroupState: DecryptedGroup? = applyGroupStateDiffResult.updatedGroupState
 
-      if (groupRecord.map { it.isActive }.orNull() == false && updatedGroupState != null && updatedGroupState == remoteGroupStateDiff.previousGroupState) {
-        Log.w(TAG, "$logPrefix Local state is not active, but server is returning state for us, apply regardless of revision")
+      if (groupRecord.map { it.isMember }.orNull() == false && updatedGroupState != null && updatedGroupState == remoteGroupStateDiff.previousGroupState) {
+        Log.w(TAG, "$logPrefix Local state is not a member, but server is returning state for us, apply regardless of revision")
       } else if (updatedGroupState == null || updatedGroupState == remoteGroupStateDiff.previousGroupState) {
         Log.i(TAG, "$logPrefix Local state is at or later than server revision: ${currentLocalState?.revision ?: "null"}")
 
@@ -436,7 +464,7 @@ class GroupsV2StateProcessor private constructor(
   }
 
   private fun notInGroupAndNotBeingAdded(groupRecord: Optional<GroupRecord>, signedGroupChange: DecryptedGroupChange): Boolean {
-    val currentlyInGroup = groupRecord.isPresent && groupRecord.get().isActive
+    val currentlyInGroup = groupRecord.isPresent && groupRecord.get().isMember
 
     val addedAsMember = signedGroupChange
       .newMembers
@@ -515,7 +543,21 @@ class GroupsV2StateProcessor private constructor(
       Log.i(TAG, "$logPrefix Local state (revision: ${currentLocalState?.revision}) does not match, updating to ${updatedGroupState.revision}")
     }
 
-    saveGroupState(groupStateDiff, updatedGroupState, groupSendEndorsements)
+    val terminatorRecipientId: RecipientId? = if (updatedGroupState.terminated && (currentLocalState == null || !currentLocalState.terminated)) {
+      groupStateDiff.serverHistory
+        .mapNotNull { it.change }
+        .firstOrNull { it.terminateGroup }
+        ?.let { ServiceId.parseOrNull(it.editorServiceIdBytes) }
+        ?.let { RecipientId.from(it) }
+    } else {
+      null
+    }
+
+    saveGroupState(groupStateDiff, updatedGroupState, groupSendEndorsements, terminatorRecipientId)
+
+    if (terminatorRecipientId != null) {
+      profileAndMessageHelper.stopAllTypingForGroup()
+    }
 
     if (currentLocalState == null || currentLocalState.revision == RESTORE_PLACEHOLDER_REVISION) {
       Log.i(TAG, "$logPrefix Inserting single update message for no local state or restore placeholder")
@@ -537,7 +579,7 @@ class GroupsV2StateProcessor private constructor(
     return InternalUpdateResult.Updated(updatedGroupState)
   }
 
-  private fun saveGroupState(groupStateDiff: GroupStateDiff, updatedGroupState: DecryptedGroup, groupSendEndorsements: ReceivedGroupSendEndorsements?) {
+  private fun saveGroupState(groupStateDiff: GroupStateDiff, updatedGroupState: DecryptedGroup, groupSendEndorsements: ReceivedGroupSendEndorsements?, terminatorRecipientId: RecipientId? = null) {
     val previousGroupState = groupStateDiff.previousGroupState
 
     if (groupSendEndorsements != null) {
@@ -549,12 +591,12 @@ class GroupsV2StateProcessor private constructor(
 
       if (groupId == null) {
         Log.w(TAG, "$logPrefix Group create failed, trying to update")
-        SignalDatabase.groups.update(groupMasterKey, updatedGroupState, groupSendEndorsements)
+        SignalDatabase.groups.update(groupMasterKey, updatedGroupState, groupSendEndorsements, terminatorRecipientId)
       }
 
       updatedGroupState.avatar.isNotEmpty()
     } else {
-      SignalDatabase.groups.update(groupMasterKey, updatedGroupState, groupSendEndorsements)
+      SignalDatabase.groups.update(groupMasterKey, updatedGroupState, groupSendEndorsements, terminatorRecipientId)
 
       updatedGroupState.avatar != previousGroupState.avatar
     }
@@ -707,8 +749,91 @@ class GroupsV2StateProcessor private constructor(
         Log.w(TAG, "Failed to insert leave message for $groupId", e)
       }
 
-      SignalDatabase.groups.setActive(groupId, false)
+      SignalDatabase.groups.setMember(groupId, false)
       SignalDatabase.groups.remove(groupId, Recipient.self().id)
+    }
+
+    fun markTerminatedLocally() {
+      val group = SignalDatabase.groups.getGroup(groupId).orNull()
+
+      if (group == null) {
+        Log.w(TAG, "Group not found when inserting terminated message for $groupId")
+        return
+      }
+
+      if (group.isTerminated) {
+        Log.w(TAG, "Group $groupId is already marked as terminated.")
+        return
+      }
+
+      val groupRecipient = Recipient.externalGroupExact(groupId)
+
+      val decryptedGroup = group.requireV2GroupProperties().decryptedGroup
+      val simulatedGroupState = decryptedGroup.copy(terminated = true)
+      val simulatedGroupChange = DecryptedGroupChange(terminateGroup = true)
+
+      val updateDescription = GroupProtoUtil.createOutgoingGroupV2UpdateDescription(masterKey, GroupMutation(decryptedGroup, simulatedGroupChange, simulatedGroupState), null)
+      val terminateMessage = OutgoingMessage.groupUpdateMessage(groupRecipient, updateDescription, System.currentTimeMillis(), isSelfGroupAdd = false)
+
+      try {
+        val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(groupRecipient)
+        val id = SignalDatabase.messages.insertMessageOutbox(terminateMessage, threadId, false, null).messageId
+        SignalDatabase.messages.markAsSent(id, true)
+        SignalDatabase.threads.update(threadId, unarchive = false, allowDeletion = false)
+      } catch (e: MmsException) {
+        Log.w(TAG, "Failed to insert terminated group message for $groupId", e)
+      }
+
+      SignalDatabase.groups.update(masterKey, simulatedGroupState, null)
+    }
+
+    fun markJoinRequestRejectedLocally() {
+      val group = SignalDatabase.groups.getGroup(groupId).orNull()
+
+      if (group == null) {
+        Log.w(TAG, "Group not found when inserting join request rejection message for $groupId")
+        return
+      }
+
+      val decryptedGroup = group.requireV2GroupProperties().decryptedGroup
+
+      if (decryptedGroup.requestingMembers.none { ACI.parseOrNull(it.aciBytes) == aci }) {
+        Log.w(TAG, "Not a requesting member of $groupId, skipping rejection insert")
+        return
+      }
+
+      val groupRecipient = Recipient.externalGroupExact(groupId)
+
+      val simulatedGroupState = decryptedGroup.copy(
+        requestingMembers = decryptedGroup.requestingMembers.filter { ACI.parseOrNull(it.aciBytes) != aci }
+      )
+      val simulatedGroupChange = DecryptedGroupChange(
+        editorServiceIdBytes = ACI.UNKNOWN.toByteString(),
+        deleteRequestingMembers = listOf(aci.toByteString())
+      )
+
+      val updateDescription = GroupProtoUtil.createOutgoingGroupV2UpdateDescription(masterKey, GroupMutation(decryptedGroup, simulatedGroupChange, simulatedGroupState), null)
+      val rejectedMessage = OutgoingMessage.groupUpdateMessage(groupRecipient, updateDescription, System.currentTimeMillis(), isSelfGroupAdd = false)
+
+      try {
+        val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(groupRecipient)
+        val id = SignalDatabase.messages.insertMessageOutbox(rejectedMessage, threadId, false, null).messageId
+        SignalDatabase.messages.markAsSent(id, true)
+        SignalDatabase.threads.update(threadId, unarchive = false, allowDeletion = false)
+      } catch (e: MmsException) {
+        Log.w(TAG, "Failed to insert rejected join request message for $groupId", e)
+      }
+
+      SignalDatabase.groups.update(masterKey, simulatedGroupState, null)
+    }
+
+    fun stopAllTypingForGroup() {
+      if (TextSecurePreferences.isTypingIndicatorsEnabled(AppDependencies.application)) {
+        val threadId = SignalDatabase.threads.getThreadIdFor(SignalDatabase.recipients.getOrInsertFromGroupId(groupId))
+        if (threadId != null) {
+          AppDependencies.typingStatusRepository.stopAllTypingForThread(threadId)
+        }
+      }
     }
 
     fun persistLearnedProfileKeys(groupStateDiff: GroupStateDiff) {
@@ -772,20 +897,24 @@ class GroupsV2StateProcessor private constructor(
         }
       } else {
         try {
-          val isGroupAdd = updateDescription
-            .groupChangeUpdate!!
-            .updates
+          val updates = updateDescription.groupChangeUpdate!!.updates
+
+          val isGroupAdd = updates
             .asSequence()
             .mapNotNull { it.groupMemberAddedUpdate }
             .any { serviceIds.matches(it.newMemberAci) }
 
-          val groupMessage = IncomingMessage.groupUpdate(RecipientId.from(editor.get()), timestamp, groupId, updateDescription, isGroupAdd, serverGuid)
+          val isGroupTerminate = updates.any { it.groupTerminateChangeUpdate != null }
+
+          val isNotifiable = isGroupAdd || isGroupTerminate
+
+          val groupMessage = IncomingMessage.groupUpdate(RecipientId.from(editor.get()), timestamp, groupId, updateDescription, isNotifiable, serverGuid)
           val insertResult = SignalDatabase.messages.insertMessageInbox(groupMessage)
 
           if (insertResult.isPresent) {
             SignalDatabase.threads.update(insertResult.get().threadId, unarchive = false, allowDeletion = false)
 
-            if (isGroupAdd) {
+            if (isNotifiable) {
               AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
             }
           } else {

@@ -8,12 +8,12 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.glide.decryptableuri.DecryptableUri
-import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
-import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.backup.v2.ArchiveDatabaseExecutor
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.UploadedThumbnailInfo
 import org.thoughtcrime.securesms.backup.v2.hadIntegrityCheckPerformed
 import org.thoughtcrime.securesms.backup.v2.requireThumbnailMediaName
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -30,12 +30,12 @@ import org.thoughtcrime.securesms.util.ImageCompressionUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream
-import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
+import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import java.io.ByteArrayInputStream
 import java.io.IOException
-import java.util.Optional
 import kotlin.math.floor
 import kotlin.math.max
 import kotlin.time.Duration.Companion.days
@@ -176,49 +176,24 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.failure()
     }
 
-    val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
-
-    val specResult = BackupRepository
-      .getAttachmentUploadForm()
-      .then { form ->
-        SignalNetwork.attachments.getResumableUploadSpec(
-          key = mediaRootBackupKey.deriveThumbnailTransitKey(attachment.requireThumbnailMediaName()),
-          iv = Util.getSecretBytes(16),
-          uploadForm = form
-        )
-      }
-
-    if (isCanceled) {
-      ArchiveDatabaseExecutor.runBlocking {
-        SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
-      }
-      return Result.failure()
-    }
-
-    val resumableUpload = when (specResult) {
-      is NetworkResult.Success -> {
-        Log.d(TAG, "Got an upload spec!")
-        specResult.result.toProto()
-      }
-
+    val form: AttachmentUploadForm = when (val formResult = BackupRepository.getAttachmentUploadForm()) {
+      is NetworkResult.Success -> formResult.result
       is NetworkResult.ApplicationError -> {
-        Log.w(TAG, "Failed to get an upload spec due to an application error. Retrying.", specResult.throwable)
+        Log.w(TAG, "Failed to get upload form due to an application error. Retrying.", formResult.throwable)
         return Result.retry(defaultBackoff())
       }
-
       is NetworkResult.NetworkError -> {
-        Log.w(TAG, "Encountered a transient network error when getting upload spec. Retrying.")
+        Log.w(TAG, "Encountered a transient network error when getting upload form. Retrying.")
         return Result.retry(defaultBackoff())
       }
-
       is NetworkResult.StatusCodeError -> {
-        return when (specResult.code) {
+        return when (formResult.code) {
           429 -> {
-            Log.w(TAG, "Rate limited when getting upload spec.")
-            Result.retry(specResult.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+            Log.w(TAG, "Rate limited when getting upload form.")
+            Result.retry(formResult.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
           }
           else -> {
-            Log.w(TAG, "Failed to get an upload spec with status code ${specResult.code}")
+            Log.w(TAG, "Failed to get upload form with status code ${formResult.code}")
             Result.retry(defaultBackoff())
           }
         }
@@ -232,13 +207,31 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.failure()
     }
 
+    val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
+    val key = mediaRootBackupKey.deriveThumbnailTransitKey(attachment.requireThumbnailMediaName())
+    val iv = Util.getSecretBytes(16)
+
+    val checksumSha256 = ByteArrayInputStream(thumbnailResult.data).use { stream ->
+      AttachmentUploadUtil.computeCiphertextChecksum(key, iv, stream, thumbnailResult.data.size.toLong())
+    }
+
     val attachmentPointer = try {
-      buildSignalServiceAttachmentStream(thumbnailResult, resumableUpload).use { stream ->
-        val pointer = AppDependencies.signalServiceMessageSender.uploadAttachment(stream)
-        PointerAttachment.forPointer(Optional.of(pointer)).get()
+      val uploadResult: AttachmentUploadResult = buildSignalServiceAttachmentStream(thumbnailResult).use { stream ->
+        when (val result = SignalNetwork.attachments.uploadAttachmentV4(form, key, iv, checksumSha256, stream)) {
+          is NetworkResult.Success -> result.result
+          is NetworkResult.ApplicationError -> throw result.throwable
+          is NetworkResult.NetworkError -> throw result.exception
+          is NetworkResult.StatusCodeError -> throw IOException("Upload failed with status ${result.code}")
+        }
       }
+
+      UploadedThumbnailInfo(
+        cdnNumber = uploadResult.cdnNumber,
+        remoteLocation = uploadResult.remoteId.toString(),
+        size = uploadResult.dataSize
+      )
     } catch (e: IOException) {
-      Log.w(TAG, "Failed to upload attachment", e)
+      Log.w(TAG, "Failed to upload thumbnail", e)
       return Result.retry(defaultBackoff())
     }
 
@@ -336,7 +329,7 @@ class ArchiveThumbnailUploadJob private constructor(
     return result
   }
 
-  private fun buildSignalServiceAttachmentStream(result: ImageCompressionUtil.Result, uploadSpec: ResumableUpload): SignalServiceAttachmentStream {
+  private fun buildSignalServiceAttachmentStream(result: ImageCompressionUtil.Result): SignalServiceAttachmentStream {
     return SignalServiceAttachment.newStreamBuilder()
       .withStream(ByteArrayInputStream(result.data))
       .withContentType(result.mimeType)
@@ -344,7 +337,6 @@ class ArchiveThumbnailUploadJob private constructor(
       .withWidth(result.width)
       .withHeight(result.height)
       .withUploadTimestamp(System.currentTimeMillis())
-      .withResumableUploadSpec(ResumableUploadSpec.from(uploadSpec))
       .build()
   }
 

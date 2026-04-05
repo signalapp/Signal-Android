@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
+import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob
@@ -58,7 +59,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
           recipient.isMyStory && it.toRecipient.isGroup
         }
 
-        emitter.onNext(results)
+        emitter.onNext(results.withAttachments())
       }
 
       val storyObserver = DatabaseObserver.Observer {
@@ -103,7 +104,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
       val messageUpdateObserver = DatabaseObserver.MessageObserver {
         if (it.id == recordId) {
           try {
-            val messageRecord = SignalDatabase.messages.getMessageRecord(recordId)
+            val messageRecord = SignalDatabase.messages.getMessageRecord(recordId).withAttachments()
             if (messageRecord.isRemoteDelete) {
               emitter.onComplete()
             } else {
@@ -117,7 +118,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
 
       val conversationObserver = DatabaseObserver.Observer {
         try {
-          refresh(SignalDatabase.messages.getMessageRecord(recordId))
+          refresh(SignalDatabase.messages.getMessageRecord(recordId).withAttachments())
         } catch (e: NoSuchMessageException) {
           Log.w(TAG, "Message deleted during content refresh.", e)
         }
@@ -127,7 +128,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
       AppDependencies.databaseObserver.registerMessageUpdateObserver(messageUpdateObserver)
 
       val messageInsertObserver = DatabaseObserver.MessageObserver {
-        refresh(SignalDatabase.messages.getMessageRecord(recordId))
+        refresh(SignalDatabase.messages.getMessageRecord(recordId).withAttachments())
       }
 
       if (recipient.isGroup) {
@@ -151,10 +152,22 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
     return Stories.enqueueAttachmentsFromStoryForDownload(post.conversationMessage.messageRecord as MmsMessageRecord, true)
   }
 
-  fun getStoryPostsFor(recipientId: RecipientId, isOutgoingOnly: Boolean): Observable<List<StoryPost>> {
-    return getStoryRecords(recipientId, isOutgoingOnly)
-      .switchMap { records ->
-        val posts: List<Observable<StoryPost>> = records.map {
+  fun getStoryPostsFor(recipientId: RecipientId, isOutgoingOnly: Boolean, isFromArchive: Boolean = false, initialStoryId: Long = -1L): Observable<List<StoryPost>> {
+    val records = if (isFromArchive && initialStoryId > 0) {
+      Observable.fromCallable {
+        try {
+          listOf(SignalDatabase.messages.getMessageRecord(initialStoryId).withAttachments())
+        } catch (e: NoSuchMessageException) {
+          emptyList()
+        }
+      }
+    } else {
+      getStoryRecords(recipientId, isOutgoingOnly)
+    }
+
+    return records
+      .switchMap { recordList ->
+        val posts: List<Observable<StoryPost>> = recordList.map {
           getStoryPostFromRecord(recipientId, it).distinctUntilChanged()
         }
         if (posts.isEmpty()) {

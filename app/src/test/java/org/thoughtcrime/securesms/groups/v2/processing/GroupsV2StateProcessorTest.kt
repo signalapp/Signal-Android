@@ -61,6 +61,7 @@ import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.whispersystems.signalservice.api.NetworkResult
@@ -160,7 +161,7 @@ class GroupsV2StateProcessorTest {
     every { groupsV2Authorization.getAuthorizationForToday(serviceIds, secretParams) } returns null
 
     if (data.expectTableUpdate) {
-      justRun { groupTable.update(any<GroupMasterKey>(), any<DecryptedGroup>(), any<ReceivedGroupSendEndorsements>()) }
+      justRun { groupTable.update(any<GroupMasterKey>(), any<DecryptedGroup>(), anyNullable<ReceivedGroupSendEndorsements>(), anyNullable<RecipientId>()) }
     }
 
     if (data.expectTableCreate) {
@@ -170,6 +171,7 @@ class GroupsV2StateProcessorTest {
     if (data.expectTableUpdate || data.expectTableCreate) {
       justRun { profileAndMessageHelper.storeMessage(any(), any(), any()) }
       justRun { profileAndMessageHelper.persistLearnedProfileKeys(any<ProfileKeySet>()) }
+      justRun { profileAndMessageHelper.stopAllTypingForGroup() }
     }
 
     data.serverState?.let { serverState ->
@@ -1048,6 +1050,151 @@ class GroupsV2StateProcessorTest {
     )
 
     assertThat(result.updateStatus, "inactive local is still updated given same revision from server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+  }
+
+  @Test
+  fun `when P2P change terminates group with known editor, then update is called with terminator recipient id`() {
+    val adminAci: ACI = ACI.from(UUID.randomUUID())
+    val adminRecipientId = RecipientId.from(200)
+
+    given {
+      localState(
+        revision = 5,
+        members = selfAndOthers
+      )
+      expectTableUpdate = true
+    }
+
+    every { recipientTable.getAndPossiblyMerge(adminAci, null) } returns adminRecipientId
+
+    val signedChange = DecryptedGroupChange(
+      revision = 6,
+      editorServiceIdBytes = adminAci.toByteString(),
+      terminateGroup = true
+    )
+
+    val result = processor.updateLocalGroupToRevision(
+      targetRevision = 6,
+      timestamp = 0,
+      signedGroupChange = signedChange,
+      serverGuid = UUID.randomUUID().toString()
+    )
+
+    assertThat(result.updateStatus).isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer)
+      .isNotNull()
+      .transform {
+        assertThat(it.terminated, "group should be terminated").isEqualTo(true)
+      }
+
+    verify { groupTable.update(masterKey, match { it.terminated }, null, adminRecipientId) }
+  }
+
+  @Test
+  fun `when P2P change terminates group without editor, then setTerminatedBy is not called`() {
+    given {
+      localState(
+        revision = 5,
+        members = selfAndOthers
+      )
+      expectTableUpdate = true
+    }
+
+    val signedChange = DecryptedGroupChange(
+      revision = 6,
+      terminateGroup = true
+    )
+
+    val result = processor.updateLocalGroupToRevision(
+      targetRevision = 6,
+      timestamp = 0,
+      signedGroupChange = signedChange,
+      serverGuid = UUID.randomUUID().toString()
+    )
+
+    assertThat(result.updateStatus).isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer)
+      .isNotNull()
+      .transform {
+        assertThat(it.terminated, "group should be terminated").isEqualTo(true)
+      }
+
+    verify(exactly = 0) { groupTable.setTerminatedBy(any(), any()) }
+  }
+
+  @Test
+  fun `when force sanity update finds terminated group, then setTerminatedBy is not called because reconstructed change has no editor`() {
+    given {
+      localState(
+        revision = 10,
+        title = "Title",
+        members = selfAndOthers
+      )
+      serverState(
+        revision = 11,
+        title = "Title",
+        members = selfAndOthers,
+        terminated = true
+      )
+      expectTableUpdate = true
+    }
+
+    val result = processor.forceSanityUpdateFromServer(0)
+
+    assertThat(result.updateStatus).isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer)
+      .isNotNull()
+      .transform {
+        assertThat(it.terminated, "group should be terminated").isEqualTo(true)
+      }
+
+    verify(exactly = 0) { groupTable.setTerminatedBy(any(), any()) }
+  }
+
+  @Test
+  fun `when group is already terminated, then force sanity update returns consistent`() {
+    given {
+      localState(
+        revision = 10,
+        members = selfAndOthers,
+        terminated = true
+      )
+    }
+
+    val result = processor.forceSanityUpdateFromServer(0)
+
+    assertThat(result.updateStatus, "already terminated group should not update")
+      .isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_CONSISTENT_OR_AHEAD)
+  }
+
+  @Test
+  fun `when P2P change is received for terminated group, then P2P change is not applied`() {
+    given {
+      localState(
+        revision = 5,
+        members = selfAndOthers,
+        terminated = true
+      )
+      changeSet {
+      }
+      apiCallParameters(requestedRevision = 5, includeFirst = false)
+      joinedAtRevision = 0
+    }
+
+    val signedChange = DecryptedGroupChange(
+      revision = 6,
+      newTitle = DecryptedString("New Title")
+    )
+
+    val result = processor.updateLocalGroupToRevision(
+      targetRevision = 6,
+      timestamp = 0,
+      signedGroupChange = signedChange,
+      serverGuid = UUID.randomUUID().toString()
+    )
+
+    assertThat(result.updateStatus, "terminated group should not accept P2P changes")
+      .isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_CONSISTENT_OR_AHEAD)
   }
 
   /**

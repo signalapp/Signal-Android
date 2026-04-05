@@ -450,6 +450,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       if (deletes > 0) {
         Log.i(TAG, "Trimming deleted $deletes messages thread: $threadId")
+        messages.fixPotentialDanglingCollapsibleEvent(threadId)
         setLastScrolled(threadId, 0)
         val threadDeleted = update(threadId = threadId, unarchive = false, syncThreadDelete = syncThreadTrimDeletes)
         notifyConversationListeners(threadId)
@@ -499,6 +500,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     messages.setAllReactionsSeen()
     messages.setAllVotesSeen()
+    messages.collapseAllPendingCollapsibleEvents()
     notifyConversationListListeners()
 
     return messageRecords
@@ -561,6 +563,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
         messages.setReactionsSeen(threadId, sinceTimestamp)
         messages.setVoteSeen(threadId, sinceTimestamp)
+        messages.collapsePendingCollapsibleEvents(threadId, sinceTimestamp)
 
         val unreadCount = messages.getUnreadCount(threadId)
         val unreadMentionsCount = messages.getUnreadMentionCount(threadId)
@@ -873,7 +876,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     var where = ""
 
     if (!includeInactiveGroups) {
-      where += "$MEANINGFUL_MESSAGES != 0 AND (${GroupTable.TABLE_NAME}.${GroupTable.ACTIVE} IS NULL OR ${GroupTable.TABLE_NAME}.${GroupTable.ACTIVE} = 1)"
+      where += "$MEANINGFUL_MESSAGES != 0 AND (${GroupTable.TABLE_NAME}.${GroupTable.IS_MEMBER} IS NULL OR (${GroupTable.TABLE_NAME}.${GroupTable.IS_MEMBER} = 1 AND ${GroupTable.TABLE_NAME}.${GroupTable.TERMINATED_BY} = 0))"
     } else {
       where += "$MEANINGFUL_MESSAGES != 0"
     }
@@ -907,6 +910,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     where += " AND $ARCHIVED = 0"
     where += " AND ${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED} = 0"
+    where += " AND ${RecipientTable.TABLE_NAME}.${RecipientTable.HIDDEN} = 0"
 
     if (SignalStore.releaseChannel.releaseChannelRecipientId != null) {
       where += " AND $TABLE_NAME.$RECIPIENT_ID != ${SignalStore.releaseChannel.releaseChannelRecipientId!!.toLong()}"
@@ -922,8 +926,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return readableDatabase.rawQuery(query, null)
   }
 
-  fun getRecentPushConversationList(limit: Int, includeInactiveGroups: Boolean): Cursor {
-    val activeGroupQuery = if (!includeInactiveGroups) " AND " + GroupTable.TABLE_NAME + "." + GroupTable.ACTIVE + " = 1" else ""
+  fun getRecentPushConversationList(limit: Int): Cursor {
     val where = """
       $MEANINGFUL_MESSAGES != 0 
       AND (
@@ -931,7 +934,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         OR (
           ${GroupTable.TABLE_NAME}.${GroupTable.GROUP_ID} NOT NULL 
           AND ${GroupTable.TABLE_NAME}.${GroupTable.MMS} = 0
-          $activeGroupQuery
+          AND ${GroupTable.TABLE_NAME}.${GroupTable.IS_MEMBER} = 1 
+          AND ${GroupTable.TABLE_NAME}.${GroupTable.TERMINATED_BY} = 0
         )
       )
     """

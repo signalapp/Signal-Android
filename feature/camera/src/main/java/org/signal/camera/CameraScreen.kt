@@ -76,7 +76,7 @@ fun CameraScreen(
   modifier: Modifier = Modifier,
   roundCorners: Boolean = true,
   contentAlignment: Alignment = Alignment.Center,
-  enableVideoCapture: Boolean = true,
+  captureMode: CameraCaptureMode = CameraCaptureMode.ImageAndVideoSimultaneous,
   enableQrScanning: Boolean = false,
   content: @Composable BoxScope.() -> Unit = {}
 ) {
@@ -106,7 +106,7 @@ fun CameraScreen(
         cameraProvider = cameraProvider,
         surfaceProvider = surfaceProvider,
         context = context,
-        enableVideoCapture = enableVideoCapture,
+        captureMode = captureMode,
         enableQrScanning = enableQrScanning
       )
     )

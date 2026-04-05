@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.AdminDeleteJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.GroupSendUtil
@@ -59,6 +60,7 @@ class AdminDeleteSendJob private constructor(
         parameters = Parameters.Builder()
           .setQueue(conversationRecipient.id.toQueueKey())
           .addConstraint(NetworkConstraint.KEY)
+          .addConstraint(SealedSenderConstraint.KEY)
           .setLifespan(1.days.inWholeMilliseconds)
           .setMaxAttempts(Parameters.UNLIMITED)
           .build()
@@ -106,6 +108,11 @@ class AdminDeleteSendJob private constructor(
     }
 
     val groupRecord = SignalDatabase.groups.getGroup(conversationRecipient.requireGroupId())
+    if (groupRecord.isPresent && groupRecord.get().isTerminated) {
+      Log.w(TAG, "Cannot admin delete in a terminated group.")
+      return Result.failure()
+    }
+
     if (groupRecord.isEmpty || !groupRecord.get().isAdmin(Recipient.self())) {
       Log.w(TAG, "Cannot delete because you are not an admin.")
       return Result.failure()

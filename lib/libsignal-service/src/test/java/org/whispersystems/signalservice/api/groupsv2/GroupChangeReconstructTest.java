@@ -45,7 +45,7 @@ public final class GroupChangeReconstructTest {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroup.class, ProtobufTestUtils.IGNORED_DECRYPTED_GROUP_TAGS);
 
     assertEquals("GroupChangeReconstruct and its tests need updating to account for new fields on " + DecryptedGroup.class.getName(),
-                 13, maxFieldFound);
+                 14, maxFieldFound);
   }
 
   @Test
@@ -461,5 +461,48 @@ public final class GroupChangeReconstructTest {
     assertEquals(UuidUtil.toByteString(memberUuid), change.modifyMemberLabels.get(0).aciBytes);
     assertEquals("", change.modifyMemberLabels.get(0).labelEmoji);
     assertEquals("", change.modifyMemberLabels.get(0).labelString);
+  }
+
+  @Test
+  public void new_member_label_access() {
+    DecryptedGroup from = new DecryptedGroup.Builder()
+        .accessControl(
+            new AccessControl.Builder()
+                .memberLabel(AccessControl.AccessRequired.ADMINISTRATOR)
+                .build())
+        .build();
+
+    DecryptedGroup to = new DecryptedGroup.Builder()
+        .accessControl(
+            new AccessControl.Builder()
+                .memberLabel(AccessControl.AccessRequired.MEMBER)
+                .build())
+        .build();
+
+    DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
+
+    assertEquals(
+        new DecryptedGroupChange.Builder()
+            .newMemberLabelAccess(AccessControl.AccessRequired.MEMBER)
+            .build(),
+        decryptedGroupChange);
+  }
+
+  @Test
+  public void terminate_group() {
+    DecryptedGroup from = new DecryptedGroup.Builder()
+        .build();
+
+    DecryptedGroup to = new DecryptedGroup.Builder()
+        .terminated(true)
+        .build();
+
+    DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
+
+    assertEquals(
+        new DecryptedGroupChange.Builder()
+            .terminateGroup(true)
+            .build(),
+        decryptedGroupChange);
   }
 }

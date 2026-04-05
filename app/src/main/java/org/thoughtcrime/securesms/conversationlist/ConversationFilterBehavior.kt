@@ -22,14 +22,14 @@ class ConversationFilterBehavior(context: Context, attributeSet: AttributeSet) :
 
   override fun onStopNestedScroll(coordinatorLayout: CoordinatorLayout, child: AppBarLayout, target: View, type: Int) {
     super.onStopNestedScroll(coordinatorLayout, child, target, type)
-    child.setExpanded(false, true)
     callback?.onStopNestedScroll()
+    child.setExpanded(false, true)
   }
 
   override fun onTouchEvent(parent: CoordinatorLayout, child: AppBarLayout, ev: MotionEvent): Boolean {
     if (ev.action == MotionEvent.ACTION_UP) {
-      child.setExpanded(false, true)
       callback?.onStopNestedScroll()
+      child.setExpanded(false, true)
     }
     return super.onTouchEvent(parent, child, ev)
   }

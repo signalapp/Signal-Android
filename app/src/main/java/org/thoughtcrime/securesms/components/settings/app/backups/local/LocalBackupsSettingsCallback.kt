@@ -18,8 +18,6 @@ import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.NoExternalStorageException
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob.enqueueArchive
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.preferences.BackupFrequencyPickerDialogFragment
@@ -158,12 +156,7 @@ class DefaultLocalBackupsSettingsCallback(
   }
 
   override fun onTurnOffAndDeleteConfirmed() {
-    SignalStore.backup.newLocalBackupsEnabled = false
-
-    val path = SignalStore.backup.newLocalBackupsDirectory
-    SignalStore.backup.newLocalBackupsDirectory = null
-    AppDependencies.jobManager.cancelAllInQueue(LocalBackupJob.QUEUE)
-    BackupUtil.deleteUnifiedBackups(fragment.requireContext(), path)
+    viewModel.turnOffAndDelete(fragment.requireContext())
   }
 
   /** Update the settings on disk and then schedule a backup.

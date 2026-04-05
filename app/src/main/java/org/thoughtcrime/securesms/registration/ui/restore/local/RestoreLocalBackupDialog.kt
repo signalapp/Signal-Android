@@ -13,13 +13,15 @@ import org.thoughtcrime.securesms.R
 
 enum class RestoreLocalBackupDialog {
   FAILED_TO_LOAD_ARCHIVE,
-  SKIP_RESTORE_WARNING
+  SKIP_RESTORE_WARNING,
+  CONFIRM_DIFFERENT_ACCOUNT
 }
 
 @Composable
 fun RestoreLocalBackupDialogDisplay(
   dialog: RestoreLocalBackupDialog?,
   onDialogConfirmed: (RestoreLocalBackupDialog) -> Unit,
+  onDialogDenied: (RestoreLocalBackupDialog) -> Unit,
   onDismiss: () -> Unit
 ) {
   when (dialog) {
@@ -33,14 +35,29 @@ fun RestoreLocalBackupDialogDisplay(
 
     RestoreLocalBackupDialog.SKIP_RESTORE_WARNING -> {
       Dialogs.SimpleAlertDialog(
-        title = "Skip restore?",
-        body = "If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.",
-        confirm = "Skip restore",
+        title = stringResource(R.string.RestoreLocalBackupDialog__skip_restore),
+        body = stringResource(R.string.RestoreLocalBackupDialog__skip_restore_body),
+        confirm = stringResource(R.string.RestoreLocalBackupDialog__skip_restore_confirm),
         confirmColor = MaterialTheme.colorScheme.error,
         onConfirm = {
           onDialogConfirmed(RestoreLocalBackupDialog.SKIP_RESTORE_WARNING)
         },
         dismiss = stringResource(android.R.string.cancel)
+      )
+    }
+
+    RestoreLocalBackupDialog.CONFIRM_DIFFERENT_ACCOUNT -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.RestoreLocalBackupDialog__restore_to_new_account),
+        body = stringResource(R.string.RestoreLocalBackupDialog__restore_to_new_account_body),
+        confirm = stringResource(R.string.RestoreLocalBackupDialog__restore),
+        dismiss = stringResource(android.R.string.cancel),
+        onConfirm = {
+          onDialogConfirmed(RestoreLocalBackupDialog.CONFIRM_DIFFERENT_ACCOUNT)
+        },
+        onDeny = {
+          onDialogDenied(RestoreLocalBackupDialog.CONFIRM_DIFFERENT_ACCOUNT)
+        }
       )
     }
 

@@ -69,6 +69,7 @@ message AccessControl {
   AccessRequired attributes = 1;
   AccessRequired members = 2;
   AccessRequired addFromInviteLink = 3;
+  AccessRequired memberLabel = 4;
 }
 
 message Group {
@@ -87,7 +88,8 @@ message Group {
   bytes inviteLinkPassword = 10;
   bool announcements_only = 12;
   repeated MemberBanned members_banned = 13;
-  // next: 14
+  bool terminated = 14;
+  // next: 15
 }
 
 message GroupAttributeBlob {
@@ -225,6 +227,10 @@ message GroupChange {
       AccessControl.AccessRequired addFromInviteLinkAccess = 1;
     }
 
+    message ModifyMemberLabelAccessControlAction {
+      AccessControl.AccessRequired memberLabelAccess = 1;
+    }
+
     message ModifyInviteLinkPasswordAction {
       bytes inviteLinkPassword = 1;
     }
@@ -232,6 +238,8 @@ message GroupChange {
     message ModifyAnnouncementsOnlyAction {
       bool announcements_only = 1;
     }
+
+    message TerminateGroupAction {}
 
     bytes sourceUserId = 1;
     // clients should not provide this value; the server will provide it in the response buffer to ensure the signature is binding to a particular group
@@ -262,7 +270,9 @@ message GroupChange {
     repeated DeleteMemberBannedAction delete_members_banned = 23;  // change epoch = 4
     repeated PromoteMemberPendingPniAciProfileKeyAction promote_members_pending_pni_aci_profile_key = 24;  // change epoch = 5
     repeated ModifyMemberLabelAction modifyMemberLabels = 26; // change epoch = 6;
-    // next: 27
+    ModifyMemberLabelAccessControlAction modifyMemberLabelAccess = 27; // change epoch = 6
+    TerminateGroupAction terminate_group = 28; // change epoch = 7
+    // next: 29
   }
 
   bytes actions = 1;

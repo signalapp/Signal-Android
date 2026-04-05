@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.conversation.v2.computed.FormattedDate;
 import org.thoughtcrime.securesms.database.BodyRangeUtil;
+import org.thoughtcrime.securesms.database.CollapsedState;
+import org.thoughtcrime.securesms.database.CollapsibleEvents;
 import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -24,6 +26,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel;
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelRepository;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 
@@ -31,6 +34,7 @@ import java.security.MessageDigest;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * A view level model used to pass arbitrary message related information needed
@@ -52,6 +56,8 @@ public class ConversationMessage {
   @Nullable private final MemberLabel            memberLabel;
   @Nullable private final MemberLabel            quoteMemberLabel;
   @Nullable private final Recipient              deletedByRecipient;
+            private final int                    collapsedSize;
+            private final long                   collapsedExpirationInMs;
 
   private ConversationMessage(@NonNull MessageRecord messageRecord,
                               @Nullable CharSequence body,
@@ -63,18 +69,22 @@ public class ConversationMessage {
                               @NonNull ComputedProperties computedProperties,
                               @Nullable MemberLabel memberLabel,
                               @Nullable MemberLabel quoteMemberLabel,
-                              @Nullable Recipient deletedByRecipient)
+                              @Nullable Recipient deletedByRecipient,
+                              int collapsedSize,
+                              long collapsedExpirationInMs)
   {
-    this.messageRecord      = messageRecord;
-    this.hasBeenQuoted      = hasBeenQuoted;
-    this.mentions           = mentions != null ? mentions : Collections.emptyList();
-    this.styleResult        = styleResult != null ? styleResult : MessageStyler.Result.none();
-    this.threadRecipient    = threadRecipient;
-    this.originalMessage    = originalMessage;
-    this.computedProperties = computedProperties;
-    this.memberLabel        = memberLabel;
-    this.quoteMemberLabel   = quoteMemberLabel;
-    this.deletedByRecipient = deletedByRecipient;
+    this.messageRecord           = messageRecord;
+    this.hasBeenQuoted           = hasBeenQuoted;
+    this.mentions                = mentions != null ? mentions : Collections.emptyList();
+    this.styleResult             = styleResult != null ? styleResult : MessageStyler.Result.none();
+    this.threadRecipient         = threadRecipient;
+    this.originalMessage         = originalMessage;
+    this.computedProperties      = computedProperties;
+    this.memberLabel             = memberLabel;
+    this.quoteMemberLabel        = quoteMemberLabel;
+    this.deletedByRecipient      = deletedByRecipient;
+    this.collapsedSize           = collapsedSize;
+    this.collapsedExpirationInMs = collapsedExpirationInMs;
 
     if (body != null) {
       this.body = SpannableString.valueOf(body);
@@ -103,6 +113,10 @@ public class ConversationMessage {
     return multiselectCollection;
   }
 
+  public long getCollapsedExpirationInMs() {
+    return collapsedExpirationInMs;
+  }
+
   public boolean hasBeenQuoted() {
     return hasBeenQuoted;
   }
@@ -121,6 +135,10 @@ public class ConversationMessage {
 
   public @Nullable Recipient getDeletedByRecipient() {
     return deletedByRecipient;
+  }
+
+  public int getCollapsedSize() {
+    return collapsedSize;
   }
 
   @Override
@@ -187,6 +205,14 @@ public class ConversationMessage {
     return threadRecipient;
   }
 
+  public boolean isActiveCollapsibleHead() {
+    return collapsedSize > 1 && CollapsedState.isHead(messageRecord.getCollapsedState());
+  }
+
+  public boolean isActiveCollapsedHead() {
+    return collapsedSize > 1 && messageRecord.getCollapsedState() == CollapsedState.HEAD_COLLAPSED;
+  }
+
   public static @NonNull FormattedDate getFormattedDate(@NonNull Context context, @NonNull MessageRecord messageRecord) {
     if (MessageRecordUtil.isScheduled(messageRecord)) {
       String time = DateUtils.getOnlyTimeString(context, ((MmsMessageRecord) messageRecord).getScheduledDate());
@@ -231,6 +257,25 @@ public class ConversationMessage {
                                                                         boolean hasBeenQuoted,
                                                                         @NonNull Recipient threadRecipient)
     {
+      return createWithUnresolvedData(context, messageRecord, body, mentions, hasBeenQuoted, threadRecipient, null);
+    }
+
+    /**
+     * Creates a {@link ConversationMessage} wrapping the provided MessageRecord and will update and modify the provided
+     * mentions from placeholder to actual. This method may perform database operations to resolve mentions to display names.
+     *
+     * @param mentions          List of placeholder mentions to be used to update the body in the provided MessageRecord.
+     * @param prefetchedLabels  Pre-fetched member labels keyed by RecipientId, or null to fetch on demand.
+     */
+    @WorkerThread
+    public static @NonNull ConversationMessage createWithUnresolvedData(@NonNull Context context,
+                                                                        @NonNull MessageRecord messageRecord,
+                                                                        @NonNull CharSequence body,
+                                                                        @Nullable List<Mention> mentions,
+                                                                        boolean hasBeenQuoted,
+                                                                        @NonNull Recipient threadRecipient,
+                                                                        @Nullable Map<RecipientId, MemberLabel> prefetchedLabels)
+    {
       SpannableString      styledAndMentionBody = null;
       MessageStyler.Result styleResult          = MessageStyler.Result.none();
 
@@ -257,9 +302,18 @@ public class ConversationMessage {
       }
 
       FormattedDate formattedDate    = getFormattedDate(context, messageRecord);
-      MemberLabel   memberLabel      = getMemberLabel(messageRecord, threadRecipient);
-      MemberLabel   quoteMemberLabel = getQuoteMemberLabel(messageRecord, threadRecipient);
+      MemberLabel   memberLabel      = getMemberLabel(messageRecord, threadRecipient, prefetchedLabels);
+      MemberLabel   quoteMemberLabel = getQuoteMemberLabel(messageRecord, threadRecipient, prefetchedLabels);
       Recipient     deletedBy        = messageRecord.getDeletedBy() != null ? Recipient.resolved(messageRecord.getDeletedBy()) : null;
+
+      int collapsedSize = 0;
+      long collapsedExpirationInMs = 0;
+      if (CollapsedState.isHead(messageRecord.getCollapsedState())) {
+        collapsedSize = SignalDatabase.messages().getCollapsedCount(messageRecord.getId());
+        if (CollapsibleEvents.getCollapsibleType(messageRecord.getType(), messageRecord.getMessageExtras()) == CollapsibleEvents.CollapsibleType.DISAPPEARING_TIMER && collapsedSize > 1) {
+          collapsedExpirationInMs = SignalDatabase.messages().getDisappearingTimerStateForCollapsedSet(messageRecord.getId());
+        }
+      }
 
       return new ConversationMessage(messageRecord,
                                      styledAndMentionBody != null ? styledAndMentionBody : mentionsUpdate != null ? mentionsUpdate.getBody() : body,
@@ -271,7 +325,9 @@ public class ConversationMessage {
                                      new ComputedProperties(formattedDate),
                                      memberLabel,
                                      quoteMemberLabel,
-                                     deletedBy);
+                                     deletedBy,
+                                     collapsedSize,
+                                     collapsedExpirationInMs);
     }
 
     /**
@@ -310,21 +366,30 @@ public class ConversationMessage {
     }
 
     @WorkerThread
-    private static @Nullable MemberLabel getMemberLabel(@NonNull MessageRecord messageRecord, @NonNull Recipient threadRecipient) {
+    private static @Nullable MemberLabel getMemberLabel(@NonNull MessageRecord messageRecord, @NonNull Recipient threadRecipient, @Nullable Map<RecipientId, MemberLabel> prefetchedLabels) {
       if (messageRecord.isOutgoing() || !threadRecipient.isPushV2Group()) {
         return null;
       }
-      return MemberLabelRepository.getInstance().getLabelJava(threadRecipient.requireGroupId().requireV2(), messageRecord.getFromRecipient());
+
+      if (prefetchedLabels != null) {
+        return prefetchedLabels.get(messageRecord.getFromRecipient().getId());
+      }
+
+      return MemberLabelRepository.getInstance().getLabelSync(threadRecipient.requireGroupId().requireV2(), messageRecord.getFromRecipient());
     }
 
     @WorkerThread
-    private static @Nullable MemberLabel getQuoteMemberLabel(@NonNull MessageRecord messageRecord, @NonNull Recipient threadRecipient) {
+    private static @Nullable MemberLabel getQuoteMemberLabel(@NonNull MessageRecord messageRecord, @NonNull Recipient threadRecipient, @Nullable Map<RecipientId, MemberLabel> prefetchedLabels) {
       if (!threadRecipient.isPushV2Group() || !(messageRecord instanceof final MmsMessageRecord mmsMessage) || mmsMessage.getQuote() == null) {
         return null;
       }
 
+      if (prefetchedLabels != null) {
+        return prefetchedLabels.get(mmsMessage.getQuote().getAuthor());
+      }
+
       Recipient quoteAuthor = Recipient.resolved(mmsMessage.getQuote().getAuthor());
-      return MemberLabelRepository.getInstance().getLabelJava(threadRecipient.requireGroupId().requireV2(), quoteAuthor);
+      return MemberLabelRepository.getInstance().getLabelSync(threadRecipient.requireGroupId().requireV2(), quoteAuthor);
     }
   }
 }

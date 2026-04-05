@@ -46,7 +46,7 @@ import org.signal.core.models.media.Media;
 import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXModelBlocklist;
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig;
 import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton;
 import org.signal.glide.decryptableuri.DecryptableUri;
@@ -60,7 +60,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
- * Camera capture implemented with the legacy camera API's. Should only be used if a device is on the {@link CameraXModelBlocklist}.
+ * Camera capture implemented with the legacy camera API's. Should only be used if a device is on the {@link CameraXRemoteConfig}.
  */
 public class Camera1Fragment extends LoggingFragment implements CameraFragment,
                                                                 TextureView.SurfaceTextureListener,

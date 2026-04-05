@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import androidx.annotation.AnyThread
 import androidx.annotation.WorkerThread
+import androidx.core.text.buildSpannedString
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.collections.immutable.toImmutableList
@@ -41,6 +42,7 @@ import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -48,18 +50,22 @@ import org.thoughtcrime.securesms.phonenumbers.NumberUtil
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.external
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
+import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
+import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.UsernameUtil.isValidUsernameForSearch
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.util.OptionalUtil
 import java.util.LinkedList
 import java.util.Objects
 import java.util.Optional
+import org.signal.core.ui.R as CoreUiR
 
 /**
- * A recipient represents something you can send messages to, or receive messages from. They could be individuals, groups, or even distribution lists.
+ * A recipient represents something you can send messages to or receive messages from. They could be individuals, groups, or even distribution lists.
  * This class is a snapshot of common state that is used to present recipients through the UI.
  *
  * It's important to note that this is only a snapshot, and the actual state of a recipient can change over time.
@@ -242,7 +248,7 @@ class Recipient(
       participantIdsValue.isEmpty() || participantIdsValue.size == 1 && participantIdsValue.contains(self().id)
     }
 
-  /** Whether the group is inactive. Groups become inactive when you leave them. */
+  /** Whether the group is inactive. Groups become inactive when you leave them or when the group is terminated. */
   val isInactiveGroup: Boolean
     get() = isGroup && !isActiveGroup
 
@@ -387,13 +393,14 @@ class Recipient(
    * The badge to feature on a recipient's avatar, if any.
    * This value respects the local user's [SignalStore.inAppPayments.getDisplayBadgesOnProfile()] preference.
    */
-  val featuredBadge: Badge? get() {
-    return if (isSelf && !SignalStore.inAppPayments.getDisplayBadgesOnProfile()) {
-      null
-    } else {
-      badges.firstOrNull()
+  val featuredBadge: Badge?
+    get() {
+      return if (isSelf && !SignalStore.inAppPayments.getDisplayBadgesOnProfile()) {
+        null
+      } else {
+        badges.firstOrNull()
+      }
     }
-  }
 
   /** A string combining the about emoji + text for displaying various places. */
   val combinedAboutAndEmoji: String? by lazy { listOf(aboutEmoji, about).filter { it.isNotNullOrBlank() }.joinToString(separator = " ").nullIfBlank() }
@@ -659,9 +666,50 @@ class Recipient(
     }
   }
 
+  /**
+   * Gets the recipient's display name with any applicable decorations:
+   * - A badge icon for verified recipients
+   * - A person-circle glyph for system contacts
+   * - A directional chevron for tappable individual profiles
+   */
+  fun getDisplayNameForHeadline(context: Context): CharSequence {
+    val name = if (isSelf) context.getString(R.string.note_to_self) else getDisplayName(context)
+
+    return buildSpannedString {
+      append(name)
+
+      if (showVerified) {
+        val verifiedBadge = ContextUtil.requireDrawable(context, R.drawable.ic_official_28)
+        SpanUtil.appendSpacer(this, 8)
+        SpanUtil.appendCenteredImageSpanWithoutSpace(this, verifiedBadge, 28, 28)
+      } else if (isSystemContact) {
+        val systemContactGlyph = SignalSymbols
+          .getSpannedString(context, SignalSymbols.Weight.BOLD, SignalSymbols.Glyph.PERSON_CIRCLE)
+          .let { SpanUtil.ofSize(it, 20) }
+
+        append("\u00A0")
+        append(systemContactGlyph)
+      }
+
+      if (isIndividual && !isSelf) {
+        val isLtr = ViewUtil.isLtr(context)
+        val chevronGlyph = SignalSymbols.getSpannedString(context, SignalSymbols.Weight.BOLD, if (isLtr) SignalSymbols.Glyph.CHEVRON_RIGHT else SignalSymbols.Glyph.CHEVRON_LEFT, CoreUiR.color.signal_colorOutline)
+          .let { SpanUtil.ofSize(it, 24) }
+
+        if (isLtr) {
+          append("\u00A0")
+          append(chevronGlyph)
+        } else {
+          insert(0, "\u00A0")
+          insert(0, chevronGlyph)
+        }
+      }
+    }
+  }
+
   fun getFallbackAvatar(): FallbackAvatar {
     return if (isSelf) {
-      FallbackAvatar.Resource.Local(avatarColor)
+      FallbackAvatar.Resource.NoteToSelf(avatarColor)
     } else if (isResolving) {
       FallbackAvatar.Transparent
     } else if (isDistributionList) {

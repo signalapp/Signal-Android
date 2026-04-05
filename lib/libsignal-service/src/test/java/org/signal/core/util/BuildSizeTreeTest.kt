@@ -16,7 +16,7 @@ import org.whispersystems.signalservice.internal.push.BodyRange
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.GroupContextV2
-import org.whispersystems.signalservice.internal.push.SyncMessage
+import org.whispersystems.signalservice.internal.push.PniSignatureMessage
 
 class BuildSizeTreeTest {
 
@@ -136,12 +136,12 @@ class BuildSizeTreeTest {
   fun `multiple top-level fields are all included`() {
     val msg = Content(
       dataMessage = DataMessage(body = "hi"),
-      syncMessage = SyncMessage()
+      pniSignatureMessage = PniSignatureMessage()
     )
     val tree = msg.buildSizeTree("Content")
 
     assertThat(tree).contains("dataMessage(")
-    assertThat(tree).contains("syncMessage(")
+    assertThat(tree).contains("pniSignatureMessage(")
   }
 
   @Test

@@ -10,6 +10,7 @@ import org.signal.core.models.backup.BackupKey
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.isNotNullOrBlank
+import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.zkgroup.GenericServerPublicParams
@@ -43,6 +44,10 @@ class ArchiveApi(
   private val unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket,
   private val pushServiceSocket: PushServiceSocket
 ) {
+
+  companion object {
+    private val TAG = Log.tag(ArchiveApi::class)
+  }
 
   private val backupServerPublicParams: GenericServerPublicParams = GenericServerPublicParams(pushServiceSocket.configuration.backupServerPublicParams)
 
@@ -236,11 +241,38 @@ class ArchiveApi(
   }
 
   /**
-   * Uploads your main backup file to cloud storage.
+   * Uploads a pre-encrypted backup file, automatically choosing the best upload strategy based on CDN version.
+   * For CDN3, uses TUS "Creation With Upload" (single POST). For other CDNs, falls back to the legacy
+   * resumable upload flow.
+   *
+   * If [existingResumeUrl] is provided, the upload resumes using the existing URL (HEAD+PATCH).
+   * Otherwise, a new upload is initiated and [onResumeUrlCreated] is called with the resumable URL
+   * before the upload begins, allowing callers to persist it for crash recovery.
    */
-  fun uploadBackupFile(uploadForm: AttachmentUploadForm, resumableUploadUrl: String, data: InputStream, dataLength: Long, progressListener: SignalServiceAttachment.ProgressListener? = null): NetworkResult<Unit> {
+  fun uploadBackupFile(
+    uploadForm: AttachmentUploadForm,
+    data: InputStream,
+    dataLength: Long,
+    checksumSha256: String? = null,
+    progressListener: SignalServiceAttachment.ProgressListener? = null,
+    existingResumeUrl: String? = null,
+    onResumeUrlCreated: ((String) -> Unit)? = null
+  ): NetworkResult<Unit> {
     return NetworkResult.fromFetch {
-      pushServiceSocket.uploadBackupFile(uploadForm, resumableUploadUrl, data, dataLength, progressListener)
+      if (existingResumeUrl != null) {
+        Log.i(TAG, "Resuming backup upload via HEAD+PATCH")
+        pushServiceSocket.uploadBackupFile(uploadForm, existingResumeUrl, data, dataLength, progressListener)
+      } else if (uploadForm.cdn == 3) {
+        Log.i(TAG, "Fresh backup upload via creation-with-upload (CDN3)")
+        val resumeUrl = uploadForm.signedUploadLocation + "/" + uploadForm.key
+        onResumeUrlCreated?.invoke(resumeUrl)
+        pushServiceSocket.uploadBackupFile(uploadForm, checksumSha256, data, dataLength, progressListener, null)
+      } else {
+        Log.i(TAG, "Fresh backup upload via legacy flow (CDN${uploadForm.cdn})")
+        val resumeUrl = pushServiceSocket.getResumableUploadUrl(uploadForm, checksumSha256)
+        onResumeUrlCreated?.invoke(resumeUrl)
+        pushServiceSocket.uploadBackupFile(uploadForm, resumeUrl, data, dataLength, progressListener)
+      }
     }
   }
 

@@ -9,9 +9,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.annimon.stream.ComparatorCompat;
 import com.annimon.stream.Stream;
 
+import org.signal.core.models.ServiceId;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.storageservice.storage.protos.groups.AccessControl;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
@@ -22,15 +22,14 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
+import org.thoughtcrime.securesms.groups.ui.GroupMemberOrder;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkUrlAndStatus;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
-import org.signal.core.models.ServiceId;
 
-import java.text.Collator;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -38,15 +37,12 @@ import java.util.Set;
 
 public final class LiveGroup {
 
-  private static final Collator                                        collator          = Collator.getInstance();
-  private static final Comparator<GroupMemberEntry.FullMember>         LOCAL_FIRST       = (m1, m2) -> Boolean.compare(m2.getMember().isSelf(), m1.getMember().isSelf());
-  private static final Comparator<GroupMemberEntry.FullMember>         ADMIN_FIRST       = (m1, m2) -> Boolean.compare(m2.isAdmin(), m1.isAdmin());
-  private static final Comparator<GroupMemberEntry.FullMember>         HAS_DISPLAY_NAME  = (m1, m2) -> Boolean.compare(m2.getMember().hasAUserSetDisplayName(AppDependencies.getApplication()), m1.getMember().hasAUserSetDisplayName(AppDependencies.getApplication()));
-  private static final Comparator<GroupMemberEntry.FullMember>         ALPHABETICAL      = (m1, m2) -> collator.compare(m1.getMember().getDisplayName(AppDependencies.getApplication()).toLowerCase(), m2.getMember().getDisplayName(AppDependencies.getApplication()).toLowerCase());
-  private static final Comparator<? super GroupMemberEntry.FullMember> MEMBER_ORDER      = ComparatorCompat.chain(LOCAL_FIRST)
-                                                                                                           .thenComparing(ADMIN_FIRST)
-                                                                                                           .thenComparing(HAS_DISPLAY_NAME)
-                                                                                                           .thenComparing(ALPHABETICAL);
+  private static final Comparator<GroupMemberEntry.FullMember> MEMBER_ORDER = GroupMemberOrder.comparator(
+      it -> it.getMember().isSelf(),
+      it -> it.isAdmin(),
+      it -> it.getMember().hasAUserSetDisplayName(AppDependencies.getApplication()),
+      it -> it.getMember().getDisplayName(AppDependencies.getApplication())
+  );
 
   private final GroupTable                                  groupDatabase;
   private final LiveData<Recipient>                         recipient;
@@ -64,8 +60,6 @@ public final class LiveGroup {
     this.groupRecord       = LiveDataUtil.filterNotNull(LiveDataUtil.mapAsync(recipient, groupRecipient -> groupDatabase.getGroup(groupRecipient.getId()).orElse(null)));
     this.fullMembers       = mapToFullMembers(this.groupRecord);
     this.requestingMembers = mapToRequestingMembers(this.groupRecord);
-
-    collator.setStrength(Collator.PRIMARY);
 
     if (groupId.isV2()) {
       LiveData<GroupTable.V2GroupProperties> v2Properties = Transformations.map(this.groupRecord, GroupRecord::requireV2GroupProperties);
@@ -143,6 +137,10 @@ public final class LiveGroup {
     return recipient;
   }
 
+  public LiveData<GroupRecord> getGroupRecord() {
+    return groupRecord;
+  }
+
   public LiveData<Boolean> isSelfAdmin() {
     return Transformations.map(groupRecord, g -> g.isAdmin(Recipient.self()));
   }
@@ -153,6 +151,14 @@ public final class LiveGroup {
 
   public LiveData<Boolean> isActive() {
     return Transformations.map(groupRecord, GroupRecord::isActive);
+  }
+
+  public LiveData<Boolean> isTerminated() {
+    return Transformations.map(groupRecord, GroupRecord::isTerminated);
+  }
+
+  public LiveData<Boolean> isMember() {
+    return Transformations.map(groupRecord, GroupRecord::isMember);
   }
 
   public LiveData<Boolean> getRecipientIsAdmin(@NonNull RecipientId recipientId) {
@@ -182,6 +188,11 @@ public final class LiveGroup {
     return Transformations.map(groupRecord, GroupRecord::getAttributesAccessControl);
   }
 
+  @NonNull
+  public LiveData<GroupAccessControl> getMemberLabelAccessControl() {
+    return Transformations.map(groupRecord, GroupRecord::getMemberLabelAccessControl);
+  }
+
   public LiveData<List<GroupMemberEntry.FullMember>> getNonAdminFullMembers() {
     return Transformations.map(fullMembers,
                                members -> Stream.of(members)
@@ -202,11 +213,13 @@ public final class LiveGroup {
   }
 
   public LiveData<Boolean> selfCanEditGroupAttributes() {
-    return LiveDataUtil.combineLatest(selfMemberLevel(), getAttributesAccessControl(), LiveGroup::applyAccessControl);
+    return LiveDataUtil.combineLatest(selfMemberLevel(), getAttributesAccessControl(), isActive(),
+                                      (level, access, active) -> active && applyAccessControl(level, access));
   }
 
   public LiveData<Boolean> selfCanAddMembers() {
-    return LiveDataUtil.combineLatest(selfMemberLevel(), getMembershipAdditionAccessControl(), LiveGroup::applyAccessControl);
+    return LiveDataUtil.combineLatest(selfMemberLevel(), getMembershipAdditionAccessControl(), isActive(),
+                                      (level, access, active) -> active && applyAccessControl(level, access));
   }
 
   /**

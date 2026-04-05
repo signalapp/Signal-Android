@@ -35,6 +35,9 @@ class RegistrationApplication : Application() {
   companion object {
     // Staging SVR2 mrEnclave value
     private const val SVR2_MRENCLAVE = "97f151f6ed078edbbfd72fa9cae694dcc08353f1f5e8d9ccd79a971b10ffc535"
+
+    lateinit var serviceConfiguration: SignalServiceConfiguration
+      private set
   }
 
   override fun onCreate() {
@@ -46,6 +49,7 @@ class RegistrationApplication : Application() {
 
     val trustStore = SampleTrustStore()
     val configuration = createServiceConfiguration(trustStore)
+    serviceConfiguration = configuration
     val pushServiceSocket = createPushServiceSocket(configuration)
     val demoNetworkController = DemoNetworkController(this, pushServiceSocket, configuration, SVR2_MRENCLAVE)
     val networkController = DebugNetworkController(demoNetworkController)

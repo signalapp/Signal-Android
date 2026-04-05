@@ -20,6 +20,26 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Miles Morales" />
 
+    <TextView
+        android:id="@+id/bio_preference_terminated_pill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/terminated_pill_background"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="6dp"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/signal_colorOnSurface"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bio_preference_headline"
+        tools:text="This group was ended."
+        tools:visibility="visible" />
+
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/bio_preference_subhead_1"
         android:layout_width="0dp"
@@ -33,7 +53,7 @@
         android:textColor="@color/signal_text_secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bio_preference_headline"
+        app:layout_constraintTop_toBottomOf="@id/bio_preference_terminated_pill"
         tools:text=":-) Just hanging around." />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView

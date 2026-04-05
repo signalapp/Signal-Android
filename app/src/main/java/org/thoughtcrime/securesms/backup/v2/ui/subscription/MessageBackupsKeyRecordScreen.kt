@@ -183,7 +183,7 @@ fun MessageBackupsKeyRecordScreen(
 
           item {
             val text = if (notifyKeyIsSameAsOnDeviceBackupKey) {
-              stringResource(R.string.MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key)
+              stringResource(R.string.MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key)
             } else {
               stringResource(R.string.MessageBackupsKeyRecordScreen__this_key_is_required_to_recover)
             }

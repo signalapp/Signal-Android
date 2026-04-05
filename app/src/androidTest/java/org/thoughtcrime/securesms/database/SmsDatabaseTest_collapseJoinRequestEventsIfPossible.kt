@@ -313,7 +313,7 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
       timestamp = wallClock,
       groupId = groupId,
       update = updateDescription,
-      isGroupAdd = false,
+      isNotifiable = false,
       serverGuid = null
     )
   }

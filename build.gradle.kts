@@ -91,6 +91,11 @@ gradle.projectsEvaluated {
     appTestTask?.let { dependsOn(it) }
     appLintTask?.let { dependsOn(it) }
 
+    // All subproject ktlint checks
+    subprojects.forEach { subproject ->
+      subproject.tasks.findByName("ktlintCheck")?.let { dependsOn(it) }
+    }
+
     // Library module tasks
     subprojects.filter { it.name != "Signal-Android" }.forEach { subproject ->
       val testTask = subproject.tasks.findByName("testDebugUnitTest")

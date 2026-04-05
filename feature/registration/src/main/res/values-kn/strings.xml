@@ -84,4 +84,50 @@
     <string name="VerificationCodeScreen__registration_error">ನೋಂದಣಿ ವಿಫಲವಾಗಿದೆ. ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Button text for having trouble with verification -->
     <string name="VerificationCodeScreen__having_trouble">ತೊಂದರೆ ಇದೆಯೇ?</string>
+
+    <!-- RestoreWelcomeBottomSheet -->
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">ನನ್ನ ಬಳಿ ನನ್ನ ಹಳೆಯ ಫೋನ್ ಇದೆ</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">ತ್ವರಿತವಾಗಿ ಪ್ರಾರಂಭಿಸಲು ನಿಮ್ಮ ಪ್ರಸ್ತುತ Signal ಖಾತೆಯಿಂದ QR ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">ನನ್ನ ಬಳಿ ನನ್ನ ಹಳೆಯ ಫೋನ್ ಇಲ್ಲ</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">ಅಥವಾ ನೀವು ಅದೇ ಸಾಧನದಲ್ಲಿ Signal ಅನ್ನು ಮರು-ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡುತ್ತಿದ್ದೀರಿ</string>
+
+    <!-- ArchiveRestoreSelectionScreen -->
+    <!-- Title text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">ಖಾತೆಯನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಿ ಅಥವಾ ವರ್ಗಾಯಿಸಿ</string>
+    <!-- Subtitle text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__subheading">ನಿಮ್ಮ ಸಂದೇಶ ಇತಿಹಾಸ ಮತ್ತು ಖಾತೆಯ ಡೇಟಾವನ್ನು ನೀವು ಹೇಗೆ ರಿಸ್ಟೋರ್ ಮಾಡಲು ಬಯಸುತ್ತೀರಿ ಎಂಬುದನ್ನು ಆಯ್ಕೆಮಾಡಿ.</string>
+    <!-- Title for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">Signal ಬ್ಯಾಕಪ್‌ಗಳಿಂದ</string>
+    <!-- Subtitle for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">ನಿಮ್ಮ ಉಚಿತ ಅಥವಾ ಪಾವತಿಸಿದ Signal ಬ್ಯಾಕಪ್ ಪ್ಲ್ಯಾನ್</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಿ</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ನೀವು ಸೇವ್ ಮಾಡಿರುವ ಬ್ಯಾಕಪ್‌ನಿಂದ ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗಳನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಿ.</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">ವರ್ಗಾವಣೆ ಮಾಡದೆಯೇ ಮುಂದುವರೆಸಿ</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">ಮೆಸೇಜ್‌ಗಳು ಮತ್ತು ಮೀಡಿಯಾವನ್ನು ವರ್ಗಾಯಿಸಲಾಗುವುದಿಲ್ಲ</string>
+    <!-- Title for the backup folder option card (V2 format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">ಬ್ಯಾಕಪ್ ಫೋಲ್ಡರ್‌ನಿಂದ</string>
+    <!-- Title for the backup file option card (V1 legacy format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">ಬ್ಯಾಕಪ್ ಫೈಲ್‌ನಿಂದ</string>
+    <!-- Subtitle for the backup folder/file option cards -->
+    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">ನೀವು ಸೇವ್ ಮಾಡಿರುವ ಬ್ಯಾಕಪ್ ಅನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+    <!-- Title for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">ನಿಮ್ಮ ಹಳೆಯ ಫೋನ್‌ನಿಂದ</string>
+    <!-- Subtitle for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">ನಿಮ್ಮ ಹಳೆಯ Android ನಿಂದ ನೇರವಾಗಿ ವರ್ಗಾಯಿಸಿ</string>
+    <!-- Skip button text -->
+    <string name="ArchiveRestoreSelectionScreen__skip">ಬಿಟ್ಟು ಮುಂದುವರಿ</string>
+    <!-- Title for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">ರಿಸ್ಟೋರ್ ಸ್ಕಿಪ್ ಮಾಡಬೇಕೇ?</string>
+    <!-- Warning body text for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">ನೀವು ಈಗ ರಿಸ್ಟೋರ್ ಮಾಡುವುದನ್ನು ಸ್ಕಿಪ್ ಮಾಡಿದರೆ ನಂತರ ರಿಸ್ಟೋರ್ ಮಾಡಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ರಿಸ್ಟೋರ್ ಮಾಡುವುದನ್ನು ಸ್ಕಿಪ್ ಮಾಡಿದ ನಂತರ ನೀವು ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಮರುಸಕ್ರಿಯಗೊಳಿಸಿದರೆ, ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಬ್ಯಾಕಪ್ ಅನ್ನು ನಿಮ್ಮ ಹೊಸ ಸಂದೇಶ ಇತಿಹಾಸದೊಂದಿಗೆ ಬದಲಾಯಿಸಲಾಗುತ್ತದೆ.</string>
+    <!-- Confirm button text for the skip restore dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">ರಿಸ್ಟೋರ್ ಸ್ಕಿಪ್ ಮಾಡಿ</string>
 </resources>

@@ -11,6 +11,7 @@ import android.os.IBinder
 import androidx.annotation.DrawableRes
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
+import androidx.core.content.IntentCompat
 import org.signal.core.util.PendingIntentFlags.mutable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
@@ -42,6 +43,7 @@ class GenericForegroundService : Service() {
     private const val EXTRA_PROGRESS = "extra_progress"
     private const val EXTRA_PROGRESS_MAX = "extra_progress_max"
     private const val EXTRA_PROGRESS_INDETERMINATE = "extra_progress_indeterminate"
+    private const val EXTRA_CONTENT_INTENT = "extra_content_intent"
     private const val ACTION_START = "start"
     private const val ACTION_STOP = "stop"
 
@@ -78,7 +80,8 @@ class GenericForegroundService : Service() {
       context: Context,
       task: String,
       channelId: String = DEFAULT_ENTRY.channelId,
-      @DrawableRes iconRes: Int = DEFAULT_ENTRY.iconRes
+      @DrawableRes iconRes: Int = DEFAULT_ENTRY.iconRes,
+      contentIntent: PendingIntent? = null
     ): NotificationController {
       val id = NEXT_ID.getAndIncrement()
       Log.i(TAG, "[startForegroundTask] Task: $task, ID: $id")
@@ -89,6 +92,7 @@ class GenericForegroundService : Service() {
         putExtra(EXTRA_CHANNEL_ID, channelId)
         putExtra(EXTRA_ICON_RES, iconRes)
         putExtra(EXTRA_ID, id)
+        if (contentIntent != null) putExtra(EXTRA_CONTENT_INTENT, contentIntent)
       }
 
       ForegroundServiceUtil.start(context, intent)
@@ -237,7 +241,7 @@ class GenericForegroundService : Service() {
           .setSmallIcon(active.iconRes)
           .setContentTitle(active.title)
           .setProgress(active.progressMax, active.progress, active.indeterminate)
-          .setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), mutable()))
+          .setContentIntent(active.contentIntent ?: PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), mutable()))
           .setVibrate(longArrayOf(0))
           .build()
       )
@@ -281,7 +285,8 @@ class GenericForegroundService : Service() {
     val id: Int,
     val progressMax: Int,
     val progress: Int,
-    val indeterminate: Boolean
+    val indeterminate: Boolean,
+    val contentIntent: PendingIntent? = null
   ) {
     override fun toString(): String {
       return "ChannelId: $channelId, ID: $id, Progress: $progress/$progressMax ${if (indeterminate) "indeterminate" else "determinate"}"
@@ -296,7 +301,8 @@ class GenericForegroundService : Service() {
           id = intent.getIntExtra(EXTRA_ID, DEFAULT_ENTRY.id),
           progressMax = intent.getIntExtra(EXTRA_PROGRESS_MAX, DEFAULT_ENTRY.progressMax),
           progress = intent.getIntExtra(EXTRA_PROGRESS, DEFAULT_ENTRY.progress),
-          indeterminate = intent.getBooleanExtra(EXTRA_PROGRESS_INDETERMINATE, DEFAULT_ENTRY.indeterminate)
+          indeterminate = intent.getBooleanExtra(EXTRA_PROGRESS_INDETERMINATE, DEFAULT_ENTRY.indeterminate),
+          contentIntent = IntentCompat.getParcelableExtra(intent, EXTRA_CONTENT_INTENT, PendingIntent::class.java)
         )
       }
     }

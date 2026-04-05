@@ -51,7 +51,7 @@ public final class DecryptedGroupUtil_apply_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("DecryptedGroupUtil and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 26, maxFieldFound);
+                 28, maxFieldFound);
   }
 
   @Test
@@ -1051,5 +1051,56 @@ public final class DecryptedGroupUtil_apply_Test {
             .revision(11)
             .modifyMemberLabels(List.of(modifyLabelAction))
             .build());
+  }
+
+  @Test
+  public void apply_sets_member_label_access() throws NotAbleToApplyGroupV2ChangeException {
+    DecryptedGroup group = new DecryptedGroup.Builder()
+        .revision(10)
+        .accessControl(
+            new AccessControl.Builder()
+                .attributes(AccessControl.AccessRequired.ADMINISTRATOR)
+                .members(AccessControl.AccessRequired.ADMINISTRATOR)
+                .memberLabel(AccessControl.AccessRequired.ADMINISTRATOR)
+                .build()
+        )
+        .build();
+
+    DecryptedGroupChange groupChange = new DecryptedGroupChange.Builder()
+        .revision(11)
+        .newMemberLabelAccess(AccessControl.AccessRequired.MEMBER)
+        .build();
+
+    DecryptedGroup expectedResult = new DecryptedGroup.Builder()
+        .revision(11)
+        .accessControl(
+            new AccessControl.Builder()
+                .attributes(AccessControl.AccessRequired.ADMINISTRATOR)
+                .members(AccessControl.AccessRequired.ADMINISTRATOR)
+                .memberLabel(AccessControl.AccessRequired.MEMBER)
+                .build()
+        )
+        .build();
+
+    assertEquals(expectedResult, DecryptedGroupUtil.apply(group, groupChange));
+  }
+
+  @Test
+  public void apply_terminate_group() throws NotAbleToApplyGroupV2ChangeException {
+    DecryptedGroup group = new DecryptedGroup.Builder()
+        .revision(10)
+        .build();
+
+    DecryptedGroupChange groupChange = new DecryptedGroupChange.Builder()
+        .revision(11)
+        .terminateGroup(true)
+        .build();
+
+    DecryptedGroup expectedResult = new DecryptedGroup.Builder()
+        .revision(11)
+        .terminated(true)
+        .build();
+
+    assertEquals(expectedResult, DecryptedGroupUtil.apply(group, groupChange));
   }
 }

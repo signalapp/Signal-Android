@@ -15,7 +15,6 @@ import org.signal.core.util.CursorUtil;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.contacts.ContactRepository;
 import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.database.BodyAdjustment;
 import org.thoughtcrime.securesms.database.BodyRangeUtil;
@@ -63,7 +62,6 @@ public class SearchRepository {
   private final Context           context;
   private final String            noteToSelfTitle;
   private final SearchTable       searchDatabase;
-  private final ContactRepository contactRepository;
   private final ThreadTable       threadTable;
   private final RecipientTable    recipientTable;
   private final MentionTable      mentionTable;
@@ -79,7 +77,6 @@ public class SearchRepository {
     this.recipientTable    = SignalDatabase.recipients();
     this.mentionTable      = SignalDatabase.mentions();
     this.messageTable      = SignalDatabase.messages();
-    this.contactRepository = new ContactRepository(noteToSelfTitle);
     this.serialExecutor    = new SerialExecutor(SignalExecutors.BOUNDED);
   }
 
@@ -94,12 +91,13 @@ public class SearchRepository {
   }
 
   @WorkerThread
-  public @NonNull MessageSearchResult queryMessagesSync(@NonNull String query) {
+  public @NonNull MessageSearchResult queryMessagesSync(@NonNull String query, @NonNull SearchFilter filter) {
     long start = System.currentTimeMillis();
 
-    List<MessageResult> messages        = queryMessages(query);
-    List<MessageResult> mentionMessages = queryMentions(convertMentionsQueryToTokens(query));
-    List<MessageResult> combined        = mergeMessagesAndMentions(messages, mentionMessages);
+    List<MessageResult> messages         = queryMessages(query, filter);
+    List<MessageResult> mentionMessages  = queryMentions(convertMentionsQueryToTokens(query));
+    List<MessageResult> filteredMentions = filterMentionResults(mentionMessages, filter);
+    List<MessageResult> combined         = mergeMessagesAndMentions(messages, filteredMentions);
 
     Log.d(TAG, "[messages] Search took " + (System.currentTimeMillis() - start) + " ms");
 
@@ -164,13 +162,13 @@ public class SearchRepository {
     }
   }
 
-  private @NonNull List<MessageResult> queryMessages(@NonNull String query) {
+  private @NonNull List<MessageResult> queryMessages(@NonNull String query, @NonNull SearchFilter filter) {
     if (Util.isEmpty(query)) {
       return Collections.emptyList();
     }
 
     List<MessageResult> results;
-    try (Cursor cursor = searchDatabase.queryMessages(query)) {
+    try (Cursor cursor = searchDatabase.queryMessages(query, filter)) {
       results = readToList(cursor, new MessageModelBuilder());
     }
 
@@ -219,7 +217,6 @@ public class SearchRepository {
           MessageStyler.style(result.getReceivedTimestampMs(), BodyRangeUtil.adjustBodyRanges(ranges, bodyAdjustments), (Spannable) updatedBody);
 
           updatedSnippet = SpannableString.valueOf(updatedSnippet);
-          //noinspection ConstantConditions
           updateSnippetWithStyles(result.getReceivedTimestampMs(), updatedBody, (SpannableString) updatedSnippet, BodyRangeUtil.adjustBodyRanges(ranges, snippetAdjustments));
         }
 
@@ -414,6 +411,28 @@ public class SearchRepository {
     }
   }
 
+  private static @NonNull List<MessageResult> filterMentionResults(@NonNull List<MessageResult> mentions, @NonNull SearchFilter filter) {
+    if (filter.isEmpty()) {
+      return mentions;
+    }
+
+    List<MessageResult> filtered = new ArrayList<>();
+    for (MessageResult mention : mentions) {
+      if (filter.getStartDate() != null && mention.getReceivedTimestampMs() < filter.getStartDate()) {
+        continue;
+      }
+      if (filter.getEndDate() != null && mention.getReceivedTimestampMs() > filter.getEndDate()) {
+        continue;
+      }
+      if (filter.getAuthor() != null && !mention.getMessageRecipient().getId().equals(filter.getAuthor())) {
+        continue;
+      }
+      filtered.add(mention);
+    }
+
+    return filtered;
+  }
+
   private static @NonNull List<MessageResult> mergeMessagesAndMentions(@NonNull List<MessageResult> messages, @NonNull List<MessageResult> mentionMessages) {
     Set<Long> includedMmsMessages = new HashSet<>();
 
@@ -436,15 +455,6 @@ public class SearchRepository {
     return combined;
   }
 
-  private static class RecipientModelBuilder implements ModelBuilder<Recipient> {
-
-    @Override
-    public Recipient build(@NonNull Cursor cursor) {
-      long recipientId = cursor.getLong(cursor.getColumnIndexOrThrow(ContactRepository.ID_COLUMN));
-      return Recipient.resolved(RecipientId.from(recipientId));
-    }
-  }
-
   private static class ThreadModelBuilder implements ModelBuilder<ThreadRecord> {
 
     private final ThreadTable threadTable;
@@ -465,8 +475,8 @@ public class SearchRepository {
     public MessageResult build(@NonNull Cursor cursor) {
       RecipientId conversationRecipientId = RecipientId.from(CursorUtil.requireLong(cursor, SearchTable.CONVERSATION_RECIPIENT));
       RecipientId messageRecipientId      = RecipientId.from(CursorUtil.requireLong(cursor, SearchTable.MESSAGE_RECIPIENT));
-      Recipient   conversationRecipient   = Recipient.live(conversationRecipientId).get();
-      Recipient   messageRecipient        = Recipient.live(messageRecipientId).get();
+      Recipient   conversationRecipient   = Recipient.resolved(conversationRecipientId);
+      Recipient   messageRecipient        = Recipient.resolved(messageRecipientId);
       String      body                    = CursorUtil.requireString(cursor, SearchTable.BODY);
       String      bodySnippet             = CursorUtil.requireString(cursor, SearchTable.SNIPPET);
       long        receivedMs              = CursorUtil.requireLong(cursor, MessageTable.DATE_RECEIVED);

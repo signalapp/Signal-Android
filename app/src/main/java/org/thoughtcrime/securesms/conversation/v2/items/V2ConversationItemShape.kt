@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.conversation.v2.items
 
 import org.signal.core.util.dp
+import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Projection
@@ -93,6 +94,9 @@ class V2ConversationItemShape(
     nextMessage: MessageRecord?,
     isGroupThread: Boolean
   ): Boolean {
+    if (conversationContext.displayMode is ConversationItemDisplayMode.Starred) {
+      return true
+    }
     return isStartOfMessageCluster(currentMessage, previousMessage, isGroupThread) && isEndOfMessageCluster(currentMessage, nextMessage)
   }
 

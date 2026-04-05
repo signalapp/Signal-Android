@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.jobs.AccountConsistencyWorkerJob
 import org.thoughtcrime.securesms.jobs.ArchiveBackupIdReservationJob
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
+import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob
@@ -39,6 +40,12 @@ import org.thoughtcrime.securesms.jobs.PushGroupSendJob
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
 import org.thoughtcrime.securesms.jobs.ReactionSendJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
+import org.thoughtcrime.securesms.jobs.RefreshSvrCredentialsJob
+import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
+import org.thoughtcrime.securesms.jobs.ResetSvrGuessCountJob
+import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
+import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
+import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.jobs.RetrieveRemoteAnnouncementsJob
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob
@@ -117,6 +124,7 @@ class BenchmarkApplicationContext : ApplicationContext() {
       val blockedJobs = setOf(
         AccountConsistencyWorkerJob.KEY,
         ArchiveBackupIdReservationJob.KEY,
+        AvatarGroupsV2DownloadJob.KEY,
         CreateReleaseChannelJob.KEY,
         DirectoryRefreshJob.KEY,
         DownloadLatestEmojiDataJob.KEY,
@@ -130,6 +138,12 @@ class BenchmarkApplicationContext : ApplicationContext() {
         PreKeysSyncJob.KEY,
         ProfileUploadJob.KEY,
         RefreshAttributesJob.KEY,
+        RefreshSvrCredentialsJob.KEY,
+        RequestGroupV2InfoJob.KEY,
+        ResetSvrGuessCountJob.KEY,
+        RestoreOptimizedMediaJob.KEY,
+        RetrieveProfileAvatarJob.KEY,
+        RetrieveProfileJob.KEY,
         RetrieveRemoteAnnouncementsJob.KEY,
         RotateCertificateJob.KEY,
         StickerPackDownloadJob.KEY,

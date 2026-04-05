@@ -37,7 +37,6 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
@@ -239,7 +238,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
   }
 
   override fun onShouldRetry(e: Exception): Boolean {
-    return e is PushNetworkException || e is RetryLaterException
+    return e is IOException || e is RetryLaterException
   }
 
   override fun onFailure() {

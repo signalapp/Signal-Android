@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.util.ByteSize
 import org.signal.core.util.Result
 import org.signal.core.util.bytes
@@ -28,8 +29,7 @@ import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
 import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.LocalBackupJob
-import org.thoughtcrime.securesms.jobs.RestoreLocalAttachmentJob
+import org.thoughtcrime.securesms.jobs.LocalBackupRestoreMediaJob
 import org.thoughtcrime.securesms.keyvalue.Completed
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -93,7 +93,7 @@ class RestoreLocalBackupActivityViewModel : ViewModel() {
         return@launch
       }
 
-      val archiveFileSystem = ArchiveFileSystem.fromUri(AppDependencies.application, Uri.parse(backupDirectory))
+      val archiveFileSystem = ArchiveFileSystem.openForRestore(AppDependencies.application, Uri.parse(backupDirectory))
       if (archiveFileSystem == null) {
         Log.w(TAG, "Unable to access backup directory: $backupDirectory")
         internalState.update { it.copy(restorePhase = RestorePhase.FAILED) }
@@ -110,28 +110,71 @@ class RestoreLocalBackupActivityViewModel : ViewModel() {
         return@launch
       }
 
+      val localAep = SignalStore.backup.localRestoreAccountEntropyPool
+      if (localAep == null) {
+        Log.w(TAG, "No local restore AEP set")
+        internalState.update { it.copy(restorePhase = RestorePhase.FAILED) }
+        return@launch
+      }
+      val localAepPool = AccountEntropyPool(localAep)
+      val messageBackupKey = localAepPool.deriveMessageBackupKey()
+
       val snapshotFileSystem = SnapshotFileSystem(AppDependencies.application, snapshotInfo.file)
-      val result = LocalArchiver.import(snapshotFileSystem, selfData)
+      val result = LocalArchiver.import(snapshotFileSystem, selfData, messageBackupKey)
 
       if (result is Result.Success) {
         Log.i(TAG, "Local backup import succeeded")
-        val mediaNameToFileInfo = archiveFileSystem.filesFileSystem.allFiles()
-        RestoreLocalAttachmentJob.enqueueRestoreLocalAttachmentsJobs(mediaNameToFileInfo)
+        AppDependencies.jobManager.add(LocalBackupRestoreMediaJob.create(Uri.parse(backupDirectory)))
 
+        val actualBackupId = LocalArchiver.getBackupId(snapshotFileSystem, messageBackupKey)
+        val expectedBackupId = SignalStore.account.accountEntropyPool
+          .deriveMessageBackupKey()
+          .deriveBackupId(self.aci.get())
+
+        SignalStore.backup.localRestoreAccountEntropyPool = null
         SignalStore.registration.restoreDecisionState = RestoreDecisionState.Completed
         SignalStore.backup.backupSecretRestoreRequired = false
         SignalStore.backup.newLocalBackupsSelectedSnapshotTimestamp = -1L
-        SignalStore.backup.newLocalBackupsEnabled = true
-        LocalBackupJob.enqueueArchive(false)
+
+        val backupIdMatchesCurrentAccount = actualBackupId?.value?.contentEquals(expectedBackupId.value) == true
+        if (backupIdMatchesCurrentAccount) {
+          SignalStore.account.restoreAccountEntropyPool(localAepPool)
+        } else {
+          Log.w(TAG, "Local backup does not match current account, not re-enabling local backups")
+        }
+
         StorageServiceRestore.restore()
         RegistrationUtil.maybeMarkRegistrationComplete()
 
-        internalState.update { it.copy(restorePhase = RestorePhase.COMPLETE) }
+        val canReenableBackups = backupIdMatchesCurrentAccount && !archiveFileSystem.isRootedAtSignalBackups
+
+        internalState.update {
+          it.copy(
+            restorePhase = RestorePhase.COMPLETE,
+            backupDirectory = if (canReenableBackups) backupDirectory else null,
+            dialog = if (canReenableBackups) RestoreLocalBackupActivityDialog.CONFIRM_BACKUP_LOCATION
+            else RestoreLocalBackupActivityDialog.LOCAL_BACKUPS_DISABLED
+          )
+        }
       } else {
         Log.w(TAG, "Local backup import failed")
         internalState.update { it.copy(restorePhase = RestorePhase.FAILED) }
       }
     }
+  }
+
+  fun enableLocalBackupsAndDismissDialog() {
+    SignalStore.backup.newLocalBackupsEnabled = true
+    internalState.update { it.copy(dialog = null) }
+  }
+
+  fun changeBackupLocation() {
+    SignalStore.backup.newLocalBackupsDirectory = null
+    internalState.update { it.copy(dialog = null) }
+  }
+
+  fun dismissDialog() {
+    internalState.update { it.copy(dialog = null) }
   }
 
   fun resetRestoreState() {
@@ -143,7 +186,9 @@ data class RestoreLocalBackupScreenState(
   val restorePhase: RestorePhase = RestorePhase.RESTORING,
   val bytesRead: ByteSize = 0L.bytes,
   val totalBytes: ByteSize = 0L.bytes,
-  val progress: Float = 0f
+  val progress: Float = 0f,
+  val dialog: RestoreLocalBackupActivityDialog? = null,
+  val backupDirectory: String? = null
 )
 
 enum class RestorePhase {
@@ -151,4 +196,9 @@ enum class RestorePhase {
   FINALIZING,
   COMPLETE,
   FAILED
+}
+
+enum class RestoreLocalBackupActivityDialog {
+  LOCAL_BACKUPS_DISABLED,
+  CONFIRM_BACKUP_LOCATION
 }

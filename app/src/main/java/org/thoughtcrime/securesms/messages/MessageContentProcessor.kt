@@ -255,6 +255,11 @@ open class MessageContentProcessor(private val context: Context) {
         return Gv2PreProcessResult.IGNORE
       }
 
+      if (groupRecord.isPresent && groupRecord.get().isTerminated) {
+        Log.w(TAG, "Ignoring message from ${senderRecipient.id} because the group is terminated.")
+        return Gv2PreProcessResult.IGNORE
+      }
+
       if (groupRecord.isPresent && groupRecord.get().isAnnouncementGroup && !groupRecord.get().admins.contains(senderRecipient)) {
         if (content.dataMessage != null) {
           if (content.dataMessage!!.hasDisallowedAnnouncementOnlyContent) {
@@ -345,11 +350,11 @@ open class MessageContentProcessor(private val context: Context) {
 
     val earlyCacheEntries: List<EarlyMessageCacheEntry>? = AppDependencies
       .earlyMessageCache
-      .retrieve(senderRecipient.id, envelope.timestamp!!)
+      .retrieve(senderRecipient.id, envelope.clientTimestamp!!)
       .orNull()
 
     if (!processingEarlyContent && earlyCacheEntries != null) {
-      log(envelope.timestamp!!, "Found " + earlyCacheEntries.size + " dependent item(s) that were retrieved earlier. Processing.")
+      log(envelope.clientTimestamp!!, "Found " + earlyCacheEntries.size + " dependent item(s) that were retrieved earlier. Processing.")
       for (entry in earlyCacheEntries) {
         handleMessage(senderRecipient, entry.envelope, entry.content, entry.metadata, entry.serverDeliveredTimestamp, processingEarlyContent = true, localMetric = null, batchCache)
       }
@@ -437,14 +442,14 @@ open class MessageContentProcessor(private val context: Context) {
     val threadRecipient = getMessageDestination(content, senderRecipient)
 
     if (shouldIgnore(content, senderRecipient, threadRecipient)) {
-      log(envelope.timestamp!!, "Ignoring message.")
+      log(envelope.clientTimestamp!!, "Ignoring message.")
       return
     }
 
-    val pending: PendingRetryReceiptModel? = AppDependencies.pendingRetryReceiptCache.get(senderRecipient.id, envelope.timestamp!!)
-    val receivedTime: Long = handlePendingRetry(pending, envelope.timestamp!!, threadRecipient)
+    val pending: PendingRetryReceiptModel? = AppDependencies.pendingRetryReceiptCache.get(senderRecipient.id, envelope.clientTimestamp!!)
+    val receivedTime: Long = handlePendingRetry(pending, envelope.clientTimestamp!!, threadRecipient)
 
-    log(envelope.timestamp!!, "Beginning message processing. Sender: " + formatSender(senderRecipient.id, metadata.sourceServiceId, metadata.sourceDeviceId))
+    log(envelope.clientTimestamp!!, "Beginning message processing. Sender: " + formatSender(senderRecipient.id, metadata.sourceServiceId, metadata.sourceDeviceId))
     localMetric?.onPreProcessComplete()
     when {
       content.dataMessage != null -> {
@@ -477,12 +482,12 @@ open class MessageContentProcessor(private val context: Context) {
       }
 
       content.callMessage != null -> {
-        log(envelope.timestamp!!, "Got call message...")
+        log(envelope.clientTimestamp!!, "Got call message...")
 
         val message: CallMessage = content.callMessage!!
 
         if (message.destinationDeviceId != null && message.destinationDeviceId != SignalStore.account.deviceId) {
-          log(envelope.timestamp!!, "Ignoring call message that is not for this device! intended: ${message.destinationDeviceId}, this: ${SignalStore.account.deviceId}")
+          log(envelope.clientTimestamp!!, "Ignoring call message that is not for this device! intended: ${message.destinationDeviceId}, this: ${SignalStore.account.deviceId}")
           return
         }
 
@@ -536,12 +541,12 @@ open class MessageContentProcessor(private val context: Context) {
       }
 
       else -> {
-        warn(envelope.timestamp!!, "Got unrecognized message!")
+        warn(envelope.clientTimestamp!!, "Got unrecognized message!")
       }
     }
 
     if (pending != null) {
-      warn(envelope.timestamp!!, "Pending retry was processed. Deleting.")
+      warn(envelope.clientTimestamp!!, "Pending retry was processed. Deleting.")
       AppDependencies.pendingRetryReceiptCache.delete(pending)
     }
   }
@@ -560,18 +565,24 @@ open class MessageContentProcessor(private val context: Context) {
     val threadId: Long = if (typingMessage.groupId != null) {
       val groupId = GroupId.push(typingMessage.groupId!!)
       if (!SignalDatabase.groups.isCurrentMember(groupId, senderRecipient.id)) {
-        warn(envelope.timestamp!!, "Seen typing indicator for non-member " + senderRecipient.id)
+        warn(envelope.clientTimestamp!!, "Seen typing indicator for non-member " + senderRecipient.id)
         return
       }
 
       val groupRecipient = Recipient.externalPossiblyMigratedGroup(groupId)
+
+      if (!groupRecipient.isActiveGroup) {
+        warn(envelope.clientTimestamp!!, "Seen typing indicator for inactive group " + senderRecipient.id)
+        return
+      }
+
       SignalDatabase.threads.getOrCreateThreadIdFor(groupRecipient)
     } else {
       SignalDatabase.threads.getOrCreateThreadIdFor(senderRecipient)
     }
 
     if (threadId <= 0) {
-      warn(envelope.timestamp!!, "Couldn't find a matching thread for a typing message.")
+      warn(envelope.clientTimestamp!!, "Couldn't find a matching thread for a typing message.")
       return
     }
 
@@ -586,19 +597,19 @@ open class MessageContentProcessor(private val context: Context) {
 
   private fun handleRetryReceipt(envelope: Envelope, metadata: EnvelopeMetadata, decryptionErrorMessage: DecryptionErrorMessage, senderRecipient: Recipient) {
     if (!RemoteConfig.retryReceipts) {
-      warn(envelope.timestamp!!, "[RetryReceipt] Feature flag disabled, skipping retry receipt.")
+      warn(envelope.clientTimestamp!!, "[RetryReceipt] Feature flag disabled, skipping retry receipt.")
       return
     }
 
     if (decryptionErrorMessage.deviceId != SignalStore.account.deviceId) {
-      log(envelope.timestamp!!, "[RetryReceipt] Received a DecryptionErrorMessage targeting a linked device. Ignoring.")
+      log(envelope.clientTimestamp!!, "[RetryReceipt] Received a DecryptionErrorMessage targeting a linked device. Ignoring.")
       return
     }
 
     val sentTimestamp = decryptionErrorMessage.timestamp
-    warn(envelope.timestamp!!, "[RetryReceipt] Received a retry receipt from ${formatSender(senderRecipient.id, metadata.sourceServiceId, metadata.sourceDeviceId)} for message with timestamp $sentTimestamp.")
+    warn(envelope.clientTimestamp!!, "[RetryReceipt] Received a retry receipt from ${formatSender(senderRecipient.id, metadata.sourceServiceId, metadata.sourceDeviceId)} for message with timestamp $sentTimestamp.")
     if (!senderRecipient.hasServiceId) {
-      warn(envelope.timestamp!!, "[RetryReceipt] Requester ${senderRecipient.id} somehow has no UUID! timestamp: $sentTimestamp")
+      warn(envelope.clientTimestamp!!, "[RetryReceipt] Requester ${senderRecipient.id} somehow has no UUID! timestamp: $sentTimestamp")
       return
     }
 
@@ -621,18 +632,18 @@ open class MessageContentProcessor(private val context: Context) {
     val relatedMessage = findRetryReceiptRelatedMessage(messageLogEntry, sentTimestamp)
 
     if (relatedMessage == null) {
-      warn(envelope.timestamp!!, "[RetryReceipt-SK] The related message could not be found! There shouldn't be any sender key resends where we can't find the related message. Skipping.")
+      warn(envelope.clientTimestamp!!, "[RetryReceipt-SK] The related message could not be found! There shouldn't be any sender key resends where we can't find the related message. Skipping.")
       return
     }
 
     val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(relatedMessage.threadId)
     if (threadRecipient == null) {
-      warn(envelope.timestamp!!, "[RetryReceipt-SK] Could not find a thread recipient! Skipping.")
+      warn(envelope.clientTimestamp!!, "[RetryReceipt-SK] Could not find a thread recipient! Skipping.")
       return
     }
 
     if (!threadRecipient.isPushV2Group && !threadRecipient.isDistributionList) {
-      warn(envelope.timestamp!!, "[RetryReceipt-SK] Thread recipient is not a V2 group or distribution list! Skipping.")
+      warn(envelope.clientTimestamp!!, "[RetryReceipt-SK] Thread recipient is not a V2 group or distribution list! Skipping.")
       return
     }
 
@@ -656,7 +667,7 @@ open class MessageContentProcessor(private val context: Context) {
     SignalDatabase.senderKeyShared.delete(distributionId, setOf(requesterAddress))
 
     if (messageLogEntry != null) {
-      warn(envelope.timestamp!!, "[RetryReceipt-SK] Found MSL entry for ${requester.id} ($requesterAddress) with timestamp $sentTimestamp. Scheduling a resend.")
+      warn(envelope.clientTimestamp!!, "[RetryReceipt-SK] Found MSL entry for ${requester.id} ($requesterAddress) with timestamp $sentTimestamp. Scheduling a resend.")
       AppDependencies.jobManager.add(
         ResendMessageJob(
           messageLogEntry.recipientId,
@@ -669,7 +680,7 @@ open class MessageContentProcessor(private val context: Context) {
         )
       )
     } else {
-      warn(envelope.timestamp!!, "[RetryReceipt-SK] Unable to find MSL entry for ${requester.id} ($requesterAddress) with timestamp $sentTimestamp for ${if (groupId != null) "group $groupId" else "distribution list"}. Scheduling a job to send them the SenderKeyDistributionMessage. Membership will be checked there.")
+      warn(envelope.clientTimestamp!!, "[RetryReceipt-SK] Unable to find MSL entry for ${requester.id} ($requesterAddress) with timestamp $sentTimestamp for ${if (groupId != null) "group $groupId" else "distribution list"}. Scheduling a job to send them the SenderKeyDistributionMessage. Membership will be checked there.")
       AppDependencies.jobManager.add(SenderKeyDistributionSendJob(requester.id, threadRecipient.id))
     }
   }
@@ -678,24 +689,24 @@ open class MessageContentProcessor(private val context: Context) {
     var archivedSession = false
 
     if (ServiceId.parseOrNull(envelope.destinationServiceId, envelope.destinationServiceIdBinary) is ServiceId.PNI) {
-      warn(envelope.timestamp!!, "[RetryReceipt-I] Destination is our PNI. Ignoring.")
+      warn(envelope.clientTimestamp!!, "[RetryReceipt-I] Destination is our PNI. Ignoring.")
       return
     }
 
     if (decryptionErrorMessage.ratchetKey.isPresent) {
       if (ratchetKeyMatches(requester, metadata.sourceDeviceId, decryptionErrorMessage.ratchetKey.get())) {
-        warn(envelope.timestamp!!, "[RetryReceipt-I] Ratchet key matches. Archiving the session.")
+        warn(envelope.clientTimestamp!!, "[RetryReceipt-I] Ratchet key matches. Archiving the session.")
         AppDependencies.protocolStore.aci().sessions().archiveSession(requester.requireServiceId(), metadata.sourceDeviceId)
         archivedSession = true
       } else {
-        log(envelope.timestamp!!, "[RetryReceipt-I] Ratchet key does not match. Leaving the session as-is.")
+        log(envelope.clientTimestamp!!, "[RetryReceipt-I] Ratchet key does not match. Leaving the session as-is.")
       }
     } else {
-      warn(envelope.timestamp!!, "[RetryReceipt-I] Missing ratchet key! Can't archive session.")
+      warn(envelope.clientTimestamp!!, "[RetryReceipt-I] Missing ratchet key! Can't archive session.")
     }
 
     if (messageLogEntry != null) {
-      warn(envelope.timestamp!!, "[RetryReceipt-I] Found an entry in the MSL. Resending.")
+      warn(envelope.clientTimestamp!!, "[RetryReceipt-I] Found an entry in the MSL. Resending.")
       AppDependencies.jobManager.add(
         ResendMessageJob(
           messageLogEntry.recipientId,
@@ -708,10 +719,10 @@ open class MessageContentProcessor(private val context: Context) {
         )
       )
     } else if (archivedSession) {
-      warn(envelope.timestamp!!, "[RetryReceipt-I] Could not find an entry in the MSL, but we archived the session, so we're sending a null message to complete the reset.")
+      warn(envelope.clientTimestamp!!, "[RetryReceipt-I] Could not find an entry in the MSL, but we archived the session, so we're sending a null message to complete the reset.")
       AppDependencies.jobManager.add(NullMessageSendJob(requester.id))
     } else {
-      warn(envelope.timestamp!!, "[RetryReceipt-I] Could not find an entry in the MSL. Skipping.")
+      warn(envelope.clientTimestamp!!, "[RetryReceipt-I] Could not find an entry in the MSL. Skipping.")
     }
   }
 

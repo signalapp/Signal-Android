@@ -48,4 +48,8 @@ public interface ChangeSetModifier {
   void removePromotePendingPniAciMembers(int i);
 
   void removeModifyMemberLabels(int i);
+
+  void clearModifyMemberLabelAccess();
+
+  void clearTerminateGroup();
 }

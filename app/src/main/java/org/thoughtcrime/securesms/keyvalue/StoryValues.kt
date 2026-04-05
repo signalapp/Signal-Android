@@ -4,6 +4,8 @@ import org.json.JSONObject
 import org.signal.core.util.StringSerializer
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.stories.archive.StoryArchiveDuration
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
 
@@ -49,6 +51,9 @@ class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
      * Whether or not the user has seen the group story education sheet
      */
     private const val USER_HAS_SEEN_GROUP_STORY_EDUCATION_SHEET = "stories.user.has.seen.group.story.education.sheet"
+
+    private const val ARCHIVE_ENABLED = "stories.archive.enabled"
+    private const val ARCHIVE_DURATION = "stories.archive.duration"
   }
 
   public override fun onFirstEverAppLaunch() {
@@ -62,7 +67,9 @@ class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
     HAS_DOWNLOADED_ONBOARDING_STORY,
     USER_HAS_VIEWED_ONBOARDING_STORY,
     STORY_VIEWED_RECEIPTS,
-    USER_HAS_SEEN_GROUP_STORY_EDUCATION_SHEET
+    USER_HAS_SEEN_GROUP_STORY_EDUCATION_SHEET,
+    ARCHIVE_ENABLED,
+    ARCHIVE_DURATION
   )
 
   var isFeatureDisabled: Boolean by booleanValue(MANUAL_FEATURE_DISABLE, false)
@@ -80,6 +87,18 @@ class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
   var viewedReceiptsEnabled: Boolean by booleanValue(STORY_VIEWED_RECEIPTS, false)
 
   var userHasSeenGroupStoryEducationSheet: Boolean by booleanValue(USER_HAS_SEEN_GROUP_STORY_EDUCATION_SHEET, false)
+
+  var isArchiveEnabled: Boolean
+    get() = RemoteConfig.internalUser && getBoolean(ARCHIVE_ENABLED, false)
+    set(value) {
+      putBoolean(ARCHIVE_ENABLED, value)
+    }
+
+  var archiveDuration: StoryArchiveDuration
+    get() = StoryArchiveDuration.deserialize(getLong(ARCHIVE_DURATION, StoryArchiveDuration.THIRTY_DAYS.serialize()))
+    set(value) {
+      putLong(ARCHIVE_DURATION, value.serialize())
+    }
 
   fun isViewedReceiptsStateSet(): Boolean {
     return store.containsKey(STORY_VIEWED_RECEIPTS)

@@ -151,6 +151,12 @@ public final class GroupChangeReconstruct {
       }
     }
 
+    if (fromState.accessControl == null || (toState.accessControl != null && !fromState.accessControl.memberLabel.equals(toState.accessControl.memberLabel))) {
+      if (toState.accessControl != null) {
+        builder.newMemberLabelAccess(toState.accessControl.memberLabel);
+      }
+    }
+
     builder.newRequestingMembers(new ArrayList<>(intersectRequestingByAci(toState.requestingMembers, newRequestingMemberAcis)));
 
     builder.deleteRequestingMembers(rejectedRequestMembers.stream().map(requestingMember -> requestingMember.aciBytes).collect(Collectors.toList()));
@@ -179,6 +185,10 @@ public final class GroupChangeReconstruct {
                                                         return newBannedBuilder.build();
                                                       })
                                                       .collect(Collectors.toList()));
+
+    if (!fromState.terminated && toState.terminated) {
+      builder.terminateGroup(true);
+    }
 
     return builder.build();
   }

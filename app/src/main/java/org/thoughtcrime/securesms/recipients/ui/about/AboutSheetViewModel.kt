@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 class AboutSheetViewModel(
   recipientId: RecipientId,
@@ -56,7 +55,7 @@ class AboutSheetViewModel(
   init {
     disposables.addAll(recipientDisposable, groupsInCommonDisposable, verifiedDisposable)
 
-    if (groupId != null && RemoteConfig.sendMemberLabels) {
+    if (groupId != null) {
       observeMemberLabel(groupId)
     }
   }

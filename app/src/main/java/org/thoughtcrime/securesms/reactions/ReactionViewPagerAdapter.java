@@ -20,10 +20,12 @@ class ReactionViewPagerAdapter extends ListAdapter<EmojiCount, ReactionViewPager
 
   private       int           selectedPosition = 0;
   private final EventListener listener;
+  private final boolean       isGroupTerminated;
 
-  protected ReactionViewPagerAdapter(@NonNull EventListener listener) {
+  protected ReactionViewPagerAdapter(@NonNull EventListener listener, boolean isGroupTerminated) {
     super(new AlwaysChangedDiffUtil<>());
-    this.listener = listener;
+    this.listener          = listener;
+    this.isGroupTerminated = isGroupTerminated;
   }
 
   @NonNull EmojiCount getEmojiCount(int position) {
@@ -38,7 +40,7 @@ class ReactionViewPagerAdapter extends ListAdapter<EmojiCount, ReactionViewPager
 
   @Override
   public @NonNull ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.reactions_bottom_sheet_dialog_fragment_recycler, parent, false));
+    return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.reactions_bottom_sheet_dialog_fragment_recycler, parent, false), isGroupTerminated);
   }
 
   @Override
@@ -68,12 +70,13 @@ class ReactionViewPagerAdapter extends ListAdapter<EmojiCount, ReactionViewPager
   static class ViewHolder extends RecyclerView.ViewHolder {
 
     private final RecyclerView              recycler;
-    private final ReactionRecipientsAdapter adapter = new ReactionRecipientsAdapter();
+    private final ReactionRecipientsAdapter adapter;
 
-    public ViewHolder(@NonNull View itemView) {
+    public ViewHolder(@NonNull View itemView, boolean isGroupTerminated) {
       super(itemView);
 
       recycler = (RecyclerView) itemView;
+      adapter  = new ReactionRecipientsAdapter(isGroupTerminated);
 
       ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                                                  ViewGroup.LayoutParams.MATCH_PARENT);
@@ -83,8 +86,8 @@ class ReactionViewPagerAdapter extends ListAdapter<EmojiCount, ReactionViewPager
     }
 
     public void onBind(@NonNull EmojiCount emojiCount, EventListener listener) {
-      adapter.updateData(emojiCount.getReactions());
       adapter.setListener(listener);
+      adapter.updateData(emojiCount.getReactions());
     }
 
     public void setSelected(int position) {

@@ -89,9 +89,14 @@ public final class DoNotDisturbUtil {
       return true;
     }
 
-    final NotificationManager.Policy policy                = notificationManager.getNotificationPolicy();
-    final boolean                    areCallsPrioritized   = (policy.priorityCategories & NotificationManager.Policy.PRIORITY_CATEGORY_CALLS) != 0;
-    final boolean                    isRepeatCallerEnabled = (policy.priorityCategories & NotificationManager.Policy.PRIORITY_CATEGORY_REPEAT_CALLERS) != 0;
+    final NotificationManager.Policy policy = notificationManager.getNotificationPolicy();
+    if (policy == null) {
+      Log.w(TAG, "Notification policy is null, likely in a private space. Allowing call to disturb user.");
+      return true;
+    }
+
+    final boolean areCallsPrioritized   = (policy.priorityCategories & NotificationManager.Policy.PRIORITY_CATEGORY_CALLS) != 0;
+    final boolean isRepeatCallerEnabled = (policy.priorityCategories & NotificationManager.Policy.PRIORITY_CATEGORY_REPEAT_CALLERS) != 0;
 
     if (!areCallsPrioritized && !isRepeatCallerEnabled) {
       return false;

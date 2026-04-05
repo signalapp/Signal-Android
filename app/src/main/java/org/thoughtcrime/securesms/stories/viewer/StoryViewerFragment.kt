@@ -74,7 +74,8 @@ class StoryViewerFragment :
           storyViewerArgs.isFromNotification -> StoryViewerPageArgs.Source.NOTIFICATION
           else -> StoryViewerPageArgs.Source.UNKNOWN
         },
-        groupReplyStartPosition = storyViewerArgs.groupReplyStartPosition
+        groupReplyStartPosition = storyViewerArgs.groupReplyStartPosition,
+        isFromArchive = storyViewerArgs.isFromArchive
       )
     )
 
@@ -90,7 +91,7 @@ class StoryViewerFragment :
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
       if (state.noPosts) {
-        onBackPressed(adapter.getRecipientId(storyPager.currentItem))
+        onBackPressed(adapter.getRecipientIdOrNull(storyPager.currentItem))
       }
 
       adapter.setPages(state.pages)
@@ -101,7 +102,7 @@ class StoryViewerFragment :
         pagerOnPageSelectedLock = false
 
         if (state.page >= state.pages.size) {
-          onBackPressed(adapter.getRecipientId(storyPager.currentItem))
+          onBackPressed(adapter.getRecipientIdOrNull(storyPager.currentItem))
           lifecycleDisposable.clear()
         }
       }
@@ -154,14 +155,14 @@ class StoryViewerFragment :
       viewLifecycleOwner,
       object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-          onBackPressed(adapter.getRecipientId(storyPager.currentItem))
+          onBackPressed(adapter.getRecipientIdOrNull(storyPager.currentItem))
         }
       }
     )
   }
 
-  private fun onBackPressed(currentId: RecipientId) {
-    if (viewModel.getInitialRecipientId() != currentId) {
+  private fun onBackPressed(currentId: RecipientId?) {
+    if (currentId == null || viewModel.getInitialRecipientId() != currentId) {
       requireActivity().finish()
     } else {
       ActivityCompat.finishAfterTransition(requireActivity())

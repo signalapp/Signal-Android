@@ -6,6 +6,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessageRecipient
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage
@@ -33,6 +34,7 @@ class MultiDeviceStorySendSyncJob private constructor(parameters: Parameters, pr
       return MultiDeviceStorySendSyncJob(
         parameters = Parameters.Builder()
           .addConstraint(NetworkConstraint.KEY)
+          .addConstraint(SealedSenderConstraint.KEY)
           .setMaxAttempts(Parameters.UNLIMITED)
           .setLifespan(TimeUnit.DAYS.toMillis(1))
           .setQueue(KEY)

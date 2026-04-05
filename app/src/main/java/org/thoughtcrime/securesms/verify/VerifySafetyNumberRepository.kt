@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.verify
 
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.net.KeyTransparency
+import org.signal.libsignal.net.KeyTransparency.CheckMode
 import org.signal.libsignal.net.RequestResult
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.model.KeyTransparencyStore
@@ -19,7 +19,7 @@ object VerifySafetyNumberRepository {
   private val TAG = Log.tag(VerifySafetyNumberRepository::class.java)
 
   /**
-   * Given a recipient will try to verify via search (first time) or monitor (subsequent).
+   * Given a recipient will try to verify via key transparency.
    */
   suspend fun verifyAutomatically(recipient: Recipient): VerifyResult {
     val profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.profileKey)
@@ -31,18 +31,16 @@ object VerifySafetyNumberRepository {
     }
 
     val aciIdentityKey = identityRecord.get().identityKey
-    val aci = recipient.requireAci().libSignalAci
-    val e164 = recipient.requireE164()
-    val unidentifiedAccessKey = profileKey.let { UnidentifiedAccess.deriveAccessKeyFrom(it) }
-    val firstSearch = recipient.keyTransparencyData == null
 
-    val result = if (firstSearch) {
-      Log.i(TAG, "First search in key transparency")
-      SignalNetwork.keyTransparency.search(aci, aciIdentityKey, e164, unidentifiedAccessKey, usernameHash = null, KeyTransparencyStore)
-    } else {
-      Log.i(TAG, "Monitoring search in key transparency")
-      SignalNetwork.keyTransparency.monitor(KeyTransparency.MonitorMode.OTHER, aci, aciIdentityKey, e164, unidentifiedAccessKey, usernameHash = null, KeyTransparencyStore)
-    }
+    val result = SignalNetwork.keyTransparency.check(
+      checkMode = CheckMode.Contact,
+      aci = recipient.requireAci().libSignalAci,
+      aciIdentityKey = aciIdentityKey,
+      e164 = recipient.requireE164(),
+      unidentifiedAccessKey = profileKey.let { UnidentifiedAccess.deriveAccessKeyFrom(it) },
+      usernameHash = null,
+      keyTransparencyStore = KeyTransparencyStore
+    )
 
     Log.i(TAG, "Key transparency complete, result: $result")
     return when (result) {

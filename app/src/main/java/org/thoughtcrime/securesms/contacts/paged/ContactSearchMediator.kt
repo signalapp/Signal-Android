@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.search.SearchFilter
 import org.thoughtcrime.securesms.search.SearchRepository
 import org.thoughtcrime.securesms.stories.settings.custom.PrivateStorySettingsFragment
 import org.thoughtcrime.securesms.stories.settings.my.MyStorySettingsFragment
@@ -133,6 +134,10 @@ class ContactSearchMediator(
 
   fun onConversationFilterRequestChanged(conversationFilterRequest: ConversationFilterRequest) {
     viewModel.setConversationFilterRequest(conversationFilterRequest)
+  }
+
+  fun onSearchFilterChanged(searchFilter: SearchFilter) {
+    viewModel.setSearchFilter(searchFilter)
   }
 
   fun setKeysSelected(keys: Set<ContactSearchKey>) {

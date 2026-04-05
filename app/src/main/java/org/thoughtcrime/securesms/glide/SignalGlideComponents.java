@@ -16,11 +16,12 @@ import com.bumptech.glide.load.resource.gif.ByteBufferGifDecoder;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.load.resource.gif.StreamGifDecoder;
 
+import org.signal.apng.ApngDecoder;
 import org.signal.blurhash.BlurHash;
+import org.signal.glide.load.resource.apng.decode.APNGDecoder;
 import org.signal.glide.blurhash.BlurHashModelLoader;
 import org.signal.glide.blurhash.BlurHashResourceDecoder;
 import org.signal.glide.common.io.InputStreamFactory;
-import org.signal.glide.load.resource.apng.decode.APNGDecoder;
 import org.thoughtcrime.securesms.badges.load.BadgeLoader;
 import org.thoughtcrime.securesms.badges.load.GiftBadgeModel;
 import org.thoughtcrime.securesms.badges.models.Badge;
@@ -29,9 +30,13 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoLoader;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
+import org.thoughtcrime.securesms.glide.cache.ApngDrawableTranscoder;
 import org.thoughtcrime.securesms.glide.cache.ApngFrameDrawableTranscoder;
+import org.thoughtcrime.securesms.glide.cache.ApngInputStreamFactoryResourceDecoder;
+import org.thoughtcrime.securesms.glide.cache.EncryptedApngCacheDecoder;
 import org.thoughtcrime.securesms.glide.cache.ByteBufferApngDecoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedApngCacheEncoder;
+import org.thoughtcrime.securesms.glide.cache.EncryptedApngResourceEncoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedBitmapResourceEncoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedCacheDecoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedCacheEncoder;
@@ -46,6 +51,7 @@ import org.signal.glide.decryptableuri.DecryptableUri;
 import org.signal.glide.decryptableuri.DecryptableUriStreamLoader;
 import org.thoughtcrime.securesms.mms.RegisterGlideComponents;
 import org.thoughtcrime.securesms.mms.SignalGlideModule;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUriLoader;
 import org.thoughtcrime.securesms.stories.StoryTextPostModel;
@@ -85,16 +91,24 @@ public class SignalGlideComponents implements RegisterGlideComponents {
     registry.prepend(Bitmap.class, new EncryptedBitmapResourceEncoder(secret));
     registry.prepend(BitmapDrawable.class, new BitmapDrawableEncoder(glide.getBitmapPool(), encryptedBitmapResourceEncoder));
 
-    ByteBufferApngDecoder    byteBufferApngDecoder    = new ByteBufferApngDecoder();
-    StreamApngDecoder        streamApngDecoder        = new StreamApngDecoder(byteBufferApngDecoder);
-    StreamFactoryApngDecoder streamFactoryApngDecoder = new StreamFactoryApngDecoder(byteBufferApngDecoder, glide, registry);
 
-    registry.prepend(InputStream.class, APNGDecoder.class, streamApngDecoder);
-    registry.prepend(InputStreamFactory.class, APNGDecoder.class, streamFactoryApngDecoder);
-    registry.prepend(ByteBuffer.class, APNGDecoder.class, byteBufferApngDecoder);
-    registry.prepend(APNGDecoder.class, new EncryptedApngCacheEncoder(secret));
-    registry.prepend(File.class, APNGDecoder.class, new EncryptedCacheDecoder<>(secret, streamApngDecoder));
-    registry.register(APNGDecoder.class, Drawable.class, new ApngFrameDrawableTranscoder());
+    if (RemoteConfig.newApngRenderer()) {
+      registry.prepend(InputStreamFactory.class, ApngDecoder.class, new ApngInputStreamFactoryResourceDecoder());
+      registry.prepend(ApngDecoder.class, new EncryptedApngResourceEncoder(secret));
+      registry.prepend(File.class, ApngDecoder.class, new EncryptedApngCacheDecoder(secret));
+      registry.register(ApngDecoder.class, Drawable.class, new ApngDrawableTranscoder());
+    } else {
+      ByteBufferApngDecoder    byteBufferApngDecoder    = new ByteBufferApngDecoder();
+      StreamApngDecoder        streamApngDecoder        = new StreamApngDecoder(byteBufferApngDecoder);
+      StreamFactoryApngDecoder streamFactoryApngDecoder = new StreamFactoryApngDecoder(byteBufferApngDecoder, glide, registry);
+
+      registry.prepend(InputStream.class, APNGDecoder.class, streamApngDecoder);
+      registry.prepend(InputStreamFactory.class, APNGDecoder.class, streamFactoryApngDecoder);
+      registry.prepend(ByteBuffer.class, APNGDecoder.class, byteBufferApngDecoder);
+      registry.prepend(APNGDecoder.class, new EncryptedApngCacheEncoder(secret));
+      registry.prepend(File.class, APNGDecoder.class, new EncryptedCacheDecoder<>(secret, streamApngDecoder));
+      registry.register(APNGDecoder.class, Drawable.class, new ApngFrameDrawableTranscoder());
+    }
 
     registry.prepend(BlurHash.class, Bitmap.class, new BlurHashResourceDecoder());
     registry.prepend(StoryTextPostModel.class, Bitmap.class, new StoryTextPostModel.Decoder());

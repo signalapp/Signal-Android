@@ -296,6 +296,7 @@ message AccountRecord {
            NotificationProfileManualOverride notificationProfileManualOverride          = 44;
            bool                              notificationProfileSyncDisabled            = 45;
            bool                              automaticKeyVerificationDisabled           = 46;
+           bool                              hasSeenAdminDeleteEducationDialog          = 47;
 }
 
 message StoryDistributionListRecord {

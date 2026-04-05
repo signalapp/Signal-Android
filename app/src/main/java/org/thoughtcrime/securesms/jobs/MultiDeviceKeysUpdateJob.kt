@@ -4,6 +4,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -27,6 +28,7 @@ class MultiDeviceKeysUpdateJob private constructor(parameters: Parameters) : Bas
       .setQueue("MultiDeviceKeysUpdateJob")
       .setMaxInstancesForFactory(2)
       .addConstraint(NetworkConstraint.KEY)
+      .addConstraint(SealedSenderConstraint.KEY)
       .setMaxAttempts(10)
       .build()
   )
@@ -54,7 +56,6 @@ class MultiDeviceKeysUpdateJob private constructor(parameters: Parameters) : Bas
     val syncMessage = SignalServiceSyncMessage.forKeys(
       KeysMessage(
         storageService = SignalStore.storageService.storageKey,
-        master = SignalStore.svr.masterKey,
         accountEntropyPool = SignalStore.account.accountEntropyPool,
         mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
       )

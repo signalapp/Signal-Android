@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.avatar.vector.VectorAvatarCreationFragment
 import org.thoughtcrime.securesms.components.ButtonStripItemView
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -93,6 +93,8 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
       adapter.submitList(items) {
         if (selectedPosition > -1) {
           recycler.smoothScrollToPosition(selectedPosition)
+        } else {
+          recycler.smoothScrollToPosition(0)
         }
       }
     }
@@ -221,7 +223,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
 
   @Suppress("DEPRECATION")
   private fun openCameraCapture() {
-    if (CameraXUtil.isSupported()) {
+    if (CameraXRemoteConfig.isSupported()) {
       val intent = AvatarSelectionActivity.getIntentForCameraCapture(requireContext())
       startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE)
     } else {

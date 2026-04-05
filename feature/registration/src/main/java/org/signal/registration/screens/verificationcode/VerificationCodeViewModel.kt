@@ -49,6 +49,7 @@ class VerificationCodeViewModel(
   private var nextCallAvailableAt: Duration = 0.seconds
 
   fun onEvent(event: VerificationCodeScreenEvents) {
+    Log.d(TAG, "[Event] $event")
     viewModelScope.launch {
       val stateEmitter: (VerificationCodeState) -> Unit = { newState ->
         _localState.value = newState
@@ -179,10 +180,10 @@ class VerificationCodeViewModel(
 
         parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool))
 
-        if (response.storageCapable) {
-          parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSvrRestore)
-        } else {
-          parentEventEmitter.navigateTo(RegistrationRoute.PinCreate)
+        when {
+//          response.reregistration -> parentEventEmitter.navigateTo(RegistrationRoute.ChooseRestoreOptionAfterRegistration)
+          response.storageCapable -> parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSvrRestore)
+          else -> parentEventEmitter.navigateTo(RegistrationRoute.PinCreate)
         }
         state
       }

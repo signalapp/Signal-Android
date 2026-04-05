@@ -10,6 +10,7 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.concurrent.SimpleTask
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -91,6 +92,18 @@ object ConversationDialogs {
           MessageSender.resend(context, messageRecord)
         }
       }
+      .show()
+  }
+
+  fun displayTerminatedGroupSendFailedDialog(context: Context, messageRecord: MessageRecord) {
+    MaterialAlertDialogBuilder(context)
+      .setMessage(R.string.conversation_activity__send_failed_group_ended)
+      .setNegativeButton(R.string.ConversationFragment_delete_for_me) { _, _ ->
+        SignalExecutors.BOUNDED.execute {
+          SignalDatabase.messages.deleteMessage(messageRecord.id)
+        }
+      }
+      .setPositiveButton(android.R.string.ok, null)
       .show()
   }
 

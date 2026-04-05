@@ -7,8 +7,9 @@ package org.signal.registration
 
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
+import org.signal.registration.util.DebugLoggable
 
-sealed interface RegistrationFlowEvent {
+sealed interface RegistrationFlowEvent : DebugLoggable {
   /** Navigate to a specific screen. */
   data class NavigateToScreen(val route: RegistrationRoute) : RegistrationFlowEvent
 

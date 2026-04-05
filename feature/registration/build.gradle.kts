@@ -1,6 +1,7 @@
 plugins {
   id("signal-library")
   id("kotlin-parcelize")
+  id("com.squareup.wire")
   alias(libs.plugins.compose.compiler)
   alias(libs.plugins.kotlinx.serialization)
 }
@@ -10,12 +11,23 @@ android {
 
   buildFeatures {
     compose = true
+    buildConfig = true
   }
 
   testOptions {
     unitTests {
       isIncludeAndroidResources = true
     }
+  }
+}
+
+wire {
+  kotlin {
+    javaInterop = true
+  }
+
+  sourcePath {
+    srcDir("src/main/protowire")
   }
 }
 

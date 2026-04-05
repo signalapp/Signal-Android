@@ -41,9 +41,14 @@ public class MainNavigator {
   }
 
   public void goToConversation(@NonNull RecipientId recipientId, long threadId, int distributionType, int startingPosition) {
+    goToConversation(recipientId, threadId, distributionType, startingPosition, false);
+  }
+
+  public void goToConversation(@NonNull RecipientId recipientId, long threadId, int distributionType, int startingPosition, boolean incognito) {
     Disposable disposable = ConversationIntents.createBuilder(activity, recipientId, threadId)
                                                .map(builder -> builder.withDistributionType(distributionType)
                                                                       .withStartingPosition(startingPosition)
+                                                                      .asIncognito(incognito)
                                                                       .toConversationArgs())
                                                .subscribe(args -> viewModel.goTo(new MainNavigationDetailLocation.Chats.Conversation(args)));
 

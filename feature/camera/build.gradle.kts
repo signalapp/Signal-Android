@@ -9,13 +9,19 @@ android {
   buildFeatures {
     compose = true
   }
+
+  testOptions {
+    unitTests {
+      isIncludeAndroidResources = true
+    }
+  }
 }
 
 dependencies {
   lintChecks(project(":lintchecks"))
 
   // Signal Core
-  implementation(project(":core:util-jvm"))
+  implementation(project(":core:util"))
   implementation(project(":core:ui"))
   implementation(project(":lib:glide"))
 
@@ -52,6 +58,10 @@ dependencies {
 
   // Testing
   testImplementation(testLibs.junit.junit)
+  testImplementation(testLibs.mockk)
+  testImplementation(testLibs.assertk)
+  testImplementation(testLibs.kotlinx.coroutines.test)
+  testImplementation(testLibs.robolectric.robolectric)
   androidTestImplementation(testLibs.androidx.test.ext.junit)
   androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 }

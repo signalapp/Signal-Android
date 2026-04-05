@@ -5,10 +5,8 @@
 package org.thoughtcrime.securesms.components.settings.app.backups.local
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
@@ -38,7 +36,10 @@ import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.Snackbars
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.isIdle
+import org.thoughtcrime.securesms.backup.v2.ui.status.BackupCreationProgressRow
 import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentication
+import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.compose.DayNightPreviews as DayNightPreview
@@ -120,63 +121,39 @@ internal fun LocalBackupsSettingsScreen(
           )
         }
       } else {
-        val isCreating = state.progress is BackupProgressState.InProgress
+        val isCreating = !state.progress.isIdle
 
-        item {
-          Rows.TextRow(
-            text = {
-              Column {
-                Text(
-                  text = stringResource(id = R.string.BackupsPreferenceFragment__create_backup),
-                  style = MaterialTheme.typography.bodyLarge,
-                  color = MaterialTheme.colorScheme.onSurface
-                )
-
-                if (state.progress is BackupProgressState.InProgress) {
+        if (isCreating) {
+          item {
+            BackupCreationProgressRow(
+              progress = state.progress,
+              isRemote = false
+            )
+          }
+        } else {
+          item {
+            Rows.TextRow(
+              text = {
+                Column {
                   Text(
-                    text = state.progress.summary,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(top = 4.dp)
+                    text = stringResource(id = R.string.BackupsPreferenceFragment__create_backup),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurface
                   )
 
-                  if (state.progress.progressFraction == null) {
-                    LinearProgressIndicator(
-                      trackColor = MaterialTheme.colorScheme.secondaryContainer,
-                      modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 8.dp)
-                    )
-                  } else {
-                    LinearProgressIndicator(
-                      trackColor = MaterialTheme.colorScheme.secondaryContainer,
-                      progress = { state.progress.progressFraction },
-                      drawStopIndicator = {},
-                      modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 8.dp)
+                  if (state.lastBackupLabel != null) {
+                    Text(
+                      text = stringResource(R.string.BackupsSettingsFragment_last_backup_s, state.lastBackupLabel),
+                      style = MaterialTheme.typography.bodyMedium,
+                      color = MaterialTheme.colorScheme.onSurfaceVariant,
+                      modifier = Modifier.padding(top = 4.dp)
                     )
                   }
-
-                  Text(
-                    text = state.progress.percentLabel,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(top = 8.dp)
-                  )
-                } else {
-                  Text(
-                    text = state.lastBackupLabel.orEmpty(),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(top = 4.dp)
-                  )
                 }
-              }
-            },
-            enabled = !isCreating,
-            onClick = callback::onCreateBackupClick
-          )
+              },
+              onClick = callback::onCreateBackupClick
+            )
+          }
         }
 
         item {
@@ -206,7 +183,7 @@ internal fun LocalBackupsSettingsScreen(
 
         item {
           Rows.TextRow(
-            text = stringResource(id = R.string.UnifiedOnDeviceBackupsSettingsScreen__view_backup_key),
+            text = stringResource(id = R.string.UnifiedOnDeviceBackupsSettingsScreen__view_recovery_key),
             onClick = { biometrics.withBiometricsAuthentication { callback.onViewBackupKeyClick() } }
           )
         }
@@ -232,7 +209,7 @@ internal fun LocalBackupsSettingsScreen(
           style = MaterialTheme.typography.bodyMedium,
           color = MaterialTheme.colorScheme.onSurfaceVariant,
           modifier = Modifier.padding(
-            horizontal = dimensionResource(id = org.signal.core.ui.R.dimen.gutter),
+            horizontal = dimensionResource(id = CoreUiR.dimen.gutter),
             vertical = 16.dp
           )
         )
@@ -261,6 +238,10 @@ internal fun LocalBackupsSettingsScreen(
       onConfirm = callback::onTurnOffAndDeleteConfirmed,
       onDismiss = { showTurnOffAndDeleteDialog = false }
     )
+  }
+
+  if (state.isDeleting) {
+    Dialogs.IndeterminateProgressDialog(message = stringResource(id = R.string.BackupDialog_deleting_local_backup))
   }
 }
 
@@ -299,10 +280,10 @@ private fun LocalBackupsSettingsEnabledIdlePreview() {
     LocalBackupsSettingsScreen(
       state = LocalBackupsSettingsState(
         backupsEnabled = true,
-        lastBackupLabel = "Last backup: 1 hour ago",
+        lastBackupLabel = "1 hour ago",
         folderDisplayName = "/storage/emulated/0/Signal/Backups",
         scheduleTimeLabel = "1:00 AM",
-        progress = BackupProgressState.Idle
+        progress = LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle())
       ),
       callback = LocalBackupsSettingsCallback.Empty
     )
@@ -311,18 +292,16 @@ private fun LocalBackupsSettingsEnabledIdlePreview() {
 
 @DayNightPreview
 @Composable
-private fun LocalBackupsSettingsEnabledInProgressIndeterminatePreview() {
+private fun LocalBackupsSettingsEnabledExportingIndeterminatePreview() {
   Previews.Preview {
     LocalBackupsSettingsScreen(
       state = LocalBackupsSettingsState(
         backupsEnabled = true,
-        lastBackupLabel = "Last backup: 1 hour ago",
+        lastBackupLabel = "1 hour ago",
         folderDisplayName = "/storage/emulated/0/Signal/Backups",
         scheduleTimeLabel = "1:00 AM",
-        progress = BackupProgressState.InProgress(
-          summary = "In progress…",
-          percentLabel = "123 so far…",
-          progressFraction = null
+        progress = LocalBackupCreationProgress(
+          exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.ACCOUNT)
         )
       ),
       callback = LocalBackupsSettingsCallback.Empty
@@ -332,18 +311,43 @@ private fun LocalBackupsSettingsEnabledInProgressIndeterminatePreview() {
 
 @DayNightPreview
 @Composable
-private fun LocalBackupsSettingsEnabledInProgressPercentPreview() {
+private fun LocalBackupsSettingsEnabledExportingMessagesPreview() {
   Previews.Preview {
     LocalBackupsSettingsScreen(
       state = LocalBackupsSettingsState(
         backupsEnabled = true,
-        lastBackupLabel = "Last backup: 1 hour ago",
+        lastBackupLabel = "1 hour ago",
         folderDisplayName = "/storage/emulated/0/Signal/Backups",
         scheduleTimeLabel = "1:00 AM",
-        progress = BackupProgressState.InProgress(
-          summary = "In progress…",
-          percentLabel = "42.0% so far…",
-          progressFraction = 0.42f
+        progress = LocalBackupCreationProgress(
+          exporting = LocalBackupCreationProgress.Exporting(
+            phase = LocalBackupCreationProgress.ExportPhase.MESSAGE,
+            frameExportCount = 42000,
+            frameTotalCount = 100000
+          )
+        )
+      ),
+      callback = LocalBackupsSettingsCallback.Empty
+    )
+  }
+}
+
+@DayNightPreview
+@Composable
+private fun LocalBackupsSettingsEnabledTransferringPreview() {
+  Previews.Preview {
+    LocalBackupsSettingsScreen(
+      state = LocalBackupsSettingsState(
+        backupsEnabled = true,
+        lastBackupLabel = "1 hour ago",
+        folderDisplayName = "/storage/emulated/0/Signal/Backups",
+        scheduleTimeLabel = "1:00 AM",
+        progress = LocalBackupCreationProgress(
+          transferring = LocalBackupCreationProgress.Transferring(
+            completed = 50,
+            total = 200,
+            mediaPhase = true
+          )
         )
       ),
       callback = LocalBackupsSettingsCallback.Empty
@@ -358,10 +362,10 @@ private fun LocalBackupsSettingsEnabledNonLegacyPreview() {
     LocalBackupsSettingsScreen(
       state = LocalBackupsSettingsState(
         backupsEnabled = true,
-        lastBackupLabel = "Last backup: 1 hour ago",
+        lastBackupLabel = "1 hour ago",
         folderDisplayName = "Signal Backups",
         scheduleTimeLabel = "1:00 AM",
-        progress = BackupProgressState.Idle
+        progress = LocalBackupCreationProgress(idle = LocalBackupCreationProgress.Idle())
       ),
       callback = LocalBackupsSettingsCallback.Empty
     )

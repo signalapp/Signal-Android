@@ -30,16 +30,19 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
   private final MediaLoader.MediaType mediaType;
   private final MediaTable.Sorting    sorting;
   private final long                  threadId;
+  private final int                   limit;
 
   public GroupedThreadMediaLoader(@NonNull Context context,
                                   long threadId,
                                   @NonNull MediaLoader.MediaType mediaType,
-                                  @NonNull MediaTable.Sorting sorting)
+                                  @NonNull MediaTable.Sorting sorting,
+                                  int limit)
   {
     super(context);
     this.threadId  = threadId;
     this.mediaType = mediaType;
     this.sorting   = sorting;
+    this.limit     = limit;
     this.observer  = () -> ThreadUtil.runOnMain(this::onContentChanged);
 
     onContentChanged();
@@ -73,7 +76,7 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
 
     AppDependencies.getDatabaseObserver().registerAttachmentUpdatedObserver(observer);
 
-    try (Cursor cursor = ThreadMediaLoader.createThreadMediaCursor(context, threadId, mediaType, sorting)) {
+    try (Cursor cursor = ThreadMediaLoader.createThreadMediaCursor(context, threadId, mediaType, sorting, limit)) {
       while (cursor != null && cursor.moveToNext()) {
         mediaGrouping.add(MediaTable.MediaRecord.from(cursor));
       }
@@ -182,6 +185,7 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
 
     @Override
     public int groupForRecord(@NonNull MediaTable.MediaRecord mediaRecord) {
+      if (mediaRecord.getAttachment() == null) return SMALL;
       long size = mediaRecord.getAttachment().size;
 
       if (size < MB)      return SMALL;

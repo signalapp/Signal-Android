@@ -89,6 +89,11 @@ final class RequestGroupV2InfoWorkerJob extends BaseJob {
       return;
     }
 
+    if (group.isPresent() && group.get().isTerminated()) {
+      Log.i(TAG, "Group is terminated, skipping fetch.");
+      return;
+    }
+
     GroupManager.updateGroupFromServer(context, group.get().requireV2GroupProperties().getGroupMasterKey(), toRevision, System.currentTimeMillis());
   }
 

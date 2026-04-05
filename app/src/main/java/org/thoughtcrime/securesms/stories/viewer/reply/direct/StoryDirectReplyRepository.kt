@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -22,13 +23,13 @@ class StoryDirectReplyRepository(context: Context) {
 
   fun getStoryPost(storyId: Long): Single<MessageRecord> {
     return Single.fromCallable {
-      SignalDatabase.messages.getMessageRecord(storyId)
+      SignalDatabase.messages.getMessageRecord(storyId).withAttachments()
     }.subscribeOn(Schedulers.io())
   }
 
   fun send(storyId: Long, groupDirectReplyRecipientId: RecipientId?, body: CharSequence, bodyRangeList: BodyRangeList?, isReaction: Boolean): Completable {
     return Completable.create { emitter ->
-      val message = SignalDatabase.messages.getMessageRecord(storyId) as MmsMessageRecord
+      val message = SignalDatabase.messages.getMessageRecord(storyId).withAttachments() as MmsMessageRecord
       val (recipient, threadId) = if (groupDirectReplyRecipientId == null) {
         message.fromRecipient to message.threadId
       } else {

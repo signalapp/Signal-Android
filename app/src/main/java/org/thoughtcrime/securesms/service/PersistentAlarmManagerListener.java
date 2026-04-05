@@ -77,7 +77,7 @@ public abstract class PersistentAlarmManagerListener extends BroadcastReceiver {
     info("scheduling exact alarm for: " + scheduledTime + " hasManagerPermission: " + hasManagerPermission);
     if (hasManagerPermission) {
       try {
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, scheduledTime, pendingIntent);
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, scheduledTime, pendingIntent);
         return;
       } catch (Exception e) {
         warn(e);

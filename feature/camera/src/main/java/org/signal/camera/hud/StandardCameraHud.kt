@@ -122,6 +122,7 @@ fun BoxScope.StandardCameraHud(
   val viewConfiguration = LocalViewConfiguration.current
   var volumeKeyPressStartTime by remember { mutableStateOf(0L) }
   var isRecordingFromVolumeKey by remember { mutableStateOf(false) }
+  var activeVolumeKeyCode by remember { mutableStateOf(0) }
 
   LaunchedEffect(Unit) {
     focusRequester.requestFocus()
@@ -165,9 +166,14 @@ fun BoxScope.StandardCameraHud(
         when (nativeEvent.action) {
           KeyEvent.ACTION_DOWN -> {
             if (nativeEvent.repeatCount == 0) {
-              volumeKeyPressStartTime = nativeEvent.eventTime
-              isRecordingFromVolumeKey = false
-            } else if (!isRecordingFromVolumeKey &&
+              if (activeVolumeKeyCode == 0) {
+                activeVolumeKeyCode = keyCode
+                volumeKeyPressStartTime = nativeEvent.eventTime
+                isRecordingFromVolumeKey = false
+              }
+            } else if (keyCode == activeVolumeKeyCode &&
+              !state.isRecording &&
+              !isRecordingFromVolumeKey &&
               volumeKeyPressStartTime > 0 &&
               nativeEvent.eventTime - volumeKeyPressStartTime >= viewConfiguration.longPressTimeoutMillis
             ) {
@@ -183,13 +189,16 @@ fun BoxScope.StandardCameraHud(
           }
 
           KeyEvent.ACTION_UP -> {
-            if (isRecordingFromVolumeKey) {
-              isRecordingFromVolumeKey = false
-              emitter(StandardCameraHudEvents.VideoCaptureStopped)
-            } else if (volumeKeyPressStartTime > 0) {
-              emitter(StandardCameraHudEvents.PhotoCaptureTriggered)
+            if (keyCode == activeVolumeKeyCode) {
+              if (isRecordingFromVolumeKey) {
+                isRecordingFromVolumeKey = false
+                emitter(StandardCameraHudEvents.VideoCaptureStopped)
+              } else if (volumeKeyPressStartTime > 0 && !state.isRecording) {
+                emitter(StandardCameraHudEvents.PhotoCaptureTriggered)
+              }
+              volumeKeyPressStartTime = 0
+              activeVolumeKeyCode = 0
             }
-            volumeKeyPressStartTime = 0
             true
           }
 

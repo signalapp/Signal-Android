@@ -547,7 +547,20 @@ class InAppPaymentRecurringContextJob private constructor(
       }
 
       409 -> {
-        warning("Already redeemed this token during new subscription. Failing.", applicationError)
+        warning("Already redeemed this token during new subscription.", applicationError)
+
+        if (inAppPayment.type == InAppPaymentType.RECURRING_DONATION) {
+          info("Token already redeemed for recurring donation. Treating as successful redemption.")
+          SignalDatabase.inAppPayments.update(
+            inAppPayment = inAppPayment.copy(
+              state = InAppPaymentTable.State.END,
+              data = inAppPayment.data.newBuilder().redemption(
+                redemption = InAppPaymentData.RedemptionState(stage = InAppPaymentData.RedemptionState.Stage.REDEEMED)
+              ).build()
+            )
+          )
+          throw Exception(applicationError)
+        }
 
         // During keep-alive processing, we don't alert the user about redemption failures.
         if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP && inAppPayment.data.redemption?.keepAlive != true) {

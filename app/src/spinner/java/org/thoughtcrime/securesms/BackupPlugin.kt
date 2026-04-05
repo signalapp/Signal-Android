@@ -6,6 +6,10 @@
 package org.thoughtcrime.securesms
 
 import okio.ByteString
+import org.signal.archive.proto.AccountData
+import org.signal.archive.proto.BackupDebugInfo
+import org.signal.archive.proto.FilePointer
+import org.signal.archive.stream.EncryptedBackupReader
 import org.signal.core.util.bytes
 import org.signal.core.util.decodeOrNull
 import org.signal.core.util.logging.Log
@@ -14,10 +18,6 @@ import org.signal.spinner.Plugin
 import org.signal.spinner.PluginResult
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
-import org.thoughtcrime.securesms.backup.v2.proto.AccountData
-import org.thoughtcrime.securesms.backup.v2.proto.BackupDebugInfo
-import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
-import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
@@ -205,7 +205,7 @@ class BackupPlugin : Plugin {
         }
         frame.recipient != null -> {
           totalRecipients++
-          val recipient = frame.recipient
+          val recipient = frame.recipient!!
           recipientNames[recipient.id] = extractRecipientName(recipient)
 
           when {
@@ -218,7 +218,7 @@ class BackupPlugin : Plugin {
           }
         }
         frame.chat != null -> {
-          val chat = frame.chat
+          val chat = frame.chat!!
           chatInfos[chat.id] = ChatInfo(
             chatId = chat.id,
             recipientId = chat.recipientId,
@@ -234,7 +234,7 @@ class BackupPlugin : Plugin {
           }
         }
         frame.chatItem != null -> {
-          val item = frame.chatItem
+          val item = frame.chatItem!!
           chatInfos[item.chatId]?.let { chatInfo ->
             chatInfo.messageCount++
             chatInfo.attachmentCount += item.standardMessage?.attachments?.size ?: 0
@@ -319,7 +319,7 @@ class BackupPlugin : Plugin {
     counters.total++
 
     // Check for plaintextHash
-    val hasPlaintextHash = filePointer.locatorInfo?.plaintextHash != null && filePointer.locatorInfo.plaintextHash.size > 0
+    val hasPlaintextHash = filePointer.locatorInfo?.plaintextHash != null && filePointer.locatorInfo?.plaintextHash!!.size > 0
     if (hasPlaintextHash) {
       counters.withPlaintextHash++
     } else {
@@ -328,7 +328,7 @@ class BackupPlugin : Plugin {
     }
 
     // Check for localKey
-    val hasLocalKey = filePointer.locatorInfo?.localKey != null && filePointer.locatorInfo.localKey.size > 0
+    val hasLocalKey = filePointer.locatorInfo?.localKey != null && filePointer.locatorInfo?.localKey!!.size > 0
     if (hasLocalKey) {
       counters.withLocalKey++
     } else {
@@ -527,12 +527,12 @@ class BackupPlugin : Plugin {
     """.trimIndent()
   }
 
-  private fun extractRecipientName(recipient: org.thoughtcrime.securesms.backup.v2.proto.Recipient?): String {
+  private fun extractRecipientName(recipient: org.signal.archive.proto.Recipient?): String {
     if (recipient == null) return "Unknown"
 
     return when {
       recipient.contact != null -> {
-        val contact = recipient.contact
+        val contact = recipient.contact!!
         val name = buildString {
           if (contact.profileGivenName?.isNotEmpty() == true) {
             append(contact.profileGivenName)
@@ -540,9 +540,9 @@ class BackupPlugin : Plugin {
               append(" ${contact.profileFamilyName}")
             }
           } else if (contact.nickname?.given?.isNotEmpty() == true) {
-            append(contact.nickname.given)
-            if (contact.nickname.family.isNotEmpty()) {
-              append(" ${contact.nickname.family}")
+            append(contact.nickname!!.given)
+            if (contact.nickname!!.family.isNotEmpty()) {
+              append(" ${contact.nickname!!.family}")
             }
           } else if (contact.e164 != null) {
             append("+${contact.e164}")
@@ -553,7 +553,7 @@ class BackupPlugin : Plugin {
         name
       }
       recipient.group != null -> {
-        val group = recipient.group
+        val group = recipient.group!!
         group.snapshot?.title?.title ?: "Group ${recipient.id}"
       }
       recipient.self != null -> "Self"

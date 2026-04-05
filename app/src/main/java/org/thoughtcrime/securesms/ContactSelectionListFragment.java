@@ -365,9 +365,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
               @Override
               public void onDismissFindContactsBannerClicked() {
                 SignalStore.uiHints().markDismissedContactsPermissionBanner();
-                if (onRefreshListener != null) {
-                  onRefreshListener.onRefresh();
-                }
+                contactSearchMediator.refresh();
               }
 
               @Override

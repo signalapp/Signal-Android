@@ -74,6 +74,7 @@ fun DecryptedGroupChange.getChangedFields(): Set<GroupChangeField> {
     if (newInviteLinkAccess != AccessControl.AccessRequired.UNKNOWN) add(GroupChangeField.INVITE_LINK_ACCESS)
     if (newInviteLinkPassword.size != 0) add(GroupChangeField.INVITE_LINK_PASSWORD)
     if (newMemberAccess != AccessControl.AccessRequired.UNKNOWN) add(GroupChangeField.MEMBER_ACCESS)
+    if (newMemberLabelAccess != AccessControl.AccessRequired.UNKNOWN) add(GroupChangeField.MEMBER_LABEL_ACCESS)
     if (modifyMemberLabels.isNotEmpty()) add(GroupChangeField.MEMBER_LABELS)
     if (deleteMembers.isNotEmpty()) add(GroupChangeField.MEMBER_REMOVALS)
     if (modifyMemberRoles.isNotEmpty()) add(GroupChangeField.MEMBER_ROLES)
@@ -88,6 +89,7 @@ fun DecryptedGroupChange.getChangedFields(): Set<GroupChangeField> {
     if (newRequestingMembers.isNotEmpty()) add(GroupChangeField.REQUESTING_MEMBERS)
     if (newTimer != null) add(GroupChangeField.TIMER)
     if (newTitle != null) add(GroupChangeField.TITLE)
+    if (terminateGroup) add(GroupChangeField.TERMINATE_GROUP)
   }
 }
 
@@ -115,6 +117,7 @@ enum class GroupChangeField(val changeSilently: Boolean = false) {
   INVITE_LINK_ACCESS,
   INVITE_LINK_PASSWORD,
   MEMBER_ACCESS,
+  MEMBER_LABEL_ACCESS,
   MEMBER_LABELS(changeSilently = true),
   MEMBER_REMOVALS,
   MEMBER_ROLES,
@@ -127,6 +130,7 @@ enum class GroupChangeField(val changeSilently: Boolean = false) {
   REQUESTING_MEMBER_APPROVALS,
   REQUESTING_MEMBER_REMOVALS,
   REQUESTING_MEMBERS,
+  TERMINATE_GROUP,
   TIMER,
   TITLE;
 

@@ -46,9 +46,9 @@ sealed interface FallbackAvatar {
     fun getIconBySize(size: Size): Int
 
     /**
-     * Local user
+     * Note to Self / local user
      */
-    data class Local(override val color: AvatarColor) : Resource {
+    data class NoteToSelf(override val color: AvatarColor) : Resource {
       override fun getIconBySize(size: Size): Int {
         return when (size) {
           Size.SMALL -> R.drawable.symbol_note_compact_16

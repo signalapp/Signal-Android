@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.chats
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -7,11 +8,14 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFoldersRepository
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ThrottledDebouncer
 
@@ -31,11 +35,52 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
       localBackupsEnabled = SignalStore.settings.isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(AppDependencies.application),
       folderCount = 0,
       userUnregistered = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application) || !SignalStore.account.isRegistered,
-      clientDeprecated = SignalStore.misc.isClientDeprecated
+      clientDeprecated = SignalStore.misc.isClientDeprecated,
+      isPlaintextExportEnabled = RemoteConfig.localPlaintextExport,
+      chatExportState = ChatExportState.None
     )
   )
 
   val state: StateFlow<ChatsSettingsState> = store
+
+  init {
+    viewModelScope.launch {
+      LocalExportProgress.plaintextProgress.collect { progress ->
+        store.update {
+          it.copy(
+            plaintextExportProgress = progress,
+            chatExportState = when {
+              progress.succeeded != null && it.plaintextExportProgress.succeeded == null -> ChatExportState.Success
+              progress.canceled != null -> ChatExportState.None
+              else -> it.chatExportState
+            }
+          )
+        }
+      }
+    }
+  }
+
+  fun requestChatExportType() {
+    store.update { it.copy(chatExportState = ChatExportState.ConfirmExport) }
+  }
+
+  fun setExportTypeAndGoToSelectFolder(includeMediaInExport: Boolean) {
+    store.update { it.copy(chatExportState = ChatExportState.ChooseAFolder, includeMediaInExport = includeMediaInExport) }
+  }
+
+  fun startChatExportToFolder(uri: Uri) {
+    store.update { it.copy(chatExportState = ChatExportState.None) }
+    LocalBackupJob.enqueuePlaintextArchive(uri.toString(), store.value.includeMediaInExport)
+  }
+
+  fun clearChatExportFlow() {
+    store.update { it.copy(chatExportState = ChatExportState.None, includeMediaInExport = false) }
+  }
+
+  fun cancelChatExport() {
+    store.update { it.copy(chatExportState = ChatExportState.Canceling) }
+    AppDependencies.jobManager.cancelAllInQueue(LocalBackupJob.PLAINTEXT_ARCHIVE_QUEUE)
+  }
 
   fun setGenerateLinkPreviewsEnabled(enabled: Boolean) {
     store.update { it.copy(generateLinkPreviews = enabled) }

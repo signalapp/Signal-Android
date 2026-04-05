@@ -24,7 +24,8 @@ class GroupRecord(
   val avatarId: Long,
   val avatarKey: ByteArray?,
   val avatarContentType: String?,
-  val isActive: Boolean,
+  val isMember: Boolean,
+  private val terminatedBy: Long = 0,
   val avatarDigest: ByteArray?,
   val isMms: Boolean,
   groupMasterKeyBytes: ByteArray?,
@@ -60,6 +61,15 @@ class GroupRecord(
       null
     }
   }
+
+  val isTerminated: Boolean
+    get() = terminatedBy != 0L
+
+  val terminatedByRecipientId: RecipientId?
+    get() = if (terminatedBy > 0) RecipientId.from(terminatedBy) else null
+
+  val isActive: Boolean
+    get() = isMember && !isTerminated
 
   val description: String
     get() = v2GroupProperties?.decryptedGroup?.description ?: ""
@@ -115,6 +125,27 @@ class GroupRecord(
         GroupAccessControl.NO_ONE
       } else {
         GroupAccessControl.ALL_MEMBERS
+      }
+    }
+
+  /**
+   * Who is allowed to add member labels in this group.
+   *
+   * Defaults to ALL_MEMBERS for groups created before this permission was added.
+   */
+  val memberLabelAccessControl: GroupAccessControl
+    get() {
+      if (!isV2Group) {
+        return GroupAccessControl.ALL_MEMBERS
+      }
+
+      return when ((requireV2GroupProperties().decryptedGroup.accessControl ?: AccessControl()).memberLabel) {
+        AccessControl.AccessRequired.ADMINISTRATOR -> GroupAccessControl.ONLY_ADMINS
+
+        AccessControl.AccessRequired.MEMBER,
+        AccessControl.AccessRequired.UNKNOWN, // groups predating this permission
+        AccessControl.AccessRequired.ANY,
+        AccessControl.AccessRequired.UNSATISFIABLE -> GroupAccessControl.ALL_MEMBERS
       }
     }
 

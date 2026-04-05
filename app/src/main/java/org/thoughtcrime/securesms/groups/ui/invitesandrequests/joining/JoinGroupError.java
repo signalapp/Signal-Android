@@ -7,4 +7,5 @@ enum JoinGroupError {
   FAILED,
   LIMIT_REACHED,
   NETWORK_ERROR,
+  GROUP_TERMINATED,
 }

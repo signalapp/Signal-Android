@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -41,6 +42,7 @@ public class MultiDeviceStickerPackOperationJob extends BaseJob {
     this(new Job.Parameters.Builder()
                            .setQueue("MultiDeviceStickerPackOperationJob")
                            .addConstraint(NetworkConstraint.KEY)
+                           .addConstraint(SealedSenderConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .build(),
         packId,

@@ -316,7 +316,7 @@ class DataMessageProcessorTest_polls {
 
   private fun insertPoll(allowMultiple: Boolean = true): Long {
     val envelope = MessageContentFuzzer.envelope(100)
-    val pollMessage = IncomingMessage(type = MessageType.NORMAL, from = alice.id, sentTimeMillis = envelope.timestamp!!, serverTimeMillis = envelope.serverTimestamp!!, receivedTimeMillis = 0, groupId = groupId)
+    val pollMessage = IncomingMessage(type = MessageType.NORMAL, from = alice.id, sentTimeMillis = envelope.clientTimestamp!!, serverTimeMillis = envelope.serverTimestamp!!, receivedTimeMillis = 0, groupId = groupId)
     val messageId = SignalDatabase.messages.insertMessageInbox(pollMessage).get()
     SignalDatabase.polls.insertPoll("question?", allowMultiple, listOf("a", "b", "c"), alice.id.toLong(), messageId.messageId)
     return messageId.messageId

@@ -11,6 +11,13 @@ import org.signal.core.util.Base64;
 import org.signal.core.util.ProtoUtil;
 import org.signal.core.util.UuidUtil;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
+import org.signal.libsignal.net.MismatchedDeviceException;
+import org.signal.libsignal.net.MultiRecipientMessageResponse;
+import org.signal.libsignal.net.MultiRecipientSendAuthorization;
+import org.signal.libsignal.net.MultiRecipientSendFailure;
+import org.signal.libsignal.net.RequestResult;
+import org.signal.libsignal.net.RequestUnauthorizedException;
+import org.signal.libsignal.net.RetryLaterException;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.InvalidKeyException;
@@ -39,6 +46,7 @@ import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.groupsv2.GroupSendEndorsements;
 import org.whispersystems.signalservice.api.keys.KeysApi;
 import org.whispersystems.signalservice.api.message.MessageApi;
+import org.whispersystems.signalservice.api.message.MessageApiKt;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -75,11 +83,12 @@ import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
-import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
+import org.whispersystems.signalservice.api.push.exceptions.RetryNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
+import org.whispersystems.signalservice.api.push.exceptions.UnknownGroupSendException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.util.AttachmentPointerUtil;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
@@ -97,19 +106,15 @@ import org.whispersystems.signalservice.internal.push.Content;
 import org.whispersystems.signalservice.internal.push.DataMessage;
 import org.whispersystems.signalservice.internal.push.EditMessage;
 import org.whispersystems.signalservice.internal.push.GroupContextV2;
-import org.whispersystems.signalservice.internal.push.GroupMismatchedDevices;
-import org.whispersystems.signalservice.internal.push.GroupStaleDevices;
 import org.whispersystems.signalservice.internal.push.MismatchedDevices;
 import org.whispersystems.signalservice.internal.push.NullMessage;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList;
 import org.whispersystems.signalservice.internal.push.PniSignatureMessage;
 import org.whispersystems.signalservice.internal.push.Preview;
-import org.whispersystems.signalservice.internal.push.ProvisioningVersion;
 import org.whispersystems.signalservice.internal.push.PushAttachmentData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.ReceiptMessage;
-import org.whispersystems.signalservice.internal.push.SendGroupMessageResponse;
 import org.whispersystems.signalservice.internal.push.SendMessageResponse;
 import org.whispersystems.signalservice.internal.push.StaleDevices;
 import org.whispersystems.signalservice.internal.push.StoryMessage;
@@ -117,8 +122,6 @@ import org.whispersystems.signalservice.internal.push.SyncMessage;
 import org.whispersystems.signalservice.internal.push.TextAttachment;
 import org.whispersystems.signalservice.internal.push.TypingMessage;
 import org.whispersystems.signalservice.internal.push.Verified;
-import org.whispersystems.signalservice.internal.push.exceptions.GroupMismatchedDevicesException;
-import org.whispersystems.signalservice.internal.push.exceptions.GroupStaleDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException;
@@ -184,6 +187,7 @@ public class SignalServiceMessageSender {
 
   private final Scheduler       scheduler;
   private final long            maxEnvelopeSize;
+  private final int             maxIncrementalMacsPerEnvelope;
   private final BooleanSupplier useRestFallback;
   private final boolean         useBinaryId;
   private final boolean         useStringId;
@@ -197,28 +201,30 @@ public class SignalServiceMessageSender {
                                     Optional<EventListener> eventListener,
                                     ExecutorService executor,
                                     long maxEnvelopeSize,
+                                    int maxIncrementalMacsPerEnvelope,
                                     BooleanSupplier useRestFallback,
                                     boolean useBinaryId,
                                     boolean useStringId)
   {
     CredentialsProvider credentialsProvider = pushServiceSocket.getCredentialsProvider();
 
-    this.socket           = pushServiceSocket;
-    this.aciStore         = store.aci();
-    this.sessionLock      = sessionLock;
-    this.localAddress     = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
-    this.localDeviceId    = credentialsProvider.getDeviceId();
-    this.localPni         = credentialsProvider.getPni();
-    this.attachmentApi    = attachmentApi;
-    this.messageApi       = messageApi;
-    this.eventListener    = eventListener;
-    this.maxEnvelopeSize  = maxEnvelopeSize;
-    this.localPniIdentity = store.pni().getIdentityKeyPair();
-    this.scheduler        = Schedulers.from(executor, false, false);
-    this.keysApi          = keysApi;
-    this.useRestFallback  = useRestFallback;
-    this.useBinaryId      = useBinaryId;
-    this.useStringId      = useStringId;
+    this.socket                        = pushServiceSocket;
+    this.aciStore                      = store.aci();
+    this.sessionLock                   = sessionLock;
+    this.localAddress                  = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
+    this.localDeviceId                 = credentialsProvider.getDeviceId();
+    this.localPni                      = credentialsProvider.getPni();
+    this.attachmentApi                 = attachmentApi;
+    this.messageApi                    = messageApi;
+    this.eventListener                 = eventListener;
+    this.maxEnvelopeSize               = maxEnvelopeSize;
+    this.maxIncrementalMacsPerEnvelope = maxIncrementalMacsPerEnvelope;
+    this.localPniIdentity              = store.pni().getIdentityKeyPair();
+    this.scheduler                     = Schedulers.from(executor, false, false);
+    this.keysApi                       = keysApi;
+    this.useRestFallback               = useRestFallback;
+    this.useBinaryId                   = useBinaryId;
+    this.useStringId                   = useStringId;
   }
 
   /**
@@ -1595,8 +1601,6 @@ public class SignalServiceMessageSender {
       configurationMessage.linkPreviews(configuration.getLinkPreviews().get());
     }
 
-    configurationMessage.provisioningVersion(ProvisioningVersion.CURRENT.getValue());
-
     return container.syncMessage(syncMessage.configuration(configurationMessage.build()).build()).build();
   }
 
@@ -1741,10 +1745,6 @@ public class SignalServiceMessageSender {
     Content.Builder          container   = new Content.Builder();
     SyncMessage.Builder      syncMessage = createSyncMessageBuilder();
     SyncMessage.Keys.Builder builder     = new SyncMessage.Keys.Builder();
-
-    if (keysMessage.getMaster() != null) {
-      builder.master(ByteString.of(keysMessage.getMaster().serialize()));
-    }
 
     if (keysMessage.getAccountEntropyPool() != null) {
       builder.accountEntropyPool(keysMessage.getAccountEntropyPool().getValue());
@@ -2555,52 +2555,53 @@ public class SignalServiceMessageSender {
 
       sendEvents.onMessageEncrypted();
 
-      try {
-        try {
+      MultiRecipientSendAuthorization multiRecipientAuth = story ? MultiRecipientSendAuthorization.Story.INSTANCE
+                                                                 : new MultiRecipientSendAuthorization.GroupSend(groupSendEndorsements.toFullToken());
 
-          SendGroupMessageResponse response = NetworkResultUtil.toGroupMessageSendLegacy(messageApi.sendGroupMessage(ciphertext, sealedSenderAccess, timestamp, online, urgent, story));
-          return transformGroupResponseToMessageResults(targetInfo.devices, response, content);
-        } catch (InvalidUnidentifiedAccessHeaderException |
-                 NotFoundException |
-                 GroupMismatchedDevicesException |
-                 GroupStaleDevicesException |
-                 ServerRejectedException |
-                 RateLimitException e) {
-          // Non-technical failures shouldn't be retried with socket
-          throw e;
-        } catch (WebSocketUnavailableException e) {
-          if (useRestFallback.getAsBoolean()) {
-            Log.i(TAG, "[sendGroupMessage][" + timestamp + "] Pipe unavailable, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
-          } else {
-            Log.i(TAG, "[sendGroupMessage][" + timestamp + "] Pipe unavailable (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
-            throw e;
-          }
-        } catch (IOException e) {
-          if (useRestFallback.getAsBoolean()) {
-            Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Pipe failed, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
-          } else {
-            Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Pipe failed (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
-            throw e;
-          }
-        }
+      RequestResult<MultiRecipientMessageResponse, MultiRecipientSendFailure> result = messageApi.sendGroupMessage(ciphertext, multiRecipientAuth, timestamp, online, urgent);
 
-        SendGroupMessageResponse response = socket.sendGroupMessage(ciphertext, sealedSenderAccess, timestamp, online, urgent, story);
-        return transformGroupResponseToMessageResults(targetInfo.devices, response, content);
-      } catch (GroupMismatchedDevicesException e) {
-        Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling mismatched devices. (" + e.getMessage() + ")");
-        for (GroupMismatchedDevices mismatched : e.getMismatchedDevices()) {
-          SignalServiceAddress address = new SignalServiceAddress(ServiceId.parseOrThrow(mismatched.getUuid()), Optional.empty());
-          handleMismatchedDevices(address, mismatched.getDevices());
+      if (result instanceof RequestResult.Success) {
+        MultiRecipientMessageResponse response = ((RequestResult.Success<MultiRecipientMessageResponse>) result).getResult();
+        return transformGroupResponseToMessageResults(targetInfo.devices, MessageApiKt.unsentTargets(response), content);
+      } else if (result instanceof RequestResult.NonSuccess) {
+        MultiRecipientSendFailure error = ((RequestResult.NonSuccess<MultiRecipientSendFailure>) result).getError();
+        if (error instanceof MismatchedDeviceException) {
+          MismatchedDeviceException mismatchedDeviceException = (MismatchedDeviceException) error;
+          Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling mismatched devices. (" + mismatchedDeviceException.getMessage() + ")");
+          for (MismatchedDeviceException.Entry entry : mismatchedDeviceException.getEntries()) {
+            SignalServiceAddress address = new SignalServiceAddress(ServiceId.fromLibSignal(entry.getAccount()));
+            MismatchedDevices    devices = MismatchedDevices.fromLibSignal(entry);
+            handleMismatchedDevices(address, devices);
+            if (entry.getStaleDevices().length > 0) {
+              StaleDevices staleDevices = StaleDevices.fromLibSignal(entry);
+              handleStaleDevices(address, staleDevices);
+            }
+          }
+        } else if (error instanceof RequestUnauthorizedException) {
+          Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Invalid access header.");
+          throw new InvalidUnidentifiedAccessHeaderException();
+        } else {
+          throw new IOException("Unknown multi-recipient send failure: " + error.getClass().getSimpleName());
         }
-      } catch (GroupStaleDevicesException e) {
-        Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling stale devices. (" + e.getMessage() + ")");
-        for (GroupStaleDevices stale : e.getStaleDevices()) {
-          SignalServiceAddress address = new SignalServiceAddress(ServiceId.parseOrThrow(stale.getUuid()), Optional.empty());
-          handleStaleDevices(address, stale.getDevices());
+      } else if (result instanceof RequestResult.RetryableNetworkError) {
+        RequestResult.RetryableNetworkError retryableError = (RequestResult.RetryableNetworkError) result;
+        IOException                         exception      = retryableError.getNetworkError();
+        if (exception instanceof RetryLaterException) {
+          throw exception;
+        } else if (retryableError.getRetryAfter() != null && retryableError.getRetryAfter().toMillis() > 0) {
+          throw new RetryNetworkException(retryableError.getRetryAfter().toMillis(), exception);
+        } else {
+          throw exception;
         }
-      } catch (InvalidUnidentifiedAccessHeaderException e) {
-        Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Invalid access header. (" + e.getMessage() + ")");
-        throw e;
+      } else if (result instanceof RequestResult.ApplicationError) {
+        Throwable cause = ((RequestResult.ApplicationError) result).getCause();
+        if (cause instanceof IOException) {
+          throw (IOException) cause;
+        } else if (cause instanceof RuntimeException) {
+          throw (RuntimeException) cause;
+        } else {
+          throw new UnknownGroupSendException(cause);
+        }
       }
 
       Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Attempt failed (i = " + i + ")");
@@ -2653,9 +2654,7 @@ public class SignalServiceMessageSender {
     }
   }
 
-  private List<SendMessageResult> transformGroupResponseToMessageResults(Map<SignalServiceAddress, List<Integer>> recipients, SendGroupMessageResponse response, Content content) {
-    Set<ServiceId> unregistered = response.getUnsentTargets();
-
+  private List<SendMessageResult> transformGroupResponseToMessageResults(Map<SignalServiceAddress, List<Integer>> recipients, Set<ServiceId> unregistered, Content content) {
     List<SendMessageResult> failures = unregistered.stream()
                                                    .map(SignalServiceAddress::new)
                                                    .map(SendMessageResult::unregisteredFailure)
@@ -2691,7 +2690,42 @@ public class SignalServiceMessageSender {
       }
     }
 
-    return pointers;
+    return capIncrementalMacs(pointers);
+  }
+
+  private List<AttachmentPointer> capIncrementalMacs(List<AttachmentPointer> pointers) {
+    if (maxIncrementalMacsPerEnvelope <= 0) {
+      return pointers;
+    }
+
+    int incrementalMacCount = 0;
+    for (AttachmentPointer pointer : pointers) {
+      if (pointer.incrementalMac != null) {
+        incrementalMacCount++;
+      }
+    }
+
+    if (incrementalMacCount <= maxIncrementalMacsPerEnvelope) {
+      return pointers;
+    }
+
+    Log.w(TAG, "Envelope has " + incrementalMacCount + " incrementalMacs, which exceeds the limit of " + maxIncrementalMacsPerEnvelope + ". Stripping excess.");
+
+    List<AttachmentPointer> result = new ArrayList<>(pointers.size());
+    int                     kept   = 0;
+
+    for (AttachmentPointer pointer : pointers) {
+      if (pointer.incrementalMac != null && kept >= maxIncrementalMacsPerEnvelope) {
+        result.add(pointer.newBuilder().incrementalMac(null).chunkSize(null).build());
+      } else {
+        if (pointer.incrementalMac != null) {
+          kept++;
+        }
+        result.add(pointer);
+      }
+    }
+
+    return result;
   }
 
   private AttachmentPointer createAttachmentPointer(SignalServiceAttachmentPointer attachment) {

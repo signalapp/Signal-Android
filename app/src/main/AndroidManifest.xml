@@ -459,6 +459,13 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
+            android:name=".search.SingleContactSelectionActivity"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:exported="false"
+            android:label="@string/AndroidManifest__select_contacts"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
             android:name=".giph.ui.GiphyActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="false"
@@ -534,6 +541,12 @@
             android:exported="false"
             android:theme="@style/Signal.DayNight.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+
+        <activity
+            android:name=".stories.archive.StoryArchiveActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Signal.DayNight.NoActionBar" />
 
         <activity
             android:name=".stories.viewer.StoryViewerActivity"
@@ -660,6 +673,13 @@
             android:exported="false"
             android:label="@string/AndroidManifest__media_preview"
             android:theme="@style/TextSecure.DarkNoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".starred.StarredMessagesActivity"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:exported="false"
+            android:theme="@style/Theme.Signal.DayNight.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
@@ -1276,16 +1296,6 @@
             android:enabled="true"
             android:exported="false" />
 
-        <service
-            android:name=".service.webrtc.AndroidCallConnectionService"
-            android:exported="true"
-            android:foregroundServiceType="phoneCall"
-            android:permission="android.permission.BIND_TELECOM_CONNECTION_SERVICE"
-            tools:targetApi="28">
-            <intent-filter>
-                <action android:name="android.telecom.ConnectionService" />
-            </intent-filter>
-        </service>
 
         <service
             android:name=".components.voice.VoiceNotePlaybackService"
@@ -1395,7 +1405,7 @@
         <service
             android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallForegroundService"
             android:exported="false"
-            android:foregroundServiceType="dataSync|microphone|camera" />
+            android:foregroundServiceType="dataSync|microphone|camera|phoneCall" />
 
         <service
             android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
@@ -1428,6 +1438,10 @@
 
         <receiver
             android:name=".service.ExpiringStoriesManager$ExpireStoriesAlarm"
+            android:exported="false" />
+
+        <receiver
+            android:name=".service.ExpiringArchivedStoriesManager$ExpireArchivedStoriesAlarm"
             android:exported="false" />
 
         <receiver

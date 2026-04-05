@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraint
 import org.thoughtcrime.securesms.jobs.protos.UploadAttachmentToArchiveJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.service.AttachmentProgressService
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -37,6 +38,8 @@ import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatus
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
+import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
+import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.net.ProtocolException
@@ -224,17 +227,43 @@ class UploadAttachmentToArchiveJob private constructor(
       uploadSpec = null
     }
 
-    if (uploadSpec == null) {
-      Log.d(TAG, "[$attachmentId]$mediaIdLog Need an upload spec. Fetching...")
+    val existingSpec = uploadSpec?.let { ResumableUploadSpec.from(it) }
 
-      val (spec, result) = fetchResumableUploadSpec(key = Base64.decode(attachment.remoteKey), iv = Util.getSecretBytes(16))
-      if (result != null) {
-        return result
+    val form: AttachmentUploadForm? = if (existingSpec == null) {
+      when (val formResult = BackupRepository.getAttachmentUploadForm()) {
+        is NetworkResult.Success -> formResult.result
+        is NetworkResult.ApplicationError -> {
+          Log.w(TAG, "[$attachmentId]$mediaIdLog Failed to get upload form due to an application error.", formResult.throwable)
+          return Result.retry(defaultBackoff())
+        }
+        is NetworkResult.NetworkError -> {
+          Log.w(TAG, "[$attachmentId]$mediaIdLog Encountered a transient network error getting upload form.")
+          return Result.retry(defaultBackoff())
+        }
+        is NetworkResult.StatusCodeError -> {
+          Log.w(TAG, "[$attachmentId]$mediaIdLog Failed to get upload form with status code ${formResult.code}")
+          return when (ArchiveMediaUploadFormStatusCodes.from(formResult.code)) {
+            ArchiveMediaUploadFormStatusCodes.RateLimited -> {
+              Log.w(TAG, "[$attachmentId]$mediaIdLog Rate limited when getting upload form.")
+              Result.retry(formResult.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+            }
+            else -> Result.retry(defaultBackoff())
+          }
+        }
       }
-
-      uploadSpec = spec
     } else {
-      Log.d(TAG, "[$attachmentId]$mediaIdLog Already have an upload spec. Continuing...")
+      null
+    }
+
+    val key = existingSpec?.attachmentKey ?: Base64.decode(attachment.remoteKey!!)
+    val iv = existingSpec?.attachmentIv ?: Util.getSecretBytes(16)
+
+    val checksumSha256 = if (existingSpec == null) {
+      PartAuthority.getAttachmentStream(context, attachment.uri!!).use { stream ->
+        AttachmentUploadUtil.computeCiphertextChecksum(key, iv, stream, attachment.size)
+      }
+    } else {
+      null
     }
 
     val progressServiceController = if (attachment.size >= AttachmentUploadUtil.FOREGROUND_LIMIT_BYTES) {
@@ -249,7 +278,6 @@ class UploadAttachmentToArchiveJob private constructor(
       AttachmentUploadUtil.buildSignalServiceAttachmentStream(
         context = context,
         attachment = attachment,
-        uploadSpec = uploadSpec!!,
         cancellationSignal = { this.isCanceled },
         progressListener = object : SignalServiceAttachment.ProgressListener {
           override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
@@ -273,8 +301,18 @@ class UploadAttachmentToArchiveJob private constructor(
 
     Log.d(TAG, "[$attachmentId]$mediaIdLog Beginning upload...")
     progressServiceController.use {
-      val uploadResult: AttachmentUploadResult = attachmentStream.use { managedAttachmentStream ->
-        when (val result = SignalNetwork.attachments.uploadAttachmentV4(managedAttachmentStream)) {
+      val uploadResult: AttachmentUploadResult = attachmentStream.use { stream ->
+        when (
+          val result = SignalNetwork.attachments.uploadAttachmentV4(
+            form = form,
+            key = key,
+            iv = iv,
+            checksumSha256 = checksumSha256,
+            attachmentStream = stream,
+            existingSpec = existingSpec,
+            onSpecCreated = { spec -> uploadSpec = spec.toProto() }
+          )
+        ) {
           is NetworkResult.Success -> result.result
           is NetworkResult.ApplicationError -> throw result.throwable
           is NetworkResult.NetworkError -> {
@@ -344,49 +382,6 @@ class UploadAttachmentToArchiveJob private constructor(
       Log.w(TAG, "[$attachmentId] Job failed, updating archive transfer state to ${AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE} (if not already a permanent failure).")
       ArchiveDatabaseExecutor.runBlocking {
         SignalDatabase.attachments.setArchiveTransferStateFailure(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
-      }
-    }
-  }
-
-  private fun fetchResumableUploadSpec(key: ByteArray, iv: ByteArray): Pair<ResumableUpload?, Result?> {
-    val uploadSpec = BackupRepository
-      .getAttachmentUploadForm()
-      .then { form -> SignalNetwork.attachments.getResumableUploadSpec(key, iv, form) }
-
-    return when (uploadSpec) {
-      is NetworkResult.Success -> {
-        Log.d(TAG, "[$attachmentId] Got an upload spec!")
-        uploadSpec.result.toProto() to null
-      }
-
-      is NetworkResult.ApplicationError -> {
-        Log.w(TAG, "[$attachmentId] Failed to get an upload spec due to an application error. Retrying.", uploadSpec.throwable)
-        return null to Result.retry(defaultBackoff())
-      }
-
-      is NetworkResult.NetworkError -> {
-        Log.w(TAG, "[$attachmentId] Encountered a transient network error. Retrying.")
-        return null to Result.retry(defaultBackoff())
-      }
-
-      is NetworkResult.StatusCodeError -> {
-        Log.w(TAG, "[$attachmentId] Failed request with status code ${uploadSpec.code}")
-
-        when (ArchiveMediaUploadFormStatusCodes.from(uploadSpec.code)) {
-          ArchiveMediaUploadFormStatusCodes.BadArguments,
-          ArchiveMediaUploadFormStatusCodes.InvalidPresentationOrSignature,
-          ArchiveMediaUploadFormStatusCodes.InsufficientPermissions -> {
-            return null to Result.retry(defaultBackoff())
-          }
-          ArchiveMediaUploadFormStatusCodes.RateLimited -> {
-            Log.w(TAG, "[$attachmentId] Rate limited when getting upload form.")
-            return null to Result.retry(uploadSpec.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
-          }
-
-          ArchiveMediaUploadFormStatusCodes.Unknown -> {
-            return null to Result.retry(defaultBackoff())
-          }
-        }
       }
     }
   }

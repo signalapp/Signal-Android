@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2.exporters
 
 import android.database.Cursor
+import org.signal.archive.proto.Chat
 import org.signal.core.util.decodeOrNull
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
@@ -13,7 +14,6 @@ import org.signal.core.util.requireInt
 import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireLong
 import org.thoughtcrime.securesms.backup.v2.ExportState
-import org.thoughtcrime.securesms.backup.v2.proto.Chat
 import org.thoughtcrime.securesms.backup.v2.util.ChatStyleConverter
 import org.thoughtcrime.securesms.backup.v2.util.isValid
 import org.thoughtcrime.securesms.conversation.colors.ChatColors

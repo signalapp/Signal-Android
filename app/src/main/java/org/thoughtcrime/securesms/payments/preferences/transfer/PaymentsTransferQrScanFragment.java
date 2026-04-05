@@ -15,7 +15,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.qr.QrScannerView;
 import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXModelBlocklist;
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig;
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
@@ -53,7 +53,7 @@ public final class PaymentsTransferQrScanFragment extends LoggingFragment {
     Toolbar toolbar = view.findViewById(R.id.payments_transfer_scan_qr);
     toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 
-    scannerView.start(getViewLifecycleOwner(), CameraXModelBlocklist.isBlocklisted());
+    scannerView.start(getViewLifecycleOwner(), CameraXRemoteConfig.isBlocklisted());
 
     lifecycleDisposable.bindTo(getViewLifecycleOwner());
 

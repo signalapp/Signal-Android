@@ -1,0 +1,37 @@
+name: Mark stale issues and PRs
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # daily at 02:00 UTC
+  workflow_dispatch:
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      actions: write
+
+    steps:
+      - uses: actions/stale@v10
+        with:
+          days-before-stale: 60
+          days-before-close: 7
+          exempt-issue-labels: 'acknowledged'
+          exempt-pr-labels: 'acknowledged'
+          stale-issue-label: 'wontfix'
+          stale-pr-label: 'wontfix'
+          stale-issue-message: >
+            This issue has been automatically marked as stale because it has not had
+            recent activity. It will be closed if no further activity occurs. Thank you
+            for your contributions!
+          stale-pr-message: >
+            This pull request has been automatically marked as stale because it has not had
+            recent activity. It will be closed if no further activity occurs. Thank you
+            for your contributions!
+          close-issue-message: >
+            This issue has been closed due to inactivity.
+          close-pr-message: >
+            This pull request has been closed due to inactivity.
+          operations-per-run: 150

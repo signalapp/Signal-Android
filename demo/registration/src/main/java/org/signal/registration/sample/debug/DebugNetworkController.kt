@@ -5,6 +5,7 @@
 
 package org.signal.registration.sample.debug
 
+import kotlinx.coroutines.flow.Flow
 import org.signal.core.models.MasterKey
 import org.signal.core.util.logging.Log
 import org.signal.registration.NetworkController
@@ -17,6 +18,7 @@ import org.signal.registration.NetworkController.GetSessionStatusError
 import org.signal.registration.NetworkController.GetSvrCredentialsError
 import org.signal.registration.NetworkController.MasterKeyResponse
 import org.signal.registration.NetworkController.PreKeyCollection
+import org.signal.registration.NetworkController.ProvisioningEvent
 import org.signal.registration.NetworkController.RegisterAccountError
 import org.signal.registration.NetworkController.RegisterAccountResponse
 import org.signal.registration.NetworkController.RegistrationNetworkResult
@@ -195,6 +197,10 @@ class DebugNetworkController(
       return it
     }
     return delegate.getSvrCredentials()
+  }
+
+  override fun startProvisioning(): Flow<ProvisioningEvent> {
+    return delegate.startProvisioning()
   }
 
   override suspend fun checkSvrCredentials(

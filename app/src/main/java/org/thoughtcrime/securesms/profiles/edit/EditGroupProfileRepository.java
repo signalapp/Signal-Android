@@ -113,6 +113,7 @@ class EditGroupProfileRepository implements EditProfileRepository {
 
         return UploadResult.SUCCESS;
       } catch (GroupChangeException | IOException e) {
+        Log.d(TAG, "Error updating group details", e);
         return UploadResult.ERROR_IO;
       }
 
