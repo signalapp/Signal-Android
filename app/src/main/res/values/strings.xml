@@ -12,7 +12,7 @@
     <string name="install_url" translatable="false">https://signal.org/install</string>
     <string name="donate_url" translatable="false">https://signal.org/donate</string>
     <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string>
+    <string name="remote_backup_support_url" translatable="false">https://support.signal.org/hc/articles/9708267671322</string>
     <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
     <string name="support_center_url" translatable="false">https://support.signal.org/</string>
     <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
@@ -518,6 +518,8 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Attachment exceeds size limits for the type of message you\'re sending.</string>
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">You can\'t send messages to this group because you\'re no longer a member.</string>
+    <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Only %1$s can send messages.</string>
     <string name="ConversationActivity_admins">admins</string>
     <string name="ConversationActivity_message_an_admin">Message an admin</string>
@@ -638,7 +640,10 @@
     <!-- Confirmation button to delete the message -->
     <string name="ConversationFragment_delete_for_everyone_title">Delete for everyone?</string>
     <!-- Body of dialog explaining what happens during deletion -->
-    <string name="ConversationFragment_delete_for_everyone_body">As an admin, group members will see that you deleted these messages.</string>
+    <plurals name="ConversationFragment_delete_for_everyone_body">
+        <item quantity="one">Group members on the latest versions of Signal will see that you deleted this message.</item>
+        <item quantity="other">Group members on the latest versions of Signal will see that you deleted these messages.</item>
+    </plurals>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
@@ -654,7 +659,11 @@
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
     <string name="ConversationFragment_you_already_viewed_this_message">You already viewed this message</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat. If your account has any linked devices, new notes will be synced.</string>
-    <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d group members have the same name.</string>
+    <!-- Text in banner to show how many people have the same name. -->
+    <plurals name="ConversationFragment__d_group_members_have_the_same_name">
+        <item quantity="one">%1$d group member have the same name.</item>
+        <item quantity="other">%1$d group members have the same name.</item>
+    </plurals>
     <string name="ConversationFragment__tap_to_review">Tap to review</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
     <string name="ConversationFragment__review_banner_body">This person has the same name as another contact</string>
@@ -1675,6 +1684,8 @@
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Unable to join group. Please try again later</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Encountered a network error.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">This group link is not active</string>
+    <!-- Toast message shown when trying to join a group via link but the group has been ended -->
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Group limit reached, unable to join group</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1775,6 +1786,8 @@
     <string name="MediaOverviewActivity_Files">Files</string>
     <string name="MediaOverviewActivity_Audio">Audio</string>
     <string name="MediaOverviewActivity_All">All</string>
+    <string name="MediaOverviewActivity_Links">Links</string>
+    <string name="MediaOverviewActivity_link">Link</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
         <item quantity="one">Delete selected item?</item>
         <item quantity="other">Delete selected items?</item>
@@ -1844,6 +1857,16 @@
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Replies</string>
 
+    <!-- StarredMessagesFragment -->
+    <!-- Title for the starred messages screen -->
+    <string name="StarredMessagesActivity__starred_messages" translatable="false">Starred messages</string>
+    <!-- Empty state text when there are no starred messages -->
+    <string name="StarredMessagesFragment__no_starred_messages" translatable="false">No starred messages</string>
+    <!-- Empty state description when there are no starred messages -->
+    <string name="StarredMessagesFragment__tap_and_hold_on_a_message_to_star_it" translatable="false">Tap and hold on a message to star it.</string>
+    <!-- Format for starred message source label, e.g. "Alice › Book Club" -->
+    <string name="StarredMessages__s_chevron_s" translatable="false">%1$s \u203A %2$s</string>
+
     <!-- NotificationBarManager -->
     <string name="NotificationBarManager__establishing_signal_call">Establishing Signal call</string>
     <!-- Temporary notification shown when starting the calling service -->
@@ -1878,6 +1901,12 @@
     <string name="MessageRecord_left_group">You have left the group.</string>
     <string name="MessageRecord_you_updated_group">You updated the group.</string>
     <string name="MessageRecord_the_group_was_updated">The group was updated.</string>
+    <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
+    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
+    <string name="MessageRecord_s_terminated_the_group">%1$s ended the group</string>
+    <!-- Update message shown when a group is terminated by you -->
+    <string name="MessageRecord_you_terminated_the_group">You ended the group</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">Outgoing voice call</string>
     <!-- Update message shown when placing an outgoing 1:1 video call -->
@@ -2021,6 +2050,13 @@
     <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">You changed who can edit group membership to \"%1$s\".</string>
     <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s changed who can edit group membership to \"%2$s\".</string>
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Who can edit group membership has been changed to \"%1$s\".</string>
+
+    <!-- Shown when the current user changes the member label permission. -->
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">You changed who can add member labels to \"%1$s\".</string>
+    <!-- Shown when another group member changes the member label permission. -->
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s changed who can add member labels to \"%2$s\".</string>
+    <!-- Shown when the member label permission is changed by an unknown admin. -->
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">An admin changed who can add member labels to \"%1$s\".</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">You changed the group settings to allow all members to send messages.</string>
@@ -3388,6 +3424,17 @@
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
 
+    <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__cant_save_media">Can\'t save media</string>
+    <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__media_offloaded_message">This media has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can download items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__cant_save_all_items">Can\'t save all items</string>
+    <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__some_media_offloaded_message">Some media you\'ve selected has been offloaded from your device because \"Optimize on-device storage\" is turned on. You can save items one-by-one, or turn off \"Optimize on-device storage\" to download all media to your device.</string>
+    <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
+    <string name="AttachmentSaver__view_storage_settings">View storage settings</string>
+
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Search</string>
     <!-- Hint when searching filtered chat content -->
@@ -3594,6 +3641,10 @@
     <!-- Accessibility content description describing how a user can lock voice note recording. -->
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lock recording of audio attachment</string>
     <string name="conversation_activity__message_could_not_be_sent">Message could not be sent. Check your connection and try again.</string>
+    <!-- Dialog body shown when tapping a failed message in a terminated group -->
+    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
+    <string name="conversation_activity__group_action_not_allowed_group_ended">This action is unavailable because the group has ended.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
     <string name="conversation_activity__message_failed_to_delete_retry">Message failed to delete. Check your connection and try again.</string>
     <!-- Dialog body when a message failed to delete. -->
@@ -3647,6 +3698,26 @@
     <string name="ConversationUpdateItem_options">Options</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">Update</string>
+    <!-- Update item button text to show how many group updates there are. -->
+    <plurals name="CollapsedEvent__group_update">
+        <item quantity="one">%1$d group update</item>
+        <item quantity="other">%1$d group updates</item>
+    </plurals>
+    <!-- Update item button text to show how many group updates there are. -->
+    <plurals name="CollapsedEvent__chat_update">
+        <item quantity="one">%1$d chat update</item>
+        <item quantity="other">%1$d chat updates</item>
+    </plurals>
+    <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
+    <plurals name="CollapsedEvent__disappearing_timer">
+        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
+        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+    </plurals>
+    <!-- Update item button text to show how many call events are. -->
+    <plurals name="CollapsedEvent__call_event">
+        <item quantity="one">%1$d call event</item>
+        <item quantity="other">%1$d call events</item>
+    </plurals>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
@@ -4562,6 +4633,10 @@
     <string name="conversation_selection__menu_copy">Copy</string>
     <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">Delete</string>
+    <!-- Button to star a message to save it for later; Action item -->
+    <string name="conversation_selection__menu_star" translatable="false">Star (Labs)</string>
+    <!-- Button to remove the star from a message; Action item -->
+    <string name="conversation_selection__menu_unstar" translatable="false">Unstar (Labs)</string>
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Forward</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4630,6 +4705,7 @@
     <string name="conversation__menu_view_all_media">All media</string>
     <string name="conversation__menu_conversation_settings">Chat settings</string>
     <string name="conversation__menu_add_shortcut">Add to home screen</string>
+    <string name="conversation__menu_export" translatable="false">Export (Labs)</string>
     <string name="conversation__menu_create_bubble">Create bubble</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">Format text</string>
@@ -4638,6 +4714,13 @@
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Add to contacts</string>
+
+    <!-- conversation export -->
+    <string name="conversation_export__exporting" translatable="false">Exporting chat…</string>
+    <string name="conversation_export__export_complete" translatable="false">Chat exported successfully</string>
+    <string name="conversation_export__export_failed" translatable="false">Export failed</string>
+    <string name="conversation_export__export_cancelled" translatable="false">Export cancelled</string>
+    <string name="conversation_export__preparing" translatable="false">Preparing export…</string>
 
     <!-- conversation scheduled messages bar -->
 
@@ -4666,6 +4749,8 @@
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">New group</string>
     <string name="text_secure_normal__menu_settings">Settings</string>
+    <!-- Menu item in the main conversation list to view all starred messages -->
+    <string name="text_secure_normal__starred_messages" translatable="false">Starred messages (Labs)</string>
     <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
     <string name="text_secure_normal__mark_all_as_read">Mark all read</string>
     <string name="text_secure_normal__invite_friends">Invite friends</string>
@@ -4873,6 +4958,8 @@
     <string name="BackupDialog_delete_backups">Delete backups?</string>
     <string name="BackupDialog_disable_and_delete_all_local_backups">Disable and delete all local backups?</string>
     <string name="BackupDialog_delete_backups_statement">Delete backups</string>
+    <!-- Progress dialog message shown while local backup files are being deleted -->
+    <string name="BackupDialog_deleting_local_backup">Deleting local backup…</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">To enable backups, choose a folder. Backups will be saved to this location.</string>
     <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Choose folder</string>
@@ -5173,6 +5260,8 @@
     <string name="RecipientBottomSheet_remove_from_group">Remove from group</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">Remove %1$s as group admin?</string>
+    <!-- Message shown when removing an admin will also clear their member label. -->
+    <string name="RecipientBottomSheet_remove_s_as_group_admin_and_clear_member_label">Remove %1$s as group admin? This will also clear their member label.</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"%1$s" will be able to edit this group and its members.</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">Remove %1$s from the group?</string>
@@ -5660,6 +5749,41 @@
         <item quantity="other">%1$d folders</item>
     </plurals>
 
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">Export chat history</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">Export a machine-readable JSON copy of all your chats. Disappearing messages will not be exported.</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">Authentication failed</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">Export chat history?</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">Choose a folder</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">Choose folder</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
     <string name="ChatFoldersEducationSheet__create_folders_for_family">Create folders for family, friends, work and more</string>
@@ -5974,6 +6098,8 @@
     <string name="ConversationSettingsFragment__search">Search</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Disappearing messages</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sounds &amp; notifications</string>
+    <!-- Label for the starred messages option in conversation settings -->
+    <string name="ConversationSettingsFragment__starred_messages" translatable="false">Starred messages</string>
     <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
     <string name="ConversationSettingsFragment__contact_details">Phone contact info</string>
     <string name="ConversationSettingsFragment__view_safety_number">View safety number</string>
@@ -6000,6 +6126,19 @@
     <string name="ConversationSettingsFragment__get_badges">Get badges for your profile by supporting Signal. Tap on a badge to learn more.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <!-- End group option in group conversation settings screen -->
+    <string name="ConversationSettingsFragment__end_group">End group</string>
+    <!-- Banner shown at the top of group settings when the group has been ended -->
+    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <!-- Archive chat option in group conversation settings screen -->
+    <string name="ConversationSettingsFragment__archive_chat">Archive chat</string>
+    <!-- Delete chat option in group conversation settings screen -->
+    <string name="ConversationSettingsFragment__delete_chat">Delete chat</string>
+    <!-- Member section header for terminated groups. %1$d is the member count -->
+    <plurals name="ConversationSettingsFragment__d_former_members">
+        <item quantity="one">%1$d former member</item>
+        <item quantity="other">%1$d former members</item>
+    </plurals>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Add members</string>
@@ -6010,6 +6149,16 @@
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Who can add new members?</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Who can edit this group\'s info?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">Who can send messages and start calls?</string>
+    <!-- Label for the member labels permission button in the group permissions settings screen. -->
+    <string name="PermissionsSettingsFragment__add_member_labels">Add member labels</string>
+    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Who can add member labels?</string>
+    <!-- Warning title shown before restricting member labels to admins only. -->
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Member labels will be cleared</string>
+    <!-- Warning body shown before restricting member labels to admins only. -->
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">Changing this permission to &quot;Only admins&quot; will clear member labels set by non-admins in this group.</string>
+    <!-- Confirm button for changing member label permission after warning. -->
+    <string name="PermissionsSettingsFragment__change_permission">Change permission</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->
@@ -6796,8 +6945,57 @@
     <string name="MyStories__delete_story">Delete story?</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">This story will be deleted for you and everyone who received it.</string>
+    <!-- Message of dialog to confirm deletion of story in a terminated group -->
+    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Unable to save</string>
+
+    <!-- StoryArchive -->
+    <!-- Title for the story archive screen -->
+    <string name="StoryArchive__story_archive" translatable="false">Story archive (Labs)</string>
+    <!-- Section header in story settings -->
+    <string name="StoryArchive__archive" translatable="false">Archive</string>
+    <!-- Label for switch to enable story archiving -->
+    <string name="StoryArchive__keep_stories_in_archive" translatable="false">Keep stories in archive</string>
+    <!-- Description for the archive toggle -->
+    <string name="StoryArchive__save_stories_after_they_expire" translatable="false">Save your sent stories after they leave the active feed.</string>
+    <!-- Label for archive duration preference -->
+    <string name="StoryArchive__keep_stories_for" translatable="false">Keep stories for</string>
+    <!-- Archive duration option: forever -->
+    <string name="StoryArchive__forever" translatable="false">Forever</string>
+    <!-- Archive duration option: 1 year -->
+    <string name="StoryArchive__1_year" translatable="false">1 year</string>
+    <!-- Archive duration option: 6 months -->
+    <string name="StoryArchive__6_months" translatable="false">6 months</string>
+    <!-- Archive duration option: 30 days -->
+    <string name="StoryArchive__30_days" translatable="false">30 days</string>
+    <!-- Empty state title when no archived stories exist -->
+    <string name="StoryArchive__no_archived_stories" translatable="false">No archived stories</string>
+    <!-- Empty state message when no archived stories exist -->
+    <string name="StoryArchive__no_archived_stories_message" translatable="false">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
+    <!-- Empty state button to navigate to story settings -->
+    <string name="StoryArchive__go_to_settings" translatable="false">Go to settings</string>
+    <!-- Label for sort order menu -->
+    <string name="StoryArchive__sort_by" translatable="false">Sort by</string>
+    <!-- Sort order option: newest first -->
+    <string name="StoryArchive__newest" translatable="false">Newest</string>
+    <!-- Sort order option: oldest first -->
+    <string name="StoryArchive__oldest" translatable="false">Oldest</string>
+    <!-- Delete action in story archive multi-select bottom bar -->
+    <string name="StoryArchive__delete" translatable="false">Delete</string>
+    <!-- Content description for selecting a story in multi-select mode -->
+    <string name="StoryArchive__select_story" translatable="false">Select story</string>
+    <!-- Confirmation dialog body when deleting stories from archive -->
+    <plurals name="StoryArchive__delete_n_stories">
+        <item quantity="one">Delete %d story? This cannot be undone.</item>
+        <item quantity="other">Delete %d stories? This cannot be undone.</item>
+    </plurals>
+    <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
+    <plurals name="StoryArchive__d_selected">
+        <item quantity="one">%d selected</item>
+        <item quantity="other">%d selected</item>
+    </plurals>
+
     <!-- Displayed at bottom of story viewer when current item has views -->
     <plurals name="StoryViewerFragment__d_views">
         <item quantity="one">%1$d view</item>
@@ -7941,7 +8139,7 @@
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
     <string name="BackupMediaUpsell__title">Back up all your media</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans keep all your media, up to 100GB.</string>
     <!-- Primary button of Megaphone C -->
     <string name="BackupMediaUpsell__upgrade">Upgrade</string>
     <!-- Secondary button of Megaphone C -->
@@ -7961,7 +8159,7 @@
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
     <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose a photo or video when you get a new phone or reinstall Signal.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
     <string name="BackupUpsellBottomSheet__price_per_month">%s/month</string>
     <!-- Subtitle for the paid plan feature card -->
@@ -8223,7 +8421,7 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__backup_key_updated">Backup key updated</string>
+    <string name="OnDeviceBackupsFragment__recovery_key_updated">Recovery key updated</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
     <string name="OnDeviceBackupsFragment__directory_selected">Directory selected: %1$s</string>
 
@@ -8413,6 +8611,28 @@
     <string name="MediaNoLongerAvailableSheet__continue">Continue</string>
     <!-- Secondary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__not_now">Not now</string>
+
+    <!-- End group button label shown in confirmation dialogs -->
+    <string name="EndGroupDialog__end_group">End group</string>
+    <!-- Title of first end group confirmation dialog. %1$s is the group name -->
+    <string name="EndGroupDialog__end_s">End \"%1$s\"?</string>
+    <!-- Body of first end group confirmation dialog -->
+    <string name="EndGroupDialog__members_will_no_longer_be_able_to_send">Members will no longer be able to send messages or start calls in the group. They will be notified that you ended the group, and will still have access to message history.</string>
+    <!-- Body of second/final end group confirmation dialog -->
+    <string name="EndGroupDialog__this_will_end_the_group_permanently">This will end the group permanently. Are you sure you want to proceed?</string>
+    <!-- Progress message shown while ending a group -->
+    <string name="EndGroupDialog__ending_group">Ending group\u2026</string>
+    <!-- Message shown when ending a group fails -->
+    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <!-- Retry button shown when ending a group fails -->
+    <string name="EndGroupDialog__try_again">Try again</string>
+
+    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
+    <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s Ended the Group</string>
+    <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <!-- Body of bottom sheet shown when opening a terminated group -->
+    <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">You can no longer send and receive messages or calls in this group.</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>
@@ -8667,6 +8887,26 @@
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
     <string name="RemoteBackupsSettingsFragment__scan_qr_code">Scan QR code</string>
 
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">Processing backup…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">Preparing backup…</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">Finalizing…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">Processing messages…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Processing messages: %1$s of %2$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">Uploading media: %1$d%%</string>
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">Exporting media: %1$d%%</string>
+
+    <!-- LocalArchiveJob -->
+    <!-- Notification title shown while media attachments are being exported during a local backup -->
+    <string name="LocalArchiveJob__exporting_media">Exporting media…</string>
+
     <!-- OnDeviceBackupsImprovementsScreen -->
     <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
     <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Improvements to on-device backups</string>
@@ -8688,7 +8928,7 @@
     <string name="OnDeviceBackupsSettingsScreen__update">Update</string>
 
     <!-- UnifiedOnDeviceBackupsSettingsScreen -->
-    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">View backup key</string>
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_recovery_key">View recovery key</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -8758,9 +8998,11 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">This key will replace the key for your on-device backup.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your backup key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Your recovery key is a 64-character code that lets you restore your backups when you re-install Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device backup key.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">This is the same as your on-device recovery key.</string>
+    <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Use this key to:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -8778,7 +9020,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">This key is required to recover your account and data. Store this key somewhere safe. If you lose it, you won’t be able to recover your account.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">This key is the same as your on-device backup key. It is required to recover your account and data.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">This key is the same as your on-device recovery key. It is required to recover your account and data.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Copy to clipboard</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9027,8 +9269,8 @@
     <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Enter your recovery key</string>
     <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
     <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Your recovery key is a 64-character code required to recover your account and data.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a backup key -->
-    <string name="EnterLocalBackupKeyScreen__no_backup_key">No backup key?</string>
+    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
+    <string name="EnterLocalBackupKeyScreen__no_recovery_key">No recovery key?</string>
     <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
     <string name="EnterLocalBackupKeyScreen__next">Next</string>
 
@@ -9036,6 +9278,18 @@
     <string name="RestoreLocalBackupDialog__failed_to_load_archive">Failed to load archive. Please select a different directory.</string>
     <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
     <string name="RestoreLocalBackupDialog__ok">OK</string>
+    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
+    <string name="RestoreLocalBackupDialog__skip_restore">Skip restore?</string>
+    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
+    <string name="RestoreLocalBackupDialog__skip_restore_body">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
+    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Skip restore</string>
+    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
+    <string name="RestoreLocalBackupDialog__restore_to_new_account">Restore to new account?</string>
+    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
+    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">The backup you are restoring was created using a different Signal account. You can restore this backup to a new account, but you will no longer be a member of any groups that were restored.</string>
+    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
+    <string name="RestoreLocalBackupDialog__restore">Restore</string>
 
     <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
     <string name="RestoreLocalBackupActivity__backup_restore_failed">Backup restore failed</string>
@@ -9062,6 +9316,30 @@
 
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Contact support</string>
+
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Turn on on-device backups?</string>
+
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">To continue using on-device backups, you need to enable them for this account and record your new recovery key. You can do this at any time from Settings &gt; Backups.</string>
+
+    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__turn_on_now">Turn on now</string>
+
+    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__not_now">Not now</string>
+
+    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
+    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">To continue using on-device backups, choose a folder on your device where new backups will be saved.</string>
+
+    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
+    <string name="RestoreLocalBackupActivity__use_current_folder">Use current folder</string>
+
+    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
+    <string name="RestoreLocalBackupActivity__choose_new_folder">Choose new folder</string>
+
+    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
+    <string name="RestoreLocalBackupActivity__disable_backups">Disable backups</string>
 
     <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
     <string name="SelectInstructionsSheet__select_your_backup_folder">Select your backup folder</string>
@@ -9218,6 +9496,27 @@
     <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <!-- Accessibility label for search filter button in MainToolbar -->
+    <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string>
+
+    <!-- SearchFilterBottomSheet: Title -->
+    <string name="SearchFilterBottomSheet__filter_search" translatable="false">Filter search</string>
+    <!-- SearchFilterBottomSheet: Start date label -->
+    <string name="SearchFilterBottomSheet__start_date" translatable="false">Start date</string>
+    <!-- SearchFilterBottomSheet: End date label -->
+    <string name="SearchFilterBottomSheet__end_date" translatable="false">End date</string>
+    <!-- SearchFilterBottomSheet: Author label -->
+    <string name="SearchFilterBottomSheet__author" translatable="false">Author</string>
+    <!-- SearchFilterBottomSheet: Placeholder for unset date -->
+    <string name="SearchFilterBottomSheet__not_set" translatable="false">Not set</string>
+    <!-- SearchFilterBottomSheet: Placeholder for unset author -->
+    <string name="SearchFilterBottomSheet__anyone" translatable="false">Anyone</string>
+    <!-- SearchFilterBottomSheet: Apply button -->
+    <string name="SearchFilterBottomSheet__apply" translatable="false">Apply</string>
+    <!-- SearchFilterBottomSheet: Clear button -->
+    <string name="SearchFilterBottomSheet__clear" translatable="false">Clear</string>
+    <!-- SearchFilterBottomSheet: Select date dialog title -->
+    <string name="SearchFilterBottomSheet__select_date" translatable="false">Select date</string>
 
     <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
     <string name="DefaultTopAppBar__navigate_up_content_description">Navigate up</string>
@@ -9479,12 +9778,16 @@
     <string name="GroupMemberLabel__description">Add a member label to describe yourself or your role in this group. Labels are only visible within this group.</string>
     <!-- Error message shown when the group member label fails to save due to a network error. -->
     <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
+    <!-- Error message shown when trying to edit a member label without adequate permission. -->
+    <string name="GroupMemberLabel__error_no_edit_permission">Only admins can add member labels in this group.</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">Select emoji</string>
     <!-- Accessibility label for the group member label close screen button. -->
     <string name="GroupMemberLabel__accessibility_close_screen">Close screen</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Clear label</string>
+    <!-- Section header for the list of group members who have labels set. -->
+    <string name="GroupMemberLabel__group_members_with_labels">Group members with labels</string>
 
     <!-- Title for the member labels education sheet. -->
     <string name="MemberLabelsEducation__title">Member labels</string>
@@ -9499,6 +9802,18 @@
     <string name="MemberLabelsAboutOverride__title">Member label display</string>
     <!-- Body for screen shown to let the user know that displaying their member label will take priority over their about text. -->
     <string name="MemberLabelsAboutOverride__body">In this group, your Member Label will be displayed beside your photo in place of your About.</string>
+
+    <!-- Label for internal-only section showing groups with same members -->
+    <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string>
+
+    <!-- Title of the sheet shown when a local backup restore could not be completed -->
+    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+
+    <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+
+    <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
 
     <!-- EOF -->
 </resources>

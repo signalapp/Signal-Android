@@ -35,6 +35,9 @@ tasks.withType<KotlinCompile>().configureEach {
   }
 }
 
+tasks.named<Jar>("sourcesJar") {
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
 val sourceSets = extensions.getByName("sourceSets") as SourceSetContainer
 sourceSets.named("main") {
   output.dir(

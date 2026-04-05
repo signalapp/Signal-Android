@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.toLiveData
@@ -32,10 +33,12 @@ import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.SignalE164Util
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -159,6 +162,7 @@ private fun ParticipantHeader(recipient: Recipient) {
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier
       .fillMaxWidth()
+      .horizontalGutters()
       .padding(vertical = 16.dp)
   ) {
     if (LocalInspectionMode.current) {
@@ -176,14 +180,14 @@ private fun ParticipantHeader(recipient: Recipient) {
 
     Text(
       text = recipient.getDisplayName(androidx.compose.ui.platform.LocalContext.current),
-      style = MaterialTheme.typography.titleLarge
+      style = MaterialTheme.typography.titleLarge,
+      textAlign = TextAlign.Center
     )
 
-    val e164 = recipient.e164
-    if (e164.isPresent) {
+    if (recipient.shouldShowE164) {
       Spacer(modifier = Modifier.size(2.dp))
       Text(
-        text = e164.get(),
+        text = SignalE164Util.prettyPrint(recipient.requireE164()),
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant
       )

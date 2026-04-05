@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.settings.conversation.permissions
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.viewModels
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
@@ -38,6 +39,7 @@ class PermissionsSettingsFragment : DSLSettingsFragment(
     viewModel.events.observe(viewLifecycleOwner) { event ->
       when (event) {
         is PermissionsSettingsEvents.GroupChangeError -> handleGroupChangeError(event)
+        is PermissionsSettingsEvents.ShowMemberLabelsWillBeRemovedWarning -> showMemberLabelsWillBeRemovedDialog()
       }
     }
   }
@@ -83,7 +85,32 @@ class PermissionsSettingsFragment : DSLSettingsFragment(
           viewModel.setAnnouncementGroup(it == 0)
         }
       )
+
+      radioListPref(
+        title = DSLSettingsText.from(R.string.PermissionsSettingsFragment__add_member_labels),
+        isEnabled = state.selfCanEditSettings,
+        listItems = permissionsOptions,
+        dialogTitle = DSLSettingsText.from(R.string.PermissionsSettingsFragment__who_can_add_member_labels),
+        selected = getSelected(state.nonAdminCanSetMemberLabel),
+        confirmAction = true,
+        onSelected = { selectedIndex ->
+          if (selectedIndex >= 0) {
+            viewModel.onMemberLabelPermissionChangeRequested(nonAdminCanSetMemberLabel = selectedIndex == 1)
+          }
+        }
+      )
     }
+  }
+
+  private fun showMemberLabelsWillBeRemovedDialog() {
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.PermissionsSettingsFragment__member_labels_will_be_cleared_title)
+      .setMessage(R.string.PermissionsSettingsFragment__member_labels_will_be_cleared_body)
+      .setPositiveButton(R.string.PermissionsSettingsFragment__change_permission) { _, _ ->
+        viewModel.onRestrictMemberLabelsToAdminsConfirmed()
+      }
+      .setNegativeButton(android.R.string.cancel, null)
+      .show()
   }
 
   @StringRes

@@ -84,4 +84,50 @@
     <string name="VerificationCodeScreen__registration_error">Не атрымалася зарэгістравацца. Паўтарыце спробу.</string>
     <!-- Button text for having trouble with verification -->
     <string name="VerificationCodeScreen__having_trouble">Ёсць праблемы?</string>
+
+    <!-- RestoreWelcomeBottomSheet -->
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Я маю стары тэлефон</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">Праскануйце QR-код на вашым бягучым уліковым запісу Signal, каб пачаць працэс</string>
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Я не маю старога тэлефона</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">Або вы ўсталёўваеце нанова Signal на гэтай жа прыладзе</string>
+
+    <!-- ArchiveRestoreSelectionScreen -->
+    <!-- Title text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">Аднавіць або перанесці ўліковы запіс</string>
+    <!-- Subtitle text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__subheading">Выберыце спосаб аднаўлення гісторыі паведамленняў і даных уліковага запісу.</string>
+    <!-- Title for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">З рэзервовых копій Signal</string>
+    <!-- Subtitle for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">Ваш бясплатны або платны тарыфны план Signal Backup</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Аднавіце рэзервовую копію на прыладзе</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Аднавіце паведамленні з рэзервовай копіі, што вы захавалі на сваёй прыладзе.</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Працягнуць без пераносу</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Паведамленні і медыяфайлы не будуць перанесены</string>
+    <!-- Title for the backup folder option card (V2 format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">З папкі рэзервовай копіі</string>
+    <!-- Title for the backup file option card (V1 legacy format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">З файла рэзервовай копіі</string>
+    <!-- Subtitle for the backup folder/file option cards -->
+    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Выберыце рэзервовую копію, што вы захавалі</string>
+    <!-- Title for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">Са свайго старога тэлефона</string>
+    <!-- Subtitle for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">Перанясіце прама са сваёй старой прылады Android</string>
+    <!-- Skip button text -->
+    <string name="ArchiveRestoreSelectionScreen__skip">Прапусціць</string>
+    <!-- Title for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">Прапусціць аднаўленне?</string>
+    <!-- Warning body text for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">Калі вы прапусціце аднаўленне зараз, пазней аднавіць гэта ўжо не атрымаецца. Калі вы паўторна ўключыце рэзервовае капіраванне пасля таго, як прапусціце аднаўленне, ваша бягучая рэзервовая копія будзе заменена на новую гісторыю паведамленняў.</string>
+    <!-- Confirm button text for the skip restore dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">Прапусціць аднаўленне</string>
 </resources>

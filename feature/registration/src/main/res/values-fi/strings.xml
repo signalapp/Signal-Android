@@ -84,4 +84,50 @@
     <string name="VerificationCodeScreen__registration_error">Rekisteröinti epäonnistui. Yritä uudelleen.</string>
     <!-- Button text for having trouble with verification -->
     <string name="VerificationCodeScreen__having_trouble">Onko prosessissa ongelmia?</string>
+
+    <!-- RestoreWelcomeBottomSheet -->
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Minulla on vanha puhelimeni</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">Aloita nopeasti skannaamalla nykyisen Signal-tilisi QR-koodi</string>
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Minulla ei ole vanhaa puhelintani</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">Tai jos asennat Signalia uudelleen samalle laitteelle</string>
+
+    <!-- ArchiveRestoreSelectionScreen -->
+    <!-- Title text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">Palauta tai siirrä tili</string>
+    <!-- Subtitle text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__subheading">Valitse, miten haluat palauttaa viestihistoriasi ja tilitietosi.</string>
+    <!-- Title for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">Signal-varmuuskopiosta</string>
+    <!-- Subtitle for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">Ilmainen tai maksullinen Signal-varmuuskopioinnin tilaus</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Palauta laitteella oleva varmuuskopio</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Palauta viestit laitteelle tallentamastasi varmuuskopiosta.</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Jatka ilman siirtoa</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Viestejä ja mediaa ei siirretä</string>
+    <!-- Title for the backup folder option card (V2 format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">Varmuuskopiokansiosta</string>
+    <!-- Title for the backup file option card (V1 legacy format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">Varmuuskopiotiedostosta</string>
+    <!-- Subtitle for the backup folder/file option cards -->
+    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Valitse tallentamasi varmuuskopio</string>
+    <!-- Title for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">Vanhasta puhelimestasi</string>
+    <!-- Subtitle for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">Siirrä suoraan vanhasta Androidista</string>
+    <!-- Skip button text -->
+    <string name="ArchiveRestoreSelectionScreen__skip">Ohita</string>
+    <!-- Title for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">Ohitetaanko palauttaminen?</string>
+    <!-- Warning body text for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">Jos ohitat palauttamisen nyt, et voi tehdä palautusta enää myöhemmin. Jos otat varmuuskopiot uudelleen käyttöön palautuksen ohittamisen jälkeen, nykyinen varmuuskopio korvataan uudella viestihistoriallasi.</string>
+    <!-- Confirm button text for the skip restore dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">Ohita palautus</string>
 </resources>

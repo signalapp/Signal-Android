@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.CallLinkUpdateSendJobData
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
@@ -42,6 +43,7 @@ class CallLinkUpdateSendJob private constructor(
       .setLifespan(TimeUnit.DAYS.toMillis(1))
       .setMaxAttempts(Parameters.UNLIMITED)
       .addConstraint(NetworkConstraint.KEY)
+      .addConstraint(SealedSenderConstraint.KEY)
       .build(),
     callLinkRoomId,
     callLinkUpdateType

@@ -107,7 +107,7 @@ class ConversationBannerView @JvmOverloads constructor(
         setBannerRecipients(requestReviewState.individualReviewState.target, requestReviewState.individualReviewState.firstDuplicate)
         setOnClickListener { listener?.onRequestReviewIndividual(requestReviewState.individualReviewState.target.id) }
       } else if (requestReviewState.groupReviewState != null) {
-        setBannerMessage(context.getString(R.string.ConversationFragment__d_group_members_have_the_same_name, requestReviewState.groupReviewState.count))
+        setBannerMessage(context.resources.getQuantityString(R.plurals.ConversationFragment__d_group_members_have_the_same_name, requestReviewState.groupReviewState.count, requestReviewState.groupReviewState.count))
         setBannerRecipients(requestReviewState.groupReviewState.target, requestReviewState.groupReviewState.firstDuplicate)
         setOnClickListener { listener?.onReviewGroupMembers(requestReviewState.groupReviewState.groupId) }
       }

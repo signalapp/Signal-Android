@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/conversation_item_starred_source_avatar"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="6dp"
+        app:fallbackImageSize="small" />
+
+    <TextView
+        android:id="@+id/conversation_item_starred_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/signal_text_secondary"
+        tools:text="Alice › Book Club" />
+
+</LinearLayout>

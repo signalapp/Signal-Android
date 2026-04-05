@@ -5,6 +5,8 @@
 
 package org.signal.registration.screens.accountlocked
 
+import org.signal.registration.util.DebugLoggableModel
+
 data class AccountLockedState(
   val daysRemaining: Int = 10
-)
+) : DebugLoggableModel()

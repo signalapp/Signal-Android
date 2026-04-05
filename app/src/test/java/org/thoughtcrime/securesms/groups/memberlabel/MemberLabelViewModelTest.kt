@@ -44,6 +44,7 @@ class MemberLabelViewModelTest {
   fun setUp() {
     coEvery { memberLabelRepo.getRecipient(any()) } returns mockk(relaxed = true)
     coEvery { memberLabelRepo.getSenderNameColor(any(), any()) } returns NameColor(0, 0)
+    coEvery { memberLabelRepo.getMembersWithLabels(any()) } returns emptyList()
     every { memberLabelRepo.hasDismissedMemberLabelAboutOverrideWarning() } returns false
   }
 

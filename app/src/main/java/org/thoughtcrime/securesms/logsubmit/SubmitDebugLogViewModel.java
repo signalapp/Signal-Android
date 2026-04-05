@@ -61,7 +61,8 @@ public class SubmitDebugLogViewModel extends ViewModel {
             Log.blockUntilAllWritesFinished();
             stopwatch.split("flush");
 
-            LogDatabase.getInstance(AppDependencies.getApplication()).logs().trimToSize();
+            LogDatabase logDatabase = LogDatabase.getInstance(AppDependencies.getApplication());
+            logDatabase.logs().trimToSize();
             stopwatch.split("trim-old");
 
             if (!emitter.isDisposed()) {
@@ -69,35 +70,40 @@ public class SubmitDebugLogViewModel extends ViewModel {
             }
 
             List<String> currentChunk = new ArrayList<>();
+            logDatabase.getReadableDatabase().beginTransactionNonExclusive();
+            try {
+              try (LogDatabase.LogTable.CursorReader logReader = (LogDatabase.LogTable.CursorReader) logDatabase.logs().getAllBeforeTime(firstViewTime)) {
+                stopwatch.split("initial-query");
 
-            try (LogDatabase.LogTable.CursorReader logReader = (LogDatabase.LogTable.CursorReader) LogDatabase.getInstance(AppDependencies.getApplication()).logs().getAllBeforeTime(firstViewTime)) {
-              stopwatch.split("initial-query");
+                int count = 0;
+                while (logReader.hasNext() && !emitter.isDisposed()) {
+                  String next = logReader.next();
+                  currentChunk.add(next);
+                  count++;
 
-              int count = 0;
-              while (logReader.hasNext() && !emitter.isDisposed()) {
-                String next = logReader.next();
-                currentChunk.add(next);
-                count++;
-
-                if (count >= CHUNK_SIZE) {
-                  emitter.onNext(currentChunk);
-                  count = 0;
-                  currentChunk = new ArrayList<>();
+                  if (count >= CHUNK_SIZE) {
+                    emitter.onNext(currentChunk);
+                    count = 0;
+                    currentChunk = new ArrayList<>();
+                  }
                 }
-              }
 
-              // Send final chunk if any remaining
-              if (!emitter.isDisposed() && count > 0) {
-                emitter.onNext(currentChunk);
-              }
+                // Send final chunk if any remaining
+                if (!emitter.isDisposed() && count > 0) {
+                  emitter.onNext(currentChunk);
+                }
 
-              if (!emitter.isDisposed()) {
-                mode.postValue(Mode.NORMAL);
-                emitter.onComplete();
-              }
+                if (!emitter.isDisposed()) {
+                  mode.postValue(Mode.NORMAL);
+                  emitter.onComplete();
+                }
 
-              stopwatch.split("lines");
-              stopwatch.stop(TAG);
+                stopwatch.split("lines");
+                stopwatch.stop(TAG);
+              }
+              logDatabase.getReadableDatabase().setTransactionSuccessful();
+            } finally {
+              logDatabase.getReadableDatabase().endTransaction();
             }
           } catch (Exception e) {
             if (!emitter.isDisposed()) {

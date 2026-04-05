@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.MultiDeviceAttachmentBackfillUpdateJobData
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
@@ -56,6 +57,7 @@ class MultiDeviceAttachmentBackfillUpdateJob(
       .setLifespan(JOB_LIFESPAN)
       .setMaxAttempts(Parameters.UNLIMITED)
       .addConstraint(NetworkConstraint.KEY)
+      .addConstraint(SealedSenderConstraint.KEY)
       .build(),
     targetMessage,
     targetConversation,

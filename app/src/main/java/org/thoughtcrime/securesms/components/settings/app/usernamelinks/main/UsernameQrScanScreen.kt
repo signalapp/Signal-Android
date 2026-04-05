@@ -26,7 +26,7 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.qr.QrScannerView
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXModelBlocklist
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig
 import org.thoughtcrime.securesms.qr.QrScanScreens
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.concurrent.TimeUnit
@@ -98,7 +98,7 @@ fun UsernameQrScanScreen(
           view
         },
         update = { view ->
-          view.start(lifecycleOwner = lifecycleOwner, forceLegacy = CameraXModelBlocklist.isBlocklisted())
+          view.start(lifecycleOwner = lifecycleOwner, forceLegacy = CameraXRemoteConfig.isBlocklisted())
         },
         hasPermission = hasCameraPermission,
         onRequestPermissions = onOpenCameraClicked,

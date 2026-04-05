@@ -817,7 +817,7 @@ object RemoteConfig {
 
   /** A comma-separated list of manufacturers that should *not* use CameraX mixed mode.  */
   val cameraXMixedModelBlocklist: String by remoteString(
-    key = "android.cameraXMixedModelBlockList.2",
+    key = "android.cameraXMixedModelBlockList.3",
     defaultValue = "",
     hotSwappable = false
   )
@@ -925,6 +925,15 @@ object RemoteConfig {
   /** Maximum attachment ciphertext size when sending in bytes  */
   val maxAttachmentSizeBytes: Long by remoteLong(
     key = "global.attachments.maxBytes",
+    defaultValue = 100.mebiBytes.inWholeBytes,
+    hotSwappable = true
+  )
+
+  /** Maximum size a video transcode should target in bytes  */
+  @JvmStatic
+  @get:JvmName("videoTranscodeTargetSizeBytes")
+  val videoTranscodeTargetSizeBytes: Long by remoteLong(
+    key = "global.videoAttachments.transcodeTargetBytes",
     defaultValue = 100.mebiBytes.inWholeBytes,
     hotSwappable = true
   )
@@ -1182,6 +1191,15 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** The maximum number of attachment pointers that can have incrementalMac populated in a single envelope. */
+  @JvmStatic
+  @get:JvmName("maxIncrementalMacsPerEnvelope")
+  val maxIncrementalMacsPerEnvelope: Int by remoteInt(
+    key = "global.maxIncrementalMacsPerEnvelope",
+    defaultValue = 10,
+    hotSwappable = true
+  )
+
   /** Whether or not to send over binary service ids (alongside string service ids). */
   @JvmStatic
   @get:JvmName("useBinaryId")
@@ -1204,22 +1222,6 @@ object RemoteConfig {
   val pinLimit: Int by remoteInt(
     key = "global.pinnedMessageLimit",
     defaultValue = 3,
-    hotSwappable = true
-  )
-
-  @JvmStatic
-  @get:JvmName("receivePinnedMessages")
-  val receivePinnedMessages: Boolean by remoteBoolean(
-    key = "android.receivePinnedMessages.2",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
-  @JvmStatic
-  @get:JvmName("sendPinnedMessages")
-  val sendPinnedMessages: Boolean by remoteBoolean(
-    key = "android.sendPinnedMessages.2",
-    defaultValue = false,
     hotSwappable = true
   )
 
@@ -1251,32 +1253,12 @@ object RemoteConfig {
   )
 
   /**
-   * Whether to receive and display group member labels.
-   */
-  val receiveMemberLabels: Boolean by remoteBoolean(
-    key = "android.receiveMemberLabels.2",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
-  /**
-   * Whether to enable modifying group member labels.
-   */
-  @JvmStatic
-  @get:JvmName("sendMemberLabels")
-  val sendMemberLabels: Boolean by remoteBoolean(
-    key = "android.sendMemberLabels.3",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
-  /**
    * Whether or not to receive admin delete messages.
    */
   @JvmStatic
   @get:JvmName("receiveAdminDelete")
   val receiveAdminDelete: Boolean by remoteBoolean(
-    key = "android.receiveAdminDelete.2",
+    key = "android.receiveAdminDelete.3",
     defaultValue = false,
     hotSwappable = true
   )
@@ -1313,5 +1295,69 @@ object RemoteConfig {
     defaultValue = 1.days.inWholeSeconds,
     hotSwappable = true
   )
+
+  @JvmStatic
+  @get:JvmName("dredDuration")
+  val dredDuration: Int by remoteInt(
+    key = "global.calling.dredDuration",
+    defaultValue = 0,
+    hotSwappable = true
+  )
+
+  /**
+   * Whether or not to allow admins to terminate groups.
+   */
+  @JvmStatic
+  @get:JvmName("groupTerminateSend")
+  val groupTerminateSend: Boolean by remoteBoolean(
+    key = "android.groupTerminateSend",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /**
+   * Whether to collapse update events
+   */
+  @JvmStatic
+  @get:JvmName("collapseEvents")
+  val collapseEvents: Boolean by remoteBoolean(
+    key = "android.collapseEvents.2",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /**
+   * Whether to use the new custom APNG renderer instead of the existing third-party library.
+   */
+  @JvmStatic
+  @get:JvmName("newApngRenderer")
+  val newApngRenderer: Boolean by remoteBoolean(
+    key = "android.newApngRenderer",
+    defaultValue = false,
+    hotSwappable = false
+  )
+
+  /**
+   * Whether the backups upgrade megaphone can be displayed
+   */
+  @JvmStatic
+  @get:JvmName("upgradeBackupsMegaphone")
+  val upgradeBackupsMegaphone: Boolean by remoteBoolean(
+    key = "android.upgradeBackupsMegaphone",
+    defaultValue = false,
+    hotSwappable = false
+  )
+
+  /**
+   * Whether local plaintext export is available
+   */
+  @JvmStatic
+  @get:JvmName("localPlaintextExport")
+  val localPlaintextExport: Boolean by remoteBoolean(
+    key = "android.localPlaintextExport.2",
+    defaultValue = false,
+    hotSwappable = false
+  )
+
   // endregion
 }

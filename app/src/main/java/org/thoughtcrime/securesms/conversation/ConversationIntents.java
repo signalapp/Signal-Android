@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.badges.models.Badge;
-import org.thoughtcrime.securesms.conversation.v2.ConversationActivity;
+import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.signal.core.models.media.Media;
@@ -47,6 +47,7 @@ public class ConversationIntents {
   private static final String EXTRA_GIFT_BADGE                       = "gift_badge";
   private static final String EXTRA_SHARE_DATA_TIMESTAMP             = "share_data_timestamp";
   private static final String EXTRA_CONVERSATION_TYPE                = "conversation_type";
+  private static final String EXTRA_INCOGNITO                        = "incognito";
   private static final String INTENT_DATA                            = "intent_data";
   private static final String INTENT_TYPE                            = "intent_type";
 
@@ -93,13 +94,15 @@ public class ConversationIntents {
    */
   public static @NonNull Builder createBuilderSync(@NonNull Context context, @NonNull RecipientId recipientId, long threadId) {
     Preconditions.checkArgument(threadId > 0, "threadId is invalid");
-    return new Builder(context, ConversationActivity.class, recipientId, threadId, ConversationScreenType.NORMAL);
+    return new Builder(context, MainActivity.class, recipientId, threadId, ConversationScreenType.NORMAL)
+        .withFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
   }
 
   public static @NonNull Builder createBuilderSync(@NonNull Context context, @NonNull ConversationArgs conversationArgs) {
     Preconditions.checkArgument(conversationArgs.threadId > 0, "threadId is invalid");
-    return new Builder(context, ConversationActivity.class, conversationArgs.getRecipientId(), conversationArgs.threadId, ConversationScreenType.NORMAL)
-        .withArgs(conversationArgs);
+    return new Builder(context, MainActivity.class, conversationArgs.getRecipientId(), conversationArgs.threadId, ConversationScreenType.NORMAL)
+        .withArgs(conversationArgs)
+        .withFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
   }
 
   static @Nullable Uri getIntentData(@NonNull Bundle bundle) {
@@ -152,7 +155,8 @@ public class ConversationIntents {
                                   false,
                                   null,
                                   -1L,
-                                  ConversationScreenType.BUBBLE);
+                                  ConversationScreenType.BUBBLE,
+                                  false);
     }
 
     return new ConversationArgs(RecipientId.from(Objects.requireNonNull(arguments.getString(EXTRA_RECIPIENT))),
@@ -169,7 +173,8 @@ public class ConversationIntents {
                                 arguments.getBoolean(EXTRA_WITH_SEARCH_OPEN, false),
                                 arguments.getParcelable(EXTRA_GIFT_BADGE),
                                 arguments.getLong(EXTRA_SHARE_DATA_TIMESTAMP, -1L),
-                                ConversationScreenType.from(arguments.getInt(EXTRA_CONVERSATION_TYPE, 0)));
+                                ConversationScreenType.from(arguments.getInt(EXTRA_CONVERSATION_TYPE, 0)),
+                                arguments.getBoolean(EXTRA_INCOGNITO, false));
   }
 
   public final static class Builder {
@@ -191,6 +196,8 @@ public class ConversationIntents {
     private boolean                withSearchOpen;
     private Badge                  giftBadge;
     private long                   shareDataTimestamp = -1L;
+    private boolean                incognito;
+    private int                    flags;
 
     private Builder(@NonNull Context context,
                     @NonNull Class<? extends Activity> conversationActivityClass,
@@ -218,6 +225,7 @@ public class ConversationIntents {
       withSearchOpen = args.isWithSearchOpen();
       giftBadge = args.getGiftBadge();
       shareDataTimestamp = args.getShareDataTimestamp();
+      incognito = args.isIncognito();
 
       return this;
     }
@@ -282,6 +290,16 @@ public class ConversationIntents {
       return this;
     }
 
+    public @NonNull Builder asIncognito(boolean incognito) {
+      this.incognito = incognito;
+      return this;
+    }
+
+    public @NonNull Builder withFlags(int flags) {
+      this.flags = flags;
+      return this;
+    }
+
     public @NonNull ConversationArgs toConversationArgs() {
       return new ConversationArgs(
           recipientId,
@@ -298,7 +316,8 @@ public class ConversationIntents {
           withSearchOpen,
           giftBadge,
           shareDataTimestamp,
-          conversationScreenType
+          conversationScreenType,
+          incognito
       );
     }
 
@@ -309,6 +328,10 @@ public class ConversationIntents {
 
       Intent intent = new Intent(context, conversationActivityClass);
       intent.setAction(ConversationIntents.ACTION);
+
+      if (flags != 0) {
+        intent.addFlags(flags);
+      }
 
       if (conversationScreenType.isInBubble()) {
         intent.setData(new Uri.Builder().authority(BUBBLE_AUTHORITY)
@@ -329,6 +352,7 @@ public class ConversationIntents {
       intent.putExtra(EXTRA_GIFT_BADGE, giftBadge);
       intent.putExtra(EXTRA_SHARE_DATA_TIMESTAMP, shareDataTimestamp);
       intent.putExtra(EXTRA_CONVERSATION_TYPE, conversationScreenType.code);
+      intent.putExtra(EXTRA_INCOGNITO, incognito);
 
       if (draftText != null) {
         intent.putExtra(EXTRA_TEXT, draftText);

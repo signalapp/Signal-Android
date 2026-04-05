@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
@@ -34,7 +35,7 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
   @WorkerThread
   private synchronized void retrieveMessageRecordActual() {
     try {
-      MessageRecord record = SignalDatabase.messages().getMessageRecord(messageId.getId());
+      MessageRecord record = MessageTable.withAttachmentData(SignalDatabase.messages().getMessageRecord(messageId.getId()));
 
       if (record.isPaymentNotification()) {
         record = SignalDatabase.payments().updateMessageWithPayment(record);

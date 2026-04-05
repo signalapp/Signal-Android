@@ -14,24 +14,21 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.BackupPassphrase
-import org.thoughtcrime.securesms.backup.v2.LocalBackupV2Event
+import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyCredentialManagerHandler
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.formatHours
-import java.text.NumberFormat
 import java.time.LocalTime
 import java.util.Locale
 
@@ -42,11 +39,6 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
 
   companion object {
     private val TAG = Log.tag(LocalBackupsViewModel::class)
-  }
-
-  private val formatter: NumberFormat = NumberFormat.getInstance().apply {
-    minimumFractionDigits = 1
-    maximumFractionDigits = 1
   }
 
   private val internalSettingsState = MutableStateFlow(
@@ -82,11 +74,11 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
       }
     }
 
-    EventBus.getDefault().register(this)
-  }
-
-  override fun onCleared() {
-    EventBus.getDefault().unregister(this)
+    viewModelScope.launch {
+      LocalExportProgress.encryptedProgress.collect { progress ->
+        internalSettingsState.update { it.copy(progress = progress) }
+      }
+    }
   }
 
   fun refreshSettingsState() {
@@ -117,45 +109,22 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
   }
 
   fun onBackupStarted() {
-    val context = AppDependencies.application
-    internalSettingsState.update {
-      it.copy(
-        progress = BackupProgressState.InProgress(
-          summary = context.getString(R.string.BackupsPreferenceFragment__in_progress),
-          percentLabel = context.getString(R.string.BackupsPreferenceFragment__d_so_far, 0),
-          progressFraction = null
-        )
-      )
-    }
+    LocalExportProgress.setEncryptedProgress(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.NONE)))
   }
 
-  @Subscribe(threadMode = ThreadMode.MAIN)
-  fun onBackupEvent(event: LocalBackupV2Event) {
-    val context = AppDependencies.application
-    when (event.type) {
-      LocalBackupV2Event.Type.FINISHED -> {
-        internalSettingsState.update { it.copy(progress = BackupProgressState.Idle) }
+  fun turnOffAndDelete(context: Context) {
+    internalSettingsState.update { it.copy(isDeleting = true) }
+
+    viewModelScope.launch {
+      withContext(Dispatchers.IO) {
+        SignalStore.backup.newLocalBackupsEnabled = false
+        val path = SignalStore.backup.newLocalBackupsDirectory
+        SignalStore.backup.newLocalBackupsDirectory = null
+        AppDependencies.jobManager.cancelAllInQueue(LocalBackupJob.QUEUE)
+        BackupUtil.deleteUnifiedBackups(context, path)
       }
 
-      else -> {
-        val summary = context.getString(R.string.BackupsPreferenceFragment__in_progress)
-        val progressState = if (event.estimatedTotalCount == 0L) {
-          BackupProgressState.InProgress(
-            summary = summary,
-            percentLabel = context.getString(R.string.BackupsPreferenceFragment__d_so_far, event.count),
-            progressFraction = null
-          )
-        } else {
-          val fraction = ((event.count / event.estimatedTotalCount.toDouble()) / 100.0).toFloat().coerceIn(0f, 1f)
-          BackupProgressState.InProgress(
-            summary = summary,
-            percentLabel = context.getString(R.string.BackupsPreferenceFragment__s_so_far, formatter.format((event.count / event.estimatedTotalCount.toDouble()))),
-            progressFraction = fraction
-          )
-        }
-
-        internalSettingsState.update { it.copy(progress = progressState) }
-      }
+      internalSettingsState.update { it.copy(isDeleting = false) }
     }
   }
 

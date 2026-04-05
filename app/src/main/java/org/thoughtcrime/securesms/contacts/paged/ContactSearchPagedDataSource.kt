@@ -426,7 +426,7 @@ class ContactSearchPagedDataSource(
   }
 
   private fun canSendToGroup(groupRecord: GroupRecord?): Boolean {
-    if (groupRecord == null) return false
+    if (groupRecord == null || groupRecord.isTerminated) return false
 
     return if (groupRecord.isAnnouncementGroup) {
       groupRecord.isAdmin(Recipient.self())
@@ -457,7 +457,7 @@ class ContactSearchPagedDataSource(
     check(searchRepository != null)
 
     if (searchCache.messageSearchResult == null && query != null) {
-      searchCache = searchCache.copy(messageSearchResult = searchRepository.queryMessagesSync(query))
+      searchCache = searchCache.copy(messageSearchResult = searchRepository.queryMessagesSync(query, contactConfiguration.searchFilter))
     }
 
     return if (query != null) {

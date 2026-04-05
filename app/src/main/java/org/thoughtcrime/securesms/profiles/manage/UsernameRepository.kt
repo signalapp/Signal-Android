@@ -549,7 +549,12 @@ object UsernameRepository {
     val link = username.generateLink(usernameLinkComponents.entropy)
 
     return when (val result = SignalNetwork.account.confirmUsername(username, link)) {
-      is NetworkResult.Success -> UsernameReclaimResult.SUCCESS
+      is NetworkResult.Success -> {
+        SignalStore.account.usernameLink = UsernameLinkComponents(usernameLinkComponents.entropy, result.result)
+        SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+        StorageSyncHelper.scheduleSyncForDataChange()
+        UsernameReclaimResult.SUCCESS
+      }
       is NetworkResult.StatusCodeError -> {
         when (result.code) {
           409 -> {

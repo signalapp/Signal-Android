@@ -6,19 +6,14 @@ import android.text.SpannableStringBuilder
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.ServiceUtil
-import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
-import org.signal.core.ui.R as CoreUiR
 
 /**
  * Renders name, description, about, etc. for a given group or recipient.
@@ -44,54 +39,7 @@ object BioTextPreference {
   ) : BioTextPreferenceModel<RecipientModel>() {
 
     override fun getHeadlineText(context: Context): CharSequence {
-      val name = if (recipient.isSelf) {
-        context.getString(R.string.note_to_self)
-      } else {
-        recipient.getDisplayName(context)
-      }
-
-      if (!recipient.showVerified && !recipient.isIndividual) {
-        return name
-      }
-
-      return SpannableStringBuilder(name).apply {
-        if (recipient.showVerified) {
-          SpanUtil.appendSpacer(this, 8)
-          SpanUtil.appendCenteredImageSpanWithoutSpace(this, ContextUtil.requireDrawable(context, R.drawable.ic_official_28), 28, 28)
-        } else if (recipient.isSystemContact) {
-          val systemContactGlyph = SignalSymbols.getSpannedString(
-            context,
-            SignalSymbols.Weight.BOLD,
-            SignalSymbols.Glyph.PERSON_CIRCLE
-          ).let {
-            SpanUtil.ofSize(it, 20)
-          }
-
-          append(" ")
-          append(systemContactGlyph)
-        }
-
-        if (recipient.isIndividual && !recipient.isSelf) {
-          val isLtr = ViewUtil.isLtr(context)
-          val chevronGlyph = SignalSymbols.getSpannedString(
-            context,
-            SignalSymbols.Weight.BOLD,
-            if (isLtr) SignalSymbols.Glyph.CHEVRON_RIGHT else SignalSymbols.Glyph.CHEVRON_LEFT
-          ).let {
-            SpanUtil.ofSize(it, 24)
-          }.let {
-            SpanUtil.color(ContextCompat.getColor(context, CoreUiR.color.signal_colorOutline), it)
-          }
-
-          if (isLtr) {
-            append(" ")
-            append(chevronGlyph)
-          } else {
-            insert(0, " ")
-            insert(0, chevronGlyph)
-          }
-        }
-      }
+      return recipient.getDisplayNameForHeadline(context)
     }
 
     override fun getSubhead1Text(context: Context): String? {
@@ -115,7 +63,8 @@ object BioTextPreference {
 
   class GroupModel(
     val groupTitle: String,
-    val groupMembershipDescription: String?
+    val groupMembershipDescription: String?,
+    val isTerminated: Boolean = false
   ) : BioTextPreferenceModel<GroupModel>() {
     override fun getHeadlineText(context: Context): CharSequence = groupTitle
 
@@ -126,7 +75,8 @@ object BioTextPreference {
     override fun areContentsTheSame(newItem: GroupModel): Boolean {
       return super.areContentsTheSame(newItem) &&
         groupTitle == newItem.groupTitle &&
-        groupMembershipDescription == newItem.groupMembershipDescription
+        groupMembershipDescription == newItem.groupMembershipDescription &&
+        isTerminated == newItem.isTerminated
     }
 
     override fun areItemsTheSame(newItem: GroupModel): Boolean {
@@ -139,6 +89,7 @@ object BioTextPreference {
     private val headline: TextView = itemView.findViewById(R.id.bio_preference_headline)
     private val subhead1: TextView = itemView.findViewById(R.id.bio_preference_subhead_1)
     protected val subhead2: TextView = itemView.findViewById(R.id.bio_preference_subhead_2)
+    private val terminatedPill: TextView = itemView.findViewById(R.id.bio_preference_terminated_pill)
 
     override fun bind(model: T) {
       headline.text = model.getHeadlineText(context)
@@ -146,6 +97,17 @@ object BioTextPreference {
       val clickListener = model.onHeadlineClickListener
       if (clickListener != null) {
         headline.setOnClickListener { clickListener() }
+      }
+
+      if (model is GroupModel && model.isTerminated) {
+        val glyphSpan = SignalSymbols.getSpannedString(context, SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.GROUP_X)
+        terminatedPill.text = SpannableStringBuilder()
+          .append(glyphSpan)
+          .append(" ")
+          .append(context.getString(R.string.ConversationSettingsFragment__this_group_was_ended))
+        terminatedPill.visibility = View.VISIBLE
+      } else {
+        terminatedPill.visibility = View.GONE
       }
 
       model.getSubhead1Text(context).let {

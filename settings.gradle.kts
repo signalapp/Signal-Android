@@ -87,6 +87,8 @@ include(":lib:video")
 include(":lib:image-editor")
 include(":lib:debuglogs-viewer")
 include(":lib:blurhash")
+include(":lib:apng")
+include(":lib:archive")
 
 // Feature modules
 include(":feature:registration")
@@ -105,13 +107,13 @@ include(":demo:image-editor")
 include(":demo:debuglogs-viewer")
 include(":demo:registration")
 include(":demo:camera")
+include(":demo:apng")
 
 // Testing/Lint modules
 include(":lintchecks")
 include(":benchmark")
 include(":baseline-profile")
 include(":microbenchmark")
-
 // App project name
 project(":app").name = "Signal-Android"
 

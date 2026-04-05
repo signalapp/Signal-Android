@@ -22,8 +22,7 @@ public final class AudioWaveFormGenerator {
 
   private static final String TAG = Log.tag(AudioWaveFormGenerator.class);
 
-  public static final  int BAR_COUNT       = 46;
-  private static final int SAMPLES_PER_BAR = 4;
+  public static final int BAR_COUNT = 46;
 
   private AudioWaveFormGenerator() {}
 
@@ -68,44 +67,37 @@ public final class AudioWaveFormGenerator {
 
       extractor.selectTrack(0);
 
-      long                  kTimeOutUs      = 5000;
-      MediaCodec.BufferInfo info            = new MediaCodec.BufferInfo();
-      boolean               sawInputEOS     = false;
-      boolean               sawOutputEOS    = false;
-      int                   noOutputCounter = 0;
+      long                  kTimeOutUs              = 5000;
+      MediaCodec.BufferInfo info                    = new MediaCodec.BufferInfo();
+      boolean               extractorDone           = false;
+      boolean               inputEOSQueued          = false;
+      boolean               sawOutputEOS            = false;
+      int                   noOutputCounter         = 0;
+      int                   maxSamplesPerBar        = Math.max(1, (int) (totalDurationUs / BAR_COUNT / 10_000));
+      boolean[]             barSufficientlySampled  = new boolean[BAR_COUNT];
 
       while (!sawOutputEOS && noOutputCounter < 50) {
         noOutputCounter++;
-        if (!sawInputEOS) {
+        if (!inputEOSQueued) {
           int inputBufIndex = codec.dequeueInputBuffer(kTimeOutUs);
           if (inputBufIndex >= 0) {
-            ByteBuffer dstBuf             = codec.getInputBuffer(inputBufIndex);
-            int        sampleSize         = extractor.readSampleData(dstBuf, 0);
-            long       presentationTimeUs = 0;
-
-            if (sampleSize < 0) {
-              sawInputEOS = true;
-              sampleSize  = 0;
+            if (extractorDone) {
+              codec.queueInputBuffer(inputBufIndex, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM);
+              inputEOSQueued = true;
             } else {
-              presentationTimeUs = extractor.getSampleTime();
-            }
+              ByteBuffer dstBuf             = codec.getInputBuffer(inputBufIndex);
+              int        sampleSize         = extractor.readSampleData(dstBuf, 0);
+              long       presentationTimeUs = 0;
 
-            codec.queueInputBuffer(
-              inputBufIndex,
-              0,
-              sampleSize,
-              presentationTimeUs,
-              sawInputEOS ? MediaCodec.BUFFER_FLAG_END_OF_STREAM : 0);
+              if (sampleSize < 0) {
+                codec.queueInputBuffer(inputBufIndex, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM);
+                inputEOSQueued = true;
+              } else {
+                presentationTimeUs = extractor.getSampleTime();
 
-            if (!sawInputEOS) {
-              int barSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
-              sawInputEOS = !extractor.advance();
-              int nextBarSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
-              while (!sawInputEOS && nextBarSampleIndex == barSampleIndex) {
-                sawInputEOS = !extractor.advance();
-                if (!sawInputEOS) {
-                  nextBarSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
-                }
+                codec.queueInputBuffer(inputBufIndex, 0, sampleSize, presentationTimeUs, 0);
+
+                extractorDone = !extractor.advance();
               }
             }
           }
@@ -119,16 +111,19 @@ public final class AudioWaveFormGenerator {
               noOutputCounter = 0;
             }
 
-            ByteBuffer buf = codec.getOutputBuffer(outputBufferIndex);
             int barIndex = (int) ((wave.length * info.presentationTimeUs) / totalDurationUs);
-            long total = 0;
-            for (int i = 0; i < info.size; i += 2 * 4) {
-              short aShort = buf.getShort(i);
-              total += Math.abs(aShort);
-            }
-            if (barIndex >= 0 && barIndex < wave.length) {
+            if (barIndex >= 0 && barIndex < wave.length && !barSufficientlySampled[barIndex]) {
+              ByteBuffer buf = codec.getOutputBuffer(outputBufferIndex);
+              long total = 0;
+              for (int i = 0; i < info.size; i += 2 * 4) {
+                short aShort = buf.getShort(i);
+                total += Math.abs(aShort);
+              }
               wave[barIndex] += total;
               waveSamples[barIndex] += info.size / 2;
+              if (waveSamples[barIndex] >= maxSamplesPerBar) {
+                barSufficientlySampled[barIndex] = true;
+              }
             }
             codec.releaseOutputBuffer(outputBufferIndex, false);
             if ((info.flags & MediaCodec.BUFFER_FLAG_END_OF_STREAM) != 0) {

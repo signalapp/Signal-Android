@@ -84,4 +84,50 @@
     <string name="VerificationCodeScreen__registration_error">Registreerimine ebaõnnestus. Palun proovi uuesti.</string>
     <!-- Button text for having trouble with verification -->
     <string name="VerificationCodeScreen__having_trouble">Kas sul on probleeme?</string>
+
+    <!-- RestoreWelcomeBottomSheet -->
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Mul on mu vana telefon alles</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">Kiiresti alustamiseks skanni oma praeguse Signali konto alt QR-kood</string>
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Mul ei ole mu vana telefoni</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">Või paigaldad Signalit uuesti samasse seadmesse</string>
+
+    <!-- ArchiveRestoreSelectionScreen -->
+    <!-- Title text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">Taasta või edasta konto</string>
+    <!-- Subtitle text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__subheading">Vali, kuidas soovid oma sõnumiajalugu ja kontoandmeid taastada.</string>
+    <!-- Title for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">Signali varukoopiatest</string>
+    <!-- Subtitle for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">Sinu tasuta või tasuline Signali varundamisplaan</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Seadmesisese varukoopia taastamine</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Taasta oma sõnumid sinu seadmesse salvestatud varukoopiast.</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Jätka ilma andmeid üle kandmata</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Sõnumeid ja meediat ei edastada</string>
+    <!-- Title for the backup folder option card (V2 format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">Varundamiskaustast</string>
+    <!-- Title for the backup file option card (V1 legacy format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">Varukoopiafailist</string>
+    <!-- Subtitle for the backup folder/file option cards -->
+    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Vali salvestatud varukoopia</string>
+    <!-- Title for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">Sinu vanast telefonist</string>
+    <!-- Subtitle for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">Edasta otse oma vanast Android-seadmest</string>
+    <!-- Skip button text -->
+    <string name="ArchiveRestoreSelectionScreen__skip">Jäta vahele</string>
+    <!-- Title for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">Kas jätta taastamine vahele?</string>
+    <!-- Warning body text for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">Kui sa nüüd ei taasta, siis sa ei saa ka hiljem taastada. Kui lubad varundamise uuesti pärast taastamise vahelejätmist, asendatakse sinu praegune varukoopia uue sõnumijalooga.</string>
+    <!-- Confirm button text for the skip restore dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">Jäta taastamine vahele</string>
 </resources>

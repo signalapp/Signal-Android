@@ -6,20 +6,23 @@
 package org.thoughtcrime.securesms.backup.v2.util
 
 import okio.ByteString
+import org.signal.archive.proto.AccountData
+import org.signal.archive.proto.Chat
+import org.signal.archive.proto.ChatItem
+import org.signal.archive.proto.FilePointer
+import org.signal.archive.proto.Frame
 import org.signal.core.models.backup.MediaName
 import org.thoughtcrime.securesms.attachments.Cdn
-import org.thoughtcrime.securesms.backup.v2.proto.AccountData
-import org.thoughtcrime.securesms.backup.v2.proto.Chat
-import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
-import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
-import org.thoughtcrime.securesms.backup.v2.proto.Frame
 
 fun Frame.getAllReferencedArchiveAttachmentInfos(): Set<ArchiveAttachmentInfo> {
   val infos: MutableSet<ArchiveAttachmentInfo> = mutableSetOf()
+  val account = this.account
+  val chat = this.chat
+  val chatItem = this.chatItem
   when {
-    this.account != null -> infos += this.account.getAllReferencedArchiveAttachmentInfos()
-    this.chat != null -> infos += this.chat.getAllReferencedArchiveAttachmentInfos()
-    this.chatItem != null -> infos += this.chatItem.getAllReferencedArchiveAttachmentInfos()
+    account != null -> infos += account.getAllReferencedArchiveAttachmentInfos()
+    chat != null -> infos += chat.getAllReferencedArchiveAttachmentInfos()
+    chatItem != null -> infos += chatItem.getAllReferencedArchiveAttachmentInfos()
   }
   return infos.toSet()
 }
@@ -74,18 +77,15 @@ private fun ChatItem.getAllReferencedArchiveAttachmentInfos(): Set<ArchiveAttach
 }
 
 private fun FilePointer.toArchiveAttachmentInfo(forQuote: Boolean = false, isWallpaper: Boolean = false): ArchiveAttachmentInfo? {
-  if (this.locatorInfo?.key == null) {
-    return null
-  }
+  val locatorInfo = this.locatorInfo
 
-  if (this.locatorInfo.plaintextHash == null) {
-    return null
-  }
+  val key = locatorInfo?.key ?: return null
+  val plaintextHash = locatorInfo.plaintextHash ?: return null
 
   return ArchiveAttachmentInfo(
-    plaintextHash = this.locatorInfo.plaintextHash,
-    remoteKey = this.locatorInfo.key,
-    cdn = this.locatorInfo.mediaTierCdnNumber ?: Cdn.CDN_0.cdnNumber,
+    plaintextHash = plaintextHash,
+    remoteKey = key,
+    cdn = locatorInfo.mediaTierCdnNumber ?: Cdn.CDN_0.cdnNumber,
     contentType = this.contentType,
     forQuote = forQuote,
     isWallpaper = isWallpaper

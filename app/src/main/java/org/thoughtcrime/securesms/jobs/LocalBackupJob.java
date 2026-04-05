@@ -45,6 +45,7 @@ public final class LocalBackupJob extends BaseJob {
   private static final String TAG = Log.tag(LocalBackupJob.class);
 
   public static final String QUEUE = "__LOCAL_BACKUP__";
+  public static final String PLAINTEXT_ARCHIVE_QUEUE = "__LOCAL_PLAINTEXT_ARCHIVE__";
 
   public static final String TEMP_BACKUP_FILE_PREFIX = ".backup";
   public static final String TEMP_BACKUP_FILE_SUFFIX = ".tmp";
@@ -75,6 +76,16 @@ public final class LocalBackupJob extends BaseJob {
                                                   .setMaxAttempts(3);
 
     jobManager.add(new LocalArchiveJob(parameters.build()));
+  }
+
+  public static void enqueuePlaintextArchive(String destinationUri, boolean includeMedia) {
+    JobManager         jobManager = AppDependencies.getJobManager();
+    Parameters.Builder parameters = new Parameters.Builder()
+        .setQueue(PLAINTEXT_ARCHIVE_QUEUE)
+        .setMaxInstancesForFactory(1)
+        .setMaxAttempts(3);
+
+    jobManager.add(new LocalPlaintextArchiveJob(destinationUri, includeMedia, parameters.build()));
   }
 
   private LocalBackupJob(@NonNull Job.Parameters parameters) {

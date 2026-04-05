@@ -52,6 +52,7 @@ import org.signal.glide.compose.GlideImage
 import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
+import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.fonts.SignalSymbols
@@ -269,7 +270,7 @@ fun getMessageMetadata(conversationMessage: ConversationMessage): Triple<SignalS
   } else if (message.isPoll()) {
     Triple(SignalSymbols.Glyph.POLL, SpannableString(stringResource(R.string.Poll__poll_question, message.body)), false)
   } else if (message.hasSharedContact()) {
-    Triple(SignalSymbols.Glyph.PERSON_CIRCLE, SpannableString(message.sharedContacts.first().name.givenName), false)
+    Triple(SignalSymbols.Glyph.PERSON_CIRCLE, SpannableString(ContactUtil.getDisplayName(message.sharedContacts.first())), false)
   } else if (message.isPaymentNotification && message.payment != null) {
     Triple(SignalSymbols.Glyph.CREDIT_CARD, SpannableString(message.payment!!.amount.toString(FormatterOptions.defaults())), false)
   } else if (slide?.isVideoGif == true) {

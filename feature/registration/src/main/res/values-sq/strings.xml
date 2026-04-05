@@ -27,7 +27,7 @@
     <!-- Phone calls permission row title -->
     <string name="GrantPermissionsFragment__phone_calls">Telefonata</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Bëj më të lehtë regjistrimin dhe aktivizo veçori shtesë të thirrjeve.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Bëj më të lehtë regjistrimin dhe aktivizo veçoritë shtesë të thirrjeve.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Hapësirë ruajtëse</string>
     <!-- Storage permission row description -->
@@ -37,11 +37,11 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Numër telefoni</string>
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Do të merrni një kod verifikimi. Mund të ketë tarifa operatori.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Do të marrësh kodin e verifikimit. Mund të ketë tarifa operatori.</string>
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Zgjidh shtetin</string>
     <string name="RegistrationActivity_phone_number_description">Numër telefoni</string>
-    <string name="RegistrationActivity_next">Pasuesi</string>
+    <string name="RegistrationActivity_next">Tjetër</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -49,7 +49,7 @@
     <!-- Close button content description -->
     <string name="CountryCodeSelectScreen__close">Mbyll</string>
     <!-- Search bar hint text -->
-    <string name="CountryCodeSelectScreen__search_by">Kërko sipas emrit ose prefiksit të shtetit</string>
+    <string name="CountryCodeSelectScreen__search_by">Kërko sipas emrit ose numrit</string>
     <!-- Fallback text for countries with no name -->
     <string name="CountryCodeSelectScreen__unknown_country">Shtet i panjohur</string>
 
@@ -57,7 +57,7 @@
     <!-- Title of the verification code entry screen -->
     <string name="VerificationCodeScreen__verification_code">Kod verifikimi</string>
     <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
-    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Jepni kodin që dërguam te %1$s</string>
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Fut kodin që dërguam te %1$s</string>
     <!-- Button text for wrong number action -->
     <string name="VerificationCodeScreen__wrong_number">Numër i gabuar?</string>
     <!-- Button text for resend SMS action -->
@@ -84,4 +84,50 @@
     <string name="VerificationCodeScreen__registration_error">Regjistrimi dështoi. Të lutem, provo sërish.</string>
     <!-- Button text for having trouble with verification -->
     <string name="VerificationCodeScreen__having_trouble">Po has probleme?</string>
+
+    <!-- RestoreWelcomeBottomSheet -->
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">E kam telefonin e vjetër</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">Skano kodin QR nga llogaria aktuale e Signal për të filluar më shpejt</string>
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Nuk e kam telefonin e vjetër</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">Ose je duke e riinstaluar Signal në të njëjtën pajisje</string>
+
+    <!-- ArchiveRestoreSelectionScreen -->
+    <!-- Title text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">Rikthe ose transfero llogarinë</string>
+    <!-- Subtitle text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__subheading">Zgjidh se si dëshiron ta rikthehesh historikun e mesazheve dhe të dhënat e llogarisë.</string>
+    <!-- Title for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">Nga kopjeruajtjet e Signal</string>
+    <!-- Subtitle for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">Plani yt falas ose me pagesë i kopjeruajtjeve në Signal</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Rikthe kopjeruajtjen në pajisje</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Rikthe mesazhet nga kopjeruajtja që ke ruajtur në pajisje.</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Vazhdo pa transferuar</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Mesazhet dhe media nuk do të transferohen</string>
+    <!-- Title for the backup folder option card (V2 format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">Nga një dosje kopjeruajtjeje</string>
+    <!-- Title for the backup file option card (V1 legacy format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">Nga një skedar kopjeruajtjeje</string>
+    <!-- Subtitle for the backup folder/file option cards -->
+    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Zgjidh kopjeruajtjen që ke ruajtur</string>
+    <!-- Title for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">Nga telefoni i vjetër</string>
+    <!-- Subtitle for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">Transfero drejtpërdrejt nga Android yt i vjetër</string>
+    <!-- Skip button text -->
+    <string name="ArchiveRestoreSelectionScreen__skip">Kapërce</string>
+    <!-- Title for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">Të kapërcehet rikthimi?</string>
+    <!-- Warning body text for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">Nëse e kapërcen rikthimin tani, nuk do të jesh në gjendje ta rikthesh më vonë. Nëse i riaktivizon kopjeruajtjet pasi ke kapërcyer rikthimin, kopjeruajtja aktuale do të zëvendësohet me historikun e ri të mesazheve.</string>
+    <!-- Confirm button text for the skip restore dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">Kapërce rikthimin</string>
 </resources>

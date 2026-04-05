@@ -88,7 +88,7 @@ class CameraContactsRepository {
 
     List<Recipient> recipients = new ArrayList<>(RECENT_MAX);
 
-    try (ThreadTable.Reader threadReader = threadTable.readerFor(threadTable.getRecentPushConversationList(RECENT_MAX, false))) {
+    try (ThreadTable.Reader threadReader = threadTable.readerFor(threadTable.getRecentPushConversationList(RECENT_MAX))) {
       ThreadRecord threadRecord;
       while ((threadRecord = threadReader.getNext()) != null) {
         recipients.add(threadRecord.getRecipient().resolve());

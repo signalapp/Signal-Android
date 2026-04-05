@@ -12,6 +12,7 @@ import androidx.benchmark.macro.junit4.MacrobenchmarkRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.Until
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -71,6 +72,28 @@ class ThreadDeletionBenchmarks {
     ) {
       BenchmarkSetup.deleteThread(device)
       device.wait(Until.gone(By.textContains("Title")), 300_000L)
+    }
+  }
+
+  @Ignore("Needs locally provided backup file not available in CI yet")
+  @Test
+  fun deleteGroupThread20kMessagesWithBackupRestore() {
+    benchmarkRule.measureRepeated(
+      packageName = "org.thoughtcrime.securesms.benchmark",
+      metrics = BenchmarkMetrics.threadDeletion,
+      iterations = 1,
+      compilationMode = CompilationMode.Partial(),
+      setupBlock = {
+        BenchmarkSetup.setup("backup-restore", device, timeout = 60_000L)
+        killProcess()
+
+        startActivityAndWait()
+        device.waitForIdle()
+        device.wait(Until.findObject(By.textContains("CuQ75j")), 10_000)
+      }
+    ) {
+      BenchmarkSetup.deleteThread(device)
+      device.wait(Until.gone(By.textContains("CuQ75j")), 300_000L)
     }
   }
 }

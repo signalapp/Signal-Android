@@ -73,7 +73,7 @@ class ConversationGroupViewModel(
 
   fun canEditGroupInfo(): Boolean {
     val memberLevel = _memberLevel.value ?: return true
-    return memberLevel.groupTableMemberLevel == GroupTable.MemberLevel.ADMINISTRATOR || memberLevel.allMembersCanEditGroupInfo
+    return groupRecordSnapshot?.isActive == true && (memberLevel.groupTableMemberLevel == GroupTable.MemberLevel.ADMINISTRATOR || memberLevel.allMembersCanEditGroupInfo)
   }
 
   fun blockJoinRequests(recipient: Recipient): Single<GroupBlockJoinRequestResult> {

@@ -1945,6 +1945,59 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
+  /**
+   * Applies multiple profile fields in a single UPDATE statement. Calls [rotateStorageId] and
+   * [notifyRecipientChanged] at most once. Designed for bulk profile fetches.
+   */
+  fun applyProfileUpdate(id: RecipientId, update: ProfileUpdate) {
+    val contentValues = ContentValues().apply {
+      update.profileName?.let {
+        put(PROFILE_GIVEN_NAME, it.givenName.nullIfBlank())
+        put(PROFILE_FAMILY_NAME, it.familyName.nullIfBlank())
+        put(PROFILE_JOINED_NAME, it.toString().nullIfBlank())
+      }
+      update.about?.let { (aboutText, emoji) ->
+        put(ABOUT, aboutText)
+        put(ABOUT_EMOJI, emoji)
+      }
+      update.badges?.let {
+        val badgeList = BadgeList(badges = it.map { badge -> toDatabaseBadge(badge) })
+        put(BADGES, badgeList.encode())
+      }
+      update.capabilities?.let {
+        put(CAPABILITIES, maskCapabilitiesToLong(it))
+      }
+      update.sealedSenderAccessMode?.let {
+        put(SEALED_SENDER_MODE, it.mode)
+      }
+      update.phoneNumberSharing?.let {
+        put(PHONE_NUMBER_SHARING, it.id)
+      }
+      update.expiringProfileKeyCredential?.let { (profileKey, credential) ->
+        val columnData = ExpiringProfileKeyCredentialColumnData.Builder()
+          .profileKey(profileKey.serialize().toByteString())
+          .expiringProfileKeyCredential(credential.serialize().toByteString())
+          .build()
+        put(EXPIRING_PROFILE_KEY_CREDENTIAL, Base64.encodeWithPadding(columnData.encode()))
+      }
+      if (update.clearUsername) {
+        putNull(USERNAME)
+      }
+    }
+
+    if (contentValues.size() == 0) {
+      return
+    }
+
+    if (update(id, contentValues)) {
+      val needsStorageRotation = update.profileName != null || update.clearUsername
+      if (needsStorageRotation) {
+        rotateStorageId(id)
+      }
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+    }
+  }
+
   fun setProfileName(id: RecipientId, profileName: ProfileName) {
     val contentValues = ContentValues(1).apply {
       put(PROFILE_GIVEN_NAME, profileName.givenName.nullIfBlank())
@@ -2269,7 +2322,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         .values(NEEDS_PNI_SIGNATURE to 0)
         .run()
 
-      clearSelfKeyTransparencyData()
       SignalDatabase.pendingPniSignatureMessages.deleteAll()
 
       db.setTransactionSuccessful()
@@ -2296,10 +2348,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           Log.i(TAG, "Username was previously thought to be owned by " + existingUsername.get() + ". Clearing their username.")
           setUsername(existingUsername.get(), null)
         }
-      }
-
-      if (id == Recipient.self().id) {
-        clearSelfKeyTransparencyData()
       }
 
       if (update(id, contentValuesOf(USERNAME to username))) {
@@ -3692,7 +3740,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val threadDatabase = threads
     val recipientsWithinInteractionThreshold: MutableSet<RecipientId> = LinkedHashSet()
 
-    threadDatabase.readerFor(threadDatabase.getRecentPushConversationList(-1, false)).use { reader ->
+    threadDatabase.readerFor(threadDatabase.getRecentPushConversationList(-1)).use { reader ->
       var record: ThreadRecord? = reader.getNext()
 
       while (record != null && record.date > lastInteractionThreshold) {
@@ -4777,7 +4825,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             SELECT 1 
             FROM ${GroupTable.MembershipTable.TABLE_NAME}
             INNER JOIN ${GroupTable.TABLE_NAME} ON ${GroupTable.TABLE_NAME}.${GroupTable.GROUP_ID} = ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.GROUP_ID}
-            WHERE ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.RECIPIENT_ID} = $TABLE_NAME.$ID AND ${GroupTable.TABLE_NAME}.${GroupTable.ACTIVE} = 1 AND ${GroupTable.TABLE_NAME}.${GroupTable.MMS} = 0
+            WHERE ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.RECIPIENT_ID} = $TABLE_NAME.$ID AND ${GroupTable.TABLE_NAME}.${GroupTable.IS_MEMBER} = 1 AND ${GroupTable.TABLE_NAME}.${GroupTable.TERMINATED_BY} = 0 AND ${GroupTable.TABLE_NAME}.${GroupTable.MMS} = 0
         )
       """
       val E164_SEARCH = "(($PHONE_NUMBER_SHARING != ${PhoneNumberSharingState.DISABLED.id} OR $SYSTEM_CONTACT_URI NOT NULL) AND $E164 GLOB ?)"
@@ -4954,4 +5002,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   class SseWithASinglePniSessionForSelfException(cause: Exception) : IllegalStateException(cause)
   class SseWithASinglePniSessionException(cause: Exception) : IllegalStateException(cause)
   class SseWithMultiplePniSessionsException(cause: Exception) : IllegalStateException(cause)
+
+  data class ProfileUpdate(
+    val profileName: ProfileName? = null,
+    val about: Pair<String?, String?>? = null,
+    val badges: List<Badge>? = null,
+    val capabilities: SignalServiceProfile.Capabilities? = null,
+    val sealedSenderAccessMode: SealedSenderAccessMode? = null,
+    val phoneNumberSharing: PhoneNumberSharingState? = null,
+    val expiringProfileKeyCredential: Pair<ProfileKey, ExpiringProfileKeyCredential>? = null,
+    val clearUsername: Boolean = false
+  )
 }

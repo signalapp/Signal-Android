@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.ui.navigation.ResultEventBus
+import org.signal.core.util.logging.Log
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.screens.util.navigateBack
 
@@ -29,6 +30,10 @@ class CountryCodePickerViewModel(
   initialCountry: Country? = null
 ) : ViewModel() {
 
+  companion object {
+    private val TAG = Log.tag(CountryCodePickerViewModel::class)
+  }
+
   private val _state = MutableStateFlow(CountryCodeState())
   val state: StateFlow<CountryCodeState> = _state.asStateFlow()
 
@@ -37,6 +42,7 @@ class CountryCodePickerViewModel(
   }
 
   fun onEvent(event: CountryCodePickerScreenEvents) {
+    Log.d(TAG, "[Event] $event")
     when (event) {
       is CountryCodePickerScreenEvents.Search -> applySearchEvent(event.query)
       is CountryCodePickerScreenEvents.CountrySelected -> {

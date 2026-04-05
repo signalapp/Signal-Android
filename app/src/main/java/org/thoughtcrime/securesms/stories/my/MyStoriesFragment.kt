@@ -161,7 +161,7 @@ class MyStoriesFragment : DSLSettingsFragment(
   }
 
   private fun handleDeleteClick(model: MyStoriesItem.Model) {
-    lifecycleDisposable += StoryContextMenu.delete(requireContext(), setOf(model.distributionStory.messageRecord)).subscribe()
+    lifecycleDisposable += StoryContextMenu.delete(requireContext(), model.distributionStory.messageRecord).subscribe()
   }
 
   @Suppress("OVERRIDE_DEPRECATION")

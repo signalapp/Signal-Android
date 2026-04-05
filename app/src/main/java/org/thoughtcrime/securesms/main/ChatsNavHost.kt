@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.main
 
 import android.os.Build
+import android.os.Bundle
 import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.animateFloat
@@ -22,6 +23,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -47,11 +49,13 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.signal.core.ui.isSplitPane
 import org.thoughtcrime.securesms.MainNavigator
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavHostFragment
 import org.thoughtcrime.securesms.compose.FragmentBackHandler
 import org.thoughtcrime.securesms.compose.FragmentBackPressedState
 import org.thoughtcrime.securesms.conversation.ConversationArgs
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.serialization.JsonSerializableNavType
@@ -145,7 +149,8 @@ fun NavGraphBuilder.chatNavGraphBuilder(
 
   composable<MainNavigationDetailLocation.Chats.MessageDetails>(
     typeMap = mapOf(
-      typeOf<RecipientId>() to JsonSerializableNavType(RecipientId.serializer())
+      typeOf<RecipientId>() to JsonSerializableNavType(RecipientId.serializer()),
+      typeOf<MessageId>() to MessageId.NavType()
     )
   ) { navBackStackEntry ->
     val context = LocalContext.current
@@ -160,11 +165,43 @@ fun NavGraphBuilder.chatNavGraphBuilder(
       clazz = MessageDetailsFragment::class.java,
       fragmentState = fragmentState,
       arguments = MessageDetailsFragment.args(route.recipientId, route.messageId),
-      modifier = Modifier.fillMaxSize()
+      modifier = Modifier
+        .fillMaxSize()
         .background(MaterialTheme.colorScheme.background)
         .statusBarsPadding()
         .navigationBarsPadding()
     )
+  }
+
+  composable<MainNavigationDetailLocation.Chats.ConversationSettings>(
+    typeMap = mapOf(
+      typeOf<RecipientId>() to JsonSerializableNavType(RecipientId.serializer())
+    )
+  ) { navBackStackEntry ->
+
+    val navigatorProvider = LocalContext.current as? MainNavigator.NavigatorProvider
+    val fragmentState = key(route) { rememberFragmentState() }
+    val route = navBackStackEntry.toRoute<MainNavigationDetailLocation.Chats.ConversationSettings>()
+    val arguments: Bundle? by produceState(null, route.recipientId) {
+      value = ConversationSettingsNavHostFragment.createArgs(route.recipientId)
+    }
+
+    LaunchedEffect(Unit) {
+      navigatorProvider?.onFirstRender()
+    }
+
+    arguments?.let { args ->
+      AndroidFragment(
+        clazz = ConversationSettingsNavHostFragment::class.java,
+        fragmentState = fragmentState,
+        arguments = args,
+        modifier = Modifier
+          .fillMaxSize()
+          .background(MaterialTheme.colorScheme.background)
+          .statusBarsPadding()
+          .navigationBarsPadding()
+      )
+    }
   }
 }
 

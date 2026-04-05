@@ -81,15 +81,24 @@ object InAppPaymentsRepository {
    * This operation will only be performed if we find a latest payment for the given subscriber id in the END state without cancelation data
    */
   fun updateBackupInAppPaymentWithCancelation(activeSubscription: ActiveSubscription) {
-    if (activeSubscription.isCanceled || activeSubscription.willCancelAtPeriodEnd()) {
-      val subscriber = getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP) ?: return
+    updateInAppPaymentWithCancelation(activeSubscription, InAppPaymentSubscriberRecord.Type.BACKUP)
+  }
+
+  /**
+   * Updates the latest payment object for the given subscriber type with cancelation information as necessary.
+   *
+   * This operation will only be performed if we find a latest payment for the given subscriber id in the END state without cancelation data.
+   */
+  fun updateInAppPaymentWithCancelation(activeSubscription: ActiveSubscription, subscriberType: InAppPaymentSubscriberRecord.Type) {
+    if (activeSubscription.isCanceled || (subscriberType == InAppPaymentSubscriberRecord.Type.BACKUP && activeSubscription.willCancelAtPeriodEnd()) || activeSubscription.isFailedPayment) {
+      val subscriber = getSubscriber(subscriberType) ?: return
       val latestPayment = SignalDatabase.inAppPayments.getLatestBySubscriberId(subscriber.subscriberId) ?: return
       if (latestPayment.state == InAppPaymentTable.State.END && latestPayment.data.cancellation == null) {
         synchronized(subscriber.type.lock) {
           val payment = SignalDatabase.inAppPayments.getLatestBySubscriberId(subscriber.subscriberId) ?: return
           val chargeFailure: ActiveSubscription.ChargeFailure? = activeSubscription.chargeFailure
 
-          Log.i(TAG, "Recording cancelation in the database. (has charge failure? ${chargeFailure != null})")
+          Log.i(TAG, "[$subscriberType] Recording cancelation in the database. (has charge failure? ${chargeFailure != null})")
           SignalDatabase.inAppPayments.update(
             payment.copy(
               data = payment.data.newBuilder()
@@ -579,12 +588,14 @@ object InAppPaymentsRepository {
     val fromDatabase: Observable<DonationRedemptionJobStatus> = Observable.create { emitter ->
       val observer = InAppPaymentObserver {
         val latestInAppPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(type)
-
         emitter.onNext(Optional.ofNullable(latestInAppPayment))
       }
 
       AppDependencies.databaseObserver.registerInAppPaymentObserver(observer)
       emitter.setCancellable { AppDependencies.databaseObserver.unregisterObserver(observer) }
+
+      val latestInAppPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(type)
+      emitter.onNext(Optional.ofNullable(latestInAppPayment))
     }.switchMap { inAppPaymentOptional ->
       val inAppPayment = inAppPaymentOptional.getOrNull() ?: return@switchMap Observable.just(DonationRedemptionJobStatus.None)
 

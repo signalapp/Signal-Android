@@ -5,6 +5,8 @@
 
 package org.signal.registration.screens.pinentry
 
+import org.signal.registration.util.DebugLoggable
+import org.signal.registration.util.DebugLoggableModel
 import kotlin.time.Duration
 
 data class PinEntryState(
@@ -15,14 +17,14 @@ data class PinEntryState(
   val mode: Mode = Mode.SvrRestore,
   val oneTimeEvent: OneTimeEvent? = null,
   val e164: String? = null
-) {
+) : DebugLoggableModel() {
   enum class Mode {
     RegistrationLock,
     SmsBypass,
     SvrRestore
   }
 
-  sealed interface OneTimeEvent {
+  sealed interface OneTimeEvent : DebugLoggable {
     data object NetworkError : OneTimeEvent
     data class RateLimited(val retryAfter: Duration) : OneTimeEvent
     data object SvrDataMissing : OneTimeEvent

@@ -21,6 +21,7 @@ public final class GroupErrors {
       case NOT_A_MEMBER            : return R.string.ManageGroupActivity_youre_not_a_member_of_the_group;
       case BUSY                    : return R.string.ManageGroupActivity_failed_to_update_the_group_please_retry_later;
       case NETWORK                 : return R.string.ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later;
+      case GROUP_TERMINATED        : return R.string.MessageRecord_the_group_was_terminated;
       default                      : return R.string.ManageGroupActivity_failed_to_update_the_group;
     }
   }

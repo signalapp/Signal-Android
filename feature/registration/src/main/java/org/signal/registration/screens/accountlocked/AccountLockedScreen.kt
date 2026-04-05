@@ -21,7 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 
 /**
@@ -86,7 +86,7 @@ fun AccountLockedScreen(
   }
 }
 
-@DayNightPreviews
+@AllDevicePreviews
 @Composable
 private fun AccountLockedScreenPreview() {
   Previews.Preview {

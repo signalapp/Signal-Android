@@ -84,4 +84,50 @@
     <string name="VerificationCodeScreen__registration_error">تعذَّر التسجيل. حاوِل مرّة أُخرى.</string>
     <!-- Button text for having trouble with verification -->
     <string name="VerificationCodeScreen__having_trouble">هل تواجه مشاكل؟</string>
+
+    <!-- RestoreWelcomeBottomSheet -->
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">هاتفي القديم بحوزتي</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">امسح كود الـ QR ضوئيًا من حساب سيجنال الحالي الخاص بك للبدء بسرعة.</string>
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">هاتفي القديم ليس بحوزتي</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">أو تقوم بإعادة تثبيت سيجنال على الجهاز نفسه.</string>
+
+    <!-- ArchiveRestoreSelectionScreen -->
+    <!-- Title text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">استعادة أو نقل الحساب</string>
+    <!-- Subtitle text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__subheading">اختر الطريقة التي تودّ أن تستعيد بها سِجل رسائلك وبيانات حسابك.</string>
+    <!-- Title for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">من النسخ الاحتياطية على سيجنال</string>
+    <!-- Subtitle for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">خطة النسخ الاحتياطي لسيجنال المجانية أو المدفوعة</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">استعادة النسخة الاحتياطية على الجهاز</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">استعِد رسائلك من النسخة الاحتياطية التي حفظتها على جهازك.</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">المواصلة دون النقل</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">لن يتم نقل الرسائل والوسائط</string>
+    <!-- Title for the backup folder option card (V2 format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">من مجلد نسخة احتياطية</string>
+    <!-- Title for the backup file option card (V1 legacy format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">من ملف النسخة الاحتياطية</string>
+    <!-- Subtitle for the backup folder/file option cards -->
+    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">اختر نسخة احتياطية حفظتها</string>
+    <!-- Title for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">من جهازك القديم</string>
+    <!-- Subtitle for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">النقل مباشرةً من جهاز أندرويد القديم الخاص بك</string>
+    <!-- Skip button text -->
+    <string name="ArchiveRestoreSelectionScreen__skip">تخطّي</string>
+    <!-- Title for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">هل ترغبُ بتخطِّي الاستعادة؟</string>
+    <!-- Warning body text for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">إذا قُمتَ بتخطي الاستعادة الآن، فلن تتمكّن من الاستعادة لاحقًا. إذا فعّلتَ النسخ الاحتياطية من جديد لاحقًا بعد تخطي الاستعادة، فسيتم استبدال نسختك الاحتياطية الحالية بسجل الرسائل الخاص بك الجديد.</string>
+    <!-- Confirm button text for the skip restore dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">تخطِّي الاستعادة</string>
 </resources>

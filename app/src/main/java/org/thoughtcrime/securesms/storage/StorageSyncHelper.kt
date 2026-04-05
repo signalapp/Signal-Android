@@ -196,6 +196,7 @@ object StorageSyncHelper {
 
       safeSetPayments(SignalStore.payments.mobileCoinPaymentsEnabled(), Optional.ofNullable(SignalStore.payments.paymentsEntropy).map { obj: Entropy -> obj.bytes }.orElse(null))
       automaticKeyVerificationDisabled = !SignalStore.settings.automaticVerificationEnabled
+      hasSeenAdminDeleteEducationDialog = SignalStore.uiHints.hasSeenAdminDeleteEducationDialog()
     }
 
     return accountRecord.toSignalAccountRecord(StorageId.forAccount(storageId)).toSignalStorageRecord()
@@ -263,6 +264,10 @@ object StorageSyncHelper {
       SignalDatabase.recipients.clearAllKeyTransparencyData()
     }
     SignalStore.settings.automaticVerificationEnabled = !update.new.proto.automaticKeyVerificationDisabled
+
+    if (update.new.proto.hasSeenAdminDeleteEducationDialog) {
+      SignalStore.uiHints.setHasSeenAdminDeleteEducationDialog()
+    }
 
     if (update.new.proto.storyViewReceiptsEnabled == OptionalBool.UNSET) {
       SignalStore.story.viewedReceiptsEnabled = update.new.proto.readReceipts

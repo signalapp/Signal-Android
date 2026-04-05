@@ -95,13 +95,7 @@ class MediaSelectionActivity :
     super.attachBaseContext(newBase)
   }
 
-  override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    setContentView(R.layout.media_selection_activity)
-
-    FullscreenHelper.showSystemUI(window)
-    WindowUtil.setNavigationBarColor(this, 0x01000000)
-    WindowUtil.setStatusBarColor(window, Color.TRANSPARENT)
-
+  override fun onPreCreate() {
     val sendType: MessageSendType = requireNotNull(intent.getParcelableExtraCompat(MESSAGE_SEND_TYPE, MessageSendType::class.java))
     val initialMedia: List<Media> = intent.getParcelableArrayListExtraCompat(MEDIA, Media::class.java) ?: listOf()
     val message: CharSequence? = if (shareToTextStory) null else draftText
@@ -110,6 +104,14 @@ class MediaSelectionActivity :
 
     val factory = MediaSelectionViewModel.Factory(destination, sendType, initialMedia, message, isReply, isStory, isAddToGroupStoryFlow, MediaSelectionRepository(this))
     viewModel = ViewModelProvider(this, factory)[MediaSelectionViewModel::class.java]
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    setContentView(R.layout.media_selection_activity)
+
+    FullscreenHelper.showSystemUI(window)
+    WindowUtil.setNavigationBarColor(this, 0x01000000)
+    WindowUtil.setStatusBarColor(window, Color.TRANSPARENT)
 
     val textStoryToggle: ConstraintLayout = findViewById(R.id.switch_widget)
     val cameraDisplay = CameraDisplay.getDisplay(this)

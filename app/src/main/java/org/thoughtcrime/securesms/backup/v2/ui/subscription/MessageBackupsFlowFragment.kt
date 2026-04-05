@@ -134,7 +134,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           onNavigationClick = viewModel::goToPreviousStage,
           onEnableBackups = viewModel::goToNextStage,
           onLearnMore = {
-            CommunicationActions.openBrowserLink(requireContext(), getString(R.string.backup_support_url))
+            CommunicationActions.openBrowserLink(requireContext(), getString(R.string.remote_backup_support_url))
           }
         )
       }
@@ -142,7 +142,12 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       composable(route = MessageBackupsStage.Route.BACKUP_KEY_EDUCATION.name) {
         MessageBackupsKeyEducationScreen(
           onNavigationClick = viewModel::goToPreviousStage,
-          onNextClick = viewModel::goToNextStage
+          onNextClick = viewModel::goToNextStage,
+          mode = if (SignalStore.backup.newLocalBackupsEnabled) {
+            MessageBackupsKeyEducationScreenMode.REMOTE_WITH_LOCAL_ENABLED
+          } else {
+            MessageBackupsKeyEducationScreenMode.DEFAULT
+          }
         )
       }
 
@@ -185,7 +190,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           onReadMoreClicked = {
             CommunicationActions.openBrowserLink(
               requireContext(),
-              getString(R.string.backup_support_url)
+              getString(R.string.remote_backup_support_url)
             )
           },
           onNextClicked = viewModel::goToNextStage,
@@ -194,7 +199,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           onLearnMoreAboutWhyUserCanNotUpgrade = {
             CommunicationActions.openBrowserLink(
               requireContext(),
-              getString(R.string.backup_support_url)
+              getString(R.string.remote_backup_support_url)
             )
           },
           onMakeGooglePlayServicesAvailable = {

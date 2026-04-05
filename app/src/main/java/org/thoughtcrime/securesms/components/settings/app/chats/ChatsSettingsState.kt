@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.components.settings.app.chats
 
+import org.thoughtcrime.securesms.backup.LocalExportProgress
+import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
+
 data class ChatsSettingsState(
   val generateLinkPreviews: Boolean,
   val useAddressBook: Boolean,
@@ -9,7 +12,11 @@ data class ChatsSettingsState(
   val localBackupsEnabled: Boolean,
   val folderCount: Int,
   val userUnregistered: Boolean,
-  val clientDeprecated: Boolean
+  val clientDeprecated: Boolean,
+  val isPlaintextExportEnabled: Boolean,
+  val plaintextExportProgress: LocalBackupCreationProgress = LocalExportProgress.plaintextProgress.value,
+  val chatExportState: ChatExportState = ChatExportState.None,
+  val includeMediaInExport: Boolean = false
 ) {
   fun isRegisteredAndUpToDate(): Boolean {
     return !userUnregistered && !clientDeprecated

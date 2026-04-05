@@ -155,7 +155,7 @@ class PushProcessMessageJob private constructor(
         try {
           messageProcessor.process(result.envelope, result.content, result.metadata, result.serverDeliveredTimestamp, localMetric = localReceiveMetric, batchCache = batchCache)
         } catch (e: Exception) {
-          Log.e(TAG, "Failed to process message with timestamp ${result.envelope.timestamp}. Dropping.", e)
+          Log.e(TAG, "Failed to process message with timestamp ${result.envelope.clientTimestamp}. Dropping.", e)
         }
         null
       }

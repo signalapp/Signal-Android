@@ -76,7 +76,6 @@ fun SelectLocalBackupSheetContent(
 
       Rows.RadioRow(
         text = backup.backupTime,
-        label = backup.backupSize,
         selected = selection == backup,
         modifier = Modifier
           .horizontalGutters()
@@ -110,19 +109,16 @@ private fun SelectLocalBackupSheetContentPreview() {
     SelectLocalBackupSheetContent(
       selectedBackup = SelectableBackup(
         timestamp = 0L,
-        backupTime = "Today \u2022 3:38am",
-        backupSize = "1.38 GB"
+        backupTime = "Today \u2022 3:38am"
       ),
       selectableBackups = persistentListOf(
         SelectableBackup(
           timestamp = 0L,
-          backupTime = "Today \u2022 3:38am",
-          backupSize = "1.38 GB"
+          backupTime = "Today \u2022 3:38am"
         ),
         SelectableBackup(
           timestamp = 1L,
-          backupTime = "August 13, 2024 \u2022 3:21am",
-          backupSize = "1.34 GB"
+          backupTime = "August 13, 2024 \u2022 3:21am"
         )
       ),
       onBackupSelected = {}

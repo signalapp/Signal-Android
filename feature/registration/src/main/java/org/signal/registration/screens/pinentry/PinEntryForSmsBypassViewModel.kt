@@ -57,6 +57,7 @@ class PinEntryForSmsBypassViewModel(
     .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PinEntryState(showNeedHelp = true))
 
   fun onEvent(event: PinEntryScreenEvents) {
+    Log.d(TAG, "[Event] $event")
     viewModelScope.launch {
       val stateEmitter: (PinEntryState) -> Unit = { _state.value = it }
       applyEvent(state.value, event, stateEmitter, parentEventEmitter)

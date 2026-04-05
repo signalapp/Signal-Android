@@ -7,9 +7,11 @@ import androidx.annotation.WorkerThread;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -71,6 +73,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
                                       0L,
                                       new Parameters.Builder()
                                                     .setQueue(conversationRecipient.getId().toQueueKey())
+                                                    .addConstraint(SealedSenderConstraint.KEY)
                                                     .setLifespan(TimeUnit.MINUTES.toMillis(5))
                                                     .setMaxAttempts(3)
                                                     .build());
@@ -119,6 +122,11 @@ public class GroupCallUpdateSendJob extends BaseJob {
       throw new AssertionError("We have a recipient, but it's not a V2 Group");
     }
 
+    if (!SignalDatabase.groups().isActive(conversationRecipient.requireGroupId())) {
+      Log.w(TAG, "Not sending group call update to terminated or inactive group.");
+      return;
+    }
+
     List<Recipient> destinations = Stream.of(recipients).map(Recipient::resolved).toList();
     List<Recipient> completions  = deliver(conversationRecipient, destinations);
 
@@ -143,6 +151,11 @@ public class GroupCallUpdateSendJob extends BaseJob {
     if (e instanceof ServerRejectedException) return false;
     return e instanceof IOException ||
            e instanceof RetryLaterException;
+  }
+
+  @Override
+  public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
+    return SendJobUtil.getBackoffMillisFromException(this, TAG, pastAttemptCount, exception, () -> super.getNextRunAttemptBackoff(pastAttemptCount, exception));
   }
 
   @Override

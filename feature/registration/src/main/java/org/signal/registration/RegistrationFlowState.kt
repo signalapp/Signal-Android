@@ -11,6 +11,7 @@ import kotlinx.parcelize.TypeParceler
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.registration.util.AccountEntropyPoolParceler
+import org.signal.registration.util.DebugLoggable
 import org.signal.registration.util.MasterKeyParceler
 
 @Parcelize
@@ -36,5 +37,8 @@ data class RegistrationFlowState(
   val preExistingRegistrationData: PreExistingRegistrationData? = null,
 
   /** If true, do not attempt any flows where we generate RRP's. Create a session instead. */
-  val doNotAttemptRecoveryPassword: Boolean = false
-) : Parcelable
+  val doNotAttemptRecoveryPassword: Boolean = false,
+
+  /** If true, the ViewModel is still deciding whether to restore a previous flow or start fresh. */
+  val isRestoringNavigationState: Boolean = true
+) : Parcelable, DebugLoggable

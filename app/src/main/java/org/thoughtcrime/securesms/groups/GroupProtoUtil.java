@@ -10,7 +10,7 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember;
-import org.thoughtcrime.securesms.backup.v2.proto.GroupChangeChatUpdate;
+import org.signal.archive.proto.GroupChangeChatUpdate;
 import org.thoughtcrime.securesms.database.model.GroupsV2UpdateMessageConverter;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription;

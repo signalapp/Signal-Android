@@ -11,6 +11,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieProperty;
 import com.airbnb.lottie.model.KeyPath;
 
+import org.signal.core.ui.view.Stub;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
@@ -56,6 +58,8 @@ public class ConversationItemFooter extends ConstraintLayout {
   private ImageView                   insecureIndicatorView;
   private DeliveryStatusView          deliveryStatusView;
   private ImageView                   pinnedView;
+  private Stub<ImageView>             starredStub;
+  private int                         iconColor;
   private boolean                     onlyShowSendingStatus;
   private TextView                    audioDuration;
   private LottieAnimationView         revealDot;
@@ -100,6 +104,7 @@ public class ConversationItemFooter extends ConstraintLayout {
     insecureIndicatorView       = findViewById(R.id.footer_insecure_indicator);
     deliveryStatusView          = findViewById(R.id.footer_delivery_status);
     pinnedView                  = findViewById(R.id.footer_pinned);
+    starredStub                 = new Stub<>((ViewStub) findViewById(R.id.footer_starred));
     audioDuration               = findViewById(R.id.footer_audio_duration);
     revealDot                   = findViewById(R.id.footer_revealed_dot);
     playbackSpeedToggleTextView = findViewById(R.id.footer_audio_playback_speed_toggle);
@@ -146,6 +151,7 @@ public class ConversationItemFooter extends ConstraintLayout {
     presentDeliveryStatus(messageRecord);
     presentAudioDuration(messageRecord);
     presentPinnedIcon(messageRecord);
+    presentStarredIcon(messageRecord);
   }
 
   public void setAudioDuration(long totalDurationMillis, long currentPostionMillis) {
@@ -174,10 +180,14 @@ public class ConversationItemFooter extends ConstraintLayout {
   }
 
   public void setIconColor(int color) {
+    iconColor = color;
     timerView.setColorFilter(color, PorterDuff.Mode.SRC_IN);
     insecureIndicatorView.setColorFilter(color);
     deliveryStatusView.setTint(color);
     pinnedView.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+    if (starredStub.resolved()) {
+      starredStub.get().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+    }
   }
 
   public void setRevealDotColor(int color) {
@@ -446,6 +456,16 @@ public class ConversationItemFooter extends ConstraintLayout {
       pinnedView.setVisibility(View.VISIBLE);
     } else {
       pinnedView.setVisibility(View.GONE);
+    }
+  }
+
+  private void presentStarredIcon(@NonNull MessageRecord messageRecord) {
+    if (messageRecord.isStarred()) {
+      ImageView starredView = starredStub.get();
+      starredView.setColorFilter(iconColor, PorterDuff.Mode.SRC_IN);
+      starredView.setVisibility(View.VISIBLE);
+    } else {
+      starredStub.setVisibility(View.GONE);
     }
   }
 

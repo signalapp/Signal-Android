@@ -24,8 +24,8 @@ plugins {
 
 apply(from = "static-ips.gradle.kts")
 
-val canonicalVersionCode = 1661
-val canonicalVersionName = "8.2.0"
+val canonicalVersionCode = 1674
+val canonicalVersionName = "8.6.1"
 val currentHotfixVersion = 0
 val maxHotfixVersions = 100
 
@@ -51,6 +51,7 @@ val localProperties: Properties? = if (localPropertiesFile.exists()) {
   null
 }
 val quickstartCredentialsDir: String? = localProperties?.getProperty("quickstart.credentials.dir")
+val benchmarkBackupFile: String? = localProperties?.getProperty("benchmark.backup.file")
 
 val selectableVariants = listOf(
   "nightlyProdSpinner",
@@ -91,6 +92,7 @@ wire {
 
   protoPath {
     srcDir("${project.rootDir}/lib/libsignal-service/src/main/protowire")
+    srcDir("${project.rootDir}/lib/archive/src/main/protowire")
   }
   // Handled by libsignal
   prune("signalservice.DecryptionErrorMessage")
@@ -531,6 +533,15 @@ android {
       }
       variant.sources.assets?.addGeneratedSourceDirectory(taskProvider) { it.outputDir }
     }
+
+    onVariants(selector().withBuildType("benchmark")) { variant ->
+      val taskProvider = tasks.register<CopyBenchmarkBackupTask>("copyBenchmarkBackup${variant.name.capitalize()}") {
+        if (benchmarkBackupFile != null) {
+          inputFile.set(File(benchmarkBackupFile))
+        }
+      }
+      variant.sources.assets?.addGeneratedSourceDirectory(taskProvider) { it.outputDir }
+    }
   }
 
   val releaseDir = "$projectDir/src/release/java"
@@ -584,6 +595,7 @@ dependencies {
   ktlintRuleset(libs.ktlint.twitter.compose)
   coreLibraryDesugaring(libs.android.tools.desugar)
 
+  implementation(project(":lib:archive"))
   implementation(project(":lib:libsignal-service"))
   implementation(project(":lib:paging"))
   implementation(project(":core:util"))
@@ -603,6 +615,7 @@ dependencies {
   implementation(project(":core:models-jvm"))
   implementation(project(":feature:camera"))
   implementation(project(":feature:registration"))
+  implementation(project(":lib:apng"))
 
   implementation(libs.androidx.fragment.ktx)
   implementation(libs.androidx.appcompat) {
@@ -644,6 +657,7 @@ dependencies {
   implementation(libs.androidx.concurrent.futures)
   implementation(libs.androidx.autofill)
   implementation(libs.androidx.biometric)
+  implementation(libs.androidx.core.telecom)
   implementation(libs.androidx.sharetarget)
   implementation(libs.androidx.profileinstaller)
   implementation(libs.androidx.asynclayoutinflater)
@@ -736,6 +750,7 @@ dependencies {
   testImplementation(testFixtures(project(":lib:libsignal-service")))
   testImplementation(testLibs.espresso.core)
   testImplementation(testLibs.kotlinx.coroutines.test)
+  testImplementation(testLibs.sqlite.jdbc)
   testImplementation(libs.androidx.compose.ui.test.junit4)
 
   "perfImplementation"(libs.androidx.compose.ui.test.manifest)
@@ -900,5 +915,29 @@ abstract class CopyQuickstartCredentialsTask : DefaultTask() {
     val dest = outputDir.get().asFile.resolve("quickstart")
     dest.mkdirs()
     chosen.copyTo(dest.resolve(chosen.name), overwrite = true)
+  }
+}
+
+abstract class CopyBenchmarkBackupTask : DefaultTask() {
+  @get:InputFile
+  @get:Optional
+  abstract val inputFile: RegularFileProperty
+
+  @get:OutputDirectory
+  abstract val outputDir: DirectoryProperty
+
+  @TaskAction
+  fun copy() {
+    val dest = outputDir.get().asFile.resolve("backups")
+    dest.mkdirs()
+
+    if (!inputFile.isPresent) {
+      logger.lifecycle("benchmark.backup.file is not set in local.properties. Benchmark tests using backup data will crash at runtime.")
+      return
+    }
+
+    val backupFile = inputFile.get().asFile
+    logger.lifecycle("Using benchmark backup: ${backupFile.absolutePath} (${backupFile.length() / 1024}KB)")
+    backupFile.copyTo(dest.resolve("backup.binproto"), overwrite = true)
   }
 }

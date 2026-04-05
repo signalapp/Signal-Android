@@ -6,6 +6,12 @@
 package org.signal.registration.sample.dependencies
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -14,6 +20,9 @@ import okhttp3.Response
 import org.signal.core.models.MasterKey
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.Network
+import org.signal.libsignal.protocol.IdentityKey
+import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.protocol.util.Hex
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.AccountAttributes
@@ -22,6 +31,8 @@ import org.signal.registration.NetworkController.CheckSvrCredentialsResponse
 import org.signal.registration.NetworkController.CreateSessionError
 import org.signal.registration.NetworkController.GetSessionStatusError
 import org.signal.registration.NetworkController.PreKeyCollection
+import org.signal.registration.NetworkController.ProvisioningEvent
+import org.signal.registration.NetworkController.ProvisioningMessage
 import org.signal.registration.NetworkController.RegisterAccountError
 import org.signal.registration.NetworkController.RegisterAccountResponse
 import org.signal.registration.NetworkController.RegistrationLockResponse
@@ -32,9 +43,11 @@ import org.signal.registration.NetworkController.SubmitVerificationCodeError
 import org.signal.registration.NetworkController.ThirdPartyServiceErrorResponse
 import org.signal.registration.NetworkController.UpdateSessionError
 import org.signal.registration.NetworkController.VerificationCodeTransport
+import org.signal.registration.proto.RegistrationProvisionMessage
 import org.signal.registration.sample.fcm.FcmUtil
 import org.signal.registration.sample.fcm.PushChallengeReceiver
 import org.signal.registration.sample.storage.RegistrationPreferences
+import org.whispersystems.signalservice.api.provisioning.ProvisioningSocket
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2
@@ -43,6 +56,7 @@ import org.whispersystems.signalservice.api.websocket.HealthMonitor
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
+import org.whispersystems.signalservice.internal.crypto.SecondaryProvisioningCipher
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider
@@ -366,6 +380,88 @@ class DemoNetworkController(
 
   override fun getCaptchaUrl(): String {
     return "https://signalcaptchas.org/staging/registration/generate.html"
+  }
+
+  override fun startProvisioning(): Flow<ProvisioningEvent> = callbackFlow {
+    val socketHandles = mutableListOf<java.io.Closeable>()
+
+    fun startSocket() {
+      val handle = ProvisioningSocket.start<RegistrationProvisionMessage>(
+        mode = ProvisioningSocket.Mode.REREG,
+        identityKeyPair = IdentityKeyPair.generate(),
+        configuration = serviceConfiguration,
+        handler = { id, t ->
+          Log.w(TAG, "[startProvisioning] Socket [$id] failed", t)
+          trySend(ProvisioningEvent.Error(t))
+        }
+      ) { socket ->
+        val url = socket.getProvisioningUrl()
+        trySend(ProvisioningEvent.QrCodeReady(url))
+
+        val result = socket.getProvisioningMessageDecryptResult()
+
+        if (result is SecondaryProvisioningCipher.ProvisioningDecryptResult.Success) {
+          val msg = result.message
+          trySend(
+            ProvisioningEvent.MessageReceived(
+              ProvisioningMessage(
+                accountEntropyPool = msg.accountEntropyPool,
+                e164 = msg.e164,
+                pin = msg.pin,
+                aciIdentityKeyPair = IdentityKeyPair(IdentityKey(msg.aciIdentityKeyPublic.toByteArray()), ECPrivateKey(msg.aciIdentityKeyPrivate.toByteArray())),
+                pniIdentityKeyPair = IdentityKeyPair(IdentityKey(msg.pniIdentityKeyPublic.toByteArray()), ECPrivateKey(msg.pniIdentityKeyPrivate.toByteArray())),
+                platform = when (msg.platform) {
+                  RegistrationProvisionMessage.Platform.ANDROID -> NetworkController.ProvisioningMessage.Platform.ANDROID
+                  RegistrationProvisionMessage.Platform.IOS -> NetworkController.ProvisioningMessage.Platform.IOS
+                },
+                tier = when (msg.tier) {
+                  RegistrationProvisionMessage.Tier.FREE -> NetworkController.ProvisioningMessage.Tier.FREE
+                  RegistrationProvisionMessage.Tier.PAID -> NetworkController.ProvisioningMessage.Tier.PAID
+                  null -> null
+                },
+                backupTimestampMs = msg.backupTimestampMs,
+                backupSizeBytes = msg.backupSizeBytes,
+                restoreMethodToken = msg.restoreMethodToken,
+                backupVersion = msg.backupVersion
+              )
+            )
+          )
+          channel.close()
+        } else {
+          Log.w(TAG, "[startProvisioning] Failed to decrypt provisioning message")
+          trySend(ProvisioningEvent.Error(IOException("Failed to decrypt provisioning message")))
+        }
+      }
+
+      synchronized(socketHandles) {
+        socketHandles += handle
+        if (socketHandles.size > 2) {
+          socketHandles.removeAt(0).close()
+        }
+      }
+    }
+
+    startSocket()
+
+    val rotationJob = launch {
+      var count = 0
+      while (count < 5 && isActive) {
+        delay(ProvisioningSocket.LIFESPAN / 2)
+        if (isActive) {
+          startSocket()
+          count++
+          Log.d(TAG, "[startProvisioning] Rotated socket, count: $count")
+        }
+      }
+    }
+
+    awaitClose {
+      rotationJob.cancel()
+      synchronized(socketHandles) {
+        socketHandles.forEach { it.close() }
+        socketHandles.clear()
+      }
+    }
   }
 
   override suspend fun restoreMasterKeyFromSvr(

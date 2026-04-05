@@ -144,6 +144,26 @@ sealed class ConversationSettingsViewModel(
     disposable.clear()
   }
 
+  fun toggleArchive() {
+    val state = store.state
+    if (state.threadId > 0) {
+      val newArchived = !state.isArchived
+      store.update { it.copy(isArchived = newArchived) }
+      viewModelScope.launch(SignalDispatchers.IO) {
+        repository.setArchived(state.threadId, newArchived)
+      }
+    }
+  }
+
+  suspend fun deleteChat() {
+    withContext(SignalDispatchers.IO) {
+      val threadId = store.state.threadId
+      if (threadId > 0) {
+        repository.deleteChat(threadId)
+      }
+    }
+  }
+
   private class RecipientSettingsViewModel(
     private val recipientId: RecipientId,
     private val callMessageIds: LongArray,
@@ -299,21 +319,21 @@ sealed class ConversationSettingsViewModel(
         store.update { it.copy(storyViewState = storyViewState) }
       }
 
-      val recipientAndIsActive = LiveDataUtil.combineLatest(liveGroup.groupRecipient, liveGroup.isActive) { r, a -> r to a }
-      store.update(recipientAndIsActive) { (recipient, isActive), state ->
+      store.update(liveGroup.groupRecipient) { recipient, state ->
         state.copy(
           recipient = recipient,
           buttonStripState = ButtonStripPreference.State(
             isMessageAvailable = callMessageIds.isNotEmpty(),
-            isVideoAvailable = recipient.isPushV2Group && !recipient.isBlocked && isActive,
+            isVideoAvailable = recipient.isPushV2Group && !recipient.isBlocked && recipient.isActiveGroup,
             isAudioAvailable = false,
             isAudioSecure = recipient.isPushV2Group,
             isMuted = recipient.isMuted,
             isMuteAvailable = true,
             isSearchAvailable = callMessageIds.isEmpty(),
-            isAddToStoryAvailable = recipient.isPushV2Group && !recipient.isBlocked && isActive && !SignalStore.story.isFeatureDisabled
+            isAddToStoryAvailable = recipient.isPushV2Group && !recipient.isBlocked && recipient.isActiveGroup && !SignalStore.story.isFeatureDisabled
           ),
           canModifyBlockedState = RecipientUtil.isBlockable(recipient),
+          isArchived = repository.isArchived(recipient.id),
           specificSettingsState = state.requireGroupSettingsState().copy(
             legacyGroupState = getLegacyGroupState()
           )
@@ -398,7 +418,16 @@ sealed class ConversationSettingsViewModel(
       store.update(liveGroup.isActive) { isActive, state ->
         state.copy(
           specificSettingsState = state.requireGroupSettingsState().copy(
+            isActive = isActive,
             canLeave = isActive && groupId.isPush
+          )
+        )
+      }
+
+      store.update(liveGroup.isTerminated) { isTerminated, state ->
+        state.copy(
+          specificSettingsState = state.requireGroupSettingsState().copy(
+            isTerminated = isTerminated
           )
         )
       }

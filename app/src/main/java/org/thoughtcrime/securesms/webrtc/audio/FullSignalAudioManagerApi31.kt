@@ -6,7 +6,6 @@ import android.media.AudioDeviceInfo
 import android.media.AudioManager
 import android.media.AudioRecordingConfiguration
 import android.media.MediaRecorder
-import android.net.Uri
 import androidx.annotation.RequiresApi
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -22,9 +21,7 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
 
   private var defaultAudioDevice: AudioDevice = AudioDevice.EARPIECE
   private var userSelectedAudioDevice: AudioDeviceInfo? = null
-  private var savedAudioMode = AudioManager.MODE_INVALID
   private var savedIsSpeakerPhoneOn = false
-  private var savedIsMicrophoneMute = false
   private var hasWiredHeadset = false
 
   private val deviceCallback = object : AudioDeviceCallback() {
@@ -207,29 +204,9 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
     updateAudioDeviceState()
   }
 
-  override fun startIncomingRinger(ringtoneUri: Uri?, vibrate: Boolean) {
-    Log.i(TAG, "startIncomingRinger: uri: ${if (ringtoneUri != null) "present" else "null"} vibrate: $vibrate currentMode: ${getModeName(androidAudioManager.mode)}")
-    androidAudioManager.mode = AudioManager.MODE_RINGTONE
-    setMicrophoneMute(false)
-    incomingRinger.start(ringtoneUri, vibrate)
-  }
-
-  override fun startOutgoingRinger() {
-    Log.i(TAG, "startOutgoingRinger: currentDevice: $selectedAudioDevice currentMode: ${getModeName(androidAudioManager.mode)}")
-    androidAudioManager.mode = AudioManager.MODE_IN_COMMUNICATION
-    setMicrophoneMute(false)
-    outgoingRinger.start(OutgoingRinger.Type.RINGING)
-  }
-
   private fun setSpeakerphoneOn(on: Boolean) {
     if (androidAudioManager.isSpeakerphoneOn != on) {
       androidAudioManager.isSpeakerphoneOn = on
-    }
-  }
-
-  private fun setMicrophoneMute(on: Boolean) {
-    if (androidAudioManager.isMicrophoneMute != on) {
-      androidAudioManager.isMicrophoneMute = on
     }
   }
 

@@ -79,6 +79,7 @@ message DecryptedGroup {
            string                    description               = 11;
            EnabledState              isAnnouncementGroup       = 12;
   repeated DecryptedBannedMember     bannedMembers             = 13;
+           bool                      terminated                = 14;
            bool                      isPlaceholderGroup        = 64;
 }
 
@@ -111,6 +112,8 @@ message DecryptedGroupChange {
   repeated DecryptedBannedMember         deleteBannedMembers         = 23;
   repeated DecryptedMember               promotePendingPniAciMembers = 24;
   repeated DecryptedModifyMemberLabel    modifyMemberLabels          = 26;
+           AccessControl.AccessRequired  newMemberLabelAccess        = 27;
+           bool                          terminateGroup              = 28;
 }
 
 message DecryptedString {

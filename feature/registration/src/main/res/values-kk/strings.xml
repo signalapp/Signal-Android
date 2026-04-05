@@ -84,4 +84,50 @@
     <string name="VerificationCodeScreen__registration_error">Тіркелмеді. Қайталап көріңіз.</string>
     <!-- Button text for having trouble with verification -->
     <string name="VerificationCodeScreen__having_trouble">Мәселе туындады ма?</string>
+
+    <!-- RestoreWelcomeBottomSheet -->
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Ескі телефоным бар</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">Қазіргі Signal аккаунтыңыздан QR кодын сканерлеп, жылдам бастаңыз</string>
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Ескі телефоным жоқ</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">Signal қолданбасын бір құрылғыға қайта орнатып жатырсыз</string>
+
+    <!-- ArchiveRestoreSelectionScreen -->
+    <!-- Title text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">Аккаунтты қалпына келтіру немесе тасымалдау</string>
+    <!-- Subtitle text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__subheading">Хабарлар тарихын және аккаунт деректерін қалпына келтіру жолын таңдаңыз.</string>
+    <!-- Title for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">Signal-дың сақтық көшірмелерінен</string>
+    <!-- Subtitle for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">Тегін немесе ақылы Signal cақтық көшірме жоспары</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Құрылғыдағы сақтық көшірмені қалпына келтіру</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Құрылғыңызда сақталған сақтық көшірмеден хабарларды қалпына келтіріңіз.</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Тасымалдамай жалғастыру</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Хабарлар және мультимедиа тасымалданбайды</string>
+    <!-- Title for the backup folder option card (V2 format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">Сақтық көшірме қалтасынан</string>
+    <!-- Title for the backup file option card (V1 legacy format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">Сақтық көшірме файлынан</string>
+    <!-- Subtitle for the backup folder/file option cards -->
+    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Сақтаған сақтық көшірмені таңдаңыз</string>
+    <!-- Title for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">Ескі телефоннан</string>
+    <!-- Subtitle for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">Ескі Android құрылғыңыздан тікелей тасымалдау</string>
+    <!-- Skip button text -->
+    <string name="ArchiveRestoreSelectionScreen__skip">Өткізіп жіберу</string>
+    <!-- Title for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">Қалпына келтіруді өткізіп жіберу керек пе?</string>
+    <!-- Warning body text for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">Қалпына келтіру процесін қазір өткізіп жіберсеңіз, кейінірек қалпына келтіре алмайсыз. Қалпына келтіру процесін өткізіп жіберген соң, сақтық көшірмелерді қайта іске қоссаңыз, ағымдағы сақтық көшірменің орнын жаңа хабарлар тарихы басады.</string>
+    <!-- Confirm button text for the skip restore dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">Қалпына келтіру функциясын өткізіп жіберу</string>
 </resources>

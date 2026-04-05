@@ -8,6 +8,8 @@ import java.util.List;
 
 import io.reactivex.rxjava3.subjects.BehaviorSubject;
 import io.reactivex.rxjava3.subjects.Subject;
+import kotlinx.coroutines.flow.MutableStateFlow;
+import kotlinx.coroutines.flow.StateFlow;
 
 /**
  * The primary entry point for creating paged data.
@@ -34,6 +36,14 @@ public class PagedData<Key> {
     PagingController<Key> controller = new BufferedPagingController<>(dataSource, config, subject::onNext);
 
     return new ObservablePagedData<>(subject, controller);
+  }
+
+  @AnyThread
+  public static <Key, Data> StateFlowPagedData<Key, Data> createForStateFlow(@NonNull PagedDataSource<Key, Data> dataSource, @NonNull PagingConfig config) {
+    MutableStateFlow<List<Data>> stateFlow  = kotlinx.coroutines.flow.StateFlowKt.MutableStateFlow(java.util.Collections.emptyList());
+    PagingController<Key>        controller = new BufferedPagingController<>(dataSource, config, stateFlow::setValue);
+
+    return new StateFlowPagedData<>(stateFlow, controller);
   }
 
   public PagingController<Key> getController() {

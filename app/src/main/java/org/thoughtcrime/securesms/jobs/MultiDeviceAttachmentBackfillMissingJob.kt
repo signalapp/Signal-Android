@@ -9,6 +9,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.MultiDeviceAttachmentBackfillMissingJobData
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
@@ -43,6 +44,7 @@ class MultiDeviceAttachmentBackfillMissingJob(
       .setLifespan(1.days.inWholeMilliseconds)
       .setMaxAttempts(Parameters.UNLIMITED)
       .addConstraint(NetworkConstraint.KEY)
+      .addConstraint(SealedSenderConstraint.KEY)
       .build(),
     targetMessage,
     targetConversation

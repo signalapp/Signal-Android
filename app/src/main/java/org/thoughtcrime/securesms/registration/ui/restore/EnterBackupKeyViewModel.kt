@@ -19,15 +19,12 @@ import kotlinx.coroutines.launch
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
+import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
 import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
-import org.thoughtcrime.securesms.backup.v2.local.proto.Metadata
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import java.util.concurrent.atomic.AtomicInteger
-import javax.crypto.Cipher
-import javax.crypto.spec.IvParameterSpec
-import javax.crypto.spec.SecretKeySpec
 
 class EnterBackupKeyViewModel : ViewModel() {
 
@@ -89,24 +86,11 @@ class EnterBackupKeyViewModel : ViewModel() {
       val aep = AccountEntropyPool.parseOrNull(backupKey) ?: return false
 
       val dirUri = SignalStore.backup.newLocalBackupsDirectory ?: return false
-      val archiveFileSystem = ArchiveFileSystem.fromUri(AppDependencies.application, Uri.parse(dirUri)) ?: return false
+      val archiveFileSystem = ArchiveFileSystem.openForRestore(AppDependencies.application, Uri.parse(dirUri)) ?: return false
       val snapshot = archiveFileSystem.listSnapshots().firstOrNull { it.timestamp == selectedTimestamp } ?: return false
 
       val snapshotFs = SnapshotFileSystem(AppDependencies.application, snapshot.file)
-      val metadata = snapshotFs.metadataInputStream()?.use { Metadata.ADAPTER.decode(it) } ?: return false
-      val encryptedBackupId = metadata.backupId ?: return false
-
-      val messageBackupKey = aep.deriveMessageBackupKey()
-      val metadataKey = messageBackupKey.deriveLocalBackupMetadataKey()
-      val iv = encryptedBackupId.iv.toByteArray()
-      val backupIdCipher = encryptedBackupId.encryptedId.toByteArray()
-
-      val cipher = Cipher.getInstance("AES/CTR/NoPadding")
-      cipher.init(Cipher.DECRYPT_MODE, SecretKeySpec(metadataKey, "AES"), IvParameterSpec(iv))
-      val decryptedBackupId = cipher.doFinal(backupIdCipher)
-
-      val expectedBackupId = messageBackupKey.deriveBackupId(SignalStore.account.requireAci())
-      return decryptedBackupId.contentEquals(expectedBackupId.value)
+      return LocalArchiver.canDecryptMainArchive(snapshotFs, aep.deriveMessageBackupKey())
     } catch (e: Exception) {
       Log.w(TAG, "Failed to verify local backup key", e)
       return false
@@ -115,6 +99,11 @@ class EnterBackupKeyViewModel : ViewModel() {
 
   fun registering() {
     store.update { it.copy(isRegistering = true) }
+  }
+
+  /** Resets [EnterBackupKeyState.isRegistering] without triggering a registration error dialog. Use when navigation away from this screen is handling the error itself. */
+  fun cancelRegistering() {
+    store.update { it.copy(isRegistering = false) }
   }
 
   fun handleRegistrationFailure(registerAccountResult: RegisterAccountResult) {

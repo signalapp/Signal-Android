@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilter
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.search.SearchFilter
 import org.thoughtcrime.securesms.search.SearchRepository
 import org.thoughtcrime.securesms.util.livedata.Store
 import org.whispersystems.signalservice.api.util.Preconditions
@@ -91,6 +92,10 @@ class ContactSearchViewModel(
 
   fun setConversationFilterRequest(conversationFilterRequest: ConversationFilterRequest) {
     configurationStore.update { it.copy(conversationFilterRequest = conversationFilterRequest) }
+  }
+
+  fun setSearchFilter(searchFilter: SearchFilter) {
+    configurationStore.update { it.copy(searchFilter = searchFilter) }
   }
 
   fun expandSection(sectionKey: ContactSearchConfiguration.SectionKey) {

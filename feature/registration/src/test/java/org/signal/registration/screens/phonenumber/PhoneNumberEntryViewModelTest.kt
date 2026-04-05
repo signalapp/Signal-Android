@@ -292,8 +292,10 @@ class PhoneNumberEntryViewModelTest {
     assertThat(emittedStates.last().showSpinner).isFalse()
 
     assertThat(emittedStates.last().sessionMetadata).isNotNull()
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first())
+    assertThat(emittedEvents).hasSize(3)
+    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.SessionUpdated>()
+    assertThat(emittedEvents[1]).isInstanceOf<RegistrationFlowEvent.E164Chosen>()
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.VerificationCodeEntry>()
@@ -426,8 +428,10 @@ class PhoneNumberEntryViewModelTest {
     assertThat(emittedStates.last().showSpinner).isFalse()
 
     // Should not create a new session, just request verification code
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first())
+    assertThat(emittedEvents).hasSize(3)
+    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.SessionUpdated>()
+    assertThat(emittedEvents[1]).isInstanceOf<RegistrationFlowEvent.E164Chosen>()
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.VerificationCodeEntry>()
@@ -563,8 +567,10 @@ class PhoneNumberEntryViewModelTest {
     assertThat(emittedStates.last().showSpinner).isFalse()
 
     // Verify navigation to verification code entry
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first())
+    assertThat(emittedEvents).hasSize(3)
+    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.SessionUpdated>()
+    assertThat(emittedEvents[1]).isInstanceOf<RegistrationFlowEvent.E164Chosen>()
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.VerificationCodeEntry>()
@@ -595,8 +601,10 @@ class PhoneNumberEntryViewModelTest {
     assertThat(emittedStates.last().showSpinner).isFalse()
 
     // Verify navigation continues despite no push challenge token
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first())
+    assertThat(emittedEvents).hasSize(3)
+    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.SessionUpdated>()
+    assertThat(emittedEvents[1]).isInstanceOf<RegistrationFlowEvent.E164Chosen>()
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.VerificationCodeEntry>()
@@ -631,8 +639,10 @@ class PhoneNumberEntryViewModelTest {
     assertThat(emittedStates.last().showSpinner).isFalse()
 
     // Verify navigation continues despite push challenge submission failure
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first())
+    assertThat(emittedEvents).hasSize(3)
+    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.SessionUpdated>()
+    assertThat(emittedEvents[1]).isInstanceOf<RegistrationFlowEvent.E164Chosen>()
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.VerificationCodeEntry>()
@@ -662,8 +672,10 @@ class PhoneNumberEntryViewModelTest {
     assertThat(emittedStates.last().showSpinner).isFalse()
 
     // Verify navigation continues despite network error
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first())
+    assertThat(emittedEvents).hasSize(3)
+    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.SessionUpdated>()
+    assertThat(emittedEvents[1]).isInstanceOf<RegistrationFlowEvent.E164Chosen>()
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.VerificationCodeEntry>()
@@ -693,8 +705,10 @@ class PhoneNumberEntryViewModelTest {
     assertThat(emittedStates.last().showSpinner).isFalse()
 
     // Verify navigation continues despite application error
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first())
+    assertThat(emittedEvents).hasSize(3)
+    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.SessionUpdated>()
+    assertThat(emittedEvents[1]).isInstanceOf<RegistrationFlowEvent.E164Chosen>()
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.VerificationCodeEntry>()
@@ -744,8 +758,10 @@ class PhoneNumberEntryViewModelTest {
 
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.CaptchaCompleted("captcha-token"), stateEmitter, parentEventEmitter)
 
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first())
+    assertThat(emittedEvents).hasSize(3)
+    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.SessionUpdated>()
+    assertThat(emittedEvents[1]).isInstanceOf<RegistrationFlowEvent.E164Chosen>()
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.VerificationCodeEntry>()

@@ -164,10 +164,10 @@ private fun ArchiveRestoreProgressState.iconResource(): Int {
         RestoreStatus.WAITING_FOR_INTERNET,
         RestoreStatus.WAITING_FOR_WIFI,
         RestoreStatus.LOW_BATTERY -> R.drawable.symbol_backup_light
-
         RestoreStatus.NOT_ENOUGH_DISK_SPACE -> R.drawable.symbol_backup_error_24
         RestoreStatus.FINISHED -> CoreUiR.drawable.symbol_check_circle_24
-        RestoreStatus.NONE -> throw IllegalStateException()
+        RestoreStatus.NONE,
+        RestoreStatus.LOCAL_RESTORE_DIRECTORY_UNAVAILABLE -> throw IllegalStateException()
       }
     }
 
@@ -199,7 +199,8 @@ private fun ArchiveRestoreProgressState.iconColor(): Color {
         RestoreStatus.NOT_ENOUGH_DISK_SPACE -> BackupsIconColors.Warning.foreground
 
         RestoreStatus.FINISHED -> BackupsIconColors.Success.foreground
-        RestoreStatus.NONE -> throw IllegalStateException()
+        RestoreStatus.NONE,
+        RestoreStatus.LOCAL_RESTORE_DIRECTORY_UNAVAILABLE -> throw IllegalStateException()
       }
     }
 
@@ -233,7 +234,8 @@ private fun ArchiveRestoreProgressState.title(): String {
         }
 
         RestoreStatus.FINISHED -> stringResource(R.string.BackupStatus__restore_complete)
-        RestoreStatus.NONE -> throw IllegalStateException()
+        RestoreStatus.NONE,
+        RestoreStatus.LOCAL_RESTORE_DIRECTORY_UNAVAILABLE -> throw IllegalStateException()
       }
     }
 
@@ -277,7 +279,8 @@ private fun ArchiveRestoreProgressState.status(): String? {
         RestoreStatus.LOW_BATTERY -> stringResource(R.string.BackupStatus__status_device_has_low_battery)
         RestoreStatus.NOT_ENOUGH_DISK_SPACE -> null
         RestoreStatus.FINISHED -> this.totalToRestoreThisRun.toUnitString()
-        RestoreStatus.NONE -> throw IllegalStateException()
+        RestoreStatus.NONE,
+        RestoreStatus.LOCAL_RESTORE_DIRECTORY_UNAVAILABLE -> throw IllegalStateException()
       }
     }
 

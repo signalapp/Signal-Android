@@ -6,6 +6,8 @@
 package org.thoughtcrime.securesms.backup.v2.processor
 
 import okio.ByteString.Companion.toByteString
+import org.signal.archive.proto.Frame
+import org.signal.archive.stream.BackupFrameEmitter
 import org.signal.core.util.Base64
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.insertInto
@@ -14,8 +16,6 @@ import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportSkips
 import org.thoughtcrime.securesms.backup.v2.ImportState
-import org.thoughtcrime.securesms.backup.v2.proto.Frame
-import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.NotificationProfileTables.NotificationProfileAllowedMembersTable
 import org.thoughtcrime.securesms.database.NotificationProfileTables.NotificationProfileScheduleTable
@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import java.time.DayOfWeek
-import org.thoughtcrime.securesms.backup.v2.proto.NotificationProfile as NotificationProfileProto
+import org.signal.archive.proto.NotificationProfile as NotificationProfileProto
 
 /**
  * Handles exporting and importing [NotificationProfile] models.

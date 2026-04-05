@@ -256,6 +256,7 @@ public class ConversationAdapter
     notifyDataSetChanged();
   }
 
+
   @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
     switch (getItemViewType(position)) {
@@ -268,8 +269,15 @@ public class ConversationAdapter
         ConversationMessage    conversationMessage    = Objects.requireNonNull(getItem(position));
         int                    adapterPosition        = holder.getAdapterPosition();
 
-        ConversationMessage previousMessage = adapterPosition < getItemCount() - 1  && !isFooterPosition(adapterPosition + 1) ? getItem(adapterPosition + 1) : null;
-        ConversationMessage nextMessage     = adapterPosition > 0                   && !isHeaderPosition(adapterPosition - 1) ? getItem(adapterPosition - 1) : null;
+
+        ConversationMessage previousMessage = null;
+        ConversationMessage nextMessage     = null;
+
+        boolean disableClustering = displayMode instanceof ConversationItemDisplayMode.Starred;
+        if (!disableClustering) {
+          previousMessage   = adapterPosition < getItemCount() - 1  && !isFooterPosition(adapterPosition + 1) ? getItem(adapterPosition + 1) : null;
+          nextMessage       = adapterPosition > 0                   && !isHeaderPosition(adapterPosition - 1) ? getItem(adapterPosition - 1) : null;
+        }
 
         ConversationItemDisplayMode itemDisplayMode = displayMode != null ? displayMode : ConversationItemDisplayMode.Standard.INSTANCE;
 

@@ -118,11 +118,6 @@ fun YourBackupCard(
       icon = ImageVector.vectorResource(R.drawable.symbol_recent_24),
       text = selectedBackup.backupTime
     )
-
-    BackupInfoRow(
-      icon = ImageVector.vectorResource(R.drawable.symbol_file_24),
-      text = selectedBackup.backupSize
-    )
   }
 }
 
@@ -151,8 +146,7 @@ fun SelectLocalBackupScreenPreview() {
     SelectLocalBackupScreen(
       selectedBackup = SelectableBackup(
         timestamp = 0L,
-        backupTime = "Today \u2022 12:34 PM",
-        backupSize = "1.38 GB"
+        backupTime = "Today \u2022 12:34 PM"
       ),
       isSelectedBackupLatest = true,
       onRestoreBackupClick = {},

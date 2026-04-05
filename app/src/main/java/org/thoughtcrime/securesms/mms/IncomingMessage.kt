@@ -40,7 +40,7 @@ class IncomingMessage(
   mentions: List<Mention> = emptyList(),
   val giftBadge: GiftBadge? = null,
   val messageExtras: MessageExtras? = null,
-  val isGroupAdd: Boolean = false,
+  val isNotifiable: Boolean = false,
   val poll: Poll? = null
 ) {
 
@@ -99,7 +99,7 @@ class IncomingMessage(
     }
 
     @JvmStatic
-    fun groupUpdate(from: RecipientId, timestamp: Long, groupId: GroupId, update: GV2UpdateDescription, isGroupAdd: Boolean, serverGuid: String?): IncomingMessage {
+    fun groupUpdate(from: RecipientId, timestamp: Long, groupId: GroupId, update: GV2UpdateDescription, isNotifiable: Boolean, serverGuid: String?): IncomingMessage {
       val messageExtras = MessageExtras(gv2UpdateDescription = update)
       val groupContext = MessageGroupContext(update.gv2ChangeDescription!!)
 
@@ -113,7 +113,7 @@ class IncomingMessage(
         groupContext = groupContext,
         type = MessageType.GROUP_UPDATE,
         messageExtras = messageExtras,
-        isGroupAdd = isGroupAdd
+        isNotifiable = isNotifiable
       )
     }
   }

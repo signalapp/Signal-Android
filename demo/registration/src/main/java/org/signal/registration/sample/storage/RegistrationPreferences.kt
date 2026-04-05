@@ -46,6 +46,12 @@ object RegistrationPreferences {
   private const val KEY_PIN_ALPHANUMERIC = "pin_alphanumeric"
   private const val KEY_PINS_OPTED_OUT = "pins_opted_out"
   private const val KEY_SVR2_CREDENTIALS = "svr2_credentials"
+  private const val KEY_RESTORE_METHOD_TOKEN = "restore_method_token"
+  private const val KEY_BACKUP_TIER = "backup_tier"
+  private const val KEY_BACKUP_TIMESTAMP_MS = "backup_timestamp_ms"
+  private const val KEY_BACKUP_SIZE_BYTES = "backup_size_bytes"
+  private const val KEY_OTHER_DEVICE_PLATFORM = "other_device_platform"
+  private const val KEY_BACKUP_VERSION = "backup_version"
 
   fun init(context: Application) {
     this.context = context
@@ -167,6 +173,17 @@ object RegistrationPreferences {
       aciIdentityKeyPair = aciIdentityKeyPair,
       pniIdentityKeyPair = pniIdentityKeyPair
     )
+  }
+
+  fun saveProvisioningData(message: NetworkController.ProvisioningMessage) {
+    prefs.edit {
+      putString(KEY_RESTORE_METHOD_TOKEN, message.restoreMethodToken)
+      putString(KEY_BACKUP_TIER, message.tier?.name)
+      message.backupTimestampMs?.let { putLong(KEY_BACKUP_TIMESTAMP_MS, it) }
+      message.backupSizeBytes?.let { putLong(KEY_BACKUP_SIZE_BYTES, it) }
+      putString(KEY_OTHER_DEVICE_PLATFORM, message.platform.name)
+      putLong(KEY_BACKUP_VERSION, message.backupVersion)
+    }
   }
 
   fun clearKeyMaterial() {

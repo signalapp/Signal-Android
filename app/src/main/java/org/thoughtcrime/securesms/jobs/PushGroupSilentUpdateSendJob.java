@@ -9,6 +9,9 @@ import androidx.annotation.WorkerThread;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
+import org.signal.core.models.ServiceId;
+import org.signal.core.models.ServiceId.ACI;
+import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.database.RecipientTable;
@@ -16,6 +19,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
@@ -24,7 +28,6 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -32,8 +35,6 @@ import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
-import org.signal.core.models.ServiceId;
-import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.internal.push.GroupContextV2;
 
@@ -96,6 +97,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
                                             groupContext,
                                             new Parameters.Builder()
                                                           .setQueue(queue)
+                                                          .addConstraint(SealedSenderConstraint.KEY)
                                                           .setLifespan(TimeUnit.DAYS.toMillis(1))
                                                           .setMaxAttempts(Parameters.UNLIMITED)
                                                           .setGlobalPriority(Parameters.PRIORITY_LOW)
@@ -164,6 +166,11 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
     if (e instanceof NotPushRegisteredException) return false;
     return e instanceof IOException ||
            e instanceof RetryLaterException;
+  }
+
+  @Override
+  public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
+    return SendJobUtil.getBackoffMillisFromException(this, TAG, pastAttemptCount, exception, () -> super.getNextRunAttemptBackoff(pastAttemptCount, exception));
   }
 
   @Override

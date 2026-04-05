@@ -143,7 +143,9 @@ class RestoreLocalAttachmentJob private constructor(
       return Result.success()
     }
 
-    val streamSupplier = StreamSupplier { ArchiveFileSystem.openInputStream(context, restoreUri) ?: throw IOException("Unable to open stream") }
+    val streamSupplier = StreamSupplier {
+      ArchiveFileSystem.openInputStream(context, restoreUri) ?: throw IOException("Unable to open stream for $restoreUri")
+    }
 
     try {
       val iv = ByteArray(16)

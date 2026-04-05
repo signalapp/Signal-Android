@@ -6,12 +6,14 @@
 package org.signal.registration
 
 import android.os.Parcelable
+import kotlinx.coroutines.flow.Flow
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.signal.core.models.MasterKey
 import org.signal.core.util.serialization.ByteArrayToBase64Serializer
 import org.signal.libsignal.protocol.IdentityKey
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import java.io.IOException
@@ -179,21 +181,19 @@ interface NetworkController {
    */
   suspend fun setAccountAttributes(attributes: AccountAttributes): RegistrationNetworkResult<Unit, SetAccountAttributesError>
 
-  // TODO
-//  /**
-//   * Validates the provided SVR2 auth credentials, returning information on their usability.
-//   *
-//   * `POST /v2/svr/auth/check`
-//   */
-//  suspend fun validateSvr2AuthCredential(e164: String, usernamePasswords: List<String>)
-//
-//  /**
-//   * Validates the provided SVR3 auth credentials, returning information on their usability.
-//   *
-//   * `POST /v3/backup/auth/check`
-//   */
-//  suspend fun validateSvr3AuthCredential(e164: String, usernamePasswords: List<String>)
-//
+  /**
+   * Starts a provisioning session for QR-based quick restore.
+   *
+   * The returned flow emits [ProvisioningEvent]s:
+   * - [ProvisioningEvent.QrCodeReady] whenever a new QR code URL is available (e.g. due to socket rotation).
+   * - [ProvisioningEvent.MessageReceived] when the old device scans the QR code and sends provisioning data.
+   * - [ProvisioningEvent.Error] if the provisioning session encounters an unrecoverable error.
+   *
+   * The flow will manage socket lifecycle (rotation, keep-alive) internally.
+   * Cancel the collecting coroutine to stop provisioning.
+   */
+  fun startProvisioning(): Flow<ProvisioningEvent>
+
 //  /**
 //   * Set [RestoreMethod] enum on the server for use by the old device to update UX.
 //   */
@@ -445,5 +445,39 @@ interface NetworkController {
 
   enum class VerificationCodeTransport {
     SMS, VOICE
+  }
+
+  /**
+   * Data received from the old device during QR-based provisioning.
+   */
+  data class ProvisioningMessage(
+    val accountEntropyPool: String,
+    val e164: String,
+    val pin: String?,
+    val aciIdentityKeyPair: IdentityKeyPair,
+    val pniIdentityKeyPair: IdentityKeyPair,
+    val platform: Platform,
+    val tier: Tier?,
+    val backupTimestampMs: Long?,
+    val backupSizeBytes: Long?,
+    val restoreMethodToken: String,
+    val backupVersion: Long
+  ) {
+    enum class Platform { ANDROID, IOS }
+    enum class Tier { FREE, PAID }
+  }
+
+  /**
+   * Events emitted during a provisioning session.
+   */
+  sealed interface ProvisioningEvent {
+    /** A new QR code URL is available for display. */
+    data class QrCodeReady(val url: String) : ProvisioningEvent
+
+    /** The old device has scanned the QR code and sent provisioning data. */
+    data class MessageReceived(val message: ProvisioningMessage) : ProvisioningEvent
+
+    /** The provisioning session encountered an error. */
+    data class Error(val cause: Throwable?) : ProvisioningEvent
   }
 }

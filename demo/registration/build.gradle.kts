@@ -59,6 +59,7 @@ dependencies {
   implementation(project(":core:util"))
   implementation(project(":core:models-jvm"))
   implementation(project(":lib:libsignal-service"))
+  implementation(project(":lib:qr"))
 
   // libsignal-protocol for PreKeyCollection types
   implementation(libs.libsignal.client)

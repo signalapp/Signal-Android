@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2.importer
 
 import android.content.ContentValues
+import org.signal.archive.proto.Group
 import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
 import org.signal.core.util.toInt
@@ -21,7 +22,6 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedRequesting
 import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer
 import org.signal.storageservice.storage.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.backup.v2.ArchiveGroup
-import org.thoughtcrime.securesms.backup.v2.proto.Group
 import org.thoughtcrime.securesms.backup.v2.util.toLocal
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
 import org.thoughtcrime.securesms.database.GroupTable
@@ -45,10 +45,11 @@ object GroupArchiveImporter {
     val groupId = GroupId.v2(masterKey)
 
     val operations = AppDependencies.groupsV2Operations.forGroup(GroupSecretParams.deriveFromMasterKey(masterKey))
-    val decryptedState = if (group.snapshot == null) {
+    val snapshot = group.snapshot
+    val decryptedState = if (snapshot == null) {
       DecryptedGroup(revision = GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
     } else {
-      group.snapshot.toLocal(operations)
+      snapshot.toLocal(operations)
     }
 
     val values = ContentValues().apply {
@@ -84,12 +85,13 @@ private fun Group.StorySendMode.toLocal(): GroupTable.ShowAsStoryState {
 }
 
 private fun Group.MemberPendingProfileKey.toLocal(operations: GroupsV2Operations.GroupOperations): DecryptedPendingMember {
+  val m = member!!
   return DecryptedPendingMember(
-    serviceIdBytes = member!!.userId,
-    role = member.role.toLocal(),
+    serviceIdBytes = m.userId,
+    role = m.role.toLocal(),
     addedByAci = addedByUserId,
     timestamp = timestamp,
-    serviceIdCipherText = operations.encryptServiceId(ServiceId.Companion.parseOrNull(member.userId))
+    serviceIdCipherText = operations.encryptServiceId(ServiceId.Companion.parseOrNull(m.userId))
   )
 }
 
@@ -104,7 +106,12 @@ private fun Group.AccessControl.AccessRequired.toLocal(): AccessControl.AccessRe
 }
 
 private fun Group.AccessControl.toLocal(): AccessControl {
-  return AccessControl(members = this.members.toLocal(), attributes = this.attributes.toLocal(), addFromInviteLink = this.addFromInviteLink.toLocal())
+  return AccessControl(
+    members = this.members.toLocal(),
+    attributes = this.attributes.toLocal(),
+    addFromInviteLink = this.addFromInviteLink.toLocal(),
+    memberLabel = this.memberLabel.toLocal()
+  )
 }
 
 private fun Group.Member.Role.toLocal(): Member.Role {
@@ -157,6 +164,7 @@ private fun Group.GroupSnapshot.toLocal(operations: GroupsV2Operations.GroupOper
     description = this.description?.descriptionText ?: "",
     isAnnouncementGroup = if (this.announcements_only) EnabledState.ENABLED else EnabledState.DISABLED,
     bannedMembers = this.members_banned.map { it.toLocal() },
+    terminated = this.terminated,
     isPlaceholderGroup = isPlaceholder
   )
 }

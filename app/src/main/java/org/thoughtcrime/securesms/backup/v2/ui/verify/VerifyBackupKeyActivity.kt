@@ -110,7 +110,7 @@ fun VerifyBackupPinScreen(
 
     withLink(
       LinkAnnotation.Clickable(tag = "learn-more") {
-        CommunicationActions.openBrowserLink(context, context.getString(R.string.backup_failed_support_url))
+        CommunicationActions.openBrowserLink(context, context.getString(R.string.remote_backup_support_url))
       }
     ) {
       withStyle(SpanStyle(color = MaterialTheme.colorScheme.primary)) {

@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.media
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob
 import org.thoughtcrime.securesms.longmessage.resolveBody
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -85,7 +86,7 @@ class MediaPreviewRepository {
         }
 
         val messageIds = mediaRecords.mapNotNull { it.attachment?.mmsId }.toSet()
-        val messages: Map<Long, SpannableString> = SignalDatabase.messages.getMessages(messageIds)
+        val messages: Map<Long, SpannableString> = SignalDatabase.messages.getMessages(messageIds).toList().withAttachments()
           .map { it as MmsMessageRecord }
           .associate { it.id to it.resolveBody(context).getDisplayBody(context) }
 

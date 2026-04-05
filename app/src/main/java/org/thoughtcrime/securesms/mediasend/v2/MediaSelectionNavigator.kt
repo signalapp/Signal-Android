@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import org.signal.core.ui.permissions.Permissions
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class MediaSelectionNavigator(
@@ -37,7 +37,7 @@ class MediaSelectionNavigator(
     fun Fragment.requestPermissionsForCamera(
       onGranted: () -> Unit
     ) {
-      if (CameraXUtil.isSupported()) {
+      if (CameraXRemoteConfig.isSupported()) {
         onGranted()
       } else {
         Permissions.with(this)

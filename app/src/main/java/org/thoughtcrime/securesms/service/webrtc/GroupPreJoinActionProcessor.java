@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.signal.core.models.ServiceId.ACI;
 
@@ -46,13 +47,15 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
   protected @NonNull WebRtcServiceState handlePreJoinCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
     Log.i(tag, "handlePreJoinCall():");
 
-    byte[]      groupId = currentState.getCallInfoState().getCallRecipient().requireGroupId().getDecodedId();
-    GroupCall groupCall = webRtcInteractor.getCallManager().createGroupCall(groupId,
-                                                                            SignalStore.internal().getGroupCallingServer(),
-                                                                            new byte[0],
-                                                                            AUDIO_LEVELS_INTERVAL,
-                                                                            RingRtcDynamicConfiguration.getAudioConfig(),
-                                                                            webRtcInteractor.getGroupCallObserver());
+    byte      dredDuration = (byte) RemoteConfig.dredDuration();
+    byte[]    groupId      = currentState.getCallInfoState().getCallRecipient().requireGroupId().getDecodedId();
+    GroupCall groupCall    = webRtcInteractor.getCallManager().createGroupCall(groupId,
+                                                                               SignalStore.internal().getGroupCallingServer(),
+                                                                               new byte[0],
+                                                                               AUDIO_LEVELS_INTERVAL,
+                                                                               dredDuration,
+                                                                               RingRtcDynamicConfiguration.getAudioConfig(),
+                                                                               webRtcInteractor.getGroupCallObserver());
 
     if (groupCall == null) {
       return groupCallFailure(currentState, "RingRTC did not create a group call", null);
@@ -175,7 +178,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
     webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, currentState.getCallInfoState().getCallRecipient(), true);
     webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
-    webRtcInteractor.initializeAudioForCall();
+    webRtcInteractor.initializeAudioForCall(true);
 
     try {
       groupCall.setOutgoingVideoSource(currentState.getVideoState().requireLocalSink(), currentState.getVideoState().requireCamera());

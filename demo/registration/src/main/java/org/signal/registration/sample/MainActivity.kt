@@ -10,6 +10,7 @@ package org.signal.registration.sample
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
@@ -23,7 +24,10 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -52,6 +56,8 @@ import org.signal.registration.sample.debug.NetworkDebugOverlay
 import org.signal.registration.sample.screens.RegistrationCompleteScreen
 import org.signal.registration.sample.screens.main.MainScreen
 import org.signal.registration.sample.screens.main.MainScreenViewModel
+import org.signal.registration.sample.screens.olddevicetransfer.TransferAccountScreen
+import org.signal.registration.sample.screens.olddevicetransfer.TransferAccountViewModel
 import org.signal.registration.sample.screens.pinsettings.PinSettingsScreen
 import org.signal.registration.sample.screens.pinsettings.PinSettingsViewModel
 
@@ -71,6 +77,9 @@ sealed interface SampleRoute : NavKey {
   data object RegistrationComplete : SampleRoute
 
   @Serializable
+  data object TransferAccount : SampleRoute
+
+  @Serializable
   data object PinSettings : SampleRoute
 }
 
@@ -80,6 +89,7 @@ sealed interface SampleRoute : NavKey {
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
 
     setContent {
       SignalTheme {
@@ -99,7 +109,9 @@ fun AppScreen(registrationDependencies: RegistrationDependencies) {
   val backStack = rememberNavBackStack(SampleRoute.Main)
 
   Box(
-    modifier = Modifier.fillMaxSize()
+    modifier = Modifier
+      .fillMaxSize()
+      .windowInsetsPadding(WindowInsets.safeDrawing)
   ) {
     SampleNavHost(
       backStack = backStack,
@@ -139,7 +151,9 @@ private fun SampleNavHost(
       val viewModel: MainScreenViewModel = viewModel(
         factory = MainScreenViewModel.Factory(
           storageController = registrationDependencies.storageController,
+          networkController = registrationDependencies.networkController,
           onLaunchRegistration = { backStack.add(SampleRoute.Registration) },
+          onTransferAccount = { backStack.add(SampleRoute.TransferAccount) },
           onOpenPinSettings = { backStack.add(SampleRoute.PinSettings) }
         )
       )
@@ -168,6 +182,20 @@ private fun SampleNavHost(
 
     entry<SampleRoute.RegistrationComplete> {
       RegistrationCompleteScreen(onStartOver = onStartOver)
+    }
+
+    entry<SampleRoute.TransferAccount> {
+      val viewModel: TransferAccountViewModel = viewModel(
+        factory = TransferAccountViewModel.Factory(
+          onBack = { backStack.removeLastOrNull() }
+        )
+      )
+      val state by viewModel.state.collectAsStateWithLifecycle()
+
+      TransferAccountScreen(
+        state = state,
+        onEvent = { viewModel.onEvent(it) }
+      )
     }
 
     entry<SampleRoute.PinSettings>(

@@ -43,9 +43,11 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.models.ServiceId
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.paging.ProxyPagingController
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.banners.BubbleOptOutBanner
 import org.thoughtcrime.securesms.banner.banners.GroupsV1MigrationSuggestionsBanner
@@ -58,6 +60,7 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ScheduledMessagesRepository
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
+import org.thoughtcrime.securesms.conversation.plaintext.PlaintextExportRepository
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
 import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.database.DatabaseObserver
@@ -181,7 +184,7 @@ class ConversationViewModel(
   val messageRequestState: MessageRequestState
     get() = hasMessageRequestStateSubject.value ?: MessageRequestState()
 
-  private val groupRecordFlow: Flow<GroupRecord>
+  val groupRecordFlow: Flow<GroupRecord>
 
   private val refreshIdentityRecords: Subject<Unit> = PublishSubject.create()
   private val identityRecordsStore: RxStore<IdentityRecordsState> = RxStore(IdentityRecordsState())
@@ -209,6 +212,11 @@ class ConversationViewModel(
 
   private val internalPinnedMessages = MutableStateFlow<List<ConversationMessage>>(emptyList())
   val pinnedMessages: StateFlow<List<ConversationMessage>> = internalPinnedMessages
+
+  private val _plaintextExportState = MutableStateFlow<PlaintextExportState>(PlaintextExportState.None)
+  val plaintextExportState: StateFlow<PlaintextExportState> = _plaintextExportState
+
+  private val plaintextExportCancelled = java.util.concurrent.atomic.AtomicBoolean(false)
 
   init {
     disposables += recipient
@@ -374,6 +382,16 @@ class ConversationViewModel(
     }
   }
 
+  fun setMessageStarred(messageId: Long, starred: Boolean): Completable {
+    return setMessagesStarred(setOf(messageId), starred)
+  }
+
+  fun setMessagesStarred(messageIds: Set<Long>, starred: Boolean): Completable {
+    return repository
+      .setMessagesStarred(messageIds, starred)
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
   fun updateThreadHeader() {
     pagingController.onDataItemChanged(ConversationElementKey.threadHeader)
   }
@@ -388,7 +406,7 @@ class ConversationViewModel(
     val pendingGroupJoinFlow: Flow<PendingGroupJoinRequestsBanner> = groupRecordFlow
       .map {
         PendingGroupJoinRequestsBanner(
-          suggestionsSize = it.actionableRequestingMembersCount,
+          suggestionsSize = if (it.isTerminated) 0 else it.actionableRequestingMembersCount,
           onViewClicked = groupJoinClickListener
         )
       }
@@ -414,6 +432,20 @@ class ConversationViewModel(
       transform = { it.toList() }
     )
       .flowOn(Dispatchers.IO)
+  }
+
+  fun onCollapseEvents(messageId: Long) {
+    viewModelScope.launch(Dispatchers.IO) {
+      repository.collapseEvents(messageId)
+      pagingController.onDataInvalidated()
+    }
+  }
+
+  fun onExpandEvents(messageId: Long) {
+    viewModelScope.launch(Dispatchers.IO) {
+      repository.expandEvents(messageId)
+      pagingController.onDataInvalidated()
+    }
   }
 
   fun onChatBoundsChanged(bounds: Rect) {
@@ -701,6 +733,10 @@ class ConversationViewModel(
     }
   }
 
+  fun resetBackPressedState() {
+    internalBackPressedState.value = BackPressedState()
+  }
+
   fun toggleVote(poll: PollRecord, pollOption: PollOption, isChecked: Boolean) {
     viewModelScope.launch(Dispatchers.IO) {
       val voteCount = if (isChecked) {
@@ -721,6 +757,66 @@ class ConversationViewModel(
         Log.w(TAG, "Unable to create poll vote job, ignoring.")
       }
     }
+  }
+
+  fun startPlaintextExport(context: Context, directoryUri: Uri) {
+    val recipient = recipientSnapshot ?: return
+    val chatName = if (recipient.isSelf) context.getString(R.string.note_to_self) else recipient.getDisplayName(context)
+
+    plaintextExportCancelled.set(false)
+    _plaintextExportState.value = PlaintextExportState.Preparing
+
+    viewModelScope.launch(Dispatchers.IO) {
+      val success = PlaintextExportRepository.export(
+        context = context,
+        threadId = threadId,
+        directoryUri = directoryUri,
+        chatName = chatName,
+        progressListener = { messagesProcessed, messageCount, attachmentsProcessed, attachmentCount ->
+          val messagePercent = if (messageCount > 0) (messagesProcessed * 25) / messageCount else 25
+          val attachmentPercent = if (attachmentCount > 0) (attachmentsProcessed * 75) / attachmentCount else 75
+          val percent = messagePercent + attachmentPercent
+
+          val status = if (attachmentsProcessed > 0 || messagesProcessed >= messageCount) {
+            "Exporting media ($attachmentsProcessed/$attachmentCount)..."
+          } else {
+            "Exporting messages ($messagesProcessed/$messageCount)..."
+          }
+
+          _plaintextExportState.value = PlaintextExportState.InProgress(percent = percent, status = status)
+        },
+        cancellationSignal = { plaintextExportCancelled.get() }
+      )
+
+      _plaintextExportState.value = when {
+        plaintextExportCancelled.get() -> PlaintextExportState.Cancelled
+        success -> PlaintextExportState.Complete
+        else -> PlaintextExportState.Failed
+      }
+    }
+  }
+
+  fun cancelExport() {
+    plaintextExportCancelled.set(true)
+  }
+
+  fun clearPlaintextExportState() {
+    _plaintextExportState.value = PlaintextExportState.None
+  }
+
+  fun collapseAllEvents() {
+    viewModelScope.launch(SignalDispatchers.IO) {
+      repository.collapseAllEvents()
+    }
+  }
+
+  sealed interface PlaintextExportState {
+    data object None : PlaintextExportState
+    data object Preparing : PlaintextExportState
+    data class InProgress(val percent: Int, val status: String) : PlaintextExportState
+    data object Complete : PlaintextExportState
+    data object Failed : PlaintextExportState
+    data object Cancelled : PlaintextExportState
   }
 
   data class BackPressedState(

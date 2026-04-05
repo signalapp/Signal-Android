@@ -97,7 +97,18 @@ public class APNGDecoder extends FrameSeqDecoder<APNGReader, APNGWriter> {
                 mLoopCount = ((ACTLChunk) chunk).num_plays;
                 actl = true;
             } else if (chunk instanceof FCTLChunk) {
-                APNGFrame frame = new APNGFrame(reader, (FCTLChunk) chunk);
+                FCTLChunk fctl = (FCTLChunk) chunk;
+                if (fctl.width <= 0 || fctl.height <= 0 ||
+                    fctl.width > MAX_DIMENSION || fctl.height > MAX_DIMENSION ||
+                    fctl.x_offset < 0 || fctl.y_offset < 0 ||
+                    (long) fctl.x_offset + fctl.width > canvasWidth ||
+                    (long) fctl.y_offset + fctl.height > canvasHeight) {
+                    throw new IOException("APNG frame has invalid dimensions: " +
+                        fctl.width + "x" + fctl.height + " at offset (" +
+                        fctl.x_offset + ", " + fctl.y_offset + ") for canvas " +
+                        canvasWidth + "x" + canvasHeight);
+                }
+                APNGFrame frame = new APNGFrame(reader, fctl);
                 frame.prefixChunks = otherChunks;
                 frame.ihdrData = ihdrData;
                 frames.add(frame);

@@ -194,6 +194,10 @@ object ExportOddities {
     return log(sentTimestamp, "Revisions for this message contained items of a different type than the parent item. Ignoring mismatched revisions.")
   }
 
+  fun mismatchedRevisionAuthor(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Revisions for this message contained items with a different author than the parent item. Ignoring mismatched revisions.")
+  }
+
   fun outgoingMessageWasSentButTimerNotStarted(sentTimestamp: Long): String {
     return log(sentTimestamp, "Outgoing expiring message was sent, but the timer wasn't started. Setting expireStartDate to dateReceived.")
   }

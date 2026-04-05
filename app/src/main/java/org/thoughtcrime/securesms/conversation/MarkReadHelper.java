@@ -42,18 +42,24 @@ public class MarkReadHelper {
   private final ConversationId conversationId;
   private final Context        context;
   private final LifecycleOwner lifecycleOwner;
+  private final boolean        incognito;
   private final Debouncer      debouncer         = new Debouncer(DEBOUNCE_TIMEOUT);
   private       long           latestTimestamp;
   private       boolean        ignoreViewReveals = false;
 
   public MarkReadHelper(@NonNull ConversationId conversationId, @NonNull Context context, @NonNull LifecycleOwner lifecycleOwner) {
+    this(conversationId, context, lifecycleOwner, false);
+  }
+
+  public MarkReadHelper(@NonNull ConversationId conversationId, @NonNull Context context, @NonNull LifecycleOwner lifecycleOwner, boolean incognito) {
     this.conversationId = conversationId;
     this.context        = context.getApplicationContext();
     this.lifecycleOwner = lifecycleOwner;
+    this.incognito      = incognito;
   }
 
   public void onViewsRevealed(long timestamp) {
-    if (timestamp <= latestTimestamp || lifecycleOwner.getLifecycle().getCurrentState() != Lifecycle.State.RESUMED || ignoreViewReveals) {
+    if (incognito || timestamp <= latestTimestamp || lifecycleOwner.getLifecycle().getCurrentState() != Lifecycle.State.RESUMED || ignoreViewReveals) {
       return;
     }
 

@@ -18,22 +18,22 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
-import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.contactshare.Contact.Email;
 import org.thoughtcrime.securesms.contactshare.Contact.Phone;
 import org.thoughtcrime.securesms.contactshare.Contact.PostalAddress;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
 import org.thoughtcrime.securesms.util.SpanUtil;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -205,16 +205,29 @@ public final class ContactUtil {
 
     if (contact.getAvatarAttachment() != null && contact.getAvatarAttachment().getUri() != null) {
       try {
-        ContentValues values = new ContentValues();
-        values.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE);
-        values.put(ContactsContract.CommonDataKinds.Photo.PHOTO, StreamUtil.readFully(PartAuthority.getAttachmentStream(context, contact.getAvatarAttachment().getUri())));
+        ImageCompressionUtil.Result result = ImageCompressionUtil.compressWithinConstraints(
+            context,
+            "image/jpeg",
+            new DecryptableUri(contact.getAvatarAttachment().getUri()),
+            256,
+            100_000,
+            80
+        );
 
-        ArrayList<ContentValues> valuesArray = new ArrayList<>(1);
-        valuesArray.add(values);
+        if (result != null) {
+          ContentValues values = new ContentValues();
+          values.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE);
+          values.put(ContactsContract.CommonDataKinds.Photo.PHOTO, result.getData());
 
-        intent.putParcelableArrayListExtra(ContactsContract.Intents.Insert.DATA, valuesArray);
-      } catch (IOException e) {
-        Log.w(TAG, "Failed to read avatar into a byte array.", e);
+          ArrayList<ContentValues> valuesArray = new ArrayList<>(1);
+          valuesArray.add(values);
+
+          intent.putParcelableArrayListExtra(ContactsContract.Intents.Insert.DATA, valuesArray);
+        } else {
+          Log.w(TAG, "Failed to compress avatar to fit within size constraints.");
+        }
+      } catch (BitmapDecodingException e) {
+        Log.w(TAG, "Failed to decode avatar for contact.", e);
       }
     }
     return intent;

@@ -28,17 +28,20 @@ import org.signal.libsignal.protocol.logging.SignalProtocolLogger
 import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
+import org.signal.storageservice.storage.protos.groups.AccessControl
 import org.signal.storageservice.storage.protos.groups.GroupChangeResponse
 import org.signal.storageservice.storage.protos.groups.Member
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
 import org.thoughtcrime.securesms.TestZkGroupServer
 import org.thoughtcrime.securesms.database.GroupStateTestData
 import org.thoughtcrime.securesms.database.GroupTable
+import org.thoughtcrime.securesms.database.RecipientDatabaseTestUtils
 import org.thoughtcrime.securesms.database.model.databaseprotos.member
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -62,6 +65,7 @@ class GroupManagerV2Test_edit {
     val selfPni: PNI = PNI.from(UUID.randomUUID())
     val serviceIds: ServiceIds = ServiceIds(selfAci, selfPni)
     val otherAci: ACI = ACI.from(UUID.randomUUID())
+    val otherAci2: ACI = ACI.from(UUID.randomUUID())
   }
 
   @get:Rule
@@ -83,6 +87,8 @@ class GroupManagerV2Test_edit {
     mockkObject(RemoteConfig)
     mockkStatic(RemoteConfig::class)
     mockkObject(SignalStore)
+    mockkObject(Recipient)
+    mockkStatic(Recipient::class)
     every { RemoteConfig.internalUser } returns false
 
     ThreadUtil.enforceAssertions = false
@@ -123,9 +129,11 @@ class GroupManagerV2Test_edit {
 
     every { groupTable.getGroup(groupId) } returns data.groupRecord
     every { groupTable.requireGroup(groupId) } returns data.groupRecord.get()
-    every { groupTable.update(any<GroupId.V2>(), any(), any()) } returns Unit
+    every { groupTable.update(any<GroupId.V2>(), any(), any(), anyNullable()) } returns Unit
+    every { Recipient.self() } returns RecipientDatabaseTestUtils.createRecipient(isSelf = true, recipientId = RecipientId.from(1L))
     every { sendGroupUpdateHelper.sendGroupUpdate(masterKey, any(), any(), any()) } returns GroupManagerV2.RecipientAndThread(Recipient.UNKNOWN, 1)
     every { groupsV2API.patchGroup(any(), any(), any()) } returns GroupChangeResponse(group_change = data.groupChange!!)
+    every { Recipient.externalGroupExact(groupId) } returns RecipientDatabaseTestUtils.createRecipient(resolved = true)
   }
 
   private fun editGroup(perform: GroupManagerV2.GroupEditor.() -> Unit) {
@@ -134,7 +142,7 @@ class GroupManagerV2Test_edit {
 
   private fun then(then: (DecryptedGroup) -> Unit) {
     val decryptedGroupArg = slot<DecryptedGroup>()
-    verify { groupTable.update(groupId, capture(decryptedGroupArg), any()) }
+    verify { groupTable.update(groupId, capture(decryptedGroupArg), any(), anyNullable()) }
     then(decryptedGroupArg.captured)
   }
 
@@ -163,6 +171,170 @@ class GroupManagerV2Test_edit {
       assertThat(patchedGroup.revision, "Revision updated by one").isEqualTo(6)
       assertThat(patchedGroup.members.find { it.aciBytes == selfAci.toByteString() }, "Self is no longer in the group").isNull()
       assertThat(patchedGroup.members.find { it.aciBytes == otherAci.toByteString() }?.role, "Other is now an admin in the group").isEqualTo(Member.Role.ADMINISTRATOR)
+    }
+  }
+
+  @Test
+  fun `demoting an admin who has a label clears the label when label access is restricted to only admins`() {
+    val otherRecipientId = RecipientId.from(200)
+    val otherRecipient = RecipientDatabaseTestUtils.createRecipient(recipientId = otherRecipientId, serviceId = otherAci, resolved = true)
+
+    every { Recipient.resolved(otherRecipientId) } returns otherRecipient
+
+    given {
+      localState(
+        revision = 5,
+        accessControl = AccessControl(memberLabel = AccessControl.AccessRequired.ADMINISTRATOR),
+        members = listOf(
+          member(selfAci, role = Member.Role.ADMINISTRATOR),
+          member(otherAci, role = Member.Role.ADMINISTRATOR, labelString = "Team Lead")
+        )
+      )
+
+      groupChange(6) {
+        source(selfAci)
+        modifyRole(otherAci, Member.Role.DEFAULT)
+        clearMemberLabel(otherAci)
+      }
+    }
+
+    editGroup {
+      setMemberAdmin(otherRecipientId, false)
+    }
+
+    then { patchedGroup ->
+      val other = patchedGroup.members.find { it.aciBytes == otherAci.toByteString() }!!
+      assertThat(other.role, "Other is demoted to default").isEqualTo(Member.Role.DEFAULT)
+      assertThat(other.labelString, "Label text is cleared").isEqualTo("")
+      assertThat(other.labelEmoji, "Label emoji is cleared").isEqualTo("")
+    }
+  }
+
+  @Test
+  fun `demoting an admin who has a label does not clear the label when label access is open to all members`() {
+    val otherRecipientId = RecipientId.from(201)
+    val otherRecipient = RecipientDatabaseTestUtils.createRecipient(recipientId = otherRecipientId, serviceId = otherAci, resolved = true)
+
+    every { Recipient.resolved(otherRecipientId) } returns otherRecipient
+
+    given {
+      localState(
+        revision = 5,
+        accessControl = AccessControl(memberLabel = AccessControl.AccessRequired.MEMBER),
+        members = listOf(
+          member(selfAci, role = Member.Role.ADMINISTRATOR),
+          member(otherAci, role = Member.Role.ADMINISTRATOR, labelString = "Team Lead")
+        )
+      )
+
+      groupChange(6) {
+        source(selfAci)
+        modifyRole(otherAci, Member.Role.DEFAULT)
+      }
+    }
+
+    editGroup {
+      setMemberAdmin(otherRecipientId, false)
+    }
+
+    then { patchedGroup ->
+      val other = patchedGroup.members.find { it.aciBytes == otherAci.toByteString() }!!
+      assertThat(other.role, "Other is demoted to default").isEqualTo(Member.Role.DEFAULT)
+      assertThat(other.labelString, "Label text is preserved").isEqualTo("Team Lead")
+    }
+  }
+
+  @Test
+  fun `restricting label access to admins only clears non-admins that have labels set`() {
+    given {
+      localState(
+        revision = 5,
+        accessControl = AccessControl(memberLabel = AccessControl.AccessRequired.MEMBER),
+        members = listOf(
+          member(selfAci, role = Member.Role.ADMINISTRATOR),
+          member(otherAci, role = Member.Role.DEFAULT, labelString = "Foo"),
+          member(otherAci2, role = Member.Role.DEFAULT, labelString = "Bar")
+        )
+      )
+
+      groupChange(6) {
+        source(selfAci)
+        changeMemberLabelAccess(AccessControl.AccessRequired.ADMINISTRATOR)
+        clearMemberLabel(otherAci)
+        clearMemberLabel(otherAci2)
+      }
+    }
+
+    editGroup {
+      updateMemberLabelRights(GroupAccessControl.ONLY_ADMINS)
+    }
+
+    then { patchedGroup ->
+      val other = patchedGroup.members.find { it.aciBytes == otherAci.toByteString() }!!
+      assertThat(other.labelString, "Other's label text is cleared").isEqualTo("")
+      assertThat(other.labelEmoji, "Other's label emoji is cleared").isEqualTo("")
+
+      val other2 = patchedGroup.members.find { it.aciBytes == otherAci2.toByteString() }!!
+      assertThat(other2.labelString, "Other2's label text is cleared").isEqualTo("")
+      assertThat(other2.labelEmoji, "Other2's label emoji is cleared").isEqualTo("")
+    }
+  }
+
+  @Test
+  fun `restricting label access to admins only does not modify labels of admins that have labels set`() {
+    given {
+      localState(
+        revision = 5,
+        accessControl = AccessControl(memberLabel = AccessControl.AccessRequired.MEMBER),
+        members = listOf(
+          member(selfAci, role = Member.Role.ADMINISTRATOR),
+          member(otherAci, role = Member.Role.ADMINISTRATOR, labelString = "Foo"),
+          member(otherAci2, role = Member.Role.ADMINISTRATOR, labelString = "Bar")
+        )
+      )
+
+      groupChange(6) {
+        source(selfAci)
+        changeMemberLabelAccess(AccessControl.AccessRequired.ADMINISTRATOR)
+      }
+    }
+
+    editGroup {
+      updateMemberLabelRights(GroupAccessControl.ONLY_ADMINS)
+    }
+
+    then { patchedGroup ->
+      val other = patchedGroup.members.find { it.aciBytes == otherAci.toByteString() }!!
+      assertThat(other.labelString, "Other's label text is preserved").isEqualTo("Foo")
+
+      val other2 = patchedGroup.members.find { it.aciBytes == otherAci2.toByteString() }!!
+      assertThat(other2.labelString, "Other2's label text is preserved").isEqualTo("Bar")
+    }
+  }
+
+  @Test
+  fun `when admin terminates group, the group state is updated with terminated flag`() {
+    given {
+      localState(
+        revision = 5,
+        members = listOf(
+          member(selfAci, role = Member.Role.ADMINISTRATOR),
+          member(otherAci)
+        )
+      )
+      groupChange(6) {
+        source(selfAci)
+        terminateGroup()
+      }
+    }
+
+    editGroup {
+      terminateGroup()
+    }
+
+    then { patchedGroup ->
+      assertThat(patchedGroup.revision, "Revision updated by one").isEqualTo(6)
+      assertThat(patchedGroup.terminated, "Group is terminated").isEqualTo(true)
     }
   }
 }

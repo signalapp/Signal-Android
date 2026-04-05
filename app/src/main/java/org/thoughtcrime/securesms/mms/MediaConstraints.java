@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
+import org.signal.core.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.video.TranscodingPreset;
 
 import java.io.IOException;

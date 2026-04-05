@@ -5,16 +5,15 @@
 
 package org.thoughtcrime.securesms.testutil
 
-import androidx.sqlite.db.SupportSQLiteDatabase
-import androidx.sqlite.db.SupportSQLiteOpenHelper
-import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
 import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import org.junit.rules.ExternalResource
 import org.thoughtcrime.securesms.database.SQLiteDatabase
+import org.thoughtcrime.securesms.database.SearchTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.testing.JdbcSqliteDatabase
 import org.thoughtcrime.securesms.testing.TestSignalDatabase
 
 class SignalDatabaseRule : ExternalResource() {
@@ -41,24 +40,16 @@ class SignalDatabaseRule : ExternalResource() {
 
   companion object {
     /**
-     * Create an in-memory only database mimicking one created fresh for Signal. This includes
-     * all non-FTS tables, indexes, and triggers.
+     * Create an in-memory only database mimicking one created fresh for Signal. Uses sqlite-jdbc
+     * (org.xerial) to provide a modern SQLite with FTS5 and JSON1 support, bypassing Robolectric's
+     * limited native SQLite.
      */
     private fun inMemorySignalDatabase(): TestSignalDatabase {
-      val configuration = SupportSQLiteOpenHelper.Configuration(
-        context = ApplicationProvider.getApplicationContext(),
-        name = "test",
-        callback = object : SupportSQLiteOpenHelper.Callback(1) {
-          override fun onCreate(db: SupportSQLiteDatabase) = Unit
-          override fun onUpgrade(db: SupportSQLiteDatabase, oldVersion: Int, newVersion: Int) = Unit
-        },
-        useNoBackupDirectory = false,
-        allowDataLossOnRecovery = true
-      )
-
-      val helper = FrameworkSQLiteOpenHelperFactory().create(configuration)
-      val signalDatabase = TestSignalDatabase(ApplicationProvider.getApplicationContext(), helper)
+      val db = JdbcSqliteDatabase.createInMemory()
+      val signalDatabase = TestSignalDatabase(ApplicationProvider.getApplicationContext(), db, db)
       signalDatabase.onCreateTablesIndexesAndTriggers(signalDatabase.signalWritableDatabase)
+      SearchTable.CREATE_TABLE.forEach { signalDatabase.signalWritableDatabase.execSQL(it) }
+      SearchTable.CREATE_TRIGGERS.forEach { signalDatabase.signalWritableDatabase.execSQL(it) }
 
       return signalDatabase
     }

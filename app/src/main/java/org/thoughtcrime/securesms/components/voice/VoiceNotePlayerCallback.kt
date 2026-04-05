@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.util.hasAudio
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -258,7 +259,7 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
 
   private fun loadMediaItemsForSinglePlayback(messageId: Long): List<MediaItem> {
     return try {
-      listOf(messages.getMessageRecord(messageId)).messageRecordsToVoiceNoteMediaItems()
+      listOf(messages.getMessageRecord(messageId)).withAttachments().messageRecordsToVoiceNoteMediaItems()
     } catch (e: NoSuchMessageException) {
       Log.w(TAG, "Could not find message.", e)
       emptyList()
@@ -268,7 +269,7 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
   @WorkerThread
   private fun loadMediaItemsForConsecutivePlayback(messageId: Long): List<MediaItem> {
     return try {
-      messages.getMessagesAfterVoiceNoteInclusive(messageId, LIMIT).messageRecordsToVoiceNoteMediaItems()
+      messages.getMessagesAfterVoiceNoteInclusive(messageId, LIMIT).withAttachments().messageRecordsToVoiceNoteMediaItems()
     } catch (e: NoSuchMessageException) {
       Log.w(TAG, "Could not find message.", e)
       emptyList()

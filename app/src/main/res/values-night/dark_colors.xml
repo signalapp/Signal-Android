@@ -5,6 +5,7 @@
     <color name="conversation_toolbar_color">@color/signal_colorSurface</color>
     <color name="conversation_toolbar_color_wallpaper">@color/signal_colorTransparentInverse5</color>
     <color name="conversation_toolbar_color_wallpaper_scrolled">@color/signal_colorTransparentInverse5</color>
+    <color name="conversation_toolbar_color_incognito">#4A2D73</color>
 
     <color name="signal_accent_primary">@color/core_ultramarine_light</color>
     <color name="signal_inverse_primary">@color/core_white</color>

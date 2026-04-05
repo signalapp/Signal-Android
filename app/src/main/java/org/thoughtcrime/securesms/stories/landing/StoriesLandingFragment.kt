@@ -327,7 +327,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
   }
 
   private fun handleDeleteStory(model: StoriesLandingItem.Model) {
-    lifecycleDisposable += StoryContextMenu.delete(requireContext(), setOf(model.data.primaryStory.messageRecord)).subscribe()
+    lifecycleDisposable += StoryContextMenu.delete(requireContext(), model.data.primaryStory.messageRecord).subscribe()
   }
 
   private fun handleHideStory(model: StoriesLandingItem.Model) {

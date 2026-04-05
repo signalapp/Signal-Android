@@ -84,4 +84,50 @@
     <string name="VerificationCodeScreen__registration_error">تىزىملىتىش مەغلۇپ بولدى. قايتا سىناڭ.</string>
     <!-- Button text for having trouble with verification -->
     <string name="VerificationCodeScreen__having_trouble">قىيىنچىلىققا يولۇقتىڭىزمۇ؟</string>
+
+    <!-- RestoreWelcomeBottomSheet -->
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">مېنىڭ كونا تېلېفونىم بار</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">تېز باشلاش ئۈچۈن نۆۋەتتىكى سىگنال ھېساباتىڭىزدىن QR كودىنى سىكانىرلاڭ</string>
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">كونا تېلېفونۇم يېنىمدا يوق</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">ياكى ئوخشاش ئۈسكۈنىدە سىگنالنى قايتا قاچىلاۋاتىسىز</string>
+
+    <!-- ArchiveRestoreSelectionScreen -->
+    <!-- Title text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__restore_or_transfer_account">ھېساباتنى ئەسلىگە كەلتۈرۈش ياكى يۆتكەش</string>
+    <!-- Subtitle text for the archive restore selection screen -->
+    <string name="ArchiveRestoreSelectionScreen__subheading">ئۇچۇر تارىخىڭىز ۋە ھېسابات سانلىق-مەلۇماتلىرىڭىزنى قانداق ئەسلىگە كەلتۈرۈشنى خالايدىغانلىقىڭىزنى تاللاڭ.</string>
+    <!-- Title for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_signal_backups">سىگنال زاپاسلانمىسىدىن</string>
+    <!-- Subtitle for the Signal Backups option card -->
+    <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">ھەقسىز ياكى ھەقلىق سىگنال زاپاسلاش پىلانىڭىز</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">ئۈسكۈنىدىكى زاپاسلاشنى ئەسلىگە كەلتۈرۈش</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">ئۈسكۈنىڭىزدە ساقلىغان زاپاسلاشتىن ئۇچۇرلىرىڭىزنى ئەسلىگە كەلتۈرۈڭ.</string>
+    <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_title">يۆتكىمەي تۇرۇپلا داۋاملاشتۇرۇڭ</string>
+    <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_description">ئۇچۇرلار &amp; مېدىيا يۆتكەلمەيدۇ</string>
+    <!-- Title for the backup folder option card (V2 format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">بىر تال زاپاسلاش ھۆججەت قىسقۇچىدىن</string>
+    <!-- Title for the backup file option card (V1 legacy format) -->
+    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">بىر تال زاپاس ھۆججەتتىن</string>
+    <!-- Subtitle for the backup folder/file option cards -->
+    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">ساقلىۋالغان زاپاسلاشتىن بىرنى تاللاڭ</string>
+    <!-- Title for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">كونا تېلېفونىڭىزدىن</string>
+    <!-- Subtitle for the device transfer option card -->
+    <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">كونا ئاندىرويىد ئۈسكۈنىڭىزدىن بىۋاسىتە يۆتكەڭ</string>
+    <!-- Skip button text -->
+    <string name="ArchiveRestoreSelectionScreen__skip">ئاتلا</string>
+    <!-- Title for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">ئەسلىگە كەلتۈرۈشتى ئاتلامسىز؟</string>
+    <!-- Warning body text for the skip restore confirmation dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">ئەگەر ھازىر ئەسلىگە كەلتۈرۈشنى ئاتلىسىڭىز، كېيىن ئەسلىگە كەلتۈرەلمەيسىز. ئەگەر ئەسلىگە كەلتۈرۈشنى ئاتلاپ بولغاندىن كېيىن زاپاسلاشنى قايتا قوزغىتىپ قويسىڭىز، نۆۋەتتىكى زاپاسلاش يېڭى ئۇچۇرلىشىش تارىخىڭىز بىلەن ئالماشتۇرۇلىدۇ.</string>
+    <!-- Confirm button text for the skip restore dialog -->
+    <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">ئەسلىگە كەلتۈرۈشتى ئاتلاڭ</string>
 </resources>

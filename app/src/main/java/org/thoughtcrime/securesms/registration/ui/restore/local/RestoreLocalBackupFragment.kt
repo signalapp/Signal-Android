@@ -33,7 +33,9 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
 import org.thoughtcrime.securesms.registration.ui.phonenumber.EnterPhoneNumberMode
 import org.thoughtcrime.securesms.registration.ui.restore.EnterBackupKeyViewModel
@@ -79,7 +81,11 @@ class RestoreLocalBackupFragment : ComposeFragment() {
           .filterNotNull()
           .collect {
             sharedViewModel.registerAccountErrorShown()
-            enterBackupKeyViewModel.handleRegistrationFailure(it)
+            if (it is RegisterAccountResult.IncorrectRecoveryPassword) {
+              restoreLocalBackupViewModel.displayDifferentAccountWarning()
+            } else {
+              enterBackupKeyViewModel.handleRegistrationFailure(it)
+            }
           }
       }
     }
@@ -112,7 +118,7 @@ class RestoreLocalBackupFragment : ComposeFragment() {
       restoreLocalBackupViewModel.setSelectedBackup(backup)
     }
 
-    override fun setSelectedBackupDirectory(context: Context, uri: Uri): Boolean {
+    override suspend fun setSelectedBackupDirectory(context: Context, uri: Uri): Boolean {
       return restoreLocalBackupViewModel.setSelectedBackupDirectory(context, uri)
     }
 
@@ -126,7 +132,37 @@ class RestoreLocalBackupFragment : ComposeFragment() {
 
     override fun skipRestore() {
       sharedViewModel.skipRestore()
-      findNavController().safeNavigate(RestoreLocalBackupFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION))
+      if (SignalStore.account.isRegistered) {
+        viewLifecycleOwner.lifecycleScope.launch {
+          restoreLocalBackupViewModel.performStorageServiceAccountRestoreIfNeeded()
+          startActivity(MainActivity.clearTop(requireContext()))
+        }
+      } else {
+        findNavController().safeNavigate(RestoreLocalBackupFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION))
+      }
+    }
+
+    override fun confirmRestoreWithDifferentAccount() {
+      resetStateAfterFailedAccountMatch()
+      findNavController().safeNavigate(
+        RestoreLocalBackupFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION)
+      )
+    }
+
+    override fun denyRestoreWithDifferentAccount() {
+      resetStateAfterFailedAccountMatch()
+      SignalStore.backup.localRestoreAccountEntropyPool = null
+      findNavController().safeNavigate(
+        RestoreLocalBackupFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.COLLECT_FOR_LOCAL_V2_SIGNAL_BACKUPS_RESTORE)
+      )
+    }
+
+    private fun resetStateAfterFailedAccountMatch() {
+      SignalStore.account.resetAccountEntropyPool()
+      SignalStore.account.resetAciAndPniIdentityKeysAfterFailedRestore()
+      sharedViewModel.clearRecoveryPassword()
+      enterBackupKeyViewModel.cancelRegistering()
+      sharedViewModel.intendToRestore(hasOldDevice = false, fromRemote = false, fromLocalV2 = true)
     }
 
     override fun routeToLegacyBackupRestoration(uri: Uri) {
@@ -136,6 +172,8 @@ class RestoreLocalBackupFragment : ComposeFragment() {
 
     override fun submitBackupKey() {
       enterBackupKeyViewModel.registering()
+
+      SignalStore.backup.localRestoreAccountEntropyPool = enterBackupKeyViewModel.backupKey
 
       val selectedTimestamp = restoreLocalBackupViewModel.state.value.selectedBackup?.timestamp ?: -1L
       SignalStore.backup.newLocalBackupsSelectedSnapshotTimestamp = selectedTimestamp
@@ -152,6 +190,8 @@ class RestoreLocalBackupFragment : ComposeFragment() {
 
     override fun onBackupKeyChanged(key: String) {
       enterBackupKeyViewModel.updateBackupKey(key)
+      val timestamp = restoreLocalBackupViewModel.state.value.selectedBackup?.timestamp ?: return
+      enterBackupKeyViewModel.verifyLocalBackupKey(timestamp)
     }
 
     override fun clearRegistrationError() {

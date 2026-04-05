@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -48,6 +49,7 @@ public class MultiDeviceConfigurationUpdateJob extends BaseJob {
     this(new Job.Parameters.Builder()
                            .setQueue(QUEUE)
                            .addConstraint(NetworkConstraint.KEY)
+                           .addConstraint(SealedSenderConstraint.KEY)
                            .setMaxAttempts(10)
                            .build(),
          readReceiptsEnabled,

@@ -7,6 +7,8 @@ package org.thoughtcrime.securesms.backup.v2.exporters
 
 import android.database.Cursor
 import okio.ByteString.Companion.toByteString
+import org.signal.archive.proto.DistributionList
+import org.signal.archive.proto.DistributionListItem
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireLong
@@ -17,8 +19,6 @@ import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
 import org.thoughtcrime.securesms.backup.v2.ExportOddities
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.database.getMembersForBackup
-import org.thoughtcrime.securesms.backup.v2.proto.DistributionList
-import org.thoughtcrime.securesms.backup.v2.proto.DistributionListItem
 import org.thoughtcrime.securesms.backup.v2.util.clampToValidBackupRange
 import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.model.DistributionListId

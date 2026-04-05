@@ -24,8 +24,13 @@ import org.signal.libsignal.protocol.util.KeyHelper
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
+import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
+import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.SignalSessionLock
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
@@ -75,6 +80,35 @@ class OtherClient(val serviceId: ServiceId, val e164: String, val identityKeyPai
 
     return cipher.encrypt(getAliceProtocolAddress(), getAliceUnidentifiedAccess(), envelopeContent)
       .toEnvelope(timestamp, getAliceServiceId())
+  }
+
+  fun decrypt(envelope: Envelope, serverDeliveredTimestamp: Long) {
+    val cipher = SignalServiceCipher(serviceAddress, 1, aciStore, sessionLock, SealedSenderAccessUtil.getCertificateValidator())
+    cipher.decrypt(envelope, serverDeliveredTimestamp)
+  }
+
+  /**
+   * Completes the Signal session handshake by having Alice (the app) encrypt a reply
+   * to this client, then decrypting it. This establishes a proper double-ratchet session
+   * on both sides.
+   *
+   * Must be called after this client's initial PreKeyMessage has been processed by Alice.
+   */
+  fun completeSession() {
+    val aliceAddress = SignalServiceAddress(Harness.SELF_ACI, Harness.SELF_E164)
+    val aliceCipher = SignalServiceCipher(aliceAddress, 1, AppDependencies.protocolStore.aci(), ReentrantSessionLock.INSTANCE, null)
+
+    val bobProtocolAddress = SignalProtocolAddress(serviceId.toString(), 1)
+    val now = System.currentTimeMillis()
+    val content = Generator.encryptedTextMessage(now)
+
+    val recipientId = RecipientId.from(SignalServiceAddress(serviceId, e164))
+    val sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessFor(Recipient.resolved(recipientId))
+
+    val outgoing = aliceCipher.encrypt(bobProtocolAddress, sealedSenderAccess, content)
+    val envelope = outgoing.toEnvelope(now, serviceId)
+
+    decrypt(envelope, now)
   }
 
   fun generateInboundEnvelopes(count: Int): List<Envelope> {

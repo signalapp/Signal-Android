@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.CallSyncEventJobData
 import org.thoughtcrime.securesms.jobs.protos.CallSyncEventJobRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -103,6 +104,7 @@ class CallSyncEventJob private constructor(
         .setLifespan(TimeUnit.DAYS.toMillis(1))
         .setMaxAttempts(Parameters.UNLIMITED)
         .addConstraint(NetworkConstraint.KEY)
+        .addConstraint(SealedSenderConstraint.KEY)
         .build()
     }
   }

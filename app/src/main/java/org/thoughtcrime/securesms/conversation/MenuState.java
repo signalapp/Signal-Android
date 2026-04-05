@@ -2,13 +2,14 @@ package org.thoughtcrime.securesms.conversation;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,6 +31,8 @@ public final class MenuState {
   private final boolean pollTerminate;
   private final boolean pinMessage;
   private final boolean unpinMessage;
+  private final boolean starMessage;
+  private final boolean unstarMessage;
 
   private MenuState(@NonNull Builder builder) {
     forward        = builder.forward;
@@ -45,6 +48,8 @@ public final class MenuState {
     pollTerminate  = builder.pollTerminate;
     pinMessage     = builder.pinMessage;
     unpinMessage   = builder.unpinMessage;
+    starMessage    = builder.starMessage;
+    unstarMessage  = builder.unstarMessage;
   }
 
   public boolean shouldShowForwardAction() {
@@ -99,6 +104,14 @@ public final class MenuState {
     return unpinMessage;
   }
 
+  public boolean shouldShowStarMessage() {
+    return starMessage;
+  }
+
+  public boolean shouldShowUnstarMessage() {
+    return unstarMessage;
+  }
+
   public static MenuState getMenuState(@NonNull Recipient conversationRecipient,
                                        @NonNull Set<MultiselectPart> selectedParts,
                                        boolean shouldShowMessageRequest,
@@ -121,6 +134,8 @@ public final class MenuState {
     boolean hasPollTerminate = false;
     boolean canPinMessage    = false;
     boolean canUnpinMessage  = false;
+    boolean canStarMessage   = false;
+    boolean canUnstarMessage = false;
 
     for (MultiselectPart part : selectedParts) {
       MessageRecord messageRecord = part.getMessageRecord();
@@ -171,12 +186,20 @@ public final class MenuState {
         hasPollTerminate = true;
       }
 
-      if (RemoteConfig.sendPinnedMessages() && !messageRecord.isPending() && messageRecord.getPinnedUntil() == 0 && !conversationRecipient.isReleaseNotes() && canEditGroupInfo && !hasGift) {
+      if (!messageRecord.isPending() && messageRecord.getPinnedUntil() == 0 && !conversationRecipient.isReleaseNotes() && canEditGroupInfo && !hasGift && !conversationRecipient.isInactiveGroup()) {
         canPinMessage = true;
       }
 
-      if (RemoteConfig.sendPinnedMessages() && messageRecord.getPinnedUntil() != 0 && !conversationRecipient.isReleaseNotes() && canEditGroupInfo && !hasGift) {
+      if (messageRecord.getPinnedUntil() != 0 && !conversationRecipient.isReleaseNotes() && canEditGroupInfo && !hasGift && !conversationRecipient.isInactiveGroup()) {
         canUnpinMessage = true;
+      }
+
+      if (SignalStore.labs().getStarredMessages() && !messageRecord.isUpdate() && !messageRecord.isRemoteDelete() && !messageRecord.isStarred()) {
+        canStarMessage = true;
+      }
+
+      if (SignalStore.labs().getStarredMessages() && messageRecord.isStarred()) {
+        canUnstarMessage = true;
       }
     }
 
@@ -204,7 +227,9 @@ public final class MenuState {
              .shouldShowEdit(false)
              .shouldShowPollTerminate(false)
              .shouldShowPinMessage(false)
-             .shouldShowUnpinMessage(false);
+             .shouldShowUnpinMessage(false)
+             .shouldShowStarMessage(false)
+             .shouldShowUnstarMessage(false);
     } else {
       MultiselectPart multiSelectRecord = selectedParts.iterator().next();
 
@@ -233,19 +258,22 @@ public final class MenuState {
 
     return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText && !hasGift && !hasPayment && !hasPoll)
                   .shouldShowDeleteAction(!hasInMemory && onlyContainsCompleteMessages(selectedParts))
-                  .shouldShowReactions(!conversationRecipient.isReleaseNotes())
+                  .shouldShowReactions(!conversationRecipient.isReleaseNotes() && !conversationRecipient.isInactiveGroup())
                   .shouldShowPaymentDetails(hasPayment)
                   .shouldShowPollTerminate(hasPollTerminate)
                   .shouldShowPinMessage(canPinMessage)
                   .shouldShowUnpinMessage(canUnpinMessage)
+                  .shouldShowStarMessage(canStarMessage)
+                  .shouldShowUnstarMessage(canUnstarMessage)
                   .build();
   }
 
   private static boolean onlyContainsCompleteMessages(@NonNull Set<MultiselectPart> multiselectParts) {
     return multiselectParts.stream()
-                           .map(MultiselectPart::getConversationMessage)
-                           .map(ConversationMessage::getMultiselectCollection)
-                           .allMatch(collection -> multiselectParts.containsAll(collection.toSet()));
+                           .allMatch(part -> {
+                             MultiselectCollection collection = part.getConversationMessage().getMultiselectCollection();
+                             return part instanceof MultiselectPart.Update || multiselectParts.containsAll(collection.toSet());
+                           });
   }
 
   public static boolean canReplyToMessage(@NonNull Recipient conversationRecipient,
@@ -285,6 +313,8 @@ public final class MenuState {
     private boolean pollTerminate;
     private boolean pinMessage;
     private boolean unpinMessage;
+    private boolean starMessage;
+    private boolean unstarMessage;
 
     @NonNull Builder shouldShowForwardAction(boolean forward) {
       this.forward = forward;
@@ -348,6 +378,16 @@ public final class MenuState {
 
     @NonNull Builder shouldShowUnpinMessage(boolean unpinMessage) {
       this.unpinMessage = unpinMessage;
+      return this;
+    }
+
+    @NonNull Builder shouldShowStarMessage(boolean starMessage) {
+      this.starMessage = starMessage;
+      return this;
+    }
+
+    @NonNull Builder shouldShowUnstarMessage(boolean unstarMessage) {
+      this.unstarMessage = unstarMessage;
       return this;
     }
 

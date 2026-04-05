@@ -276,6 +276,7 @@ private fun CallInfo(
         CallParticipantRow(
           callParticipant = it,
           isSelfAdmin = controlAndInfoState.isSelfAdmin() && !participantsState.inCallLobby,
+          isCallLink = controlAndInfoState.callLink != null,
           onBlockClicked = onBlock,
           onParticipantClicked = if (isInternalUser) {
             { participant ->
@@ -405,6 +406,7 @@ private fun HandRaisedRowPreview() {
 private fun CallParticipantRow(
   callParticipant: CallParticipant,
   isSelfAdmin: Boolean,
+  isCallLink: Boolean = false,
   onBlockClicked: (CallParticipant) -> Unit,
   onParticipantClicked: ((CallParticipant) -> Unit)? = null
 ) {
@@ -417,6 +419,7 @@ private fun CallParticipantRow(
     showHandRaised = false,
     canLowerHand = false,
     isSelfAdmin = isSelfAdmin,
+    isCallLink = isCallLink,
     onBlockClicked = { onBlockClicked(callParticipant) },
     onRowClicked = if (onParticipantClicked != null && !callParticipant.recipient.isSelf) {
       { onParticipantClicked(callParticipant) }
@@ -451,6 +454,7 @@ private fun CallParticipantRow(
   showHandRaised: Boolean,
   canLowerHand: Boolean,
   isSelfAdmin: Boolean = false,
+  isCallLink: Boolean = false,
   onBlockClicked: () -> Unit = {},
   onRowClicked: (() -> Unit)? = null
 ) {
@@ -535,7 +539,7 @@ private fun CallParticipantRow(
       )
     }
 
-    if (showIcons && isSelfAdmin && !recipient.isSelf) {
+    if (showIcons && isSelfAdmin && isCallLink && !recipient.isSelf) {
       if (!isMicrophoneEnabled) {
         Spacer(modifier = Modifier.width(16.dp))
       }

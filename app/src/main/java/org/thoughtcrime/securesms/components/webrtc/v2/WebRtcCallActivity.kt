@@ -1285,7 +1285,16 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     @RequiresApi(31)
     override fun onAudioOutputChanged31(audioOutput: WebRtcAudioDevice) {
       maybeDisplaySpeakerphonePopup(audioOutput.webRtcAudioOutput)
-      AppDependencies.signalCallManager.selectAudioDevice(ChosenAudioDeviceIdentifier(audioOutput.deviceId!!))
+      if (audioOutput.deviceId != null) {
+        AppDependencies.signalCallManager.selectAudioDevice(ChosenAudioDeviceIdentifier(audioOutput.deviceId))
+      } else {
+        when (audioOutput.webRtcAudioOutput) {
+          WebRtcAudioOutput.HANDSET -> handleSetAudioHandset()
+          WebRtcAudioOutput.SPEAKER -> handleSetAudioSpeaker()
+          WebRtcAudioOutput.BLUETOOTH_HEADSET -> handleSetAudioBluetooth()
+          WebRtcAudioOutput.WIRED_HEADSET -> handleSetAudioWiredHeadset()
+        }
+      }
     }
 
     override fun onVideoChanged(isVideoEnabled: Boolean) {

@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
+import kotlin.jvm.Throws
 import kotlin.math.min
 
 /**
@@ -108,6 +109,13 @@ fun InputStream.readLength(): Long {
 }
 
 /**
+ * Reads a 32-bit unsigned integer from the stream.
+ */
+fun InputStream.readUInt(): UInt {
+  return this.readNBytesOrThrow(4).toUInt()
+}
+
+/**
  * Reads the contents of the stream and discards them.
  */
 @Throws(IOException::class)
@@ -129,6 +137,27 @@ fun InputStream.limit(limit: Long): LimitedInputStream {
  */
 fun InputStream.copyTo(outputStream: OutputStream, closeInputStream: Boolean = true, closeOutputStream: Boolean = true): Long {
   return StreamUtil.copy(this, outputStream, closeInputStream, closeOutputStream)
+}
+
+/**
+ * Skips exactly [n] bytes from this stream. Unlike [InputStream.skip], this method
+ * guarantees all bytes are skipped by looping and falling back to [read] if needed.
+ *
+ * @throws IOException if the stream ends before [n] bytes have been skipped.
+ */
+@Throws(IOException::class)
+fun InputStream.skipNBytesOrThrow(n: Long) {
+  var remaining = n
+  while (remaining > 0) {
+    val skipped = skip(remaining)
+    if (skipped > 0) {
+      remaining -= skipped
+    } else if (read() == -1) {
+      throw IOException("Stream ended before $n bytes could be skipped (${n - remaining} skipped)")
+    } else {
+      remaining--
+    }
+  }
 }
 
 /**

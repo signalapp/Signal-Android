@@ -105,7 +105,9 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
         }
       }
 
-      transitionImageView.setImageDrawable(MediaPreviewCache.drawable)
+      val originalCallback = cacheDrawable.callback
+      transitionImageView.setImageDrawable(cacheDrawable)
+      cacheDrawable.callback = originalCallback
 
       lifecycleDisposable += viewModel.state.map {
         it.isInSharedAnimation to it.loadState

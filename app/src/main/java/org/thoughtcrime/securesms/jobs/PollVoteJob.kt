@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.PollVoteJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.GroupSendUtil
@@ -66,6 +67,7 @@ class PollVoteJob(
         parameters = Parameters.Builder()
           .setQueue(conversationRecipient.id.toQueueKey())
           .addConstraint(NetworkConstraint.KEY)
+          .addConstraint(SealedSenderConstraint.KEY)
           .setMaxAttempts(Parameters.UNLIMITED)
           .setLifespan(1.days.inWholeMilliseconds)
           .build()
@@ -96,6 +98,11 @@ class PollVoteJob(
     val conversationRecipient = SignalDatabase.threads.getRecipientForThreadId(message.threadId)
     if (conversationRecipient == null) {
       Log.w(TAG, "We have a message, but couldn't find the thread!")
+      return Result.failure()
+    }
+
+    if (conversationRecipient.isPushV2Group && !SignalDatabase.groups.isActive(conversationRecipient.requireGroupId())) {
+      Log.w(TAG, "Cannot send poll vote to terminated or inactive group.")
       return Result.failure()
     }
 

@@ -29,29 +29,31 @@ public final class GroupChangeUtil {
    * True iff there are no change actions.
    */
   public static boolean changeIsEmpty(GroupChange.Actions change) {
-    return change.addMembers.size() == 0 &&                     // field 3
-           change.deleteMembers.size() == 0 &&                  // field 4
-           change.modifyMemberRoles.size() == 0 &&              // field 5
-           change.modifyMemberProfileKeys.size() == 0 &&        // field 6
-           change.addMembersPendingProfileKey.size() == 0 &&              // field 7
-           change.deleteMembersPendingProfileKey.size() == 0 &&           // field 8
-           change.promoteMembersPendingProfileKey.size() == 0 &&          // field 9
-           change.modifyTitle == null &&                        // field 10
-           change.modifyAvatar == null &&                       // field 11
-           change.modifyDisappearingMessageTimer == null &&    // field 12
-           change.modifyAttributesAccess == null &&             // field 13
-           change.modifyMemberAccess == null &&                 // field 14
-           change.modifyAddFromInviteLinkAccess == null &&      // field 15
-           change.addMembersPendingAdminApproval.size() == 0 &&           // field 16
-           change.deleteMembersPendingAdminApproval.size() == 0 &&        // field 17
-           change.promoteMembersPendingAdminApproval.size() == 0 &&       // field 18
-           change.modifyInviteLinkPassword == null &&           // field 19
-           change.modifyDescription == null &&                  // field 20
-           change.modify_announcements_only == null &&            // field 21
-           change.add_members_banned.size() == 0 &&               // field 22
-           change.delete_members_banned.size() == 0 &&            // field 23
-           change.promote_members_pending_pni_aci_profile_key.size() == 0 && // field 24
-           change.modifyMemberLabels.isEmpty();                 // field 26
+    return change.addMembers.isEmpty() &&                                  // field 3
+           change.deleteMembers.isEmpty() &&                               // field 4
+           change.modifyMemberRoles.isEmpty() &&                           // field 5
+           change.modifyMemberProfileKeys.isEmpty() &&                     // field 6
+           change.addMembersPendingProfileKey.isEmpty() &&                 // field 7
+           change.deleteMembersPendingProfileKey.isEmpty() &&              // field 8
+           change.promoteMembersPendingProfileKey.isEmpty() &&             // field 9
+           change.modifyTitle == null &&                                   // field 10
+           change.modifyAvatar == null &&                                  // field 11
+           change.modifyDisappearingMessageTimer == null &&                // field 12
+           change.modifyAttributesAccess == null &&                        // field 13
+           change.modifyMemberAccess == null &&                            // field 14
+           change.modifyAddFromInviteLinkAccess == null &&                 // field 15
+           change.addMembersPendingAdminApproval.isEmpty() &&              // field 16
+           change.deleteMembersPendingAdminApproval.isEmpty() &&           // field 17
+           change.promoteMembersPendingAdminApproval.isEmpty() &&          // field 18
+           change.modifyInviteLinkPassword == null &&                      // field 19
+           change.modifyDescription == null &&                             // field 20
+           change.modify_announcements_only == null &&                     // field 21
+           change.add_members_banned.isEmpty() &&                          // field 22
+           change.delete_members_banned.isEmpty() &&                       // field 23
+           change.promote_members_pending_pni_aci_profile_key.isEmpty() && // field 24
+           change.modifyMemberLabels.isEmpty() &&                          // field 26
+           change.modifyMemberLabelAccess == null &&                       // field 27
+           change.terminate_group == null;                                 // field 28
   }
 
   /**
@@ -155,6 +157,8 @@ public final class GroupChangeUtil {
     resolveField23DeleteBannedMembers            (conflictingChange, changeSetModifier, bannedMembersByServiceId);
     resolveField24PromotePendingPniAciMembers    (conflictingChange, changeSetModifier, fullMembersByUuid);
     resolveField26ModifyMemberLabels             (conflictingChange, changeSetModifier, fullMembersByUuid);
+    resolveField27ModifyMemberLabelAccess        (groupState, conflictingChange, changeSetModifier);
+    resolveField28TerminateGroup                 (groupState, conflictingChange, changeSetModifier);
   }
 
   private static void resolveField3AddMembers(DecryptedGroupChange conflictingChange, ChangeSetModifier result, HashMap<ByteString, DecryptedMember> fullMembersByUuid, HashMap<ByteString, DecryptedPendingMember> pendingMembersByServiceId) {
@@ -388,6 +392,26 @@ public final class GroupChangeUtil {
       if (member == null || (action.labelEmoji.equals(member.labelEmoji) && action.labelString.equals(member.labelString))) {
         result.removeModifyMemberLabels(i);
       }
+    }
+  }
+
+  private static void resolveField27ModifyMemberLabelAccess(
+      @Nonnull DecryptedGroup groupState,
+      @Nonnull DecryptedGroupChange conflictingChange,
+      @Nonnull ChangeSetModifier result
+  )
+  {
+    if (groupState.accessControl != null && conflictingChange.newMemberLabelAccess == groupState.accessControl.memberLabel) {
+      result.clearModifyMemberLabelAccess();
+    }
+  }
+
+  private static void resolveField28TerminateGroup(@Nonnull DecryptedGroup groupState,
+                                                   @Nonnull DecryptedGroupChange conflictingChange,
+                                                   @Nonnull ChangeSetModifier result)
+  {
+    if (groupState.terminated && conflictingChange.terminateGroup) {
+      result.clearTerminateGroup();
     }
   }
 }

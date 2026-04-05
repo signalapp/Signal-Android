@@ -71,7 +71,7 @@ class StoryViewerPageViewModel(
 
   fun refresh() {
     disposables.clear()
-    disposables += repository.getStoryPostsFor(args.recipientId, args.isOutgoingOnly)
+    disposables += repository.getStoryPostsFor(args.recipientId, args.isOutgoingOnly, args.isFromArchive, args.initialStoryId)
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { posts ->

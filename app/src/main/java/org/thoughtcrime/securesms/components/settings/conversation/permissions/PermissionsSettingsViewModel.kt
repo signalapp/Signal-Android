@@ -7,23 +7,24 @@ import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.LiveGroup
 import org.thoughtcrime.securesms.util.SingleLiveEvent
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class PermissionsSettingsViewModel(
   private val groupId: GroupId,
-  private val repository: PermissionsSettingsRepository
+  private val repository: PermissionsSettingsRepository,
+  liveGroup: LiveGroup = LiveGroup(groupId)
 ) : ViewModel() {
 
   private val store = Store(PermissionsSettingsState())
-  private val liveGroup = LiveGroup(groupId)
   private val internalEvents = SingleLiveEvent<PermissionsSettingsEvents>()
 
   val state: LiveData<PermissionsSettingsState> = store.stateLiveData
   val events: LiveData<PermissionsSettingsEvents> = internalEvents
 
   init {
-    store.update(liveGroup.isSelfAdmin) { isSelfAdmin, state ->
-      state.copy(selfCanEditSettings = isSelfAdmin)
+    store.update(LiveDataUtil.combineLatest(liveGroup.isSelfAdmin, liveGroup.isActive) { admin, active -> admin && active }) { canEdit, state ->
+      state.copy(selfCanEditSettings = canEdit)
     }
 
     store.update(liveGroup.membershipAdditionAccessControl) { membershipAdditionAccessControl, state ->
@@ -36,6 +37,10 @@ class PermissionsSettingsViewModel(
 
     store.update(liveGroup.isAnnouncementGroup) { isAnnouncementGroup, state ->
       state.copy(announcementGroup = isAnnouncementGroup)
+    }
+
+    store.update(liveGroup.memberLabelAccessControl) { memberLabelAccessControl, state ->
+      state.copy(nonAdminCanSetMemberLabel = memberLabelAccessControl == GroupAccessControl.ALL_MEMBERS)
     }
   }
 
@@ -54,6 +59,25 @@ class PermissionsSettingsViewModel(
   fun setAnnouncementGroup(announcementGroup: Boolean) {
     repository.applyAnnouncementGroupChange(groupId, announcementGroup) { reason ->
       internalEvents.postValue(PermissionsSettingsEvents.GroupChangeError(reason))
+    }
+  }
+
+  fun onMemberLabelPermissionChangeRequested(nonAdminCanSetMemberLabel: Boolean) {
+    if (!nonAdminCanSetMemberLabel && repository.hasNonAdminMembersWithLabels(groupId)) {
+      internalEvents.postValue(PermissionsSettingsEvents.ShowMemberLabelsWillBeRemovedWarning)
+    } else {
+      setNonAdminCanSetMemberLabel(nonAdminCanSetMemberLabel)
+    }
+  }
+
+  fun onRestrictMemberLabelsToAdminsConfirmed() = setNonAdminCanSetMemberLabel(false)
+
+  private fun setNonAdminCanSetMemberLabel(nonAdminCanSetMemberLabel: Boolean) {
+    repository.applyMemberLabelRightsChange(
+      groupId = groupId,
+      newRights = nonAdminCanSetMemberLabel.asGroupAccessControl()
+    ) { failureReason ->
+      internalEvents.postValue(PermissionsSettingsEvents.GroupChangeError(failureReason))
     }
   }
 

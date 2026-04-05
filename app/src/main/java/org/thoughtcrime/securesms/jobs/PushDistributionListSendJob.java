@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.messages.StorySendUtil;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -70,6 +71,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
     this(new Parameters.Builder()
              .setQueue(destination.toQueueKey(hasMedia))
              .addConstraint(NetworkConstraint.KEY)
+             .addConstraint(SealedSenderConstraint.KEY)
              .setLifespan(TimeUnit.DAYS.toMillis(1))
              .setMaxAttempts(Parameters.UNLIMITED)
              .build(),
@@ -204,8 +206,6 @@ public final class PushDistributionListSendJob extends PushSendJob {
       throws IOException, UntrustedIdentityException, UndeliverableMessageException
   {
     try {
-      rotateSenderCertificateIfNecessary();
-
       List<Attachment>                    attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment> attachmentPointers = getAttachmentPointersFor(attachments);
       List<BodyRange>               bodyRanges         = getBodyRanges(message);

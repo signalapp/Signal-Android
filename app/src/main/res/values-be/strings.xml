@@ -10,7 +10,7 @@
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="remote_backup_support_url" translatable="false">https://support.signal.org/hc/articles/9708267671322</string> -->
   <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
   <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
   <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
@@ -440,10 +440,10 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">Не адпраўлена, націсніце, каб даведацца больш</string>
     <string name="ConversationItem_error_partially_not_delivered">Часткова адпраўлена, націсніце, каб даведацца больш</string>
     <!-- Warning footer when an admin delete has not been sent to everyone -->
-    <string name="ConversationItem_error_partially_not_deleted">Partially deleted, tap for details</string>
+    <string name="ConversationItem_error_partially_not_deleted">Часткова выдалена, націсніце, каб даведацца больш</string>
     <string name="ConversationItem_error_network_not_delivered">Не атрымалася адправіць</string>
     <!-- Warning footer when an admin delete has failed to send -->
-    <string name="ConversationItem_error_delete_failed">Delete failed, tap for details</string>
+    <string name="ConversationItem_error_delete_failed">Не атрымалася выдалiць, націсніце, каб даведацца больш</string>
     <string name="ConversationItem_group_action_left">%1$s пакінуў(-ла) групу.</string>
     <string name="ConversationItem_send_paused">Адпраўка прыпынена</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Адправіць як незашыфраванае SMS?</string>
@@ -463,7 +463,7 @@
     <string name="ConversationItem_s_deleted_this_message">%1$s выдаліў(-ла) гэтае паведамленне</string>
     <string name="ConversationItem_you_deleted_this_message">Вы выдалілі гэтае паведамленне</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
-    <string name="ConversationItem_admin_s_deleted_this_message">Admin %1$s deleted this message</string>
+    <string name="ConversationItem_admin_s_deleted_this_message">Адміністратар %1$s выдаліў гэтае паведамленне</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Немагчыма спампаваць паведамленне. Карыстальніку %1$s будзе неабходна адправіць яго зноў.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -526,6 +526,8 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Далучэнне перавышае ліміт памеру для тыпу паведамлення, што вы адпраўляеце.</string>
     <string name="ConversationActivity_unable_to_record_audio">Немагчыма запісаць аўдыё!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Вы не можаце адпраўляць паведамленні ў гэтую групу, таму што вы больш не з\'яўляецеся яе ўдзельнікам.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Толькі %1$s можа адпраўляць паведамленні.</string>
     <string name="ConversationActivity_admins">адміністратары</string>
     <string name="ConversationActivity_message_an_admin">Напісаць паведамленне адміністратару</string>
@@ -660,7 +662,12 @@
     <!-- Confirmation button to delete the message -->
     <string name="ConversationFragment_delete_for_everyone_title">Выдаліць для ўсіх?</string>
     <!-- Body of dialog explaining what happens during deletion -->
-    <string name="ConversationFragment_delete_for_everyone_body">У якасці адміністратараў удзельнікі групы змогуць убачыць, што вы выдалілі гэтыя паведамленні.</string>
+    <plurals name="ConversationFragment_delete_for_everyone_body">
+        <item quantity="one">Ў апошніх версіях Signal удзельнікі групы могуць бачыць, што вы выдалілі гэтае паведамленне.</item>
+        <item quantity="few">Ў апошніх версіях Signal удзельнікі групы могуць бачыць, што вы выдалілі гэтыя паведамленні.</item>
+        <item quantity="many">Ў апошніх версіях Signal удзельнікі групы могуць бачыць, што вы выдалілі гэтыя паведамленняў.</item>
+        <item quantity="other">Ў апошніх версіях Signal удзельнікі групы могуць бачыць, што вы выдалілі гэтыя паведамленняў.</item>
+    </plurals>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Выдаліць на гэтай прыладзе</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
@@ -676,7 +683,13 @@
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Медыяфайл для аднаразовага прагляду будзе выдалены пасля адпраўкі</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Вы ўжо прагледзелі гэта паведамленне</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Вы можаце дадаваць нататкі для сябе ў гэтым чаце. Калі ваш уліковы запіс мае звязаныя прылады, новыя нататкі будуць сінхранізаваны.</string>
-    <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d удзельнікаў групы маюць аднолькавыя імёны.</string>
+    <!-- Text in banner to show how many people have the same name. -->
+    <plurals name="ConversationFragment__d_group_members_have_the_same_name">
+        <item quantity="one">%1$d удзельнік групы мае тое самае імя.</item>
+        <item quantity="few">%1$d удзельнікі групы маюць аднолькавыя імёны.</item>
+        <item quantity="many">%1$d удзельнікаў групы маюць аднолькавыя імёны.</item>
+        <item quantity="other">%1$d удзельнікаў групы маюць аднолькавыя імёны.</item>
+    </plurals>
     <string name="ConversationFragment__tap_to_review">Націсніце, каб прагледзець</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
     <string name="ConversationFragment__review_banner_body">Гэтая асоба мае такое ж імя, як і іншы кантакт</string>
@@ -1765,6 +1778,8 @@
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Немагчыма далучыцца да групы. Калі ласка, паўтарыце спробу пазней</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Адбылася памылка сеткі.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Гэта спасылка на групу неактыўная</string>
+    <!-- Toast message shown when trying to join a group via link but the group has been ended -->
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Ліміт групы дасягнуты: далучыцца да яе немагчыма</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1869,6 +1884,8 @@
     <string name="MediaOverviewActivity_Files">Файлы</string>
     <string name="MediaOverviewActivity_Audio">Аўдыё</string>
     <string name="MediaOverviewActivity_All">Усе</string>
+    <string name="MediaOverviewActivity_Links">Спасылкі</string>
+    <string name="MediaOverviewActivity_link">Спасылка</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
         <item quantity="one">Выдаліць выбраны элемент?</item>
         <item quantity="few">Выдаліць выбраных элемента?</item>
@@ -1948,6 +1965,16 @@
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Адказы</string>
 
+    <!-- StarredMessagesFragment -->
+    <!-- Title for the starred messages screen -->
+  <!-- Removed by excludeNonTranslatables <string name="StarredMessagesActivity__starred_messages" translatable="false">Starred messages</string> -->
+    <!-- Empty state text when there are no starred messages -->
+  <!-- Removed by excludeNonTranslatables <string name="StarredMessagesFragment__no_starred_messages" translatable="false">No starred messages</string> -->
+    <!-- Empty state description when there are no starred messages -->
+  <!-- Removed by excludeNonTranslatables <string name="StarredMessagesFragment__tap_and_hold_on_a_message_to_star_it" translatable="false">Tap and hold on a message to star it.</string> -->
+    <!-- Format for starred message source label, e.g. "Alice › Book Club" -->
+  <!-- Removed by excludeNonTranslatables <string name="StarredMessages__s_chevron_s" translatable="false">%1$s \u203A %2$s</string> -->
+
     <!-- NotificationBarManager -->
     <string name="NotificationBarManager__establishing_signal_call">Пачынаецца званок праз Signal</string>
     <!-- Temporary notification shown when starting the calling service -->
@@ -1982,6 +2009,12 @@
     <string name="MessageRecord_left_group">Вы пакінулі групу.</string>
     <string name="MessageRecord_you_updated_group">Вы абнавілі групу.</string>
     <string name="MessageRecord_the_group_was_updated">Група абноўленая.</string>
+    <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
+    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
+    <string name="MessageRecord_s_terminated_the_group">%1$s спыніў(-ла) гэту групу</string>
+    <!-- Update message shown when a group is terminated by you -->
+    <string name="MessageRecord_you_terminated_the_group">Вы спынілі гэту групу</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">Выходны галасавы званок</string>
     <!-- Update message shown when placing an outgoing 1:1 video call -->
@@ -2139,6 +2172,13 @@
     <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Вы змянілі рэдактара інфармацыі аб членстве ў групе на «%1$s».</string>
     <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s змяніў(-ла) рэдактара інфармацыі аб членстве ў групе на «%2$s».</string>
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Рэдактар інфармацыі аб членстве ў групе зменены на «%1$s».</string>
+
+    <!-- Shown when the current user changes the member label permission. -->
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">Вы змянілі асобу, якая можа дадаваць меткі ўдзельнікаў, на «%1$s».</string>
+    <!-- Shown when another group member changes the member label permission. -->
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s змяніў(-ла) асобу, якая можа дадаваць меткі ўдзельнікаў, на «%2$s».</string>
+    <!-- Shown when the member label permission is changed by an unknown admin. -->
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">Адмiнiстратар змяніў асобу, якая можа дадаваць меткі ўдзельнікаў, на «%1$s».</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">Вы змянілі налады групы, каб дазволіць усім удзельнікам адпраўляць паведамленні.</string>
@@ -2741,7 +2781,7 @@
     <!-- Toggle content description for toggling camera direction  -->
     <string name="WebRtcCallView__toggle_camera_direction">Змяніць напрамак камеры</string>
     <!-- Toggle content description for toggling audio output  -->
-    <string name="WebRtcCallView__toggle_speaker">Уключыць/адключыць вонкавы дынамік</string>
+    <string name="WebRtcCallView__toggle_speaker">Уключыць/адключыць дынамік</string>
     <!-- Toggle content description for toggling camera state  -->
     <string name="WebRtcCallView__toggle_camera">Уключыць/адключыць камеру</string>
     <!-- Toggle content description for toggling mute state  -->
@@ -2773,7 +2813,7 @@
     <!-- A text description of the headset icon, used for accessibility. -->
     <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">Значок, які адзначае правадную гарнітуру.</string>
     <!-- A text description of the speaker icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">Значок, які адзначае вонкавы дынамік.</string>
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">Значок, які адзначае дынамік.</string>
     <!-- A text description of the earpiece icon, used for accessibility. -->
     <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Значок, які адзначае дынамік прылады.</string>
 
@@ -3589,6 +3629,17 @@
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Не атрымалася захаваць на знешнім сховішчы без дазволаў</string>
 
+    <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__cant_save_media">Немагчыма захаваць медыяфайлы</string>
+    <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__media_offloaded_message">Гэты медыяфайл быў выгружаны з вашай прылады, бо ўключана опцыя «Аптымізаваць сховішча на прыладзе». Вы можаце запампаваць элементы па чарзе або адключыць опцыю «Аптымізаваць сховішча на прыладзе», каб загрузіць усе медыяфайлы на прыладу.</string>
+    <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__cant_save_all_items">Немагчыма захаваць усе элементы</string>
+    <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__some_media_offloaded_message">Некаторыя выбраныя вамі медыяфайлы былі выгружаны з вашай прылады, бо ўключана опцыя «Аптымізаваць сховішча на прыладзе». Вы можаце захаваць элементы па чарзе або адключыць опцыю «Аптымізаваць сховішча на прыладзе», каб загрузіць усе медыяфайлы на прыладу.</string>
+    <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
+    <string name="AttachmentSaver__view_storage_settings">Прагледзець налады сховішча</string>
+
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Пошук</string>
     <!-- Hint when searching filtered chat content -->
@@ -3694,7 +3745,7 @@
     <!-- Audio output option referring to the earpiece built into the phone -->
     <string name="WebRtcAudioOutputToggle__phone_earpiece">Дынамік тэлефона</string>
     <!-- Audio output option referring to the louder speaker built into the phone -->
-    <string name="WebRtcAudioOutputToggle__speaker">Вонкавы дынамік</string>
+    <string name="WebRtcAudioOutputToggle__speaker">Дынамік</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
@@ -3803,10 +3854,14 @@
     <!-- Accessibility content description describing how a user can lock voice note recording. -->
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Заблакаваць запіс аўдыядалучэння</string>
     <string name="conversation_activity__message_could_not_be_sent">Не атрымалася адправіць паведамленне. Праверце падключэнне і паўтарыце спробу.</string>
+    <!-- Dialog body shown when tapping a failed message in a terminated group -->
+    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
+    <string name="conversation_activity__group_action_not_allowed_group_ended">Гэта дзеянне недаступнае, бо гэта група спынена.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
-    <string name="conversation_activity__message_failed_to_delete_retry">Message failed to delete. Check your connection and try again.</string>
+    <string name="conversation_activity__message_failed_to_delete_retry">Не атрымалася выдалiць паведамленне. Праверце падключэнне і паўтарыце спробу.</string>
     <!-- Dialog body when a message failed to delete. -->
-    <string name="conversation_activity__message_failed_to_delete">Message failed to delete.</string>
+    <string name="conversation_activity__message_failed_to_delete">Не атрымалася выдалiць паведамленне.</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">Прагартаць, каб скасаваць</string>
@@ -3856,6 +3911,34 @@
     <string name="ConversationUpdateItem_options">Варыянты</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">Абнавіць</string>
+    <!-- Update item button text to show how many group updates there are. -->
+    <plurals name="CollapsedEvent__group_update">
+        <item quantity="one">%1$d group update</item>
+        <item quantity="few">%1$d group updates</item>
+        <item quantity="many">%1$d group updates</item>
+        <item quantity="other">%1$d group updates</item>
+    </plurals>
+    <!-- Update item button text to show how many group updates there are. -->
+    <plurals name="CollapsedEvent__chat_update">
+        <item quantity="one">%1$d chat update</item>
+        <item quantity="few">%1$d chat updates</item>
+        <item quantity="many">%1$d chat updates</item>
+        <item quantity="other">%1$d chat updates</item>
+    </plurals>
+    <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
+    <plurals name="CollapsedEvent__disappearing_timer">
+        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
+        <item quantity="few">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="many">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+    </plurals>
+    <!-- Update item button text to show how many call events are. -->
+    <plurals name="CollapsedEvent__call_event">
+        <item quantity="one">%1$d call event</item>
+        <item quantity="few">%1$d call events</item>
+        <item quantity="many">%1$d call events</item>
+        <item quantity="other">%1$d call events</item>
+    </plurals>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Прайграць… Паўза</string>
@@ -4793,6 +4876,10 @@
     <string name="conversation_selection__menu_copy">Капіраваць</string>
     <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">Выдаліць</string>
+    <!-- Button to star a message to save it for later; Action item -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_selection__menu_star" translatable="false">Star (Labs)</string> -->
+    <!-- Button to remove the star from a message; Action item -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_selection__menu_unstar" translatable="false">Unstar (Labs)</string> -->
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Пераслаць</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4861,6 +4948,7 @@
     <string name="conversation__menu_view_all_media">Усе медыяфайлы</string>
     <string name="conversation__menu_conversation_settings">Налады чата</string>
     <string name="conversation__menu_add_shortcut">Дадаць на галоўны экран</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_export" translatable="false">Export (Labs)</string> -->
     <string name="conversation__menu_create_bubble">Стварыць бурбалку</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">Фармаціраваць тэкст</string>
@@ -4869,6 +4957,13 @@
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Дадаць у кантакты</string>
+
+    <!-- conversation export -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__exporting" translatable="false">Exporting chat…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__export_complete" translatable="false">Chat exported successfully</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__export_failed" translatable="false">Export failed</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__export_cancelled" translatable="false">Export cancelled</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__preparing" translatable="false">Preparing export…</string> -->
 
     <!-- conversation scheduled messages bar -->
 
@@ -4899,6 +4994,8 @@
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">Новая група</string>
     <string name="text_secure_normal__menu_settings">Налады</string>
+    <!-- Menu item in the main conversation list to view all starred messages -->
+  <!-- Removed by excludeNonTranslatables <string name="text_secure_normal__starred_messages" translatable="false">Starred messages (Labs)</string> -->
     <string name="text_secure_normal__menu_clear_passphrase">Заблакаваць</string>
     <string name="text_secure_normal__mark_all_as_read">Пазначыць усе як прачытаныя</string>
     <string name="text_secure_normal__invite_friends">Запрасіць сяброў</string>
@@ -5120,6 +5217,8 @@
     <string name="BackupDialog_delete_backups">Выдаліць рэзервовыя копіі?</string>
     <string name="BackupDialog_disable_and_delete_all_local_backups">Адключыць і выдаліць усе лакальныя рэзервовыя копіі?</string>
     <string name="BackupDialog_delete_backups_statement">Выдаліць рэзервовыя копіі</string>
+    <!-- Progress dialog message shown while local backup files are being deleted -->
+    <string name="BackupDialog_deleting_local_backup">Выдаленне лакальнай рэзервовай копіі…</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Выберыце папку, каб уключыць рэзервовае капіраванне. Рэзервовыя копіі будуць захаваны ў гэтым месцы.</string>
     <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Выбраць папку</string>
@@ -5420,6 +5519,8 @@
     <string name="RecipientBottomSheet_remove_from_group">Выдаліць з групы</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">Выдаліць %1$s як адміністратара групы?</string>
+    <!-- Message shown when removing an admin will also clear their member label. -->
+    <string name="RecipientBottomSheet_remove_s_as_group_admin_and_clear_member_label">Выдаліць %1$s як адміністратара групы? Праз гэта таксама будзе ачышчана іх метка ўдзельніка.</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"%1$s зможа рэдагаваць гэту групу і яе ўдзельнікаў."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">Выдаліць %1$s з групы?</string>
@@ -5925,6 +6026,41 @@
         <item quantity="other">%1$d папак</item>
     </plurals>
 
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">Export chat history</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">Export a machine-readable JSON copy of all your chats. Disappearing messages will not be exported.</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">Памылка аўтэнтыфікацыі</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">Export chat history?</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">Выбраць папку</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">Выбраць папку</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
     <string name="ChatFoldersEducationSheet__create_folders_for_family">Стварайце папкі для сям\'і, сяброў, працы і іншых тэм</string>
@@ -6251,6 +6387,8 @@
     <string name="ConversationSettingsFragment__search">Пошук</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Знікаючыя паведамленні</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Гукі &amp; апавяшчэнні</string>
+    <!-- Label for the starred messages option in conversation settings -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__starred_messages" translatable="false">Starred messages</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Інфармацыя аб тэлефонным кантакце</string>
     <string name="ConversationSettingsFragment__view_safety_number">Прагледзець код бяспекі</string>
@@ -6277,6 +6415,21 @@
     <string name="ConversationSettingsFragment__get_badges">Падтрымлівайце Signal і атрымлівайце значкі для свайго профілю. Націсніце на значок, каб даведацца больш.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Гэты медыяфайл яшчэ не адпраўлены.</string>
+    <!-- End group option in group conversation settings screen -->
+    <string name="ConversationSettingsFragment__end_group">Спыніць групу</string>
+    <!-- Banner shown at the top of group settings when the group has been ended -->
+    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <!-- Archive chat option in group conversation settings screen -->
+    <string name="ConversationSettingsFragment__archive_chat">Архіваваць чат</string>
+    <!-- Delete chat option in group conversation settings screen -->
+    <string name="ConversationSettingsFragment__delete_chat">Выдаліць чат</string>
+    <!-- Member section header for terminated groups. %1$d is the member count -->
+    <plurals name="ConversationSettingsFragment__d_former_members">
+        <item quantity="one">%1$d былы ўдзельнік</item>
+        <item quantity="few">%1$d былых удзельніка</item>
+        <item quantity="many">%1$d былых удзельнікаў</item>
+        <item quantity="other">%1$d былых удзельнікаў</item>
+    </plurals>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Дадаць удзельнікаў</string>
@@ -6287,6 +6440,16 @@
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Хто можа дадаваць новых удзельнікаў?</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Хто можа рэдагаваць інфармацыю аб гэтай групе?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">Хто можа адпраўляць паведамленні і рабіць званкі?</string>
+    <!-- Label for the member labels permission button in the group permissions settings screen. -->
+    <string name="PermissionsSettingsFragment__add_member_labels">Дадаць меткі ўдзельнікаў</string>
+    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Хто можа дадаваць меткі ўдзельнікаў?</string>
+    <!-- Warning title shown before restricting member labels to admins only. -->
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Меткі ўдзельнікаў будуць ачышчаны</string>
+    <!-- Warning body shown before restricting member labels to admins only. -->
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Калі вы зменіце гэты дазвол на «Толькі адміністратары», меткі ўдзельнікаў, што былі ўсталяваны не адміністратарамі ў гэтай групе, будуць ачышчаны."</string>
+    <!-- Confirm button for changing member label permission after warning. -->
+    <string name="PermissionsSettingsFragment__change_permission">Змяніць дазвол</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->
@@ -6302,17 +6465,17 @@
     <!-- Label for the setting to configure custom notification sounds and vibration for a conversation -->
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Карыстальніцкія апавяшчэнні</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
-    <string name="SoundsAndNotificationsSettingsFragment__when_muted">When muted</string>
+    <string name="SoundsAndNotificationsSettingsFragment__when_muted">Калі апавяшчэнні адключаны</string>
     <!-- Label for the calls notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls">Calls</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls">Званкі</string>
     <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Ring and receive notifications when a call is started in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Званіце і атрымлівайце апавяшчэнні, калі пачынаецца званок у чатах з адключанымі апавяшчэннямі.</string>
     <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Receive notifications when you are mentioned in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Атрымлівайце апавяшчэнні, калі вас згадваюць у чатах з адключанымі апавяшчэннямі.</string>
     <!-- Label for the replies notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Replies to you</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Адказы вам</string>
     <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Receive notifications when someone replies to your messages in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Атрымлівайце апавяшчэнні, калі хтосьці адказвае на вашы паведамленні ў чатах з адключанымі апавяшчэннямі.</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">Нядаўна выкарыстаныя</string>
@@ -7089,8 +7252,61 @@
     <string name="MyStories__delete_story">Выдаліць гісторыю?</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Гэта гісторыя будзе выдалена для вас і ўсіх, хто яе атрымаў.</string>
+    <!-- Message of dialog to confirm deletion of story in a terminated group -->
+    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Не атрымалася захаваць</string>
+
+    <!-- StoryArchive -->
+    <!-- Title for the story archive screen -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__story_archive" translatable="false">Story archive (Labs)</string> -->
+    <!-- Section header in story settings -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__archive" translatable="false">Archive</string> -->
+    <!-- Label for switch to enable story archiving -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__keep_stories_in_archive" translatable="false">Keep stories in archive</string> -->
+    <!-- Description for the archive toggle -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__save_stories_after_they_expire" translatable="false">Save your sent stories after they leave the active feed.</string> -->
+    <!-- Label for archive duration preference -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__keep_stories_for" translatable="false">Keep stories for</string> -->
+    <!-- Archive duration option: forever -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__forever" translatable="false">Forever</string> -->
+    <!-- Archive duration option: 1 year -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__1_year" translatable="false">1 year</string> -->
+    <!-- Archive duration option: 6 months -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__6_months" translatable="false">6 months</string> -->
+    <!-- Archive duration option: 30 days -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__30_days" translatable="false">30 days</string> -->
+    <!-- Empty state title when no archived stories exist -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__no_archived_stories" translatable="false">No archived stories</string> -->
+    <!-- Empty state message when no archived stories exist -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__no_archived_stories_message" translatable="false">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string> -->
+    <!-- Empty state button to navigate to story settings -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__go_to_settings" translatable="false">Go to settings</string> -->
+    <!-- Label for sort order menu -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__sort_by" translatable="false">Sort by</string> -->
+    <!-- Sort order option: newest first -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__newest" translatable="false">Newest</string> -->
+    <!-- Sort order option: oldest first -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__oldest" translatable="false">Oldest</string> -->
+    <!-- Delete action in story archive multi-select bottom bar -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__delete" translatable="false">Delete</string> -->
+    <!-- Content description for selecting a story in multi-select mode -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__select_story" translatable="false">Select story</string> -->
+    <!-- Confirmation dialog body when deleting stories from archive -->
+    <plurals name="StoryArchive__delete_n_stories">
+        <item quantity="one">Выдалiць %1$d гісторыю? Гэта нельга адмяніць.</item>
+        <item quantity="few">Выдалiць %1$d гісторыі? Гэта нельга адмяніць.</item>
+        <item quantity="many">Выдалiць %1$d гісторый? Гэта нельга адмяніць.</item>
+        <item quantity="other">Выдалiць %1$d гісторый? Гэта нельга адмяніць.</item>
+    </plurals>
+    <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
+    <plurals name="StoryArchive__d_selected">
+        <item quantity="one">%1$d выбраны</item>
+        <item quantity="few">%1$d выбраныя</item>
+        <item quantity="many">%1$d выбраных</item>
+        <item quantity="other">%1$d выбраных</item>
+    </plurals>
+
     <!-- Displayed at bottom of story viewer when current item has views -->
     <plurals name="StoryViewerFragment__d_views">
         <item quantity="one">%1$d прагляд</item>
@@ -8043,9 +8259,9 @@
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Мікрафон адключаны</string>
     <!-- Displayed when the user turns on their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_on">Вонкавы дынамік уключаны</string>
+    <string name="CallStateUpdatePopupWindow__speaker_on">Дынамік уключаны</string>
     <!-- Displayed when the user turns off their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_off">Вонкавы дынамік адключаны</string>
+    <string name="CallStateUpdatePopupWindow__speaker_off">Дынамік адключаны</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Кнопка «Здымак»</string>
@@ -8086,11 +8302,11 @@
 
     <!-- CallParticipantSheet -->
     <!-- Action to mute a participant\'s audio in a group call -->
-    <string name="CallParticipantSheet__mute_audio">Mute audio</string>
+    <string name="CallParticipantSheet__mute_audio">Адключыць аўдыё</string>
     <!-- Action to remove a participant from a call -->
-    <string name="CallParticipantSheet__remove_from_call">Remove from call</string>
+    <string name="CallParticipantSheet__remove_from_call">Выдаліць са званка</string>
     <!-- Action to view contact details for a participant -->
-    <string name="CallParticipantSheet__contact_details">Contact details</string>
+    <string name="CallParticipantSheet__contact_details">Звесткі аб кантакту</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -8273,65 +8489,65 @@
     <string name="TurnOnSignalBackups__toast_not_now">Вы можаце ўключыць рэзервовае капіраванне ў «Наладах»</string>
 
     <!-- Title of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__title">Never lose a message</string>
+    <string name="BackupMessagesUpsell__title">Ніколі не губляйце паведамленні</string>
     <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__body">Turn on Signal Secure Backups to preserve your messages and media.</string>
+    <string name="BackupMessagesUpsell__body">Уключыце бяспечнае рэзервовае капіраванне Signal, каб захаваць свае паведамленні і медыяфайлы.</string>
     <!-- Primary button of Megaphone B -->
-    <string name="BackupMessagesUpsell__turn_on">Turn on</string>
+    <string name="BackupMessagesUpsell__turn_on">Уключыць</string>
     <!-- Secondary button of Megaphone B -->
-    <string name="BackupMessagesUpsell__not_now">Not now</string>
+    <string name="BackupMessagesUpsell__not_now">Не зараз</string>
 
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__title">Back up all your media</string>
+    <string name="BackupMediaUpsell__title">Зрабіце рэзервовую копію ўсіх медыяфайлаў</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">Платныя планы бяспечнага рэзервовага капіравання Signal захоўваюць усе вашы медыяфайлы памерам да 100 ГБ.</string>
     <!-- Primary button of Megaphone C -->
-    <string name="BackupMediaUpsell__upgrade">Upgrade</string>
+    <string name="BackupMediaUpsell__upgrade">Абнавіць</string>
     <!-- Secondary button of Megaphone C -->
-    <string name="BackupMediaUpsell__not_now">Not now</string>
+    <string name="BackupMediaUpsell__not_now">Не зараз</string>
 
     <!-- Title of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__title">Save space with paid backups</string>
+    <string name="BackupStorageUpsell__title">Эканомце месца на сховішчы з дапамогай платнага рэзервовага капіравання</string>
     <!-- Body of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__body">Paid secure backup plans can save storage space by offloading media.</string>
+    <string name="BackupStorageUpsell__body">Платныя планы бяспечнага рэзервовага капіравання эканомяць месца на сховішчы шляхам выгрузкі медыяфайлаў.</string>
     <!-- Primary button of Megaphone D when user has free tier backups -->
-    <string name="BackupStorageUpsell__upgrade">Upgrade</string>
+    <string name="BackupStorageUpsell__upgrade">Абнавіць</string>
     <!-- Primary button of Megaphone D when user has no backups -->
-    <string name="BackupStorageUpsell__turn_on">Turn on</string>
+    <string name="BackupStorageUpsell__turn_on">Уключыць</string>
     <!-- Secondary button of Megaphone D -->
-    <string name="BackupStorageUpsell__not_now">Not now</string>
+    <string name="BackupStorageUpsell__not_now">Не зараз</string>
 
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
-    <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
+    <string name="BackupUpsellBottomSheet__title">Абнавіце, каб зрабіць рэзервовае капіраванне ўсіх медыяфайлаў</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">Платныя планы бяспечнага рэзервовага капіравання Signal захоўваюць усе медыяфайлы, якія вы адпраўляеце і атрымліваеце, максімум да 100 ГБ. Не губляйце аніводных фота ці відэа, калі вы набываеце новы тэлефон або нанова ўсталёўваеце Signal.</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
-    <string name="BackupUpsellBottomSheet__price_per_month">%1$s/month</string>
+    <string name="BackupUpsellBottomSheet__price_per_month">%1$s/месяц</string>
     <!-- Subtitle for the paid plan feature card -->
-    <string name="BackupUpsellBottomSheet__text_and_all_media">Text + all your media</string>
+    <string name="BackupUpsellBottomSheet__text_and_all_media">SMS + усе вашы медыяфайлы</string>
     <!-- Feature bullet: full text and media backup -->
-    <string name="BackupUpsellBottomSheet__full_text_media_backup">Full text + media backup</string>
+    <string name="BackupUpsellBottomSheet__full_text_media_backup">Поўнае рэзервовае капіраванне тэкставага паведамлення + медыяфайлаў</string>
     <!-- Feature bullet: 100GB storage -->
-    <string name="BackupUpsellBottomSheet__storage_100gb">100GB storage</string>
+    <string name="BackupUpsellBottomSheet__storage_100gb">Сховішча: 100 ГБ</string>
     <!-- Feature bullet: save on-device storage -->
-    <string name="BackupUpsellBottomSheet__save_on_device_storage">Save on-device storage</string>
+    <string name="BackupUpsellBottomSheet__save_on_device_storage">Эканомія месца на сховішчы на прыладзе</string>
     <!-- Feature bullet: thanks for supporting Signal -->
-    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Thanks for supporting Signal</string>
+    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Дзякуй за падтрымку Signal</string>
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
-    <string name="BackupUpsellBottomSheet__subscribe_for">Subscribe for %1$s/month</string>
+    <string name="BackupUpsellBottomSheet__subscribe_for">Падпісацца за %1$s/месяц</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__no_thanks">No thanks</string>
+    <string name="BackupUpsellBottomSheet__no_thanks">Не, дзякуй</string>
 
     <!-- Title of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__title">You\'re all set. Start your backup now.</string>
+    <string name="BackupSetupCompleteBottomSheet__title">Усё гатова. Пачынайце рэзервовае капіраванне.</string>
     <!-- Body of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__body">This could take a while. You can use Signal normally while backing up.</string>
+    <string name="BackupSetupCompleteBottomSheet__body">Гэта можа заняць пэўны час. Падчас рэзервовага капіравання вы можаце карыстацца Signal як звычайна.</string>
     <!-- Label for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimize Signal storage</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Зрабіць аптымізацыю сховішча Signal</string>
     <!-- Subtitle for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Older media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Старэйшыя медыяфайлы будуць выгружаны, але іх можна ў любы час спампаваць з рэзервовай копіі.</string>
     <!-- Primary button on the setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__back_up_now">Back up now</string>
+    <string name="BackupSetupCompleteBottomSheet__back_up_now">Пачаць рэзервовае капіраванне</string>
 
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__title">Выкарыстоўвайце новае рэзервовае капіраванне на прыладзе</string>
@@ -8572,7 +8788,7 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__backup_key_updated">Ключ для рэзервовага капіравання абноўлены</string>
+    <string name="OnDeviceBackupsFragment__recovery_key_updated">Код для аднаўлення абноўлены</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
     <string name="OnDeviceBackupsFragment__directory_selected">Выбраны каталог: %1$s</string>
 
@@ -8728,7 +8944,7 @@
     <!-- Setting section title header for storage optimization -->
     <string name="ManageStorageSettingsFragment__on_device_storage">Сховішча на прыладзе</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Зрабіце аптымізацыю сховішча на прыладзе</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Аптымізаваць сховішча на прыладзе</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Нявыкарыстаныя медыяфайлы будуць выгружаны, але іх можна ў любы час спампаваць з рэзервовай копіі.</string>
     <!-- Dialog message for paid tier pending dialog -->
@@ -8764,6 +8980,28 @@
     <string name="MediaNoLongerAvailableSheet__continue">Працягнуць</string>
     <!-- Secondary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__not_now">Не зараз</string>
+
+    <!-- End group button label shown in confirmation dialogs -->
+    <string name="EndGroupDialog__end_group">Спыніць групу</string>
+    <!-- Title of first end group confirmation dialog. %1$s is the group name -->
+    <string name="EndGroupDialog__end_s">Спыніць «%1$s»?</string>
+    <!-- Body of first end group confirmation dialog -->
+    <string name="EndGroupDialog__members_will_no_longer_be_able_to_send">Удзельнікі больш не змогуць адпраўляць паведамленні і рабіць званкі ў гэтай групе. Яны атрымаюць апавяшчэнне аб тым, што вы спынілі групу, але будуць мець доступ да гісторыі паведамленняў.</string>
+    <!-- Body of second/final end group confirmation dialog -->
+    <string name="EndGroupDialog__this_will_end_the_group_permanently">Гэта назаўсёды спыніць гэту групу. Вы ўпэўнены, што жадаеце працягнуць?</string>
+    <!-- Progress message shown while ending a group -->
+    <string name="EndGroupDialog__ending_group">Спыняем групу…</string>
+    <!-- Message shown when ending a group fails -->
+    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <!-- Retry button shown when ending a group fails -->
+    <string name="EndGroupDialog__try_again">Паўтарыць спробу</string>
+
+    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
+    <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s спыніў(-ла) групу</string>
+    <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <!-- Body of bottom sheet shown when opening a terminated group -->
+    <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Вы больш не зможаце пісаць і тэлефанаваць у гэтай групе.</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Цяпер вы маеце сінхранізаванае выдаленне на ўсіх вашых прыладах</string>
@@ -9030,6 +9268,26 @@
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
     <string name="RemoteBackupsSettingsFragment__scan_qr_code">Сканаваць QR-код</string>
 
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">Апрацоўка рэзервовай копіі…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">Падрыхтоўка да рэзервовага капіравання…</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">Завяршэнне…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">Апрацоўка паведамленняў…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Апрацоўка паведамленняў: %1$s з %2$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">Запампоўка медыяфайлаў: %1$d%%</string>
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">Экспарт медыяфайлаў: %1$d%%</string>
+
+    <!-- LocalArchiveJob -->
+    <!-- Notification title shown while media attachments are being exported during a local backup -->
+    <string name="LocalArchiveJob__exporting_media">Экспарт медыяфайлаў…</string>
+
     <!-- OnDeviceBackupsImprovementsScreen -->
     <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
     <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">Паляпшэнне рэзервовага капіравання на прыладзе</string>
@@ -9051,7 +9309,7 @@
     <string name="OnDeviceBackupsSettingsScreen__update">Абнавіць</string>
 
     <!-- UnifiedOnDeviceBackupsSettingsScreen -->
-    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">Прагледзець ключ для рэзервовага капіравання</string>
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_recovery_key">Прагледзець код для аднаўлення</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -9121,9 +9379,11 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">Гэты код заменіць ключ для рэзервовага капіравання на прыладзе.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Ваш ключ для рэзервовага капіравання – гэта 64-значны код, які дазваляе аднавіць рэзервовыя копіі, калі вы нанова ўсталёўваеце Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">Ваш код для аднаўлення – гэта 64-значны код, які дазваляе аднавіць рэзервовыя копіі, калі вы нанова ўсталёўваеце Signal.</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Гэта тое ж самае, што і ваш ключ для рэзервовага капіравання на прыладзе.</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Гэта тое ж самае, што і ваш код для аднаўлення на прыладзе.</string>
+    <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Выкарыстоўвайце гэты ключ, каб:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9141,7 +9401,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Гэты ключ патрэбны, каб аднавіць ваш уліковы запіс і вашы даныя. Захоўвайце гэты ключ у бяспечным месцы. Калі вы забудзеце яго, вы больш не зможаце аднавіць свой уліковы запіс.</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">Гэта тое ж самае, што і ваш ключ для рэзервовага капіравання на прыладзе. Гэта неабходна, каб аднавіць ваш уліковы запіс і вашы даныя.</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">Гэты код той жа самы, што і ваш код для аднаўлення на прыладзе. Гэта неабходна, каб аднавіць ваш уліковы запіс і вашы даныя.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Скапіраваць у буфер абмену</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9394,8 +9654,8 @@
     <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Увядзіце свой код для аднаўлення</string>
     <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
     <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Ваш код для аднаўлення – гэта 64-значны код, які неабходны для аднаўлення вашага ўліковага запісу і даных.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a backup key -->
-    <string name="EnterLocalBackupKeyScreen__no_backup_key">Няма ключа для рэзервовага капіравання?</string>
+    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
+    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Няма кода для аднаўлення?</string>
     <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
     <string name="EnterLocalBackupKeyScreen__next">Далей</string>
 
@@ -9403,6 +9663,18 @@
     <string name="RestoreLocalBackupDialog__failed_to_load_archive">Не атрымалася загрузіць архіў. Выберыце іншы каталог.</string>
     <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
     <string name="RestoreLocalBackupDialog__ok">OK</string>
+    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
+    <string name="RestoreLocalBackupDialog__skip_restore">Прапусціць аднаўленне?</string>
+    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
+    <string name="RestoreLocalBackupDialog__skip_restore_body">Калі вы прапусціце аднаўленне зараз, пазней аднавіць гэта ўжо не атрымаецца. Калі вы паўторна ўключыце рэзервовае капіраванне пасля таго, як прапусціце аднаўленне, ваша бягучая рэзервовая копія будзе заменена на новую гісторыю паведамленняў.</string>
+    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
+    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Прапусціць аднаўленне</string>
+    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
+    <string name="RestoreLocalBackupDialog__restore_to_new_account">Аднавіць для новага ўліковага запісу?</string>
+    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
+    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Рэзервовая копія, што вы аднаўляеце, была створана з выкарыстаннем іншага ўліковага запісу Signal. Вы можаце аднавіць гэтую рэзервовую копію для новага ўліковага запісу, але вы больш не будзеце ўдзельнікам аніякіх адноўленых груп.</string>
+    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
+    <string name="RestoreLocalBackupDialog__restore">Аднавіць</string>
 
     <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
     <string name="RestoreLocalBackupActivity__backup_restore_failed">Не атрымалася аднавіць рэзервовую копію</string>
@@ -9422,13 +9694,37 @@
     <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s з %2$s (%3$d)</string>
 
     <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Can\'t restore backup</string>
+    <string name="RestoreLocalBackupActivity__cant_restore_backup">Не атрымалася аднавіць рэзервовую копію</string>
 
     <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Адбылася памылка падчас аднаўлення рэзервовай копіі. Немагчыма аднавіць вашу рэзервовую копію. Калі ласка, звярніцеся да службы падтрымкі.</string>
 
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Contact support</string>
+    <string name="RestoreLocalBackupActivity__contact_support">Звярнуцца да службы падтрымкі</string>
+
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Уключыць рэзервовае капіраванне на прыладзе?</string>
+
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Каб працягваць выкарыстоўваць рэзервовыя копіі на прыладзе, вам трэба ўключыць іх для гэтага ўліковага запісу і запісаць новы код для аднаўлення. Вы можаце ў любы час зрабіць гэта ў «Налады» &gt; «Рэзервовыя копіі».</string>
+
+    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__turn_on_now">Уключыць зараз</string>
+
+    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__not_now">Не зараз</string>
+
+    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
+    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Каб працягваць выкарыстоўваць рэзервовыя копіі на прыладзе, выберыце на сваёй прыладзе папку, дзе будуць захоўвацца новыя рэзервовыя копіі.</string>
+
+    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
+    <string name="RestoreLocalBackupActivity__use_current_folder">Выкарыстоўваць бягучую папку</string>
+
+    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
+    <string name="RestoreLocalBackupActivity__choose_new_folder">Выбраць новую папку</string>
+
+    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
+    <string name="RestoreLocalBackupActivity__disable_backups">Адключыць рэзервовае капіраванне</string>
 
     <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
     <string name="SelectInstructionsSheet__select_your_backup_folder">Выберыце папку рэзервовых копій</string>
@@ -9585,6 +9881,27 @@
     <string name="MainToolbar__notification_profile_content_description">Профіль апавяшчэнняў</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Проксі</string>
+    <!-- Accessibility label for search filter button in MainToolbar -->
+  <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
+
+    <!-- SearchFilterBottomSheet: Title -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__filter_search" translatable="false">Filter search</string> -->
+    <!-- SearchFilterBottomSheet: Start date label -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__start_date" translatable="false">Start date</string> -->
+    <!-- SearchFilterBottomSheet: End date label -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__end_date" translatable="false">End date</string> -->
+    <!-- SearchFilterBottomSheet: Author label -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__author" translatable="false">Author</string> -->
+    <!-- SearchFilterBottomSheet: Placeholder for unset date -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__not_set" translatable="false">Not set</string> -->
+    <!-- SearchFilterBottomSheet: Placeholder for unset author -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__anyone" translatable="false">Anyone</string> -->
+    <!-- SearchFilterBottomSheet: Apply button -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__apply" translatable="false">Apply</string> -->
+    <!-- SearchFilterBottomSheet: Clear button -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__clear" translatable="false">Clear</string> -->
+    <!-- SearchFilterBottomSheet: Select date dialog title -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__select_date" translatable="false">Select date</string> -->
 
     <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
     <string name="DefaultTopAppBar__navigate_up_content_description">Перайсці ўперад</string>
@@ -9851,13 +10168,17 @@
     <!-- Description explaining the group member labels feature. -->
     <string name="GroupMemberLabel__description">Дадайце метку ўдзельніка, каб апісаць сябе або сваю ролю ў гэтай групе. Меткі бачныя толькі для гэтай групы.</string>
     <!-- Error message shown when the group member label fails to save due to a network error. -->
-    <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
+    <string name="GroupMemberLabel__error_cant_save_no_network">Не атрымалася захаваць метку. Праверце падключэнне і паўтарыце спробу.</string>
+    <!-- Error message shown when trying to edit a member label without adequate permission. -->
+    <string name="GroupMemberLabel__error_no_edit_permission">Толькі адміністратары могуць дадаваць меткі ўдзельнікаў у гэтай групе.</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">Выбраць эмодзі</string>
     <!-- Accessibility label for the group member label close screen button. -->
     <string name="GroupMemberLabel__accessibility_close_screen">Закрыць экран</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">Ачысціць метку</string>
+    <!-- Section header for the list of group members who have labels set. -->
+    <string name="GroupMemberLabel__group_members_with_labels">Удзельнікі групы з меткамі</string>
 
     <!-- Title for the member labels education sheet. -->
     <string name="MemberLabelsEducation__title">Меткі ўдзельнікаў</string>
@@ -9869,9 +10190,21 @@
     <string name="MemberLabelsEducation__edit_label">Рэдагаваць сваю метку</string>
 
     <!-- Title for screen shown to let the user know that displaying their member label will take priority over their about text. -->
-    <string name="MemberLabelsAboutOverride__title">Member label display</string>
+    <string name="MemberLabelsAboutOverride__title">Паказ меткі ўдзельніка</string>
     <!-- Body for screen shown to let the user know that displaying their member label will take priority over their about text. -->
-    <string name="MemberLabelsAboutOverride__body">In this group, your Member Label will be displayed beside your photo in place of your About.</string>
+    <string name="MemberLabelsAboutOverride__body">У гэтай групе ваша метка ўдзельніка будзе паказана побач з вашым фота замест раздзела «Аб кантакце».</string>
+
+    <!-- Label for internal-only section showing groups with same members -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
+
+    <!-- Title of the sheet shown when a local backup restore could not be completed -->
+    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+
+    <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+
+    <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
 
     <!-- EOF -->
 </resources>

@@ -10,7 +10,7 @@
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="remote_backup_support_url" translatable="false">https://support.signal.org/hc/articles/9708267671322</string> -->
   <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
   <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
   <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
@@ -434,10 +434,10 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">نہیں بھیجا گیا ، تفصیلات کے لئے ٹیپ کریں</string>
     <string name="ConversationItem_error_partially_not_delivered">جزوی طور پر بھیجا گیا ، تفصیلات کے لئے ٹیپ کریں</string>
     <!-- Warning footer when an admin delete has not been sent to everyone -->
-    <string name="ConversationItem_error_partially_not_deleted">Partially deleted, tap for details</string>
+    <string name="ConversationItem_error_partially_not_deleted">جزوی طور پر حذف کیا گیا، تفصیلات کے لیے ٹیپ کریں</string>
     <string name="ConversationItem_error_network_not_delivered">بھیجنے میں ناکام</string>
     <!-- Warning footer when an admin delete has failed to send -->
-    <string name="ConversationItem_error_delete_failed">Delete failed, tap for details</string>
+    <string name="ConversationItem_error_delete_failed">حذف کرنا ناکام ہو گیا، تفصیلات کے لیے ٹیپ کریں</string>
     <string name="ConversationItem_group_action_left">%1$sنے گروپ چھوڑ دیا ہے</string>
     <string name="ConversationItem_send_paused">بھیجنا رک گیا ہے</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">غیر خفیہ کردہ ایس ایم ایس کو متبادل دینا ہے؟</string>
@@ -457,7 +457,7 @@
     <string name="ConversationItem_s_deleted_this_message">%1$s نے یہ میسج حذف کر دیا</string>
     <string name="ConversationItem_you_deleted_this_message">آپ نے یہ میسج حذف کر دیا</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
-    <string name="ConversationItem_admin_s_deleted_this_message">Admin %1$s deleted this message</string>
+    <string name="ConversationItem_admin_s_deleted_this_message">ایڈمن %1$s نے یہ میسج حذف کر دیا</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">میسج ڈاؤن لوڈ نہیں کر سکتے۔ %1$s کو اسے دوبارہ بھیجنے کی ضرورت ہو گی۔</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -516,6 +516,8 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">جو پیغام آپ بھیج رہے ہیں منسلک ہونے کیلئے اس کا حجم حد سے زیادہ ہے۔</string>
     <string name="ConversationActivity_unable_to_record_audio">آڈیو ریکارڈ کرنے کے قابل نہیں ہے! ؐ</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">آپ اس گروپ کو پیغامات نہیں بھیج سکتے کیونکہ آپ اب ممبر نہیں رہیں۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
     <string name="ConversationActivity_only_s_can_send_messages">صرف %1$s ہی پیغامات بھیج سکتے ہیں.</string>
     <string name="ConversationActivity_admins">منتظمین</string>
     <string name="ConversationActivity_message_an_admin">کسی ایڈمن کو پیغام دیں</string>
@@ -636,7 +638,10 @@
     <!-- Confirmation button to delete the message -->
     <string name="ConversationFragment_delete_for_everyone_title">سب کے لیے حذف کریں؟</string>
     <!-- Body of dialog explaining what happens during deletion -->
-    <string name="ConversationFragment_delete_for_everyone_body">بطور ایڈمن، گروپ ممبرز دیکھ سکیں گے کہ آپ نے یہ میسجز حذف کیے ہیں۔</string>
+    <plurals name="ConversationFragment_delete_for_everyone_body">
+        <item quantity="one">Signal کے تازہ ترین ورژنز پر موجود گروپ ممبرز دیکھ سکیں گے کہ آپ نے یہ میسج حذف کر دیا ہے۔</item>
+        <item quantity="other">Signal کے تازہ ترین ورژنز پر موجود گروپ ممبرز دیکھ سکیں گے کہ آپ نے یہ میسجز حذف کر دیے ہیں۔</item>
+    </plurals>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">اس ڈیوائس سے ڈیلیٹ کریں</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
@@ -652,7 +657,11 @@
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">ایک مرتبہ دیکھا جانے والا میڈیا بھیجنے کے بعد حذف کر دیا جاتا ہے</string>
     <string name="ConversationFragment_you_already_viewed_this_message">آپ یہ میسج پہلے ہی دیکھ چکے ہیں</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">آپ اس چیٹ میں خود کے لیے نوٹس شامل کر سکتے ہیں۔ اگر آپ کے اکاؤنٹ میں کوئی لنک کردہ ڈیوائسز موجود ہیں، تو نئے نوٹس ہم وقت ساز ہو جائیں گے۔</string>
-    <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d گروپ ممبروں کا ایک ہی نام ہے۔</string>
+    <!-- Text in banner to show how many people have the same name. -->
+    <plurals name="ConversationFragment__d_group_members_have_the_same_name">
+        <item quantity="one">%1$d گروپ ممبر کا ایک جیسا نام ہے۔</item>
+        <item quantity="other">%1$d گروپ ممبرز کے ایک جیسے نام ہے۔</item>
+    </plurals>
     <string name="ConversationFragment__tap_to_review">جائزہ لینے کے لئے ٹیپ کریں</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
     <string name="ConversationFragment__review_banner_body">اس فرد اور ایک اور رابطے کا نام ایک جیسا ہے</string>
@@ -1673,6 +1682,8 @@
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">گروپ میں شامل ہونے سے قاصر براہ کرم کچھ دیر بعد کوشش کریں</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">نیٹ ورک کی خرابی کا سامنا کرنا پڑا۔</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">یہ گروپ لنک فعال نہیں ہے</string>
+    <!-- Toast message shown when trying to join a group via link but the group has been ended -->
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">گروپ کی حد پوری ہو گئی ہے، گروپ میں شامل ہونے سے قاصر ہیں</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1773,6 +1784,8 @@
     <string name="MediaOverviewActivity_Files">فائلز</string>
     <string name="MediaOverviewActivity_Audio">آڈیو</string>
     <string name="MediaOverviewActivity_All">سب</string>
+    <string name="MediaOverviewActivity_Links">لنکس</string>
+    <string name="MediaOverviewActivity_link">لنک</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
         <item quantity="one">منتخب کردہ آئٹم کو حذف کریں؟</item>
         <item quantity="other">منتخب کردہ آئٹمز کو حذف کریں؟</item>
@@ -1842,6 +1855,16 @@
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">جوابات</string>
 
+    <!-- StarredMessagesFragment -->
+    <!-- Title for the starred messages screen -->
+  <!-- Removed by excludeNonTranslatables <string name="StarredMessagesActivity__starred_messages" translatable="false">Starred messages</string> -->
+    <!-- Empty state text when there are no starred messages -->
+  <!-- Removed by excludeNonTranslatables <string name="StarredMessagesFragment__no_starred_messages" translatable="false">No starred messages</string> -->
+    <!-- Empty state description when there are no starred messages -->
+  <!-- Removed by excludeNonTranslatables <string name="StarredMessagesFragment__tap_and_hold_on_a_message_to_star_it" translatable="false">Tap and hold on a message to star it.</string> -->
+    <!-- Format for starred message source label, e.g. "Alice › Book Club" -->
+  <!-- Removed by excludeNonTranslatables <string name="StarredMessages__s_chevron_s" translatable="false">%1$s \u203A %2$s</string> -->
+
     <!-- NotificationBarManager -->
     <string name="NotificationBarManager__establishing_signal_call">Signal کال قائم ہو رہی ہے</string>
     <!-- Temporary notification shown when starting the calling service -->
@@ -1876,6 +1899,12 @@
     <string name="MessageRecord_left_group">آپ نے گروپ چھوڑدیا ہے۔</string>
     <string name="MessageRecord_you_updated_group">آپ نے گروپ کی تجدید کی۔</string>
     <string name="MessageRecord_the_group_was_updated">گروپ کو اپ ڈیٹ کیا گیا تھا۔</string>
+    <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
+    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
+    <string name="MessageRecord_s_terminated_the_group">%1$s نے گروپ ختم کر دیا</string>
+    <!-- Update message shown when a group is terminated by you -->
+    <string name="MessageRecord_you_terminated_the_group">آپ نے گروپ ختم کر دیا</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">آؤٹ گوئنگ وائس کال</string>
     <!-- Update message shown when placing an outgoing 1:1 video call -->
@@ -2019,6 +2048,13 @@
     <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">آپ نے تبدیل کردیا کہ کون کون سے گروپ کی ممبرشپ کو \"%1$s\" میں ترمیم کرسکتا ہے؟</string>
     <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s نے تبدیل کردیا کہ کون کون سے گروپ کی ممبرشپ کو \"%2$s\" میں ترمیم کرسکتا ہے؟</string>
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">گروپ ممبرشپ کون ترمیم کرسکتا ہے اسے تبدیل کر کے \"%1$s\" کردیا گیا ہے۔</string>
+
+    <!-- Shown when the current user changes the member label permission. -->
+    <string name="MessageRecord_you_changed_who_can_add_member_labels_to_s">آپ نے یہ تبدیل کر دیا ہے کہ \"%1$s\" میں ممبر لیبلز کون شامل کر سکتا ہے۔</string>
+    <!-- Shown when another group member changes the member label permission. -->
+    <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s نے یہ تبدیل کر دیا ہے کہ \"%2$s\" میں ممبر لیبلز کون شامل کر سکتا ہے۔</string>
+    <!-- Shown when the member label permission is changed by an unknown admin. -->
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">ایک ایڈمن نے یہ تبدیل کر دیا ہے کہ \"%1$s\" میں ممبر لیبلز کون شامل کر سکتا ہے۔</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">آپ نے تمام ممبروں کو پیغامات بھیجنے کی اجازت دینے کے لئے گروپ کی ترتیبات کو تبدیل کردیا۔</string>
@@ -3383,6 +3419,17 @@
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">اجازت کے بغیر بیرونی ذخیرہ کو محفوظ کرنے کے قابل نہیں</string>
 
+    <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__cant_save_media">میڈیا محفوظ نہیں کیا جا سکتا</string>
+    <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__media_offloaded_message">یہ میڈیا آپ کی ڈیوائس سے آف لوڈ کر دیا گیا ہے کیونکہ \"آن ڈیوائس اسٹوریج کو بہتر بنائیں\" آن ہے۔ آپ آئٹمز کو ایک ایک کر کے ڈاؤن لوڈ کر سکتے ہیں، یا \"آن ڈیوائس اسٹوریج کو بہتر بنائیں\" کو آف کر کے تمام میڈیا کو اپنی ڈیوائس پر ڈاؤن لوڈ کر سکتے ہیں۔</string>
+    <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__cant_save_all_items">تمام آئٹمز محفوظ نہیں کیے جا سکتے</string>
+    <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
+    <string name="AttachmentSaver__some_media_offloaded_message">آپ کا منتخب کردہ کچھ میڈیا آپ کی ڈیوائس سے آف لوڈ کر دیا گیا ہے کیونکہ \"آن ڈیوائس اسٹوریج کو بہتر بنائیں\" آن ہے۔ آپ آئٹمز کو ایک ایک کر کے محفوظ کر سکتے ہیں، یا \"آن ڈیوائس اسٹوریج کو بہتر بنائیں\" کو آف کر کے تمام میڈیا کو اپنی ڈیوائس پر ڈاؤن لوڈ کر سکتے ہیں۔</string>
+    <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
+    <string name="AttachmentSaver__view_storage_settings">اسٹوریج سیٹنگز دیکھیں</string>
+
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">تلا ‎ش کر یں</string>
     <!-- Hint when searching filtered chat content -->
@@ -3589,10 +3636,14 @@
     <!-- Accessibility content description describing how a user can lock voice note recording. -->
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">آڈیو سے منسلک شدہ مواد کی لاک ریکارڈ ہو رہی ہے</string>
     <string name="conversation_activity__message_could_not_be_sent">پیغام نہیں بھیجا جاسکتا۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
+    <!-- Dialog body shown when tapping a failed message in a terminated group -->
+    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
+    <string name="conversation_activity__group_action_not_allowed_group_ended">یہ عمل دستیاب نہیں کیونکہ گروپ ختم کر دیا گیا ہے۔</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
-    <string name="conversation_activity__message_failed_to_delete_retry">Message failed to delete. Check your connection and try again.</string>
+    <string name="conversation_activity__message_failed_to_delete_retry">میسج حذف کرنے میں ناکامی۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
     <!-- Dialog body when a message failed to delete. -->
-    <string name="conversation_activity__message_failed_to_delete">Message failed to delete.</string>
+    <string name="conversation_activity__message_failed_to_delete">میسج حذف کرنے میں ناکامی۔</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">منسوخ کرنے کیلئے سلائیڈ کریں</string>
@@ -3642,6 +3693,26 @@
     <string name="ConversationUpdateItem_options">آپشنز</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">اَپ ڈیٹ</string>
+    <!-- Update item button text to show how many group updates there are. -->
+    <plurals name="CollapsedEvent__group_update">
+        <item quantity="one">%1$d group update</item>
+        <item quantity="other">%1$d group updates</item>
+    </plurals>
+    <!-- Update item button text to show how many group updates there are. -->
+    <plurals name="CollapsedEvent__chat_update">
+        <item quantity="one">%1$d chat update</item>
+        <item quantity="other">%1$d chat updates</item>
+    </plurals>
+    <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
+    <plurals name="CollapsedEvent__disappearing_timer">
+        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
+        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+    </plurals>
+    <!-- Update item button text to show how many call events are. -->
+    <plurals name="CollapsedEvent__call_event">
+        <item quantity="one">%1$d call event</item>
+        <item quantity="other">%1$d call events</item>
+    </plurals>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">چلائیں ۔۔۔ روکیں</string>
@@ -4557,6 +4628,10 @@
     <string name="conversation_selection__menu_copy">کاپی کریں</string>
     <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">حذف کریں</string>
+    <!-- Button to star a message to save it for later; Action item -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_selection__menu_star" translatable="false">Star (Labs)</string> -->
+    <!-- Button to remove the star from a message; Action item -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_selection__menu_unstar" translatable="false">Unstar (Labs)</string> -->
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">آگے</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4625,6 +4700,7 @@
     <string name="conversation__menu_view_all_media">تمام میڈیا</string>
     <string name="conversation__menu_conversation_settings">چیٹ سیٹنگز</string>
     <string name="conversation__menu_add_shortcut">ھوم سکرین میں شامل ہو گیا</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_export" translatable="false">Export (Labs)</string> -->
     <string name="conversation__menu_create_bubble">بلبلا بنائیں</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">متن کو فارمیٹ کریں</string>
@@ -4633,6 +4709,13 @@
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">رابطوں میں شامل کریں</string>
+
+    <!-- conversation export -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__exporting" translatable="false">Exporting chat…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__export_complete" translatable="false">Chat exported successfully</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__export_failed" translatable="false">Export failed</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__export_cancelled" translatable="false">Export cancelled</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__preparing" translatable="false">Preparing export…</string> -->
 
     <!-- conversation scheduled messages bar -->
 
@@ -4661,6 +4744,8 @@
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">نیا گروپ</string>
     <string name="text_secure_normal__menu_settings">ترتیبات</string>
+    <!-- Menu item in the main conversation list to view all starred messages -->
+  <!-- Removed by excludeNonTranslatables <string name="text_secure_normal__starred_messages" translatable="false">Starred messages (Labs)</string> -->
     <string name="text_secure_normal__menu_clear_passphrase">لاک</string>
     <string name="text_secure_normal__mark_all_as_read">تمام پڑھنے پر نشان لگائیں</string>
     <string name="text_secure_normal__invite_friends">دوستوں کو مدعو کریں</string>
@@ -4868,6 +4953,8 @@
     <string name="BackupDialog_delete_backups">بیک اپ حذف کریں؟</string>
     <string name="BackupDialog_disable_and_delete_all_local_backups">تمام عام بیک اپ غیر فعال اور حذف کریں؟</string>
     <string name="BackupDialog_delete_backups_statement">بیک اپ حذف کریں</string>
+    <!-- Progress dialog message shown while local backup files are being deleted -->
+    <string name="BackupDialog_deleting_local_backup">لوکل بیک اپ حذف کیا جا رہا ہے…</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">بیک اپ کو فعال کرنے کیلئے ، ایک فولڈر منتخب کریں۔ بیک اپ کو اس جگہ پر محفوظ کرلیا جائے گا۔</string>
     <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">فولڈر منتخب کریں</string>
@@ -5168,6 +5255,8 @@
     <string name="RecipientBottomSheet_remove_from_group">گروپ سے ہٹائیں</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s کو گروپ منتظم کی حیثیت سے ہٹائیں؟</string>
+    <!-- Message shown when removing an admin will also clear their member label. -->
+    <string name="RecipientBottomSheet_remove_s_as_group_admin_and_clear_member_label">%1$s کو گروپ منتظم کی حیثیت سے ہٹائیں؟ اس سے ان کا ممبر لیبل بھی ختم ہو جائے گا۔</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" اس گروپ اور اس کے ممبروں میں ترمیم کرنے کے قابل ہو جائے گا۔"</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s کو گروپ سے ہٹائیں؟</string>
@@ -5655,6 +5744,41 @@
         <item quantity="other">%1$d فولڈرز</item>
     </plurals>
 
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">چیٹ ہسٹری ایکسپورٹ کریں</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">اپنی تمام چیٹس کی مشین سے پڑھنے کے قابل JSON کاپی ایکسپورٹ کریں۔ غائب ہونے والے میسجز ایکسپورٹ نہیں کیے جائیں گے۔</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">توثیق میں ناکامی۔</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">چیٹ ہسٹری ایکسپورٹ کریں؟</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">ایک فولڈر منتخب کریں</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">فولڈر منتخب کریں</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
     <string name="ChatFoldersEducationSheet__create_folders_for_family">فیملی، دوستوں، کام اور مزید کے لیے فولڈرز تخلیق کریں</string>
@@ -5969,6 +6093,8 @@
     <string name="ConversationSettingsFragment__search">تلاش کریں</string>
     <string name="ConversationSettingsFragment__disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">آواز &amp; amp؛ اطلاعات</string>
+    <!-- Label for the starred messages option in conversation settings -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__starred_messages" translatable="false">Starred messages</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">فون رابطہ کی معلومات</string>
     <string name="ConversationSettingsFragment__view_safety_number">حفاظتی نمبر دیکھیں</string>
@@ -5995,6 +6121,19 @@
     <string name="ConversationSettingsFragment__get_badges">Signal کی سپورٹ کے ذریعے اپنی پروفائل کے لیے بیجز حاصل کریں۔ مزید جاننے کے لیے بیج پر ٹیپ کریں۔</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">یہ میڈیا ابھی تک نہیں بھیجا گیا ہے۔</string>
+    <!-- End group option in group conversation settings screen -->
+    <string name="ConversationSettingsFragment__end_group">گروپ ختم کریں</string>
+    <!-- Banner shown at the top of group settings when the group has been ended -->
+    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <!-- Archive chat option in group conversation settings screen -->
+    <string name="ConversationSettingsFragment__archive_chat">چیٹ آرکائیو کریں</string>
+    <!-- Delete chat option in group conversation settings screen -->
+    <string name="ConversationSettingsFragment__delete_chat">چیٹ حذف کریں</string>
+    <!-- Member section header for terminated groups. %1$d is the member count -->
+    <plurals name="ConversationSettingsFragment__d_former_members">
+        <item quantity="one">%1$d سابق ممبر</item>
+        <item quantity="other">%1$d سابق ممبرز</item>
+    </plurals>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">ممبران شامل کریں</string>
@@ -6005,6 +6144,16 @@
     <string name="PermissionsSettingsFragment__who_can_add_new_members">کون نئے ممبروں کو شامل کرسکتا ہے؟</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">کون اس گروپ کی معلومات میں ترمیم کرسکتا ہے؟</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">کون میسجز بھیج سکتا اور کالز کا آغاز کر سکتا ہے؟</string>
+    <!-- Label for the member labels permission button in the group permissions settings screen. -->
+    <string name="PermissionsSettingsFragment__add_member_labels">ممبر لیبلز شامل کریں</string>
+    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+    <string name="PermissionsSettingsFragment__who_can_add_member_labels">ممبر لیبلز کون شامل کر سکتا ہے؟</string>
+    <!-- Warning title shown before restricting member labels to admins only. -->
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">ممبر لیبلز کو صاف کر دیا جائے گا</string>
+    <!-- Warning body shown before restricting member labels to admins only. -->
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"اس اجازت کو صرف ایڈمنز پر تبدیل کرنے سے اس گروپ میں غیر ایڈمن افراد کی جانب سے مقررہ کردہ ممبر لیبلز صاف ہو جائیں گے۔"</string>
+    <!-- Confirm button for changing member label permission after warning. -->
+    <string name="PermissionsSettingsFragment__change_permission">اجازت تبدیل کریں</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->
@@ -6020,17 +6169,17 @@
     <!-- Label for the setting to configure custom notification sounds and vibration for a conversation -->
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
-    <string name="SoundsAndNotificationsSettingsFragment__when_muted">When muted</string>
+    <string name="SoundsAndNotificationsSettingsFragment__when_muted">میوٹ ہونے پر</string>
     <!-- Label for the calls notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls">Calls</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls">کالز</string>
     <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Ring and receive notifications when a call is started in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">میوٹ کردہ چیٹس میں کال شروع ہونے پر گھنٹی بجے اور اطلاعات موصول ہوں۔</string>
     <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Receive notifications when you are mentioned in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">میوٹ کردہ چیٹس میں خود کو مینشن کیے جانے پر اطلاعات موصول کریں۔</string>
     <!-- Label for the replies notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Replies to you</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">آپ کو دیے گئے جوابات</string>
     <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Receive notifications when someone replies to your messages in muted chats.</string>
+    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">میوٹ کردہ چیٹس میں جب کوئی آپ کے میسجز کا جواب دے تو اطلاعات موصول کریں۔</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">حال ہی میں استعمال شدہ</string>
@@ -6791,8 +6940,57 @@
     <string name="MyStories__delete_story">سٹوری ڈیلیٹ کریں؟</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">یہ سٹوری آپ اور اسے وصول کرنے والے ہر ایک کے لیے ڈیلیٹ کر دی جائے گی۔</string>
+    <!-- Message of dialog to confirm deletion of story in a terminated group -->
+    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">محفوظ کرنے سے قاصر ہیں</string>
+
+    <!-- StoryArchive -->
+    <!-- Title for the story archive screen -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__story_archive" translatable="false">Story archive (Labs)</string> -->
+    <!-- Section header in story settings -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__archive" translatable="false">Archive</string> -->
+    <!-- Label for switch to enable story archiving -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__keep_stories_in_archive" translatable="false">Keep stories in archive</string> -->
+    <!-- Description for the archive toggle -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__save_stories_after_they_expire" translatable="false">Save your sent stories after they leave the active feed.</string> -->
+    <!-- Label for archive duration preference -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__keep_stories_for" translatable="false">Keep stories for</string> -->
+    <!-- Archive duration option: forever -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__forever" translatable="false">Forever</string> -->
+    <!-- Archive duration option: 1 year -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__1_year" translatable="false">1 year</string> -->
+    <!-- Archive duration option: 6 months -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__6_months" translatable="false">6 months</string> -->
+    <!-- Archive duration option: 30 days -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__30_days" translatable="false">30 days</string> -->
+    <!-- Empty state title when no archived stories exist -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__no_archived_stories" translatable="false">No archived stories</string> -->
+    <!-- Empty state message when no archived stories exist -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__no_archived_stories_message" translatable="false">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string> -->
+    <!-- Empty state button to navigate to story settings -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__go_to_settings" translatable="false">Go to settings</string> -->
+    <!-- Label for sort order menu -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__sort_by" translatable="false">Sort by</string> -->
+    <!-- Sort order option: newest first -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__newest" translatable="false">Newest</string> -->
+    <!-- Sort order option: oldest first -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__oldest" translatable="false">Oldest</string> -->
+    <!-- Delete action in story archive multi-select bottom bar -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__delete" translatable="false">Delete</string> -->
+    <!-- Content description for selecting a story in multi-select mode -->
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__select_story" translatable="false">Select story</string> -->
+    <!-- Confirmation dialog body when deleting stories from archive -->
+    <plurals name="StoryArchive__delete_n_stories">
+        <item quantity="one">%1$d سٹوری حذف کرنی ہے؟ اسے کالعدم نہیں کیا جا سکتا۔</item>
+        <item quantity="other">%1$d سٹوریز حذف کرنی ہیں؟ اسے کالعدم نہیں کیا جا سکتا۔</item>
+    </plurals>
+    <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
+    <plurals name="StoryArchive__d_selected">
+        <item quantity="one">%1$d منتخب کیا گیا</item>
+        <item quantity="other">%1$d منتخب کیا گیا</item>
+    </plurals>
+
     <!-- Displayed at bottom of story viewer when current item has views -->
     <plurals name="StoryViewerFragment__d_views">
         <item quantity="one">%1$d ویو</item>
@@ -7742,11 +7940,11 @@
 
     <!-- CallParticipantSheet -->
     <!-- Action to mute a participant\'s audio in a group call -->
-    <string name="CallParticipantSheet__mute_audio">Mute audio</string>
+    <string name="CallParticipantSheet__mute_audio">آڈیو میوٹ کریں</string>
     <!-- Action to remove a participant from a call -->
-    <string name="CallParticipantSheet__remove_from_call">Remove from call</string>
+    <string name="CallParticipantSheet__remove_from_call">کال سے ہٹائیں</string>
     <!-- Action to view contact details for a participant -->
-    <string name="CallParticipantSheet__contact_details">Contact details</string>
+    <string name="CallParticipantSheet__contact_details">رابطہ کی تفصیلات</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -7925,65 +8123,65 @@
     <string name="TurnOnSignalBackups__toast_not_now">آپ \"سیٹنگز\" میں جا کر بیک اپس کو فعال کر سکتے ہیں</string>
 
     <!-- Title of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__title">Never lose a message</string>
+    <string name="BackupMessagesUpsell__title">کبھی کوئی میسج نہ کھوئیں</string>
     <!-- Body of Megaphone B: upsell to enable backups when user has many messages -->
-    <string name="BackupMessagesUpsell__body">Turn on Signal Secure Backups to preserve your messages and media.</string>
+    <string name="BackupMessagesUpsell__body">اپنے میسجز اور میڈیا کو محفوظ رکھنے کے لیے Signal محفوظ بیک اپس کو آن کریں۔</string>
     <!-- Primary button of Megaphone B -->
-    <string name="BackupMessagesUpsell__turn_on">Turn on</string>
+    <string name="BackupMessagesUpsell__turn_on">آن کریں</string>
     <!-- Secondary button of Megaphone B -->
-    <string name="BackupMessagesUpsell__not_now">Not now</string>
+    <string name="BackupMessagesUpsell__not_now">ابھی نہیں</string>
 
     <!-- Title of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__title">Back up all your media</string>
+    <string name="BackupMediaUpsell__title">اپنے تمام میڈیا کا بیک اپ لیں</string>
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
-    <string name="BackupMediaUpsell__body">Paid Signal Secure Backup plans preserve all your media, up to 100GB.</string>
+    <string name="BackupMediaUpsell__body">ادائیگی شدہ Signal محفوظ بیک اپس پلانز آپ کے 100GB تک کے تمام میڈیا کو محفوظ رکھتے ہیں۔</string>
     <!-- Primary button of Megaphone C -->
-    <string name="BackupMediaUpsell__upgrade">Upgrade</string>
+    <string name="BackupMediaUpsell__upgrade">اپ گریڈ</string>
     <!-- Secondary button of Megaphone C -->
-    <string name="BackupMediaUpsell__not_now">Not now</string>
+    <string name="BackupMediaUpsell__not_now">ابھی نہیں</string>
 
     <!-- Title of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__title">Save space with paid backups</string>
+    <string name="BackupStorageUpsell__title">ادائیگی شدہ بیک اپس کے ساتھ جگہ بچائیں</string>
     <!-- Body of Megaphone D: upsell backups when device storage is low -->
-    <string name="BackupStorageUpsell__body">Paid secure backup plans can save storage space by offloading media.</string>
+    <string name="BackupStorageUpsell__body">ادائیگی شدہ محفوظ بیک اپ پلانز میڈیا آف لوڈنگ کے ذریعے اسٹوریج کی جگہ بچا سکتے ہیں۔</string>
     <!-- Primary button of Megaphone D when user has free tier backups -->
-    <string name="BackupStorageUpsell__upgrade">Upgrade</string>
+    <string name="BackupStorageUpsell__upgrade">اپ گریڈ</string>
     <!-- Primary button of Megaphone D when user has no backups -->
-    <string name="BackupStorageUpsell__turn_on">Turn on</string>
+    <string name="BackupStorageUpsell__turn_on">آن کریں</string>
     <!-- Secondary button of Megaphone D -->
-    <string name="BackupStorageUpsell__not_now">Not now</string>
+    <string name="BackupStorageUpsell__not_now">ابھی نہیں</string>
 
     <!-- Title of the backup upsell bottom sheet promoting paid backup plans -->
-    <string name="BackupUpsellBottomSheet__title">Upgrade to back up all media</string>
+    <string name="BackupUpsellBottomSheet__title">تمام میڈیا کا بیک اپ لینے کے لیے اپ گریڈ کریں</string>
     <!-- Body of the backup upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__body">Paid Signal Secure Backup plans save all media you send and receive, up to a maximum of 100GB. Never lose an image or video when you get a new phone or reinstall Signal.</string>
+    <string name="BackupUpsellBottomSheet__body">Signal محفوظ بیک اپس کے ادائیگی شدہ پلانز، زیادہ سے زیادہ 100GB تک آپ کے بھیجے گئے اور موصول کیے گئے تمام میڈیا کو محفوظ کرتے ہیں۔ نیا فون لینے یا Signal دوبارہ انسٹال کرنے پر کبھی بھی کسی تصویر یا ویڈیو سے محروم نہ ہوں۔</string>
     <!-- Label for the paid plan price shown in the feature card, e.g. "$1.99/month" -->
-    <string name="BackupUpsellBottomSheet__price_per_month">%1$s/month</string>
+    <string name="BackupUpsellBottomSheet__price_per_month">%1$s/ماہ</string>
     <!-- Subtitle for the paid plan feature card -->
-    <string name="BackupUpsellBottomSheet__text_and_all_media">Text + all your media</string>
+    <string name="BackupUpsellBottomSheet__text_and_all_media">ٹیکسٹ + آپ کا تمام میڈیا</string>
     <!-- Feature bullet: full text and media backup -->
-    <string name="BackupUpsellBottomSheet__full_text_media_backup">Full text + media backup</string>
+    <string name="BackupUpsellBottomSheet__full_text_media_backup">مکمل ٹیکسٹ + میڈیا بیک اپ</string>
     <!-- Feature bullet: 100GB storage -->
-    <string name="BackupUpsellBottomSheet__storage_100gb">100GB storage</string>
+    <string name="BackupUpsellBottomSheet__storage_100gb">100GB اسٹوریج</string>
     <!-- Feature bullet: save on-device storage -->
-    <string name="BackupUpsellBottomSheet__save_on_device_storage">Save on-device storage</string>
+    <string name="BackupUpsellBottomSheet__save_on_device_storage">ڈیوائس کی اسٹوریج میں محفوظ کریں</string>
     <!-- Feature bullet: thanks for supporting Signal -->
-    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Thanks for supporting Signal</string>
+    <string name="BackupUpsellBottomSheet__thanks_for_supporting">Signal کو سپورٹ کرنے کا شکریہ</string>
     <!-- Primary button for the upsell bottom sheet. The %s is replaced by the subscription price, e.g. "$1.99/month" -->
-    <string name="BackupUpsellBottomSheet__subscribe_for">Subscribe for %1$s/month</string>
+    <string name="BackupUpsellBottomSheet__subscribe_for">%1$s/ماہ کے لیے سبسکرائب کریں</string>
     <!-- Secondary/dismiss button for the upsell bottom sheet -->
-    <string name="BackupUpsellBottomSheet__no_thanks">No thanks</string>
+    <string name="BackupUpsellBottomSheet__no_thanks">نہیں شکریہ</string>
 
     <!-- Title of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__title">You\'re all set. Start your backup now.</string>
+    <string name="BackupSetupCompleteBottomSheet__title">آپ بالکل تیار ہیں۔ ابھی اپنا بیک اپ شروع کریں۔</string>
     <!-- Body of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__body">This could take a while. You can use Signal normally while backing up.</string>
+    <string name="BackupSetupCompleteBottomSheet__body">اس میں کچھ وقت لگ سکتا ہے۔ آپ بیک اپ کے دوران Signal کو معمول کے مطابق استعمال کر سکتے ہیں۔</string>
     <!-- Label for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimize Signal storage</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Signal کی اسٹوریج کو بہتر کریں</string>
     <!-- Subtitle for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Older media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">پرانے میڈیا کو آف لوڈ کر دیا جائے گا، لیکن آپ کے بیک اپ سے کسی بھی وقت ڈاؤن لوڈ کیا جا سکتا ہے۔</string>
     <!-- Primary button on the setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__back_up_now">Back up now</string>
+    <string name="BackupSetupCompleteBottomSheet__back_up_now">اب بیک اپ کریں</string>
 
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__title">نئے آن ڈیوائس بیک اپس استعمال کریں</string>
@@ -8218,7 +8416,7 @@
 
     <!-- OnDeviceBackupsFragment -->
     <!-- Snackbar message shown after successfully updating the on-device backups recovery key. -->
-    <string name="OnDeviceBackupsFragment__backup_key_updated">بیک اَپ کیی اپ ڈیٹ کر دی گئی ہے</string>
+    <string name="OnDeviceBackupsFragment__recovery_key_updated">بحالی کی کیی کو اپ ڈیٹ کر دیا گیا ہے</string>
     <!-- Toast message shown after selecting a folder to store on-device backups. Placeholder is the selected folder. -->
     <string name="OnDeviceBackupsFragment__directory_selected">ڈائریکٹری منتخب کی گئی: %1$s</string>
 
@@ -8408,6 +8606,28 @@
     <string name="MediaNoLongerAvailableSheet__continue">جاری رکھیں</string>
     <!-- Secondary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__not_now">ابھی نہیں</string>
+
+    <!-- End group button label shown in confirmation dialogs -->
+    <string name="EndGroupDialog__end_group">گروپ ختم کریں</string>
+    <!-- Title of first end group confirmation dialog. %1$s is the group name -->
+    <string name="EndGroupDialog__end_s">\"%1$s\" ختم کریں؟</string>
+    <!-- Body of first end group confirmation dialog -->
+    <string name="EndGroupDialog__members_will_no_longer_be_able_to_send">ممبرز اب مزید گروپ میں میسجز بھیجنے یا کالز شروع کرنے کے قابل نہیں رہیں گے۔ انہیں اطلاع دی جائے گی کہ آپ نے گروپ ختم کر دیا ہے تاہم ان کی میسج ہسٹری تک رسائی برقرار رہے گی۔</string>
+    <!-- Body of second/final end group confirmation dialog -->
+    <string name="EndGroupDialog__this_will_end_the_group_permanently">اس عمل سے گروپ مستقل طور پر ختم ہو جائے گا۔ کیا آپ واقعی آگے بڑھنا چاہتے ہیں؟</string>
+    <!-- Progress message shown while ending a group -->
+    <string name="EndGroupDialog__ending_group">گروپ ختم کیا جا رہا ہے…</string>
+    <!-- Message shown when ending a group fails -->
+    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <!-- Retry button shown when ending a group fails -->
+    <string name="EndGroupDialog__try_again">دوبارہ کوشش کریں</string>
+
+    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
+    <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s نے گروپ ختم کر دیا</string>
+    <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <!-- Body of bottom sheet shown when opening a terminated group -->
+    <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">آپ اس گروپ میں مزید میسجز نہ بھیج سکتے ہیں، نہ وصول کر سکتے ہیں، اور نہ ہی کالز کر سکتے ہیں۔</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">حذف کرنے کو اب آپ کی تمام ڈیوائسز پر مطابقت پذیرکر دیا گیا ہے</string>
@@ -8662,6 +8882,26 @@
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
     <string name="RemoteBackupsSettingsFragment__scan_qr_code">QR کوڈ سکین کریں</string>
 
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">بیک اپ پر کارروائی ہو رہی ہے…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">بیک اپ تیار کیا جا رہا ہے…</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">آخری مرحلہ…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">میسجز پراسیس ہو رہے ہیں…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">میسجز پراسیس ہو رہے ہیں: %2$s کا%1$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">میڈیا اپ لوڈ ہو رہا ہے: %1$d%%</string>
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">میڈیا برآمد ہو رہا ہے: %1$d%%</string>
+
+    <!-- LocalArchiveJob -->
+    <!-- Notification title shown while media attachments are being exported during a local backup -->
+    <string name="LocalArchiveJob__exporting_media">میڈیا برآمد کیا جا رہا ہے…</string>
+
     <!-- OnDeviceBackupsImprovementsScreen -->
     <!-- Title displayed at the top of the screen explaining on-device backup improvements -->
     <string name="OnDeviceBackupsImprovementsScreen__improvements_to_on_device_backups">آن ڈیوائس بیک اپس میں بہتریاں</string>
@@ -8683,7 +8923,7 @@
     <string name="OnDeviceBackupsSettingsScreen__update">اَپ ڈیٹ</string>
 
     <!-- UnifiedOnDeviceBackupsSettingsScreen -->
-    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_backup_key">بیک اپ کیی دیکھیں</string>
+    <string name="UnifiedOnDeviceBackupsSettingsScreen__view_recovery_key">ریکوری کیی دیکھیں</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -8753,9 +8993,11 @@
     <!-- Screen body shown when upgrading on-device backups to a new recovery key (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__local_backup_upgrade_description_bold">یہ کیی آپ کے آن ڈیوائس بیک اپ کی کیی کو بدل دے گی۔</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 1). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">آپ کی بیک اپ کیی 64 حروف پر مشتمل ایک کوڈ ہے جو آپ کو Signal کو دوبارہ انسٹال کرنے پر اپنے بیک اپس کو بحال کرنے میں مدد دیتا ہے۔</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description">آپ کی بحالی کی کیی 64 حروف پر مشتمل ایک کوڈ ہے جو آپ کو Signal کو دوبارہ انسٹال کرنے پر اپنے بیک اپس کو ری اسٹور کرنے میں مدد دیتا ہے۔</string>
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">یہ آپ کی آن ڈیوائس بیک اپ کیی کے مساوی ہے۔</string>
+    <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">یہ آپ کی آن ڈیوائس بحالی کی کیی والی ہے۔</string>
+    <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">اس کیی کو استعمال کریں تاکہ:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -8773,7 +9015,7 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">یہ کیی آپ کے اکاؤنٹ اور ڈیٹا کو بحال کرنے کے لیے درکار ہوتی ہے۔ اس کیی کو کسی محفوظ جگہ پر اسٹور کریں۔ اگر آپ اسے کھو دیتے ہیں، تو آپ اپنا اکاؤنٹ بحال نہیں کر سکیں گے۔</string>
     <!-- Screen subhead shown when the recovery key is shared between Signal Secure Backups and on-device backups. -->
-    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_backup_key">یہ آپ کی آن ڈیوائس بیک اپ کیی کے مساوی ہے۔ آپ کا اکاؤنٹ اور ڈیٹا بحال کرنے کے لیے یہ ضروری ہے۔</string>
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_the_same_as_your_on_device_recovery_key">یہ کیی آپ کی آن ڈیوائس بحالی کی کیی والی ہے۔ آپ کا اکاؤنٹ اور ڈیٹا بحال کرنے کے لیے یہ ضروری ہے۔</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
@@ -9022,8 +9264,8 @@
     <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">اپنی ریکوری کیی درج کریں</string>
     <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
     <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">آپ کی ریکوری کیی 64 حروف پر مشتمل ایک کوڈ ہے جو آپ کے اکاؤنٹ اور ڈیٹا کو ریکور کرنے کے لیے درکار ہوتی ہے۔</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a backup key -->
-    <string name="EnterLocalBackupKeyScreen__no_backup_key">بیک اپ کیی نہیں ہے؟</string>
+    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
+    <string name="EnterLocalBackupKeyScreen__no_recovery_key">کوئی ریکوری کیی نہیں ہے؟</string>
     <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
     <string name="EnterLocalBackupKeyScreen__next">اگلا</string>
 
@@ -9031,6 +9273,18 @@
     <string name="RestoreLocalBackupDialog__failed_to_load_archive">آرکائیو لوڈ کرنے میں ناکامی ہوئی۔ براہ کرم کوئی دوسری ڈائریکٹری منتخب کریں۔</string>
     <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
     <string name="RestoreLocalBackupDialog__ok">ٹھیک ہے</string>
+    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
+    <string name="RestoreLocalBackupDialog__skip_restore">بحال کرنا چھوڑ دیں؟</string>
+    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
+    <string name="RestoreLocalBackupDialog__skip_restore_body">اگر آپ ابھی ری اسٹور نہیں کرتے تو آپ بعد میں بھی ری اسٹور نہیں کر سکیں گے۔ اگر آپ ری اسٹور چھوڑ دینے کے بعد بیک اپس دوبارہ فعال کرتے ہیں، تو آپ کا موجودہ بیک اپ آپ کی نئی میسجنگ ہسٹری کے ساتھ تبدیل ہو جائے گا۔</string>
+    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
+    <string name="RestoreLocalBackupDialog__skip_restore_confirm">بحال کرنا نظر انداز کریں</string>
+    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
+    <string name="RestoreLocalBackupDialog__restore_to_new_account">نئے اکاؤنٹ پر ری اسٹور کریں؟</string>
+    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
+    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">جو بیک اپ آپ ری اسٹور کر رہے ہیں وہ کسی دوسرے Signal اکاؤنٹ کے ذریعے بنایا گیا تھا۔ آپ اس بیک اپ کو نئے اکاؤنٹ پر ری اسٹور کر سکتے ہیں، لیکن آپ ان میں سے کسی گروپس کے مزید ممبر نہیں رہیں گے جو ری اسٹور کیے گئے تھے۔</string>
+    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
+    <string name="RestoreLocalBackupDialog__restore">بحال کریں</string>
 
     <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
     <string name="RestoreLocalBackupActivity__backup_restore_failed">بیک اپ ری اسٹور کرنے میں ناکامی ہو گئی</string>
@@ -9050,13 +9304,37 @@
     <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%2$s کا %1$s (%3$d%%)</string>
 
     <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Can\'t restore backup</string>
+    <string name="RestoreLocalBackupActivity__cant_restore_backup">بیک اپ کو بحال نہیں کیا جا سکتا</string>
 
     <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">آپ کا بیک اپ ری اسٹور کرتے ہوئے ایک خرابی واقع ہوئی ہے۔ آپ کا بیک اپ قابل بازیافت نہیں ہے۔ براہ کرم مدد کے لیے سپورٹ سے رابطہ کریں۔</string>
 
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Contact support</string>
+    <string name="RestoreLocalBackupActivity__contact_support">سپورٹ سے رابطہ کریں</string>
+
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">آن ڈیوائس بیک اپس فعال کریں؟</string>
+
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">آن ڈیوائس بیک اپس جاری رکھنے کے لیے، آپ کو اس اکاؤنٹ کے لیے انہیں فعال کرنا ہو گا اور اپنی نئی بحالی کی کیی درج کرنی ہو گی۔ آپ ایسا کسی بھی وقت سیٹنگز &gt; بیک اپس سے کر سکتے ہیں۔</string>
+
+    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__turn_on_now">اب آن کریں</string>
+
+    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__not_now">ابھی نہیں</string>
+
+    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
+    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">آن ڈیوائس بیک اپس کا استعمال جاری رکھنے کے لیے، اپنی ڈیوائس میں وہ فولڈر منتخب کریں جہاں نئے بیک اپس محفوظ کیے جائیں گے۔</string>
+
+    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
+    <string name="RestoreLocalBackupActivity__use_current_folder">موجودہ فولڈر استعمال کریں</string>
+
+    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
+    <string name="RestoreLocalBackupActivity__choose_new_folder">نیا فولڈر منتخب کریں</string>
+
+    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
+    <string name="RestoreLocalBackupActivity__disable_backups">بیک اپس کو غیر فعال کریں</string>
 
     <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
     <string name="SelectInstructionsSheet__select_your_backup_folder">اپنا بیک اپ فولڈر منتخب کریں</string>
@@ -9213,6 +9491,27 @@
     <string name="MainToolbar__notification_profile_content_description">اطلاعات کی پروفائل</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">پراکسی</string>
+    <!-- Accessibility label for search filter button in MainToolbar -->
+  <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
+
+    <!-- SearchFilterBottomSheet: Title -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__filter_search" translatable="false">Filter search</string> -->
+    <!-- SearchFilterBottomSheet: Start date label -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__start_date" translatable="false">Start date</string> -->
+    <!-- SearchFilterBottomSheet: End date label -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__end_date" translatable="false">End date</string> -->
+    <!-- SearchFilterBottomSheet: Author label -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__author" translatable="false">Author</string> -->
+    <!-- SearchFilterBottomSheet: Placeholder for unset date -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__not_set" translatable="false">Not set</string> -->
+    <!-- SearchFilterBottomSheet: Placeholder for unset author -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__anyone" translatable="false">Anyone</string> -->
+    <!-- SearchFilterBottomSheet: Apply button -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__apply" translatable="false">Apply</string> -->
+    <!-- SearchFilterBottomSheet: Clear button -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__clear" translatable="false">Clear</string> -->
+    <!-- SearchFilterBottomSheet: Select date dialog title -->
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__select_date" translatable="false">Select date</string> -->
 
     <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
     <string name="DefaultTopAppBar__navigate_up_content_description">اوپر نیویگیٹ کریں</string>
@@ -9473,13 +9772,17 @@
     <!-- Description explaining the group member labels feature. -->
     <string name="GroupMemberLabel__description">اس گروپ میں خود کو یا اپنے کردار کو بیان کرنے کے لیے ایک ممبر لیبل شامل کریں۔ لیبلز صرف اس گروپ میں ہی نظر آتے ہیں۔</string>
     <!-- Error message shown when the group member label fails to save due to a network error. -->
-    <string name="GroupMemberLabel__error_cant_save_no_network">Couldn\'t save label. Check your network and try again.</string>
+    <string name="GroupMemberLabel__error_cant_save_no_network">لیبل محفوظ نہیں ہو سکا۔ اپنا نیٹ ورک چیک کریں اور دوبارہ کوشش کریں۔</string>
+    <!-- Error message shown when trying to edit a member label without adequate permission. -->
+    <string name="GroupMemberLabel__error_no_edit_permission">اس گروپ میں صرف ایڈمنز ہی ممبر لیبلز شامل کر سکتے ہیں۔</string>
     <!-- Accessibility label for the button to open the group member label emoji picker. -->
     <string name="GroupMemberLabel__accessibility_select_emoji">ایموجی منتخب کریں</string>
     <!-- Accessibility label for the group member label close screen button. -->
     <string name="GroupMemberLabel__accessibility_close_screen">اسکرین بند کریں</string>
     <!-- Accessibility label for the group member label text field clear button. -->
     <string name="GroupMemberLabel__accessibility_clear_label">لیبل صاف کریں</string>
+    <!-- Section header for the list of group members who have labels set. -->
+    <string name="GroupMemberLabel__group_members_with_labels">لیبلز کے حامل گروپ ممبرز</string>
 
     <!-- Title for the member labels education sheet. -->
     <string name="MemberLabelsEducation__title">ممبر لیبلز</string>
@@ -9491,9 +9794,21 @@
     <string name="MemberLabelsEducation__edit_label">اپنے لیبل میں ترمیم کریں</string>
 
     <!-- Title for screen shown to let the user know that displaying their member label will take priority over their about text. -->
-    <string name="MemberLabelsAboutOverride__title">Member label display</string>
+    <string name="MemberLabelsAboutOverride__title">ممبر لیبل کا ڈسپلے</string>
     <!-- Body for screen shown to let the user know that displaying their member label will take priority over their about text. -->
-    <string name="MemberLabelsAboutOverride__body">In this group, your Member Label will be displayed beside your photo in place of your About.</string>
+    <string name="MemberLabelsAboutOverride__body">اس گروپ میں، آپ کا ممبر لیبل آپ کی تصویر کے ساتھ آپ کے تعارف (About) کی جگہ ڈسپلے ہو گا۔</string>
+
+    <!-- Label for internal-only section showing groups with same members -->
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
+
+    <!-- Title of the sheet shown when a local backup restore could not be completed -->
+    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+
+    <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+
+    <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
 
     <!-- EOF -->
 </resources>

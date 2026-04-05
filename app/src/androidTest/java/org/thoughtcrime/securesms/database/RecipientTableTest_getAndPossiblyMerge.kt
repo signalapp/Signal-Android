@@ -1190,16 +1190,16 @@ class RecipientTableTest_getAndPossiblyMerge {
     }
 
     fun expect(id: RecipientId, e164: String?, pni: PNI?, aci: ACI?) {
-      val recipient = Recipient.resolved(id)
+      val record = SignalDatabase.recipients.getRecord(id)
       val expected = RecipientTuple(
         e164 = e164,
         pni = pni,
         aci = aci
       )
       val actual = RecipientTuple(
-        e164 = recipient.e164.orElse(null),
-        pni = recipient.pni.orElse(null),
-        aci = recipient.aci.orElse(null)
+        e164 = record.e164,
+        pni = record.pni,
+        aci = record.aci
       )
 
       assertEquals("Recipient $id did not match expected result!", expected, actual)

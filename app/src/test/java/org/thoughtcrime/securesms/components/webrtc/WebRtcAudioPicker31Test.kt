@@ -66,10 +66,11 @@ class WebRtcAudioPicker31Test {
     pickerHidden = false
   }
 
-  private fun createDevice(type: Int, id: Int): AudioDeviceInfo {
+  private fun createDevice(type: Int, id: Int, name: String = "Device $id"): AudioDeviceInfo {
     return mockk<AudioDeviceInfo> {
       every { getType() } returns type
       every { getId() } returns id
+      every { getProductName() } returns name
     }
   }
 

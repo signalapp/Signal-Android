@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.CellServiceConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraintObserver;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.ChargingAndBatteryIsNotLowConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.ChargingConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint;
@@ -56,6 +57,7 @@ import org.thoughtcrime.securesms.migrations.AttributesMigrationJob;
 import org.thoughtcrime.securesms.migrations.AvatarColorStorageServiceMigrationJob;
 import org.thoughtcrime.securesms.migrations.AvatarIdRemovalMigrationJob;
 import org.thoughtcrime.securesms.migrations.AvatarMigrationJob;
+import org.thoughtcrime.securesms.migrations.BackfillCollapsedEventsMigrationJob;
 import org.thoughtcrime.securesms.migrations.BackfillDigestsForDuplicatesMigrationJob;
 import org.thoughtcrime.securesms.migrations.BackupJitterMigrationJob;
 import org.thoughtcrime.securesms.migrations.BackupNotificationMigrationJob;
@@ -91,6 +93,7 @@ import org.thoughtcrime.securesms.migrations.ProfileSharingUpdateMigrationJob;
 import org.thoughtcrime.securesms.migrations.QuoteThumbnailBackfillMigrationJob;
 import org.thoughtcrime.securesms.migrations.RebuildMessageSearchIndexMigrationJob;
 import org.thoughtcrime.securesms.migrations.RecheckPaymentsMigrationJob;
+import org.thoughtcrime.securesms.migrations.ReleaseChannelRecipientFixMigrationJob;
 import org.thoughtcrime.securesms.migrations.RecipientSearchMigrationJob;
 import org.thoughtcrime.securesms.migrations.ResetArchiveTierMigrationJob;
 import org.thoughtcrime.securesms.migrations.SelfRegisteredStateMigrationJob;
@@ -144,6 +147,7 @@ public final class JobManagerFactories {
       put(AutomaticSessionResetJob.KEY,                new AutomaticSessionResetJob.Factory());
       put(AvatarGroupsV1DownloadJob.KEY,               new AvatarGroupsV1DownloadJob.Factory());
       put(AvatarGroupsV2DownloadJob.KEY,               new AvatarGroupsV2DownloadJob.Factory());
+      put(BackfillCollapsedMessageJob.KEY,              new BackfillCollapsedMessageJob.Factory());
       put(BackfillDigestsForDataFileJob.KEY,           new BackfillDigestsForDataFileJob.Factory());
       put(BackupDeleteJob.KEY,                         new BackupDeleteJob.Factory());
       put(BackupMessagesJob.KEY,                       new BackupMessagesJob.Factory());
@@ -199,6 +203,7 @@ public final class JobManagerFactories {
       put(LinkedDeviceInactiveCheckJob.KEY,            new LinkedDeviceInactiveCheckJob.Factory());
       put(LocalArchiveJob.KEY,                         new LocalArchiveJob.Factory());
       put(LocalBackupJob.KEY,                          new LocalBackupJob.Factory());
+      put(LocalPlaintextArchiveJob.KEY,                new LocalPlaintextArchiveJob.Factory());
       put(LocalBackupJobApi29.KEY,                     new LocalBackupJobApi29.Factory());
       put(MarkerJob.KEY,                               new MarkerJob.Factory());
       put(MultiDeviceAttachmentBackfillMissingJob.KEY, new MultiDeviceAttachmentBackfillMissingJob.Factory());
@@ -259,6 +264,7 @@ public final class JobManagerFactories {
       put(ResumableUploadSpecJob.KEY,                  new ResumableUploadSpecJob.Factory());
       put(RequestGroupV2InfoWorkerJob.KEY,             new RequestGroupV2InfoWorkerJob.Factory());
       put(RequestGroupV2InfoJob.KEY,                   new RequestGroupV2InfoJob.Factory());
+      put(LocalBackupRestoreMediaJob.KEY,              new LocalBackupRestoreMediaJob.Factory());
       put(RestoreAttachmentJob.KEY,                    new RestoreAttachmentJob.Factory());
       put(RestoreAttachmentThumbnailJob.KEY,           new RestoreAttachmentThumbnailJob.Factory());
       put(RestoreLocalAttachmentJob.KEY,               new RestoreLocalAttachmentJob.Factory());
@@ -308,6 +314,7 @@ public final class JobManagerFactories {
       put(AvatarColorStorageServiceMigrationJob.KEY,      new AvatarColorStorageServiceMigrationJob.Factory());
       put(AvatarIdRemovalMigrationJob.KEY,                new AvatarIdRemovalMigrationJob.Factory());
       put(AvatarMigrationJob.KEY,                         new AvatarMigrationJob.Factory());
+      put(BackfillCollapsedEventsMigrationJob.KEY,        new BackfillCollapsedEventsMigrationJob.Factory());
       put(BackfillDigestsForDuplicatesMigrationJob.KEY,   new BackfillDigestsForDuplicatesMigrationJob.Factory());
       put(BackupJitterMigrationJob.KEY,                   new BackupJitterMigrationJob.Factory());
       put(BackupNotificationMigrationJob.KEY,             new BackupNotificationMigrationJob.Factory());
@@ -343,6 +350,7 @@ public final class JobManagerFactories {
       put(QuoteThumbnailBackfillMigrationJob.KEY,         new QuoteThumbnailBackfillMigrationJob.Factory());
       put(RebuildMessageSearchIndexMigrationJob.KEY,      new RebuildMessageSearchIndexMigrationJob.Factory());
       put(RecheckPaymentsMigrationJob.KEY,                new RecheckPaymentsMigrationJob.Factory());
+      put(ReleaseChannelRecipientFixMigrationJob.KEY,     new ReleaseChannelRecipientFixMigrationJob.Factory());
       put(RecipientSearchMigrationJob.KEY,                new RecipientSearchMigrationJob.Factory());
       put(ResetArchiveTierMigrationJob.KEY,               new ResetArchiveTierMigrationJob.Factory());
       put(SelfRegisteredStateMigrationJob.KEY,            new SelfRegisteredStateMigrationJob.Factory());
@@ -444,6 +452,7 @@ public final class JobManagerFactories {
       put(NotInCallConstraint.KEY,                               new NotInCallConstraint.Factory());
       put(RegisteredConstraint.KEY,                              new RegisteredConstraint.Factory());
       put(RestoreAttachmentConstraint.KEY,                       new RestoreAttachmentConstraint.Factory(application));
+      put(SealedSenderConstraint.KEY,                            new SealedSenderConstraint.Factory());
       put(SqlCipherMigrationConstraint.KEY,                      new SqlCipherMigrationConstraint.Factory(application));
       put(StickersNotDownloadingConstraint.KEY,                  new StickersNotDownloadingConstraint.Factory());
       put(WifiConstraint.KEY,                                    new WifiConstraint.Factory(application));
@@ -464,7 +473,8 @@ public final class JobManagerFactories {
                          RegisteredConstraint.Observer.INSTANCE,
                          BackupMessagesConstraintObserver.INSTANCE,
                          DeletionNotAwaitingMediaDownloadConstraint.Observer.INSTANCE,
-                         StickersNotDownloadingConstraint.Observer.INSTANCE);
+                         StickersNotDownloadingConstraint.Observer.INSTANCE,
+                         SealedSenderConstraint.Observer.INSTANCE);
   }
 
   public static List<JobMigration> getJobMigrations(@NonNull Application application) {

@@ -194,7 +194,8 @@ private fun PreJoinHeader(
         text = callStatus,
         style = MaterialTheme.typography.bodyMedium,
         color = Color.White,
-        modifier = Modifier.padding(top = 8.dp)
+        textAlign = TextAlign.Center,
+        modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp)
       )
     }
   }

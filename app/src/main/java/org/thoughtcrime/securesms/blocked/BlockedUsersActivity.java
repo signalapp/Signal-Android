@@ -124,7 +124,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
 
     if (resolvedRecipient.isPresent() && resolvedRecipient.get().isGroup()) {
       Recipient recipient = resolvedRecipient.get();
-      if (SignalDatabase.groups().isActive(recipient.requireGroupId())) {
+      if (SignalDatabase.groups().isMember(recipient.requireGroupId())) {
         builder.setTitle(getString(R.string.BlockUnblockDialog_block_and_leave_s, displayName));
         builder.setMessage(R.string.BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates);
       } else {

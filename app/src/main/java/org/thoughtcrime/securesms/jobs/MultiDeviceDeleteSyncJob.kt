@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData
 import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData.AttachmentDelete
 import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData.ThreadDelete
@@ -45,6 +46,7 @@ class MultiDeviceDeleteSyncJob private constructor(
   private var data: DeleteSyncJobData,
   parameters: Parameters = Parameters.Builder()
     .addConstraint(NetworkConstraint.KEY)
+    .addConstraint(SealedSenderConstraint.KEY)
     .setMaxAttempts(Parameters.UNLIMITED)
     .setLifespan(1.days.inWholeMilliseconds)
     .build()

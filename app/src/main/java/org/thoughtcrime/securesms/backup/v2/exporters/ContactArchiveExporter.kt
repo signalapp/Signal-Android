@@ -7,6 +7,8 @@ package org.thoughtcrime.securesms.backup.v2.exporters
 
 import android.database.Cursor
 import okio.ByteString.Companion.toByteString
+import org.signal.archive.proto.Contact
+import org.signal.archive.proto.Self
 import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
@@ -18,8 +20,6 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.signal.core.util.toByteArray
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
-import org.thoughtcrime.securesms.backup.v2.proto.Contact
-import org.thoughtcrime.securesms.backup.v2.proto.Self
 import org.thoughtcrime.securesms.backup.v2.util.clampToValidBackupRange
 import org.thoughtcrime.securesms.backup.v2.util.isValidUsername
 import org.thoughtcrime.securesms.backup.v2.util.toRemote

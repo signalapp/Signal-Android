@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.backup.v2.proto.GroupCall;
+import org.signal.archive.proto.GroupCall;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.models.ServiceId;

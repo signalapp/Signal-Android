@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
+import org.signal.core.models.ServiceId;
+import org.signal.core.models.ServiceId.ACI;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.storageservice.storage.protos.groups.AccessControl;
 import org.signal.storageservice.storage.protos.groups.Member;
@@ -13,8 +15,6 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMem
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.storage.protos.groups.local.EnabledState;
-import org.signal.core.models.ServiceId;
-import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceIds;
 
 import java.util.ArrayList;
@@ -323,6 +323,8 @@ public final class DecryptedGroupUtil {
 
     applyModifyAddFromInviteLinkAccessControlAction(builder, change);
 
+    applyModifyMemberLabelAccessControlAction(builder, change);
+
     applyAddRequestingMembers(builder, change.newRequestingMembers);
 
     applyDeleteRequestingMembers(builder, change.deleteRequestingMembers);
@@ -338,6 +340,8 @@ public final class DecryptedGroupUtil {
     applyPromotePendingPniAciMemberActions(builder, change.promotePendingPniAciMembers);
 
     DecryptedGroupExtensions.setModifyMemberLabelActions(builder, change.modifyMemberLabels);
+
+    applyTerminateGroup(builder, change);
 
     return builder.build();
   }
@@ -521,6 +525,21 @@ public final class DecryptedGroupUtil {
     if (newAccessLevel != AccessControl.AccessRequired.UNKNOWN) {
       AccessControl.Builder accessControlBuilder = builder.accessControl != null ? builder.accessControl.newBuilder() : new AccessControl.Builder();
       builder.accessControl(accessControlBuilder.addFromInviteLink(newAccessLevel).build());
+    }
+  }
+
+  private static void applyModifyMemberLabelAccessControlAction(DecryptedGroup.Builder builder, DecryptedGroupChange change) {
+    AccessControl.AccessRequired newAccessLevel = change.newMemberLabelAccess;
+
+    if (newAccessLevel != AccessControl.AccessRequired.UNKNOWN) {
+      AccessControl.Builder accessControlBuilder = builder.accessControl != null ? builder.accessControl.newBuilder() : new AccessControl.Builder();
+      builder.accessControl(accessControlBuilder.memberLabel(newAccessLevel).build());
+    }
+  }
+
+  private static void applyTerminateGroup(DecryptedGroup.Builder builder, DecryptedGroupChange change) {
+    if (change.terminateGroup) {
+      builder.terminated(true);
     }
   }
 

@@ -8,6 +8,8 @@ import androidx.core.util.Consumer;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -41,6 +43,19 @@ final class AddGroupDetailsRepository {
       }
 
       consumer.accept(members);
+    });
+  }
+
+  void getGroupsWithSameMembers(@NonNull Set<RecipientId> memberIds, Consumer<List<Recipient>> consumer) {
+    SignalExecutors.BOUNDED.execute(() -> {
+      List<GroupRecord> groups     = SignalDatabase.groups().getGroupsWithExactMembers(memberIds);
+      List<Recipient>   recipients = new ArrayList<>(groups.size());
+
+      for (GroupRecord group : groups) {
+        recipients.add(Recipient.resolved(group.getRecipientId()));
+      }
+
+      consumer.accept(recipients);
     });
   }
 

@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -83,6 +84,7 @@ public class ResendMessageJob extends BaseJob {
                                  .setLifespan(TimeUnit.DAYS.toMillis(1))
                                  .setMaxAttempts(Parameters.UNLIMITED)
                                  .addConstraint(NetworkConstraint.KEY)
+                                 .addConstraint(SealedSenderConstraint.KEY)
                                  .build());
   }
 

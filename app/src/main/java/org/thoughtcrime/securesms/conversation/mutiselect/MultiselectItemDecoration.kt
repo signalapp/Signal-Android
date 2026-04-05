@@ -273,6 +273,9 @@ class MultiselectItemDecoration(
       val parts: MultiselectCollection = child.conversationMessage.multiselectCollection
 
       parts.toSet().forEach {
+        if (it is MultiselectPart.CollapsedHead) {
+          return@forEach
+        }
         val topBoundary = child.getTopBoundaryOfMultiselectPart(it)
         val bottomBoundary = child.getBottomBoundaryOfMultiselectPart(it)
         if (drawCircleBehindSelector) {

@@ -106,7 +106,7 @@ public abstract class FrameSeqDecoder<R extends Reader, W extends Writer> {
         Bitmap ret = null;
         Iterator<Bitmap> iterator = cacheBitmaps.iterator();
         while (iterator.hasNext()) {
-            int reuseSize = width * height * 4;
+            long reuseSize = (long) width * height * 4;
             ret = iterator.next();
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

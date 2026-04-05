@@ -33,6 +33,11 @@ object BenchmarkMetrics {
       TraceSectionMetric("DataMessageProcessor#postProcess", Mode.Average)
     )
 
+  val messageDecryptor: List<TraceSectionMetric>
+    get() = listOf(
+      TraceSectionMetric("MessageDecryptor#cipherDecrypt", Mode.Average),
+    )
+
   val messageContentProcessor: List<TraceSectionMetric>
     get() = listOf(
       TraceSectionMetric("MessageContentProcessor#handleMessage", Mode.Average)
@@ -51,6 +56,7 @@ object BenchmarkMetrics {
   val threadDeletion: List<TraceSectionMetric>
     get() = listOf(
       TraceSectionMetric("ThreadTable#deleteConversations", Mode.Sum),
-      TraceSectionMetric("MessageTable#deleteMessagesInThread", Mode.Sum)
+      TraceSectionMetric("MessageTable#deleteMessagesInThread", Mode.Sum),
+      TraceSectionMetric("deleteMessages", Mode.Sum)
     )
 }

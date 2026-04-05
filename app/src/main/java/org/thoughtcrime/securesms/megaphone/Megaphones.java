@@ -127,18 +127,22 @@ public final class Megaphones {
       put(Event.TURN_OFF_CENSORSHIP_CIRCUMVENTION, shouldShowTurnOffCircumventionMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(7)) : NEVER);
       put(Event.REMOTE_MEGAPHONE, shouldShowRemoteMegaphone(records) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(1)) : NEVER);
       put(Event.LINKED_DEVICE_INACTIVE, shouldShowLinkedDeviceInactiveMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(3)): NEVER);
-      put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
-      put(Event.SET_UP_YOUR_USERNAME, shouldShowSetUpYourUsernameMegaphone(records) ? ALWAYS : NEVER);
 
-      // Feature-introduction megaphones should *probably* be added below this divider
-      put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
-      put(Event.PNP_LAUNCH, shouldShowPnpLaunchMegaphone() ? ALWAYS : NEVER);
+      // Specifically putting backup reminders here, above PIN reminders
       put(Event.BACKUP_LOW_STORAGE_UPSELL, shouldShowBackupLowStorageUpsell(context) ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60), TimeUnit.DAYS.toMillis(120)) : NEVER);
       put(Event.BACKUP_MEDIA_SIZE_UPSELL, shouldShowBackupMediaSizeUpsell() ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60), TimeUnit.DAYS.toMillis(120)) : NEVER);
       put(Event.BACKUP_MESSAGE_COUNT_UPSELL, shouldShowBackupMessageCountUpsell(context) ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60)) : NEVER);
       put(Event.BACKUPS_GENERIC_UPSELL, shouldShowGenericBackupsMegaphone(context) ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60)) : NEVER);
       put(Event.VERIFY_BACKUP_KEY, new VerifyBackupKeyReminderSchedule());
       put(Event.USE_NEW_ON_DEVICE_BACKUPS, shouldShowUseNewOnDeviceBackupsMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(14)) : NEVER);
+
+      // The Great Wall of PIN Reminder -- megaphones below this may not be seen by users who never do reminders
+      put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
+
+      // Feature-introduction megaphones should *probably* be added below this divider
+      put(Event.SET_UP_YOUR_USERNAME, shouldShowSetUpYourUsernameMegaphone(records) ? ALWAYS : NEVER);
+      put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
+      put(Event.PNP_LAUNCH, shouldShowPnpLaunchMegaphone() ? ALWAYS : NEVER);
     }};
   }
 
@@ -609,7 +613,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowUseNewOnDeviceBackupsMegaphone() {
-    return Environment.Backups.isNewFormatSupportedForLocalBackup() && SignalStore.settings().isBackupEnabled();
+    return Environment.Backups.isNewFormatSupportedForLocalBackup() && SignalStore.settings().isBackupEnabled() && (RemoteConfig.upgradeBackupsMegaphone() || RemoteConfig.internalUser());
   }
 
   private static boolean shouldShowGrantFullScreenIntentPermission(@NonNull Context context) {

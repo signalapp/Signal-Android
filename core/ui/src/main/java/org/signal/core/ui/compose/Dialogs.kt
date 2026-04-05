@@ -53,6 +53,7 @@ import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -159,6 +160,37 @@ object Dialogs {
     onDeny: () -> Unit = {},
     modifier: Modifier = Modifier,
     dismiss: String = NoDismiss,
+    confirmColor: Color = Color.Unspecified,
+    dismissColor: Color = Color.Unspecified,
+    properties: DialogProperties = DialogProperties()
+  ) {
+    SimpleAlertDialog(
+      title = AnnotatedString(title),
+      body = AnnotatedString(body),
+      confirm = AnnotatedString(confirm),
+      onConfirm = onConfirm,
+      onDismiss = onDismiss,
+      onDismissRequest = onDismissRequest,
+      onDeny = onDeny,
+      modifier = modifier,
+      dismiss = AnnotatedString(dismiss),
+      confirmColor = confirmColor,
+      dismissColor = dismissColor,
+      properties = properties
+    )
+  }
+
+  @Composable
+  fun SimpleAlertDialog(
+    title: AnnotatedString,
+    body: AnnotatedString,
+    confirm: AnnotatedString,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit = {},
+    onDismissRequest: () -> Unit = onDismiss,
+    onDeny: () -> Unit = {},
+    modifier: Modifier = Modifier,
+    dismiss: AnnotatedString = AnnotatedString(NoDismiss),
     confirmColor: Color = Color.Unspecified,
     dismissColor: Color = Color.Unspecified,
     properties: DialogProperties = DialogProperties()
@@ -326,6 +358,64 @@ object Dialogs {
         ) {
           Spacer(modifier = Modifier.size(32.dp))
           CircularProgressIndicator()
+          Spacer(modifier = Modifier.size(12.dp))
+          Text(
+            text = message,
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurface
+          )
+          if (caption.isNotEmpty()) {
+            Spacer(modifier = Modifier.size(8.dp))
+            Text(
+              text = caption,
+              textAlign = TextAlign.Center,
+              style = MaterialTheme.typography.bodySmall,
+              color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+          }
+        }
+      },
+      modifier = Modifier.width(200.dp)
+    )
+  }
+
+  /**
+   * Customizable progress dialog that can be dismissed while showing [message]
+   * and [caption]. When [indeterminate] is true a circular spinner is shown,
+   * otherwise a linear progress bar driven by [progress] is shown.
+   */
+  @Composable
+  fun ProgressDialog(
+    message: String,
+    caption: String = "",
+    dismiss: String,
+    onDismiss: () -> Unit,
+    indeterminate: Boolean,
+    progress: () -> Float
+  ) {
+    BaseAlertDialog(
+      onDismissRequest = {},
+      confirmButton = {},
+      dismissButton = {
+        TextButton(
+          onClick = onDismiss,
+          modifier = Modifier.fillMaxWidth(),
+          content = { Text(text = dismiss) }
+        )
+      },
+      text = {
+        Column(
+          verticalArrangement = Arrangement.Center,
+          horizontalAlignment = Alignment.CenterHorizontally,
+          modifier = Modifier.fillMaxWidth()
+        ) {
+          Spacer(modifier = Modifier.size(32.dp))
+          if (indeterminate) {
+            CircularProgressIndicator()
+          } else {
+            CircularProgressIndicator(progress = progress)
+          }
           Spacer(modifier = Modifier.size(12.dp))
           Text(
             text = message,
@@ -603,6 +693,35 @@ object Dialogs {
     onNeutral: () -> Unit,
     properties: DialogProperties = DialogProperties()
   ) {
+    AdvancedAlertDialog(
+      title = AnnotatedString(title),
+      body = AnnotatedString(body),
+      positive = AnnotatedString(positive),
+      neutral = AnnotatedString(neutral),
+      negative = AnnotatedString(negative),
+      onPositive = onPositive,
+      onNegative = onNegative,
+      onNeutral = onNeutral,
+      properties = properties
+    )
+  }
+
+  /**
+   * Alert dialog that supports three options.
+   * If you only need two options (confirm/dismiss), use [SimpleAlertDialog] instead.
+   */
+  @Composable
+  fun AdvancedAlertDialog(
+    title: AnnotatedString = AnnotatedString(""),
+    body: AnnotatedString = AnnotatedString(""),
+    positive: AnnotatedString,
+    neutral: AnnotatedString,
+    negative: AnnotatedString,
+    onPositive: () -> Unit,
+    onNegative: () -> Unit,
+    onNeutral: () -> Unit,
+    properties: DialogProperties = DialogProperties()
+  ) {
     Dialog(
       onDismissRequest = onNegative,
       properties = DialogProperties(
@@ -743,6 +862,22 @@ private fun IndeterminateProgressDialogMessagePreview() {
 private fun IndeterminateProgressDialogCancellablePreview() {
   Previews.Preview {
     Dialogs.IndeterminateProgressDialog("Completing...", "Do not close app", "Cancel") {}
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun ProgressDialogIndeterminatePreview() {
+  Previews.Preview {
+    Dialogs.ProgressDialog("Exporting...", "Do not close app", "Cancel", {}, indeterminate = true, progress = { 0f })
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun ProgressDialogDeterminatePreview() {
+  Previews.Preview {
+    Dialogs.ProgressDialog("Exporting...", "Do not close app", "Cancel", {}, indeterminate = false, progress = { 0.6f })
   }
 }
 

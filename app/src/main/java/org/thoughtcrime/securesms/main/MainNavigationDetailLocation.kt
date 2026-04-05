@@ -14,6 +14,7 @@ import kotlinx.serialization.Transient
 import kotlinx.serialization.json.Json
 import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.conversation.ConversationArgs
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 
@@ -67,7 +68,14 @@ sealed class MainNavigationDetailLocation : Parcelable {
     }
 
     @Serializable
-    data class MessageDetails(val recipientId: RecipientId, val messageId: Long) : Chats() {
+    data class MessageDetails(val recipientId: RecipientId, val messageId: MessageId) : Chats() {
+      @Transient
+      @IgnoredOnParcel
+      override val controllerKey: RecipientId = recipientId
+    }
+
+    @Serializable
+    data class ConversationSettings(val recipientId: RecipientId) : Chats() {
       @Transient
       @IgnoredOnParcel
       override val controllerKey: RecipientId = recipientId

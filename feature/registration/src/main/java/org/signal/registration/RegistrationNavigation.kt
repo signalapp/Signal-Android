@@ -8,9 +8,13 @@
 package org.signal.registration
 
 import android.os.Parcelable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -47,9 +51,10 @@ import org.signal.registration.screens.pinentry.PinEntryForRegistrationLockViewM
 import org.signal.registration.screens.pinentry.PinEntryForSmsBypassViewModel
 import org.signal.registration.screens.pinentry.PinEntryForSvrRestoreViewModel
 import org.signal.registration.screens.pinentry.PinEntryScreen
-import org.signal.registration.screens.restore.RestoreViaQrScreen
-import org.signal.registration.screens.restore.RestoreViaQrScreenEvents
-import org.signal.registration.screens.restore.RestoreViaQrState
+import org.signal.registration.screens.quickrestore.QuickRestoreQrScreen
+import org.signal.registration.screens.quickrestore.QuickRestoreQrViewModel
+import org.signal.registration.screens.restoreselection.ArchiveRestoreSelectionScreen
+import org.signal.registration.screens.restoreselection.ArchiveRestoreSelectionViewModel
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 import org.signal.registration.screens.verificationcode.VerificationCodeScreen
@@ -61,13 +66,14 @@ import org.signal.registration.screens.welcome.WelcomeScreenEvents
  * Navigation routes for the registration flow.
  * Using @Serializable and NavKey for type-safe navigation with Navigation 3.
  */
+@Serializable
 @Parcelize
 sealed interface RegistrationRoute : NavKey, Parcelable {
   @Serializable
   data object Welcome : RegistrationRoute
 
   @Serializable
-  data class Permissions(val forRestore: Boolean = false) : RegistrationRoute
+  data class Permissions(val nextRoute: RegistrationRoute) : RegistrationRoute
 
   @Serializable
   data object PhoneNumberEntry : RegistrationRoute
@@ -76,7 +82,7 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object CountryCodePicker : RegistrationRoute
 
   @Serializable
-  data class VerificationCodeEntry(val session: NetworkController.SessionMetadata, val e164: String) : RegistrationRoute
+  data object VerificationCodeEntry : RegistrationRoute
 
   @Serializable
   data class Captcha(val session: NetworkController.SessionMetadata) : RegistrationRoute
@@ -100,10 +106,16 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object PinCreate : RegistrationRoute
 
   @Serializable
-  data object Restore : RegistrationRoute
+  data object ArchiveRestoreSelection : RegistrationRoute
 
   @Serializable
-  data object RestoreViaQr : RegistrationRoute
+  data object ChooseRestoreOptionBeforeRegistration : RegistrationRoute
+
+  @Serializable
+  data object ChooseRestoreOptionAfterRegistration : RegistrationRoute
+
+  @Serializable
+  data object QuickRestoreQrScan : RegistrationRoute
 
   @Serializable
   data object Transfer : RegistrationRoute
@@ -142,6 +154,13 @@ fun RegistrationNavHost(
 
   val registrationState by viewModel.state.collectAsStateWithLifecycle()
   val permissions: MultiplePermissionsState = permissionsState ?: rememberMultiplePermissionsState(viewModel.getRequiredPermissions())
+
+  if (registrationState.isRestoringNavigationState) {
+    Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+      CircularProgressIndicator()
+    }
+    return
+  }
 
   val entryProvider = entryProvider {
     navigationEntries(
@@ -203,9 +222,9 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     WelcomeScreen(
       onEvent = { event ->
         when (event) {
-          WelcomeScreenEvents.Continue -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(forRestore = false))
-          WelcomeScreenEvents.DoesNotHaveOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Restore)
-          WelcomeScreenEvents.HasOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(forRestore = true))
+          WelcomeScreenEvents.Continue -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(nextRoute = RegistrationRoute.PhoneNumberEntry))
+          WelcomeScreenEvents.HasOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(nextRoute = RegistrationRoute.QuickRestoreQrScan))
+          WelcomeScreenEvents.DoesNotHaveOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(nextRoute = RegistrationRoute.ChooseRestoreOptionBeforeRegistration))
         }
       }
     )
@@ -216,11 +235,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     PermissionsScreen(
       permissionsState = permissionsState,
       onProceed = {
-        if (key.forRestore) {
-          parentEventEmitter.navigateTo(RegistrationRoute.RestoreViaQr)
-        } else {
-          parentEventEmitter.navigateTo(RegistrationRoute.PhoneNumberEntry)
-        }
+        parentEventEmitter.navigateTo(key.nextRoute)
       }
     )
   }
@@ -399,29 +414,39 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     )
   }
 
-  entry<RegistrationRoute.Restore> {
+  // -- Archive Restore Selection Screen
+  entry<RegistrationRoute.ArchiveRestoreSelection> {
+    val viewModel: ArchiveRestoreSelectionViewModel = viewModel(
+      factory = ArchiveRestoreSelectionViewModel.Factory(
+        repository = registrationRepository,
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    ArchiveRestoreSelectionScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  entry<RegistrationRoute.ChooseRestoreOptionAfterRegistration> {
     // TODO: Implement RestoreScreen
   }
 
-  entry<RegistrationRoute.RestoreViaQr> {
-    RestoreViaQrScreen(
-      state = RestoreViaQrState(),
-      onEvent = { event ->
-        when (event) {
-          RestoreViaQrScreenEvents.RetryQrCode -> {
-            // TODO: Retry QR code generation
-          }
-          RestoreViaQrScreenEvents.Cancel -> {
-            parentEventEmitter.navigateBack()
-          }
-          RestoreViaQrScreenEvents.UseProxy -> {
-            // TODO: Navigate to proxy settings
-          }
-          RestoreViaQrScreenEvents.DismissError -> {
-            // TODO: Clear error state
-          }
-        }
-      }
+  entry<RegistrationRoute.QuickRestoreQrScan> {
+    val viewModel: QuickRestoreQrViewModel = viewModel(
+      factory = QuickRestoreQrViewModel.Factory(
+        repository = registrationRepository,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    QuickRestoreQrScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
     )
   }
 

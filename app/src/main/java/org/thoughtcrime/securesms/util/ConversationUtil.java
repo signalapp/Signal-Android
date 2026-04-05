@@ -77,14 +77,14 @@ public final class ConversationUtil {
   /**
    * Synchronously pushes a dynamic shortcut for the given recipient.
    * <p>
-   * The recipient is given a high ranking with the intention of not appearing immediately in results.
+   * The recipient is given the best ranking (0) so that the OS treats this as a high-priority
+   * conversation for share sheet ordering.
    *
    * @return True if it succeeded, or false if it was rate-limited.
    */
   @WorkerThread
   public static boolean pushShortcutForRecipientSync(@NonNull Context context, @NonNull Recipient recipient, @NonNull Direction direction ) {
-    List<ShortcutInfoCompat> shortcuts  = ShortcutManagerCompat.getDynamicShortcuts(context);
-    return pushShortcutForRecipientInternal(context, recipient, shortcuts.size(), direction);
+    return pushShortcutForRecipientInternal(context, recipient, 0, direction);
   }
 
   /**

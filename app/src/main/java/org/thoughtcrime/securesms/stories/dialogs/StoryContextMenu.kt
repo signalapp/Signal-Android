@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentSaver
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
@@ -40,14 +41,26 @@ object StoryContextMenu {
 
   private val TAG = Log.tag(StoryContextMenu::class.java)
 
-  fun delete(context: Context, records: Set<MessageRecord>): Single<Boolean> {
-    return DeleteDialog.show(
-      context = context,
-      messageRecords = records,
-      title = context.getString(R.string.MyStories__delete_story),
-      message = context.getString(R.string.MyStories__this_story_will_be_deleted),
-      forceRemoteDelete = true
-    ).map { (_, deletedThread) -> deletedThread }
+  fun delete(context: Context, record: MessageRecord): Single<Boolean> {
+    val recipient = record.toRecipient
+    val isGroupTerminated = recipient.isPushV2Group && !SignalDatabase.groups.isActive(recipient.requireGroupId())
+
+    return if (isGroupTerminated) {
+      DeleteDialog.show(
+        context = context,
+        messageRecords = setOf(record),
+        title = context.getString(R.string.MyStories__delete_story),
+        message = context.getString(R.string.MyStories__delete_story_terminated_group)
+      ).map { (_, deletedThread) -> deletedThread }
+    } else {
+      DeleteDialog.show(
+        context = context,
+        messageRecords = setOf(record),
+        title = context.getString(R.string.MyStories__delete_story),
+        message = context.getString(R.string.MyStories__this_story_will_be_deleted),
+        forceRemoteDelete = true
+      ).map { (_, deletedThread) -> deletedThread }
+    }
   }
 
   suspend fun save(fragment: Fragment, messageRecord: MessageRecord) {

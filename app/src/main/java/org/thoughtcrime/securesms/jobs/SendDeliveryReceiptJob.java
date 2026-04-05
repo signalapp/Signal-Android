@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -52,6 +53,7 @@ public class SendDeliveryReceiptJob extends BaseJob {
   public SendDeliveryReceiptJob(@NonNull RecipientId recipientId, long messageSentTimestamp, @NonNull MessageId messageId) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
+                           .addConstraint(SealedSenderConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
                            .setQueue(recipientId.toQueueKey())
