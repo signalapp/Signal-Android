@@ -72,6 +72,7 @@ public final class MediaConverter {
     private @VideoCodec String mVideoCodec = VIDEO_CODEC_H264;
     private int mAudioBitrate = 128000; // 128Kbps
     private boolean mAllowAudioRemux = false;
+    private boolean mSkipAudio = false;
 
     private Listener mListener;
     private boolean mCancelled;
@@ -144,6 +145,10 @@ public final class MediaConverter {
         mAllowAudioRemux = allow;
     }
 
+    public void setSkipAudio(boolean skipAudio) {
+        mSkipAudio = skipAudio;
+    }
+
     /**
      * @return The total content size of the MP4 mdat box.
      */
@@ -213,7 +218,7 @@ public final class MediaConverter {
             muxer = mOutput.createMuxer();
 
             videoTrackConverter = VideoTrackConverter.create(mInput, mTimeFrom, mTimeTo, mVideoResolution, mVideoBitrate, mVideoCodec, excludedDecoders);
-            audioTrackConverter = AudioTrackConverter.create(mInput, mTimeFrom, mTimeTo, mAudioBitrate, mAllowAudioRemux && muxer.supportsAudioRemux());
+            audioTrackConverter = mSkipAudio ? null : AudioTrackConverter.create(mInput, mTimeFrom, mTimeTo, mAudioBitrate, mAllowAudioRemux && muxer.supportsAudioRemux());
 
             if (videoTrackConverter == null && audioTrackConverter == null) {
                 throw new EncodingException("No video and audio tracks");

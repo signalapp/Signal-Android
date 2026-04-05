@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:viewBindingIgnore="true"
     android:layout_width="match_parent"
@@ -15,5 +16,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/mute_video_button"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/circle_tintable"
+        android:backgroundTint="#99000000"
+        android:contentDescription="@string/media_preview__mute_video_title"
+        android:scaleType="centerInside"
+        android:padding="12dp"
+        app:srcCompat="@drawable/symbol_speaker_slash_24"
+        android:tint="@color/core_white"
+        android:elevation="4dp"
+        tools:visibility="visible" />
 
 </FrameLayout>

@@ -76,6 +76,7 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
 
     player = view.findViewById(R.id.video_player)
     hud = view.findViewById(R.id.video_editor_hud)
+    val muteButton: android.widget.ImageButton = view.findViewById(R.id.mute_video_button)
 
     uri = requireArguments().getParcelable(KEY_URI)!!
     isVideoGif = requireArguments().getBoolean(KEY_IS_VIDEO_GIF)
@@ -87,8 +88,28 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
 
     hud.visible = !slide.isVideoGif
 
+    // Setup mute button with proper state management
+    muteButton.setOnClickListener {
+      try {
+        if (player.isMuted()) {
+          player.unmute()
+        } else {
+          player.mute()
+        }
+        updateMuteButtonIcon(muteButton)
+        updateMuteState(player.isMuted())
+      } catch (e: Exception) {
+        Log.e(TAG, "Error toggling mute", e)
+      }
+    }
+
     if (slide.isVideoGif) {
       player.setPlayerCallback(object : PlayerCallback {
+        override fun onReady() {
+          muteButton.visibility = if (player.hasAudioTrack()) View.VISIBLE else View.GONE
+          updateMuteButtonIcon(muteButton)
+        }
+
         override fun onPlaying() {
           controller.onPlayerReady()
         }
@@ -115,6 +136,8 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
 
       player.setPlayerCallback(object : PlayerCallback {
         override fun onReady() {
+          muteButton.visibility = if (player.hasAudioTrack()) View.VISIBLE else View.GONE
+          updateMuteButtonIcon(muteButton)
           controller.onPlayerReady()
         }
 
@@ -293,6 +316,20 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
       val milliseconds = position.microseconds.inWholeMilliseconds
       player.playbackPosition = milliseconds
     }
+  }
+
+  private fun updateMuteButtonIcon(button: android.widget.ImageButton) {
+    if (player.isMuted()) {
+      button.setImageResource(R.drawable.symbol_speaker_slash_24)
+    } else {
+      button.setImageResource(R.drawable.symbol_speaker_24)
+    }
+  }
+
+  private fun updateMuteState(isMuted: Boolean) {
+    val currentData = (sharedViewModel.getEditorState(uri) as? VideoTrimData) ?: VideoTrimData()
+    val updatedData = currentData.copy(isMuted = isMuted)
+    sharedViewModel.setEditorState(uri, updatedData)
   }
 
   interface Controller {

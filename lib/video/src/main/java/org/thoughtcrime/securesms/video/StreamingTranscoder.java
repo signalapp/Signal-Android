@@ -42,6 +42,7 @@ public final class StreamingTranscoder {
   private final           long               fileSizeEstimate;
   private final @Nullable TranscoderOptions  options;
   private final           boolean            allowAudioRemux;
+  private final           boolean            removeAudio;
 
   /**
    * @param upperSizeLimit A upper size to transcode to. The actual output size can be up to 10% smaller.
@@ -50,12 +51,14 @@ public final class StreamingTranscoder {
                              @Nullable TranscoderOptions options,
                              @NonNull TranscodingPreset preset,
                              long upperSizeLimit,
-                             boolean allowAudioRemux)
+                             boolean allowAudioRemux,
+                             boolean removeAudio)
       throws IOException, VideoSourceException
   {
     this.dataSource = dataSource;
     this.options    = options;
     this.allowAudioRemux = allowAudioRemux;
+    this.removeAudio = removeAudio;
 
     final MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
     try {
@@ -84,6 +87,20 @@ public final class StreamingTranscoder {
     this.fileSizeEstimate   = targetQuality.getByteCountEstimate();
   }
 
+  /**
+   * Convenience overload without removeAudio parameter (defaults to false).
+   * @param upperSizeLimit A upper size to transcode to. The actual output size can be up to 10% smaller.
+   */
+  public StreamingTranscoder(@NonNull MediaDataSource dataSource,
+                             @Nullable TranscoderOptions options,
+                             @NonNull TranscodingPreset preset,
+                             long upperSizeLimit,
+                             boolean allowAudioRemux)
+      throws IOException, VideoSourceException
+  {
+    this(dataSource, options, preset, upperSizeLimit, allowAudioRemux, false);
+  }
+
   private StreamingTranscoder(@NonNull MediaDataSource dataSource,
                              @Nullable TranscoderOptions options,
                              String codec,
@@ -96,6 +113,7 @@ public final class StreamingTranscoder {
     this.dataSource      = dataSource;
     this.options         = options;
     this.allowAudioRemux = allowAudioRemux;
+    this.removeAudio = false;
 
     final MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
     try {
@@ -183,6 +201,7 @@ public final class StreamingTranscoder {
     converter.setVideoBitrate(targetQuality.getTargetVideoBitRate());
     converter.setAudioBitrate(targetQuality.getTargetAudioBitRate());
     converter.setAllowAudioRemux(allowAudioRemux);
+    converter.setSkipAudio(removeAudio);
 
     if (options != null) {
       if (options.endTimeUs > 0) {

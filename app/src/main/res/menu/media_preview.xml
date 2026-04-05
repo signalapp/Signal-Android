@@ -13,4 +13,8 @@
           android:title="@string/delete"
           android:icon="@drawable/ic_trash_24"
           app:showAsAction="never"/>
+    <item android:id="@+id/mute_video"
+          android:title="@string/media_preview__mute_video_title"
+          android:icon="@drawable/symbol_speaker_slash_24"
+          app:showAsAction="always"/>
 </menu>

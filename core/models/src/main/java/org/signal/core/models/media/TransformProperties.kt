@@ -55,7 +55,13 @@ data class TransformProperties(
   @JsonProperty("mp4Faststart")
   @SerialName("mp4Faststart")
   @JvmField
-  val mp4FastStart: Boolean = false
+  val mp4FastStart: Boolean = false,
+
+  @EncodeDefault(EncodeDefault.Mode.ALWAYS)
+  @JsonProperty("videoMuted")
+  @SerialName("videoMuted")
+  @JvmField
+  val videoMuted: Boolean = false
 ) : Parcelable {
   fun shouldSkipTransform(): Boolean {
     return skipTransform
@@ -89,7 +95,8 @@ data class TransformProperties(
         videoTrimStartTimeUs = 0,
         videoTrimEndTimeUs = 0,
         sentMediaQuality = DEFAULT_MEDIA_QUALITY,
-        mp4FastStart = false
+        mp4FastStart = false,
+        videoMuted = false
       )
     }
 
@@ -100,7 +107,8 @@ data class TransformProperties(
         videoTrimStartTimeUs = 0,
         videoTrimEndTimeUs = 0,
         sentMediaQuality = DEFAULT_MEDIA_QUALITY,
-        mp4FastStart = false
+        mp4FastStart = false,
+        videoMuted = false
       )
     }
 
@@ -111,7 +119,8 @@ data class TransformProperties(
         videoTrimStartTimeUs = videoTrimStartTimeUs,
         videoTrimEndTimeUs = videoTrimEndTimeUs,
         sentMediaQuality = DEFAULT_MEDIA_QUALITY,
-        mp4FastStart = false
+        mp4FastStart = false,
+        videoMuted = false
       )
     }
 

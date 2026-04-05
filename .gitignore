@@ -34,3 +34,7 @@ kls_database.db
 .kotlin
 lefthook-local.yml
 sample-videos/
+*.apk
+app/githubProd/
+app/nightly/
+app/benchmark/

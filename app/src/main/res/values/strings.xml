@@ -4778,6 +4778,7 @@
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
     <string name="media_preview__edit_title">Edit</string>
+    <string name="media_preview__mute_video_title">Mute Video</string>
 
 
     <!-- media_preview_activity -->

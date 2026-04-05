@@ -271,6 +271,10 @@ public class VideoPlayer extends FrameLayout {
     }
   }
 
+  public boolean isMuted() {
+    return this.muted;
+  }
+
   public boolean hasAudioTrack() {
     if (exoPlayer != null) {
       Tracks tracks = exoPlayer.getCurrentTracks();

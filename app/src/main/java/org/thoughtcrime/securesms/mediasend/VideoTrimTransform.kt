@@ -22,7 +22,7 @@ class VideoTrimTransform(private val data: VideoTrimData) : MediaTransform {
       isVideoGif = media.isVideoGif,
       bucketId = media.bucketId,
       caption = media.caption,
-      transformProperties = TransformProperties(false, data.isDurationEdited, data.startTimeUs, data.endTimeUs, SentMediaQuality.STANDARD.code, false),
+      transformProperties = TransformProperties(false, data.isDurationEdited, data.startTimeUs, data.endTimeUs, SentMediaQuality.STANDARD.code, false, data.isMuted),
       fileName = media.fileName
     )
   }

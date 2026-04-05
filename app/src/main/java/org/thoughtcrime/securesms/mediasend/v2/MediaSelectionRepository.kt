@@ -264,7 +264,7 @@ class MediaSelectionRepository(context: Context) {
         }
       }
 
-      if (state is VideoTrimData && state.isDurationEdited) {
+      if (state is VideoTrimData && (state.isDurationEdited || state.isMuted)) {
         modelsToRender[it] = VideoTrimTransform(state)
       }
 
