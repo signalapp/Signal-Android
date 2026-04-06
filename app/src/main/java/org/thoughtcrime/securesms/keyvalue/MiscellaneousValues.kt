@@ -47,6 +47,7 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val HAS_KEY_TRANSPARENCY_FAILURE = "misc.has_key_transparency_failure"
     private const val HAS_SEEN_KEY_TRANSPARENCY_FAILURE = "misc.has_seen_key_transparency_failure"
     private const val CAMERA_FACING_FRONT = "misc.camera_facing_front"
+    private const val COMPLETED_COLLAPSED_EVENTS_MIGRATION = "misc.completed_collapsed_events_migration"
   }
 
   public override fun onFirstEverAppLaunch() {
@@ -315,4 +316,6 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
    * Whether or not the preferred camera direction is front-facing.
    */
   var isCameraFacingFront: Boolean by booleanValue(CAMERA_FACING_FRONT, true)
+
+  var completedCollapsedEventsMigration: Boolean by booleanValue(COMPLETED_COLLAPSED_EVENTS_MIGRATION, false)
 }

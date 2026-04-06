@@ -235,6 +235,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Collapse chat updates"),
         summary = DSLSettingsText.from("Collapses certain consecutive chat updates - cannot be undone."),
         onClick = {
+          SignalStore.misc.completedCollapsedEventsMigration = false
           AppDependencies.jobManager.add(BackfillCollapsedMessageJob())
         }
       )
