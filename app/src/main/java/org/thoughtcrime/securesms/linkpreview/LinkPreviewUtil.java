@@ -156,10 +156,10 @@ public final class LinkPreviewUtil {
 
     @SuppressLint("ObsoleteSdkInt")
     public long getDate() {
-      return Stream.of(values.get(KEY_PUBLISHED_TIME_1),
-                       values.get(KEY_PUBLISHED_TIME_2),
-                       values.get(KEY_MODIFIED_TIME_1),
-                       values.get(KEY_MODIFIED_TIME_2))
+      return Stream.of(new String[] { values.get(KEY_PUBLISHED_TIME_1),
+                                      values.get(KEY_PUBLISHED_TIME_2),
+                                      values.get(KEY_MODIFIED_TIME_1),
+                                      values.get(KEY_MODIFIED_TIME_2) })
                    .map(DateUtils::parseIso8601)
                    .filter(time -> time > 0)
                    .findFirst()

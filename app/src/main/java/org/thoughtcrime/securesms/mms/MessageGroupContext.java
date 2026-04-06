@@ -25,7 +25,10 @@ import org.whispersystems.signalservice.internal.push.GroupContextV2;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Represents either a GroupV1 or GroupV2 encoded context.
@@ -131,9 +134,9 @@ public final class MessageGroupContext {
       return Stream.of(groupContext.members)
                    .filter(m -> SignalE164Util.isPotentialE164(m.e164))
                    .map(m -> m.e164)
-                   .withoutNulls()
+                   .filter(Objects::nonNull)
                    .map(RecipientId::fromE164)
-                   .filterNot(selfId::equals)
+                   .filter(other -> !selfId.equals(other))
                    .toList();
     }
   }
@@ -170,14 +173,13 @@ public final class MessageGroupContext {
       DecryptedGroup        groupState  = decryptedGroupV2Context.groupState;
       DecryptedGroupChange  groupChange = getChange();
 
-      return Stream.of(DecryptedGroupUtil.toAciList(groupState.members),
+      return java.util.stream.Stream.of(DecryptedGroupUtil.toAciList(groupState.members),
                        DecryptedGroupUtil.pendingToServiceIdList(groupState.pendingMembers),
                        DecryptedGroupUtil.removedMembersServiceIdList(groupChange),
                        DecryptedGroupUtil.removedPendingMembersServiceIdList(groupChange),
                        DecryptedGroupUtil.removedRequestingMembersServiceIdList(groupChange))
-                   .flatMap(Stream::of)
-                   .filterNot(ServiceId::isUnknown)
-                   .toList();
+                   .flatMap(Collection::stream)
+                   .filter(serviceId -> !serviceId.isUnknown()).collect(Collectors.toList());
     }
 
     @Override

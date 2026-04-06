@@ -206,7 +206,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
       throws IOException, UntrustedIdentityException, UndeliverableMessageException
   {
     try {
-      List<Attachment>                    attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<Attachment>                    attachments        = Stream.of(message.getAttachments()).filter(attachment -> !attachment.isSticker()).toList();
       List<SignalServiceAttachment> attachmentPointers = getAttachmentPointersFor(attachments);
       List<BodyRange>               bodyRanges         = getBodyRanges(message);
       boolean                             isRecipientUpdate  = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))

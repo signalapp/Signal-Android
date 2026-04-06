@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -101,7 +102,7 @@ public final class ConversationUtil {
    */
   public static void clearShortcuts(@NonNull Context context, @NonNull Collection<RecipientId> recipientIds) {
     SignalExecutors.BOUNDED.execute(() -> {
-      ShortcutManagerCompat.removeLongLivedShortcuts(context, Stream.of(recipientIds).withoutNulls().map(ConversationUtil::getShortcutId).toList());
+      ShortcutManagerCompat.removeLongLivedShortcuts(context, Stream.of(recipientIds).filter(Objects::nonNull).map(ConversationUtil::getShortcutId).toList());
     });
   }
 

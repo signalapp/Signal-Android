@@ -35,7 +35,7 @@ public final class PaymentItem implements MappingModel<PaymentItem> {
   private final PaymentType paymentType;
 
   public static @NonNull MappingModelList fromPayment(@NonNull List<Payment> transactions) {
-    return Stream.of(transactions)
+    return transactions.stream()
                  .map(PaymentItem::fromPayment)
                  .collect(MappingModelList.toMappingModelList());
   }

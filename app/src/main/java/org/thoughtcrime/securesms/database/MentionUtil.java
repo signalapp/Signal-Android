@@ -9,7 +9,7 @@ import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
-import com.annimon.stream.function.Function;
+import java.util.function.Function;
 
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;

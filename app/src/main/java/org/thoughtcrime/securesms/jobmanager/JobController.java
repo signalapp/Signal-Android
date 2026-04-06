@@ -120,7 +120,7 @@ class JobController {
   @WorkerThread
   void submitNewJobChain(@NonNull List<List<Job>> chain) {
     synchronized (this) {
-      chain = Stream.of(chain).filterNot(List::isEmpty).toList();
+      chain = Stream.of(chain).filter(jobs -> !jobs.isEmpty()).toList();
 
       if (chain.isEmpty()) {
         Log.w(TAG, "Tried to submit an empty job chain. Skipping.");
@@ -348,8 +348,7 @@ class JobController {
   synchronized @NonNull List<Job> onFailure(@NonNull Job job) {
     List<Job> dependents = Stream.of(jobStorage.getDependencySpecsThatDependOnJob(job.getId()))
                                  .map(DependencySpec::getJobId)
-                                 .map(jobStorage::getJobSpec)
-                                 .withoutNulls()
+                                 .map(jobStorage::getJobSpec).filter(Objects::nonNull)
                                  .map(jobSpec -> {
                                    List<ConstraintSpec> constraintSpecs = jobStorage.getConstraintSpecs(jobSpec.getId());
                                    return createJob(jobSpec, constraintSpecs);

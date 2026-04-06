@@ -6,7 +6,6 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.IntPair;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
@@ -35,6 +34,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 
 /**
  * Downloads Emoji JSON and Images to local persistent storage.
@@ -215,20 +215,20 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
       }
     }
 
-    return Stream.of(allDensities)
-                 .indexed()
+    return IntStream.range(0, allDensities.size())
+                    .boxed()
                  .sorted((lhs, rhs) -> {
-                   int lhsDistance = Math.abs(desiredIndex - lhs.getFirst());
-                   int rhsDistance = Math.abs(desiredIndex - rhs.getFirst());
+                   int lhsDistance = Math.abs(desiredIndex - lhs);
+                   int rhsDistance = Math.abs(desiredIndex - rhs);
 
                    int comp = Integer.compare(lhsDistance, rhsDistance);
                    if (comp == 0) {
-                     return Integer.compare(lhs.getFirst(), rhs.getFirst());
+                     return Integer.compare(lhs, rhs);
                    } else {
                      return comp;
                    }
                  })
-                 .map(IntPair::getSecond)
+                    .map(allDensities::get)
                  .filter(supportedDensities::contains)
                  .findFirst()
                  .orElseThrow(() -> new IllegalStateException("No density available."));
@@ -346,8 +346,8 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
 
     Stream.of(files)
           .filter(File::isDirectory)
-          .filterNot(file -> file.getName().equals(currentDirectoryName))
-          .filterNot(file -> file.getName().equals(newVersionDirectoryName))
+          .filter(file -> !file.getName().equals(currentDirectoryName))
+          .filter(file -> !file.getName().equals(newVersionDirectoryName))
           .forEach(FileUtils::deleteDirectory);
 
     EmojiPageCache.INSTANCE.clear();

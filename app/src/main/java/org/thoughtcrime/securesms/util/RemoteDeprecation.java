@@ -12,6 +12,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.Objects;
 
 public final class RemoteDeprecation {
@@ -53,7 +54,7 @@ public final class RemoteDeprecation {
       ClientExpiration expiration = Stream.of(expirations)
                                           .filter(c -> c.getVersion() != null && c.getExpiration() != -1)
                                           .filter(c -> c.requireVersion().compareTo(ourVersion) > 0)
-                                          .sortBy(ClientExpiration::getExpiration)
+                                          .sorted(Comparator.comparing(ClientExpiration::getExpiration))
                                           .findFirst()
                                           .orElse(null);
 

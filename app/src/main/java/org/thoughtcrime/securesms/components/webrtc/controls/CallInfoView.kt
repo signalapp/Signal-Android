@@ -91,7 +91,7 @@ object CallInfoView {
             inCallLobby = state.callState == WebRtcViewModel.State.CALL_PRE_JOIN,
             ringGroup = state.ringGroup,
             includeSelf = state.groupCallState === WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED || state.groupCallState === WebRtcViewModel.GroupCallState.IDLE,
-            participantCount = if (state.participantCount.isPresent) state.participantCount.asLong.toInt() else 0,
+            participantCount = if (state.participantCount.isPresent) state.participantCount.get().toInt() else 0,
             remoteParticipants = state.allRemoteParticipants.sortedBy { it.callParticipantId.recipientId },
             localParticipant = state.localParticipant,
             groupMembers = state.groupMembers.filterNot { it.member.isSelf },

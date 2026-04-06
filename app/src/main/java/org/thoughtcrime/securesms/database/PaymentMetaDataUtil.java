@@ -87,6 +87,9 @@ public final class PaymentMetaDataUtil {
   }
 
   public static byte[] receiptPublic(@NonNull PaymentMetaData paymentMetaData) {
-    return Stream.of(paymentMetaData.mobileCoinTxoIdentification.publicKey).single().toByteArray();
+    if (paymentMetaData.mobileCoinTxoIdentification.publicKey.size() != 1) {
+      throw new IllegalStateException("Unexpected number of public keys!");
+    }
+    return paymentMetaData.mobileCoinTxoIdentification.publicKey.get(0).toByteArray();
   }
 }

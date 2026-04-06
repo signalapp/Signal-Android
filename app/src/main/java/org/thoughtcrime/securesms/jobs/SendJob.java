@@ -19,6 +19,7 @@ import org.signal.core.util.Util;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public abstract class SendJob extends BaseJob {
@@ -49,8 +50,8 @@ public abstract class SendJob extends BaseJob {
     List<Attachment> attachments = new LinkedList<>();
 
     attachments.addAll(message.getAttachments());
-    attachments.addAll(Stream.of(message.getLinkPreviews()).map(lp -> lp.getThumbnail().orElse(null)).withoutNulls().toList());
-    attachments.addAll(Stream.of(message.getSharedContacts()).map(Contact::getAvatarAttachment).withoutNulls().toList());
+    attachments.addAll(Stream.of(message.getLinkPreviews()).map(lp -> lp.getThumbnail().orElse(null)).filter(Objects::nonNull).toList());
+    attachments.addAll(Stream.of(message.getSharedContacts()).map(Contact::getAvatarAttachment).filter(Objects::nonNull).toList());
 
     if (message.getOutgoingQuote() != null && message.getOutgoingQuote().getAttachment() != null) {
       attachments.add(message.getOutgoingQuote().getAttachment());

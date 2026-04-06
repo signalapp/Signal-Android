@@ -288,7 +288,7 @@ public final class PushGroupSendJob extends PushSendJob {
       SignalServiceDataMessage.PollCreate              pollCreate         = getPollCreate(message);
       SignalServiceDataMessage.PollTerminate           pollTerminate      = getPollTerminate(message);
       SignalServiceDataMessage.PinnedMessage           pinnedMessage      = getPinnedMessage(message);
-      List<Attachment>                                 attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<Attachment>                                 attachments        = Stream.of(message.getAttachments()).filter(attachment -> !attachment.isSticker()).toList();
       List<SignalServiceAttachment>                    attachmentPointers = getAttachmentPointersFor(attachments);
       boolean isRecipientUpdate = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
                                         .anyMatch(info -> info.getStatus() > GroupReceiptTable.STATUS_UNDELIVERED);
@@ -447,7 +447,7 @@ public final class PushGroupSendJob extends PushSendJob {
     List<NetworkFailure> networkFailures = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(accessList.requireIdByAddress(result.getAddress()))).toList();
     List<IdentityKeyMismatch> identityMismatches = Stream.of(results).filter(result -> result.getIdentityFailure() != null)
                                                          .map(result -> new IdentityKeyMismatch(accessList.requireIdByAddress(result.getAddress()), result.getIdentityFailure().getIdentityKey())).toList();
-    ProofRequiredException           proofRequired             = Stream.of(results).filter(r -> r.getProofRequiredFailure() != null).findLast().map(SendMessageResult::getProofRequiredFailure).orElse(null);
+    ProofRequiredException           proofRequired             = Stream.of(results).filter(r -> r.getProofRequiredFailure() != null).reduce((a,b) -> b).map(SendMessageResult::getProofRequiredFailure).orElse(null);
     List<SendMessageResult>          successes                 = Stream.of(results).filter(result -> result.getSuccess() != null).toList();
     List<Pair<RecipientId, Boolean>> successUnidentifiedStatus = Stream.of(successes).map(result -> new Pair<>(accessList.requireIdByAddress(result.getAddress()), result.getSuccess().isUnidentified())).toList();
     Set<RecipientId>                 successIds                = Stream.of(successUnidentifiedStatus).map(Pair::getFirst).collect(Collectors.toSet());
@@ -551,14 +551,14 @@ public final class PushGroupSendJob extends PushSendJob {
       possible = Stream.of(destinations)
                        .map(GroupReceiptInfo::getRecipientId)
                        .map(Recipient::resolved)
-                       .distinctBy(Recipient::getId)
+                       .distinct()
                        .toList();
     } else {
       Log.w(TAG, "No destinations found for group message " + groupId + " using current group membership");
       possible = Stream.of(SignalDatabase.groups()
                                          .getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF))
                        .map(Recipient::resolve)
-                       .distinctBy(Recipient::getId)
+                       .distinct()
                        .toList();
     }
 

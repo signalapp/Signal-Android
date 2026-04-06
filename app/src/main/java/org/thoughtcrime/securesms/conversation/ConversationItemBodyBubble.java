@@ -9,9 +9,6 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
-
 import org.thoughtcrime.securesms.components.Outliner;
 import org.thoughtcrime.securesms.util.Projection;
 import org.signal.core.util.Util;
@@ -20,6 +17,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ConversationItemBodyBubble extends LinearLayout {
 
@@ -99,7 +98,7 @@ public class ConversationItemBodyBubble extends LinearLayout {
 
   public @NonNull Set<Projection> getProjections() {
     return Stream.of(quoteViewProjection, videoPlayerProjection)
-                 .filterNot(Objects::isNull)
+                 .filter(Objects::nonNull)
                  .collect(Collectors.toSet());
   }
 

@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.LongStream;
 
 import kotlin.Unit;
 
@@ -776,14 +777,14 @@ public final class ConversationReactionOverlay extends FrameLayout {
     int revealDuration = getContext().getResources().getInteger(R.integer.reaction_scrubber_reveal_duration);
     int revealOffset = getContext().getResources().getInteger(R.integer.reaction_scrubber_reveal_offset);
 
-    List<Animator> reveals = Stream.of(emojiViews)
-        .mapIndexed((idx, v) -> {
-          Animator anim = AnimatorInflaterCompat.loadAnimator(getContext(), R.animator.reactions_scrubber_reveal);
-          anim.setTarget(v);
-          anim.setStartDelay(idx * animationEmojiStartDelayFactor);
-          return anim;
-        })
-        .toList();
+    List<Animator> reveals = LongStream.range(0, emojiViews.length)
+                                       .boxed()
+                                       .map(idx -> {
+                                         Animator anim = AnimatorInflaterCompat.loadAnimator(getContext(), R.animator.reactions_scrubber_reveal);
+                                         anim.setTarget(emojiViews[idx.intValue()]);
+                                         anim.setStartDelay(idx * animationEmojiStartDelayFactor);
+                                         return anim;
+                                       }).collect(java.util.stream.Collectors.toList());
 
     Animator backgroundRevealAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_in);
     backgroundRevealAnim.setTarget(backgroundView);
@@ -821,8 +822,8 @@ public final class ConversationReactionOverlay extends FrameLayout {
     int duration = getContext().getResources().getInteger(R.integer.reaction_scrubber_hide_duration);
 
     List<Animator> animators = new ArrayList<>(Stream.of(emojiViews)
-                                                     .mapIndexed((idx, v) -> {
-                                                       Animator anim = AnimatorInflaterCompat.loadAnimator(getContext(), R.animator.reactions_scrubber_hide);
+                                                     .map( v -> {
+                                                            Animator anim = AnimatorInflaterCompat.loadAnimator(getContext(), R.animator.reactions_scrubber_hide);
                                                        anim.setTarget(v);
                                                        return anim;
                                                      })

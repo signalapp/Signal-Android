@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.model.MessageId;
@@ -29,8 +30,9 @@ public class ReactionsViewModel extends ViewModel {
   public @NonNull Observable<List<EmojiCount>> getEmojiCounts() {
     return repository.getReactions(messageId)
                      .map(reactionList -> {
-                       List<EmojiCount> emojiCounts = Stream.of(reactionList)
-                                                            .groupBy(ReactionDetails::getBaseEmoji)
+                       List<EmojiCount> emojiCounts = Stream.of(Stream.of(reactionList)
+                                                                 .collect(Collectors.groupingBy(ReactionDetails::getBaseEmoji))
+                                                                 .entrySet())
                                                             .sorted(this::compareReactions)
                                                             .map(entry -> new EmojiCount(entry.getKey(),
                                                                                          getCountDisplayEmoji(entry.getValue()),

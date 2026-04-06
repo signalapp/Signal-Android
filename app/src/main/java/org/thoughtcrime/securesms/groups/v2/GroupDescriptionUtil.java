@@ -43,7 +43,7 @@ public final class GroupDescriptionUtil {
 
       if (hasLinks) {
         Stream.of(descriptionSpannable.getSpans(0, descriptionSpannable.length(), URLSpan.class))
-              .filterNot(url -> LinkUtil.isLegalUrl(url.getURL()))
+              .filter(url -> !LinkUtil.isLegalUrl(url.getURL()))
               .forEach(descriptionSpannable::removeSpan);
 
         URLSpan[] urlSpans = descriptionSpannable.getSpans(0, descriptionSpannable.length(), URLSpan.class);

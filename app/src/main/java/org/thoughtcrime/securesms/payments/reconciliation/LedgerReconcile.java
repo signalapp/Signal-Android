@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Collectors;
-import com.annimon.stream.ComparatorCompat;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.MapUtil;
@@ -170,9 +169,8 @@ public final class LedgerReconcile {
   public static class DetailedTransaction {
     private static final Comparator<DetailedTransaction> BLOCK_INDEX = (a, b) -> BlockDetail.BLOCK_INDEX.compare(a.blockDetail, b.blockDetail);
     private static final Comparator<DetailedTransaction> TRANSACTION = (a, b) -> TransactionReconstruction.Transaction.ORDER.compare(a.transaction, b.transaction);
-    public static final  Comparator<DetailedTransaction> ASCENDING   = ComparatorCompat.chain(BLOCK_INDEX)
-                                                                                       .thenComparing(TRANSACTION);
-    public static final  Comparator<DetailedTransaction> DESCENDING  = ComparatorCompat.reversed(ASCENDING);
+    public static final  Comparator<DetailedTransaction> ASCENDING   = BLOCK_INDEX.thenComparing(TRANSACTION);
+    public static final  Comparator<DetailedTransaction> DESCENDING  = ASCENDING.reversed();
 
     private final BlockDetail blockDetail;
 

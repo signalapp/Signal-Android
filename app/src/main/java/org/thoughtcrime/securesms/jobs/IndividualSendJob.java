@@ -277,7 +277,7 @@ public class IndividualSendJob extends PushSendJob {
 
       SignalServiceMessageSender                 messageSender      = AppDependencies.getSignalServiceMessageSender();
       SignalServiceAddress                       address            = RecipientUtil.toSignalServiceAddress(context, messageRecipient);
-      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filter(attachment -> !attachment.isSticker()).toList();
       List<SignalServiceAttachment>              serviceAttachments = getAttachmentPointersFor(attachments);
       Optional<byte[]>                           profileKey         = getProfileKey(messageRecipient);
       Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);

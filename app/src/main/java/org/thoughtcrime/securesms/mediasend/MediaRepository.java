@@ -170,7 +170,7 @@ public class MediaRepository {
     Uri allMediaThumbnail = imageFolders.getThumbnailTimestamp() > videoFolders.getThumbnailTimestamp() ? imageFolders.getThumbnail() : videoFolders.getThumbnail();
 
     if (allMediaThumbnail != null) {
-      int allMediaCount = Stream.of(mediaFolders).reduce(0, (count, folder) -> count + folder.getItemCount());
+      int allMediaCount = mediaFolders.stream().reduce(0, (count, folder) -> count + folder.getItemCount(), Integer::sum);
 
       if (cameraFolder != null) {
         allMediaCount += cameraFolder.getCount();

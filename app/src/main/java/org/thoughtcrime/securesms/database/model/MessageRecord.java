@@ -594,8 +594,7 @@ public abstract class MessageRecord extends DisplayRecord {
     GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(body);
 
     List<ServiceId> joinedMembers = Stream.of(groupCallUpdateDetails.inCallUuids)
-                                          .map(UuidUtil::parseOrNull)
-                                          .withoutNulls()
+                                          .map(UuidUtil::parseOrNull).filter(Objects::nonNull)
                                           .<ServiceId>map(ACI::from)
                                           .toList();
 
