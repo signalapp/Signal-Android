@@ -617,7 +617,7 @@ class BackupMessagesJob private constructor(
         )
       }
       .toSet()
-      .let { SignalDatabase.attachments.filterPermanentlyFailedThumbnails(it) }
+      .let { SignalDatabase.attachments.filterThumbnailsWithoutEligibleAttachment(it) }
   }
 
   class Factory : Job.Factory<BackupMessagesJob> {
