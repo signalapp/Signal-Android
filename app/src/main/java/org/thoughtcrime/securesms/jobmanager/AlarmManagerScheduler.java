@@ -9,8 +9,6 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -43,7 +41,7 @@ public class AlarmManagerScheduler implements Scheduler {
 
   @Override
   public void schedule(long delay, @NonNull List<Constraint> constraints) {
-    if (delay > 0 && Stream.of(constraints).allMatch(Constraint::isMet)) {
+    if (delay > 0 && constraints.stream().allMatch(Constraint::isMet)) {
       setUniqueAlarm(application, System.currentTimeMillis() + delay);
     }
   }
