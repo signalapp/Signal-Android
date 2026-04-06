@@ -512,7 +512,7 @@
     <string name="ConversationActivity_unable_to_record_audio">錄唔到音噃！</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">您無得寫訊息去呢個谷，因為您已經唔係成員嘞。</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">你傳送唔到訊息，因為個谷解已經散咗。</string>
     <string name="ConversationActivity_only_s_can_send_messages">淨係得 %1$s 先可以傳送訊息。</string>
     <string name="ConversationActivity_admins">話事人</string>
     <string name="ConversationActivity_message_an_admin">講低句畀話事人聽</string>
@@ -646,7 +646,7 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">你可以喺聊天入面新增一啲俾自己嘅筆記。如果你嘅帳戶連結咗其他裝置，新嘅筆記會自動同步。</string>
     <!-- Text in banner to show how many people have the same name. -->
     <plurals name="ConversationFragment__d_group_members_have_the_same_name">
-        <item quantity="other">群組入面有 %1$d 個成員撞名。</item>
+        <item quantity="other">谷入面有 %1$d 個成員撞名。</item>
     </plurals>
     <string name="ConversationFragment__tap_to_review">撳一下細閱</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
@@ -1635,7 +1635,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">網絡有問題。</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">呢條谷拎未有生效</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">冇得加入呢個谷。</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">個谷嘅人數頂晒櫳喇，加入唔到個谷</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1845,7 +1845,7 @@
     <string name="MessageRecord_you_updated_group">您更新咗呢個谷。</string>
     <string name="MessageRecord_the_group_was_updated">個谷更新咗。</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">個谷解散咗啦。</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s解散咗個谷</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -3528,7 +3528,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">音訊附件鎖定錄音</string>
     <string name="conversation_activity__message_could_not_be_sent">訊息傳送唔到。請檢查您嘅連線，然後再試下啦。</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">你唔會再收發到呢個谷嘅訊息，因為個谷已經解散咗。</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">做唔到呢個操作，因為呢個谷解散咗。</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3586,19 +3586,19 @@
     <string name="ConversationUpdateItem_update">更新</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="other">%1$d 個谷嘅更新</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="other">%1$d 個聊天嘅更新</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="other">%1$d 個自動銷毀訊息時限更改 · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="other">%1$d call events</item>
+        <item quantity="other">%1$d 個有關通話嘅事件</item>
     </plurals>
 
     <!-- audio_view -->
@@ -5606,37 +5606,37 @@
     <!-- Row title for the option to export chat history as a plaintext archive -->
     <string name="ChatsSettingsFragment__export_chat_history">匯出聊天紀錄</string>
     <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">匯出全部聊天內容嘅可機讀 JSON 副本。唔會匯出自動銷毀訊息。</string>
+    <string name="ChatsSettingsFragment__export_chat_history_label">匯出全部聊天內容嘅可機讀 JSON 副本。自動銷毀訊息係唔會匯出嚟嘅。</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">先解鎖再匯出聊天紀錄</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
     <string name="ChatsSettingsFragment__authentication_failed">認證失敗</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">取消緊匯出……</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">係咪要匯出聊天紀錄？</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">小心呀！</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">千祈唔好同任何人分享呢個檔案。你嘅聊天紀錄會儲存喺你部裝置度，視乎你嘅裝置權限，其他 APP 可能可以存取啲紀錄。連埋媒體匯出會令到檔案大咗。</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">連埋媒體匯出</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">唔連埋媒體匯出</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">揀一個資料夾</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">喺你部裝置嘅儲存空間度揀一個資料夾，將你嘅聊天紀錄儲存响嗰度。</string>
     <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">揀一個資料夾</string>
+    <string name="ChatExportDialogs__choose_folder_button">揀資料夾</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">聊天匯出完成</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">小心</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">存放你嘅聊天匯出檔案，千祈唔好同任何人分享。視乎你部裝置權限，其他 APP 可能可以存取聊天紀錄。</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -5977,7 +5977,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">解散個谷</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">呢個谷已經解散咗。</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">封存聊天</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6785,7 +6785,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">系統會喺你部機同所有收到呢個限時動態嘅人部機度刪除。</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">因為個谷已經解散咗，系統剩係會喺你度刪除個限時動態。</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">無法儲存</string>
 
@@ -8431,14 +8431,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">解散緊個谷……</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">解散唔到個谷。請檢查你嘅連線，然後再試多次。</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">再試多次</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s解散咗個谷</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">個谷已經解散咗。</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">你唔會再收發到呢個谷嘅訊息或者通話。</string>
 
@@ -8804,7 +8804,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">佢同你裝置上嘅恢復金鑰一樣。</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">佢同你嘅 Signal 安全備份嘅恢復金鑰一樣。</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">用呢個金鑰嚟：</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9604,13 +9604,13 @@
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
-    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__title">還原唔到備份</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">發生錯誤，還原唔到你個備份。咁可能因為喺還原備份嗰陣，你嘅備份資料夾喺部機度被人搬咗位。</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">要再試過嘅話，請喺呢部裝置上面解除安裝 Signal 再重新安裝，然後揀「還原或者轉移」。</string>
 
     <!-- EOF -->
 </resources>

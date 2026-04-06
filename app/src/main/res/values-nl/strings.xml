@@ -1902,9 +1902,9 @@
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
     <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
-    <string name="MessageRecord_s_terminated_the_group">%1$s heeft de groep opgeheven</string>
+    <string name="MessageRecord_s_terminated_the_group">%1$s heeft de groep beëindigd</string>
     <!-- Update message shown when a group is terminated by you -->
-    <string name="MessageRecord_you_terminated_the_group">Je hebt de groep opgeheven</string>
+    <string name="MessageRecord_you_terminated_the_group">Je hebt de groep beëindigd</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">Uitgaande spraakoproep</string>
     <!-- Update message shown when placing an outgoing 1:1 video call -->
@@ -3639,7 +3639,7 @@
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
     <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
-    <string name="conversation_activity__group_action_not_allowed_group_ended">Deze optie is niet beschikbaar omdat de groep is opgeheven.</string>
+    <string name="conversation_activity__group_action_not_allowed_group_ended">Deze optie is niet beschikbaar omdat de groep is beëindigd.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
     <string name="conversation_activity__message_failed_to_delete_retry">Het bericht kon niet worden verwijderd. Controleer je internetverbinding en probeer het opnieuw.</string>
     <!-- Dialog body when a message failed to delete. -->
@@ -8470,7 +8470,7 @@
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
     <string name="BackupStatusRow__restore_device_has_low_battery">Herstellen gepauzeerd: batterij van apparaat is bijna leeg</string>
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">Voortgang download: %1$s van %2$s (%3$s)</string>
+    <string name="BackupStatusRow__downloading_s_of_s_s">Voortgang download: %1$s van %2$s (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
     <string name="BackupStatusRow__download_waiting_for_wifi">Download gepauzeerd: wachten op wifi…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
@@ -8612,9 +8612,9 @@
     <!-- Title of first end group confirmation dialog. %1$s is the group name -->
     <string name="EndGroupDialog__end_s">‘%1$s’ opheffen?</string>
     <!-- Body of first end group confirmation dialog -->
-    <string name="EndGroupDialog__members_will_no_longer_be_able_to_send">Leden kunnen in deze groep geen berichten meer verzenden of oproepen starten. Ze krijgen een melding dat je de groep hebt opgeheven en blijven toegang houden tot de chatgeschiedenis.</string>
+    <string name="EndGroupDialog__members_will_no_longer_be_able_to_send">Leden kunnen in deze groep geen berichten meer verzenden of oproepen starten. Ze krijgen een melding dat je de groep hebt beëindigd en blijven toegang houden tot de chatgeschiedenis.</string>
     <!-- Body of second/final end group confirmation dialog -->
-    <string name="EndGroupDialog__this_will_end_the_group_permanently">Hiermee wordt de groep definitief opgeheven. Weet je zeker dat je door wilt gaan?</string>
+    <string name="EndGroupDialog__this_will_end_the_group_permanently">Hiermee wordt de groep definitief beëindigd. Weet je zeker dat je door wilt gaan?</string>
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">Groep opheffen…</string>
     <!-- Message shown when ending a group fails -->
@@ -8623,7 +8623,7 @@
     <string name="EndGroupDialog__try_again">Opnieuw proberen</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
-    <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s heeft de groep opgeheven</string>
+    <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s heeft de groep beëindigd</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
@@ -8819,8 +8819,8 @@
     <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">Wachten op internetverbinding…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
-        <item quantity="one">%1$s van %2$s bericht aan het verwerken (%3$d%%)</item>
-        <item quantity="other">%1$s van ~%2$s berichten aan het verwerken (%3$d%%)</item>
+        <item quantity="one">%1$s van %2$s bericht aan het verwerken (%3$d%%) </item>
+        <item quantity="other">%1$s van ~%2$s berichten aan het verwerken (%3$d%%) </item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Je hebt %1$s aan back-upgegevens die niet op dit apparaat staan. Alleen met een betaald abonnement kun je media automatisch verplaatsen naar je back-up zodat je opslagruimte op je apparaat bespaart.</string>
@@ -8892,7 +8892,7 @@
     <!-- Progress text shown while messages are being processed, with no count available yet -->
     <string name="BackupCreationProgressRow__processing_messages">Berichten aan het verwerken…</string>
     <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">%1$s van %2$s berichten aan het verwerken (%3$d%%) </string>
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">%1$s van %2$s berichten aan het verwerken (%3$d%%)</string>
     <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
     <string name="BackupCreationProgressRow__uploading_media_d">Media aan het uploaden: %1$d%%</string>
     <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
@@ -9802,7 +9802,7 @@
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
-    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__title">Back-up kan niet worden teruggezet</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
     <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>

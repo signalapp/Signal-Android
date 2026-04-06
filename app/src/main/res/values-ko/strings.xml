@@ -1826,7 +1826,7 @@
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">멀티미디어 메시지</string>
     <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS 메시지 다운로드 중</string>
-    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS 메시지 다운로드 중 오류 발생, 탭하여 다시 시도</string>
+    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS 메시지 다운로드 중 오류 발생 - 탭하여 다시 시도하세요</string>
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">카메라 열기</string>
@@ -1841,9 +1841,9 @@
     <!-- MessageRecord -->
     <string name="MessageRecord_unknown">알 수 없음</string>
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">지원이 종료된 이전 버전의 Signal로 암호화된 메시지를 받았습니다. 보낸 사람에게 최신 버전으로 업데이트한 뒤 메시지를 다시 보내 달라고 요청하세요.</string>
-    <string name="MessageRecord_left_group">그룹에서 탈퇴했습니다.</string>
+    <string name="MessageRecord_left_group">그룹을 나갔습니다.</string>
     <string name="MessageRecord_you_updated_group">그룹을 업데이트했습니다.</string>
-    <string name="MessageRecord_the_group_was_updated">그룹이 업데이트 되었습니다.</string>
+    <string name="MessageRecord_the_group_was_updated">그룹이 업데이트되었습니다.</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
     <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
@@ -1881,7 +1881,7 @@
     <string name="MessageRecord_disappearing_message_time_set_to_s">자동 삭제 메시지 시간이 %1$s(으)로 설정되었습니다.</string>
     <string name="MessageRecord_this_group_was_updated_to_a_new_group">그룹이 새 그룹으로 업데이트되었습니다.</string>
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">새 그룹에 바로 추가될 수 없어 초대를 받았습니다.</string>
-    <string name="MessageRecord_chat_session_refreshed">대화 세션이 새로고침되었어요</string>
+    <string name="MessageRecord_chat_session_refreshed">대화 세션이 새로고침되었습니다</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
         <item quantity="other">%1$s명의 멤버를 새 그룹에 바로 추가할 수 없어 초대를 보냈습니다.</item>
     </plurals>
@@ -1893,18 +1893,18 @@
     <!-- Profile change updates -->
     <string name="MessageRecord_changed_their_profile_name_to">%1$s 님이 프로필 이름을 %2$s(으)로 변경했습니다.</string>
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s 님이 프로필 이름을 %2$s에서 %3$s(으)로 변경했습니다.</string>
-    <string name="MessageRecord_changed_their_profile">%1$s가 프로파일을 변경하였습니다.</string>
+    <string name="MessageRecord_changed_their_profile">%1$s 님이 프로필을 변경했습니다.</string>
     <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
-    <string name="MessageRecord_started_this_chat">%1$s 님과 이 대화를 시작했습니다.</string>
+    <string name="MessageRecord_started_this_chat">%1$s 님과 대화를 시작했습니다.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">그룹을 생성했습니다.</string>
     <string name="MessageRecord_group_updated">그룹 업데이트됨.</string>
-    <string name="MessageRecord_invite_friends_to_this_group">그룹 링크로 그룹에 친구 추가</string>
+    <string name="MessageRecord_invite_friends_to_this_group">그룹 링크를 통해 친구를 이 그룹에 초대해 보세요</string>
 
     <!-- GV2 member additions -->
     <string name="MessageRecord_you_added_s">%1$s 님을 그룹에 추가했습니다.</string>
-    <string name="MessageRecord_s_added_s">%1$s가 %2$s을 그룹에 추가하였습니다.</string>
+    <string name="MessageRecord_s_added_s">%1$s 님이 %2$s 님을 그룹에 추가했습니다.</string>
     <string name="MessageRecord_s_added_you">%1$s 님이 나를 그룹에 추가했습니다.</string>
     <string name="MessageRecord_you_joined_the_group">그룹에 참가했습니다.</string>
     <string name="MessageRecord_s_joined_the_group">%1$s 님이 그룹에 참가했습니다.</string>
@@ -1914,20 +1914,20 @@
     <string name="MessageRecord_s_removed_s">%1$s 님이 %2$s 님을 내보냈습니다.</string>
     <string name="MessageRecord_s_removed_you_from_the_group">%1$s 님이 나를 그룹에서 내보냈습니다.</string>
     <string name="MessageRecord_you_left_the_group">그룹에서 나갔습니다.</string>
-    <string name="MessageRecord_s_left_the_group">%1$s가 그룹을 떠났습니다.</string>
+    <string name="MessageRecord_s_left_the_group">%1$s 님이 그룹을 나갔습니다.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">더 이상 그룹 멤버가 아닙니다.</string>
-    <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s은 더 이상 그룹에 있지 않습니다.</string>
+    <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s 님은 더 이상 그룹 멤버가 아닙니다.</string>
 
     <!-- GV2 role change -->
     <string name="MessageRecord_you_made_s_an_admin">%1$s 님을 관리자로 지정했습니다.</string>
-    <string name="MessageRecord_s_made_s_an_admin">%1$s가 %2$s를 관리자로 지정하였습니다.</string>
+    <string name="MessageRecord_s_made_s_an_admin">%1$s 님이 %2$s 님을 관리자로 지정했습니다.</string>
     <string name="MessageRecord_s_made_you_an_admin">%1$s 님이 나를 관리자로 지정했습니다.</string>
     <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s 님의 관리자 권한을 취소했습니다.</string>
     <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s 님이 관리자 권한을 취소했습니다.</string>
     <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s 님이 %2$s 님의 관리자 권한을 취소했습니다.</string>
-    <string name="MessageRecord_s_is_now_an_admin">%1$s은 지금부터 관리자입니다.</string>
+    <string name="MessageRecord_s_is_now_an_admin">%1$s 님이 관리자가 되었습니다.</string>
     <string name="MessageRecord_you_are_now_an_admin">관리자가 되었습니다.</string>
-    <string name="MessageRecord_s_is_no_longer_an_admin">더 이상 %1$s는 관리자가 아닙니다.</string>
+    <string name="MessageRecord_s_is_no_longer_an_admin">%1$s 님은 더 이상 관리자가 아닙니다.</string>
     <string name="MessageRecord_you_are_no_longer_an_admin">더 이상 관리자가 아닙니다.</string>
 
     <!-- GV2 invitations -->
@@ -1943,29 +1943,29 @@
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="other">그룹에 대한 %1$d개의 초대를 취소했습니다.</item>
+        <item quantity="other">그룹 초대 %1$d건을 취소했습니다.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="other">%1$s 님이 그룹에 대한 %2$d개의 초대를 취소했습니다.</item>
+        <item quantity="other">%1$s 님이 그룹 초대 %2$d건을 취소했습니다.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">누군가 그룹 초대를 거부했습니다.</string>
-    <string name="MessageRecord_you_declined_the_invitation_to_the_group">그룹에 초대를 거부했습니다.</string>
+    <string name="MessageRecord_you_declined_the_invitation_to_the_group">그룹 초대를 거부했습니다.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s 님이 그룹 초대를 취소했습니다.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">관리자가 그룹 초대를 취소했습니다.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="other">그룹에 대한 %1$d개의 초대가 취소되었습니다.</item>
+        <item quantity="other">그룹 초대 %1$d건이 취소되었습니다.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
     <string name="MessageRecord_you_accepted_invite">그룹 초대를 수락했습니다.</string>
     <string name="MessageRecord_s_accepted_invite">%1$s 님이 그룹 초대를 수락했습니다.</string>
-    <string name="MessageRecord_you_added_invited_member_s">%1$s에 초대 멤버로 추가되었습니다.</string>
-    <string name="MessageRecord_s_added_invited_member_s">%1$s 님이 %2$s 멤버를 초대했습니다.</string>
+    <string name="MessageRecord_you_added_invited_member_s">초대된 멤버 %1$s 님을 추가했습니다.</string>
+    <string name="MessageRecord_s_added_invited_member_s">%1$s 님이 초대된 멤버 %2$s 님을 추가했습니다.</string>
 
     <!-- GV2 title change -->
-    <string name="MessageRecord_you_changed_the_group_name_to_s">그룹 이름을 \"%1$s\"로 바꾸었습니다.</string>
+    <string name="MessageRecord_you_changed_the_group_name_to_s">그룹 이름을 \'%1$s\'(으)로 변경했습니다.</string>
     <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s 님이 그룹 이름을 \'%2$s\'(으)로 변경했습니다.</string>
-    <string name="MessageRecord_the_group_name_has_changed_to_s">그룹 이름이 \"%1$s\"로 바뀌었습니다.</string>
+    <string name="MessageRecord_the_group_name_has_changed_to_s">그룹 이름이 \'%1$s\'(으)로 변경되었습니다.</string>
 
     <!-- GV2 description change -->
     <string name="MessageRecord_you_changed_the_group_description">그룹 설명을 변경했습니다.</string>
@@ -1973,8 +1973,8 @@
     <string name="MessageRecord_the_group_description_has_changed">그룹 설명이 변경되었습니다.</string>
 
     <!-- GV2 avatar change -->
-    <string name="MessageRecord_you_changed_the_group_avatar">그룹 아바타를 변경하였습니다.</string>
-    <string name="MessageRecord_s_changed_the_group_avatar">%1$s가 그룹 아바타를 변경하였습니다.</string>
+    <string name="MessageRecord_you_changed_the_group_avatar">그룹 아바타를 변경했습니다.</string>
+    <string name="MessageRecord_s_changed_the_group_avatar">%1$s 님이 그룹 아바타를 변경했습니다.</string>
     <string name="MessageRecord_the_group_group_avatar_has_been_changed">그룹 아바타가 변경되었습니다.</string>
 
     <!-- GV2 attribute access level change -->
@@ -2003,37 +2003,37 @@
     <string name="MessageRecord_allow_only_admins_to_send">관리자만 메시지를 전송할 수 있도록 그룹 설정이 변경되었습니다.</string>
 
     <!-- GV2 group link invite access level change -->
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">내가 그룹 링크를 켰습니다. (관리자 참가 승인 불필요)</string>
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">내가 그룹 링크를 켰습니다. (관리자 참가 승인 필요)</string>
-    <string name="MessageRecord_you_turned_off_the_group_link">그룹 링크를 껐습니다.</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">관리자 승인이 해제된 그룹 링크를 사용 설정했습니다.</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">관리자 승인이 필요한 그룹 링크를 사용 설정했습니다.</string>
+    <string name="MessageRecord_you_turned_off_the_group_link">그룹 링크를 사용 해제했습니다.</string>
     <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s 님이 관리자 승인이 해제된 그룹 링크를 사용 설정했습니다.</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s 님이 관리자 승인이 설정된 그룹 링크를 사용 설정했습니다.</string>
-    <string name="MessageRecord_s_turned_off_the_group_link">%1$s가 그룹 링크를 껐습니다.</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s 님이 관리자 승인이 필요한 그룹 링크를 사용 설정했습니다.</string>
+    <string name="MessageRecord_s_turned_off_the_group_link">%1$s 님이 그룹 링크를 사용 해제했습니다.</string>
     <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">그룹 링크가 관리자 승인이 해제된 상태로 설정되었습니다.</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">그룹 링크가 관리자 승인이 설정된 상태로 설정되었습니다.</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_off">그룹 링크가 해제되었습니다.</string>
-    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">내가 그룹 링크 관리자 참가 승인 기능을 껐습니다.</string>
-    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s 님이 그룹 링크에 대한 관리자 승인을 사용 중단했습니다.</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">그룹 링크에 대한 관리자 승인이 해제되었습니다.</string>
-    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">내가 그룹 링크 관리자 참가 승인 기능을 켰습니다.</string>
-    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s 님이 그룹 링크에 대한 관리자 승인을 사용 설정했습니다.</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">그룹 링크에 대한 관리자 승인이 사용 설정되었습니다.</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">그룹 링크가 관리자 승인이 필요한 상태로 설정되었습니다.</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_off">그룹 링크가 사용 해제되었습니다.</string>
+    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">그룹 링크의 관리자 승인 단계를 해제했습니다.</string>
+    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s 님이 그룹 링크의 관리자 승인 단계를 해제했습니다.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">그룹 링크의 관리자 승인 단계가 해제되었습니다.</string>
+    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">그룹 링크의 관리자 승인 단계를 설정했습니다.</string>
+    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s 님이 그룹 링크의 관리자 승인 단계를 설정했습니다.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">그룹 링크의 관리자 승인 단계가 설정되었습니다.</string>
 
     <!-- GV2 group link reset -->
-    <string name="MessageRecord_you_reset_the_group_link">그룹 링크를 재설정했습니다.</string>
-    <string name="MessageRecord_s_reset_the_group_link">%1$s 님이 그룹 링크를 재설정했습니다.</string>
+    <string name="MessageRecord_you_reset_the_group_link">그룹 링크를 초기화했습니다.</string>
+    <string name="MessageRecord_s_reset_the_group_link">%1$s 님이 그룹 링크를 초기화했습니다.</string>
     <string name="MessageRecord_the_group_link_has_been_reset">그룹 링크가 초기화되었습니다.</string>
 
     <!-- GV2 group link joins -->
     <string name="MessageRecord_you_joined_the_group_via_the_group_link">그룹 링크를 통해 그룹에 참가했습니다.</string>
-    <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s가 그룹 링크로 그룹에 참가했습니다.</string>
+    <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s 님이 그룹 링크로 그룹에 참가했습니다.</string>
 
     <!-- GV2 group link requests -->
     <string name="MessageRecord_you_sent_a_request_to_join_the_group">그룹 참가 요청을 보냈습니다.</string>
-    <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s가 그룹 링크로 참가하기를 요청합니다.</string>
+    <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s 님이 그룹 링크를 통해 참가 요청을 보냈습니다.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="other">%1$s님이 그룹 링크를 통한 %2$d 그룹 가입을 요청하였지만 취소했습니다.</item>
+        <item quantity="other">%1$s 님이 그룹 링크를 통해 참가 요청 %2$d건을 신청 후 취소했습니다.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -2048,7 +2048,7 @@
     <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">%1$s의 그룹 참가 요청을 거절하셨습니다.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s 님이 %2$s 님의 그룹 가입 요청을 거절했습니다.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s 님의 그룹 가입 요청이 거절되었습니다.</string>
-    <string name="MessageRecord_you_canceled_your_request_to_join_the_group">내 그룹 참가 요청을 취소했습니다.</string>
+    <string name="MessageRecord_you_canceled_your_request_to_join_the_group">그룹 참가 요청을 취소했습니다.</string>
     <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s 님이 그룹 가입 요청을 취소했습니다.</string>
 
     <!-- End of GV2 specific update messages -->
@@ -2059,7 +2059,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%1$s 님과의 안전 번호를 인증되지 않음 상태로 표시했습니다.</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%1$s 님과의 안전 번호를 다른 기기에서 인증되지 않음 상태로 표시했습니다.</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%1$s 님의 메시지를 전달할 수 없습니다.</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s가 자신의 전화번호를 변경하였습니다.</string>
+    <string name="MessageRecord_s_changed_their_phone_number">%1$s 님이 전화번호를 변경했습니다.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">새로운 기능이 마음에 드시나요? 원하실 경우 일회성 기부로 Signal에 마음을 전하실 수 있어요.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -5606,7 +5606,7 @@
     <!-- Row title for the option to export chat history as a plaintext archive -->
     <string name="ChatsSettingsFragment__export_chat_history">대화 기록 내보내기</string>
     <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">모든 대화의 기계 판독 가능한 JSON 사본을 내보냅니다. 자동 삭제 메시지는 내보내기에서 제외됩니다.</string>
+    <string name="ChatsSettingsFragment__export_chat_history_label">모든 대화를 컴퓨터가 읽을 수 있는 JSON 사본을 내보냅니다. 자동 삭제 메시지는 내보내기에서 제외됩니다.</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
@@ -9604,7 +9604,7 @@
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
-    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__title">백업을 복원할 수 없음</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
     <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>

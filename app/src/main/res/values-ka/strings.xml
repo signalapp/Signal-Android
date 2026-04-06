@@ -517,7 +517,7 @@
     <string name="ConversationActivity_unable_to_record_audio">აუდიოს ჩაწერა შეუძლებელია!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">შენ არ შეგიძლია შეტყობინებების გაგზავნა ამ ჯგუფში, რადგან აღარ ხარ მისი წევრი.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">წერილებს ვეღარ გააგზავნი, რადგან ეს ჯგუფი გაუქმდა.</string>
     <string name="ConversationActivity_only_s_can_send_messages">მხოლოდ %1$s-ს შეუძლია შეტყობინებების გაგზავნა.</string>
     <string name="ConversationActivity_admins">ადმინები</string>
     <string name="ConversationActivity_message_an_admin">ადმინისთვის მიწერა</string>
@@ -659,8 +659,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">შეგიძლია ამ ჩატში შენი თავისთვის ჩანიშვნები დაამატო. თუ შენს პროფილს რაიმე მოწყობილობა აქვს მიბმული, ახალი შენიშვნები სინქრონიზდება.</string>
     <!-- Text in banner to show how many people have the same name. -->
     <plurals name="ConversationFragment__d_group_members_have_the_same_name">
-        <item quantity="one">%1$d group member have the same name.</item>
-        <item quantity="other">%1$d group members have the same name.</item>
+        <item quantity="one">ჯგუფის %1$d წევრს იგივე სახელი აქვს.</item>
+        <item quantity="other">ჯგუფის %1$d წევრს ერთი და იგივე სახელი აქვს.</item>
     </plurals>
     <string name="ConversationFragment__tap_to_review">დააჭირე, რათა გადახედო</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
@@ -1683,7 +1683,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ქსელის ხარვეზს გადავაწყდით.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ჯგუფის ეს ბმული არ არის აქტიური</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">ამ ჯგუფში გაწევრიანება შეუძლებელია.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">ჯგუფის ლიმიტი მიღწეულია, ჯგუფში გაწევრიანება შეუძლებელია</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1900,7 +1900,7 @@
     <string name="MessageRecord_you_updated_group">შენ განაახლე ჯგუფი.</string>
     <string name="MessageRecord_the_group_was_updated">ჯგუფი განახლებულია.</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">ჯგუფი გაუქმებულია.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s-მ(ა) ჯგუფი გააუქმა</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -3637,7 +3637,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">აუდიო დანართის ჩაწერის დალუქვა</string>
     <string name="conversation_activity__message_could_not_be_sent">შეტყობინება ვერ გაიგზავნა. შეამოწმე შენი კავშირი და თავიდან სცადე.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">ამ ჯგუფში წერილების გაგზავნასა და მიღებას ვეღარ შეძლებ, რადგან ის გაუქმებულია.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">ეს მოქმედება ხელმისაწვდომი აღარაა, რადგან ჯგუფი გაუქმდა.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3695,23 +3695,23 @@
     <string name="ConversationUpdateItem_update">განახლება</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="one">%1$d group update</item>
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="one">ჯგუფის %1$d განახლება</item>
+        <item quantity="other">ჯგუფის %1$d განახლება</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="one">%1$d chat update</item>
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="one">ჩატის %1$d განახლება</item>
+        <item quantity="other">ჩატის %1$d განახლება</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="one">%1$d გაქრობადი წერილების წამზომის ცვლილება · %2$s</item>
+        <item quantity="other">%1$d გაქრობადი წერილების წამზომის ცვლილება · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="one">%1$d call event</item>
-        <item quantity="other">%1$d call events</item>
+        <item quantity="one">ზარის %1$d აქტივობა</item>
+        <item quantity="other">ზარის %1$d აქტივობა</item>
     </plurals>
 
     <!-- audio_view -->
@@ -5749,35 +5749,35 @@
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">გადაიტანე შენი ყველა ჩატის ავტომატურად წაკითხვადი JSON ასლი. გაქრობად წერილებს ვერ გადაიტან.</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">განბლოკე ჩატის ისტორიის გადმოსატანად</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">Authentication failed</string>
+    <string name="ChatsSettingsFragment__authentication_failed">ავტორიზაცია ვერ მოხერხდა</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">მიმდინარეობს ექსპორტირების გაუქმება…</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">ჩატის ისტორიის გადატანა გსურს?</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">ფრთხილად!</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">ეს ფაილი არავის გაუზიარო. შენი ჩატის ისტორია შენს მოწყობილობაზე შეინახება და სხვა აპები მასზე წვდომას შენი მოწყობილობის პარამეტრების მიხედვით შეძლებენ. მედია ფაილებით ექსპორტირება ფაილის ზომას გაზრდის.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">მედია ფაილებით ექსპორტირება</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">მედია ფაილების გარეშე ექსპორტირება</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">აირჩიე საქაღალდე</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">აირჩიე საქაღალდე შენი მოწყობილობის მეხსიერებაში, რომელშიც შენი ჩატის ისტორია შეინახება.</string>
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">აირჩიე შენახვის ადგილი</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">ჩატის ექსპორტირება დასრულდა</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">ფრთხილად</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">აარჩიე, სად შეინახავ შენს ექსპორტირებულ ჩატის ფაილს და არავის გაუზიარო. შენს მოწყობილობაში არსებული სხვა აპების მასზე წვდომა შენი მოწყობილობის ნებართვებზეა დამოკიდებული.</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -6124,7 +6124,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">ჯგუფის გაუქმება</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">ეს ჯგუფი გაუქმდა.</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">ჩატის დაარქივება</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6941,7 +6941,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">ეს Story-ი წაიშლება შენთვის და ყველასთვის, ვინც ის მიიღო.</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">ეს მხოლოდ შენთვის წაიშლება, რადგან ჯგუფი გაუქმებულია.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">შენახვა ვერ მოხერხდა</string>
 
@@ -8618,14 +8618,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">მიმდინარეობს ჯგუფის გაუქმება…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">ჯგუფის გაუქმება ვერ მოხერხდა. შეამოწმე შენი ინტერნეტ კავშირი და თავიდან სცადე.</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">ახლიდან სცადე</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s-მ(ა) ჯგუფი გააუქმა</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">ჯგუფი გაუქმდა.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">ამ ჯგუფში ზარების განხორციელებას ან წერილების მიღებასა და გაგზავნას ვეღარ შეძლებ.</string>
 
@@ -8997,7 +8997,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">ეს გასაღები იგივეა, რაც შენი მოწყობილობის აღდგენის გასაღები.</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">ეს იგივეა, რაც შენი Signal-ის უსაფრთხო სათადარიგო ასლების აღდგენის გასაღები.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">გამოიყენე ეს გასაღები:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9802,13 +9802,13 @@
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
-    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__title">სათადარიგო ასლის აღდგენა შეუძლებელია</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">ხარვეზი დაფიქსირდა და შენი სათადარიგო ასლის აღდგენა შეუძლებელია. შეიძლება ეს იმან გამოიწვია, რომ სათადარიგო ასლის საქაღალდე შენს მოწყობილობაზე მაშინ გადავიდა, სანამ სათადარიგო ასლების აღდგენა მიმდინარეობდა.</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">თავიდან საცდელად, Signal-ი შენს მოწყობილობაზე წაშალე და თავიდან დააინსტალირე, შემდეგ კი \"აღდგენა ან გადატანა\" აირჩიე.</string>
 
     <!-- EOF -->
 </resources>

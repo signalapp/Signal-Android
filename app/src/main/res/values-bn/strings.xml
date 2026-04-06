@@ -517,7 +517,7 @@
     <string name="ConversationActivity_unable_to_record_audio">অডিও রেকর্ড করা যাচ্ছেনা!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">আপনি এই গ্রুপে বার্তা পাঠাতে পারবেন না কারন আপনি আর এই গ্রুপের সদস্য না</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">আপনি এই গ্রুপে মেসেজ পাঠাতে পারবেন না, কারণ এই গ্রুপটি বন্ধ হয়ে গিয়েছে।</string>
     <string name="ConversationActivity_only_s_can_send_messages">কেবল %1$s বার্তা পাঠাতে পারবে।</string>
     <string name="ConversationActivity_admins">এডমিনগণ</string>
     <string name="ConversationActivity_message_an_admin">একজন এডমিনকে বার্তা পাঠান</string>
@@ -1683,7 +1683,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">একটি নেটওয়ার্ক ত্রুটি সম্মুখীন।</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">এই গ্রুপ লিংকটি সচল নেই</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">এই গ্রুপে যোগ দেওয়া যাচ্ছে না।</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">গ্রুপের সদস্য সর্বোচ্চ সংখ্যার সীমা পেরিয়ে গেছে, গ্রুপে যোগ দেয়া যাচ্ছে না</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1900,7 +1900,7 @@
     <string name="MessageRecord_you_updated_group">আপনি গ্রুপ আপডেট করেছেন।</string>
     <string name="MessageRecord_the_group_was_updated">গ্রুপটি আপডেট করা হয়েছিল।</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">এই গ্রুপটি বন্ধ হয়ে গিয়েছে।</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s গ্ৰুপটি বন্ধ করেছেন</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -3637,7 +3637,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">অডিও সংযুক্তি রেকর্ডিং লক্ করুন</string>
     <string name="conversation_activity__message_could_not_be_sent">মেসেজ পাঠানো যায়নি। আপনার সংযোগটি পরীক্ষা করুন ও পুনরায় চেষ্টা করুন।</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">এই গ্রুপটি বন্ধ হয়ে যাওয়ায় আপনি আর এখানে মেসেজ পাঠাতে ও গ্রহণ করতে পারবেন না।</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">গ্রুপটি বন্ধ করার কারণে এই কার্যক্রমটি করা সম্ভব নয়।</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3695,23 +3695,23 @@
     <string name="ConversationUpdateItem_update">আপডেট করুন</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="one">%1$d group update</item>
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="one">%1$dটি গ্রুপ আপডেট</item>
+        <item quantity="other">%1$dটি গ্রুপ আপডেট</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="one">%1$d chat update</item>
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="one">%1$dটি চ্যাট আপডেট</item>
+        <item quantity="other">%1$dটি চ্যাট আপডেট</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="one">%1$dটি অদৃশ্য হতে যাওয়া মেসেজের টাইমারে পরিবর্তন · %2$s</item>
+        <item quantity="other">%1$dটি অদৃশ্য হতে যাওয়া মেসেজের টাইমারে পরিবর্তন · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="one">%1$d call event</item>
-        <item quantity="other">%1$d call events</item>
+        <item quantity="one">%1$dটি কল ইভেন্ট</item>
+        <item quantity="other">%1$dটি কল ইভেন্ট</item>
     </plurals>
 
     <!-- audio_view -->
@@ -5749,35 +5749,35 @@
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">আপনার সব চ্যাটের একটি মেশিন কর্তৃক পাঠযোগ্য JSON কপি এক্সপোর্ট করুন। অদৃশ্য হতে যাওয়া মেসেজ এক্সপোর্ট করা হবে না।</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">চ্যাটের ইতিহাস এক্সপোর্ট করতে আনলক করুন</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
     <string name="ChatsSettingsFragment__authentication_failed">প্রমাণীকরণ ব্যর্থ।</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">এক্সপোর্ট বাতিল করা হচ্ছে…</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">চ্যাট-এর ইতিহাস এক্সপোর্ট করবেন?</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">সাবধান!</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">এই ফাইলটি কারো সাথে শেয়ার করবেন না। আপনার চ্যাটের ইতিহাস আপনার ডিভাইসে সংরক্ষণ করা হবে এবং আপনার ডিভাইসের অনুমতির উপর নির্ভর করে অন্যান্য অ্যাপ এটি অ্যাক্সেস করতে পারবে। মিডিয়া সহ এক্সপোর্ট করলে ফাইলের আকার বড় হবে।</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">মিডিয়া সহ এক্সপোর্ট করুন</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">মিডিয়া ছাড়া এক্সপোর্ট করুন</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">একটি ফোল্ডার বেছে নিন</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">আপনার ডিভাইসের স্টোরেজে এমন একটি ফোল্ডার বেছে নিন যেখানে আপনার চ্যাটের ইতিহাস সংরক্ষিত হবে।</string>
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">ফোল্ডার চয়ন করুন</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">চ্যাট এক্সপোর্ট সম্পন্ন হয়েছে</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">সাবধান</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">কোথায় আপনার চ্যাট এক্সপোর্ট ফাইলটি সংরক্ষণ করবেন এবং কারো সাথে শেয়ার করবেন না। আপনার ডিভাইসের অনুমতির উপর নির্ভর করে, ডিভাইসের অন্যান্য অ্যাপ এটি অ্যাক্সেস করতে পারে।</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -6124,7 +6124,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">গ্ৰুপ বন্ধ করুন</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">এই গ্রুপটি বন্ধ হয়ে গিয়েছে।</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">চ্যাট আর্কাইভ করুন</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6941,7 +6941,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">এই স্টোরিটি আপনার জন্য এবং যারা এটি পেয়েছেন তাদের জন্য মুছে ফেলা হবে।</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">গ্রুপটি বন্ধ হয়ে যাওয়ায় এটি শুধু আপনার জন্য মুছে যাবে।</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">সেভ করা যায়নি</string>
 
@@ -8618,14 +8618,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">গ্ৰুপটি বন্ধ করা হচ্ছে…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">গ্রুপটি বন্ধ করা যায়নি। আপনার নেটওয়ার্ক সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">আবার চেষ্টা করুন</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s গ্ৰুপটি বন্ধ করেছেন</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">এই গ্রুপটি বন্ধ হয়ে গিয়েছে।</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">আপনি এই গ্রুপে আর মেসেজ পাঠাতে ও গ্রহণ করতে বা কল করতে পারবেন না।</string>
 
@@ -8997,7 +8997,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">এটি আপনার ডিভাইসের পুনরুদ্ধার \'কি\'-এর মতোই।</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">এটি আপনার Signal নিরাপদ ব্যাকআপ পুনরুদ্ধার \'কি\'-এর মতো একই।</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">এই \'কি\'-টি নিম্নলিখিত কাজে ব্যবহার করা যাবে:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9802,13 +9802,13 @@
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
-    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__title">ব্যাকআপ পুনর্বহাল করা যায়নি</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">একটি ত্রুটি দেখা দিয়েছে এবং আপনার ব্যাকআপ পুনরুদ্ধার করা যাচ্ছে না। এর কারণ যা হতে পারে তা হলো, আপনার ব্যাকআপ পুনরুদ্ধার করার সময় আপনার ডিভাইসে ব্যাকআপ ফোল্ডারটি স্থানান্তর হয়েছিলো।</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">আবার চেষ্টা করতে, এই ডিভাইস থেকে Signal আনইনস্টল ও রি-ইনস্টল করুন এবং \'পুনর্বহাল অথবা ট্রান্সফার\' বিকল্পটি বেছে নিন।</string>
 
     <!-- EOF -->
 </resources>

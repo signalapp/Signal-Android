@@ -527,7 +527,7 @@
     <string name="ConversationActivity_unable_to_record_audio">Nepavyksta įrašyti garso!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Negalite siųsti žinučių į šią grupę, nes daugiau nebesate jos narys.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">Negalite siųsti žinučių, nes grupė buvo uždaryta.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Tik %1$s gali siųsti žinutes.</string>
     <string name="ConversationActivity_admins">administratoriai</string>
     <string name="ConversationActivity_message_an_admin">Rašyti žinutę administratoriui</string>
@@ -685,10 +685,10 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Šiame pokalbyje gali pridėti sau priminimų. Jei yra su paskyra susietų įrenginių, nauji priminimai bus sinchronizuoti.</string>
     <!-- Text in banner to show how many people have the same name. -->
     <plurals name="ConversationFragment__d_group_members_have_the_same_name">
-        <item quantity="one">%1$d group member have the same name.</item>
-        <item quantity="few">%1$d group members have the same name.</item>
-        <item quantity="many">%1$d group members have the same name.</item>
-        <item quantity="other">%1$d group members have the same name.</item>
+        <item quantity="one">%1$d grupės narys turi tokį patį vardą.</item>
+        <item quantity="few">%1$d grupės nariai turi tokį patį vardą.</item>
+        <item quantity="many">%1$d grupės nario turi tokį patį vardą.</item>
+        <item quantity="other">%1$d grupės narių turi tokį patį vardą.</item>
     </plurals>
     <string name="ConversationFragment__tap_to_review">Bakstelėkite norėdami peržiūrėti</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
@@ -1779,7 +1779,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Susidurta su tinklo klaida.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Šios grupės nuoroda nėra aktyvi</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Prie šios grupės prisijungti neįmanoma.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Pasiektas grupės limitas, prisijungti prie grupės negalima</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -2010,7 +2010,7 @@
     <string name="MessageRecord_you_updated_group">Jūs atnaujinote grupę.</string>
     <string name="MessageRecord_the_group_was_updated">Grupė buvo atnaujinta.</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">Grupė buvo uždaryta.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s uždarė grupę</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -3855,7 +3855,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Užrakinti garso įrašo priedo įrašymą</string>
     <string name="conversation_activity__message_could_not_be_sent">Nepavyko išsiųsti žinutės. Patikrinkite savo ryšį ir bandykite dar kartą.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">Nebegalite siųsti ir gauti žinučių šioje grupėje, nes ji buvo uždaryta.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">Šis veiksmas negalimas, nes grupė uždaryta.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3913,31 +3913,31 @@
     <string name="ConversationUpdateItem_update">Atnaujinti</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="one">%1$d group update</item>
-        <item quantity="few">%1$d group updates</item>
-        <item quantity="many">%1$d group updates</item>
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="one">%1$d grupės atnaujinimas</item>
+        <item quantity="few">%1$d grupės atnaujinimai</item>
+        <item quantity="many">%1$d grupės atnaujinimo</item>
+        <item quantity="other">%1$d grupės atnaujinimų</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="one">%1$d chat update</item>
-        <item quantity="few">%1$d chat updates</item>
-        <item quantity="many">%1$d chat updates</item>
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="one">%1$d pokalbio atnaujinimas</item>
+        <item quantity="few">%1$d pokalbio atnaujinimai</item>
+        <item quantity="many">%1$d pokalbio atnaujinimo</item>
+        <item quantity="other">%1$d pokalbio atnaujinimų</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
-        <item quantity="few">%1$d disappearing message timer changes · %2$s</item>
-        <item quantity="many">%1$d disappearing message timer changes · %2$s</item>
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="one">%1$d išnykstančių žinučių laikmačio pakeitimas · %2$s</item>
+        <item quantity="few">%1$d išnykstančių žinučių laikmačio pakeitimai · %2$s</item>
+        <item quantity="many">%1$d išnykstančių žinučių laikmačio pakeitimo · %2$s</item>
+        <item quantity="other">%1$d išnykstančių žinučių laikmačio pakeitimų · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="one">%1$d call event</item>
-        <item quantity="few">%1$d call events</item>
-        <item quantity="many">%1$d call events</item>
-        <item quantity="other">%1$d call events</item>
+        <item quantity="one">%1$d skambučio įvykis</item>
+        <item quantity="few">%1$d skambučio įvykiai</item>
+        <item quantity="many">%1$d skambučio įvykio</item>
+        <item quantity="other">%1$d skambučio įvykių</item>
     </plurals>
 
     <!-- audio_view -->
@@ -6031,35 +6031,35 @@
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">Eksportuoti visus pokalbius kompiuterio skaitomu JSON formatu. Dingstančios žinutės nebus eksportuotos.</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Norėdami eksportuoti pokalbių istoriją, atrakinkite</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">Authentication failed</string>
+    <string name="ChatsSettingsFragment__authentication_failed">Autentifikavimas nepavyko</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">Atšaukiamas eksportavimas…</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">Eksportuoti pokalbių istoriją?</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">BŪKITE ATSARGŪS!</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">NESIDALYKITE šiuo failu su niekuo. Jūsų pokalbių istorija bus išsaugota jūsų įrenginyje ir ją galės pasiekti kitos programos, priklausomai nuo jūsų įrenginio leidimų. Išeksportavus su įrašais, failas bus didesnis.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">Eksportuoti su įrašais</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">Eksportuoti be įrašų</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">Pasirinkti aplanką</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">Savo įrenginio saugykloje pasirinkite aplanką, kuriame bus saugoma jūsų pokalbių istorija.</string>
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">Pasirinkti aplanką</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">Pokalbio eksportavimas atliktas</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">BŪKITE ATSARGŪS</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">rinkdamiesi vietą, kur išsaugoti eksportuotą pokalbių istoriją, ir nesidalykite ja su niekuo. Priklausomai nuo jūsų įrenginio leidimų, ją galės pasiekti kitos programos.</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -6418,7 +6418,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">Uždaryti grupę</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">Ši grupė buvo uždaryta.</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Archyvuoti pokalbį</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -7253,7 +7253,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Ši istorija bus ištrinta tau ir visiems ją gavusiems.</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">Ji bus ištrinta tik jums, nes grupė buvo uždaryta.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Nepavyksta išsaugoti</string>
 
@@ -8992,14 +8992,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">Uždaroma grupė…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">Nepavyko uždaryti grupės. Patikrinkite interneto ryšį ir bandykite dar kartą.</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Bandykite dar kartą</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s uždarė grupę</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Ši grupė buvo uždaryta.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Nebegalite siųsti ir gauti žinučių arba skambučių iš šios grupės.</string>
 
@@ -9383,7 +9383,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Jis atitinka jūsų atkūrimo raktą įrenginyje.</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">Jis atitinka jūsų „Signal“ atsarginių kopijų atkūrimo raktą.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Šį raktą naudokite:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -10198,13 +10198,13 @@
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
-    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__title">Nepavyko atkurti atsarginės kopijos</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">Įvyko klaida ir jūsų atsarginės kopijos atkurti nepavyko. Taip galėjo nutikti todėl, kad atkuriant atsarginę kopiją jos aplankas jūsų įrenginyje buvo perkeltas.</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Norėdami bandyti dar kartą, išdiekite ir vėl įdiekite „Signal“ šiame įrenginyje, paskui pasirinkite „Atkurti arba perkelti“.</string>
 
     <!-- EOF -->
 </resources>
