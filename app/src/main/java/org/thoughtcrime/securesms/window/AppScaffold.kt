@@ -38,12 +38,17 @@ import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.layout
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.getWindowBreakpoint
 import org.signal.core.ui.isSplitPane
+import org.signal.core.ui.isWidthExpanded
 import org.thoughtcrime.securesms.main.MainFloatingActionButtonsCallback
 import org.thoughtcrime.securesms.main.MainNavigationBar
 import org.thoughtcrime.securesms.main.MainNavigationRail
@@ -57,14 +62,21 @@ enum class NavigationType {
   companion object {
     @Composable
     fun rememberNavigationType(): NavigationType {
-      val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+      val resources = LocalResources.current
+      val config = LocalConfiguration.current
+      val windowBreakpoint = remember(config) { resources.getWindowBreakpoint() }
 
-      return remember(windowSizeClass) {
-        if (windowSizeClass.isSplitPane()) {
-          RAIL
-        } else {
-          BAR
+      return when (windowBreakpoint) {
+        WindowBreakpoint.SMALL -> BAR
+        WindowBreakpoint.MEDIUM -> {
+          val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+          if (windowSizeClass.isWidthExpanded) {
+            RAIL
+          } else {
+            BAR
+          }
         }
+        WindowBreakpoint.LARGE -> RAIL
       }
     }
   }
@@ -265,7 +277,7 @@ private fun AppScaffoldPreview() {
 
     AppScaffold(
       navigator = rememberAppScaffoldNavigator(
-        isSplitPane = windowSizeClass.isSplitPane(),
+        isSplitPane = windowSizeClass.isSplitPane(false),
         defaultPanePreferredWidth = 416.dp,
         horizontalPartitionSpacerSize = 16.dp
       ),

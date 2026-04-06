@@ -12,9 +12,12 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.window.core.layout.WindowSizeClass
+import org.signal.core.ui.WindowBreakpoint
+import org.signal.core.ui.getWindowBreakpoint
 import org.signal.core.ui.isSplitPane
 
 private val MEDIUM_CONTENT_CORNERS = 18.dp
@@ -70,25 +73,27 @@ data class MainContentLayoutData(
     @Composable
     fun rememberContentLayoutData(mode: MainToolbarMode): MainContentLayoutData {
       val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+      val resources = LocalResources.current
+      val breakpoint = resources.getWindowBreakpoint()
 
-      return remember(windowSizeClass, mode) {
+      return remember(windowSizeClass, mode, breakpoint) {
         val isSplitPane = windowSizeClass.isSplitPane()
-        val isWidthExpanded = windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND)
+        val isLargeWindowSize = breakpoint == WindowBreakpoint.LARGE
 
         MainContentLayoutData(
           shape = when {
             !isSplitPane -> RectangleShape
-            isWidthExpanded -> RoundedCornerShape(EXTENDED_CONTENT_CORNERS)
+            isLargeWindowSize -> RoundedCornerShape(EXTENDED_CONTENT_CORNERS)
             else -> RoundedCornerShape(MEDIUM_CONTENT_CORNERS)
           },
           navigationBarShape = when {
             !isSplitPane -> RectangleShape
-            isWidthExpanded -> RoundedCornerShape(0.dp, 0.dp, EXTENDED_CONTENT_CORNERS, EXTENDED_CONTENT_CORNERS)
+            isLargeWindowSize -> RoundedCornerShape(0.dp, 0.dp, EXTENDED_CONTENT_CORNERS, EXTENDED_CONTENT_CORNERS)
             else -> RoundedCornerShape(0.dp, 0.dp, MEDIUM_CONTENT_CORNERS, MEDIUM_CONTENT_CORNERS)
           },
           partitionWidth = when {
             !isSplitPane -> 0.dp
-            isWidthExpanded -> 24.dp
+            isLargeWindowSize -> 24.dp
             else -> 13.dp
           },
           listPaddingStart = when {
@@ -102,7 +107,7 @@ data class MainContentLayoutData(
           },
           detailPaddingEnd = when {
             !isSplitPane -> 0.dp
-            isWidthExpanded -> 24.dp
+            isLargeWindowSize -> 24.dp
             else -> 12.dp
           }
         )
