@@ -16,7 +16,7 @@ import java.util.concurrent.Future
  */
 
 // =====================
-// Module Discovery
+// Data Classes
 // =====================
 
 /**
@@ -35,28 +35,6 @@ data class TranslatableModule(
 )
 
 /**
- * Discovers all modules with translatable strings by scanning for `strings.xml` files
- * in `src/main/res/values/` directories. Excludes demo apps.
- */
-private fun discoverTranslatableModules(): List<TranslatableModule> {
-  return rootDir.walkTopDown()
-    .filter { it.name == "strings.xml" && it.parentFile.name == "values" }
-    .filter { it.path.contains("src${File.separator}main${File.separator}res") }
-    .filter { !it.path.contains("${File.separator}demo${File.separator}") }
-    .map { stringsFile ->
-      val resDir = stringsFile.parentFile.parentFile
-      val modulePath = resDir.parentFile.parentFile.parentFile
-      val moduleName = modulePath.relativeTo(rootDir).path
-        .replace(File.separator, "-")
-        .ifEmpty { "app" }
-      val fileUri = if (moduleName == "app") "strings.xml" else "$moduleName-strings.xml"
-      TranslatableModule(moduleName, fileUri, stringsFile, resDir)
-    }
-    .sortedBy { it.name }
-    .toList()
-}
-
-/**
  * Information about translatable strings in a strings.xml file.
  */
 data class StringsInfo(
@@ -65,35 +43,153 @@ data class StringsInfo(
   val hasTranslatable: Boolean
 )
 
-/**
- * Analyzes a strings.xml file to count total and translatable strings.
- * Parses the file once and returns counts for both all strings and translatable strings.
- * Only counts actual string resources: <string>, <plurals>, and <string-array> elements.
- * Excludes placeholder <item type="string" /> declarations.
- */
-private fun analyzeStrings(stringsFile: File): StringsInfo {
-  return try {
-    val xml = XmlParser().parse(stringsFile)
-    val stringNodes = xml.children()
-      .filterIsInstance<Node>()
-      .filter { node ->
-        val nodeName = node.name().toString()
-        nodeName == "string" || nodeName == "plurals" || nodeName == "string-array"
+// =====================
+// Standalone helpers (configuration-cache safe — not methods on the script object)
+// =====================
+
+private object TranslationUtils {
+
+  /**
+   * A mapping of smartling-locale => Android locale.
+   * Only needed when they differ.
+   */
+  val localeMap = mapOf(
+    "af-ZA" to "af",
+    "az-AZ" to "az",
+    "be-BY" to "be",
+    "bg-BG" to "bg",
+    "bn-BD" to "bn",
+    "bs-BA" to "bs",
+    "et-EE" to "et",
+    "fa-IR" to "fa",
+    "ga-IE" to "ga",
+    "gl-ES" to "gl",
+    "gu-IN" to "gu",
+    "he" to "iw",
+    "hi-IN" to "hi",
+    "hr-HR" to "hr",
+    "id" to "in",
+    "ka-GE" to "ka",
+    "kk-KZ" to "kk",
+    "km-KH" to "km",
+    "kn-IN" to "kn",
+    "ky-KG" to "ky",
+    "lt-LT" to "lt",
+    "lv-LV" to "lv",
+    "mk-MK" to "mk",
+    "ml-IN" to "ml",
+    "mr-IN" to "mr",
+    "pa-IN" to "pa",
+    "pt-BR" to "pt-rBR",
+    "pt-PT" to "pt",
+    "ro-RO" to "ro",
+    "sk-SK" to "sk",
+    "sl-SI" to "sl",
+    "sq-AL" to "sq",
+    "sr-RS" to "sr-rRS",
+    "sr-YR" to "sr",
+    "ta-IN" to "ta",
+    "te-IN" to "te",
+    "tl-PH" to "tl",
+    "uk-UA" to "uk",
+    "zh-CN" to "zh-rCN",
+    "zh-HK" to "zh-rHK",
+    "zh-TW" to "zh-rTW",
+    "zh-YU" to "yue"
+  )
+
+  /**
+   * Locales that should not be saved, even if present remotely.
+   * Typically for unfinished translations not ready to be public.
+   */
+  val localeBlocklist = emptySet<String>()
+
+  /**
+   * Discovers all modules with translatable strings by scanning for `strings.xml` files
+   * in `src/main/res/values/` directories. Excludes demo apps.
+   */
+  fun discoverTranslatableModules(rootDir: File): List<TranslatableModule> {
+    return rootDir.walkTopDown()
+      .filter { it.name == "strings.xml" && it.parentFile.name == "values" }
+      .filter { it.path.contains("src${File.separator}main${File.separator}res") }
+      .filter { !it.path.contains("${File.separator}demo${File.separator}") }
+      .map { stringsFile ->
+        val resDir = stringsFile.parentFile.parentFile
+        val modulePath = resDir.parentFile.parentFile.parentFile
+        val moduleName = modulePath.relativeTo(rootDir).path
+          .replace(File.separator, "-")
+          .ifEmpty { "app" }
+        val fileUri = if (moduleName == "app") "strings.xml" else "$moduleName-strings.xml"
+        TranslatableModule(moduleName, fileUri, stringsFile, resDir)
+      }
+      .sortedBy { it.name }
+      .toList()
+  }
+
+  /**
+   * Analyzes a strings.xml file to count total and translatable strings.
+   * Parses the file once and returns counts for both all strings and translatable strings.
+   * Only counts actual string resources: <string>, <plurals>, and <string-array> elements.
+   * Excludes placeholder <item type="string" /> declarations.
+   */
+  fun analyzeStrings(stringsFile: File): StringsInfo {
+    return try {
+      val xml = XmlParser().parse(stringsFile)
+      val stringNodes = xml.children()
+        .filterIsInstance<Node>()
+        .filter { node ->
+          val nodeName = node.name().toString()
+          nodeName == "string" || nodeName == "plurals" || nodeName == "string-array"
+        }
+
+      val totalCount = stringNodes.size
+      val translatableCount = stringNodes.count { node ->
+        node.attribute("translatable") != "false"
       }
 
-    val totalCount = stringNodes.size
-    val translatableCount = stringNodes.count { node ->
-      node.attribute("translatable") != "false"
+      StringsInfo(
+        totalCount = totalCount,
+        translatableCount = translatableCount,
+        hasTranslatable = translatableCount > 0
+      )
+    } catch (e: Exception) {
+      // If we can't parse the file, return -1 to indicate error
+      StringsInfo(totalCount = -1, translatableCount = -1, hasTranslatable = true)
+    }
+  }
+
+  /**
+   * Iterates over all strings.xml files in all translatable modules.
+   * This includes the source English file and all translated locale files.
+   */
+  fun allStringsResourceFiles(rootDir: File, action: (File) -> Unit) {
+    val modules = discoverTranslatableModules(rootDir)
+    for (module in modules) {
+      module.resDir.walkTopDown()
+        .filter { it.isFile && it.name == "strings.xml" }
+        .forEach(action)
+    }
+  }
+
+  fun createSmartlingClient(rootDir: File): SmartlingClient {
+    val localPropertiesFile = File(rootDir, "local.properties")
+    if (!localPropertiesFile.exists()) {
+      throw GradleException("local.properties not found at ${localPropertiesFile.absolutePath}")
     }
 
-    StringsInfo(
-      totalCount = totalCount,
-      translatableCount = translatableCount,
-      hasTranslatable = translatableCount > 0
-    )
-  } catch (e: Exception) {
-    // If we can't parse the file, return -1 to indicate error
-    StringsInfo(totalCount = -1, translatableCount = -1, hasTranslatable = true)
+    val localProperties = Properties().apply {
+      localPropertiesFile.inputStream().use { load(it) }
+    }
+
+    val userIdentifier = localProperties.requireProperty("smartling.userIdentifier")
+    val userSecret = localProperties.requireProperty("smartling.userSecret")
+    val projectId = localProperties.requireProperty("smartling.projectId")
+
+    return SmartlingClient(userIdentifier, userSecret, projectId)
+  }
+
+  private fun Properties.requireProperty(name: String): String {
+    return getProperty(name) ?: throw GradleException("$name not found in local.properties")
   }
 }
 
@@ -104,10 +200,11 @@ private fun analyzeStrings(stringsFile: File): StringsInfo {
 tasks.register("translationsDryRun") {
   group = "Translations"
   description = "Preview discovered modules and translation files without making API calls"
-  notCompatibleWithConfigurationCache("Uses script-level functions that capture Gradle objects")
+
+  val rootDirFile = rootDir
 
   doLast {
-    val modules = discoverTranslatableModules()
+    val modules = TranslationUtils.discoverTranslatableModules(rootDirFile)
 
     logger.lifecycle("")
     logger.lifecycle("=".repeat(60))
@@ -118,11 +215,11 @@ tasks.register("translationsDryRun") {
     logger.lifecycle("")
 
     modules.forEach { module ->
-      val info = analyzeStrings(module.stringsFile)
+      val info = TranslationUtils.analyzeStrings(module.stringsFile)
       logger.lifecycle("  Module: ${module.name}")
       logger.lifecycle("    File URI:     ${module.fileUri}")
-      logger.lifecycle("    Source file:  ${module.stringsFile.relativeTo(rootDir)}")
-      logger.lifecycle("    Resource dir: ${module.resDir.relativeTo(rootDir)}")
+      logger.lifecycle("    Source file:  ${module.stringsFile.relativeTo(rootDirFile)}")
+      logger.lifecycle("    Resource dir: ${module.resDir.relativeTo(rootDirFile)}")
       logger.lifecycle("    String count: ${info.translatableCount} translatable, ${info.totalCount} total")
       logger.lifecycle("    Will upload:  ${if (info.hasTranslatable) "Yes" else "No (no translatable strings)"}")
       logger.lifecycle("")
@@ -138,26 +235,27 @@ tasks.register("translationsDryRun") {
 tasks.register("pushTranslations") {
   group = "Translations"
   description = "Pushes strings.xml files from all modules to Smartling for translation. Use -PdryRun to preview."
-  notCompatibleWithConfigurationCache("Uses script-level functions that capture Gradle objects")
+
+  val rootDirFile = rootDir
+  val isDryRun = project.hasProperty("dryRun")
 
   doLast {
-    val dryRun = project.hasProperty("dryRun")
-    val modules = discoverTranslatableModules()
+    val modules = TranslationUtils.discoverTranslatableModules(rootDirFile)
 
     if (modules.isEmpty()) {
       throw GradleException("No translatable modules found")
     }
 
-    logger.lifecycle("Using Signal-Android root directory of $rootDir")
+    logger.lifecycle("Using Signal-Android root directory of $rootDirFile")
     logger.lifecycle("Found ${modules.size} module(s) to push")
-    if (dryRun) {
+    if (isDryRun) {
       logger.lifecycle("")
       logger.lifecycle("[DRY-RUN MODE - No files will be uploaded]")
     }
     logger.lifecycle("")
 
-    val client = if (dryRun) null else createSmartlingClient()
-    val authToken = if (dryRun) {
+    val client = if (isDryRun) null else TranslationUtils.createSmartlingClient(rootDirFile)
+    val authToken = if (isDryRun) {
       null
     } else {
       logger.lifecycle("Fetching auth...")
@@ -174,7 +272,7 @@ tasks.register("pushTranslations") {
         continue
       }
 
-      val info = analyzeStrings(module.stringsFile)
+      val info = TranslationUtils.analyzeStrings(module.stringsFile)
 
       // Skip files with no translatable strings
       if (!info.hasTranslatable) {
@@ -183,8 +281,8 @@ tasks.register("pushTranslations") {
         continue
       }
 
-      if (dryRun) {
-        logger.lifecycle("[DRY-RUN] Would upload: ${module.stringsFile.relativeTo(rootDir)}")
+      if (isDryRun) {
+        logger.lifecycle("[DRY-RUN] Would upload: ${module.stringsFile.relativeTo(rootDirFile)}")
         logger.lifecycle("          File URI: ${module.fileUri}")
         logger.lifecycle("          Strings:  ${info.translatableCount} translatable")
         logger.lifecycle("")
@@ -197,7 +295,7 @@ tasks.register("pushTranslations") {
       }
     }
 
-    if (dryRun) {
+    if (isDryRun) {
       logger.lifecycle("=".repeat(60))
       val uploadCount = modules.size - skippedCount
       logger.lifecycle("[DRY-RUN] Would have uploaded $uploadCount file(s)")
@@ -219,25 +317,26 @@ tasks.register("pullTranslations") {
   group = "Translations"
   description = "Pulls translated strings.xml files from Smartling for all modules and locales. Use -PdryRun to preview."
   mustRunAfter("pushTranslations")
-  notCompatibleWithConfigurationCache("Uses script-level functions that capture Gradle objects")
+
+  val rootDirFile = rootDir
+  val isDryRun = project.hasProperty("dryRun")
 
   doLast {
-    val dryRun = project.hasProperty("dryRun")
-    val modules = discoverTranslatableModules()
+    val modules = TranslationUtils.discoverTranslatableModules(rootDirFile)
 
     if (modules.isEmpty()) {
       throw GradleException("No translatable modules found")
     }
 
-    logger.lifecycle("Using Signal-Android root directory of $rootDir")
+    logger.lifecycle("Using Signal-Android root directory of $rootDirFile")
     logger.lifecycle("Found ${modules.size} module(s) to pull translations for")
-    if (dryRun) {
+    if (isDryRun) {
       logger.lifecycle("")
       logger.lifecycle("[DRY-RUN MODE - No files will be downloaded or written]")
     }
     logger.lifecycle("")
 
-    val client = createSmartlingClient()
+    val client = TranslationUtils.createSmartlingClient(rootDirFile)
 
     logger.lifecycle("Fetching auth...")
     val authToken = client.authenticate()
@@ -258,13 +357,13 @@ tasks.register("pullTranslations") {
         continue
       }
 
-      val filteredLocales = locales.filter { it !in localeBlocklist }
+      val filteredLocales = locales.filter { it !in TranslationUtils.localeBlocklist }
       logger.lifecycle("  Found ${locales.size} locales (${filteredLocales.size} after filtering)")
       logger.lifecycle("")
 
-      if (dryRun) {
+      if (isDryRun) {
         logger.lifecycle("  [DRY-RUN] Would download ${filteredLocales.size} translations to:")
-        logger.lifecycle("            ${module.resDir.relativeTo(rootDir)}/values-{locale}/strings.xml")
+        logger.lifecycle("            ${module.resDir.relativeTo(rootDirFile)}/values-{locale}/strings.xml")
         logger.lifecycle("")
         continue
       }
@@ -287,7 +386,7 @@ tasks.register("pullTranslations") {
 
       logger.lifecycle("  Writing files...")
       for ((locale, content) in results) {
-        val androidLocale = localeMap[locale] ?: locale
+        val androidLocale = TranslationUtils.localeMap[locale] ?: locale
         val localeDir = File(module.resDir, "values-$androidLocale")
         localeDir.mkdirs()
         File(localeDir, "strings.xml").writeText(content)
@@ -296,7 +395,7 @@ tasks.register("pullTranslations") {
       logger.lifecycle("")
     }
 
-    if (dryRun) {
+    if (isDryRun) {
       logger.lifecycle("=".repeat(60))
       logger.lifecycle("[DRY-RUN] Would have downloaded translations for ${modules.size} module(s)")
       logger.lifecycle("Run without -PdryRun to actually download")
@@ -309,9 +408,11 @@ tasks.register("replaceEllipsis") {
   group = "Static Files"
   description = "Process strings for ellipsis characters."
   mustRunAfter("pullTranslations")
-  notCompatibleWithConfigurationCache("Uses script-level functions that capture Gradle objects")
+
+  val rootDirFile = rootDir
+
   doLast {
-    allStringsResourceFiles { f ->
+    TranslationUtils.allStringsResourceFiles(rootDirFile) { f ->
       val before = f.readText()
       val after = before.replace("...", "…")
       if (before != after) {
@@ -326,10 +427,12 @@ tasks.register("cleanApostropheErrors") {
   group = "Static Files"
   description = "Fix smartling apostrophe string errors."
   mustRunAfter("pullTranslations")
-  notCompatibleWithConfigurationCache("Uses script-level functions that capture Gradle objects")
+
+  val rootDirFile = rootDir
+
   doLast {
     val pattern = Regex("""([^\\=08])(')""")
-    allStringsResourceFiles { f ->
+    TranslationUtils.allStringsResourceFiles(rootDirFile) { f ->
       val before = f.readText()
       val after = pattern.replace(before) { match ->
         "${match.groupValues[1]}\\'"
@@ -346,9 +449,11 @@ tasks.register("excludeNonTranslatables") {
   group = "Static Files"
   description = "Remove strings that are marked \"translatable\"=\"false\" or are ExtraTranslations."
   mustRunAfter("pullTranslations")
-  notCompatibleWithConfigurationCache("Uses script-level functions that capture Gradle objects")
+
+  val rootDirFile = rootDir
+
   doLast {
-    val modules = discoverTranslatableModules()
+    val modules = TranslationUtils.discoverTranslatableModules(rootDirFile)
 
     for (module in modules) {
       val englishFile = module.stringsFile
@@ -415,7 +520,9 @@ tasks.register("excludeNonTranslatables") {
 tasks.register("resolveStaticIps") {
   group = "Static Files"
   description = "Fetches static IPs for core hosts and writes them to static-ips.gradle"
-  notCompatibleWithConfigurationCache("Uses script-level functions that capture Gradle objects")
+
+  val projectDirFile = projectDir
+
   doLast {
     val staticIpResolver = StaticIpResolver()
     val tripleQuote = "\"\"\""
@@ -430,7 +537,7 @@ tasks.register("resolveStaticIps") {
       rootProject.extra["svr2_ips"] = $tripleQuote${staticIpResolver.resolveToBuildConfig("svr2.signal.org")}$tripleQuote
       rootProject.extra["cdsi_ips"] = $tripleQuote${staticIpResolver.resolveToBuildConfig("cdsi.signal.org")}$tripleQuote
     """.trimIndent() + "\n"
-    File(projectDir, "static-ips.gradle.kts").writeText(content)
+    File(projectDirFile, "static-ips.gradle.kts").writeText(content)
   }
 }
 
@@ -447,92 +554,3 @@ tasks.register("postTranslateQa") {
   mustRunAfter("replaceEllipsis", "cleanApostropheErrors", "excludeNonTranslatables", "resolveStaticIps")
   dependsOn(":qa")
 }
-
-/**
- * Iterates over all strings.xml files in all translatable modules.
- * This includes the source English file and all translated locale files.
- */
-private fun allStringsResourceFiles(action: (File) -> Unit) {
-  val modules = discoverTranslatableModules()
-  for (module in modules) {
-    module.resDir.walkTopDown()
-      .filter { it.isFile && it.name == "strings.xml" }
-      .forEach(action)
-  }
-}
-
-private fun createSmartlingClient(): SmartlingClient {
-  val localPropertiesFile = File(rootDir, "local.properties")
-  if (!localPropertiesFile.exists()) {
-    throw GradleException("local.properties not found at ${localPropertiesFile.absolutePath}")
-  }
-
-  val localProperties = Properties().apply {
-    localPropertiesFile.inputStream().use { load(it) }
-  }
-
-  val userIdentifier = localProperties.requireProperty("smartling.userIdentifier")
-  val userSecret = localProperties.requireProperty("smartling.userSecret")
-  val projectId = localProperties.requireProperty("smartling.projectId")
-
-  return SmartlingClient(userIdentifier, userSecret, projectId)
-}
-
-private fun Properties.requireProperty(name: String): String {
-  return getProperty(name) ?: throw GradleException("$name not found in local.properties")
-}
-
-/**
- * A mapping of smartling-locale => Android locale.
- * Only needed when they differ.
- */
-private val localeMap = mapOf(
-  "af-ZA" to "af",
-  "az-AZ" to "az",
-  "be-BY" to "be",
-  "bg-BG" to "bg",
-  "bn-BD" to "bn",
-  "bs-BA" to "bs",
-  "et-EE" to "et",
-  "fa-IR" to "fa",
-  "ga-IE" to "ga",
-  "gl-ES" to "gl",
-  "gu-IN" to "gu",
-  "he" to "iw",
-  "hi-IN" to "hi",
-  "hr-HR" to "hr",
-  "id" to "in",
-  "ka-GE" to "ka",
-  "kk-KZ" to "kk",
-  "km-KH" to "km",
-  "kn-IN" to "kn",
-  "ky-KG" to "ky",
-  "lt-LT" to "lt",
-  "lv-LV" to "lv",
-  "mk-MK" to "mk",
-  "ml-IN" to "ml",
-  "mr-IN" to "mr",
-  "pa-IN" to "pa",
-  "pt-BR" to "pt-rBR",
-  "pt-PT" to "pt",
-  "ro-RO" to "ro",
-  "sk-SK" to "sk",
-  "sl-SI" to "sl",
-  "sq-AL" to "sq",
-  "sr-RS" to "sr-rRS",
-  "sr-YR" to "sr",
-  "ta-IN" to "ta",
-  "te-IN" to "te",
-  "tl-PH" to "tl",
-  "uk-UA" to "uk",
-  "zh-CN" to "zh-rCN",
-  "zh-HK" to "zh-rHK",
-  "zh-TW" to "zh-rTW",
-  "zh-YU" to "yue"
-)
-
-/**
- * Locales that should not be saved, even if present remotely.
- * Typically for unfinished translations not ready to be public.
- */
-private val localeBlocklist = emptySet<String>()
