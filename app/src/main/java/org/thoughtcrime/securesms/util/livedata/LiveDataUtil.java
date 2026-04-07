@@ -10,8 +10,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
 
-import com.annimon.stream.function.Predicate;
-
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor;
 import org.whispersystems.signalservice.api.util.Preconditions;
@@ -22,6 +20,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 import kotlin.jvm.functions.Function1;
 

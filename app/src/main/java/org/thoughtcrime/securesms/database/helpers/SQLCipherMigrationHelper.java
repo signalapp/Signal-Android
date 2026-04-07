@@ -10,7 +10,7 @@ import kotlin.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.function.BiFunction;
+import java.util.function.BiFunction;
 
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 

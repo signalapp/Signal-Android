@@ -3,9 +3,9 @@ package org.thoughtcrime.securesms.util.adapter.mapping;
 import androidx.annotation.NonNull;
 
 import com.annimon.stream.Collector;
-import com.annimon.stream.function.BiConsumer;
-import com.annimon.stream.function.Function;
-import com.annimon.stream.function.Supplier;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import com.google.common.collect.Sets;
 
 import java.util.ArrayList;
