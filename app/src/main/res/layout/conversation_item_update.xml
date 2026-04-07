@@ -7,8 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:focusable="true"
-    android:paddingStart="32dp"
-    android:paddingEnd="32dp">
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp">
 
     <LinearLayout
         android:id="@+id/conversation_update_background"
@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:minHeight="0dp"
             android:paddingVertical="6dp"
+            android:textSize="13sp"
             android:background="@drawable/rounded_rectangle_38"
             android:paddingHorizontal="16dp"
             android:textColor="@color/signal_colorOnSurfaceVariant"
