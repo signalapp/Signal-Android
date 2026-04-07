@@ -49,7 +49,12 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
     mediaGalleryFragment.bindSelectedMediaItemDragHelper(ItemTouchHelper(MediaSelectionItemTouchHelper(sharedViewModel)))
 
     sharedViewModel.state.observe(viewLifecycleOwner) { state ->
-      mediaGalleryFragment.onViewStateUpdated(MediaGalleryFragment.ViewState(state.selectedMedia))
+      mediaGalleryFragment.onViewStateUpdated(
+        MediaGalleryFragment.ViewState(
+          selectedMedia = state.selectedMedia,
+          chatColor = state.recipient?.chatColors?.asSingleColor()
+        )
+      )
     }
 
     lifecycleDisposable += sharedViewModel.mediaErrors

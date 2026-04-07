@@ -197,6 +197,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     viewStateLiveData.observe(viewLifecycleOwner) { state ->
       binding.mediaGalleryBottomBarGroup.visible = state.selectedMedia.isNotEmpty()
       binding.mediaGalleryCountButton.setCount(state.selectedMedia.size)
+      state.chatColor?.let { binding.mediaGalleryCountButton.setChatColor(it) }
 
       val stopwatch = Stopwatch("mediaSubmit")
       selectedAdapter.submitList(state.selectedMedia.map { MediaGallerySelectedItem.Model(it) }) {
@@ -214,14 +215,16 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
 
     val galleryItemsWithSelection = LiveDataUtil.combineLatest(
       viewModel.state.map { it.items },
-      viewStateLiveData.map { it.selectedMedia }
-    ) { galleryItems, selectedMedia ->
+      viewStateLiveData.map { it.selectedMedia },
+      viewStateLiveData.map { it.chatColor }
+    ) { galleryItems, selectedMedia, chatColor ->
       galleryItems.map {
         if (it is MediaGallerySelectableItem.FileModel) {
           val selectedIndex = selectedMedia.indexOfFirst { selected -> selected.uri == it.media.uri }
           it.copy(
             isSelected = selectedIndex >= 0,
-            selectionOneBasedIndex = selectedIndex + 1
+            selectionOneBasedIndex = selectedIndex + 1,
+            chatColor = chatColor
           )
         } else {
           it
@@ -339,7 +342,8 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
   }
 
   data class ViewState(
-    val selectedMedia: List<Media> = listOf()
+    val selectedMedia: List<Media> = listOf(),
+    val chatColor: Int? = null
   )
 
   interface Callbacks {

@@ -1,9 +1,12 @@
 package org.thoughtcrime.securesms.mediasend.v2
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.ViewCompat
 import org.thoughtcrime.securesms.R
 
 class MediaCountIndicatorButton @JvmOverloads constructor(
@@ -20,5 +23,9 @@ class MediaCountIndicatorButton @JvmOverloads constructor(
 
   fun setCount(count: Int) {
     countView.text = "$count"
+  }
+
+  fun setChatColor(@ColorInt color: Int) {
+    ViewCompat.setBackgroundTintList(countView, ColorStateList.valueOf(color))
   }
 }

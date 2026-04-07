@@ -2,10 +2,13 @@ package org.thoughtcrime.securesms.mediasend.v2.gallery
 
 import android.animation.ValueAnimator
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.setPadding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -29,6 +32,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.visible
 import java.util.concurrent.TimeUnit
+import org.signal.core.ui.R as CoreUiR
 
 typealias OnMediaFolderClicked = (MediaFolder) -> Unit
 typealias OnMediaClicked = (Media, Boolean) -> Unit
@@ -99,13 +103,13 @@ object MediaGallerySelectableItem {
     }
   }
 
-  data class FileModel(val media: Media, val isSelected: Boolean, val selectionOneBasedIndex: Int) : MappingModel<FileModel> {
+  data class FileModel(val media: Media, val isSelected: Boolean, val selectionOneBasedIndex: Int, val chatColor: Int? = null) : MappingModel<FileModel> {
     override fun areItemsTheSame(newItem: FileModel): Boolean {
       return newItem.media == media
     }
 
     override fun areContentsTheSame(newItem: FileModel): Boolean {
-      return newItem.media == media && isSelected == newItem.isSelected && selectionOneBasedIndex == newItem.selectionOneBasedIndex
+      return newItem.media == media && isSelected == newItem.isSelected && selectionOneBasedIndex == newItem.selectionOneBasedIndex && chatColor == newItem.chatColor
     }
 
     override fun getChangePayload(newItem: FileModel): Any? {
@@ -127,6 +131,12 @@ object MediaGallerySelectableItem {
     override fun bind(model: FileModel) {
       checkView?.visible = model.isSelected
       checkView?.text = "${model.selectionOneBasedIndex}"
+      (checkView?.background?.mutate() as? LayerDrawable)?.getDrawable(1)
+        ?.let { backgroundDrawable ->
+          val tintColor = model.chatColor ?: ContextCompat.getColor(itemView.context, CoreUiR.color.signal_light_colorPrimary)
+          DrawableCompat.setTint(backgroundDrawable, tintColor)
+        }
+
       itemView.setOnClickListener { onMediaClicked(model.media, model.isSelected) }
       itemView.setOnLongClickListener {
         mediaGalleryGridItemTouchListener.startDragSelection(bindingAdapterPosition)
