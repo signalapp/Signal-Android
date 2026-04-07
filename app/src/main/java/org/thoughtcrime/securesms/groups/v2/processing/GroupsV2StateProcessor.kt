@@ -560,8 +560,10 @@ class GroupsV2StateProcessor private constructor(
     }
 
     if (currentLocalState == null || currentLocalState.revision == RESTORE_PLACEHOLDER_REVISION) {
-      Log.i(TAG, "$logPrefix Inserting single update message for no local state or restore placeholder")
-      profileAndMessageHelper.insertUpdateMessages(timestamp, null, setOf(AppliedGroupChangeLog(updatedGroupState, null)), null)
+      if (!updatedGroupState.terminated) {
+        Log.i(TAG, "$logPrefix Inserting single update message for no local state or restore placeholder")
+        profileAndMessageHelper.insertUpdateMessages(timestamp, null, setOf(AppliedGroupChangeLog(updatedGroupState, null)), null)
+      }
     } else {
       profileAndMessageHelper.insertUpdateMessages(timestamp, currentLocalState, applyGroupStateDiffResult.processedLogEntries, serverGuid)
     }
