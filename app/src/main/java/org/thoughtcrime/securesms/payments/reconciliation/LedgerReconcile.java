@@ -52,7 +52,7 @@ public final class LedgerReconcile {
   private static @NonNull List<Payment> reconcile(@NonNull Collection<? extends Payment> allLocalPaymentTransactions,
                                                   @NonNull List<MobileCoinLedgerWrapper.OwnedTxo> allTxOuts)
   {
-    List<? extends Payment> nonFailedLocalPayments = Stream.of(allLocalPaymentTransactions).filter(i -> i.getState() != State.FAILED).toList();
+    List<? extends Payment> nonFailedLocalPayments = Stream.of(allLocalPaymentTransactions).filter(i -> i.getState() != State.FAILED).collect(Collectors.toList());
     Set<ByteString>         allKnownPublicKeys     = new HashSet<>(nonFailedLocalPayments.size());
     Set<ByteString>         allKnownKeyImages      = new HashSet<>(nonFailedLocalPayments.size());
 
@@ -80,7 +80,7 @@ public final class LedgerReconcile {
     unknownTxOutsSpent.removeAll(knownTxosByKeyImage);
 
     if (unknownTxOutsReceived.isEmpty() && unknownTxOutsSpent.isEmpty()) {
-      return Stream.of(allLocalPaymentTransactions).map(t -> (Payment) t).toList();
+      return Stream.of(allLocalPaymentTransactions).map(t -> (Payment) t).collect(Collectors.toList());
     }
 
     List<DetailedTransaction> detailedTransactions = reconstructAllTransactions(unknownTxOutsReceived, unknownTxOutsSpent);
@@ -224,14 +224,12 @@ public final class LedgerReconcile {
                    return Stream.of(transactionReconstruction.getAllTransactions())
                                 .map(t -> new DetailedTransaction(blockDetail, t));
                  })
-                 .sorted(DetailedTransaction.DESCENDING)
-                 .toList();
+                 .sorted(DetailedTransaction.DESCENDING).collect(Collectors.toList());
   }
 
   private static @NonNull List<Money.MobileCoin> toMobileCoinList(@NonNull List<MobileCoinLedgerWrapper.OwnedTxo> spent) {
     return Stream.of(spent)
-                 .map(MobileCoinLedgerWrapper.OwnedTxo::getValue)
-                 .toList();
+                 .map(MobileCoinLedgerWrapper.OwnedTxo::getValue).collect(Collectors.toList());
   }
 
   public static class BlockOverridePayment extends PaymentDecorator {

@@ -8,6 +8,7 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerRepository.MentionQuery;
@@ -40,7 +41,7 @@ public class MentionsPickerViewModel extends ViewModel {
 
     LiveData<MentionQuery>      mentionQuery = LiveDataUtil.combineLatest(liveQuery, fullMembers, (q, m) -> new MentionQuery(q.query, m));
 
-    this.mentionList = LiveDataUtil.mapAsync(mentionQuery, q -> Stream.of(mentionsPickerRepository.search(q)).<MappingModel<?>>map(MentionViewState::new).toList());
+    this.mentionList = LiveDataUtil.mapAsync(mentionQuery, q -> Stream.of(mentionsPickerRepository.search(q)).<MappingModel<?>>map(MentionViewState::new).collect(Collectors.toList()));
   }
 
   @NonNull LiveData<List<MappingModel<?>>> getMentionList() {

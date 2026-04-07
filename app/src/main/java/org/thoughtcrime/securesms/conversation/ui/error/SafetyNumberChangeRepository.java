@@ -89,11 +89,10 @@ public final class SafetyNumberChangeRepository {
       messageRecord = getMessageRecord(messageId, messageType);
     }
 
-    List<Recipient> recipients = Stream.of(recipientIds).map(Recipient::resolved).toList();
+    List<Recipient> recipients = Stream.of(recipientIds).map(Recipient::resolved).collect(com.annimon.stream.Collectors.toList());
 
     List<ChangedRecipient> changedRecipients = Stream.of(AppDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).getIdentityRecords())
-                                                     .map(record -> new ChangedRecipient(Recipient.resolved(record.getRecipientId()), record))
-                                                     .toList();
+                                                     .map(record -> new ChangedRecipient(Recipient.resolved(record.getRecipientId()), record)).collect(com.annimon.stream.Collectors.toList());
 
     Log.d(TAG, "Safety number change state, message: " + (messageRecord != null ? messageRecord.getId() : "null") + " records: " + Util.join(changedRecipients, ","));
 

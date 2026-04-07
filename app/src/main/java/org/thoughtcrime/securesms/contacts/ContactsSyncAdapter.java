@@ -73,8 +73,7 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
       List<Recipient> recipients = Stream.of(unknownSystemE164s)
                                          .filter(s -> s.startsWith("+"))
                                          .map(s -> Recipient.external(s))
-                                         .filter(it -> it != null)
-                                         .toList();
+                                         .filter(it -> it != null).collect(com.annimon.stream.Collectors.toList());
 
       Log.i(TAG, "There are " + unknownSystemE164s.size() + " unknown E164s, which are now " + recipients.size() + " recipients. Only syncing these specific contacts.");
 

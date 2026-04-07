@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
@@ -128,8 +129,7 @@ public class TypingSendJob extends BaseJob {
     }
 
     recipients = RecipientUtil.getEligibleForSending(Stream.of(recipients)
-                                                           .map(Recipient::resolve)
-                                                           .toList());
+                                                           .map(Recipient::resolve).collect(Collectors.toList()));
 
     SignalServiceTypingMessage typingMessage = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis(), groupId);
 

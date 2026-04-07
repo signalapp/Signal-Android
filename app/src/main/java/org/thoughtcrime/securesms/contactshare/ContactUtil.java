@@ -98,7 +98,7 @@ public final class ContactUtil {
       return null;
     }
 
-    List<Phone> mobileNumbers = Stream.of(contact.getPhoneNumbers()).filter(number -> number.getType() == Phone.Type.MOBILE).toList();
+    List<Phone> mobileNumbers = Stream.of(contact.getPhoneNumbers()).filter(number -> number.getType() == Phone.Type.MOBILE).collect(com.annimon.stream.Collectors.toList());
     if (mobileNumbers.size() > 0) {
       return mobileNumbers.get(0);
     }

@@ -94,7 +94,7 @@ public final class ConversationUtil {
   public static void clearAllShortcuts(@NonNull Context context) {
     List<ShortcutInfoCompat> shortcutInfos = ShortcutManagerCompat.getDynamicShortcuts(context);
 
-    ShortcutManagerCompat.removeLongLivedShortcuts(context, Stream.of(shortcutInfos).map(ShortcutInfoCompat::getId).toList());
+    ShortcutManagerCompat.removeLongLivedShortcuts(context, Stream.of(shortcutInfos).map(ShortcutInfoCompat::getId).collect(com.annimon.stream.Collectors.toList()));
   }
 
   /**
@@ -102,7 +102,7 @@ public final class ConversationUtil {
    */
   public static void clearShortcuts(@NonNull Context context, @NonNull Collection<RecipientId> recipientIds) {
     SignalExecutors.BOUNDED.execute(() -> {
-      ShortcutManagerCompat.removeLongLivedShortcuts(context, Stream.of(recipientIds).filter(Objects::nonNull).map(ConversationUtil::getShortcutId).toList());
+      ShortcutManagerCompat.removeLongLivedShortcuts(context, Stream.of(recipientIds).filter(Objects::nonNull).map(ConversationUtil::getShortcutId).collect(com.annimon.stream.Collectors.toList()));
     });
   }
 

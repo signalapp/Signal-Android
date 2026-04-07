@@ -62,8 +62,7 @@ public final class LinkPreviewUtil {
 
     return new Links(Stream.of(spannable.getSpans(0, spannable.length(), URLSpan.class))
                            .map(span -> new Link(span.getURL(), spannable.getSpanStart(span)))
-                           .filter(link -> LinkUtil.isValidPreviewUrl(link.url))
-                           .toList());
+                           .filter(link -> LinkUtil.isValidPreviewUrl(link.url)).collect(Collectors.toList()));
   }
 
   public static @NonNull OpenGraph parseOpenGraphFields(@Nullable String html) {

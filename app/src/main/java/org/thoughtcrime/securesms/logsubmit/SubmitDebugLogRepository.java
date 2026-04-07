@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.json.JSONException;
@@ -404,8 +405,7 @@ public class SubmitDebugLogRepository {
 
       List<LogLine> lines = Stream.of(Pattern.compile("\\n").split(content))
                                   .map(s -> new SimpleLogLine(s, LogStyleParser.parseStyle(s), LogStyleParser.parsePlaceholderType(s)))
-                                  .map(line -> (LogLine) line)
-                                  .toList();
+                                  .map(line -> (LogLine) line).collect(Collectors.toList());
 
       out.addAll(lines);
     }

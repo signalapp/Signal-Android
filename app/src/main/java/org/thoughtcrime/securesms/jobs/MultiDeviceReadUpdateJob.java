@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -171,8 +172,7 @@ public class MultiDeviceReadUpdateJob extends BaseJob {
                                           throw new AssertionError(e);
                                         }
                                       })
-                                      .map(id -> new SyncMessageId(RecipientId.from(id.recipientId), id.timestamp))
-                                      .toList();
+                                      .map(id -> new SyncMessageId(RecipientId.from(id.recipientId), id.timestamp)).collect(Collectors.toList());
 
       return new MultiDeviceReadUpdateJob(parameters, ids);
     }

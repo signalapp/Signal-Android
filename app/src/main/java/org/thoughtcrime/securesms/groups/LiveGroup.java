@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.models.ServiceId;
@@ -92,8 +93,7 @@ public final class LiveGroup {
                                               Recipient recipient = Recipient.resolved(m);
                                               return new GroupMemberEntry.FullMember(recipient, g.isAdmin(recipient));
                                             })
-                                            .sorted(MEMBER_ORDER)
-                                            .toList());
+                                            .sorted(MEMBER_ORDER).collect(Collectors.toList()));
   }
 
   protected static LiveData<List<GroupMemberEntry.RequestingMember>> mapToRequestingMembers(@NonNull LiveData<GroupRecord> groupRecord) {
@@ -110,8 +110,7 @@ public final class LiveGroup {
                                                 .map(requestingMember -> {
                                                   Recipient recipient = Recipient.externalPush(ServiceId.parseOrThrow(requestingMember.aciBytes));
                                                   return new GroupMemberEntry.RequestingMember(recipient, selfAdmin);
-                                                })
-                                                .toList();
+                                                }).collect(Collectors.toList());
                                  });
   }
 
@@ -196,8 +195,7 @@ public final class LiveGroup {
   public LiveData<List<GroupMemberEntry.FullMember>> getNonAdminFullMembers() {
     return Transformations.map(fullMembers,
                                members -> Stream.of(members)
-                                                     .filter(fullMember -> !fullMember.isAdmin())
-                                                .toList());
+                                                     .filter(fullMember -> !fullMember.isAdmin()).collect(Collectors.toList()));
   }
 
   public LiveData<List<GroupMemberEntry.FullMember>> getFullMembers() {

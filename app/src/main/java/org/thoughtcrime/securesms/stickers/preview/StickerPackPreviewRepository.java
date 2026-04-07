@@ -6,6 +6,7 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -88,8 +89,7 @@ public final class StickerPackPreviewRepository {
                                                                         remoteManifest.getAuthor(),
                                                                         toOptionalSticker(packId, packKey, remoteManifest.getCover()),
                                                                         Stream.of(remoteManifest.getStickers())
-                                                                              .map(s -> toSticker(packId, packKey, s))
-                                                                              .toList());
+                                                                              .map(s -> toSticker(packId, packKey, s)).collect(Collectors.toList()));
 
       return Optional.of(new StickerManifestResult(localManifest, false));
     } catch (IOException | InvalidMessageException e) {

@@ -178,7 +178,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
         targets.addAll(filterRecipientIds.stream().map(Recipient::resolved).collect(Collectors.toList()));
         targets.addAll(existingNetworkFailures.stream().map(NetworkFailure::getRecipientId).distinct().map(Recipient::resolved).collect(Collectors.toList()));
       } else if (!existingNetworkFailures.isEmpty()) {
-        targets = Stream.of(existingNetworkFailures).map(NetworkFailure::getRecipientId).distinct().map(Recipient::resolved).toList();
+        targets = Stream.of(existingNetworkFailures).map(NetworkFailure::getRecipientId).distinct().map(Recipient::resolved).collect(com.annimon.stream.Collectors.toList());
       } else {
         Stories.SendData data = Stories.getRecipientsToSendTo(messageId, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies());
         targets = data.getTargets();
@@ -206,7 +206,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
       throws IOException, UntrustedIdentityException, UndeliverableMessageException
   {
     try {
-      List<Attachment>                    attachments        = Stream.of(message.getAttachments()).filter(attachment -> !attachment.isSticker()).toList();
+      List<Attachment>                    attachments        = Stream.of(message.getAttachments()).filter(attachment -> !attachment.isSticker()).collect(com.annimon.stream.Collectors.toList());
       List<SignalServiceAttachment> attachmentPointers = getAttachmentPointersFor(attachments);
       List<BodyRange>               bodyRanges         = getBodyRanges(message);
       boolean                             isRecipientUpdate  = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))

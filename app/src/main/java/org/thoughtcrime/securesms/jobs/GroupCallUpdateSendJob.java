@@ -63,8 +63,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
 
     List<RecipientId> recipientIds = Stream.of(RecipientUtil.getEligibleForSending(Recipient.resolvedList(conversationRecipient.getParticipantIds())))
                                            .filter(recipient -> !recipient.isSelf())
-                                           .map(Recipient::getId)
-                                           .toList();
+                                           .map(Recipient::getId).collect(com.annimon.stream.Collectors.toList());
 
     return new GroupCallUpdateSendJob(recipientId,
                                       eraId,
@@ -127,7 +126,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
       return;
     }
 
-    List<Recipient> destinations = Stream.of(recipients).map(Recipient::resolved).toList();
+    List<Recipient> destinations = Stream.of(recipients).map(Recipient::resolved).collect(com.annimon.stream.Collectors.toList());
     List<Recipient> completions  = deliver(conversationRecipient, destinations);
 
     for (Recipient completion : completions) {

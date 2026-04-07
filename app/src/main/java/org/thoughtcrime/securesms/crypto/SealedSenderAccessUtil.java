@@ -99,7 +99,7 @@ public class SealedSenderAccessUtil {
       return Optional.ofNullable(unidentifiedAccess);
     }).collect(Collectors.toList());
 
-    int unidentifiedCount = Stream.of(access).filter(Optional::isPresent).toList().size();
+    int unidentifiedCount = Stream.of(access).filter(Optional::isPresent).collect(com.annimon.stream.Collectors.toList()).size();
     int otherCount        = access.size() - unidentifiedCount;
 
     if (log) {

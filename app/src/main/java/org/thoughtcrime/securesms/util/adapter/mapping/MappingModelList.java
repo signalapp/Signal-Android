@@ -28,15 +28,15 @@ public class MappingModelList extends ArrayList<MappingModel<?>> {
     return list;
   }
 
-  public static @NonNull java.util.stream.Collector<MappingModel<?>, MappingModelList, MappingModelList> collect() {
-    return new java.util.stream.Collector<MappingModel<?>, MappingModelList, MappingModelList>() {
+  public static @NonNull Collector<MappingModel<?>, MappingModelList, MappingModelList> collect() {
+    return new Collector<MappingModel<?>, MappingModelList, MappingModelList>() {
       @Override
-      public java.util.function.Supplier<MappingModelList> supplier() {
+      public Supplier<MappingModelList> supplier() {
         return MappingModelList::new;
       }
 
       @Override
-      public java.util.function.BiConsumer<MappingModelList, MappingModel<?>> accumulator() {
+      public BiConsumer<MappingModelList, MappingModel<?>> accumulator() {
         return MappingModelList::add;
       }
 
@@ -49,8 +49,8 @@ public class MappingModelList extends ArrayList<MappingModel<?>> {
       }
 
       @Override
-      public java.util.function.Function<MappingModelList, MappingModelList> finisher() {
-        return java.util.function.Function.identity();
+      public Function<MappingModelList, MappingModelList> finisher() {
+        return Function.identity();
       }
 
       @Override

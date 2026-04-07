@@ -4,6 +4,7 @@ import android.util.LongSparseArray;
 
 import androidx.annotation.NonNull;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
@@ -193,8 +194,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
     GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
 
     List<GroupCall.GroupMemberInfo> members = Stream.of(GroupManager.getUuidCipherTexts(context, group.requireGroupId().requireV2()))
-                                                    .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize()))
-                                                    .toList();
+                                                    .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize())).collect(Collectors.toList());
 
     try {
       groupCall.setGroupMembers(new ArrayList<>(members));

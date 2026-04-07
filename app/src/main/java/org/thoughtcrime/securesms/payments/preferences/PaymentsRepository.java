@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
@@ -58,8 +59,7 @@ public class PaymentsRepository {
   private void updateDatabaseWithNewBlockInformation(@NonNull List<Payment> reconcileOutput) {
     List<LedgerReconcile.BlockOverridePayment> blockOverridePayments = Stream.of(reconcileOutput)
                                                                                   .filter(x -> x instanceof LedgerReconcile.BlockOverridePayment)
-                                                                                  .map(x -> (LedgerReconcile.BlockOverridePayment)x)
-                                                                             .toList();
+                                                                                  .map(x -> (LedgerReconcile.BlockOverridePayment)x).collect(Collectors.toList());
 
     if (blockOverridePayments.isEmpty()) {
       return;
@@ -103,7 +103,6 @@ public class PaymentsRepository {
                                                 @NonNull Direction direction)
   {
     return Stream.of(payments)
-                 .filter(p -> p.getDirection() == direction)
-                 .toList();
+                 .filter(p -> p.getDirection() == direction).collect(Collectors.toList());
   }
 }

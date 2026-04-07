@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -74,8 +75,7 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
     List<String> ids = Stream.of(identityRecords)
                              .filter(identityRecord -> !identityRecord.isFirstUse())
                              .map(record -> record.getRecipientId().serialize())
-                             .distinct()
-                             .toList();
+                             .distinct().collect(Collectors.toList());
 
     Bundle arguments = new Bundle();
     arguments.putStringArray(RECIPIENT_IDS_EXTRA, ids.toArray(new String[0]));
@@ -94,8 +94,7 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
 
     List<String> ids = Stream.of(recipientIds)
                              .map(RecipientId::serialize)
-                             .distinct()
-                             .toList();
+                             .distinct().collect(Collectors.toList());
 
     Bundle arguments = new Bundle();
     arguments.putStringArray(RECIPIENT_IDS_EXTRA, ids.toArray(new String[0]));
@@ -118,7 +117,7 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
     super.onActivityCreated(savedInstanceState);
 
     //noinspection ConstantConditions
-    List<RecipientId> recipientIds = Stream.of(getArguments().getStringArray(RECIPIENT_IDS_EXTRA)).map(RecipientId::from).toList();
+    List<RecipientId> recipientIds = Stream.of(getArguments().getStringArray(RECIPIENT_IDS_EXTRA)).map(RecipientId::from).collect(Collectors.toList());
     long              messageId    = getArguments().getLong(MESSAGE_ID_EXTRA, -1);
     String            messageType  = getArguments().getString(MESSAGE_TYPE_EXTRA, null);
 

@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.mms;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
-
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
@@ -29,6 +27,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Represents either a GroupV1 or GroupV2 encoded context.
@@ -131,13 +130,13 @@ public final class MessageGroupContext {
     public @NonNull List<RecipientId> getMembersListExcludingSelf() {
       RecipientId selfId = Recipient.self().getId();
 
-      return Stream.of(groupContext.members)
+      return groupContext.members.stream()
                    .filter(m -> SignalE164Util.isPotentialE164(m.e164))
                    .map(m -> m.e164)
                    .filter(Objects::nonNull)
                    .map(RecipientId::fromE164)
                    .filter(other -> !selfId.equals(other))
-                   .toList();
+                   .collect(Collectors.toList());
     }
   }
 
@@ -173,7 +172,7 @@ public final class MessageGroupContext {
       DecryptedGroup        groupState  = decryptedGroupV2Context.groupState;
       DecryptedGroupChange  groupChange = getChange();
 
-      return java.util.stream.Stream.of(DecryptedGroupUtil.toAciList(groupState.members),
+      return Stream.of(DecryptedGroupUtil.toAciList(groupState.members),
                        DecryptedGroupUtil.pendingToServiceIdList(groupState.pendingMembers),
                        DecryptedGroupUtil.removedMembersServiceIdList(groupChange),
                        DecryptedGroupUtil.removedPendingMembersServiceIdList(groupChange),

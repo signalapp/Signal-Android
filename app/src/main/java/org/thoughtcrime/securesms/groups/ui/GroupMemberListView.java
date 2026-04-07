@@ -10,6 +10,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
@@ -81,7 +82,7 @@ public final class GroupMemberListView extends RecyclerView {
   }
 
   public void setDisplayOnlyMembers(@NonNull List<Recipient> recipients) {
-    membersAdapter.updateData(Stream.of(recipients).map(r -> new GroupMemberEntry.FullMember(r, false)).toList());
+    membersAdapter.updateData(Stream.of(recipients).map(r -> new GroupMemberEntry.FullMember(r, false)).collect(Collectors.toList()));
   }
 
   @Override

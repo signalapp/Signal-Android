@@ -50,8 +50,8 @@ public abstract class SendJob extends BaseJob {
     List<Attachment> attachments = new LinkedList<>();
 
     attachments.addAll(message.getAttachments());
-    attachments.addAll(Stream.of(message.getLinkPreviews()).map(lp -> lp.getThumbnail().orElse(null)).filter(Objects::nonNull).toList());
-    attachments.addAll(Stream.of(message.getSharedContacts()).map(Contact::getAvatarAttachment).filter(Objects::nonNull).toList());
+    attachments.addAll(Stream.of(message.getLinkPreviews()).map(lp -> lp.getThumbnail().orElse(null)).filter(Objects::nonNull).collect(com.annimon.stream.Collectors.toList()));
+    attachments.addAll(Stream.of(message.getSharedContacts()).map(Contact::getAvatarAttachment).filter(Objects::nonNull).collect(com.annimon.stream.Collectors.toList()));
 
     if (message.getOutgoingQuote() != null && message.getOutgoingQuote().getAttachment() != null) {
       attachments.add(message.getOutgoingQuote().getAttachment());

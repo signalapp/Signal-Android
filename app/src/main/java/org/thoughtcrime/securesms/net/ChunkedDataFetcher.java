@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.bumptech.glide.util.ContentLengthInputStream;
 
@@ -141,8 +142,7 @@ public class ChunkedDataFetcher {
         requestPattern = Stream.of(getRequestPattern(contentLength - firstChunk.get().getSecond()))
                                .map(b -> new ByteRange(b.start + firstChunk.get().getSecond(),
                                                        b.end   + firstChunk.get().getSecond(),
-                                                       b.ignoreFirst))
-                               .toList();
+                                                       b.ignoreFirst)).collect(Collectors.toList());
       } else {
         requestPattern = getRequestPattern(contentLength);
       }
@@ -153,7 +153,7 @@ public class ChunkedDataFetcher {
     }
 
     SignalExecutors.UNBOUNDED.execute(() -> {
-      List<CallRequestController> controllers = Stream.of(requestPattern).map(range -> makeChunkRequest(client, url, range)).toList();
+      List<CallRequestController> controllers = Stream.of(requestPattern).map(range -> makeChunkRequest(client, url, range)).collect(Collectors.toList());
       List<InputStream>           streams     = new ArrayList<>(controllers.size() + (firstChunk.isPresent() ? 1 : 0));
 
       if (firstChunk.isPresent()) {

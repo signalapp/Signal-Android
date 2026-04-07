@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
@@ -82,8 +83,7 @@ public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
     adapter.submitList(Collections.singletonList(new ChatWallpaperSelectionMappingModel(selected)));
     repository.getAllWallpaper(wallpapers -> adapter.submitList(Stream.of(wallpapers)
                                                                       .map(wallpaper -> ChatWallpaperFactory.updateWithDimming(wallpaper, dim ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0f))
-                                                                      .<MappingModel<?>>map(ChatWallpaperSelectionMappingModel::new)
-                                                                      .toList()));
+                                                                      .<MappingModel<?>>map(ChatWallpaperSelectionMappingModel::new).collect(Collectors.toList())));
 
     submit.setOnClickListener(unused -> {
       ChatWallpaperSelectionMappingModel model = (ChatWallpaperSelectionMappingModel) adapter.getCurrentList().get(viewPager.getCurrentItem());

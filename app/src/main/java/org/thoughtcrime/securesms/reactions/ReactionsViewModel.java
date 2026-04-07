@@ -36,8 +36,7 @@ public class ReactionsViewModel extends ViewModel {
                                                             .sorted(this::compareReactions)
                                                             .map(entry -> new EmojiCount(entry.getKey(),
                                                                                          getCountDisplayEmoji(entry.getValue()),
-                                                                                         entry.getValue()))
-                                                            .toList();
+                                                                                         entry.getValue())).collect(Collectors.toList());
 
                        emojiCounts.add(0, EmojiCount.all(reactionList));
 

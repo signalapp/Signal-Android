@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.ThreadUtil;
@@ -39,17 +40,15 @@ final class ReactWithAnyEmojiRepository {
     this.emojiPages           = new LinkedList<>();
 
     emojiPages.addAll(Stream.of(EmojiSource.getLatest().getDisplayPages())
-                            .filter(p -> p.getIconAttr() != EmojiCategory.EMOTICONS.getIcon())
-                            .map(page -> new ReactWithAnyEmojiPage(Collections.singletonList(new ReactWithAnyEmojiPageBlock(EmojiCategory.getCategoryLabel(page.getIconAttr()), page))))
-                            .toList());
+                                 .filter(p -> p.getIconAttr() != EmojiCategory.EMOTICONS.getIcon())
+                                 .map(page -> new ReactWithAnyEmojiPage(Collections.singletonList(new ReactWithAnyEmojiPageBlock(EmojiCategory.getCategoryLabel(page.getIconAttr()), page)))).collect(Collectors.toList()));
   }
 
   List<ReactWithAnyEmojiPage> getEmojiPageModels(@NonNull List<ReactionDetails> thisMessagesReactions) {
     List<ReactWithAnyEmojiPage> pages       = new LinkedList<>();
     List<String>                thisMessage = Stream.of(thisMessagesReactions)
                                                     .map(ReactionDetails::getDisplayEmoji)
-                                                    .distinct()
-                                                    .toList();
+                                                    .distinct().collect(Collectors.toList());
 
     if (thisMessage.isEmpty()) {
       pages.add(new ReactWithAnyEmojiPage(Collections.singletonList(new ReactWithAnyEmojiPageBlock(R.string.ReactWithAnyEmojiBottomSheetDialogFragment__recently_used, recentEmojiPageModel))));

@@ -8,6 +8,7 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
@@ -141,7 +142,7 @@ public class ChatWallpaperViewModel extends ViewModel {
     return LiveDataUtil.combineLatest(builtins, dimInDarkTheme, (wallpapers, dimInDarkMode) ->
         Stream.of(wallpapers)
               .map(paper -> ChatWallpaperFactory.updateWithDimming(paper, dimInDarkMode ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0f))
-            .<MappingModel<?>>map(ChatWallpaperSelectionMappingModel::new).toList()
+            .<MappingModel<?>>map(ChatWallpaperSelectionMappingModel::new).collect(Collectors.toList())
     );
   }
 

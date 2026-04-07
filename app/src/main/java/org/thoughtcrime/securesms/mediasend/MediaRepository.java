@@ -164,8 +164,7 @@ public class MediaRepository {
                                                                             folder.getCount(),
                                                                             folder.getBucketId(),
                                                                             MediaFolder.FolderType.NORMAL))
-                                             .sorted((o1, o2) -> o1.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase()))
-                                             .toList();
+                                             .sorted((o1, o2) -> o1.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase())).collect(com.annimon.stream.Collectors.toList());
 
     Uri allMediaThumbnail = imageFolders.getThumbnailTimestamp() > videoFolders.getThumbnailTimestamp() ? imageFolders.getThumbnail() : videoFolders.getThumbnail();
 

@@ -5,6 +5,7 @@ import android.os.ResultReceiver;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
@@ -144,8 +145,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
     }
 
     List<Recipient> callParticipants = Stream.of(peekInfo.getJoinedMembers())
-                                             .map(uuid -> Recipient.externalPush(ACI.from(uuid)))
-                                             .toList();
+                                             .map(uuid -> Recipient.externalPush(ACI.from(uuid))).collect(Collectors.toList());
 
     WebRtcServiceStateBuilder.CallInfoStateBuilder builder = currentState.builder()
                                                                          .changeCallInfoState()
