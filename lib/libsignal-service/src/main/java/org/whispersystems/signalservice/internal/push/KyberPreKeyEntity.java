@@ -25,7 +25,7 @@ import java.io.IOException;
 public class KyberPreKeyEntity {
 
   @JsonProperty
-  private int keyId;
+  private long keyId;
 
   @JsonProperty
   @JsonSerialize(using = KEMPublicKeySerializer.class)
@@ -39,13 +39,13 @@ public class KyberPreKeyEntity {
 
   public KyberPreKeyEntity() {}
 
-  public KyberPreKeyEntity(int keyId, KEMPublicKey publicKey, byte[] signature) {
+  public KyberPreKeyEntity(long keyId, KEMPublicKey publicKey, byte[] signature) {
     this.keyId     = keyId;
     this.publicKey = publicKey;
     this.signature = signature;
   }
 
-  public int getKeyId() {
+  public long getKeyId() {
     return keyId;
   }
 

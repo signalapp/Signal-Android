@@ -75,8 +75,8 @@ object MockProvider {
     val device = PreKeyResponseItem().apply {
       this.deviceId = deviceId
       registrationId = KeyHelper.generateRegistrationId(false)
-      signedPreKey = SignedPreKeyEntity(signedPreKeyRecord.id, signedPreKeyRecord.keyPair.publicKey, signedPreKeyRecord.signature)
-      preKey = PreKeyEntity(oneTimePreKey.id, oneTimePreKey.keyPair.publicKey)
+      signedPreKey = SignedPreKeyEntity(signedPreKeyRecord.id.toLong(), signedPreKeyRecord.keyPair.publicKey, signedPreKeyRecord.signature)
+      preKey = PreKeyEntity(oneTimePreKey.id.toLong(), oneTimePreKey.keyPair.publicKey)
     }
 
     return PreKeyResponse().apply {

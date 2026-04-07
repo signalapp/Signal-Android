@@ -2850,6 +2850,10 @@ public class SignalServiceMessageSender {
       try {
         List<PreKeyBundle> preKeys = getPreKeys(recipient, sealedSenderAccess, deviceId, story);
 
+        if (preKeys.isEmpty()) {
+          throw new InvalidKeyException("No valid prekey bundles available for " + signalProtocolAddress);
+        }
+
         for (PreKeyBundle preKey : preKeys) {
           Log.d(TAG, "Initializing prekey session for " + signalProtocolAddress);
 

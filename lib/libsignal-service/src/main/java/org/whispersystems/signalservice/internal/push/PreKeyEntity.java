@@ -25,7 +25,7 @@ import java.io.IOException;
 public class PreKeyEntity {
 
   @JsonProperty
-  private int keyId;
+  private long keyId;
 
   @JsonProperty
   @JsonSerialize(using = ECPublicKeySerializer.class)
@@ -34,12 +34,12 @@ public class PreKeyEntity {
 
   public PreKeyEntity() {}
 
-  public PreKeyEntity(int keyId, ECPublicKey publicKey) {
+  public PreKeyEntity(long keyId, ECPublicKey publicKey) {
     this.keyId     = keyId;
     this.publicKey = publicKey;
   }
 
-  public int getKeyId() {
+  public long getKeyId() {
     return keyId;
   }
 

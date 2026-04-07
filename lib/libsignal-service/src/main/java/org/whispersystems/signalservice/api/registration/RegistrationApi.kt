@@ -154,10 +154,10 @@ class RegistrationApi(
     val request = RegisterAsSecondaryDeviceRequest(
       verificationCode = verificationCode,
       accountAttributes = attributes,
-      aciSignedPreKey = SignedPreKeyEntity(aciPreKeys.signedPreKey.id, aciPreKeys.signedPreKey.keyPair.publicKey, aciPreKeys.signedPreKey.signature),
-      pniSignedPreKey = SignedPreKeyEntity(pniPreKeys.signedPreKey.id, pniPreKeys.signedPreKey.keyPair.publicKey, pniPreKeys.signedPreKey.signature),
-      aciPqLastResortPreKey = KyberPreKeyEntity(aciPreKeys.lastResortKyberPreKey.id, aciPreKeys.lastResortKyberPreKey.keyPair.publicKey, aciPreKeys.lastResortKyberPreKey.signature),
-      pniPqLastResortPreKey = KyberPreKeyEntity(pniPreKeys.lastResortKyberPreKey.id, pniPreKeys.lastResortKyberPreKey.keyPair.publicKey, pniPreKeys.lastResortKyberPreKey.signature),
+      aciSignedPreKey = SignedPreKeyEntity(aciPreKeys.signedPreKey.id.toLong(), aciPreKeys.signedPreKey.keyPair.publicKey, aciPreKeys.signedPreKey.signature),
+      pniSignedPreKey = SignedPreKeyEntity(pniPreKeys.signedPreKey.id.toLong(), pniPreKeys.signedPreKey.keyPair.publicKey, pniPreKeys.signedPreKey.signature),
+      aciPqLastResortPreKey = KyberPreKeyEntity(aciPreKeys.lastResortKyberPreKey.id.toLong(), aciPreKeys.lastResortKyberPreKey.keyPair.publicKey, aciPreKeys.lastResortKyberPreKey.signature),
+      pniPqLastResortPreKey = KyberPreKeyEntity(pniPreKeys.lastResortKyberPreKey.id.toLong(), pniPreKeys.lastResortKyberPreKey.keyPair.publicKey, pniPreKeys.lastResortKyberPreKey.signature),
       gcmToken = fcmToken?.let { GcmRegistrationId(it, true) }
     )
 
