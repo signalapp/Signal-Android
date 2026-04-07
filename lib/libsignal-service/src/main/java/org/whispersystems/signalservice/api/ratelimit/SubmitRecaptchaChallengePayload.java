@@ -7,7 +7,7 @@ package org.whispersystems.signalservice.api.ratelimit;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-class SubmitRecaptchaChallengePayload {
+public class SubmitRecaptchaChallengePayload {
 
   @JsonProperty
   private String type;

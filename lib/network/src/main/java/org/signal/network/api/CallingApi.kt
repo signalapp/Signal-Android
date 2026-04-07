@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.whispersystems.signalservice.api.calling
+package org.signal.network.api
 
 import org.signal.libsignal.zkgroup.calllinks.CreateCallLinkCredentialRequest
 import org.signal.libsignal.zkgroup.calllinks.CreateCallLinkCredentialResponse
@@ -80,7 +80,7 @@ class CallingApi(
 
   /**
    * Send an http request on behalf of the calling infrastructure. Only returns [NetworkResult.Success] with the
-   * wrapped [CallingResponse] wrapping the error which in practice should never happen.
+   * wrapped [org.whispersystems.signalservice.api.messages.calls.CallingResponse] wrapping the error which in practice should never happen.
    *
    * @param requestId Request identifier
    * @param url Fully qualified URL to request

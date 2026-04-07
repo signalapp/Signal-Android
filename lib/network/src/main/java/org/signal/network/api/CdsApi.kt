@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.whispersystems.signalservice.api.cds
+package org.signal.network.api
 
 import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
@@ -11,9 +11,8 @@ import org.signal.libsignal.net.CdsiProtocolException
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.NetworkResult.StatusCodeError
+import org.whispersystems.signalservice.api.cds.CdsiV2Service
 import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidTokenException
-import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhaustedException
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.get
 import org.whispersystems.signalservice.internal.push.CdsiAuthResponse
@@ -40,9 +39,9 @@ class CdsApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket) 
    * - 200: Success
    * - 401: Not authenticated
    *
-   * And then CDS websocket communications, can return the following within [StatusCodeError]
-   * - [CdsiResourceExhaustedException]: Rate limited
-   * - [CdsiInvalidTokenException]: Token no longer valid
+   * And then CDS websocket communications, can return the following within [org.whispersystems.signalservice.api.NetworkResult.StatusCodeError]
+   * - [org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhaustedException]: Rate limited
+   * - [org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidTokenException]: Token no longer valid
    */
   fun getRegisteredUsers(
     previousE164s: Set<String>,

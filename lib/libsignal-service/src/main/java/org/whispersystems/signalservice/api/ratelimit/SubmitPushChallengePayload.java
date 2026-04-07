@@ -7,7 +7,7 @@ package org.whispersystems.signalservice.api.ratelimit;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-class SubmitPushChallengePayload {
+public class SubmitPushChallengePayload {
 
   @JsonProperty
   private String type;

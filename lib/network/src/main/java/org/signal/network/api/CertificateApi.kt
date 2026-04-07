@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.whispersystems.signalservice.api.certificate
+package org.signal.network.api
 
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
@@ -12,7 +12,7 @@ import org.whispersystems.signalservice.internal.push.SenderCertificate
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 
 /**
- * Endpoints to get [SenderCertificate]s.
+ * Endpoints to get [org.whispersystems.signalservice.internal.push.SenderCertificate]s.
  */
 class CertificateApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket) {
 

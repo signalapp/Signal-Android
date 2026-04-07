@@ -1,15 +1,17 @@
 /*
- * Copyright 2025 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.whispersystems.signalservice.api.provisioning
+package org.signal.network.api
 
 import org.signal.core.util.Base64
 import org.signal.core.util.urlEncode
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.provisioning.ProvisioningMessage
+import org.whispersystems.signalservice.api.provisioning.RestoreMethod
 import org.whispersystems.signalservice.api.registration.RestoreMethodBody
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.crypto.PrimaryProvisioningCipher
@@ -44,7 +46,7 @@ class ProvisioningApi(private val authWebSocket: SignalWebSocket.AuthenticatedWe
   }
 
   /**
-   * Wait for the [RestoreMethod] to be set on the server by the new device. This is a long polling operation.
+   * Wait for the [org.whispersystems.signalservice.api.provisioning.RestoreMethod] to be set on the server by the new device. This is a long polling operation.
    *
    * GET /v1/devices/restore_account/[token]?timeout=[timeout]
    * - 200: A request was received for the given token

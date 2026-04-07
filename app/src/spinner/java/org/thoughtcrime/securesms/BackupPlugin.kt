@@ -14,6 +14,7 @@ import org.signal.core.util.bytes
 import org.signal.core.util.decodeOrNull
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.signal.network.api.SvrBApi
 import org.signal.spinner.Plugin
 import org.signal.spinner.PluginResult
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
@@ -24,9 +25,7 @@ import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.svr.SvrBApi
 import java.io.IOException
-import java.lang.StringBuilder
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

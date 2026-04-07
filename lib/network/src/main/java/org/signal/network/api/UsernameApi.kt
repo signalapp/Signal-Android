@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.whispersystems.signalservice.api.username
+package org.signal.network.api
 
 import kotlinx.coroutines.runBlocking
 import org.signal.core.models.ServiceId
@@ -12,14 +12,12 @@ import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.UnauthUsernamesService
 import org.signal.libsignal.net.getOrError
 import org.signal.libsignal.usernames.Username
-import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
-import org.whispersystems.signalservice.internal.get
 import java.util.UUID
 
 /**
  * Username specific APIs related to learning service information for someone else by username.
- * For APIs to manage your own username, see [AccountApi].
+ * For APIs to manage your own username, see [org.whispersystems.signalservice.api.account.AccountApi].
  */
 class UsernameApi(private val unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket) {
 
@@ -27,7 +25,7 @@ class UsernameApi(private val unauthWebSocket: SignalWebSocket.UnauthenticatedWe
    * Gets the ACI for the given [username]. This is an unauthenticated request.
    *
    * A successful result with a null value means the username was not found on the server.
-   * Other errors (network, decryption, etc.) are represented by the other [RequestResult] types.
+   * Other errors (network, decryption, etc.) are represented by the other [org.signal.libsignal.net.RequestResult] types.
    */
   fun getAciByUsername(username: Username): RequestResult<ServiceId.ACI?, Nothing> {
     return runBlocking {

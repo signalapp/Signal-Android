@@ -597,6 +597,7 @@ dependencies {
 
   implementation(project(":lib:archive"))
   implementation(project(":lib:libsignal-service"))
+  implementation(project(":lib:network"))
   implementation(project(":lib:paging"))
   implementation(project(":core:util"))
   implementation(project(":lib:glide"))

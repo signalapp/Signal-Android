@@ -1,9 +1,9 @@
 /*
- * Copyright 2024 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.whispersystems.signalservice.api.link
+package org.signal.network.api
 
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.AccountEntropyPool
@@ -12,12 +12,18 @@ import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.backup.MessageBackupKey
-import org.signal.core.util.Base64.encodeWithPadding
+import org.signal.core.util.Base64
 import org.signal.core.util.urlEncode
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.link.LinkedDeviceVerificationCodeResponse
+import org.whispersystems.signalservice.api.link.SetDeviceNameRequest
+import org.whispersystems.signalservice.api.link.SetLinkedDeviceTransferArchiveRequest
+import org.whispersystems.signalservice.api.link.TransferArchiveError
+import org.whispersystems.signalservice.api.link.TransferArchiveResponse
+import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo
 import org.whispersystems.signalservice.api.provisioning.ProvisioningMessage
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
@@ -127,7 +133,7 @@ class LinkDeviceApi(
       pniBinary = pni.toByteStringWithoutPrefix()
     )
     val ciphertext: ByteArray = cipher.encrypt(message)
-    val body = ProvisioningMessage(encodeWithPadding(ciphertext))
+    val body = ProvisioningMessage(Base64.encodeWithPadding(ciphertext))
 
     val request = WebSocketRequestMessage.put("/v1/provisioning/${deviceIdentifier.urlEncode()}", body)
     return NetworkResult.fromWebSocketRequest(authWebSocket, request)

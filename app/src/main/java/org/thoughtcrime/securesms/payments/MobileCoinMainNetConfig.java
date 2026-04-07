@@ -5,14 +5,12 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 
 import com.mobilecoin.lib.ClientConfig;
-import com.mobilecoin.lib.Verifier;
 import com.mobilecoin.lib.exceptions.AttestationException;
 
 import org.thoughtcrime.securesms.R;
 import org.signal.core.util.Base64;
 import org.whispersystems.signalservice.api.NetworkResultUtil;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.payments.PaymentsApi;
+import org.signal.network.api.PaymentsApi;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 
 import java.io.IOException;

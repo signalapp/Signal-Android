@@ -1,11 +1,13 @@
 /*
- * Copyright 2025 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.whispersystems.signalservice.api.ratelimit
+package org.signal.network.api
 
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.ratelimit.SubmitPushChallengePayload
+import org.whispersystems.signalservice.api.ratelimit.SubmitRecaptchaChallengePayload
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.post
 import org.whispersystems.signalservice.internal.put
