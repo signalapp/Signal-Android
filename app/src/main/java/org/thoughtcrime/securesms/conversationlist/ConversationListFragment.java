@@ -168,7 +168,6 @@ import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
 import org.thoughtcrime.securesms.verify.SelfVerificationFailureSheet;
-import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.signal.core.ui.WindowSizeClassExtensionsKt;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
@@ -1305,15 +1304,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
   }
 
   private void handleCreateConversation(long threadId, Recipient recipient, int distributionType) {
-    SimpleTask.run(getLifecycle(), () -> {
-      ChatWallpaper wallpaper = recipient.resolve().getWallpaper();
-      if (wallpaper != null && !wallpaper.prefetch(requireContext(), 250)) {
-        Log.w(TAG, "Failed to prefetch wallpaper.");
-      }
-      return null;
-    }, (nothing) -> {
-      getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1);
-    });
+    getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1);
   }
 
   private void handleOpenIncognito(@NonNull Conversation conversation) {
@@ -1321,15 +1312,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     Recipient recipient        = conversation.getThreadRecord().getRecipient();
     int       distributionType = conversation.getThreadRecord().getDistributionType();
 
-    SimpleTask.run(getLifecycle(), () -> {
-      ChatWallpaper wallpaper = recipient.resolve().getWallpaper();
-      if (wallpaper != null && !wallpaper.prefetch(requireContext(), 250)) {
-        Log.w(TAG, "Failed to prefetch wallpaper.");
-      }
-      return null;
-    }, (nothing) -> {
-      getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1, true);
-    });
+    getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1, true);
   }
 
   private void startActionModeIfNotActive() {

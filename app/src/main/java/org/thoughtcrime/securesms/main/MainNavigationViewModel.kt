@@ -17,6 +17,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,14 +30,18 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.rx3.asObservable
+import kotlinx.coroutines.withContext
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository
 import org.thoughtcrime.securesms.components.snackbars.SnackbarStateConsumerRegistry
+import org.thoughtcrime.securesms.conversation.ConversationArgs
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.delegate
 import org.thoughtcrime.securesms.window.AppScaffoldNavigator
@@ -44,11 +49,12 @@ import java.util.Optional
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 class MainNavigationViewModel(
-  private val savedStateHandle: SavedStateHandle,
+  savedStateHandle: SavedStateHandle,
   initialListLocation: MainNavigationListLocation = MainNavigationListLocation.CHATS
 ) : ViewModel(), MainNavigationRouter {
 
   companion object {
+    private val TAG = Log.tag(MainNavigationViewModel::class)
     private const val LOCK_PANE_TO_SECONDARY = "lock_pane_to_secondary"
   }
 
@@ -141,9 +147,11 @@ class MainNavigationViewModel(
           is MainNavigationDetailLocation.Chats.Conversation -> {
             internalActiveChatThreadId.update { location.conversationArgs.threadId }
           }
+
           is MainNavigationDetailLocation.Calls -> {
             internalActiveCallId.update { location.controllerKey }
           }
+
           else -> Unit
         }
       }
@@ -221,8 +229,13 @@ class MainNavigationViewModel(
       return
     }
 
-    viewModelScope.launch {
-      internalDetailLocation.emit(location)
+    when (location) {
+      is MainNavigationDetailLocation.Chats.Conversation -> goToConversation(location.conversationArgs)
+      else -> {
+        viewModelScope.launch {
+          internalDetailLocation.emit(location)
+        }
+      }
     }
   }
 
@@ -237,6 +250,16 @@ class MainNavigationViewModel(
     internalMainNavigationState.update {
       it.copy(currentListLocation = location)
     }
+  }
+
+  private fun goToConversation(args: ConversationArgs) = viewModelScope.launch {
+    withContext(Dispatchers.IO) {
+      val wallpaper = Recipient.resolved(args.recipientId).wallpaper
+      if (wallpaper?.prefetch(AppDependencies.application, 250) == false) {
+        Log.w(TAG, "goToConversation: Failed to prefetch wallpaper.")
+      }
+    }
+    internalDetailLocation.emit(MainNavigationDetailLocation.Chats.Conversation(args))
   }
 
   fun goToCameraFirstStoryCapture() {
