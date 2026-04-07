@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.Util;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.ArrayList;
@@ -673,7 +674,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private static @Nullable String getOldEmoji(@NonNull MessageRecord messageRecord) {
-    return Stream.of(messageRecord.getReactions())
+    return StreamUtils.StreamOfCollection(messageRecord.getReactions())
                  .filter(record -> record.getAuthor()
                                          .serialize()
                                          .equals(Recipient.self()

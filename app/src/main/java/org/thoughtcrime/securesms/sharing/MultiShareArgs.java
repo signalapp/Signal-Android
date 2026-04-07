@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.signal.core.util.Util;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -248,7 +249,7 @@ public final class MultiShareArgs implements Parcelable {
 
   @Override
   public void writeToParcel(Parcel dest, int flags) {
-    dest.writeTypedList(Stream.of(contactSearchKeys).map(ContactSearchKey::requireRecipientSearchKey).collect(com.annimon.stream.Collectors.toList()));
+    dest.writeTypedList(StreamUtils.StreamOfCollection(contactSearchKeys).map(ContactSearchKey::requireRecipientSearchKey).toList());
     dest.writeTypedList(media);
     dest.writeString(draftText);
     dest.writeParcelable(stickerLocator, flags);

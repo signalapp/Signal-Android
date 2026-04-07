@@ -8,11 +8,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.contactshare.Contact.Name;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +83,7 @@ class ContactShareEditViewModel extends ViewModel {
   }
 
   private <E extends Selectable> List<E> trimSelectables(List<E> selectables) {
-    return Stream.of(selectables).filter(Selectable::isSelected).collect(Collectors.toList());
+    return StreamUtils.StreamOfCollection(selectables).filter(Selectable::isSelected).toList();
   }
 
   @NonNull

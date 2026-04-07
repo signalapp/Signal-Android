@@ -4,13 +4,13 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.bumptech.glide.util.ContentLengthInputStream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.Util;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.io.FilterInputStream;
 import java.io.IOException;
@@ -139,10 +139,11 @@ public class ChunkedDataFetcher {
     List<ByteRange> requestPattern;
     try {
       if (firstChunk.isPresent()) {
-        requestPattern = Stream.of(getRequestPattern(contentLength - firstChunk.get().getSecond()))
+        requestPattern = StreamUtils.StreamOfCollection(getRequestPattern(contentLength - firstChunk.get().getSecond()))
                                .map(b -> new ByteRange(b.start + firstChunk.get().getSecond(),
                                                        b.end   + firstChunk.get().getSecond(),
-                                                       b.ignoreFirst)).collect(Collectors.toList());
+                                                       b.ignoreFirst))
+                               .toList();
       } else {
         requestPattern = getRequestPattern(contentLength);
       }
@@ -153,14 +154,14 @@ public class ChunkedDataFetcher {
     }
 
     SignalExecutors.UNBOUNDED.execute(() -> {
-      List<CallRequestController> controllers = Stream.of(requestPattern).map(range -> makeChunkRequest(client, url, range)).collect(Collectors.toList());
+      List<CallRequestController> controllers = StreamUtils.StreamOfCollection(requestPattern).map(range -> makeChunkRequest(client, url, range)).toList();
       List<InputStream>           streams     = new ArrayList<>(controllers.size() + (firstChunk.isPresent() ? 1 : 0));
 
       if (firstChunk.isPresent()) {
         streams.add(firstChunk.get().getFirst());
       }
 
-      Stream.of(controllers).forEach(compositeController::addController);
+      StreamUtils.StreamOfCollection(controllers).forEach(compositeController::addController);
 
       for (CallRequestController controller : controllers) {
         Optional<InputStream> stream = controller.getStream();

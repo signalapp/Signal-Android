@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.sharing.MultiShareDialogs;
 import org.thoughtcrime.securesms.sharing.ShareFlowConstants;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
@@ -86,7 +87,7 @@ public class ShareInterstitialActivity extends PassphraseRequiredActivity {
 
     linkPreviewViewModel = new ViewModelProvider(this, linkPreviewViewModelFactory).get(LinkPreviewViewModel.class);
 
-    boolean hasSms = Stream.of(args.getRecipientSearchKeys())
+    boolean hasSms = StreamUtils.StreamOfCollection(args.getRecipientSearchKeys())
                            .anyMatch(c -> {
                              Recipient recipient = Recipient.resolved(c.getRecipientId());
                              if (recipient.isDistributionList()) {

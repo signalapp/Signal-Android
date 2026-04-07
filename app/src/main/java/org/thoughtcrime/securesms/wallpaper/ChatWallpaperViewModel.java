@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
@@ -140,7 +141,7 @@ public class ChatWallpaperViewModel extends ViewModel {
 
   @NonNull LiveData<List<MappingModel<?>>> getWallpapers() {
     return LiveDataUtil.combineLatest(builtins, dimInDarkTheme, (wallpapers, dimInDarkMode) ->
-        Stream.of(wallpapers)
+        StreamUtils.StreamOfCollection(wallpapers)
               .map(paper -> ChatWallpaperFactory.updateWithDimming(paper, dimInDarkMode ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0f))
             .<MappingModel<?>>map(ChatWallpaperSelectionMappingModel::new).collect(Collectors.toList())
     );

@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.signal.core.util.Stopwatch;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -403,7 +404,7 @@ public class SubmitDebugLogRepository {
     if (section.hasContent()) {
       CharSequence content = Scrubber.scrub(section.getContent(context));
 
-      List<LogLine> lines = Stream.of(Pattern.compile("\\n").split(content))
+      List<LogLine> lines = StreamUtils.StreamOfArray(Pattern.compile("\\n").split(content))
                                   .map(s -> new SimpleLogLine(s, LogStyleParser.parseStyle(s), LogStyleParser.parsePlaceholderType(s)))
                                   .map(line -> (LogLine) line).collect(Collectors.toList());
 

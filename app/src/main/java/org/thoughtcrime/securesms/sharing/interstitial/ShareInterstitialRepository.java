@@ -10,6 +10,7 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.List;
 import java.util.Set;
@@ -22,7 +23,7 @@ class ShareInterstitialRepository {
 
   @WorkerThread
   private List<Recipient> resolveRecipients(@NonNull Set<ContactSearchKey.RecipientSearchKey> recipientSearchKeys) {
-    return Stream.of(recipientSearchKeys)
+    return StreamUtils.StreamOfCollection(recipientSearchKeys)
                  .map(ContactSearchKey.RecipientSearchKey::getRecipientId)
                  .map(Recipient::resolved).collect(Collectors.toList());
   }

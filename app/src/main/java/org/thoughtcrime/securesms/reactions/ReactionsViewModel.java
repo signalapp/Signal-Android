@@ -8,6 +8,7 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.model.MessageId;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.Comparator;
 import java.util.List;
@@ -56,7 +57,7 @@ public class ReactionsViewModel extends ViewModel {
   }
 
   private long getLatestTimestamp(List<ReactionDetails> reactions) {
-    return Stream.of(reactions)
+    return StreamUtils.StreamOfCollection(reactions)
                  .max(Comparator.comparingLong(ReactionDetails::getTimestamp))
                  .map(ReactionDetails::getTimestamp)
                  .orElse(-1L);

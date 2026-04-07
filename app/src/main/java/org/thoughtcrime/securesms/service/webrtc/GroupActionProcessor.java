@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.VideoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.webrtc.PeerConnection;
 import org.webrtc.VideoTrack;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
@@ -193,7 +194,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
     Recipient group     = currentState.getCallInfoState().getCallRecipient();
     GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
 
-    List<GroupCall.GroupMemberInfo> members = Stream.of(GroupManager.getUuidCipherTexts(context, group.requireGroupId().requireV2()))
+    List<GroupCall.GroupMemberInfo> members = StreamUtils.StreamOfCollection(GroupManager.getUuidCipherTexts(context, group.requireGroupId().requireV2()).entrySet())
                                                     .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize())).collect(Collectors.toList());
 
     try {

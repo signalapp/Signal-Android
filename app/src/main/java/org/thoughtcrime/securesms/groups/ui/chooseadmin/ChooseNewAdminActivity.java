@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 import java.util.Objects;
@@ -74,10 +75,9 @@ public final class ChooseNewAdminActivity extends PassphraseRequiredActivity {
     initializeViewModel();
 
     groupList.initializeAdapter(this);
-    groupList.setRecipientSelectionChangeListener(selection -> viewModel.setSelection(Stream.of(selection)
-                                                                                            .filter(x -> x instanceof GroupMemberEntry.FullMember)
-                                                                                                 .map(x-> (GroupMemberEntry.FullMember)x)
-                                                                                            .collect(Collectors.toSet())));
+    groupList.setRecipientSelectionChangeListener(selection -> viewModel.setSelection(StreamUtils.StreamOfCollection(selection)
+                                                                                                 .select(GroupMemberEntry.FullMember.class)
+                                                                                                 .collect(Collectors.toSet())));
 
     done.setOnClickListener(v -> {
       done.setSpinning();

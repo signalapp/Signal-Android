@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.SignalE164Util;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
@@ -131,7 +132,7 @@ public final class MessageGroupContext {
     public @NonNull List<RecipientId> getMembersListExcludingSelf() {
       RecipientId selfId = Recipient.self().getId();
 
-      return Stream.of(groupContext.members)
+      return StreamUtils.StreamOfCollection(groupContext.members)
                    .filter(m -> SignalE164Util.isPotentialE164(m.e164))
                    .map(m -> m.e164)
                    .filter(Objects::nonNull)

@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.payments.preferences.model.PaymentItem;
 import org.thoughtcrime.securesms.payments.preferences.model.SeeAll;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.livedata.Store;
@@ -196,7 +197,7 @@ public class PaymentsHomeViewModel extends ViewModel {
   private @NonNull PaymentsHomeState updateRecentPayments(@NonNull List<Payment> payments,
                                                           @NonNull PaymentsHomeState state)
   {
-    List<PaymentItem> paymentItems = Stream.of(payments)
+    List<PaymentItem> paymentItems = StreamUtils.StreamOfCollection(payments)
                                            .limit(MAX_PAYMENT_ITEMS)
                                            .map(PaymentItem::fromPayment).collect(Collectors.toList());
 

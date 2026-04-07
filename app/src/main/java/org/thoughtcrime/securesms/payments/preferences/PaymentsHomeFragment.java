@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.payments.preferences.model.PaymentItem;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
@@ -139,7 +140,7 @@ public class PaymentsHomeFragment extends LoggingFragment {
     });
 
     viewModel.getList().observe(getViewLifecycleOwner(), list -> {
-      boolean hadPaymentItems = Stream.of(adapter.getCurrentList()).anyMatch(model -> model instanceof PaymentItem);
+      boolean hadPaymentItems = StreamUtils.StreamOfCollection(adapter.getCurrentList()).anyMatch(model -> model instanceof PaymentItem);
 
       if (!hadPaymentItems) {
         adapter.submitList(list, () -> recycler.scrollToPosition(0));

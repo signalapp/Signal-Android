@@ -9,12 +9,12 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.MegaphoneDatabase;
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
 import org.thoughtcrime.securesms.megaphone.Megaphones.Event;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -123,8 +123,8 @@ public class MegaphoneRepository {
   @WorkerThread
   private void init() {
     List<MegaphoneRecord> records = database.getAllAndDeleteMissing();
-    Set<Event>            events  = Stream.of(records).map(MegaphoneRecord::getEvent).collect(Collectors.toSet());
-    Set<Event>            missing = Stream.of(Megaphones.Event.values()).filter(o -> !events.contains(o)).collect(Collectors.toSet());
+    Set<Event>            events  = StreamUtils.StreamOfCollection(records).map(MegaphoneRecord::getEvent).collect(Collectors.toSet());
+    Set<Event>            missing = StreamUtils.StreamOfArray(Event.values()).filterNot(events::contains).collect(Collectors.toSet());
 
     database.insert(missing);
     resetDatabaseCache();
@@ -139,7 +139,7 @@ public class MegaphoneRepository {
   @WorkerThread
   private void resetDatabaseCache() {
     databaseCache.clear();
-    databaseCache.putAll(Stream.of(database.getAllAndDeleteMissing()).collect(Collectors.toMap(MegaphoneRecord::getEvent, m -> m)));
+    databaseCache.putAll(StreamUtils.StreamOfCollection(database.getAllAndDeleteMissing()).collect(Collectors.toMap(MegaphoneRecord::getEvent, m -> m)));
   }
 
   public interface Callback<E> {

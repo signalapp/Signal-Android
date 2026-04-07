@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.util.Debouncer;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor;
 
 import java.util.Collections;
@@ -128,7 +129,7 @@ public class MarkReadHelper {
 
     if (item != null) {
       MessageRecord record = item.getMessageRecord();
-      long latestReactionReceived = Stream.of(record.getReactions())
+      long latestReactionReceived = StreamUtils.StreamOfCollection(record.getReactions())
                                           .map(ReactionRecord::getDateReceived)
                                           .max(Long::compareTo)
                                           .orElse(0L);

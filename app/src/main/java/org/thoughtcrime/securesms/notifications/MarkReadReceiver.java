@@ -23,13 +23,12 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import kotlin.Pair;
 
 public class MarkReadReceiver extends BroadcastReceiver {
 
@@ -76,25 +75,27 @@ public class MarkReadReceiver extends BroadcastReceiver {
   public static void process(@NonNull List<MarkedMessageInfo> markedReadMessages) {
     if (markedReadMessages.isEmpty()) return;
 
-    List<SyncMessageId>  syncMessageIds = Stream.of(markedReadMessages)
-                                                .map(MarkedMessageInfo::getSyncMessageId).collect(Collectors.toList());
-    List<ExpirationInfo> expirationInfo = Stream.of(markedReadMessages)
+    List<SyncMessageId>  syncMessageIds = StreamUtils.StreamOfCollection(markedReadMessages)
+                                                .map(MarkedMessageInfo::getSyncMessageId)
+                                                .toList();
+    List<ExpirationInfo> expirationInfo = StreamUtils.StreamOfCollection(markedReadMessages)
                                                 .map(MarkedMessageInfo::getExpirationInfo)
-                                                .filter(info -> info.getExpiresIn() > 0 && info.getExpireStarted() <= 0).collect(Collectors.toList());
+                                                .filter(info -> info.getExpiresIn() > 0 && info.getExpireStarted() <= 0)
+                                                .toList();
 
     scheduleDeletion(expirationInfo);
 
     MultiDeviceReadUpdateJob.enqueue(syncMessageIds);
 
-    Map<Long, List<MarkedMessageInfo>> threadToInfo = Stream.of(markedReadMessages)
+    Map<Long, List<MarkedMessageInfo>> threadToInfo = StreamUtils.StreamOfCollection(markedReadMessages)
                                                             .collect(Collectors.groupingBy(MarkedMessageInfo::getThreadId));
 
-    Stream.of(threadToInfo).forEach(threadToInfoEntry -> {
-      Map<RecipientId, List<MarkedMessageInfo>> recipientIdToInfo = Stream.of(threadToInfoEntry.getValue())
+    StreamUtils.StreamOfCollection(threadToInfo.entrySet()).forEach(threadToInfoEntry -> {
+      Map<RecipientId, List<MarkedMessageInfo>> recipientIdToInfo = StreamUtils.StreamOfCollection(threadToInfoEntry.getValue())
                                                                           .map(info -> info)
                                                                           .collect(Collectors.groupingBy(info -> info.getSyncMessageId().getRecipientId()));
 
-      Stream.of(recipientIdToInfo).forEach(entry -> {
+      StreamUtils.StreamOfCollection(recipientIdToInfo.entrySet()).forEach(entry -> {
         long                    threadId    = threadToInfoEntry.getKey();
         RecipientId             recipientId = entry.getKey();
         List<MarkedMessageInfo> infos       = entry.getValue();
@@ -121,10 +122,10 @@ public class MarkReadReceiver extends BroadcastReceiver {
   private static void scheduleDeletion(@NonNull List<ExpirationInfo> expirationInfo) {
     if (expirationInfo.size() > 0) {
       long now = System.currentTimeMillis();
-      SignalDatabase.messages().markExpireStarted(Stream.of(expirationInfo).map(info -> new Pair<>(info.getId(), now)).collect(Collectors.toList()));
+      SignalDatabase.messages().markExpireStarted(StreamUtils.StreamOfCollection(expirationInfo).map(info -> new kotlin.Pair<>(info.getId(), now)).toList());
 
       AppDependencies.getExpiringMessageManager()
-                     .scheduleDeletion(Stream.of(expirationInfo).map(info -> info.copy(info.getId(), info.getExpiresIn(), now, info.isMms())).collect(Collectors.toList()));
+                     .scheduleDeletion(StreamUtils.StreamOfCollection(expirationInfo).map(info -> info.copy(info.getId(), info.getExpiresIn(), now, info.isMms())).toList());
     }
   }
 }

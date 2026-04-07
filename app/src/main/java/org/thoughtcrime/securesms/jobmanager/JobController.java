@@ -8,7 +8,6 @@ import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.persistence.ConstraintSpec;
@@ -18,6 +17,7 @@ import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
 import org.thoughtcrime.securesms.jobs.MinimalJobSpec;
 import org.thoughtcrime.securesms.util.Debouncer;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -120,7 +120,7 @@ class JobController {
   @WorkerThread
   void submitNewJobChain(@NonNull List<List<Job>> chain) {
     synchronized (this) {
-      chain = Stream.of(chain).filter(jobs -> !jobs.isEmpty()).collect(Collectors.toList());
+      chain = StreamUtils.StreamOfCollection(chain).filterNot(List::isEmpty).toList();
 
       if (chain.isEmpty()) {
         Log.w(TAG, "Tried to submit an empty job chain. Skipping.");
@@ -163,13 +163,14 @@ class JobController {
       }
 
       Set<String> allDependsOn = new HashSet<>(dependsOn);
-      Set<String> aliveDependsOn = Stream.of(dependsOn)
+      Set<String> aliveDependsOn = StreamUtils.StreamOfCollection(dependsOn)
                                          .filter(id -> jobStorage.getJobSpec(id) != null)
                                          .collect(Collectors.toSet());
 
       if (dependsOnQueue != null) {
-        List<String> inQueue = Stream.of(jobStorage.getJobsInQueue(dependsOnQueue))
-                                     .map(JobSpec::getId).collect(Collectors.toList());
+        List<String> inQueue = StreamUtils.StreamOfCollection(jobStorage.getJobsInQueue(dependsOnQueue))
+                                     .map(JobSpec::getId)
+                                     .toList();
 
         allDependsOn.addAll(inQueue);
         aliveDependsOn.addAll(inQueue);
@@ -268,7 +269,7 @@ class JobController {
     // We have no control over what happens in jobs' onFailure method, so we drop our lock to reduce the possibility of a deadlock
     if (inactiveJob != null) {
       inactiveJob.onFailure();
-      Stream.of(inactiveJobDependents).forEach(Job::onFailure);
+      StreamUtils.StreamOfCollection(inactiveJobDependents).forEach(Job::onFailure);
     }
   }
 
@@ -279,7 +280,7 @@ class JobController {
       jobsInQueue = jobStorage.getJobsInQueue(queue);
     }
 
-    Stream.of(jobsInQueue)
+    StreamUtils.StreamOfCollection(jobsInQueue)
           .map(JobSpec::getId)
           .forEach(this::cancelJob);
   }
@@ -307,9 +308,10 @@ class JobController {
     jobStorage.updateJobAfterRetry(job.getId(), System.currentTimeMillis(), nextRunAttempt, backoffInterval, serializedData);
     jobTracker.onStateChange(job, JobTracker.JobState.PENDING);
 
-    List<Constraint> constraints = Stream.of(jobStorage.getConstraintSpecs(job.getId()))
+    List<Constraint> constraints = StreamUtils.StreamOfCollection(jobStorage.getConstraintSpecs(job.getId()))
                                          .map(ConstraintSpec::getFactoryKey)
-                                         .map(constraintInstantiator::instantiate).collect(Collectors.toList());
+                                         .map(constraintInstantiator::instantiate)
+                                         .toList();
 
 
     Log.i(TAG, JobLogger.format(job, "Scheduling a retry in " + backoffInterval + " ms."));
@@ -325,10 +327,11 @@ class JobController {
   @WorkerThread
   synchronized void onSuccess(@NonNull Job job, @Nullable byte[] outputData) {
     if (outputData != null) {
-      List<JobSpec> updates = Stream.of(jobStorage.getDependencySpecsThatDependOnJob(job.getId()))
+      List<JobSpec> updates = StreamUtils.StreamOfCollection(jobStorage.getDependencySpecsThatDependOnJob(job.getId()))
                                     .map(DependencySpec::getJobId)
                                     .map(jobStorage::getJobSpec)
-                                    .map(jobSpec -> mapToJobWithInputData(jobSpec, outputData)).collect(Collectors.toList());
+                                    .map(jobSpec -> mapToJobWithInputData(jobSpec, outputData))
+                                    .toList();
 
       jobStorage.updateJobs(updates);
     }
@@ -343,20 +346,22 @@ class JobController {
    */
   @WorkerThread
   synchronized @NonNull List<Job> onFailure(@NonNull Job job) {
-    List<Job> dependents = Stream.of(jobStorage.getDependencySpecsThatDependOnJob(job.getId()))
+    List<Job> dependents = StreamUtils.StreamOfCollection(jobStorage.getDependencySpecsThatDependOnJob(job.getId()))
                                  .map(DependencySpec::getJobId)
-                                 .map(jobStorage::getJobSpec).filter(Objects::nonNull)
+                                 .map(jobStorage::getJobSpec)
+                                 .withoutNulls()
                                  .map(jobSpec -> {
                                    List<ConstraintSpec> constraintSpecs = jobStorage.getConstraintSpecs(jobSpec.getId());
                                    return createJob(jobSpec, constraintSpecs);
-                                 }).collect(Collectors.toList());
+                                 })
+                                 .toList();
 
     List<Job> all = new ArrayList<>(dependents.size() + 1);
     all.add(job);
     all.addAll(dependents);
 
-    jobStorage.deleteJobs(Stream.of(all).map(Job::getId).collect(Collectors.toList()));
-    Stream.of(all).forEach(j -> jobTracker.onStateChange(j, JobTracker.JobState.FAILURE));
+    jobStorage.deleteJobs(StreamUtils.StreamOfCollection(all).map(Job::getId).toList());
+    StreamUtils.StreamOfCollection(all).forEach(j -> jobTracker.onStateChange(j, JobTracker.JobState.FAILURE));
 
     return dependents;
   }
@@ -429,21 +434,21 @@ class JobController {
 
     info.append("\n-- Jobs\n");
     if (!jobs.isEmpty()) {
-      Stream.of(jobs).forEach(j -> info.append(j.toString()).append('\n'));
+      StreamUtils.StreamOfCollection(jobs).forEach(j -> info.append(j.toString()).append('\n'));
     } else {
       info.append("None\n");
     }
 
     info.append("\n-- Constraints\n");
     if (!constraints.isEmpty()) {
-      Stream.of(constraints).forEach(c -> info.append(c.toString()).append('\n'));
+      StreamUtils.StreamOfCollection(constraints).forEach(c -> info.append(c.toString()).append('\n'));
     } else {
       info.append("None\n");
     }
 
     info.append("\n-- Dependencies\n");
     if (!dependencies.isEmpty()) {
-      Stream.of(dependencies).forEach(d -> info.append(d.toString()).append('\n'));
+      StreamUtils.StreamOfCollection(dependencies).forEach(d -> info.append(d.toString()).append('\n'));
     } else {
       info.append("None\n");
     }
@@ -574,8 +579,8 @@ class JobController {
 
   @WorkerThread
   private void triggerOnSubmit(@NonNull List<List<Job>> chain) {
-    Stream.of(chain)
-          .forEach(list -> Stream.of(list).forEach(job -> {
+    StreamUtils.StreamOfCollection(chain)
+          .forEach(list -> StreamUtils.StreamOfCollection(list).forEach(job -> {
             job.setContext(application);
             job.onSubmit();
           }));
@@ -590,7 +595,7 @@ class JobController {
       for (Job job : jobList) {
         fullSpecs.add(buildFullSpec(job, dependsOn));
       }
-      dependsOn = Stream.of(jobList).map(Job::getId).collect(Collectors.toList());
+      dependsOn = StreamUtils.StreamOfCollection(jobList).map(Job::getId).toList();
     }
 
     jobStorage.insertJobs(fullSpecs);
@@ -617,16 +622,18 @@ class JobController {
                                   job.getParameters().getQueuePriority(),
                                   job.getParameters().getInitialDelay());
 
-    List<ConstraintSpec> constraintSpecs = Stream.of(job.getParameters().getConstraintKeys())
-                                                 .map(key -> new ConstraintSpec(jobSpec.getId(), key, jobSpec.isMemoryOnly())).collect(Collectors.toList());
+    List<ConstraintSpec> constraintSpecs = StreamUtils.StreamOfCollection(job.getParameters().getConstraintKeys())
+                                                 .map(key -> new ConstraintSpec(jobSpec.getId(), key, jobSpec.isMemoryOnly()))
+                                                 .toList();
 
-    List<DependencySpec> dependencySpecs = Stream.of(dependsOn)
+    List<DependencySpec> dependencySpecs = StreamUtils.StreamOfCollection(dependsOn)
                                                  .map(depends -> {
                                                    JobSpec dependsOnJobSpec = jobStorage.getJobSpec(depends);
                                                    boolean memoryOnly       = job.getParameters().isMemoryOnly() || (dependsOnJobSpec != null && dependsOnJobSpec.isMemoryOnly());
 
                                                    return new DependencySpec(job.getId(), depends, memoryOnly);
-                                                 }).collect(Collectors.toList());
+                                                 })
+                                                 .toList();
 
     return new FullSpec(jobSpec, constraintSpecs, dependencySpecs);
   }
@@ -652,11 +659,12 @@ class JobController {
       }
 
       List<ConstraintSpec> constraintSpecs = jobStorage.getConstraintSpecs(minimalJobSpec.getId());
-      List<Constraint>     constraints     = Stream.of(constraintSpecs)
+      List<Constraint>     constraints     = StreamUtils.StreamOfCollection(constraintSpecs)
                                                    .map(ConstraintSpec::getFactoryKey)
-                                                   .map(constraintInstantiator::instantiate).collect(Collectors.toList());
+                                                   .map(constraintInstantiator::instantiate)
+                                                   .toList();
 
-      return Stream.of(constraints).allMatch(Constraint::isMet);
+      return StreamUtils.StreamOfCollection(constraints).allMatch(Constraint::isMet);
     });
 
     if (jobSpec == null) {
@@ -682,8 +690,9 @@ class JobController {
     } catch (RuntimeException e) {
       Log.e(TAG, "Failed to instantiate job! Failing it and its dependencies without calling Job#onFailure. Crash imminent.");
 
-      List<String> failIds = Stream.of(jobStorage.getDependencySpecsThatDependOnJob(jobSpec.getId()))
-                                   .map(DependencySpec::getJobId).collect(Collectors.toList());
+      List<String> failIds = StreamUtils.StreamOfCollection(jobStorage.getDependencySpecsThatDependOnJob(jobSpec.getId()))
+                                   .map(DependencySpec::getJobId)
+                                   .toList();
 
       jobStorage.deleteJob(jobSpec.getId());
       jobStorage.deleteJobs(failIds);
@@ -700,7 +709,7 @@ class JobController {
                   .setLifespan(jobSpec.getLifespan())
                   .setMaxAttempts(jobSpec.getMaxAttempts())
                   .setQueue(jobSpec.getQueueKey())
-                  .setConstraints(Stream.of(constraintSpecs).map(ConstraintSpec::getFactoryKey).collect(Collectors.toList()))
+                  .setConstraints(StreamUtils.StreamOfCollection(constraintSpecs).map(ConstraintSpec::getFactoryKey).toList())
                   .setInputData(jobSpec.getSerializedInputData())
                   .build();
   }

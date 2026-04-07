@@ -16,10 +16,10 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 @RequiresApi(26)
 public final class JobSchedulerScheduler implements Scheduler {
@@ -39,8 +39,9 @@ public final class JobSchedulerScheduler implements Scheduler {
       JobScheduler jobScheduler = application.getSystemService(JobScheduler.class);
 
       String constraintNames = constraints.isEmpty() ? ""
-                                                     : Stream.of(constraints)
-                                                             .map(Constraint::getJobSchedulerKeyPart).filter(Objects::nonNull)
+                                                     : StreamUtils.StreamOfCollection(constraints)
+                                                             .map(Constraint::getJobSchedulerKeyPart)
+                                                             .withoutNulls()
                                                              .sorted()
                                                              .collect(Collectors.joining("-"));
 

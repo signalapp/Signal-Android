@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.util.StreamUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class CompositeRequestController implements RequestController {
   @Override
   public synchronized void cancel() {
     canceled = true;
-    Stream.of(controllers).forEach(RequestController::cancel);
+    StreamUtils.StreamOfCollection(controllers).forEach(RequestController::cancel);
   }
 
   public synchronized boolean isCanceled() {

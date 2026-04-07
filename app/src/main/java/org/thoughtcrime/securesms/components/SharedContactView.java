@@ -16,19 +16,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.annimon.stream.Stream;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.database.RecipientTable;
-import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -116,7 +116,7 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
     this.locale         = locale;
     this.contact        = contact;
 
-    Stream.of(activeRecipients.values()).forEach(recipient ->  recipient.removeForeverObserver(this));
+    StreamUtils.StreamOfCollection(activeRecipients.values()).forEach(recipient ->  recipient.removeForeverObserver(this));
     this.activeRecipients.clear();
 
     presentContact(contact);

@@ -8,8 +8,7 @@ import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.annimon.stream.Stream;
-
+import org.signal.core.util.Util;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
@@ -28,7 +27,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.safety.SafetyNumberRecipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.signal.core.util.Util;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
@@ -89,10 +88,11 @@ public final class SafetyNumberChangeRepository {
       messageRecord = getMessageRecord(messageId, messageType);
     }
 
-    List<Recipient> recipients = Stream.of(recipientIds).map(Recipient::resolved).collect(com.annimon.stream.Collectors.toList());
+    List<Recipient> recipients = StreamUtils.StreamOfCollection(recipientIds).map(Recipient::resolved).toList();
 
-    List<ChangedRecipient> changedRecipients = Stream.of(AppDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).getIdentityRecords())
-                                                     .map(record -> new ChangedRecipient(Recipient.resolved(record.getRecipientId()), record)).collect(com.annimon.stream.Collectors.toList());
+    List<ChangedRecipient> changedRecipients = StreamUtils.StreamOfCollection(AppDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).getIdentityRecords())
+                                                     .map(record -> new ChangedRecipient(Recipient.resolved(record.getRecipientId()), record))
+                                                     .toList();
 
     Log.d(TAG, "Safety number change state, message: " + (messageRecord != null ? messageRecord.getId() : "null") + " records: " + Util.join(changedRecipients, ","));
 

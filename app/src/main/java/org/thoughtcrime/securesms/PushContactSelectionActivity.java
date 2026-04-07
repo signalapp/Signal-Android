@@ -19,12 +19,10 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +57,7 @@ public class PushContactSelectionActivity extends ContactSelectionActivity {
   protected final void onFinishedSelection() {
     Intent                resultIntent     = getIntent();
     List<SelectedContact> selectedContacts = contactsFragment.getSelectedContacts();
-    List<RecipientId>     recipients       = Stream.of(selectedContacts).map(sc -> sc.getOrCreateRecipientId()).collect(Collectors.toList());
+    List<RecipientId>     recipients       = StreamUtils.StreamOfCollection(selectedContacts).map(sc -> sc.getOrCreateRecipientId()).toList();
 
     resultIntent.putParcelableArrayListExtra(KEY_SELECTED_RECIPIENTS, new ArrayList<>(recipients));
 

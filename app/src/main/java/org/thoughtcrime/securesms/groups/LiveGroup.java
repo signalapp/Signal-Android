@@ -9,7 +9,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.models.ServiceId;
@@ -29,6 +28,7 @@ import org.thoughtcrime.securesms.groups.v2.GroupLinkUrlAndStatus;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.Collections;
@@ -88,12 +88,13 @@ public final class LiveGroup {
 
   protected static LiveData<List<GroupMemberEntry.FullMember>> mapToFullMembers(@NonNull LiveData<GroupRecord> groupRecord) {
     return LiveDataUtil.mapAsync(groupRecord,
-                                 g -> Stream.of(g.getMembers())
+                                 g -> StreamUtils.StreamOfCollection(g.getMembers())
                                             .map(m -> {
                                               Recipient recipient = Recipient.resolved(m);
                                               return new GroupMemberEntry.FullMember(recipient, g.isAdmin(recipient));
                                             })
-                                            .sorted(MEMBER_ORDER).collect(Collectors.toList()));
+                                            .sorted(MEMBER_ORDER)
+                                            .toList());
   }
 
   protected static LiveData<List<GroupMemberEntry.RequestingMember>> mapToRequestingMembers(@NonNull LiveData<GroupRecord> groupRecord) {
@@ -106,11 +107,12 @@ public final class LiveGroup {
                                    boolean                         selfAdmin             = g.isAdmin(Recipient.self());
                                    List<DecryptedRequestingMember> requestingMembersList = g.requireV2GroupProperties().getDecryptedGroup().requestingMembers;
 
-                                   return Stream.of(requestingMembersList)
+                                   return StreamUtils.StreamOfCollection(requestingMembersList)
                                                 .map(requestingMember -> {
                                                   Recipient recipient = Recipient.externalPush(ServiceId.parseOrThrow(requestingMember.aciBytes));
                                                   return new GroupMemberEntry.RequestingMember(recipient, selfAdmin);
-                                                }).collect(Collectors.toList());
+                                                })
+                                                .toList();
                                  });
   }
 
@@ -194,8 +196,9 @@ public final class LiveGroup {
 
   public LiveData<List<GroupMemberEntry.FullMember>> getNonAdminFullMembers() {
     return Transformations.map(fullMembers,
-                               members -> Stream.of(members)
-                                                     .filter(fullMember -> !fullMember.isAdmin()).collect(Collectors.toList()));
+                               members -> StreamUtils.StreamOfCollection(members)
+                                                .filterNot(GroupMemberEntry.FullMember::isAdmin)
+                                                .toList());
   }
 
   public LiveData<List<GroupMemberEntry.FullMember>> getFullMembers() {

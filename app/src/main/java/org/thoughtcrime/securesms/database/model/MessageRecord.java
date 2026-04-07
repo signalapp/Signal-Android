@@ -30,7 +30,6 @@ import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 
-import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.Base64;
@@ -71,6 +70,7 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
 import org.signal.core.util.Util;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
@@ -593,9 +593,11 @@ public abstract class MessageRecord extends DisplayRecord {
   public static @NonNull UpdateDescription getGroupCallUpdateDescription(@NonNull Context context, @NonNull String body, boolean withTime) {
     GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(body);
 
-    List<ServiceId> joinedMembers = Stream.of(groupCallUpdateDetails.inCallUuids)
-                                          .map(UuidUtil::parseOrNull).filter(Objects::nonNull)
-                                          .<ServiceId>map(ACI::from).collect(Collectors.toList());
+    List<ServiceId> joinedMembers = StreamUtils.StreamOfCollection(groupCallUpdateDetails.inCallUuids)
+                                          .map(UuidUtil::parseOrNull)
+                                          .withoutNulls()
+                                          .<ServiceId>map(ACI::from)
+                                          .toList();
 
     UpdateDescription.SpannableFactory stringFactory = new GroupCallUpdateMessageFactory(context, joinedMembers, withTime, groupCallUpdateDetails);
 

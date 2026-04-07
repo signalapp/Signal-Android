@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.util.StreamUtils;
+
 import java.util.List;
 
 /**

@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,7 +53,7 @@ public class StickerAdditionMigrationJob extends MigrationJob {
 
   @Override
   public @Nullable byte[] serialize() {
-    String[] packsRaw = Stream.of(packs).map(BlessedPacks.Pack::toJson).toArray(String[]::new);
+    String[] packsRaw = StreamUtils.StreamOfCollection(packs).map(BlessedPacks.Pack::toJson).toArray(String[]::new);
     return new JsonJobData.Builder().putStringArray(KEY_PACKS, packsRaw).serialize();
   }
 

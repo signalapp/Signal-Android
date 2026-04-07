@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.ArrayList;
@@ -164,7 +165,7 @@ public class ReactionsConversationView extends LinearLayout {
       List<Reaction> shortened = new ArrayList<>(3);
       shortened.add(reactions.get(0));
       shortened.add(reactions.get(1));
-      shortened.add(Stream.of(reactions).skip(2).reduce(new Reaction(null, null, 0, 0, false), Reaction::merge));
+      shortened.add(StreamUtils.StreamOfCollection(reactions).skip(2).reduce(new Reaction(null, null, 0, 0, false), Reaction::merge));
 
       return shortened;
     } else {

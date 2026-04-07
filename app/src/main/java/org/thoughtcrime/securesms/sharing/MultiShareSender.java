@@ -51,6 +51,7 @@ import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.signal.core.util.Util;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -489,11 +490,11 @@ public final class MultiShareSender {
     }
 
     public boolean containsFailures() {
-      return Stream.of(results).anyMatch(result -> result.type != MultiShareSendResult.Type.SUCCESS);
+      return StreamUtils.StreamOfCollection(results).anyMatch(result -> result.type != MultiShareSendResult.Type.SUCCESS);
     }
 
     public boolean containsOnlyFailures() {
-      return Stream.of(results).allMatch(result -> result.type != MultiShareSendResult.Type.SUCCESS);
+      return StreamUtils.StreamOfCollection(results).allMatch(result -> result.type != MultiShareSendResult.Type.SUCCESS);
     }
   }
 

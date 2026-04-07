@@ -11,11 +11,11 @@ import androidx.core.text.HtmlCompat;
 import androidx.core.text.util.LinkifyCompat;
 
 import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LinkUtil;
 import org.signal.core.util.Util;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.util.Collections;
@@ -60,7 +60,7 @@ public final class LinkPreviewUtil {
       return Links.EMPTY;
     }
 
-    return new Links(Stream.of(spannable.getSpans(0, spannable.length(), URLSpan.class))
+    return new Links(StreamUtils.StreamOfArray(spannable.getSpans(0, spannable.length(), URLSpan.class))
                            .map(span -> new Link(span.getURL(), spannable.getSpanStart(span)))
                            .filter(link -> LinkUtil.isValidPreviewUrl(link.url)).collect(Collectors.toList()));
   }
@@ -155,7 +155,7 @@ public final class LinkPreviewUtil {
 
     @SuppressLint("ObsoleteSdkInt")
     public long getDate() {
-      return Stream.of(new String[] { values.get(KEY_PUBLISHED_TIME_1),
+      return StreamUtils.StreamOfArray(new String[] { values.get(KEY_PUBLISHED_TIME_1),
                                       values.get(KEY_PUBLISHED_TIME_2),
                                       values.get(KEY_MODIFIED_TIME_1),
                                       values.get(KEY_MODIFIED_TIME_2) })
@@ -178,7 +178,7 @@ public final class LinkPreviewUtil {
 
     private Links(@NonNull List<Link> links) {
       this.links  = links;
-      this.urlSet = Stream.of(links)
+      this.urlSet = StreamUtils.StreamOfCollection(links)
                           .map(link -> trimTrailingSlash(link.url))
                           .collect(Collectors.toSet());
     }

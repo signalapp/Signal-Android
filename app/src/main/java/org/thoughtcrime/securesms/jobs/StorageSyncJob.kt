@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncValidations
 import org.thoughtcrime.securesms.storage.StoryDistributionListRecordProcessor
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.StreamUtils
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
@@ -331,7 +332,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
           processKnownRecords(context, remoteOnly)
 
           val unknownInserts: List<SignalStorageRecord> = remoteOnly.unknown
-          val unknownDeletes = Stream.of(idDifference.localOnlyIds).filter { obj: StorageId -> obj.isUnknown }.collect(com.annimon.stream.Collectors.toList())
+          val unknownDeletes = StreamUtils.StreamOfCollection(idDifference.localOnlyIds).filter { obj: StorageId -> obj.isUnknown }.toList()
 
           Log.i(TAG, "[Remote Sync] Unknowns :: " + unknownInserts.size + " inserts, " + unknownDeletes.size + " deletes")
 
@@ -377,7 +378,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       val localStorageIds = getAllLocalStorageIds(self)
       val idDifference = StorageSyncHelper.findIdDifference(remoteManifest.storageIds, localStorageIds)
       val remoteInserts = buildLocalStorageRecords(context, self, idDifference.localOnlyIds.stream().filter { it: StorageId -> !it.isUnknown }.collect(Collectors.toList()))
-      val remoteDeletes = Stream.of(idDifference.remoteOnlyIds).map { obj: StorageId -> obj.raw }.collect(com.annimon.stream.Collectors.toList())
+      val remoteDeletes = StreamUtils.StreamOfCollection(idDifference.remoteOnlyIds).map { obj: StorageId -> obj.raw }.toList()
 
       Log.i(TAG, "ID Difference :: $idDifference")
 

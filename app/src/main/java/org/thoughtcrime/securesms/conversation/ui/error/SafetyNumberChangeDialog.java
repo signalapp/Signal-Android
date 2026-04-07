@@ -22,14 +22,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 
 import java.util.Collection;
@@ -72,10 +71,11 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
   }
 
   public static void showForGroupCall(@NonNull FragmentManager fragmentManager, @NonNull List<IdentityRecord> identityRecords) {
-    List<String> ids = Stream.of(identityRecords)
-                             .filter(identityRecord -> !identityRecord.isFirstUse())
+    List<String> ids = StreamUtils.StreamOfCollection(identityRecords)
+                             .filterNot(IdentityRecord::isFirstUse)
                              .map(record -> record.getRecipientId().serialize())
-                             .distinct().collect(Collectors.toList());
+                             .distinct()
+                             .toList();
 
     Bundle arguments = new Bundle();
     arguments.putStringArray(RECIPIENT_IDS_EXTRA, ids.toArray(new String[0]));
@@ -92,9 +92,10 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
       return;
     }
 
-    List<String> ids = Stream.of(recipientIds)
+    List<String> ids = StreamUtils.StreamOfCollection(recipientIds)
                              .map(RecipientId::serialize)
-                             .distinct().collect(Collectors.toList());
+                             .distinct()
+                             .toList();
 
     Bundle arguments = new Bundle();
     arguments.putStringArray(RECIPIENT_IDS_EXTRA, ids.toArray(new String[0]));
@@ -117,7 +118,7 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
     super.onActivityCreated(savedInstanceState);
 
     //noinspection ConstantConditions
-    List<RecipientId> recipientIds = Stream.of(getArguments().getStringArray(RECIPIENT_IDS_EXTRA)).map(RecipientId::from).collect(Collectors.toList());
+    List<RecipientId> recipientIds = StreamUtils.StreamOfArray(getArguments().getStringArray(RECIPIENT_IDS_EXTRA)).map(RecipientId::from).toList();
     long              messageId    = getArguments().getLong(MESSAGE_ID_EXTRA, -1);
     String            messageType  = getArguments().getString(MESSAGE_TYPE_EXTRA, null);
 

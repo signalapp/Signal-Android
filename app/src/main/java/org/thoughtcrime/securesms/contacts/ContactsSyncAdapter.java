@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -70,7 +71,7 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
         Log.w(TAG, e);
       }
     } else if (unknownSystemE164s.size() > 0) {
-      List<Recipient> recipients = Stream.of(unknownSystemE164s)
+      List<Recipient> recipients = StreamUtils.StreamOfCollection(unknownSystemE164s)
                                          .filter(s -> s.startsWith("+"))
                                          .map(s -> Recipient.external(s))
                                          .filter(it -> it != null).collect(com.annimon.stream.Collectors.toList());

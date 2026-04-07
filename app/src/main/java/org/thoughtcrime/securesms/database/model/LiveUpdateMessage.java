@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
-import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.fonts.SignalSymbols;
@@ -21,6 +20,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.signal.core.ui.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.List;
@@ -42,8 +42,9 @@ public final class LiveUpdateMessage {
       return LiveDataUtil.just(toSpannable(context, updateDescription, updateDescription.getStaticSpannable(), defaultTint, adjustPosition));
     }
 
-    List<LiveData<Recipient>> allMentionedRecipients = Stream.of(updateDescription.getMentioned())
-                                                             .map(uuid -> Recipient.resolved(RecipientId.from(uuid)).live().getLiveData()).collect(Collectors.toList());
+    List<LiveData<Recipient>> allMentionedRecipients = StreamUtils.StreamOfCollection(updateDescription.getMentioned())
+                                                             .map(uuid -> Recipient.resolved(RecipientId.from(uuid)).live().getLiveData())
+                                                             .toList();
 
     LiveData<?> mentionedRecipientChangeStream = allMentionedRecipients.isEmpty() ? LiveDataUtil.just(new Object())
                                                                                   : LiveDataUtil.merge(allMentionedRecipients);

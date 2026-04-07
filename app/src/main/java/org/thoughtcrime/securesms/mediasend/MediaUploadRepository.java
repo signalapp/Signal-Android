@@ -6,16 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Stream;
-
+import org.signal.core.models.media.Media;
+import org.signal.core.models.media.TransformProperties;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.AttachmentTable;
-import org.signal.core.models.media.Media;
-import org.signal.core.models.media.TransformProperties;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -27,6 +25,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -168,7 +167,7 @@ public class MediaUploadRepository {
 
     if (result != null) {
       Log.d(TAG, "Canceling attachment upload job for " + result.getAttachmentId());
-      Stream.of(result.getJobIds()).forEach(jobManager::cancel);
+      StreamUtils.StreamOfCollection(result.getJobIds()).forEach(jobManager::cancel);
       uploadResults.remove(media);
       SignalDatabase.attachments().deleteAttachment(result.getAttachmentId());
     }

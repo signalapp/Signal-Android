@@ -29,6 +29,7 @@ import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
@@ -110,7 +111,7 @@ public class HelpFragment extends LoggingFragment {
 
   private void initializeListeners() {
     problem.addTextChangedListener(new AfterTextChanged(e -> helpViewModel.onProblemChanged(e.toString())));
-    Stream.of(emoji).forEach(view -> view.setOnClickListener(this::handleEmojiClicked));
+    StreamUtils.StreamOfCollection(emoji).forEach(view -> view.setOnClickListener(this::handleEmojiClicked));
     faq.setOnClickListener(v -> launchFaq());
     debugLogInfo.setOnClickListener(v -> launchDebugLogInfo());
     next.setOnClickListener(v -> submitForm());
@@ -150,7 +151,7 @@ public class HelpFragment extends LoggingFragment {
     if (clicked.isSelected()) {
       clicked.setSelected(false);
     } else {
-      Stream.of(emoji).forEach(view -> view.setSelected(false));
+      StreamUtils.StreamOfCollection(emoji).forEach(view -> view.setSelected(false));
       clicked.setSelected(true);
     }
   }
@@ -185,7 +186,7 @@ public class HelpFragment extends LoggingFragment {
   }
 
   private void submitFormWithDebugLog(@Nullable String debugLog) {
-    Feeling feeling = Stream.of(emoji)
+    Feeling feeling = StreamUtils.StreamOfCollection(emoji)
                             .filter(View::isSelected)
                             .map(view -> Feeling.getByViewId(view.getId()))
                             .findFirst().orElse(null);

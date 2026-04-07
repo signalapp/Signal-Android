@@ -6,7 +6,6 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -19,6 +18,7 @@ import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.signal.core.util.Hex;
 import org.thoughtcrime.securesms.stickers.StickerManifest;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
 
@@ -88,8 +88,9 @@ public final class StickerPackPreviewRepository {
                                                                         remoteManifest.getTitle(),
                                                                         remoteManifest.getAuthor(),
                                                                         toOptionalSticker(packId, packKey, remoteManifest.getCover()),
-                                                                        Stream.of(remoteManifest.getStickers())
-                                                                              .map(s -> toSticker(packId, packKey, s)).collect(Collectors.toList()));
+                                                                        StreamUtils.StreamOfCollection(remoteManifest.getStickers())
+                                                                              .map(s -> toSticker(packId, packKey, s))
+                                                                              .toList());
 
       return Optional.of(new StickerManifestResult(localManifest, false));
     } catch (IOException | InvalidMessageException e) {

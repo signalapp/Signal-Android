@@ -8,6 +8,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.LRUCache;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -72,7 +73,7 @@ public class JobTracker {
   synchronized void onStateChange(@NonNull Job job, @NonNull JobState state) {
     getOrCreateJobInfo(job).setJobState(state);
 
-    Stream.of(jobListeners)
+    StreamUtils.StreamOfCollection(jobListeners)
           .filter(info -> info.getFilter().matches(job))
           .map(ListenerInfo::getListener)
           .forEach(listener -> {

@@ -7,8 +7,6 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
@@ -22,6 +20,7 @@ import org.thoughtcrime.securesms.payments.currency.CurrencyExchangeRepository;
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.signal.core.util.SetUtil;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.livedata.Store;
 
@@ -129,7 +128,7 @@ public final class SetCurrencyViewModel extends ViewModel {
   }
 
   public static class SetCurrencyState {
-    private static final List<Currency> DEFAULT_CURRENCIES = Stream.of(BuildConfig.DEFAULT_CURRENCIES.split(","))
+    private static final List<Currency> DEFAULT_CURRENCIES = StreamUtils.StreamOfArray(BuildConfig.DEFAULT_CURRENCIES.split(","))
                                                                    .map(CurrencyUtil::getCurrencyByCurrencyCode)
                                                                    .filter(Objects::nonNull)
                                                                    .collect(com.annimon.stream.Collectors.toList());

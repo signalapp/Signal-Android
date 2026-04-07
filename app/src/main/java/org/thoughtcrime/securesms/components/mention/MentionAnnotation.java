@@ -13,6 +13,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -52,7 +53,7 @@ public final class MentionAnnotation {
   public static @NonNull List<Mention> getMentionsFromAnnotations(@Nullable CharSequence text) {
     if (text instanceof Spanned) {
       Spanned spanned = (Spanned) text;
-      return Stream.of(getMentionAnnotations(spanned))
+      return StreamUtils.StreamOfCollection(getMentionAnnotations(spanned))
                    .map(annotation -> {
                      int spanStart  = spanned.getSpanStart(annotation);
                      int spanLength = spanned.getSpanEnd(annotation) - spanStart;

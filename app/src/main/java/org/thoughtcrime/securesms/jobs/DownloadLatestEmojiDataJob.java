@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.ScreenDensity;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -127,7 +128,7 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
       EmojiData    emojiData          = downloadJson(context, targetVersion);
       List<String> supportedDensities = emojiData.getDensities();
       String       format             = emojiData.getFormat();
-      List<String> imagePaths         = Stream.of(emojiData.getDataPages())
+      List<String> imagePaths         = StreamUtils.StreamOfCollection(emojiData.getDataPages())
                                               .map(EmojiPageModel::getSpriteUri)
                                               .map(Uri::getLastPathSegment).collect(Collectors.toList());
 

@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.SignalE164Util
+import org.thoughtcrime.securesms.util.StreamUtils
 import org.thoughtcrime.securesms.util.Triple
 import org.whispersystems.signalservice.api.push.DistributionId
 import java.io.File
@@ -657,7 +658,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
 
     if (oldVersion < NOTIFICATION_RECIPIENT_IDS && Build.VERSION.SDK_INT >= 26) {
       val notificationManager = ServiceUtil.getNotificationManager(context)
-      val channels = Stream.of(notificationManager.notificationChannels)
+      val channels = StreamUtils.StreamOfCollection(notificationManager.notificationChannels)
         .filter { c: NotificationChannel -> c.id.startsWith("contact_") }
         .collect(Collectors.toList())
 

@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 
-import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
@@ -17,6 +16,7 @@ import org.thoughtcrime.securesms.payments.Direction;
 import org.thoughtcrime.securesms.payments.MobileCoinLedgerWrapper;
 import org.thoughtcrime.securesms.payments.Payment;
 import org.thoughtcrime.securesms.payments.reconciliation.LedgerReconcile;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.Collection;
@@ -57,9 +57,9 @@ public class PaymentsRepository {
   }
 
   private void updateDatabaseWithNewBlockInformation(@NonNull List<Payment> reconcileOutput) {
-    List<LedgerReconcile.BlockOverridePayment> blockOverridePayments = Stream.of(reconcileOutput)
-                                                                                  .filter(x -> x instanceof LedgerReconcile.BlockOverridePayment)
-                                                                                  .map(x -> (LedgerReconcile.BlockOverridePayment)x).collect(Collectors.toList());
+    List<LedgerReconcile.BlockOverridePayment> blockOverridePayments = StreamUtils.StreamOfCollection(reconcileOutput)
+                                                                             .select(LedgerReconcile.BlockOverridePayment.class)
+                                                                             .toList();
 
     if (blockOverridePayments.isEmpty()) {
       return;
@@ -102,7 +102,8 @@ public class PaymentsRepository {
   private @NonNull List<Payment> filterPayments(@NonNull List<Payment> payments,
                                                 @NonNull Direction direction)
   {
-    return Stream.of(payments)
-                 .filter(p -> p.getDirection() == direction).collect(Collectors.toList());
+    return StreamUtils.StreamOfCollection(payments)
+                 .filter(p -> p.getDirection() == direction)
+                 .toList();
   }
 }

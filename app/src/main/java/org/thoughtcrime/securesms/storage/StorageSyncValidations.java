@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.Base64;
 import org.signal.core.util.SetUtil;
 import org.signal.core.models.ServiceId;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
@@ -35,7 +36,7 @@ public final class StorageSyncValidations {
     validateManifestAndInserts(result.manifest, result.inserts, self);
 
     if (result.deletes.size() > 0) {
-      Set<String> allSetEncoded = Stream.of(result.manifest.storageIds).map(StorageId::getRaw).map(Base64::encodeWithPadding).collect(Collectors.toSet());
+      Set<String> allSetEncoded = StreamUtils.StreamOfCollection(result.manifest.storageIds).map(StorageId::getRaw).map(Base64::encodeWithPadding).collect(Collectors.toSet());
 
       for (byte[] delete : result.deletes) {
         String encoded = Base64.encodeWithPadding(delete);
@@ -59,14 +60,14 @@ public final class StorageSyncValidations {
       return;
     }
 
-    Set<ByteBuffer> previousIds = Stream.of(previousManifest.storageIds).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
-    Set<ByteBuffer> newIds      = Stream.of(result.manifest.storageIds).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
+    Set<ByteBuffer> previousIds = StreamUtils.StreamOfCollection(previousManifest.storageIds).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
+    Set<ByteBuffer> newIds      = StreamUtils.StreamOfCollection(result.manifest.storageIds).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
 
     Set<ByteBuffer> manifestInserts = SetUtil.difference(newIds, previousIds);
     Set<ByteBuffer> manifestDeletes = SetUtil.difference(previousIds, newIds);
 
-    Set<ByteBuffer> declaredInserts = Stream.of(result.inserts).map(r -> ByteBuffer.wrap(r.getId().getRaw())).collect(Collectors.toSet());
-    Set<ByteBuffer> declaredDeletes = Stream.of(result.deletes).map(ByteBuffer::wrap).collect(Collectors.toSet());
+    Set<ByteBuffer> declaredInserts = StreamUtils.StreamOfCollection(result.inserts).map(r -> ByteBuffer.wrap(r.getId().getRaw())).collect(Collectors.toSet());
+    Set<ByteBuffer> declaredDeletes = StreamUtils.StreamOfCollection(result.deletes).map(ByteBuffer::wrap).collect(Collectors.toSet());
 
     if (declaredInserts.size() > manifestInserts.size()) {
       Log.w(TAG, "DeclaredInserts: " + declaredInserts.size() + ", ManifestInserts: " + manifestInserts.size());
@@ -117,8 +118,8 @@ public final class StorageSyncValidations {
     }
 
     Set<StorageId>  allSet    = new HashSet<>(manifest.storageIds);
-    Set<StorageId>  insertSet = new HashSet<>(Stream.of(inserts).map(SignalStorageRecord::getId).collect(Collectors.toList()));
-    Set<ByteBuffer> rawIdSet  = Stream.of(allSet).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
+    Set<StorageId>  insertSet = new HashSet<>(StreamUtils.StreamOfCollection(inserts).map(SignalStorageRecord::getId).toList());
+    Set<ByteBuffer> rawIdSet  = StreamUtils.StreamOfCollection(allSet).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
 
     if (allSet.size() != manifest.storageIds.size()) {
       throw new DuplicateStorageIdError();

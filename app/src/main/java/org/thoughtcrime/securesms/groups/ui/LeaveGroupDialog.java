@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.chooseadmin.ChooseNewAdminActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.IOException;
@@ -62,7 +63,7 @@ public final class LeaveGroupDialog {
 
       if (groupProperties != null && groupProperties.isAdmin(Recipient.self())) {
         List<Recipient> otherMemberRecipients = groupProperties.getMemberRecipients(GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
-        long            otherAdminsCount      = Stream.of(otherMemberRecipients).filter(groupProperties::isAdmin).count();
+        long            otherAdminsCount      = StreamUtils.StreamOfCollection(otherMemberRecipients).filter(groupProperties::isAdmin).count();
 
         return otherAdminsCount == 0 && !otherMemberRecipients.isEmpty();
       }

@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.models.ServiceId;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -117,7 +118,7 @@ public final class MentionUtil {
 
   public static @NonNull List<Mention> bodyRangeListToMentions(@Nullable BodyRangeList bodyRanges) {
     if (bodyRanges != null) {
-      return Stream.of(bodyRanges.ranges)
+      return StreamUtils.StreamOfCollection(bodyRanges.ranges)
                    .filter(bodyRange -> bodyRange.mentionUuid != null)
                    .map(mention -> {
                      RecipientId id = Recipient.externalPush(ServiceId.parseOrThrow(mention.mentionUuid)).getId();

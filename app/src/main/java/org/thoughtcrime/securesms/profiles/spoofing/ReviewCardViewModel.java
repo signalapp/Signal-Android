@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.List;
@@ -87,7 +88,7 @@ public class ReviewCardViewModel extends ViewModel {
 
   @WorkerThread
   private @NonNull List<ReviewCard> transformReviewRecipients(boolean isSelfGroupAdmin, @NonNull List<ReviewRecipient> reviewRecipients) {
-    return Stream.of(reviewRecipients)
+    return StreamUtils.StreamOfCollection(reviewRecipients)
                  .filter(r -> repository.loadGroupsInCommonCount(r) > 0)
                  .map(r -> new ReviewCard(r,
                                           repository.loadGroupsInCommonCount(r) - (isGroupThread ? 1 : 0),

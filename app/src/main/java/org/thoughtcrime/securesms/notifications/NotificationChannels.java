@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
@@ -575,7 +576,7 @@ public class NotificationChannels {
       }
     }
 
-    Set<String> existingChannelIds  = Stream.of(notificationManager.getNotificationChannels()).map(NotificationChannel::getId).collect(Collectors.toSet());
+    Set<String> existingChannelIds  = StreamUtils.StreamOfCollection(notificationManager.getNotificationChannels()).map(NotificationChannel::getId).collect(Collectors.toSet());
 
     for (NotificationChannel existingChannel : notificationManager.getNotificationChannels()) {
       if ((existingChannel.getId().startsWith(CONTACT_PREFIX) || existingChannel.getId().startsWith(MESSAGES_PREFIX)) &&

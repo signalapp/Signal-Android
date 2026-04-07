@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
@@ -17,6 +16,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupChangeResult;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -51,7 +51,7 @@ final class ChooseNewAdminViewModel extends ViewModel {
 
   void updateAdminsAndLeave(@NonNull Consumer<GroupChangeResult> consumer) {
     //noinspection ConstantConditions
-    List<RecipientId> recipientIds = Stream.of(selection.getValue()).map(entry -> entry.getMember().getId()).collect(Collectors.toList());
+    List<RecipientId> recipientIds = StreamUtils.StreamOfCollection(selection.getValue()).map(entry -> entry.getMember().getId()).toList();
     SimpleTask.run(() -> repository.updateAdminsAndLeave(groupId, recipientIds), consumer::accept);
   }
 
