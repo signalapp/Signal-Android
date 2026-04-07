@@ -122,8 +122,7 @@ public final class MentionUtil {
                    .map(mention -> {
                      RecipientId id = Recipient.externalPush(ServiceId.parseOrThrow(mention.mentionUuid)).getId();
                      return new Mention(id, mention.start, mention.length);
-                   })
-                   .toList();
+                   }).collect(com.annimon.stream.Collectors.toList());
     } else {
       return Collections.emptyList();
     }

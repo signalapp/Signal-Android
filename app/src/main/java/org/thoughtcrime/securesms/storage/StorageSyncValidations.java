@@ -117,7 +117,7 @@ public final class StorageSyncValidations {
     }
 
     Set<StorageId>  allSet    = new HashSet<>(manifest.storageIds);
-    Set<StorageId>  insertSet = new HashSet<>(Stream.of(inserts).map(SignalStorageRecord::getId).toList());
+    Set<StorageId>  insertSet = new HashSet<>(Stream.of(inserts).map(SignalStorageRecord::getId).collect(Collectors.toList()));
     Set<ByteBuffer> rawIdSet  = Stream.of(allSet).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
 
     if (allSet.size() != manifest.storageIds.size()) {

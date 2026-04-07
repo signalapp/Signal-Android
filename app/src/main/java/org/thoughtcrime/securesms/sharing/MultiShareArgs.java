@@ -248,7 +248,7 @@ public final class MultiShareArgs implements Parcelable {
 
   @Override
   public void writeToParcel(Parcel dest, int flags) {
-    dest.writeTypedList(Stream.of(contactSearchKeys).map(ContactSearchKey::requireRecipientSearchKey).toList());
+    dest.writeTypedList(Stream.of(contactSearchKeys).map(ContactSearchKey::requireRecipientSearchKey).collect(com.annimon.stream.Collectors.toList()));
     dest.writeTypedList(media);
     dest.writeString(draftText);
     dest.writeParcelable(stickerLocator, flags);

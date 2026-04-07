@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
 
@@ -99,8 +100,7 @@ public final class Megaphones {
                                        .map(Map.Entry::getKey)
                                        .map(records::get)
                                        .map(record -> Megaphones.forRecord(context, record))
-                                       .filter(Objects::nonNull)
-                                       .toList();
+                                       .filter(Objects::nonNull).collect(Collectors.toList());
 
     if (megaphones.size() > 0) {
       return megaphones.get(0);

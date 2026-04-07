@@ -297,8 +297,8 @@ public class MessageSender {
       Recipient recipient         = message.getThreadRecipient();
       long      allocatedThreadId = threadTable.getOrCreateValidThreadId(message.getThreadRecipient(), threadId);
 
-      List<AttachmentId> attachmentIds = Stream.of(preUploadResults).map(PreUploadResult::getAttachmentId).toList();
-      List<String>       jobIds        = Stream.of(preUploadResults).map(PreUploadResult::getJobIds).flatMap(Stream::of).toList();
+      List<AttachmentId> attachmentIds = Stream.of(preUploadResults).map(PreUploadResult::getAttachmentId).collect(com.annimon.stream.Collectors.toList());
+      List<String>       jobIds        = Stream.of(preUploadResults).map(PreUploadResult::getJobIds).flatMap(Stream::of).collect(com.annimon.stream.Collectors.toList());
 
       if (!attachmentDatabase.hasAttachments(attachmentIds)) {
         Log.w(TAG, "Attachments not found in database for " + message.getThreadRecipient().getId() + ", thread: " + threadId + ", pre-uploads: " + preUploadResults);
@@ -337,7 +337,7 @@ public class MessageSender {
                                         @NonNull Collection<PreUploadResult> preUploadResults,
                                         boolean overwritePreUploadMessageIds)
   {
-    Log.i(TAG, "Sending media broadcast (overwrite: " + overwritePreUploadMessageIds + ") to " + Stream.of(messages).map(m -> m.getThreadRecipient().getId()).toList());
+    Log.i(TAG, "Sending media broadcast (overwrite: " + overwritePreUploadMessageIds + ") to " + Stream.of(messages).map(m -> m.getThreadRecipient().getId()).collect(com.annimon.stream.Collectors.toList()));
     Preconditions.checkArgument(messages.size() > 0, "No messages!");
     Preconditions.checkArgument(Stream.of(messages).allMatch(m -> m.getAttachments().isEmpty()), "Messages can't have attachments! They should be pre-uploaded.");
 
@@ -345,8 +345,8 @@ public class MessageSender {
     AttachmentTable    attachmentDatabase         = SignalDatabase.attachments();
     MessageTable       mmsDatabase                = SignalDatabase.messages();
     ThreadTable        threadTable                = SignalDatabase.threads();
-    List<AttachmentId> preUploadAttachmentIds     = Stream.of(preUploadResults).map(PreUploadResult::getAttachmentId).toList();
-    List<String>       preUploadJobIds            = Stream.of(preUploadResults).map(PreUploadResult::getJobIds).flatMap(Stream::of).toList();
+    List<AttachmentId> preUploadAttachmentIds     = Stream.of(preUploadResults).map(PreUploadResult::getAttachmentId).collect(com.annimon.stream.Collectors.toList());
+    List<String>       preUploadJobIds            = Stream.of(preUploadResults).map(PreUploadResult::getJobIds).flatMap(Stream::of).collect(com.annimon.stream.Collectors.toList());
     List<Long>         messageIds                 = new ArrayList<>(messages.size());
     List<String>       messageDependsOnIds        = new ArrayList<>(preUploadJobIds);
     OutgoingMessage    primaryMessage             = messages.get(0);
@@ -371,8 +371,7 @@ public class MessageSender {
       }
 
       List<DatabaseAttachment> preUploadAttachments = Stream.of(preUploadAttachmentIds)
-                                                            .map(attachmentDatabase::getAttachment)
-                                                            .toList();
+                                                            .map(attachmentDatabase::getAttachment).collect(com.annimon.stream.Collectors.toList());
 
       if (messages.size() > 0) {
         List<OutgoingMessage>    secondaryMessages = overwritePreUploadMessageIds ? messages.subList(1, messages.size()) : messages;

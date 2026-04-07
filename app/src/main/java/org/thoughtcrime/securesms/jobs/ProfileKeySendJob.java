@@ -95,10 +95,8 @@ public class ProfileKeySendJob extends BaseJob {
     List<RecipientId> recipients = conversationRecipient.isGroup()
                                    ? RecipientUtil.getEligibleForSending(Recipient.resolvedList(conversationRecipient.getParticipantIds()))
                                                   .stream()
-                                                  .map(Recipient::getId)
-                                                  .collect(Collectors.toList())
-                                   : Stream.of(conversationRecipient.getId())
-                                           .collect(Collectors.toList());
+                                                  .map(Recipient::getId).collect(Collectors.toList())
+                                                                   : Stream.of(conversationRecipient.getId()).collect(Collectors.toList());
 
     recipients.remove(Recipient.self().getId());
 

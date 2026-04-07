@@ -137,7 +137,7 @@ public final class MessageGroupContext {
                    .filter(Objects::nonNull)
                    .map(RecipientId::fromE164)
                    .filter(other -> !selfId.equals(other))
-                   .toList();
+                   .collect(com.annimon.stream.Collectors.toList());
     }
   }
 

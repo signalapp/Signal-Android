@@ -482,8 +482,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         ExternalGroupCredential credential = GroupManager.getExternalGroupCredential(context, groupId);
 
         List<GroupCall.GroupMemberInfo> members = Stream.of(GroupManager.getUuidCipherTexts(context, groupId))
-                                                        .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize()))
-                                                        .toList();
+                                                        .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize())).collect(com.annimon.stream.Collectors.toList());
         callManager.peekGroupCall(SignalStore.internal().getGroupCallingServer(), credential.token.getBytes(Charsets.UTF_8), members, peekInfo -> {
           Long threadId = SignalDatabase.threads().getThreadIdFor(group.getId());
 
@@ -961,8 +960,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       List<Pair<String, String>> headerPairs;
       if (headers != null) {
         headerPairs = Stream.of(headers)
-                            .map(header -> new Pair<>(header.getName(), header.getValue()))
-                            .toList();
+                            .map(header -> new Pair<>(header.getName(), header.getValue())).collect(com.annimon.stream.Collectors.toList());
       } else {
         headerPairs = Collections.emptyList();
       }

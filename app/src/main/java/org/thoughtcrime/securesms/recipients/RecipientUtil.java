@@ -108,8 +108,7 @@ public class RecipientUtil {
   {
     List<Recipient> recipientsWithoutUuids = Stream.of(recipients)
                                                    .map(Recipient::resolve)
-                                                   .filter(recipient -> !recipient.getHasServiceId())
-                                                   .toList();
+                                                   .filter(recipient -> !recipient.getHasServiceId()).collect(com.annimon.stream.Collectors.toList());
 
     if (recipientsWithoutUuids.size() > 0) {
       ContactDiscovery.refresh(context, recipientsWithoutUuids, false);
@@ -132,8 +131,7 @@ public class RecipientUtil {
   public static List<Recipient> getEligibleForSending(@NonNull List<Recipient> recipients) {
     return Stream.of(recipients)
                  .filter(r -> r.getRegistered() != RegisteredState.NOT_REGISTERED)
-                 .filter(r -> !r.isBlocked())
-                 .toList();
+                 .filter(r -> !r.isBlocked()).collect(com.annimon.stream.Collectors.toList());
   }
 
   /**

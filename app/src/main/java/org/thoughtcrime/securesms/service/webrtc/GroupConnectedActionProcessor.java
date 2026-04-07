@@ -6,6 +6,7 @@ import android.util.LongSparseArray;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
@@ -255,8 +256,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
 
     List<UUID> members = Stream.of(currentState.getCallInfoState().getRemoteCallParticipants())
                                .filter(p -> p.getRecipient().getHasServiceId())
-                               .map(p -> p.getRecipient().requireServiceId().getRawUuid())
-                               .toList();
+                               .map(p -> p.getRecipient().requireServiceId().getRawUuid()).collect(Collectors.toList());
     webRtcInteractor.updateGroupCallUpdateMessage(currentState.getCallInfoState().getCallRecipient().getId(), eraId, members, false);
 
     currentState = currentState.builder()

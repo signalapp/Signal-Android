@@ -29,6 +29,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import kotlin.Pair;
+
 public class MarkReadReceiver extends BroadcastReceiver {
 
   private static final String TAG                   = Log.tag(MarkReadReceiver.class);
@@ -75,12 +77,10 @@ public class MarkReadReceiver extends BroadcastReceiver {
     if (markedReadMessages.isEmpty()) return;
 
     List<SyncMessageId>  syncMessageIds = Stream.of(markedReadMessages)
-                                                .map(MarkedMessageInfo::getSyncMessageId)
-                                                .toList();
+                                                .map(MarkedMessageInfo::getSyncMessageId).collect(Collectors.toList());
     List<ExpirationInfo> expirationInfo = Stream.of(markedReadMessages)
                                                 .map(MarkedMessageInfo::getExpirationInfo)
-                                                .filter(info -> info.getExpiresIn() > 0 && info.getExpireStarted() <= 0)
-                                                .toList();
+                                                .filter(info -> info.getExpiresIn() > 0 && info.getExpireStarted() <= 0).collect(Collectors.toList());
 
     scheduleDeletion(expirationInfo);
 
@@ -121,10 +121,10 @@ public class MarkReadReceiver extends BroadcastReceiver {
   private static void scheduleDeletion(@NonNull List<ExpirationInfo> expirationInfo) {
     if (expirationInfo.size() > 0) {
       long now = System.currentTimeMillis();
-      SignalDatabase.messages().markExpireStarted(Stream.of(expirationInfo).map(info -> new kotlin.Pair<>(info.getId(), now)).toList());
+      SignalDatabase.messages().markExpireStarted(Stream.of(expirationInfo).map(info -> new Pair<>(info.getId(), now)).collect(Collectors.toList()));
 
       AppDependencies.getExpiringMessageManager()
-                     .scheduleDeletion(Stream.of(expirationInfo).map(info -> info.copy(info.getId(), info.getExpiresIn(), now, info.isMms())).toList());
+                     .scheduleDeletion(Stream.of(expirationInfo).map(info -> info.copy(info.getId(), info.getExpiresIn(), now, info.isMms())).collect(Collectors.toList()));
     }
   }
 }

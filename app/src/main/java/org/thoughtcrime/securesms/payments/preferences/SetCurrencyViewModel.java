@@ -31,6 +31,7 @@ import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import kotlin.Pair;
 
@@ -131,7 +132,7 @@ public final class SetCurrencyViewModel extends ViewModel {
     private static final List<Currency> DEFAULT_CURRENCIES = Stream.of(BuildConfig.DEFAULT_CURRENCIES.split(","))
                                                                    .map(CurrencyUtil::getCurrencyByCurrencyCode)
                                                                    .filter(Objects::nonNull)
-                                                                   .toList();
+                                                                   .collect(com.annimon.stream.Collectors.toList());
 
     private final Currency             currentCurrency;
     private final CurrencyExchange     currencyExchange;

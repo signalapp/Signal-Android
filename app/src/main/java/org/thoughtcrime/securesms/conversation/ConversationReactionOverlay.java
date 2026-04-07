@@ -30,6 +30,7 @@ import androidx.core.view.ViewKt;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.vectordrawable.graphics.drawable.AnimatorInflaterCompat;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.ui.compose.SignalIcons;
@@ -827,7 +828,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
                                                        anim.setTarget(v);
                                                        return anim;
                                                      })
-                                                     .toList());
+                                                     .collect(Collectors.toList()));
 
     Animator backgroundHideAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_out);
     backgroundHideAnim.setTarget(backgroundView);

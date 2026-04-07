@@ -64,8 +64,7 @@ public class ParticipantCollection {
       Collections.sort(newParticipants, COMPLEX_COMPARATOR_CHAIN);
 
       List<CallParticipantId> oldGridParticipantIds = Stream.of(getGridParticipants())
-                                                            .map(CallParticipant::getCallParticipantId)
-                                                            .toList();
+                                                            .map(CallParticipant::getCallParticipantId).collect(com.annimon.stream.Collectors.toList());
 
       for (int i = 0; i < oldGridParticipantIds.size(); i++) {
         CallParticipantId oldId = oldGridParticipantIds.get(i);

@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -92,8 +93,7 @@ public class ReviewCardViewModel extends ViewModel {
                                           repository.loadGroupsInCommonCount(r) - (isGroupThread ? 1 : 0),
                                           getCardType(r),
                                           getPrimaryAction(r, isSelfGroupAdmin),
-                                          getSecondaryAction(r)))
-                 .toList();
+                                          getSecondaryAction(r))).collect(Collectors.toList());
 
   }
 

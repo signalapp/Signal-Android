@@ -9,6 +9,7 @@ import android.text.style.CharacterStyle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.StringUtil;
@@ -90,8 +91,7 @@ public class SearchUtil {
     String       normalizedText      = text.toLowerCase(locale);
     String       normalizedHighlight = highlight.toLowerCase(locale);
     List<String> highlightTokens     = Stream.of(normalizedHighlight.split("\\s"))
-                                             .filter(s -> !s.trim().isEmpty())
-                                             .toList();
+                                             .filter(s -> !s.trim().isEmpty()).collect(Collectors.toList());
 
     int[]                        indexMap = buildIndexMap(text, normalizedText, locale);
     List<Pair<Integer, Integer>> ranges   = new LinkedList<>();
@@ -152,8 +152,7 @@ public class SearchUtil {
     String       normalizedText      = text.toLowerCase(locale);
     String       normalizedHighlight = highlight.toLowerCase(locale);
     List<String> highlightTokens     = Stream.of(normalizedHighlight.split("\\s"))
-                                             .filter(s -> !s.trim().isEmpty())
-                                             .toList();
+                                             .filter(s -> !s.trim().isEmpty()).collect(Collectors.toList());
 
     int[] indexMap = buildIndexMap(text, normalizedText, locale);
 

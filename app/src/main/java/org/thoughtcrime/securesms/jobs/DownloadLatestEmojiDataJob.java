@@ -6,6 +6,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
@@ -128,8 +129,7 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
       String       format             = emojiData.getFormat();
       List<String> imagePaths         = Stream.of(emojiData.getDataPages())
                                               .map(EmojiPageModel::getSpriteUri)
-                                              .map(Uri::getLastPathSegment)
-                                              .toList();
+                                              .map(Uri::getLastPathSegment).collect(Collectors.toList());
 
       String density = resolveDensity(supportedDensities, targetVersion.getDensity());
       targetVersion = new EmojiFiles.Version(targetVersion.getVersion(), targetVersion.getUuid(), density);
