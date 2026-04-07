@@ -1290,7 +1290,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
       if (key == null) {
         Log.w(TAG, "Needed to repair storageId for $recipientId (group $id)")
-        rotateStorageId(existing.id)
+        rotateStorageId(existing.id, logFailure = true)
         existing = getRecordForSync(recipientId) ?: throw AssertionError("Failed to find recipient record for second fetch!")
         key = existing.storageId ?: throw AssertionError("StorageId not present immediately after setting it!")
       }
@@ -4006,7 +4006,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Will *not* give storageIds to those that shouldn't get them (e.g. MMS groups, unregistered
    * users).
    */
-  fun rotateStorageId(recipientId: RecipientId) {
+  fun rotateStorageId(recipientId: RecipientId, logFailure: Boolean = false) {
     val selfId = Recipient.self().id
 
     val values = ContentValues(1).apply {
@@ -4018,6 +4018,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     writableDatabase.update(TABLE_NAME, values, query, args).also { updateCount ->
       Log.d(TAG, "[rotateStorageId] updateCount: $updateCount")
+      if (logFailure && updateCount == 0) {
+        val typeRegistered = readableDatabase
+          .select(TYPE, REGISTERED)
+          .from(TABLE_NAME)
+          .where(ID_WHERE, recipientId)
+          .run()
+          .readToSingleObject { it.requireInt(TYPE) to it.requireInt(REGISTERED) }
+
+        Log.w(TAG, "[rotateStorageId] No records updated for $recipientId, exists=${typeRegistered != null} type=${typeRegistered?.first} registered=${typeRegistered?.second}")
+      }
     }
   }
 
