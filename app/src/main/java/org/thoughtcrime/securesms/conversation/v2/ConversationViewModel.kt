@@ -761,7 +761,7 @@ class ConversationViewModel(
     }
   }
 
-  fun startPlaintextExport(context: Context, directoryUri: Uri) {
+  fun startPlaintextExport(context: Context, directoryUri: Uri, withMedia: Boolean) {
     val recipient = recipientSnapshot ?: return
     val chatName = if (recipient.isSelf) context.getString(R.string.note_to_self) else recipient.getDisplayName(context)
 
@@ -774,12 +774,17 @@ class ConversationViewModel(
         threadId = threadId,
         directoryUri = directoryUri,
         chatName = chatName,
+        includeMedia = withMedia,
         progressListener = { messagesProcessed, messageCount, attachmentsProcessed, attachmentCount ->
-          val messagePercent = if (messageCount > 0) (messagesProcessed * 25) / messageCount else 25
-          val attachmentPercent = if (attachmentCount > 0) (attachmentsProcessed * 75) / attachmentCount else 75
-          val percent = messagePercent + attachmentPercent
+          val percent = if (withMedia) {
+            val messagePercent = if (messageCount > 0) (messagesProcessed * 25) / messageCount else 25
+            val attachmentPercent = if (attachmentCount > 0) (attachmentsProcessed * 75) / attachmentCount else 75
+            messagePercent + attachmentPercent
+          } else {
+            if (messageCount > 0) (messagesProcessed * 100) / messageCount else 100
+          }
 
-          val status = if (attachmentsProcessed > 0 || messagesProcessed >= messageCount) {
+          val status = if (withMedia && (attachmentsProcessed > 0 || messagesProcessed >= messageCount)) {
             "Exporting media ($attachmentsProcessed/$attachmentCount)..."
           } else {
             "Exporting messages ($messagesProcessed/$messageCount)..."
