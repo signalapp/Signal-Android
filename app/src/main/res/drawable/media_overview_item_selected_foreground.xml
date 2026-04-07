@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:enterFadeDuration="100"
+    android:exitFadeDuration="100">
+    <item android:state_selected="true">
+        <color android:color="@color/transparent_black_20" />
+    </item>
+    <item>
+        <ripple android:color="@color/transparent_black_30">
+            <item android:id="@android:id/mask">
+                <color android:color="@android:color/white" />
+            </item>
+        </ripple>
+    </item>
+</selector>

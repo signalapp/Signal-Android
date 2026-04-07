@@ -63,6 +63,7 @@ import org.json.JSONException;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -392,12 +393,52 @@ public final class MediaOverviewPageFragment extends LoggingFragment
   }
 
   @Override
-  public void onMediaLongClicked(MediaTable.MediaRecord mediaRecord) {
-    if (actionMode == null) {
-      enterMultiSelect();
+  public void onMediaLongClicked(@NonNull View view, MediaTable.MediaRecord mediaRecord) {
+    if (actionMode != null) {
+      handleMediaMultiSelectClick(mediaRecord);
+      return;
     }
 
-    handleMediaMultiSelectClick(mediaRecord);
+    new MediaOverviewContextMenu(this, new MediaOverviewContextMenu.Callbacks() {
+      @Override
+      public void onSave(@NonNull MediaTable.MediaRecord record) {
+        handleSaveSingleMedia(record);
+      }
+
+      @Override
+      public void onDelete(@NonNull MediaTable.MediaRecord record) {
+        handleDeleteSingleMedia(record);
+      }
+
+      @Override
+      public void onSelect(@NonNull MediaTable.MediaRecord record) {
+        enterMultiSelect();
+        handleMediaMultiSelectClick(record);
+      }
+    }).show(view, mediaRecord);
+  }
+
+  private void handleSaveSingleMedia(@NonNull MediaTable.MediaRecord mediaRecord) {
+    if (SignalStore.backup().getOptimizeStorage() && mediaRecord.getAttachment() != null && !mediaRecord.getAttachment().hasData) {
+      OffloadedMediaDialogUtil.showAllOffloaded(requireContext());
+      return;
+    }
+    lifecycleDisposable.add(
+        MediaActions.handleSaveMedia(this, Collections.singleton(mediaRecord))
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe()
+    );
+  }
+
+  private void handleDeleteSingleMedia(@NonNull MediaTable.MediaRecord mediaRecord) {
+    if (DeleteSyncEducationDialog.shouldShow()) {
+      lifecycleDisposable.add(
+          DeleteSyncEducationDialog.show(getChildFragmentManager())
+                                   .subscribe(() -> handleDeleteSingleMedia(mediaRecord))
+      );
+      return;
+    }
+    MediaActions.handleDeleteMedia(requireContext(), Collections.singleton(mediaRecord));
   }
 
   private void handleDeleteSelectedMedia() {

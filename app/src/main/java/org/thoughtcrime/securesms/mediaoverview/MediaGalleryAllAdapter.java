@@ -305,22 +305,26 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     }
 
     protected void updateSelectedView() {
+      boolean selected = isSelected();
+      itemView.setSelected(selected);
       if (selectedIndicator != null) {
         selectedIndicator.animate().cancel();
-        selectedIndicator.setAlpha(isSelected() ? 1f : 0f);
+        selectedIndicator.setAlpha(selected ? 1f : 0f);
       }
     }
 
     protected void animateSelectedView() {
+      boolean selected = isSelected();
+      itemView.setSelected(selected);
       if (selectedIndicator != null) {
         selectedIndicator.animate()
-                         .alpha(isSelected() ? 1f : 0f)
+                         .alpha(selected ? 1f : 0f)
                          .setDuration(SELECTION_ANIMATION_DURATION);
       }
     }
 
     boolean onLongClick() {
-      itemClickListener.onMediaLongClicked(mediaRecord);
+      itemClickListener.onMediaLongClicked(itemView, mediaRecord);
       return true;
     }
 
@@ -817,7 +821,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   interface ItemClickListener {
     void onMediaClicked(@NonNull View view, @NonNull MediaTable.MediaRecord mediaRecord);
 
-    void onMediaLongClicked(MediaTable.MediaRecord mediaRecord);
+    void onMediaLongClicked(@NonNull View view, MediaTable.MediaRecord mediaRecord);
   }
 
   interface AudioItemListener {
