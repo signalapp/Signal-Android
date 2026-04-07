@@ -99,7 +99,7 @@ public final class Megaphones {
                                        .map(Map.Entry::getKey)
                                        .map(records::get)
                                        .map(record -> Megaphones.forRecord(context, record))
-                                       .filterNot(Objects::isNull)
+                                       .filter(Objects::nonNull)
                                        .toList();
 
     if (megaphones.size() > 0) {

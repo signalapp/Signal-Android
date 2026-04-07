@@ -196,7 +196,7 @@ public final class LiveGroup {
   public LiveData<List<GroupMemberEntry.FullMember>> getNonAdminFullMembers() {
     return Transformations.map(fullMembers,
                                members -> Stream.of(members)
-                                                .filterNot(GroupMemberEntry.FullMember::isAdmin)
+                                                     .filter(fullMember -> !fullMember.isAdmin())
                                                 .toList());
   }
 

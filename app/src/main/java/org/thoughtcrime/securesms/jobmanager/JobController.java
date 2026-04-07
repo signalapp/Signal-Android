@@ -120,7 +120,7 @@ class JobController {
   @WorkerThread
   void submitNewJobChain(@NonNull List<List<Job>> chain) {
     synchronized (this) {
-      chain = Stream.of(chain).filterNot(List::isEmpty).toList();
+      chain = Stream.of(chain).filter(jobs -> !jobs.isEmpty()).toList();
 
       if (chain.isEmpty()) {
         Log.w(TAG, "Tried to submit an empty job chain. Skipping.");

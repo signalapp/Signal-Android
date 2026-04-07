@@ -288,7 +288,7 @@ public final class PushGroupSendJob extends PushSendJob {
       SignalServiceDataMessage.PollCreate              pollCreate         = getPollCreate(message);
       SignalServiceDataMessage.PollTerminate           pollTerminate      = getPollTerminate(message);
       SignalServiceDataMessage.PinnedMessage           pinnedMessage      = getPinnedMessage(message);
-      List<Attachment>                                 attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<Attachment>                                 attachments        = Stream.of(message.getAttachments()).filter(attachment -> !attachment.isSticker()).toList();
       List<SignalServiceAttachment>                    attachmentPointers = getAttachmentPointersFor(attachments);
       boolean isRecipientUpdate = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
                                         .anyMatch(info -> info.getStatus() > GroupReceiptTable.STATUS_UNDELIVERED);

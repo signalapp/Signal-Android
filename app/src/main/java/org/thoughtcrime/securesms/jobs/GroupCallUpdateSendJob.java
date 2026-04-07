@@ -62,7 +62,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
     }
 
     List<RecipientId> recipientIds = Stream.of(RecipientUtil.getEligibleForSending(Recipient.resolvedList(conversationRecipient.getParticipantIds())))
-                                           .filterNot(Recipient::isSelf)
+                                           .filter(recipient -> !recipient.isSelf())
                                            .map(Recipient::getId)
                                            .toList();
 

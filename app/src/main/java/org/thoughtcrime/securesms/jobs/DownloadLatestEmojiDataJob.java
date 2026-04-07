@@ -346,8 +346,8 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
 
     Stream.of(files)
           .filter(File::isDirectory)
-          .filterNot(file -> file.getName().equals(currentDirectoryName))
-          .filterNot(file -> file.getName().equals(newVersionDirectoryName))
+          .filter(file -> !file.getName().equals(currentDirectoryName))
+          .filter(file -> !file.getName().equals(newVersionDirectoryName))
           .forEach(FileUtils::deleteDirectory);
 
     EmojiPageCache.INSTANCE.clear();

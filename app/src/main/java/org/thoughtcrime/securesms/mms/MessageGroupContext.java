@@ -136,7 +136,7 @@ public final class MessageGroupContext {
                    .map(m -> m.e164)
                    .filter(Objects::nonNull)
                    .map(RecipientId::fromE164)
-                   .filterNot(selfId::equals)
+                   .filter(other -> !selfId.equals(other))
                    .toList();
     }
   }

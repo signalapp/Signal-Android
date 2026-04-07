@@ -72,7 +72,7 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
 
   public static void showForGroupCall(@NonNull FragmentManager fragmentManager, @NonNull List<IdentityRecord> identityRecords) {
     List<String> ids = Stream.of(identityRecords)
-                             .filterNot(IdentityRecord::isFirstUse)
+                             .filter(identityRecord -> !identityRecord.isFirstUse())
                              .map(record -> record.getRecipientId().serialize())
                              .distinct()
                              .toList();

@@ -108,7 +108,7 @@ public class RecipientUtil {
   {
     List<Recipient> recipientsWithoutUuids = Stream.of(recipients)
                                                    .map(Recipient::resolve)
-                                                   .filterNot(Recipient::getHasServiceId)
+                                                   .filter(recipient -> !recipient.getHasServiceId())
                                                    .toList();
 
     if (recipientsWithoutUuids.size() > 0) {
