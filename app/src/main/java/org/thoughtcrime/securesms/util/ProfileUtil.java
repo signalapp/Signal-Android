@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.IdentityStoreRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
@@ -207,11 +208,18 @@ public final class ProfileUtil {
     }
 
     try {
-      IdentityKey             identityKey             = new IdentityKey(Base64.decode(profileAndCredential.getProfile().getIdentityKey()), 0);
+      IdentityKey remoteIdentityKey = new IdentityKey(Base64.decode(profileAndCredential.getProfile().getIdentityKey()), 0);
+      IdentityKey localIdentityKey  = getLocalIdentityKey(recipient);
+
+      if (localIdentityKey != null && !localIdentityKey.equals(remoteIdentityKey)) {
+        Log.w(TAG, "Server-provided identity key does not match locally-stored identity key for " + recipient.getId());
+        throw new PaymentsAddressException(PaymentsAddressException.Code.IDENTITY_MISMATCH);
+      }
+
       ProfileCipher           profileCipher           = new ProfileCipher(profileKey);
       byte[]                  decrypted               = profileCipher.decryptWithLength(encryptedPaymentsAddress);
       PaymentAddress          paymentAddress          = PaymentAddress.ADAPTER.decode(decrypted);
-      byte[]                  bytes                   = MobileCoinPublicAddressProfileUtil.verifyPaymentsAddress(paymentAddress, identityKey);
+      byte[]                  bytes                   = MobileCoinPublicAddressProfileUtil.verifyPaymentsAddress(paymentAddress, localIdentityKey != null ? localIdentityKey : remoteIdentityKey);
       MobileCoinPublicAddress mobileCoinPublicAddress = MobileCoinPublicAddress.fromBytes(bytes);
 
       if (mobileCoinPublicAddress == null) {
@@ -226,6 +234,15 @@ public final class ProfileUtil {
       Log.w(TAG, "Could not verify payments address due to bad identity key " + recipient.getId(), e);
       throw new PaymentsAddressException(PaymentsAddressException.Code.INVALID_ADDRESS_SIGNATURE);
     }
+  }
+
+  private static @Nullable IdentityKey getLocalIdentityKey(@NonNull Recipient recipient) {
+    if (!recipient.getHasServiceId()) {
+      return null;
+    }
+
+    IdentityStoreRecord record = SignalDatabase.identities().getIdentityStoreRecord(recipient.requireServiceId());
+    return record != null ? record.getIdentityKey() : null;
   }
 
   private static ProfileKey getProfileKey(@NonNull Recipient recipient) throws IOException {

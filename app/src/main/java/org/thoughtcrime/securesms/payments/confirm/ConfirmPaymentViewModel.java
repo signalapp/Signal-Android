@@ -147,6 +147,7 @@ final class ConfirmPaymentViewModel extends ViewModel {
       case INVALID_ADDRESS:
       case INVALID_ADDRESS_SIGNATURE:
       case NO_ADDRESS:
+      case IDENTITY_MISMATCH:
         return ErrorType.NO_ADDRESS;
     }
 
