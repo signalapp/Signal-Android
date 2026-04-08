@@ -66,8 +66,8 @@ object CallPreference {
         MessageTypes.MISSED_VIDEO_CALL_TYPE -> getMissedCallString(true, call.event)
         MessageTypes.INCOMING_AUDIO_CALL_TYPE -> if (call.isDisplayedAsMissedCallInUi) getMissedCallString(false, call.event) else R.string.MessageRecord_incoming_voice_call
         MessageTypes.INCOMING_VIDEO_CALL_TYPE -> if (call.isDisplayedAsMissedCallInUi) getMissedCallString(true, call.event) else R.string.MessageRecord_incoming_video_call
-        MessageTypes.OUTGOING_AUDIO_CALL_TYPE -> R.string.MessageRecord_outgoing_voice_call
-        MessageTypes.OUTGOING_VIDEO_CALL_TYPE -> R.string.MessageRecord_outgoing_video_call
+        MessageTypes.OUTGOING_AUDIO_CALL_TYPE -> if (call.event == CallTable.Event.NOT_ACCEPTED) R.string.MessageRecord_unanswered_voice_call else R.string.MessageRecord_outgoing_voice_call
+        MessageTypes.OUTGOING_VIDEO_CALL_TYPE -> if (call.event == CallTable.Event.NOT_ACCEPTED) R.string.MessageRecord_unanswered_video_call else R.string.MessageRecord_outgoing_video_call
         MessageTypes.GROUP_CALL_TYPE -> when {
           call.isDisplayedAsMissedCallInUi -> if (call.event == CallTable.Event.MISSED_NOTIFICATION_PROFILE) R.string.CallPreference__missed_group_call_notification_profile else R.string.CallPreference__missed_group_call
           call.event == CallTable.Event.GENERIC_GROUP_CALL || call.event == CallTable.Event.JOINED -> R.string.CallPreference__group_call

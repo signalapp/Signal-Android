@@ -151,10 +151,11 @@ public final class ThreadBodyUtil {
     if (call != null) {
       boolean accepted = call.getEvent() == CallTable.Event.ACCEPTED;
       if (call.getDirection() == CallTable.Direction.OUTGOING) {
-        if (call.getType() == CallTable.Type.AUDIO_CALL) {
-          return context.getString(R.string.MessageRecord_outgoing_voice_call);
+        boolean isVideoCall = call.getType() == CallTable.Type.VIDEO_CALL;
+        if (call.getEvent() == CallTable.Event.NOT_ACCEPTED) {
+          return context.getString(isVideoCall ? R.string.MessageRecord_unanswered_video_call : R.string.MessageRecord_unanswered_voice_call);
         } else {
-          return context.getString(R.string.MessageRecord_outgoing_video_call);
+          return context.getString(isVideoCall ? R.string.MessageRecord_outgoing_video_call : R.string.MessageRecord_outgoing_voice_call);
         }
       } else {
         boolean isVideoCall = call.getType() == CallTable.Type.VIDEO_CALL;

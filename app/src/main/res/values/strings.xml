@@ -1924,6 +1924,10 @@
     <string name="MessageRecord_declined_voice_call">Declined voice call</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">Unanswered video call</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -7803,6 +7807,8 @@
     <string name="CallLogAdapter__incoming">Incoming</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">Outgoing</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">Unanswered</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Missed</string>
     <!-- Displayed for one missed call declined by notification profile -->
