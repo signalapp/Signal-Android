@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.util.adapter.mapping;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Collector;
+import java.util.Collections;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 import java.util.function.BinaryOperator;
+import java.util.stream.Collector;
 
 public class MappingModelList extends ArrayList<MappingModel<?>> {
 
@@ -69,6 +70,14 @@ public class MappingModelList extends ArrayList<MappingModel<?>> {
       @Override
       public @NonNull BiConsumer<MappingModelList, MappingModel<?>> accumulator() {
         return MappingModelList::add;
+      }
+
+      @Override public Set<Characteristics> characteristics() {
+        return Collections.emptySet();
+      }
+
+      @Override public BinaryOperator<MappingModelList> combiner() {
+        return (x, y) -> {x.addAll(y); return x;};
       }
 
       @Override

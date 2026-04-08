@@ -45,7 +45,7 @@ public final class GiphyMp4ViewModel extends ViewModel {
     this.saveResultEvents = new SingleLiveEvent<>();
     this.pagingController = Transformations.map(pagedData, PagedData::getController);
     this.images           = Transformations.switchMap(pagedData, pagedData -> Transformations.map(pagedData.getData(),
-                                                                                                  data -> Stream.of(data)
+                                                                                                  data -> data.stream()
                                                                                                                 .filter(g -> g != null)
                                                                                                                 .filterNot(g -> TextUtils.isEmpty(isForMms ? g.getGifMmsUrl() : g.getGifUrl()))
                                                                                                                 .filterNot(g -> TextUtils.isEmpty(g.getMp4PreviewUrl()))
