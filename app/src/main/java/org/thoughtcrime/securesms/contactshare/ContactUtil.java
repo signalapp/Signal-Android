@@ -33,7 +33,6 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
 import org.thoughtcrime.securesms.util.SpanUtil;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +98,7 @@ public final class ContactUtil {
       return null;
     }
 
-    List<Phone> mobileNumbers = StreamUtils.StreamOfCollection(contact.getPhoneNumbers()).filter(number -> number.getType() == Phone.Type.MOBILE).toList();
+    List<Phone> mobileNumbers = contact.getPhoneNumbers().stream().filter(number -> number.getType() == Phone.Type.MOBILE).collect(java.util.stream.Collectors.toList());
     if (mobileNumbers.size() > 0) {
       return mobileNumbers.get(0);
     }

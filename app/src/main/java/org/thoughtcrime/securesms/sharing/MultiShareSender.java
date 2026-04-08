@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.signal.core.models.media.TransformProperties;
-import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.StoryType;
@@ -51,7 +50,6 @@ import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.signal.core.util.Util;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -490,11 +488,11 @@ public final class MultiShareSender {
     }
 
     public boolean containsFailures() {
-      return StreamUtils.StreamOfCollection(results).anyMatch(result -> result.type != MultiShareSendResult.Type.SUCCESS);
+      return results.stream().anyMatch(result -> result.type != MultiShareSendResult.Type.SUCCESS);
     }
 
     public boolean containsOnlyFailures() {
-      return StreamUtils.StreamOfCollection(results).allMatch(result -> result.type != MultiShareSendResult.Type.SUCCESS);
+      return results.stream().allMatch(result -> result.type != MultiShareSendResult.Type.SUCCESS);
     }
   }
 

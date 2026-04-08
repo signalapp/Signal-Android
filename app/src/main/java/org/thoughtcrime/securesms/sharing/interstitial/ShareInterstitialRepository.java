@@ -4,13 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.List;
 import java.util.Set;
@@ -23,8 +21,8 @@ class ShareInterstitialRepository {
 
   @WorkerThread
   private List<Recipient> resolveRecipients(@NonNull Set<ContactSearchKey.RecipientSearchKey> recipientSearchKeys) {
-    return StreamUtils.StreamOfCollection(recipientSearchKeys)
-                 .map(ContactSearchKey.RecipientSearchKey::getRecipientId)
-                 .map(Recipient::resolved).collect(Collectors.toList());
+    return recipientSearchKeys.stream()
+                              .map(ContactSearchKey.RecipientSearchKey::getRecipientId)
+                              .map(Recipient::resolved).collect(Collectors.toList());
   }
 }

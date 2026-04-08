@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.BuildConfig;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public final class RemoteDeprecation {
 
@@ -50,7 +51,7 @@ public final class RemoteDeprecation {
       SemanticVersion    ourVersion  = Objects.requireNonNull(SemanticVersion.parse(currentVersion));
       ClientExpiration[] expirations = JsonUtils.fromJson(json, ClientExpiration[].class);
 
-      ClientExpiration expiration = StreamUtils.StreamOfArray(expirations)
+      ClientExpiration expiration = Stream.of(expirations)
                                           .filter(c -> c.getVersion() != null && c.getExpiration() != -1)
                                           .filter(c -> c.requireVersion().compareTo(ourVersion) > 0)
                                           .sorted(Comparator.comparing(ClientExpiration::getExpiration))

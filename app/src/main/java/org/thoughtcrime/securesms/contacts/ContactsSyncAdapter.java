@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -71,10 +70,10 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
         Log.w(TAG, e);
       }
     } else if (unknownSystemE164s.size() > 0) {
-      List<Recipient> recipients = StreamUtils.StreamOfCollection(unknownSystemE164s)
-                                         .filter(s -> s.startsWith("+"))
-                                         .map(s -> Recipient.external(s))
-                                         .filter(it -> it != null).collect(com.annimon.stream.Collectors.toList());
+      List<Recipient> recipients = unknownSystemE164s.stream()
+                                                     .filter(s -> s.startsWith("+"))
+                                                     .map(s -> Recipient.external(s))
+                                                     .filter(it -> it != null).collect(java.util.stream.Collectors.toList());
 
       Log.i(TAG, "There are " + unknownSystemE164s.size() + " unknown E164s, which are now " + recipients.size() + " recipients. Only syncing these specific contacts.");
 

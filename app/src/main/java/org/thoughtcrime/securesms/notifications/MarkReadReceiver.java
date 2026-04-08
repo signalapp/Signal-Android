@@ -7,8 +7,7 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -23,7 +22,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -75,27 +73,27 @@ public class MarkReadReceiver extends BroadcastReceiver {
   public static void process(@NonNull List<MarkedMessageInfo> markedReadMessages) {
     if (markedReadMessages.isEmpty()) return;
 
-    List<SyncMessageId>  syncMessageIds = StreamUtils.StreamOfCollection(markedReadMessages)
-                                                .map(MarkedMessageInfo::getSyncMessageId)
-                                                .toList();
-    List<ExpirationInfo> expirationInfo = StreamUtils.StreamOfCollection(markedReadMessages)
-                                                .map(MarkedMessageInfo::getExpirationInfo)
-                                                .filter(info -> info.getExpiresIn() > 0 && info.getExpireStarted() <= 0)
-                                                .toList();
+    List<SyncMessageId>  syncMessageIds = markedReadMessages.stream()
+                                                            .map(MarkedMessageInfo::getSyncMessageId)
+                                                            .collect(Collectors.toList());
+    List<ExpirationInfo> expirationInfo = markedReadMessages.stream()
+                                                            .map(MarkedMessageInfo::getExpirationInfo)
+                                                            .filter(info -> info.getExpiresIn() > 0 && info.getExpireStarted() <= 0)
+                                                            .collect(Collectors.toList());
 
     scheduleDeletion(expirationInfo);
 
     MultiDeviceReadUpdateJob.enqueue(syncMessageIds);
 
-    Map<Long, List<MarkedMessageInfo>> threadToInfo = StreamUtils.StreamOfCollection(markedReadMessages)
-                                                            .collect(Collectors.groupingBy(MarkedMessageInfo::getThreadId));
+    Map<Long, List<MarkedMessageInfo>> threadToInfo = markedReadMessages.stream()
+                                                                        .collect(Collectors.groupingBy(MarkedMessageInfo::getThreadId));
 
-    StreamUtils.StreamOfCollection(threadToInfo.entrySet()).forEach(threadToInfoEntry -> {
-      Map<RecipientId, List<MarkedMessageInfo>> recipientIdToInfo = StreamUtils.StreamOfCollection(threadToInfoEntry.getValue())
-                                                                          .map(info -> info)
-                                                                          .collect(Collectors.groupingBy(info -> info.getSyncMessageId().getRecipientId()));
+    threadToInfo.entrySet().stream().forEach(threadToInfoEntry -> {
+      Map<RecipientId, List<MarkedMessageInfo>> recipientIdToInfo = threadToInfoEntry.getValue().stream()
+                                                                                     .map(info -> info)
+                                                                                     .collect(Collectors.groupingBy(info -> info.getSyncMessageId().getRecipientId()));
 
-      StreamUtils.StreamOfCollection(recipientIdToInfo.entrySet()).forEach(entry -> {
+      recipientIdToInfo.entrySet().stream().forEach(entry -> {
         long                    threadId    = threadToInfoEntry.getKey();
         RecipientId             recipientId = entry.getKey();
         List<MarkedMessageInfo> infos       = entry.getValue();
@@ -122,10 +120,10 @@ public class MarkReadReceiver extends BroadcastReceiver {
   private static void scheduleDeletion(@NonNull List<ExpirationInfo> expirationInfo) {
     if (expirationInfo.size() > 0) {
       long now = System.currentTimeMillis();
-      SignalDatabase.messages().markExpireStarted(StreamUtils.StreamOfCollection(expirationInfo).map(info -> new kotlin.Pair<>(info.getId(), now)).toList());
+      SignalDatabase.messages().markExpireStarted(expirationInfo.stream().map(info -> new kotlin.Pair<>(info.getId(), now)).collect(Collectors.toList()));
 
       AppDependencies.getExpiringMessageManager()
-                     .scheduleDeletion(StreamUtils.StreamOfCollection(expirationInfo).map(info -> info.copy(info.getId(), info.getExpiresIn(), now, info.isMms())).toList());
+                     .scheduleDeletion(expirationInfo.stream().map(info -> info.copy(info.getId(), info.getExpiresIn(), now, info.isMms())).collect(Collectors.toList()));
     }
   }
 }

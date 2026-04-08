@@ -22,8 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -37,7 +36,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
@@ -576,7 +574,7 @@ public class NotificationChannels {
       }
     }
 
-    Set<String> existingChannelIds  = StreamUtils.StreamOfCollection(notificationManager.getNotificationChannels()).map(NotificationChannel::getId).collect(Collectors.toSet());
+    Set<String> existingChannelIds  = notificationManager.getNotificationChannels().stream().map(NotificationChannel::getId).collect(Collectors.toSet());
 
     for (NotificationChannel existingChannel : notificationManager.getNotificationChannels()) {
       if ((existingChannel.getId().startsWith(CONTACT_PREFIX) || existingChannel.getId().startsWith(MESSAGES_PREFIX)) &&

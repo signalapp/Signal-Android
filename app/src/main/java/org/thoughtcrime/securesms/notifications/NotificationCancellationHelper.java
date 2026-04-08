@@ -18,12 +18,12 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 /**
  * Consolidates Notification Cancellation logic to one class.
@@ -160,7 +160,7 @@ public final class NotificationCancellationHelper {
   private static boolean isCancellable(@NonNull Context context, int notificationId) {
     NotificationManager     manager       = ServiceUtil.getNotificationManager(context);
     StatusBarNotification[] notifications = manager.getActiveNotifications();
-    Notification            notification  = StreamUtils.StreamOfArray(notifications)
+    Notification            notification  = Stream.of(notifications)
                                                   .filter(n -> n.getId() == notificationId)
                                                   .findFirst()
                                                   .map(StatusBarNotification::getNotification)

@@ -35,7 +35,6 @@ import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.signal.core.util.Util;
-import org.thoughtcrime.securesms.util.StreamUtils;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -179,7 +178,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
         targets.addAll(filterRecipientIds.stream().map(Recipient::resolved).collect(Collectors.toList()));
         targets.addAll(existingNetworkFailures.stream().map(NetworkFailure::getRecipientId).distinct().map(Recipient::resolved).collect(Collectors.toList()));
       } else if (!existingNetworkFailures.isEmpty()) {
-        targets = StreamUtils.StreamOfCollection(existingNetworkFailures).map(NetworkFailure::getRecipientId).distinct().map(Recipient::resolved).toList();
+        targets = existingNetworkFailures.stream().map(NetworkFailure::getRecipientId).distinct().map(Recipient::resolved).collect(java.util.stream.Collectors.toList());
       } else {
         Stories.SendData data = Stories.getRecipientsToSendTo(messageId, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies());
         targets = data.getTargets();
@@ -207,11 +206,11 @@ public final class PushDistributionListSendJob extends PushSendJob {
       throws IOException, UntrustedIdentityException, UndeliverableMessageException
   {
     try {
-      List<Attachment>                    attachments        = StreamUtils.StreamOfCollection(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<Attachment>                    attachments        = message.getAttachments().stream().filter(attachment -> !attachment.isSticker()).collect(java.util.stream.Collectors.toList());
       List<SignalServiceAttachment> attachmentPointers = getAttachmentPointersFor(attachments);
       List<BodyRange>               bodyRanges         = getBodyRanges(message);
-      boolean                             isRecipientUpdate  = StreamUtils.StreamOfCollection(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
-                                                                     .anyMatch(info -> info.getStatus() > GroupReceiptTable.STATUS_UNDELIVERED);
+      boolean                             isRecipientUpdate  = SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId).stream()
+                                                                             .anyMatch(info -> info.getStatus() > GroupReceiptTable.STATUS_UNDELIVERED);
 
       final SignalServiceStoryMessage storyMessage;
       if (message.getStoryType().isTextStory()) {

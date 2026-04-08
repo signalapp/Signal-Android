@@ -1,11 +1,10 @@
 package org.thoughtcrime.securesms.testutil;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 import com.google.common.collect.Sets;
 
 import org.signal.core.util.Conversions;
 import org.signal.libsignal.protocol.util.ByteUtil;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -51,8 +50,8 @@ public final class TestHelpers {
   public static void assertByteListEquals(List<byte[]> a, List<byte[]> b) {
     assertEquals(a.size(), b.size());
 
-    List<ByteBuffer> aBuffer = StreamUtils.StreamOfCollection(a).map(ByteBuffer::wrap).toList();
-    List<ByteBuffer> bBuffer = StreamUtils.StreamOfCollection(b).map(ByteBuffer::wrap).toList();
+    List<ByteBuffer> aBuffer = a.stream().map(ByteBuffer::wrap).collect(Collectors.toList());
+    List<ByteBuffer> bBuffer = b.stream().map(ByteBuffer::wrap).collect(Collectors.toList());
 
     assertTrue(aBuffer.containsAll(bBuffer));
   }

@@ -10,11 +10,10 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.List;
 
@@ -82,7 +81,7 @@ public final class GroupMemberListView extends RecyclerView {
   }
 
   public void setDisplayOnlyMembers(@NonNull List<Recipient> recipients) {
-    membersAdapter.updateData(StreamUtils.StreamOfCollection(recipients).map(r -> new GroupMemberEntry.FullMember(r, false)).toList());
+    membersAdapter.updateData(recipients.stream().map(r -> new GroupMemberEntry.FullMember(r, false)).collect(Collectors.toList()));
   }
 
   @Override

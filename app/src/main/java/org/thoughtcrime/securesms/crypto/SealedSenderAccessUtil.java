@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.StreamUtils;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 
@@ -100,7 +99,7 @@ public class SealedSenderAccessUtil {
       return Optional.ofNullable(unidentifiedAccess);
     }).collect(Collectors.toList());
 
-    int unidentifiedCount = StreamUtils.StreamOfCollection(access).filter(Optional::isPresent).toList().size();
+    int unidentifiedCount = access.stream().filter(Optional::isPresent).collect(java.util.stream.Collectors.toList()).size();
     int otherCount        = access.size() - unidentifiedCount;
 
     if (log) {

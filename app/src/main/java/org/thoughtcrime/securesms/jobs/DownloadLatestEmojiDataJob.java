@@ -6,8 +6,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
@@ -28,7 +27,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.ScreenDensity;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +35,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Downloads Emoji JSON and Images to local persistent storage.
@@ -128,9 +127,9 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
       EmojiData    emojiData          = downloadJson(context, targetVersion);
       List<String> supportedDensities = emojiData.getDensities();
       String       format             = emojiData.getFormat();
-      List<String> imagePaths         = StreamUtils.StreamOfCollection(emojiData.getDataPages())
-                                              .map(EmojiPageModel::getSpriteUri)
-                                              .map(Uri::getLastPathSegment).collect(Collectors.toList());
+      List<String> imagePaths         = emojiData.getDataPages().stream()
+                                                 .map(EmojiPageModel::getSpriteUri)
+                                                 .map(Uri::getLastPathSegment).collect(Collectors.toList());
 
       String density = resolveDensity(supportedDensities, targetVersion.getDensity());
       targetVersion = new EmojiFiles.Version(targetVersion.getVersion(), targetVersion.getUuid(), density);

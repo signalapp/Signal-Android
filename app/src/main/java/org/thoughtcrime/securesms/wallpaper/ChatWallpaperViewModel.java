@@ -8,8 +8,7 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
@@ -19,7 +18,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
-import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
@@ -141,9 +139,9 @@ public class ChatWallpaperViewModel extends ViewModel {
 
   @NonNull LiveData<List<MappingModel<?>>> getWallpapers() {
     return LiveDataUtil.combineLatest(builtins, dimInDarkTheme, (wallpapers, dimInDarkMode) ->
-        StreamUtils.StreamOfCollection(wallpapers)
-              .map(paper -> ChatWallpaperFactory.updateWithDimming(paper, dimInDarkMode ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0f))
-            .<MappingModel<?>>map(ChatWallpaperSelectionMappingModel::new).collect(Collectors.toList())
+        wallpapers.stream()
+                  .map(paper -> ChatWallpaperFactory.updateWithDimming(paper, dimInDarkMode ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0f))
+                  .<MappingModel<?>>map(ChatWallpaperSelectionMappingModel::new).collect(Collectors.toList())
     );
   }
 

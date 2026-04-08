@@ -58,7 +58,6 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.StreamUtils;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
@@ -78,6 +77,7 @@ import java.io.InputStream;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -214,18 +214,18 @@ public abstract class PushSendJob extends SendJob {
 
     attachments.addAll(message.getAttachments());
 
-    attachments.addAll(StreamUtils.StreamOfCollection(message.getLinkPreviews())
-                                  .map(LinkPreview::getThumbnail)
-                                  .filter(Optional::isPresent)
-                                  .map(Optional::get)
-                                  .toList());
+    attachments.addAll(message.getLinkPreviews().stream()
+                              .map(LinkPreview::getThumbnail)
+                              .filter(Optional::isPresent)
+                              .map(Optional::get)
+                                  .collect(java.util.stream.Collectors.toList()));
 
-    attachments.addAll(StreamUtils.StreamOfCollection(message.getSharedContacts())
-                             .map(Contact::getAvatar).withoutNulls()
-                             .map(Contact.Avatar::getAttachment).withoutNulls()
-                             .toList());
+    attachments.addAll(message.getSharedContacts().stream()
+                              .map(Contact::getAvatar).filter(Objects::nonNull)
+                              .map(Contact.Avatar::getAttachment).filter(Objects::nonNull)
+                                  .collect(java.util.stream.Collectors.toList()));
 
-    HashSet<String> jobs = new HashSet<>(StreamUtils.StreamOfCollection(attachments).map(a -> {
+    HashSet<String> jobs = new HashSet<>(attachments.stream().map(a -> {
                                  final AttachmentId attachmentId = ((DatabaseAttachment) a).attachmentId;
                                  Log.d(TAG, "Enqueueing job chain to upload " + attachmentId);
                                  AttachmentUploadJob attachmentUploadJob = new AttachmentUploadJob(attachmentId);
@@ -236,7 +236,7 @@ public abstract class PushSendJob extends SendJob {
 
                                  return attachmentUploadJob.getId();
                                })
-                                                    .toList());
+                                                    .collect(java.util.stream.Collectors.toList()));
 
     if (message.getOutgoingQuote() != null && message.getOutgoingQuote().getAttachment() != null) {
       AttachmentId attachmentId = ((DatabaseAttachment) message.getOutgoingQuote().getAttachment()).attachmentId;
@@ -252,7 +252,7 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected @NonNull List<SignalServiceAttachment> getAttachmentPointersFor(List<Attachment> attachments) {
-    return StreamUtils.StreamOfCollection(attachments).map(this::getAttachmentPointerFor).filter(a -> a != null).toList();
+    return attachments.stream().map(this::getAttachmentPointerFor).filter(a -> a != null).collect(java.util.stream.Collectors.toList());
   }
 
   protected @Nullable SignalServiceAttachment getAttachmentPointerFor(Attachment attachment) {
@@ -372,7 +372,7 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected Optional<SignalServiceDataMessage.Sticker> getStickerFor(OutgoingMessage message) {
-    Attachment stickerAttachment = StreamUtils.StreamOfCollection(message.getAttachments()).filter(Attachment::isSticker).findFirst().orElse(null);
+    Attachment stickerAttachment = message.getAttachments().stream().filter(Attachment::isSticker).findFirst().orElse(null);
 
     if (stickerAttachment == null) {
       return Optional.empty();
@@ -429,16 +429,15 @@ public abstract class PushSendJob extends SendJob {
   }
 
   List<SignalServicePreview> getPreviewsFor(OutgoingMessage mediaMessage) {
-    return StreamUtils.StreamOfCollection(mediaMessage.getLinkPreviews()).map(lp -> {
+    return mediaMessage.getLinkPreviews().stream().map(lp -> {
       SignalServiceAttachment attachment = lp.getThumbnail().isPresent() ? getAttachmentPointerFor(lp.getThumbnail().get()) : null;
       return new SignalServicePreview(lp.getUrl(), lp.getTitle(), lp.getDescription(), lp.getDate(), Optional.ofNullable(attachment));
-    }).toList();
+    }).collect(java.util.stream.Collectors.toList());
   }
 
   List<SignalServiceDataMessage.Mention> getMentionsFor(@NonNull List<Mention> mentions) {
-    return StreamUtils.StreamOfCollection(mentions)
-                 .map(m -> new SignalServiceDataMessage.Mention(Recipient.resolved(m.getRecipientId()).requireAci(), m.getStart(), m.getLength()))
-                 .toList();
+    return mentions.stream()
+                   .map(m -> new SignalServiceDataMessage.Mention(Recipient.resolved(m.getRecipientId()).requireAci(), m.getStart(), m.getLength())).collect(java.util.stream.Collectors.toList());
   }
 
   @Nullable SignalServiceDataMessage.GiftBadge getGiftBadgeFor(@NonNull OutgoingMessage message) throws UndeliverableMessageException {

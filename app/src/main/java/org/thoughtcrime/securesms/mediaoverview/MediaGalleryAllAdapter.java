@@ -32,7 +32,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.annimon.stream.Collectors;
+import java.util.stream.Collectors;
 import com.bumptech.glide.RequestManager;
 import com.codewaves.stickyheadergrid.StickyHeaderGridAdapter;
 
@@ -57,7 +57,6 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.livedata.LiveDataPair;
 
 import java.util.Collection;
@@ -232,8 +231,8 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   }
 
   public long getSelectedMediaTotalFileSize() {
-    return StreamUtils.StreamOfCollection(selected.values())
-                 .collect(Collectors.summingLong(a -> a.getAttachment() != null ? a.getAttachment().size : 0));
+    return selected.values().stream()
+                   .collect(Collectors.summingLong(a -> a.getAttachment() != null ? a.getAttachment().size : 0));
   }
 
   @NonNull

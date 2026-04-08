@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.Util;
-import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.ArrayList;
@@ -674,15 +673,15 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private static @Nullable String getOldEmoji(@NonNull MessageRecord messageRecord) {
-    return StreamUtils.StreamOfCollection(messageRecord.getReactions())
-                 .filter(record -> record.getAuthor()
+    return messageRecord.getReactions().stream()
+                        .filter(record -> record.getAuthor()
                                          .serialize()
                                          .equals(Recipient.self()
                                                           .getId()
                                                           .serialize()))
-                 .findFirst()
-                 .map(ReactionRecord::getEmoji)
-                 .orElse(null);
+                        .findFirst()
+                        .map(ReactionRecord::getEmoji)
+                        .orElse(null);
   }
 
   private @NonNull List<ActionItem> getMenuActionItems(@NonNull ConversationMessage conversationMessage) {

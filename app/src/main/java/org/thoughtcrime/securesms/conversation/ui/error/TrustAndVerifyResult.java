@@ -3,11 +3,10 @@ package org.thoughtcrime.securesms.conversation.ui.error;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class TrustAndVerifyResult {
   }
 
   TrustAndVerifyResult(@NonNull List<ChangedRecipient> changedRecipients, @Nullable MessageRecord messageRecord, @NonNull Result result) {
-    this.changedRecipients = StreamUtils.StreamOfCollection(changedRecipients).map(changedRecipient -> changedRecipient.getRecipient().getId()).toList();
+    this.changedRecipients = changedRecipients.stream().map(changedRecipient -> changedRecipient.getRecipient().getId()).collect(Collectors.toList());
     this.messageRecord     = messageRecord;
     this.result            = result;
   }

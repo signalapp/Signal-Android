@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.signal.core.models.ServiceId;
-import org.thoughtcrime.securesms.util.StreamUtils;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 
@@ -107,9 +106,9 @@ public class RecipientUtil {
   public static boolean ensureUuidsAreAvailable(@NonNull Context context, @NonNull Collection<Recipient> recipients)
       throws IOException
   {
-    List<Recipient> recipientsWithoutUuids = StreamUtils.StreamOfCollection(recipients)
-                                                   .map(Recipient::resolve)
-                                                   .filter(recipient -> !recipient.getHasServiceId()).collect(com.annimon.stream.Collectors.toList());
+    List<Recipient> recipientsWithoutUuids = recipients.stream()
+                                                       .map(Recipient::resolve)
+                                                       .filter(recipient -> !recipient.getHasServiceId()).collect(java.util.stream.Collectors.toList());
 
     if (recipientsWithoutUuids.size() > 0) {
       ContactDiscovery.refresh(context, recipientsWithoutUuids, false);
@@ -130,9 +129,9 @@ public class RecipientUtil {
   }
 
   public static List<Recipient> getEligibleForSending(@NonNull List<Recipient> recipients) {
-    return StreamUtils.StreamOfCollection(recipients)
-                 .filter(r -> r.getRegistered() != RegisteredState.NOT_REGISTERED)
-                 .filter(r -> !r.isBlocked()).collect(com.annimon.stream.Collectors.toList());
+    return recipients.stream()
+                     .filter(r -> r.getRegistered() != RegisteredState.NOT_REGISTERED)
+                     .filter(r -> !r.isBlocked()).collect(java.util.stream.Collectors.toList());
   }
 
   /**
@@ -427,7 +426,7 @@ public class RecipientUtil {
 
   @WorkerThread
   private static boolean isProfileSharedViaGroup(@NonNull Recipient recipient) {
-    return StreamUtils.StreamOfCollection(SignalDatabase.groups().getPushGroupsContainingMember(recipient.getId()))
-                 .anyMatch(group -> Recipient.resolved(group.getRecipientId()).isProfileSharing());
+    return SignalDatabase.groups().getPushGroupsContainingMember(recipient.getId()).stream()
+                         .anyMatch(group -> Recipient.resolved(group.getRecipientId()).isProfileSharing());
   }
 }

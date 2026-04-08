@@ -10,9 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.signal.core.util.StreamUtil;
@@ -28,7 +25,6 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.signal.core.util.Stopwatch;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -42,6 +38,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -404,9 +401,9 @@ public class SubmitDebugLogRepository {
     if (section.hasContent()) {
       CharSequence content = Scrubber.scrub(section.getContent(context));
 
-      List<LogLine> lines = StreamUtils.StreamOfArray(Pattern.compile("\\n").split(content))
+      List<LogLine> lines = Stream.of(Pattern.compile("\\n").split(content))
                                   .map(s -> new SimpleLogLine(s, LogStyleParser.parseStyle(s), LogStyleParser.parsePlaceholderType(s)))
-                                  .map(line -> (LogLine) line).collect(Collectors.toList());
+                                  .map(line -> (LogLine) line).collect(java.util.stream.Collectors.toList());
 
       out.addAll(lines);
     }

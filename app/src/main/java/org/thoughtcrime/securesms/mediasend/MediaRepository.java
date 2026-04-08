@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -106,7 +105,7 @@ public class MediaRepository {
    * much data as we have, like width/height.
    */
   public void getPopulatedMedia(@NonNull Context context, @NonNull List<Media> media, @NonNull Callback<List<Media>> callback) {
-    if (StreamUtils.StreamOfCollection(media).allMatch(this::isPopulated)) {
+    if (media.stream().allMatch(this::isPopulated)) {
       callback.onComplete(media);
       return;
     }
@@ -155,14 +154,14 @@ public class MediaRepository {
 
     String            cameraBucketId = imageFolders.getCameraBucketId() != null ? imageFolders.getCameraBucketId() : videoFolders.getCameraBucketId();
     FolderData        cameraFolder   = cameraBucketId != null ? folders.remove(cameraBucketId) : null;
-    List<MediaFolder> mediaFolders   = StreamUtils.StreamOfCollection(folders.values())
-                                             .filter(folder -> folder.getTitle() != null)
-                                             .map(folder -> new MediaFolder(folder.getThumbnail(),
+    List<MediaFolder> mediaFolders   = folders.values().stream()
+                                              .filter(folder -> folder.getTitle() != null)
+                                              .map(folder -> new MediaFolder(folder.getThumbnail(),
                                                                             folder.getTitle(),
                                                                             folder.getCount(),
                                                                             folder.getBucketId(),
                                                                             MediaFolder.FolderType.NORMAL))
-                                             .sorted((o1, o2) -> o1.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase())).collect(com.annimon.stream.Collectors.toList());
+                                              .sorted((o1, o2) -> o1.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase())).collect(java.util.stream.Collectors.toList());
 
     Uri allMediaThumbnail = imageFolders.getThumbnailTimestamp() > videoFolders.getThumbnailTimestamp() ? imageFolders.getThumbnail() : videoFolders.getThumbnail();
 

@@ -13,8 +13,7 @@ import android.os.SystemClock
 import android.preference.PreferenceManager
 import android.text.TextUtils
 import androidx.core.content.contentValuesOf
-import com.annimon.stream.Collectors
-import com.annimon.stream.Stream
+
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
@@ -47,7 +46,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.SignalE164Util
-import org.thoughtcrime.securesms.util.StreamUtils
 import org.thoughtcrime.securesms.util.Triple
 import org.whispersystems.signalservice.api.push.DistributionId
 import java.io.File
@@ -55,6 +53,7 @@ import java.io.IOException
 import java.util.LinkedList
 import java.util.Locale
 import java.util.UUID
+import java.util.stream.Collectors
 
 /**
  * Adding an urgent flag to message envelopes to help with notifications. Need to track flag in
@@ -658,7 +657,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
 
     if (oldVersion < NOTIFICATION_RECIPIENT_IDS && Build.VERSION.SDK_INT >= 26) {
       val notificationManager = ServiceUtil.getNotificationManager(context)
-      val channels = StreamUtils.StreamOfCollection(notificationManager.notificationChannels)
+      val channels = notificationManager.notificationChannels.stream()
         .filter { c: NotificationChannel -> c.id.startsWith("contact_") }
         .collect(Collectors.toList())
 

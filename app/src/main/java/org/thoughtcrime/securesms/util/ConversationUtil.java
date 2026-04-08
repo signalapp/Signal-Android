@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -93,7 +94,7 @@ public final class ConversationUtil {
   public static void clearAllShortcuts(@NonNull Context context) {
     List<ShortcutInfoCompat> shortcutInfos = ShortcutManagerCompat.getDynamicShortcuts(context);
 
-    ShortcutManagerCompat.removeLongLivedShortcuts(context, StreamUtils.StreamOfCollection(shortcutInfos).map(ShortcutInfoCompat::getId).toList());
+    ShortcutManagerCompat.removeLongLivedShortcuts(context, shortcutInfos.stream().map(ShortcutInfoCompat::getId).collect(java.util.stream.Collectors.toList()));
   }
 
   /**
@@ -101,7 +102,7 @@ public final class ConversationUtil {
    */
   public static void clearShortcuts(@NonNull Context context, @NonNull Collection<RecipientId> recipientIds) {
     SignalExecutors.BOUNDED.execute(() -> {
-      ShortcutManagerCompat.removeLongLivedShortcuts(context, StreamUtils.StreamOfCollection(recipientIds).withoutNulls().map(ConversationUtil::getShortcutId).toList());
+      ShortcutManagerCompat.removeLongLivedShortcuts(context, recipientIds.stream().filter(Objects::nonNull).map(ConversationUtil::getShortcutId).collect(java.util.stream.Collectors.toList()));
     });
   }
 
@@ -271,7 +272,7 @@ public final class ConversationUtil {
   private static @NonNull Person[] buildPersonsForGroup(@NonNull Context context, @NonNull GroupId groupId) {
     List<Recipient> members = SignalDatabase.groups().getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
-    return StreamUtils.StreamOfCollection(members).map(member -> buildPersonWithoutIcon(context, member.resolve())).toArray(Person[]::new);
+    return members.stream().map(member -> buildPersonWithoutIcon(context, member.resolve())).toArray(Person[]::new);
   }
 
   /**

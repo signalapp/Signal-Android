@@ -6,8 +6,7 @@ import android.util.LongSparseArray;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
@@ -22,11 +21,9 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
-import org.thoughtcrime.securesms.service.webrtc.state.CallInfoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -255,9 +252,9 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     String eraId = WebRtcUtil.getGroupCallEraId(groupCall);
     webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), eraId, null, false, false);
 
-    List<UUID> members = StreamUtils.StreamOfCollection(currentState.getCallInfoState().getRemoteCallParticipants())
-                               .filter(p -> p.getRecipient().getHasServiceId())
-                               .map(p -> p.getRecipient().requireServiceId().getRawUuid()).collect(Collectors.toList());
+    List<UUID> members = currentState.getCallInfoState().getRemoteCallParticipants().stream()
+                                     .filter(p -> p.getRecipient().getHasServiceId())
+                                     .map(p -> p.getRecipient().requireServiceId().getRawUuid()).collect(Collectors.toList());
     webRtcInteractor.updateGroupCallUpdateMessage(currentState.getCallInfoState().getCallRecipient().getId(), eraId, members, false);
 
     currentState = currentState.builder()

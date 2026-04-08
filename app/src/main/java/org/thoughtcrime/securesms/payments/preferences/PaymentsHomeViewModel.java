@@ -7,8 +7,7 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.money.FiatMoney;
@@ -31,7 +30,6 @@ import org.thoughtcrime.securesms.payments.preferences.model.PaymentItem;
 import org.thoughtcrime.securesms.payments.preferences.model.SeeAll;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
-import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.livedata.Store;
@@ -197,9 +195,9 @@ public class PaymentsHomeViewModel extends ViewModel {
   private @NonNull PaymentsHomeState updateRecentPayments(@NonNull List<Payment> payments,
                                                           @NonNull PaymentsHomeState state)
   {
-    List<PaymentItem> paymentItems = StreamUtils.StreamOfCollection(payments)
-                                           .limit(MAX_PAYMENT_ITEMS)
-                                           .map(PaymentItem::fromPayment).collect(Collectors.toList());
+    List<PaymentItem> paymentItems = payments.stream()
+                                             .limit(MAX_PAYMENT_ITEMS)
+                                             .map(PaymentItem::fromPayment).collect(Collectors.toList());
 
     return state.updatePayments(paymentItems, payments.size());
   }

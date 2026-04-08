@@ -14,13 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.Contact.Phone;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,9 +75,9 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
       fields.add(new Field(avatar));
     }
 
-    fields.addAll(StreamUtils.StreamOfCollection(phoneNumbers).map(phone -> new Field(context, phone, locale)).toList());
-    fields.addAll(StreamUtils.StreamOfCollection(emails).map(email -> new Field(context, email)).toList());
-    fields.addAll(StreamUtils.StreamOfCollection(postalAddresses).map(address -> new Field(context, address)).toList());
+    fields.addAll(phoneNumbers.stream().map(phone -> new Field(context, phone, locale)).collect(Collectors.toList()));
+    fields.addAll(emails.stream().map(email -> new Field(context, email)).collect(Collectors.toList()));
+    fields.addAll(postalAddresses.stream().map(address -> new Field(context, address)).collect(Collectors.toList()));
 
     notifyDataSetChanged();
   }

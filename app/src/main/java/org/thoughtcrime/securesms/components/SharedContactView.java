@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -116,7 +115,7 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
     this.locale         = locale;
     this.contact        = contact;
 
-    StreamUtils.StreamOfCollection(activeRecipients.values()).forEach(recipient ->  recipient.removeForeverObserver(this));
+    activeRecipients.values().stream().forEach(recipient ->  recipient.removeForeverObserver(this));
     this.activeRecipients.clear();
 
     presentContact(contact);

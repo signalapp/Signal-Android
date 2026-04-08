@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.mms;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
-
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
@@ -17,7 +15,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.SignalE164Util;
-import org.thoughtcrime.securesms.util.StreamUtils;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
@@ -132,13 +129,13 @@ public final class MessageGroupContext {
     public @NonNull List<RecipientId> getMembersListExcludingSelf() {
       RecipientId selfId = Recipient.self().getId();
 
-      return StreamUtils.StreamOfCollection(groupContext.members)
-                   .filter(m -> SignalE164Util.isPotentialE164(m.e164))
-                   .map(m -> m.e164)
+      return groupContext.members.stream()
+                                 .filter(m -> SignalE164Util.isPotentialE164(m.e164))
+                                 .map(m -> m.e164)
                    .filter(Objects::nonNull)
-                   .map(RecipientId::fromE164)
-                   .filter(other -> !selfId.equals(other))
-                   .collect(com.annimon.stream.Collectors.toList());
+                                 .map(RecipientId::fromE164)
+                                 .filter(other -> !selfId.equals(other))
+                   .collect(Collectors.toList());
     }
   }
 

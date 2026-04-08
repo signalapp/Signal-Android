@@ -5,7 +5,7 @@ import android.os.ResultReceiver;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.RemoteConfig;
-import org.thoughtcrime.securesms.util.StreamUtils;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.signal.core.models.ServiceId.ACI;
 
@@ -144,9 +143,8 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
       return currentState;
     }
 
-    List<Recipient> callParticipants = StreamUtils.StreamOfCollection(peekInfo.getJoinedMembers())
-                                             .map(uuid -> Recipient.externalPush(ACI.from(uuid)))
-                                             .toList();
+    List<Recipient> callParticipants = peekInfo.getJoinedMembers().stream()
+                                               .map(uuid -> Recipient.externalPush(ACI.from(uuid))).collect(Collectors.toList());
 
     WebRtcServiceStateBuilder.CallInfoStateBuilder builder = currentState.builder()
                                                                          .changeCallInfoState()

@@ -11,7 +11,6 @@ import com.mobilecoin.lib.Transaction;
 import com.mobilecoin.lib.exceptions.SerializationException;
 
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;

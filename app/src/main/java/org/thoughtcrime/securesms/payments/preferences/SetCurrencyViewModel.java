@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.payments.currency.CurrencyExchangeRepository;
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.signal.core.util.SetUtil;
-import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.livedata.Store;
 
@@ -31,6 +30,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import kotlin.Pair;
 
@@ -128,10 +128,10 @@ public final class SetCurrencyViewModel extends ViewModel {
   }
 
   public static class SetCurrencyState {
-    private static final List<Currency> DEFAULT_CURRENCIES = StreamUtils.StreamOfArray(BuildConfig.DEFAULT_CURRENCIES.split(","))
+    private static final List<Currency> DEFAULT_CURRENCIES = Stream.of(BuildConfig.DEFAULT_CURRENCIES.split(","))
                                                                    .map(CurrencyUtil::getCurrencyByCurrencyCode)
                                                                    .filter(Objects::nonNull)
-                                                                   .collect(com.annimon.stream.Collectors.toList());
+                                                                   .collect(Collectors.toList());
 
     private final Currency             currentCurrency;
     private final CurrencyExchange     currencyExchange;

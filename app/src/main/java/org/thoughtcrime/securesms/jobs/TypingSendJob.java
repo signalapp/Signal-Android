@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.GroupTable;
@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.util.StreamUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage.Action;
@@ -128,9 +127,8 @@ public class TypingSendJob extends BaseJob {
       groupId    = Optional.of(recipient.requireGroupId().getDecodedId());
     }
 
-    recipients = RecipientUtil.getEligibleForSending(StreamUtils.StreamOfCollection(recipients)
-                                                                .map(Recipient::resolve)
-                                                           .toList());
+    recipients = RecipientUtil.getEligibleForSending(recipients.stream()
+                                                               .map(Recipient::resolve).collect(Collectors.toList()));
 
     SignalServiceTypingMessage typingMessage = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis(), groupId);
 

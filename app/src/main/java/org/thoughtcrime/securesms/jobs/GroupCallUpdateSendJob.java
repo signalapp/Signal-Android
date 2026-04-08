@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.StreamUtils;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
@@ -62,10 +61,9 @@ public class GroupCallUpdateSendJob extends BaseJob {
       throw new AssertionError("We have a recipient, but it's not a V2 Group");
     }
 
-    List<RecipientId> recipientIds = StreamUtils.StreamOfCollection(RecipientUtil.getEligibleForSending(Recipient.resolvedList(conversationRecipient.getParticipantIds())))
-                                           .filterNot(Recipient::isSelf)
-                                           .map(Recipient::getId)
-                                           .toList();
+    List<RecipientId> recipientIds = RecipientUtil.getEligibleForSending(Recipient.resolvedList(conversationRecipient.getParticipantIds())).stream()
+                                                  .filter(recipient -> !recipient.isSelf())
+                                                  .map(Recipient::getId).collect(java.util.stream.Collectors.toList());
 
     return new GroupCallUpdateSendJob(recipientId,
                                       eraId,
@@ -128,7 +126,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
       return;
     }
 
-    List<Recipient> destinations = StreamUtils.StreamOfCollection(recipients).map(Recipient::resolved).toList();
+    List<Recipient> destinations = recipients.stream().map(Recipient::resolved).collect(java.util.stream.Collectors.toList());
     List<Recipient> completions  = deliver(conversationRecipient, destinations);
 
     for (Recipient completion : completions) {

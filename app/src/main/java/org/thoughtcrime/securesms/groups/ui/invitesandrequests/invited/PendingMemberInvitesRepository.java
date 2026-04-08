@@ -22,13 +22,13 @@ import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupProtoUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.StreamUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Executor;
+import java.util.stream.Collectors;
 
 import okio.ByteString;
 
@@ -60,8 +60,9 @@ final class PendingMemberInvitesRepository {
       ByteString                                   self               = SignalStore.account().requireAci().toByteString();
       boolean                                      selfIsAdmin        = v2GroupProperties.isAdmin(Recipient.self());
 
-      StreamUtils.StreamOfCollection(pendingMembersList)
-            .groupBy(m -> m.addedByAci)
+      pendingMembersList.stream()
+          .collect(Collectors.groupingBy(m -> m.addedByAci))
+          .entrySet()
             .forEach(g ->
               {
                 ByteString                   inviterAci     = g.getKey();
