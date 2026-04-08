@@ -91,6 +91,8 @@ object ApkUpdateInstaller {
     val packageInstaller: PackageInstaller = context.packageManager.packageInstaller
 
     val sessionParams = PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL).apply {
+      setAppPackageName(context.packageName)
+
       // At this point, we always want to set this if possible, since we've already prompted the user with our own notification when necessary.
       // This lets us skip the system-generated notification.
       if (Build.VERSION.SDK_INT >= 31) {
