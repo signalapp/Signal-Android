@@ -1,4 +1,9 @@
-package org.signal.core.ui.compose.copied.androidx.compose
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.core.ui.compose.list
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
@@ -32,29 +37,30 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent.OnItemMove
+import org.signal.core.ui.compose.list.ReorderListEvent.ItemMoved
 
 /**
- * From AndroidX Compose demo
+ * Adapted from the AndroidX Compose demo
  * https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:compose/foundation/foundation/integration-tests/foundation-demos/src/main/java/androidx/compose/foundation/demos/LazyColumnDragAndDropDemo.kt
  *
- * Allows for dragging and dropping to reorder within lazy columns
- * Supports adding non-draggable headers and footers.
+ * - Allows for dragging and dropping to reorder within lazy columns.
+ * - Supports adding non-draggable headers and footers.
  */
 @Composable
-fun rememberDragDropState(
+fun rememberReorderableListState(
   lazyListState: LazyListState,
   includeHeader: Boolean,
   includeFooter: Boolean,
-  onEvent: (DragAndDropEvent) -> Unit = {}
-): DragDropState {
+  onEvent: (ReorderListEvent) -> Unit = {}
+): ReorderableListState {
   val scope = rememberCoroutineScope()
   val state = remember(lazyListState) {
-    DragDropState(state = lazyListState, onEvent = onEvent, includeHeader = includeHeader, includeFooter = includeFooter, scope = scope)
+    ReorderableListState(state = lazyListState, onEvent = onEvent, includeHeader = includeHeader, includeFooter = includeFooter, scope = scope)
   }
   val maxAutoScrollSpeed = with(LocalDensity.current) { 30.dp.toPx() }
   val baseAutoScrollSpeed = with(LocalDensity.current) { 10.dp.toPx() }
   val scrollAcceleration = 2f
+
   LaunchedEffect(state) {
     while (true) {
       withFrameNanos { }
@@ -73,13 +79,12 @@ fun rememberDragDropState(
   return state
 }
 
-class DragDropState
-internal constructor(
+class ReorderableListState internal constructor(
   private val state: LazyListState,
   private val scope: CoroutineScope,
   private val includeHeader: Boolean,
   private val includeFooter: Boolean,
-  private val onEvent: (DragAndDropEvent) -> Unit
+  private val onEvent: (ReorderListEvent) -> Unit
 ) {
   var draggingItemIndex by mutableStateOf<Int?>(null)
     private set
@@ -119,12 +124,12 @@ internal constructor(
 
   internal fun onDragEnd() {
     onDragInterrupted()
-    onEvent(DragAndDropEvent.OnItemDrop)
+    onEvent(ReorderListEvent.ItemDropped)
   }
 
   internal fun onDragCancel() {
     onDragInterrupted()
-    onEvent(DragAndDropEvent.OnDragCancel)
+    onEvent(ReorderListEvent.DragCanceled)
   }
 
   private fun onDragInterrupted() {
@@ -221,9 +226,9 @@ internal constructor(
 
   private fun performSwap(draggingItem: LazyListItemInfo, targetItem: LazyListItemInfo) {
     if (includeHeader) {
-      onEvent.invoke(OnItemMove(fromIndex = draggingItem.index - 1, toIndex = targetItem.index - 1))
+      onEvent.invoke(ItemMoved(fromIndex = draggingItem.index - 1, toIndex = targetItem.index - 1))
     } else {
-      onEvent.invoke(OnItemMove(fromIndex = draggingItem.index, toIndex = targetItem.index))
+      onEvent.invoke(ItemMoved(fromIndex = draggingItem.index, toIndex = targetItem.index))
     }
     draggingItemIndex = targetItem.index
   }
@@ -232,38 +237,38 @@ internal constructor(
     get() = this.offset + this.size
 }
 
-sealed interface DragAndDropEvent {
+sealed interface ReorderListEvent {
   /**
    * Triggered when an item is moving from one position to another.
    *
    * The ordering of the corresponding UI state should be updated when this event is received.
    */
-  data class OnItemMove(val fromIndex: Int, val toIndex: Int) : DragAndDropEvent
+  data class ItemMoved(val fromIndex: Int, val toIndex: Int) : ReorderListEvent
 
   /**
    * Triggered when a dragged item is dropped into its final position.
    */
-  data object OnItemDrop : DragAndDropEvent
+  data object ItemDropped : ReorderListEvent
 
   /**
    * Triggered when a drag gesture is canceled.
    */
-  data object OnDragCancel : DragAndDropEvent
+  data object DragCanceled : ReorderListEvent
 }
 
 /**
  * Enables drag-to-reorder functionality within a container.
  *
- * @param dragDropState The state managing the drag operation.
+ * @param reorderableListState The state managing the drag operation.
  * @param dragHandleWidth Width of the draggable area (positioned at the end of the container).
  */
 @Composable
-fun Modifier.dragContainer(
-  dragDropState: DragDropState,
+fun Modifier.reorderableList(
+  reorderableListState: ReorderableListState,
   dragHandleWidth: Dp
 ): Modifier {
   val isRtl = LocalLayoutDirection.current == LayoutDirection.Rtl
-  return pointerInput(dragDropState, dragHandleWidth, isRtl) {
+  return pointerInput(reorderableListState, dragHandleWidth, isRtl) {
     val containerWidthPx = size.width.toFloat()
     val handleWidthPx = dragHandleWidth.toPx()
 
@@ -275,31 +280,31 @@ fun Modifier.dragContainer(
 
     detectDragGestures(
       dragHandleXRange = dragHandleXRange,
-      onDrag = { change, offset -> dragDropState.onDrag(offset = offset, change = change) },
-      onDragStart = { offset -> dragDropState.onDragStart(offset) },
-      onDragEnd = { dragDropState.onDragEnd() },
-      onDragCancel = { dragDropState.onDragCancel() }
+      onDrag = { change, offset -> reorderableListState.onDrag(offset = offset, change = change) },
+      onDragStart = { offset -> reorderableListState.onDragStart(offset) },
+      onDragEnd = { reorderableListState.onDragEnd() },
+      onDragCancel = { reorderableListState.onDragCancel() }
     )
   }
 }
 
 @Composable
-fun LazyItemScope.DraggableItem(
-  dragDropState: DragDropState,
+fun LazyItemScope.ReorderableItem(
+  reorderableListState: ReorderableListState,
   index: Int,
   modifier: Modifier = Modifier,
   content: @Composable ColumnScope.(isDragging: Boolean) -> Unit
 ) {
-  val dragging = index == dragDropState.draggingItemIndex
+  val dragging = index == reorderableListState.draggingItemIndex
   val draggingModifier =
     if (dragging) {
       Modifier
         .zIndex(1f)
-        .graphicsLayer { translationY = dragDropState.draggingItemOffset }
-    } else if (index == dragDropState.previousIndexOfDraggedItem) {
+        .graphicsLayer { translationY = reorderableListState.draggingItemOffset }
+    } else if (index == reorderableListState.previousIndexOfDraggedItem) {
       Modifier
         .zIndex(1f)
-        .graphicsLayer { translationY = dragDropState.previousItemOffset.value }
+        .graphicsLayer { translationY = reorderableListState.previousItemOffset.value }
     } else {
       Modifier.animateItem(fadeInSpec = null, fadeOutSpec = null)
     }

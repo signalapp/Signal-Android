@@ -16,7 +16,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
-import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent
+import org.signal.core.ui.compose.list.ReorderListEvent
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
@@ -73,11 +73,11 @@ class StickerManagementActivity : PassphraseRequiredActivity() {
               override fun onRemoveStickerPacksCanceled() = viewModel.onUninstallStickerPacksCanceled()
               override fun onSelectionToggle(pack: InstalledStickerPack) = viewModel.toggleSelection(pack)
               override fun onSelectAllToggle() = viewModel.toggleSelectAll()
-              override fun onDragAndDropEvent(event: DragAndDropEvent) {
+              override fun onReorderableEvent(event: ReorderListEvent) {
                 when (event) {
-                  is DragAndDropEvent.OnItemMove -> viewModel.updatePosition(event.fromIndex, event.toIndex)
-                  is DragAndDropEvent.OnItemDrop -> viewModel.saveInstalledPacksSortOrder()
-                  is DragAndDropEvent.OnDragCancel -> {}
+                  is ReorderListEvent.ItemMoved -> viewModel.updatePosition(event.fromIndex, event.toIndex)
+                  is ReorderListEvent.ItemDropped -> viewModel.saveInstalledPacksSortOrder()
+                  is ReorderListEvent.DragCanceled -> {}
                 }
               }
 

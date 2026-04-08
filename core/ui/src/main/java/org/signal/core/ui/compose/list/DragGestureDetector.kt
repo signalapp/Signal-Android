@@ -1,4 +1,4 @@
-package org.signal.core.ui.compose.copied.androidx.compose
+package org.signal.core.ui.compose.list
 
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
