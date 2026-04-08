@@ -37,6 +37,7 @@ import org.signal.core.util.ContentTypeUtil
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaSendNavKey
 import org.signal.mediasend.MediaSendState
+import org.signal.mediasend.goToSend
 
 @Composable
 fun MediaEditScreen(
@@ -111,7 +112,8 @@ fun MediaEditScreen(
 
       AddAMessageRow(
         message = state.message,
-        callback = AddAMessageRowCallback.Empty,
+        callback = callback,
+        onNextClick = { backStack.goToSend() },
         modifier = Modifier
           .widthIn(max = 624.dp)
           .padding(horizontal = 16.dp)
@@ -145,10 +147,10 @@ private fun MediaEditScreenPreview() {
   }
 }
 
-interface MediaEditScreenCallback {
+interface MediaEditScreenCallback : AddAMessageRowCallback {
   fun setFocusedMedia(media: Media)
 
-  object Empty : MediaEditScreenCallback {
+  object Empty : MediaEditScreenCallback, AddAMessageRowCallback by AddAMessageRowCallback.Empty {
     override fun setFocusedMedia(media: Media) = Unit
   }
 }

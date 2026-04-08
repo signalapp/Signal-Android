@@ -93,9 +93,6 @@ object MediaSendV3Repository : MediaSendRepository {
       return@withContext SendResult.Error("No recipients provided.")
     }
 
-    val singleContact = if (recipients.size == 1) recipients.first() else null
-    val contacts = if (recipients.size > 1) recipients else emptyList()
-
     val legacyEditorStateMap = mapLegacyEditorState(request.editorStateMap)
     val quality = SentMediaQuality.fromCode(request.quality)
 
@@ -106,8 +103,8 @@ object MediaSendV3Repository : MediaSendRepository {
         quality = quality,
         message = request.message,
         isViewOnce = request.isViewOnce,
-        singleContact = singleContact,
-        contacts = contacts,
+        singleContact = null,
+        contacts = recipients,
         mentions = emptyList(),
         bodyRanges = null,
         sendType = resolveSendType(request.sendType),

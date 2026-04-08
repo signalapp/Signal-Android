@@ -123,6 +123,17 @@ object SafetyNumberBottomSheet {
   }
 
   /**
+   * Create a factory to generate a sheet for the given recipient IDs and destinations.
+   *
+   * @param recipientIds The list of untrusted recipient IDs
+   * @param destinations The list of locations the user was trying to send content
+   */
+  @JvmStatic
+  fun forRecipientIdsAndDestinations(recipientIds: List<RecipientId>, destinations: List<ContactSearchKey.RecipientSearchKey>): Factory {
+    return SheetFactory(SafetyNumberBottomSheetArgs(recipientIds, destinations))
+  }
+
+  /**
    * Create a factory to generate a sheet for the given identity records and single destination.
    *
    * @param identityRecords The list of untrusted records from the thrown error

@@ -16,6 +16,14 @@ internal fun NavBackStack<NavKey>.goToEdit() {
   }
 }
 
+internal fun NavBackStack<NavKey>.goToSend() {
+  if (contains(MediaSendNavKey.Send)) {
+    popTo(MediaSendNavKey.Send)
+  } else {
+    add(MediaSendNavKey.Send)
+  }
+}
+
 internal fun NavBackStack<NavKey>.pop() {
   if (isNotEmpty()) {
     removeAt(size - 1)
