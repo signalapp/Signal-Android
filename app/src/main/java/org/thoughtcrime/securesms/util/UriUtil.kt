@@ -15,7 +15,8 @@ object UriUtil {
 
   /**
    * Ensures that an external URI is valid and doesn't contain any references to internal files or
-   * any other trickiness.
+   * any other trickiness. Rejects file:// URIs that reference internal storage, and content:// URIs
+   * whose authority belongs to this application's own content providers.
    */
   @JvmStatic
   fun isValidExternalUri(context: Context, uri: Uri): Boolean {
@@ -29,6 +30,9 @@ object UriUtil {
       } catch (e: IOException) {
         return false
       }
+    } else if (ContentResolver.SCHEME_CONTENT == uri.scheme) {
+      val authority = uri.authority ?: return false
+      return !authority.startsWith(context.packageName)
     } else {
       return true
     }
