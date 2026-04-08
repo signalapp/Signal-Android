@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -57,7 +56,7 @@ class RegistrationViewModel(private val repository: RegistrationRepository, save
     Log.d(TAG, "[Event] $event")
     _state.value = applyEvent(_state.value, event)
 
-    viewModelScope.launch(Dispatchers.IO) {
+    viewModelScope.launch {
       persistFlowState(event)
     }
   }
