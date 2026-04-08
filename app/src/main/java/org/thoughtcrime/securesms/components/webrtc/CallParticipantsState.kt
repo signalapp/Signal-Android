@@ -358,7 +358,7 @@ data class CallParticipantsState(
       @PluralsRes multipleParticipants: Int,
       members: List<GroupMemberEntry.FullMember>
     ): String {
-      val eligibleMembers: List<GroupMemberEntry.FullMember> = members.filterNot { it.member.isSelf || it.member.isBlocked }
+      val eligibleMembers: List<GroupMemberEntry.FullMember> = members.filterNot { it.member.isSelf || it.member.isBlocked || it.member.isUnregistered }
 
       return when (eligibleMembers.size) {
         0 -> noParticipants?.let { context.getString(noParticipants) } ?: ""
