@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -133,7 +134,7 @@ public final class MessageGroupContext {
       return Stream.of(groupContext.members)
                    .filter(m -> SignalE164Util.isPotentialE164(m.e164))
                    .map(m -> m.e164)
-                   .withoutNulls()
+                   .filter(Objects::nonNull)
                    .map(RecipientId::fromE164)
                    .filterNot(selfId::equals)
                    .toList();

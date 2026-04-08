@@ -130,7 +130,7 @@ public final class SetCurrencyViewModel extends ViewModel {
   public static class SetCurrencyState {
     private static final List<Currency> DEFAULT_CURRENCIES = Stream.of(BuildConfig.DEFAULT_CURRENCIES.split(","))
                                                                    .map(CurrencyUtil::getCurrencyByCurrencyCode)
-                                                                   .withoutNulls()
+                                                                   .filter(Objects::nonNull)
                                                                    .toList();
 
     private final Currency             currentCurrency;

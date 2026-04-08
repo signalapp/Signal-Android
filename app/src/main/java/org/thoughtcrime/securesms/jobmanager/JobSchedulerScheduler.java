@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 @RequiresApi(26)
 public final class JobSchedulerScheduler implements Scheduler {
@@ -39,8 +40,7 @@ public final class JobSchedulerScheduler implements Scheduler {
 
       String constraintNames = constraints.isEmpty() ? ""
                                                      : Stream.of(constraints)
-                                                             .map(Constraint::getJobSchedulerKeyPart)
-                                                             .withoutNulls()
+                                                             .map(Constraint::getJobSchedulerKeyPart).filter(Objects::nonNull)
                                                              .sorted()
                                                              .collect(Collectors.joining("-"));
 

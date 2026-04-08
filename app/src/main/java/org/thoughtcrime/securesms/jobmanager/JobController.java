@@ -348,8 +348,7 @@ class JobController {
   synchronized @NonNull List<Job> onFailure(@NonNull Job job) {
     List<Job> dependents = Stream.of(jobStorage.getDependencySpecsThatDependOnJob(job.getId()))
                                  .map(DependencySpec::getJobId)
-                                 .map(jobStorage::getJobSpec)
-                                 .withoutNulls()
+                                 .map(jobStorage::getJobSpec).filter(Objects::nonNull)
                                  .map(jobSpec -> {
                                    List<ConstraintSpec> constraintSpecs = jobStorage.getConstraintSpecs(jobSpec.getId());
                                    return createJob(jobSpec, constraintSpecs);

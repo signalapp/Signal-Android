@@ -79,6 +79,7 @@ import java.io.InputStream;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -222,8 +223,8 @@ public abstract class PushSendJob extends SendJob {
                              .toList());
 
     attachments.addAll(Stream.of(message.getSharedContacts())
-                             .map(Contact::getAvatar).withoutNulls()
-                             .map(Contact.Avatar::getAttachment).withoutNulls()
+                             .map(Contact::getAvatar).filter(Objects::nonNull)
+                             .map(Contact.Avatar::getAttachment).filter(Objects::nonNull)
                              .toList());
 
     HashSet<String> jobs = new HashSet<>(Stream.of(attachments).map(a -> {
