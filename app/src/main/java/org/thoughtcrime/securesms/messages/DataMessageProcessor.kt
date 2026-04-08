@@ -1252,7 +1252,7 @@ object DataMessageProcessor {
 
     SignalDatabase.polls.insertVotes(
       pollId = pollId,
-      pollOptionIds = pollVote.optionIndexes.map { index -> allOptionIds[index] },
+      pollOptionIds = pollVote.optionIndexes.distinct().map { index -> allOptionIds[index] },
       voterId = senderRecipient.id.toLong(),
       voteCount = pollVote.voteCount?.toLong() ?: 0,
       messageId = messageId
@@ -1586,15 +1586,16 @@ object DataMessageProcessor {
     }
 
     warn(timestamp, "Didn't find matching message record...")
+    val cappedQuoteRanges = quote.bodyRanges.take(BODY_RANGE_PROCESSING_LIMIT)
     return QuoteModel(
       id = quote.id!!,
       author = authorId,
       text = quote.text ?: "",
       isOriginalMissing = true,
       attachment = quote.attachments.firstNotNullOfOrNull { PointerAttachment.forPointer(it).orNull() },
-      mentions = getMentions(quote.bodyRanges),
+      mentions = getMentions(cappedQuoteRanges),
       type = QuoteModel.Type.fromProto(quote.type),
-      bodyRanges = quote.bodyRanges.filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toBodyRangeList()
+      bodyRanges = cappedQuoteRanges.filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toBodyRangeList()
     )
   }
 
