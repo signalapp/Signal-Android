@@ -14,6 +14,7 @@ object TestTags {
   const val WELCOME_SCREEN = "welcome_screen"
   const val WELCOME_HEADLINE = "welcome_headline"
   const val WELCOME_GET_STARTED_BUTTON = "welcome_get_started_button"
+  const val WELCOME_LINK_DEVICE_BUTTON = "welcome_link_device_button"
   const val WELCOME_RESTORE_OR_TRANSFER_BUTTON = "welcome_restore_or_transfer_button"
   const val WELCOME_RESTORE_HAS_OLD_PHONE_BUTTON = "welcome_restore_has_old_phone_button"
   const val WELCOME_RESTORE_NO_OLD_PHONE_BUTTON = "welcome_restore_no_old_phone_button"

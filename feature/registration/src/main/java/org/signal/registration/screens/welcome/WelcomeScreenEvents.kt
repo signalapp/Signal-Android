@@ -9,6 +9,7 @@ import org.signal.registration.util.DebugLoggableModel
 
 sealed class WelcomeScreenEvents : DebugLoggableModel() {
   data object Continue : WelcomeScreenEvents()
+  data object LinkDevice : WelcomeScreenEvents()
   data object HasOldPhone : WelcomeScreenEvents()
   data object DoesNotHaveOldPhone : WelcomeScreenEvents()
 }

@@ -56,6 +56,29 @@ class WelcomeScreenTest {
     assert(emittedEvent == WelcomeScreenEvents.Continue)
   }
 
+  @Config(qualifiers = "w1280dp-h800dp-xhdpi")
+  @Test
+  fun `when Link Your Account is clicked, LinkDevice event is emitted`() {
+    // Given
+    var emittedEvent: WelcomeScreenEvents? = null
+
+    composeTestRule.setContent {
+      SignalTheme {
+        WelcomeScreen(
+          onEvent = { event ->
+            emittedEvent = event
+          }
+        )
+      }
+    }
+
+    // When
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_GET_STARTED_BUTTON).performClick()
+
+    // Then
+    assert(emittedEvent == WelcomeScreenEvents.Continue)
+  }
+
   @Test
   fun `when Restore or transfer is clicked, bottom sheet is shown`() {
     // Given

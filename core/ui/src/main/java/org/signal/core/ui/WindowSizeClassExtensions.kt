@@ -6,6 +6,10 @@
 package org.signal.core.ui
 
 import android.content.res.Resources
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.window.core.layout.WindowSizeClass
@@ -31,6 +35,16 @@ fun Resources.getWindowSizeClass(): WindowSizeClass {
   )
 }
 
+@Composable
+fun rememberWindowBreakpoint(): WindowBreakpoint {
+  val resources = LocalResources.current
+  val configuration = LocalConfiguration.current
+
+  return remember(resources, configuration) {
+    resources.getWindowBreakpoint()
+  }
+}
+
 /**
  * Determines the device's form factor (PHONE, FOLDABLE, or TABLET) based on the current
  * [Resources] and window size class.
@@ -39,7 +53,7 @@ fun Resources.getWindowSizeClass(): WindowSizeClass {
  * - Returns [WindowBreakpoint.SMALL] if the width or height is compact.
  * - Returns [WindowBreakpoint.LARGE] if the height is at least the expanded lower bound.
  * - Returns [WindowBreakpoint.MEDIUM] if the width is at least the medium lower bound.
- * - Otherwise, falls back to aspect ratio heuristics: wider (≥ 1.6) is [WindowBreakpoint.LARGE], else [WindowBreakpoint.MEDIUM].
+ * - Otherwise, falls back to aspect ratio heuristics: wider (≥ 1.5) is [WindowBreakpoint.LARGE], else [WindowBreakpoint.MEDIUM].
  *
  * @return the inferred [WindowBreakpoint] for the current device.
  */
@@ -58,7 +72,7 @@ fun Resources.getWindowBreakpoint(): WindowBreakpoint {
   val denominator = minOf(displayMetrics.widthPixels, displayMetrics.heightPixels)
   val aspectRatio = numerator.toFloat() / denominator
 
-  return if (aspectRatio >= 1.6f) {
+  return if (aspectRatio >= 1.5f) {
     WindowBreakpoint.LARGE
   } else {
     WindowBreakpoint.MEDIUM

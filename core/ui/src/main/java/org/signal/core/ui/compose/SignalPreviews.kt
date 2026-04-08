@@ -100,10 +100,10 @@ annotation class TabletLandscapeDayPreview
 @TabletLandscapeDayPreview
 annotation class TabletDayPreviews
 
-@Preview(name = "tablet portrait (night)", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=1280dp,height=840dp,orientation=portrait")
+@Preview(name = "tablet portrait (night)", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=840dp,height=1280dp,orientation=portrait")
 annotation class TabletPortraitNightPreview
 
-@Preview(name = "tablet landscape (night)", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=840dp,height=1280dp,orientation=landscape")
+@Preview(name = "tablet landscape (night)", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=1280dp,height=840dp,orientation=landscape")
 annotation class TabletLandscapeNightPreview
 
 @TabletPortraitNightPreview

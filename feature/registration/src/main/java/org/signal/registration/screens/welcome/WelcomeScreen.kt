@@ -10,7 +10,9 @@ package org.signal.registration.screens.welcome
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,6 +20,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -41,18 +44,23 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
+import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SideBySideLayout
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.dismissWithAnimation
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.registration.R
+import org.signal.registration.screens.RegistrationScreen
 import org.signal.registration.test.TestTags
 
 /**
@@ -65,74 +73,37 @@ fun WelcomeScreen(
   modifier: Modifier = Modifier
 ) {
   var showBottomSheet by remember { mutableStateOf(false) }
+  val windowBreakpoint = rememberWindowBreakpoint()
+  val onRestoreOrTransferClick = { showBottomSheet = true }
+  val onTermsAndPrivacyClick: () -> Unit = {}
 
-  Column(
-    modifier = modifier
-      .fillMaxSize()
-      .testTag(TestTags.WELCOME_SCREEN),
-    horizontalAlignment = Alignment.CenterHorizontally
-  ) {
-    Image(
-      painter = painterResource(R.drawable.welcome),
-      contentDescription = null,
-      modifier = Modifier
-        .weight(1f)
-        .fillMaxWidth()
-        .padding(16.dp),
-      contentScale = ContentScale.Fit
-    )
-
-    Text(
-      text = stringResource(R.string.RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message),
-      style = MaterialTheme.typography.headlineMedium,
-      textAlign = TextAlign.Center,
-      modifier = Modifier
-        .padding(horizontal = 32.dp)
-        .testTag(TestTags.WELCOME_HEADLINE)
-    )
-
-    Spacer(modifier = Modifier.height(40.dp))
-
-    TextButton(
-      onClick = { /* Terms & Privacy link */ },
-      colors = ButtonDefaults.textButtonColors(
-        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
-      )
-    ) {
-      Text(
-        text = stringResource(R.string.RegistrationActivity_terms_and_privacy),
-        textAlign = TextAlign.Center
+  when (windowBreakpoint) {
+    WindowBreakpoint.SMALL -> {
+      CompactLayout(
+        onEvent = onEvent,
+        onRestoreOrTransferClick = onRestoreOrTransferClick,
+        onTermsAndPrivacyClick = onTermsAndPrivacyClick,
+        modifier = modifier
       )
     }
 
-    Spacer(modifier = Modifier.height(24.dp))
-
-    Buttons.LargeTonal(
-      onClick = { onEvent(WelcomeScreenEvents.Continue) },
-      modifier = Modifier
-        .fillMaxWidth()
-        .padding(horizontal = 32.dp)
-        .testTag(TestTags.WELCOME_GET_STARTED_BUTTON)
-    ) {
-      Text(stringResource(R.string.RegistrationActivity_continue))
+    WindowBreakpoint.MEDIUM -> {
+      MediumLayout(
+        onEvent = onEvent,
+        onRestoreOrTransferClick = onRestoreOrTransferClick,
+        onTermsAndPrivacyClick = onTermsAndPrivacyClick,
+        modifier = modifier
+      )
     }
 
-    Spacer(modifier = Modifier.height(17.dp))
-
-    Buttons.LargeTonal(
-      onClick = { showBottomSheet = true },
-      colors = ButtonDefaults.filledTonalButtonColors(
-        containerColor = SignalTheme.colors.colorSurface2
-      ),
-      modifier = Modifier
-        .fillMaxWidth()
-        .padding(horizontal = 32.dp)
-        .testTag(TestTags.WELCOME_RESTORE_OR_TRANSFER_BUTTON)
-    ) {
-      Text(stringResource(R.string.registration_activity__restore_or_transfer))
+    WindowBreakpoint.LARGE -> {
+      LargeLayout(
+        onEvent = onEvent,
+        onTermsAndPrivacyClick = onTermsAndPrivacyClick,
+        onRestoreOrTransferClick = onRestoreOrTransferClick,
+        modifier = modifier
+      )
     }
-
-    Spacer(modifier = Modifier.height(48.dp))
   }
 
   if (showBottomSheet) {
@@ -143,6 +114,261 @@ fun WelcomeScreen(
       },
       onDismiss = { showBottomSheet = false }
     )
+  }
+}
+
+@Composable
+private fun CompactLayout(
+  onEvent: (WelcomeScreenEvents) -> Unit,
+  onTermsAndPrivacyClick: () -> Unit,
+  onRestoreOrTransferClick: () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  RegistrationScreen(
+    modifier = modifier
+      .fillMaxSize()
+      .testTag(TestTags.WELCOME_SCREEN),
+    content = {
+      Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+      ) {
+        HeroImage(
+          modifier = Modifier
+            .weight(1f)
+            .fillMaxWidth()
+            .padding(16.dp)
+        )
+
+        Headline(
+          textAlign = TextAlign.Center,
+          modifier = Modifier.padding(horizontal = 32.dp)
+        )
+
+        Spacer(modifier = Modifier.height(40.dp))
+      }
+    },
+    footer = {
+      Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+      ) {
+        TermsAndPrivacy(onTermsAndPrivacyClick = onTermsAndPrivacyClick)
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        PrimaryDeviceCallToActionButtons(
+          onEvent = onEvent,
+          onRestoreOrTransferClick = onRestoreOrTransferClick
+        )
+
+        Spacer(modifier = Modifier.height(48.dp))
+      }
+    }
+  )
+}
+
+@Composable
+private fun MediumLayout(
+  onEvent: (WelcomeScreenEvents) -> Unit,
+  onTermsAndPrivacyClick: () -> Unit,
+  onRestoreOrTransferClick: () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  RegistrationScreen(
+    modifier = modifier
+      .fillMaxSize()
+      .padding(bottom = 56.dp),
+    content = {
+      SideBySideLayout(
+        modifier = Modifier.fillMaxSize(),
+        primary = {
+          HeroImage()
+        },
+        secondary = {
+          Headline(
+            modifier = Modifier.padding(top = 88.dp)
+          )
+        }
+      )
+    },
+    footer = {
+      Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+      ) {
+        TermsAndPrivacy(onTermsAndPrivacyClick = onTermsAndPrivacyClick)
+
+        PrimaryDeviceCallToActionButtons(
+          onEvent = onEvent,
+          onRestoreOrTransferClick = onRestoreOrTransferClick
+        )
+      }
+    }
+  )
+}
+
+@Composable
+private fun LargeLayout(
+  onEvent: (WelcomeScreenEvents) -> Unit,
+  onTermsAndPrivacyClick: () -> Unit,
+  onRestoreOrTransferClick: () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  RegistrationScreen(
+    modifier = modifier.fillMaxSize(),
+    content = {
+      SideBySideLayout(
+        modifier = Modifier.fillMaxSize(),
+        primary = {
+          HeroImage(
+            modifier = Modifier.padding(vertical = 10.dp)
+          )
+        },
+        secondary = {
+          Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.fillMaxWidth()
+          ) {
+            Column(
+              horizontalAlignment = Alignment.Start,
+              modifier = Modifier
+                .widthIn(max = 380.dp)
+                .fillMaxWidth()
+                .padding(top = 98.dp)
+            ) {
+              Headline(
+                style = MaterialTheme.typography.headlineLarge,
+                modifier = Modifier.padding(start = 10.dp)
+              )
+
+              Spacer(modifier = Modifier.weight(1f))
+
+              TermsAndPrivacy(
+                onTermsAndPrivacyClick = onTermsAndPrivacyClick,
+                modifier = Modifier
+                  .align(Alignment.CenterHorizontally)
+                  .padding(bottom = 8.dp)
+              )
+
+              PrimaryDeviceCallToActionButtons(
+                onEvent = onEvent,
+                onRestoreOrTransferClick = onRestoreOrTransferClick
+              )
+            }
+          }
+        }
+      )
+    }
+  )
+}
+
+@Composable
+private fun HeroImage(
+  modifier: Modifier = Modifier
+) {
+  Image(
+    painter = painterResource(R.drawable.welcome),
+    contentDescription = null,
+    modifier = modifier,
+    contentScale = ContentScale.Fit
+  )
+}
+
+@Composable
+private fun Headline(
+  modifier: Modifier = Modifier,
+  style: TextStyle = MaterialTheme.typography.headlineMedium,
+  textAlign: TextAlign = TextAlign.Start
+) {
+  Text(
+    text = stringResource(R.string.RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message),
+    style = style,
+    textAlign = textAlign,
+    modifier = modifier
+      .testTag(TestTags.WELCOME_HEADLINE)
+  )
+}
+
+@Composable
+private fun TermsAndPrivacy(
+  onTermsAndPrivacyClick: () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  TextButton(
+    onClick = onTermsAndPrivacyClick,
+    colors = ButtonDefaults.textButtonColors(
+      contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+    ),
+    modifier = modifier
+  ) {
+    Text(
+      text = stringResource(R.string.RegistrationActivity_terms_and_privacy),
+      textAlign = TextAlign.Center
+    )
+  }
+}
+
+@Composable
+private fun ColumnScope.PrimaryDeviceCallToActionButtons(
+  onEvent: (WelcomeScreenEvents) -> Unit,
+  onRestoreOrTransferClick: () -> Unit
+) {
+  Buttons.LargeTonal(
+    onClick = { onEvent(WelcomeScreenEvents.Continue) },
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(horizontal = 32.dp)
+      .testTag(TestTags.WELCOME_GET_STARTED_BUTTON)
+  ) {
+    Text(stringResource(R.string.RegistrationActivity_continue))
+  }
+
+  Spacer(modifier = Modifier.height(17.dp))
+
+  Buttons.LargeTonal(
+    onClick = onRestoreOrTransferClick,
+    colors = ButtonDefaults.filledTonalButtonColors(
+      containerColor = SignalTheme.colors.colorSurface2
+    ),
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(horizontal = 32.dp)
+      .testTag(TestTags.WELCOME_RESTORE_OR_TRANSFER_BUTTON)
+  ) {
+    Text(stringResource(R.string.registration_activity__restore_or_transfer))
+  }
+}
+
+@Composable
+private fun ColumnScope.SecondaryDeviceCallToActionButtons(
+  onEvent: (WelcomeScreenEvents) -> Unit
+) {
+  Buttons.LargeTonal(
+    onClick = { onEvent(WelcomeScreenEvents.LinkDevice) },
+    modifier = Modifier
+      .fillMaxWidth()
+      .testTag(TestTags.WELCOME_LINK_DEVICE_BUTTON)
+  ) {
+    Text(stringResource(R.string.WelcomeScreen__link_your_account))
+  }
+
+  Row(
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = Modifier.align(Alignment.CenterHorizontally)
+  ) {
+    Text(
+      text = stringResource(R.string.WelcomeScreen__not_on_signal_yet)
+    )
+
+    TextButton(
+      onClick = { onEvent(WelcomeScreenEvents.Continue) },
+      modifier = Modifier.testTag(TestTags.WELCOME_GET_STARTED_BUTTON)
+    ) {
+      Text(
+        text = stringResource(R.string.WelcomeScreen__create_account)
+      )
+    }
   }
 }
 
