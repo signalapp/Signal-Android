@@ -527,7 +527,7 @@
     <string name="ConversationActivity_unable_to_record_audio">Snemanje zvoka ni mogoče!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Niste več član_ica te skupine, zato ji tudi ne morete več pošiljati sporočil.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">Ne morete pošiljati sporočil, ker je skupina zaključena.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Samo %1$s lahko pošilja sporočila.</string>
     <string name="ConversationActivity_admins">skrbniki_ce</string>
     <string name="ConversationActivity_message_an_admin">Sporočilo skrbniku_ci skupine</string>
@@ -685,10 +685,10 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Klepetu je mogoče dodajati opombe, ki so vidne samo vam. Če je vaš račun povezan z drugimi napravami, se bodo te opombe sinhronizirale.</string>
     <!-- Text in banner to show how many people have the same name. -->
     <plurals name="ConversationFragment__d_group_members_have_the_same_name">
-        <item quantity="one">%1$d group member have the same name.</item>
-        <item quantity="two">%1$d group members have the same name.</item>
-        <item quantity="few">%1$d group members have the same name.</item>
-        <item quantity="other">%1$d group members have the same name.</item>
+        <item quantity="one">%1$d član_ica skupine ima enako ime.</item>
+        <item quantity="two">%1$d člana_ici iskupine imata enako ime.</item>
+        <item quantity="few">%1$d člani_ice skupine imajo enako ime.</item>
+        <item quantity="other">%1$d članov_ic skupine ima enako ime.</item>
     </plurals>
     <string name="ConversationFragment__tap_to_review">Tapnite za pregled</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
@@ -1779,7 +1779,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Prišlo je do napake na omrežju.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Povezava do skupine ni aktivna</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Pridružitev skupini ni mogoča.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Dosežena je omejitev skupine, pridružitev skupini ni mogoča</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1942,6 +1942,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">Poslano od vas za uporabnika_co %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Ta medij še ni poslan.</string>
+    <string name="MediaOverviewActivity_jump_to_message">Jump to message</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Spomni me kasneje</string>
@@ -2010,7 +2011,7 @@
     <string name="MessageRecord_you_updated_group">Posodobili ste skupino.</string>
     <string name="MessageRecord_the_group_was_updated">Skupina je bila posodobljena</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">Skupina je zaključena.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s je zaključil_a to skupino</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -2031,6 +2032,10 @@
     <string name="MessageRecord_declined_voice_call">Zavrnjen zvočni klic</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">Zavrnjen video klic</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">Neodgovorjen glasovni klic</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">Neodgovorjen video klic</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Neodgovorjen zvočni klic, medtem ko je profil za obvestila vklopljen</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -3272,6 +3277,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Zaklep registracije:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Skupina je posodobljena</string>
@@ -3855,7 +3861,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Zakleni snemanje zvočne priponke</string>
     <string name="conversation_activity__message_could_not_be_sent">Sporočilo ni moglo biti poslano. Preverite internetno povezavo in poskusite znova.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">V tej skupini ne boste več mogli pošiljati in prejemati sporočil, ker je skupina zaključena.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">Ta aktivnost ni na voljo, saj je skupina zaključena.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3913,31 +3919,31 @@
     <string name="ConversationUpdateItem_update">Posodobitev</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="one">%1$d group update</item>
-        <item quantity="two">%1$d group updates</item>
-        <item quantity="few">%1$d group updates</item>
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="one">%1$d posodobitev skupine</item>
+        <item quantity="two">%1$d posodobitvi skupine</item>
+        <item quantity="few">%1$d posodobitve skupine</item>
+        <item quantity="other">%1$d posodobitev skupine</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="one">%1$d chat update</item>
-        <item quantity="two">%1$d chat updates</item>
-        <item quantity="few">%1$d chat updates</item>
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="one">%1$d posodobitev klepeta</item>
+        <item quantity="two">%1$d posodobitvi klepeta</item>
+        <item quantity="few">%1$d posodobitve klepeta</item>
+        <item quantity="other">%1$d posodobitev klepeta</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
-        <item quantity="two">%1$d disappearing message timer changes · %2$s</item>
-        <item quantity="few">%1$d disappearing message timer changes · %2$s</item>
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="one">%1$d sprememba trajanja izginjajočih sporočil · %2$s</item>
+        <item quantity="two">%1$d spremembi trajanja izginjajočih sporočil · %2$s</item>
+        <item quantity="few">%1$d spremembe trajanja izginjajočih sporočil · %2$s</item>
+        <item quantity="other">%1$d sprememb trajanja izginjajočih sporočil · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="one">%1$d call event</item>
-        <item quantity="two">%1$d call events</item>
-        <item quantity="few">%1$d call events</item>
-        <item quantity="other">%1$d call events</item>
+        <item quantity="one">%1$d aktivnost v zvezi s klici</item>
+        <item quantity="two">%1$d aktivnosti v zvezi s klici</item>
+        <item quantity="few">%1$d aktivnosti v zvezi s klici</item>
+        <item quantity="other">%1$d aktivnosti v zvezi s klici</item>
     </plurals>
 
     <!-- audio_view -->
@@ -6031,35 +6037,35 @@
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">Izvozite strojno berljivo kopijo JSON vseh svojih klepetov. Izginjajoča sporočila ne bodo izvožena.</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Odklenite pred izvozom zgodovine klepeta</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">Authentication failed</string>
+    <string name="ChatsSettingsFragment__authentication_failed">Preverjanje pristnosti ni uspelo</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">Preklic izvoza …</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">Želite izvoziti zgodovino klepeta?</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">PREVIDNO!</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">Te datoteke NE delite z nikomer. Zgodovina klepetov bo shranjena v napravi, do nje pa lahko dostopajo tudi druge aplikacije, odvisno od dovoljenj vaše naprave. Izvoz z mediji bo ustvaril večjo datoteko.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">Izvoz z mediji</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">Izvoz brez medijev</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">Izberi mapo</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">V shrambi svoje naprave izberite mapo, kjer bo shranjena vaša zgodovina klepetov.</string>
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">Izberite mapo</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">Izvoz klepeta je zaključen</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">BODITE PREVIDNI</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">pri tem, kje hranite izvozno datoteko klepeta, in je ne delite z nikomer. Do nje lahko dostopajo druge aplikacije, odvisno od dovoljenj vaše naprave.</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -6418,7 +6424,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">Zaključi skupino</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">Ta skupina je zaključena.</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Arhiviraj klepet</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -7253,7 +7259,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Zgodba bo izbrisana za vas in za vse, ki so jo prejeli.</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">Izbrisano bo le za vas, saj je skupina zaključena.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Shranjevanje ni bilo mogoče</string>
 
@@ -8152,6 +8158,8 @@
     <string name="CallLogAdapter__incoming">Dohodni</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">Odhodni</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">Unanswered</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Zgrešeni</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -8992,14 +9000,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">Zaključevanje skupine …</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">Skupine ni bilo mogoče zaključiti. Preverite povezavo in poskusite znova.</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Poskusite znova</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s je zaključil_a to skupino</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Skupina je zaključena.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">V tej skupini ne boste več mogli pošiljati in prejemati sporočil ali klicev.</string>
 
@@ -9383,7 +9391,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">To je enako kot vaš obnovitveni ključ v napravi.</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">To je enako kot vaš obnovitveni ključ varnih varnostnih kopij Signal.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Uporabite ta ključ za:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -10201,10 +10209,10 @@
     <string name="CouldNotCompleteBackupRestoreSheet__title">Ne moremo obnoviti varnostne kopije</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">Prišlo je do napake in vaše varnostne kopije ne moremo obnoviti. Vzrok bi lahko bil premik mape z varnostno kopijo v vaši napravi med obnavljanjem varnostne kopije.</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Za ponovni poskus odstranite in ponovno namestite Signal v tej napravi ter izberite »Obnovi ali prenesi«.</string>
 
     <!-- EOF -->
 </resources>

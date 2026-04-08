@@ -527,7 +527,7 @@
     <string name="ConversationActivity_unable_to_record_audio">Неможливо записати аудіо!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Ви не можете надсилати повідомлення в цій групі, бо ви вже не її учасник.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">Ви не можете надсилати повідомлення, оскільки групу було закрито.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Повідомлення можуть надсилати тільки %1$s.</string>
     <string name="ConversationActivity_admins">адміністратори</string>
     <string name="ConversationActivity_message_an_admin">Написати адміністратору</string>
@@ -1779,7 +1779,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Сталася мережева помилка.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Посилання на групу неактивне</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Неможливо приєднатися до групи.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Досягнуто ліміту учасників, приєднатися неможливо</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1942,6 +1942,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">Надіслали ви в чаті «%1$s»</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Цей медіафайл ще не надіслано.</string>
+    <string name="MediaOverviewActivity_jump_to_message">Jump to message</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Нагадати пізніше</string>
@@ -2010,7 +2011,7 @@
     <string name="MessageRecord_you_updated_group">Ви оновили групу.</string>
     <string name="MessageRecord_the_group_was_updated">Групу оновлено.</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">Групу закрито.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">Користувач %1$s закрив групу</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -2031,6 +2032,10 @@
     <string name="MessageRecord_declined_voice_call">Відхилений аудіовиклик</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">Відхилений відеовиклик</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">Голосовий виклик без відповіді</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">Відеовиклик без відповіді</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Ви пропустили аудіовиклик, оскільки було ввімкнено профіль сповіщень</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -3272,6 +3277,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Блокування реєстрації:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Групу оновлено</string>
@@ -3855,7 +3861,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Утримувати кнопку запису голосового повідомлення</string>
     <string name="conversation_activity__message_could_not_be_sent">Не вдалося надіслати повідомлення. Перевірте з\'єднання з інтернетом і надішліть повідомлення ще раз.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">Ви більше не можете надсилати й отримувати повідомлення в цій групі, оскільки її було закрито.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">Ця дія недоступна, оскільки групу було закрито.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3913,31 +3919,31 @@
     <string name="ConversationUpdateItem_update">Оновити</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="one">%1$d group update</item>
-        <item quantity="few">%1$d group updates</item>
-        <item quantity="many">%1$d group updates</item>
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="one">%1$d оновлення в групі</item>
+        <item quantity="few">%1$d оновлення в групі</item>
+        <item quantity="many">%1$d оновлень у групі</item>
+        <item quantity="other">%1$d оновлення в групі</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="one">%1$d chat update</item>
-        <item quantity="few">%1$d chat updates</item>
-        <item quantity="many">%1$d chat updates</item>
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="one">%1$d оновлення в чаті</item>
+        <item quantity="few">%1$d оновлення в чаті</item>
+        <item quantity="many">%1$d оновлень у чаті</item>
+        <item quantity="other">%1$d оновлення в чаті</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
-        <item quantity="few">%1$d disappearing message timer changes · %2$s</item>
-        <item quantity="many">%1$d disappearing message timer changes · %2$s</item>
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="one">%1$d зміна таймера тимчасових повідомлень · %2$s</item>
+        <item quantity="few">%1$d зміни таймера тимчасових повідомлень · %2$s</item>
+        <item quantity="many">%1$d змін таймера тимчасових повідомлень · %2$s</item>
+        <item quantity="other">%1$d зміни таймера для тимчасових повідомлень · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="one">%1$d call event</item>
-        <item quantity="few">%1$d call events</item>
-        <item quantity="many">%1$d call events</item>
-        <item quantity="other">%1$d call events</item>
+        <item quantity="one">%1$d сповіщення про виклики</item>
+        <item quantity="few">%1$d сповіщення про виклики</item>
+        <item quantity="many">%1$d сповіщень про виклики</item>
+        <item quantity="other">%1$d сповіщення про виклики</item>
     </plurals>
 
     <!-- audio_view -->
@@ -6027,39 +6033,39 @@
     </plurals>
 
     <!-- Row title for the option to export chat history as a plaintext archive -->
-    <string name="ChatsSettingsFragment__export_chat_history">Експортувати історію чатів</string>
+    <string name="ChatsSettingsFragment__export_chat_history">Експорт історії чатів</string>
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">Експортуйте машиночитний JSON-файл з усіма вашими чатами. Тимчасові повідомлення не буде експортовано.</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Розблокуйте, щоб експортувати історію чатів</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
     <string name="ChatsSettingsFragment__authentication_failed">Не вдалося здійснити автентифікацію</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">Скасування експорту…</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">Експортувати історію чатів?</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">УВАГА!</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">НЕ НАДСИЛАЙТЕ цей файл нікому. Історію чатів буде збережено на вашому пристрої, а інші застосунки можуть мати до неї доступ залежно від обраних дозволів на пристрої. Експорт з медіафайлами займає більше місця.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">Експорт з медіафайлами</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">Експорт без медіафайлів</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">Оберіть папку</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">Оберіть папку в сховищі пристрою, де зберігатиметься історія чатів.</string>
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">Обрати папку</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">Чат експортовано</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">БУДЬТЕ ОБАЧНІ,</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">обираючи місце для зберігання файлу з експортованими чатами. Нікому не надсилайте цей файл. Інші застосунки можуть мати до нього доступ залежно від обраних дозволів на пристрої.</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -6418,7 +6424,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">Закрити групу</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">Групу закрито.</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Архівувати чат</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -7253,7 +7259,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Цю історію буде видалено для вас і всіх, хто її отримав.</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">Її буде видалено лише для вас, адже групу вже закрито.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Не вдалося зберегти</string>
 
@@ -8152,6 +8158,8 @@
     <string name="CallLogAdapter__incoming">Вхідний</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">Вихідний</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">Unanswered</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Пропущений</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -8992,14 +9000,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">Закриття групи…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">Не вдалося закрити групу. Перевірте з\'єднання і спробуйте ще раз.</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Повторити спробу</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">Користувач %1$s закрив групу</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Групу закрито.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Ви більше не можете надсилати й отримувати повідомлення та здійснювати й примати виклики в цій групі.</string>
 
@@ -9383,7 +9391,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Це такий самий ключ, як і ключ відновлення для резервних копій на пристрої.</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">Це такий самий ключ, як і ключ відновлення для надійного резервного копіювання від Signal.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Використовуйте цей ключ, щоб:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -10201,10 +10209,10 @@
     <string name="CouldNotCompleteBackupRestoreSheet__title">Не вдається відновити дані</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">Не вдається відновити дані з резервної копії через помилку. Можливо, під час відновлення даних папку з резервною копією було перенесено в інше місце на пристрої.</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Щоб повторити спробу, видаліть і перевстановіть Signal на цьому пристрої, а потім виберіть «Відновлення або перенесення акаунту».</string>
 
     <!-- EOF -->
 </resources>

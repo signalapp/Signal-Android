@@ -512,7 +512,7 @@
     <string name="ConversationActivity_unable_to_record_audio">Không thể ghi âm!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Bạn không thể nhắn tin cho nhóm này vì bạn không còn là thành viên.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">Bạn không thể gửi tin nhắn vì nhóm đã kết thúc.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Chỉ có %1$smới có thể gửi được tin nhắn.</string>
     <string name="ConversationActivity_admins">người quản trị</string>
     <string name="ConversationActivity_message_an_admin">Nhắn tin cho quản trị viên</string>
@@ -1635,7 +1635,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Lỗi mạng.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Đường dẫn nhóm không khả dụng</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Không thể tham gia nhóm này.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Đã đạt giới hạn của nhóm, không thể tham gia nhóm</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1777,6 +1777,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">Được gửi từ bạn tới %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Tập tin đa phương tiện này chưa được gửi.</string>
+    <string name="MediaOverviewActivity_jump_to_message">Jump to message</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Nhắc tôi sau</string>
@@ -1845,7 +1846,7 @@
     <string name="MessageRecord_you_updated_group">Bạn đã cập nhật nhóm.</string>
     <string name="MessageRecord_the_group_was_updated">Nhóm đã được cập nhật.</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">Nhóm đã kết thúc.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s đã kết thúc nhóm</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -1866,6 +1867,10 @@
     <string name="MessageRecord_declined_voice_call">Cuộc gọi thoại đã từ chối</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">Cuộc gọi video đã từ chối</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">Cuộc gọi thoại không được trả lời</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">Cuộc gọi video không được trả lời</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Cuộc gọi thoại bị nhỡ khi cấu hình thông báo được bật</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2978,6 +2983,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Khóa đăng kí:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Đã cập nhật nhóm</string>
@@ -3528,7 +3534,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Khoá ghi âm</string>
     <string name="conversation_activity__message_could_not_be_sent">Không thể gửi tin nhắn. Vui lòng kiểm tra kết nối mạng và thừ lại.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">Bạn không thể gửi và nhận tin nhắn hoặc cuộc gọi trong nhóm này nữa vì nhóm đã kết thúc.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">Không thể thực hiện thao tác này vì nhóm đã kết thúc.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3586,19 +3592,19 @@
     <string name="ConversationUpdateItem_update">Cập nhật</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="other">%1$d cập nhật về nhóm</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="other">%1$d cập nhật về cuộc trò chuyện</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="other">%1$d đồng hồ của tin nhắn tự xóa có thay đổi · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="other">%1$d call events</item>
+        <item quantity="other">%1$d sự kiện gọi</item>
     </plurals>
 
     <!-- audio_view -->
@@ -5608,35 +5614,35 @@
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">Xuất định dạng JSON máy có thể đọc được của tất cả các cuộc trò chuyện của bạn. Tin nhắn tự xóa sẽ không được xuất.</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Mở khóa để xuất lịch sử trò chuyện</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">Authentication failed</string>
+    <string name="ChatsSettingsFragment__authentication_failed">Xác thực không thành công</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">Đang hủy xuất…</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">Xuất lịch sử trò chuyện?</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">HÃY CẨN THẬN!</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">KHÔNG chia sẻ tập tin này với bất kỳ ai. Lịch sử trò chuyện của bạn sẽ được lưu vào thiết bị của bạn và các ứng dụng khác có thể truy cập nó tùy vào quyền của thiết bị. Khi xuất cùng tập tin đa phương tiện, kích thước tập tin sẽ lớn hơn.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">Xuất có đa phương tiện</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">Xuất không có đa phương tiện</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">Chọn thư mục</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">Chọn một thư mục trong thiết bị của bạn, nơi lịch sử trò chuyện sẽ được lưu.</string>
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">Chọn thư mục</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">Xuất cuộc trò chuyện thành công</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">HÃY CẨN THẬN</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">khi chọn nơi lưu tập tin xuất cuộc trò chuyện và không chia sẻ nó với bất kỳ ai. Các ứng dụng khác trên thiết bị của bạn có thể truy cập tập tin đó tùy thuộc vào quyền của thiết bị của bạn.</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -5977,7 +5983,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">Kết thúc nhóm</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">Nhóm này đã kết thúc.</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Lưu trữ cuộc trò chuyện</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6785,7 +6791,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Story này sẽ được xóa ở phía bạn và tất cả những người đã nhận nó.</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">Story sẽ chỉ được xóa ở phía bạn vì nhóm đã kết thúc.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Không thể lưu</string>
 
@@ -7618,6 +7624,8 @@
     <string name="CallLogAdapter__incoming">Cuộc gọi đến</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">Cuộc gọi đi</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">Unanswered</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Cuộc gọi nhỡ</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -8431,14 +8439,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">Đang kết thúc nhóm…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">Không thể kết thúc nhóm. Kiểm tra kết nối của bạn và thử lại.</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Thử lại</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s đã kết thúc nhóm</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Nhóm đã kết thúc.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Bạn không thể gửi và nhận tin nhắn hoặc cuộc gọi trong nhóm này nữa.</string>
 
@@ -8804,7 +8812,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Mã này giống với mã khóa khôi phục trên thiết bị của bạn.</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">Mã này giống với mã khóa khôi phục của Sao lưu bảo mật Signal.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Sử dụng mã khóa này để:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9607,10 +9615,10 @@
     <string name="CouldNotCompleteBackupRestoreSheet__title">Không thể khôi phục bản sao lưu</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">Đã xảy ra lỗi và bản sao lưu của bạn không thể được khôi phục. Nguyên nhân có thể là do thư mục sao lưu đã bị di chuyển trên thiết bị của bạn trong quá trình khôi phục bản sao lưu.</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Để thử lại, hãy gỡ cài đặt và cài đặt lại Signal trên thiết bị này, rồi chọn \"Khôi phục hoặc chuyển\".</string>
 
     <!-- EOF -->
 </resources>

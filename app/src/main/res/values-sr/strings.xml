@@ -1832,6 +1832,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">Ви сте послали кориснику %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Овај медиј још увек није послат.</string>
+    <string name="MediaOverviewActivity_jump_to_message">Jump to message</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Подсети ме касније</string>
@@ -1921,6 +1922,10 @@
     <string name="MessageRecord_declined_voice_call">Одбијен гласовни позив</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">Одбијен видео позив</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">Неодговорен гласовни позив</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">Неодговорен видео позив</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Пропуштен је гласовни позив док је профил за обавештења био укључен</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -3076,6 +3081,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Закључавање регистрације:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Група је ажурирана</string>
@@ -7796,6 +7802,8 @@
     <string name="CallLogAdapter__incoming">Долазни позив</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">Одлазни</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">Unanswered</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Пропуштени</string>
     <!-- Displayed for one missed call declined by notification profile -->

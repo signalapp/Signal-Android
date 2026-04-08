@@ -522,7 +522,7 @@
     <string name="ConversationActivity_unable_to_record_audio">Nu se poate înregistra audio!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nu poți trimite mesaje acestui grup pentru că nu mai ești membru.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">Nu poți trimite mesaje pentru că grupul s-a încheiat.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Numai %1$s pot trimite mesaje.</string>
     <string name="ConversationActivity_admins">administratori</string>
     <string name="ConversationActivity_message_an_admin">Trimite mesaj unui administrator</string>
@@ -1731,7 +1731,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">A apărut o eroare de rețea.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Acest link de grup nu este activ</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Nu te poți alătura acestui grup.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Limita de grup a fost atinsă, nu se poate alătura grupului</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1887,6 +1887,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">Trimis de tine către %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Fișierul nu este încă trimis.</string>
+    <string name="MediaOverviewActivity_jump_to_message">Jump to message</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Amintește-mi mai târziu</string>
@@ -1955,7 +1956,7 @@
     <string name="MessageRecord_you_updated_group">Ai actualizat grupul.</string>
     <string name="MessageRecord_the_group_was_updated">Grupul a fost actualizat.</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">Grupul s-a încheiat.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s a închis grupul</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -1976,6 +1977,10 @@
     <string name="MessageRecord_declined_voice_call">Apel video respins</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">Apel video respins</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">Apel vocal nepreluat</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">Apel video nepreluat</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Apel vocal pierdut în timp ce profilul de notificare este activat</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -3174,6 +3179,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Blocarea înregistrării:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Grupul a fost actualizat</string>
@@ -3746,7 +3752,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Blochează înregistrarea atașamentului audio</string>
     <string name="conversation_activity__message_could_not_be_sent">Mesajul nu a putut fi trimis. Verifică-ți conexiunea și încearcă din nou.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">Nu mai poți să trimiți sau să primești mesaje în acest grup pentru că s-a încheiat.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">Această acțiune nu este disponibilă deoarece grupul s-a încheiat.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3804,27 +3810,27 @@
     <string name="ConversationUpdateItem_update">Actualizează</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="one">%1$d group update</item>
-        <item quantity="few">%1$d group updates</item>
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="one">%1$d actualizare a grupului</item>
+        <item quantity="few">%1$d actualizări ale grupului</item>
+        <item quantity="other">%1$d de actualizări ale grupului</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="one">%1$d chat update</item>
-        <item quantity="few">%1$d chat updates</item>
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="one">%1$d actualizare a conversației</item>
+        <item quantity="few">%1$d actualizări ale conversației</item>
+        <item quantity="other">%1$d de actualizări ale conversației</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
-        <item quantity="few">%1$d disappearing message timer changes · %2$s</item>
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="one">%1$d schimbare a temporizatorului pentru mesaje temporare · %2$s</item>
+        <item quantity="few">%1$d schimbări ale temporizatorului pentru mesaje temporare · %2$s</item>
+        <item quantity="other">%1$d de schimbări ale temporizatorului pentru mesaje temporare · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="one">%1$d call event</item>
-        <item quantity="few">%1$d call events</item>
-        <item quantity="other">%1$d call events</item>
+        <item quantity="one">%1$d eveniment de apel</item>
+        <item quantity="few">%1$d evenimente de apel</item>
+        <item quantity="other">%1$d de evenimente de apel</item>
     </plurals>
 
     <!-- audio_view -->
@@ -5890,35 +5896,35 @@
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">Exportă o copie JSON, citibilă automat, a tuturor conversațiilor tale. Mesajele temporare nu vor fi exportate.</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Deblochează pentru a exporta istoricul conversațiilor</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
     <string name="ChatsSettingsFragment__authentication_failed">Autentificare eșuată</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">Se anulează exportul…</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">Exporți istoricul conversațiilor?</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">ATENȚIE!</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">NU trimite acest fișier nimănui. Istoricul conversațiilor va fi salvat pe dispozitivul tău, iar alte aplicații îl vor putea accesa în funcție de permisiunile dispozitivului. Exportul cu media va duce la o dimensiune mai mare a fișierului.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">Exportă cu fișiere media</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">Exportă fără fișiere media</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">Alege dosarul</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">Alege un folder din spațiul de stocare al dispozitivului tău în care va fi salvat istoricul conversațiilor.</string>
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">Alege directorul</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">Exportul conversației a fost finalizat</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">ATENȚIE</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">unde stochezi fișierul de export al conversației și nu îl transmite nimănui. Alte aplicații de pe dispozitivul tău ar putea să-l acceseze, în funcție de permisiunile dispozitivului.</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -6271,7 +6277,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">Încheie grupul</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">Acest grup s-a încheiat.</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Arhivează conversația</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -7097,7 +7103,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Această poveste va fi ștearsă pentru tine și toți cei care au primit-o.</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">Va fi eliminat doar pentru tine pentru că grupul s-a încheiat.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Nu s-a putut salva</string>
 
@@ -7974,6 +7980,8 @@
     <string name="CallLogAdapter__incoming">Primite</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">Trimise</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">Unanswered</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Ratate</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -8805,14 +8813,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">Se încheie grupul…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">Nu s-a putut încheia grupul. Verifică-ți conexiunea și încearcă din nou.</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Încearcă din nou</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s a încheiat grupul</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Grupul s-a încheiat.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Nu vei mai putea trimite sau primi mesaje sau apeluri de la acest grup.</string>
 
@@ -9190,7 +9198,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Aceasta este același cu codul de recuperare de pe dispozitiv.</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">Acesta este identic cu codul de recuperare pentru Backup-uri securizate.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Folosește acest cod:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -10003,10 +10011,10 @@
     <string name="CouldNotCompleteBackupRestoreSheet__title">Nu se poate restabili backup-ul</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">A apărut o eroare și backup-ul nu poate fi restabilit. Este posibil ca acest lucru să se datoreze faptului că dosarul de backup a fost mutat pe dispozitivul tău în timp ce se efectua restaurarea backup-ului.</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Ca să încerci din nou, dezinstalează și reinstalează Signal pe acest dispozitiv, apoi alege „Restaurează sau transferă“.</string>
 
     <!-- EOF -->
 </resources>

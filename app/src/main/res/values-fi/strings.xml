@@ -517,7 +517,7 @@
     <string name="ConversationActivity_unable_to_record_audio">Äänen tallennus ei onnistunut!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Et voi lähettää viestejä tälle ryhmälle, koska et enää ole sen jäsen.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">Et voi lähettää viestejä tälle ryhmälle, koska se on suljettu.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Vain %1$s voi(vat) lähettää viestejä.</string>
     <string name="ConversationActivity_admins">ylläpitäjät</string>
     <string name="ConversationActivity_message_an_admin">Lähetä viesti ylläpitäjälle</string>
@@ -1683,7 +1683,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Verkkovirhe.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tämä ryhmälinkki ei ole aktiivinen</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Tähän ryhmään ei voi liittyä.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Ryhmän yläraja saavutettu. Ryhmään liittyminen ei onnistu</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1832,6 +1832,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">Sinun lähettämäsi, vastaanottaja %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Tätä mediaa ei ole vielä lähetetty.</string>
+    <string name="MediaOverviewActivity_jump_to_message">Jump to message</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Muistuta minua myöhemmin</string>
@@ -1900,7 +1901,7 @@
     <string name="MessageRecord_you_updated_group">Päivitit ryhmää.</string>
     <string name="MessageRecord_the_group_was_updated">Ryhmä päivitettiin.</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">Ryhmä suljettiin.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s sulki ryhmän</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -1921,6 +1922,10 @@
     <string name="MessageRecord_declined_voice_call">Hylätty äänipuhelu</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">Hylätty videopuhelu</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">Vastaamaton äänipuhelu</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">Vastaamaton videopuhelu</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Vastaamaton äänipuhelu ilmoitusprofiilin ollessa käytössä</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -3076,6 +3081,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Rekisteröintiesto:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Ryhmä päivitetty</string>
@@ -3637,7 +3643,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lukitse ääniviestin tallennus</string>
     <string name="conversation_activity__message_could_not_be_sent">Viestin lähetys ei onnistunut. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">Et voi enää lähettää tai vastaanottaa viestejä tässä ryhmässä, koska se on suljettu.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">Toiminto ei ole mahdollinen, koska ryhmä on suljettu.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3695,23 +3701,23 @@
     <string name="ConversationUpdateItem_update">Päivitä</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="one">%1$d group update</item>
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="one">%1$d päivitys ryhmissä</item>
+        <item quantity="other">%1$d päivitystä ryhmissä</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="one">%1$d chat update</item>
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="one">%1$d päivitys keskusteluissa</item>
+        <item quantity="other">%1$d päivitystä keskusteluissa</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="one">%1$d muutos katoavien viestien ajastimessa · %2$s</item>
+        <item quantity="other">%1$d muutosta katoavien viestien ajastimessa · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="one">%1$d call event</item>
-        <item quantity="other">%1$d call events</item>
+        <item quantity="one">%1$d puhelutapahtuma</item>
+        <item quantity="other">%1$d puhelutapahtumaa</item>
     </plurals>
 
     <!-- audio_view -->
@@ -5749,35 +5755,35 @@
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">Vie koneellisesti luettava JSON-kopio kaikista keskusteluistasi. Kadonneita viestejä ei viedä.</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Avaa lukitus viedäksesi keskusteluhistorian</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
     <string name="ChatsSettingsFragment__authentication_failed">Tunnistautuminen epäonnistui</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">Peruutetaan vientiä…</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">Viedäänkö keskusteluhistoria?</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">OLE VAROVAINEN!</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">ÄLÄ jaa tätä tiedostoa kenellekään. Keskusteluhistoriasi tallennetaan laitteellesi, ja muut sovellukset voivat käyttää sitä laitteesi käyttöoikeuksista riippuen. Vienti median kera johtaa suurempaan tiedostokokoon.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">Vie median kera</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">Vie ilman mediaa</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">Valitse kansio</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">Valitse laitteesi tallennustilasta kansio, johon keskusteluhistoriasi tallennetaan.</string>
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">Valitse kansio</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">Keskusteluiden vienti onnistui</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">OLE VAROVAINEN</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">tallentaessasi keskusteluhistoriasi tiedostoa. Älä jaa sitä kenellekään. Muut laitteesi sovellukset voivat käyttää sitä laitteesi käyttöoikeuksista riippuen.</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -6124,7 +6130,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">Sulje ryhmä</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">Tämä ryhmä on suljettu.</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Arkistoi keskustelu</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6941,7 +6947,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Tämä tarina poistetaan sinulta ja kaikilta sen vastaanottaneilta.</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">Se poistetaan vain sinulta, koska ryhmä on suljettu.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Tallennus ei onnistu</string>
 
@@ -7796,6 +7802,8 @@
     <string name="CallLogAdapter__incoming">Saapuva</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">Lähtevä</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">Unanswered</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Vastaamaton</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -8618,14 +8626,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">Suljetaan ryhmää…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">Ryhmää ei voitu sulkea. Tarkista verkkoyhteys ja yritä uudelleen.</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Yritä uudelleen</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s sulki ryhmän</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Tämä ryhmä on suljettu.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Et voi enää lähettää tai vastaanottaa ryhmässä viestejä tai puheluita.</string>
 
@@ -8997,7 +9005,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Avain on sama kuin laitteellasi oleva palautusavain.</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">Tämä on sama avain kuin Signal-varmuuskopioinnin palautusavain.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Tällä avaimella voit:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9805,10 +9813,10 @@
     <string name="CouldNotCompleteBackupRestoreSheet__title">Varmuuskopiota ei voitu palauttaa</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">Varmuuskopiotasi ei voitu palauttaa virheen vuoksi. Varmuuskopiokansiota saatettiin siirtää laitteellasi varmuuskopioinnin palautuksen aikana.</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Yritä uudelleen poistamalla Signal laitteeltasi, asentamalla se uudelleen ja valitsemalla ”Palauta tai siirrä”.</string>
 
     <!-- EOF -->
 </resources>

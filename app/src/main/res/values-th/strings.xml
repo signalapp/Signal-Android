@@ -1777,6 +1777,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">ส่งโดยคุณถึง %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">ไฟล์สื่อนี้ยังไม่ถูกส่ง</string>
+    <string name="MediaOverviewActivity_jump_to_message">Jump to message</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">เตือนฉันทีหลัง</string>
@@ -1866,6 +1867,10 @@
     <string name="MessageRecord_declined_voice_call">การโทรด้วยเสียงที่ถูกปฏิเสธ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">วิดีโอคอลที่ถูกปฏิเสธ</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">การโทรด้วยเสียงที่ปลายสายไม่ได้รับ</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">วิดีโอคอลที่ปลายสายไม่ได้รับ</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">สายโทรเสียงที่ไม่ได้รับระหว่างใช้โปรไฟล์การแจ้งเตือน</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2978,6 +2983,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">กุญแจลงทะเบียน:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">ปรับปรุงกลุ่มแล้ว</string>
@@ -7618,6 +7624,8 @@
     <string name="CallLogAdapter__incoming">โทรเข้า</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">โทรออก</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">Unanswered</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">ไม่ได้รับ</string>
     <!-- Displayed for one missed call declined by notification profile -->

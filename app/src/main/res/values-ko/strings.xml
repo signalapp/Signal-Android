@@ -512,7 +512,7 @@
     <string name="ConversationActivity_unable_to_record_audio">오디오를 녹음할 수 없어요</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">현재 이 그룹의 멤버가 아니어서 메시지를 보낼 수 없어요.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">그룹이 종료되어 메시지를 보낼 수 없습니다.</string>
     <string name="ConversationActivity_only_s_can_send_messages">%1$s만 메시지를 전송할 수 있습니다.</string>
     <string name="ConversationActivity_admins">관리자</string>
     <string name="ConversationActivity_message_an_admin">관리자에게 메시지 전송</string>
@@ -1635,7 +1635,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">네트워크 오류가 발생했습니다.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">이 그룹 링크가 비활성화 되었습니다.</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">이 그룹에 참여할 수 없습니다.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">그룹 제한에 도달하여 그룹에 참가할 수 없음</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1777,6 +1777,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">내가 %1$s에게 보냄</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">아직 전송하지 않은 미디어입니다.</string>
+    <string name="MediaOverviewActivity_jump_to_message">Jump to message</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">나중에 알림</string>
@@ -1845,7 +1846,7 @@
     <string name="MessageRecord_you_updated_group">그룹을 업데이트했습니다.</string>
     <string name="MessageRecord_the_group_was_updated">그룹이 업데이트되었습니다.</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">그룹이 종료되었습니다.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s 님이 그룹을 종료했습니다</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -1866,6 +1867,10 @@
     <string name="MessageRecord_declined_voice_call">음성 통화를 거부함</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">영상 통화를 거부함</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">미응답 음성 통화</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">미응답 영상 통화</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">알림 프로필을 사용하는 동안 받지 못한 전화가 있습니다.</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2978,6 +2983,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">등록 잠금:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">그룹이 업데이트됨</string>
@@ -3528,9 +3534,9 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">오디오 첨부 파일 녹음 잠금</string>
     <string name="conversation_activity__message_could_not_be_sent">메시지를 보낼 수 없습니다. 연결을 확인하고 다시 시도하세요.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">그룹이 종료되어 더 이상 이 그룹에서 메시지를 주고받을 수 없습니다.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
-    <string name="conversation_activity__group_action_not_allowed_group_ended">그룹이 종료되어 메시지를 보낼 수 없습니다.</string>
+    <string name="conversation_activity__group_action_not_allowed_group_ended">그룹이 종료되어 해당 작업을 수행할 수 없습니다.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
     <string name="conversation_activity__message_failed_to_delete_retry">메시지를 삭제할 수 없습니다. 연결을 확인하고 다시 시도하세요.</string>
     <!-- Dialog body when a message failed to delete. -->
@@ -3586,19 +3592,19 @@
     <string name="ConversationUpdateItem_update">업데이트</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="other">그룹 업데이트 %1$d개</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="other">대화 업데이트 %1$d개</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="other">자동 삭제 메시지 타이머 변경 %1$d건 · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="other">%1$d call events</item>
+        <item quantity="other">통화 내역 %1$d개</item>
     </plurals>
 
     <!-- audio_view -->
@@ -5506,7 +5512,7 @@
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
     <string name="ExportAccountDataFragment__export_as_json">JSON으로 내보내기</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">컴퓨터에서 읽을 수 있는 파일</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">기계 가독형 파일</string>
 
     <!-- Action to cancel (in a dialog) -->
     <string name="ExportAccountDataFragment__cancel_action">취소</string>
@@ -5606,37 +5612,37 @@
     <!-- Row title for the option to export chat history as a plaintext archive -->
     <string name="ChatsSettingsFragment__export_chat_history">대화 기록 내보내기</string>
     <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">모든 대화를 컴퓨터가 읽을 수 있는 JSON 사본을 내보냅니다. 자동 삭제 메시지는 내보내기에서 제외됩니다.</string>
+    <string name="ChatsSettingsFragment__export_chat_history_label">모든 대화 기록을 기계 가독형 JSON 파일로 내보냅니다. 자동 삭제 메시지는 내보내기에서 제외됩니다.</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">대화 기록을 내보내려면 잠금해제하세요</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
     <string name="ChatsSettingsFragment__authentication_failed">인증 실패</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">내보내기 취소 중…</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">대화 기록을 내보낼까요?</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">주의!</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">이 파일을 다른 사람과 공유하지 마세요. 대화 기록이 기기에 저장되며, 기기의 사용 권한에 따라 다른 앱에서 액세스할 수 있습니다. 미디어를 포함하여 내보내면 파일 용량이 커집니다.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">미디어를 포함하여 내보내기</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">미디어 없이 내보내기</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">폴더 선택</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">기기의 저장 공간에서 대화 기록이 저장될 폴더를 선택해 주세요.</string>
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">폴더 선택</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">대화 내보내기 완료</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">주의!</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">내보낸 대화 파일을 저장할 때 보안에 유의해 주시고, 다른 사람과 공유하지 마세요. 기기의 사용 권한에 따라 다른 앱이 이 파일에 접근할 수 있습니다.</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -5650,7 +5656,7 @@
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
-    <string name="ChatFoldersFragment__organize_your_chats">대화를 폴더로 정리하여 대화 목록에서 대화 간에 빠르게 전환하세요.</string>
+    <string name="ChatFoldersFragment__organize_your_chats">대화를 폴더별로 분류하여, 목록에서 원하는 대화를 간편하게 선택하고 전환할 수 있습니다.</string>
     <!-- Header for section showing current chat folders -->
     <string name="ChatFoldersFragment__folders">폴더</string>
     <!-- Text next to button that allows users to create a new chat folder -->
@@ -5666,7 +5672,7 @@
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
     <string name="ChatFoldersFragment__one_on_one_chats">1:1 대화</string>
     <!-- Description of the suggested 1:1 chat folder -->
-    <string name="ChatFoldersFragment__only_direct_messages">직접 대화의 메시지만</string>
+    <string name="ChatFoldersFragment__only_direct_messages">다이렉트 메시지만</string>
     <!-- Name of a chat folder that contains all groups chats -->
     <string name="ChatFoldersFragment__groups">그룹</string>
     <!-- Description of the suggested group chat folder -->
@@ -5708,13 +5714,13 @@
     <!-- Text next to button that allows users to add chats to the folder    -->
     <string name="CreateFoldersFragment__add_chats">대화 추가</string>
     <!-- Description explaining the purpose of the included chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_want">이 폴더에 표시하려는 대화를 선택하세요.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_want">이 폴더에 포함할 대화를 선택하세요.</string>
     <!-- Section title representing what chats are excluded from the folder -->
-    <string name="CreateFoldersFragment__exceptions">예외</string>
+    <string name="CreateFoldersFragment__exceptions">제외</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
     <string name="CreateFoldersFragment__exclude_chats">대화 제외</string>
     <!-- Description explaining the purpose of the excluded chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">이 폴더에 표시하지 않으려는 대화를 선택하세요.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">이 폴더에 포함하지 않을 대화를 선택하세요.</string>
     <!-- Toggle switch for folder to show unread chats -->
     <string name="CreateFoldersFragment__only_show_unread_chats">읽지 않은 대화만 표시</string>
     <!-- Explanation of unread toggle option -->
@@ -5977,7 +5983,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">그룹 종료</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">이 그룹은 종료되었습니다.</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">대화 보관</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6785,7 +6791,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">나를 포함해 이 스토리를 받은 모든 사람에게서 해당 스토리를 삭제합니다.</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">그룹이 종료되어 본인의 기기에서만 삭제됩니다.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">저장할 수 없음</string>
 
@@ -7348,7 +7354,7 @@
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">계속</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">후원을 통해 Signal의 개인정보 보호 메시지 서비스를 지지하고, 독립적인 운영과 광고 없는 환경을 유지할 수 있도록 도와주세요.</string>
+    <string name="DonateToSignalFragment__private_messaging">후원을 통해 Signal의 개인정보 보호 메시지 서비스를 지지하고, 독립적인 운영과 광고 없는 환경을 유지할 수 있도록 힘을 보태주세요.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">아직 완료되지 않은 후원이 있어요</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -7618,6 +7624,8 @@
     <string name="CallLogAdapter__incoming">수신</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">발신</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">Unanswered</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">부재중</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -8431,14 +8439,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">그룹 종료 중…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">그룹을 종료할 수 없습니다. 연결을 확인하고 다시 시도하세요.</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">다시 시도하기</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s 님이 그룹을 종료했어요</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">그룹이 종료되었습니다.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">더 이상 이 그룹에서 메시지나 통화를 주고받을 수 없습니다.</string>
 
@@ -8804,7 +8812,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">이 키는 기존의 기기 복구 키와 동일합니다.</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">이 키는 Signal 안전 백업 복구 키와 동일합니다.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">키 사용 용도:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9509,9 +9517,9 @@
     <string name="CallQualitySheet__try_again">다시 시도</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
-    <string name="PinnedMessage__s_pinned_a_message">%1$s 님이 메시지를 고정했습니다</string>
+    <string name="PinnedMessage__s_pinned_a_message">%1$s 님이 메시지를 고정했습니다.</string>
     <!-- Message body when you pin a message -->
-    <string name="PinnedMessage__you_pinned_a_message">메시지를 고정했습니다</string>
+    <string name="PinnedMessage__you_pinned_a_message">메시지를 고정했습니다.</string>
     <!-- Button body to go to the pinned message -->
     <string name="PinnedMessage__go_to_message">메시지로 이동</string>
     <!-- Toast shown when a pinned message is not found -->
@@ -9607,10 +9615,10 @@
     <string name="CouldNotCompleteBackupRestoreSheet__title">백업을 복원할 수 없음</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">오류가 발생하여 백업을 복원할 수 없습니다. 복원이 진행되는 동안 기기 내 백업 폴더의 위치가 변경되었을 수 있습니다.</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">다시 시도하려면 이 기기에서 Signal을 삭제한 후 재설치하고, \'복원 또는 이전\'을 선택해 주세요.</string>
 
     <!-- EOF -->
 </resources>

@@ -1832,6 +1832,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">ਤੁਹਾਡੇ ਦੁਆਰਾ %1$s ਨੂੰ ਭੇਜਿਆ</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">ਇਹ ਮੀਡੀਆ ਅਜੇ ਭੇਜਿਆ ਨਹੀਂ ਗਿਆ ਹੈ।</string>
+    <string name="MediaOverviewActivity_jump_to_message">Jump to message</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">ਮੈਨੂੰ ਬਾਅਦ ਵਿੱਚ ਯਾਦ ਕਰਾਓ</string>
@@ -1921,6 +1922,10 @@
     <string name="MessageRecord_declined_voice_call">ਵੌਇਸ ਕਾਲ ਨੂੰ ਅਸਵੀਕਾਰ ਕੀਤਾ ਗਿਆ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">ਵੀਡੀਓ ਕਾਲ ਨੂੰ ਅਸਵੀਕਾਰ ਕੀਤਾ ਗਿਆ</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">ਵੌਇਸ ਕਾਲ ਨਹੀਂ ਚੁੱਕੀ ਗਈ</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">ਵੀਡੀਓ ਕਾਲ ਨਹੀਂ ਚੁੱਕੀ ਗਈ</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">ਸੂਚਨਾ ਪ੍ਰੋਫਾਈਲ ਦੇ ਚਾਲੂ ਹੋਣ ਦੌਰਾਨ ਵੌਇਸ ਕਾਲ ਮਿਸ ਹੋਈ</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -3076,6 +3081,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">ਰਜਿਸਟਰੇਸ਼ਨ ਲਾਕ:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">ਗਰੁੱਪ ਅੱਪਡੇਟ ਕੀਤਾ</string>
@@ -7796,6 +7802,8 @@
     <string name="CallLogAdapter__incoming">ਇਨਕਮਿੰਗ ਕਾਲ</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">ਆਊਟਗੋਇੰਗ ਕਾਲ</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">Unanswered</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">ਮਿਸਡ ਕਾਲ</string>
     <!-- Displayed for one missed call declined by notification profile -->
