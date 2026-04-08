@@ -69,7 +69,6 @@ import org.thoughtcrime.securesms.payments.preferences.model.PayeeParcelable;
 import org.signal.core.util.permissions.PermissionCompat;
 import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.thoughtcrime.securesms.providers.DeprecatedPersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -174,16 +173,14 @@ public class AttachmentManager {
   }
 
   private void cleanup(final @Nullable Uri uri) {
-    if (uri != null && DeprecatedPersistentBlobProvider.isAuthority(context, uri)) {
+    if (uri != null && BlobProvider.isAuthority(uri)) {
       Log.d(TAG, "cleaning up " + uri);
-      DeprecatedPersistentBlobProvider.getInstance(context).delete(context, uri);
-    } else if (uri != null && BlobProvider.isAuthority(uri)) {
       BlobProvider.getInstance().delete(context, uri);
     }
   }
 
   private void markGarbage(@Nullable Uri uri) {
-    if (uri != null && (DeprecatedPersistentBlobProvider.isAuthority(context, uri) || BlobProvider.isAuthority(uri))) {
+    if (uri != null && BlobProvider.isAuthority(uri)) {
       Log.d(TAG, "Marking garbage that needs cleaning: " + uri);
       garbage.add(uri);
     }
