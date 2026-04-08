@@ -32,14 +32,14 @@ import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**
- * Applies Signal or System emoji to the given content based off user settings.
+ * Applies Signal or System emoji to the given content based on user settings.
  *
  * Text is transformed and passed to content as an annotated string and inline content map.
  */
 @Composable
 fun Emojifier(
   text: String,
-  useSystemEmoji: Boolean = !LocalInspectionMode.current && SignalStore.settings.isPreferSystemEmoji,
+  useSystemEmoji: Boolean = LocalInspectionMode.current || SignalStore.settings.isPreferSystemEmoji,
   content: @Composable (AnnotatedString, Map<String, InlineTextContent>) -> Unit = { annotatedText, inlineContent ->
     Text(
       text = annotatedText,
