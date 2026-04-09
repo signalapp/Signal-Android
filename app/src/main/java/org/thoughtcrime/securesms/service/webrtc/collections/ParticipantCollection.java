@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.service.webrtc.collections;
 import androidx.annotation.CheckResult;
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.ComparatorCompat;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -34,9 +33,9 @@ public class ParticipantCollection {
       return 0;
     }
   };
-  private static final Comparator<CallParticipant> COMPLEX_COMPARATOR_CHAIN = ComparatorCompat.chain(HAND_RAISED)
-                                                                                              .thenComparing(MOST_RECENTLY_SPOKEN)
-                                                                                              .thenComparing(LEAST_RECENTLY_ADDED);
+  private static final Comparator<CallParticipant> COMPLEX_COMPARATOR_CHAIN = HAND_RAISED
+      .thenComparing(MOST_RECENTLY_SPOKEN)
+      .thenComparing(LEAST_RECENTLY_ADDED);
 
   private final int                   maxGridCellCount;
   private final List<CallParticipant> participants;

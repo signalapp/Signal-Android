@@ -4,8 +4,6 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.Util;
 
-import com.annimon.stream.ComparatorCompat;
-
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -18,8 +16,7 @@ public final class SemanticVersion implements Comparable<SemanticVersion> {
   private static final Comparator<SemanticVersion> MAJOR_COMPARATOR = (s1, s2) -> Integer.compare(s1.major, s2.major);
   private static final Comparator<SemanticVersion> MINOR_COMPARATOR = (s1, s2) -> Integer.compare(s1.minor, s2.minor);
   private static final Comparator<SemanticVersion> PATCH_COMPARATOR = (s1, s2) -> Integer.compare(s1.patch, s2.patch);
-  private static final Comparator<SemanticVersion> COMPARATOR       = ComparatorCompat.chain(MAJOR_COMPARATOR)
-                                                                                      .thenComparing(MINOR_COMPARATOR)
+  private static final Comparator<SemanticVersion> COMPARATOR       = MAJOR_COMPARATOR.thenComparing(MINOR_COMPARATOR)
                                                                                       .thenComparing(PATCH_COMPARATOR);
 
   private final int major;
