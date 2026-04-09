@@ -37,29 +37,41 @@ suspend fun PointerInputScope.detectDragGestures(
   awaitEachGesture {
     try {
       val down = awaitFirstDown(requireUnconsumed = false)
-      val drag = awaitLongPressOrCancellation(down.id)
-      if (drag != null && down.position.x in dragHandleXRange) {
-        onDragStart.invoke(drag.position)
-
-        if (
-          drag(drag.id) {
-            onDrag(it, it.positionChange())
-            it.consume()
-          }
-        ) {
-          // consume up if we quit drag gracefully with the up
-          currentEvent.changes.fastForEach {
-            if (it.changedToUp()) it.consume()
-          }
-          onDragEnd()
-        } else {
-          onDragCancel()
-        }
+      val dragChange = awaitLongPressOrCancellation(down.id)
+      if (dragChange != null && dragChange.position.x in dragHandleXRange) {
+        dispatchDragCallbacks(dragChange, onDragStart, onDragEnd, onDragCancel, onDrag)
       }
     } catch (c: CancellationException) {
       onDragCancel()
       throw c
     }
+  }
+}
+
+private suspend fun AwaitPointerEventScope.dispatchDragCallbacks(
+  dragChange: PointerInputChange,
+  onDragStart: (Offset) -> Unit,
+  onDragEnd: () -> Unit,
+  onDragCancel: () -> Unit,
+  onDrag: (change: PointerInputChange, dragAmount: Offset) -> Unit
+) {
+  onDragStart.invoke(dragChange.position)
+
+  val dragCompleted = drag(
+    pointerId = dragChange.id,
+    onDrag = { change ->
+      onDrag(change, change.positionChange())
+      change.consume()
+    }
+  )
+
+  if (dragCompleted) {
+    currentEvent.changes.fastForEach {
+      if (it.changedToUp()) it.consume()
+    }
+    onDragEnd()
+  } else {
+    onDragCancel()
   }
 }
 
