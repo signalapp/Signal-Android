@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Executor;
+import com.annimon.stream.Collectors;
 
 import okio.ByteString;
 
@@ -60,7 +61,8 @@ final class PendingMemberInvitesRepository {
       boolean                                      selfIsAdmin        = v2GroupProperties.isAdmin(Recipient.self());
 
       Stream.of(pendingMembersList)
-            .groupBy(m -> m.addedByAci)
+          .collect(Collectors.groupingBy(m -> m.addedByAci))
+          .entrySet()
             .forEach(g ->
               {
                 ByteString                   inviterAci     = g.getKey();

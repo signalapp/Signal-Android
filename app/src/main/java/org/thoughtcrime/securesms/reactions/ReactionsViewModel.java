@@ -29,8 +29,9 @@ public class ReactionsViewModel extends ViewModel {
   public @NonNull Observable<List<EmojiCount>> getEmojiCounts() {
     return repository.getReactions(messageId)
                      .map(reactionList -> {
-                       List<EmojiCount> emojiCounts = Stream.of(reactionList)
-                                                            .groupBy(ReactionDetails::getBaseEmoji)
+                       List<EmojiCount> emojiCounts = Stream.of(Stream.of(reactionList)
+                                                                 .collect(Collectors.groupingBy(ReactionDetails::getBaseEmoji))
+                                                                 .entrySet())
                                                             .sorted(this::compareReactions)
                                                             .map(entry -> new EmojiCount(entry.getKey(),
                                                                                          getCountDisplayEmoji(entry.getValue()),
