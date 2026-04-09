@@ -14,6 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Represents the participants to be displayed in the grid at any given time.
@@ -69,11 +70,11 @@ public class ParticipantCollection {
       for (int i = 0; i < oldGridParticipantIds.size(); i++) {
         CallParticipantId oldId = oldGridParticipantIds.get(i);
 
-        int newIndex = Stream.of(newParticipants)
-                             .takeUntilIndexed((j, p) -> j >= maxGridCellCount)
-                             .map(CallParticipant::getCallParticipantId)
-                             .toList()
-                             .indexOf(oldId);
+        int newIndex = IntStream.range(0, newParticipants.size())
+                                .filter(j -> j >= maxGridCellCount)
+                                .boxed().map(newParticipants::get)
+                                .map(CallParticipant::getCallParticipantId).collect(Collectors.toList())
+                                .indexOf(oldId);
 
         if (newIndex != -1 && newIndex != i) {
           Collections.swap(newParticipants, newIndex, Math.min(i, newParticipants.size() - 1));
