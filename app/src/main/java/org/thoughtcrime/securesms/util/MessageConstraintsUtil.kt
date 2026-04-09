@@ -38,7 +38,7 @@ object MessageConstraintsUtil {
   @JvmStatic
   fun isValidAdminDeleteReceive(targetMessage: MessageRecord, deleteSender: Recipient, deleteServerTimestamp: Long, groupRecord: GroupRecord): Boolean {
     val isValidSender = groupRecord.isAdmin(deleteSender)
-    val messageTimestamp = targetMessage.dateSent
+    val messageTimestamp = if (targetMessage.isOutgoing) targetMessage.dateSent else targetMessage.serverTimestamp
 
     return isValidSender && (deleteServerTimestamp - messageTimestamp < ADMIN_RECEIVE_THRESHOLD)
   }
