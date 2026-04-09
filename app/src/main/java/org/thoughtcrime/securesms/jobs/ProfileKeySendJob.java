@@ -195,7 +195,7 @@ public class ProfileKeySendJob extends BaseJob {
                                                                            .withProfileKey(Recipient.self().resolve().getProfileKey());
 
     List<SendMessageResult>    results       = GroupSendUtil.sendUnresendableDataMessage(context, null, destinations, false, ContentHint.IMPLICIT, dataMessage.build(), false, null);
-    ProofRequiredException     proofRequired = Stream.of(results).filter(r -> r.getProofRequiredFailure() != null).findLast().map(SendMessageResult::getProofRequiredFailure).orElse(null);
+    ProofRequiredException     proofRequired = Stream.of(results).filter(r -> r.getProofRequiredFailure() != null).reduce((a,b) -> b).map(SendMessageResult::getProofRequiredFailure).orElse(null);
 
     GroupSendJobHelper.SendResult groupResult = GroupSendJobHelper.getCompletedSends(destinations, results);
 
