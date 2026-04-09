@@ -356,7 +356,8 @@ open class MessageContentProcessor(private val context: Context) {
     if (!processingEarlyContent && earlyCacheEntries != null) {
       log(envelope.clientTimestamp!!, "Found " + earlyCacheEntries.size + " dependent item(s) that were retrieved earlier. Processing.")
       for (entry in earlyCacheEntries) {
-        handleMessage(senderRecipient, entry.envelope, entry.content, entry.metadata, entry.serverDeliveredTimestamp, processingEarlyContent = true, localMetric = null, batchCache)
+        val earlyEntrySender = Recipient.externalPush(SignalServiceAddress(entry.metadata.sourceServiceId, entry.metadata.sourceE164))
+        handleMessage(senderRecipient = earlyEntrySender, entry.envelope, entry.content, entry.metadata, entry.serverDeliveredTimestamp, processingEarlyContent = true, localMetric = null, batchCache)
       }
     }
   }
