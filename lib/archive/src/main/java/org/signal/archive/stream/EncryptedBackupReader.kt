@@ -49,6 +49,7 @@ class EncryptedBackupReader private constructor(
 
   companion object {
     const val MAC_SIZE = 32
+    private const val MAX_FORWARD_SECRECY_METADATA_SIZE = 16 * 1024
 
     /**
      * Estimated upperbound need to read backup secrecy metadata from the start of a file.
@@ -123,6 +124,9 @@ class EncryptedBackupReader private constructor(
         return null
       }
       val metadataLength = stream.readVarInt32()
+      if (metadataLength < 0 || metadataLength > MAX_FORWARD_SECRECY_METADATA_SIZE) {
+        throw IOException("Invalid forward secrecy metadata length: $metadataLength")
+      }
       return stream.readNBytesOrThrow(metadataLength)
     }
 
