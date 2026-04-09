@@ -551,14 +551,14 @@ public final class PushGroupSendJob extends PushSendJob {
       possible = Stream.of(destinations)
                        .map(GroupReceiptInfo::getRecipientId)
                        .map(Recipient::resolved)
-                       .distinctBy(Recipient::getId)
+                       .distinct()
                        .toList();
     } else {
       Log.w(TAG, "No destinations found for group message " + groupId + " using current group membership");
       possible = Stream.of(SignalDatabase.groups()
                                          .getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF))
                        .map(Recipient::resolve)
-                       .distinctBy(Recipient::getId)
+                       .distinct()
                        .toList();
     }
 
