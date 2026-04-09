@@ -496,6 +496,11 @@ class BackupMessagesJob private constructor(
         this.dataFile = ""
         BackupRepository.markBackupCreationFailed(BackupValues.BackupCreationError.NOT_ENOUGH_DISK_SPACE)
         return BackupFileResult.Failure
+      } else {
+        Log.w(TAG, "Exception during backup export", e)
+        tempBackupFile.delete()
+        this.dataFile = ""
+        return BackupFileResult.Retry
       }
     }
 
