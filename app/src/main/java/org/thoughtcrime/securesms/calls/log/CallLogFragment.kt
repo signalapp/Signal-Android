@@ -364,18 +364,21 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     }
   }
 
-  override fun onStartVideoCallClicked(recipient: Recipient, canUserBeginCall: Boolean) {
-    if (canUserBeginCall) {
-      CommunicationActions.startVideoCall(this, recipient) {
-        mainNavigationViewModel.snackbarRegistry.emit(
-          SnackbarState(
-            getString(R.string.CommunicationActions__you_are_already_in_a_call),
-            hostKey = MainSnackbarHostKey.MainChrome
+  override fun onStartVideoCallClicked(recipient: Recipient, canUserBeginCall: CallLogRow.CanStartCall) {
+    when (canUserBeginCall) {
+      CallLogRow.CanStartCall.ALLOWED -> {
+        CommunicationActions.startVideoCall(this, recipient) {
+          mainNavigationViewModel.snackbarRegistry.emit(
+            SnackbarState(
+              getString(R.string.CommunicationActions__you_are_already_in_a_call),
+              hostKey = MainSnackbarHostKey.MainChrome
+            )
           )
-        )
+        }
       }
-    } else {
-      ConversationDialogs.displayCannotStartGroupCallDueToPermissionsDialog(requireContext())
+      CallLogRow.CanStartCall.GROUP_TERMINATED -> ConversationDialogs.displayCannotStartGroupCallDueToGroupEndedDialog(requireContext())
+      CallLogRow.CanStartCall.NOT_A_MEMBER -> ConversationDialogs.displayCannotStartGroupCallDueToNoLongerAMemberDialog(requireContext())
+      CallLogRow.CanStartCall.ADMIN_ONLY -> ConversationDialogs.displayCannotStartGroupCallDueToPermissionsDialog(requireContext())
     }
   }
 

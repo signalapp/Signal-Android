@@ -33,6 +33,20 @@ object ConversationDialogs {
       .show()
   }
 
+  fun displayCannotStartGroupCallDueToNoLongerAMemberDialog(context: Context) {
+    MaterialAlertDialogBuilder(context).setTitle(R.string.ConversationActivity_cant_start_group_call)
+      .setMessage(R.string.CallLogFragment__cant_start_call_no_longer_a_member)
+      .setPositiveButton(android.R.string.ok) { d: DialogInterface, _: Int -> d.dismiss() }
+      .show()
+  }
+
+  fun displayCannotStartGroupCallDueToGroupEndedDialog(context: Context) {
+    MaterialAlertDialogBuilder(context).setTitle(R.string.ConversationActivity_cant_start_group_call)
+      .setMessage(R.string.conversation_activity__group_action_not_allowed_group_ended)
+      .setPositiveButton(android.R.string.ok) { d: DialogInterface, _: Int -> d.dismiss() }
+      .show()
+  }
+
   fun displayChatSessionRefreshLearnMoreDialog(context: Context) {
     MaterialAlertDialogBuilder(context)
       .setView(R.layout.decryption_failed_dialog)
