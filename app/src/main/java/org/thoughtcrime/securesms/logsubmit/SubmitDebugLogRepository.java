@@ -365,7 +365,7 @@ public class SubmitDebugLogRepository {
   private @NonNull List<LogLine> getPrefixLogLinesInternal() {
     long startTime = System.currentTimeMillis();
 
-    int maxTitleLength = Stream.of(SECTIONS).reduce(0, (max, section) -> Math.max(max, section.getTitle().length()));
+    int maxTitleLength = SECTIONS.stream().reduce(0, (max, section) -> Math.max(max, section.getTitle().length()), Integer::sum);
 
     List<LogLine> allLines = new ArrayList<>();
 

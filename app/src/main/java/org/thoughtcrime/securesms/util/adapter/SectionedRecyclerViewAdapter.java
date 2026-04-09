@@ -87,7 +87,7 @@ public abstract class SectionedRecyclerViewAdapter<IdType, SectionImpl extends S
 
   @Override
   public int getItemCount() {
-    return Stream.of(getSections()).reduce(0, (sum, section) -> sum + section.size());
+    return getSections().stream().reduce(0, (sum, section) -> sum + section.size(), Integer::sum);
   }
 
   /**
