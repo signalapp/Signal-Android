@@ -57,7 +57,8 @@ public class PaymentsRepository {
 
   private void updateDatabaseWithNewBlockInformation(@NonNull List<Payment> reconcileOutput) {
     List<LedgerReconcile.BlockOverridePayment> blockOverridePayments = Stream.of(reconcileOutput)
-                                                                             .select(LedgerReconcile.BlockOverridePayment.class)
+                                                                                  .filter(x -> x instanceof LedgerReconcile.BlockOverridePayment)
+                                                                                  .map(x -> (LedgerReconcile.BlockOverridePayment)x)
                                                                              .toList();
 
     if (blockOverridePayments.isEmpty()) {
