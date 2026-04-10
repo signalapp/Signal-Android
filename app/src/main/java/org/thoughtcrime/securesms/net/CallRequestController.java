@@ -31,6 +31,7 @@ public class CallRequestController implements RequestController {
 
         call.cancel();
         canceled = true;
+        CallRequestController.this.notifyAll();
       }
     });
   }
