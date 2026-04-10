@@ -392,8 +392,5 @@ object SignalDatabaseMigrations {
 
   @JvmStatic
   fun migratePostTransaction(context: Context, oldVersion: Int) {
-    if (oldVersion < V149_LegacyMigrations.MIGRATE_PREKEYS_VERSION) {
-      PreKeyMigrationHelper.cleanUpPreKeys(context)
-    }
   }
 }

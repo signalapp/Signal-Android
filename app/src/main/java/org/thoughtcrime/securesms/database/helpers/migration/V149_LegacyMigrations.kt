@@ -31,10 +31,6 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SQLiteDatabase
-import org.thoughtcrime.securesms.database.helpers.PreKeyMigrationHelper
-import org.thoughtcrime.securesms.database.helpers.RecipientIdCleanupHelper
-import org.thoughtcrime.securesms.database.helpers.RecipientIdMigrationHelper
-import org.thoughtcrime.securesms.database.helpers.SessionStoreMigrationHelper
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations
 import org.thoughtcrime.securesms.database.model.databaseprotos.ReactionList
 import org.thoughtcrime.securesms.groups.GroupId
@@ -221,14 +217,11 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
       db.execSQL("CREATE TABLE signed_prekeys (_id INTEGER PRIMARY KEY, key_id INTEGER UNIQUE, public_key TEXT NOT NULL, private_key TEXT NOT NULL, signature TEXT NOT NULL, timestamp INTEGER DEFAULT 0)")
       db.execSQL("CREATE TABLE one_time_prekeys (_id INTEGER PRIMARY KEY, key_id INTEGER UNIQUE, public_key TEXT NOT NULL, private_key TEXT NOT NULL)")
 
-      if (!PreKeyMigrationHelper.migratePreKeys(context, db.sqlCipherDatabase)) {
-        PreKeysSyncJob.enqueue()
-      }
+      PreKeysSyncJob.enqueue()
     }
 
     if (oldVersion < MIGRATE_SESSIONS_VERSION) {
       db.execSQL("CREATE TABLE sessions (_id INTEGER PRIMARY KEY, address TEXT NOT NULL, device INTEGER NOT NULL, record BLOB NOT NULL, UNIQUE(address, device) ON CONFLICT REPLACE)")
-      SessionStoreMigrationHelper.migrateSessions(context, db.sqlCipherDatabase)
     }
 
     if (oldVersion < NO_MORE_IMAGE_THUMBNAILS_VERSION) {
@@ -615,7 +608,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
     }
 
     if (oldVersion < RECIPIENT_IDS) {
-      RecipientIdMigrationHelper.execute(db.sqlCipherDatabase)
+      // RecipientIdMigrationHelper was removed -- migration from this old version is no longer supported
     }
 
     if (oldVersion < RECIPIENT_SEARCH) {
@@ -638,7 +631,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
     }
 
     if (oldVersion < RECIPIENT_CLEANUP) {
-      RecipientIdCleanupHelper.execute(db)
+      // RecipientIdCleanupHelper was removed -- migration from this old version is no longer supported
     }
 
     if (oldVersion < MMS_RECIPIENT_CLEANUP) {
