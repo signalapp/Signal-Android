@@ -1777,7 +1777,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">由您发送至 %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">此媒体尚未发送。</string>
-    <string name="MediaOverviewActivity_jump_to_message">Jump to message</string>
+    <string name="MediaOverviewActivity_jump_to_message">跳至消息</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">稍后提醒</string>
@@ -7625,7 +7625,7 @@
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">去电</string>
     <!-- Displayed for outgoing calls that were not accepted by the remote party -->
-    <string name="CallLogAdapter__unanswered">Unanswered</string>
+    <string name="CallLogAdapter__unanswered">未接</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">未接</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -7707,6 +7707,8 @@
     <string name="CallLogFragment__get_started_by_calling_a_friend">呼叫朋友开始互动吧。</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">已拥有您创建的通话链接的用户将无法重复使用此链接。</string>
+    <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">You\'re no longer a member of this group.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->

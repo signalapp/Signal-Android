@@ -7888,6 +7888,8 @@
     <string name="CallLogFragment__get_started_by_calling_a_friend">ಸ್ನೇಹಿತರಿಗೆ ಕರೆ ಮಾಡುವ ಮೂಲಕ ಪ್ರಾರಂಭಿಸಿ.</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">ನೀವು ರಚಿಸಿದ ಕರೆ ಲಿಂಕ್‌ಗಳನ್ನು ಹೊಂದಿರುವ ಯಾರಿಗೂ ಇದು ಕಾರ್ಯಾಚರಿಸುವುದಿಲ್ಲ.</string>
+    <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">You\'re no longer a member of this group.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->

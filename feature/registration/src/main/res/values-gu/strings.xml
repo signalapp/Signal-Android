@@ -133,29 +133,29 @@
 
     <!-- LocalBackupRestoreScreen -->
     <!-- Title for the local backup restore screen -->
-    <string name="LocalBackupRestoreScreen__restore_on_device_backup">Restore on-device backup</string>
+    <string name="LocalBackupRestoreScreen__restore_on_device_backup">ઓન-ડિવાઇસ બેકઅપ રિસ્ટોર કરો</string>
     <!-- Description on the folder selection screen -->
-    <string name="LocalBackupRestoreScreen__select_folder_description">Restore your messages from the backup you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="LocalBackupRestoreScreen__select_folder_description">તમે તમારા ડિવાઇસ પર સેવ કરેલા બેકઅપમાંથી તમારા મેસેજ રિસ્ટોર કરો. જો તમે અત્યારે રિસ્ટોર નહીં કરો, તો તમે પછીથી રિસ્ટોર કરી શકશો નહીં.</string>
     <!-- Title for the choose backup folder card -->
-    <string name="LocalBackupRestoreScreen__choose_backup_folder">Choose backup folder</string>
+    <string name="LocalBackupRestoreScreen__choose_backup_folder">બેકઅપ ફોલ્ડર પસંદ કરો</string>
     <!-- Subtitle for the choose backup folder card -->
-    <string name="LocalBackupRestoreScreen__choose_folder_subtitle">Select the folder on your device where your backup is stored</string>
+    <string name="LocalBackupRestoreScreen__choose_folder_subtitle">તમારા ડિવાઇસ પર તે ફોલ્ડર પસંદ કરો જ્યાં તમારું બેકઅપ સ્ટોર થયેલ હોય.</string>
     <!-- Text shown while scanning for backups -->
     <string name="LocalBackupRestoreScreen__scanning_folder">Looking for backups…</string>
     <!-- Description shown when a backup is found -->
-    <string name="LocalBackupRestoreScreen__backup_found_description">Restore your messages from the backup folder you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="LocalBackupRestoreScreen__backup_found_description">તમે તમારા ડિવાઇસ પર સેવ કરેલા બેકઅપ ફોલ્ડરમાંથી તમારા મેસેજ રિસ્ટોર કરો. જો તમે અત્યારે રિસ્ટોર નહીં કરો, તો તમે પછીથી રિસ્ટોર કરી શકશો નહીં.</string>
     <!-- Title for the latest backup card -->
-    <string name="LocalBackupRestoreScreen__your_latest_backup">Your latest backup:</string>
+    <string name="LocalBackupRestoreScreen__your_latest_backup">તમારું લેટેસ્ટ બેકઅપ:</string>
     <!-- Label for a legacy backup type -->
     <string name="LocalBackupRestoreScreen__legacy_backup">Legacy backup</string>
     <!-- Restore backup button text -->
-    <string name="LocalBackupRestoreScreen__restore_backup">Restore backup</string>
+    <string name="LocalBackupRestoreScreen__restore_backup">બેકઅપ રિસ્ટોર કરો</string>
     <!-- Link to choose an earlier backup -->
-    <string name="LocalBackupRestoreScreen__choose_earlier_backup">Choose an earlier backup</string>
+    <string name="LocalBackupRestoreScreen__choose_earlier_backup">પહેલાનું બેકઅપ પસંદ કરો</string>
     <!-- Title for the backup picker bottom sheet -->
-    <string name="LocalBackupRestoreScreen__choose_a_backup_to_restore">Choose a backup to restore</string>
+    <string name="LocalBackupRestoreScreen__choose_a_backup_to_restore">રિસ્ટોર કરવા માટે બેકઅપ પસંદ કરો</string>
     <!-- Warning text in the backup picker bottom sheet -->
-    <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">Choosing an older backup may result in lost messages or media.</string>
+    <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">જૂનું બેકઅપ પસંદ કરવાથી મેસેજ અથવા મીડિયા ખોવાઈ શકે છે.</string>
     <!-- Title when no backup is found -->
     <string name="LocalBackupRestoreScreen__no_backup_found">No backup found</string>
     <!-- Description when no backup is found -->
@@ -163,48 +163,48 @@
     <!-- Button to try a different folder -->
     <string name="LocalBackupRestoreScreen__try_different_folder">Try a different folder</string>
     <!-- Title for V1 passphrase entry screen -->
-    <string name="LocalBackupRestoreScreen__enter_backup_passphrase">Enter backup passphrase</string>
+    <string name="LocalBackupRestoreScreen__enter_backup_passphrase">બૅકઅપ પાસફ્રેઝ દાખલ કરો</string>
     <!-- Description for V1 passphrase entry screen -->
     <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Your local backup passphrase is a 30-digit code required to recover your account and data.</string>
     <!-- Label for the recovery key text field -->
-    <string name="LocalBackupRestoreScreen__recovery_key">Recovery key</string>
+    <string name="LocalBackupRestoreScreen__recovery_key">રિકવરી કી</string>
     <!-- Error text when passphrase is too long -->
-    <string name="LocalBackupRestoreScreen__too_long">Too long (%1$d/%2$d)</string>
+    <string name="LocalBackupRestoreScreen__too_long">ખૂબ લાંબી (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
     <string name="LocalBackupRestoreScreen__no_passphrase">No passphrase?</string>
     <!-- Next button text -->
-    <string name="LocalBackupRestoreScreen__next">Next</string>
+    <string name="LocalBackupRestoreScreen__next">આગળ</string>
     <!-- EnterAepScreen -->
     <!-- Title for recovery key entry screen -->
-    <string name="EnterAepScreen__enter_your_recovery_key">Enter your recovery key</string>
+    <string name="EnterAepScreen__enter_your_recovery_key">તમારી રિકવરી કી દાખલ કરો</string>
     <!-- Description for recovery key entry screen -->
-    <string name="EnterAepScreen__your_recovery_key_is_a_64_character_code">Your recovery key is a 64-character code required to recover your account and data.</string>
+    <string name="EnterAepScreen__your_recovery_key_is_a_64_character_code">તમારી રિકવરી કી એ તમારા એકાઉન્ટ અને ડેટાને રિકવર કરવા માટેનો જરૂરી 64-અક્ષરનો કોડ છે.</string>
     <!-- Label for the recovery key text field -->
-    <string name="EnterAepScreen__recovery_key">Recovery key</string>
+    <string name="EnterAepScreen__recovery_key">રિકવરી કી</string>
     <!-- Link for users who don\'t have their recovery key -->
-    <string name="EnterAepScreen__no_recovery_key">No recovery key?</string>
+    <string name="EnterAepScreen__no_recovery_key">નવી રિકવરી કી?</string>
     <!-- Error text when key is too long -->
-    <string name="EnterAepScreen__too_long">Too long (%1$d/%2$d)</string>
+    <string name="EnterAepScreen__too_long">ખૂબ લાંબી (%1$d/%2$d)</string>
     <!-- Error text when key is invalid -->
-    <string name="EnterAepScreen__invalid_recovery_key">Invalid recovery key</string>
+    <string name="EnterAepScreen__invalid_recovery_key">અમાન્ય રિકવરી કી</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">Preparing restore…</string>
     <!-- Title shown while restore is in progress -->
-    <string name="LocalBackupRestoreScreen__restoring_backup">Restoring backup</string>
+    <string name="LocalBackupRestoreScreen__restoring_backup">બેકઅપ રિસ્ટોર કરી રહ્યાં છીએ</string>
     <!-- Description shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_description">Please wait while your messages and data are being restored.</string>
     <!-- Title shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete">Restore complete</string>
+    <string name="LocalBackupRestoreScreen__restore_complete">રિસ્ટોર પૂર્ણ થયું</string>
     <!-- Description shown when restore is complete -->
     <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->
-    <string name="LocalBackupRestoreScreen__continue_button">Continue</string>
+    <string name="LocalBackupRestoreScreen__continue_button">ચાલુ રાખો</string>
     <!-- Title shown when restore fails -->
-    <string name="LocalBackupRestoreScreen__restore_failed">Restore failed</string>
+    <string name="LocalBackupRestoreScreen__restore_failed">રિસ્ટોર નિષ્ફળ થયું</string>
     <!-- Description shown when restore fails with an unknown error -->
-    <string name="LocalBackupRestoreScreen__restore_failed_description">An error occurred while restoring your backup. Please try again.</string>
+    <string name="LocalBackupRestoreScreen__restore_failed_description">તમારા બેકઅપને રિસ્ટોર કરતી વખતે એક એરર આવી. કૃપા કરીને ફરીથી પ્રયાસ કરો.</string>
     <!-- Button to retry restore after failure -->
-    <string name="LocalBackupRestoreScreen__try_again">Try again</string>
+    <string name="LocalBackupRestoreScreen__try_again">ફરીથી પ્રયત્ન કરો</string>
     <!-- Button to link an existing Signal account to this device -->
     <string name="WelcomeScreen__link_your_account">Link your account</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->

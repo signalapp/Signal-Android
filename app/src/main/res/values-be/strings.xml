@@ -2033,9 +2033,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">Відэавыклік адхілены</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
-    <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
+    <string name="MessageRecord_unanswered_voice_call">Неадказаны галасавы званок</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
-    <string name="MessageRecord_unanswered_video_call">Unanswered video call</string>
+    <string name="MessageRecord_unanswered_video_call">Неадказаны відэазванок</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Прапушчаны галасавы званок, калі ўключаны профіль апавяшчэнняў</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -8250,6 +8250,8 @@
     <string name="CallLogFragment__get_started_by_calling_a_friend">Пачніце са званка сябру.</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">Створаныя вамі спасылкі на званкі больш не будуць дзейнічаць для тых, хто мае іх.</string>
+    <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">You\'re no longer a member of this group.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->

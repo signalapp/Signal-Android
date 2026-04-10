@@ -133,29 +133,29 @@
 
     <!-- LocalBackupRestoreScreen -->
     <!-- Title for the local backup restore screen -->
-    <string name="LocalBackupRestoreScreen__restore_on_device_backup">Restore on-device backup</string>
+    <string name="LocalBackupRestoreScreen__restore_on_device_backup">ഉപകരണത്തിലെ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുക</string>
     <!-- Description on the folder selection screen -->
-    <string name="LocalBackupRestoreScreen__select_folder_description">Restore your messages from the backup you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="LocalBackupRestoreScreen__select_folder_description">നിങ്ങളുടെ ഉപകരണത്തിൽ സംരക്ഷിച്ചിരിക്കുന്ന ബാക്കപ്പിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങൾ പുനഃസ്ഥാപിക്കുക. നിങ്ങൾ ഇപ്പോൾ പുനഃസ്ഥാപിച്ചില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല.</string>
     <!-- Title for the choose backup folder card -->
-    <string name="LocalBackupRestoreScreen__choose_backup_folder">Choose backup folder</string>
+    <string name="LocalBackupRestoreScreen__choose_backup_folder">ബാക്കപ്പ് ഫോൾഡർ തിരഞ്ഞെടുക്കുക</string>
     <!-- Subtitle for the choose backup folder card -->
-    <string name="LocalBackupRestoreScreen__choose_folder_subtitle">Select the folder on your device where your backup is stored</string>
+    <string name="LocalBackupRestoreScreen__choose_folder_subtitle">നിങ്ങളുടെ ഉപകരണത്തിലെ ബാക്കപ്പ് സൂക്ഷിച്ചിരിക്കുന്ന ഫോൾഡർ തിരഞ്ഞെടുക്കുക</string>
     <!-- Text shown while scanning for backups -->
     <string name="LocalBackupRestoreScreen__scanning_folder">Looking for backups…</string>
     <!-- Description shown when a backup is found -->
-    <string name="LocalBackupRestoreScreen__backup_found_description">Restore your messages from the backup folder you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="LocalBackupRestoreScreen__backup_found_description">നിങ്ങളുടെ ഉപകരണത്തിൽ സംരക്ഷിച്ചിരിക്കുന്ന ബാക്കപ്പ് ഫോൾഡറിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങൾ പുനഃസ്ഥാപിക്കുക. നിങ്ങൾ ഇപ്പോൾ പുനഃസ്ഥാപിച്ചില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല.</string>
     <!-- Title for the latest backup card -->
-    <string name="LocalBackupRestoreScreen__your_latest_backup">Your latest backup:</string>
+    <string name="LocalBackupRestoreScreen__your_latest_backup">നിങ്ങളുടെ ഏറ്റവും പുതിയ ബാക്കപ്പ്:</string>
     <!-- Label for a legacy backup type -->
     <string name="LocalBackupRestoreScreen__legacy_backup">Legacy backup</string>
     <!-- Restore backup button text -->
-    <string name="LocalBackupRestoreScreen__restore_backup">Restore backup</string>
+    <string name="LocalBackupRestoreScreen__restore_backup">ബാക്കപ്പ് വീണ്ടെടുക്കൂ</string>
     <!-- Link to choose an earlier backup -->
-    <string name="LocalBackupRestoreScreen__choose_earlier_backup">Choose an earlier backup</string>
+    <string name="LocalBackupRestoreScreen__choose_earlier_backup">നേരത്തെയുള്ള ഒരു ബാക്കപ്പ് തിരഞ്ഞെടുക്കുക</string>
     <!-- Title for the backup picker bottom sheet -->
-    <string name="LocalBackupRestoreScreen__choose_a_backup_to_restore">Choose a backup to restore</string>
+    <string name="LocalBackupRestoreScreen__choose_a_backup_to_restore">പുനഃസ്ഥാപിക്കാൻ ഒരു ബാക്കപ്പ് തിരഞ്ഞെടുക്കുക</string>
     <!-- Warning text in the backup picker bottom sheet -->
-    <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">Choosing an older backup may result in lost messages or media.</string>
+    <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">പഴയ ബാക്കപ്പ് തിരഞ്ഞെടുക്കുന്നത് സന്ദേശങ്ങളോ മീഡിയയോ നഷ്ടപ്പെടാൻ കാരണമായേക്കാം.</string>
     <!-- Title when no backup is found -->
     <string name="LocalBackupRestoreScreen__no_backup_found">No backup found</string>
     <!-- Description when no backup is found -->
@@ -163,48 +163,48 @@
     <!-- Button to try a different folder -->
     <string name="LocalBackupRestoreScreen__try_different_folder">Try a different folder</string>
     <!-- Title for V1 passphrase entry screen -->
-    <string name="LocalBackupRestoreScreen__enter_backup_passphrase">Enter backup passphrase</string>
+    <string name="LocalBackupRestoreScreen__enter_backup_passphrase">ബാക്കപ്പിന്റെ രഹസ്യവാചകം നൽകുക</string>
     <!-- Description for V1 passphrase entry screen -->
     <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Your local backup passphrase is a 30-digit code required to recover your account and data.</string>
     <!-- Label for the recovery key text field -->
-    <string name="LocalBackupRestoreScreen__recovery_key">Recovery key</string>
+    <string name="LocalBackupRestoreScreen__recovery_key">വീണ്ടെടുക്കൽ കീ</string>
     <!-- Error text when passphrase is too long -->
-    <string name="LocalBackupRestoreScreen__too_long">Too long (%1$d/%2$d)</string>
+    <string name="LocalBackupRestoreScreen__too_long">വളരെ നീണ്ടത് (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
     <string name="LocalBackupRestoreScreen__no_passphrase">No passphrase?</string>
     <!-- Next button text -->
-    <string name="LocalBackupRestoreScreen__next">Next</string>
+    <string name="LocalBackupRestoreScreen__next">അടുത്തത്</string>
     <!-- EnterAepScreen -->
     <!-- Title for recovery key entry screen -->
-    <string name="EnterAepScreen__enter_your_recovery_key">Enter your recovery key</string>
+    <string name="EnterAepScreen__enter_your_recovery_key">നിങ്ങളുടെ വീണ്ടെടുക്കൽ കീ നൽകുക</string>
     <!-- Description for recovery key entry screen -->
-    <string name="EnterAepScreen__your_recovery_key_is_a_64_character_code">Your recovery key is a 64-character code required to recover your account and data.</string>
+    <string name="EnterAepScreen__your_recovery_key_is_a_64_character_code">നിങ്ങളുടെ അക്കൗണ്ടും ഡാറ്റയും വീണ്ടെടുക്കാൻ ആവശ്യമായ 64 പ്രതീക കോഡാണ് നിങ്ങളുടെ ബാക്കപ്പ് കീ.</string>
     <!-- Label for the recovery key text field -->
-    <string name="EnterAepScreen__recovery_key">Recovery key</string>
+    <string name="EnterAepScreen__recovery_key">വീണ്ടെടുക്കൽ കീ</string>
     <!-- Link for users who don\'t have their recovery key -->
-    <string name="EnterAepScreen__no_recovery_key">No recovery key?</string>
+    <string name="EnterAepScreen__no_recovery_key">വീണ്ടെടുക്കൽ കീ ഇല്ലേ?</string>
     <!-- Error text when key is too long -->
-    <string name="EnterAepScreen__too_long">Too long (%1$d/%2$d)</string>
+    <string name="EnterAepScreen__too_long">വളരെ നീണ്ടത് (%1$d/%2$d)</string>
     <!-- Error text when key is invalid -->
-    <string name="EnterAepScreen__invalid_recovery_key">Invalid recovery key</string>
+    <string name="EnterAepScreen__invalid_recovery_key">വീണ്ടെടുക്കൽ കീ അസാധുവാണ്</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">Preparing restore…</string>
     <!-- Title shown while restore is in progress -->
-    <string name="LocalBackupRestoreScreen__restoring_backup">Restoring backup</string>
+    <string name="LocalBackupRestoreScreen__restoring_backup">ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുന്നു</string>
     <!-- Description shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_description">Please wait while your messages and data are being restored.</string>
     <!-- Title shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete">Restore complete</string>
+    <string name="LocalBackupRestoreScreen__restore_complete">പുനഃസ്ഥാപിക്കൽ പൂർത്തിയായി</string>
     <!-- Description shown when restore is complete -->
     <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->
-    <string name="LocalBackupRestoreScreen__continue_button">Continue</string>
+    <string name="LocalBackupRestoreScreen__continue_button">തുടരുക</string>
     <!-- Title shown when restore fails -->
-    <string name="LocalBackupRestoreScreen__restore_failed">Restore failed</string>
+    <string name="LocalBackupRestoreScreen__restore_failed">പുനഃസ്ഥാപിക്കൽ പരാജയപ്പെട്ടു</string>
     <!-- Description shown when restore fails with an unknown error -->
-    <string name="LocalBackupRestoreScreen__restore_failed_description">An error occurred while restoring your backup. Please try again.</string>
+    <string name="LocalBackupRestoreScreen__restore_failed_description">നിങ്ങളുടെ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുമ്പോൾ ഒരു പിശക് സംഭവിച്ചു. വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Button to retry restore after failure -->
-    <string name="LocalBackupRestoreScreen__try_again">Try again</string>
+    <string name="LocalBackupRestoreScreen__try_again">വീണ്ടും ശ്രമിക്കുക</string>
     <!-- Button to link an existing Signal account to this device -->
     <string name="WelcomeScreen__link_your_account">Link your account</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->

@@ -517,7 +517,7 @@
     <string name="ConversationActivity_unable_to_record_audio">Hindi makapag-record ng audio!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Hindi ka maaaring mag-send ng messages sa group na ito dahil hindi ka na member.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">Hindi ka makakapag-send ng messages dahil natapos na ang group.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">Hindi ka makakapag-send ng message dahil sinara na ang group.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Si %1$s lamang ang pwedeng mag-send ng messages.</string>
     <string name="ConversationActivity_admins">admins</string>
     <string name="ConversationActivity_message_an_admin">I-message ang admin</string>
@@ -659,8 +659,8 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Pwede kang maglagay ng notes para sa sarili mo sa chat na ito. Kung may linked devices ang account mo, isy-sync ang bagong notes.</string>
     <!-- Text in banner to show how many people have the same name. -->
     <plurals name="ConversationFragment__d_group_members_have_the_same_name">
-        <item quantity="one">%1$d group member ang may parehong pangalan.</item>
-        <item quantity="other">%1$d group members ang may parehong pangalan.</item>
+        <item quantity="one">%1$d group member ang may magkaparehong pangalan.</item>
+        <item quantity="other">%1$d group members ang may magkaparehong pangalan.</item>
     </plurals>
     <string name="ConversationFragment__tap_to_review">I-tap para ma-review</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
@@ -1901,7 +1901,7 @@
     <string name="MessageRecord_you_updated_group">In-update mo ang grupo.</string>
     <string name="MessageRecord_the_group_was_updated">Ang group na ito\'y updated na.</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">Natapos na ang group.</string>
+    <string name="MessageRecord_the_group_was_terminated">Sinara na ang group.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">Tinapos ni %1$s ang group</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -3643,7 +3643,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">I-lock ang pag-record ng audio na kalakip</string>
     <string name="conversation_activity__message_could_not_be_sent">Message could not be sent. I-check ang iyong connection at subukan ulit.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">Hindi ka na makakapag-send at makaka-receive ng messages sa group na ito dahil natapos na ang group.</string>
+    <string name="conversation_activity__send_failed_group_ended">Hindi ka na makakapag-send at makaka-receive ng message sa group na ito dahil sinara na ito.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">Hindi na available ang action na ito dahil tinapos na ang group.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3701,8 +3701,8 @@
     <string name="ConversationUpdateItem_update">I-update</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="one">%1$d na group update</item>
-        <item quantity="other">%1$d na group updates</item>
+        <item quantity="one">%1$d group update</item>
+        <item quantity="other">%1$d group updates</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
@@ -3711,8 +3711,8 @@
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="one">%1$d disappearing timer change · %2$s</item>
-        <item quantity="other">%1$d disappearing timer changes · %2$s</item>
+        <item quantity="one">%1$d pagbabago sa timer ng disappearing messages · %2$s</item>
+        <item quantity="other">%1$d pagbabago sa timer ng disappearing messages · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
@@ -5753,7 +5753,7 @@
     <!-- Row title for the option to export chat history as a plaintext archive -->
     <string name="ChatsSettingsFragment__export_chat_history">I-export ang chat history</string>
     <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">I-export ang machine-readable JSON copy ng lahat ng chats mo. Hindi ma-e-export ang disappearing messages.</string>
+    <string name="ChatsSettingsFragment__export_chat_history_label">I-export ang machine-readable JSON copy ng lahat ng chats mo. Hindi i-e-export ang disappearing messages.</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">I-unlock para ma-export ang chat history</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
@@ -5767,7 +5767,7 @@
     <!-- Bold warning prefix in the export confirmation dialog body -->
     <string name="ChatExportDialogs__be_careful_warning">MAG-INGAT!</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">HUWAG i-share ang file na ito sa kahit sino. Ang chat history mo ay isa-save sa device mo at ang ibang apps ay maaari itong i-access depende sa permissions ng device mo. Ang pag-export ng kasama ang media ay magreresulta sa mas malaking file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">HUWAG i-share ang file na ito sa kahit na sino. Ise-save ang chat history mo sa device mo at maaari itong ma-access ng ibang apps depende sa permissions ng device mo. Ang pag-export ng kasama ang media ay magreresulta sa mas malaking file size.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
     <string name="ChatExportDialogs__export_with_media">I-export kasama ang media</string>
     <!-- Button in the export confirmation dialog to export messages only -->
@@ -5779,7 +5779,7 @@
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">Pumili ng folder</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Kumpleto ang pag-export ng chat</string>
+    <string name="ChatExportDialogs__complete_title">Tapos na ang pag-export ng chat</string>
     <!-- Bold warning prefix in the export complete dialog body -->
     <string name="ChatExportDialogs__be_careful">MAG-INGAT!</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
@@ -6130,7 +6130,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">Tapusin ang group</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">Natapos na ang group na ito.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">Sinara na ang group na ito.</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">I-archive ang chat</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6947,7 +6947,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Mabubura ang story na ito sa \'yo at sa lahat ng naka-receive nito.</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">Mabubura lamang ito sa\'yo dahil natapos na ang group na ito.</string>
+    <string name="MyStories__delete_story_terminated_group">Mabubura lamang ito sa \'yo dahil sinara na ang group na ito.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Unable to save</string>
 
@@ -7888,6 +7888,8 @@
     <string name="CallLogFragment__get_started_by_calling_a_friend">Magsimula sa pamamagitan ng pagtawag sa kaibigan mo.</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">Hindi na gagana ang call links na ginawa mo para sa mga taong meron na nito.</string>
+    <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">You\'re no longer a member of this group.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -8626,14 +8628,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">Tinatapos ang group…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Hindi matapos ang group na ito. I-check ang iyong connection at subukan ulit.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">Hindi masara ang group na ito. I-check ang iyong connection at subukan ulit.</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Subukang muli</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">Tinapos ni %1$s ang Group</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Natapos na ang group na ito.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Sinara na ang group na ito.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Hindi ka na makakapag-send o makakatanggap ng message o tawag sa group na ito.</string>
 
@@ -9813,7 +9815,7 @@
     <string name="CouldNotCompleteBackupRestoreSheet__title">Hindi ma-restore ang backup</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">Nagkaroon ng error at hindi ma-restore ang backup mo. Ito ay maaaring dahil ang backup folder mo ay inilipat sa device mo habang inire-restore ang backup mo.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">Nagkaroon ng error at hindi ma-restore ang backup mo. Maaaring dahil inilipat ang backup folder sa device mo habang nire-restore ang backup mo.</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Para subukan ulit, i-uninstall at i-install ulit ang Signal sa device na ito, at piliin ang \"Restore o transfer\".</string>
