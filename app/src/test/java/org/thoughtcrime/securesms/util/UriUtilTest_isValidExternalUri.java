@@ -48,6 +48,7 @@ public class UriUtilTest_isValidExternalUri {
         { "file:///encoded/back/reference/%2F..%2F..path%2Fto%2Fprivate.txt", false },
         { "file:///public/%2E%2E%2Fprivate%2Fprivate.txt",                    false },
         { "file:///data/no/paths/in/data",                                    false },
+        { "file://",                                                          false },
     });
   }
 

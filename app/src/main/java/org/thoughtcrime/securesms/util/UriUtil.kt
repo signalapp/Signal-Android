@@ -9,7 +9,6 @@ import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
 import java.io.File
-import java.io.IOException
 
 object UriUtil {
 
@@ -22,12 +21,13 @@ object UriUtil {
   fun isValidExternalUri(context: Context, uri: Uri): Boolean {
     if (ContentResolver.SCHEME_FILE == uri.scheme) {
       try {
-        val file = File(uri.path)
+        val path = uri.path ?: return false
+        val file = File(path)
 
         return file.canonicalPath == file.path &&
           !file.canonicalPath.startsWith("/data") &&
           !file.canonicalPath.contains(context.packageName)
-      } catch (e: IOException) {
+      } catch (e: Exception) {
         return false
       }
     } else if (ContentResolver.SCHEME_CONTENT == uri.scheme) {
