@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.util.Optional
 import androidx.core.app.Person as PersonCompat
+import org.signal.core.ui.R as CoreUiR
 
 private const val BIG_PICTURE_DIMEN = 500
 
@@ -237,7 +238,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       val markAsRead: PendingIntent? = conversation.getMarkAsReadIntent(context)
       if (markAsRead != null) {
         val markAsReadAction: NotificationCompat.Action =
-          NotificationCompat.Action.Builder(R.drawable.symbol_check_24, context.getString(R.string.MessageNotifier_mark_read), markAsRead)
+          NotificationCompat.Action.Builder(CoreUiR.drawable.symbol_check_24, context.getString(R.string.MessageNotifier_mark_read), markAsRead)
             .setSemanticAction(NotificationCompat.Action.SEMANTIC_ACTION_MARK_AS_READ)
             .setShowsUserInterface(false)
             .build()
@@ -251,7 +252,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       val markAsRead: PendingIntent? = state.getMarkAsReadIntent(context)
 
       if (markAsRead != null) {
-        val markAllAsReadAction = NotificationCompat.Action(R.drawable.symbol_check_24, context.getString(R.string.MessageNotifier_mark_all_as_read), markAsRead)
+        val markAllAsReadAction = NotificationCompat.Action(CoreUiR.drawable.symbol_check_24, context.getString(R.string.MessageNotifier_mark_all_as_read), markAsRead)
         builder.addAction(markAllAsReadAction)
         builder.extend(NotificationCompat.WearableExtender().addAction(markAllAsReadAction))
       }
@@ -260,7 +261,7 @@ sealed class NotificationBuilder(protected val context: Context) {
     override fun addTurnOffJoinedNotificationsAction(pendingIntent: PendingIntent?) {
       if (pendingIntent != null) {
         val turnOffTheseNotifications = NotificationCompat.Action(
-          R.drawable.symbol_check_24,
+          CoreUiR.drawable.symbol_check_24,
           context.getString(R.string.MessageNotifier_turn_off_these_notifications),
           pendingIntent
         )

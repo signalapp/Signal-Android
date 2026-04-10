@@ -511,7 +511,7 @@ public final class MediaOverviewPageFragment extends LoggingFragment
       int selectionCount = getListAdapter().getSectionCount();
 
       bottomActionBar.setItems(Arrays.asList(
-          new ActionItem(R.drawable.symbol_save_android_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_save_plural, selectionCount), () -> {
+          new ActionItem(org.signal.core.ui.R.drawable.symbol_save_android_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_save_plural, selectionCount), () -> {
             Collection<MediaTable.MediaRecord> selected = getListAdapter().getSelectedMedia();
 
             if (SignalStore.backup().getOptimizeStorage()) {

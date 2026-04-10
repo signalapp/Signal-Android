@@ -13,7 +13,7 @@ import org.signal.imageeditor.core.ImageEditorView
 
 @Composable
 fun ImageEditor(
-  controller: ImageEditorController,
+  controller: EditorController.Image,
   modifier: Modifier = Modifier
 ) {
   AndroidView(
@@ -27,17 +27,17 @@ fun ImageEditor(
   )
 }
 
-private fun mapMode(mode: ImageEditorController.Mode): ImageEditorView.Mode {
+private fun mapMode(mode: EditorController.Image.Mode): ImageEditorView.Mode {
   return when (mode) {
-    ImageEditorController.Mode.NONE -> ImageEditorView.Mode.MoveAndResize
-    ImageEditorController.Mode.CROP -> ImageEditorView.Mode.MoveAndResize
-    ImageEditorController.Mode.TEXT -> ImageEditorView.Mode.MoveAndResize
-    ImageEditorController.Mode.DRAW -> ImageEditorView.Mode.Draw
-    ImageEditorController.Mode.HIGHLIGHT -> ImageEditorView.Mode.Draw
-    ImageEditorController.Mode.BLUR -> ImageEditorView.Mode.Blur
-    ImageEditorController.Mode.MOVE_STICKER -> ImageEditorView.Mode.MoveAndResize
-    ImageEditorController.Mode.MOVE_TEXT -> ImageEditorView.Mode.MoveAndResize
-    ImageEditorController.Mode.DELETE -> ImageEditorView.Mode.MoveAndResize
-    ImageEditorController.Mode.INSERT_STICKER -> ImageEditorView.Mode.MoveAndResize
+    EditorController.Image.Mode.NONE -> ImageEditorView.Mode.MoveAndResize
+    EditorController.Image.Mode.CROP -> ImageEditorView.Mode.MoveAndResize
+    EditorController.Image.Mode.TEXT -> ImageEditorView.Mode.MoveAndResize
+    EditorController.Image.Mode.DRAW -> ImageEditorView.Mode.Draw
+    EditorController.Image.Mode.HIGHLIGHT -> ImageEditorView.Mode.Draw
+    EditorController.Image.Mode.BLUR -> ImageEditorView.Mode.Blur
+    EditorController.Image.Mode.MOVE_STICKER -> ImageEditorView.Mode.MoveAndResize
+    EditorController.Image.Mode.MOVE_TEXT -> ImageEditorView.Mode.MoveAndResize
+    EditorController.Image.Mode.DELETE -> ImageEditorView.Mode.MoveAndResize
+    EditorController.Image.Mode.INSERT_STICKER -> ImageEditorView.Mode.MoveAndResize
   }
 }

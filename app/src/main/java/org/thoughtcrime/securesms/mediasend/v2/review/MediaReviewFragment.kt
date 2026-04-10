@@ -419,8 +419,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     }
 
     val icon = when (state.quality) {
-      SentMediaQuality.HIGH -> R.drawable.symbol_quality_high_24
-      else -> R.drawable.symbol_quality_high_slash_24
+      SentMediaQuality.HIGH -> CoreUiR.drawable.symbol_quality_high_24
+      else -> CoreUiR.drawable.symbol_quality_high_slash_24
     }
 
     MediaReviewToastPopupWindow.show(controls, icon, description)
@@ -494,8 +494,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     }
     qualityButton.setImageResource(
       when (state.quality) {
-        SentMediaQuality.STANDARD -> R.drawable.symbol_quality_high_slash_24
-        SentMediaQuality.HIGH -> R.drawable.symbol_quality_high_24
+        SentMediaQuality.STANDARD -> CoreUiR.drawable.symbol_quality_high_slash_24
+        SentMediaQuality.HIGH -> CoreUiR.drawable.symbol_quality_high_24
       }
     )
   }

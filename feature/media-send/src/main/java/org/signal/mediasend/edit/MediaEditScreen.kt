@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -28,12 +27,13 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.rememberNavBackStack
-import androidx.window.core.layout.WindowSizeClass
 import kotlinx.coroutines.launch
 import org.signal.core.models.media.Media
+import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.util.ContentTypeUtil
+import org.signal.core.ui.rememberWindowBreakpoint
+import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaSendNavKey
 import org.signal.mediasend.MediaSendState
@@ -46,7 +46,6 @@ fun MediaEditScreen(
   backStack: NavBackStack<NavKey>,
   videoEditorSlot: @Composable () -> Unit = {}
 ) {
-  val isFocusedMediaVideo = ContentTypeUtil.isVideoType(state.focusedMedia?.contentType)
   val scope = rememberCoroutineScope()
 
   val pagerState = rememberPagerState(
@@ -59,15 +58,28 @@ fun MediaEditScreen(
       .fillMaxSize()
       .navigationBarsPadding()
   ) {
+    val isSmallWindowBreakpoint = rememberWindowBreakpoint() == WindowBreakpoint.SMALL
+    val controllers = remember { EditorController.Container() }
+
+    val currentController = state.focusedMedia?.let {
+      when (val editorState = state.editorStateMap[it.uri]) {
+        is EditorState.Image -> controllers.getOrCreateImageController(it.uri, editorState.model)
+        is EditorState.VideoTrim -> EditorController.VideoTrim
+        null -> error("Invalid editor state.")
+      }
+    }
+
     HorizontalPager(
       state = pagerState,
       modifier = Modifier.fillMaxSize(),
-      snapPosition = SnapPosition.Center
+      snapPosition = SnapPosition.Center,
+      userScrollEnabled = currentController?.isUserInEdit != true
     ) { index ->
-      when (val editorState = state.editorStateMap[state.selectedMedia[index].uri]) {
+      val uri = state.selectedMedia[index].uri
+      when (val editorState = state.editorStateMap[uri]) {
         is EditorState.Image -> {
           ImageEditor(
-            controller = remember { ImageEditorController(editorState.model) },
+            controller = controllers.getOrCreateImageController(uri, editorState.model),
             modifier = Modifier.fillMaxSize()
           )
         }
@@ -104,10 +116,13 @@ fun MediaEditScreen(
         )
       }
 
-      if (isFocusedMediaVideo) {
-        // Video editor hud
-      } else if (!currentWindowAdaptiveInfo().windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND)) {
-        // Image editor HU
+      when (currentController) {
+        is EditorController.Image -> {
+          if (isSmallWindowBreakpoint) {
+            ImageEditorToolbar(imageEditorController = currentController)
+          }
+        }
+        is EditorController.VideoTrim, null -> Unit
       }
 
       AddAMessageRow(
@@ -118,6 +133,13 @@ fun MediaEditScreen(
           .widthIn(max = 624.dp)
           .padding(horizontal = 16.dp)
           .padding(bottom = 16.dp)
+      )
+    }
+
+    if (!isSmallWindowBreakpoint && currentController is EditorController.Image) {
+      ImageEditorToolbar(
+        imageEditorController = currentController,
+        modifier = Modifier.align(Alignment.CenterEnd).padding(end = 24.dp)
       )
     }
   }
@@ -132,7 +154,10 @@ private fun MediaEditScreenPreview() {
     MediaEditScreen(
       state = MediaSendState(
         selectedMedia = selectedMedia,
-        focusedMedia = selectedMedia.first()
+        focusedMedia = selectedMedia.first(),
+        editorStateMap = mutableMapOf(
+          selectedMedia.first().uri to EditorState.Image(EditorModel.create(0))
+        )
       ),
       callback = MediaEditScreenCallback.Empty,
       backStack = rememberNavBackStack(MediaSendNavKey.Edit),

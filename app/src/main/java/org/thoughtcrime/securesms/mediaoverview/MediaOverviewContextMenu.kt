@@ -53,7 +53,7 @@ class MediaOverviewContextMenu(
   private fun getSaveActionItem(mediaRecord: MediaTable.MediaRecord): ActionItem? {
     if (mediaRecord.attachment == null) return null
     return ActionItem(
-      iconRes = R.drawable.symbol_save_android_24,
+      iconRes = CoreUiR.drawable.symbol_save_android_24,
       title = fragment.getString(R.string.save)
     ) {
       callbacks.onSave(mediaRecord)

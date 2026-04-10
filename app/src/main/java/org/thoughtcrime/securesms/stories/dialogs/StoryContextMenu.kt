@@ -242,7 +242,7 @@ object StoryContextMenu {
           }
         )
         add(
-          ActionItem(R.drawable.symbol_save_android_24, context.getString(R.string.save)) {
+          ActionItem(CoreUiR.drawable.symbol_save_android_24, context.getString(R.string.save)) {
             callbacks.onSave()
           }
         )
