@@ -241,6 +241,10 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isReleaseChannelDonationRequest(record.type) -> {
+          if (exportState.threadIdToRecipientId[builder.chatId] != exportState.releaseNoteRecipientId) {
+            Log.w(TAG, ExportSkips.donationRequestNotInReleaseNotesChat(builder.dateSent))
+            continue
+          }
           builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.RELEASE_CHANNEL_DONATION_REQUEST)
           transformTimer.emit("simple-update")
         }
