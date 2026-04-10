@@ -362,12 +362,13 @@ class ChatItemArchiveImporter(
       } else if (pinMessage != null) {
         followUps += { pinUpdateMessageId ->
           val targetAuthorId = importState.remoteToLocalRecipientId[pinMessage.authorId]
-          if (targetAuthorId != null) {
+          val targetAuthorAci = targetAuthorId?.let { recipients.getRecord(it).aci }
+          if (targetAuthorId != null && targetAuthorAci != null) {
             val pinnedMessageId = SignalDatabase.messages.getMessageFor(pinMessage.targetSentTimestamp, targetAuthorId)?.id ?: -1
             val messageExtras = MessageExtras(
               pinnedMessage = PinnedMessage(
                 pinnedMessageId = pinnedMessageId,
-                targetAuthorAci = recipients.getRecord(targetAuthorId).aci!!.toByteString(),
+                targetAuthorAci = targetAuthorAci.toByteString(),
                 targetTimestamp = pinMessage.targetSentTimestamp
               )
             )
@@ -383,6 +384,8 @@ class ChatItemArchiveImporter(
                 .where("${MessageTable.ID} = ?", pinnedMessageId)
                 .run()
             }
+          } else {
+            Log.w(TAG, "Pin message target author not found or has no ACI, skipping pin message extras.")
           }
         }
       }
