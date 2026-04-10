@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.livedata.Store;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
@@ -87,9 +88,9 @@ public final class SetCurrencyViewModel extends ViewModel {
   }
 
   private @NonNull MappingModelList fromCurrencies(@NonNull Collection<Currency> currencies, @NonNull Currency currentCurrency) {
-    return Stream.of(currencies)
+    return currencies.stream()
                  .map(c -> new SingleSelectSetting.Item(c, c.getDisplayName(Locale.getDefault()), c.getCurrencyCode(), c.equals(currentCurrency)))
-                 .sortBy(SingleSelectSetting.Item::getText)
+                 .sorted(Comparator.comparing(SingleSelectSetting.Item::getText))
                  .collect(MappingModelList.toMappingModelList());
   }
 
