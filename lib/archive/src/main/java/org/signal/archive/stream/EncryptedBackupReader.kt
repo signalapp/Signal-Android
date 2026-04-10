@@ -23,6 +23,7 @@ import java.io.ByteArrayOutputStream
 import java.io.EOFException
 import java.io.IOException
 import java.io.InputStream
+import java.security.MessageDigest
 import java.util.zip.GZIPInputStream
 import javax.crypto.Cipher
 import javax.crypto.CipherInputStream
@@ -145,7 +146,7 @@ class EncryptedBackupReader private constructor(
       val calculatedMac = macStream.mac.doFinal()
       val expectedMac = dataStream.readNBytesOrThrow(MAC_SIZE)
 
-      if (!calculatedMac.contentEquals(expectedMac)) {
+      if (!MessageDigest.isEqual(calculatedMac, expectedMac)) {
         throw IOException("Invalid MAC!")
       }
     }
