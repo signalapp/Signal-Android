@@ -108,10 +108,10 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
 
   @Override
   public void setOrientation(@Nullable Integer orientation) {
-    this.orientation = orientation;
+    this.orientation = orientation != null ? orientation : 0;
 
     if (isInitialized && capturer != null) {
-      capturer.setOrientation(orientation);
+      capturer.setOrientation(this.orientation);
     }
   }
 
