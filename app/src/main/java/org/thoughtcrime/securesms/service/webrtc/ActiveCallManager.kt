@@ -317,23 +317,23 @@ class ActiveCallManager(
     @get:RequiresApi(30)
     override val serviceType: Int
       get() {
-        val telecom = Build.VERSION.SDK_INT >= 34 && AndroidTelecomUtil.hasActiveController()
+        val telecom = Build.VERSION.SDK_INT >= 36 && AndroidTelecomUtil.hasActiveController()
 
-        return if (telecom) {
+        var type = if (telecom) {
           ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL
         } else {
-          var type = ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
-
-          if (Permissions.hasAll(this, Manifest.permission.RECORD_AUDIO)) {
-            type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
-          }
-
-          if (Permissions.hasAll(this, Manifest.permission.CAMERA)) {
-            type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA
-          }
-
-          type
+          ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
         }
+
+        if (Permissions.hasAll(this, Manifest.permission.RECORD_AUDIO)) {
+          type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+        }
+
+        if (Permissions.hasAll(this, Manifest.permission.CAMERA)) {
+          type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA
+        }
+
+        return type
       }
 
     @Suppress("DEPRECATION")
