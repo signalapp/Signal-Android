@@ -95,14 +95,12 @@ public final class SetCurrencyViewModel extends ViewModel {
   }
 
   private int findSelectedIndex(MappingModelList items) {
-    return Stream.of(items)
-                 .mapIndexed(Pair::new)
-                 .filter(p -> p.getSecond() instanceof SingleSelectSetting.Item)
-                 .map(p -> new Pair<>(p.getFirst(), (SingleSelectSetting.Item) p.getSecond()))
-                 .filter(pair -> pair.getSecond().isSelected())
-                 .findFirst()
-                 .map(Pair::getFirst)
-                 .orElse(-1);
+    for (int i=0; i<items.size(); i++) {
+      if (items.get(i) instanceof SingleSelectSetting.Item model && model.isSelected()) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   public static class CurrencyListState {
