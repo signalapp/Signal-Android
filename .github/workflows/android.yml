@@ -16,26 +16,30 @@ jobs:
     runs-on: ubuntu-latest-8-cores
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      # gh api repos/actions/checkout/commits/v6 --jq '.sha'
       with:
           submodules: true
 
     - name: set up JDK 17
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5
+      # gh api repos/actions/setup-java/commits/v5 --jq '.sha'
       with:
         distribution: temurin
         java-version: 17
         cache: gradle
 
     - name: Validate Gradle Wrapper
-      uses: gradle/actions/wrapper-validation@v5
+      uses: gradle/actions/wrapper-validation@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6
+      # gh api repos/gradle/actions/commits/v6 --jq '.sha'
 
     - name: Build with Gradle
       run: ./gradlew qa
 
     - name: Archive reports for failed build
       if: ${{ failure() }}
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+      # gh api repos/actions/upload-artifact/commits/v7 --jq '.sha'
       with:
         name: reports
         path: '*/build/reports'
