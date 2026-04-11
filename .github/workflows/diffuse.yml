@@ -14,15 +14,17 @@ jobs:
   assemble-base:
     if: ${{ github.repository != 'signalapp/Signal-Android' }}
     runs-on: ubuntu-latest-8-cores
-    
+
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      # gh api repos/actions/checkout/commits/v6 --jq '.sha'
       with:
         submodules: true
         ref: ${{ github.event.pull_request.base.sha }}
 
     - name: set up JDK 17
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5
+      # gh api repos/actions/setup-java/commits/v5 --jq '.sha'
       with:
         distribution: temurin
         java-version: 17
@@ -32,11 +34,13 @@ jobs:
       run: echo "y" | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --install "ndk;${{ env.NDK_VERSION }}"
 
     - name: Validate Gradle Wrapper
-      uses: gradle/actions/wrapper-validation@v5
+      uses: gradle/actions/wrapper-validation@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6
+      # gh api repos/gradle/actions/commits/v6 --jq '.sha'
 
     - name: Cache base apk
       id: cache-base
-      uses: actions/cache@v4
+      uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5
+      # gh api repos/actions/cache/commits/v5 --jq '.sha'
       with:
         path: diffuse-base.apk
         key: diffuse-${{ github.event.pull_request.base.sha }}
@@ -49,7 +53,8 @@ jobs:
       if: steps.cache-base.outputs.cache-hit != 'true'
       run: mv app/build/outputs/apk/playProd/release/*arm64*.apk diffuse-base.apk
 
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      # gh api repos/actions/checkout/commits/v6 --jq '.sha'
       with:
         submodules: true
         clean: 'false'
@@ -61,18 +66,21 @@ jobs:
       run: mv app/build/outputs/apk/playProd/release/*arm64*.apk diffuse-new.apk
 
     - id: diffuse
-      uses: usefulness/diffuse-action@v1
+      uses: usefulness/diffuse-action@41995fe8ff6be0a8847e63bdc5a4679c704b455c # v1
+      # gh api repos/usefulness/diffuse-action/commits/v1 --jq '.sha'
       with:
         old-file-path: diffuse-base.apk
         new-file-path: diffuse-new.apk
 
-    - uses: peter-evans/find-comment@v2
+    - uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4
+      # gh api repos/peter-evans/find-comment/commits/v4 --jq '.sha'
       id: find-comment
       with:
         issue-number: ${{ github.event.pull_request.number }}
         body-includes: Diffuse output
 
-    - uses: peter-evans/create-or-update-comment@v3
+    - uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5
+      # gh api repos/peter-evans/create-or-update-comment/commits/v5 --jq '.sha'
       with:
         body: |
           Diffuse output:
@@ -83,7 +91,8 @@ jobs:
         issue-number: ${{ github.event.pull_request.number }}
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+      # gh api repos/actions/upload-artifact/commits/v7 --jq '.sha'
       with:
         name: diffuse-output
         path: ${{ steps.diffuse.outputs.diff-file }}

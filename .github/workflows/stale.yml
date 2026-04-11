@@ -14,7 +14,8 @@ jobs:
       actions: write
 
     steps:
-      - uses: actions/stale@v10
+      - uses: actions/stale@b5d41d4e1d5dceea10e7104786b73624c18a190f # v10
+        # gh api repos/actions/stale/commits/v10 --jq '.sha'
         with:
           days-before-stale: 60
           days-before-close: 7
