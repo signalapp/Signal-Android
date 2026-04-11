@@ -5,8 +5,7 @@ import android.os.ResultReceiver;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
@@ -144,8 +143,8 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
       return currentState;
     }
 
-    List<Recipient> callParticipants = Stream.of(peekInfo.getJoinedMembers())
-                                             .map(uuid -> Recipient.externalPush(ACI.from(uuid))).collect(Collectors.toList());
+    List<Recipient> callParticipants = peekInfo.getJoinedMembers().stream()
+                                               .map(uuid -> Recipient.externalPush(ACI.from(uuid))).collect(Collectors.toList());
 
     WebRtcServiceStateBuilder.CallInfoStateBuilder builder = currentState.builder()
                                                                          .changeCallInfoState()

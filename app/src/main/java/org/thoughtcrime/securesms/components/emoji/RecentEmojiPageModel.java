@@ -9,8 +9,7 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
@@ -73,7 +72,7 @@ public class RecentEmojiPageModel implements EmojiPageModel {
   }
 
   @Override public List<Emoji> getDisplayEmoji() {
-    return Stream.of(getEmoji()).map(Emoji::new).collect(Collectors.toList());
+    return getEmoji().stream().map(Emoji::new).collect(Collectors.toList());
   }
 
   @Override public @Nullable Uri getSpriteUri() {

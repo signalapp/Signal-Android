@@ -30,8 +30,7 @@ import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.Base64;
 import org.signal.core.util.BidiUtil;
@@ -594,9 +593,9 @@ public abstract class MessageRecord extends DisplayRecord {
   public static @NonNull UpdateDescription getGroupCallUpdateDescription(@NonNull Context context, @NonNull String body, boolean withTime) {
     GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(body);
 
-    List<ServiceId> joinedMembers = Stream.of(groupCallUpdateDetails.inCallUuids)
-                                          .map(UuidUtil::parseOrNull).filter(Objects::nonNull)
-                                          .<ServiceId>map(ACI::from).collect(Collectors.toList());
+    List<ServiceId> joinedMembers = groupCallUpdateDetails.inCallUuids.stream()
+                                                                      .map(UuidUtil::parseOrNull).filter(Objects::nonNull)
+                                                                      .<ServiceId>map(ACI::from).collect(Collectors.toList());
 
     UpdateDescription.SpannableFactory stringFactory = new GroupCallUpdateMessageFactory(context, joinedMembers, withTime, groupCallUpdateDetails);
 

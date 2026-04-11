@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
-import com.annimon.stream.Stream;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.signal.core.util.Util;
@@ -14,6 +13,7 @@ import org.thoughtcrime.securesms.BuildConfig;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public final class RemoteDeprecation {
 

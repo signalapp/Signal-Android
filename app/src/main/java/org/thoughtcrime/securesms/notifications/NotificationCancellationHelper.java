@@ -9,8 +9,6 @@ import android.service.notification.StatusBarNotification;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
@@ -25,6 +23,7 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 /**
  * Consolidates Notification Cancellation logic to one class.

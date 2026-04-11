@@ -9,8 +9,8 @@ import android.text.style.CharacterStyle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation;

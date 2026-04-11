@@ -30,8 +30,7 @@ import androidx.core.view.ViewKt;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.vectordrawable.graphics.drawable.AnimatorInflaterCompat;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Stream;
 
 import org.signal.core.ui.compose.SignalIcons;
 import org.signal.core.util.DimensionUnit;
@@ -52,6 +51,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.LongStream;
+import java.util.stream.Collectors;
 
 import kotlin.Unit;
 
@@ -673,15 +673,15 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private static @Nullable String getOldEmoji(@NonNull MessageRecord messageRecord) {
-    return Stream.of(messageRecord.getReactions())
-                 .filter(record -> record.getAuthor()
+    return messageRecord.getReactions().stream()
+                        .filter(record -> record.getAuthor()
                                          .serialize()
                                          .equals(Recipient.self()
                                                           .getId()
                                                           .serialize()))
-                 .findFirst()
-                 .map(ReactionRecord::getEmoji)
-                 .orElse(null);
+                        .findFirst()
+                        .map(ReactionRecord::getEmoji)
+                        .orElse(null);
   }
 
   private @NonNull List<ActionItem> getMenuActionItems(@NonNull ConversationMessage conversationMessage) {
@@ -785,7 +785,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
                                          anim.setTarget(emojiViews[idx.intValue()]);
                                          anim.setStartDelay(idx * animationEmojiStartDelayFactor);
                                          return anim;
-                                       }).collect(java.util.stream.Collectors.toList());
+                                       }).collect(Collectors.toList());
 
     Animator backgroundRevealAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_in);
     backgroundRevealAnim.setTarget(backgroundView);

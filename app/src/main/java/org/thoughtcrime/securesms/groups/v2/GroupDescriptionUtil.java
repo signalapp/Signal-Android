@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.text.util.LinkifyCompat;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;

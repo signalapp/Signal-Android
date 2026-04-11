@@ -3,8 +3,9 @@ package org.thoughtcrime.securesms.payments;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.util.List;
 import java.util.stream.Collectors;
+
+import java.util.List;
 
 /**
  * A payment may be comprised of zero or more defrag transactions and the payment transaction.
@@ -22,7 +23,7 @@ public final class PaymentSubmissionResult {
       throw new IllegalStateException();
     }
     this.defrags            = transactions.stream()
-                                    .filter(TransactionSubmissionResult::isDefrag).collect(Collectors.toList());
+                                          .filter(TransactionSubmissionResult::isDefrag).collect(Collectors.toList());
     final List<TransactionSubmissionResult> nonDefragTransactions = transactions.stream().filter(x -> !x.isDefrag()).collect(Collectors.toList());
     if (nonDefragTransactions.size() > 1) throw new IllegalStateException("Too many defrag transaction results!");
     this.nonDefrag = nonDefragTransactions.isEmpty() ? null : nonDefragTransactions.get(0);

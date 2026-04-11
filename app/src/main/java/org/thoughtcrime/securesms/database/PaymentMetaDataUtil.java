@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.database;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
 import com.mobilecoin.lib.KeyImage;
 import com.mobilecoin.lib.Receipt;
 import com.mobilecoin.lib.RistrettoPublic;

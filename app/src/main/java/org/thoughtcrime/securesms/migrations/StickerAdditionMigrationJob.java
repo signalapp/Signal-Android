@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.migrations;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
@@ -52,7 +52,7 @@ public class StickerAdditionMigrationJob extends MigrationJob {
 
   @Override
   public @Nullable byte[] serialize() {
-    String[] packsRaw = Stream.of(packs).map(BlessedPacks.Pack::toJson).toArray(String[]::new);
+    String[] packsRaw = packs.stream().map(BlessedPacks.Pack::toJson).toArray(String[]::new);
     return new JsonJobData.Builder().putStringArray(KEY_PACKS, packsRaw).serialize();
   }
 

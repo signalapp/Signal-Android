@@ -11,8 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 import com.bumptech.glide.Glide;
 
 import org.signal.core.util.DiskUtil;
@@ -90,17 +89,17 @@ public final class Megaphones {
   static @Nullable Megaphone getNextMegaphone(@NonNull Context context, @NonNull Map<Event, MegaphoneRecord> records) {
     long currentTime = System.currentTimeMillis();
 
-    List<Megaphone> megaphones = Stream.of(buildDisplayOrder(context, records))
-                                       .filter(e -> {
+    List<Megaphone> megaphones = buildDisplayOrder(context, records).entrySet().stream()
+                                                                    .filter(e -> {
                                          MegaphoneRecord   record   = Objects.requireNonNull(records.get(e.getKey()));
                                          MegaphoneSchedule schedule = e.getValue();
 
                                          return !record.isFinished() && schedule.shouldDisplay(record.getSeenCount(), record.getLastSeen(), record.getFirstVisible(), currentTime);
                                        })
-                                       .map(Map.Entry::getKey)
-                                       .map(records::get)
-                                       .map(record -> Megaphones.forRecord(context, record))
-                                       .filter(Objects::nonNull).collect(Collectors.toList());
+                                                                    .map(Map.Entry::getKey)
+                                                                    .map(records::get)
+                                                                    .map(record -> Megaphones.forRecord(context, record))
+                                                                    .filter(Objects::nonNull).collect(Collectors.toList());
 
     if (megaphones.size() > 0) {
       return megaphones.get(0);

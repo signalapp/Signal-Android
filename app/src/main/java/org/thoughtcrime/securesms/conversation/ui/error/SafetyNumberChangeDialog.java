@@ -22,8 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
@@ -34,6 +33,7 @@ import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 public final class SafetyNumberChangeDialog extends DialogFragment implements SafetyNumberChangeAdapter.Callbacks {
 
@@ -72,10 +72,10 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
   }
 
   public static void showForGroupCall(@NonNull FragmentManager fragmentManager, @NonNull List<IdentityRecord> identityRecords) {
-    List<String> ids = Stream.of(identityRecords)
-                             .filter(identityRecord -> !identityRecord.isFirstUse())
-                             .map(record -> record.getRecipientId().serialize())
-                             .distinct().collect(Collectors.toList());
+    List<String> ids = identityRecords.stream()
+                                      .filter(identityRecord -> !identityRecord.isFirstUse())
+                                      .map(record -> record.getRecipientId().serialize())
+                                      .distinct().collect(Collectors.toList());
 
     Bundle arguments = new Bundle();
     arguments.putStringArray(RECIPIENT_IDS_EXTRA, ids.toArray(new String[0]));
@@ -92,9 +92,9 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
       return;
     }
 
-    List<String> ids = Stream.of(recipientIds)
-                             .map(RecipientId::serialize)
-                             .distinct().collect(Collectors.toList());
+    List<String> ids = recipientIds.stream()
+                                   .map(RecipientId::serialize)
+                                   .distinct().collect(Collectors.toList());
 
     Bundle arguments = new Bundle();
     arguments.putStringArray(RECIPIENT_IDS_EXTRA, ids.toArray(new String[0]));

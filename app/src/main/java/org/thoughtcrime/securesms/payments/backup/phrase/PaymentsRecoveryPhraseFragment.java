@@ -35,6 +35,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
 public class PaymentsRecoveryPhraseFragment extends Fragment {
 
@@ -71,7 +72,7 @@ public class PaymentsRecoveryPhraseFragment extends Fragment {
 
     List<MnemonicPart> parts = IntStream.range(0, words.size()).boxed()
                                      .map(index -> new MnemonicPart(index, words.get(index)))
-                                     .sorted(new MnemonicPartComparator(words.size(), SPAN_COUNT)).collect(java.util.stream.Collectors.toList());
+                                     .sorted(new MnemonicPartComparator(words.size(), SPAN_COUNT)).collect(Collectors.toList());
 
     MnemonicPartAdapter adapter = new MnemonicPartAdapter();
 

@@ -12,8 +12,6 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
-
 import org.greenrobot.eventbus.EventBus;
 import org.signal.blurhash.BlurHash;
 import org.signal.core.models.ServiceId.ACI;
@@ -216,16 +214,18 @@ public abstract class PushSendJob extends SendJob {
 
     attachments.addAll(message.getAttachments());
 
-    attachments.addAll(Stream.of(message.getLinkPreviews())
-                                  .map(LinkPreview::getThumbnail)
-                                  .filter(Optional::isPresent)
-                                  .map(Optional::get).collect(com.annimon.stream.Collectors.toList()));
+    attachments.addAll(message.getLinkPreviews().stream()
+                              .map(LinkPreview::getThumbnail)
+                              .filter(Optional::isPresent)
+                              .map(Optional::get)
+                                  .collect(Collectors.toList()));
 
-    attachments.addAll(Stream.of(message.getSharedContacts())
-                                  .map(Contact::getAvatar).filter(Objects::nonNull)
-                                  .map(Contact.Avatar::getAttachment).filter(Objects::nonNull).collect(com.annimon.stream.Collectors.toList()));
+    attachments.addAll(message.getSharedContacts().stream()
+                              .map(Contact::getAvatar).filter(Objects::nonNull)
+                              .map(Contact.Avatar::getAttachment).filter(Objects::nonNull)
+                                  .collect(Collectors.toList()));
 
-    HashSet<String> jobs = new HashSet<>(Stream.of(attachments).map(a -> {
+    HashSet<String> jobs = new HashSet<>(attachments.stream().map(a -> {
                                  final AttachmentId attachmentId = ((DatabaseAttachment) a).attachmentId;
                                  Log.d(TAG, "Enqueueing job chain to upload " + attachmentId);
                                  AttachmentUploadJob attachmentUploadJob = new AttachmentUploadJob(attachmentId);
@@ -235,7 +235,8 @@ public abstract class PushSendJob extends SendJob {
                                            .enqueue();
 
                                  return attachmentUploadJob.getId();
-                               }).collect(com.annimon.stream.Collectors.toList()));
+                               })
+                                                    .collect(Collectors.toList()));
 
     if (message.getOutgoingQuote() != null && message.getOutgoingQuote().getAttachment() != null) {
       AttachmentId attachmentId = ((DatabaseAttachment) message.getOutgoingQuote().getAttachment()).attachmentId;
@@ -251,7 +252,7 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected @NonNull List<SignalServiceAttachment> getAttachmentPointersFor(List<Attachment> attachments) {
-    return Stream.of(attachments).map(this::getAttachmentPointerFor).filter(a -> a != null).collect(com.annimon.stream.Collectors.toList());
+    return attachments.stream().map(this::getAttachmentPointerFor).filter(a -> a != null).collect(Collectors.toList());
   }
 
   protected @Nullable SignalServiceAttachment getAttachmentPointerFor(Attachment attachment) {
@@ -371,7 +372,7 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected Optional<SignalServiceDataMessage.Sticker> getStickerFor(OutgoingMessage message) {
-    Attachment stickerAttachment = Stream.of(message.getAttachments()).filter(Attachment::isSticker).findFirst().orElse(null);
+    Attachment stickerAttachment = message.getAttachments().stream().filter(Attachment::isSticker).findFirst().orElse(null);
 
     if (stickerAttachment == null) {
       return Optional.empty();
@@ -428,15 +429,15 @@ public abstract class PushSendJob extends SendJob {
   }
 
   List<SignalServicePreview> getPreviewsFor(OutgoingMessage mediaMessage) {
-    return Stream.of(mediaMessage.getLinkPreviews()).map(lp -> {
+    return mediaMessage.getLinkPreviews().stream().map(lp -> {
       SignalServiceAttachment attachment = lp.getThumbnail().isPresent() ? getAttachmentPointerFor(lp.getThumbnail().get()) : null;
       return new SignalServicePreview(lp.getUrl(), lp.getTitle(), lp.getDescription(), lp.getDate(), Optional.ofNullable(attachment));
-    }).collect(com.annimon.stream.Collectors.toList());
+    }).collect(Collectors.toList());
   }
 
   List<SignalServiceDataMessage.Mention> getMentionsFor(@NonNull List<Mention> mentions) {
-    return Stream.of(mentions)
-                 .map(m -> new SignalServiceDataMessage.Mention(Recipient.resolved(m.getRecipientId()).requireAci(), m.getStart(), m.getLength())).collect(com.annimon.stream.Collectors.toList());
+    return mentions.stream()
+                   .map(m -> new SignalServiceDataMessage.Mention(Recipient.resolved(m.getRecipientId()).requireAci(), m.getStart(), m.getLength())).collect(Collectors.toList());
   }
 
   @Nullable SignalServiceDataMessage.GiftBadge getGiftBadgeFor(@NonNull OutgoingMessage message) throws UndeliverableMessageException {

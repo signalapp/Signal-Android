@@ -13,8 +13,6 @@ import android.os.SystemClock
 import android.preference.PreferenceManager
 import android.text.TextUtils
 import androidx.core.content.contentValuesOf
-import com.annimon.stream.Collectors
-import com.annimon.stream.Stream
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
@@ -649,9 +647,8 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
 
     if (oldVersion < NOTIFICATION_RECIPIENT_IDS && Build.VERSION.SDK_INT >= 26) {
       val notificationManager = ServiceUtil.getNotificationManager(context)
-      val channels = Stream.of(notificationManager.notificationChannels)
+      val channels = notificationManager.notificationChannels
         .filter { c: NotificationChannel -> c.id.startsWith("contact_") }
-        .collect(Collectors.toList())
 
       Log.i(TAG, "Migrating " + channels.size + " channels to use RecipientId's.")
 

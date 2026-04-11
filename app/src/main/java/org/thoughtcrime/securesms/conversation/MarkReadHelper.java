@@ -13,7 +13,6 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -128,7 +127,7 @@ public class MarkReadHelper {
 
     if (item != null) {
       MessageRecord record = item.getMessageRecord();
-      long latestReactionReceived = Stream.of(record.getReactions())
+      long latestReactionReceived = record.getReactions().stream()
                                           .map(ReactionRecord::getDateReceived)
                                           .max(Long::compareTo)
                                           .orElse(0L);

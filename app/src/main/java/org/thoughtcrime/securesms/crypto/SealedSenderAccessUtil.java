@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Stream;
 
 import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
@@ -99,7 +98,7 @@ public class SealedSenderAccessUtil {
       return Optional.ofNullable(unidentifiedAccess);
     }).collect(Collectors.toList());
 
-    int unidentifiedCount = Stream.of(access).filter(Optional::isPresent).collect(com.annimon.stream.Collectors.toList()).size();
+    int unidentifiedCount = access.stream().filter(Optional::isPresent).collect(Collectors.toList()).size();
     int otherCount        = access.size() - unidentifiedCount;
 
     if (log) {

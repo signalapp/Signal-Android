@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.signal.core.models.media.TransformProperties;
-import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.StoryType;

@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.delete;
 import androidx.annotation.NonNull;
 import androidx.core.util.Consumer;
 
-import com.annimon.stream.Stream;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.signal.core.util.E164Util;

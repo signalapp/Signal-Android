@@ -62,6 +62,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
@@ -523,7 +524,7 @@ public final class MediaOverviewPageFragment extends LoggingFragment
                 return;
               } else if (someOffloaded) {
                 OffloadedMediaDialogUtil.showPartiallyOffloaded(requireContext(), () -> {
-                  Collection<MediaTable.MediaRecord> saveable = selected.stream().filter(r -> r.getAttachment() == null || r.getAttachment().hasData).collect(java.util.stream.Collectors.toList());
+                  Collection<MediaTable.MediaRecord> saveable = selected.stream().filter(r -> r.getAttachment() == null || r.getAttachment().hasData).collect(Collectors.toList());
                   lifecycleDisposable.add(
                       MediaActions
                           .handleSaveMedia(MediaOverviewPageFragment.this, saveable)

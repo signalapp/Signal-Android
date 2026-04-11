@@ -19,12 +19,11 @@ package org.thoughtcrime.securesms.mms;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
+import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.signal.core.util.Util;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -111,7 +110,7 @@ public class SlideDeck {
   }
 
   public @NonNull List<Slide> getThumbnailSlides() {
-    return Stream.of(slides).filter(Slide::hasImage).collect(Collectors.toList());
+    return slides.stream().filter(Slide::hasImage).collect(Collectors.toList());
   }
 
   public @Nullable AudioSlide getAudioSlide() {

@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Stream;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -98,7 +97,7 @@ public final class ContactUtil {
       return null;
     }
 
-    List<Phone> mobileNumbers = Stream.of(contact.getPhoneNumbers()).filter(number -> number.getType() == Phone.Type.MOBILE).collect(com.annimon.stream.Collectors.toList());
+    List<Phone> mobileNumbers = contact.getPhoneNumbers().stream().filter(number -> number.getType() == Phone.Type.MOBILE).collect(Collectors.toList());
     if (mobileNumbers.size() > 0) {
       return mobileNumbers.get(0);
     }

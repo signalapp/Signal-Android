@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.signal.core.util.ListUtil;

@@ -6,8 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.Util;
 import org.signal.core.util.UuidUtil;
@@ -278,7 +277,7 @@ public class IndividualSendJob extends PushSendJob {
 
       SignalServiceMessageSender                 messageSender      = AppDependencies.getSignalServiceMessageSender();
       SignalServiceAddress                       address            = RecipientUtil.toSignalServiceAddress(context, messageRecipient);
-      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filter(attachment -> !attachment.isSticker()).collect(Collectors.toList());
+      List<Attachment>                           attachments        = message.getAttachments().stream().filter(attachment -> !attachment.isSticker()).collect(Collectors.toList());
       List<SignalServiceAttachment>              serviceAttachments = getAttachmentPointersFor(attachments);
       Optional<byte[]>                           profileKey         = getProfileKey(messageRecipient);
       Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);

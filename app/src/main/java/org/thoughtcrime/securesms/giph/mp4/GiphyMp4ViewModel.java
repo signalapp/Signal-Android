@@ -10,7 +10,6 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.annimon.stream.Stream;
 
 import org.signal.paging.LivePagedData;
 import org.signal.paging.PagedData;

@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -50,8 +49,8 @@ public abstract class SendJob extends BaseJob {
     List<Attachment> attachments = new LinkedList<>();
 
     attachments.addAll(message.getAttachments());
-    attachments.addAll(Stream.of(message.getLinkPreviews()).map(lp -> lp.getThumbnail().orElse(null)).filter(Objects::nonNull).collect(com.annimon.stream.Collectors.toList()));
-    attachments.addAll(Stream.of(message.getSharedContacts()).map(Contact::getAvatarAttachment).filter(Objects::nonNull).collect(com.annimon.stream.Collectors.toList()));
+    attachments.addAll(message.getLinkPreviews().stream().map(lp -> lp.getThumbnail().orElse(null)).filter(Objects::nonNull).collect(Collectors.toList()));
+    attachments.addAll(message.getSharedContacts().stream().map(Contact::getAvatarAttachment).filter(Objects::nonNull).collect(Collectors.toList()));
 
     if (message.getOutgoingQuote() != null && message.getOutgoingQuote().getAttachment() != null) {
       attachments.add(message.getOutgoingQuote().getAttachment());

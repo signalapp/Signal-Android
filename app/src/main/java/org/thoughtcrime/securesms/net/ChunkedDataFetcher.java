@@ -4,8 +4,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 import com.bumptech.glide.util.ContentLengthInputStream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -139,8 +138,8 @@ public class ChunkedDataFetcher {
     List<ByteRange> requestPattern;
     try {
       if (firstChunk.isPresent()) {
-        requestPattern = Stream.of(getRequestPattern(contentLength - firstChunk.get().getSecond()))
-                               .map(b -> new ByteRange(b.start + firstChunk.get().getSecond(),
+        requestPattern = getRequestPattern(contentLength - firstChunk.get().getSecond()).stream()
+                                                                                        .map(b -> new ByteRange(b.start + firstChunk.get().getSecond(),
                                                        b.end   + firstChunk.get().getSecond(),
                                                        b.ignoreFirst)).collect(Collectors.toList());
       } else {
@@ -153,14 +152,14 @@ public class ChunkedDataFetcher {
     }
 
     SignalExecutors.UNBOUNDED.execute(() -> {
-      List<CallRequestController> controllers = Stream.of(requestPattern).map(range -> makeChunkRequest(client, url, range)).collect(Collectors.toList());
+      List<CallRequestController> controllers = requestPattern.stream().map(range -> makeChunkRequest(client, url, range)).collect(Collectors.toList());
       List<InputStream>           streams     = new ArrayList<>(controllers.size() + (firstChunk.isPresent() ? 1 : 0));
 
       if (firstChunk.isPresent()) {
         streams.add(firstChunk.get().getFirst());
       }
 
-      Stream.of(controllers).forEach(compositeController::addController);
+      controllers.stream().forEach(compositeController::addController);
 
       for (CallRequestController controller : controllers) {
         Optional<InputStream> stream = controller.getStream();

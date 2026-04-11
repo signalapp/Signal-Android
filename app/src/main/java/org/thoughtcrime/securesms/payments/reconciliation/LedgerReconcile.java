@@ -3,8 +3,7 @@ package org.thoughtcrime.securesms.payments.reconciliation;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.MapUtil;
 import org.signal.core.util.logging.Log;
@@ -52,7 +51,7 @@ public final class LedgerReconcile {
   private static @NonNull List<Payment> reconcile(@NonNull Collection<? extends Payment> allLocalPaymentTransactions,
                                                   @NonNull List<MobileCoinLedgerWrapper.OwnedTxo> allTxOuts)
   {
-    List<? extends Payment> nonFailedLocalPayments = Stream.of(allLocalPaymentTransactions).filter(i -> i.getState() != State.FAILED).collect(Collectors.toList());
+    List<? extends Payment> nonFailedLocalPayments = allLocalPaymentTransactions.stream().filter(i -> i.getState() != State.FAILED).collect(Collectors.toList());
     Set<ByteString>         allKnownPublicKeys     = new HashSet<>(nonFailedLocalPayments.size());
     Set<ByteString>         allKnownKeyImages      = new HashSet<>(nonFailedLocalPayments.size());
 
@@ -63,24 +62,24 @@ public final class LedgerReconcile {
       allKnownKeyImages.addAll(txoIdentification.keyImages);
     }
 
-    Set<MobileCoinLedgerWrapper.OwnedTxo> knownTxosByKeyImage = Stream.of(allTxOuts)
-                                                                      .filter(t -> allKnownKeyImages.contains(t.getKeyImage()))
-                                                                      .collect(Collectors.toSet());
+    Set<MobileCoinLedgerWrapper.OwnedTxo> knownTxosByKeyImage = allTxOuts.stream()
+                                                                         .filter(t -> allKnownKeyImages.contains(t.getKeyImage()))
+                                                                         .collect(Collectors.toSet());
 
-    Set<MobileCoinLedgerWrapper.OwnedTxo> knownTxosByPublicKeys = Stream.of(allTxOuts)
-                                                                        .filter(t -> allKnownPublicKeys.contains(t.getPublicKey()))
-                                                                        .collect(Collectors.toSet());
+    Set<MobileCoinLedgerWrapper.OwnedTxo> knownTxosByPublicKeys = allTxOuts.stream()
+                                                                           .filter(t -> allKnownPublicKeys.contains(t.getPublicKey()))
+                                                                           .collect(Collectors.toSet());
 
     // any TXO that we can't pair up the pub key for, we don't have detail for how it got into the account
     Set<MobileCoinLedgerWrapper.OwnedTxo> unknownTxOutsReceived = new HashSet<>(allTxOuts);
     unknownTxOutsReceived.removeAll(knownTxosByPublicKeys);
 
     // any TXO that we can't pair up the keyimage for, we don't have detail for how it got spent
-    Set<MobileCoinLedgerWrapper.OwnedTxo> unknownTxOutsSpent = Stream.of(allTxOuts).filter(MobileCoinLedgerWrapper.OwnedTxo::isSpent).collect(Collectors.toSet());
+    Set<MobileCoinLedgerWrapper.OwnedTxo> unknownTxOutsSpent = allTxOuts.stream().filter(MobileCoinLedgerWrapper.OwnedTxo::isSpent).collect(Collectors.toSet());
     unknownTxOutsSpent.removeAll(knownTxosByKeyImage);
 
     if (unknownTxOutsReceived.isEmpty() && unknownTxOutsSpent.isEmpty()) {
-      return Stream.of(allLocalPaymentTransactions).map(t -> (Payment) t).collect(Collectors.toList());
+      return allLocalPaymentTransactions.stream().map(t -> (Payment) t).collect(Collectors.toList());
     }
 
     List<DetailedTransaction> detailedTransactions = reconstructAllTransactions(unknownTxOutsReceived, unknownTxOutsSpent);
@@ -184,25 +183,25 @@ public final class LedgerReconcile {
   }
 
   private static @NonNull List<DetailedTransaction> reconstructAllTransactions(@NonNull Set<MobileCoinLedgerWrapper.OwnedTxo> unknownReceived, @NonNull Set<MobileCoinLedgerWrapper.OwnedTxo> unknownSpent) {
-    Set<Long> allBlocksWithActivity = Stream.of(unknownReceived)
-                                            .map(MobileCoinLedgerWrapper.OwnedTxo::getReceivedInBlock)
-                                            .collect(Collectors.toSet());
+    Set<Long> allBlocksWithActivity = unknownReceived.stream()
+                                                     .map(MobileCoinLedgerWrapper.OwnedTxo::getReceivedInBlock)
+                                                     .collect(Collectors.toSet());
 
     allBlocksWithActivity
-            .addAll(Stream.of(unknownSpent)
-                          .map(MobileCoinLedgerWrapper.OwnedTxo::getSpentInBlock)
-                          .collect(Collectors.toSet()));
+            .addAll(unknownSpent.stream()
+                                .map(MobileCoinLedgerWrapper.OwnedTxo::getSpentInBlock)
+                                .collect(Collectors.toSet()));
 
-    Map<Long, List<MobileCoinLedgerWrapper.OwnedTxo>> receivedInBlock = Stream.of(unknownReceived)
-                                                                              .collect(Collectors.groupingBy(MobileCoinLedgerWrapper.OwnedTxo::getReceivedInBlock));
+    Map<Long, List<MobileCoinLedgerWrapper.OwnedTxo>> receivedInBlock = unknownReceived.stream()
+                                                                                       .collect(Collectors.groupingBy(MobileCoinLedgerWrapper.OwnedTxo::getReceivedInBlock));
 
-    Map<Long, List<MobileCoinLedgerWrapper.OwnedTxo>> spentInBlock = Stream.of(unknownSpent)
-                                                                           .filter(MobileCoinLedgerWrapper.OwnedTxo::isSpent)
-                                                                           .collect(Collectors.groupingBy(MobileCoinLedgerWrapper.OwnedTxo::getSpentInBlock));
+    Map<Long, List<MobileCoinLedgerWrapper.OwnedTxo>> spentInBlock = unknownSpent.stream()
+                                                                                 .filter(MobileCoinLedgerWrapper.OwnedTxo::isSpent)
+                                                                                 .collect(Collectors.groupingBy(MobileCoinLedgerWrapper.OwnedTxo::getSpentInBlock));
 
-    return Stream.of(allBlocksWithActivity)
-                 .sorted((a, b) -> b.compareTo(a))
-                 .flatMap(blockIndex -> {
+    return allBlocksWithActivity.stream()
+                                .sorted((a, b) -> b.compareTo(a))
+                                .flatMap(blockIndex -> {
                    List<MobileCoinLedgerWrapper.OwnedTxo> unspent = MapUtil.getOrDefault(receivedInBlock, blockIndex, Collections.emptyList());
                    List<MobileCoinLedgerWrapper.OwnedTxo> spent   = MapUtil.getOrDefault(spentInBlock, blockIndex, Collections.emptyList());
 
@@ -221,15 +220,15 @@ public final class LedgerReconcile {
                    TransactionReconstruction transactionReconstruction = TransactionReconstruction.estimateBlockLevelActivity(toMobileCoinList(spent), toMobileCoinList(unspent));
 
                    BlockDetail blockDetail = new BlockDetail(blockIndex, timeStamp);
-                   return Stream.of(transactionReconstruction.getAllTransactions())
-                                .map(t -> new DetailedTransaction(blockDetail, t));
+                                  return transactionReconstruction.getAllTransactions().stream()
+                                                                  .map(t -> new DetailedTransaction(blockDetail, t));
                  })
-                 .sorted(DetailedTransaction.DESCENDING).collect(Collectors.toList());
+                                .sorted(DetailedTransaction.DESCENDING).collect(Collectors.toList());
   }
 
   private static @NonNull List<Money.MobileCoin> toMobileCoinList(@NonNull List<MobileCoinLedgerWrapper.OwnedTxo> spent) {
-    return Stream.of(spent)
-                 .map(MobileCoinLedgerWrapper.OwnedTxo::getValue).collect(Collectors.toList());
+    return spent.stream()
+                .map(MobileCoinLedgerWrapper.OwnedTxo::getValue).collect(Collectors.toList());
   }
 
   public static class BlockOverridePayment extends PaymentDecorator {

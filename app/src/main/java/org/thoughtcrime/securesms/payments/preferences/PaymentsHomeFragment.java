@@ -18,7 +18,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.annimon.stream.Stream;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -139,7 +138,7 @@ public class PaymentsHomeFragment extends LoggingFragment {
     });
 
     viewModel.getList().observe(getViewLifecycleOwner(), list -> {
-      boolean hadPaymentItems = Stream.of(adapter.getCurrentList()).anyMatch(model -> model instanceof PaymentItem);
+      boolean hadPaymentItems = adapter.getCurrentList().stream().anyMatch(model -> model instanceof PaymentItem);
 
       if (!hadPaymentItems) {
         adapter.submitList(list, () -> recycler.scrollToPosition(0));

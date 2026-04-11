@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
@@ -164,7 +163,7 @@ public class ReactionsConversationView extends LinearLayout {
       List<Reaction> shortened = new ArrayList<>(3);
       shortened.add(reactions.get(0));
       shortened.add(reactions.get(1));
-      shortened.add(Stream.of(reactions).skip(2).reduce(new Reaction(null, null, 0, 0, false), Reaction::merge));
+      shortened.add(reactions.stream().skip(2).reduce(new Reaction(null, null, 0, 0, false), Reaction::merge));
 
       return shortened;
     } else {

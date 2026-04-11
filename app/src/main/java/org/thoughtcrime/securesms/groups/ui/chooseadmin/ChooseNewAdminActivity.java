@@ -11,8 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
@@ -74,10 +73,10 @@ public final class ChooseNewAdminActivity extends PassphraseRequiredActivity {
     initializeViewModel();
 
     groupList.initializeAdapter(this);
-    groupList.setRecipientSelectionChangeListener(selection -> viewModel.setSelection(Stream.of(selection)
-                                                                                            .filter(x -> x instanceof GroupMemberEntry.FullMember)
-                                                                                                 .map(x-> (GroupMemberEntry.FullMember)x)
-                                                                                            .collect(Collectors.toSet())));
+    groupList.setRecipientSelectionChangeListener(selection -> viewModel.setSelection(selection.stream()
+                                                                                               .filter(x -> x instanceof GroupMemberEntry.FullMember)
+                                                                                               .map(x-> (GroupMemberEntry.FullMember)x)
+                                                                                               .collect(Collectors.toSet())));
 
     done.setOnClickListener(v -> {
       done.setSpinning();

@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.net;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.xbill.DNS.ARecord;

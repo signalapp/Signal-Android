@@ -10,8 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 import androidx.core.text.util.LinkifyCompat;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LinkUtil;
@@ -26,6 +25,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import okhttp3.HttpUrl;
 
@@ -155,10 +155,10 @@ public final class LinkPreviewUtil {
 
     @SuppressLint("ObsoleteSdkInt")
     public long getDate() {
-      return Stream.of(new String[] { values.get(KEY_PUBLISHED_TIME_1),
-                                      values.get(KEY_PUBLISHED_TIME_2),
-                                      values.get(KEY_MODIFIED_TIME_1),
-                                      values.get(KEY_MODIFIED_TIME_2) })
+      return Stream.of(values.get(KEY_PUBLISHED_TIME_1),
+                       values.get(KEY_PUBLISHED_TIME_2),
+                       values.get(KEY_MODIFIED_TIME_1),
+                       values.get(KEY_MODIFIED_TIME_2))
                    .map(DateUtils::parseIso8601)
                    .filter(time -> time > 0)
                    .findFirst()
@@ -178,9 +178,9 @@ public final class LinkPreviewUtil {
 
     private Links(@NonNull List<Link> links) {
       this.links  = links;
-      this.urlSet = Stream.of(links)
-                          .map(link -> trimTrailingSlash(link.url))
-                          .collect(Collectors.toSet());
+      this.urlSet = links.stream()
+                         .map(link -> trimTrailingSlash(link.url))
+                         .collect(Collectors.toSet());
     }
 
     public Optional<Link> findFirst() {

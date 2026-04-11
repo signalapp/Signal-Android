@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.payments.Payment;
