@@ -54,6 +54,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.toJavaDuration
 
 /**
  * Uploads an attachment without alteration.
@@ -180,7 +181,7 @@ class AttachmentUploadJob private constructor(
         when (val result = SignalNetwork.attachments.getAttachmentV4UploadForm(ciphertextLength)) {
           is RequestResult.Success -> result.result
           is RequestResult.NonSuccess -> throw result.error
-          is RequestResult.RetryableNetworkError -> throw RetryLaterException(result.retryAfter)
+          is RequestResult.RetryableNetworkError -> throw RetryLaterException(result.retryAfter ?: defaultBackoff().milliseconds.toJavaDuration())
           is RequestResult.ApplicationError -> throw result.cause
         }
       } else {
