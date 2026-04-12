@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.Util;
 import org.signal.core.util.logging.Log;
@@ -38,6 +36,8 @@ import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedExcept
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RemoteDeleteSendJob extends BaseJob {
 
@@ -73,8 +73,9 @@ public class RemoteDeleteSendJob extends BaseJob {
         return AppDependencies.getJobManager().startChain(MultiDeviceStorySendSyncJob.create(message.getDateSent(), messageId));
       }
     } else {
-      recipients = conversationRecipient.isGroup() ? Stream.of(conversationRecipient.getParticipantIds()).toList()
-                                                   : Stream.of(conversationRecipient.getId()).toList();
+      recipients = conversationRecipient.isGroup()
+                   ? conversationRecipient.getParticipantIds().stream().collect(Collectors.toList())
+                   : Stream.of(conversationRecipient.getId()).collect(Collectors.toList());
     }
 
     recipients.remove(Recipient.self().getId());
@@ -158,9 +159,9 @@ public class RemoteDeleteSendJob extends BaseJob {
       return;
     }
 
-    List<Recipient>   possible = Stream.of(recipients).map(Recipient::resolved).toList();
-    List<Recipient>   eligible = RecipientUtil.getEligibleForSending(Stream.of(recipients).map(Recipient::resolved).filter(Recipient::getHasServiceId).toList());
-    List<RecipientId> skipped  = Stream.of(SetUtil.difference(possible, eligible)).map(Recipient::getId).toList();
+    List<Recipient>   possible = recipients.stream().map(Recipient::resolved).collect(Collectors.toList());
+    List<Recipient>   eligible = RecipientUtil.getEligibleForSending(recipients.stream().map(Recipient::resolved).filter(Recipient::getHasServiceId).collect(Collectors.toList()));
+    List<RecipientId> skipped  = SetUtil.difference(possible, eligible).stream().map(Recipient::getId).collect(Collectors.toList());
 
     boolean            isForStory         = message.isMms() && (((MmsMessageRecord) message).getStoryType().isStory() || ((MmsMessageRecord) message).getParentStoryId() != null);
     DistributionListId distributionListId = isForStory ? message.getToRecipient().getDistributionListId().orElse(null) : null;
