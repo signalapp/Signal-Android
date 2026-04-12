@@ -692,7 +692,6 @@ dependencies {
   implementation(libs.android.tooltips) {
     exclude(group = "com.android.support", module = "appcompat-v7")
   }
-  implementation(libs.stream)
   implementation(libs.lottie)
   implementation(libs.lottie.compose)
   implementation(libs.signal.android.database.sqlcipher)
