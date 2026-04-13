@@ -11,6 +11,7 @@ import android.app.ActivityOptions
 import android.app.PendingIntent
 import android.content.ActivityNotFoundException
 import android.content.BroadcastReceiver
+import android.content.ComponentName
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -21,6 +22,7 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.graphics.Rect
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -106,7 +108,6 @@ import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.TransformProperties
 import org.signal.core.ui.BottomSheetUtil
-import org.signal.core.ui.contracts.OpenDocumentTreeContract
 import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.ui.isSplitPane
 import org.signal.core.ui.logging.LoggingFragment
@@ -332,6 +333,7 @@ import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageActivity
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
+import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stickers.StickerEventListener
 import org.thoughtcrime.securesms.stickers.StickerLocator
@@ -350,6 +352,7 @@ import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.Dialogs
 import org.thoughtcrime.securesms.util.DoubleClickDebouncer
 import org.thoughtcrime.securesms.util.DrawableUtil
+import org.thoughtcrime.securesms.util.FileProviderUtil
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
@@ -562,8 +565,6 @@ class ConversationFragment :
   private lateinit var markReadHelper: MarkReadHelper
   private lateinit var giphyMp4ProjectionRecycler: GiphyMp4ProjectionRecycler
   private lateinit var addToContactsLauncher: ActivityResultLauncher<Intent>
-  private lateinit var plaintextExportDirectoryLauncher: ActivityResultLauncher<Uri?>
-  private var exportWithMedia = false
   private lateinit var conversationActivityResultContracts: ConversationActivityResultContracts
   private lateinit var scrollToPositionDelegate: ScrollToPositionDelegate
   private lateinit var adapter: ConversationAdapterV2
@@ -1633,13 +1634,6 @@ class ConversationFragment :
 
   private fun registerForResults() {
     addToContactsLauncher = registerForActivityResult(AddToContactsContract()) {}
-    plaintextExportDirectoryLauncher = registerForActivityResult(OpenDocumentTreeContract()) { uri ->
-      if (uri != null) {
-        val takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-        requireContext().contentResolver.takePersistableUriPermission(uri, takeFlags)
-        viewModel.startPlaintextExport(requireContext().applicationContext, uri, exportWithMedia)
-      }
-    }
     conversationActivityResultContracts = ConversationActivityResultContracts(this, ActivityResultCallbacks())
   }
 
@@ -1684,7 +1678,19 @@ class ConversationFragment :
           is ConversationViewModel.PlaintextExportState.Complete -> {
             progressDialog?.dismiss()
             progressDialog = null
-            toast(R.string.conversation_export__export_complete, toastDuration = Toast.LENGTH_LONG)
+
+            val uri = FileProviderUtil.getUriFor(requireContext(), state.zipFile)
+            val shareIntent = Intent(Intent.ACTION_SEND).apply {
+              type = "application/zip"
+              putExtra(Intent.EXTRA_STREAM, uri)
+              addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            val chooserIntent = Intent.createChooser(shareIntent, getString(R.string.conversation_export__export_complete))
+            if (Build.VERSION.SDK_INT < 34) {
+              chooserIntent.putExtra(Intent.EXTRA_EXCLUDE_COMPONENTS, arrayOf(ComponentName(requireContext(), ShareActivity::class.java)))
+            }
+            startActivity(chooserIntent)
+
             viewModel.clearPlaintextExportState()
           }
 
@@ -4330,12 +4336,10 @@ class ConversationFragment :
         .setTitle(R.string.ChatExportDialogs__export_chat_history_title)
         .setMessage(R.string.ChatExportDialogs__export_confirm_body)
         .setPositiveButton(R.string.ChatExportDialogs__export_with_media) { _, _ ->
-          exportWithMedia = true
-          plaintextExportDirectoryLauncher.launch(null)
+          viewModel.startPlaintextExport(requireContext().applicationContext, includeMedia = true)
         }
         .setNeutralButton(R.string.ChatExportDialogs__export_without_media) { _, _ ->
-          exportWithMedia = false
-          plaintextExportDirectoryLauncher.launch(null)
+          viewModel.startPlaintextExport(requireContext().applicationContext, includeMedia = false)
         }
         .setNegativeButton(android.R.string.cancel, null)
         .show()
