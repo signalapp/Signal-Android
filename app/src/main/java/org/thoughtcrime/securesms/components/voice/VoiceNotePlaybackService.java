@@ -1,10 +1,7 @@
 package org.thoughtcrime.securesms.components.voice;
 
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -23,14 +20,8 @@ import androidx.media3.common.PlaybackException;
 import androidx.media3.common.PlaybackParameters;
 import androidx.media3.common.Player;
 import androidx.media3.common.util.UnstableApi;
-import androidx.media3.session.MediaController;
 import androidx.media3.session.MediaSession;
 import androidx.media3.session.MediaSessionService;
-import androidx.media3.session.SessionToken;
-
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.ListenableFuture;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -45,8 +36,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.service.KeyCachingService;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -66,7 +55,6 @@ public class VoiceNotePlaybackService extends MediaSessionService {
 
   private MediaSession                         mediaSession;
   private VoiceNotePlayer                      player;
-  private KeyClearedReceiver                   keyClearedReceiver;
   private VoiceNotePlayerCallback              voiceNotePlayerCallback;
 
   private final DatabaseObserver.Observer attachmentDeletionObserver = this::onAttachmentDeleted;
@@ -87,8 +75,6 @@ public class VoiceNotePlaybackService extends MediaSessionService {
     } else {
       mediaSession = session;
     }
-
-    keyClearedReceiver = new KeyClearedReceiver(this, session.getToken());
 
     setMediaNotificationProvider(new VoiceNoteMediaNotificationProvider(this));
     setListener(new MediaSessionServiceListener());
@@ -119,11 +105,6 @@ public class VoiceNotePlaybackService extends MediaSessionService {
     if (session != null) {
       session.release();
       mediaSession = null;
-    }
-
-    KeyClearedReceiver receiver = keyClearedReceiver;
-    if (receiver != null) {
-      receiver.unregister();
     }
 
     clearListener();
@@ -372,71 +353,6 @@ public class VoiceNotePlaybackService extends MediaSessionService {
           MultiDeviceViewedUpdateJob.enqueue(Collections.singletonList(markedMessageInfo.getSyncMessageId()));
         }
       });
-    }
-  }
-
-  /**
-   * Receiver to stop playback and kill the notification if user locks signal via screen lock.
-   * This registers itself as a receiver on the [Context] as soon as it can.
-   */
-  private static class KeyClearedReceiver extends BroadcastReceiver {
-    private static final String TAG = Log.tag(KeyClearedReceiver.class);
-    private static final IntentFilter KEY_CLEARED_FILTER = new IntentFilter(KeyCachingService.CLEAR_KEY_EVENT);
-
-    private final Context                           context;
-    private final ListenableFuture<MediaController> controllerFuture;
-    private       MediaController                   controller;
-
-    private boolean registered;
-
-    private KeyClearedReceiver(@NonNull Context context, @NonNull SessionToken token) {
-      this.context     = context;
-      Log.d(TAG, "Creating media controller…");
-      controllerFuture = new MediaController.Builder(context, token).buildAsync();
-      Futures.addCallback(controllerFuture, new FutureCallback<>() {
-        @Override
-        public void onSuccess(@Nullable MediaController result) {
-          Log.d(TAG, "Successfully created media controller.");
-          controller = result;
-          register();
-        }
-
-        @Override
-        public void onFailure(@NonNull Throwable t) {
-          Log.w(TAG, "KeyClearedReceiver.onFailure", t);
-        }
-      }, ContextCompat.getMainExecutor(context));
-    }
-
-    void register() {
-      if (controller == null) {
-        Log.w(TAG, "Failed to register KeyClearedReceiver because MediaController was null.");
-        return;
-      }
-      
-      if (!registered) {
-        ContextCompat.registerReceiver(context, this, KEY_CLEARED_FILTER, ContextCompat.RECEIVER_NOT_EXPORTED);
-        registered = true;
-        Log.d(TAG, "Successfully registered.");
-      }
-    }
-
-    void unregister() {
-      if (registered) {
-        context.unregisterReceiver(this);
-        registered = false;
-      }
-      MediaController.releaseFuture(controllerFuture);
-    }
-
-    @Override
-    public void onReceive(Context context, Intent intent) {
-      if (controller == null) {
-        Log.w(TAG, "Received broadcast but could not stop playback because MediaController was null.");
-      } else {
-        Log.i(TAG, "Received broadcast, stopping playback.");
-        controller.stop();
-      }
     }
   }
 
