@@ -5,7 +5,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.Camera;
-import android.net.Uri;
 import android.text.SpannableString;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
@@ -206,10 +205,6 @@ public class InputPanel extends ConstraintLayout
     } else {
       quickCameraToggle.setVisibility(View.GONE);
     }
-  }
-
-  public void setMediaListener(@NonNull MediaListener listener) {
-    composeText.setMediaListener(listener);
   }
 
   public void setQuote(@NonNull RequestManager requestManager,
@@ -953,9 +948,5 @@ public class InputPanel extends ConstraintLayout
         return Math.max(0, Math.min(1, input));
       };
     }
-  }
-
-  public interface MediaListener {
-    void onMediaSelected(@NonNull Uri uri, String contentType);
   }
 }
