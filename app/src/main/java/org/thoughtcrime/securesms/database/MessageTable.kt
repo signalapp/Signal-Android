@@ -3625,8 +3625,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   private fun getMessageDirectlyBefore(messageId: Long, threadId: Long, dateReceived: Long): PotentialCollapsibleMessage? {
     return readableDatabase
       .select(DATE_RECEIVED, TYPE, COLLAPSED_HEAD_ID, MESSAGE_EXTRAS)
-      .from(TABLE_NAME)
-      .where("$ID < ? AND $THREAD_ID = ?", messageId, threadId)
+      .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID")
+      .where("$THREAD_ID = ? AND $DATE_RECEIVED < ?", threadId, dateReceived)
       .orderBy("$DATE_RECEIVED DESC")
       .limit(1)
       .run()

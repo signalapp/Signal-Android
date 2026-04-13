@@ -141,7 +141,7 @@
     <!-- Subtitle for the choose backup folder card -->
     <string name="LocalBackupRestoreScreen__choose_folder_subtitle">உங்கள் காப்புப்பிரதி சேமிக்கப்பட்டுள்ள உங்கள் சாதனத்திலுள்ள கோப்புறையைத் தேர்ந்தெடுக்கவும்</string>
     <!-- Text shown while scanning for backups -->
-    <string name="LocalBackupRestoreScreen__scanning_folder">Looking for backups…</string>
+    <string name="LocalBackupRestoreScreen__scanning_folder">காப்புப்பிரதிகளைத் தேடுகிறது…</string>
     <!-- Description shown when a backup is found -->
     <string name="LocalBackupRestoreScreen__backup_found_description">உங்கள் சாதனத்தில் நீங்கள் சேமித்த காப்புப்பிரதிக் கோப்புறையிலிருந்து உங்கள் மெசேஜ்களை மீட்டெடுக்கவும். நீங்கள் இப்போது மீட்டெடுக்கவில்லை என்றால், உங்களால் பிறகு மீட்டெடுக்க முடியாது.</string>
     <!-- Title for the latest backup card -->
@@ -157,21 +157,21 @@
     <!-- Warning text in the backup picker bottom sheet -->
     <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">பழைய காப்புப்பிரதியைத் தேர்ந்தெடுப்பது, மெசேஜ்கள் அல்லது ஊடகத்தை இழக்கச் செய்யலாம்.</string>
     <!-- Title when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found">No backup found</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found">காப்புப்பிரதி கிடைக்கவில்லை</string>
     <!-- Description when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found_description">No Signal backup was found in the selected folder. Please try a different folder.</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found_description">தேர்ந்தெடுத்த கோப்புறையில் சிக்னல் காப்புப்பிரதி எதுவும் இல்லை. வேறு கோப்புறையை முயலவும்</string>
     <!-- Button to try a different folder -->
-    <string name="LocalBackupRestoreScreen__try_different_folder">Try a different folder</string>
+    <string name="LocalBackupRestoreScreen__try_different_folder">வேறு கோப்புறையை முயலவும்</string>
     <!-- Title for V1 passphrase entry screen -->
     <string name="LocalBackupRestoreScreen__enter_backup_passphrase">காப்புப்பதிவு பயனர் தரவு கடவுச்சொற்றொடரை உள்ளிடவும்</string>
     <!-- Description for V1 passphrase entry screen -->
-    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Your local backup passphrase is a 30-digit code required to recover your account and data.</string>
+    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">உங்கள் உள்ளகக் காப்புப்பிரதிக்கான கடவுச்சொற்றொடர் என்பது உங்கள் கணக்கையும் தரவையும் மீட்டெடுக்க தேவையான 30 இலக்கக் குறியீடாகும்.</string>
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">மீட்புக் குறியீடு</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">மிக நீளமாக உள்ளது (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
-    <string name="LocalBackupRestoreScreen__no_passphrase">No passphrase?</string>
+    <string name="LocalBackupRestoreScreen__no_passphrase">கடவுச்சொற்றொடர் இல்லையா?</string>
     <!-- Next button text -->
     <string name="LocalBackupRestoreScreen__next">அடுத்தது</string>
     <!-- EnterAepScreen -->
@@ -188,11 +188,11 @@
     <!-- Error text when key is invalid -->
     <string name="EnterAepScreen__invalid_recovery_key">தவறான மீட்புக் குறியீடு</string>
     <!-- Text shown while preparing the restore -->
-    <string name="LocalBackupRestoreScreen__preparing_restore">Preparing restore…</string>
+    <string name="LocalBackupRestoreScreen__preparing_restore">மீட்டமைக்கத் தயாராகிறது…</string>
     <!-- Title shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_backup">காப்புப்பிரதி மீட்டெடுக்கப்படுகிறது</string>
     <!-- Description shown while restore is in progress -->
-    <string name="LocalBackupRestoreScreen__restoring_description">Please wait while your messages and data are being restored.</string>
+    <string name="LocalBackupRestoreScreen__restoring_description">உங்கள் மெசேஜ்கள் மற்றும் தரவு மீட்டமைக்கப்படும் வரை காத்திருக்கவும்.</string>
     <!-- Title shown when restore is complete -->
     <string name="LocalBackupRestoreScreen__restore_complete">மீட்டெடுப்பு முடிந்தது</string>
     <!-- Description shown when restore is complete -->
@@ -206,9 +206,9 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">மீண்டும் முயற்சிக்கவும்</string>
     <!-- Button to link an existing Signal account to this device -->
-    <string name="WelcomeScreen__link_your_account">Link your account</string>
+    <string name="WelcomeScreen__link_your_account">உங்கள் கணக்கை இணைக்கவும்</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
-    <string name="WelcomeScreen__not_on_signal_yet">Not on Signal yet?</string>
+    <string name="WelcomeScreen__not_on_signal_yet">சிக்னலில் இணையவில்லையா?</string>
     <!-- Button to create a new Signal account -->
-    <string name="WelcomeScreen__create_account">Create account</string>
+    <string name="WelcomeScreen__create_account">கணக்கை உருவாக்கவும்</string>
 </resources>

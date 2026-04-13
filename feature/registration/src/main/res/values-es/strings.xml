@@ -141,7 +141,7 @@
     <!-- Subtitle for the choose backup folder card -->
     <string name="LocalBackupRestoreScreen__choose_folder_subtitle">Selecciona la carpeta en tu dispositivo donde se guardan tus copias de seguridad</string>
     <!-- Text shown while scanning for backups -->
-    <string name="LocalBackupRestoreScreen__scanning_folder">Looking for backups…</string>
+    <string name="LocalBackupRestoreScreen__scanning_folder">Buscando copias de seguridad…</string>
     <!-- Description shown when a backup is found -->
     <string name="LocalBackupRestoreScreen__backup_found_description">Restaura tus mensajes desde una carpeta de copia de seguridad que hayas guardado en tu dispositivo. Si no los restauras ahora, no podrás hacerlo más tarde.</string>
     <!-- Title for the latest backup card -->
@@ -151,27 +151,27 @@
     <!-- Restore backup button text -->
     <string name="LocalBackupRestoreScreen__restore_backup">Restaurar copia</string>
     <!-- Link to choose an earlier backup -->
-    <string name="LocalBackupRestoreScreen__choose_earlier_backup">Seleccionar una copia de seguridad anterior</string>
+    <string name="LocalBackupRestoreScreen__choose_earlier_backup">Elegir una copia de seguridad anterior</string>
     <!-- Title for the backup picker bottom sheet -->
     <string name="LocalBackupRestoreScreen__choose_a_backup_to_restore">Selecciona una copia de seguridad para restaurar</string>
     <!-- Warning text in the backup picker bottom sheet -->
-    <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">Si seleccionas una copia de seguridad anterior, es posible que pierdas mensajes o archivos.</string>
+    <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">Si eliges una copia de seguridad anterior, es posible que pierdas mensajes o archivos.</string>
     <!-- Title when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found">No backup found</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found">No se ha encontrado ninguna copia de seguridad</string>
     <!-- Description when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found_description">No Signal backup was found in the selected folder. Please try a different folder.</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found_description">No se ha encontrado ninguna copia de seguridad de Signal en la carpeta seleccionada. Prueba con otra carpeta.</string>
     <!-- Button to try a different folder -->
-    <string name="LocalBackupRestoreScreen__try_different_folder">Try a different folder</string>
+    <string name="LocalBackupRestoreScreen__try_different_folder">Buscar en otra carpeta</string>
     <!-- Title for V1 passphrase entry screen -->
     <string name="LocalBackupRestoreScreen__enter_backup_passphrase">Introduce la contraseña de tu copia de seguridad</string>
     <!-- Description for V1 passphrase entry screen -->
-    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Your local backup passphrase is a 30-digit code required to recover your account and data.</string>
+    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">La frase de contraseña de tu copia de seguridad local es un código de 30 dígitos que necesitarás para recuperar tu cuenta y tus datos.</string>
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">Clave de recuperación</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">Demasiado larga (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
-    <string name="LocalBackupRestoreScreen__no_passphrase">No passphrase?</string>
+    <string name="LocalBackupRestoreScreen__no_passphrase">¿No tienes la frase de contraseña?</string>
     <!-- Next button text -->
     <string name="LocalBackupRestoreScreen__next">Siguiente</string>
     <!-- EnterAepScreen -->
@@ -188,11 +188,11 @@
     <!-- Error text when key is invalid -->
     <string name="EnterAepScreen__invalid_recovery_key">Clave de recuperación no válida</string>
     <!-- Text shown while preparing the restore -->
-    <string name="LocalBackupRestoreScreen__preparing_restore">Preparing restore…</string>
+    <string name="LocalBackupRestoreScreen__preparing_restore">Preparando la restauración…</string>
     <!-- Title shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_backup">Restaurando copia de seguridad</string>
     <!-- Description shown while restore is in progress -->
-    <string name="LocalBackupRestoreScreen__restoring_description">Please wait while your messages and data are being restored.</string>
+    <string name="LocalBackupRestoreScreen__restoring_description">Espera unos minutos a que se restauren tus mensajes y datos.</string>
     <!-- Title shown when restore is complete -->
     <string name="LocalBackupRestoreScreen__restore_complete">Restauración completada</string>
     <!-- Description shown when restore is complete -->
@@ -206,9 +206,9 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">Reintentar</string>
     <!-- Button to link an existing Signal account to this device -->
-    <string name="WelcomeScreen__link_your_account">Link your account</string>
+    <string name="WelcomeScreen__link_your_account">Vincular mi cuenta</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
-    <string name="WelcomeScreen__not_on_signal_yet">Not on Signal yet?</string>
+    <string name="WelcomeScreen__not_on_signal_yet">¿Aún no tienes una cuenta en Signal?</string>
     <!-- Button to create a new Signal account -->
-    <string name="WelcomeScreen__create_account">Create account</string>
+    <string name="WelcomeScreen__create_account">Crear una cuenta</string>
 </resources>

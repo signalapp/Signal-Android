@@ -135,7 +135,7 @@
     <!-- Title for the local backup restore screen -->
     <string name="LocalBackupRestoreScreen__restore_on_device_backup">Pulihkan cadangan di perangkat</string>
     <!-- Description on the folder selection screen -->
-    <string name="LocalBackupRestoreScreen__select_folder_description">Pulihkan pesan dari cadangan yang disimpan di perangkat Anda. Jika tidak dipulihkan sekarang, nanti tidak bisa dipulihkan sama sekali.</string>
+    <string name="LocalBackupRestoreScreen__select_folder_description">Pulihkan pesan dari cadangan yang disimpan di perangkat Anda. Jika tidak dipulihkan sekarang, nantinya Anda tidak akan bisa memulihkannya.</string>
     <!-- Title for the choose backup folder card -->
     <string name="LocalBackupRestoreScreen__choose_backup_folder">Pilih folder cadangan</string>
     <!-- Subtitle for the choose backup folder card -->
@@ -143,7 +143,7 @@
     <!-- Text shown while scanning for backups -->
     <string name="LocalBackupRestoreScreen__scanning_folder">Looking for backups…</string>
     <!-- Description shown when a backup is found -->
-    <string name="LocalBackupRestoreScreen__backup_found_description">Pulihkan pesan dari folder cadangan yang disimpan di perangkat Anda. Jika tidak dipulihkan sekarang, nanti tidak bisa dipulihkan sama sekali.</string>
+    <string name="LocalBackupRestoreScreen__backup_found_description">Pulihkan pesan dari folder cadangan yang disimpan di perangkat Anda. Jika tidak dipulihkan sekarang, nantinya Anda tidak akan bisa memulihkannya.</string>
     <!-- Title for the latest backup card -->
     <string name="LocalBackupRestoreScreen__your_latest_backup">Cadangan terbaru:</string>
     <!-- Label for a legacy backup type -->
@@ -202,7 +202,7 @@
     <!-- Title shown when restore fails -->
     <string name="LocalBackupRestoreScreen__restore_failed">Pemulihan gagal</string>
     <!-- Description shown when restore fails with an unknown error -->
-    <string name="LocalBackupRestoreScreen__restore_failed_description">Terjadi kesalahan saat memulihkan data cadangan. Silakan coba lagi.</string>
+    <string name="LocalBackupRestoreScreen__restore_failed_description">Terjadi kesalahan saat memulihkan cadangan Anda. Silakan coba lagi.</string>
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">Coba lagi</string>
     <!-- Button to link an existing Signal account to this device -->

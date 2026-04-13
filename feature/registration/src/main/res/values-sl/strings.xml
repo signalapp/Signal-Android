@@ -141,7 +141,7 @@
     <!-- Subtitle for the choose backup folder card -->
     <string name="LocalBackupRestoreScreen__choose_folder_subtitle">Izberite mapo v napravi, kjer je shranjena varnostna kopija</string>
     <!-- Text shown while scanning for backups -->
-    <string name="LocalBackupRestoreScreen__scanning_folder">Looking for backups…</string>
+    <string name="LocalBackupRestoreScreen__scanning_folder">Iskanje varnostnih kopij …</string>
     <!-- Description shown when a backup is found -->
     <string name="LocalBackupRestoreScreen__backup_found_description">Obnovite sporočila iz datoteke varnostne kopije, ki ste jo shranili v napravo. Če ne obnovite zdaj, ne boste mogli obnoviti pozneje.</string>
     <!-- Title for the latest backup card -->
@@ -157,28 +157,28 @@
     <!-- Warning text in the backup picker bottom sheet -->
     <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">Če izberete starejšo varnostno kopijo, lahko izgubite sporočila ali medije.</string>
     <!-- Title when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found">No backup found</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found">Varnostna kopija ni bila najdena</string>
     <!-- Description when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found_description">No Signal backup was found in the selected folder. Please try a different folder.</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found_description">Varnostna kopija Signal ni bila najdena v izbrani mapi. Izberite drugo mapo.</string>
     <!-- Button to try a different folder -->
-    <string name="LocalBackupRestoreScreen__try_different_folder">Try a different folder</string>
+    <string name="LocalBackupRestoreScreen__try_different_folder">Izberi drugo mapo</string>
     <!-- Title for V1 passphrase entry screen -->
     <string name="LocalBackupRestoreScreen__enter_backup_passphrase">Vnesite geslo varnostne kopije</string>
     <!-- Description for V1 passphrase entry screen -->
-    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Your local backup passphrase is a 30-digit code required to recover your account and data.</string>
+    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Vaše lokalno geslo varnostne kopije je 30-mestna koda, ki je zahtevana za obnovitev računa in podatkov.</string>
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">Obnovitveni ključ</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">Predolgo (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
-    <string name="LocalBackupRestoreScreen__no_passphrase">No passphrase?</string>
+    <string name="LocalBackupRestoreScreen__no_passphrase">Nimate gesla?</string>
     <!-- Next button text -->
     <string name="LocalBackupRestoreScreen__next">Naprej</string>
     <!-- EnterAepScreen -->
     <!-- Title for recovery key entry screen -->
     <string name="EnterAepScreen__enter_your_recovery_key">Vnesite svoj obnovitveni ključ</string>
     <!-- Description for recovery key entry screen -->
-    <string name="EnterAepScreen__your_recovery_key_is_a_64_character_code">Obnovitveni ključ je 64-mestna koda, ki je potrebna za obnovitev računa in podatkov.</string>
+    <string name="EnterAepScreen__your_recovery_key_is_a_64_character_code">Obnovitveni ključ je 64-mestna koda, ki je zahtevana za obnovitev računa in podatkov.</string>
     <!-- Label for the recovery key text field -->
     <string name="EnterAepScreen__recovery_key">Obnovitveni ključ</string>
     <!-- Link for users who don\'t have their recovery key -->
@@ -188,13 +188,13 @@
     <!-- Error text when key is invalid -->
     <string name="EnterAepScreen__invalid_recovery_key">Neveljaven obnovitveni ključ</string>
     <!-- Text shown while preparing the restore -->
-    <string name="LocalBackupRestoreScreen__preparing_restore">Preparing restore…</string>
+    <string name="LocalBackupRestoreScreen__preparing_restore">Priprava obnovitve …</string>
     <!-- Title shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_backup">Obnavljanje varnostne kopije</string>
     <!-- Description shown while restore is in progress -->
-    <string name="LocalBackupRestoreScreen__restoring_description">Please wait while your messages and data are being restored.</string>
+    <string name="LocalBackupRestoreScreen__restoring_description">Počakajte, da se vaša sporočila in podatki obnovijo.</string>
     <!-- Title shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete">Obnovitev je bila uspešna</string>
+    <string name="LocalBackupRestoreScreen__restore_complete">Obnovitev je uspela</string>
     <!-- Description shown when restore is complete -->
     <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->
@@ -206,9 +206,9 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">Poskusite znova</string>
     <!-- Button to link an existing Signal account to this device -->
-    <string name="WelcomeScreen__link_your_account">Link your account</string>
+    <string name="WelcomeScreen__link_your_account">Poveži račun</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
-    <string name="WelcomeScreen__not_on_signal_yet">Not on Signal yet?</string>
+    <string name="WelcomeScreen__not_on_signal_yet">Še nimate Signala?</string>
     <!-- Button to create a new Signal account -->
-    <string name="WelcomeScreen__create_account">Create account</string>
+    <string name="WelcomeScreen__create_account">Ustvari račun</string>
 </resources>
