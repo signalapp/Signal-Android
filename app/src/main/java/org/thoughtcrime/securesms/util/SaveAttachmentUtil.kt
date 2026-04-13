@@ -216,6 +216,9 @@ object SaveAttachmentUtil {
     } catch (e: RuntimeException) {
       if (e is IllegalArgumentException || e.cause is IllegalArgumentException) {
         Log.w(TAG, "Unable to create uri in $outputUri with mimeType [$mimeType]")
+        if (Build.VERSION.SDK_INT > 28) {
+          contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS + "/Signal")
+        }
         CreateMediaUriResult(StorageUtil.getDownloadUri(), AppDependencies.application.contentResolver.insert(StorageUtil.getDownloadUri(), contentValues))
       } else {
         throw e
