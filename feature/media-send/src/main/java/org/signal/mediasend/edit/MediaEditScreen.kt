@@ -79,7 +79,7 @@ fun MediaEditScreen(
       when (val editorState = state.editorStateMap[uri]) {
         is EditorState.Image -> {
           ImageEditor(
-            controller = controllers.getOrCreateImageController(uri, editorState.model),
+            state = controllers.getOrCreateImageController(uri, editorState.model).imageEditorState,
             modifier = Modifier.fillMaxSize()
           )
         }
@@ -118,6 +118,14 @@ fun MediaEditScreen(
 
       when (currentController) {
         is EditorController.Image -> {
+          if (currentController.mode == EditorController.Image.Mode.CROP) {
+            RotationDial(
+              imageEditorController = currentController,
+              modifier = Modifier
+                .widthIn(max = 380.dp)
+                .padding(horizontal = 16.dp)
+            )
+          }
           if (isSmallWindowBreakpoint) {
             ImageEditorToolbar(imageEditorController = currentController)
           }

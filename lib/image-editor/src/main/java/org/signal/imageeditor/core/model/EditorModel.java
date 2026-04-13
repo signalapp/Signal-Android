@@ -156,6 +156,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   public void setMainImageEditorMatrixRotation(float angle, float minScaleDown) {
     setEditorMatrixToRotationMatrixAboutParentsOrigin(editorElementHierarchy.getMainImage(), angle);
     scaleMainImageEditorMatrixToFitInsideCropBounds(minScaleDown, 2f);
+    invalidate.run();
   }
 
   private void scaleMainImageEditorMatrixToFitInsideCropBounds(float minScaleDown, float maxScaleUp) {
@@ -274,6 +275,32 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
 
   private boolean findElement(@NonNull EditorElement element, @NonNull Matrix viewMatrix, @NonNull Matrix outInverseModelMatrix) {
     return editorElementHierarchy.getRoot().findElement(element, viewMatrix, outInverseModelMatrix) == element;
+  }
+
+  /** Serializes the current element tree for later restoration via {@link #restoreFromSnapshot}. */
+  public byte[] createSnapshot() {
+    return ElementStack.getBytes(editorElementHierarchy.getRoot());
+  }
+
+  /** Restores the element tree from a snapshot created by {@link #createSnapshot}. */
+  public void restoreFromSnapshot(@NonNull byte[] snapshot) {
+    final EditorElement oldRootElement = editorElementHierarchy.getRoot();
+
+    Parcel parcel = Parcel.obtain();
+    try {
+      parcel.unmarshall(snapshot, 0, snapshot.length);
+      parcel.setDataPosition(0);
+      EditorElement newRoot = parcel.readParcelable(EditorElement.class.getClassLoader());
+      if (newRoot != null) {
+        setEditorElementHierarchy(EditorElementHierarchy.create(newRoot));
+        restoreStateWithAnimations(oldRootElement, editorElementHierarchy.getRoot(), invalidate, false);
+        invalidate.run();
+        editorElementHierarchy.updateViewToCrop(visibleViewPort, invalidate);
+        inBoundsMemory.push(editorElementHierarchy.getMainImage(), editorElementHierarchy.getCropEditorElement());
+      }
+    } finally {
+      parcel.recycle();
+    }
   }
 
   public void pushUndoPoint() {
@@ -457,6 +484,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     }
 
     updateUndoRedoAvailableState(getActiveUndoRedoStacks(cropping));
+    invalidate.run();
   }
 
   /**

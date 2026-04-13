@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="MediaSendDialogs__discard_changes">Discard changes?</string>
+  <string name="MediaSendDialogs__youll_lose_any_changes">You\'ll lose any changes you\'ve made to this photo.</string>
+  <string name="MediaSendDialogs__discard">Discard</string>
+</resources>

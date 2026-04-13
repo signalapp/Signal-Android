@@ -176,7 +176,7 @@ private fun ImageEditorCropAndResizeToolbar(
     val cropUnlockImageVector = SignalIcons.CropUnlock.imageVector
 
     IconCrossfadeToggleButton(
-      target = if (imageEditorController.isCropLocked) CropLock.LOCKED else CropLock.UNLOCKED,
+      target = if (imageEditorController.isCropAspectRatioLocked) CropLock.LOCKED else CropLock.UNLOCKED,
       setTarget = { target ->
         when (target) {
           CropLock.LOCKED -> imageEditorController.lockCrop()
@@ -208,9 +208,16 @@ private fun CommitButton(imageEditorController: EditorController.Image) {
 
 @Composable
 private fun DiscardButton(imageEditorController: EditorController.Image) {
+  if (imageEditorController.showDiscardDialog) {
+    MediaSendDialogs.DiscardEditsConfirmationDialog(
+      onDiscard = imageEditorController::confirmDiscardEdit,
+      onDismiss = imageEditorController::dismissDiscardDialog
+    )
+  }
+
   ImageEditorButton(
     imageVector = SignalIcons.X.imageVector,
-    onClick = imageEditorController::cancelEdit,
+    onClick = imageEditorController::requestCancelEdit,
     colors = IconButtons.iconButtonColors(
       containerColor = MaterialTheme.colorScheme.surfaceVariant
     )
