@@ -23,6 +23,7 @@ data class PhoneNumberEntryState(
   val sessionE164: String? = null,
   val sessionMetadata: SessionMetadata? = null,
   val showSpinner: Boolean = false,
+  val showDialog: Boolean = false,
   val oneTimeEvent: OneTimeEvent? = null,
   val preExistingRegistrationData: PreExistingRegistrationData? = null,
   val restoredSvrCredentials: List<NetworkController.SvrCredentials> = emptyList(),

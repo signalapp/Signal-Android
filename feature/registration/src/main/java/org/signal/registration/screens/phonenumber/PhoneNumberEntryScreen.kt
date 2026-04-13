@@ -5,7 +5,6 @@
 
 package org.signal.registration.screens.phonenumber
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -25,9 +24,11 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -37,10 +38,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -51,13 +53,13 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.util.E164Util
 import org.signal.registration.R
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryState.OneTimeEvent
 import org.signal.registration.test.TestTags
 
 /**
- * Phone number entry screen for the registration flow.
- * Allows users to select their country and enter their phone number.
+ * Phone number entry screen
  */
 @Composable
 fun PhoneNumberScreen(
@@ -65,17 +67,28 @@ fun PhoneNumberScreen(
   onEvent: (PhoneNumberEntryScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val unableToSendSmsMsg = stringResource(R.string.VerificationCodeScreen__unable_to_send_sms)
+  val resources = LocalResources.current
   var simpleErrorMessage: String? by remember { mutableStateOf(null) }
+
+  if (state.showDialog) {
+    Dialogs.SimpleAlertDialog(
+      title = stringResource(R.string.RegistrationActivity_is_the_phone_number),
+      body = "${E164Util.formatAsE164WithCountryCodeForDisplay(state.countryCode, state.nationalNumber)}\n\n${stringResource(R.string.RegistrationActivity_a_verification_code)}",
+      confirm = stringResource(id = android.R.string.ok),
+      dismiss = stringResource(R.string.RegistrationActivity_edit_number),
+      onConfirm = { onEvent(PhoneNumberEntryScreenEvents.PhoneNumberSubmitted) },
+      onDismiss = { onEvent(PhoneNumberEntryScreenEvents.PhoneNumberCancelled) }
+    )
+  }
 
   LaunchedEffect(state.oneTimeEvent) {
     onEvent(PhoneNumberEntryScreenEvents.ConsumeOneTimeEvent)
     when (state.oneTimeEvent) {
-      OneTimeEvent.NetworkError -> simpleErrorMessage = "Network error"
-      is OneTimeEvent.RateLimited -> simpleErrorMessage = "Rate limited"
-      OneTimeEvent.UnknownError -> simpleErrorMessage = "Unknown error"
-      OneTimeEvent.CouldNotRequestCodeWithSelectedTransport -> simpleErrorMessage = "Could not request code with selected transport"
-      OneTimeEvent.UnableToSendSms -> simpleErrorMessage = unableToSendSmsMsg
+      OneTimeEvent.NetworkError -> simpleErrorMessage = resources.getString(R.string.VerificationCodeScreen__network_error)
+      is OneTimeEvent.RateLimited -> simpleErrorMessage = resources.getString(R.string.VerificationCodeScreen__too_many_attempts_try_again_in_s, state.oneTimeEvent.retryAfter.toString())
+      OneTimeEvent.UnknownError -> simpleErrorMessage = resources.getString(R.string.VerificationCodeScreen__an_unexpected_error_occurred)
+      OneTimeEvent.CouldNotRequestCodeWithSelectedTransport -> simpleErrorMessage = resources.getString(R.string.VerificationCodeScreen__could_not_send_code_via_selected_method)
+      OneTimeEvent.UnableToSendSms -> simpleErrorMessage = resources.getString(R.string.VerificationCodeScreen__unable_to_send_sms)
       null -> Unit
     }
   }
@@ -83,12 +96,16 @@ fun PhoneNumberScreen(
   simpleErrorMessage?.let { message ->
     Dialogs.SimpleMessageDialog(
       message = message,
-      dismiss = "Ok",
+      dismiss = stringResource(android.R.string.ok),
       onDismiss = { simpleErrorMessage = null }
     )
   }
 
-  Box(modifier = modifier.fillMaxSize().testTag(TestTags.PHONE_NUMBER_SCREEN)) {
+  Box(
+    modifier = modifier
+      .fillMaxSize()
+      .testTag(TestTags.PHONE_NUMBER_SCREEN)
+  ) {
     ScreenContent(state, onEvent)
   }
 }
@@ -105,10 +122,8 @@ private fun ScreenContent(state: PhoneNumberEntryState, onEvent: (PhoneNumberEnt
       .fillMaxSize()
       .verticalScroll(scrollState)
   ) {
-    // Toolbar spacer (matching the Toolbar height in the XML)
     Spacer(modifier = Modifier.height(56.dp))
 
-    // Title - "Phone number"
     Text(
       text = stringResource(R.string.RegistrationActivity_phone_number),
       style = MaterialTheme.typography.headlineMedium,
@@ -119,7 +134,6 @@ private fun ScreenContent(state: PhoneNumberEntryState, onEvent: (PhoneNumberEnt
 
     Spacer(modifier = Modifier.height(16.dp))
 
-    // Subtitle - "You will receive a verification code..."
     Text(
       text = stringResource(R.string.RegistrationActivity_you_will_receive_a_verification_code),
       style = MaterialTheme.typography.bodyLarge,
@@ -131,7 +145,6 @@ private fun ScreenContent(state: PhoneNumberEntryState, onEvent: (PhoneNumberEnt
 
     Spacer(modifier = Modifier.height(36.dp))
 
-    // Country Picker - styled with surfaceVariant background and outline bottom border
     CountryPicker(
       emoji = selectedCountryEmoji,
       country = selectedCountry,
@@ -149,7 +162,7 @@ private fun ScreenContent(state: PhoneNumberEntryState, onEvent: (PhoneNumberEnt
       formattedNumber = state.formattedNumber,
       onCountryCodeChanged = { onEvent(PhoneNumberEntryScreenEvents.CountryCodeChanged(it)) },
       onPhoneNumberChanged = { onEvent(PhoneNumberEntryScreenEvents.PhoneNumberChanged(it)) },
-      onPhoneNumberSubmitted = { onEvent(PhoneNumberEntryScreenEvents.PhoneNumberSubmitted) },
+      onPhoneNumberEntered = { onEvent(PhoneNumberEntryScreenEvents.PhoneNumberEntered) },
       modifier = Modifier
         .fillMaxWidth()
         .padding(horizontal = 24.dp)
@@ -157,7 +170,6 @@ private fun ScreenContent(state: PhoneNumberEntryState, onEvent: (PhoneNumberEnt
 
     Spacer(modifier = Modifier.weight(1f))
 
-    // Bottom row with the next/spinner button aligned to end
     Row(
       modifier = Modifier
         .fillMaxWidth()
@@ -165,18 +177,18 @@ private fun ScreenContent(state: PhoneNumberEntryState, onEvent: (PhoneNumberEnt
       horizontalArrangement = Arrangement.End,
       verticalAlignment = Alignment.CenterVertically
     ) {
-      Buttons.LargeTonal(
-        onClick = { onEvent(PhoneNumberEntryScreenEvents.PhoneNumberSubmitted) },
-        enabled = !state.showSpinner && state.countryCode.isNotEmpty() && state.nationalNumber.isNotEmpty(),
-        modifier = Modifier.testTag(TestTags.PHONE_NUMBER_NEXT_BUTTON)
-      ) {
-        if (state.showSpinner) {
-          CircularProgressIndicator(
-            modifier = Modifier.size(20.dp),
-            strokeWidth = 2.dp,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-          )
-        } else {
+      if (state.showSpinner) {
+        CircularProgressIndicator(
+          modifier = Modifier.size(24.dp),
+          strokeWidth = 3.dp,
+          color = MaterialTheme.colorScheme.primary
+        )
+      } else {
+        Buttons.LargeTonal(
+          onClick = { onEvent(PhoneNumberEntryScreenEvents.PhoneNumberEntered) },
+          enabled = state.countryCode.isNotEmpty() && state.nationalNumber.isNotEmpty(),
+          modifier = Modifier.testTag(TestTags.PHONE_NUMBER_NEXT_BUTTON)
+        ) {
           Text(stringResource(R.string.RegistrationActivity_next))
         }
       }
@@ -184,12 +196,6 @@ private fun ScreenContent(state: PhoneNumberEntryState, onEvent: (PhoneNumberEnt
   }
 }
 
-/**
- * Country picker row styled to match the XML layout:
- * - surfaceVariant background with outline bottom border
- * - Rounded top corners (8dp outline, 4dp inner)
- * - Country emoji, country name, and dropdown triangle
- */
 @Composable
 private fun CountryPicker(
   emoji: String,
@@ -229,7 +235,9 @@ private fun CountryPicker(
         modifier = Modifier.weight(1f)
       )
 
-      DropdownTriangle(
+      Icon(
+        imageVector = ImageVector.vectorResource(id = R.drawable.symbol_drop_down_24),
+        contentDescription = null,
         tint = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier.size(24.dp)
       )
@@ -239,7 +247,6 @@ private fun CountryPicker(
 
 /**
  * Phone number input fields containing the country code and phone number text fields.
- * Handles cursor position preservation when the formatted number changes.
  */
 @Composable
 private fun PhoneNumberInputFields(
@@ -247,17 +254,13 @@ private fun PhoneNumberInputFields(
   formattedNumber: String,
   onCountryCodeChanged: (String) -> Unit,
   onPhoneNumberChanged: (String) -> Unit,
-  onPhoneNumberSubmitted: () -> Unit,
+  onPhoneNumberEntered: () -> Unit,
   modifier: Modifier = Modifier
 ) {
-  // Track the phone number text field value with cursor position
   var phoneNumberTextFieldValue by remember { mutableStateOf(TextFieldValue(formattedNumber)) }
 
-  // Update the text field value when formattedNumber changes, preserving cursor position
   LaunchedEffect(formattedNumber) {
     if (phoneNumberTextFieldValue.text != formattedNumber) {
-      // Calculate cursor position: count digits before cursor in old text,
-      // then find position with same digit count in new text
       val oldText = phoneNumberTextFieldValue.text
       val oldCursorPos = phoneNumberTextFieldValue.selection.end
       val digitsBeforeCursor = oldText.take(oldCursorPos).count { it.isDigit() }
@@ -286,8 +289,7 @@ private fun PhoneNumberInputFields(
     horizontalArrangement = Arrangement.Start,
     verticalAlignment = Alignment.Bottom
   ) {
-    // Country code field
-    OutlinedTextField(
+    TextField(
       value = countryCode,
       onValueChange = onCountryCodeChanged,
       modifier = Modifier
@@ -307,13 +309,16 @@ private fun PhoneNumberInputFields(
       singleLine = true,
       textStyle = MaterialTheme.typography.bodyLarge.copy(
         color = MaterialTheme.colorScheme.onSurfaceVariant
+      ),
+      colors = TextFieldDefaults.colors(
+        unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+        focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
       )
     )
 
     Spacer(modifier = Modifier.width(20.dp))
 
-    // Phone number field
-    OutlinedTextField(
+    TextField(
       value = phoneNumberTextFieldValue,
       onValueChange = { newValue ->
         phoneNumberTextFieldValue = newValue
@@ -330,37 +335,17 @@ private fun PhoneNumberInputFields(
         imeAction = ImeAction.Done
       ),
       keyboardActions = KeyboardActions(
-        onDone = { onPhoneNumberSubmitted() }
+        onDone = { onPhoneNumberEntered() }
       ),
       singleLine = true,
       textStyle = MaterialTheme.typography.bodyLarge.copy(
         color = MaterialTheme.colorScheme.onSurface
+      ),
+      colors = TextFieldDefaults.colors(
+        unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+        focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
       )
     )
-  }
-}
-
-/**
- * Simple dropdown triangle icon matching the symbol_dropdown_triangle_24 vector drawable.
- */
-@Composable
-private fun DropdownTriangle(
-  tint: Color,
-  modifier: Modifier = Modifier
-) {
-  Canvas(modifier = modifier) {
-    val w = size.width
-    val h = size.height
-    val path = Path().apply {
-      // Triangle pointing down, centered in the 18x24 viewport
-      val scaleX = w / 18f
-      val scaleY = h / 24f
-      moveTo(5.2f * scaleX, 9.5f * scaleY)
-      lineTo(12.8f * scaleX, 9.5f * scaleY)
-      lineTo(9f * scaleX, 14.95f * scaleY)
-      close()
-    }
-    drawPath(path, tint)
   }
 }
 

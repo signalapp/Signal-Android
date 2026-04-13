@@ -79,6 +79,12 @@ class PhoneNumberEntryViewModel(
       is PhoneNumberEntryScreenEvents.PhoneNumberChanged -> {
         stateEmitter(applyPhoneNumberChanged(state, event.value))
       }
+      is PhoneNumberEntryScreenEvents.PhoneNumberEntered -> {
+        stateEmitter(state.copy(showDialog = true))
+      }
+      is PhoneNumberEntryScreenEvents.PhoneNumberCancelled -> {
+        stateEmitter(state.copy(showDialog = false))
+      }
       is PhoneNumberEntryScreenEvents.PhoneNumberSubmitted -> {
         var localState = state.copy(showSpinner = true)
         stateEmitter(localState)
