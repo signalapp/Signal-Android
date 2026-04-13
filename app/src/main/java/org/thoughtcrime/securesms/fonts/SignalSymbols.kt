@@ -12,13 +12,18 @@ import android.text.TextPaint
 import android.text.style.MetricAffectingSpan
 import androidx.annotation.ColorRes
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.TextUnit
 import androidx.core.content.ContextCompat
+import androidx.core.text.buildSpannedString
+import org.signal.core.util.BidiUtil
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 
@@ -162,6 +167,7 @@ object SignalSymbols {
     PERSON_X('\uE060'),
     PERSON_PLUS('\uE061'),
     PERSON_MINUS('\uE062'),
+    PERSON_QUESTION('\uE06A'),
     PHONE('\uE063'),
     PHONE_FILL('\uE064'),
     PHOTO('\uE065'),
@@ -192,7 +198,6 @@ object SignalSymbols {
     X('\u00D7'),
     X_CIRCLE('\uE1EE'),
     X_SQUARE('\u2327'),
-
     REFRESH('\uE000'),
     ACTIVATE_PAYMENTS('\uE000'),
     CALENDAR('\uE0A2')
@@ -235,7 +240,7 @@ object SignalSymbols {
     glyphEndWeight: Weight = Weight.REGULAR,
     glyphStartSizeSp: Int = 16,
     glyphEndSizeSp: Int = 16
-  ): AnnotatedString {
+  ): CharSequence {
     val isLtr = ViewUtil.isLtr(context)
     val leftGlyph = if (isLtr) glyphStart else glyphEnd
     val leftGlyphWeight = if (isLtr) glyphStartWeight else glyphEndWeight
@@ -244,7 +249,7 @@ object SignalSymbols {
     val rightGlyphWeight = if (isLtr) glyphEndWeight else glyphStartWeight
     val rightGlyphSizeSp = if (isLtr) glyphEndSizeSp else glyphStartSizeSp
 
-    return buildAnnotatedString {
+    return buildSpannedString {
       if (leftGlyph != null) {
         val symbol = SpanUtil.ofSize(
           getSpannedString(context, leftGlyphWeight, leftGlyph),
@@ -266,13 +271,57 @@ object SignalSymbols {
   }
 
   @Composable
-  fun AnnotatedString.Builder.SignalSymbol(weight: Weight, glyph: Glyph) {
+  fun AnnotatedString.Builder.SignalSymbol(
+    glyph: Glyph,
+    weight: Weight = Weight.REGULAR,
+    fontSize: TextUnit = TextUnit.Unspecified,
+    color: Color = Color.Unspecified,
+    baselineShift: BaselineShift? = null
+  ) {
     withStyle(
       SpanStyle(
-        fontFamily = FontFamily(getTypeface(LocalContext.current, weight))
+        fontFamily = FontFamily(getTypeface(LocalContext.current, weight)),
+        fontSize = fontSize,
+        color = color,
+        baselineShift = baselineShift
       )
     ) {
       append(glyph.unicode.toString())
+    }
+  }
+
+  @Composable
+  fun buildSignalSymbolAnnotatedString(
+    glyphStart: Glyph? = null,
+    glyphEnd: Glyph? = null,
+    glyphStartWeight: Weight = Weight.REGULAR,
+    glyphEndWeight: Weight = Weight.REGULAR,
+    glyphStartSize: TextUnit = TextUnit.Unspecified,
+    glyphEndSize: TextUnit = TextUnit.Unspecified,
+    content: @Composable AnnotatedString.Builder.() -> Unit
+  ): AnnotatedString {
+    val context = LocalContext.current
+
+    return buildAnnotatedString {
+      if (glyphStart != null) {
+        append(BidiUtil.BidiCodepoint.LRI)
+        withStyle(SpanStyle(fontFamily = FontFamily(getTypeface(context, glyphStartWeight)), fontSize = glyphStartSize)) {
+          append(glyphStart.unicode.toString())
+        }
+        append(BidiUtil.BidiCodepoint.PDI)
+        append(" ")
+      }
+
+      content()
+
+      if (glyphEnd != null) {
+        append(" ")
+        append(BidiUtil.BidiCodepoint.LRI)
+        withStyle(SpanStyle(fontFamily = FontFamily(getTypeface(context, glyphEndWeight)), fontSize = glyphEndSize)) {
+          append(glyphEnd.unicode.toString())
+        }
+        append(BidiUtil.BidiCodepoint.PDI)
+      }
     }
   }
 
@@ -283,19 +332,12 @@ object SignalSymbols {
     glyphEnd: Glyph? = null,
     glyphStartWeight: Weight = Weight.REGULAR,
     glyphEndWeight: Weight = Weight.REGULAR,
-    glyphStartSizeSp: Int = 16,
-    glyphEndSizeSp: Int = 16
+    glyphStartSize: TextUnit = TextUnit.Unspecified,
+    glyphEndSize: TextUnit = TextUnit.Unspecified
   ): AnnotatedString {
-    return getSignalSymbolText(
-      context = LocalContext.current,
-      text = text,
-      glyphStart = glyphStart,
-      glyphEnd = glyphEnd,
-      glyphStartWeight = glyphStartWeight,
-      glyphEndWeight = glyphEndWeight,
-      glyphStartSizeSp = glyphStartSizeSp,
-      glyphEndSizeSp = glyphEndSizeSp
-    )
+    return buildSignalSymbolAnnotatedString(glyphStart, glyphEnd, glyphStartWeight, glyphEndWeight, glyphStartSize, glyphEndSize) {
+      append(text)
+    }
   }
 
   private fun getTypeface(context: Context, weight: Weight): Typeface {

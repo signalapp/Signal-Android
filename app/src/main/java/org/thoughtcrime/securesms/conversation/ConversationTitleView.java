@@ -199,13 +199,14 @@ public class ConversationTitleView extends ConstraintLayout {
 
   private void setSelfTitle() {
     this.title.setText(R.string.note_to_self);
+    this.subtitle.setText(R.string.ConversationFragment_official_chat);
     updateSubtitleVisibility();
   }
 
   private void setReleaseNotesTitle(@NonNull Recipient recipient) {
     final String displayName = recipient.getDisplayName(getContext());
     this.title.setText(displayName);
-    this.subtitle.setText(R.string.ReleaseNotes__official_only_chat);
+    this.subtitle.setText(R.string.ConversationFragment_official_chat);
     updateSubtitleVisibility();
   }
 
@@ -221,7 +222,7 @@ public class ConversationTitleView extends ConstraintLayout {
   }
 
   private void updateSubtitleVisibility() {
-    subtitle.setVisibility(!isSelf && expirationBadgeContainer.getVisibility() != VISIBLE && !TextUtils.isEmpty(subtitle.getText()) ? VISIBLE : GONE);
+    subtitle.setVisibility(expirationBadgeContainer.getVisibility() != VISIBLE && !TextUtils.isEmpty(subtitle.getText()) ? VISIBLE : GONE);
     updateVerifiedSubtitleVisibility();
   }
 }

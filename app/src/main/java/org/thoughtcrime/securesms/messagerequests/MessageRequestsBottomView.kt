@@ -5,14 +5,18 @@ import android.content.res.ColorStateList
 import android.text.Html
 import android.util.AttributeSet
 import android.view.View
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.text.HtmlCompat
 import com.google.android.material.button.MaterialButton
+import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.messagerequests.MessageRequestBarColorTheme.Companion.resolveTheme
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.Debouncer
+import org.thoughtcrime.securesms.util.padding
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView
 import org.thoughtcrime.securesms.util.visible
 
@@ -22,6 +26,7 @@ import org.thoughtcrime.securesms.util.visible
 class MessageRequestsBottomView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ConstraintLayout(context, attrs, defStyleAttr) {
   private val showProgressDebouncer = Debouncer(250)
 
+  private val title: TextView
   private val question: LearnMoreTextView
   private val accept: MaterialButton
   private val block: MaterialButton
@@ -34,6 +39,7 @@ class MessageRequestsBottomView @JvmOverloads constructor(context: Context, attr
   init {
     inflate(context, R.layout.message_request_bottom_bar, this)
 
+    title = findViewById(R.id.message_request_title)
     question = findViewById(R.id.message_request_question)
     accept = findViewById(R.id.message_request_accept)
     block = findViewById(R.id.message_request_block)
@@ -51,6 +57,7 @@ class MessageRequestsBottomView @JvmOverloads constructor(context: Context, attr
     question.setOnLinkClickListener(null)
 
     updateButtonVisibility(messageRequestState)
+    updateTitleVisibility(messageRequestState)
 
     when (messageRequestState.state) {
       MessageRequestState.State.INDIVIDUAL_BLOCKED -> {
@@ -91,25 +98,8 @@ class MessageRequestsBottomView @JvmOverloads constructor(context: Context, attr
       }
 
       MessageRequestState.State.INDIVIDUAL,
-      MessageRequestState.State.INDIVIDUAL_FEW_CONNECTIONS -> {
-        question.text = HtmlCompat.fromHtml(
-          context.getString(
-            R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept,
-            bold(recipient.getShortDisplayName(context))
-          ),
-          0
-        )
-        accept.setText(R.string.MessageRequestBottomView_accept)
-      }
-
       MessageRequestState.State.INDIVIDUAL_HIDDEN -> {
-        question.text = HtmlCompat.fromHtml(
-          context.getString(
-            R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before,
-            bold(recipient.getShortDisplayName(context))
-          ),
-          0
-        )
+        question.setText(R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept)
         accept.setText(R.string.MessageRequestBottomView_accept)
       }
 
@@ -124,6 +114,22 @@ class MessageRequestsBottomView @JvmOverloads constructor(context: Context, attr
     unblock.visible = messageState.isBlocked
     delete.visible = messageState.reportedAsSpam || messageState.isBlocked
     report.visible = !messageState.reportedAsSpam
+  }
+
+  private fun updateTitleVisibility(messageState: MessageRequestState) {
+    title.visible = !messageState.isBlocked
+    if (title.visible) {
+      title.text = SignalSymbols.getSignalSymbolText(
+        context = context,
+        text = context.getString(R.string.AboutSheet__review_requests_carefully),
+        glyphStart = SignalSymbols.Glyph.ERROR_TRIANGLE,
+        glyphStartWeight = SignalSymbols.Weight.REGULAR,
+        glyphStartSizeSp = 14
+      )
+      question.padding(top = 0)
+    } else {
+      question.padding(top = 16.dp)
+    }
   }
 
   fun showBusy() {

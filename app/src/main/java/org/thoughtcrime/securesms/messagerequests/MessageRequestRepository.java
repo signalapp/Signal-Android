@@ -144,11 +144,8 @@ public final class MessageRequestRepository {
       } else {
         Recipient.HiddenState hiddenState    = RecipientUtil.getRecipientHiddenState(threadId);
         boolean               reportedAsSpam = reportedAsSpam(threadId);
-        List<String>          sharedGroups   = SignalDatabase.groups().getPushGroupNamesContainingMember(recipient.getId());
 
-        if (hiddenState == Recipient.HiddenState.NOT_HIDDEN && sharedGroups.size() < MIN_GROUPS_THRESHOLD) {
-          return new MessageRequestState(MessageRequestState.State.INDIVIDUAL_FEW_CONNECTIONS, reportedAsSpam);
-        } else if (hiddenState == Recipient.HiddenState.NOT_HIDDEN) {
+        if (hiddenState == Recipient.HiddenState.NOT_HIDDEN) {
           return new MessageRequestState(MessageRequestState.State.INDIVIDUAL, reportedAsSpam);
         } else if (hiddenState == Recipient.HiddenState.HIDDEN) {
           return new MessageRequestState(MessageRequestState.State.NONE_HIDDEN, reportedAsSpam);

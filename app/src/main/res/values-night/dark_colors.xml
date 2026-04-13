@@ -197,4 +197,6 @@
 
     <color name="safety_tip_background">@color/signal_dark_colorSecondaryContainer</color>
     <color name="safety_tip_image_background">@color/signal_dark_colorSecondary</color>
+
+    <color name="signal_colorOnWarning">#FFEB977D</color>
 </resources>

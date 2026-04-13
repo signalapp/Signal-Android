@@ -139,7 +139,7 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
     val callback = GiphyMp4ProjectionRecycler(holders)
 
     GiphyMp4PlaybackController.attach(list, callback, maxPlayback)
-    list.addItemDecoration(GiphyMp4ItemDecoration(callback) {}, 0)
+    list.addItemDecoration(GiphyMp4ItemDecoration(callback), 0)
 
     return callback
   }

@@ -687,7 +687,9 @@ class ConversationFragment :
     )
     conversationToolbarOnScrollHelper.attach(binding.conversationItemRecycler)
     presentConversationTitle(viewModel.recipientSnapshot)
-    presentGroupConversationSubtitle(createGroupSubtitleString(viewModel.titleViewParticipantsSnapshot))
+    if (viewModel.recipientSnapshot?.isGroup == true) {
+      presentGroupConversationSubtitle(createGroupSubtitleString(viewModel.titleViewParticipantsSnapshot))
+    }
     presentActionBarMenu()
     presentStoryRing()
 
@@ -2204,6 +2206,7 @@ class ConversationFragment :
     val statusBarInset = ViewCompat.getRootWindowInsets(binding.root)?.getInsets(WindowInsetsCompat.Type.systemBars())?.top ?: 0
     threadHeaderMarginDecoration.toolbarMargin = statusBarInset + resources.getDimensionPixelSize(R.dimen.signal_m3_toolbar_height) + 16.dp
     binding.conversationItemRecycler.addItemDecoration(threadHeaderMarginDecoration)
+    binding.conversationItemRecycler.addItemDecoration(ConversationHeaderPositionDecoration())
 
     conversationItemDecorations = ConversationItemDecorations(hasWallpaper = args.hasWallpaper)
     binding.conversationItemRecycler.addItemDecoration(conversationItemDecorations, 0)

@@ -310,7 +310,8 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isReportedSpam()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_reported_as_spam), Glyph.SPAM);
     } else if (isMessageRequestAccepted()) {
-      return staticUpdateDescription(context.getString(R.string.MessageRecord_you_accepted_the_message_request), Glyph.THREAD);
+      return isGroupV2() ? staticUpdateDescription(context.getString(R.string.MessageRecord_you_accepted_the_group_request), Glyph.THREAD)
+                         : fromRecipient(getToRecipient(), r -> context.getString(R.string.MessageRecord_you_accepted_s_message_request, r.getDisplayName(context)), Glyph.THREAD);
     } else if (isBlocked()) {
       return staticUpdateDescription(context.getString(isGroupV2() ? R.string.MessageRecord_you_blocked_this_group : R.string.MessageRecord_you_blocked_this_person), Glyph.BLOCK);
     } else if (isUnblocked()) {

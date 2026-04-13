@@ -1,17 +1,12 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -37,6 +32,7 @@ import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.horizontalGutters
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 
 /**
@@ -70,7 +66,7 @@ class UnverifiedProfileNameBottomSheet : ComposeBottomSheetDialogFragment() {
 }
 
 @Composable
-private fun ProfileNameSheet(forGroup: Boolean = true) {
+private fun ProfileNameSheet(forGroup: Boolean = false) {
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier
@@ -82,13 +78,13 @@ private fun ProfileNameSheet(forGroup: Boolean = true) {
     val (imageVector, placeholder, text) =
       if (forGroup) {
         Triple(
-          R.drawable.symbol_group_question_55,
+          R.drawable.symbol_group_questionmark_bold_40,
           stringResource(R.string.ConversationFragment_group_names),
           stringResource(id = R.string.ProfileNameBottomSheet__group_names_on_signal, stringResource(R.string.ConversationFragment_group_names))
         )
       } else {
         Triple(
-          R.drawable.symbol_person_question_40,
+          R.drawable.symbol_person_questionmark_bold_40,
           stringResource(R.string.ConversationFragment_profile_names),
           stringResource(id = R.string.ProfileNameBottomSheet__profile_names_on_signal, stringResource(R.string.ConversationFragment_profile_names))
         )
@@ -97,12 +93,16 @@ private fun ProfileNameSheet(forGroup: Boolean = true) {
     Icon(
       imageVector = ImageVector.vectorResource(imageVector),
       contentDescription = null,
+      tint = SignalTheme.colors.colorOnWarning,
       modifier = Modifier
-        .padding(top = 38.dp, bottom = 24.dp)
-        .size(height = 56.dp, width = 72.dp)
+        .padding(top = 30.dp, bottom = 20.dp)
+        .clip(RoundedCornerShape(50))
+        .background(SignalTheme.colors.colorWarning)
+        .padding(horizontal = 18.dp, vertical = 8.dp)
+        .size(32.dp)
     )
 
-    val annotatedText = remember {
+    val annotatedText = remember(text, placeholder) {
       buildAnnotatedString {
         val start = text.indexOf(placeholder)
         withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
@@ -114,43 +114,41 @@ private fun ProfileNameSheet(forGroup: Boolean = true) {
 
     Text(
       text = annotatedText,
+      style = MaterialTheme.typography.bodyLarge,
       modifier = Modifier.padding(bottom = 20.dp)
     )
 
+    BulletRow(stringResource(R.string.ProfileNameBottomSheet__signal_cant_verify))
+    BulletRow(stringResource(R.string.ProfileNameBottomSheet__signal_will_never_contact))
+
     if (forGroup) {
-      InfoRow(stringResource(R.string.ProfileNameBottomSheet__be_cautious_of_groups))
-      InfoRow(stringResource(R.string.ProfileNameBottomSheet__profile_names_in_groups))
+      BulletRow(stringResource(R.string.ProfileNameBottomSheet__be_cautious_of_groups))
     } else {
-      InfoRow(stringResource(R.string.ProfileNameBottomSheet__profile_names_arent_verified))
-      InfoRow(stringResource(R.string.ProfileNameBottomSheet__be_cautious_of_accounts))
+      BulletRow(stringResource(R.string.ProfileNameBottomSheet__be_cautious_of_accounts))
     }
 
-    InfoRow(stringResource(R.string.ProfileNameBottomSheet__dont_share_personal))
+    BulletRow(stringResource(R.string.ProfileNameBottomSheet__dont_share_personal))
 
     Spacer(Modifier.size(55.dp))
   }
 }
 
 @Composable
-fun InfoRow(text: String) {
+private fun BulletRow(text: String) {
   Row(
     modifier = Modifier
-      .height(IntrinsicSize.Min)
       .fillMaxWidth()
-      .padding(start = 16.dp, bottom = 12.dp)
+      .padding(bottom = 12.dp),
+    verticalAlignment = Alignment.Top
   ) {
-    Box(
-      modifier = Modifier
-        .width(4.dp)
-        .padding(vertical = 5.dp)
-        .fillMaxHeight()
-        .clip(RoundedCornerShape(10.dp))
-        .background(color = MaterialTheme.colorScheme.outline.copy(.4f))
+    Text(
+      text = "\u2022",
+      style = MaterialTheme.typography.bodyLarge,
+      modifier = Modifier.padding(end = 8.dp)
     )
 
     Text(
       text = text,
-      modifier = Modifier.padding(start = 12.dp),
       style = MaterialTheme.typography.bodyLarge
     )
   }
@@ -161,5 +159,13 @@ fun InfoRow(text: String) {
 private fun ProfileNameSheetPreview() {
   Previews.BottomSheetContentPreview {
     ProfileNameSheet()
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun ProfileNameSheetGroupPreview() {
+  Previews.BottomSheetContentPreview {
+    ProfileNameSheet(forGroup = true)
   }
 }

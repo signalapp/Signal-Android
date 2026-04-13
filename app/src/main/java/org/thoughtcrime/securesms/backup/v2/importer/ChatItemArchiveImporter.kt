@@ -718,7 +718,7 @@ class ChatItemArchiveImporter(
     when {
       itemStandardMessage != null -> contentValues.addStandardMessage(itemStandardMessage)
       itemRemoteDeletedMessage != null -> contentValues.put(MessageTable.DELETED_BY, fromRecipientId.toLong())
-      itemUpdateMessage != null -> contentValues.addUpdateMessage(itemUpdateMessage, fromRecipientId, toRecipientId)
+      itemUpdateMessage != null -> contentValues.addUpdateMessage(itemUpdateMessage, fromRecipientId, toRecipientId, chatRecipientId)
       itemPaymentNotification != null -> contentValues.addPaymentNotification(this, chatRecipientId)
       itemGiftBadge != null -> contentValues.addGiftBadge(itemGiftBadge)
       itemViewOnceMessage != null -> contentValues.addViewOnce(itemViewOnceMessage)
@@ -866,7 +866,7 @@ class ChatItemArchiveImporter(
     }
   }
 
-  private fun ContentValues.addUpdateMessage(updateMessage: ChatUpdateMessage, fromRecipientId: RecipientId, toRecipientId: RecipientId) {
+  private fun ContentValues.addUpdateMessage(updateMessage: ChatUpdateMessage, fromRecipientId: RecipientId, toRecipientId: RecipientId, chatRecipientId: RecipientId) {
     var typeFlags: Long = 0
     val simpleUpdate = updateMessage.simpleUpdate
     val expirationTimerChange = updateMessage.expirationTimerChange
@@ -906,6 +906,11 @@ class ChatItemArchiveImporter(
         if (simpleUpdate.type == SimpleChatUpdate.Type.IDENTITY_VERIFIED || simpleUpdate.type == SimpleChatUpdate.Type.IDENTITY_DEFAULT) {
           put(MessageTable.FROM_RECIPIENT_ID, toRecipientId.serialize())
           put(MessageTable.TO_RECIPIENT_ID, fromRecipientId.serialize())
+        }
+
+        // directionless 1:1 message requests expect to recipient to be the other recipient not self
+        if (simpleUpdate.type == SimpleChatUpdate.Type.MESSAGE_REQUEST_ACCEPTED) {
+          put(MessageTable.TO_RECIPIENT_ID, chatRecipientId.serialize())
         }
       }
       expirationTimerChange != null -> {

@@ -296,7 +296,7 @@ private fun initializeGiphyMp4(lifecycle: Lifecycle, videoContainer: ViewGroup, 
   val callback = GiphyMp4ProjectionRecycler(holders)
 
   GiphyMp4PlaybackController.attach(list, callback, maxPlayback)
-  list.addItemDecoration(GiphyMp4ItemDecoration(callback) {}, 0)
+  list.addItemDecoration(GiphyMp4ItemDecoration(callback), 0)
 }
 
 @Composable

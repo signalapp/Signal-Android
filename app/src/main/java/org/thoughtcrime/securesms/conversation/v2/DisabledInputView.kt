@@ -94,10 +94,12 @@ class DisabledInputView @JvmOverloads constructor(
         setWallpaperEnabled(recipient.hasWallpaper)
 
         setAcceptOnClickListener {
-          if (messageRequestState.isFewConnectionsIndividual) {
+          if (messageRequestState.isIndividual) {
+            val signalWillNever = context.getString(R.string.MessageRequestBottomView_signal_will_never)
+            val body = context.getString(R.string.MessageRequestBottomView_accept_request_body, signalWillNever)
             MaterialAlertDialogBuilder(context)
               .setTitle(R.string.MessageRequestBottomView_accept_request)
-              .setMessage(R.string.MessageRequestBottomView_review_requests_carefully)
+              .setMessage(SpanUtil.boldSubstring(body, signalWillNever))
               .setPositiveButton(R.string.MessageRequestBottomView_accept) { _, _ -> listener?.onAcceptMessageRequestClicked() }
               .setNegativeButton(android.R.string.cancel, null)
               .show()

@@ -5,8 +5,6 @@
 
 package org.thoughtcrime.securesms.conversation.v2
 
-import android.content.Context
-import android.text.TextUtils
 import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
@@ -18,6 +16,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.media3.common.MediaItem
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
+import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toOptional
 import org.thoughtcrime.securesms.BindableConversationItem
@@ -26,6 +25,7 @@ import org.thoughtcrime.securesms.Unbindable
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener
 import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
+import org.thoughtcrime.securesms.conversation.ConversationHeaderCallbacks
 import org.thoughtcrime.securesms.conversation.ConversationHeaderView
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
@@ -48,20 +48,20 @@ import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemMediaV
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemTextOnlyViewHolder
 import org.thoughtcrime.securesms.conversation.v2.items.V2Payload
 import org.thoughtcrime.securesms.conversation.v2.items.bridge
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.databinding.V2ConversationItemMediaIncomingBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationItemMediaOutgoingBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyIncomingBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyOutgoingBinding
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer
-import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil
+import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
+import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet
 import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ProjectionList
-import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import java.util.Locale
@@ -565,165 +565,44 @@ class ConversationAdapterV2(
   inner class ThreadHeaderViewHolder(itemView: View) : MappingViewHolder<ThreadHeader>(itemView) {
     private val conversationBanner: ConversationHeaderView = itemView as ConversationHeaderView
 
+    init {
+      conversationBanner.callbacks = object : ConversationHeaderCallbacks {
+        override fun onSafetyTipsClicked(forGroup: Boolean) = clickListener.onShowSafetyTips(forGroup)
+
+        override fun onUnverifiedNameClicked(forGroup: Boolean) = clickListener.onShowUnverifiedProfileSheet(forGroup)
+
+        override fun onTitleClicked() {
+          val recipient = conversationBanner.recipientInfo?.recipient ?: return
+          if (recipient.isIndividual && !recipient.isSelf) {
+            displayDialogFragment(AboutSheet.create(recipient))
+          }
+        }
+
+        override fun onGroupSettingsClicked() {
+          val recipient = conversationBanner.recipientInfo?.recipient ?: return
+          context.startActivity(ConversationSettingsActivity.forGroup(context, recipient.requireGroupId()))
+        }
+
+        override fun onShowGroupDescriptionClicked(groupName: String, description: String, linkifyWebLinks: Boolean) {
+          clickListener.onShowGroupDescriptionClicked(groupName, description, linkifyWebLinks)
+        }
+
+        override fun onAvatarTapToViewClicked() {
+          val recipient = conversationBanner.recipientInfo?.recipient ?: return
+          AvatarDownloadStateCache.set(recipient, AvatarDownloadStateCache.DownloadState.IN_PROGRESS)
+          SignalExecutors.BOUNDED.execute { SignalDatabase.recipients.manuallyUpdateShowAvatar(recipient.id, true) }
+          if (recipient.isPushV2Group) {
+            AvatarGroupsV2DownloadJob.enqueueUnblurredAvatar(recipient.requireGroupId().requireV2())
+          } else {
+            RetrieveProfileAvatarJob.enqueueUnblurredAvatar(recipient)
+          }
+        }
+      }
+    }
+
     override fun bind(model: ThreadHeader) {
-      val (recipient, groupInfo, sharedGroups, messageRequestState) = model.recipientInfo
-      val isSelf = recipient.id == Recipient.self().id
-
-      when (model.avatarDownloadState) {
-        AvatarDownloadStateCache.DownloadState.NONE,
-        AvatarDownloadStateCache.DownloadState.FINISHED -> {
-          conversationBanner.setAvatar(requestManager, recipient)
-        }
-        AvatarDownloadStateCache.DownloadState.IN_PROGRESS -> {
-          conversationBanner.showProgressBar(recipient)
-        }
-        AvatarDownloadStateCache.DownloadState.FAILED -> {
-          conversationBanner.showFailedAvatarDownload(recipient)
-        }
-      }
-
-      conversationBanner.showBackgroundBubble(recipient.hasWallpaper)
-      val title: String = conversationBanner.setTitle(recipient) {
-        displayDialogFragment(AboutSheet.create(recipient))
-      }
-
-      if (recipient.isReleaseNotes) {
-        conversationBanner.showReleaseNoteHeader()
-      }
-
-      conversationBanner.setAbout(recipient)
-
-      if (recipient.isGroup) {
-        if (!groupInfo.hasExistingContacts) {
-          conversationBanner.setUnverifiedNameSubtitle(R.drawable.symbol_group_question_16, true) {
-            clickListener.onShowUnverifiedProfileSheet(true)
-          }
-        } else {
-          conversationBanner.hideUnverifiedNameSubtitle()
-        }
-
-        if (groupInfo.fullMemberCount > 0 || groupInfo.pendingMemberCount > 0) {
-          if (groupInfo.fullMemberCount == 1 && groupInfo.isMember) {
-            conversationBanner.hideUnverifiedNameSubtitle()
-          }
-          setSubtitle(context, groupInfo.pendingMemberCount, groupInfo.fullMemberCount, groupInfo.membersPreview, groupInfo.isMember, recipient)
-        } else {
-          conversationBanner.hideSubtitle()
-        }
-      } else if (isSelf) {
-        conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation), R.drawable.symbol_note_compact_16, null, null)
-      } else {
-        if ((recipient.profileName.toString() == recipient.getDisplayName(context)) && recipient.nickname.isEmpty && !recipient.isSystemContact) {
-          conversationBanner.setUnverifiedNameSubtitle(R.drawable.symbol_person_question_16, false) {
-            clickListener.onShowUnverifiedProfileSheet(false)
-          }
-        } else {
-          conversationBanner.hideUnverifiedNameSubtitle()
-        }
-
-        val subtitle: String? = recipient.takeIf { it.shouldShowE164 }?.e164?.map { e164: String? -> SignalE164Util.prettyPrint(e164!!) }?.orElse(null)
-        if (subtitle == null || subtitle == title) {
-          conversationBanner.hideSubtitle()
-        } else {
-          conversationBanner.setSubtitle(subtitle, R.drawable.symbol_phone_compact_16, null, null)
-        }
-      }
-
-      conversationBanner.hideButton()
-
-      if (messageRequestState?.isAccepted == false && !isSelf && !recipient.isGroup) {
-        if (sharedGroups.size < MIN_GROUPS_THRESHOLD) {
-          conversationBanner.showWarningSubtitle()
-        }
-        conversationBanner.setButton(context.getString(R.string.ConversationFragment_safety_tips)) {
-          clickListener.onShowSafetyTips(false)
-        }
-        conversationBanner.setDescription(getDescription(context, sharedGroups), R.drawable.symbol_group_compact_16)
-      } else if (messageRequestState?.isAccepted == false && recipient.isGroup) {
-        conversationBanner.showWarningSubtitle()
-        conversationBanner.setButton(context.getString(R.string.ConversationFragment_safety_tips)) {
-          clickListener.onShowSafetyTips(true)
-        }
-      } else if ((recipient.isGroup && sharedGroups.isEmpty()) || isSelf) {
-        conversationBanner.hideWarningSubtitle()
-        if (TextUtils.isEmpty(groupInfo.description)) {
-          conversationBanner.setLinkifyDescription(false)
-          conversationBanner.hideDescription()
-        } else {
-          conversationBanner.setLinkifyDescription(true)
-          val linkifyWebLinks = messageRequestState?.isAccepted == true
-          conversationBanner.showDescription()
-
-          GroupDescriptionUtil.setText(
-            context,
-            conversationBanner.description,
-            groupInfo.description,
-            linkifyWebLinks
-          ) {
-            clickListener.onShowGroupDescriptionClicked(recipient.getDisplayName(context), groupInfo.description, linkifyWebLinks)
-          }
-        }
-      } else {
-        conversationBanner.hideWarningSubtitle()
-        conversationBanner.setDescription(getDescription(context, sharedGroups), R.drawable.symbol_group_compact_16)
-      }
-      conversationBanner.updateOutlineBoxSize()
-    }
-
-    private fun setSubtitle(context: Context, pendingMemberCount: Int, size: Int, members: List<Recipient>, isMember: Boolean, recipient: Recipient) {
-      val names = members.map { member -> member.getDisplayName(context) }
-      val otherMembers = if (size > 3) context.resources.getQuantityString(R.plurals.MessageRequestProfileView_other_members, size - 3, size - 3) else null
-      val membersSubtitle = if (isMember) {
-        when (names.size) {
-          0 -> context.getString(R.string.MessageRequestProfileView_group_members_zero)
-          1 -> context.getString(R.string.MessageRequestProfileView_group_members_one_and_you, names[0])
-          2 -> context.getString(R.string.MessageRequestProfileView_group_members_two_and_you, names[0], names[1])
-          else -> context.getString(R.string.MessageRequestProfileView_group_members_other, names[0], names[1], names[2], otherMembers)
-        }
-      } else {
-        when (names.size) {
-          0 -> context.getString(R.string.MessageRequestProfileView_group_members_zero)
-          1 -> context.getString(R.string.MessageRequestProfileView_group_members_one, names[0])
-          2 -> context.getString(R.string.MessageRequestProfileView_group_members_two, names[0], names[1])
-          3 -> context.getString(R.string.MessageRequestProfileView_group_members_three, names[0], names[1], names[2])
-          else -> context.getString(R.string.MessageRequestProfileView_group_members_other, names[0], names[1], names[2], otherMembers)
-        }
-      }
-
-      if (pendingMemberCount > 0) {
-        val invited = context.resources.getQuantityString(R.plurals.MessageRequestProfileView_invited, pendingMemberCount, pendingMemberCount)
-        val subtitle = context.getString(R.string.MessageRequestProfileView_member_names_and_invited, membersSubtitle, invited)
-        conversationBanner.setSubtitle(subtitle, R.drawable.symbol_group_compact_16, otherMembers) { goToGroupSettings(recipient) }
-      } else {
-        conversationBanner.setSubtitle(membersSubtitle, R.drawable.symbol_group_compact_16, otherMembers) { goToGroupSettings(recipient) }
-      }
-    }
-
-    private fun getDescription(context: Context, sharedGroups: List<String>): String {
-      return when (sharedGroups.size) {
-        0 -> context.getString(R.string.ConversationUpdateItem_no_groups_in_common_review_requests_carefully)
-        1 -> context.getString(R.string.MessageRequestProfileView_member_of_one_group, sharedGroups[0])
-        2 -> context.getString(R.string.MessageRequestProfileView_member_of_two_groups, sharedGroups[0], sharedGroups[1])
-        3 -> context.getString(R.string.MessageRequestProfileView_member_of_many_groups, sharedGroups[0], sharedGroups[1], sharedGroups[2])
-        else -> {
-          val others: Int = sharedGroups.size - 2
-          context.getString(
-            R.string.MessageRequestProfileView_member_of_many_groups,
-            sharedGroups[0],
-            sharedGroups[1],
-            context.resources.getQuantityString(R.plurals.MessageRequestProfileView_member_of_d_additional_groups, others, others)
-          )
-        }
-      }
-    }
-
-    private fun goToGroupSettings(recipient: Recipient) {
-      val intent = ConversationSettingsActivity.forGroup(getContext(), recipient.requireGroupId())
-      val bundle = ConversationSettingsActivity.createTransitionBundle(
-        getContext(),
-        conversationBanner.getViewById(R.id.message_request_avatar)
-      )
-      getContext().startActivity(intent, bundle)
+      conversationBanner.recipientInfo = model.recipientInfo
+      conversationBanner.avatarDownloadState = model.avatarDownloadState
     }
   }
 
