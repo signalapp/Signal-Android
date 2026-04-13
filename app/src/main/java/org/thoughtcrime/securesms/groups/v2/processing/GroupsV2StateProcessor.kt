@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.groups.GroupProtoUtil
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor.Companion.LATEST
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
+import org.thoughtcrime.securesms.jobs.ConversationShortcutUpdateJob
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.jobs.LeaveGroupV2Job
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
@@ -543,7 +544,8 @@ class GroupsV2StateProcessor private constructor(
       Log.i(TAG, "$logPrefix Local state (revision: ${currentLocalState?.revision}) does not match, updating to ${updatedGroupState.revision}")
     }
 
-    val terminatorRecipientId: RecipientId? = if (updatedGroupState.terminated && (currentLocalState == null || !currentLocalState.terminated)) {
+    val wasTerminated = updatedGroupState.terminated && (currentLocalState == null || !currentLocalState.terminated)
+    val terminatorRecipientId: RecipientId? = if (wasTerminated) {
       groupStateDiff.serverHistory
         .mapNotNull { it.change }
         .firstOrNull { it.terminateGroup }
@@ -557,6 +559,10 @@ class GroupsV2StateProcessor private constructor(
 
     if (terminatorRecipientId != null) {
       profileAndMessageHelper.stopAllTypingForGroup()
+    }
+
+    if (wasTerminated) {
+      ConversationShortcutUpdateJob.enqueue()
     }
 
     if (currentLocalState == null || currentLocalState.revision == RESTORE_PLACEHOLDER_REVISION) {
@@ -787,6 +793,7 @@ class GroupsV2StateProcessor private constructor(
       }
 
       SignalDatabase.groups.update(masterKey, simulatedGroupState, null)
+      ConversationShortcutUpdateJob.enqueue()
     }
 
     fun markJoinRequestRejectedLocally() {

@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.groups.GroupsV2Authorization
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor.ProfileAndMessageHelper
 import org.thoughtcrime.securesms.jobmanager.JobManager
+import org.thoughtcrime.securesms.jobs.ConversationShortcutUpdateJob
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -1066,6 +1067,7 @@ class GroupsV2StateProcessorTest {
     }
 
     every { recipientTable.getAndPossiblyMerge(adminAci, null) } returns adminRecipientId
+    justRun { jobManager.add(any()) }
 
     val signedChange = DecryptedGroupChange(
       revision = 6,
@@ -1088,6 +1090,7 @@ class GroupsV2StateProcessorTest {
       }
 
     verify { groupTable.update(masterKey, match { it.terminated }, null, adminRecipientId) }
+    verify { jobManager.add(ofType(ConversationShortcutUpdateJob::class)) }
   }
 
   @Test
@@ -1099,6 +1102,8 @@ class GroupsV2StateProcessorTest {
       )
       expectTableUpdate = true
     }
+
+    justRun { jobManager.add(any()) }
 
     val signedChange = DecryptedGroupChange(
       revision = 6,
@@ -1120,6 +1125,7 @@ class GroupsV2StateProcessorTest {
       }
 
     verify(exactly = 0) { groupTable.setTerminatedBy(any(), any()) }
+    verify { jobManager.add(ofType(ConversationShortcutUpdateJob::class)) }
   }
 
   @Test
@@ -1139,6 +1145,8 @@ class GroupsV2StateProcessorTest {
       expectTableUpdate = true
     }
 
+    justRun { jobManager.add(any()) }
+
     val result = processor.forceSanityUpdateFromServer(0)
 
     assertThat(result.updateStatus).isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
@@ -1149,6 +1157,7 @@ class GroupsV2StateProcessorTest {
       }
 
     verify(exactly = 0) { groupTable.setTerminatedBy(any(), any()) }
+    verify { jobManager.add(ofType(ConversationShortcutUpdateJob::class)) }
   }
 
   @Test
