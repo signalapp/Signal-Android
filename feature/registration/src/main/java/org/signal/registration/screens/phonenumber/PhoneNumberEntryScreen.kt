@@ -38,6 +38,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.testTag
@@ -158,6 +160,7 @@ private fun ScreenContent(state: PhoneNumberEntryState, onEvent: (PhoneNumberEnt
     Spacer(modifier = Modifier.height(16.dp))
 
     PhoneNumberInputFields(
+      hasValidCountry = state.countryName.isNotEmpty(),
       countryCode = state.countryCode,
       formattedNumber = state.formattedNumber,
       onCountryCodeChanged = { onEvent(PhoneNumberEntryScreenEvents.CountryCodeChanged(it)) },
@@ -221,15 +224,17 @@ private fun CountryPicker(
         .padding(start = 16.dp, end = 12.dp),
       verticalAlignment = Alignment.CenterVertically
     ) {
-      Text(
-        text = emoji,
-        fontSize = 24.sp
-      )
+      if (emoji.isNotEmpty()) {
+        Text(
+          text = emoji,
+          fontSize = 24.sp
+        )
 
-      Spacer(modifier = Modifier.width(16.dp))
+        Spacer(modifier = Modifier.width(16.dp))
+      }
 
       Text(
-        text = country,
+        text = country.takeIf { country.isNotEmpty() } ?: stringResource(R.string.RegistrationActivity_select_a_country),
         style = MaterialTheme.typography.bodyLarge,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier.weight(1f)
@@ -250,6 +255,7 @@ private fun CountryPicker(
  */
 @Composable
 private fun PhoneNumberInputFields(
+  hasValidCountry: Boolean,
   countryCode: String,
   formattedNumber: String,
   onCountryCodeChanged: (String) -> Unit,
@@ -258,6 +264,7 @@ private fun PhoneNumberInputFields(
   modifier: Modifier = Modifier
 ) {
   var phoneNumberTextFieldValue by remember { mutableStateOf(TextFieldValue(formattedNumber)) }
+  val focusRequester = remember { FocusRequester() }
 
   LaunchedEffect(formattedNumber) {
     if (phoneNumberTextFieldValue.text != formattedNumber) {
@@ -281,6 +288,12 @@ private fun PhoneNumberInputFields(
         text = formattedNumber,
         selection = TextRange(newCursorPos)
       )
+    }
+  }
+
+  LaunchedEffect(hasValidCountry) {
+    if (hasValidCountry) {
+      focusRequester.requestFocus()
     }
   }
 
@@ -326,6 +339,7 @@ private fun PhoneNumberInputFields(
       },
       modifier = Modifier
         .weight(1f)
+        .focusRequester(focusRequester)
         .testTag(TestTags.PHONE_NUMBER_PHONE_FIELD),
       label = {
         Text(stringResource(R.string.RegistrationActivity_phone_number_description))

@@ -17,6 +17,7 @@ import assertk.assertions.isTrue
 import assertk.assertions.prop
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.runTest
@@ -46,22 +47,14 @@ class PhoneNumberEntryViewModelTest {
   @Before
   fun setup() {
     mockRepository = mockk(relaxed = true)
+    every { mockRepository.getDefaultRegionCode() } returns "US"
+
     parentState = MutableStateFlow(RegistrationFlowState())
     emittedStates = mutableListOf()
     stateEmitter = { state -> emittedStates.add(state) }
     emittedEvents = mutableListOf()
     parentEventEmitter = { event -> emittedEvents.add(event) }
     viewModel = PhoneNumberEntryViewModel(mockRepository, parentState, parentEventEmitter)
-  }
-
-  @Test
-  fun `initial state has default US region and country code`() {
-    val state = PhoneNumberEntryState()
-
-    assertThat(state.regionCode).isEqualTo("US")
-    assertThat(state.countryCode).isEqualTo("1")
-    assertThat(state.nationalNumber).isEqualTo("")
-    assertThat(state.formattedNumber).isEqualTo("")
   }
 
   @Test

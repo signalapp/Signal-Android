@@ -17,9 +17,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
 import org.signal.core.models.AccountEntropyPool
+import org.signal.core.util.E164Util
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.registration.NetworkController
@@ -29,6 +31,7 @@ import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
 import org.signal.registration.screens.EventDrivenViewModel
+import org.signal.registration.screens.countrycode.CountryUtils
 import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreResult
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryState.OneTimeEvent
 import org.signal.registration.screens.util.navigateTo
@@ -57,6 +60,20 @@ class PhoneNumberEntryViewModel(
     viewModelScope.launch {
       _state.value = state.value.copy(
         restoredSvrCredentials = repository.getRestoredSvrCredentials()
+      )
+      setDefaultCountry()
+    }
+  }
+
+  fun setDefaultCountry() {
+    val regionCode = repository.getDefaultRegionCode()
+    formatter = phoneNumberUtil.getAsYouTypeFormatter(regionCode)
+    _state.update {
+      it.copy(
+        regionCode = regionCode,
+        countryName = E164Util.getRegionDisplayName(regionCode).orElse(""),
+        countryEmoji = CountryUtils.countryToEmoji(regionCode),
+        countryCode = PhoneNumberUtil.getInstance().getCountryCodeForRegion(regionCode).toString()
       )
     }
   }
@@ -156,6 +173,8 @@ class PhoneNumberEntryViewModel(
     val formattedNumber = formatNumber(state.nationalNumber)
 
     return state.copy(
+      countryName = E164Util.getRegionDisplayName(regionCode).orElse(""),
+      countryEmoji = CountryUtils.countryToEmoji(regionCode).takeIf { regionCode != "ZZ" } ?: "",
       countryCode = sanitized,
       regionCode = regionCode,
       formattedNumber = formattedNumber
