@@ -310,13 +310,20 @@ class ConversationAdapterV2(
     if (multiselectPart.getMessageRecord().isInMemoryMessageRecord) { return }
 
     if (multiselectPart is MultiselectPart.CollapsedHead) {
+      val headId = multiselectPart.conversationMessage.messageRecord.collapsedHeadId
+      val totalChildCount = multiselectPart.conversationMessage.collapsedSize - 1
       val collapsedChildren: List<MultiselectPart> = mutableListOf<MultiselectPart>().apply {
         add(getConversationMessage(adapterPosition)!!.multiselectCollection.asDouble().bottomPart)
-        addAll(
-          (1 until multiselectPart.conversationMessage.collapsedSize).mapNotNull { i ->
-            getConversationMessage(adapterPosition - i)?.multiselectCollection?.asSingle()?.singlePart
+        var currentChildCount = 0
+        var offset = 1
+        while (currentChildCount < totalChildCount && adapterPosition - offset >= 0) {
+          val child = getConversationMessage(adapterPosition - offset)
+          if (child != null && child.messageRecord.collapsedHeadId == headId) {
+            add(child.multiselectCollection.asSingle().singlePart)
+            currentChildCount++
           }
-        )
+          offset++
+        }
       }
 
       val isSelecting = collapsedChildren.any { it !in _selected }
