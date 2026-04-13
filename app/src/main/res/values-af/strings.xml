@@ -986,7 +986,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Toets jou wagwoordfrase en verifieer dat dit ooreenkom</string>
     <string name="BackupsPreferenceFragment__turn_on">Skakel rugsteun aan</string>
     <string name="BackupsPreferenceFragment__turn_off">Skakel af</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Om 'n rugsteun te herwin, installeer 'n nuwe kopie van Signal. Maak die toepassing oop, tik op \"Herwin vanaf rugsteun\" en spoor dan 'n rugsteunlêer op. %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Om \'n rugsteun te herwin, installeer \'n nuwe kopie van Signal. Maak die toepassing oop, tik op \"Herwin vanaf rugsteun\" en spoor dan \'n rugsteunlêer op. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Vind meer uit</string>
     <string name="BackupsPreferenceFragment__in_progress">Aan die gang…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
@@ -3587,7 +3587,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal benodig Kontaktoestemming om jou kontakte te wys, maar dit is permanent geweier. Gaan asseblief na die toepassinginstelling-kieslys, kies \"Toestemmings\" en aktiveer \"Kontakte\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fout met herwinning van kontakte, gaan jou netwerkverbinding na</string>
     <string name="ContactSelectionListFragment_username_not_found">Gebruikersnaam nie gevind nie</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" is nie 'n Signal-gebruiker nie. Kontroleer asb. die gebruikersnaam en probeer weer."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" is nie \'n Signal-gebruiker nie. Kontroleer asb. die gebruikersnaam en probeer weer."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Jy hoef nie jouself by die groep te voeg nie</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Maksimum groepgrootte bereik.</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal-groepe kan \'n maksimum van %1$s lede hê.</string>
@@ -8203,7 +8203,7 @@
     <string name="UseNewOnDeviceBackups__not_now">Nie nou nie</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Om 'n rugsteun te herwin, installeer 'n nuwe kopie van Signal. Maak die toepassing oop, tik op \"Herwin rugsteun\" en vind dan die rugsteunlêer."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Om \'n rugsteun te herwin, installeer \'n nuwe kopie van Signal. Maak die toepassing oop, tik op \"Herwin rugsteun\" en vind dan die rugsteunlêer."</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Verifieer jou herwinsleutel</string>

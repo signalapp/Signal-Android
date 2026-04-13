@@ -141,7 +141,7 @@
     <!-- Subtitle for the choose backup folder card -->
     <string name="LocalBackupRestoreScreen__choose_folder_subtitle">اپنی ڈیوائس پر وہ فولڈر منتخب کریں جہاں آپ کا بیک اپ اسٹور ہے</string>
     <!-- Text shown while scanning for backups -->
-    <string name="LocalBackupRestoreScreen__scanning_folder">Looking for backups…</string>
+    <string name="LocalBackupRestoreScreen__scanning_folder">بیک اپس تلاش کیے جا رہے ہیں…</string>
     <!-- Description shown when a backup is found -->
     <string name="LocalBackupRestoreScreen__backup_found_description">اپنی ڈیوائس پر محفوظ کردہ بیک اپ فولڈر سے اپنے میسجز کو ری اسٹور کریں۔ اگر آپ ابھی ری اسٹور نہیں کرتے، تو آپ بعد میں ری اسٹور نہیں کر سکیں گے۔</string>
     <!-- Title for the latest backup card -->
@@ -157,21 +157,21 @@
     <!-- Warning text in the backup picker bottom sheet -->
     <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">پرانا بیک اپ منتخب کرنے سے میسجز یا میڈیا ضائع ہو سکتے ہیں۔</string>
     <!-- Title when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found">No backup found</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found">کوئی بیک اپ نہیں ملا</string>
     <!-- Description when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found_description">No Signal backup was found in the selected folder. Please try a different folder.</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found_description">منتخب کردہ فولڈر میں کوئی Signal بیک اپ نہیں ملا۔ براہ کرم کوئی دوسرا فولڈر آزمائیں۔</string>
     <!-- Button to try a different folder -->
-    <string name="LocalBackupRestoreScreen__try_different_folder">Try a different folder</string>
+    <string name="LocalBackupRestoreScreen__try_different_folder">کوئی دوسرا فولڈر آزمائیں</string>
     <!-- Title for V1 passphrase entry screen -->
     <string name="LocalBackupRestoreScreen__enter_backup_passphrase">بیک اپ فاسفریز داخل کریں</string>
     <!-- Description for V1 passphrase entry screen -->
-    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Your local backup passphrase is a 30-digit code required to recover your account and data.</string>
+    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">آپ کا لوکل بیک اپ پاسفریز ایک 30 ہندسوں کا کوڈ ہے جو آپ کے اکاؤنٹ اور ڈیٹا کی بحالی کے لیے ضروری ہے۔</string>
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">ریکوری کیی</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">بہت طویل ہے (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
-    <string name="LocalBackupRestoreScreen__no_passphrase">No passphrase?</string>
+    <string name="LocalBackupRestoreScreen__no_passphrase">پاس فریز نہیں ہے؟</string>
     <!-- Next button text -->
     <string name="LocalBackupRestoreScreen__next">اگلا</string>
     <!-- EnterAepScreen -->
@@ -188,11 +188,11 @@
     <!-- Error text when key is invalid -->
     <string name="EnterAepScreen__invalid_recovery_key">غلط ریکوری کیی</string>
     <!-- Text shown while preparing the restore -->
-    <string name="LocalBackupRestoreScreen__preparing_restore">Preparing restore…</string>
+    <string name="LocalBackupRestoreScreen__preparing_restore">ری اسٹور کی تیاری ہو رہی ہے…</string>
     <!-- Title shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_backup">بیک اپ ری اسٹور کیا جا رہا ہے</string>
     <!-- Description shown while restore is in progress -->
-    <string name="LocalBackupRestoreScreen__restoring_description">Please wait while your messages and data are being restored.</string>
+    <string name="LocalBackupRestoreScreen__restoring_description">براہ کرم انتظار کریں، آپ کے میسجز اور ڈیٹا ری اسٹور ہو رہے ہیں۔</string>
     <!-- Title shown when restore is complete -->
     <string name="LocalBackupRestoreScreen__restore_complete">بحالی مکمل</string>
     <!-- Description shown when restore is complete -->
@@ -206,9 +206,9 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">دوبارہ کوشش کریں</string>
     <!-- Button to link an existing Signal account to this device -->
-    <string name="WelcomeScreen__link_your_account">Link your account</string>
+    <string name="WelcomeScreen__link_your_account">اپنا اکاؤنٹ لنک کریں</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
-    <string name="WelcomeScreen__not_on_signal_yet">Not on Signal yet?</string>
+    <string name="WelcomeScreen__not_on_signal_yet">ابھی تک Signal پر نہیں ہیں؟</string>
     <!-- Button to create a new Signal account -->
-    <string name="WelcomeScreen__create_account">Create account</string>
+    <string name="WelcomeScreen__create_account">اکاؤنٹ بنائیں</string>
 </resources>

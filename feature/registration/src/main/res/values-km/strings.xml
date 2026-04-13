@@ -141,7 +141,7 @@
     <!-- Subtitle for the choose backup folder card -->
     <string name="LocalBackupRestoreScreen__choose_folder_subtitle">ជ្រើសរើសថតឯកសារនៅលើឧបករណ៍របស់អ្នកដែលការបម្រុងទុករបស់អ្នកត្រូវបានរក្សាទុក</string>
     <!-- Text shown while scanning for backups -->
-    <string name="LocalBackupRestoreScreen__scanning_folder">Looking for backups…</string>
+    <string name="LocalBackupRestoreScreen__scanning_folder">កំពុងស្វែងរកការបម្រុងទុក…</string>
     <!-- Description shown when a backup is found -->
     <string name="LocalBackupRestoreScreen__backup_found_description">ស្ដារសាររបស់អ្នកពីថតឯកសារបម្រុងទុកដែលអ្នកបានរក្សាទុកនៅលើឧបករណ៍របស់អ្នក។ ប្រសិនបើអ្នកមិនស្តារឥឡូវនេះទេ អ្នកនឹងមិនអាចស្តារនៅពេលក្រោយបានទេ។</string>
     <!-- Title for the latest backup card -->
@@ -157,21 +157,21 @@
     <!-- Warning text in the backup picker bottom sheet -->
     <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">ការជ្រើសរើសការបម្រុងទុកដែលយូរជាងនេះអាចនឹងបណ្តាលឱ្យបាត់បង់សារ ឬមេឌៀ។</string>
     <!-- Title when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found">No backup found</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found">រកមិនឃើញការបម្រុងទុកទេ</string>
     <!-- Description when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found_description">No Signal backup was found in the selected folder. Please try a different folder.</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found_description">រកមិនឃើញការបម្រុងទុក Signal នៅក្នុងថតឯកសារដែលបានជ្រើសរើសទេ។ សូមសាកល្បងថតឯកសារផ្សេង។</string>
     <!-- Button to try a different folder -->
-    <string name="LocalBackupRestoreScreen__try_different_folder">Try a different folder</string>
+    <string name="LocalBackupRestoreScreen__try_different_folder">សាកល្បងថតឯកសារផ្សេង</string>
     <!-- Title for V1 passphrase entry screen -->
     <string name="LocalBackupRestoreScreen__enter_backup_passphrase">បញ្ចូលឃ្លាសម្ងាត់បម្រុងទុក</string>
     <!-- Description for V1 passphrase entry screen -->
-    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Your local backup passphrase is a 30-digit code required to recover your account and data.</string>
+    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">ឃ្លាសម្ងាត់បម្រុងទុកក្នុងឧបករណ៍របស់អ្នកគឺជាលេខកូដ 30 ខ្ទង់ដែលតម្រូវឱ្យមានដើម្បីស្តារយកគណនី និងទិន្នន័យរបស់អ្នកមកវិញ។</string>
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">សោស្តារ</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">វែងពេក (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
-    <string name="LocalBackupRestoreScreen__no_passphrase">No passphrase?</string>
+    <string name="LocalBackupRestoreScreen__no_passphrase">មិនមានឃ្លាសម្ងាត់?</string>
     <!-- Next button text -->
     <string name="LocalBackupRestoreScreen__next">បន្ទាប់</string>
     <!-- EnterAepScreen -->
@@ -188,11 +188,11 @@
     <!-- Error text when key is invalid -->
     <string name="EnterAepScreen__invalid_recovery_key">សោស្តារមិនមានសុពលភាព</string>
     <!-- Text shown while preparing the restore -->
-    <string name="LocalBackupRestoreScreen__preparing_restore">Preparing restore…</string>
+    <string name="LocalBackupRestoreScreen__preparing_restore">កំពុងរៀបចំការស្ដារ…</string>
     <!-- Title shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_backup">កំពុងស្ដារការបម្រុងទុក</string>
     <!-- Description shown while restore is in progress -->
-    <string name="LocalBackupRestoreScreen__restoring_description">Please wait while your messages and data are being restored.</string>
+    <string name="LocalBackupRestoreScreen__restoring_description">សូមរង់ចាំខណៈពេលដែលសារ និងទិន្នន័យរបស់អ្នកកំពុងត្រូវបានស្ដារ។</string>
     <!-- Title shown when restore is complete -->
     <string name="LocalBackupRestoreScreen__restore_complete">ការស្តារបានបញ្ចប់</string>
     <!-- Description shown when restore is complete -->
@@ -206,9 +206,9 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">ព្យាយាមម្តងទៀត</string>
     <!-- Button to link an existing Signal account to this device -->
-    <string name="WelcomeScreen__link_your_account">Link your account</string>
+    <string name="WelcomeScreen__link_your_account">ភ្ជាប់គណនីរបស់អ្នក</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
-    <string name="WelcomeScreen__not_on_signal_yet">Not on Signal yet?</string>
+    <string name="WelcomeScreen__not_on_signal_yet">មិនទាន់នៅលើ Signal ទេ?</string>
     <!-- Button to create a new Signal account -->
-    <string name="WelcomeScreen__create_account">Create account</string>
+    <string name="WelcomeScreen__create_account">បង្កើតគណនី</string>
 </resources>

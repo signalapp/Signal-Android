@@ -141,7 +141,7 @@
     <!-- Subtitle for the choose backup folder card -->
     <string name="LocalBackupRestoreScreen__choose_folder_subtitle">നിങ്ങളുടെ ഉപകരണത്തിലെ ബാക്കപ്പ് സൂക്ഷിച്ചിരിക്കുന്ന ഫോൾഡർ തിരഞ്ഞെടുക്കുക</string>
     <!-- Text shown while scanning for backups -->
-    <string name="LocalBackupRestoreScreen__scanning_folder">Looking for backups…</string>
+    <string name="LocalBackupRestoreScreen__scanning_folder">ബാക്കപ്പുകൾക്കായി തിരയുന്നു…</string>
     <!-- Description shown when a backup is found -->
     <string name="LocalBackupRestoreScreen__backup_found_description">നിങ്ങളുടെ ഉപകരണത്തിൽ സംരക്ഷിച്ചിരിക്കുന്ന ബാക്കപ്പ് ഫോൾഡറിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങൾ പുനഃസ്ഥാപിക്കുക. നിങ്ങൾ ഇപ്പോൾ പുനഃസ്ഥാപിച്ചില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല.</string>
     <!-- Title for the latest backup card -->
@@ -149,7 +149,7 @@
     <!-- Label for a legacy backup type -->
     <string name="LocalBackupRestoreScreen__legacy_backup">Legacy backup</string>
     <!-- Restore backup button text -->
-    <string name="LocalBackupRestoreScreen__restore_backup">ബാക്കപ്പ് വീണ്ടെടുക്കൂ</string>
+    <string name="LocalBackupRestoreScreen__restore_backup">ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുക</string>
     <!-- Link to choose an earlier backup -->
     <string name="LocalBackupRestoreScreen__choose_earlier_backup">നേരത്തെയുള്ള ഒരു ബാക്കപ്പ് തിരഞ്ഞെടുക്കുക</string>
     <!-- Title for the backup picker bottom sheet -->
@@ -157,28 +157,28 @@
     <!-- Warning text in the backup picker bottom sheet -->
     <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">പഴയ ബാക്കപ്പ് തിരഞ്ഞെടുക്കുന്നത് സന്ദേശങ്ങളോ മീഡിയയോ നഷ്ടപ്പെടാൻ കാരണമായേക്കാം.</string>
     <!-- Title when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found">No backup found</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found">ബാക്കപ്പ് ഒന്നും കണ്ടെത്താനായില്ല</string>
     <!-- Description when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found_description">No Signal backup was found in the selected folder. Please try a different folder.</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found_description">തിരഞ്ഞെടുത്ത ഫോൾഡറിൽ Signal ബാക്കപ്പ് ഒന്നും കണ്ടെത്താനായില്ല. മറ്റൊരു ഫോൾഡർ പരീക്ഷിക്കൂ.</string>
     <!-- Button to try a different folder -->
-    <string name="LocalBackupRestoreScreen__try_different_folder">Try a different folder</string>
+    <string name="LocalBackupRestoreScreen__try_different_folder">മറ്റൊരു ഫോൾഡർ പരീക്ഷിക്കുക</string>
     <!-- Title for V1 passphrase entry screen -->
-    <string name="LocalBackupRestoreScreen__enter_backup_passphrase">ബാക്കപ്പിന്റെ രഹസ്യവാചകം നൽകുക</string>
+    <string name="LocalBackupRestoreScreen__enter_backup_passphrase">ബാക്കപ്പിന്റെ പാസ്ഫ്രെയ്സ് നൽകുക</string>
     <!-- Description for V1 passphrase entry screen -->
-    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Your local backup passphrase is a 30-digit code required to recover your account and data.</string>
+    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">നിങ്ങളുടെ അക്കൗണ്ടും ഡാറ്റയും വീണ്ടെടുക്കാൻ ആവശ്യമായ 30 അക്ക കോഡാണ് നിങ്ങളുടെ ലോക്കൽ ബാക്കപ്പ് പാസ്ഫ്രെയ്സ്.</string>
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">വീണ്ടെടുക്കൽ കീ</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">വളരെ നീണ്ടത് (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
-    <string name="LocalBackupRestoreScreen__no_passphrase">No passphrase?</string>
+    <string name="LocalBackupRestoreScreen__no_passphrase">പാസ്ഫ്രെയ്സ് ഇല്ലേ?</string>
     <!-- Next button text -->
     <string name="LocalBackupRestoreScreen__next">അടുത്തത്</string>
     <!-- EnterAepScreen -->
     <!-- Title for recovery key entry screen -->
     <string name="EnterAepScreen__enter_your_recovery_key">നിങ്ങളുടെ വീണ്ടെടുക്കൽ കീ നൽകുക</string>
     <!-- Description for recovery key entry screen -->
-    <string name="EnterAepScreen__your_recovery_key_is_a_64_character_code">നിങ്ങളുടെ അക്കൗണ്ടും ഡാറ്റയും വീണ്ടെടുക്കാൻ ആവശ്യമായ 64 പ്രതീക കോഡാണ് നിങ്ങളുടെ ബാക്കപ്പ് കീ.</string>
+    <string name="EnterAepScreen__your_recovery_key_is_a_64_character_code">നിങ്ങളുടെ അക്കൗണ്ടും ഡാറ്റയും വീണ്ടെടുക്കാൻ ആവശ്യമായ 64 പ്രതീക കോഡാണ് നിങ്ങളുടെ വീണ്ടെടുക്കൽ കീ.</string>
     <!-- Label for the recovery key text field -->
     <string name="EnterAepScreen__recovery_key">വീണ്ടെടുക്കൽ കീ</string>
     <!-- Link for users who don\'t have their recovery key -->
@@ -188,11 +188,11 @@
     <!-- Error text when key is invalid -->
     <string name="EnterAepScreen__invalid_recovery_key">വീണ്ടെടുക്കൽ കീ അസാധുവാണ്</string>
     <!-- Text shown while preparing the restore -->
-    <string name="LocalBackupRestoreScreen__preparing_restore">Preparing restore…</string>
+    <string name="LocalBackupRestoreScreen__preparing_restore">പുനഃസ്ഥാപിക്കാൻ തയാറെടുക്കുന്നു…</string>
     <!-- Title shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_backup">ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുന്നു</string>
     <!-- Description shown while restore is in progress -->
-    <string name="LocalBackupRestoreScreen__restoring_description">Please wait while your messages and data are being restored.</string>
+    <string name="LocalBackupRestoreScreen__restoring_description">നിങ്ങളുടെ സന്ദേശങ്ങളും ഡാറ്റയും പുനഃസ്ഥാപിക്കുന്നതുവരെ കാത്തിരിക്കൂ.</string>
     <!-- Title shown when restore is complete -->
     <string name="LocalBackupRestoreScreen__restore_complete">പുനഃസ്ഥാപിക്കൽ പൂർത്തിയായി</string>
     <!-- Description shown when restore is complete -->
@@ -206,9 +206,9 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">വീണ്ടും ശ്രമിക്കുക</string>
     <!-- Button to link an existing Signal account to this device -->
-    <string name="WelcomeScreen__link_your_account">Link your account</string>
+    <string name="WelcomeScreen__link_your_account">നിങ്ങളുടെ അക്കൗണ്ട് ലിങ്ക് ചെയ്യുക</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
-    <string name="WelcomeScreen__not_on_signal_yet">Not on Signal yet?</string>
+    <string name="WelcomeScreen__not_on_signal_yet">ഇതുവരെ Signal-ൽ അംഗമായില്ലേ?</string>
     <!-- Button to create a new Signal account -->
-    <string name="WelcomeScreen__create_account">Create account</string>
+    <string name="WelcomeScreen__create_account">അക്കൗണ്ട് സൃഷ്ടിക്കുക</string>
 </resources>
