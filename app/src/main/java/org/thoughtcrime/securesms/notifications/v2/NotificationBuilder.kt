@@ -11,6 +11,7 @@ import android.text.TextUtils
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
 import androidx.core.app.RemoteInput
 import androidx.core.content.LocusIdCompat
@@ -83,6 +84,8 @@ sealed class NotificationBuilder(protected val context: Context) {
   protected abstract fun addMarkAsReadActionActual(state: NotificationState)
   protected abstract fun addMessagesActual(conversation: NotificationConversation, includeShortcut: Boolean)
   protected abstract fun addMessagesActual(state: NotificationState)
+
+  @WorkerThread
   protected abstract fun setBubbleMetadataActual(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState)
   protected abstract fun setLights(@ColorInt color: Int, onTime: Int, offTime: Int)
 
@@ -154,6 +157,7 @@ sealed class NotificationBuilder(protected val context: Context) {
     addMessagesActual(state)
   }
 
+  @WorkerThread
   fun setBubbleMetadata(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState) {
     if (privacy.isDisplayContact && isNotLocked) {
       setBubbleMetadataActual(conversation, bubbleState)
@@ -360,15 +364,18 @@ sealed class NotificationBuilder(protected val context: Context) {
       }
     }
 
+    @WorkerThread
     override fun setBubbleMetadataActual(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState) {
       if (Build.VERSION.SDK_INT < ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
         return
       }
 
+      val wallpaper = conversation.recipient.wallpaper
+      wallpaper?.prefetch(context, 250)
       val intent: PendingIntent? = NotificationPendingIntentHelper.getActivity(
         context,
         0,
-        ConversationIntents.createBubbleIntent(context, conversation.recipient.id, conversation.thread.threadId),
+        ConversationIntents.createBubbleIntent(context, conversation.recipient.id, conversation.thread.threadId, wallpaper != null),
         mutable()
       )
 

@@ -480,8 +480,7 @@ class ConversationFragment :
       repository = ConversationRepository(localContext = requireContext(), isInBubble = args.conversationScreenType == ConversationScreenType.BUBBLE),
       recipientRepository = conversationRecipientRepository,
       messageRequestRepository = messageRequestRepository,
-      scheduledMessagesRepository = ScheduledMessagesRepository(),
-      initialChatColors = args.chatColors
+      scheduledMessagesRepository = ScheduledMessagesRepository()
     )
   }
 
@@ -687,8 +686,6 @@ class ConversationFragment :
       incognito = args.isIncognito
     )
     conversationToolbarOnScrollHelper.attach(binding.conversationItemRecycler)
-    presentWallpaper(args.wallpaper)
-    presentChatColors(args.chatColors)
     presentConversationTitle(viewModel.recipientSnapshot)
     presentGroupConversationSubtitle(createGroupSubtitleString(viewModel.titleViewParticipantsSnapshot))
     presentActionBarMenu()
@@ -1683,6 +1680,11 @@ class ConversationFragment :
     presentChatColors(recipient.chatColors)
     invalidateOptionsMenu()
     updateMessageRequestAcceptedState(!viewModel.hasMessageRequestState)
+
+    recyclerViewColorizer.setChatColors(recipient.chatColors)
+    if (adapter.onHasWallpaperChanged(hasWallpaper = recipient.wallpaper != null)) {
+      conversationItemDecorations.hasWallpaper = recipient.wallpaper != null
+    }
   }
 
   @MainThread
@@ -2149,7 +2151,7 @@ class ConversationFragment :
       lifecycleOwner = viewLifecycleOwner,
       requestManager = Glide.with(this),
       clickListener = ConversationItemClickListener(),
-      hasWallpaper = args.wallpaper != null,
+      hasWallpaper = args.hasWallpaper,
       colorizer = colorizer,
       startExpirationTimeout = viewModel::startExpirationTimeout,
       chatColorsDataProvider = viewModel::chatColorsSnapshot,
@@ -2166,7 +2168,7 @@ class ConversationFragment :
     adapter.setPagingController(viewModel.pagingController)
 
     recyclerViewColorizer = RecyclerViewColorizer(binding.conversationItemRecycler)
-    recyclerViewColorizer.setChatColors(args.chatColors)
+    viewModel.recipientSnapshot?.chatColors?.let { recyclerViewColorizer.setChatColors(it) }
 
     binding.conversationItemRecycler.adapter = ConcatAdapter(typingIndicatorAdapter, adapter)
     multiselectItemDecoration = MultiselectItemDecoration(
@@ -2203,7 +2205,7 @@ class ConversationFragment :
     threadHeaderMarginDecoration.toolbarMargin = statusBarInset + resources.getDimensionPixelSize(R.dimen.signal_m3_toolbar_height) + 16.dp
     binding.conversationItemRecycler.addItemDecoration(threadHeaderMarginDecoration)
 
-    conversationItemDecorations = ConversationItemDecorations(hasWallpaper = args.wallpaper != null)
+    conversationItemDecorations = ConversationItemDecorations(hasWallpaper = args.hasWallpaper)
     binding.conversationItemRecycler.addItemDecoration(conversationItemDecorations, 0)
   }
 

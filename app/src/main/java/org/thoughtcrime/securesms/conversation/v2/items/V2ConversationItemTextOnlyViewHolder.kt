@@ -252,7 +252,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       hasProcessedSupportedPayload = true
     }
 
-    if (hasProcessedSupportedPayload) {
+    if (hasProcessedSupportedPayload && V2Payload.WALLPAPER !in payload) {
       return
     }
 

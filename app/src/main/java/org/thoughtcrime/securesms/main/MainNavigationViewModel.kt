@@ -253,13 +253,14 @@ class MainNavigationViewModel(
   }
 
   private fun goToConversation(args: ConversationArgs) = viewModelScope.launch {
-    withContext(Dispatchers.IO) {
+    val updatedArgs = withContext(Dispatchers.IO) {
       val wallpaper = Recipient.resolved(args.recipientId).wallpaper
       if (wallpaper?.prefetch(AppDependencies.application, 250) == false) {
         Log.w(TAG, "goToConversation: Failed to prefetch wallpaper.")
       }
+      args.copy(hasWallpaper = wallpaper != null)
     }
-    internalDetailLocation.emit(MainNavigationDetailLocation.Chats.Conversation(args))
+    internalDetailLocation.emit(MainNavigationDetailLocation.Chats.Conversation(updatedArgs))
   }
 
   fun goToCameraFirstStoryCapture() {

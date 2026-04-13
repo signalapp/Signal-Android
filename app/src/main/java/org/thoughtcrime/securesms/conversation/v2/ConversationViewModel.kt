@@ -59,7 +59,6 @@ import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ScheduledMessagesRepository
-import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.plaintext.PlaintextExportRepository
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
@@ -112,7 +111,6 @@ import kotlin.time.Duration
 class ConversationViewModel(
   val threadId: Long,
   requestedStartingPosition: Int,
-  initialChatColors: ChatColors,
   private val repository: ConversationRepository,
   recipientRepository: ConversationRecipientRepository,
   messageRequestRepository: MessageRequestRepository,
@@ -160,7 +158,7 @@ class ConversationViewModel(
     .observeOn(AndroidSchedulers.mainThread())
 
   private val chatBounds: BehaviorSubject<Rect> = BehaviorSubject.create()
-  private val chatColors: RxStore<ChatColorsDrawable.ChatColorsData> = RxStore(ChatColorsDrawable.ChatColorsData(initialChatColors, null))
+  private val chatColors: RxStore<ChatColorsDrawable.ChatColorsData> = RxStore(ChatColorsDrawable.ChatColorsData(null, null))
   val chatColorsSnapshot: ChatColorsDrawable.ChatColorsData get() = chatColors.state
 
   @Volatile
