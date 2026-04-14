@@ -1,0 +1,24 @@
+version: 2
+updates:
+  # Automatically keep GitHub Actions SHA-pinned to the latest commit SHAs.
+  # Dependabot will update both the SHA and the inline version comment (e.g. # v6)
+  # while leaving any extra documentation comments intact.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+    commit-message:
+      prefix: "ci"
+    groups:
+      actions:
+        patterns:
+          - "actions/*"
+      gradle-actions:
+        patterns:
+          - "gradle/*"
+      peter-evans:
+        patterns:
+          - "peter-evans/*"
