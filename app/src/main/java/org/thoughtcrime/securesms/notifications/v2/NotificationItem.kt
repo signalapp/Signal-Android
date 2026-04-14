@@ -302,7 +302,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
     }
 
     if (record is MmsMessageRecord) {
-      return (record.isMmsNotification || record.slideDeck.slides.isEmpty()) && record.sharedContacts.isEmpty()
+      return record.sharedContacts.isEmpty()
     }
 
     return true
