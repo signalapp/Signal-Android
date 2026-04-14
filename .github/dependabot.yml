@@ -22,3 +22,6 @@ updates:
       peter-evans:
         patterns:
           - "peter-evans/*"
+      usefulness:
+        patterns:
+          - "usefulness/*"
