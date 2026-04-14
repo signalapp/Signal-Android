@@ -47,7 +47,7 @@ import kotlin.math.max
 @OptIn(UnstableApi::class)
 class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer) : MediaSession.Callback {
   companion object {
-    private val SUPPORTED_ACTIONS = Player.Commands.Builder()
+    private val INTERNAL_PLAYER_COMMANDS = Player.Commands.Builder()
       .addAll(
         Player.COMMAND_PLAY_PAUSE,
         Player.COMMAND_PREPARE,
@@ -76,10 +76,31 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
       )
       .build()
 
-    private val CUSTOM_COMMANDS = SessionCommands.Builder()
+    private val EXTERNAL_PLAYER_COMMANDS = Player.Commands.Builder()
+      .addAll(
+        Player.COMMAND_PLAY_PAUSE,
+        Player.COMMAND_PREPARE,
+        Player.COMMAND_STOP,
+        Player.COMMAND_SEEK_TO_DEFAULT_POSITION,
+        Player.COMMAND_SEEK_IN_CURRENT_MEDIA_ITEM,
+        Player.COMMAND_SEEK_TO_PREVIOUS_MEDIA_ITEM,
+        Player.COMMAND_SEEK_TO_PREVIOUS,
+        Player.COMMAND_SEEK_TO_NEXT_MEDIA_ITEM,
+        Player.COMMAND_SEEK_TO_NEXT,
+        Player.COMMAND_SEEK_BACK,
+        Player.COMMAND_SEEK_FORWARD,
+        Player.COMMAND_GET_CURRENT_MEDIA_ITEM,
+        Player.COMMAND_GET_TIMELINE,
+        Player.COMMAND_GET_METADATA,
+        Player.COMMAND_GET_AUDIO_ATTRIBUTES
+      )
+      .build()
+
+    private val INTERNAL_SESSION_COMMANDS = SessionCommands.Builder()
       .add(SessionCommand(VoiceNotePlaybackService.ACTION_NEXT_PLAYBACK_SPEED, Bundle.EMPTY))
       .add(SessionCommand(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, Bundle.EMPTY))
       .build()
+    private val EXTERNAL_SESSION_COMMANDS = SessionCommands.Builder().build()
     private const val DEFAULT_PLAYBACK_SPEED = 1f
     private const val LIMIT: Long = 5
   }
@@ -94,16 +115,28 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
   private var latestUri = Uri.EMPTY
 
   override fun onConnect(session: MediaSession, controller: MediaSession.ControllerInfo): MediaSession.ConnectionResult {
-    return MediaSession.ConnectionResult.accept(CUSTOM_COMMANDS, SUPPORTED_ACTIONS)
+    return when (controllerAccessLevel(controller)) {
+      VoiceNoteControllerAccessLevel.INTERNAL -> MediaSession.ConnectionResult.accept(INTERNAL_SESSION_COMMANDS, INTERNAL_PLAYER_COMMANDS)
+      VoiceNoteControllerAccessLevel.TRUSTED_EXTERNAL -> MediaSession.ConnectionResult.accept(EXTERNAL_SESSION_COMMANDS, EXTERNAL_PLAYER_COMMANDS)
+      VoiceNoteControllerAccessLevel.REJECTED -> {
+        Log.w(TAG, "Rejecting untrusted voice note controller. package=${controller.packageName}")
+        MediaSession.ConnectionResult.reject()
+      }
+    }
   }
 
   override fun onPostConnect(session: MediaSession, controller: MediaSession.ControllerInfo) {
-    if (customLayout.isNotEmpty() && controller.controllerVersion != 0) {
+    if (controllerAccessLevel(controller) == VoiceNoteControllerAccessLevel.INTERNAL && customLayout.isNotEmpty() && controller.controllerVersion != 0) {
       session.setCustomLayout(controller, customLayout)
     }
   }
 
   override fun onAddMediaItems(mediaSession: MediaSession, controller: MediaSession.ControllerInfo, mediaItems: MutableList<MediaItem>): ListenableFuture<MutableList<MediaItem>> {
+    if (controllerAccessLevel(controller) != VoiceNoteControllerAccessLevel.INTERNAL) {
+      Log.w(TAG, "Ignoring playlist mutation from non-internal controller. package=${controller.packageName}")
+      return Futures.immediateFuture(mutableListOf())
+    }
+
     mediaItems.forEach {
       val uri = it.localConfiguration?.uri
       if (uri != null) {
@@ -179,6 +212,11 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
   }
 
   override fun onCustomCommand(session: MediaSession, controller: MediaSession.ControllerInfo, customCommand: SessionCommand, args: Bundle): ListenableFuture<SessionResult> {
+    if (controllerAccessLevel(controller) != VoiceNoteControllerAccessLevel.INTERNAL) {
+      Log.w(TAG, "Rejecting custom command from non-internal controller. package=${controller.packageName} action=${customCommand.customAction}")
+      return Futures.immediateFuture(SessionResult(SessionResult.RESULT_ERROR_PERMISSION_DENIED))
+    }
+
     return when (customCommand.customAction) {
       VoiceNotePlaybackService.ACTION_NEXT_PLAYBACK_SPEED -> incrementPlaybackSpeed(args)
       VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM -> setAudioStream(args)
@@ -280,5 +318,9 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
 
   private fun List<MessageRecord>.messageRecordsToVoiceNoteMediaItems(): List<MediaItem> {
     return this.takeWhile { it.hasAudio() }.mapNotNull { VoiceNoteMediaItemFactory.buildMediaItem(context, it) }
+  }
+
+  private fun controllerAccessLevel(controller: MediaSession.ControllerInfo): VoiceNoteControllerAccessLevel {
+    return VoiceNoteControllerAccess.levelFor(context, controller)
   }
 }
