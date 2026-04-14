@@ -35,15 +35,16 @@ import java.util.function.Predicate
 
 class JobDatabase(
   application: Application,
-  databaseSecret: DatabaseSecret
+  databaseSecret: DatabaseSecret,
+  name: String = DATABASE_NAME
 ) : SQLiteOpenHelper(
   application,
-  DATABASE_NAME,
+  name,
   databaseSecret.asString(),
   null,
   DATABASE_VERSION,
   0,
-  SqlCipherDeletingErrorHandler(DATABASE_NAME),
+  SqlCipherDeletingErrorHandler(name),
   SqlCipherDatabaseHook(),
   true
 ),
@@ -528,6 +529,26 @@ class JobDatabase(
         }
       }
       return instance!!
+    }
+
+    /**
+     * Tears down the current instance and reinitializes with a new database name/path.
+     * Used during account switching to point the singleton at a different account's job database.
+     */
+    @JvmStatic
+    fun reinit(context: Application, name: String) {
+      synchronized(JobDatabase::class.java) {
+        Log.i(TAG, "reinit() -- Switching job database to: $name")
+        val old = instance
+        instance = null
+        try {
+          old?.close()
+        } catch (e: Exception) {
+          Log.w(TAG, "Error closing old job database during reinit", e)
+        }
+        SqlCipherLibraryLoader.load()
+        instance = JobDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context), name)
+      }
     }
   }
 }

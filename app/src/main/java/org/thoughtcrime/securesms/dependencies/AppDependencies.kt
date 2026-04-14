@@ -10,6 +10,7 @@ import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.concurrent.DeadlockDetector
 import org.signal.core.util.concurrent.LatestValueObservable
 import org.signal.core.util.orNull
+import org.signal.core.util.logging.Log
 import org.signal.core.util.resettableLazy
 import org.signal.glide.SignalGlideDependencies
 import org.signal.libsignal.net.Network
@@ -419,6 +420,32 @@ object AppDependencies {
   @JvmStatic
   fun startNetwork() {
     networkModule.openConnections()
+  }
+
+  /**
+   * Performs a full teardown of all account-scoped dependencies in preparation for an account switch.
+   * This must be called BEFORE the underlying databases are reinited, as it flushes pending work
+   * and closes connections that reference the current account's data.
+   *
+   * After calling this, the caller should:
+   * 1. Reinit SignalDatabase, KeyValueDatabase, SignalStore, JobDatabase
+   * 2. Call [startNetwork] to reconnect with new credentials
+   * 3. Clear and re-warm the recipient cache
+   */
+  @JvmStatic
+  fun resetAllForAccountSwitch() {
+    Log.i("AppDependencies", "resetAllForAccountSwitch() -- Tearing down all account-scoped dependencies")
+
+    // 1. Close network connections (WebSocket, API clients)
+    networkModule.closeConnections()
+    _networkModule.reset()
+
+    // 2. Clear recipient cache (reads from the now-stale database)
+    recipientCache.clear()
+
+    // 3. Flush the database observer (UI will re-register)
+    // DatabaseObserver doesn't have a clear-all, but observers are lifecycle-bound
+    // and will naturally re-register when the UI rebuilds.
   }
 
   fun onSystemHttpProxyChange(systemHttpProxy: HttpProxy?): Boolean {

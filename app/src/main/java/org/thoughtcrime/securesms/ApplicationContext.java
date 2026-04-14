@@ -44,11 +44,15 @@ import org.signal.glide.SignalGlideCodecs;
 import org.signal.libsignal.net.ChatServiceException;
 import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider;
 import org.signal.ringrtc.CallManager;
+import org.thoughtcrime.securesms.account.AccountFileManager;
+import org.thoughtcrime.securesms.account.AccountRegistry;
+import org.thoughtcrime.securesms.account.AccountSwitcher;
 import org.thoughtcrime.securesms.apkupdate.ApkUpdateRefreshListener;
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
 import org.thoughtcrime.securesms.backup.v2.BackupRepository;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
+import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader;
@@ -161,14 +165,31 @@ public class ApplicationContext extends Application implements AppForegroundObse
 
     super.onCreate();
 
-    AppStartup.getInstance().addBlocking("sqlcipher-init", () -> {
+    AppStartup.getInstance().addBlocking("account-migration", () -> {
                 SqlCipherLibraryLoader.load();
-                SignalDatabase.init(this,
-                                    DatabaseSecretProvider.getOrCreateDatabaseSecret(this),
-                                    AttachmentSecretProvider.getInstance(this).getOrCreateAttachmentSecret());
+                AccountSwitcher.migrateToMultiAccountIfNeeded(this);
+              })
+              .addBlocking("sqlcipher-init", () -> {
+                AccountRegistry registry = AccountRegistry.getInstance(this);
+                AccountRegistry.AccountEntry activeAccount = registry.getActiveAccount();
+                if (activeAccount != null) {
+                  String signalDbPath = AccountFileManager.INSTANCE.getAccountDatabasePath(this, activeAccount.getAccountId(), "signal.db");
+                  String kvDbPath = AccountFileManager.INSTANCE.getAccountDatabasePath(this, activeAccount.getAccountId(), "signal-key-value.db");
+                  SignalDatabase.init(this,
+                                      DatabaseSecretProvider.getOrCreateDatabaseSecret(this),
+                                      AttachmentSecretProvider.getInstance(this).getOrCreateAttachmentSecret(),
+                                      signalDbPath);
+                  KeyValueDatabase.reinit(this, kvDbPath);
+                } else {
+                  // No account yet (fresh install) -- use default paths until registration
+                  SignalDatabase.init(this,
+                                      DatabaseSecretProvider.getOrCreateDatabaseSecret(this),
+                                      AttachmentSecretProvider.getInstance(this).getOrCreateAttachmentSecret());
+                }
                 Logger.setTarget(SqlCipherLogTarget.INSTANCE);
               })
               .addBlocking("signal-store", () -> SignalStore.init(this))
+              .addBlocking("account-registry-sync", () -> AccountSwitcher.syncRegistryWithActiveAccount(this))
               .addBlocking("logging", () -> {
                 initializeLogging();
                 Log.i(TAG, "onCreate()");

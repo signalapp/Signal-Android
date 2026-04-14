@@ -94,6 +94,7 @@ interface MainToolbarCallback {
   fun onFilterUnreadChatsClick()
   fun onClearUnreadChatsFilterClick()
   fun onSettingsClick()
+  fun onAccountSwitcherClick()
   fun onNotificationProfileClick()
   fun onProxyClick()
   fun onSearchClick()
@@ -118,6 +119,7 @@ interface MainToolbarCallback {
     override fun onFilterUnreadChatsClick() = Unit
     override fun onClearUnreadChatsFilterClick() = Unit
     override fun onSettingsClick() = Unit
+    override fun onAccountSwitcherClick() = Unit
     override fun onNotificationProfileClick() = Unit
     override fun onProxyClick() = Unit
     override fun onSearchClick() = Unit
@@ -401,7 +403,7 @@ private fun PrimaryToolbar(
             .fillMaxSize()
             .clickable(
               enabled = enabled,
-              onClick = callback::onSettingsClick,
+              onClick = callback::onAccountSwitcherClick,
               interactionSource = interactionSource,
               indication = ripple(radius = 14.dp)
             )

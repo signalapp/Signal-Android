@@ -61,6 +61,27 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
     return instance;
   }
 
+  /**
+   * Tears down the current instance and reinitializes with a new database name/path.
+   * Used during account switching to point the singleton at a different account's key-value store.
+   */
+  public static void reinit(@NonNull Application context, @NonNull String name) {
+    synchronized (KeyValueDatabase.class) {
+      Log.i(TAG, "reinit() -- Switching key-value database to: " + name);
+      KeyValueDatabase old = instance;
+      instance = null;
+      if (old != null) {
+        try {
+          old.close();
+        } catch (Exception e) {
+          Log.w(TAG, "Error closing old key-value database during reinit", e);
+        }
+      }
+      SqlCipherLibraryLoader.load();
+      instance = new KeyValueDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context), name);
+    }
+  }
+
   public static boolean exists(Context context) {
     return context.getDatabasePath(DATABASE_NAME).exists();
   }

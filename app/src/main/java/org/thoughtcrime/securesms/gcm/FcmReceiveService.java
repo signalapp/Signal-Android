@@ -10,6 +10,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.account.AccountRegistry;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.SubmitRateLimitPushChallengeJob;
@@ -62,6 +63,10 @@ public class FcmReceiveService extends FirebaseMessagingService {
       return;
     }
 
+    // Register the new FCM token with the active account.
+    // TODO: For full multi-account support, this token should also be registered
+    // with all background accounts' servers. Each account needs the same FCM token
+    // so that any incoming message for any account can wake the app.
     AppDependencies.getJobManager().add(new FcmRefreshJob());
   }
 

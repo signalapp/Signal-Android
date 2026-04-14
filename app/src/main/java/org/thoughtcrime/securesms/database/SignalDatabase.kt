@@ -258,6 +258,45 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       }
     }
 
+    /**
+     * Initializes the database with a specific name (path). Used for multi-account support
+     * where each account has its own signal.db in a separate directory.
+     */
+    @JvmStatic
+    fun init(application: Application, databaseSecret: DatabaseSecret, attachmentSecret: AttachmentSecret, name: String) {
+      if (instance == null) {
+        synchronized(SignalDatabase::class.java) {
+          if (instance == null) {
+            instance = SignalDatabase(application, databaseSecret, attachmentSecret, name)
+          }
+        }
+      }
+    }
+
+    /**
+     * Tears down the current database instance and reinitializes with a new database path.
+     * Used during account switching to point the singleton at a different account's data.
+     *
+     * IMPORTANT: All references to table objects (e.g., SignalDatabase.messages) are re-resolved
+     * through the companion getters on every access, so they will automatically point to the new
+     * instance after reinit. Code that caches a MessageTable reference across a switch boundary
+     * will break -- this is by design and should be audited.
+     */
+    @JvmStatic
+    fun reinit(application: Application, databaseSecret: DatabaseSecret, attachmentSecret: AttachmentSecret, name: String) {
+      synchronized(SignalDatabase::class.java) {
+        Log.i(TAG, "reinit() -- Switching database to: $name")
+        val old = instance
+        instance = null
+        try {
+          old?.close()
+        } catch (e: Exception) {
+          Log.w(TAG, "Error closing old database during reinit", e)
+        }
+        instance = SignalDatabase(application, databaseSecret, attachmentSecret, name)
+      }
+    }
+
     @JvmStatic
     @VisibleForTesting
     fun setSignalDatabaseInstanceForTesting(signalDatabase: SignalDatabase) {

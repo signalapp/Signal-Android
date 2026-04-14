@@ -95,7 +95,10 @@ import org.signal.core.util.getSerializableCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
 import org.signal.mediasend.MediaSendActivityContract
+import org.thoughtcrime.securesms.account.AccountSwitcher
+import org.thoughtcrime.securesms.account.AccountSwitcherBottomSheet
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
+import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState
 import org.thoughtcrime.securesms.backup.v2.ui.CouldNotCompleteBackupRestoreSheet
 import org.thoughtcrime.securesms.backup.v2.ui.verify.VerifyBackupKeyActivity
@@ -206,7 +209,8 @@ class MainActivity :
   ConversationListFragment.Callback,
   MainNavigationRouter,
   CallLogFragment.Callback,
-  GooglePayComponent {
+  GooglePayComponent,
+  AccountSwitcherBottomSheet.Callback {
 
   companion object {
     private val TAG = Log.tag(MainActivity::class)
@@ -1197,6 +1201,10 @@ class MainActivity :
       openSettings.launch(AppSettingsActivity.home(this@MainActivity))
     }
 
+    override fun onAccountSwitcherClick() {
+      AccountSwitcherBottomSheet.show(supportFragmentManager)
+    }
+
     override fun onNotificationProfileClick() {
       NotificationProfileSelectionFragment.show(supportFragmentManager)
     }
@@ -1332,4 +1340,32 @@ class MainActivity :
 
   override fun goTo(location: MainNavigationListLocation) = mainNavigationViewModel.goTo(location)
   override fun goTo(location: MainNavigationDetailLocation) = mainNavigationViewModel.goTo(location)
+
+  // -- AccountSwitcherBottomSheet.Callback --
+
+  override fun onAccountSelected(accountId: String) {
+    val activeAccount = AccountSwitcher.getActiveAccount(application)
+    if (activeAccount?.accountId == accountId) return
+
+    lifecycleScope.launch(Dispatchers.IO) {
+      AccountSwitcher.switchToAccount(application, accountId)
+      withContext(Dispatchers.Main) {
+        recreate()
+      }
+    }
+  }
+
+  override fun onAddAccountClicked() {
+    lifecycleScope.launch(Dispatchers.IO) {
+      val newAccountId = AccountSwitcher.addAccount(application)
+      AccountSwitcher.switchToAccount(application, newAccountId)
+      withContext(Dispatchers.Main) {
+        startActivity(RegistrationActivity.newIntentForNewRegistration(this@MainActivity, intent))
+      }
+    }
+  }
+
+  override fun onSettingsClicked() {
+    openSettings.launch(AppSettingsActivity.home(this@MainActivity))
+  }
 }

@@ -57,6 +57,19 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
       }
     }
 
+    /**
+     * Tears down the current instance and reinitializes with a fresh KeyValueStore
+     * backed by the current KeyValueDatabase singleton. Must be called AFTER
+     * [KeyValueDatabase.reinit] so the new database is already in place.
+     */
+    @JvmStatic
+    fun reinit(context: Application) {
+      synchronized(SignalStore::class.java) {
+        instance?.store?.blockUntilAllWritesFinished()
+        instance = SignalStore(context, KeyValueStore(KeyValueDatabase.getInstance(context)))
+      }
+    }
+
     @JvmStatic
     fun onFirstEverAppLaunch() {
       account.onFirstEverAppLaunch()
