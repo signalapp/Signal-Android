@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
+import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException
 import org.whispersystems.signalservice.api.svr.SvrBApi
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import java.io.File
@@ -367,6 +368,10 @@ class BackupMessagesJob private constructor(
       is NetworkResult.Success -> Unit
       is NetworkResult.NetworkError -> {
         Log.i(TAG, "Network failure", uploadResult.getCause(), true)
+        if (uploadResult.exception is ResumeLocationInvalidException) {
+          Log.w(TAG, "Resume location is invalid. Clearing upload spec before retrying.")
+          resumableMessagesBackupUploadSpec = null
+        }
         return if (isCanceled) Result.failure() else Result.retry(defaultBackoff())
       }
       is NetworkResult.StatusCodeError -> {
