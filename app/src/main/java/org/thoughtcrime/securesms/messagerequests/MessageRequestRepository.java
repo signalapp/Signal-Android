@@ -116,7 +116,7 @@ public final class MessageRequestRepository {
           return new MessageRequestState(MessageRequestState.State.GROUP_V2_INVITE, reportedAsSpam);
         }
         default: {
-          if (RecipientUtil.isMessageRequestAccepted(context, threadId)) {
+          if (RecipientUtil.isMessageRequestAccepted(threadId)) {
             return MessageRequestState.NONE;
           } else {
             boolean reportedAsSpam = reportedAsSpam(threadId);
@@ -131,7 +131,7 @@ public final class MessageRequestRepository {
         return new MessageRequestState(MessageRequestState.State.LEGACY_INDIVIDUAL);
       }
     } else if (recipient.isPushV1Group()) {
-      if (RecipientUtil.isMessageRequestAccepted(context, threadId)) {
+      if (RecipientUtil.isMessageRequestAccepted(threadId)) {
         return MessageRequestState.DEPRECATED_V1;
       } else if (!recipient.isActiveGroup()) {
         return MessageRequestState.NONE;
@@ -139,7 +139,7 @@ public final class MessageRequestRepository {
         return MessageRequestState.DEPRECATED_V1;
       }
     } else {
-      if (RecipientUtil.isMessageRequestAccepted(context, threadId)) {
+      if (RecipientUtil.isMessageRequestAccepted(threadId)) {
         return MessageRequestState.NONE;
       } else {
         Recipient.HiddenState hiddenState    = RecipientUtil.getRecipientHiddenState(threadId);

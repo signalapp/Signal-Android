@@ -215,7 +215,7 @@ class ConversationSettingsRepository(
 
   @WorkerThread
   fun isMessageRequestAccepted(recipient: Recipient): Boolean {
-    return RecipientUtil.isMessageRequestAccepted(context, recipient)
+    return RecipientUtil.isMessageRequestAccepted(recipient)
   }
 
   fun getMembershipCountDescription(liveGroup: LiveGroup): LiveData<String> {

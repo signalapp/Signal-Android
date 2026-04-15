@@ -139,7 +139,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
 
   fun getPrimaryText(context: Context): CharSequence {
     return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayMessage) {
-      if (RecipientUtil.isMessageRequestAccepted(context, thread.threadId)) {
+      if (RecipientUtil.isMessageRequestAccepted(thread.threadId)) {
         getPrimaryTextActual(context)
       } else {
         SpanUtil.italic(context.getString(R.string.SingleRecipientNotificationBuilder_message_request))

@@ -171,7 +171,7 @@ public class SendViewedReceiptJob extends BaseJob {
       return;
     }
 
-    if (!RecipientUtil.isMessageRequestAccepted(context, threadId)) {
+    if (!RecipientUtil.isMessageRequestAccepted(threadId)) {
       Log.w(TAG, "Refusing to send receipts to untrusted recipient");
       return;
     }
@@ -203,8 +203,8 @@ public class SendViewedReceiptJob extends BaseJob {
       return;
     }
 
-    SignalServiceMessageSender  messageSender  = AppDependencies.getSignalServiceMessageSender();
-    SignalServiceAddress        remoteAddress  = RecipientUtil.toSignalServiceAddress(context, recipient);
+    SignalServiceMessageSender messageSender = AppDependencies.getSignalServiceMessageSender();
+    SignalServiceAddress       remoteAddress = RecipientUtil.toSignalServiceAddress(context, recipient);
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.VIEWED,
                                                                                  messageSentTimestamps,
                                                                                  timestamp);

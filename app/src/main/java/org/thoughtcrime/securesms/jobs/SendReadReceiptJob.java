@@ -64,12 +64,12 @@ public class SendReadReceiptJob extends BaseJob {
   @VisibleForTesting
   public SendReadReceiptJob(long threadId, @NonNull RecipientId recipientId, List<Long> messageSentTimestamps, List<MessageId> messageIds) {
     this(new Job.Parameters.Builder()
-                           .addConstraint(NetworkConstraint.KEY)
-                           .addConstraint(SealedSenderConstraint.KEY)
-                           .setLifespan(TimeUnit.DAYS.toMillis(1))
-                           .setMaxAttempts(Parameters.UNLIMITED)
-                           .setQueue(recipientId.toQueueKey())
-                           .build(),
+             .addConstraint(NetworkConstraint.KEY)
+             .addConstraint(SealedSenderConstraint.KEY)
+             .setLifespan(TimeUnit.DAYS.toMillis(1))
+             .setMaxAttempts(Parameters.UNLIMITED)
+             .setQueue(recipientId.toQueueKey())
+             .build(),
          threadId,
          recipientId,
          ensureSize(messageSentTimestamps, MAX_TIMESTAMPS),
@@ -151,7 +151,7 @@ public class SendReadReceiptJob extends BaseJob {
 
     if (!TextSecurePreferences.isReadReceiptsEnabled(context) || messageSentTimestamps.isEmpty()) return;
 
-    if (!RecipientUtil.isMessageRequestAccepted(context, threadId)) {
+    if (!RecipientUtil.isMessageRequestAccepted(threadId)) {
       Log.w(TAG, "Refusing to send receipts to untrusted recipient");
       return;
     }

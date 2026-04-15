@@ -214,10 +214,10 @@ public class RecipientUtil {
   private static void insertBlockedUpdate(@NonNull Recipient recipient, long threadId) {
     try {
       SignalDatabase.messages().insertMessageOutbox(
-        OutgoingMessage.blockedMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds())),
-        threadId,
-        false,
-        null
+          OutgoingMessage.blockedMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds())),
+          threadId,
+          false,
+          null
       );
     } catch (MmsException e) {
       Log.w(TAG, "Unable to insert blocked message", e);
@@ -227,10 +227,10 @@ public class RecipientUtil {
   private static void insertUnblockedUpdate(@NonNull Recipient recipient, long threadId) {
     try {
       SignalDatabase.messages().insertMessageOutbox(
-        OutgoingMessage.unblockedMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds())),
-        threadId,
-        false,
-        null
+          OutgoingMessage.unblockedMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds())),
+          threadId,
+          false,
+          null
       );
     } catch (MmsException e) {
       Log.w(TAG, "Unable to insert unblocked message", e);
@@ -277,7 +277,7 @@ public class RecipientUtil {
    * also be the case that the thread in question is for a system contact or something of the like.
    */
   @WorkerThread
-  public static boolean isMessageRequestAccepted(@NonNull Context context, long threadId) {
+  public static boolean isMessageRequestAccepted(long threadId) {
     if (threadId < 0) {
       return true;
     }
@@ -293,10 +293,10 @@ public class RecipientUtil {
   }
 
   /**
-   * See {@link #isMessageRequestAccepted(Context, long)}.
+   * See {@link #isMessageRequestAccepted(long)}.
    */
   @WorkerThread
-  public static boolean isMessageRequestAccepted(@NonNull Context context, @Nullable Recipient threadRecipient) {
+  public static boolean isMessageRequestAccepted(@Nullable Recipient threadRecipient) {
     if (threadRecipient == null) {
       return true;
     }
@@ -306,7 +306,7 @@ public class RecipientUtil {
   }
 
   /**
-   * Like {@link #isMessageRequestAccepted(Context, long)} but with fewer checks around messages so it
+   * Like {@link #isMessageRequestAccepted(long)} but with fewer checks around messages so it
    * is more likely to return false.
    */
   @WorkerThread
@@ -334,10 +334,10 @@ public class RecipientUtil {
   }
 
   public static boolean isLegacyProfileSharingAccepted(@NonNull Recipient threadRecipient) {
-    return threadRecipient.isSelf()           ||
+    return threadRecipient.isSelf() ||
            threadRecipient.isProfileSharing() ||
-           threadRecipient.isSystemContact()  ||
-           !threadRecipient.isRegistered()    ||
+           threadRecipient.isSystemContact() ||
+           !threadRecipient.isRegistered() ||
            threadRecipient.isHidden();
   }
 
@@ -375,8 +375,8 @@ public class RecipientUtil {
     }
 
     if (threadId == -1 || SignalDatabase.messages().canSetUniversalTimer(threadId)) {
-      int expireTimerVersion = SignalDatabase.recipients().setExpireMessagesAndIncrementVersion(recipient.getId(), defaultTimer);
-      OutgoingMessage outgoingMessage = OutgoingMessage.expirationUpdateMessage(recipient, System.currentTimeMillis(), defaultTimer * 1000L, expireTimerVersion);
+      int             expireTimerVersion = SignalDatabase.recipients().setExpireMessagesAndIncrementVersion(recipient.getId(), defaultTimer);
+      OutgoingMessage outgoingMessage    = OutgoingMessage.expirationUpdateMessage(recipient, System.currentTimeMillis(), defaultTimer * 1000L, expireTimerVersion);
       MessageSender.send(context, outgoingMessage, SignalDatabase.threads().getOrCreateThreadIdFor(recipient), MessageSender.SendType.SIGNAL, null, null);
       return expireTimerVersion;
     }
@@ -406,11 +406,6 @@ public class RecipientUtil {
   @WorkerThread
   public static boolean hasSentMessageInThread(@Nullable Long threadId) {
     return threadId != null && SignalDatabase.messages().getOutgoingSecureMessageCount(threadId) != 0;
-  }
-
-  public static boolean isSmsOnly(long threadId, @NonNull Recipient threadRecipient) {
-    return !threadRecipient.isRegistered() ||
-           noSecureMessagesAndNoCallsInThread(threadId);
   }
 
   @WorkerThread
