@@ -1242,4 +1242,78 @@ class GroupsV2StateProcessorTest {
 
     fail("No exception thrown")
   }
+
+  @Test(expected = GroupNotAMemberException::class)
+  fun skipP2PChangeAfterServerNotAMemberWhenChangeDoesNotTouchSelf() {
+    given {
+      localState(
+        revision = 1,
+        members = selfAndOthers,
+        active = true
+      )
+    }
+
+    every { groupsV2API.getGroupJoinedAt(any()) } returns NetworkResult.StatusCodeError(NotInGroupException())
+    every { groupsV2API.getGroupAsResult(any(), any()) } returns NetworkResult.StatusCodeError(NotInGroupException())
+    justRun { profileAndMessageHelper.leaveGroupLocally(any()) }
+
+    val signedChange = DecryptedGroupChange(
+      revision = 3,
+      newTitle = DecryptedString("Breaking Signal for Science"),
+      newDescription = DecryptedString("We break stuff, because we must.")
+    )
+
+    try {
+      processor.updateLocalGroupToRevision(
+        targetRevision = 3,
+        timestamp = 0,
+        signedGroupChange = signedChange,
+        serverGuid = UUID.randomUUID().toString()
+      )
+    } finally {
+      verify(exactly = 0) { groupTable.update(any<GroupMasterKey>(), any<DecryptedGroup>(), any(), any()) }
+      verify { profileAndMessageHelper.leaveGroupLocally(serviceIds) }
+    }
+  }
+
+  @Test
+  fun applyP2PChangeThatRemovesSelfAfterServerNotAMember() {
+    given {
+      localState(
+        revision = 1,
+        members = selfAndOthers,
+        active = true
+      )
+      expectTableUpdate = true
+    }
+
+    every { groupsV2API.getGroupJoinedAt(any()) } returns NetworkResult.StatusCodeError(NotInGroupException())
+    every { groupsV2API.getGroupAsResult(any(), any()) } returns NetworkResult.StatusCodeError(NotInGroupException())
+
+    val signedChange = DecryptedGroupChange(
+      revision = 3,
+      editorServiceIdBytes = otherAci.toByteString(),
+      deleteMembers = listOf(selfAci.toByteString())
+    )
+
+    val result = processor.updateLocalGroupToRevision(
+      targetRevision = 3,
+      timestamp = 0,
+      signedGroupChange = signedChange,
+      serverGuid = UUID.randomUUID().toString()
+    )
+
+    assertThat(result.updateStatus, "local should force-apply the kick")
+      .isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer)
+      .isNotNull()
+      .transform {
+        assertThat(it.revision, "revision matches peer change").isEqualTo(3)
+        val memberBytes = it.members.map { member -> member.aciBytes }
+        assertThat(memberBytes, "self removed from members").transform { bytes -> bytes.none { it == selfAci.toByteString() } }.isEqualTo(true)
+      }
+
+    verify { groupTable.update(masterKey, result.latestServer!!, null) }
+    verify(exactly = 0) { profileAndMessageHelper.persistLearnedProfileKeys(any<ProfileKeySet>()) }
+  }
 }
