@@ -8,10 +8,13 @@ package org.whispersystems.signalservice.api.keys
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toByteArray
 import org.signal.libsignal.protocol.IdentityKey
+import org.signal.libsignal.protocol.InvalidKeyException
+import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.kem.KEMPublicKey
 import org.signal.libsignal.protocol.state.PreKeyBundle
 import org.signal.libsignal.protocol.state.PreKeyRecord
+import org.whispersystems.signalservice.api.InvalidPreKeyException
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.account.PreKeyUpload
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
@@ -29,7 +32,6 @@ import org.whispersystems.signalservice.internal.push.PreKeyResponse
 import org.whispersystems.signalservice.internal.push.PreKeyState
 import org.whispersystems.signalservice.internal.put
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
-import java.io.IOException
 import java.security.MessageDigest
 import java.util.LinkedList
 
@@ -169,7 +171,8 @@ class KeysApi(
         if (bundles.isNotEmpty()) {
           NetworkResult.Success(bundles[0])
         } else {
-          NetworkResult.NetworkError(IOException("No prekeys available!"))
+          val address = SignalProtocolAddress(destination.identifier, deviceId)
+          NetworkResult.NetworkError(InvalidPreKeyException(address, InvalidKeyException("No valid prekeys available for $address")))
         }
       }
   }
@@ -216,7 +219,7 @@ class KeysApi(
 
         if (device.getSignedPreKey() != null) {
           val rawSignedPreKeyId = device.getSignedPreKey().keyId
-          if (rawSignedPreKeyId !in 0..Int.MAX_VALUE) {
+          if (rawSignedPreKeyId !in 0..Int.MAX_VALUE.toLong()) {
             Log.w(TAG, "Signed pre-key ID for device ${device.deviceId} is out of valid range! Skipping.")
             continue
           }
@@ -230,7 +233,7 @@ class KeysApi(
 
         if (device.getPreKey() != null) {
           val rawPreKeyId = device.getPreKey().keyId
-          if (rawPreKeyId !in 0..Int.MAX_VALUE) {
+          if (rawPreKeyId !in 0..Int.MAX_VALUE.toLong()) {
             Log.w(TAG, "Pre-key ID for device ${device.deviceId} is out of valid range! Skipping.")
             continue
           }
@@ -240,7 +243,7 @@ class KeysApi(
 
         if (device.getKyberPreKey() != null) {
           val rawKyberPreKeyId = device.getKyberPreKey().keyId
-          if (rawKyberPreKeyId !in 0..Int.MAX_VALUE) {
+          if (rawKyberPreKeyId !in 0..Int.MAX_VALUE.toLong()) {
             Log.w(TAG, "Kyber pre-key ID for device ${device.deviceId} is out of valid range! Skipping.")
             continue
           }
