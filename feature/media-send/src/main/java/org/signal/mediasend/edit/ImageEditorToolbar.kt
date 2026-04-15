@@ -43,11 +43,18 @@ fun ImageEditorToolbar(
   imageEditorController: EditorController.Image,
   modifier: Modifier = Modifier
 ) {
-  when (imageEditorController.mode) {
-    EditorController.Image.Mode.NONE -> {
+  when {
+    imageEditorController.shouldDisplayColorBar -> {
+      HSVColorBar(
+        state = imageEditorController.textColorBarState,
+        onColorChanged = imageEditorController::setTextColor,
+        modifier = modifier
+      )
+    }
+    imageEditorController.mode == EditorController.Image.Mode.NONE -> {
       ImageEditorNoneStateToolbar(imageEditorController, modifier)
     }
-    EditorController.Image.Mode.CROP -> {
+    imageEditorController.mode == EditorController.Image.Mode.CROP -> {
       ImageEditorCropAndResizeToolbar(imageEditorController, modifier)
     }
     else -> {

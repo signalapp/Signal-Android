@@ -9,11 +9,15 @@ import android.graphics.Paint
 import android.net.Uri
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.annotation.RememberInComposition
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateMap
+import org.signal.imageeditor.core.SelectableRenderer
+import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.model.EditorModel
+import org.signal.imageeditor.core.renderers.MultiLineTextRenderer
 
 @Stable
 sealed interface EditorController {
@@ -30,8 +34,7 @@ sealed interface EditorController {
   @Stable
   class Image @RememberInComposition constructor(val editorModel: EditorModel) : EditorController {
 
-    override val isUserInEdit: Boolean
-      get() = mode != Mode.NONE
+    override val isUserInEdit: Boolean by derivedStateOf { mode != Mode.NONE }
 
     val imageEditorState = ImageEditorState(editorModel).also {
       it.onGestureCompleted = { drawSessionDirty = true }
@@ -49,17 +52,38 @@ sealed interface EditorController {
     private var initialDialImageDegrees: Float = 0f
     private var minDialScaleDown: Float = 1f
     private var drawSessionSnapshot: ByteArray? = null
-    private var drawSessionDirty: Boolean = false
+    private var drawSessionDirty: Boolean by mutableStateOf(false)
+
+    var textEditingElement: EditorElement? by mutableStateOf(null)
+      private set
+
+    var selectedElement: EditorElement? by mutableStateOf(null)
+      private set
+
+    val textColorBarState = HSVColorBarState()
 
     var showDiscardDialog: Boolean by mutableStateOf(false)
       private set
 
-    val hasUnsavedChanges: Boolean
-      get() = when {
+    private val isInDrawSession: Boolean by derivedStateOf { mode == Mode.DRAW || mode == Mode.HIGHLIGHT || mode == Mode.BLUR }
+
+    val hasUnsavedChanges: Boolean by derivedStateOf {
+      when {
         mode == Mode.CROP -> imageEditorState.undoAvailable
+        mode == Mode.TEXT -> (textEditingElement?.renderer as? MultiLineTextRenderer)?.text?.isNotEmpty() == true
         isInDrawSession -> drawSessionDirty
         else -> false
       }
+    }
+
+    val shouldDisplayColorBar: Boolean by derivedStateOf {
+      textEditingElement != null || mode == Mode.MOVE_TEXT
+    }
+
+    val isUserDrawing: Boolean by derivedStateOf { mode == Mode.DRAW || mode == Mode.HIGHLIGHT }
+    val isUserBlurring: Boolean by derivedStateOf { mode == Mode.BLUR }
+    val isUserEnteringText: Boolean by derivedStateOf { mode == Mode.TEXT }
+    val isUserInsertingSticker: Boolean by derivedStateOf { mode == Mode.INSERT_STICKER }
 
     fun requestCancelEdit() {
       if (hasUnsavedChanges) {
@@ -78,18 +102,6 @@ sealed interface EditorController {
       cancelEdit()
     }
 
-    val isUserDrawing: Boolean
-      get() = mode == Mode.DRAW || mode == Mode.HIGHLIGHT
-
-    val isUserBlurring: Boolean
-      get() = mode == Mode.BLUR
-
-    val isUserEnteringText: Boolean
-      get() = mode == Mode.TEXT
-
-    val isUserInsertingSticker: Boolean
-      get() = mode == Mode.INSERT_STICKER
-
     fun beginDrawEdit() {
       enterDrawMode()
     }
@@ -100,27 +112,37 @@ sealed interface EditorController {
 
     fun cancelEdit() {
       when {
+        mode == Mode.TEXT -> {
+          finishTextEditing()
+        }
         mode == Mode.CROP -> {
           editorModel.clearUndoStack()
           editorModel.doneCrop()
+          exitEditMode()
         }
         isInDrawSession -> {
           drawSessionSnapshot?.let { editorModel.restoreFromSnapshot(it) }
+          exitEditMode()
         }
+        else -> exitEditMode()
       }
-      exitEditMode()
     }
 
     fun commitEdit() {
-      if (mode == Mode.CROP) {
-        editorModel.doneCrop()
+      when (mode) {
+        Mode.TEXT -> finishTextEditing()
+        Mode.CROP -> {
+          editorModel.doneCrop()
+          exitEditMode()
+        }
+        else -> exitEditMode()
       }
-      exitEditMode()
     }
 
     private fun exitEditMode() {
       drawSessionSnapshot = null
       drawSessionDirty = false
+      selectedElement = null
       mode = Mode.NONE
       imageEditorState.isDrawing = false
       imageEditorState.isBlur = false
@@ -159,9 +181,6 @@ sealed interface EditorController {
       imageEditorState.drawThickness = thickness
     }
 
-    private val isInDrawSession: Boolean
-      get() = mode == Mode.DRAW || mode == Mode.HIGHLIGHT || mode == Mode.BLUR
-
     private fun syncDrawingState() {
       imageEditorState.isDrawing = true
       imageEditorState.isBlur = mode == Mode.BLUR
@@ -175,7 +194,87 @@ sealed interface EditorController {
     }
 
     fun enterTextMode() {
+      snapshotIfNewDrawSession()
+      val renderer = MultiLineTextRenderer("", textColorBarState.color, MultiLineTextRenderer.Mode.REGULAR)
+      val element = EditorElement(renderer, EditorModel.Z_TEXT)
+      editorModel.addElementCentered(element, 1f)
+      beginTextEditing(element)
+    }
+
+    private fun beginTextEditing(element: EditorElement) {
       mode = Mode.TEXT
+      textEditingElement = element
+      imageEditorState.textEditingElement = element
+      editorModel.addFade()
+      editorModel.setSelectionVisible(false)
+      (element.renderer as? MultiLineTextRenderer)?.setFocused(true)
+    }
+
+    fun finishTextEditing() {
+      val element = textEditingElement ?: return
+      val renderer = element.renderer as? MultiLineTextRenderer
+      val hasText = renderer?.text?.isNotEmpty() == true
+      val snapshot = drawSessionSnapshot
+
+      renderer?.setFocused(false)
+      editorModel.zoomOut()
+      editorModel.removeFade()
+      editorModel.setSelectionVisible(true)
+
+      if (!hasText && snapshot != null) {
+        editorModel.restoreFromSnapshot(snapshot)
+      }
+
+      editorModel.setSelected(null)
+      textEditingElement = null
+      imageEditorState.textEditingElement = null
+      exitEditMode()
+    }
+
+    fun onTextChanged(text: String) {
+      val element = textEditingElement ?: return
+      val renderer = element.renderer as? MultiLineTextRenderer ?: return
+      renderer.setText(text)
+      imageEditorState.invalidate()
+    }
+
+    fun onTextSelectionChanged(selStart: Int, selEnd: Int) {
+      val element = textEditingElement ?: return
+      val renderer = element.renderer as? MultiLineTextRenderer ?: return
+      renderer.setSelection(selStart, selEnd)
+      editorModel.zoomToTextElement(element, renderer)
+      imageEditorState.invalidate()
+    }
+
+    fun setTextColor(color: Int) {
+      val element = textEditingElement ?: selectedElement
+      val renderer = element?.renderer as? MultiLineTextRenderer ?: return
+      renderer.color = color
+      imageEditorState.invalidate()
+    }
+
+    fun onEntityTapped(element: EditorElement?) {
+      if (element != null && element.renderer is SelectableRenderer) {
+        (element.renderer as SelectableRenderer).onSelected(true)
+        editorModel.setSelected(element)
+        selectedElement = element
+        mode = when (element.renderer) {
+          is MultiLineTextRenderer -> Mode.MOVE_TEXT
+          else -> Mode.MOVE_STICKER
+        }
+      } else {
+        clearSelection()
+      }
+    }
+
+    private fun clearSelection() {
+      if (selectedElement != null) {
+        (selectedElement?.renderer as? SelectableRenderer)?.onSelected(false)
+        editorModel.setSelected(null)
+        selectedElement = null
+        mode = Mode.NONE
+        imageEditorState.invalidate()
+      }
     }
 
     fun enterStickerMode() {

@@ -20,6 +20,7 @@ import androidx.compose.runtime.setValue
 import org.signal.imageeditor.core.Bounds
 import org.signal.imageeditor.core.Renderer
 import org.signal.imageeditor.core.RendererContext
+import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.model.EditorModel
 
 /**
@@ -43,6 +44,7 @@ class ImageEditorState(
   var redoAvailable: Boolean by mutableStateOf(false)
     private set
 
+  var textEditingElement: EditorElement? = null
   var isDrawing: Boolean = false
   var isBlur: Boolean = false
   var drawColor: Int = 0xff000000.toInt()

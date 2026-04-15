@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
@@ -79,7 +80,7 @@ fun MediaEditScreen(
       when (val editorState = state.editorStateMap[uri]) {
         is EditorState.Image -> {
           ImageEditor(
-            state = controllers.getOrCreateImageController(uri, editorState.model).imageEditorState,
+            controller = controllers.getOrCreateImageController(uri, editorState.model),
             modifier = Modifier.fillMaxSize()
           )
         }
@@ -98,12 +99,16 @@ fun MediaEditScreen(
       }
     }
 
+    val isTextEditing = currentController is EditorController.Image && currentController.textEditingElement != null
+
     Column(
       verticalArrangement = spacedBy(20.dp),
       horizontalAlignment = Alignment.CenterHorizontally,
-      modifier = Modifier.align(Alignment.BottomCenter)
+      modifier = Modifier
+        .align(Alignment.BottomCenter)
+        .then(if (isTextEditing) Modifier.imePadding() else Modifier)
     ) {
-      if (state.selectedMedia.isNotEmpty()) {
+      if (state.selectedMedia.isNotEmpty() && currentController?.isUserInEdit != true) {
         ThumbnailRow(
           selectedMedia = state.selectedMedia,
           pagerState = pagerState,
@@ -133,21 +138,26 @@ fun MediaEditScreen(
         is EditorController.VideoTrim, null -> Unit
       }
 
-      AddAMessageRow(
-        message = state.message,
-        callback = callback,
-        onNextClick = { backStack.goToSend() },
-        modifier = Modifier
-          .widthIn(max = 624.dp)
-          .padding(horizontal = 16.dp)
-          .padding(bottom = 16.dp)
-      )
+      if (currentController?.isUserInEdit != true) {
+        AddAMessageRow(
+          message = state.message,
+          callback = callback,
+          onNextClick = { backStack.goToSend() },
+          modifier = Modifier
+            .widthIn(max = 624.dp)
+            .padding(horizontal = 16.dp)
+            .padding(bottom = 16.dp)
+        )
+      }
     }
 
     if (!isSmallWindowBreakpoint && currentController is EditorController.Image) {
       ImageEditorToolbar(
         imageEditorController = currentController,
-        modifier = Modifier.align(Alignment.CenterEnd).padding(end = 24.dp)
+        modifier = Modifier
+          .align(Alignment.CenterEnd)
+          .padding(end = 24.dp)
+          .then(if (isTextEditing) Modifier.imePadding() else Modifier)
       )
     }
   }
