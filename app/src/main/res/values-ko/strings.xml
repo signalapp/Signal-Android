@@ -700,10 +700,16 @@
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">%1$s 님이 보낸 메시지 요청을 수락했습니다. 실수로 수락한 경우 아래에서 원하는 작업을 선택하세요.</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">신중하게 검토하세요</string>
-    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s은 별도의 인증 절차를 거치지 않습니다</string>
-    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
-    <string name="ConversationFragment_group_names_not_verified">%1$s은 별도의 인증 절차를 거치지 않습니다</string>
+    <!-- Text shown in conversation header when in a message request state that the name is not verified -->
+    <string name="ConversationFragment_name_not_verified">Name not verified</string>
+    <!-- Label for official chat pill shown in the Note to Self conversation header -->
+    <string name="ConversationFragment_official_chat">Official chat</string>
+    <!-- Description shown in the Signal release notes conversation header -->
+    <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
+    <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
+    <plurals name="ConversationFragment_group_member_count">
+        <item quantity="other">%1$d Members</item>
+    </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">프로필 이름</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
@@ -729,43 +735,61 @@
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">안전 팁</string>
-    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">모르는 상대의 메시지 요청을 수락할 때는 주의가 필요합니다. 특히 다음 사항에 유의하세요.</string>
-    <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">이 요청을 신중하게 검토하세요. 이 그룹에는 내가 대화한 사람이나 연락처에 저장된 사람이 없습니다. 다음에 유의하세요.</string>
-    <!-- Button text to move to the previous tip-->
+    <!-- Button text to view more safety tips -->
+    <string name="SafetyTips_view_more">View more</string>
+    <!-- Content description for previous tip button -->
     <string name="SafetyTips_previous_tip">이전 팁</string>
-    <!-- Button text to move to the next tip -->
+    <!-- Content description for next tip button -->
     <string name="SafetyTips_next_tip">다음 팁</string>
-    <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">가짜 이름과 계정</string>
-    <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal은 절대 사용자의 등록 코드나 PIN을 요청하지 않습니다. 타인을 사칭하는 요청에 주의하세요. 프로필 이름은 계정 소유자가 직접 설정하며 별도의 인증 과정을 거치지 않습니다.</string>
-    <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">암호화폐 또는 금융 사기</string>
-    <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">모르는 사람으로부터 암호화폐(비트코인 등)나 금융 투자 제안 메시지를 받으셨다면 스팸일 가능성이 높으니 각별히 주의하시기 바랍니다.</string>
-    <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">모호하거나 관련이 없는 메시지</string>
-    <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">스팸을 보내는 사람은 상대의 주의를 끌기 위해 \'안녕하세요\'와 같은 간단한 메시지로 대화를 시작합니다. 반응할 경우 대화에 더 말려들 수 있습니다.</string>
-    <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">링크가 있는 메시지</string>
-    <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">모르는 사람이 보낸 웹사이트 링크가 포함된 메시지에 주의하세요. 신뢰할 수 없는 출처의 링크는 절대 클릭하지 마시기 바랍니다.</string>
-    <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">가짜 비즈니스 또는 기관</string>
-    <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">기업이나 정부 기관을 사칭한 연락에 주의하세요. 국세청 등의 공공기관이나 배송 업체와 관련된 메시지는 스팸일 가능성이 높습니다.</string>
+
+    <!-- Summary tip 0 title: Don\’t respond to chats from Signal -->
+    <string name="SafetyTips_summary_tip0_title">Don\\’t respond to chats from Signal</string>
+    <!-- Summary tip 0 message -->
+    <string name="SafetyTips_summary_tip0_message">Signal will never message you for your registration code, PIN, or recovery key. Never respond to a chat pretending to be Signal.</string>
+    <!-- Summary tip 1 title: Review names and photos -->
+    <string name="SafetyTips_summary_tip1_title">Review names and photos</string>
+    <!-- Summary tip 1 message -->
+    <string name="SafetyTips_summary_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name in Signal.</string>
+    <!-- Summary tip 2 title: Look out for scams -->
+    <string name="SafetyTips_summary_tip2_title">Look out for scams</string>
+    <!-- Summary tip 2 message -->
+    <string name="SafetyTips_summary_tip2_message">Avoid vague messages that try to get you to reply. Be aware of financial tips and suspicious web links.</string>
+
+    <!-- Detail tip 0 title -->
+    <string name="SafetyTips_detail_tip0_title">Don\\’t respond to chats from Signal</string>
+    <!-- Detail tip 0 message -->
+    <string name="SafetyTips_detail_tip0_message">Signal will never message you for your registration code, PIN, or recover key. Don\\’t reply to chats pretending to be Signal or Signal Support. Bad actors set up fake chats to try to take over your account.</string>
+    <!-- Detail tip 1 title -->
+    <string name="SafetyTips_detail_tip1_title">Review names and photos</string>
+    <!-- Detail tip 1 message -->
+    <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\\’re unsure who a new request is from it\\’s safer to ignore it.</string>
+    <!-- Detail tip 2 title -->
+    <string name="SafetyTips_detail_tip2_title">Vague or irrelevant messages</string>
+    <!-- Detail tip 2 message -->
+    <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
+    <!-- Detail tip 3 title -->
+    <string name="SafetyTips_detail_tip3_title">Messages with web links</string>
+    <!-- Detail tip 3 message -->
+    <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\\’t know that have links to websites. Never visit links from people you don\\’t trust.</string>
+    <!-- Detail tip 4 title -->
+    <string name="SafetyTips_detail_tip4_title">Crypto or money scams</string>
+    <!-- Detail tip 4 message -->
+    <string name="SafetyTips_detail_tip4_message">If someone you don\\’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\\’s likely spam.</string>
+    <!-- Detail tip 5 title -->
+    <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
+    <!-- Detail tip 5 message -->
+    <string name="SafetyTips_detail_tip5_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal의 %1$s은 해당 계정 보유자가 선택합니다.</string>
-    <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">프로필 이름 확인 안 됨</string>
+    <!-- Bottom sheet text explaining that Signal can’t verify names and photos -->
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal can\\’t verify names and photos</string>
+    <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal will never contact you for your registration code, PIN, or recovery key</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">사칭 계정에 유의하세요</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">모르는 사람과 개인 정보를 공유하지 마세요</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">Don\\’t share personal information with people you don\\’t know</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
     <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s은 해당 그룹의 멤버가 선택합니다.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
@@ -1066,7 +1090,7 @@
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">휴대폰의 Signal과 연결하면 Signal 메시지가 동기화됩니다. 이전 메시지 내역은 표시되지 않습니다.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
-    <string name="LinkDeviceFragment__on_other_device_visit_signal">연결하려는 기기에서 %1$s을(를) 방문하여 Signal을 설치하세요.</string>
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">연결하려는 기기에서 %1$s 링크를 방문하여 Signal을 설치하세요.</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">내 연결된 기기</string>
@@ -1075,7 +1099,7 @@
     <!-- Toast message indicating a device has been unlinked, where %s is the name of the device -->
     <string name="LinkDeviceFragment__s_unlinked">\'%1$s\'의 연결을 해제했습니다.</string>
     <!-- Toast message indicating a device has been successfully linked, where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_linked">\'%1$s\'을(를) 연결했습니다.</string>
+    <string name="LinkDeviceFragment__s_linked">\'%1$s\' 기기를 연결했습니다.</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">기기를 연결하는 중…</string>
     <!-- Toast message shown after a device has been linked -->
@@ -1722,7 +1746,7 @@
 
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">메시지를 찾을 수 없음</string>
-    <string name="LongMessageActivity_message_from_s">%1$s에게서 온 메시지</string>
+    <string name="LongMessageActivity_message_from_s">%1$s 님이 보낸 메시지</string>
     <string name="LongMessageActivity_your_message">내 메시지</string>
 
     <!-- MessageRetrievalService -->
@@ -1773,11 +1797,11 @@
 
     <string name="MediaOverviewActivity_sent_by_s">%1$s 님이 보냄</string>
     <string name="MediaOverviewActivity_sent_by_you">내가 보냄</string>
-    <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s 님이 %2$s에게 보냄</string>
-    <string name="MediaOverviewActivity_sent_by_you_to_s">내가 %1$s에게 보냄</string>
+    <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s 님이 %2$s 님에게 보냄</string>
+    <string name="MediaOverviewActivity_sent_by_you_to_s">내가 %1$s 님에게 보냄</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">아직 전송하지 않은 미디어입니다.</string>
-    <string name="MediaOverviewActivity_jump_to_message">Jump to message</string>
+    <string name="MediaOverviewActivity_jump_to_message">메시지로 이동하기</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">나중에 알림</string>
@@ -2050,7 +2074,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">관리자가 그룹 참가 요청을 거절했습니다.</string>
-    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">%1$s의 그룹 참가 요청을 거절하셨습니다.</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">%1$s 님의 그룹 참가 요청을 거절했습니다.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s 님이 %2$s 님의 그룹 가입 요청을 거절했습니다.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s 님의 그룹 가입 요청이 거절되었습니다.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">그룹 참가 요청을 취소했습니다.</string>
@@ -2074,15 +2098,15 @@
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
     <string name="MessageRecord_s_belongs_to_s">%1$s번은 %2$s 님의 전화번호입니다.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">%1$s 님에게 결제를 활성화해달라는 요청을 보냈습니다.</string>
+    <string name="MessageRecord_you_sent_request">%1$s 님께 결제 활성화 요청을 보냈습니다.</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s 님에게서 결제를 활성화해달라는 요청이 왔습니다. 결제는 신뢰할 수 있는 사람에게만 보내주세요.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s 님이 결제 활성화 요청을 보냈습니다. 결제는 신뢰할 수 있는 사람에게만 보내주세요.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">결제를 활성화했습니다.</string>
+    <string name="MessageRecord_you_activated_payments">결제를 활성화했어요</string>
     <!-- Message to inform sender that recipient can now accept payments -->
     <string name="MessageRecord_can_accept_payments">%1$s 님이 이제 결제를 수락할 수 있습니다.</string>
     <!-- Message shown to inform user that a payment is missing details due to restore -->
-    <string name="MessageRecord_payments_restore_tombstone">결제 세부 정보 사용 불가</string>
+    <string name="MessageRecord_payments_restore_tombstone">결제 상세 내역이 제공되지 않습니다</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
     <string name="MessageRecord_payments_restore_tombstone_tap_more">탭하여 더 보기</string>
     <!-- Title for dialog explaining why a specific mobile coin payment does not have any transaction details -->
@@ -2154,18 +2178,20 @@
     <string name="MessageRecord__payment_tombstone">결제</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">스팸으로 신고함</string>
-    <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">메시지 요청을 수락했습니다.</string>
+    <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
+    <string name="MessageRecord_you_accepted_s_message_request">You accepted %1$s\'s message request</string>
+    <!-- Update message shown in a group chat after accepting a group message request -->
+    <string name="MessageRecord_you_accepted_the_group_request">You accepted the group request</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">이 사용자를 차단했습니다.</string>
     <!-- Update message shown in chat after you unblock a person -->
     <string name="MessageRecord_you_unblocked_this_person">이 사용자에 대한 차단을 해제했습니다.</string>
     <!-- Update message shown in chat after you block a group -->
-    <string name="MessageRecord_you_blocked_this_group">이 그룹을 차단했습니다</string>
+    <string name="MessageRecord_you_blocked_this_group">이 그룹을 차단했습니다.</string>
     <!-- Update message shown in chat after you unblock a group -->
-    <string name="MessageRecord_you_unblocked_this_group">이 그룹에 대한 차단을 해제했습니다</string>
+    <string name="MessageRecord_you_unblocked_this_group">이 그룹에 대한 차단을 해제했습니다.</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
-    <string name="MessageRecord_unsupported_feature">%1$s 님이 처리하거나 표시할 수 없는 메시지를 보냈습니다. 이는 메시지에서 새로운 Signal 기능을 사용하기 때문입니다.</string>
+    <string name="MessageRecord_unsupported_feature">%1$s 님이 보낸 메시지는 새로운 Signal 기능을 포함하고 있어 이 버전에서 처리하거나 표시할 수 없습니다.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
     <string name="MessageRecord_ended_the_poll">%1$s 님이 \"%2$s\" 설문조사를 종료했습니다.</string>
     <!-- Update message shown when you end the poll. %1$s is the poll question. -->
@@ -2179,7 +2205,7 @@
     <string name="MessageRequestBottomView_unblock">차단 해제</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s 님이 나에게 메시지를 보내고, 내 이름과 사진을 공유하도록 허용할까요? 이 사용자는 내가 이전에 삭제했던 사용자입니다.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s 님이 나에게 메시지를 보내고, 내 이름과 사진을 볼 수 있도록 허용하시겠어요? 내가 수락하기 전까지는 상대방이 내가 메시지를 확인했는지 알 수 없어요.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Let this person message you and share your name and photo with them? They won\'t know you\'ve seen their message until you accept.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s 님이 나에게 메시지를 보내고, 내 이름과 사진을 볼 수 있도록 허용하시겠어요? 차단을 해제하기 전까지는 메시지를 받을 수 없습니다.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2236,11 +2262,15 @@
         <item quantity="other">기타 %1$d</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">신고</string>
+    <string name="MessageRequestBottomView_report">Report</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">요청을 수락할까요?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">신중하게 요청을 검토하세요. 프로필 이름은 계정 소유자가 직접 설정하며 별도의 인증 과정을 거치지 않습니다.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren\\’t verified.</string>
+    <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
+    <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
+    <!-- Bold substring used in accept request body: "Signal will never" -->
+    <string name="MessageRequestBottomView_signal_will_never">Signal will never</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">그룹에 참가할까요?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -2499,10 +2529,10 @@
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">승인을 기다리는 중…</string>
 
-    <string name="WebRtcCallView__signal_will_ring_s">Signal이 %1$s에게 알릴겁니다.</string>
-    <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal이 %1$s, 그리고 %2$s에게 알릴겁니다.</string>
+    <string name="WebRtcCallView__signal_will_ring_s">Signal에서 %1$s 님에게 전화를 겁니다</string>
+    <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal에서 %1$s 님과 %2$s 님에게 전화를 겁니다</string>
     <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
-        <item quantity="other">Signal이 %1$s, %2$s, 그리고 %3$d명에게 알릴겁니다.</item>
+        <item quantity="other">Signal에서 %1$s 님, %2$s 님 외 %3$d명에게 전화를 겁니다.</item>
     </plurals>
 
     <string name="WebRtcCallView__s_will_be_notified">%1$s님은 알림을 받을겁니다.</string>
@@ -2744,8 +2774,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">이 번호를 등록하려고 너무 많이 시도했습니다. %1$s 후에 다시 시도해 주세요.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">서비스에 연결할 수 없습니다. 네트워크 연결을 확인 후 다시 시도해 주세요.</string>
-    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">SMS 통신사 문제로 인해 Signal에서 SMS 코드를 전송하지 못했습니다. 몇 시간 정도 기다렸다가 다시 시도해 주세요.</string>
+    <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
+    <string name="RegistrationActivity_sms_provider_error">We are unable to send an SMS to your number. Please try again in several hours.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">SMS를 통해 확인 코드를 보낼 수 없습니다. 음성 통화로 대신 받아보세요.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -2859,7 +2889,7 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_secure_session_reset">보안 세션을 초기화했습니다.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s 님이 보안 세션을 초기화했습니다.</string>
-    <string name="SmsMessageRecord_duplicate_message">메시지를 복사하세요.</string>
+    <string name="SmsMessageRecord_duplicate_message">중복 메시지입니다.</string>
 
     <!-- Sticker management screen default title. -->
     <string name="StickerManagement_title_stickers">스티커</string>
@@ -2896,7 +2926,7 @@
         <item quantity="other">스티커 팩 %1$s개 제거</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
-    <string name="StickerManagement_installed_pack_s">%1$s을(를) 설치했습니다.</string>
+    <string name="StickerManagement_installed_pack_s">%1$s 스티커 팩을 설치했습니다.</string>
     <!-- Message shown after uninstalling a sticker pack. The placeholder is the name of the sticker pack that was deleted. -->
     <string name="StickerManagement_deleted_pack_s">%1$s 스티커를 제거했습니다.</string>
     <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
@@ -2984,6 +3014,7 @@
     <string name="SupportEmailUtil_registration_lock">등록 잠금:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">그룹이 업데이트됨</string>
@@ -3007,7 +3038,7 @@
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">결제를 활성화해달라는 요청을 보냈습니다.</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s 님에게서 결제를 활성화해달라는 요청을 받았습니다.</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s 님이 결제 활성화 요청을 보냈습니다</string>
     <!-- Displayed in the notification when the user activates payments -->
     <string name="ThreadRecord_you_activated_payments">결제를 활성화했습니다.</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
@@ -3049,9 +3080,9 @@
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s번은 %2$s 님의 전화번호입니다.</string>
     <!-- Displayed in the conversation list when a person has been blocked -->
-    <string name="ThreadRecord_blocked">차단함</string>
+    <string name="ThreadRecord_blocked">차단한 사용자</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">차단함</string>
+    <string name="ThreadRecord_blocked_group">차단한 그룹</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal 업데이트</string>
@@ -3209,7 +3240,7 @@
         <item quantity="other">대화 %1$d개</item>
     </plurals>
     <!-- Shown in a notification when you receive multiple chat messages. %s is the contact name of the most recent message -->
-    <string name="MessageNotifier_most_recent_from_s">%1$s 님에게서 온 최근 메시지</string>
+    <string name="MessageNotifier_most_recent_from_s">%1$s 님이 보낸 최근 메시지</string>
     <string name="MessageNotifier_locked_message">잠긴 메시지</string>
     <string name="MessageNotifier_message_delivery_failed">메시지 전송에 실패했습니다.</string>
     <!-- Shown in a notification when a story the user tries to send fails to be sent -->
@@ -3587,7 +3618,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">이전에 삭제한 사용자입니다. 해당 사용자에게 메시지를 보내면 사용자가 목록에 다시 추가됩니다.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">옵션</string>
+    <string name="ConversationUpdateItem_block_report">Block or Report…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">업데이트</string>
     <!-- Update item button text to show how many group updates there are. -->
@@ -4374,7 +4405,7 @@
     <string name="PaymentsDetailsFragment__payment_failed">결제 실패</string>
     <string name="PaymentsDetailsFragment__network_fee">네트워크 요금</string>
     <string name="PaymentsDetailsFragment__sent_by">발신자</string>
-    <string name="PaymentsDetailsFragment__sent_to_s">%1$s에게 전송됨</string>
+    <string name="PaymentsDetailsFragment__sent_to_s">%1$s 님에게 보냄</string>
     <string name="PaymentsDetailsFragment__you_on_s_at_s">%1$s의 %2$s</string>
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s, %2$s, %3$s</string>
     <!-- Prefix to a name to indicate who a payment was sent to -->
@@ -5156,8 +5187,8 @@
     <string name="GroupsLearnMore_paragraph_3">Signal은 앞으로 레거시 그룹을 업그레이드할 수 있는 방법을 제공할 예정입니다.</string>
 
     <!-- GroupLinkBottomSheetDialogFragment -->
-    <string name="GroupLinkBottomSheet_share_hint_requiring_approval">이 링크가 있는 사용자는 누구나 그룹의 이름과 사진을 보고 가입을 요청할 수 있습니다. 사용자가 신뢰하는 사용자들과 공유하세요.</string>
-    <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">이 링크가 있는 사용자는 누구나 그룹의 이름과 사진을 보고 그룹에 가입할 수 있습니다. 사용자가 신뢰하는 사용자들과 공유하세요.</string>
+    <string name="GroupLinkBottomSheet_share_hint_requiring_approval">이 링크를 가진 사람은 누구나 이 그룹의 이름과 사진을 확인하고 그룹에 참가할 수 있습니다. 신뢰할 수 있는 사람에게만 링크를 공유하세요.</string>
+    <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">이 링크를 가진 사람은 누구나 이 그룹의 이름과 사진을 확인하고 그룹에 참가할 수 있습니다. 신뢰할 수 있는 사람에게만 링크를 공유하세요.</string>
     <string name="GroupLinkBottomSheet_share_via_signal">시그널로 공유하기</string>
     <string name="GroupLinkBottomSheet_copy">복사</string>
     <string name="GroupLinkBottomSheet_qr_code">QR 코드</string>
@@ -5773,7 +5804,7 @@
     <string name="NotificationProfilesFragment__create_profile">프로필 만들기</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">차단함</string>
+    <string name="PrivacySettingsFragment__blocked">차단</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
         <item quantity="other">연락처 또는 그룹 %1$d개</item>
@@ -6688,10 +6719,6 @@
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal 릴리스 노트 및 뉴스</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">Signal이 운영하는 유일한 공식 채널입니다.</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">최신 소식과 릴리스 노트를 확인하세요.</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">Signal이 운영하는 유일한 공식 채널입니다.</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
@@ -7000,7 +7027,7 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">그룹 스토리를 제거할까요?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\'%1$s\'을(를) 제거합니다.</string>
+    <string name="StoryDialogs__s_will_be_removed">\'%1$s\' 스토리를 제거합니다.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">제거</string>
     <!-- Dialog title for deleting a custom story -->
@@ -7625,7 +7652,7 @@
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">발신</string>
     <!-- Displayed for outgoing calls that were not accepted by the remote party -->
-    <string name="CallLogAdapter__unanswered">Unanswered</string>
+    <string name="CallLogAdapter__unanswered">부재중</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">부재중</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -8840,7 +8867,7 @@
     <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">암호 관리자에 저장할까요?</string>
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">복구 키는 안전하다고 신뢰할 수 있는 암호 관리자에만 저장하세요. Signal은 사용자에게 어떤 암호 관리자를 사용해야 할지 추천하지 않습니다.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">복구 키는 안전하다고 신뢰할 수 있는 비밀번호 관리자에만 저장하세요. Signal은 특정 비밀번호 관리자를 별도로 추천하지 않습니다.</string>
     <!-- ID used when saving the recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal 안전 백업</string>
     <!-- Message shown after the recovery key is successfully saved to the device password manager. -->

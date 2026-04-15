@@ -700,10 +700,16 @@
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">អ្នកបានទទួលយកសំណើសារពី %1$s។ ប្រសិនបើនេះជាកំហុស អ្នកអាចជ្រើសរើសសកម្មភាពណាមួយខាងក្រោម។</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">ពិនិត្យមើលដោយយកចិត្តទុកដាក់</string>
-    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s មិនត្រូវបានផ្ទៀងផ្ទាត់ទេ</string>
-    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
-    <string name="ConversationFragment_group_names_not_verified">%1$s មិនត្រូវបានផ្ទៀងផ្ទាត់ទេ</string>
+    <!-- Text shown in conversation header when in a message request state that the name is not verified -->
+    <string name="ConversationFragment_name_not_verified">Name not verified</string>
+    <!-- Label for official chat pill shown in the Note to Self conversation header -->
+    <string name="ConversationFragment_official_chat">Official chat</string>
+    <!-- Description shown in the Signal release notes conversation header -->
+    <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
+    <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
+    <plurals name="ConversationFragment_group_member_count">
+        <item quantity="other">%1$d Members</item>
+    </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">ឈ្មោះប្រូហ្វាល់</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
@@ -729,43 +735,61 @@
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">គន្លឹះសុវត្ថិភាព</string>
-    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">សូមប្រុងប្រយ័ត្នពេលទទួលយកសំណើសារពីមនុស្សដែលអ្នកមិនស្គាល់។ សូមប្រុងប្រយ័ត្នចំពោះ៖</string>
-    <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">ពិនិត្យសំណើនេះដោយយកចិត្តទុកដាក់។ គ្មានទំនាក់ទំនងរបស់អ្នក ឬមនុស្សដែលអ្នកជជែកជាមួយ ស្ថិតនៅក្នុងក្រុមនេះទេ។ ទាំងនេះជារឿងមួយចំនួនដែលត្រូវប្រុងប្រយ័ត្ន៖</string>
-    <!-- Button text to move to the previous tip-->
+    <!-- Button text to view more safety tips -->
+    <string name="SafetyTips_view_more">View more</string>
+    <!-- Content description for previous tip button -->
     <string name="SafetyTips_previous_tip">គន្លឹះមុន</string>
-    <!-- Button text to move to the next tip -->
+    <!-- Content description for next tip button -->
     <string name="SafetyTips_next_tip">គន្លឹះបន្ទាប់</string>
-    <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">ឈ្មោះ និងគណនីក្លែងក្លាយ</string>
-    <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal នឹងមិនទាក់ទងអ្នកដើម្បីសួររកលេខកូដចុះឈ្មោះ ឬលេខកូដសម្ងាត់របស់អ្នកជាដាច់ខាត។ សូមប្រុងប្រយ័ត្នចំពោះសំណើទាំងឡាយណាដែលក្លែងបន្លំជាអ្នកផ្សេង។ ឈ្មោះប្រូហ្វាល់ត្រូវបានជ្រើសរើសដោយម្ចាស់គណនី ហើយមិនត្រូវបានផ្ទៀងផ្ទាត់ទេ។</string>
-    <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">ការបោកប្រាស់លុយកាក់ ឬលុយគ្រីបតូ</string>
-    <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">ប្រសិនបើនរណាម្នាក់ដែលអ្នកមិនស្គាល់ផ្ញើសារមកអ្នកអំពីរូបិយបណ្ណគ្រីបតូ (ដូចជា Bitcoin) ឬឱកាសហិរញ្ញវត្ថុ សូមប្រុងប្រយ័ត្ន ព្រោះវាទំនងជាសារឥតបានការ។</string>
-    <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">សារមិនច្បាស់លាស់ ឬមិនពាក់ព័ន្ធ</string>
-    <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">អ្នកផ្ញើសារឥតបានការច្រើនតែចាប់ផ្តើមដោយសារសាមញ្ញដូចជា “សួស្តី” ដើម្បីទាក់ទាញអារម្មណ៍អ្នក។ ប្រសិនបើអ្នកឆ្លើយតប ពួកគេអាចនឹងទាញអារម្មណ៍អ្នកបន្ថែមទៀត។</string>
-    <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">សារដែលមានតំណភ្ជាប់</string>
-    <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">សូមប្រុងប្រយ័ត្នចំពោះសារមកពីមនុស្សដែលអ្នកមិនស្គាល់ ដែលមានតំណទៅកាន់គេហទំព័រផ្សេងៗ។ កុំចូលមើលតំណពីមនុស្សដែលអ្នកមិនទុកចិត្តឱ្យសោះ។</string>
-    <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">អាជីវកម្ម និងស្ថាប័នក្លែងក្លាយ</string>
-    <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">សូមប្រុងប្រយ័ត្នចំពោះអាជីវកម្ម ឬទីភ្នាក់ងាររដ្ឋាភិបាលដែលទាក់ទងអ្នក។ សារដែលពាក់ព័ន្ធនឹងទីភ្នាក់ងារពន្ធ អ្នកដឹកជញ្ជូន និងអ្វីៗជាច្រើនទៀតអាចជាសារឥតបានការ។</string>
+
+    <!-- Summary tip 0 title: Don\’t respond to chats from Signal -->
+    <string name="SafetyTips_summary_tip0_title">Don\\’t respond to chats from Signal</string>
+    <!-- Summary tip 0 message -->
+    <string name="SafetyTips_summary_tip0_message">Signal will never message you for your registration code, PIN, or recovery key. Never respond to a chat pretending to be Signal.</string>
+    <!-- Summary tip 1 title: Review names and photos -->
+    <string name="SafetyTips_summary_tip1_title">Review names and photos</string>
+    <!-- Summary tip 1 message -->
+    <string name="SafetyTips_summary_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name in Signal.</string>
+    <!-- Summary tip 2 title: Look out for scams -->
+    <string name="SafetyTips_summary_tip2_title">Look out for scams</string>
+    <!-- Summary tip 2 message -->
+    <string name="SafetyTips_summary_tip2_message">Avoid vague messages that try to get you to reply. Be aware of financial tips and suspicious web links.</string>
+
+    <!-- Detail tip 0 title -->
+    <string name="SafetyTips_detail_tip0_title">Don\\’t respond to chats from Signal</string>
+    <!-- Detail tip 0 message -->
+    <string name="SafetyTips_detail_tip0_message">Signal will never message you for your registration code, PIN, or recover key. Don\\’t reply to chats pretending to be Signal or Signal Support. Bad actors set up fake chats to try to take over your account.</string>
+    <!-- Detail tip 1 title -->
+    <string name="SafetyTips_detail_tip1_title">Review names and photos</string>
+    <!-- Detail tip 1 message -->
+    <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\\’re unsure who a new request is from it\\’s safer to ignore it.</string>
+    <!-- Detail tip 2 title -->
+    <string name="SafetyTips_detail_tip2_title">Vague or irrelevant messages</string>
+    <!-- Detail tip 2 message -->
+    <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
+    <!-- Detail tip 3 title -->
+    <string name="SafetyTips_detail_tip3_title">Messages with web links</string>
+    <!-- Detail tip 3 message -->
+    <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\\’t know that have links to websites. Never visit links from people you don\\’t trust.</string>
+    <!-- Detail tip 4 title -->
+    <string name="SafetyTips_detail_tip4_title">Crypto or money scams</string>
+    <!-- Detail tip 4 message -->
+    <string name="SafetyTips_detail_tip4_message">If someone you don\\’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\\’s likely spam.</string>
+    <!-- Detail tip 5 title -->
+    <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
+    <!-- Detail tip 5 message -->
+    <string name="SafetyTips_detail_tip5_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s នៅលើ Signal ត្រូវបានជ្រើសរើសដោយម្ចាស់គណនី។</string>
-    <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">ឈ្មោះប្រូហ្វាល់មិនត្រូវបានផ្ទៀងផ្ទាត់ទេ</string>
+    <!-- Bottom sheet text explaining that Signal can’t verify names and photos -->
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal can\\’t verify names and photos</string>
+    <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal will never contact you for your registration code, PIN, or recovery key</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">សូមប្រុងប្រយ័ត្នចំពោះគណនីដែលក្លែងបន្លំជាអ្នកផ្សេង</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">កុំចែករំលែកព័ត៌មានផ្ទាល់ខ្លួនជាមួយមនុស្សដែលអ្នកមិនស្គាល់</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">Don\\’t share personal information with people you don\\’t know</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
     <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s ត្រូវបានជ្រើសរើសដោយសមាជិកក្រុម។</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
@@ -1777,7 +1801,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">បានផ្ញើដោយអ្នកទៅ %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">មេឌៀនេះមិនទាន់បានផ្ញើនៅឡើយទេ។</string>
-    <string name="MediaOverviewActivity_jump_to_message">Jump to message</string>
+    <string name="MediaOverviewActivity_jump_to_message">ចូលទៅកាន់សារ</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">រំលឹកខ្ញុំពេលក្រោយ</string>
@@ -2154,8 +2178,10 @@
     <string name="MessageRecord__payment_tombstone">ការបង់ប្រាក់</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">បានរាយការណ៍ជាសារឥតបានការ</string>
-    <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">អ្នកបានទទួលយកសំណើសារ</string>
+    <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
+    <string name="MessageRecord_you_accepted_s_message_request">You accepted %1$s\'s message request</string>
+    <!-- Update message shown in a group chat after accepting a group message request -->
+    <string name="MessageRecord_you_accepted_the_group_request">You accepted the group request</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">អ្នកបានទប់ស្កាត់បុគ្គលនេះ</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2179,7 +2205,7 @@
     <string name="MessageRequestBottomView_unblock">ឈប់ទប់ស្កាត់</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">អាចឲ្យ %1$s ផ្ញើសារមកអ្នកបាន និងចែករំលែកឈ្មោះ និងរូបថតរបស់អ្នកជាមួយគេ? អ្នកបានដកបុគ្គលនេះចេញកាលពីមុន។</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">អនុញ្ញាត %1$s ផ្ញើសារមកអ្នក និងចែករំលែកឈ្មោះ និងរូបភាពរបស់អ្នកជាមួយពួកគេ? ពួកគេនឹងមិនដឹងថា អ្នកបានមើលឃើញសាររបស់គេ រហូតដល់អ្នកយល់ព្រម។</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Let this person message you and share your name and photo with them? They won\'t know you\'ve seen their message until you accept.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">អាចឲ្យ %1$s ផ្ញើសារមកអ្នកបាន និងចែករំលែកឈ្មោះ និងរូបថតរបស់អ្នកជាមួយពួកគេ? អ្នកនឹងមិនទទួលបានសារណាមួយឡើយ រហូតទាល់តែអ្នកឈប់ទប់ស្កាត់ពួកគេ។</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2236,11 +2262,15 @@
         <item quantity="other">%1$d ផ្សេងទៀត</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">រាយការណ៍…</string>
+    <string name="MessageRequestBottomView_report">Report</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">ទទួលយកសំណើឬទេ?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">ពិនិត្យមើលសំណើដោយយកចិត្តទុកដាក់។ ឈ្មោះប្រូហ្វាល់ត្រូវបានជ្រើសរើសដោយម្ចាស់គណនី ហើយមិនត្រូវបានផ្ទៀងផ្ទាត់ទេ។</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren\\’t verified.</string>
+    <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
+    <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
+    <!-- Bold substring used in accept request body: "Signal will never" -->
+    <string name="MessageRequestBottomView_signal_will_never">Signal will never</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">ចូលរួមក្រុមឬទេ?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -2744,8 +2774,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">អ្នកបានព្យាយាមជាច្រើនដងពេកក្នុងការចុះឈ្មោះលេខនេះ។ សូមព្យាយាមម្តងទៀតក្នុងរយៈពេល %1$s។</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">មិនអាចតភ្ជាប់សេវាបាន។ សូមពិនិត្យការតភ្ជាប់បណ្តាញ ហើយព្យាយាមម្តងទៀត។</string>
-    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">Signal មិនអាចផ្ញើលេខកូដតាមសារ SMS បានទេ ដោយសារតែបញ្ហាជាមួយក្រុមហ៊ុនផ្តល់សេវាសារ SMS។ ព្យាយាមម្តងទៀតក្នុងរយៈពេលប៉ុន្មានម៉ោងទៀត។</string>
+    <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
+    <string name="RegistrationActivity_sms_provider_error">We are unable to send an SMS to your number. Please try again in several hours.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">យើងមិនអាចផ្ញើលេខកូដផ្ទៀងផ្ទាត់តាមរយៈសារជាអក្សរទេ។ សាកល្បងទទួលលេខកូដរបស់អ្នកតាមរយៈការហៅជាសំឡេងជំនួសវិញ។</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -2984,6 +3014,7 @@
     <string name="SupportEmailUtil_registration_lock">ការចាក់សោរចុះឈ្មោះ៖</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">បានធ្វើបច្ចុប្បន្នភាពក្រុម</string>
@@ -3587,7 +3618,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">អ្នកបានដកបុគ្គលនេះចេញហើយ។ ការផ្ញើសារទៅគេម្តងទៀតនឹងបញ្ចូលគេទៅក្នុងបញ្ជីរបស់អ្នកវិញ។</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">ជម្រើស</string>
+    <string name="ConversationUpdateItem_block_report">Block or Report…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">ធ្វើបច្ចុប្បន្នភាព</string>
     <!-- Update item button text to show how many group updates there are. -->
@@ -6688,10 +6719,6 @@
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">កំណត់សម្គាល់ការចេញផ្សាយ &amp; និងព័ត៌មានរបស់ Signal</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">នេះជាការជជែកជាផ្លូវការ និងតែមួយគត់ពី Signal។</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">ទទួលបានព័ត៌មាន និងកំណត់ចំណាំនៃការចេញផ្សាយថ្មីៗ។</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">នេះជាការជជែកជាផ្លូវការ និងតែមួយគត់ពី Signal</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
@@ -7625,7 +7652,7 @@
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">ហៅចេញ</string>
     <!-- Displayed for outgoing calls that were not accepted by the remote party -->
-    <string name="CallLogAdapter__unanswered">Unanswered</string>
+    <string name="CallLogAdapter__unanswered">មិនបានលើក</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">ខកមិនបានទទួល</string>
     <!-- Displayed for one missed call declined by notification profile -->

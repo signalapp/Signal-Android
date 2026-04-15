@@ -4,6 +4,6 @@
   <string name="MediaSendDialogs__discard_changes">Discard changes?</string>
   <!-- Dialog body explaining that leaving the image editor will discard any edits made to the current photo. -->
   <string name="MediaSendDialogs__youll_lose_any_changes">You\'ll lose any changes you\'ve made to this photo.</string>
-  <!-- Confirmation button that discards the user's image edits. -->
+  <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">Discard</string>
 </resources>

@@ -2246,7 +2246,7 @@
     <string name="MessageRecord__payment_tombstone">Payment</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Reported as spam</string>
-    <!-- Update message shown in chat after accept a message request, placeholder is the other person's display name -->
+    <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
     <string name="MessageRecord_you_accepted_s_message_request">You accepted %1$s\'s message request</string>
     <!-- Update message shown in a group chat after accepting a group message request -->
     <string name="MessageRecord_you_accepted_the_group_request">You accepted the group request</string>
@@ -2873,7 +2873,7 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Unable to connect to service. Please check network connection and try again.</string>
-    <!-- Dialog error message shown when we are unable to send an SMS to the user's number -->
+    <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">We are unable to send an SMS to your number. Please try again in several hours.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
