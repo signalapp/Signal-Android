@@ -43,7 +43,6 @@ import org.signal.registration.NetworkController.UpdateSessionError
 import org.signal.registration.proto.ProvisioningData
 import org.signal.registration.proto.SvrCredential
 import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
-import org.signal.registration.screens.restoreselection.ArchiveRestoreOption
 import org.signal.registration.util.SensitiveLog
 import java.security.SecureRandom
 import java.util.Locale
@@ -508,10 +507,6 @@ class RegistrationRepository(val context: Context, val networkController: Networ
   suspend fun isRegistered(): Boolean = withContext(Dispatchers.IO) {
     val data = storageController.readInProgressRegistrationData()
     data.aci.isNotEmpty() && data.pni.isNotEmpty()
-  }
-
-  suspend fun getAvailableRestoreOptions(): Set<ArchiveRestoreOption> = withContext(Dispatchers.IO) {
-    storageController.getAvailableRestoreOptions()
   }
 
   fun restoreV1Backup(uri: Uri, passphrase: String): Flow<LocalBackupRestoreProgress> {

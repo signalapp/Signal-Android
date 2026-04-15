@@ -19,7 +19,6 @@ import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.registration.proto.RegistrationData
 import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
-import org.signal.registration.screens.restoreselection.ArchiveRestoreOption
 import org.signal.registration.util.ACIParceler
 import org.signal.registration.util.AccountEntropyPoolParceler
 import org.signal.registration.util.IdentityKeyPairParceler
@@ -82,12 +81,6 @@ interface StorageController {
    * separately committed.
    */
   suspend fun commitRegistrationData()
-
-  /**
-   * Returns the set of restore options that are currently available to the user.
-   * For example, if a local backup file is present on the device, [ArchiveRestoreOption.LocalBackup] should be included.
-   */
-  suspend fun getAvailableRestoreOptions(): Set<ArchiveRestoreOption>
 
   /**
    * Begins restoring from a V1 (.backup) file identified by the given [uri].

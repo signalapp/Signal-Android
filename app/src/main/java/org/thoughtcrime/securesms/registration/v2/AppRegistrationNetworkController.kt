@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.registration.fcm.PushChallengeRequest
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
+import org.whispersystems.signalservice.api.archive.ArchiveServiceAccess
 import org.whispersystems.signalservice.api.provisioning.ProvisioningSocket
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.internal.crypto.SecondaryProvisioningCipher
@@ -65,6 +66,7 @@ import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import java.io.IOException
 import java.util.Locale
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import org.whispersystems.signalservice.api.account.AccountAttributes as ServiceAccountAttributes
 import org.whispersystems.signalservice.api.account.PreKeyCollection as ServicePreKeyCollection
@@ -528,6 +530,57 @@ class AppRegistrationNetworkController(
         when (result.code) {
           401 -> RequestResult.NonSuccess(SetAccountAttributesError.Unauthorized)
           422 -> RequestResult.NonSuccess(SetAccountAttributesError.InvalidRequest(result.toString()))
+          else -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${result.code}"))
+        }
+      }
+      is NetworkResult.NetworkError -> RequestResult.RetryableNetworkError(result.exception)
+      is NetworkResult.ApplicationError -> RequestResult.ApplicationError(result.throwable)
+    }
+  }
+
+  override suspend fun getRemoteBackupInfo(): RequestResult<NetworkController.GetBackupInfoResponse, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
+    val aci = SignalStore.account.aci ?: return@withContext RequestResult.ApplicationError(IllegalStateException("ACI not available"))
+
+    val currentTime = System.currentTimeMillis()
+    val messageCredential = SignalStore.backup.messageCredentials.byDay.getForCurrentTime(currentTime.milliseconds)
+
+    val access = if (messageCredential != null) {
+      ArchiveServiceAccess(messageCredential, SignalStore.backup.messageBackupKey)
+    } else {
+      when (val credResult = SignalNetwork.archive.getServiceCredentials(currentTime)) {
+        is NetworkResult.Success -> {
+          SignalStore.backup.messageCredentials.add(credResult.result.messageCredentials)
+          SignalStore.backup.messageCredentials.clearOlderThan(currentTime)
+          val credential = SignalStore.backup.messageCredentials.byDay.getForCurrentTime(currentTime.milliseconds)
+            ?: return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to obtain backup credentials after fetch"))
+          ArchiveServiceAccess(credential, SignalStore.backup.messageBackupKey)
+        }
+        is NetworkResult.StatusCodeError -> return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to fetch backup credentials: ${credResult.code}"))
+        is NetworkResult.NetworkError -> return@withContext RequestResult.RetryableNetworkError(credResult.exception)
+        is NetworkResult.ApplicationError -> return@withContext RequestResult.ApplicationError(credResult.throwable)
+      }
+    }
+
+    when (val result = SignalNetwork.archive.getBackupInfo(aci, access)) {
+      is NetworkResult.Success -> {
+        val info = result.result
+        RequestResult.Success(
+          NetworkController.GetBackupInfoResponse(
+            cdn = info.cdn,
+            backupDir = info.backupDir,
+            mediaDir = info.mediaDir,
+            backupName = info.backupName,
+            usedSpace = info.usedSpace
+          )
+        )
+      }
+      is NetworkResult.StatusCodeError -> {
+        when (result.code) {
+          400 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.BadArguments(result.stringBody))
+          401 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.BadAuthCredential(result.stringBody))
+          403 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.Forbidden(result.stringBody))
+          404 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.NoBackup)
+          429 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.RateLimited(0.seconds))
           else -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${result.code}"))
         }
       }

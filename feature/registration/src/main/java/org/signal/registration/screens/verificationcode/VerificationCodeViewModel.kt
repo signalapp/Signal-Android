@@ -176,7 +176,7 @@ class VerificationCodeViewModel(
         parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool))
 
         when {
-//          response.reregistration -> parentEventEmitter.navigateTo(RegistrationRoute.ChooseRestoreOptionAfterRegistration)
+          response.reregistration -> parentEventEmitter.navigateTo(RegistrationRoute.ArchiveRestoreSelection.forPostRegister())
           response.storageCapable -> parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSvrRestore)
           else -> parentEventEmitter.navigateTo(RegistrationRoute.PinCreate)
         }

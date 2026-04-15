@@ -13,11 +13,13 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import org.signal.core.models.MasterKey
+import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.net.RequestResult
@@ -25,6 +27,9 @@ import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.protocol.util.Hex
+import org.signal.libsignal.zkgroup.GenericServerPublicParams
+import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialRequestContext
+import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialResponse
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.AccountAttributes
 import org.signal.registration.NetworkController.CheckSvrCredentialsRequest
@@ -62,8 +67,11 @@ import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider
 import org.whispersystems.signalservice.internal.websocket.LibSignalChatConnection
 import java.io.IOException
+import java.time.Instant
 import java.util.Locale
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import org.whispersystems.signalservice.api.account.AccountAttributes as ServiceAccountAttributes
 import org.whispersystems.signalservice.api.account.PreKeyCollection as ServicePreKeyCollection
@@ -842,6 +850,126 @@ class DemoNetworkController(
       RequestResult.ApplicationError(e)
     }
   }
+
+  override suspend fun getRemoteBackupInfo(): RequestResult<NetworkController.GetBackupInfoResponse, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
+    val aci = RegistrationPreferences.aci
+    val password = RegistrationPreferences.servicePassword
+    val aep = RegistrationPreferences.aep
+
+    if (aci == null || password == null || aep == null) {
+      Log.w(TAG, "[getRemoteBackupInfo] Credentials not available")
+      return@withContext RequestResult.ApplicationError(IllegalStateException("Credentials not available"))
+    }
+
+    try {
+      val messageBackupKey = aep.deriveMessageBackupKey()
+
+      // Remember, this is a demo app
+      val credential = fetchArchiveServiceCredential(aci.toString(), password)
+        ?: return@withContext RequestResult.RetryableNetworkError(IOException("Failed to fetch archive credentials"))
+
+      val headers = buildZkAuthHeaders(messageBackupKey, aci, credential)
+
+      val baseUrl = serviceConfiguration.signalServiceUrls[0].url
+      val request = okhttp3.Request.Builder()
+        .url("$baseUrl/v1/archives")
+        .get()
+        .apply { headers.forEach { (k, v) -> header(k, v) } }
+        .build()
+
+      okHttpClient.newCall(request).execute().use { response ->
+        when (response.code) {
+          200 -> {
+            val info = json.decodeFromString<NetworkController.GetBackupInfoResponse>(response.body.string())
+            RequestResult.Success(info)
+          }
+          400 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.BadArguments(response.body.string()))
+          401 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.BadAuthCredential(response.body.string()))
+          403 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.Forbidden(response.body.string()))
+          404 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.NoBackup)
+          429 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.RateLimited(response.retryAfter()))
+          else -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body?.string()}"))
+        }
+      }
+    } catch (e: IOException) {
+      Log.w(TAG, "[getRemoteBackupInfo] IOException", e)
+      RequestResult.RetryableNetworkError(e)
+    } catch (e: Exception) {
+      Log.w(TAG, "[getRemoteBackupInfo] Exception", e)
+      RequestResult.ApplicationError(e)
+    }
+  }
+
+  /**
+   * Fetches an archive service credential for today by calling GET /v1/archives/auth on the authenticated channel.
+   */
+  private fun fetchArchiveServiceCredential(aci: String, password: String): ArchiveCredential? {
+    val currentTime = System.currentTimeMillis()
+    val roundedToNearestDay = currentTime.milliseconds.inWholeDays.days
+    val endTime = roundedToNearestDay + 7.days
+    val startSeconds = roundedToNearestDay.inWholeSeconds
+    val endSeconds = endTime.inWholeSeconds
+
+    val credentials = okhttp3.Credentials.basic(aci, password)
+    val baseUrl = serviceConfiguration.signalServiceUrls[0].url
+    val request = okhttp3.Request.Builder()
+      .url("$baseUrl/v1/archives/auth?redemptionStartSeconds=$startSeconds&redemptionEndSeconds=$endSeconds")
+      .get()
+      .header("Authorization", credentials)
+      .build()
+
+    okHttpClient.newCall(request).execute().use { response ->
+      if (response.code != 200) {
+        Log.w(TAG, "[fetchArchiveServiceCredential] Unexpected response code: ${response.code}")
+        return null
+      }
+
+      val body = response.body.string()
+      val parsed = json.decodeFromString<ArchiveCredentialsResponse>(body)
+      val todaySeconds = roundedToNearestDay.inWholeSeconds
+
+      return parsed.credentials["messages"]?.firstOrNull { it.redemptionTime == todaySeconds }
+    }
+  }
+
+  /**
+   * Builds the ZK auth headers (X-Signal-ZK-Auth, X-Signal-ZK-Auth-Signature) needed for
+   * anonymous archive requests.
+   */
+  private fun buildZkAuthHeaders(
+    messageBackupKey: org.signal.core.models.backup.MessageBackupKey,
+    aci: org.signal.core.models.ServiceId.ACI,
+    credential: ArchiveCredential
+  ): Map<String, String> {
+    val backupServerPublicParams = GenericServerPublicParams(serviceConfiguration.backupServerPublicParams)
+    val backupRequestContext = BackupAuthCredentialRequestContext.create(messageBackupKey.value, aci.rawUuid)
+    val backupAuthCredentialResponse = BackupAuthCredentialResponse(Base64.decode(credential.credential))
+    val backupAuthCredential = backupRequestContext.receiveResponse(
+      backupAuthCredentialResponse,
+      Instant.ofEpochSecond(credential.redemptionTime),
+      backupServerPublicParams
+    )
+
+    val presentation = backupAuthCredential.present(backupServerPublicParams).serialize()
+    val privateKey = messageBackupKey.deriveAnonymousCredentialPrivateKey(aci)
+    val signedPresentation = privateKey.calculateSignature(presentation)
+
+    return mapOf(
+      "X-Signal-ZK-Auth" to Base64.encodeWithPadding(presentation),
+      "X-Signal-ZK-Auth-Signature" to Base64.encodeWithPadding(signedPresentation)
+    )
+  }
+
+  @Serializable
+  private data class ArchiveCredentialsResponse(
+    val credentials: Map<String, List<ArchiveCredential>>
+  )
+
+  @Serializable
+  private data class ArchiveCredential(
+    val credential: String,
+    val redemptionTime: Long
+  )
 
   private fun AccountAttributes.toServiceAccountAttributes(): ServiceAccountAttributes {
     return ServiceAccountAttributes(

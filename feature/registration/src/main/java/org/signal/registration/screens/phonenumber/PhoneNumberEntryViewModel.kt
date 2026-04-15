@@ -205,12 +205,14 @@ class PhoneNumberEntryViewModel(
     // If the user selected a restore option before entering their phone number, navigate to the restore flow
     if (state.pendingRestoreOption != null) {
       parentEventEmitter(RegistrationFlowEvent.E164Chosen(e164))
+
+      Log.i(TAG, "Pending restore option: ${state.pendingRestoreOption}. Navigating to appropriate screen.")
+
       when (state.pendingRestoreOption) {
         PendingRestoreOption.LocalBackup -> parentEventEmitter.navigateTo(RegistrationRoute.LocalBackupRestore(isPreRegistration = true))
-        PendingRestoreOption.RemoteBackup -> {
-          Log.w(TAG, "[PendingRestore] Remote backup restore not yet implemented")
-        }
+        PendingRestoreOption.RemoteBackup -> parentEventEmitter.navigateTo(RegistrationRoute.EnterAepScreen)
       }
+
       return state
     }
 
