@@ -123,6 +123,10 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
           continue;
         }
 
+        if (Recipient.externalGroupExact(id).isBlocked()) {
+          continue;
+        }
+
         ByteString      selfUuidBytes = Recipient.self().requireAci().toByteString();
         boolean         isActive      = group.get().isActive();
         DecryptedMember selfMember    = group.get().requireV2GroupProperties().getDecryptedGroup().members
@@ -167,6 +171,22 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
   {
     if (SignalStore.account().isLinkedDevice()) {
       Log.i(TAG, "Linked device, skipping");
+      return;
+    }
+
+    Optional<GroupRecord> group = SignalDatabase.groups().getGroup(groupId);
+    if (!group.isPresent()) {
+      Log.w(TAG, "Group " + group + " no longer exists?");
+      return;
+    }
+
+    if (Recipient.externalGroupExact(groupId).isBlocked()) {
+      Log.i(TAG, "Not updating blocked group " + groupId);
+      return;
+    }
+
+    if (!group.get().isActive()) {
+      Log.i(TAG, "Group is not active, skipping update.");
       return;
     }
 

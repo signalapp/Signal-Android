@@ -591,26 +591,7 @@ class GroupsV2StateProcessor private constructor(
       Log.i(TAG, "$logPrefix Local state (revision: ${currentLocalState?.revision}) does not match, updating to ${updatedGroupState.revision}")
     }
 
-    val wasTerminated = updatedGroupState.terminated && (currentLocalState == null || !currentLocalState.terminated)
-    val terminatorRecipientId: RecipientId? = if (wasTerminated) {
-      groupStateDiff.serverHistory
-        .mapNotNull { it.change }
-        .firstOrNull { it.terminateGroup }
-        ?.let { ServiceId.parseOrNull(it.editorServiceIdBytes) }
-        ?.let { RecipientId.from(it) }
-    } else {
-      null
-    }
-
-    saveGroupState(groupStateDiff, updatedGroupState, groupSendEndorsements, terminatorRecipientId)
-
-    if (terminatorRecipientId != null) {
-      profileAndMessageHelper.stopAllTypingForGroup()
-    }
-
-    if (wasTerminated) {
-      ConversationShortcutUpdateJob.enqueue()
-    }
+    saveGroupState(groupStateDiff, updatedGroupState, groupSendEndorsements)
 
     if (currentLocalState == null || currentLocalState.revision == RESTORE_PLACEHOLDER_REVISION) {
       if (!updatedGroupState.terminated) {
@@ -639,11 +620,27 @@ class GroupsV2StateProcessor private constructor(
     return InternalUpdateResult.Updated(updatedGroupState)
   }
 
-  private fun saveGroupState(groupStateDiff: GroupStateDiff, updatedGroupState: DecryptedGroup, groupSendEndorsements: ReceivedGroupSendEndorsements?, terminatorRecipientId: RecipientId? = null) {
+  private fun saveGroupState(
+    groupStateDiff: GroupStateDiff,
+    updatedGroupState: DecryptedGroup,
+    groupSendEndorsements: ReceivedGroupSendEndorsements?
+  ) {
     val previousGroupState = groupStateDiff.previousGroupState
 
     if (groupSendEndorsements != null) {
       Log.i(TAG, "$logPrefix Updating send endorsements")
+    }
+
+    val wasTerminated = updatedGroupState.terminated && (previousGroupState == null || !previousGroupState.terminated)
+    val terminatorRecipientId: RecipientId? = if (wasTerminated) {
+      groupStateDiff
+        .serverHistory
+        .mapNotNull { it.change }
+        .firstOrNull { it.terminateGroup }
+        ?.let { ServiceId.parseOrNull(it.editorServiceIdBytes) }
+        ?.let { RecipientId.from(it) }
+    } else {
+      null
     }
 
     val needsAvatarFetch = if (previousGroupState == null) {
@@ -659,6 +656,11 @@ class GroupsV2StateProcessor private constructor(
       SignalDatabase.groups.update(groupMasterKey, updatedGroupState, groupSendEndorsements, terminatorRecipientId)
 
       updatedGroupState.avatar != previousGroupState.avatar
+    }
+
+    if (wasTerminated) {
+      profileAndMessageHelper.stopAllTypingForGroup()
+      ConversationShortcutUpdateJob.enqueue()
     }
 
     if (needsAvatarFetch) {
