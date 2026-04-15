@@ -142,10 +142,6 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
       if (recipient.getHasPni()) {
         archiveSession(new SignalProtocolAddress(recipient.requirePni().toString(), deviceId));
       }
-
-      if (recipient.getHasE164()) {
-        archiveSession(new SignalProtocolAddress(recipient.requireE164(), deviceId));
-      }
     }
   }
 
@@ -161,12 +157,6 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
 
       if (recipient.getHasPni()) {
         SignalProtocolAddress address = new SignalProtocolAddress(recipient.requirePni().toString(), 1);
-        archiveSiblingSessions(address);
-        archiveSession(address);
-      }
-
-      if (recipient.getHasE164()) {
-        SignalProtocolAddress address = new SignalProtocolAddress(recipient.requireE164(), 1);
         archiveSiblingSessions(address);
         archiveSession(address);
       }

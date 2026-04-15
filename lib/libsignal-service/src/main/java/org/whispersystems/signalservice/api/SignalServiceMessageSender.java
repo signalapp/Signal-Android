@@ -3059,10 +3059,6 @@ public class SignalServiceMessageSender {
 
     for (int staleDeviceId : devices) {
       addresses.add(new SignalProtocolAddress(recipient.getServiceId().toString(), staleDeviceId));
-
-      if (recipient.getNumber().isPresent()) {
-        addresses.add(new SignalProtocolAddress(recipient.getNumber().get(), staleDeviceId));
-      }
     }
 
     return addresses;
