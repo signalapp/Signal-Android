@@ -72,7 +72,7 @@ abstract class PushSendJob protected constructor(parameters: Parameters) : BaseJ
     private val TAG = Log.tag(PushSendJob::class.java)
 
     @JvmStatic
-    protected fun enqueueCompressingAndUploadAttachmentsChains(jobManager: JobManager, message: OutgoingMessage): MutableSet<String> {
+    protected fun enqueueCompressingAndUploadAttachmentsChains(jobManager: JobManager, message: OutgoingMessage): Set<String> {
       val attachments: MutableList<Attachment> = mutableListOf()
 
       attachments += message.attachments
