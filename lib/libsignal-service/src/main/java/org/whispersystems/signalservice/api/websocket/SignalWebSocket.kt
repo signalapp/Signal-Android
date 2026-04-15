@@ -12,6 +12,12 @@ import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.libsignal.internal.CompletableFuture
@@ -65,7 +71,8 @@ sealed class SignalWebSocket(
   private val keepAliveTokens: MutableSet<String> = CopyOnWriteArraySet()
   private val keepAliveChangeListeners: MutableSet<Listener> = CopyOnWriteArraySet()
 
-  private var delayedDisconnectThread: DelayedDisconnectThread? = null
+  private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+  private var delayedDisconnectJob: Job? = null
 
   val state: Observable<WebSocketConnectionState> = _state
   val stateSnapshot: WebSocketConnectionState
@@ -88,7 +95,7 @@ sealed class SignalWebSocket(
     if (connection != null) {
       disposable.dispose()
 
-      connection!!.disconnect()
+      connection!!.shutdown()
       connection = null
 
       if (!_state.value!!.isFailure) {
@@ -117,8 +124,8 @@ sealed class SignalWebSocket(
     }
 
     synchronized(this) {
-      delayedDisconnectThread?.abort()
-      delayedDisconnectThread = null
+      delayedDisconnectJob?.cancel()
+      delayedDisconnectJob = null
 
       if (canConnect.canConnect()) {
         try {
@@ -153,7 +160,7 @@ sealed class SignalWebSocket(
 
   fun request(request: WebSocketRequestMessage): Single<WebsocketResponse> {
     return try {
-      delayedDisconnectThread?.resetLastInteractionTime()
+      restartDelayedDisconnectIfNecessary()
       getWebSocket().sendRequest(request)
     } catch (e: IOException) {
       Single.error(e)
@@ -162,7 +169,7 @@ sealed class SignalWebSocket(
 
   fun request(request: WebSocketRequestMessage, timeout: Duration): Single<WebsocketResponse> {
     return try {
-      delayedDisconnectThread?.resetLastInteractionTime()
+      restartDelayedDisconnectIfNecessary()
       getWebSocket().sendRequest(request, timeout.inWholeSeconds)
     } catch (e: IOException) {
       Single.error(e)
@@ -194,6 +201,7 @@ sealed class SignalWebSocket(
     }
 
     if (connection == null || connection?.isDead() == true) {
+      connection?.shutdown()
       disposable.dispose()
 
       disposable = CompositeDisposable()
@@ -216,8 +224,22 @@ sealed class SignalWebSocket(
 
   private fun startDelayedDisconnectIfNecessary() {
     if (connection.isAlive() && keepAliveTokens.isEmpty()) {
-      delayedDisconnectThread?.abort()
-      delayedDisconnectThread = DelayedDisconnectThread().also { it.start() }
+      delayedDisconnectJob?.cancel()
+      delayedDisconnectJob = scope.launch {
+        Log.v(TAG, "$connectionName Disconnect scheduled in $disconnectTimeout")
+        delay(disconnectTimeout)
+        if (!shouldSendKeepAlives()) {
+          disconnect()
+        }
+      }
+    }
+  }
+
+  private fun restartDelayedDisconnectIfNecessary() {
+    synchronized(this) {
+      if (delayedDisconnectJob?.isActive == true) {
+        startDelayedDisconnectIfNecessary()
+      }
     }
   }
 
@@ -225,50 +247,6 @@ sealed class SignalWebSocket(
   fun forceNewWebSocket() {
     Log.i(TAG, "$connectionName Forcing new WebSocket, canConnect: ${canConnect.canConnect()}")
     disconnect()
-  }
-
-  /**
-   * Allow the WebSocket to self destruct if there are no keep alive tokens and it's been longer
-   * than [disconnectTimeout] since the last request was made.
-   */
-  private inner class DelayedDisconnectThread : Thread() {
-    private var abort = false
-
-    @Volatile
-    private var lastInteractionTime = Duration.ZERO
-
-    fun abort() {
-      if (!abort && isAlive) {
-        Log.v(TAG, "$connectionName Scheduled disconnect aborted.")
-        abort = true
-        interrupt()
-      }
-    }
-
-    fun resetLastInteractionTime() {
-      lastInteractionTime = System.currentTimeMillis().milliseconds
-    }
-
-    override fun run() {
-      lastInteractionTime = System.currentTimeMillis().milliseconds
-      try {
-        while (!abort && (lastInteractionTime + disconnectTimeout) > System.currentTimeMillis().milliseconds) {
-          val now = System.currentTimeMillis().milliseconds
-          if (lastInteractionTime > now) {
-            lastInteractionTime = now
-          }
-          val sleepDuration = (lastInteractionTime + disconnectTimeout) - now
-          if (sleepDuration.isPositive()) {
-            Log.v(TAG, "$connectionName Disconnect scheduled in $sleepDuration")
-            sleepTimer.sleep(sleepDuration.inWholeMilliseconds)
-          }
-        }
-      } catch (_: InterruptedException) { }
-
-      if (!abort && !shouldSendKeepAlives()) {
-        disconnect()
-      }
-    }
   }
 
   private fun WebSocketConnection?.isAlive(): Boolean {

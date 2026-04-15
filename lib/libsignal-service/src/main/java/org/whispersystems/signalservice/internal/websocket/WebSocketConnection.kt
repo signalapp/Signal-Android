@@ -28,6 +28,13 @@ interface WebSocketConnection {
 
   fun disconnect()
 
+  /**
+   * Unlike [disconnect], this connection should not be reused after calling this method.
+   */
+  fun shutdown() {
+    disconnect()
+  }
+
   @Throws(IOException::class)
   fun sendRequest(request: WebSocketRequestMessage): Single<WebsocketResponse> {
     return sendRequest(request, DEFAULT_SEND_TIMEOUT.inWholeSeconds)
