@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import org.greenrobot.eventbus.EventBus;
 import org.signal.blurhash.BlurHash;
 import org.signal.core.models.ServiceId.ACI;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.signal.core.util.Base64;
 import org.signal.core.util.Hex;
 import org.signal.core.util.Util;
@@ -28,6 +29,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -84,7 +86,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-public abstract class PushSendJob extends SendJob {
+public abstract class PushSendJob extends BaseJob {
 
   private static final String TAG                           = Log.tag(PushSendJob.class);
   private static final long   PUSH_CHALLENGE_TIMEOUT        = TimeUnit.SECONDS.toMillis(10);
@@ -94,7 +96,15 @@ public abstract class PushSendJob extends SendJob {
   }
 
   @Override
-  protected final void onSend() throws Exception {
+  public final void onRun() throws Exception {
+    if (SignalStore.misc().isClientDeprecated()) {
+      throw new TextSecureExpiredException(String.format("TextSecure expired (build %d, now %d)",
+                                                         BuildConfig.BUILD_TIMESTAMP,
+                                                         System.currentTimeMillis()));
+    }
+
+    Log.i(TAG, "Starting message send attempt");
+
     long timeSinceAciSignedPreKeyRotation = System.currentTimeMillis() - SignalStore.account().aciPreKeys().getLastSignedPreKeyRotationTime();
     long timeSincePniSignedPreKeyRotation = System.currentTimeMillis() - SignalStore.account().pniPreKeys().getLastSignedPreKeyRotationTime();
 
@@ -124,6 +134,8 @@ public abstract class PushSendJob extends SendJob {
       Log.i(TAG, "Successfully sent message. Assuming reCAPTCHA no longer needed.");
       SignalStore.rateLimit().onProofAccepted();
     }
+
+    Log.i(TAG, "Message send completed");
   }
 
   @Override
@@ -531,6 +543,38 @@ public abstract class PushSendJob extends SendJob {
     } else {
       return new SignalServiceDataMessage.PinnedMessage(ACI.parseOrNull(pinnedMessage.targetAuthorAci), pinnedMessage.targetTimestamp, (int) pinnedMessage.pinDurationInSeconds, null);
     }
+  }
+
+  protected static void markAttachmentsUploaded(long messageId, @NonNull OutgoingMessage message) {
+    List<Attachment> attachments = new LinkedList<>();
+
+    attachments.addAll(message.getAttachments());
+    attachments.addAll(message.getLinkPreviews().stream().map(lp -> lp.getThumbnail().orElse(null)).filter(Objects::nonNull).collect(Collectors.toList()));
+    attachments.addAll(message.getSharedContacts().stream().map(Contact::getAvatarAttachment).filter(Objects::nonNull).collect(Collectors.toList()));
+
+    if (message.getOutgoingQuote() != null && message.getOutgoingQuote().getAttachment() != null) {
+      attachments.add(message.getOutgoingQuote().getAttachment());
+    }
+
+    AttachmentTable database = SignalDatabase.attachments();
+
+    for (Attachment attachment : attachments) {
+      database.markAttachmentUploaded(messageId, attachment);
+    }
+  }
+
+  protected String buildAttachmentString(@NonNull List<Attachment> attachments) {
+    List<String> strings = attachments.stream().map(attachment -> {
+      if (attachment instanceof DatabaseAttachment) {
+        return ((DatabaseAttachment) attachment).attachmentId.toString();
+      } else if (attachment.getUri() != null) {
+        return attachment.getUri().toString();
+      } else {
+        return attachment.toString();
+      }
+    }).collect(Collectors.toList());
+
+    return Util.join(strings, ", ");
   }
 
   protected abstract void onPushSend() throws Exception;
