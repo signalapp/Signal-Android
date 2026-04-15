@@ -45,19 +45,7 @@ class DigestingRequestBody(
    * nowhereOutputStream allows a programmer to write out data into the void. This has no memory
    * implications, as we don't actually store bytes.
    */
-  val nowhereOutputStream = object : OutputStream() {
-    @Throws(IOException::class)
-    override fun write(i: Int) {
-    }
-
-    @Throws(IOException::class)
-    override fun write(bytes: ByteArray?) {
-    }
-
-    @Throws(IOException::class)
-    override fun write(bytes: ByteArray?, i: Int, i1: Int) {
-    }
-  }
+  private val nowhereOutputStream = OutputStream.nullOutputStream()
 
   @Throws(IOException::class)
   fun writeToNowhere() {
