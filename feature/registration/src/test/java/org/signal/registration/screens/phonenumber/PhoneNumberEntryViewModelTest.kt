@@ -19,8 +19,14 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.signal.libsignal.net.RequestResult
@@ -34,6 +40,7 @@ import org.signal.registration.RegistrationRoute
 import java.io.IOException
 import kotlin.time.Duration.Companion.seconds
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class PhoneNumberEntryViewModelTest {
 
   private lateinit var viewModel: PhoneNumberEntryViewModel
@@ -44,8 +51,11 @@ class PhoneNumberEntryViewModelTest {
   private lateinit var emittedEvents: MutableList<RegistrationFlowEvent>
   private lateinit var parentEventEmitter: (RegistrationFlowEvent) -> Unit
 
+  private val testDispatcher = StandardTestDispatcher()
+
   @Before
   fun setup() {
+    Dispatchers.setMain(testDispatcher)
     mockRepository = mockk(relaxed = true)
     every { mockRepository.getDefaultRegionCode() } returns "US"
 
@@ -55,6 +65,12 @@ class PhoneNumberEntryViewModelTest {
     emittedEvents = mutableListOf()
     parentEventEmitter = { event -> emittedEvents.add(event) }
     viewModel = PhoneNumberEntryViewModel(mockRepository, parentState, parentEventEmitter)
+    testDispatcher.scheduler.advanceUntilIdle()
+  }
+
+  @After
+  fun tearDown() {
+    Dispatchers.resetMain()
   }
 
   @Test
