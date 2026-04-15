@@ -631,8 +631,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     val tintColor = conversationContext.getColorizer().getIncomingGroupSenderColor(context, sender)
 
     nameWithLabelView.apply {
-      setSender(sender.getDisplayName(context), tintColor)
-      setLabel(conversationMessage.memberLabel)
+      bind(sender.getDisplayName(context), tintColor, conversationMessage.memberLabel)
       visible = true
     }
 

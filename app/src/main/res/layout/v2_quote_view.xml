@@ -19,9 +19,9 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:background="@color/signal_colorPrimary" />
 
-    <org.thoughtcrime.securesms.conversation.v2.items.SenderNameWithLabelView
-        android:id="@+id/quote_author"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:id="@+id/quote_author_holder"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -34,7 +34,14 @@
         app:layout_constraintStart_toEndOf="@id/quote_bar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <org.thoughtcrime.securesms.conversation.v2.items.SenderNameWithLabelView
+            android:id="@+id/quote_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
 
     <ViewStub
         android:id="@+id/quote_attachment_name_stub"
@@ -47,7 +54,7 @@
         app:layout_constraintBottom_toTopOf="@id/media_type"
         app:layout_constraintEnd_toStartOf="@id/quote_missing_story_reaction_emoji"
         app:layout_constraintStart_toEndOf="@id/quote_bar"
-        app:layout_constraintTop_toBottomOf="@id/quote_author"
+        app:layout_constraintTop_toBottomOf="@id/quote_author_holder"
         app:layout_constraintWidth_default="spread"
         app:layout_goneMarginBottom="8dp" />
 
@@ -142,7 +149,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="quote_attachment_name_stub,quote_author,quote_text,media_type" />
+        app:constraint_referenced_ids="quote_attachment_name_stub,quote_author_holder,quote_text,media_type" />
 
     <ViewStub
         android:id="@+id/quote_missing_text_stub"
