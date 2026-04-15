@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
@@ -219,7 +220,8 @@ fun RegistrationNavHost(
   }
 
   val decorators = listOf(
-    rememberSaveableStateHolderNavEntryDecorator<NavKey>()
+    rememberSaveableStateHolderNavEntryDecorator<NavKey>(),
+    rememberViewModelStoreNavEntryDecorator()
   )
 
   val entries = rememberDecoratedNavEntries(
