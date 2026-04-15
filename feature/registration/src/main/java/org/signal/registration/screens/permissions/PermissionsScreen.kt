@@ -377,8 +377,11 @@ private fun PermissionButtons(onProceed: () -> Unit, permissionsState: MultipleP
       Buttons.LargeTonal(
         modifier = Modifier.testTag(TestTags.PERMISSIONS_NEXT_BUTTON),
         onClick = {
-          permissionsState.launchMultiplePermissionRequest()
-          onProceed()
+          if (permissionsState.allPermissionsGranted) {
+            onProceed()
+          } else {
+            permissionsState.launchMultiplePermissionRequest()
+          }
         }
       ) {
         Text(

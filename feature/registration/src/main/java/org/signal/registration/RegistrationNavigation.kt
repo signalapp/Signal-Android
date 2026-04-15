@@ -171,7 +171,6 @@ fun RegistrationNavHost(
   )
 
   val registrationState by viewModel.state.collectAsStateWithLifecycle()
-  val permissions: MultiplePermissionsState = permissionsState ?: rememberMultiplePermissionsState(viewModel.getRequiredPermissions())
 
   if (registrationState.isRestoringNavigationState) {
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -184,7 +183,7 @@ fun RegistrationNavHost(
     navigationEntries(
       registrationRepository = registrationRepository,
       registrationViewModel = viewModel,
-      permissionsState = permissions,
+      permissionsState = permissionsState,
       onRegistrationComplete = onRegistrationComplete
     )
   }
@@ -238,7 +237,7 @@ fun RegistrationNavHost(
 private fun EntryProviderScope<NavKey>.navigationEntries(
   registrationRepository: RegistrationRepository,
   registrationViewModel: RegistrationViewModel,
-  permissionsState: MultiplePermissionsState,
+  permissionsState: MultiplePermissionsState?,
   onRegistrationComplete: () -> Unit
 ) {
   val parentEventEmitter: (RegistrationFlowEvent) -> Unit = registrationViewModel::onEvent
@@ -259,11 +258,14 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // --- Permissions Screen
   entry<RegistrationRoute.Permissions> { key ->
+    val onProceed = { parentEventEmitter.navigateTo(key.nextRoute) }
+    val localPermissionsState = permissionsState ?: rememberMultiplePermissionsState(
+      permissions = registrationViewModel.getRequiredPermissions(),
+      onPermissionsResult = { onProceed() }
+    )
     PermissionsScreen(
-      permissionsState = permissionsState,
-      onProceed = {
-        parentEventEmitter.navigateTo(key.nextRoute)
-      }
+      permissionsState = localPermissionsState,
+      onProceed = onProceed
     )
   }
 
