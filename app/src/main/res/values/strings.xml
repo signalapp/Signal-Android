@@ -759,7 +759,7 @@
     <!-- Content description for next tip button -->
     <string name="SafetyTips_next_tip">Next tip</string>
 
-    <!-- Summary tip 0 title: Don't respond to chats from Signal -->
+    <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
     <string name="SafetyTips_summary_tip0_title">Don\'t respond to chats from Signal</string>
     <!-- Summary tip 0 message -->
     <string name="SafetyTips_summary_tip0_message">Signal will never message you for your registration code, PIN, or recovery key. Never respond to a chat pretending to be Signal.</string>
@@ -799,7 +799,7 @@
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">%s on Signal are chosen by their account holder.</string>
-    <!-- Bottom sheet text explaining that Signal can't verify names and photos -->
+    <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
     <string name="ProfileNameBottomSheet__signal_cant_verify">Signal can\'t verify names and photos</string>
     <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
     <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal will never contact you for your registration code, PIN, or recovery key</string>
