@@ -26,6 +26,7 @@ import org.signal.core.ui.compose.Previews
 fun RegistrationScreen(
   content: @Composable () -> Unit,
   modifier: Modifier = Modifier,
+  header: (@Composable () -> Unit)? = null,
   footer: (@Composable () -> Unit)? = null
 ) {
   SubcomposeLayout(modifier = modifier.imePadding()) { constraints ->
@@ -34,14 +35,20 @@ fun RegistrationScreen(
     } ?: emptyList()
     val footerHeight = footerPlaceables.maxOfOrNull { it.height } ?: 0
 
-    val contentHeight = (constraints.maxHeight - footerHeight).coerceAtLeast(0)
+    val headerPlaceables = header?.let {
+      subcompose("header", it).map { m -> m.measure(constraints.copy(minWidth = 0, minHeight = 0)) }
+    } ?: emptyList()
+    val headerHeight = headerPlaceables.maxOfOrNull { it.height } ?: 0
+
+    val contentHeight = (constraints.maxHeight - footerHeight - headerHeight).coerceAtLeast(0)
     val contentPlaceables = subcompose("content", content).map { m ->
       m.measure(constraints.copy(minHeight = contentHeight, maxHeight = contentHeight))
     }
 
     layout(constraints.maxWidth, constraints.maxHeight) {
-      contentPlaceables.forEach { it.placeRelative(0, 0) }
-      footerPlaceables.forEach { it.placeRelative(0, contentHeight) }
+      headerPlaceables.forEach { it.placeRelative(0, 0) }
+      contentPlaceables.forEach { it.placeRelative(0, headerHeight) }
+      footerPlaceables.forEach { it.placeRelative(0, contentHeight + headerHeight) }
     }
   }
 }
