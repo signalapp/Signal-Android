@@ -88,7 +88,7 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object PhoneNumberEntry : RegistrationRoute
 
   @Serializable
-  data object CountryCodePicker : RegistrationRoute
+  data class CountryCodePicker(val country: Country? = null) : RegistrationRoute
 
   @Serializable
   data object VerificationCodeEntry : RegistrationRoute
@@ -235,7 +235,7 @@ fun RegistrationNavHost(
     onBack = { viewModel.onEvent(RegistrationFlowEvent.NavigateBack) },
     modifier = modifier,
     transitionSpec = {
-      if (targetState.key == RegistrationRoute.CountryCodePicker.toString()) {
+      if (targetState.key is RegistrationRoute.CountryCodePicker) {
         TransitionSpecs.VerticalSlide.transitionSpec.invoke(this)
       } else {
         TransitionSpecs.HorizontalSlide.transitionSpec.invoke(this)
@@ -243,7 +243,7 @@ fun RegistrationNavHost(
     },
     popTransitionSpec = {
       when {
-        initialState.key == RegistrationRoute.CountryCodePicker.toString() -> {
+        initialState.key is RegistrationRoute.CountryCodePicker -> {
           TransitionSpecs.VerticalSlide.popTransitionSpec.invoke(this)
         }
         initialState.key == RegistrationRoute.EnterAepScreen.toString() -> {
@@ -258,9 +258,10 @@ fun RegistrationNavHost(
       }
     },
     predictivePopTransitionSpec = {
-      when (initialState.key) {
-        RegistrationRoute.CountryCodePicker.toString() -> TransitionSpecs.VerticalSlide.predictivePopTransitionSpec.invoke(this, it)
-        else -> TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec.invoke(this, it)
+      if (initialState.key is RegistrationRoute.CountryCodePicker) {
+        TransitionSpecs.VerticalSlide.predictivePopTransitionSpec.invoke(this, it)
+      } else {
+        TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec.invoke(this, it)
       }
     }
   )
@@ -335,13 +336,14 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   }
 
   // -- Country Code Picker
-  entry<RegistrationRoute.CountryCodePicker> {
+  entry<RegistrationRoute.CountryCodePicker> { key ->
     val viewModel: CountryCodePickerViewModel = viewModel(
       factory = CountryCodePickerViewModel.Factory(
         repository = CountryCodePickerRepository(),
         parentEventEmitter = parentEventEmitter,
         resultBus = registrationViewModel.resultBus,
-        resultKey = COUNTRY_CODE_RESULT
+        resultKey = COUNTRY_CODE_RESULT,
+        initialCountry = key.country
       )
     )
     val state by viewModel.state.collectAsStateWithLifecycle()

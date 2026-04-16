@@ -31,6 +31,7 @@ import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
 import org.signal.registration.screens.EventDrivenViewModel
+import org.signal.registration.screens.countrycode.Country
 import org.signal.registration.screens.countrycode.CountryUtils
 import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreResult
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryState.OneTimeEvent
@@ -109,7 +110,13 @@ class PhoneNumberEntryViewModel(
         stateEmitter(localState.copy(showSpinner = false))
       }
       is PhoneNumberEntryScreenEvents.CountryPicker -> {
-        state.also { parentEventEmitter.navigateTo(RegistrationRoute.CountryCodePicker) }
+        state.also {
+          parentEventEmitter.navigateTo(
+            RegistrationRoute.CountryCodePicker(
+              Country(state.countryEmoji, state.countryName, state.countryCode.toIntOrNull() ?: 0, state.regionCode).takeIf { state.countryName.isNotEmpty() }
+            )
+          )
+        }
       }
       is PhoneNumberEntryScreenEvents.CaptchaCompleted -> {
         stateEmitter(applyCaptchaCompleted(state, event.token, parentEventEmitter))

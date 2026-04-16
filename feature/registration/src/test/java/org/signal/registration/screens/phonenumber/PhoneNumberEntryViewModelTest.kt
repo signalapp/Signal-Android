@@ -243,7 +243,7 @@ class PhoneNumberEntryViewModelTest {
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first()).isEqualTo(
-      RegistrationFlowEvent.NavigateToScreen(RegistrationRoute.CountryCodePicker)
+      RegistrationFlowEvent.NavigateToScreen(RegistrationRoute.CountryCodePicker())
     )
   }
 
