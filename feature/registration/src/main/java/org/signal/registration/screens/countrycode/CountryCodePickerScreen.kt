@@ -8,8 +8,10 @@ package org.signal.registration.screens.countrycode
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -22,7 +24,6 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -49,83 +50,194 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.IconButtons.IconButton
 import org.signal.core.ui.compose.LargeFontPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.registration.R
+import org.signal.registration.screens.RegistrationScreen
 
 /**
  * Screen that allows someone to search and select a country code from a supported list of countries.
  */
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CountryCodePickerScreen(
   state: CountryCodeState,
   onEvent: (CountryCodePickerScreenEvents) -> Unit
 ) {
-  Scaffold(
-    topBar = {
-      Scaffolds.DefaultTopAppBar(
-        title = stringResource(R.string.CountryCodeSelectScreen__your_country),
-        titleContent = { _, title ->
-          Text(text = title, style = MaterialTheme.typography.titleLarge)
-        },
-        onNavigationClick = { onEvent(CountryCodePickerScreenEvents.Dismissed) },
-        navigationIcon = SignalIcons.X.imageVector,
-        navigationContentDescription = stringResource(R.string.CountryCodeSelectScreen__close)
-      )
+  val windowBreakpoint = rememberWindowBreakpoint()
+
+  when (windowBreakpoint) {
+    WindowBreakpoint.SMALL -> {
+      CompactLayout(state, onEvent)
     }
-  ) { padding ->
-    val listState = rememberLazyListState()
-    val coroutineScope = rememberCoroutineScope()
 
-    LazyColumn(
-      state = listState,
-      horizontalAlignment = Alignment.CenterHorizontally,
-      modifier = Modifier.padding(padding)
-    ) {
-      stickyHeader {
-        SearchBar(
-          text = state.query,
-          onSearch = { onEvent(CountryCodePickerScreenEvents.Search(it)) }
-        )
-      }
+    WindowBreakpoint.MEDIUM -> {
+      MediumLayout(state, onEvent)
+    }
 
-      if (state.countryList.isEmpty()) {
-        item {
-          CircularProgressIndicator(
-            modifier = Modifier.size(56.dp)
+    WindowBreakpoint.LARGE -> {
+      LargeLayout(state, onEvent)
+    }
+  }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun CompactLayout(state: CountryCodeState, onEvent: (CountryCodePickerScreenEvents) -> Unit) {
+  RegistrationScreen(
+    modifier = Modifier.fillMaxSize(),
+    header = {
+      Row(
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+      ) {
+        IconButton(
+          onClick = { onEvent(CountryCodePickerScreenEvents.Dismissed) }
+        ) {
+          Icon(
+            imageVector = SignalIcons.X.imageVector,
+            contentDescription = stringResource(R.string.CountryCodeSelectScreen__close)
           )
         }
-      } else if (state.query.isEmpty()) {
-        if (state.commonCountryList.isNotEmpty()) {
-          items(state.commonCountryList) { country ->
-            CountryItem(country, onEvent)
-          }
+        Text(
+          stringResource(R.string.CountryCodeSelectScreen__your_country),
+          style = MaterialTheme.typography.titleLarge
+        )
+      }
+    },
+    content = {
+      CountryList(state, onEvent)
+    }
+  )
+}
 
-          item {
-            Dividers.Default()
-          }
+@Composable
+private fun MediumLayout(state: CountryCodeState, onEvent: (CountryCodePickerScreenEvents) -> Unit) {
+  RegistrationScreen(
+    modifier = Modifier.fillMaxSize(),
+    header = {
+      Header(onEvent)
+    },
+    content = {
+      Row(
+        modifier = Modifier.fillMaxSize()
+      ) {
+        Column(
+          modifier = Modifier.weight(1f).padding(horizontal = 24.dp)
+        ) {
+          Text(
+            stringResource(R.string.CountryCodeSelectScreen__your_country),
+            style = MaterialTheme.typography.titleLarge
+          )
         }
-
-        items(state.countryList) { country ->
-          CountryItem(country, onEvent)
-        }
-      } else {
-        items(state.filteredList) { country ->
-          CountryItem(country, onEvent, state.query)
+        Column(
+          modifier = Modifier.weight(1f).padding(horizontal = 24.dp)
+        ) {
+          CountryList(state, onEvent)
         }
       }
     }
+  )
+}
 
-    LaunchedEffect(state.startingIndex) {
-      coroutineScope.launch {
-        listState.scrollToItem(index = state.startingIndex)
+@Composable
+private fun LargeLayout(state: CountryCodeState, onEvent: (CountryCodePickerScreenEvents) -> Unit) {
+  RegistrationScreen(
+    modifier = Modifier.fillMaxSize(),
+    header = {
+      Header(onEvent)
+    },
+    content = {
+      Row(
+        modifier = Modifier.fillMaxSize()
+      ) {
+        Column(
+          modifier = Modifier.weight(1f).padding(horizontal = 24.dp)
+        ) {
+          Text(
+            stringResource(R.string.CountryCodeSelectScreen__your_country),
+            style = MaterialTheme.typography.titleLarge
+          )
+        }
+        Column(
+          modifier = Modifier.weight(1f).padding(horizontal = 24.dp)
+        ) {
+          CountryList(state, onEvent)
+        }
       }
+    }
+  )
+}
+
+@Composable
+private fun Header(onEvent: (CountryCodePickerScreenEvents) -> Unit) {
+  Row(
+    modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
+    verticalAlignment = Alignment.CenterVertically
+  ) {
+    IconButton(
+      onClick = { onEvent(CountryCodePickerScreenEvents.Dismissed) }
+    ) {
+      Icon(
+        imageVector = SignalIcons.X.imageVector,
+        contentDescription = stringResource(R.string.CountryCodeSelectScreen__close)
+      )
+    }
+  }
+}
+
+@Composable
+private fun CountryList(state: CountryCodeState, onEvent: (CountryCodePickerScreenEvents) -> Unit) {
+  val listState = rememberLazyListState()
+  val coroutineScope = rememberCoroutineScope()
+
+  LazyColumn(
+    state = listState,
+    horizontalAlignment = Alignment.CenterHorizontally
+  ) {
+    stickyHeader {
+      SearchBar(
+        text = state.query,
+        onSearch = { onEvent(CountryCodePickerScreenEvents.Search(it)) }
+      )
+    }
+
+    if (state.countryList.isEmpty()) {
+      item {
+        CircularProgressIndicator(
+          modifier = Modifier.size(56.dp)
+        )
+      }
+    } else if (state.query.isEmpty()) {
+      if (state.commonCountryList.isNotEmpty()) {
+        items(state.commonCountryList) { country ->
+          CountryItem(country, onEvent)
+        }
+
+        item {
+          Dividers.Default()
+        }
+      }
+
+      items(state.countryList) { country ->
+        CountryItem(country, onEvent)
+      }
+    } else {
+      items(state.filteredList) { country ->
+        CountryItem(country, onEvent, state.query)
+      }
+    }
+  }
+
+  LaunchedEffect(state.startingIndex) {
+    coroutineScope.launch {
+      listState.scrollToItem(index = state.startingIndex)
     }
   }
 }
