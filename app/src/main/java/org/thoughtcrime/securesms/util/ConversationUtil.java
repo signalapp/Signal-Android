@@ -12,7 +12,6 @@ import androidx.core.content.LocusIdCompat;
 import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
 
-import com.annimon.stream.Stream;
 import com.google.common.collect.Sets;
 
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -33,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -93,7 +93,7 @@ public final class ConversationUtil {
   public static void clearAllShortcuts(@NonNull Context context) {
     List<ShortcutInfoCompat> shortcutInfos = ShortcutManagerCompat.getDynamicShortcuts(context);
 
-    ShortcutManagerCompat.removeLongLivedShortcuts(context, Stream.of(shortcutInfos).map(ShortcutInfoCompat::getId).toList());
+    ShortcutManagerCompat.removeLongLivedShortcuts(context, shortcutInfos.stream().map(ShortcutInfoCompat::getId).collect(Collectors.toList()));
   }
 
   /**
@@ -101,7 +101,7 @@ public final class ConversationUtil {
    */
   public static void clearShortcuts(@NonNull Context context, @NonNull Collection<RecipientId> recipientIds) {
     SignalExecutors.BOUNDED.execute(() -> {
-      ShortcutManagerCompat.removeLongLivedShortcuts(context, Stream.of(recipientIds).withoutNulls().map(ConversationUtil::getShortcutId).toList());
+      ShortcutManagerCompat.removeLongLivedShortcuts(context, recipientIds.stream().filter(Objects::nonNull).map(ConversationUtil::getShortcutId).collect(Collectors.toList()));
     });
   }
 
@@ -271,7 +271,7 @@ public final class ConversationUtil {
   private static @NonNull Person[] buildPersonsForGroup(@NonNull Context context, @NonNull GroupId groupId) {
     List<Recipient> members = SignalDatabase.groups().getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
-    return Stream.of(members).map(member -> buildPersonWithoutIcon(context, member.resolve())).toArray(Person[]::new);
+    return members.stream().map(member -> buildPersonWithoutIcon(context, member.resolve())).toArray(Person[]::new);
   }
 
   /**

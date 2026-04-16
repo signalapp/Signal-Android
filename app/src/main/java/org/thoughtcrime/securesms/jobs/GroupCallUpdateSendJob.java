@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -61,10 +60,9 @@ public class GroupCallUpdateSendJob extends BaseJob {
       throw new AssertionError("We have a recipient, but it's not a V2 Group");
     }
 
-    List<RecipientId> recipientIds = Stream.of(RecipientUtil.getEligibleForSending(Recipient.resolvedList(conversationRecipient.getParticipantIds())))
-                                           .filterNot(Recipient::isSelf)
-                                           .map(Recipient::getId)
-                                           .toList();
+    List<RecipientId> recipientIds = RecipientUtil.getEligibleForSending(Recipient.resolvedList(conversationRecipient.getParticipantIds())).stream()
+                                                  .filter(recipient -> !recipient.isSelf())
+                                                  .map(Recipient::getId).collect(Collectors.toList());
 
     return new GroupCallUpdateSendJob(recipientId,
                                       eraId,
@@ -127,7 +125,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
       return;
     }
 
-    List<Recipient> destinations = Stream.of(recipients).map(Recipient::resolved).toList();
+    List<Recipient> destinations = recipients.stream().map(Recipient::resolved).collect(Collectors.toList());
     List<Recipient> completions  = deliver(conversationRecipient, destinations);
 
     for (Recipient completion : completions) {

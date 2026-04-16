@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.events
 
-import com.annimon.stream.OptionalLong
 import org.signal.ringrtc.CallManager.CallEndReason
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink
 import org.thoughtcrime.securesms.events.CallParticipant.Companion.createLocal
@@ -11,6 +10,7 @@ import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 import org.webrtc.PeerConnection
+import java.util.Optional
 
 class WebRtcViewModel(state: WebRtcServiceState) {
 
@@ -100,7 +100,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
   val callConnectedTime: Long = state.callInfoState.callConnectedTime
   val remoteParticipants: List<CallParticipant> = state.callInfoState.remoteCallParticipants
   val identityChangedParticipants: Set<RecipientId> = state.callInfoState.identityChangedRecipients
-  val remoteDevicesCount: OptionalLong = state.callInfoState.remoteDevicesCount
+  val remoteDevicesCount: Optional<Long> = state.callInfoState.remoteDevicesCount
   val participantLimit: Long? = state.callInfoState.participantLimit
   val pendingParticipants: PendingParticipantCollection = state.callInfoState.pendingParticipants
   val isCallLink: Boolean = state.callInfoState.callRecipient.isCallLink
@@ -151,7 +151,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
     get() = remoteParticipants.any(CallParticipant::isVideoEnabled) || groupState.isNotIdle && remoteParticipants.size > 1
 
   fun areRemoteDevicesInCall(): Boolean {
-    return remoteDevicesCount.isPresent && remoteDevicesCount.asLong > 0
+    return remoteDevicesCount.isPresent && remoteDevicesCount.get() > 0
   }
 
   override fun toString(): String {

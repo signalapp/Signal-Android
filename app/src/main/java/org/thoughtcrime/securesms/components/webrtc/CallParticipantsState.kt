@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.annotation.Discouraged
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
-import com.annimon.stream.OptionalLong
 import kotlinx.collections.immutable.toImmutableList
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls.FoldableState
@@ -19,6 +18,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.ringrtc.CameraState
 import org.thoughtcrime.securesms.service.webrtc.collections.ParticipantCollection
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState
+import java.util.Optional
 import java.util.concurrent.TimeUnit
 
 /**
@@ -37,7 +37,7 @@ data class CallParticipantsState(
   val isInPipMode: Boolean = false,
   private val showVideoForOutgoing: Boolean = false,
   val isViewingFocusedParticipant: Boolean = false,
-  val remoteDevicesCount: OptionalLong = OptionalLong.empty(),
+  val remoteDevicesCount: Optional<Long> = Optional.empty(),
   private val foldableState: FoldableState = FoldableState.flat(),
   val isInOutgoingRingingMode: Boolean = false,
   val recipient: Recipient = Recipient.UNKNOWN,
@@ -87,11 +87,11 @@ data class CallParticipantsState(
       return listParticipants
     }
 
-  val participantCount: OptionalLong
+  val participantCount: Optional<Long>
     get() {
       val includeSelf = groupCallState == WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED
       return remoteDevicesCount.map { l: Long -> l + if (includeSelf) 1L else 0L }
-        .or { if (includeSelf) OptionalLong.of(1L) else OptionalLong.empty() }
+        .or { if (includeSelf) Optional.of(1L) else Optional.empty() }
     }
 
   fun getPreJoinGroupDescription(context: Context): String? {

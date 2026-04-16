@@ -13,7 +13,6 @@ import android.os.SystemClock
 import android.preference.PreferenceManager
 import android.text.TextUtils
 import androidx.core.content.contentValuesOf
-import com.annimon.stream.Stream
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
@@ -31,10 +30,6 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SQLiteDatabase
-import org.thoughtcrime.securesms.database.helpers.PreKeyMigrationHelper
-import org.thoughtcrime.securesms.database.helpers.RecipientIdCleanupHelper
-import org.thoughtcrime.securesms.database.helpers.RecipientIdMigrationHelper
-import org.thoughtcrime.securesms.database.helpers.SessionStoreMigrationHelper
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations
 import org.thoughtcrime.securesms.database.model.databaseprotos.ReactionList
 import org.thoughtcrime.securesms.groups.GroupId
@@ -46,7 +41,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.SignalE164Util
-import org.thoughtcrime.securesms.util.Triple
 import org.whispersystems.signalservice.api.push.DistributionId
 import java.io.File
 import java.io.IOException
@@ -222,14 +216,11 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
       db.execSQL("CREATE TABLE signed_prekeys (_id INTEGER PRIMARY KEY, key_id INTEGER UNIQUE, public_key TEXT NOT NULL, private_key TEXT NOT NULL, signature TEXT NOT NULL, timestamp INTEGER DEFAULT 0)")
       db.execSQL("CREATE TABLE one_time_prekeys (_id INTEGER PRIMARY KEY, key_id INTEGER UNIQUE, public_key TEXT NOT NULL, private_key TEXT NOT NULL)")
 
-      if (!PreKeyMigrationHelper.migratePreKeys(context, db.sqlCipherDatabase)) {
-        PreKeysSyncJob.enqueue()
-      }
+      PreKeysSyncJob.enqueue()
     }
 
     if (oldVersion < MIGRATE_SESSIONS_VERSION) {
       db.execSQL("CREATE TABLE sessions (_id INTEGER PRIMARY KEY, address TEXT NOT NULL, device INTEGER NOT NULL, record BLOB NOT NULL, UNIQUE(address, device) ON CONFLICT REPLACE)")
-      SessionStoreMigrationHelper.migrateSessions(context, db.sqlCipherDatabase)
     }
 
     if (oldVersion < NO_MORE_IMAGE_THUMBNAILS_VERSION) {
@@ -616,7 +607,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
     }
 
     if (oldVersion < RECIPIENT_IDS) {
-      RecipientIdMigrationHelper.execute(db.sqlCipherDatabase)
+      // RecipientIdMigrationHelper was removed -- migration from this old version is no longer supported
     }
 
     if (oldVersion < RECIPIENT_SEARCH) {
@@ -639,7 +630,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
     }
 
     if (oldVersion < RECIPIENT_CLEANUP) {
-      RecipientIdCleanupHelper.execute(db)
+      // RecipientIdCleanupHelper was removed -- migration from this old version is no longer supported
     }
 
     if (oldVersion < MMS_RECIPIENT_CLEANUP) {
@@ -656,9 +647,8 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
 
     if (oldVersion < NOTIFICATION_RECIPIENT_IDS && Build.VERSION.SDK_INT >= 26) {
       val notificationManager = ServiceUtil.getNotificationManager(context)
-      val channels = Stream.of(notificationManager.notificationChannels)
+      val channels = notificationManager.notificationChannels
         .filter { c: NotificationChannel -> c.id.startsWith("contact_") }
-        .toList()
 
       Log.i(TAG, "Migrating " + channels.size + " channels to use RecipientId's.")
 

@@ -2,7 +2,8 @@ package org.thoughtcrime.securesms.net;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.xbill.DNS.ARecord;
@@ -44,8 +45,7 @@ public class CustomDns implements Dns {
       List<InetAddress> ipv4Addresses = Stream.of(records)
                                               .filter(r -> r.getType() == Type.A)
                                               .map(r -> (ARecord) r)
-                                              .map(ARecord::getAddress)
-                                              .toList();
+                                              .map(ARecord::getAddress).collect(Collectors.toList());
       if (ipv4Addresses.size() > 0) {
         return ipv4Addresses;
       }

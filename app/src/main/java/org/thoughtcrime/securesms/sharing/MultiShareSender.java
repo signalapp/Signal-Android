@@ -10,8 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.BreakIteratorCompat;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SimpleTask;
@@ -23,7 +21,6 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.signal.core.models.media.TransformProperties;
-import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.StoryType;
@@ -62,6 +59,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import okio.Utf8;
 
@@ -245,11 +243,11 @@ public final class MultiShareSender {
                                                       if (slide instanceof VideoSlide) {
                                                         return expandToClips(context, (VideoSlide) slide).stream();
                                                       } else if (slide instanceof ImageSlide) {
-                                                        return java.util.stream.Stream.of(ensureDefaultQuality(context, (ImageSlide) slide));
+                                                        return Stream.of(ensureDefaultQuality(context, (ImageSlide) slide));
                                                       } else if (slide instanceof StickerSlide) {
-                                                        return java.util.stream.Stream.empty();
+                                                        return Stream.empty();
                                                       } else {
-                                                        return java.util.stream.Stream.of(slide);
+                                                        return Stream.of(slide);
                                                       }
                                                     })
                                                     .filter(it -> MediaUtil.isStorySupportedType(it.getContentType()))
@@ -489,11 +487,11 @@ public final class MultiShareSender {
     }
 
     public boolean containsFailures() {
-      return Stream.of(results).anyMatch(result -> result.type != MultiShareSendResult.Type.SUCCESS);
+      return results.stream().anyMatch(result -> result.type != MultiShareSendResult.Type.SUCCESS);
     }
 
     public boolean containsOnlyFailures() {
-      return Stream.of(results).allMatch(result -> result.type != MultiShareSendResult.Type.SUCCESS);
+      return results.stream().allMatch(result -> result.type != MultiShareSendResult.Type.SUCCESS);
     }
   }
 

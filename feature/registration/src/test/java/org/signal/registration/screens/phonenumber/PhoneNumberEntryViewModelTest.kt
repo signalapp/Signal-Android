@@ -17,9 +17,16 @@ import assertk.assertions.isTrue
 import assertk.assertions.prop
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.signal.libsignal.net.RequestResult
@@ -33,6 +40,7 @@ import org.signal.registration.RegistrationRoute
 import java.io.IOException
 import kotlin.time.Duration.Companion.seconds
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class PhoneNumberEntryViewModelTest {
 
   private lateinit var viewModel: PhoneNumberEntryViewModel
@@ -43,25 +51,26 @@ class PhoneNumberEntryViewModelTest {
   private lateinit var emittedEvents: MutableList<RegistrationFlowEvent>
   private lateinit var parentEventEmitter: (RegistrationFlowEvent) -> Unit
 
+  private val testDispatcher = StandardTestDispatcher()
+
   @Before
   fun setup() {
+    Dispatchers.setMain(testDispatcher)
     mockRepository = mockk(relaxed = true)
+    every { mockRepository.getDefaultRegionCode() } returns "US"
+
     parentState = MutableStateFlow(RegistrationFlowState())
     emittedStates = mutableListOf()
     stateEmitter = { state -> emittedStates.add(state) }
     emittedEvents = mutableListOf()
     parentEventEmitter = { event -> emittedEvents.add(event) }
     viewModel = PhoneNumberEntryViewModel(mockRepository, parentState, parentEventEmitter)
+    testDispatcher.scheduler.advanceUntilIdle()
   }
 
-  @Test
-  fun `initial state has default US region and country code`() {
-    val state = PhoneNumberEntryState()
-
-    assertThat(state.regionCode).isEqualTo("US")
-    assertThat(state.countryCode).isEqualTo("1")
-    assertThat(state.nationalNumber).isEqualTo("")
-    assertThat(state.formattedNumber).isEqualTo("")
+  @After
+  fun tearDown() {
+    Dispatchers.resetMain()
   }
 
   @Test
@@ -540,7 +549,7 @@ class PhoneNumberEntryViewModelTest {
     assertThat(emittedStates.first().showSpinner).isTrue()
     assertThat(emittedStates.last().showSpinner).isFalse()
 
-    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PhoneNumberEntryState.OneTimeEvent.ThirdPartyError)
+    assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PhoneNumberEntryState.OneTimeEvent.UnableToSendSms)
   }
 
   // ==================== Push Challenge Tests ====================

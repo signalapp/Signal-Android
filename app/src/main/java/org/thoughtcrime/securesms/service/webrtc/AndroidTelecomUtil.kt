@@ -34,7 +34,7 @@ object AndroidTelecomUtil {
   @JvmStatic
   val telecomSupported: Boolean
     get() {
-      if (Build.VERSION.SDK_INT >= 34 && !systemRejected && isTelecomAllowedForDevice()) {
+      if (Build.VERSION.SDK_INT >= 36 && !systemRejected && isTelecomAllowedForDevice()) {
         if (!registered) {
           registerPhoneAccount()
         }
@@ -48,11 +48,12 @@ object AndroidTelecomUtil {
 
   @JvmStatic
   fun registerPhoneAccount() {
-    if (Build.VERSION.SDK_INT >= 34 && !systemRejected) {
+    if (Build.VERSION.SDK_INT >= 36 && !systemRejected) {
       Log.i(TAG, "Registering with CallsManager")
       try {
         callsManager.registerAppWithTelecom(
-          CallsManager.CAPABILITY_BASELINE or CallsManager.CAPABILITY_SUPPORTS_VIDEO_CALLING
+          capabilities = CallsManager.CAPABILITY_BASELINE or CallsManager.CAPABILITY_SUPPORTS_VIDEO_CALLING,
+          backwardsCompatSdkLevel = 37
         )
         Log.i(TAG, "CallsManager registration successful")
         registered = true

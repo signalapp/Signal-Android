@@ -2,10 +2,12 @@ package org.thoughtcrime.securesms.mediapreview
 
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
+import android.os.Build
 import android.os.Bundle
 import android.text.Annotation
 import android.text.SpannableString
@@ -67,6 +69,7 @@ import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter.ImageL
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Debouncer
@@ -577,6 +580,10 @@ class MediaPreviewV2Fragment :
         .setType(mimeType)
         .createChooserIntent()
         .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+      if (Build.VERSION.SDK_INT < 34) {
+        shareIntent.putExtra(Intent.EXTRA_EXCLUDE_COMPONENTS, arrayOf(ComponentName(requireContext(), ShareActivity::class.java)))
+      }
 
       try {
         startActivity(shareIntent)

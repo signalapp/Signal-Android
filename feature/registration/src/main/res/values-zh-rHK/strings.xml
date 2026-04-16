@@ -42,6 +42,12 @@
     <string name="RegistrationActivity_select_a_country">選取國家或地區</string>
     <string name="RegistrationActivity_phone_number_description">電話號碼</string>
     <string name="RegistrationActivity_next">下一步</string>
+    <!-- Dialog title to confirm phone number -->
+    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <!-- Dialog body to confirm phone number -->
+    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <!-- Dialog button to edit the number entered -->
+    <string name="RegistrationActivity_edit_number">Edit number</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -76,8 +82,8 @@
     <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">嘗試次數過多。請在 %1$s 後再試。</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">發生未預期錯誤。 請重試。</string>
-    <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">發送驗證碼時出現問題。請重試。</string>
+    <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__unable_to_send_sms">We are unable to send an SMS to your number. Please try again in several hours.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">無法透過所選方法發送驗證碼。請嘗試其他選項。</string>
     <!-- Snackbar shown for registration errors -->
@@ -146,8 +152,6 @@
     <string name="LocalBackupRestoreScreen__backup_found_description">從你儲存在裝置上的備份資料夾還原訊息。若你現在不還原，之後將無法還原。</string>
     <!-- Title for the latest backup card -->
     <string name="LocalBackupRestoreScreen__your_latest_backup">你的最新備份：</string>
-    <!-- Label for a legacy backup type -->
-    <string name="LocalBackupRestoreScreen__legacy_backup">Legacy backup</string>
     <!-- Restore backup button text -->
     <string name="LocalBackupRestoreScreen__restore_backup">備份還原</string>
     <!-- Link to choose an earlier backup -->
@@ -193,8 +197,6 @@
     <string name="LocalBackupRestoreScreen__restoring_backup">正在還原備份</string>
     <!-- Description shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_description">請稍候，系統正在還原你的訊息和資料。</string>
-    <!-- Title shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete">還原完成</string>
     <!-- Description shown when restore is complete -->
     <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->

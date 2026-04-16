@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.mediasend.v2.text
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
-import org.thoughtcrime.securesms.util.next
+import org.signal.core.util.next
 
 typealias OnTextAlignmentChanged = (TextAlignment) -> Unit
 

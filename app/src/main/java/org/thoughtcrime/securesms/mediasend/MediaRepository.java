@@ -9,29 +9,26 @@ import android.provider.MediaStore;
 import android.provider.MediaStore.Images;
 import android.provider.MediaStore.Video;
 import android.provider.OpenableColumns;
-import kotlin.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Stream;
-
-import org.signal.core.util.concurrent.SignalExecutors;
-import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.R;
 import org.signal.core.models.media.Media;
 import org.signal.core.models.media.MediaFolder;
 import org.signal.core.models.media.TransformProperties;
+import org.signal.core.ui.util.StorageUtil;
+import org.signal.core.util.SqlUtil;
+import org.signal.core.util.Stopwatch;
+import org.signal.core.util.Util;
+import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.signal.core.util.SqlUtil;
-import org.signal.core.util.Stopwatch;
-import org.signal.core.ui.util.StorageUtil;
-import org.signal.core.util.Util;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +43,7 @@ import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import kotlin.collections.MapsKt;
+import kotlin.Pair;
 
 /**
  * Handles the retrieval of media present on the user's device.
@@ -108,7 +105,7 @@ public class MediaRepository {
    * much data as we have, like width/height.
    */
   public void getPopulatedMedia(@NonNull Context context, @NonNull List<Media> media, @NonNull Callback<List<Media>> callback) {
-    if (Stream.of(media).allMatch(this::isPopulated)) {
+    if (media.stream().allMatch(this::isPopulated)) {
       callback.onComplete(media);
       return;
     }
@@ -157,20 +154,19 @@ public class MediaRepository {
 
     String            cameraBucketId = imageFolders.getCameraBucketId() != null ? imageFolders.getCameraBucketId() : videoFolders.getCameraBucketId();
     FolderData        cameraFolder   = cameraBucketId != null ? folders.remove(cameraBucketId) : null;
-    List<MediaFolder> mediaFolders   = Stream.of(folders.values())
-                                             .filter(folder -> folder.getTitle() != null)
-                                             .map(folder -> new MediaFolder(folder.getThumbnail(),
+    List<MediaFolder> mediaFolders   = folders.values().stream()
+                                              .filter(folder -> folder.getTitle() != null)
+                                              .map(folder -> new MediaFolder(folder.getThumbnail(),
                                                                             folder.getTitle(),
                                                                             folder.getCount(),
                                                                             folder.getBucketId(),
                                                                             MediaFolder.FolderType.NORMAL))
-                                             .sorted((o1, o2) -> o1.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase()))
-                                             .toList();
+                                              .sorted((o1, o2) -> o1.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase())).collect(Collectors.toList());
 
     Uri allMediaThumbnail = imageFolders.getThumbnailTimestamp() > videoFolders.getThumbnailTimestamp() ? imageFolders.getThumbnail() : videoFolders.getThumbnail();
 
     if (allMediaThumbnail != null) {
-      int allMediaCount = Stream.of(mediaFolders).reduce(0, (count, folder) -> count + folder.getItemCount());
+      int allMediaCount = mediaFolders.stream().reduce(0, (count, folder) -> count + folder.getItemCount(), Integer::sum);
 
       if (cameraFolder != null) {
         allMediaCount += cameraFolder.getCount();

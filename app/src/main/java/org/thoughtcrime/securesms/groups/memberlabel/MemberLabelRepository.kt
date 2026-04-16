@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.conversation.colors.ColorizerV2
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.UiHintValues
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.whispersystems.signalservice.api.NetworkResult
 
 /**
@@ -56,6 +58,7 @@ class MemberLabelRepository private constructor(
   fun getLabelSync(groupId: GroupId.V2, recipient: Recipient): MemberLabel? {
     val aci = recipient.serviceId.orNull() as? ServiceId.ACI ?: return null
     val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return null
+    if (!isSelfAnActiveGroupMember(groupRecord)) return null
 
     return groupRecord.requireV2GroupProperties().memberLabel(aci)?.sanitized()
   }
@@ -66,8 +69,9 @@ class MemberLabelRepository private constructor(
   @WorkerThread
   fun getLabelsSync(groupId: GroupId.V2, recipients: Collection<Recipient>): Map<RecipientId, MemberLabel> {
     val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return emptyMap()
-    val labelsByAci = groupRecord.requireV2GroupProperties().memberLabelsByAci()
+    if (!isSelfAnActiveGroupMember(groupRecord)) return emptyMap()
 
+    val labelsByAci = groupRecord.requireV2GroupProperties().memberLabelsByAci()
     return buildMap {
       recipients.forEach { recipient ->
         val aci = recipient.serviceId.orNull() as? ServiceId.ACI
@@ -98,6 +102,7 @@ class MemberLabelRepository private constructor(
   suspend fun canSetLabel(groupId: GroupId.V2, recipient: Recipient): Boolean = withContext(Dispatchers.IO) {
     val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext false
 
+    if (!isSelfAnActiveGroupMember(groupRecord)) return@withContext false
     if (groupRecord.isTerminated) return@withContext false
 
     val memberLevel = groupRecord.memberLevel(recipient)
@@ -124,8 +129,9 @@ class MemberLabelRepository private constructor(
    */
   suspend fun getMembersWithLabels(groupId: GroupId.V2): List<GroupMemberWithLabel> = withContext(Dispatchers.IO) {
     val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext emptyList()
-    val groupProperties = groupRecord.requireV2GroupProperties()
+    if (!isSelfAnActiveGroupMember(groupRecord)) return@withContext emptyList()
 
+    val groupProperties = groupRecord.requireV2GroupProperties()
     val allMembers = groupProperties.getMemberRecipients(GroupTable.MemberSet.FULL_MEMBERS_INCLUDING_SELF)
     val colorizer = ColorizerV2(groupMemberIds = allMembers.mapNotNull { it.serviceId.orNull() })
     val labelsByAci = groupProperties.memberLabelsByAci()
@@ -159,6 +165,14 @@ class MemberLabelRepository private constructor(
 
   fun markMemberLabelAboutOverrideWarningDismissed() {
     uiHints.markMemberLabelAboutOverrideWarningDismissed()
+  }
+
+  @WorkerThread
+  private fun isSelfAnActiveGroupMember(groupRecord: GroupRecord): Boolean {
+    return when {
+      !groupRecord.memberLevel(Recipient.self()).isInGroup -> false
+      else -> RecipientUtil.isMessageRequestAccepted(Recipient.resolved(groupRecord.recipientId))
+    }
   }
 }
 

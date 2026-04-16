@@ -2103,7 +2103,11 @@ public class SignalServiceMessageSender {
         }
       } catch (MismatchedDevicesException mde) {
         Log.w(TAG, "[sendMessage][" + timestamp + "] Handling mismatched devices. (" + mde.getMessage() + ")");
-        handleMismatchedDevices(recipient, mde.getMismatchedDevices());
+        try {
+          handleMismatchedDevices(recipient, mde.getMismatchedDevices());
+        } catch (InvalidPreKeyException e) {
+          return SendMessageResult.invalidPreKeyFailure(recipient);
+        }
       } catch (StaleDevicesException ste) {
         Log.w(TAG, "[sendMessage][" + timestamp + "] Handling stale devices. (" + ste.getMessage() + ")");
         handleStaleDevices(recipient, ste.getStaleDevices());
@@ -2580,14 +2584,38 @@ public class SignalServiceMessageSender {
         if (error instanceof MismatchedDeviceException) {
           MismatchedDeviceException mismatchedDeviceException = (MismatchedDeviceException) error;
           Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling mismatched devices. (" + mismatchedDeviceException.getMessage() + ")");
+          List<SendMessageResult> invalidPreKeyResults = new LinkedList<>();
+
           for (MismatchedDeviceException.Entry entry : mismatchedDeviceException.getEntries()) {
             SignalServiceAddress address = new SignalServiceAddress(ServiceId.fromLibSignal(entry.getAccount()));
             MismatchedDevices    devices = MismatchedDevices.fromLibSignal(entry);
-            handleMismatchedDevices(address, devices);
+            try {
+              handleMismatchedDevices(address, devices);
+            } catch (InvalidPreKeyException e) {
+              Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Invalid prekey for " + address.getIdentifier() + " during mismatch handling.");
+              invalidPreKeyResults.add(SendMessageResult.invalidPreKeyFailure(address));
+              continue;
+            }
             if (entry.getStaleDevices().length > 0) {
               StaleDevices staleDevices = StaleDevices.fromLibSignal(entry);
               handleStaleDevices(address, staleDevices);
             }
+          }
+
+          if (!invalidPreKeyResults.isEmpty()) {
+            Set<ServiceId> failedAddresses = invalidPreKeyResults.stream()
+                                                                  .map(r -> r.getAddress().getServiceId())
+                                                                  .collect(Collectors.toSet());
+
+            List<SendMessageResult> networkFailures = recipients.stream()
+                                                                .filter(r -> !failedAddresses.contains(r.getServiceId()))
+                                                                .map(SendMessageResult::networkFailure)
+                                                                .collect(Collectors.toList());
+
+            List<SendMessageResult> combinedResults = new LinkedList<>();
+            combinedResults.addAll(invalidPreKeyResults);
+            combinedResults.addAll(networkFailures);
+            return combinedResults;
           }
         } else if (error instanceof RequestUnauthorizedException) {
           Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Invalid access header.");
@@ -3031,10 +3059,6 @@ public class SignalServiceMessageSender {
 
     for (int staleDeviceId : devices) {
       addresses.add(new SignalProtocolAddress(recipient.getServiceId().toString(), staleDeviceId));
-
-      if (recipient.getNumber().isPresent()) {
-        addresses.add(new SignalProtocolAddress(recipient.getNumber().get(), staleDeviceId));
-      }
     }
 
     return addresses;

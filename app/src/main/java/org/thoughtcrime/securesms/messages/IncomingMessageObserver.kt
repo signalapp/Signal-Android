@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.util.AppForegroundObserver
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.SignalTrace
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.asChain
 import org.whispersystems.signalservice.api.messages.EnvelopeResponse
 import org.whispersystems.signalservice.api.util.SleepTimer
@@ -239,6 +240,7 @@ class IncomingMessageObserver(
     }
 
     val registered = SignalStore.account.isRegistered
+    val unauthorizedReceived = TextSecurePreferences.isUnauthorizedReceived(context)
     val fcmEnabled = SignalStore.account.fcmEnabled
     val hasNetwork = NetworkConstraint.isMet(context)
     val hasProxy = SignalStore.proxy.isProxyEnabled
@@ -247,12 +249,13 @@ class IncomingMessageObserver(
 
     val lastInteractionString = if (appVisibleSnapshot) "N/A" else timeIdle.toString() + " ms (" + (if (timeIdle < maxBackgroundTime) "within limit" else "over limit") + ")"
     val conclusion = registered &&
+      !unauthorizedReceived &&
       (appVisibleSnapshot || timeIdle < maxBackgroundTime || !fcmEnabled) &&
       hasNetwork
 
     val needsConnectionString = if (conclusion) "Needs Connection" else "Does Not Need Connection"
 
-    Log.d(TAG, "[$needsConnectionString] Network: $hasNetwork, Foreground: $appVisibleSnapshot, Time Since Last Interaction: $lastInteractionString, FCM: $fcmEnabled, WS Open or Keep-alives: $websocketAlreadyOpen, Registered: $registered, Proxy: $hasProxy, Force websocket: $forceWebsocket")
+    Log.d(TAG, "[$needsConnectionString] Network: $hasNetwork, Foreground: $appVisibleSnapshot, Time Since Last Interaction: $lastInteractionString, FCM: $fcmEnabled, WS Open or Keep-alives: $websocketAlreadyOpen, Registered: $registered, Unauthorized: $unauthorizedReceived, Proxy: $hasProxy, Force websocket: $forceWebsocket")
     return conclusion
   }
 

@@ -139,7 +139,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
 
   fun getPrimaryText(context: Context): CharSequence {
     return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayMessage) {
-      if (RecipientUtil.isMessageRequestAccepted(context, thread.threadId)) {
+      if (RecipientUtil.isMessageRequestAccepted(thread.threadId)) {
         getPrimaryTextActual(context)
       } else {
         SpanUtil.italic(context.getString(R.string.SingleRecipientNotificationBuilder_message_request))
@@ -302,7 +302,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
     }
 
     if (record is MmsMessageRecord) {
-      return (record.isMmsNotification || record.slideDeck.slides.isEmpty()) && record.sharedContacts.isEmpty()
+      return record.sharedContacts.isEmpty()
     }
 
     return true

@@ -30,7 +30,7 @@ import androidx.core.view.ViewKt;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.vectordrawable.graphics.drawable.AnimatorInflaterCompat;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Stream;
 
 import org.signal.core.ui.compose.SignalIcons;
 import org.signal.core.util.DimensionUnit;
@@ -50,6 +50,8 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.LongStream;
+import java.util.stream.Collectors;
 
 import kotlin.Unit;
 
@@ -671,15 +673,15 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private static @Nullable String getOldEmoji(@NonNull MessageRecord messageRecord) {
-    return Stream.of(messageRecord.getReactions())
-                 .filter(record -> record.getAuthor()
+    return messageRecord.getReactions().stream()
+                        .filter(record -> record.getAuthor()
                                          .serialize()
                                          .equals(Recipient.self()
                                                           .getId()
                                                           .serialize()))
-                 .findFirst()
-                 .map(ReactionRecord::getEmoji)
-                 .orElse(null);
+                        .findFirst()
+                        .map(ReactionRecord::getEmoji)
+                        .orElse(null);
   }
 
   private @NonNull List<ActionItem> getMenuActionItems(@NonNull ConversationMessage conversationMessage) {
@@ -704,7 +706,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
     }
 
     if (menuState.shouldShowSaveAttachmentAction()) {
-      items.add(new ActionItem(R.drawable.symbol_save_android_24, getResources().getString(R.string.conversation_selection__menu_save), () -> handleActionItemClicked(Action.DOWNLOAD)));
+      items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_save_android_24, getResources().getString(R.string.conversation_selection__menu_save), () -> handleActionItemClicked(Action.DOWNLOAD)));
     }
 
     if (menuState.shouldShowCopyAction()) {
@@ -776,14 +778,14 @@ public final class ConversationReactionOverlay extends FrameLayout {
     int revealDuration = getContext().getResources().getInteger(R.integer.reaction_scrubber_reveal_duration);
     int revealOffset = getContext().getResources().getInteger(R.integer.reaction_scrubber_reveal_offset);
 
-    List<Animator> reveals = Stream.of(emojiViews)
-        .mapIndexed((idx, v) -> {
-          Animator anim = AnimatorInflaterCompat.loadAnimator(getContext(), R.animator.reactions_scrubber_reveal);
-          anim.setTarget(v);
-          anim.setStartDelay(idx * animationEmojiStartDelayFactor);
-          return anim;
-        })
-        .toList();
+    List<Animator> reveals = LongStream.range(0, emojiViews.length)
+                                       .boxed()
+                                       .map(idx -> {
+                                         Animator anim = AnimatorInflaterCompat.loadAnimator(getContext(), R.animator.reactions_scrubber_reveal);
+                                         anim.setTarget(emojiViews[idx.intValue()]);
+                                         anim.setStartDelay(idx * animationEmojiStartDelayFactor);
+                                         return anim;
+                                       }).collect(Collectors.toList());
 
     Animator backgroundRevealAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_in);
     backgroundRevealAnim.setTarget(backgroundView);
@@ -821,12 +823,12 @@ public final class ConversationReactionOverlay extends FrameLayout {
     int duration = getContext().getResources().getInteger(R.integer.reaction_scrubber_hide_duration);
 
     List<Animator> animators = new ArrayList<>(Stream.of(emojiViews)
-                                                     .mapIndexed((idx, v) -> {
-                                                       Animator anim = AnimatorInflaterCompat.loadAnimator(getContext(), R.animator.reactions_scrubber_hide);
+                                                     .map( v -> {
+                                                            Animator anim = AnimatorInflaterCompat.loadAnimator(getContext(), R.animator.reactions_scrubber_hide);
                                                        anim.setTarget(v);
                                                        return anim;
                                                      })
-                                                     .toList());
+                                                     .collect(Collectors.toList()));
 
     Animator backgroundHideAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_out);
     backgroundHideAnim.setTarget(backgroundView);

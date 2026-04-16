@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -38,18 +38,17 @@ final class ReactWithAnyEmojiRepository {
     this.recentEmojiPageModel = new RecentEmojiPageModel(context, storageKey);
     this.emojiPages           = new LinkedList<>();
 
-    emojiPages.addAll(Stream.of(EmojiSource.getLatest().getDisplayPages())
-                            .filterNot(p -> p.getIconAttr() == EmojiCategory.EMOTICONS.getIcon())
-                            .map(page -> new ReactWithAnyEmojiPage(Collections.singletonList(new ReactWithAnyEmojiPageBlock(EmojiCategory.getCategoryLabel(page.getIconAttr()), page))))
-                            .toList());
+    emojiPages.addAll(EmojiSource.getLatest().getDisplayPages().stream()
+                                 .filter(p -> p.getIconAttr() != EmojiCategory.EMOTICONS.getIcon())
+                                 .map(page -> new ReactWithAnyEmojiPage(Collections.singletonList(new ReactWithAnyEmojiPageBlock(EmojiCategory.getCategoryLabel(page.getIconAttr()), page))))
+                                 .collect(Collectors.toList()));
   }
 
   List<ReactWithAnyEmojiPage> getEmojiPageModels(@NonNull List<ReactionDetails> thisMessagesReactions) {
     List<ReactWithAnyEmojiPage> pages       = new LinkedList<>();
-    List<String>                thisMessage = Stream.of(thisMessagesReactions)
-                                                    .map(ReactionDetails::getDisplayEmoji)
-                                                    .distinct()
-                                                    .toList();
+    List<String>                thisMessage = thisMessagesReactions.stream()
+                                                                   .map(ReactionDetails::getDisplayEmoji)
+                                                                   .distinct().collect(Collectors.toList());
 
     if (thisMessage.isEmpty()) {
       pages.add(new ReactWithAnyEmojiPage(Collections.singletonList(new ReactWithAnyEmojiPageBlock(R.string.ReactWithAnyEmojiBottomSheetDialogFragment__recently_used, recentEmojiPageModel))));
@@ -65,10 +64,10 @@ final class ReactWithAnyEmojiRepository {
 
   void addEmojiToMessage(@NonNull String emoji, @NonNull MessageId messageId) {
     SignalExecutors.BOUNDED.execute(() -> {
-      ReactionRecord  oldRecord = Stream.of(SignalDatabase.reactions().getReactions(messageId))
-                                        .filter(record -> record.getAuthor().equals(Recipient.self().getId()))
-                                        .findFirst()
-                                        .orElse(null);
+      ReactionRecord  oldRecord = SignalDatabase.reactions().getReactions(messageId).stream()
+                                                .filter(record -> record.getAuthor().equals(Recipient.self().getId()))
+                                                .findFirst()
+                                                .orElse(null);
 
       if (oldRecord != null && oldRecord.getEmoji().equals(emoji)) {
         MessageSender.sendReactionRemoval(context, messageId, oldRecord);

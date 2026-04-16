@@ -42,6 +42,12 @@
     <string name="RegistrationActivity_select_a_country">దేశాన్ని ఎంచుకోండి</string>
     <string name="RegistrationActivity_phone_number_description">ఫోను నంబరు</string>
     <string name="RegistrationActivity_next">తరువాత</string>
+    <!-- Dialog title to confirm phone number -->
+    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <!-- Dialog body to confirm phone number -->
+    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <!-- Dialog button to edit the number entered -->
+    <string name="RegistrationActivity_edit_number">Edit number</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -76,8 +82,8 @@
     <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">మితిమీరిన ప్రయత్నాలు. %1$s లో మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">ఊహించని పొరపాటు ఏర్పడింది. దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
-    <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">మీ ధృవీకరణ కోడ్‌ను పంపడంలో సమస్య ఉంది. దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
+    <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__unable_to_send_sms">We are unable to send an SMS to your number. Please try again in several hours.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">ఎంచుకున్న పద్ధతి ద్వారా కోడ్‌ను పంపడం సాధ్యం కాలేదు. దయచేసి మరొక ఎంపికను ప్రయత్నించండి.</string>
     <!-- Snackbar shown for registration errors -->
@@ -146,8 +152,6 @@
     <string name="LocalBackupRestoreScreen__backup_found_description">మీ పరికరంలో మీరు సేవ్ చేసిన బ్యాకప్ ఫోల్డర్ నుండి మీ సందేశాలను పునరుద్ధరించండి. ఒకవేళ మీరు ఇప్పుడు పునరుద్ధరించకపోతే, తరువాత మీరు పునరుద్ధరించలేరు.</string>
     <!-- Title for the latest backup card -->
     <string name="LocalBackupRestoreScreen__your_latest_backup">మీ తాజా బ్యాకప్:</string>
-    <!-- Label for a legacy backup type -->
-    <string name="LocalBackupRestoreScreen__legacy_backup">Legacy backup</string>
     <!-- Restore backup button text -->
     <string name="LocalBackupRestoreScreen__restore_backup">ప్రత్యామ్నాయ పునరుద్ధరించండి</string>
     <!-- Link to choose an earlier backup -->
@@ -193,8 +197,6 @@
     <string name="LocalBackupRestoreScreen__restoring_backup">బ్యాకప్‌ను పునరుద్ధరిస్తోంది</string>
     <!-- Description shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_description">మీ సందేశాలు మరియు డేటా పునరుద్ధరించబడే వరకు దయచేసి వేచి ఉండండి.</string>
-    <!-- Title shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete">పునరుద్ధరణ పూర్తయింది</string>
     <!-- Description shown when restore is complete -->
     <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->

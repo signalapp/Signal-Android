@@ -17,9 +17,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
 import org.signal.core.models.AccountEntropyPool
+import org.signal.core.util.E164Util
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.registration.NetworkController
@@ -29,6 +31,7 @@ import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
 import org.signal.registration.screens.EventDrivenViewModel
+import org.signal.registration.screens.countrycode.CountryUtils
 import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreResult
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryState.OneTimeEvent
 import org.signal.registration.screens.util.navigateTo
@@ -58,6 +61,20 @@ class PhoneNumberEntryViewModel(
       _state.value = state.value.copy(
         restoredSvrCredentials = repository.getRestoredSvrCredentials()
       )
+      setDefaultCountry()
+    }
+  }
+
+  fun setDefaultCountry() {
+    val regionCode = repository.getDefaultRegionCode()
+    formatter = phoneNumberUtil.getAsYouTypeFormatter(regionCode)
+    _state.update {
+      it.copy(
+        regionCode = regionCode,
+        countryName = E164Util.getRegionDisplayName(regionCode).orElse(""),
+        countryEmoji = CountryUtils.countryToEmoji(regionCode),
+        countryCode = PhoneNumberUtil.getInstance().getCountryCodeForRegion(regionCode).toString()
+      )
     }
   }
 
@@ -78,6 +95,12 @@ class PhoneNumberEntryViewModel(
       }
       is PhoneNumberEntryScreenEvents.PhoneNumberChanged -> {
         stateEmitter(applyPhoneNumberChanged(state, event.value))
+      }
+      is PhoneNumberEntryScreenEvents.PhoneNumberEntered -> {
+        stateEmitter(state.copy(showDialog = true))
+      }
+      is PhoneNumberEntryScreenEvents.PhoneNumberCancelled -> {
+        stateEmitter(state.copy(showDialog = false))
       }
       is PhoneNumberEntryScreenEvents.PhoneNumberSubmitted -> {
         var localState = state.copy(showSpinner = true)
@@ -150,6 +173,8 @@ class PhoneNumberEntryViewModel(
     val formattedNumber = formatNumber(state.nationalNumber)
 
     return state.copy(
+      countryName = E164Util.getRegionDisplayName(regionCode).orElse(""),
+      countryEmoji = CountryUtils.countryToEmoji(regionCode).takeIf { regionCode != "ZZ" } ?: "",
       countryCode = sanitized,
       regionCode = regionCode,
       formattedNumber = formattedNumber
@@ -180,12 +205,14 @@ class PhoneNumberEntryViewModel(
     // If the user selected a restore option before entering their phone number, navigate to the restore flow
     if (state.pendingRestoreOption != null) {
       parentEventEmitter(RegistrationFlowEvent.E164Chosen(e164))
+
+      Log.i(TAG, "Pending restore option: ${state.pendingRestoreOption}. Navigating to appropriate screen.")
+
       when (state.pendingRestoreOption) {
         PendingRestoreOption.LocalBackup -> parentEventEmitter.navigateTo(RegistrationRoute.LocalBackupRestore(isPreRegistration = true))
-        PendingRestoreOption.RemoteBackup -> {
-          Log.w(TAG, "[PendingRestore] Remote backup restore not yet implemented")
-        }
+        PendingRestoreOption.RemoteBackup -> parentEventEmitter.navigateTo(RegistrationRoute.EnterAepScreen)
       }
+
       return state
     }
 
@@ -463,6 +490,11 @@ class PhoneNumberEntryViewModel(
       return state
     }
 
+    if (!sessionMetadata.allowedToRequestCode && sessionMetadata.requestedInformation.isEmpty()) {
+      Log.w(TAG, "Not allowed to request code and no challenges requested. Unable to send SMS.")
+      return state.copy(oneTimeEvent = OneTimeEvent.UnableToSendSms)
+    }
+
     val verificationCodeResponse = this@PhoneNumberEntryViewModel.repository.requestVerificationCode(
       sessionMetadata.id,
       smsAutoRetrieveCodeSupported = false,
@@ -495,7 +527,7 @@ class PhoneNumberEntryViewModel(
           }
           is NetworkController.RequestVerificationCodeError.MissingRequestInformationOrAlreadyVerified -> {
             Log.w(TAG, "[RequestVerificationCode] Missing request information or already verified.")
-            state.copy(oneTimeEvent = OneTimeEvent.NetworkError)
+            state.copy(oneTimeEvent = OneTimeEvent.UnableToSendSms)
           }
           is NetworkController.RequestVerificationCodeError.SessionNotFound -> {
             Log.w(TAG, "[RequestVerificationCode] Session not found when requesting verification code.")
@@ -504,7 +536,7 @@ class PhoneNumberEntryViewModel(
           }
           is NetworkController.RequestVerificationCodeError.ThirdPartyServiceError -> {
             Log.w(TAG, "[RequestVerificationCode] Third party service error.")
-            state.copy(oneTimeEvent = OneTimeEvent.ThirdPartyError)
+            state.copy(oneTimeEvent = OneTimeEvent.UnableToSendSms)
           }
         }
       }
@@ -563,10 +595,14 @@ class PhoneNumberEntryViewModel(
 
     state = state.copy(sessionMetadata = sessionMetadata)
 
-    // TODO should we be reading "allowedToRequestCode"?
     if (sessionMetadata.requestedInformation.contains("captcha")) {
       parentEventEmitter.navigateTo(RegistrationRoute.Captcha(sessionMetadata))
       return state
+    }
+
+    if (!sessionMetadata.allowedToRequestCode && sessionMetadata.requestedInformation.isEmpty()) {
+      Log.w(TAG, "Not allowed to request code and no challenges requested after captcha. Unable to send SMS.")
+      return state.copy(oneTimeEvent = OneTimeEvent.UnableToSendSms)
     }
 
     val verificationCodeResponse = this@PhoneNumberEntryViewModel.repository.requestVerificationCode(
@@ -593,15 +629,15 @@ class PhoneNumberEntryViewModel(
             state
           }
           is NetworkController.RequestVerificationCodeError.MissingRequestInformationOrAlreadyVerified -> {
-            // TODO [registration] - Error handling not implemented
-            throw NotImplementedError()
+            Log.w(TAG, "When requesting verification code after captcha, missing request information or already verified.")
+            state.copy(oneTimeEvent = OneTimeEvent.UnableToSendSms)
           }
           is NetworkController.RequestVerificationCodeError.SessionNotFound -> {
             parentEventEmitter(RegistrationFlowEvent.ResetState)
             state
           }
           is NetworkController.RequestVerificationCodeError.ThirdPartyServiceError -> {
-            state.copy(oneTimeEvent = OneTimeEvent.ThirdPartyError)
+            state.copy(oneTimeEvent = OneTimeEvent.UnableToSendSms)
           }
         }
       }

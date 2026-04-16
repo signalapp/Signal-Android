@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressSt
 import org.thoughtcrime.securesms.stickers.StickerPreviewDataFactory
 import org.thoughtcrime.securesms.stickers.manage.AvailableStickerPack.DownloadStatus
 import org.thoughtcrime.securesms.util.DeviceProperties
+import org.signal.core.ui.R as CoreUiR
 
 @Composable
 fun StickerPackSectionHeader(
@@ -90,7 +91,7 @@ fun AvailableStickerPackRow(
     )
 
     val readyIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_circle_down_24)
-    val downloadedIcon = ImageVector.vectorResource(R.drawable.symbol_check_24)
+    val downloadedIcon = ImageVector.vectorResource(CoreUiR.drawable.symbol_check_24)
 
     val startButtonContentDesc = stringResource(R.string.StickerManagement_accessibility_download)
     val startButtonOnClickLabel = stringResource(R.string.StickerManagement_accessibility_download_pack, pack.record.title)

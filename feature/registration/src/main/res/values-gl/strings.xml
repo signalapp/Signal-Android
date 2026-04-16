@@ -42,6 +42,12 @@
     <string name="RegistrationActivity_select_a_country">Selecciona un país</string>
     <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
     <string name="RegistrationActivity_next">Seguinte</string>
+    <!-- Dialog title to confirm phone number -->
+    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <!-- Dialog body to confirm phone number -->
+    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <!-- Dialog button to edit the number entered -->
+    <string name="RegistrationActivity_edit_number">Edit number</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -76,8 +82,8 @@
     <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Número de intentos superado. Proba de novo en %1$s.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">Algo saíu mal! Inténtao de novo.</string>
-    <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">Non se puido enviar o teu código de verificación. Inténtao de novo.</string>
+    <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__unable_to_send_sms">We are unable to send an SMS to your number. Please try again in several hours.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Non se puido enviar o código mediante o método seleccionado. Proba con outro.</string>
     <!-- Snackbar shown for registration errors -->
@@ -146,8 +152,6 @@
     <string name="LocalBackupRestoreScreen__backup_found_description">Restaura as túas mensaxes empregando un cartafol de copia de seguranza gardado no teu dispositivo. Se non o fas agora non poderás restaurala posteriormente.</string>
     <!-- Title for the latest backup card -->
     <string name="LocalBackupRestoreScreen__your_latest_backup">A túa última copia de seguranza:</string>
-    <!-- Label for a legacy backup type -->
-    <string name="LocalBackupRestoreScreen__legacy_backup">Legacy backup</string>
     <!-- Restore backup button text -->
     <string name="LocalBackupRestoreScreen__restore_backup">Restaurar copia de seguranza</string>
     <!-- Link to choose an earlier backup -->
@@ -193,8 +197,6 @@
     <string name="LocalBackupRestoreScreen__restoring_backup">Restaurando copia de seguranza</string>
     <!-- Description shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_description">Agarda un momento mentres se restauran as túas mensaxes e datos.</string>
-    <!-- Title shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete">Recuperación completada</string>
     <!-- Description shown when restore is complete -->
     <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->

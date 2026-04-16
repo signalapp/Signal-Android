@@ -422,25 +422,44 @@ class AttachmentTable(
   }
 
   /**
-   * Returns a list that has any permanently-failed thumbnails removed.
+   * Filters thumbnail snapshot entries down to only those that have at least one eligible attachment capable of thumbnail upload.
    */
-  fun filterPermanentlyFailedThumbnails(entries: Set<BackupMediaSnapshotTable.MediaEntry>): Set<BackupMediaSnapshotTable.MediaEntry> {
+  fun filterThumbnailsWithoutEligibleAttachment(entries: Set<BackupMediaSnapshotTable.MediaEntry>): Set<BackupMediaSnapshotTable.MediaEntry> {
+    if (entries.isEmpty()) {
+      return entries
+    }
+
     val entriesByMediaName: MutableMap<String, BackupMediaSnapshotTable.MediaEntry> = entries
       .associateBy { MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(it.plaintextHash, it.remoteKey).name }
       .toMutableMap()
 
+    val eligibleMediaNames: MutableSet<String> = mutableSetOf()
+
     readableDatabase
       .select(DATA_HASH_END, REMOTE_KEY)
       .from(TABLE_NAME)
-      .where("$DATA_HASH_END NOT NULL AND $REMOTE_KEY NOT NULL AND $ARCHIVE_THUMBNAIL_TRANSFER_STATE = ${ArchiveTransferState.PERMANENT_FAILURE.value}")
+      .where(
+        """
+        $DATA_HASH_END NOT NULL AND
+        $REMOTE_KEY NOT NULL AND
+        $DATA_FILE NOT NULL AND
+        $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
+        $QUOTE = 0 AND
+        $ARCHIVE_THUMBNAIL_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}
+        """
+      )
       .run()
       .forEach { cursor ->
         val hashEnd = cursor.requireNonNullString(DATA_HASH_END)
         val remoteKey = cursor.requireNonNullString(REMOTE_KEY)
         val thumbnailMediaName = MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(Base64.decode(hashEnd), Base64.decode(remoteKey)).name
 
-        entriesByMediaName.remove(thumbnailMediaName)
+        if (thumbnailMediaName in entriesByMediaName) {
+          eligibleMediaNames += thumbnailMediaName
+        }
       }
+
+    entriesByMediaName.keys.retainAll(eligibleMediaNames)
 
     return entriesByMediaName.values.toSet()
   }

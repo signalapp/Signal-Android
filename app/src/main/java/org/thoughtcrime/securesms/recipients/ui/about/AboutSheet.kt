@@ -238,6 +238,16 @@ private fun Content(
       modifier = Modifier.fillMaxWidth()
     )
 
+    if (!model.isSelf && !model.profileSharing && !model.systemContact) {
+      AboutRow(
+        startIcon = ImageVector.vectorResource(id = R.drawable.symbol_person_question_24),
+        text = stringResource(id = R.string.AboutSheet__profile_names_are_not_verified),
+        endIcon = ImageVector.vectorResource(id = R.drawable.symbol_chevron_right_compact_bold_16),
+        modifier = Modifier.align(alignment = Alignment.Start),
+        onClick = onUnverifiedProfileClicked
+      )
+    }
+
     if (model.isSelf && (model.memberLabel != null || model.canEditMemberLabel)) {
       MemberLabelRow(
         memberLabel = model.memberLabel,
@@ -264,16 +274,6 @@ private fun Content(
           }
         },
         modifier = Modifier.fillMaxWidth()
-      )
-    }
-
-    if (!model.isSelf && !model.profileSharing && !model.systemContact) {
-      AboutRow(
-        startIcon = ImageVector.vectorResource(id = R.drawable.symbol_person_question_24),
-        text = stringResource(id = R.string.AboutSheet__profile_names_are_not_verified),
-        endIcon = ImageVector.vectorResource(id = R.drawable.symbol_chevron_right_compact_bold_16),
-        modifier = Modifier.align(alignment = Alignment.Start),
-        onClick = onUnverifiedProfileClicked
       )
     }
 

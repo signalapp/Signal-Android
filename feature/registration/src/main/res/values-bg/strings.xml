@@ -42,6 +42,12 @@
     <string name="RegistrationActivity_select_a_country">Изберете държава</string>
     <string name="RegistrationActivity_phone_number_description">Телефонен номер</string>
     <string name="RegistrationActivity_next">Напред</string>
+    <!-- Dialog title to confirm phone number -->
+    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <!-- Dialog body to confirm phone number -->
+    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <!-- Dialog button to edit the number entered -->
+    <string name="RegistrationActivity_edit_number">Edit number</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -76,8 +82,8 @@
     <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Прекалено много опити. Опитайте отново след %1$s.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">Възникна неочаквана грешка. Моля, опитайте отново.</string>
-    <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">Имаше проблем с изпращането на кода за потвърждение. Моля, опитайте отново.</string>
+    <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__unable_to_send_sms">We are unable to send an SMS to your number. Please try again in several hours.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Неуспешно изпращане на кода чрез избрания метод. Моля, опитайте с друг вариант.</string>
     <!-- Snackbar shown for registration errors -->
@@ -146,8 +152,6 @@
     <string name="LocalBackupRestoreScreen__backup_found_description">Възстановете съобщенията си от папката за архивиране, запазена на вашето устройство. Ако не ги възстановите сега, няма да можете да ги възстановите по-нататък.</string>
     <!-- Title for the latest backup card -->
     <string name="LocalBackupRestoreScreen__your_latest_backup">Последното ви резервно копие:</string>
-    <!-- Label for a legacy backup type -->
-    <string name="LocalBackupRestoreScreen__legacy_backup">Legacy backup</string>
     <!-- Restore backup button text -->
     <string name="LocalBackupRestoreScreen__restore_backup">Възстановяване на архивно копие</string>
     <!-- Link to choose an earlier backup -->
@@ -193,8 +197,6 @@
     <string name="LocalBackupRestoreScreen__restoring_backup">Възстановяване на резервно копие</string>
     <!-- Description shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_description">Моля, изчакайте, докато съобщенията и данните ви се възстановяват.</string>
-    <!-- Title shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete">Възстановяването е завършено</string>
     <!-- Description shown when restore is complete -->
     <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->

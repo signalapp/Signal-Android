@@ -22,7 +22,6 @@ import org.signal.registration.PreExistingRegistrationData
 import org.signal.registration.StorageController
 import org.signal.registration.proto.RegistrationData
 import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
-import org.signal.registration.screens.restoreselection.ArchiveRestoreOption
 import org.thoughtcrime.securesms.backup.FullBackupImporter
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
@@ -176,16 +175,6 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     }
 
     Unit
-  }
-
-  override suspend fun getAvailableRestoreOptions(): Set<ArchiveRestoreOption> = withContext(Dispatchers.IO) {
-    // TODO [greyson] Real options
-    val options = mutableSetOf<ArchiveRestoreOption>()
-
-    options.add(ArchiveRestoreOption.LocalBackup)
-    options.add(ArchiveRestoreOption.DeviceTransfer)
-
-    options
   }
 
   override fun restoreLocalBackupV1(uri: Uri, passphrase: String): Flow<LocalBackupRestoreProgress> = flow {

@@ -59,7 +59,6 @@ import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ScheduledMessagesRepository
-import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.plaintext.PlaintextExportRepository
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
@@ -102,6 +101,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
+import java.io.File
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.time.Duration
@@ -112,7 +112,6 @@ import kotlin.time.Duration
 class ConversationViewModel(
   val threadId: Long,
   requestedStartingPosition: Int,
-  initialChatColors: ChatColors,
   private val repository: ConversationRepository,
   recipientRepository: ConversationRecipientRepository,
   messageRequestRepository: MessageRequestRepository,
@@ -160,7 +159,7 @@ class ConversationViewModel(
     .observeOn(AndroidSchedulers.mainThread())
 
   private val chatBounds: BehaviorSubject<Rect> = BehaviorSubject.create()
-  private val chatColors: RxStore<ChatColorsDrawable.ChatColorsData> = RxStore(ChatColorsDrawable.ChatColorsData(initialChatColors, null))
+  private val chatColors: RxStore<ChatColorsDrawable.ChatColorsData> = RxStore(ChatColorsDrawable.ChatColorsData(null, null))
   val chatColorsSnapshot: ChatColorsDrawable.ChatColorsData get() = chatColors.state
 
   @Volatile
@@ -763,9 +762,16 @@ class ConversationViewModel(
     }
   }
 
-  fun startPlaintextExport(context: Context, directoryUri: Uri, withMedia: Boolean) {
+  fun startPlaintextExport(context: Context, includeMedia: Boolean) {
     val recipient = recipientSnapshot ?: return
     val chatName = if (recipient.isSelf) context.getString(R.string.note_to_self) else recipient.getDisplayName(context)
+
+    val exportDir = File(context.externalCacheDir, "chat_exports")
+    exportDir.mkdirs()
+    exportDir.listFiles()?.forEach { it.delete() }
+
+    val sanitizedName = PlaintextExportRepository.sanitizeFileName(chatName)
+    val outputFile = File(exportDir, "$sanitizedName.zip")
 
     plaintextExportCancelled.set(false)
     _plaintextExportState.value = PlaintextExportState.Preparing
@@ -774,11 +780,11 @@ class ConversationViewModel(
       val success = PlaintextExportRepository.export(
         context = context,
         threadId = threadId,
-        directoryUri = directoryUri,
+        outputFile = outputFile,
         chatName = chatName,
-        includeMedia = withMedia,
+        includeMedia = includeMedia,
         progressListener = { messagesProcessed, messageCount, attachmentsProcessed, attachmentCount ->
-          val percent = if (withMedia) {
+          val percent = if (includeMedia) {
             val messagePercent = if (messageCount > 0) (messagesProcessed * 25) / messageCount else 25
             val attachmentPercent = if (attachmentCount > 0) (attachmentsProcessed * 75) / attachmentCount else 75
             messagePercent + attachmentPercent
@@ -786,7 +792,7 @@ class ConversationViewModel(
             if (messageCount > 0) (messagesProcessed * 100) / messageCount else 100
           }
 
-          val status = if (withMedia && (attachmentsProcessed > 0 || messagesProcessed >= messageCount)) {
+          val status = if (includeMedia && (attachmentsProcessed > 0 || messagesProcessed >= messageCount)) {
             "Exporting media ($attachmentsProcessed/$attachmentCount)..."
           } else {
             "Exporting messages ($messagesProcessed/$messageCount)..."
@@ -798,8 +804,11 @@ class ConversationViewModel(
       )
 
       _plaintextExportState.value = when {
-        plaintextExportCancelled.get() -> PlaintextExportState.Cancelled
-        success -> PlaintextExportState.Complete
+        plaintextExportCancelled.get() -> {
+          outputFile.delete()
+          PlaintextExportState.Cancelled
+        }
+        success -> PlaintextExportState.Complete(outputFile)
         else -> PlaintextExportState.Failed
       }
     }
@@ -823,7 +832,7 @@ class ConversationViewModel(
     data object None : PlaintextExportState
     data object Preparing : PlaintextExportState
     data class InProgress(val percent: Int, val status: String) : PlaintextExportState
-    data object Complete : PlaintextExportState
+    data class Complete(val zipFile: File) : PlaintextExportState
     data object Failed : PlaintextExportState
     data object Cancelled : PlaintextExportState
   }

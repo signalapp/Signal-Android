@@ -11,6 +11,7 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import android.os.TransactionTooLargeException
+import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
@@ -50,6 +51,7 @@ object NotificationFactory {
   private val STILL_DECRYPTING_INDIVIDUAL_THROTTLE: Duration = 5.seconds
   private val GROUP_THROTTLE: Duration = 20.seconds
 
+  @WorkerThread
   fun notify(
     context: Context,
     state: NotificationState,
@@ -97,6 +99,7 @@ object NotificationFactory {
     }
   }
 
+  @WorkerThread
   private fun notify19(
     context: Context,
     state: NotificationState,
@@ -144,6 +147,7 @@ object NotificationFactory {
     return threadsThatNewlyAlerted
   }
 
+  @WorkerThread
   @TargetApi(24)
   private fun notify24(
     context: Context,
@@ -213,6 +217,7 @@ object NotificationFactory {
     return ((conversation.hasNewNotifications() && canAlertBasedOnTime) || alertOverride) && !conversation.mostRecentNotification.authorRecipient.isSelf
   }
 
+  @WorkerThread
   private fun notifyForConversation(
     context: Context,
     conversation: NotificationConversation,
@@ -446,6 +451,7 @@ object NotificationFactory {
     NotificationManagerCompat.from(context).safelyNotify(recipient, NotificationIds.getNotificationIdForMessageDeliveryFailed(thread), builder.build())
   }
 
+  @WorkerThread
   @JvmStatic
   fun notifyToBubbleConversation(context: Context, recipient: Recipient, threadId: Long) {
     val builder: NotificationBuilder = NotificationBuilder.create(context)

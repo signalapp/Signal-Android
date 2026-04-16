@@ -105,9 +105,9 @@ class RegistrationNavigationTest {
   }
 
   @Test
-  fun `clicking Next on Permissions navigates to PhoneNumber`() {
+  fun `clicking Next on Permissions when they are all granted navigates to PhoneNumber`() {
     // Given
-    val permissionsState = createMockPermissionsState()
+    val permissionsState = createMockPermissionsState(allPermissionsGranted = true)
 
     composeTestRule.setContent {
       SignalTheme {
@@ -216,8 +216,9 @@ class RegistrationNavigationTest {
    * Creates a mock permissions state for testing.
    * Since we're in JUnit tests, we can't use the real rememberMultiplePermissionsState.
    */
-  private fun createMockPermissionsState(): MockMultiplePermissionsState {
+  private fun createMockPermissionsState(allPermissionsGranted: Boolean = false): MockMultiplePermissionsState {
     return MockMultiplePermissionsState(
+      allPermissionsGranted = allPermissionsGranted,
       permissions = viewModel.getRequiredPermissions().map { MockPermissionsState(it) }
     )
   }

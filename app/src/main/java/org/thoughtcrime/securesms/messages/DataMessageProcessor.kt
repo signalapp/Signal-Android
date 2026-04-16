@@ -1600,6 +1600,12 @@ object DataMessageProcessor {
   }
 
   private fun isSenderValid(quotedMessage: MmsMessageRecord, timestamp: Long, senderRecipient: Recipient, threadRecipient: Recipient): Boolean {
+    val destinationThreadId = SignalDatabase.threads.getThreadIdIfExistsFor(threadRecipient.id)
+    if (quotedMessage.threadId != destinationThreadId) {
+      warn(timestamp, "Quoted message is in a different thread! QuotedThread: ${quotedMessage.threadId} DestinationThread: $destinationThreadId")
+      return false
+    }
+
     if (threadRecipient.isGroup) {
       val groupRecord = SignalDatabase.groups.getGroup(threadRecipient.id).orNull()
       if (groupRecord != null && !groupRecord.members.contains(senderRecipient.id)) {

@@ -1087,14 +1087,6 @@ object RemoteConfig {
   }
 
   @JvmStatic
-  @get:JvmName("libsignalEnforceMinTlsVersion")
-  val libsignalEnforceMinTlsVersion by remoteBoolean(
-    key = "android.libsignalEnforceMinTlsVersion",
-    defaultValue = false,
-    hotSwappable = false
-  )
-
-  @JvmStatic
   val backgroundMessageProcessInterval: Long by remoteValue(
     key = "android.messageProcessor.alarmIntervalMins",
     hotSwappable = true,
@@ -1128,14 +1120,6 @@ object RemoteConfig {
   val connectivityWarningConfig: String by remoteString(
     key = "android.connectivityWarningConfig",
     defaultValue = "{}",
-    hotSwappable = true
-  )
-
-  /** Whether or not to show chat folders. */
-  @JvmStatic
-  val showChatFolders: Boolean by remoteBoolean(
-    key = "android.showChatFolders.2",
-    defaultValue = false,
     hotSwappable = true
   )
 

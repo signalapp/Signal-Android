@@ -11,8 +11,6 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
-
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.util.Util;
@@ -481,9 +479,8 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         GroupId.V2              groupId    = group.requireGroupId().requireV2();
         ExternalGroupCredential credential = GroupManager.getExternalGroupCredential(context, groupId);
 
-        List<GroupCall.GroupMemberInfo> members = Stream.of(GroupManager.getUuidCipherTexts(context, groupId))
-                                                        .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize()))
-                                                        .toList();
+        List<GroupCall.GroupMemberInfo> members = GroupManager.getUuidCipherTexts(context, groupId).entrySet().stream()
+                                                              .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize())).collect(Collectors.toList());
         callManager.peekGroupCall(SignalStore.internal().getGroupCallingServer(), credential.token.getBytes(Charsets.UTF_8), members, peekInfo -> {
           Long threadId = SignalDatabase.threads().getThreadIdFor(group.getId());
 
@@ -960,9 +957,8 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     SignalExecutors.BOUNDED_IO.execute(() -> {
       List<Pair<String, String>> headerPairs;
       if (headers != null) {
-        headerPairs = Stream.of(headers)
-                            .map(header -> new Pair<>(header.getName(), header.getValue()))
-                            .toList();
+        headerPairs = headers.stream()
+                             .map(header -> new Pair<>(header.getName(), header.getValue())).collect(Collectors.toList());
       } else {
         headerPairs = Collections.emptyList();
       }

@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
+import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException
 import org.whispersystems.signalservice.api.svr.SvrBApi
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import java.io.File
@@ -367,6 +368,10 @@ class BackupMessagesJob private constructor(
       is NetworkResult.Success -> Unit
       is NetworkResult.NetworkError -> {
         Log.i(TAG, "Network failure", uploadResult.getCause(), true)
+        if (uploadResult.exception is ResumeLocationInvalidException) {
+          Log.w(TAG, "Resume location is invalid. Clearing upload spec before retrying.")
+          resumableMessagesBackupUploadSpec = null
+        }
         return if (isCanceled) Result.failure() else Result.retry(defaultBackoff())
       }
       is NetworkResult.StatusCodeError -> {
@@ -496,6 +501,11 @@ class BackupMessagesJob private constructor(
         this.dataFile = ""
         BackupRepository.markBackupCreationFailed(BackupValues.BackupCreationError.NOT_ENOUGH_DISK_SPACE)
         return BackupFileResult.Failure
+      } else {
+        Log.w(TAG, "Exception during backup export", e)
+        tempBackupFile.delete()
+        this.dataFile = ""
+        return BackupFileResult.Retry
       }
     }
 
@@ -612,7 +622,7 @@ class BackupMessagesJob private constructor(
         )
       }
       .toSet()
-      .let { SignalDatabase.attachments.filterPermanentlyFailedThumbnails(it) }
+      .let { SignalDatabase.attachments.filterThumbnailsWithoutEligibleAttachment(it) }
   }
 
   class Factory : Job.Factory<BackupMessagesJob> {

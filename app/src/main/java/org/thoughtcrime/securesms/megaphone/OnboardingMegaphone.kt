@@ -68,6 +68,7 @@ fun OnboardingMegaphone(
 ) {
   Column(
     modifier = modifier
+      .background(MaterialTheme.colorScheme.background)
       .padding(bottom = 22.dp)
   ) {
     Box(

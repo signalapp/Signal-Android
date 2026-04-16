@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
 import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.net.CallRequestController;
 import org.thoughtcrime.securesms.net.CompositeRequestController;
+import org.thoughtcrime.securesms.net.LinkPreviewRedirectValidationInterceptor;
 import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.net.UserAgentInterceptor;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -93,6 +94,7 @@ public class LinkPreviewRepository {
     this.client = new OkHttpClient.Builder()
                                   .cache(null)
                                   .addInterceptor(new UserAgentInterceptor("WhatsApp/2"))
+                                  .addNetworkInterceptor(new LinkPreviewRedirectValidationInterceptor())
                                   .build();
   }
 

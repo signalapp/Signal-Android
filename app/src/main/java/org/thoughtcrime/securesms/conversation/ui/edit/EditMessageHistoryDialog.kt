@@ -141,7 +141,7 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
     val callback = GiphyMp4ProjectionRecycler(holders)
 
     GiphyMp4PlaybackController.attach(binding.editHistoryList, callback, maxPlayback)
-    binding.editHistoryList.addItemDecoration(GiphyMp4ItemDecoration(callback) {}, 0)
+    binding.editHistoryList.addItemDecoration(GiphyMp4ItemDecoration(callback), 0)
 
     return callback
   }

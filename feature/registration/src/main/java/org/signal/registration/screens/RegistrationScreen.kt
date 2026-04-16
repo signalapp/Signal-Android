@@ -30,7 +30,7 @@ fun RegistrationScreen(
 ) {
   SubcomposeLayout(modifier = modifier.imePadding()) { constraints ->
     val footerPlaceables = footer?.let {
-      subcompose("footer", it).map { m -> m.measure(constraints.copy(minHeight = 0)) }
+      subcompose("footer", it).map { m -> m.measure(constraints.copy(minWidth = 0, minHeight = 0)) }
     } ?: emptyList()
     val footerHeight = footerPlaceables.maxOfOrNull { it.height } ?: 0
 

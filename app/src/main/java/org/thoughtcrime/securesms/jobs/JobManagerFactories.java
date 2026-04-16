@@ -34,8 +34,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NotInCallConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.RegisteredConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraintObserver;
-import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
-import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.StickersNotDownloadingConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint;
 import org.thoughtcrime.securesms.jobmanager.migrations.DeprecatedJobMigration;
@@ -454,7 +452,6 @@ public final class JobManagerFactories {
       put(RegisteredConstraint.KEY,                              new RegisteredConstraint.Factory());
       put(RestoreAttachmentConstraint.KEY,                       new RestoreAttachmentConstraint.Factory(application));
       put(SealedSenderConstraint.KEY,                            new SealedSenderConstraint.Factory());
-      put(SqlCipherMigrationConstraint.KEY,                      new SqlCipherMigrationConstraint.Factory(application));
       put(StickersNotDownloadingConstraint.KEY,                  new StickersNotDownloadingConstraint.Factory());
       put(WifiConstraint.KEY,                                    new WifiConstraint.Factory(application));
     }};
@@ -464,7 +461,6 @@ public final class JobManagerFactories {
     return Arrays.asList(CellServiceConstraintObserver.getInstance(application),
                          new ChargingAndBatteryIsNotLowConstraintObserver(application),
                          new NetworkConstraintObserver(application),
-                         new SqlCipherMigrationConstraintObserver(),
                          new DecryptionsDrainedConstraintObserver(),
                          new NotInCallConstraintObserver(),
                          ChangeNumberConstraintObserver.INSTANCE,

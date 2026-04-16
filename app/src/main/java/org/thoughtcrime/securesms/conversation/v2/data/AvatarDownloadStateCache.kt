@@ -28,7 +28,12 @@ object AvatarDownloadStateCache {
 
   @JvmStatic
   fun getDownloadState(recipient: Recipient): DownloadState {
-    return cache[recipient.id]?.value ?: DownloadState.NONE
+    return getDownloadState(recipient.id)
+  }
+
+  @JvmStatic
+  fun getDownloadState(recipientId: RecipientId): DownloadState {
+    return cache[recipientId]?.value ?: DownloadState.NONE
   }
 
   @JvmStatic

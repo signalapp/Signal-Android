@@ -24,8 +24,8 @@ plugins {
 
 apply(from = "static-ips.gradle.kts")
 
-val canonicalVersionCode = 1679
-val canonicalVersionName = "8.7.3"
+val canonicalVersionCode = 1680
+val canonicalVersionName = "8.8.0"
 val currentHotfixVersion = 0
 val maxHotfixVersions = 100
 
@@ -692,7 +692,6 @@ dependencies {
   implementation(libs.android.tooltips) {
     exclude(group = "com.android.support", module = "appcompat-v7")
   }
-  implementation(libs.stream)
   implementation(libs.lottie)
   implementation(libs.lottie.compose)
   implementation(libs.signal.android.database.sqlcipher)

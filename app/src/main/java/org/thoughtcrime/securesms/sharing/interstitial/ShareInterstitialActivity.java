@@ -10,7 +10,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
@@ -86,8 +85,8 @@ public class ShareInterstitialActivity extends PassphraseRequiredActivity {
 
     linkPreviewViewModel = new ViewModelProvider(this, linkPreviewViewModelFactory).get(LinkPreviewViewModel.class);
 
-    boolean hasSms = Stream.of(args.getRecipientSearchKeys())
-                           .anyMatch(c -> {
+    boolean hasSms = args.getRecipientSearchKeys().stream()
+                         .anyMatch(c -> {
                              Recipient recipient = Recipient.resolved(c.getRecipientId());
                              if (recipient.isDistributionList()) {
                                return false;

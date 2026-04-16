@@ -729,7 +729,7 @@ public final class ConversationUpdateItem extends FrameLayout
         }
       });
     } else if (conversationMessage.getMessageRecord().isMessageRequestAccepted()) {
-      actionButton.setText(R.string.ConversationUpdateItem_options);
+      actionButton.setText(R.string.ConversationUpdateItem_block_report);
       actionButton.setVisibility(VISIBLE);
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {

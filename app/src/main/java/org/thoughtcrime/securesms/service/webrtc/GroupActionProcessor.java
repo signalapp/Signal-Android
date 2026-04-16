@@ -4,7 +4,7 @@ import android.util.LongSparseArray;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
@@ -192,9 +192,8 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
     Recipient group     = currentState.getCallInfoState().getCallRecipient();
     GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
 
-    List<GroupCall.GroupMemberInfo> members = Stream.of(GroupManager.getUuidCipherTexts(context, group.requireGroupId().requireV2()))
-                                                    .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize()))
-                                                    .toList();
+    List<GroupCall.GroupMemberInfo> members = GroupManager.getUuidCipherTexts(context, group.requireGroupId().requireV2()).entrySet().stream()
+                                                          .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize())).collect(Collectors.toList());
 
     try {
       groupCall.setGroupMembers(new ArrayList<>(members));

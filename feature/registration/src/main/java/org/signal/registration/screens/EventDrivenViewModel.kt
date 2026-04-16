@@ -33,6 +33,7 @@ abstract class EventDrivenViewModel<E : DebugLoggable>(
   }
 
   fun onEvent(event: E) {
+    // Unlimited buffer means this will always succeed
     eventChannel.trySend(event)
   }
 

@@ -10,8 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 import androidx.core.text.util.LinkifyCompat;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LinkUtil;
@@ -26,6 +25,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import okhttp3.HttpUrl;
 
@@ -62,8 +62,7 @@ public final class LinkPreviewUtil {
 
     return new Links(Stream.of(spannable.getSpans(0, spannable.length(), URLSpan.class))
                            .map(span -> new Link(span.getURL(), spannable.getSpanStart(span)))
-                           .filter(link -> LinkUtil.isValidPreviewUrl(link.url))
-                           .toList());
+                           .filter(link -> LinkUtil.isValidPreviewUrl(link.url)).collect(Collectors.toList()));
   }
 
   public static @NonNull OpenGraph parseOpenGraphFields(@Nullable String html) {
@@ -179,9 +178,9 @@ public final class LinkPreviewUtil {
 
     private Links(@NonNull List<Link> links) {
       this.links  = links;
-      this.urlSet = Stream.of(links)
-                          .map(link -> trimTrailingSlash(link.url))
-                          .collect(Collectors.toSet());
+      this.urlSet = links.stream()
+                         .map(link -> trimTrailingSlash(link.url))
+                         .collect(Collectors.toSet());
     }
 
     public Optional<Link> findFirst() {

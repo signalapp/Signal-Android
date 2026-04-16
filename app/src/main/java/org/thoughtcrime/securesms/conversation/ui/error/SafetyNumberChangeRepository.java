@@ -8,8 +8,7 @@ import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.annimon.stream.Stream;
-
+import org.signal.core.util.Util;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
@@ -28,7 +27,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.safety.SafetyNumberRecipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
@@ -89,11 +87,10 @@ public final class SafetyNumberChangeRepository {
       messageRecord = getMessageRecord(messageId, messageType);
     }
 
-    List<Recipient> recipients = Stream.of(recipientIds).map(Recipient::resolved).toList();
+    List<Recipient> recipients = recipientIds.stream().map(Recipient::resolved).collect(Collectors.toList());
 
-    List<ChangedRecipient> changedRecipients = Stream.of(AppDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).getIdentityRecords())
-                                                     .map(record -> new ChangedRecipient(Recipient.resolved(record.getRecipientId()), record))
-                                                     .toList();
+    List<ChangedRecipient> changedRecipients = AppDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).getIdentityRecords().stream()
+                                                              .map(record -> new ChangedRecipient(Recipient.resolved(record.getRecipientId()), record)).collect(Collectors.toList());
 
     Log.d(TAG, "Safety number change state, message: " + (messageRecord != null ? messageRecord.getId() : "null") + " records: " + Util.join(changedRecipients, ","));
 

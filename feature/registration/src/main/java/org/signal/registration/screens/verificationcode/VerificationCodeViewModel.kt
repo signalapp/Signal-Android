@@ -176,7 +176,7 @@ class VerificationCodeViewModel(
         parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool))
 
         when {
-//          response.reregistration -> parentEventEmitter.navigateTo(RegistrationRoute.ChooseRestoreOptionAfterRegistration)
+          response.reregistration -> parentEventEmitter.navigateTo(RegistrationRoute.ArchiveRestoreSelection.forPostRegister())
           response.storageCapable -> parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSvrRestore)
           else -> parentEventEmitter.navigateTo(RegistrationRoute.PinCreate)
         }
@@ -287,7 +287,7 @@ class VerificationCodeViewModel(
             Log.w(TAG, "[RequestCode][$transport] Missing request information or already verified.")
             parentEventEmitter(RegistrationFlowEvent.SessionUpdated(error.session))
             state.copy(
-              oneTimeEvent = OneTimeEvent.NetworkError,
+              oneTimeEvent = OneTimeEvent.UnableToSendSms,
               sessionMetadata = error.session,
               rateLimits = computeRateLimits(error.session)
             )
@@ -300,7 +300,7 @@ class VerificationCodeViewModel(
           }
           is NetworkController.RequestVerificationCodeError.ThirdPartyServiceError -> {
             Log.w(TAG, "[RequestCode][$transport] Third party service error. ${error.data}")
-            state.copy(oneTimeEvent = OneTimeEvent.ThirdPartyError)
+            state.copy(oneTimeEvent = OneTimeEvent.UnableToSendSms)
           }
         }
       }

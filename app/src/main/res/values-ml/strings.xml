@@ -714,10 +714,17 @@
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">നിങ്ങൾ %1$s എന്നയാളിൽ നിന്നുള്ള സന്ദേശ അഭ്യർത്ഥന സ്വീകരിച്ചു. ഇത് അബദ്ധത്തിൽ സംഭവിച്ചതാണെങ്കിൽ, ചുവടെ നൽകിയിരിക്കുന്ന ഏതെങ്കിലും നടപടി നിങ്ങൾക്ക് തിരഞ്ഞെടുക്കാം.</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക</string>
-    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s പരിശോധിച്ചുറപ്പിച്ചിട്ടില്ല</string>
-    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
-    <string name="ConversationFragment_group_names_not_verified">%1$s പരിശോധിച്ചുറപ്പിച്ചിട്ടില്ല</string>
+    <!-- Text shown in conversation header when in a message request state that the name is not verified -->
+    <string name="ConversationFragment_name_not_verified">Name not verified</string>
+    <!-- Label for official chat pill shown in the Note to Self conversation header -->
+    <string name="ConversationFragment_official_chat">Official chat</string>
+    <!-- Description shown in the Signal release notes conversation header -->
+    <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
+    <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
+    <plurals name="ConversationFragment_group_member_count">
+        <item quantity="one">%1$d Member</item>
+        <item quantity="other">%1$d Members</item>
+    </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">പ്രൊഫൈൽ നാമങ്ങൾ</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
@@ -743,43 +750,61 @@
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">സുരക്ഷാ നുറുങ്ങുകൾ</string>
-    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">നിങ്ങൾക്ക് പരിചയമില്ലാത്ത ആളുകളിൽ നിന്നുള്ള സന്ദേശ അഭ്യർത്ഥനകൾ സ്വീകരിക്കുമ്പോൾ ശ്രദ്ധിക്കുക. ഇവ ശ്രദ്ധിക്കുക:</string>
-    <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">ഈ അഭ്യർത്ഥന ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക. നിങ്ങളുടെ കോൺടാക്റ്റുകളിലുള്ളവരോ നിങ്ങൾ ചാറ്റ് ചെയ്യുന്നവരോ ഈ ഗ്രൂപ്പിൽ ഇല്ല. ശ്രദ്ധിക്കേണ്ട ചില കാര്യങ്ങൾ ഇവയാണ്:</string>
-    <!-- Button text to move to the previous tip-->
+    <!-- Button text to view more safety tips -->
+    <string name="SafetyTips_view_more">View more</string>
+    <!-- Content description for previous tip button -->
     <string name="SafetyTips_previous_tip">മുമ്പത്തെ നുറുങ്ങ്</string>
-    <!-- Button text to move to the next tip -->
+    <!-- Content description for next tip button -->
     <string name="SafetyTips_next_tip">അടുത്ത നുറുങ്ങ്</string>
-    <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">വ്യാജ പേരുകളും അക്കൗണ്ടുകളും</string>
-    <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">നിങ്ങളുടെ രജിസ്ട്രേഷൻ കോഡിനോ PIN നമ്പറിനോ വേണ്ടി Signal ഒരിക്കലും നിങ്ങളെ ബന്ധപ്പെടില്ല. മറ്റുള്ളവരായി ആൾമാറാട്ടം നടത്തുന്ന അഭ്യർത്ഥനകളെക്കുറിച്ച് ജാഗ്രത പാലിക്കുക. പ്രൊഫൈൽ നാമങ്ങൾ അവരുടെ അക്കൗണ്ട് ഉടമയാണ് തിരഞ്ഞെടുക്കുന്നത്, അവ പരിശോധിച്ചുറപ്പിച്ചിട്ടില്ല.</string>
-    <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">ക്രിപ്റ്റോ അല്ലെങ്കിൽ പണം തട്ടിപ്പുകൾ</string>
-    <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">നിങ്ങൾക്ക് അറിഞ്ഞുകൂടാത്ത ആരെങ്കിലും നിങ്ങൾക്ക് ക്രിപ്‌റ്റോകറൻസിയെ കുറിച്ചോ (ബിറ്റ്‌കോയിൻ പോലുള്ളവ) സാമ്പത്തികവുമായി ബന്ധപ്പെട്ട അവസരത്തെക്കുറിച്ചോ സന്ദേശങ്ങൾ അയച്ചാൽ ശ്രദ്ധയോടെ കൈകാര്യം ചെയ്യുക—അത് സ്പാം ആകാൻ സാധ്യതയുണ്ട്.</string>
-    <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">അവ്യക്തമോ അപ്രസക്തമോ ആയ സന്ദേശങ്ങൾ</string>
-    <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">നിങ്ങളുടെ ശ്രദ്ധ ആകർഷിക്കാൻ \"ഹായ്\" പോലുള്ള ലളിതമായ സന്ദേശം അയച്ചാണ് സ്‌പാമർമാർ പലപ്പോഴും ചാറ്റ് ആരംഭിക്കുന്നത്. നിങ്ങൾ പ്രതികരിച്ചാൽ അവർ നിങ്ങൾക്ക് കൂടുതൽ സന്ദേശങ്ങളയച്ച് ഇടപഴകാൻ പ്രേരിപ്പിക്കും.</string>
-    <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">ലിങ്കുകളുള്ള സന്ദേശങ്ങൾ</string>
-    <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">നിങ്ങൾക്ക് പരിചയമില്ലാത്ത ആളുകളിൽ നിന്ന്, വെബ്‌സൈറ്റുകളിലേക്കുള്ള ലിങ്കുകളുള്ള സന്ദേശങ്ങൾ ലഭിച്ചാൽ അത് ശ്രദ്ധയോടെ കൈകാര്യം ചെയ്യുക. നിങ്ങൾക്ക് വിശ്വാസമില്ലാത്ത ആളുകൾ അയയ്ക്കുന്ന ലിങ്കുകൾ ഒരിക്കലും സന്ദർശിക്കരുത്.</string>
-    <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">വ്യാജ ബിസിനസുകളും സ്ഥാപനങ്ങളും</string>
-    <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">നിങ്ങളെ ബന്ധപ്പെടുന്ന ബിസിനസ്സുകളെയോ സർക്കാർ ഏജൻസികളെയോ ശ്രദ്ധയോടെ കൈകാര്യം ചെയ്യുക. ടാക്സ് ഏജൻസികൾ, കൊറിയറുകൾ എന്നിവയും മറ്റും ഉൾപ്പെടുന്ന സന്ദേശങ്ങൾ സ്പാം ആകാം.</string>
+
+    <!-- Summary tip 0 title: Don\’t respond to chats from Signal -->
+    <string name="SafetyTips_summary_tip0_title">Don\\’t respond to chats from Signal</string>
+    <!-- Summary tip 0 message -->
+    <string name="SafetyTips_summary_tip0_message">Signal will never message you for your registration code, PIN, or recovery key. Never respond to a chat pretending to be Signal.</string>
+    <!-- Summary tip 1 title: Review names and photos -->
+    <string name="SafetyTips_summary_tip1_title">Review names and photos</string>
+    <!-- Summary tip 1 message -->
+    <string name="SafetyTips_summary_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name in Signal.</string>
+    <!-- Summary tip 2 title: Look out for scams -->
+    <string name="SafetyTips_summary_tip2_title">Look out for scams</string>
+    <!-- Summary tip 2 message -->
+    <string name="SafetyTips_summary_tip2_message">Avoid vague messages that try to get you to reply. Be aware of financial tips and suspicious web links.</string>
+
+    <!-- Detail tip 0 title -->
+    <string name="SafetyTips_detail_tip0_title">Don\\’t respond to chats from Signal</string>
+    <!-- Detail tip 0 message -->
+    <string name="SafetyTips_detail_tip0_message">Signal will never message you for your registration code, PIN, or recover key. Don\\’t reply to chats pretending to be Signal or Signal Support. Bad actors set up fake chats to try to take over your account.</string>
+    <!-- Detail tip 1 title -->
+    <string name="SafetyTips_detail_tip1_title">Review names and photos</string>
+    <!-- Detail tip 1 message -->
+    <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\\’re unsure who a new request is from it\\’s safer to ignore it.</string>
+    <!-- Detail tip 2 title -->
+    <string name="SafetyTips_detail_tip2_title">Vague or irrelevant messages</string>
+    <!-- Detail tip 2 message -->
+    <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
+    <!-- Detail tip 3 title -->
+    <string name="SafetyTips_detail_tip3_title">Messages with web links</string>
+    <!-- Detail tip 3 message -->
+    <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\\’t know that have links to websites. Never visit links from people you don\\’t trust.</string>
+    <!-- Detail tip 4 title -->
+    <string name="SafetyTips_detail_tip4_title">Crypto or money scams</string>
+    <!-- Detail tip 4 message -->
+    <string name="SafetyTips_detail_tip4_message">If someone you don\\’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\\’s likely spam.</string>
+    <!-- Detail tip 5 title -->
+    <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
+    <!-- Detail tip 5 message -->
+    <string name="SafetyTips_detail_tip5_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal-ൽ %1$s അവരുടെ അക്കൗണ്ട് ഉടമയാണ് തിരഞ്ഞെടുക്കുന്നത്.</string>
-    <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">പ്രൊഫൈൽ നാമങ്ങൾ പരിശോധിച്ചുറപ്പിച്ചിട്ടില്ല</string>
+    <!-- Bottom sheet text explaining that Signal can’t verify names and photos -->
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal can\\’t verify names and photos</string>
+    <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal will never contact you for your registration code, PIN, or recovery key</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">മറ്റുള്ളവരായി ആൾമാറാട്ടം നടത്തുന്ന അക്കൗണ്ടുകൾക്കെതിരെ ജാഗ്രത പാലിക്കുക</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">പരിചയമില്ലാത്ത ആളുകളുമായി സ്വകാര്യ വിവരങ്ങൾ പങ്കിടരുത്</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">Don\\’t share personal information with people you don\\’t know</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
     <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s ഗ്രൂപ്പിലെ അംഗങ്ങൾ തിരഞ്ഞെടുക്കുന്നു.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
@@ -1832,7 +1857,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">നിങ്ങൾ %1$s-ന് അയച്ചത്.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">ഈ മീഡിയ ഇതുവരെ അയച്ചിട്ടില്ല.</string>
-    <string name="MediaOverviewActivity_jump_to_message">Jump to message</string>
+    <string name="MediaOverviewActivity_jump_to_message">സന്ദേശത്തിലേക്ക് പോകുക</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">പിന്നീട് എന്നെ ഓർമ്മിപ്പിക്കുക</string>
@@ -2219,8 +2244,10 @@
     <string name="MessageRecord__payment_tombstone">പേയ്മെന്റ്</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">സ്പാം റിപ്പോർട്ട് ചെയ്തു</string>
-    <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">സന്ദേശ അഭ്യർത്ഥന നിങ്ങൾ സ്വീകരിച്ചു</string>
+    <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
+    <string name="MessageRecord_you_accepted_s_message_request">You accepted %1$s\'s message request</string>
+    <!-- Update message shown in a group chat after accepting a group message request -->
+    <string name="MessageRecord_you_accepted_the_group_request">You accepted the group request</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">നിങ്ങൾ ഈ വ്യക്തിയെ തടഞ്ഞു</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2244,7 +2271,7 @@
     <string name="MessageRequestBottomView_unblock">അൺബ്ലോക്ക് ചെയ്യുക</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s എന്നയാളെ നിങ്ങൾക്ക് സന്ദേശം അയയ്ക്കാനും നിങ്ങളുടെ പേരും ഫോട്ടോയും അവരുമായി പങ്കിടാനും അനുവദിക്കണോ? നിങ്ങൾ മുമ്പ് ഈ വ്യക്തിയെ നീക്കം ചെയ്തിട്ടുള്ളതാണ്.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s നിങ്ങൾക്ക് സന്ദേശം അയയ്‌ക്കാനും നിങ്ങളുടെ പേരും ഫോട്ടോയും അവരുമായി പങ്കിടട്ടെ? നിങ്ങൾ അംഗീകരിക്കുന്നതുവരെ നിങ്ങൾ അവരുടെ സന്ദേശം കണ്ടതായി അവർക്ക് അറിയില്ല.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Let this person message you and share your name and photo with them? They won\'t know you\'ve seen their message until you accept.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">നിങ്ങൾക്ക് മെസേജ് അയയ്ക്കാൻ %1$s എന്നയാളെ അനുവദിക്കണോ? നിങ്ങൾ അവരെ അൺബ്ലോക്ക് ചെയ്യുന്നത് വരെ നിങ്ങൾക്ക് മെസേജ് ഒന്നും ലഭിക്കില്ല.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2306,11 +2333,15 @@
         <item quantity="other">%1$d പേർ</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">റിപ്പോർട്ട് ചെയ്യുക…</string>
+    <string name="MessageRequestBottomView_report">Report</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">അഭ്യർത്ഥന സ്വീകരിക്കണോ?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക. പ്രൊഫൈൽ നാമങ്ങൾ അവരുടെ അക്കൗണ്ട് ഉടമയാണ് തിരഞ്ഞെടുക്കുന്നത്, അവ പരിശോധിച്ചുറപ്പിച്ചിട്ടില്ല.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren\\’t verified.</string>
+    <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
+    <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
+    <!-- Bold substring used in accept request body: "Signal will never" -->
+    <string name="MessageRequestBottomView_signal_will_never">Signal will never</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">ഗ്രൂപ്പിൽ ചേരണോ?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -2837,8 +2868,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">ഈ നമ്പർ രജിസ്റ്റർ ചെയ്യാൻ നിങ്ങൾ നിരവധി ശ്രമങ്ങൾ നടത്തി. %1$s സമയത്തിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">സേവനത്തിലേക്ക് കണക്റ്റുചെയ്യാനായില്ല. നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
-    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">SMS ദാതാവുമായുള്ള പ്രശ്‌നങ്ങൾ കാരണം Signal-ന് SMS കോഡ് അയയ്‌ക്കാനായില്ല. കുറച്ച് മണിക്കൂറുകൾക്ക് ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
+    <string name="RegistrationActivity_sms_provider_error">We are unable to send an SMS to your number. Please try again in several hours.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">ഞങ്ങൾക്ക് SMS-ലൂടെ പരിശോധിച്ചുറപ്പിക്കൽ കോഡ് അയയ്ക്കാനായില്ല. വോയ്‌സ് കോളിലൂടെ കോഡ് നേടാൻ ശ്രമിക്കൂ.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3082,6 +3113,7 @@
     <string name="SupportEmailUtil_registration_lock">രജിസ്ട്രേഷൻ ലോക്ക്:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">ഗ്രൂപ്പ് പുതുക്കി</string>
@@ -3696,7 +3728,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">നിങ്ങൾ ഈ വ്യക്തിയെ നീക്കം ചെയ്തു, അവർക്ക് വീണ്ടും സന്ദേശം അയയ്ക്കുന്നതിലൂടെ വീണ്ടും അവരെ ലിസ്റ്റിലേക്ക് ചേർക്കും.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">ഓപ്ഷനുകൾ</string>
+    <string name="ConversationUpdateItem_block_report">Block or Report…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">അപ്‌ഡേറ്റ്</string>
     <!-- Update item button text to show how many group updates there are. -->
@@ -6843,10 +6875,6 @@
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal പ്രകാശന കുറിപ്പുകളും വാര്‍ത്തകളും</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">ഇതാണ്, ഔദ്യോഗികവും Signal-ൽ നിന്ന് മാത്രമുള്ളതുമായ ഒരൊറ്റ ചാറ്റ്.</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">വാർത്തകളും റിലീസ് നോട്ടുകളും വഴി അപ്-ടു-ഡേറ്റ് ആയിരിക്കുക.</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">ഇതാണ്, ഔദ്യോഗികവും Signal-ൽ നിന്ന് മാത്രമുള്ളതുമായ ഒരൊറ്റ ചാറ്റ്</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
@@ -7803,7 +7831,7 @@
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">ഔട്ട്ഗോയിംഗ്</string>
     <!-- Displayed for outgoing calls that were not accepted by the remote party -->
-    <string name="CallLogAdapter__unanswered">Unanswered</string>
+    <string name="CallLogAdapter__unanswered">മറുപടി ലഭിക്കാത്തവ</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">മിസ്‌ഡ്</string>
     <!-- Displayed for one missed call declined by notification profile -->

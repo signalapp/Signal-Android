@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Stream;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.signal.core.util.StreamUtil;
@@ -40,6 +38,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -365,7 +365,7 @@ public class SubmitDebugLogRepository {
   private @NonNull List<LogLine> getPrefixLogLinesInternal() {
     long startTime = System.currentTimeMillis();
 
-    int maxTitleLength = Stream.of(SECTIONS).reduce(0, (max, section) -> Math.max(max, section.getTitle().length()));
+    int maxTitleLength = SECTIONS.stream().reduce(0, (max, section) -> Math.max(max, section.getTitle().length()), Integer::sum);
 
     List<LogLine> allLines = new ArrayList<>();
 
@@ -404,8 +404,7 @@ public class SubmitDebugLogRepository {
 
       List<LogLine> lines = Stream.of(Pattern.compile("\\n").split(content))
                                   .map(s -> new SimpleLogLine(s, LogStyleParser.parseStyle(s), LogStyleParser.parsePlaceholderType(s)))
-                                  .map(line -> (LogLine) line)
-                                  .toList();
+                                  .map(line -> (LogLine) line).collect(Collectors.toList());
 
       out.addAll(lines);
     }

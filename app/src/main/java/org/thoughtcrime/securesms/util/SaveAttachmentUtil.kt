@@ -68,7 +68,7 @@ object SaveAttachmentUtil {
     try {
       val contentType: String = MediaUtil.getCorrectedMimeType(attachment.contentType)!!
       val fileName: String = sanitizeOutputFileName(attachment.fileName ?: generateOutputFileName(contentType, attachment.date))
-      val result: CreateMediaUriResult = createMediaUri(getMediaStoreContentUriForType(contentType), contentType, fileName, nameCache)
+      val result: CreateMediaUriResult = createMediaUri(getMediaStoreContentUriForType(contentType), contentType, fileName, attachment.date, nameCache)
       val updateValues = ContentValues()
       val mediaUri = result.mediaUri ?: return@withContext SaveAttachmentResult.ErrorSavingFile
       val inputStream = PartAuthority.getAttachmentStream(AppDependencies.application, attachment.uri) ?: return@withContext SaveAttachmentResult.ErrorSavingFile
@@ -132,7 +132,7 @@ object SaveAttachmentUtil {
   }
 
   @Throws(IOException::class)
-  private fun createMediaUri(outputUri: Uri, contentType: String, fileName: String, nameCache: BatchOperationNameCache): CreateMediaUriResult {
+  private fun createMediaUri(outputUri: Uri, contentType: String, fileName: String, timestamp: Long, nameCache: BatchOperationNameCache): CreateMediaUriResult {
     val (base, extension) = getFileNameParts(fileName)
     var mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension)
 
@@ -153,8 +153,9 @@ object SaveAttachmentUtil {
     val contentValues = contentValuesOf(
       MediaStore.MediaColumns.DISPLAY_NAME to fileName,
       MediaStore.MediaColumns.MIME_TYPE to mimeType,
-      MediaStore.MediaColumns.DATE_ADDED to TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()),
-      MediaStore.MediaColumns.DATE_MODIFIED to TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())
+      MediaStore.MediaColumns.DATE_ADDED to TimeUnit.MILLISECONDS.toSeconds(timestamp),
+      MediaStore.MediaColumns.DATE_MODIFIED to TimeUnit.MILLISECONDS.toSeconds(timestamp),
+      MediaStore.MediaColumns.DATE_TAKEN to timestamp
     )
 
     if (Build.VERSION.SDK_INT > 28) {
@@ -215,6 +216,9 @@ object SaveAttachmentUtil {
     } catch (e: RuntimeException) {
       if (e is IllegalArgumentException || e.cause is IllegalArgumentException) {
         Log.w(TAG, "Unable to create uri in $outputUri with mimeType [$mimeType]")
+        if (Build.VERSION.SDK_INT > 28) {
+          contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS + "/Signal")
+        }
         CreateMediaUriResult(StorageUtil.getDownloadUri(), AppDependencies.application.contentResolver.insert(StorageUtil.getDownloadUri(), contentValues))
       } else {
         throw e

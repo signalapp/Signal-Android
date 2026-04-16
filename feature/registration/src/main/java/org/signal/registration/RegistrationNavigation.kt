@@ -60,6 +60,7 @@ import org.signal.registration.screens.pinentry.PinEntryForSvrRestoreViewModel
 import org.signal.registration.screens.pinentry.PinEntryScreen
 import org.signal.registration.screens.quickrestore.QuickRestoreQrScreen
 import org.signal.registration.screens.quickrestore.QuickRestoreQrViewModel
+import org.signal.registration.screens.restoreselection.ArchiveRestoreOption
 import org.signal.registration.screens.restoreselection.ArchiveRestoreSelectionScreen
 import org.signal.registration.screens.restoreselection.ArchiveRestoreSelectionViewModel
 import org.signal.registration.screens.util.navigateBack
@@ -113,13 +114,42 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object PinCreate : RegistrationRoute
 
   @Serializable
-  data object ArchiveRestoreSelection : RegistrationRoute
+  data class ArchiveRestoreSelection(val restoreOptions: List<ArchiveRestoreOption>) : RegistrationRoute {
+    companion object {
+      fun forQuickRestore(hasRemoteBackup: Boolean): ArchiveRestoreSelection {
+        return ArchiveRestoreSelection(
+          buildList {
+            if (hasRemoteBackup) {
+              add(ArchiveRestoreOption.SignalSecureBackup)
+            }
+            add(ArchiveRestoreOption.LocalBackup)
+            add(ArchiveRestoreOption.DeviceTransfer)
+          }
+        )
+      }
 
-  @Serializable
-  data object ChooseRestoreOptionBeforeRegistration : RegistrationRoute
+      fun forManualRestore(): ArchiveRestoreSelection {
+        return ArchiveRestoreSelection(
+          buildList {
+            add(ArchiveRestoreOption.SignalSecureBackup)
+            add(ArchiveRestoreOption.LocalBackup)
+            add(ArchiveRestoreOption.DeviceTransfer)
+          }
+        )
+      }
 
-  @Serializable
-  data object ChooseRestoreOptionAfterRegistration : RegistrationRoute
+      fun forPostRegister(): ArchiveRestoreSelection {
+        return ArchiveRestoreSelection(
+          buildList {
+            add(ArchiveRestoreOption.SignalSecureBackup)
+            add(ArchiveRestoreOption.LocalBackup)
+            add(ArchiveRestoreOption.DeviceTransfer)
+            add(ArchiveRestoreOption.None)
+          }
+        )
+      }
+    }
+  }
 
   @Serializable
   data class LocalBackupRestore(val isPreRegistration: Boolean) : RegistrationRoute
@@ -171,7 +201,6 @@ fun RegistrationNavHost(
   )
 
   val registrationState by viewModel.state.collectAsStateWithLifecycle()
-  val permissions: MultiplePermissionsState = permissionsState ?: rememberMultiplePermissionsState(viewModel.getRequiredPermissions())
 
   if (registrationState.isRestoringNavigationState) {
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -184,7 +213,7 @@ fun RegistrationNavHost(
     navigationEntries(
       registrationRepository = registrationRepository,
       registrationViewModel = viewModel,
-      permissionsState = permissions,
+      permissionsState = permissionsState,
       onRegistrationComplete = onRegistrationComplete
     )
   }
@@ -238,7 +267,7 @@ fun RegistrationNavHost(
 private fun EntryProviderScope<NavKey>.navigationEntries(
   registrationRepository: RegistrationRepository,
   registrationViewModel: RegistrationViewModel,
-  permissionsState: MultiplePermissionsState,
+  permissionsState: MultiplePermissionsState?,
   onRegistrationComplete: () -> Unit
 ) {
   val parentEventEmitter: (RegistrationFlowEvent) -> Unit = registrationViewModel::onEvent
@@ -249,9 +278,9 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       onEvent = { event ->
         when (event) {
           WelcomeScreenEvents.Continue -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(nextRoute = RegistrationRoute.PhoneNumberEntry))
-          WelcomeScreenEvents.LinkDevice -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(nextRoute = RegistrationRoute.QuickRestoreQrScan)) // TODO - Replace this with the device-link QR code
+          WelcomeScreenEvents.LinkDevice -> throw NotImplementedError("Haven't implemented linked devices yet")
           WelcomeScreenEvents.HasOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(nextRoute = RegistrationRoute.QuickRestoreQrScan))
-          WelcomeScreenEvents.DoesNotHaveOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(nextRoute = RegistrationRoute.ChooseRestoreOptionBeforeRegistration))
+          WelcomeScreenEvents.DoesNotHaveOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(nextRoute = RegistrationRoute.ArchiveRestoreSelection.forManualRestore()))
         }
       }
     )
@@ -259,11 +288,14 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // --- Permissions Screen
   entry<RegistrationRoute.Permissions> { key ->
+    val onProceed = { parentEventEmitter.navigateTo(key.nextRoute) }
+    val localPermissionsState = permissionsState ?: rememberMultiplePermissionsState(
+      permissions = registrationViewModel.getRequiredPermissions(),
+      onPermissionsResult = { onProceed() }
+    )
     PermissionsScreen(
-      permissionsState = permissionsState,
-      onProceed = {
-        parentEventEmitter.navigateTo(key.nextRoute)
-      }
+      permissionsState = localPermissionsState,
+      onProceed = onProceed
     )
   }
 
@@ -445,14 +477,12 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     )
   }
 
-  // -- Archive Restore Selection Screen
-  entry<RegistrationRoute.ArchiveRestoreSelection> {
+  // -- Archive Restore Selection for Quick Restore Screen
+  entry<RegistrationRoute.ArchiveRestoreSelection> { key ->
     val viewModel: ArchiveRestoreSelectionViewModel = viewModel(
       factory = ArchiveRestoreSelectionViewModel.Factory(
-        repository = registrationRepository,
-        parentState = registrationViewModel.state,
-        parentEventEmitter = registrationViewModel::onEvent,
-        isPreRegistration = false
+        restoreOptions = key.restoreOptions,
+        parentEventEmitter = registrationViewModel::onEvent
       )
     )
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -461,28 +491,6 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       state = state,
       onEvent = { viewModel.onEvent(it) }
     )
-  }
-
-  // -- Choose Restore Option Before Registration (saves selection, then navigates to phone number entry)
-  entry<RegistrationRoute.ChooseRestoreOptionBeforeRegistration> {
-    val viewModel: ArchiveRestoreSelectionViewModel = viewModel(
-      factory = ArchiveRestoreSelectionViewModel.Factory(
-        repository = registrationRepository,
-        parentState = registrationViewModel.state,
-        parentEventEmitter = registrationViewModel::onEvent,
-        isPreRegistration = true
-      )
-    )
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    ArchiveRestoreSelectionScreen(
-      state = state,
-      onEvent = { viewModel.onEvent(it) }
-    )
-  }
-
-  entry<RegistrationRoute.ChooseRestoreOptionAfterRegistration> {
-    TODO("Implement RestoreScreen")
   }
 
   // -- Local Backup Restore Screen
@@ -523,6 +531,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       }
     )
   }
+
+  // TODO I think we can re-use the screen but attach different viewmodels to progress forward rather than do for-result flows?
 
   // -- Enter AEP
   entry<RegistrationRoute.EnterAepScreen> {

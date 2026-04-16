@@ -34,6 +34,27 @@ public final class StringUtilTest_whitespace_handling {
       { "\u2800", "", true },
       { "\u2007\u200FA\tB\u200EC\u200E\u200F", "A\tB\u200EC", false },
 
+      /* No-break spaces */
+      { "\u00A0", "", true },
+      { "\u202F", "", true },
+
+      /* Format characters */
+      { "\u200C", "", true },
+      { "\u200D", "", true },
+      { "\u2060", "", true },
+      { "\uFEFF", "", true },
+
+      /* Additional invisible characters */
+      { "\u034F", "", true },
+      { "\u2800", "", true },
+      { "\u3164", "", true },
+      { "\uFFA0", "", true },
+      { "\u115F", "", true },
+      { "\u1160", "", true },
+
+      /* Mixed invisible characters should still be empty */
+      { "\u00A0\u200D\u2060\uFEFF", "", true },
+
     });
   }
 

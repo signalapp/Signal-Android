@@ -42,6 +42,12 @@
     <string name="RegistrationActivity_select_a_country">ഒരു രാജ്യം തിരഞ്ഞെടുക്കുക</string>
     <string name="RegistrationActivity_phone_number_description">ഫോൺ നമ്പർ</string>
     <string name="RegistrationActivity_next">അടുത്തത്</string>
+    <!-- Dialog title to confirm phone number -->
+    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <!-- Dialog body to confirm phone number -->
+    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <!-- Dialog button to edit the number entered -->
+    <string name="RegistrationActivity_edit_number">Edit number</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -76,8 +82,8 @@
     <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">വളരെയധികം ശ്രമങ്ങൾ. %1$s -ൽ വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">അപ്രതീക്ഷിത പിശക് സംഭവിച്ചു. വീണ്ടും ശ്രമിക്കുക.</string>
-    <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">നിങ്ങളുടെ പരിശോധിച്ചുറപ്പിക്കൽ കോഡ് അയയ്ക്കുന്നതിൽ ഒരു പ്രശ്നമുണ്ടായി. വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__unable_to_send_sms">We are unable to send an SMS to your number. Please try again in several hours.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">തിരഞ്ഞെടുത്ത രീതിയിലൂടെ കോഡ് അയയ്ക്കാൻ കഴിഞ്ഞില്ല. മറ്റൊരു ഓപ്ഷൻ പരീക്ഷിച്ചു നോക്കൂ.</string>
     <!-- Snackbar shown for registration errors -->
@@ -146,8 +152,6 @@
     <string name="LocalBackupRestoreScreen__backup_found_description">നിങ്ങളുടെ ഉപകരണത്തിൽ സംരക്ഷിച്ചിരിക്കുന്ന ബാക്കപ്പ് ഫോൾഡറിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങൾ പുനഃസ്ഥാപിക്കുക. നിങ്ങൾ ഇപ്പോൾ പുനഃസ്ഥാപിച്ചില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല.</string>
     <!-- Title for the latest backup card -->
     <string name="LocalBackupRestoreScreen__your_latest_backup">നിങ്ങളുടെ ഏറ്റവും പുതിയ ബാക്കപ്പ്:</string>
-    <!-- Label for a legacy backup type -->
-    <string name="LocalBackupRestoreScreen__legacy_backup">Legacy backup</string>
     <!-- Restore backup button text -->
     <string name="LocalBackupRestoreScreen__restore_backup">ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുക</string>
     <!-- Link to choose an earlier backup -->
@@ -193,8 +197,6 @@
     <string name="LocalBackupRestoreScreen__restoring_backup">ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുന്നു</string>
     <!-- Description shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_description">നിങ്ങളുടെ സന്ദേശങ്ങളും ഡാറ്റയും പുനഃസ്ഥാപിക്കുന്നതുവരെ കാത്തിരിക്കൂ.</string>
-    <!-- Title shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete">പുനഃസ്ഥാപിക്കൽ പൂർത്തിയായി</string>
     <!-- Description shown when restore is complete -->
     <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->

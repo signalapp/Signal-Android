@@ -26455,61 +26455,6 @@
     </issue>
 
     <issue
-        id="Recycle"
-        message="This `Cursor` should be freed up after use with `#close()`"
-        errorLine1="      Cursor mmsCursor          = db.query(&quot;mms&quot;, new String[] {&quot;_id&quot;},"
-        errorLine2="                                     ~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/database/helpers/ClassicOpenHelper.java"
-            line="298"
-            column="38"/>
-    </issue>
-
-    <issue
-        id="Recycle"
-        message="This `Cursor` should be freed up after use with `#close()`"
-        errorLine1="        Cursor partCursor = db.query(&quot;part&quot;, new String[] {&quot;_id&quot;, &quot;ct&quot;, &quot;_data&quot;, &quot;encrypted&quot;},"
-        errorLine2="                               ~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/database/helpers/ClassicOpenHelper.java"
-            line="310"
-            column="32"/>
-    </issue>
-
-    <issue
-        id="Recycle"
-        message="This `Cursor` should be freed up after use with `#close()`"
-        errorLine1="      Cursor threadCursor = db.query(&quot;thread&quot;, new String[] {&quot;_id&quot;}, null, null, null, null, null);"
-        errorLine2="                               ~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/database/helpers/ClassicOpenHelper.java"
-            line="708"
-            column="32"/>
-    </issue>
-
-    <issue
-        id="Recycle"
-        message="This `Cursor` should be freed up after use with `#close()`"
-        errorLine1="        Cursor cursor = db.rawQuery(&quot;SELECT DISTINCT date AS date_received, status, &quot; +"
-        errorLine2="                           ~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/database/helpers/ClassicOpenHelper.java"
-            line="713"
-            column="28"/>
-    </issue>
-
-    <issue
-        id="Recycle"
-        message="This `Cursor` should be freed up after use with `#close()`"
-        errorLine1="      cursor = db.query(&quot;mms&quot;, new String[] {&quot;_id&quot;, &quot;network_failures&quot;}, &quot;network_failures IS NOT NULL&quot;, null, null, null, null);"
-        errorLine2="                  ~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/database/helpers/ClassicOpenHelper.java"
-            line="1037"
-            column="19"/>
-    </issue>
-
-    <issue
         id="ObsoleteSdkInt"
         message="Unnecessary; SDK_INT is always >= 21"
         errorLine1="    if (VERSION.SDK_INT >= VERSION_CODES.ICE_CREAM_SANDWICH) {"

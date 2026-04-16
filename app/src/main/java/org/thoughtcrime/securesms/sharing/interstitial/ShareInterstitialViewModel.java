@@ -11,14 +11,14 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.annimon.stream.Stream;
-
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.sharing.MultiShareArgs;
 import org.thoughtcrime.securesms.sharing.MultiShareSender;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
+
+import java.util.stream.Stream;
 
 class ShareInterstitialViewModel extends ViewModel {
 
@@ -34,9 +34,13 @@ private final MultiShareArgs                      args;
     this.draftText   = new DefaultValueLiveData<>(Util.firstNonNull(args.getDraftText(), ""));
 
     repository.loadRecipients(args.getRecipientSearchKeys(),
-                              list -> recipients.postValue(Stream.of(list)
-                                                                 .mapIndexed((i, r) -> new ShareInterstitialMappingModel(r, i == 0))
-                                                                 .collect(MappingModelList.toMappingModelList())));
+                              list -> recipients.postValue(
+                                  Stream.concat(
+                                            list.stream().limit(1)
+                                                .map(r -> new ShareInterstitialMappingModel(r, true)),
+                                            list.stream().skip(1)
+                                                .map(r -> new ShareInterstitialMappingModel(r, false)))
+                                        .collect(MappingModelList.toMappingModelList())));
 
   }
 

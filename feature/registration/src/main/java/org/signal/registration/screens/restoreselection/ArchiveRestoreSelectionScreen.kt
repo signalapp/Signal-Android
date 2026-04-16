@@ -44,7 +44,7 @@ fun ArchiveRestoreSelectionScreen(
   onEvent: (ArchiveRestoreSelectionScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  if (state.showSkipRestoreWarning) {
+  if (state.showSkipWarningDialog) {
     Dialogs.SimpleAlertDialog(
       title = stringResource(R.string.ArchiveRestoreSelectionScreen__skip_restore_dialog_title),
       body = stringResource(R.string.ArchiveRestoreSelectionScreen__skip_restore_dialog_warning),
@@ -98,16 +98,18 @@ fun ArchiveRestoreSelectionScreen(
 
     Spacer(modifier = Modifier.weight(1f))
 
-    TextButton(
-      onClick = { onEvent(ArchiveRestoreSelectionScreenEvents.Skip) },
-      modifier = Modifier
-        .padding(bottom = 32.dp)
-        .testTag(TestTags.ARCHIVE_RESTORE_SELECTION_SKIP)
-    ) {
-      Text(
-        text = stringResource(R.string.ArchiveRestoreSelectionScreen__skip),
-        color = MaterialTheme.colorScheme.primary
-      )
+    if (state.showSkipButton) {
+      TextButton(
+        onClick = { onEvent(ArchiveRestoreSelectionScreenEvents.Skip) },
+        modifier = Modifier
+          .padding(bottom = 32.dp)
+          .testTag(TestTags.ARCHIVE_RESTORE_SELECTION_SKIP)
+      ) {
+        Text(
+          text = stringResource(R.string.ArchiveRestoreSelectionScreen__skip),
+          color = MaterialTheme.colorScheme.primary
+        )
+      }
     }
   }
 }

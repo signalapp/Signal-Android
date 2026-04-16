@@ -15,6 +15,8 @@ import org.signal.registration.NetworkController.BackupMasterKeyError
 import org.signal.registration.NetworkController.CheckSvrCredentialsError
 import org.signal.registration.NetworkController.CheckSvrCredentialsResponse
 import org.signal.registration.NetworkController.CreateSessionError
+import org.signal.registration.NetworkController.GetBackupInfoError
+import org.signal.registration.NetworkController.GetBackupInfoResponse
 import org.signal.registration.NetworkController.GetSessionStatusError
 import org.signal.registration.NetworkController.GetSvrCredentialsError
 import org.signal.registration.NetworkController.MasterKeyResponse
@@ -216,5 +218,13 @@ class DebugNetworkController(
     }
 
     return delegate.checkSvrCredentials(e164, credentials)
+  }
+
+  override suspend fun getRemoteBackupInfo(): RequestResult<GetBackupInfoResponse, GetBackupInfoError> {
+    NetworkDebugState.getOverride<RequestResult<GetBackupInfoResponse, GetBackupInfoError>>("getRemoteBackupInfo")?.let {
+      Log.d(TAG, "[getRemoteBackupInfo] Returning debug override")
+      return it
+    }
+    return delegate.getRemoteBackupInfo()
   }
 }

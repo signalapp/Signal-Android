@@ -32,9 +32,12 @@ public class ContentProxySelector extends ProxySelector {
 
   @Override
   public List<Proxy> select(URI uri) {
-    for (String domain : WHITELISTED_DOMAINS) {
-      if (uri.getHost().endsWith(domain)) {
-        return CONTENT;
+    String host = uri.getHost();
+    if (host != null) {
+      for (String domain : WHITELISTED_DOMAINS) {
+        if (host.equals(domain) || host.endsWith("." + domain)) {
+          return CONTENT;
+        }
       }
     }
     throw new IllegalArgumentException("Tried to proxy a non-whitelisted domain.");

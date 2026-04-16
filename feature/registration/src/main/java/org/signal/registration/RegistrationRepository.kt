@@ -8,6 +8,7 @@ package org.signal.registration
 import android.app.backup.BackupManager
 import android.content.Context
 import android.net.Uri
+import com.google.i18n.phonenumbers.PhoneNumberUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -17,6 +18,7 @@ import org.signal.archive.LocalBackupRestoreProgress
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.util.Base64
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
@@ -41,7 +43,6 @@ import org.signal.registration.NetworkController.UpdateSessionError
 import org.signal.registration.proto.ProvisioningData
 import org.signal.registration.proto.SvrCredential
 import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
-import org.signal.registration.screens.restoreselection.ArchiveRestoreOption
 import org.signal.registration.util.SensitiveLog
 import java.security.SecureRandom
 import java.util.Locale
@@ -125,6 +126,17 @@ class RegistrationRepository(val context: Context, val networkController: Networ
         }
         BackupManager(context).dataChanged()
       }
+    }
+  }
+
+  fun getDefaultRegionCode(): String {
+    val maybeRegionCode = Util.getNetworkCountryIso(context)
+    val maybeCountryCode = PhoneNumberUtil.getInstance().getCountryCodeForRegion(maybeRegionCode)
+    return if (maybeRegionCode != null && maybeCountryCode != 0) {
+      maybeRegionCode
+    } else {
+      Log.w(TAG, "Invalid region or country code. Defaulting to US.")
+      "US"
     }
   }
 
@@ -495,10 +507,6 @@ class RegistrationRepository(val context: Context, val networkController: Networ
   suspend fun isRegistered(): Boolean = withContext(Dispatchers.IO) {
     val data = storageController.readInProgressRegistrationData()
     data.aci.isNotEmpty() && data.pni.isNotEmpty()
-  }
-
-  suspend fun getAvailableRestoreOptions(): Set<ArchiveRestoreOption> = withContext(Dispatchers.IO) {
-    storageController.getAvailableRestoreOptions()
   }
 
   fun restoreV1Backup(uri: Uri, passphrase: String): Flow<LocalBackupRestoreProgress> {

@@ -59,10 +59,10 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
-import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent
-import org.signal.core.ui.compose.copied.androidx.compose.DraggableItem
-import org.signal.core.ui.compose.copied.androidx.compose.dragContainer
-import org.signal.core.ui.compose.copied.androidx.compose.rememberDragDropState
+import org.signal.core.ui.compose.list.ReorderListEvent
+import org.signal.core.ui.compose.list.ReorderableItem
+import org.signal.core.ui.compose.list.rememberReorderableListState
+import org.signal.core.ui.compose.list.reorderableList
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.polls.Poll
@@ -154,15 +154,15 @@ private fun CreatePollScreen(
 
   // Drag and drop
   val listState = rememberLazyListState()
-  val dragDropState = rememberDragDropState(listState, includeHeader = true, includeFooter = true, onEvent = { event ->
+  val reorderableListState = rememberReorderableListState(listState, includeHeader = true, includeFooter = true, onEvent = { event ->
     when (event) {
-      is DragAndDropEvent.OnItemMove -> {
+      is ReorderListEvent.ItemMoved -> {
         val oldIndex = options[event.fromIndex]
         options[event.fromIndex] = options[event.toIndex]
         options[event.toIndex] = oldIndex
       }
 
-      is DragAndDropEvent.OnItemDrop, is DragAndDropEvent.OnDragCancel -> Unit
+      is ReorderListEvent.ItemDropped, is ReorderListEvent.DragCanceled -> Unit
     }
   })
 
@@ -204,14 +204,14 @@ private fun CreatePollScreen(
       modifier = Modifier
         .fillMaxHeight()
         .imePadding()
-        .dragContainer(
-          dragDropState = dragDropState,
+        .reorderableList(
+          reorderableListState = reorderableListState,
           dragHandleWidth = 56.dp
         ),
       state = listState
     ) {
       item {
-        DraggableItem(dragDropState, 0) {
+        ReorderableItem(reorderableListState, 0) {
           Text(
             text = stringResource(R.string.CreatePollFragment__question),
             modifier = Modifier.padding(vertical = 12.dp, horizontal = 24.dp),
@@ -246,7 +246,7 @@ private fun CreatePollScreen(
       }
 
       itemsIndexed(options) { index, option ->
-        DraggableItem(dragDropState, 1 + index) {
+        ReorderableItem(reorderableListState, 1 + index) {
           TextFieldWithCountdown(
             value = option,
             label = { Text(text = stringResource(R.string.CreatePollFragment__option_n, index + 1)) },
@@ -273,7 +273,7 @@ private fun CreatePollScreen(
       }
 
       item {
-        DraggableItem(dragDropState, 1 + options.size) {
+        ReorderableItem(reorderableListState, 1 + options.size) {
           Dividers.Default()
           Rows.ToggleRow(checked = allowMultiple, text = stringResource(R.string.CreatePollFragment__allow_multiple_votes), onCheckChanged = { allowMultiple = it })
           Spacer(modifier = Modifier.size(60.dp))

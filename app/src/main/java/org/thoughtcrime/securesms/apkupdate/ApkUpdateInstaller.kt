@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.apkupdate
 
+import android.app.DownloadManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -53,6 +54,13 @@ object ApkUpdateInstaller {
       return
     }
 
+    if (!isDownloadSuccessful(context, downloadId)) {
+      Log.w(TAG, "DownloadId matches, but the download was not successful. The download may have failed due to a network issue. Clearing state and re-checking for updates.")
+      SignalStore.apkUpdate.clearDownloadAttributes()
+      AppDependencies.jobManager.add(ApkUpdateJob())
+      return
+    }
+
     if (!isMatchingDigest(context, downloadId, digest)) {
       Log.w(TAG, "DownloadId matches, but digest does not! Bad download or inconsistent state. Failing and clearing state.")
       SignalStore.apkUpdate.clearDownloadAttributes()
@@ -91,6 +99,8 @@ object ApkUpdateInstaller {
     val packageInstaller: PackageInstaller = context.packageManager.packageInstaller
 
     val sessionParams = PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL).apply {
+      setAppPackageName(context.packageName)
+
       // At this point, we always want to set this if possible, since we've already prompted the user with our own notification when necessary.
       // This lets us skip the system-generated notification.
       if (Build.VERSION.SDK_INT >= 31) {
@@ -131,6 +141,35 @@ object ApkUpdateInstaller {
     } catch (e: IOException) {
       Log.w(TAG, e)
       null
+    }
+  }
+
+  private fun isDownloadSuccessful(context: Context, downloadId: Long): Boolean {
+    val query = DownloadManager.Query().setFilterById(downloadId)
+    val cursor = context.getDownloadManager().query(query)
+
+    return cursor.use { cursor ->
+      if (cursor.moveToFirst()) {
+        val status = cursor
+          .getColumnIndex(DownloadManager.COLUMN_STATUS)
+          .takeUnless { it == -1 }
+          ?.let { cursor.getInt(it) } ?: DownloadManager.STATUS_FAILED
+
+        if (status == DownloadManager.STATUS_SUCCESSFUL) {
+          return@use true
+        }
+
+        val reason = cursor
+          .getColumnIndex(DownloadManager.COLUMN_REASON)
+          .takeUnless { it == -1 }
+          ?.let { cursor.getInt(it) }
+
+        Log.w(TAG, "Download not successful. Status: $status, Reason: $reason")
+        false
+      } else {
+        Log.w(TAG, "Download ID $downloadId not found in DownloadManager.")
+        false
+      }
     }
   }
 

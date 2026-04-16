@@ -81,7 +81,7 @@ fun LearnMoreSheet() {
     )
     Row(modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp, start = 40.dp, end = 32.dp)) {
       Icon(
-        painter = painterResource(R.drawable.symbol_save_android_24),
+        imageVector = SignalIcons.Save.imageVector,
         contentDescription = stringResource(R.string.preferences__linked_devices),
         modifier = Modifier.size(24.dp).padding(top = 4.dp)
       )

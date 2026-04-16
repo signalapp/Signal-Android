@@ -57,7 +57,6 @@ import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.SimpleColorFilter;
-import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
 import com.google.android.material.animation.ArgbEvaluatorCompat;
 import com.google.android.material.appbar.AppBarLayout;
@@ -1234,10 +1233,10 @@ public class ConversationListFragment extends MainFragment implements Conversati
   }
 
   private void handlePin(@NonNull Collection<Conversation> conversations) {
-    final Set<Long> toPin = new LinkedHashSet<>(Stream.of(conversations)
-                                                      .filterNot(conversation -> conversation.getThreadRecord().isPinned())
+    final Set<Long> toPin = new LinkedHashSet<>(conversations.stream()
+                                                      .filter(conversation -> !conversation.getThreadRecord().isPinned())
                                                       .map(conversation -> conversation.getThreadRecord().getThreadId())
-                                                      .toList());
+                                                      .collect(Collectors.toList()));
 
     if (toPin.size() + viewModel.getPinnedCount() > RemoteConfig.pinnedChatLimit()) {
       mainNavigationViewModel.getSnackbarRegistry().emit(new SnackbarState(
@@ -1512,9 +1511,9 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   private void updateMultiSelectState() {
     int     count       = viewModel.currentSelectedConversations().size();
-    boolean hasUnread   = Stream.of(viewModel.currentSelectedConversations()).anyMatch(conversation -> !conversation.getThreadRecord().isRead());
-    boolean hasUnpinned = Stream.of(viewModel.currentSelectedConversations()).anyMatch(conversation -> !conversation.getThreadRecord().isPinned());
-    boolean hasUnmuted  = Stream.of(viewModel.currentSelectedConversations()).anyMatch(conversation -> !conversation.getThreadRecord().getRecipient().live().get().isMuted());
+    boolean hasUnread   = viewModel.currentSelectedConversations().stream().anyMatch(conversation -> !conversation.getThreadRecord().isRead());
+    boolean hasUnpinned = viewModel.currentSelectedConversations().stream().anyMatch(conversation -> !conversation.getThreadRecord().isPinned());
+    boolean hasUnmuted  = viewModel.currentSelectedConversations().stream().anyMatch(conversation -> !conversation.getThreadRecord().getRecipient().live().get().isMuted());
     boolean canPin      = viewModel.getPinnedCount() < RemoteConfig.pinnedChatLimit();
 
     if (mainToolbarViewModel.isInActionMode()) {

@@ -183,6 +183,21 @@ interface NetworkController {
   suspend fun setAccountAttributes(attributes: AccountAttributes): RequestResult<Unit, SetAccountAttributesError>
 
   /**
+   * Fetches metadata about your current backup. This will be different for different key/credential pairs. For example, message credentials will always
+   * return 0 for used space since that is stored under the media key/credential.
+   *
+   * GET /v1/archives
+   * - 200: Success
+   * - 400: Bad arguments. The request may have been made on an authenticated channel.
+   * - 401: The provided backup auth credential presentation could not be verified or the public key signature was invalid or there is no backup associated with
+   *        the backup-id in the presentation or the credential was of the wrong type (messages/media)
+   * - 403: Forbidden
+   * - 404: No backup
+   * - 429: Rate limited
+   */
+  suspend fun getRemoteBackupInfo(): RequestResult<GetBackupInfoResponse, GetBackupInfoError>
+
+  /**
    * Starts a provisioning session for QR-based quick restore.
    *
    * The returned flow emits [ProvisioningEvent]s:
@@ -213,24 +228,24 @@ interface NetworkController {
 //   */
 //  suspend fun registerAsSecondaryDevice(verificationCode: String, attributes: AccountAttributes, aciPreKeys: PreKeyCollection, pniPreKeys: PreKeyCollection, fcmToken: String?)
 
-  sealed class CreateSessionError() : BadRequestError {
+  sealed class CreateSessionError : BadRequestError {
     data class InvalidRequest(val message: String) : CreateSessionError()
     data class RateLimited(val retryAfter: Duration) : CreateSessionError()
   }
 
-  sealed class GetSessionStatusError() : BadRequestError {
+  sealed class GetSessionStatusError : BadRequestError {
     data class InvalidSessionId(val message: String) : GetSessionStatusError()
     data class SessionNotFound(val message: String) : GetSessionStatusError()
     data class InvalidRequest(val message: String) : GetSessionStatusError()
   }
 
-  sealed class UpdateSessionError() : BadRequestError {
+  sealed class UpdateSessionError : BadRequestError {
     data class RejectedUpdate(val message: String) : UpdateSessionError()
     data class InvalidRequest(val message: String) : UpdateSessionError()
     data class RateLimited(val retryAfter: Duration, val session: SessionMetadata) : UpdateSessionError()
   }
 
-  sealed class RequestVerificationCodeError() : BadRequestError {
+  sealed class RequestVerificationCodeError : BadRequestError {
     data class InvalidSessionId(val message: String) : RequestVerificationCodeError()
     data class SessionNotFound(val message: String) : RequestVerificationCodeError()
     data class MissingRequestInformationOrAlreadyVerified(val session: SessionMetadata) : RequestVerificationCodeError()
@@ -240,14 +255,14 @@ interface NetworkController {
     data class ThirdPartyServiceError(val data: ThirdPartyServiceErrorResponse) : RequestVerificationCodeError()
   }
 
-  sealed class SubmitVerificationCodeError() : BadRequestError {
+  sealed class SubmitVerificationCodeError : BadRequestError {
     data class InvalidSessionIdOrVerificationCode(val message: String) : SubmitVerificationCodeError()
     data class SessionNotFound(val message: String) : SubmitVerificationCodeError()
     data class SessionAlreadyVerifiedOrNoCodeRequested(val session: SessionMetadata) : SubmitVerificationCodeError()
     data class RateLimited(val retryAfter: Duration, val session: SessionMetadata) : SubmitVerificationCodeError()
   }
 
-  sealed class RegisterAccountError() : BadRequestError {
+  sealed class RegisterAccountError : BadRequestError {
     data class SessionNotFoundOrNotVerified(val message: String) : RegisterAccountError()
     data class RegistrationRecoveryPasswordIncorrect(val message: String) : RegisterAccountError()
     data object DeviceTransferPossible : RegisterAccountError()
@@ -256,36 +271,44 @@ interface NetworkController {
     data class RateLimited(val retryAfter: Duration) : RegisterAccountError()
   }
 
-  sealed class RestoreMasterKeyError() : BadRequestError {
+  sealed class RestoreMasterKeyError : BadRequestError {
     data class WrongPin(val triesRemaining: Int) : RestoreMasterKeyError()
     data object NoDataFound : RestoreMasterKeyError()
   }
 
-  sealed class BackupMasterKeyError() : BadRequestError {
+  sealed class BackupMasterKeyError : BadRequestError {
     data object EnclaveNotFound : BackupMasterKeyError()
     data object NotRegistered : BackupMasterKeyError()
   }
 
-  sealed class SetRegistrationLockError() : BadRequestError {
+  sealed class SetRegistrationLockError : BadRequestError {
     data class InvalidRequest(val message: String) : SetRegistrationLockError()
     data object Unauthorized : SetRegistrationLockError()
     data object NotRegistered : SetRegistrationLockError()
     data object NoPinSet : SetRegistrationLockError()
   }
 
-  sealed class SetAccountAttributesError() : BadRequestError {
+  sealed class SetAccountAttributesError : BadRequestError {
     data class InvalidRequest(val message: String) : SetAccountAttributesError()
     data object Unauthorized : SetAccountAttributesError()
   }
 
-  sealed class GetSvrCredentialsError() : BadRequestError {
+  sealed class GetSvrCredentialsError : BadRequestError {
     data object Unauthorized : GetSvrCredentialsError()
     data object NoServiceCredentialsAvailable : GetSvrCredentialsError()
   }
 
-  sealed class CheckSvrCredentialsError() : BadRequestError {
+  sealed class CheckSvrCredentialsError : BadRequestError {
     data object Unauthorized : CheckSvrCredentialsError()
     data class InvalidRequest(val message: String) : CheckSvrCredentialsError()
+  }
+
+  sealed class GetBackupInfoError : BadRequestError {
+    data class BadArguments(val body: String? = null) : GetBackupInfoError()
+    data class BadAuthCredential(val body: String? = null) : GetBackupInfoError()
+    data class Forbidden(val body: String? = null) : GetBackupInfoError()
+    data object NoBackup : GetBackupInfoError()
+    data class RateLimited(val retryAfter: Duration) : GetBackupInfoError()
   }
 
   data class MasterKeyResponse(
@@ -431,6 +454,15 @@ interface NetworkController {
   enum class VerificationCodeTransport {
     SMS, VOICE
   }
+
+  @Serializable
+  data class GetBackupInfoResponse(
+    val cdn: Int?,
+    val backupDir: String?,
+    val mediaDir: String?,
+    val backupName: String?,
+    val usedSpace: Long?
+  )
 
   /**
    * Data received from the old device during QR-based provisioning.

@@ -13,12 +13,9 @@ import org.signal.core.models.UriSerializer
 import org.signal.core.models.media.Media
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.conversation.ConversationIntents.ConversationScreenType
-import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.mms.SlideFactory
-import org.thoughtcrime.securesms.recipients.Recipient.Companion.resolved
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
-import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 
 @Serializable
 @Parcelize
@@ -38,18 +35,11 @@ data class ConversationArgs(
   val giftBadge: Badge?,
   val shareDataTimestamp: Long,
   val conversationScreenType: ConversationScreenType,
-  val isIncognito: Boolean = false
+  val isIncognito: Boolean = false,
+  val hasWallpaper: Boolean = false
 ) : Parcelable {
   @IgnoredOnParcel
   val draftMediaType: SlideFactory.MediaType? = SlideFactory.MediaType.from(draftContentType)
-
-  @IgnoredOnParcel
-  val wallpaper: ChatWallpaper?
-    get() = resolved(recipientId).wallpaper
-
-  @IgnoredOnParcel
-  val chatColors: ChatColors
-    get() = resolved(recipientId).chatColors
 
   fun canInitializeFromDatabase(): Boolean {
     return draftText == null && (draftMedia == null || ConversationIntents.isBubbleIntentUri(draftMedia) || ConversationIntents.isNotificationIntentUri(draftMedia)) && draftMediaType == null

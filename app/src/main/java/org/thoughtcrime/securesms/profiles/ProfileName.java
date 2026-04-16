@@ -7,13 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.util.cjkv.CJKVUtil;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public final class ProfileName implements Parcelable {
 
@@ -130,8 +129,10 @@ public final class ProfileName implements Parcelable {
       return false;
     } else {
       return Stream.of(givenName, familyName)
-                   .filterNot(String::isEmpty)
-                   .reduce(true, (a, s) -> a && CJKVUtil.isCJKV(s));
+                   .filter(s1 -> !s1.isEmpty())
+                   .reduce(true,
+                           (a, s) -> a && CJKVUtil.isCJKV(s),
+                           (a,b) -> a && b);
     }
   }
 

@@ -369,6 +369,11 @@ class LibSignalChatConnection(
     }
   }
 
+  override fun shutdown() {
+    disconnect()
+    listener.shutdown()
+  }
+
   override fun sendRequest(request: WebSocketRequestMessage, timeoutSeconds: Long): Single<WebsocketResponse> {
     CHAT_SERVICE_LOCK.withLock {
       if (isDead()) {
@@ -604,6 +609,10 @@ class LibSignalChatConnection(
 
   private inner class LibSignalChatListener : ChatConnectionListener {
     private val executor = Executors.newSingleThreadExecutor()
+
+    fun shutdown() {
+      executor.shutdown()
+    }
 
     override fun onIncomingMessage(chat: ChatConnection, envelope: ByteArray, serverDeliveryTimestamp: Long, sendAck: ChatConnectionListener.ServerMessageAck?) {
       // NB: The order here is intentional to ensure concurrency-safety, so that when a request is pulled off the queue, its sendAck is

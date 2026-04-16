@@ -7,16 +7,18 @@ import io.mockk.verify
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
+import org.signal.core.models.ServiceId
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.model.IdentityStoreRecord
 import org.whispersystems.signalservice.test.LibSignalLibraryUtil.assumeLibSignalSupportedOnOS
+import java.util.UUID
 
 class SignalBaseIdentityKeyStoreTest {
   companion object {
-    private const val ADDRESS = "address1"
+    private val ADDRESS = ServiceId.parseOrThrow(UUID.randomUUID().toString()).toString()
   }
 
   @Before

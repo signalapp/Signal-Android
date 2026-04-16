@@ -11,6 +11,7 @@ import android.text.TextUtils
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
 import androidx.core.app.RemoteInput
 import androidx.core.content.LocusIdCompat
@@ -34,6 +35,7 @@ import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.util.Optional
 import androidx.core.app.Person as PersonCompat
+import org.signal.core.ui.R as CoreUiR
 
 private const val BIG_PICTURE_DIMEN = 500
 
@@ -82,6 +84,8 @@ sealed class NotificationBuilder(protected val context: Context) {
   protected abstract fun addMarkAsReadActionActual(state: NotificationState)
   protected abstract fun addMessagesActual(conversation: NotificationConversation, includeShortcut: Boolean)
   protected abstract fun addMessagesActual(state: NotificationState)
+
+  @WorkerThread
   protected abstract fun setBubbleMetadataActual(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState)
   protected abstract fun setLights(@ColorInt color: Int, onTime: Int, offTime: Int)
 
@@ -116,7 +120,7 @@ sealed class NotificationBuilder(protected val context: Context) {
   }
 
   fun addReplyActions(conversation: NotificationConversation) {
-    if (privacy.isDisplayMessage && isNotLocked && !conversation.recipient.isPushV1Group && RecipientUtil.isMessageRequestAccepted(context, conversation.recipient)) {
+    if (privacy.isDisplayMessage && isNotLocked && !conversation.recipient.isPushV1Group && RecipientUtil.isMessageRequestAccepted(conversation.recipient)) {
       if (conversation.recipient.isPushV2Group) {
         val group: Optional<GroupRecord> = SignalDatabase.groups.getGroup(conversation.recipient.requireGroupId())
         if (group.isPresent && group.get().isAnnouncementGroup && !group.get().isAdmin(Recipient.self())) {
@@ -153,6 +157,7 @@ sealed class NotificationBuilder(protected val context: Context) {
     addMessagesActual(state)
   }
 
+  @WorkerThread
   fun setBubbleMetadata(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState) {
     if (privacy.isDisplayContact && isNotLocked) {
       setBubbleMetadataActual(conversation, bubbleState)
@@ -237,7 +242,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       val markAsRead: PendingIntent? = conversation.getMarkAsReadIntent(context)
       if (markAsRead != null) {
         val markAsReadAction: NotificationCompat.Action =
-          NotificationCompat.Action.Builder(R.drawable.symbol_check_24, context.getString(R.string.MessageNotifier_mark_read), markAsRead)
+          NotificationCompat.Action.Builder(CoreUiR.drawable.symbol_check_24, context.getString(R.string.MessageNotifier_mark_read), markAsRead)
             .setSemanticAction(NotificationCompat.Action.SEMANTIC_ACTION_MARK_AS_READ)
             .setShowsUserInterface(false)
             .build()
@@ -251,7 +256,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       val markAsRead: PendingIntent? = state.getMarkAsReadIntent(context)
 
       if (markAsRead != null) {
-        val markAllAsReadAction = NotificationCompat.Action(R.drawable.symbol_check_24, context.getString(R.string.MessageNotifier_mark_all_as_read), markAsRead)
+        val markAllAsReadAction = NotificationCompat.Action(CoreUiR.drawable.symbol_check_24, context.getString(R.string.MessageNotifier_mark_all_as_read), markAsRead)
         builder.addAction(markAllAsReadAction)
         builder.extend(NotificationCompat.WearableExtender().addAction(markAllAsReadAction))
       }
@@ -260,7 +265,7 @@ sealed class NotificationBuilder(protected val context: Context) {
     override fun addTurnOffJoinedNotificationsAction(pendingIntent: PendingIntent?) {
       if (pendingIntent != null) {
         val turnOffTheseNotifications = NotificationCompat.Action(
-          R.drawable.symbol_check_24,
+          CoreUiR.drawable.symbol_check_24,
           context.getString(R.string.MessageNotifier_turn_off_these_notifications),
           pendingIntent
         )
@@ -359,15 +364,18 @@ sealed class NotificationBuilder(protected val context: Context) {
       }
     }
 
+    @WorkerThread
     override fun setBubbleMetadataActual(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState) {
       if (Build.VERSION.SDK_INT < ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
         return
       }
 
+      val wallpaper = conversation.recipient.wallpaper
+      wallpaper?.prefetch(context, 250)
       val intent: PendingIntent? = NotificationPendingIntentHelper.getActivity(
         context,
         0,
-        ConversationIntents.createBubbleIntent(context, conversation.recipient.id, conversation.thread.threadId),
+        ConversationIntents.createBubbleIntent(context, conversation.recipient.id, conversation.thread.threadId, wallpaper != null),
         mutable()
       )
 

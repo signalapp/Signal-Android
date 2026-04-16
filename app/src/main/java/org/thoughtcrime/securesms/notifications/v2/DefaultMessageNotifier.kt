@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.service.notification.StatusBarNotification
+import androidx.annotation.WorkerThread
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import me.leolin.shortcutbadger.ShortcutBadger
@@ -114,10 +115,12 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     executor.cancel()
   }
 
+  @WorkerThread
   override fun updateNotification(context: Context) {
     updateNotification(context, null, BubbleState.HIDDEN)
   }
 
+  @WorkerThread
   override fun updateNotification(context: Context, conversationId: ConversationId) {
     if (System.currentTimeMillis() - lastDesktopActivityTimestamp < DESKTOP_ACTIVITY_PERIOD) {
       Log.i(TAG, "Scheduling delayed notification...")
@@ -127,10 +130,12 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     }
   }
 
+  @WorkerThread
   override fun forceBubbleNotification(context: Context, conversationId: ConversationId) {
     updateNotification(context, conversationId, BubbleState.SHOWN)
   }
 
+  @WorkerThread
   private fun updateNotification(
     context: Context,
     conversationId: ConversationId?,

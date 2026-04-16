@@ -2026,8 +2026,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (groupThread && !messageRecord.isOutgoing()) {
       String senderName  = recipient.getDisplayName(getContext());
       int    senderColor = colorizer.getIncomingGroupSenderColor(getContext(), messageRecord.getFromRecipient());
-      senderWithLabelView.setSender(senderName, senderColor);
-      senderWithLabelView.setLabel(conversationMessage.getMemberLabel());
+      senderWithLabelView.bind(senderName, senderColor, conversationMessage.getMemberLabel());
     }
   }
 

@@ -32,7 +32,6 @@ import org.signal.registration.proto.RegistrationData
 import org.signal.registration.sample.storage.RegistrationDatabase
 import org.signal.registration.sample.storage.RegistrationPreferences
 import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
-import org.signal.registration.screens.restoreselection.ArchiveRestoreOption
 import java.io.File
 import java.time.LocalDateTime
 
@@ -179,14 +178,6 @@ class DemoStorageController(private val context: Context) : StorageController {
     }
 
     Unit
-  }
-
-  override suspend fun getAvailableRestoreOptions(): Set<ArchiveRestoreOption> {
-    return setOf(
-      ArchiveRestoreOption.SignalSecureBackup,
-      ArchiveRestoreOption.LocalBackup,
-      ArchiveRestoreOption.DeviceTransfer
-    )
   }
 
   override suspend fun scanLocalBackupFolder(folderUri: Uri): List<LocalBackupInfo> = withContext(Dispatchers.IO) {

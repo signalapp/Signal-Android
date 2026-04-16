@@ -87,7 +87,7 @@ class PersistedFlowStateTest {
       backStack = listOf(
         RegistrationRoute.Welcome,
         RegistrationRoute.PinCreate,
-        RegistrationRoute.ArchiveRestoreSelection
+        RegistrationRoute.ArchiveRestoreSelection.forManualRestore()
       ),
       sessionMetadata = null,
       sessionE164 = "+15551234567",

@@ -42,6 +42,12 @@
     <string name="RegistrationActivity_select_a_country">Selecciona un país</string>
     <string name="RegistrationActivity_phone_number_description">Número de telèfon</string>
     <string name="RegistrationActivity_next">Següent</string>
+    <!-- Dialog title to confirm phone number -->
+    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <!-- Dialog body to confirm phone number -->
+    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <!-- Dialog button to edit the number entered -->
+    <string name="RegistrationActivity_edit_number">Edit number</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -76,8 +82,8 @@
     <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Massa intents. Torna-ho a provar en %1$s.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">Alguna cosa ha anat malament. Torna-ho a provar.</string>
-    <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">Hi ha hagut un problema en enviar el codi de verificació. Torna-ho a provar.</string>
+    <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__unable_to_send_sms">We are unable to send an SMS to your number. Please try again in several hours.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">No s\'ha pogut enviar el codi a través del mètode seleccionat. Prova una altra opció.</string>
     <!-- Snackbar shown for registration errors -->
@@ -141,13 +147,11 @@
     <!-- Subtitle for the choose backup folder card -->
     <string name="LocalBackupRestoreScreen__choose_folder_subtitle">Selecciona la carpeta del teu dispositiu on s\'emmagatzemen les còpies de seguretat</string>
     <!-- Text shown while scanning for backups -->
-    <string name="LocalBackupRestoreScreen__scanning_folder">Looking for backups…</string>
+    <string name="LocalBackupRestoreScreen__scanning_folder">Buscant còpies de seguretat…</string>
     <!-- Description shown when a backup is found -->
     <string name="LocalBackupRestoreScreen__backup_found_description">Restaurar els teus missatges des d\'una carpeta de còpies de seguretat del teu dispositiu. Si no la restaures ara, no podràs restaurar-la més tard.</string>
     <!-- Title for the latest backup card -->
     <string name="LocalBackupRestoreScreen__your_latest_backup">La teva darrera còpia de seguretat:</string>
-    <!-- Label for a legacy backup type -->
-    <string name="LocalBackupRestoreScreen__legacy_backup">Legacy backup</string>
     <!-- Restore backup button text -->
     <string name="LocalBackupRestoreScreen__restore_backup">Restaura la còpia de seguretat</string>
     <!-- Link to choose an earlier backup -->
@@ -157,21 +161,21 @@
     <!-- Warning text in the backup picker bottom sheet -->
     <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">Si selecciones una còpia de seguretat més antiga, podries perdre missatges o arxius multimèdia.</string>
     <!-- Title when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found">No backup found</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found">No s\'ha trobat cap còpia de seguretat</string>
     <!-- Description when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found_description">No Signal backup was found in the selected folder. Please try a different folder.</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found_description">No s\'ha trobat cap còpia de seguretat de Signal a la carpeta seleccionada. Prova en una altra carpeta.</string>
     <!-- Button to try a different folder -->
-    <string name="LocalBackupRestoreScreen__try_different_folder">Try a different folder</string>
+    <string name="LocalBackupRestoreScreen__try_different_folder">Provar una altra carpeta</string>
     <!-- Title for V1 passphrase entry screen -->
     <string name="LocalBackupRestoreScreen__enter_backup_passphrase">Escriviu la contrasenya de la còpia de seguretat.</string>
     <!-- Description for V1 passphrase entry screen -->
-    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Your local backup passphrase is a 30-digit code required to recover your account and data.</string>
+    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">La teva contrasenya de la còpia de seguretat és un codi de 30 dígits necessari per a recuperar el teu compte i les teves dades.</string>
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">Clau de recuperació</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">Massa llarg (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
-    <string name="LocalBackupRestoreScreen__no_passphrase">No passphrase?</string>
+    <string name="LocalBackupRestoreScreen__no_passphrase">No tens el codi d\'accés?</string>
     <!-- Next button text -->
     <string name="LocalBackupRestoreScreen__next">Següent</string>
     <!-- EnterAepScreen -->
@@ -188,13 +192,11 @@
     <!-- Error text when key is invalid -->
     <string name="EnterAepScreen__invalid_recovery_key">Clau de recuperació no vàlida</string>
     <!-- Text shown while preparing the restore -->
-    <string name="LocalBackupRestoreScreen__preparing_restore">Preparing restore…</string>
+    <string name="LocalBackupRestoreScreen__preparing_restore">Preparant per restaurar…</string>
     <!-- Title shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_backup">Restaurant la còpia de seguretat</string>
     <!-- Description shown while restore is in progress -->
-    <string name="LocalBackupRestoreScreen__restoring_description">Please wait while your messages and data are being restored.</string>
-    <!-- Title shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete">Restauració completa</string>
+    <string name="LocalBackupRestoreScreen__restoring_description">Espera uns minuts mentre restaurem els teus missatges i dades.</string>
     <!-- Description shown when restore is complete -->
     <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->
@@ -206,9 +208,9 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">Torna a provar-ho</string>
     <!-- Button to link an existing Signal account to this device -->
-    <string name="WelcomeScreen__link_your_account">Link your account</string>
+    <string name="WelcomeScreen__link_your_account">Enllaça el teu compte</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
-    <string name="WelcomeScreen__not_on_signal_yet">Not on Signal yet?</string>
+    <string name="WelcomeScreen__not_on_signal_yet">Encara no tens compte a Signal?</string>
     <!-- Button to create a new Signal account -->
-    <string name="WelcomeScreen__create_account">Create account</string>
+    <string name="WelcomeScreen__create_account">Crea\'n un ara</string>
 </resources>

@@ -9,8 +9,6 @@ import android.hardware.camera2.CameraMetadata;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CameraControl;
 import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
@@ -26,6 +24,8 @@ import org.webrtc.VideoSink;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.thoughtcrime.securesms.ringrtc.CameraState.Direction.BACK;
 import static org.thoughtcrime.securesms.ringrtc.CameraState.Direction.FRONT;
@@ -108,10 +108,10 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
 
   @Override
   public void setOrientation(@Nullable Integer orientation) {
-    this.orientation = orientation;
+    this.orientation = orientation != null ? orientation : 0;
 
     if (isInitialized && capturer != null) {
-      capturer.setOrientation(orientation);
+      capturer.setOrientation(this.orientation);
     }
   }
 
@@ -276,10 +276,10 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
 
         if (cameraManager != null) {
           List<String> devices = Stream.of(cameraManager.getCameraIdList())
-                                       .filterNot(id -> isMonochrome(id, cameraManager))
-                                       .toList();
+                                       .filter(id -> !isMonochrome(id, cameraManager))
+                                       .collect(Collectors.toList());
 
-          String frontCamera = Stream.of(devices)
+          String frontCamera = devices.stream()
                                      .filter(id -> isLensFacing(id, cameraManager, CameraMetadata.LENS_FACING_FRONT))
                                      .findFirst()
                                      .orElse(null);
@@ -288,7 +288,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
             cameraList.add(frontCamera);
           }
 
-          String backCamera = Stream.of(devices)
+          String backCamera = devices.stream()
                                     .filter(id -> isLensFacing(id, cameraManager, CameraMetadata.LENS_FACING_BACK))
                                     .findFirst()
                                     .orElse(null);

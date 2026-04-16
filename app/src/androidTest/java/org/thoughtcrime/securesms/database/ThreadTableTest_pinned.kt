@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.database
 
-import io.mockk.every
 import io.mockk.mockkStatic
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -29,8 +28,6 @@ class ThreadTableTest_pinned {
   @Before
   fun setUp() {
     mockkStatic(RemoteConfig::class)
-
-    every { RemoteConfig.showChatFolders } returns true
 
     recipient = Recipient.resolved(SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID())))
   }

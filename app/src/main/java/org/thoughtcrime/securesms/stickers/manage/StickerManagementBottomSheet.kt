@@ -29,7 +29,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
-import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent
+import org.signal.core.ui.compose.list.ReorderListEvent
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
@@ -120,11 +120,11 @@ class StickerManagementBottomSheet : ComposeBottomSheetDialogFragment() {
             override fun onRemoveStickerPacksCanceled() = viewModel.onUninstallStickerPacksCanceled()
             override fun onSelectionToggle(pack: InstalledStickerPack) = viewModel.toggleSelection(pack)
             override fun onSelectAllToggle() = viewModel.toggleSelectAll()
-            override fun onDragAndDropEvent(event: DragAndDropEvent) {
+            override fun onReorderableEvent(event: ReorderListEvent) {
               when (event) {
-                is DragAndDropEvent.OnItemMove -> viewModel.updatePosition(event.fromIndex, event.toIndex)
-                is DragAndDropEvent.OnItemDrop -> viewModel.saveInstalledPacksSortOrder()
-                is DragAndDropEvent.OnDragCancel -> {}
+                is ReorderListEvent.ItemMoved -> viewModel.updatePosition(event.fromIndex, event.toIndex)
+                is ReorderListEvent.ItemDropped -> viewModel.saveInstalledPacksSortOrder()
+                is ReorderListEvent.DragCanceled -> {}
               }
             }
 

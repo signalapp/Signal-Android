@@ -6,8 +6,11 @@
 package org.signal.mediasend
 
 import android.net.Uri
+import android.os.Parcel
 import android.os.Parcelable
+import kotlinx.parcelize.Parceler
 import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.WriteWith
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 
@@ -108,22 +111,38 @@ data class MediaSendState(
   /**
    * The [MediaFolder] list available on the system
    */
-  val mediaFolders: List<MediaFolder> = emptyList(),
+  val mediaFolders: @WriteWith<TransientMediaFolderListParceler> List<MediaFolder> = emptyList(),
 
   /**
    * The selected [MediaFolder] for which to display content in the Select screen
    */
-  val selectedMediaFolder: MediaFolder? = null,
+  val selectedMediaFolder: @WriteWith<TransientMediaFolderParceler> MediaFolder? = null,
 
   /**
    * The media content for a given selected [MediaFolder]
    */
-  val selectedMediaFolderItems: List<Media> = emptyList()
+  val selectedMediaFolderItems: @WriteWith<TransientMediaListParceler> List<Media> = emptyList()
 ) : Parcelable {
 
   /**
-   * View-once toggle state.
+   * No-op parcelers for fields that are re-loaded on init and should not
+   * contribute to the saved-state bundle size.
    */
+  private object TransientMediaFolderListParceler : Parceler<List<MediaFolder>> {
+    override fun create(parcel: Parcel): List<MediaFolder> = emptyList()
+    override fun List<MediaFolder>.write(parcel: Parcel, flags: Int) = Unit
+  }
+
+  private object TransientMediaFolderParceler : Parceler<MediaFolder?> {
+    override fun create(parcel: Parcel): MediaFolder? = null
+    override fun MediaFolder?.write(parcel: Parcel, flags: Int) = Unit
+  }
+
+  private object TransientMediaListParceler : Parceler<List<Media>> {
+    override fun create(parcel: Parcel): List<Media> = emptyList()
+    override fun List<Media>.write(parcel: Parcel, flags: Int) = Unit
+  }
+
   enum class ViewOnceToggleState(val code: Int) {
     OFF(0),
     ONCE(1);

@@ -6,7 +6,7 @@ import android.os.ResultReceiver;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
@@ -533,9 +533,9 @@ public abstract class WebRtcActionProcessor {
   protected final @NonNull WebRtcServiceState handleSendIceCandidates(@NonNull WebRtcServiceState currentState, @NonNull CallMetadata callMetadata, boolean broadcast, @NonNull List<byte[]> iceCandidates) {
     Log.i(tag, "handleSendIceCandidates(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
 
-    List<IceUpdateMessage> iceUpdateMessages = Stream.of(iceCandidates)
-                                                     .map(c -> new IceUpdateMessage(callMetadata.getCallId().longValue(), c))
-                                                     .toList();
+    List<IceUpdateMessage> iceUpdateMessages = iceCandidates.stream()
+                                                            .map(c -> new IceUpdateMessage(callMetadata.getCallId().longValue(), c))
+                                                            .collect(Collectors.toList());
 
     Integer                  destinationDeviceId = broadcast ? null : callMetadata.getRemoteDevice();
     SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forIceUpdates(iceUpdateMessages, destinationDeviceId);

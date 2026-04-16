@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setUpForColor
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
+import org.signal.core.ui.R as CoreUiR
 
 class ImageEditorHudV2 @JvmOverloads constructor(
   context: Context,
@@ -146,9 +147,9 @@ class ImageEditorHudV2 @JvmOverloads constructor(
     cropAspectLockButton.setOnClickListener {
       listener?.onCropAspectLock()
       if (listener?.isCropAspectLocked == true) {
-        cropAspectLockButton.setImageResource(R.drawable.symbol_crop_lock_24)
+        cropAspectLockButton.setImageResource(CoreUiR.drawable.symbol_crop_lock_24)
       } else {
-        cropAspectLockButton.setImageResource(R.drawable.symbol_crop_unlock_24)
+        cropAspectLockButton.setImageResource(CoreUiR.drawable.symbol_crop_unlock_24)
       }
     }
 
@@ -355,7 +356,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
 
   private fun presentModeDraw() {
     drawButton.isSelected = true
-    brushToggle.setImageResource(R.drawable.symbol_brush_pen_24)
+    brushToggle.setImageResource(CoreUiR.drawable.symbol_brush_pen_24)
     widthSeekBar.progress = SignalStore.imageEditor.getMarkerPercentage()
     listener?.onColorChange(getActiveColor())
     updateColorIndicator()
@@ -368,7 +369,7 @@ class ImageEditorHudV2 @JvmOverloads constructor(
 
   private fun presentModeHighlight() {
     drawButton.isSelected = true
-    brushToggle.setImageResource(R.drawable.symbol_brush_highlighter_24)
+    brushToggle.setImageResource(CoreUiR.drawable.symbol_brush_highlighter_24)
     widthSeekBar.progress = SignalStore.imageEditor.getHighlighterPercentage()
     listener?.onColorChange(getActiveColor())
     updateColorIndicator()

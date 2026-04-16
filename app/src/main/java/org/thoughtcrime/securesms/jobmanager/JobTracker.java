@@ -4,7 +4,6 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.LRUCache;
@@ -72,7 +71,7 @@ public class JobTracker {
   synchronized void onStateChange(@NonNull Job job, @NonNull JobState state) {
     getOrCreateJobInfo(job).setJobState(state);
 
-    Stream.of(jobListeners)
+    jobListeners.stream()
           .filter(info -> info.getFilter().matches(job))
           .map(ListenerInfo::getListener)
           .forEach(listener -> {

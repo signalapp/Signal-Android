@@ -38,6 +38,7 @@ import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatus
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
+import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.FileNotFoundException
@@ -318,7 +319,10 @@ class UploadAttachmentToArchiveJob private constructor(
           is NetworkResult.NetworkError -> {
             Log.w(TAG, "[$attachmentId]$mediaIdLog Failed to upload due to network error.", result.exception)
 
-            if (result.exception.cause is ProtocolException) {
+            if (result.exception is ResumeLocationInvalidException) {
+              Log.w(TAG, "[$attachmentId]$mediaIdLog Resume location is invalid. Clearing upload spec before retrying.")
+              uploadSpec = null
+            } else if (result.exception.cause is ProtocolException) {
               Log.w(TAG, "[$attachmentId]$mediaIdLog Length may be incorrect. Recalculating.", result.exception)
 
               val actualLength = SignalDatabase.attachments.getAttachmentStream(attachmentId, 0)

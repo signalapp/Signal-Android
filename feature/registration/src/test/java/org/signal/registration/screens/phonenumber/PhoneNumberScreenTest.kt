@@ -71,7 +71,7 @@ class PhoneNumberScreenTest {
   }
 
   @Test
-  fun `when Next is clicked, PhoneNumberSubmitted event is emitted`() {
+  fun `when Next is clicked, PhoneNumberEntered event is emitted`() {
     // Given
     var emittedEvent: PhoneNumberEntryScreenEvents? = null
 
@@ -94,8 +94,8 @@ class PhoneNumberScreenTest {
     composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_NEXT_BUTTON).performClick()
 
     // Then
-    assert(emittedEvent is PhoneNumberEntryScreenEvents.PhoneNumberSubmitted) {
-      "Expected PhoneNumberSubmitted event but got $emittedEvent"
+    assert(emittedEvent is PhoneNumberEntryScreenEvents.PhoneNumberEntered) {
+      "Expected PhoneNumberEntered event but got $emittedEvent"
     }
   }
 

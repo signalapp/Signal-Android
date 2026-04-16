@@ -40,7 +40,7 @@ public class ConversationRepository {
 
   private static final String TAG = Log.tag(ConversationRepository.class);
 
-  private final Context  context;
+  private final Context context;
 
   public ConversationRepository() {
     this.context = AppDependencies.getApplication();
@@ -54,7 +54,7 @@ public class ConversationRepository {
     int                                 lastSeenPosition               = 0;
     long                                lastScrolled                   = metadata.getLastScrolled();
     int                                 lastScrolledPosition           = 0;
-    boolean                             isMessageRequestAccepted       = RecipientUtil.isMessageRequestAccepted(context, threadId);
+    boolean                             isMessageRequestAccepted       = RecipientUtil.isMessageRequestAccepted(threadId);
     boolean                             isConversationHidden           = RecipientUtil.isRecipientHidden(threadId);
     ConversationData.MessageRequestData messageRequestData             = new ConversationData.MessageRequestData(isMessageRequestAccepted, isConversationHidden);
     boolean                             showUniversalExpireTimerUpdate = false;

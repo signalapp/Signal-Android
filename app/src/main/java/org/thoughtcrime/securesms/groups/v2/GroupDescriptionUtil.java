@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.text.util.LinkifyCompat;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
@@ -43,7 +43,7 @@ public final class GroupDescriptionUtil {
 
       if (hasLinks) {
         Stream.of(descriptionSpannable.getSpans(0, descriptionSpannable.length(), URLSpan.class))
-              .filterNot(url -> LinkUtil.isLegalUrl(url.getURL()))
+              .filter(url -> !LinkUtil.isLegalUrl(url.getURL()))
               .forEach(descriptionSpannable::removeSpan);
 
         URLSpan[] urlSpans = descriptionSpannable.getSpans(0, descriptionSpannable.length(), URLSpan.class);

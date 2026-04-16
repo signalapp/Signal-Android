@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.stories.dialogs
 
 import android.content.ActivityNotFoundException
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -26,6 +28,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.landing.StoriesLandingItem
 import org.thoughtcrime.securesms.stories.viewer.page.StoryPost
@@ -118,11 +121,17 @@ object StoryContextMenu {
     } else {
       val attachment: Attachment = messageRecord.slideDeck.firstSlide!!.asAttachment()
 
-      ShareCompat.IntentBuilder(fragment.requireContext())
+      val chooserIntent = ShareCompat.IntentBuilder(fragment.requireContext())
         .setStream(attachment.publicUri)
         .setType(attachment.contentType)
         .createChooserIntent()
         .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+      if (Build.VERSION.SDK_INT < 34) {
+        chooserIntent.putExtra(Intent.EXTRA_EXCLUDE_COMPONENTS, arrayOf(ComponentName(fragment.requireContext(), ShareActivity::class.java)))
+      }
+
+      chooserIntent
     }
 
     try {
@@ -242,7 +251,7 @@ object StoryContextMenu {
           }
         )
         add(
-          ActionItem(R.drawable.symbol_save_android_24, context.getString(R.string.save)) {
+          ActionItem(CoreUiR.drawable.symbol_save_android_24, context.getString(R.string.save)) {
             callbacks.onSave()
           }
         )

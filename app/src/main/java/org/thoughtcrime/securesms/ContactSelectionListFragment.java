@@ -87,6 +87,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.stream.Collectors;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -340,7 +341,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
         this,
         currentSelection.stream()
                         .map(r -> new ContactSearchKey.RecipientSearchKey(r, false))
-                        .collect(java.util.stream.Collectors.toSet()),
+                        .collect(Collectors.toSet()),
         selectionLimit,
         isMulti,
         new ContactSearchAdapter.DisplayOptions(
@@ -467,7 +468,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     return contactSearchMediator.getSelectedContacts()
                                 .stream()
                                 .map(ContactSearchKey::requireSelectedContact)
-                                .collect(java.util.stream.Collectors.toList());
+                                .collect(Collectors.toList());
   }
 
   public int getSelectedContactsCount() {
@@ -662,7 +663,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
                                                   .filter(r -> !contactSearchMediator.getSelectedContacts()
                                                                                      .contains(new ContactSearchKey.RecipientSearchKey(r, false)))
                                                   .map(SelectedContact::forRecipientId)
-                                                  .collect(java.util.stream.Collectors.toSet());
+                                                  .collect(Collectors.toSet());
 
     if (toMarkSelected.isEmpty()) {
       return;

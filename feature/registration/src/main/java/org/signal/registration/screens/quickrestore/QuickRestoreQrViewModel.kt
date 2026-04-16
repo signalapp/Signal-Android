@@ -59,8 +59,7 @@ class QuickRestoreQrViewModel(
         state
       }
       is QuickRestoreQrEvents.UseProxy -> {
-        // TODO [registration] - Navigate to proxy settings
-        state
+        throw NotImplementedError("Proxy settings not implemented!")
       }
       is QuickRestoreQrEvents.DismissError -> {
         startProvisioning()
@@ -99,7 +98,7 @@ class QuickRestoreQrViewModel(
   private suspend fun handleProvisioningMessage(message: NetworkController.ProvisioningMessage) {
     if (message.platform == NetworkController.ProvisioningMessage.Platform.IOS && message.tier == null) {
       // iOS without a backup tier cannot do a quick restore — navigate to the choose-restore screen
-      parentEventEmitter.navigateTo(RegistrationRoute.ChooseRestoreOptionBeforeRegistration)
+      parentEventEmitter.navigateTo(RegistrationRoute.ArchiveRestoreSelection.forManualRestore())
       return
     }
 
@@ -112,7 +111,7 @@ class QuickRestoreQrViewModel(
         val (response, keyMaterial) = registerResult.result
         Log.i(TAG, "[Register] Success! reregistration: ${response.reregistration}")
         parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool))
-        parentEventEmitter.navigateTo(RegistrationRoute.ChooseRestoreOptionAfterRegistration)
+        parentEventEmitter.navigateTo(RegistrationRoute.ArchiveRestoreSelection.forQuickRestore(hasRemoteBackup = message.tier != null))
       }
       is RequestResult.NonSuccess -> {
         when (val error = registerResult.error) {
@@ -150,7 +149,7 @@ class QuickRestoreQrViewModel(
             )
           }
           is NetworkController.RegisterAccountError.DeviceTransferPossible -> {
-            Log.w(TAG, "[Register] Device transfer possible. Resetting.")
+            Log.w(TAG, "[Register] Device transfer possible. We never set this flag, so we should never see it. Resetting.")
             parentEventEmitter(RegistrationFlowEvent.ResetState)
           }
           is NetworkController.RegisterAccountError.InvalidRequest -> {

@@ -209,4 +209,6 @@
 
     <color name="safety_tip_background">@color/core_white</color>
     <color name="safety_tip_image_background">#99F2F5F9</color>
+
+    <color name="signal_colorOnWarning">#FFB44828</color>
 </resources>

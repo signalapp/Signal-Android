@@ -147,13 +147,7 @@ public class AvatarHelper {
       return;
     }
 
-    OutputStream outputStream = null;
-    try {
-      outputStream = getOutputStream(context, recipientId, false);
-      StreamUtil.copy(inputStream, outputStream);
-    } finally {
-      StreamUtil.close(outputStream);
-    }
+    setAvatarInternal(context, recipientId, inputStream, false);
   }
 
   public static void setSyncAvatar(@NonNull Context context, @NonNull RecipientId recipientId, @Nullable InputStream inputStream)
@@ -164,13 +158,7 @@ public class AvatarHelper {
       return;
     }
 
-    OutputStream outputStream = null;
-    try {
-      outputStream = getOutputStream(context, recipientId, true);
-      StreamUtil.copy(inputStream, outputStream);
-    } finally {
-      StreamUtil.close(outputStream);
-    }
+    setAvatarInternal(context, recipientId, inputStream, true);
   }
 
   /**
@@ -218,6 +206,38 @@ public class AvatarHelper {
 
     return profileAvatar;
   }
+
+  /**
+   * Writes the avatar to a temporary file first, then renames to the final location only on success.
+   * This prevents partially-written or unauthenticated data from being persisted if the input stream
+   * throws during reading (e.g. due to a GCM authentication tag failure).
+   */
+  private static void setAvatarInternal(@NonNull Context context, @NonNull RecipientId recipientId, @NonNull InputStream inputStream, boolean isSyncAvatar)
+      throws IOException
+  {
+    AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
+    File             targetFile       = getAvatarFile(context, recipientId, isSyncAvatar);
+    File             tempFile         = new File(targetFile.getParent(), targetFile.getName() + ".tmp");
+
+    OutputStream outputStream = null;
+    try {
+      outputStream = ModernEncryptingPartOutputStream.createFor(attachmentSecret, tempFile, true).getSecond();
+      StreamUtil.copy(inputStream, outputStream);
+    } catch (IOException e) {
+      StreamUtil.close(outputStream);
+      outputStream = null;
+      tempFile.delete();
+      throw e;
+    } finally {
+      StreamUtil.close(outputStream);
+    }
+
+    if (!tempFile.renameTo(targetFile)) {
+      tempFile.delete();
+      throw new IOException("Failed to rename temp avatar file to final location");
+    }
+  }
+
 
   private static @NonNull File getAvatarFile(@NonNull Context context, @NonNull RecipientId recipientId, boolean isSyncAvatar) {
     return new File(getAvatarDirectory(context), recipientId.serialize() + (isSyncAvatar ? "-sync" : ""));

@@ -10,18 +10,8 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
-import org.thoughtcrime.securesms.crypto.MasterSecret
-import org.thoughtcrime.securesms.database.helpers.ClassicOpenHelper
-import org.thoughtcrime.securesms.database.helpers.PreKeyMigrationHelper
-import org.thoughtcrime.securesms.database.helpers.SQLCipherMigrationHelper
-import org.thoughtcrime.securesms.database.helpers.SessionStoreMigrationHelper
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations
 import org.thoughtcrime.securesms.database.model.AvatarPickerDatabase
-import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
-import org.thoughtcrime.securesms.migrations.LegacyMigrationJob
-import org.thoughtcrime.securesms.migrations.LegacyMigrationJob.DatabaseUpgradeListener
-import org.thoughtcrime.securesms.service.KeyCachingService
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.io.File
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSQLiteDatabase
 
@@ -95,19 +85,6 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     // Requires FTS5
     executeStatements(signalDb, SearchTable.CREATE_TABLE)
     executeStatements(signalDb, SearchTable.CREATE_TRIGGERS)
-
-    if (context.getDatabasePath(ClassicOpenHelper.NAME).exists()) {
-      val legacyHelper = ClassicOpenHelper(context)
-      val legacyDb = legacyHelper.writableDatabase
-      SQLCipherMigrationHelper.migratePlaintext(context, legacyDb, db)
-      val masterSecret = KeyCachingService.getMasterSecret(context)
-      if (masterSecret != null) SQLCipherMigrationHelper.migrateCiphertext(context, masterSecret, legacyDb, db, null) else TextSecurePreferences.setNeedsSqlCipherMigration(context, true)
-      if (!PreKeyMigrationHelper.migratePreKeys(context, db)) {
-        PreKeysSyncJob.enqueue()
-      }
-      SessionStoreMigrationHelper.migrateSessions(context, db)
-      PreKeyMigrationHelper.cleanUpPreKeys(context)
-    }
   }
 
   @VisibleForTesting
@@ -346,36 +323,6 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @JvmStatic
     fun triggerDatabaseAccess() {
       instance!!.signalWritableDatabase
-    }
-
-    @Deprecated("Only used for a legacy migration.")
-    @JvmStatic
-    fun onApplicationLevelUpgrade(
-      context: Context,
-      masterSecret: MasterSecret,
-      fromVersion: Int,
-      listener: DatabaseUpgradeListener?
-    ) {
-      instance!!.signalWritableDatabase
-      var legacyOpenHelper: ClassicOpenHelper? = null
-      if (fromVersion < LegacyMigrationJob.ASYMMETRIC_MASTER_SECRET_FIX_VERSION) {
-        legacyOpenHelper = ClassicOpenHelper(context)
-        legacyOpenHelper.onApplicationLevelUpgrade(context, masterSecret, fromVersion, listener)
-      }
-
-      if (fromVersion < LegacyMigrationJob.SQLCIPHER && TextSecurePreferences.getNeedsSqlCipherMigration(context)) {
-        if (legacyOpenHelper == null) {
-          legacyOpenHelper = ClassicOpenHelper(context)
-        }
-
-        SQLCipherMigrationHelper.migrateCiphertext(
-          context,
-          masterSecret,
-          legacyOpenHelper.writableDatabase,
-          instance!!.rawWritableDatabase,
-          listener
-        )
-      }
     }
 
     @JvmStatic
