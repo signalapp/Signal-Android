@@ -97,7 +97,7 @@ class CallLinkPreJoinActionProcessor(
 
     try {
       groupCall.setOutgoingAudioMuted(true)
-      groupCall.setOutgoingVideoMuted(true)
+      groupCall.setOutgoingVideoMuted(true, false)
       groupCall.setDataMode(NetworkUtil.getCallingDataMode(context, groupCall.localDeviceState.networkRoute.localAdapterType))
       Log.i(TAG, "Connecting to group call: " + currentState.callInfoState.callRecipient.id)
       groupCall.connect()

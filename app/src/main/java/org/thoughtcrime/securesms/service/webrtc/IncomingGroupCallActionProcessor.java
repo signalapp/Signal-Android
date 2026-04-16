@@ -235,7 +235,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
 
     try {
       groupCall.setOutgoingAudioMuted(true);
-      groupCall.setOutgoingVideoMuted(true);
+      groupCall.setOutgoingVideoMuted(true, false);
       groupCall.setDataMode(NetworkUtil.getCallingDataMode(context, groupCall.getLocalDeviceState().getNetworkRoute().getLocalAdapterType()));
 
       Log.i(TAG, "Connecting to group call: " + currentState.getCallInfoState().getCallRecipient().getId());
@@ -260,7 +260,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
 
     try {
       groupCall.setOutgoingVideoSource(currentState.getVideoState().requireLocalSink(), currentState.getVideoState().requireCamera());
-      groupCall.setOutgoingVideoMuted(!answerWithVideo);
+      groupCall.setOutgoingVideoMuted(!answerWithVideo, false);
       groupCall.setOutgoingAudioMuted(!currentState.getLocalDeviceState().isMicrophoneEnabled());
       groupCall.setDataMode(NetworkUtil.getCallingDataMode(context, groupCall.getLocalDeviceState().getNetworkRoute().getLocalAdapterType()));
 

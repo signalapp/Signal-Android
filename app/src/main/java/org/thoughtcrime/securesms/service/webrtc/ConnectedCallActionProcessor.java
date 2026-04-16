@@ -43,7 +43,7 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
     Log.i(TAG, "handleSetEnableVideo(): call_id: " + currentState.getCallInfoState().requireActivePeer().getCallId());
 
     try {
-      webRtcInteractor.getCallManager().setVideoEnable(enable);
+      webRtcInteractor.getCallManager().setVideoEnable(enable, false);
     } catch (CallException e) {
       return callFailure(currentState, "setVideoEnable() failed: ", e);
     }

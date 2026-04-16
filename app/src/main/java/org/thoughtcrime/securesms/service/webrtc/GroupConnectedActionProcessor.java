@@ -91,7 +91,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     Camera    camera    = currentState.getVideoState().requireCamera();
 
     try {
-      groupCall.setOutgoingVideoMuted(!enable);
+      groupCall.setOutgoingVideoMuted(!enable, false);
     } catch (CallException e) {
       return groupCallFailure(currentState, "Unable set video muted", e);
     }

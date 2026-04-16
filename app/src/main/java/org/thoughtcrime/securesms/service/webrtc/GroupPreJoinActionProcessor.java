@@ -79,7 +79,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
     try {
       groupCall.setOutgoingAudioMuted(true);
-      groupCall.setOutgoingVideoMuted(true);
+      groupCall.setOutgoingVideoMuted(true, false);
       groupCall.setDataMode(NetworkUtil.getCallingDataMode(context, groupCall.getLocalDeviceState().getNetworkRoute().getLocalAdapterType()));
 
       Log.i(tag, "Connecting to group call: " + currentState.getCallInfoState().getCallRecipient().getId());
@@ -197,7 +197,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
     try {
       groupCall.setOutgoingVideoSource(currentState.getVideoState().requireLocalSink(), currentState.getVideoState().requireCamera());
-      groupCall.setOutgoingVideoMuted(!currentState.getLocalDeviceState().getCameraState().isEnabled());
+      groupCall.setOutgoingVideoMuted(!currentState.getLocalDeviceState().getCameraState().isEnabled(), false);
       groupCall.setOutgoingAudioMuted(!currentState.getLocalDeviceState().isMicrophoneEnabled());
       groupCall.setDataMode(NetworkUtil.getCallingDataMode(context, groupCall.getLocalDeviceState().getNetworkRoute().getLocalAdapterType()));
 
