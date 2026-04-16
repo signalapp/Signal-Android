@@ -59,7 +59,6 @@ import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.IconButtons.IconButton
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.rememberWindowBreakpoint
-import org.signal.core.util.E164Util
 import org.signal.registration.R
 import org.signal.registration.screens.RegistrationScreen
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryState.OneTimeEvent
@@ -81,7 +80,7 @@ fun PhoneNumberScreen(
   if (state.showDialog) {
     Dialogs.SimpleAlertDialog(
       title = stringResource(R.string.RegistrationActivity_is_the_phone_number),
-      body = "${E164Util.formatAsE164WithCountryCodeForDisplay(state.countryCode, state.nationalNumber)}\n\n${stringResource(R.string.RegistrationActivity_a_verification_code)}",
+      body = "+${state.countryCode} ${state.formattedNumber}\n\n${stringResource(R.string.RegistrationActivity_a_verification_code)}",
       confirm = stringResource(id = android.R.string.ok),
       dismiss = stringResource(R.string.RegistrationActivity_edit_number),
       onConfirm = { onEvent(PhoneNumberEntryScreenEvents.PhoneNumberSubmitted) },
@@ -397,7 +396,7 @@ private fun NextButton(
     } else {
       Buttons.LargeTonal(
         onClick = { onEvent(PhoneNumberEntryScreenEvents.PhoneNumberEntered) },
-        enabled = state.countryCode.isNotEmpty() && state.nationalNumber.isNotEmpty(),
+        enabled = state.isNumberPossible,
         modifier = Modifier.testTag(TestTags.PHONE_NUMBER_NEXT_BUTTON)
       ) {
         Text(stringResource(R.string.RegistrationActivity_next))

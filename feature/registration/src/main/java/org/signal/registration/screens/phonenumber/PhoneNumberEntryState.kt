@@ -5,6 +5,8 @@
 
 package org.signal.registration.screens.phonenumber
 
+import com.google.i18n.phonenumbers.NumberParseException
+import com.google.i18n.phonenumbers.PhoneNumberUtil
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.SessionMetadata
 import org.signal.registration.PendingRestoreOption
@@ -36,4 +38,15 @@ data class PhoneNumberEntryState(
     data object UnableToSendSms : OneTimeEvent
     data object CouldNotRequestCodeWithSelectedTransport : OneTimeEvent
   }
+
+  val isNumberPossible: Boolean
+    get() {
+      if (countryCode.isEmpty() || nationalNumber.isEmpty()) return false
+      return try {
+        val number = PhoneNumberUtil.getInstance().parse("+$countryCode$nationalNumber", null)
+        PhoneNumberUtil.getInstance().isPossibleNumber(number)
+      } catch (_: NumberParseException) {
+        false
+      }
+    }
 }
