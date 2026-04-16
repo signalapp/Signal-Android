@@ -43,6 +43,7 @@ import org.signal.registration.NetworkController.UpdateSessionError
 import org.signal.registration.proto.ProvisioningData
 import org.signal.registration.proto.SvrCredential
 import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
+import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreProgress
 import org.signal.registration.util.SensitiveLog
 import java.security.SecureRandom
 import java.util.Locale
@@ -338,11 +339,16 @@ class RegistrationRepository(val context: Context, val networkController: Networ
       this.aciRegistrationId = keyMaterial.aciRegistrationId
       this.pniRegistrationId = keyMaterial.pniRegistrationId
       this.unidentifiedAccessKey = keyMaterial.unidentifiedAccessKey.toByteString()
+      this.profileKey = keyMaterial.profileKey.toByteString()
       this.servicePassword = keyMaterial.servicePassword
       this.accountEntropyPool = keyMaterial.accountEntropyPool.value
     }
 
     val fcmToken = networkController.getFcmToken()
+
+    storageController.updateInProgressRegistrationData {
+      this.fetchesMessages = fcmToken == null
+    }
 
     val newMasterKey = keyMaterial.accountEntropyPool.deriveMasterKey()
     val newRecoveryPassword = newMasterKey.deriveRegistrationRecoveryPassword()
@@ -521,6 +527,30 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     storageController.scanLocalBackupFolder(folderUri)
   }
 
+  suspend fun getRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<NetworkController.GetBackupInfoResponse, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
+    networkController.getRemoteBackupInfo(aep)
+  }
+
+  suspend fun getBackupFileLastModified(aep: AccountEntropyPool, backupInfo: NetworkController.GetBackupInfoResponse): RequestResult<Long, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
+    networkController.getBackupFileLastModified(aep, backupInfo)
+  }
+
+  fun restoreRemoteBackup(aep: AccountEntropyPool): Flow<RemoteBackupRestoreProgress> {
+    return storageController.restoreRemoteBackup(aep)
+  }
+
+  suspend fun saveVerifiedUserSuppliedAep(aep: AccountEntropyPool): Unit = withContext(Dispatchers.IO) {
+    storageController.updateInProgressRegistrationData {
+      this.accountEntropyPool = aep.value
+    }
+  }
+
+  suspend fun commitFinalRegistrationData(): Unit = withContext(Dispatchers.IO) {
+    storageController.commitRegistrationData()
+    networkController.enqueueAccountAttributesSyncJob()
+    networkController.enqueueSvrGuessResetJob()
+  }
+
   private fun generateKeyMaterial(
     existingAccountEntropyPool: AccountEntropyPool? = null,
     existingAciIdentityKeyPair: IdentityKeyPair? = null,
@@ -548,6 +578,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
       pniLastResortKyberPreKey = pniLastResortKyberPreKey,
       aciRegistrationId = generateRegistrationId(),
       pniRegistrationId = generateRegistrationId(),
+      profileKey = profileKey.serialize(),
       unidentifiedAccessKey = deriveUnidentifiedAccessKey(profileKey),
       servicePassword = generatePassword(),
       accountEntropyPool = accountEntropyPool

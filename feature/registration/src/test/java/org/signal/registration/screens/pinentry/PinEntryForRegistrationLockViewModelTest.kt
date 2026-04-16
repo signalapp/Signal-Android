@@ -83,10 +83,7 @@ class PinEntryForRegistrationLockViewModelTest {
     assertThat(emittedParentEvents).hasSize(3)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
     assertThat(emittedParentEvents[1]).isInstanceOf<RegistrationFlowEvent.Registered>()
-    assertThat(emittedParentEvents[2])
-      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
-      .prop(RegistrationFlowEvent.NavigateToScreen::route)
-      .isInstanceOf<RegistrationRoute.FullyComplete>()
+    assertThat(emittedParentEvents[2]).isInstanceOf<RegistrationFlowEvent.RegistrationComplete>()
   }
 
   @Test

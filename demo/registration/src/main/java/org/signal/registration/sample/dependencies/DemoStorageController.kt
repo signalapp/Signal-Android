@@ -23,6 +23,7 @@ import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
+import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.registration.NetworkController
 import org.signal.registration.NewRegistrationData
 import org.signal.registration.PreExistingRegistrationData
@@ -32,6 +33,7 @@ import org.signal.registration.proto.RegistrationData
 import org.signal.registration.sample.storage.RegistrationDatabase
 import org.signal.registration.sample.storage.RegistrationPreferences
 import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
+import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreProgress
 import java.io.File
 import java.time.LocalDateTime
 
@@ -105,6 +107,10 @@ class DemoStorageController(private val context: Context) : StorageController {
     if (data.accountEntropyPool.isNotEmpty()) {
       RegistrationPreferences.aep = AccountEntropyPool(data.accountEntropyPool)
     }
+    if (data.profileKey.size > 0) {
+      RegistrationPreferences.profileKey = ProfileKey(data.profileKey.toByteArray())
+    }
+    RegistrationPreferences.fetchesMessages = data.fetchesMessages
 
     // Pre-keys
     if (data.aciSignedPreKey.size > 0) {
@@ -278,6 +284,28 @@ class DemoStorageController(private val context: Context) : StorageController {
 
     emit(LocalBackupRestoreProgress.Complete)
     Log.d(TAG, "Simulated V2 restore complete.")
+  }.flowOn(Dispatchers.IO)
+
+  override fun restoreRemoteBackup(aep: AccountEntropyPool): Flow<RemoteBackupRestoreProgress> = flow {
+    Log.d(TAG, "Starting simulated remote backup restore")
+
+    val totalBytes = 10_000_000L
+
+    for (i in 1..4) {
+      emit(RemoteBackupRestoreProgress.Downloading(bytesDownloaded = totalBytes * i / 4, totalBytes = totalBytes))
+      delay(250)
+    }
+
+    for (i in 1..4) {
+      emit(RemoteBackupRestoreProgress.Restoring(bytesRead = totalBytes * i / 4, totalBytes = totalBytes))
+      delay(250)
+    }
+
+    emit(RemoteBackupRestoreProgress.Finalizing)
+    delay(250)
+
+    emit(RemoteBackupRestoreProgress.Complete)
+    Log.d(TAG, "Simulated remote restore complete.")
   }.flowOn(Dispatchers.IO)
 
   private suspend fun writeRegistrationData(data: RegistrationData) = withContext(Dispatchers.IO) {

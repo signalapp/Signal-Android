@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.util.serialization.ByteArrayToBase64Serializer
 import org.signal.libsignal.net.BadRequestError
@@ -183,6 +184,14 @@ interface NetworkController {
   suspend fun setAccountAttributes(attributes: AccountAttributes): RequestResult<Unit, SetAccountAttributesError>
 
   /**
+   * Enqueue a durable unit of work to sync your account attributes based on the current state of your own storage.
+   * This is typically done at the end of the registration process to clean up any possible changes to the AEP
+   * that may be made post-registration (for instance, you may restore a backup post-registration with a new AEP that
+   * we'd like to re-use).
+   */
+  suspend fun enqueueAccountAttributesSyncJob()
+
+  /**
    * Fetches metadata about your current backup. This will be different for different key/credential pairs. For example, message credentials will always
    * return 0 for used space since that is stored under the media key/credential.
    *
@@ -195,7 +204,17 @@ interface NetworkController {
    * - 404: No backup
    * - 429: Rate limited
    */
-  suspend fun getRemoteBackupInfo(): RequestResult<GetBackupInfoResponse, GetBackupInfoError>
+  suspend fun getRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<GetBackupInfoResponse, GetBackupInfoError>
+
+  /**
+   * Gets the last-modified timestamp of the backup file on the CDN.
+   * Requires [GetBackupInfoResponse] to know the CDN location of the backup.
+   *
+   * @param aep The Account Entropy Pool used to derive backup credentials.
+   * @param backupInfo The backup info response containing CDN location details.
+   * @return The last-modified time as epoch milliseconds, or an appropriate error.
+   */
+  suspend fun getBackupFileLastModified(aep: AccountEntropyPool, backupInfo: GetBackupInfoResponse): RequestResult<Long, GetBackupInfoError>
 
   /**
    * Starts a provisioning session for QR-based quick restore.

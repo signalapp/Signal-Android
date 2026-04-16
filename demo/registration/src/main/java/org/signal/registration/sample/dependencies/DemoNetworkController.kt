@@ -18,7 +18,10 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
+import org.signal.core.models.ServiceId
+import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.Network
@@ -851,12 +854,57 @@ class DemoNetworkController(
     }
   }
 
-  override suspend fun getRemoteBackupInfo(): RequestResult<NetworkController.GetBackupInfoResponse, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
+  override suspend fun enqueueAccountAttributesSyncJob() = withContext(Dispatchers.IO) {
+    val result = setAccountAttributes(buildCurrentAccountAttributes())
+    if (result !is RequestResult.Success) {
+      Log.w(TAG, "[enqueueAccountAttributesSyncJob] Failed to sync attributes: $result")
+    }
+  }
+
+  private fun buildCurrentAccountAttributes(): AccountAttributes {
+    val aep = RegistrationPreferences.aep
+    val registrationLock = if (RegistrationPreferences.registrationLockEnabled && aep != null) {
+      aep.deriveMasterKey().deriveRegistrationLock()
+    } else {
+      null
+    }
+    val recoveryPassword = aep?.deriveMasterKey()?.deriveRegistrationRecoveryPassword()
+    val profileKey = RegistrationPreferences.profileKey
+    val unidentifiedAccessKey = profileKey?.let { deriveUnidentifiedAccessKey(it) }
+
+    return AccountAttributes(
+      signalingKey = null,
+      registrationId = RegistrationPreferences.aciRegistrationId,
+      fetchesMessages = RegistrationPreferences.fetchesMessages,
+      registrationLock = registrationLock,
+      unidentifiedAccessKey = unidentifiedAccessKey,
+      unrestrictedUnidentifiedAccess = false,
+      discoverableByPhoneNumber = false,
+      capabilities = AccountAttributes.Capabilities(
+        storage = !RegistrationPreferences.pinsOptedOut,
+        versionedExpirationTimer = true,
+        attachmentBackfill = true,
+        spqr = true
+      ),
+      name = null,
+      pniRegistrationId = RegistrationPreferences.pniRegistrationId,
+      recoveryPassword = recoveryPassword
+    )
+  }
+
+  private fun deriveUnidentifiedAccessKey(profileKey: org.signal.libsignal.zkgroup.profiles.ProfileKey): ByteArray {
+    val nonce = ByteArray(12)
+    val input = ByteArray(16)
+    val cipher = javax.crypto.Cipher.getInstance("AES/GCM/NoPadding")
+    cipher.init(javax.crypto.Cipher.ENCRYPT_MODE, javax.crypto.spec.SecretKeySpec(profileKey.serialize(), "AES"), javax.crypto.spec.GCMParameterSpec(128, nonce))
+    return cipher.doFinal(input).copyOf(16)
+  }
+
+  override suspend fun getRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<NetworkController.GetBackupInfoResponse, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
     val aci = RegistrationPreferences.aci
     val password = RegistrationPreferences.servicePassword
-    val aep = RegistrationPreferences.aep
 
-    if (aci == null || password == null || aep == null) {
+    if (aci == null || password == null) {
       Log.w(TAG, "[getRemoteBackupInfo] Credentials not available")
       return@withContext RequestResult.ApplicationError(IllegalStateException("Credentials not available"))
     }
@@ -937,8 +985,8 @@ class DemoNetworkController(
    * anonymous archive requests.
    */
   private fun buildZkAuthHeaders(
-    messageBackupKey: org.signal.core.models.backup.MessageBackupKey,
-    aci: org.signal.core.models.ServiceId.ACI,
+    messageBackupKey: MessageBackupKey,
+    aci: ServiceId.ACI,
     credential: ArchiveCredential
   ): Map<String, String> {
     val backupServerPublicParams = GenericServerPublicParams(serviceConfiguration.backupServerPublicParams)
@@ -959,6 +1007,92 @@ class DemoNetworkController(
       "X-Signal-ZK-Auth-Signature" to Base64.encodeWithPadding(signedPresentation)
     )
   }
+
+  override suspend fun getBackupFileLastModified(
+    aep: AccountEntropyPool,
+    backupInfo: NetworkController.GetBackupInfoResponse
+  ): RequestResult<Long, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
+    val aci = RegistrationPreferences.aci
+    val password = RegistrationPreferences.servicePassword
+    val cdn = backupInfo.cdn
+    val backupDir = backupInfo.backupDir
+    val backupName = backupInfo.backupName
+
+    if (aci == null || password == null) {
+      return@withContext RequestResult.ApplicationError(IllegalStateException("Credentials not available"))
+    }
+
+    if (cdn == null || backupDir == null || backupName == null) {
+      return@withContext RequestResult.ApplicationError(IllegalStateException("Backup info incomplete"))
+    }
+
+    try {
+      val messageBackupKey = aep.deriveMessageBackupKey()
+      val credential = fetchArchiveServiceCredential(aci.toString(), password)
+        ?: return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to fetch archive credentials"))
+
+      val zkHeaders = buildZkAuthHeaders(messageBackupKey, aci, credential)
+
+      val cdnCredentials = fetchCdnReadCredentials(cdn, zkHeaders)
+        ?: return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to fetch CDN read credentials"))
+
+      val cdnUrls = serviceConfiguration.signalCdnUrlMap[cdn]
+        ?: return@withContext RequestResult.ApplicationError(IllegalStateException("No CDN URL for CDN $cdn"))
+
+      val cdnUrl = cdnUrls[0].url
+      val request = okhttp3.Request.Builder()
+        .url("$cdnUrl/backups/$backupDir/$backupName")
+        .head()
+        .apply { cdnCredentials.forEach { (k, v) -> header(k, v) } }
+        .build()
+
+      okHttpClient.newCall(request).execute().use { response ->
+        if (!response.isSuccessful) {
+          return@withContext RequestResult.ApplicationError(IllegalStateException("CDN HEAD failed: ${response.code}"))
+        }
+
+        val lastModified = response.header("Last-Modified")
+          ?: return@withContext RequestResult.ApplicationError(IllegalStateException("No Last-Modified header"))
+
+        val dateTime = java.time.ZonedDateTime.parse(lastModified, java.time.format.DateTimeFormatter.RFC_1123_DATE_TIME)
+        RequestResult.Success(dateTime.toInstant().toEpochMilli())
+      }
+    } catch (e: IOException) {
+      Log.w(TAG, "[getBackupFileLastModified] IOException", e)
+      RequestResult.RetryableNetworkError(e)
+    } catch (e: Exception) {
+      Log.w(TAG, "[getBackupFileLastModified] Exception", e)
+      RequestResult.ApplicationError(e)
+    }
+  }
+
+  /**
+   * Fetches CDN read credentials via GET /v1/archives/auth/read with ZK auth headers.
+   */
+  private fun fetchCdnReadCredentials(cdn: Int, zkHeaders: Map<String, String>): Map<String, String>? {
+    val baseUrl = serviceConfiguration.signalServiceUrls[0].url
+    val request = okhttp3.Request.Builder()
+      .url("$baseUrl/v1/archives/auth/read?cdn=$cdn")
+      .get()
+      .apply { zkHeaders.forEach { (k, v) -> header(k, v) } }
+      .build()
+
+    okHttpClient.newCall(request).execute().use { response ->
+      if (response.code != 200) {
+        Log.w(TAG, "[fetchCdnReadCredentials] Unexpected response code: ${response.code}")
+        return null
+      }
+
+      val body = response.body.string()
+      val parsed = json.decodeFromString<CdnReadCredentialsResponse>(body)
+      return parsed.headers
+    }
+  }
+
+  @Serializable
+  private data class CdnReadCredentialsResponse(
+    val headers: Map<String, String>
+  )
 
   @Serializable
   private data class ArchiveCredentialsResponse(

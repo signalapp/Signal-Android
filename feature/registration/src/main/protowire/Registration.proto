@@ -40,6 +40,12 @@ message RegistrationData {
   // Provisioning data (from saveProvisioningData)
   ProvisioningData provisioningData = 20;
 
+  // Profile key (used to derive unidentified access key)
+  bytes  profileKey = 22;
+
+  // Whether this device fetches messages (true if no FCM token)
+  bool   fetchesMessages = 23;
+
   // JSON-serialized flow state snapshot (from saveFlowState/restoreFlowState)
   string flowStateJson = 21;
 }

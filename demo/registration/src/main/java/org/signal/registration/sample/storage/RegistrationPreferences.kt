@@ -51,6 +51,7 @@ object RegistrationPreferences {
   private const val KEY_BACKUP_TIMESTAMP_MS = "backup_timestamp_ms"
   private const val KEY_BACKUP_SIZE_BYTES = "backup_size_bytes"
   private const val KEY_OTHER_DEVICE_PLATFORM = "other_device_platform"
+  private const val KEY_FETCHES_MESSAGES = "fetches_messages"
   private const val KEY_BACKUP_VERSION = "backup_version"
 
   fun init(context: Application) {
@@ -126,6 +127,10 @@ object RegistrationPreferences {
   var pinsOptedOut: Boolean
     get() = prefs.getBoolean(KEY_PINS_OPTED_OUT, false)
     set(value) = prefs.edit { putBoolean(KEY_PINS_OPTED_OUT, value) }
+
+  var fetchesMessages: Boolean
+    get() = prefs.getBoolean(KEY_FETCHES_MESSAGES, true)
+    set(value) = prefs.edit { putBoolean(KEY_FETCHES_MESSAGES, value) }
 
   var restoredSvr2Credentials: List<NetworkController.SvrCredentials>
     get() = prefs.getStringSet(KEY_SVR2_CREDENTIALS, emptySet())?.mapNotNull { parseCredential(it) } ?: emptyList()

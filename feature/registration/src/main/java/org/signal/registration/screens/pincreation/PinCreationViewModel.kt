@@ -21,9 +21,7 @@ import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
-import org.signal.registration.RegistrationRoute
 import org.signal.registration.screens.EventDrivenViewModel
-import org.signal.registration.screens.util.navigateTo
 
 /**
  * ViewModel for the PIN creation screen.
@@ -97,7 +95,7 @@ class PinCreationViewModel(
       is RequestResult.Success -> {
         Log.i(TAG, "[PinSubmitted] Successfully backed up master key to SVR.")
         // TODO profile creation
-        parentEventEmitter.navigateTo(RegistrationRoute.FullyComplete)
+        parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
         state
       }
       is RequestResult.NonSuccess -> {

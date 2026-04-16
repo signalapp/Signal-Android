@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.registration.screens.localbackuprestore
+package org.signal.registration.screens.aepentry
 
 import org.signal.registration.util.DebugLoggableModel
 
@@ -16,4 +16,7 @@ sealed class EnterAepEvents : DebugLoggableModel() {
 
   /** User wants to cancel / no recovery key. */
   data object Cancel : EnterAepEvents()
+
+  /** Dismiss a registration error dialog. */
+  data object DismissError : EnterAepEvents()
 }

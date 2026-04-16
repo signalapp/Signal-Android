@@ -24,7 +24,6 @@ import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
-import org.signal.registration.RegistrationRoute
 import java.io.IOException
 import kotlin.time.Duration.Companion.seconds
 
@@ -79,10 +78,7 @@ class PinEntryForSmsBypassViewModelTest {
 
     assertThat(emittedParentEvents).hasSize(2)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
-    assertThat(emittedParentEvents[1])
-      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
-      .prop(RegistrationFlowEvent.NavigateToScreen::route)
-      .isInstanceOf<RegistrationRoute.FullyComplete>()
+    assertThat(emittedParentEvents[1]).isInstanceOf<RegistrationFlowEvent.RegistrationComplete>()
   }
 
   @Test
@@ -286,10 +282,7 @@ class PinEntryForSmsBypassViewModelTest {
 
     assertThat(emittedParentEvents).hasSize(2)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
-    assertThat(emittedParentEvents[1])
-      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
-      .prop(RegistrationFlowEvent.NavigateToScreen::route)
-      .isInstanceOf<RegistrationRoute.FullyComplete>()
+    assertThat(emittedParentEvents[1]).isInstanceOf<RegistrationFlowEvent.RegistrationComplete>()
   }
 
   @Test

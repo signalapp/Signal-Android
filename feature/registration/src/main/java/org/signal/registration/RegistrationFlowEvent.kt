@@ -37,6 +37,12 @@ sealed interface RegistrationFlowEvent : DebugLoggable {
   /** The user selected (or cleared) a restore option before entering their phone number. */
   data class PendingRestoreOptionSelected(val option: PendingRestoreOption?) : RegistrationFlowEvent
 
-  /** An AEP was obtained from a local backup restore. It has not yet been verified against the server. */
-  data class AepSubmittedViaLocalBackupRestore(val aep: AccountEntropyPool) : RegistrationFlowEvent
+  /** An AEP was manually input by the user. It has not yet been verified against the server. */
+  data class UserSuppliedAepSubmitted(val aep: AccountEntropyPool) : RegistrationFlowEvent
+
+  /** An AEP that was previously manually input by the user (see [UserSuppliedAepSubmitted]) has been validated. We should use it as the canonical AEP.  */
+  data class UserSuppliedAepVerified(val aep: AccountEntropyPool) : RegistrationFlowEvent
+
+  /** Registration has been completed. Will finalize any pending state, then navigate to flow's conclusion. */
+  data object RegistrationComplete : RegistrationFlowEvent
 }

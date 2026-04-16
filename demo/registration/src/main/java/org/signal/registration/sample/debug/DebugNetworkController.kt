@@ -6,6 +6,7 @@
 package org.signal.registration.sample.debug
 
 import kotlinx.coroutines.flow.Flow
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
@@ -196,6 +197,10 @@ class DebugNetworkController(
     return delegate.setAccountAttributes(attributes)
   }
 
+  override suspend fun enqueueAccountAttributesSyncJob() {
+    delegate.enqueueAccountAttributesSyncJob()
+  }
+
   override suspend fun getSvrCredentials(): RequestResult<SvrCredentials, GetSvrCredentialsError> {
     NetworkDebugState.getOverride<RequestResult<SvrCredentials, GetSvrCredentialsError>>("getSvrCredentials")?.let {
       Log.d(TAG, "[getSvrCredentials] Returning debug override")
@@ -220,11 +225,19 @@ class DebugNetworkController(
     return delegate.checkSvrCredentials(e164, credentials)
   }
 
-  override suspend fun getRemoteBackupInfo(): RequestResult<GetBackupInfoResponse, GetBackupInfoError> {
+  override suspend fun getRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<GetBackupInfoResponse, GetBackupInfoError> {
     NetworkDebugState.getOverride<RequestResult<GetBackupInfoResponse, GetBackupInfoError>>("getRemoteBackupInfo")?.let {
       Log.d(TAG, "[getRemoteBackupInfo] Returning debug override")
       return it
     }
-    return delegate.getRemoteBackupInfo()
+    return delegate.getRemoteBackupInfo(aep)
+  }
+
+  override suspend fun getBackupFileLastModified(aep: AccountEntropyPool, backupInfo: NetworkController.GetBackupInfoResponse): RequestResult<Long, GetBackupInfoError> {
+    NetworkDebugState.getOverride<RequestResult<Long, GetBackupInfoError>>("getBackupFileLastModified")?.let {
+      Log.d(TAG, "[getBackupFileLastModified] Returning debug override")
+      return it
+    }
+    return delegate.getBackupFileLastModified(aep, backupInfo)
   }
 }

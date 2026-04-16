@@ -13,8 +13,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -23,7 +21,6 @@ import org.signal.core.models.AccountEntropyPool
 import org.signal.core.ui.navigation.ResultEventBus
 import org.signal.core.util.logging.Log
 import org.signal.registration.RegistrationFlowEvent
-import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
 import org.signal.registration.screens.EventDrivenViewModel
@@ -32,7 +29,6 @@ import org.signal.registration.screens.util.navigateTo
 
 class LocalBackupRestoreViewModel(
   private val repository: RegistrationRepository,
-  private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val isPreRegistration: Boolean,
   private val resultBus: ResultEventBus,
@@ -44,7 +40,7 @@ class LocalBackupRestoreViewModel(
   }
 
   private val _localState = MutableStateFlow(LocalBackupRestoreState())
-  val state = combine(_localState, parentState) { state, parentState -> applyParentState(state, parentState) }
+  val state = _localState
     .onEach { Log.d(TAG, "[State] $it") }
     .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), LocalBackupRestoreState())
 
@@ -52,11 +48,6 @@ class LocalBackupRestoreViewModel(
 
   override suspend fun processEvent(event: LocalBackupRestoreEvents) {
     applyEvent(state.value, event) { _localState.value = it }
-  }
-
-  @VisibleForTesting
-  fun applyParentState(state: LocalBackupRestoreState, parentState: RegistrationFlowState): LocalBackupRestoreState {
-    return state
   }
 
   @VisibleForTesting
@@ -102,7 +93,7 @@ class LocalBackupRestoreViewModel(
     val backup = state.backupInfo ?: return
     val credentialRoute = when (backup.type) {
       LocalBackupInfo.BackupType.V1 -> RegistrationRoute.EnterLocalBackupV1Passphrase
-      LocalBackupInfo.BackupType.V2 -> RegistrationRoute.EnterAepScreen
+      LocalBackupInfo.BackupType.V2 -> RegistrationRoute.EnterAepForLocalBackup
     }
     parentEventEmitter.navigateTo(credentialRoute)
   }
@@ -119,11 +110,15 @@ class LocalBackupRestoreViewModel(
   }
 
   private fun onRestoreComplete(state: LocalBackupRestoreState) {
+    if (state.aep != null) {
+      parentEventEmitter(RegistrationFlowEvent.UserSuppliedAepVerified(state.aep))
+    }
+
     if (isPreRegistration) {
       resultBus.sendResult(resultKey, LocalBackupRestoreResult.Success(state.aep))
       parentEventEmitter.navigateBack()
     } else {
-      TODO("Have to pipe some information in to know where to navigate next")
+      parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
     }
   }
 
@@ -205,14 +200,13 @@ class LocalBackupRestoreViewModel(
 
   class Factory(
     private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
     private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
     private val isPreRegistration: Boolean,
     private val resultBus: ResultEventBus,
     private val resultKey: String
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return LocalBackupRestoreViewModel(repository, parentState, parentEventEmitter, isPreRegistration, resultBus, resultKey) as T
+      return LocalBackupRestoreViewModel(repository, parentEventEmitter, isPreRegistration, resultBus, resultKey) as T
     }
   }
 }

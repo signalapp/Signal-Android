@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.registration.screens.localbackuprestore
+package org.signal.registration.screens.aepentry
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -48,6 +48,8 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Previews
 import org.signal.registration.R
+import org.signal.registration.screens.localbackuprestore.attachBackupKeyAutoFillHelper
+import org.signal.registration.screens.localbackuprestore.backupKeyAutoFillHelper
 
 @Composable
 fun EnterAepScreen(
@@ -117,6 +119,7 @@ fun EnterAepScreen(
         when (val error = state.aepValidationError) {
           is AepValidationError.TooLong -> Text(stringResource(R.string.EnterAepScreen__too_long, error.count, error.max))
           is AepValidationError.Invalid -> Text(stringResource(R.string.EnterAepScreen__invalid_recovery_key))
+          is AepValidationError.Incorrect -> Text(stringResource(R.string.EnterAepScreen__incorrect_recovery_key))
           null -> {}
         }
       },
@@ -151,7 +154,7 @@ fun EnterAepScreen(
       Spacer(modifier = Modifier.size(24.dp))
 
       Buttons.LargeTonal(
-        enabled = state.isBackupKeyValid && state.aepValidationError == null,
+        enabled = state.isBackupKeyValid && state.aepValidationError == null && !state.isRegistering,
         onClick = { onEvent(EnterAepEvents.Submit) }
       ) {
         Text(text = stringResource(R.string.LocalBackupRestoreScreen__next))

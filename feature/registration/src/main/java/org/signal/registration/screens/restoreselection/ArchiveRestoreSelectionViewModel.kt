@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import org.signal.core.util.logging.Log
+import org.signal.registration.PendingRestoreOption
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationRoute
 import org.signal.registration.screens.EventDrivenViewModel
@@ -23,6 +24,7 @@ import org.signal.registration.screens.util.navigateTo
  */
 class ArchiveRestoreSelectionViewModel(
   private val restoreOptions: List<ArchiveRestoreOption>,
+  private val isPreRegistration: Boolean,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
 ) : EventDrivenViewModel<ArchiveRestoreSelectionScreenEvents>(TAG) {
 
@@ -47,12 +49,22 @@ class ArchiveRestoreSelectionViewModel(
     val result = when (event) {
       is ArchiveRestoreSelectionScreenEvents.RestoreOptionSelected -> {
         when (event.option) {
-          ArchiveRestoreOption.LocalBackup -> {
-            parentEventEmitter.navigateTo(RegistrationRoute.LocalBackupRestore(isPreRegistration = false))
+          ArchiveRestoreOption.SignalSecureBackup -> {
+            if (isPreRegistration) {
+              parentEventEmitter(RegistrationFlowEvent.PendingRestoreOptionSelected(PendingRestoreOption.RemoteBackup))
+              parentEventEmitter.navigateTo(RegistrationRoute.PhoneNumberEntry)
+            } else {
+              parentEventEmitter.navigateTo(RegistrationRoute.EnterAepForRemoteBackupPostRegistration)
+            }
             state
           }
-          ArchiveRestoreOption.SignalSecureBackup -> {
-            Log.w(TAG, "Signal secure backup restore not yet implemented")
+          ArchiveRestoreOption.LocalBackup -> {
+            if (isPreRegistration) {
+              parentEventEmitter(RegistrationFlowEvent.PendingRestoreOptionSelected(PendingRestoreOption.LocalBackup))
+              parentEventEmitter.navigateTo(RegistrationRoute.PhoneNumberEntry)
+            } else {
+              parentEventEmitter.navigateTo(RegistrationRoute.LocalBackupRestore(isPreRegistration = false))
+            }
             state
           }
           ArchiveRestoreOption.DeviceTransfer -> {
@@ -80,10 +92,11 @@ class ArchiveRestoreSelectionViewModel(
 
   class Factory(
     private val restoreOptions: List<ArchiveRestoreOption>,
+    private val isPreRegistration: Boolean,
     private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return ArchiveRestoreSelectionViewModel(restoreOptions, parentEventEmitter) as T
+      return ArchiveRestoreSelectionViewModel(restoreOptions, isPreRegistration, parentEventEmitter) as T
     }
   }
 }

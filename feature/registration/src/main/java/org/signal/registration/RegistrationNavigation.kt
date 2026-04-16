@@ -29,12 +29,19 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.TypeParceler
 import kotlinx.serialization.Serializable
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.ui.navigation.ResultEffect
 import org.signal.core.ui.navigation.TransitionSpecs
+import org.signal.core.util.serialization.AccountEntropyPoolSerializer
 import org.signal.registration.screens.accountlocked.AccountLockedScreen
 import org.signal.registration.screens.accountlocked.AccountLockedScreenEvents
 import org.signal.registration.screens.accountlocked.AccountLockedState
+import org.signal.registration.screens.aepentry.EnterAepForLocalBackupViewModel
+import org.signal.registration.screens.aepentry.EnterAepForRemoteBackupPostRegistrationViewModel
+import org.signal.registration.screens.aepentry.EnterAepForRemoteBackupPreRegistrationViewModel
+import org.signal.registration.screens.aepentry.EnterAepScreen
 import org.signal.registration.screens.captcha.CaptchaScreen
 import org.signal.registration.screens.captcha.CaptchaScreenEvents
 import org.signal.registration.screens.captcha.CaptchaState
@@ -42,8 +49,6 @@ import org.signal.registration.screens.countrycode.Country
 import org.signal.registration.screens.countrycode.CountryCodePickerRepository
 import org.signal.registration.screens.countrycode.CountryCodePickerScreen
 import org.signal.registration.screens.countrycode.CountryCodePickerViewModel
-import org.signal.registration.screens.localbackuprestore.EnterAepScreen
-import org.signal.registration.screens.localbackuprestore.EnterAepViewModel
 import org.signal.registration.screens.localbackuprestore.EnterLocalBackupV1PassphaseScreen
 import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreEvents
 import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreResult
@@ -61,6 +66,8 @@ import org.signal.registration.screens.pinentry.PinEntryForSvrRestoreViewModel
 import org.signal.registration.screens.pinentry.PinEntryScreen
 import org.signal.registration.screens.quickrestore.QuickRestoreQrScreen
 import org.signal.registration.screens.quickrestore.QuickRestoreQrViewModel
+import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreViewModel
+import org.signal.registration.screens.remotebackuprestore.RemoteRestoreScreen
 import org.signal.registration.screens.restoreselection.ArchiveRestoreOption
 import org.signal.registration.screens.restoreselection.ArchiveRestoreSelectionScreen
 import org.signal.registration.screens.restoreselection.ArchiveRestoreSelectionViewModel
@@ -70,6 +77,7 @@ import org.signal.registration.screens.verificationcode.VerificationCodeScreen
 import org.signal.registration.screens.verificationcode.VerificationCodeViewModel
 import org.signal.registration.screens.welcome.WelcomeScreen
 import org.signal.registration.screens.welcome.WelcomeScreenEvents
+import org.signal.registration.util.AccountEntropyPoolParceler
 
 /**
  * Navigation routes for the registration flow.
@@ -115,38 +123,41 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object PinCreate : RegistrationRoute
 
   @Serializable
-  data class ArchiveRestoreSelection(val restoreOptions: List<ArchiveRestoreOption>) : RegistrationRoute {
+  data class ArchiveRestoreSelection(val restoreOptions: List<ArchiveRestoreOption>, val isPreRegistration: Boolean) : RegistrationRoute {
     companion object {
       fun forQuickRestore(hasRemoteBackup: Boolean): ArchiveRestoreSelection {
         return ArchiveRestoreSelection(
-          buildList {
+          restoreOptions = buildList {
             if (hasRemoteBackup) {
               add(ArchiveRestoreOption.SignalSecureBackup)
             }
             add(ArchiveRestoreOption.LocalBackup)
             add(ArchiveRestoreOption.DeviceTransfer)
-          }
+          },
+          isPreRegistration = true
         )
       }
 
       fun forManualRestore(): ArchiveRestoreSelection {
         return ArchiveRestoreSelection(
-          buildList {
+          restoreOptions = buildList {
             add(ArchiveRestoreOption.SignalSecureBackup)
             add(ArchiveRestoreOption.LocalBackup)
             add(ArchiveRestoreOption.DeviceTransfer)
-          }
+          },
+          isPreRegistration = true
         )
       }
 
       fun forPostRegister(): ArchiveRestoreSelection {
         return ArchiveRestoreSelection(
-          buildList {
+          restoreOptions = buildList {
             add(ArchiveRestoreOption.SignalSecureBackup)
             add(ArchiveRestoreOption.LocalBackup)
             add(ArchiveRestoreOption.DeviceTransfer)
             add(ArchiveRestoreOption.None)
-          }
+          },
+          isPreRegistration = false
         )
       }
     }
@@ -159,7 +170,17 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object EnterLocalBackupV1Passphrase : RegistrationRoute
 
   @Serializable
-  data object EnterAepScreen : RegistrationRoute
+  data object EnterAepForLocalBackup : RegistrationRoute
+
+  @Serializable
+  data class EnterAepForRemoteBackupPreRegistration(val e164: String) : RegistrationRoute
+
+  @Serializable
+  data object EnterAepForRemoteBackupPostRegistration : RegistrationRoute
+
+  @Serializable
+  @TypeParceler<AccountEntropyPool, AccountEntropyPoolParceler>
+  data class RemoteRestore(@Serializable(with = AccountEntropyPoolSerializer::class) val aep: AccountEntropyPool) : RegistrationRoute
 
   @Serializable
   data object QuickRestoreQrScan : RegistrationRoute
@@ -246,7 +267,7 @@ fun RegistrationNavHost(
         initialState.key is RegistrationRoute.CountryCodePicker -> {
           TransitionSpecs.VerticalSlide.popTransitionSpec.invoke(this)
         }
-        initialState.key == RegistrationRoute.EnterAepScreen.toString() -> {
+        initialState.key == RegistrationRoute.EnterAepForLocalBackup.toString() || initialState.key == RegistrationRoute.EnterAepForRemoteBackupPreRegistration.toString() -> {
           TransitionSpecs.HorizontalSlide.transitionSpec.invoke(this)
         }
         initialState.key == RegistrationRoute.LocalBackupRestore.toString() && targetState.key == RegistrationRoute.PhoneNumberEntry.toString() -> {
@@ -486,6 +507,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     val viewModel: ArchiveRestoreSelectionViewModel = viewModel(
       factory = ArchiveRestoreSelectionViewModel.Factory(
         restoreOptions = key.restoreOptions,
+        isPreRegistration = key.isPreRegistration,
         parentEventEmitter = registrationViewModel::onEvent
       )
     )
@@ -497,12 +519,29 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     )
   }
 
+  // -- Remote Restore Screen
+  entry<RegistrationRoute.RemoteRestore> { key ->
+    val viewModel: RemoteBackupRestoreViewModel = viewModel(
+      factory = RemoteBackupRestoreViewModel.Factory(
+        aep = key.aep,
+        repository = registrationRepository,
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    RemoteRestoreScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
   // -- Local Backup Restore Screen
   entry<RegistrationRoute.LocalBackupRestore> { key ->
     val viewModel: LocalBackupRestoreViewModel = viewModel(
       factory = LocalBackupRestoreViewModel.Factory(
         repository = registrationRepository,
-        parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
         isPreRegistration = key.isPreRegistration,
         resultBus = registrationViewModel.resultBus,
@@ -539,12 +578,42 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   // TODO I think we can re-use the screen but attach different viewmodels to progress forward rather than do for-result flows?
 
   // -- Enter AEP
-  entry<RegistrationRoute.EnterAepScreen> {
-    val viewModel: EnterAepViewModel = viewModel(
-      factory = EnterAepViewModel.Factory(
+  entry<RegistrationRoute.EnterAepForLocalBackup> {
+    val viewModel: EnterAepForLocalBackupViewModel = viewModel(
+      factory = EnterAepForLocalBackupViewModel.Factory(
         parentEventEmitter = registrationViewModel::onEvent,
         resultBus = registrationViewModel.resultBus,
         resultKey = BACKUP_CREDENTIAL_RESULT
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    EnterAepScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  entry<RegistrationRoute.EnterAepForRemoteBackupPreRegistration> { key ->
+    val viewModel: EnterAepForRemoteBackupPreRegistrationViewModel = viewModel(
+      factory = EnterAepForRemoteBackupPreRegistrationViewModel.Factory(
+        e164 = key.e164,
+        repository = registrationRepository,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    EnterAepScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  entry<RegistrationRoute.EnterAepForRemoteBackupPostRegistration> {
+    val viewModel: EnterAepForRemoteBackupPostRegistrationViewModel = viewModel(
+      factory = EnterAepForRemoteBackupPostRegistrationViewModel.Factory(
+        parentEventEmitter = registrationViewModel::onEvent
       )
     )
     val state by viewModel.state.collectAsStateWithLifecycle()

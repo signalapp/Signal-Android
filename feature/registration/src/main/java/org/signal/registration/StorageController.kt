@@ -19,6 +19,7 @@ import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.registration.proto.RegistrationData
 import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
+import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreProgress
 import org.signal.registration.util.ACIParceler
 import org.signal.registration.util.AccountEntropyPoolParceler
 import org.signal.registration.util.IdentityKeyPairParceler
@@ -102,6 +103,15 @@ interface StorageController {
   fun restoreLocalBackupV2(rootUri: Uri, backupUri: Uri, aep: AccountEntropyPool): Flow<LocalBackupRestoreProgress>
 
   /**
+   * Begins restoring from a remote (server-hosted) backup.
+   *
+   * @param aep The Account Entropy Pool used to derive backup keys.
+   * @return A [Flow] of [RemoteBackupRestoreProgress] that reports the state of the restore
+   *   from download through import, completion, or error.
+   */
+  fun restoreRemoteBackup(aep: AccountEntropyPool): Flow<RemoteBackupRestoreProgress>
+
+  /**
    * Scans the given folder URI for local backup files, checking for both modern
    * folder-based backups and legacy .backup files.
    *
@@ -138,6 +148,8 @@ data class KeyMaterial(
   val aciRegistrationId: Int,
   /** Registration ID for the PNI. */
   val pniRegistrationId: Int,
+  /** Profile key for sealed sender. */
+  val profileKey: ByteArray,
   /** Unidentified access key (derived from profile key) for sealed sender. */
   val unidentifiedAccessKey: ByteArray,
   /** Password for basic auth during registration (18 random bytes, base64 encoded). */

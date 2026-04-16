@@ -189,9 +189,7 @@ class VerificationCodeViewModel(
             throw NotImplementedError("Handle session not found or not verified case.")
           }
           is NetworkController.RegisterAccountError.DeviceTransferPossible -> {
-            Log.w(TAG, "[Register] Got told a device transfer is possible. We should never get into this state. Resetting.")
-            parentEventEmitter(RegistrationFlowEvent.ResetState)
-            state
+            error("[Register] Got told a device transfer is possible. We should never get into this state. Resetting.")
           }
           is NetworkController.RegisterAccountError.RegistrationLock -> {
             Log.w(TAG, "[Register] Reglocked.")
@@ -212,9 +210,7 @@ class VerificationCodeViewModel(
             state.copy(oneTimeEvent = OneTimeEvent.RegistrationError)
           }
           is NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
-            Log.w(TAG, "[Register] Got told the registration recovery password incorrect. We don't use the RRP in this flow, and should never get this error. Resetting. Message: ${error.message}")
-            parentEventEmitter(RegistrationFlowEvent.ResetState)
-            state
+            error("[Register] Got told the registration recovery password incorrect. We don't use the RRP in this flow, and should never get this error. Resetting. Message: ${error.message}")
           }
         }
       }

@@ -160,15 +160,23 @@ class PinSettingsViewModel(
     val newOptedOut = !currentlyOptedOut
 
     viewModelScope.launch {
+      val profileKey = RegistrationPreferences.profileKey
+      val unidentifiedAccessKey = profileKey?.let { deriveUnidentifiedAccessKey(it) }
+      val aep = RegistrationPreferences.aep
+      val recoveryPassword = aep?.deriveMasterKey()?.deriveRegistrationRecoveryPassword()
+      val registrationLock = if (RegistrationPreferences.registrationLockEnabled && aep != null) {
+        aep.deriveMasterKey().deriveRegistrationLock()
+      } else {
+        null
+      }
+
       val attributes = NetworkController.AccountAttributes(
         signalingKey = null,
         registrationId = RegistrationPreferences.aciRegistrationId,
-        voice = true,
-        video = true,
-        fetchesMessages = true,
-        registrationLock = null,
-        unidentifiedAccessKey = null,
-        unrestrictedUnidentifiedAccess = false,
+        fetchesMessages = RegistrationPreferences.fetchesMessages,
+        registrationLock = registrationLock,
+        unidentifiedAccessKey = unidentifiedAccessKey,
+        unrestrictedUnidentifiedAccess = unidentifiedAccessKey == null,
         discoverableByPhoneNumber = false,
         capabilities = NetworkController.AccountAttributes.Capabilities(
           storage = !newOptedOut,
@@ -178,7 +186,7 @@ class PinSettingsViewModel(
         ),
         name = null,
         pniRegistrationId = RegistrationPreferences.pniRegistrationId,
-        recoveryPassword = null
+        recoveryPassword = recoveryPassword
       )
 
       when (val result = networkController.setAccountAttributes(attributes)) {
@@ -214,6 +222,14 @@ class PinSettingsViewModel(
         }
       }
     }
+  }
+
+  private fun deriveUnidentifiedAccessKey(profileKey: org.signal.libsignal.zkgroup.profiles.ProfileKey): ByteArray {
+    val nonce = ByteArray(12)
+    val input = ByteArray(16)
+    val cipher = javax.crypto.Cipher.getInstance("AES/GCM/NoPadding")
+    cipher.init(javax.crypto.Cipher.ENCRYPT_MODE, javax.crypto.spec.SecretKeySpec(profileKey.serialize(), "AES"), javax.crypto.spec.GCMParameterSpec(128, nonce))
+    return cipher.doFinal(input).copyOf(16)
   }
 
   private fun dismissMessage() {

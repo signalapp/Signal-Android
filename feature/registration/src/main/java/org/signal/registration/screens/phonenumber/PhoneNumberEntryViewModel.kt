@@ -217,7 +217,7 @@ class PhoneNumberEntryViewModel(
 
       when (state.pendingRestoreOption) {
         PendingRestoreOption.LocalBackup -> parentEventEmitter.navigateTo(RegistrationRoute.LocalBackupRestore(isPreRegistration = true))
-        PendingRestoreOption.RemoteBackup -> parentEventEmitter.navigateTo(RegistrationRoute.EnterAepScreen)
+        PendingRestoreOption.RemoteBackup -> parentEventEmitter.navigateTo(RegistrationRoute.EnterAepForRemoteBackupPreRegistration(e164))
       }
 
       return state
@@ -246,14 +246,10 @@ class PhoneNumberEntryViewModel(
         is RequestResult.NonSuccess -> {
           when (val error = registerResult.error) {
             is NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified -> {
-              Log.w(TAG, "[Register] Got told that our session could not be found when registering with RRP. We should never get into this state. Resetting.")
-              parentEventEmitter(RegistrationFlowEvent.ResetState)
-              return state
+              error("[Register] Got told that our session could not be found when registering with RRP. We should never get into this state.")
             }
             is NetworkController.RegisterAccountError.DeviceTransferPossible -> {
-              Log.w(TAG, "[Register] Got told a device transfer is possible. We should never get into this state. Resetting.")
-              parentEventEmitter(RegistrationFlowEvent.ResetState)
-              return state
+              error("[Register] Got told a device transfer is possible. We should never get into this state.")
             }
             is NetworkController.RegisterAccountError.RegistrationLock -> {
               Log.w(TAG, "[Register] Reglocked. This implies that the user still had reglock enabled despite the pre-existing data not thinking it was.")
@@ -313,7 +309,7 @@ class PhoneNumberEntryViewModel(
       return applySessionBasedRegistration(state, e164, parentEventEmitter)
     }
 
-    parentEventEmitter(RegistrationFlowEvent.AepSubmittedViaLocalBackupRestore(aep))
+    parentEventEmitter(RegistrationFlowEvent.UserSuppliedAepSubmitted(aep))
 
     Log.i(TAG, "[LocalRestore] Attempting registration with RRP derived from restored AEP.")
 

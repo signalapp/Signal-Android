@@ -14,6 +14,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
@@ -48,6 +49,7 @@ import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.gcm.FcmUtil
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.ResetSvrGuessCountJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
@@ -538,7 +540,7 @@ class AppRegistrationNetworkController(
     }
   }
 
-  override suspend fun getRemoteBackupInfo(): RequestResult<NetworkController.GetBackupInfoResponse, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
+  override suspend fun getRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<NetworkController.GetBackupInfoResponse, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
     val aci = SignalStore.account.aci ?: return@withContext RequestResult.ApplicationError(IllegalStateException("ACI not available"))
 
     val currentTime = System.currentTimeMillis()
@@ -586,6 +588,42 @@ class AppRegistrationNetworkController(
       }
       is NetworkResult.NetworkError -> RequestResult.RetryableNetworkError(result.exception)
       is NetworkResult.ApplicationError -> RequestResult.ApplicationError(result.throwable)
+    }
+  }
+
+  override suspend fun enqueueAccountAttributesSyncJob() {
+    AppDependencies.jobManager.add(RefreshAttributesJob())
+  }
+
+  override suspend fun getBackupFileLastModified(
+    aep: AccountEntropyPool,
+    backupInfo: NetworkController.GetBackupInfoResponse
+  ): RequestResult<Long, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
+    val aci = SignalStore.account.aci ?: return@withContext RequestResult.ApplicationError(IllegalStateException("ACI not available"))
+    val cdn = backupInfo.cdn ?: return@withContext RequestResult.ApplicationError(IllegalStateException("CDN number not available"))
+    val backupDir = backupInfo.backupDir ?: return@withContext RequestResult.ApplicationError(IllegalStateException("Backup dir not available"))
+    val backupName = backupInfo.backupName ?: return@withContext RequestResult.ApplicationError(IllegalStateException("Backup name not available"))
+
+    val currentTime = System.currentTimeMillis()
+    val messageCredential = SignalStore.backup.messageCredentials.byDay.getForCurrentTime(currentTime.milliseconds)
+      ?: return@withContext RequestResult.ApplicationError(IllegalStateException("No message credential available"))
+
+    val access = ArchiveServiceAccess(messageCredential, SignalStore.backup.messageBackupKey)
+
+    val cdnCredentials = when (val cdnResult = SignalNetwork.archive.getCdnReadCredentials(cdn, aci, access)) {
+      is NetworkResult.Success -> cdnResult.result.headers
+      is NetworkResult.StatusCodeError -> return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to get CDN credentials: ${cdnResult.code}"))
+      is NetworkResult.NetworkError -> return@withContext RequestResult.RetryableNetworkError(cdnResult.exception)
+      is NetworkResult.ApplicationError -> return@withContext RequestResult.ApplicationError(cdnResult.throwable)
+    }
+
+    try {
+      val lastModified = AppDependencies.signalServiceMessageReceiver.getCdnLastModifiedTime(cdn, cdnCredentials, "backups/$backupDir/$backupName")
+      RequestResult.Success(lastModified.toInstant().toEpochMilli())
+    } catch (e: IOException) {
+      RequestResult.RetryableNetworkError(e)
+    } catch (e: Exception) {
+      RequestResult.ApplicationError(e)
     }
   }
 

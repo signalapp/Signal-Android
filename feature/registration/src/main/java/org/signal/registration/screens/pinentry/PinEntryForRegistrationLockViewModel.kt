@@ -138,7 +138,7 @@ class PinEntryForRegistrationLockViewModel(
         // TODO storage service restore + profile screen
         when {
           response.reregistration -> parentEventEmitter.navigateTo(RegistrationRoute.ArchiveRestoreSelection.forPostRegister())
-          else -> parentEventEmitter.navigateTo(RegistrationRoute.FullyComplete)
+          else -> parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
         }
         state
       }

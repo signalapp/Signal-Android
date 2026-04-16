@@ -9,11 +9,17 @@ import android.content.Context
 import android.net.Uri
 import androidx.documentfile.provider.DocumentFile
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okio.ByteString.Companion.toByteString
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.signal.archive.LocalBackupRestoreProgress
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
@@ -22,8 +28,11 @@ import org.signal.registration.PreExistingRegistrationData
 import org.signal.registration.StorageController
 import org.signal.registration.proto.RegistrationData
 import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
+import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreProgress
 import org.thoughtcrime.securesms.backup.FullBackupImporter
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.RemoteRestoreResult
+import org.thoughtcrime.securesms.backup.v2.RestoreV2Event
 import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
 import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
@@ -316,6 +325,57 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     }
 
     backups.sortedByDescending { it.date }
+  }
+
+  override fun restoreRemoteBackup(aep: AccountEntropyPool): Flow<RemoteBackupRestoreProgress> = callbackFlow {
+    val subscriber = object {
+      @Subscribe(threadMode = ThreadMode.POSTING)
+      fun onRestoreEvent(event: RestoreV2Event) {
+        val progress = when (event.type) {
+          RestoreV2Event.Type.PROGRESS_DOWNLOAD -> RemoteBackupRestoreProgress.Downloading(event.count.inWholeBytes, event.estimatedTotalCount.inWholeBytes)
+          RestoreV2Event.Type.PROGRESS_RESTORE -> RemoteBackupRestoreProgress.Restoring(event.count.inWholeBytes, event.estimatedTotalCount.inWholeBytes)
+          RestoreV2Event.Type.PROGRESS_FINALIZING -> RemoteBackupRestoreProgress.Finalizing
+        }
+        trySend(progress)
+      }
+    }
+
+    EventBus.getDefault().register(subscriber)
+
+    launch(Dispatchers.IO) {
+      try {
+        when (BackupRepository.restoreRemoteBackup()) {
+          RemoteRestoreResult.Success -> {
+            send(RemoteBackupRestoreProgress.Complete)
+          }
+          RemoteRestoreResult.NetworkError -> {
+            send(RemoteBackupRestoreProgress.NetworkError())
+          }
+          RemoteRestoreResult.Canceled -> {
+            send(RemoteBackupRestoreProgress.Canceled)
+          }
+          RemoteRestoreResult.Failure -> {
+            if (SignalStore.backup.hasInvalidBackupVersion) {
+              send(RemoteBackupRestoreProgress.InvalidBackupVersion)
+            } else {
+              send(RemoteBackupRestoreProgress.GenericError())
+            }
+          }
+          RemoteRestoreResult.PermanentSvrBFailure -> {
+            send(RemoteBackupRestoreProgress.PermanentSvrBFailure)
+          }
+        }
+      } catch (e: Exception) {
+        Log.w(TAG, "Remote restore failed", e)
+        send(RemoteBackupRestoreProgress.GenericError(e))
+      } finally {
+        channel.close()
+      }
+    }
+
+    awaitClose {
+      EventBus.getDefault().unregister(subscriber)
+    }
   }
 
   private suspend fun writeRegistrationData(data: RegistrationData) = withContext(Dispatchers.IO) {

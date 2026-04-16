@@ -23,10 +23,8 @@ import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
-import org.signal.registration.RegistrationRoute
 import org.signal.registration.screens.EventDrivenViewModel
 import org.signal.registration.screens.util.navigateBack
-import org.signal.registration.screens.util.navigateTo
 import org.signal.registration.util.SensitiveLog
 
 /**
@@ -152,7 +150,7 @@ class PinEntryForSmsBypassViewModel(
 
     return when (val result = repository.registerAccountWithRecoveryPassword(e164, recoveryPassword, registrationLock, skipDeviceTransfer = true)) {
       is RequestResult.Success -> {
-        parentEventEmitter.navigateTo(RegistrationRoute.FullyComplete)
+        parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
         repository.enqueueSvrResetGuessCountJob()
         state
       }

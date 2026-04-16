@@ -952,8 +952,8 @@ class PhoneNumberEntryViewModelTest {
       .isInstanceOf<RegistrationRoute.PinCreate>()
   }
 
-  @Test
-  fun `PhoneNumberSubmitted with preExistingRegistrationData and SessionNotFoundOrNotVerified emits ResetState`() = runTest {
+  @Test(expected = IllegalStateException::class)
+  fun `PhoneNumberSubmitted with preExistingRegistrationData and SessionNotFoundOrNotVerified throws`() = runTest {
     val preExistingData = mockk<PreExistingRegistrationData>(relaxed = true) {
       coEvery { e164 } returns "+15551234567"
       coEvery { registrationLockEnabled } returns false
@@ -971,13 +971,10 @@ class PhoneNumberEntryViewModelTest {
     )
 
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
-
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.ResetState)
   }
 
-  @Test
-  fun `PhoneNumberSubmitted with preExistingRegistrationData and DeviceTransferPossible emits ResetState`() = runTest {
+  @Test(expected = IllegalStateException::class)
+  fun `PhoneNumberSubmitted with preExistingRegistrationData and DeviceTransferPossible throws`() = runTest {
     val preExistingData = mockk<PreExistingRegistrationData>(relaxed = true) {
       coEvery { e164 } returns "+15551234567"
       coEvery { registrationLockEnabled } returns false
@@ -995,9 +992,6 @@ class PhoneNumberEntryViewModelTest {
     )
 
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberSubmitted, parentEventEmitter, stateEmitter)
-
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.ResetState)
   }
 
   @Test

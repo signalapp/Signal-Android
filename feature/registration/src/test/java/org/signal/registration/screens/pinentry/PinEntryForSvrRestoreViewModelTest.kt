@@ -74,10 +74,7 @@ class PinEntryForSvrRestoreViewModelTest {
 
     assertThat(emittedParentEvents).hasSize(2)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
-    assertThat(emittedParentEvents[1])
-      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
-      .prop(RegistrationFlowEvent.NavigateToScreen::route)
-      .isInstanceOf<RegistrationRoute.FullyComplete>()
+    assertThat(emittedParentEvents[1]).isInstanceOf<RegistrationFlowEvent.RegistrationComplete>()
   }
 
   // ==================== GetSvrCredentials Error Tests ====================
