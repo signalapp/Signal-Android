@@ -18,6 +18,7 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange
+import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.GroupsV2UpdateMessageConverter
@@ -42,6 +43,7 @@ import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
@@ -635,6 +637,7 @@ class GroupsV2StateProcessor private constructor(
     val terminatorRecipientId: RecipientId? = if (wasTerminated) {
       groupStateDiff
         .serverHistory
+        .asSequence()
         .mapNotNull { it.change }
         .firstOrNull { it.terminateGroup }
         ?.let { ServiceId.parseOrNull(it.editorServiceIdBytes) }
@@ -643,17 +646,42 @@ class GroupsV2StateProcessor private constructor(
       null
     }
 
+    val selfAuthoredTitle: Boolean = run {
+      val lastTitleChange = groupStateDiff
+        .serverHistory
+        .asSequence()
+        .mapNotNull { it.change }
+        .lastOrNull { it.newTitle != null }
+
+      if (lastTitleChange != null) {
+        return@run ServiceId.parseOrNull(lastTitleChange.editorServiceIdBytes) == serviceIds.aci
+      }
+
+      if (previousGroupState == null && updatedGroupState.revision == 0) {
+        val rev0Editor = groupStateDiff
+          .serverHistory
+          .firstOrNull { it.group?.revision == 0 }
+          ?.change
+          ?.let { ServiceId.parseOrNull(it.editorServiceIdBytes) }
+
+        return@run rev0Editor == serviceIds.aci
+      }
+
+      false
+    }
+
     val needsAvatarFetch = if (previousGroupState == null) {
-      val groupId = SignalDatabase.groups.create(groupMasterKey, updatedGroupState, groupSendEndorsements)
+      val verifiedNameHash: ByteArray? = if (selfAuthoredTitle) GroupTable.computeVerifiedNameHash(updatedGroupState.title) else null
+      val groupId = SignalDatabase.groups.create(groupMasterKey, updatedGroupState, groupSendEndorsements, verifiedNameHash)
 
       if (groupId == null) {
         Log.w(TAG, "$logPrefix Group create failed, trying to update")
-        SignalDatabase.groups.update(groupMasterKey, updatedGroupState, groupSendEndorsements, terminatorRecipientId)
+        SignalDatabase.groups.update(groupMasterKey, updatedGroupState, groupSendEndorsements, terminatorRecipientId, selfAuthoredTitle)
       }
 
       updatedGroupState.avatar.isNotEmpty()
     } else {
-      SignalDatabase.groups.update(groupMasterKey, updatedGroupState, groupSendEndorsements, terminatorRecipientId)
+      SignalDatabase.groups.update(groupMasterKey, updatedGroupState, groupSendEndorsements, terminatorRecipientId, selfAuthoredTitle)
 
       updatedGroupState.avatar != previousGroupState.avatar
     }
@@ -665,6 +693,10 @@ class GroupsV2StateProcessor private constructor(
 
     if (needsAvatarFetch) {
       AppDependencies.jobManager.add(AvatarGroupsV2DownloadJob(groupId, updatedGroupState.avatar))
+    }
+
+    if (selfAuthoredTitle) {
+      profileAndMessageHelper.scheduleStorageServiceSync()
     }
 
     profileAndMessageHelper.setProfileSharing(groupStateDiff, updatedGroupState, needsAvatarFetch)
@@ -1003,6 +1035,13 @@ class GroupsV2StateProcessor private constructor(
       }
 
       return Optional.empty()
+    }
+
+    fun scheduleStorageServiceSync() {
+      val groupRecipientId = SignalDatabase.recipients.getOrInsertFromGroupId(groupId)
+      SignalDatabase.recipients.rotateStorageId(groupRecipientId)
+      Recipient.live(groupRecipientId).refresh()
+      StorageSyncHelper.scheduleSyncForDataChange()
     }
 
     companion object {

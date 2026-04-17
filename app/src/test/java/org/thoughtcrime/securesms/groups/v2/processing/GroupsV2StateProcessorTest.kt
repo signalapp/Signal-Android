@@ -63,6 +63,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.whispersystems.signalservice.api.NetworkResult
@@ -1315,5 +1316,150 @@ class GroupsV2StateProcessorTest {
 
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
     verify(exactly = 0) { profileAndMessageHelper.persistLearnedProfileKeys(any<ProfileKeySet>()) }
+  }
+
+  @Test
+  fun `when self authors a title change, then update is called with selfAuthoredTitle true and storage is rotated`() {
+    given {
+      localState(
+        revision = 5,
+        title = "Old",
+        members = selfAndOthers
+      )
+      changeSet {
+        changeLog(6) {
+          change {
+            editorServiceIdBytes = selfAci.toByteString()
+            setNewTitle("New")
+          }
+        }
+      }
+      apiCallParameters(requestedRevision = 5, includeFirst = false)
+      joinedAtRevision = 0
+      expectTableUpdate = true
+    }
+
+    val recipientId = RecipientId.from(100)
+    every { recipientTable.getOrInsertFromGroupId(groupId) } returns recipientId
+    justRun { recipientTable.rotateStorageId(any()) }
+    justRun { groupTable.update(any<GroupMasterKey>(), any<DecryptedGroup>(), anyNullable<ReceivedGroupSendEndorsements>(), anyNullable<RecipientId>(), eq(true)) }
+    mockkStatic(StorageSyncHelper::class)
+    justRun { StorageSyncHelper.scheduleSyncForDataChange() }
+
+    val result = processor.updateLocalGroupToRevision(
+      targetRevision = GroupsV2StateProcessor.LATEST,
+      timestamp = 0
+    )
+
+    assertThat(result.updateStatus).isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    verify { groupTable.update(masterKey, result.latestServer!!, null, null, true) }
+    verify { recipientTable.rotateStorageId(recipientId) }
+    verify { StorageSyncHelper.scheduleSyncForDataChange() }
+
+    unmockkStatic(StorageSyncHelper::class)
+  }
+
+  @Test
+  fun `when another member authors a title change, then update is called with selfAuthoredTitle false`() {
+    given {
+      localState(
+        revision = 5,
+        title = "Old",
+        members = selfAndOthers
+      )
+      changeSet {
+        changeLog(6) {
+          change {
+            editorServiceIdBytes = otherAci.toByteString()
+            setNewTitle("New")
+          }
+        }
+      }
+      apiCallParameters(requestedRevision = 5, includeFirst = false)
+      joinedAtRevision = 0
+      expectTableUpdate = true
+    }
+
+    val result = processor.updateLocalGroupToRevision(
+      targetRevision = GroupsV2StateProcessor.LATEST,
+      timestamp = 0
+    )
+
+    assertThat(result.updateStatus).isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    verify { groupTable.update(masterKey, result.latestServer!!, null, null, false) }
+    verify(exactly = 0) { recipientTable.rotateStorageId(any()) }
+  }
+
+  @Test
+  fun `when self is editor of a fresh rev 0 group without explicit title change, then create is called with computed verified name hash`() {
+    given {
+      changeSet {
+        changeLog(0) {
+          fullSnapshot(title = "Fresh", members = selfAndOthers)
+          change {
+            editorServiceIdBytes = selfAci.toByteString()
+          }
+        }
+      }
+      apiCallParameters(requestedRevision = 0, includeFirst = true)
+      joinedAtRevision = 0
+      expectTableCreate = true
+    }
+
+    val recipientId = RecipientId.from(100)
+    every { recipientTable.getOrInsertFromGroupId(groupId) } returns recipientId
+    justRun { recipientTable.rotateStorageId(any()) }
+    justRun { profileAndMessageHelper.setProfileSharing(any(), any(), any()) }
+    every { groupTable.create(any<GroupMasterKey>(), any<DecryptedGroup>(), any<ReceivedGroupSendEndorsements>(), any<ByteArray>()) } returns groupId
+    mockkStatic(StorageSyncHelper::class)
+    justRun { StorageSyncHelper.scheduleSyncForDataChange() }
+
+    val result = processor.updateLocalGroupToRevision(
+      targetRevision = 0,
+      timestamp = 0
+    )
+
+    assertThat(result.updateStatus).isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    val expectedHash = GroupTable.computeVerifiedNameHash("Fresh")!!
+    verify {
+      groupTable.create(
+        masterKey,
+        result.latestServer!!,
+        null,
+        match<ByteArray> { it.contentEquals(expectedHash) }
+      )
+    }
+    verify { recipientTable.rotateStorageId(recipientId) }
+    verify { StorageSyncHelper.scheduleSyncForDataChange() }
+
+    unmockkStatic(StorageSyncHelper::class)
+  }
+
+  @Test
+  fun `when another member is editor of a fresh rev 0 group, then create is called without a verified name hash`() {
+    given {
+      changeSet {
+        changeLog(0) {
+          fullSnapshot(title = "Fresh", members = selfAndOthers)
+          change {
+            editorServiceIdBytes = otherAci.toByteString()
+          }
+        }
+      }
+      apiCallParameters(requestedRevision = 0, includeFirst = true)
+      joinedAtRevision = 0
+      expectTableCreate = true
+    }
+
+    justRun { profileAndMessageHelper.setProfileSharing(any(), any(), any()) }
+
+    val result = processor.updateLocalGroupToRevision(
+      targetRevision = 0,
+      timestamp = 0
+    )
+
+    assertThat(result.updateStatus).isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    verify { groupTable.create(masterKey, result.latestServer!!, null, null) }
+    verify(exactly = 0) { recipientTable.rotateStorageId(any()) }
   }
 }

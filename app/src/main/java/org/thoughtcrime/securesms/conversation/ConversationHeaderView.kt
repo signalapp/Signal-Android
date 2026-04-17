@@ -113,7 +113,7 @@ class ConversationHeaderView : AbstractComposeView {
     val isOfficialAccount = recipient.showVerified
 
     val showUnverifiedName = if (recipient.isGroup) {
-      !groupInfo.hasExistingContacts && !(groupInfo.fullMemberCount == 1 && groupInfo.isMember)
+      !info.groupInfo.nameVerified
     } else if (!isOfficialAccount) {
       recipient.nickname.isEmpty && !recipient.isSystemContact
     } else {

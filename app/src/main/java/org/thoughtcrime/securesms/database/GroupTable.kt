@@ -74,6 +74,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPoin
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import org.whispersystems.signalservice.api.push.DistributionId
 import java.io.Closeable
+import java.security.MessageDigest
 import java.security.SecureRandom
 import java.time.Instant
 import java.util.Optional
@@ -111,6 +112,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     const val SHOW_AS_STORY_STATE = "show_as_story_state"
     const val LAST_FORCE_UPDATE_TIMESTAMP = "last_force_update_timestamp"
     const val GROUP_SEND_ENDORSEMENTS_EXPIRATION = "group_send_endorsements_expiration"
+    const val V2_VERIFIED_NAME_HASH = "verified_name_hash"
 
     /** 32 bytes serialized [GroupMasterKey]  */
     const val V2_MASTER_KEY = "master_key"
@@ -124,14 +126,14 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     @JvmField
     val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
-        $ID INTEGER PRIMARY KEY, 
-        $GROUP_ID TEXT NOT NULL UNIQUE, 
+        $ID INTEGER PRIMARY KEY,
+        $GROUP_ID TEXT NOT NULL UNIQUE,
         $RECIPIENT_ID INTEGER NOT NULL UNIQUE REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
         $TITLE TEXT DEFAULT NULL,
-        $AVATAR_ID INTEGER DEFAULT 0, 
+        $AVATAR_ID INTEGER DEFAULT 0,
         $AVATAR_KEY BLOB DEFAULT NULL,
-        $AVATAR_CONTENT_TYPE TEXT DEFAULT NULL, 
-        $AVATAR_DIGEST BLOB DEFAULT NULL, 
+        $AVATAR_CONTENT_TYPE TEXT DEFAULT NULL,
+        $AVATAR_DIGEST BLOB DEFAULT NULL,
         $TIMESTAMP INTEGER DEFAULT 0,
         $IS_MEMBER INTEGER DEFAULT 1,
         $MMS INTEGER DEFAULT 0,
@@ -144,7 +146,8 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
         $SHOW_AS_STORY_STATE INTEGER DEFAULT ${ShowAsStoryState.IF_ACTIVE.code},
         $LAST_FORCE_UPDATE_TIMESTAMP INTEGER DEFAULT 0,
         $GROUP_SEND_ENDORSEMENTS_EXPIRATION INTEGER DEFAULT 0,
-        $TERMINATED_BY INTEGER DEFAULT 0
+        $TERMINATED_BY INTEGER DEFAULT 0,
+        $V2_VERIFIED_NAME_HASH BLOB DEFAULT NULL
       )
     """
 
@@ -167,6 +170,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
       V2_MASTER_KEY,
       V2_REVISION,
       V2_DECRYPTED_GROUP,
+      V2_VERIFIED_NAME_HASH,
       LAST_FORCE_UPDATE_TIMESTAMP,
       GROUP_SEND_ENDORSEMENTS_EXPIRATION
     )
@@ -177,6 +181,11 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
       .toList()
 
     val CREATE_TABLES = arrayOf(CREATE_TABLE, MembershipTable.CREATE_TABLE)
+
+    @JvmStatic
+    fun computeVerifiedNameHash(title: String?): ByteArray? {
+      return title?.let { MessageDigest.getInstance("SHA-256").digest(it.toByteArray(Charsets.UTF_8)) }
+    }
   }
 
   class MembershipTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper) {
@@ -544,6 +553,14 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
       .run()
   }
 
+  fun setVerifiedGroupNameHash(groupId: GroupId.V2, verifiedNameHash: ByteArray?) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(V2_VERIFIED_NAME_HASH to verifiedNameHash)
+      .where("$GROUP_ID = ?", groupId)
+      .run()
+  }
+
   @WorkerThread
   fun getGroupMemberIds(groupId: GroupId, memberSet: MemberSet): List<RecipientId> {
     return if (groupId.isV2) {
@@ -607,19 +624,25 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
       throw LegacyGroupInsertException(groupId)
     }
 
-    return create(groupId, title, members, avatar, null, null, null)
+    return create(groupId, title, members, avatar, null, null, null, null)
   }
 
   @CheckReturnValue
   fun create(groupId: GroupId.Mms, title: String?, members: Collection<RecipientId>): Boolean {
-    return create(groupId, if (title.isNullOrEmpty()) null else title, members, null, null, null, null)
+    return create(groupId, if (title.isNullOrEmpty()) null else title, members, null, null, null, null, null)
   }
 
   @CheckReturnValue
-  fun create(groupMasterKey: GroupMasterKey, groupState: DecryptedGroup, groupSendEndorsements: ReceivedGroupSendEndorsements?): GroupId.V2? {
+  @JvmOverloads
+  fun create(
+    groupMasterKey: GroupMasterKey,
+    groupState: DecryptedGroup,
+    groupSendEndorsements: ReceivedGroupSendEndorsements?,
+    verifiedNameHash: ByteArray? = null
+  ): GroupId.V2? {
     val groupId = GroupId.v2(groupMasterKey)
 
-    return if (create(groupId = groupId, title = groupState.title, memberCollection = emptyList(), avatar = null, groupMasterKey = groupMasterKey, groupState = groupState, receivedGroupSendEndorsements = groupSendEndorsements)) {
+    return if (create(groupId = groupId, title = groupState.title, memberCollection = emptyList(), avatar = null, groupMasterKey = groupMasterKey, groupState = groupState, receivedGroupSendEndorsements = groupSendEndorsements, verifiedNameHash = verifiedNameHash)) {
       groupId
     } else {
       null
@@ -667,7 +690,8 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     avatar: SignalServiceAttachmentPointer?,
     groupMasterKey: GroupMasterKey?,
     groupState: DecryptedGroup?,
-    receivedGroupSendEndorsements: ReceivedGroupSendEndorsements?
+    receivedGroupSendEndorsements: ReceivedGroupSendEndorsements?,
+    verifiedNameHash: ByteArray?
   ): Boolean {
     val membershipValues = mutableListOf<ContentValues>()
     val groupRecipientId = recipients.getOrInsertFromGroupId(groupId)
@@ -716,6 +740,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
       values.put(V2_MASTER_KEY, groupMasterKey.serialize())
       values.put(V2_REVISION, groupState.revision)
       values.put(V2_DECRYPTED_GROUP, groupState.encode())
+      values.put(V2_VERIFIED_NAME_HASH, verifiedNameHash)
       membershipValues.clear()
       membershipValues.addAll(groupMembers.toContentValues(groupId, receivedGroupSendEndorsements?.toGroupSendEndorsementRecords()))
     } else {
@@ -787,11 +812,25 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     notifyConversationListListeners()
   }
 
-  fun update(groupMasterKey: GroupMasterKey, decryptedGroup: DecryptedGroup, groupSendEndorsements: ReceivedGroupSendEndorsements?, terminatorRecipientId: RecipientId? = null) {
-    update(GroupId.v2(groupMasterKey), decryptedGroup, groupSendEndorsements, terminatorRecipientId)
+  @JvmOverloads
+  fun update(
+    groupMasterKey: GroupMasterKey,
+    decryptedGroup: DecryptedGroup,
+    groupSendEndorsements: ReceivedGroupSendEndorsements?,
+    terminatorRecipientId: RecipientId? = null,
+    selfAuthoredTitle: Boolean = false
+  ) {
+    update(GroupId.v2(groupMasterKey), decryptedGroup, groupSendEndorsements, terminatorRecipientId, selfAuthoredTitle)
   }
 
-  fun update(groupId: GroupId.V2, decryptedGroup: DecryptedGroup, receivedGroupSendEndorsements: ReceivedGroupSendEndorsements?, terminatorRecipientId: RecipientId? = null) {
+  @JvmOverloads
+  fun update(
+    groupId: GroupId.V2,
+    decryptedGroup: DecryptedGroup,
+    receivedGroupSendEndorsements: ReceivedGroupSendEndorsements?,
+    terminatorRecipientId: RecipientId? = null,
+    selfAuthoredTitle: Boolean = false
+  ) {
     val groupRecipientId: RecipientId = recipients.getOrInsertFromGroupId(groupId)
     val existingGroup: Optional<GroupRecord> = getGroup(groupId)
     val title: String = decryptedGroup.title
@@ -802,6 +841,10 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     contentValues.put(V2_DECRYPTED_GROUP, decryptedGroup.encode())
     contentValues.put(IS_MEMBER, if (isGroupMember(decryptedGroup)) 1 else 0)
     contentValues.put(TERMINATED_BY, terminatorRecipientId?.toLong() ?: if (decryptedGroup.terminated) -1 else 0)
+
+    if (selfAuthoredTitle) {
+      contentValues.put(V2_VERIFIED_NAME_HASH, computeVerifiedNameHash(title))
+    }
 
     if (receivedGroupSendEndorsements != null) {
       contentValues.put(GROUP_SEND_ENDORSEMENTS_EXPIRATION, receivedGroupSendEndorsements.expirationMs)
@@ -1165,6 +1208,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
           groupMasterKeyBytes = cursor.requireBlob(V2_MASTER_KEY),
           groupRevision = cursor.requireInt(V2_REVISION),
           decryptedGroupBytes = cursor.requireBlob(V2_DECRYPTED_GROUP),
+          verifiedNameHash = cursor.requireBlob(V2_VERIFIED_NAME_HASH),
           distributionId = cursor.optionalString(DISTRIBUTION_ID).map { id -> DistributionId.from(id) }.orElse(null),
           lastForceUpdateTimestamp = cursor.requireLong(LAST_FORCE_UPDATE_TIMESTAMP),
           groupSendEndorsementExpiration = cursor.requireLong(GROUP_SEND_ENDORSEMENTS_EXPIRATION)

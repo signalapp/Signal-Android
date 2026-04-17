@@ -242,6 +242,8 @@ object StorageSyncModels {
       throw AssertionError("Group is not V2")
     }
 
+    val localVerifiedNameHash: ByteArray? = groups.getGroup(groupId).orElse(null)?.verifiedNameHash
+
     return SignalGroupV2Record.newBuilder(recipient.syncExtras.storageProto).apply {
       masterKey = groupMasterKey.serialize().toByteString()
       blocked = recipient.isBlocked
@@ -256,6 +258,9 @@ object StorageSyncModels {
         ShowAsStoryState.ALWAYS -> GroupV2Record.StorySendMode.ENABLED
         ShowAsStoryState.NEVER -> GroupV2Record.StorySendMode.DISABLED
         else -> GroupV2Record.StorySendMode.DEFAULT
+      }
+      if (localVerifiedNameHash != null) {
+        verifiedNameHash = localVerifiedNameHash.toByteString()
       }
     }.build().toSignalGroupV2Record(StorageId.forGroupV2(rawStorageId))
   }

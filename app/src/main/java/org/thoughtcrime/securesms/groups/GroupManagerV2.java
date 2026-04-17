@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.whispersystems.signalservice.api.groupsv2.DecryptChangeVerificationMode;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupExtensions;
@@ -235,7 +236,7 @@ final class GroupManagerV2 {
       DecryptedGroup                decryptedGroup        = createGroupResponse.getGroup();
       GroupMasterKey                masterKey             = groupSecretParams.getMasterKey();
       ReceivedGroupSendEndorsements groupSendEndorsements = groupsV2Operations.forGroup(groupSecretParams).receiveGroupSendEndorsements(selfAci, decryptedGroup, createGroupResponse.getGroupSendEndorsementsResponse());
-      GroupId.V2                    groupId               = groupDatabase.create(masterKey, decryptedGroup, groupSendEndorsements);
+      GroupId.V2                    groupId               = groupDatabase.create(masterKey, decryptedGroup, groupSendEndorsements, GroupTable.computeVerifiedNameHash(decryptedGroup.title));
 
       if (groupId == null) {
         throw new GroupChangeFailedException("Unable to create group, group already exists");
@@ -745,7 +746,14 @@ final class GroupManagerV2 {
       }
 
       RecipientId terminatorRecipientId = (decryptedGroupState.terminated && !previousGroupState.terminated) ? Recipient.self().getId() : null;
-      groupDatabase.update(groupId, decryptedGroupState, groupsV2Operations.forGroup(groupSecretParams).receiveGroupSendEndorsements(selfAci, decryptedGroupState, changeResponse.group_send_endorsements_response), terminatorRecipientId);
+      boolean     selfAuthoredTitle     = changeActions.modifyTitle != null;
+      groupDatabase.update(groupId, decryptedGroupState, groupsV2Operations.forGroup(groupSecretParams).receiveGroupSendEndorsements(selfAci, decryptedGroupState, changeResponse.group_send_endorsements_response), terminatorRecipientId, selfAuthoredTitle);
+
+      if (selfAuthoredTitle) {
+        RecipientId groupRecipientId = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
+        SignalDatabase.recipients().rotateStorageId(groupRecipientId, false);
+        StorageSyncHelper.scheduleSyncForDataChange();
+      }
 
       GroupMutation      groupMutation      = new GroupMutation(previousGroupState, decryptedChange, decryptedGroupState);
       RecipientAndThread recipientAndThread = sendGroupUpdateHelper.sendGroupUpdate(groupMasterKey, groupMutation, signedGroupChange, sendToMembers);

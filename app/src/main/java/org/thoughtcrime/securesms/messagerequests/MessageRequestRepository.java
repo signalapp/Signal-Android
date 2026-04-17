@@ -31,11 +31,10 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Executor;
@@ -73,12 +72,13 @@ public final class MessageRequestRepository {
         boolean         groupHasExistingContacts = recipients.stream().filter(r -> !r.isSelf()).anyMatch(r -> r.isProfileSharing() || r.isSystemContact());
         List<Recipient> membersPreview           = recipients.stream().filter(r -> !r.isSelf()).limit(MAX_MEMBER_NAMES).collect(Collectors.toList());
         DecryptedGroup  decryptedGroup           = groupRecord.get().requireV2GroupProperties().getDecryptedGroup();
+        boolean         nameVerified             = groupRecord.get().getVerifiedNameHash() != null && Arrays.equals(GroupTable.computeVerifiedNameHash(groupRecord.get().getTitle()), groupRecord.get().getVerifiedNameHash());
 
-        groupInfo = new GroupInfo(decryptedGroup.members.size(), decryptedGroup.pendingMembers.size(), decryptedGroup.description, groupHasExistingContacts, membersPreview, groupRecord.get().isMember(), groupRecord.get().isTerminated());
+        groupInfo = new GroupInfo(decryptedGroup.members.size(), decryptedGroup.pendingMembers.size(), decryptedGroup.description, groupHasExistingContacts, membersPreview, groupRecord.get().isMember(), groupRecord.get().isTerminated(), nameVerified);
       } else {
         List<Recipient> membersPreview = recipients.stream().filter(r -> !r.isSelf()).limit(MAX_MEMBER_NAMES).collect(Collectors.toList());
 
-        groupInfo = new GroupInfo(groupRecord.get().getMembers().size(), 0, "", false, membersPreview, groupRecord.get().isActive(), false);
+        groupInfo = new GroupInfo(groupRecord.get().getMembers().size(), 0, "", false, membersPreview, groupRecord.get().isActive(), false, false);
       }
     }
 

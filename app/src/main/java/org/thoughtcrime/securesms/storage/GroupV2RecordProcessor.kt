@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.storage
 
+import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.database.GroupTable
@@ -60,6 +61,7 @@ class GroupV2RecordProcessor(private val recipientTable: RecipientTable, private
       hideStory = remote.proto.hideStory
       storySendMode = remote.proto.storySendMode
       avatarColor = if (SignalStore.account.isPrimaryDevice) local.proto.avatarColor else remote.proto.avatarColor
+      verifiedNameHash = if (remote.proto.verifiedNameHash.isNotEmpty()) remote.proto.verifiedNameHash else local.proto.verifiedNameHash
     }.build().toSignalGroupV2Record(StorageId.forGroupV2(keyGenerator.generate()))
 
     val matchesRemote = doParamsMatch(remote, merged)

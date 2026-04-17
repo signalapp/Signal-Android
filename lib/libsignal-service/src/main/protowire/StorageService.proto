@@ -172,6 +172,7 @@ message GroupV2Record {
   reserved   /* storySendEnabled */            9;
   StorySendMode storySendMode                = 10;
   optional AvatarColor avatarColor           = 11;
+  bytes         verifiedNameHash             = 12; // SHA-256 of UTF-8 encoded decrypted group title that was last verified
 }
 
 message Payments {
