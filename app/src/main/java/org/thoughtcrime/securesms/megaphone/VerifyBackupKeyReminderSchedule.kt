@@ -25,11 +25,11 @@ class VerifyBackupKeyReminderSchedule : MegaphoneSchedule {
     val isFirstReminder = !SignalStore.backup.hasVerifiedBefore
 
     val intervalTime = if (isFirstReminder) 14.days.inWholeMilliseconds else 183.days.inWholeMilliseconds
-    val snoozedTime = if (previouslySnoozed) 7.days.inWholeMilliseconds else 0.days.inWholeMilliseconds
 
-    val shouldShowBackupKeyReminder = System.currentTimeMillis() > (lastVerifiedTime + intervalTime + snoozedTime)
-    val hasShownPinReminderRecently = System.currentTimeMillis() < SignalStore.pin.lastReminderTime + 7.days.inWholeMilliseconds
+    val intervalHasPassed = currentTime > (lastVerifiedTime + intervalTime)
+    val snoozeHasExpired = !previouslySnoozed || currentTime > (lastSeen + 7.days.inWholeMilliseconds)
+    val hasShownPinReminderRecently = currentTime < SignalStore.pin.lastReminderTime + 7.days.inWholeMilliseconds
 
-    return shouldShowBackupKeyReminder && !hasShownPinReminderRecently
+    return intervalHasPassed && snoozeHasExpired && !hasShownPinReminderRecently
   }
 }
