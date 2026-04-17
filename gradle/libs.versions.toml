@@ -109,7 +109,6 @@ androidx-media3-ui = { module = "androidx.media3:media3-ui", version.ref = "andr
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
-androidx-navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "androidx-navigation" }
 androidx-navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigation-safe-args-gradle-plugin" }
 androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "androidx-navigation3-core" }
 androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "androidx-navigation3-core" }
@@ -189,13 +188,11 @@ rxdogtag = "com.uber.rxdogtag2:rxdogtag:2.0.1"
 conscrypt-android = "org.conscrypt:conscrypt-android:2.5.3"
 mobilecoin = "com.mobilecoin:android-sdk:6.1.2"
 leolin-shortcutbadger = "me.leolin:ShortcutBadger:1.1.22"
-emilsjolander-stickylistheaders = "se.emilsjolander:stickylistheaders:2.7.0"
 glide-glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-ksp = { module = "com.github.bumptech.glide:ksp", version.ref = "glide" }
 roundedimageview = "com.makeramen:roundedimageview:2.1.0"
 materialish-progress = "com.pnikosis:materialish-progress:1.7"
 subsampling-scale-image-view = "com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0"
-android-tooltips = "com.tomergoldst.android:tooltips:1.0.6"
 lottie = "com.airbnb.android:lottie:6.4.0"
 lottie-compose = "com.airbnb.android:lottie-compose:6.4.0"
 dnsjava = "dnsjava:dnsjava:2.1.9"

@@ -679,7 +679,6 @@ dependencies {
   implementation(libs.mobilecoin)
   implementation(libs.signal.ringrtc)
   implementation(libs.leolin.shortcutbadger)
-  implementation(libs.emilsjolander.stickylistheaders)
   implementation(libs.glide.glide)
   implementation(libs.roundedimageview)
   implementation(libs.materialish.progress)
@@ -689,9 +688,6 @@ dependencies {
   implementation(libs.google.flexbox)
   implementation(libs.subsampling.scale.image.view) {
     exclude(group = "com.android.support", module = "support-annotations")
-  }
-  implementation(libs.android.tooltips) {
-    exclude(group = "com.android.support", module = "appcompat-v7")
   }
   implementation(libs.lottie)
   implementation(libs.lottie.compose)
