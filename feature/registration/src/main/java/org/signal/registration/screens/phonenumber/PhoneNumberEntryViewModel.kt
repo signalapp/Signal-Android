@@ -104,10 +104,10 @@ class PhoneNumberEntryViewModel(
         stateEmitter(state.copy(showDialog = false))
       }
       is PhoneNumberEntryScreenEvents.PhoneNumberSubmitted -> {
-        var localState = state.copy(showSpinner = true)
+        var localState = state.copy(showSpinner = true, showDialog = false)
         stateEmitter(localState)
         localState = applyPhoneNumberSubmitted(localState, parentEventEmitter)
-        stateEmitter(localState.copy(showSpinner = false))
+        stateEmitter(localState.copy(showSpinner = false, showDialog = false))
       }
       is PhoneNumberEntryScreenEvents.CountryPicker -> {
         state.also {

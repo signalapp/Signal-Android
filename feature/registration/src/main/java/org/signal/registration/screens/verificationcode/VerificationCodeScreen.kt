@@ -8,6 +8,7 @@ package org.signal.registration.screens.verificationcode
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -40,19 +41,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.input.key.Key
-import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onKeyEvent
-import androidx.compose.ui.input.key.type
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
+import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.registration.R
+import org.signal.registration.screens.RegistrationScreen
 import org.signal.registration.test.TestTags
 import kotlin.time.Duration.Companion.seconds
 
@@ -69,25 +72,10 @@ fun VerificationCodeScreen(
 ) {
   var digits by remember { mutableStateOf(List(6) { "" }) }
   val focusRequesters = remember { List(6) { FocusRequester() } }
-  val scrollState = rememberScrollState()
   val snackbarHostState = remember { SnackbarHostState() }
+  val windowBreakpoint = rememberWindowBreakpoint()
+  val resources = LocalResources.current
 
-  // Preload error strings for use in LaunchedEffect
-  val incorrectCodeMsg = stringResource(R.string.VerificationCodeScreen__incorrect_code)
-  val networkErrorMsg = stringResource(R.string.VerificationCodeScreen__network_error)
-  val unknownErrorMsg = stringResource(R.string.VerificationCodeScreen__an_unexpected_error_occurred)
-  val unableToSendSmsMsg = stringResource(R.string.VerificationCodeScreen__unable_to_send_sms)
-  val transportErrorMsg = stringResource(R.string.VerificationCodeScreen__could_not_send_code_via_selected_method)
-  val registrationErrorMsg = stringResource(R.string.VerificationCodeScreen__registration_error)
-  // Preformat the rate-limited message template
-  val rateLimitedEvent = state.oneTimeEvent as? VerificationCodeState.OneTimeEvent.RateLimited
-  val rateLimitedMsg = if (rateLimitedEvent != null) {
-    stringResource(R.string.VerificationCodeScreen__too_many_attempts_try_again_in_s, rateLimitedEvent.retryAfter.toString())
-  } else {
-    ""
-  }
-
-  // Countdown timer effect - emits CountdownTick every second while timers are active
   LaunchedEffect(state.rateLimits) {
     if (state.rateLimits.smsResendTimeRemaining > 0.seconds || state.rateLimits.callRequestTimeRemaining > 0.seconds) {
       while (true) {
@@ -97,7 +85,6 @@ fun VerificationCodeScreen(
     }
   }
 
-  // Auto-submit when all digits are entered
   LaunchedEffect(digits) {
     if (digits.all { it.isNotEmpty() } && !state.isSubmittingCode) {
       val code = digits.joinToString("")
@@ -105,7 +92,6 @@ fun VerificationCodeScreen(
     }
   }
 
-  // Handle one-time events — handle first, then consume
   LaunchedEffect(state.oneTimeEvent) {
     val event = state.oneTimeEvent ?: return@LaunchedEffect
 
@@ -113,32 +99,30 @@ fun VerificationCodeScreen(
       VerificationCodeState.OneTimeEvent.IncorrectVerificationCode -> {
         digits = List(6) { "" }
         focusRequesters[0].requestFocus()
-        snackbarHostState.showSnackbar(incorrectCodeMsg)
+        snackbarHostState.showSnackbar(resources.getString(R.string.VerificationCodeScreen__incorrect_code))
       }
       VerificationCodeState.OneTimeEvent.NetworkError -> {
-        snackbarHostState.showSnackbar(networkErrorMsg)
+        snackbarHostState.showSnackbar(resources.getString(R.string.VerificationCodeScreen__network_error))
       }
       is VerificationCodeState.OneTimeEvent.RateLimited -> {
-        snackbarHostState.showSnackbar(rateLimitedMsg)
+        snackbarHostState.showSnackbar(resources.getString(R.string.VerificationCodeScreen__too_many_attempts_try_again_in_s, event.retryAfter.toString()))
       }
       VerificationCodeState.OneTimeEvent.UnableToSendSms -> {
-        snackbarHostState.showSnackbar(unableToSendSmsMsg)
+        snackbarHostState.showSnackbar(resources.getString(R.string.VerificationCodeScreen__unable_to_send_sms))
       }
       VerificationCodeState.OneTimeEvent.CouldNotRequestCodeWithSelectedTransport -> {
-        snackbarHostState.showSnackbar(transportErrorMsg)
+        snackbarHostState.showSnackbar(resources.getString(R.string.VerificationCodeScreen__could_not_send_code_via_selected_method))
       }
       VerificationCodeState.OneTimeEvent.UnknownError -> {
-        snackbarHostState.showSnackbar(unknownErrorMsg)
+        snackbarHostState.showSnackbar(resources.getString(R.string.VerificationCodeScreen__an_unexpected_error_occurred))
       }
       VerificationCodeState.OneTimeEvent.RegistrationError -> {
-        snackbarHostState.showSnackbar(registrationErrorMsg)
+        snackbarHostState.showSnackbar(resources.getString(R.string.VerificationCodeScreen__registration_error))
       }
     }
-
     onEvent(VerificationCodeScreenEvents.ConsumeInnerOneTimeEvent)
   }
 
-  // Auto-focus first field on initial composition
   LaunchedEffect(Unit) {
     focusRequesters[0].requestFocus()
   }
@@ -147,224 +131,401 @@ fun VerificationCodeScreen(
     snackbarHost = { SnackbarHost(snackbarHostState) },
     modifier = modifier
   ) { innerPadding ->
-    Column(
-      modifier = Modifier
-        .fillMaxSize()
-        .padding(innerPadding)
-        .verticalScroll(scrollState)
-        .padding(horizontal = 24.dp),
-      horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-      Spacer(modifier = Modifier.height(40.dp))
-
-      // Header
-      Text(
-        text = stringResource(R.string.VerificationCodeScreen__verification_code),
-        style = MaterialTheme.typography.headlineMedium,
-        modifier = Modifier
-          .fillMaxWidth()
-          .wrapContentWidth(Alignment.Start)
-      )
-
-      Spacer(modifier = Modifier.height(16.dp))
-
-      // Subheader with phone number
-      Text(
-        text = stringResource(R.string.VerificationCodeScreen__enter_the_code_we_sent_to_s, state.e164),
-        style = MaterialTheme.typography.bodyMedium,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-        modifier = Modifier
-          .fillMaxWidth()
-          .wrapContentWidth(Alignment.Start)
-      )
-
-      Spacer(modifier = Modifier.height(8.dp))
-
-      // Wrong number button - aligned to start like in XML
-      TextButton(
-        onClick = { onEvent(VerificationCodeScreenEvents.WrongNumber) },
-        modifier = Modifier
-          .fillMaxWidth()
-          .wrapContentWidth(Alignment.Start)
-          .testTag(TestTags.VERIFICATION_CODE_WRONG_NUMBER_BUTTON)
-      ) {
-        Text(
-          text = stringResource(R.string.VerificationCodeScreen__wrong_number),
-          color = MaterialTheme.colorScheme.primary
+    when (windowBreakpoint) {
+      WindowBreakpoint.SMALL -> {
+        CompactLayout(
+          innerPadding = innerPadding,
+          digits = digits,
+          focusRequesters = focusRequesters,
+          state = state,
+          onEvent = onEvent,
+          onDigitsChanged = { digits = it }
         )
       }
 
-      Spacer(modifier = Modifier.height(32.dp))
-
-      // Code input with spinner overlay when submitting
-      Box(
-        modifier = Modifier.fillMaxWidth(),
-        contentAlignment = Alignment.Center
-      ) {
-        // Code input fields - XXX-XXX format
-        Row(
-          modifier = Modifier
-            .fillMaxWidth()
-            .testTag(TestTags.VERIFICATION_CODE_INPUT),
-          horizontalArrangement = Arrangement.Center,
-          verticalAlignment = Alignment.CenterVertically
-        ) {
-          // First three digits
-          for (i in 0..2) {
-            DigitField(
-              value = digits[i],
-              onValueChange = { newValue, isBackspace ->
-                handleDigitChange(
-                  index = i,
-                  newValue = newValue,
-                  isBackspace = isBackspace,
-                  digits = digits,
-                  focusRequesters = focusRequesters,
-                  onDigitsChanged = { digits = it }
-                )
-              },
-              focusRequester = focusRequesters[i],
-              testTag = when (i) {
-                0 -> TestTags.VERIFICATION_CODE_DIGIT_0
-                1 -> TestTags.VERIFICATION_CODE_DIGIT_1
-                else -> TestTags.VERIFICATION_CODE_DIGIT_2
-              },
-              enabled = !state.isSubmittingCode
-            )
-            if (i < 2) {
-              Spacer(modifier = Modifier.width(4.dp))
-            }
-          }
-
-          // Separator
-          Text(
-            text = "-",
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(horizontal = 8.dp),
-            color = if (state.isSubmittingCode) MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f) else MaterialTheme.colorScheme.onSurface
-          )
-
-          // Last three digits
-          for (i in 3..5) {
-            if (i > 3) {
-              Spacer(modifier = Modifier.width(4.dp))
-            }
-            DigitField(
-              value = digits[i],
-              onValueChange = { newValue, isBackspace ->
-                handleDigitChange(
-                  index = i,
-                  newValue = newValue,
-                  isBackspace = isBackspace,
-                  digits = digits,
-                  focusRequesters = focusRequesters,
-                  onDigitsChanged = { digits = it }
-                )
-              },
-              focusRequester = focusRequesters[i],
-              testTag = when (i) {
-                3 -> TestTags.VERIFICATION_CODE_DIGIT_3
-                4 -> TestTags.VERIFICATION_CODE_DIGIT_4
-                else -> TestTags.VERIFICATION_CODE_DIGIT_5
-              },
-              enabled = !state.isSubmittingCode
-            )
-          }
-        }
-
-        // Loading spinner overlay
-        if (state.isSubmittingCode) {
-          CircularProgressIndicator(
-            modifier = Modifier.size(48.dp)
-          )
-        }
+      WindowBreakpoint.MEDIUM -> {
+        MediumLayout(
+          digits = digits,
+          focusRequesters = focusRequesters,
+          state = state,
+          onEvent = onEvent,
+          onDigitsChanged = { digits = it }
+        )
       }
 
-      Spacer(modifier = Modifier.height(32.dp))
-
-      // Having trouble button - shown after 3 incorrect code attempts (matching old behavior)
-      if (state.shouldShowHavingTrouble()) {
-        TextButton(
-          onClick = { onEvent(VerificationCodeScreenEvents.HavingTrouble) },
-          modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentWidth(Alignment.CenterHorizontally)
-            .testTag(TestTags.VERIFICATION_CODE_HAVING_TROUBLE_BUTTON)
-        ) {
-          Text(
-            text = stringResource(R.string.VerificationCodeScreen__having_trouble),
-            color = MaterialTheme.colorScheme.primary
-          )
-        }
-      }
-
-      Spacer(modifier = Modifier.weight(1f))
-
-      // Bottom buttons - Resend SMS and Call Me side by side
-      Row(
-        modifier = Modifier
-          .fillMaxWidth()
-          .padding(bottom = 32.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.Bottom
-      ) {
-        // Resend SMS button with countdown — fits on one line if space allows, wraps if not
-        val canResendSms = state.canResendSms()
-        val disabledColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
-        TextButton(
-          onClick = { onEvent(VerificationCodeScreenEvents.ResendSms) },
-          enabled = canResendSms,
-          modifier = Modifier
-            .weight(1f)
-            .testTag(TestTags.VERIFICATION_CODE_RESEND_SMS_BUTTON)
-        ) {
-          Text(
-            text = if (canResendSms) {
-              stringResource(R.string.VerificationCodeScreen__resend_code)
-            } else {
-              val totalSeconds = state.rateLimits.smsResendTimeRemaining.inWholeSeconds.toInt()
-              val minutes = totalSeconds / 60
-              val seconds = totalSeconds % 60
-              stringResource(R.string.VerificationCodeScreen__resend_code) + " " +
-                stringResource(R.string.VerificationCodeScreen__countdown_format, minutes, seconds)
-            },
-            color = if (canResendSms) MaterialTheme.colorScheme.primary else disabledColor,
-            textAlign = TextAlign.Center
-          )
-        }
-
-        Spacer(modifier = Modifier.width(8.dp))
-
-        // Call Me button with inline countdown
-        val canRequestCall = state.canRequestCall()
-        TextButton(
-          onClick = { onEvent(VerificationCodeScreenEvents.CallMe) },
-          enabled = canRequestCall,
-          modifier = Modifier
-            .weight(1f)
-            .testTag(TestTags.VERIFICATION_CODE_CALL_ME_BUTTON)
-        ) {
-          Text(
-            text = if (canRequestCall) {
-              stringResource(R.string.VerificationCodeScreen__call_me_instead)
-            } else {
-              val totalSeconds = state.rateLimits.callRequestTimeRemaining.inWholeSeconds.toInt()
-              val minutes = totalSeconds / 60
-              val seconds = totalSeconds % 60
-              stringResource(R.string.VerificationCodeScreen__call_me_available_in, minutes, seconds)
-            },
-            color = if (canRequestCall) MaterialTheme.colorScheme.primary else disabledColor,
-            textAlign = TextAlign.Center
-          )
-        }
+      WindowBreakpoint.LARGE -> {
+        LargeLayout(
+          digits = digits,
+          focusRequesters = focusRequesters,
+          state = state,
+          onEvent = onEvent,
+          onDigitsChanged = { digits = it }
+        )
       }
     }
   }
 }
 
-/**
- * Handles digit input changes including navigation between fields and backspace handling.
- */
+@Composable
+private fun CompactLayout(
+  innerPadding: PaddingValues,
+  digits: List<String>,
+  focusRequesters: List<FocusRequester>,
+  state: VerificationCodeState,
+  onEvent: (VerificationCodeScreenEvents) -> Unit,
+  onDigitsChanged: (List<String>) -> Unit
+) {
+  val scrollState = rememberScrollState()
+
+  RegistrationScreen(
+    modifier = Modifier.fillMaxSize(),
+    content = {
+      Column(
+        modifier = Modifier
+          .fillMaxSize()
+          .padding(innerPadding)
+          .verticalScroll(scrollState)
+          .padding(horizontal = 24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+      ) {
+        Spacer(modifier = Modifier.height(40.dp))
+
+        Description(state, onEvent)
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        CodeField(
+          digits = digits,
+          focusRequesters = focusRequesters,
+          state = state,
+          onDigitsChanged = onDigitsChanged
+        )
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        if (state.shouldShowHavingTrouble()) {
+          TroubleButton(onEvent)
+        }
+      }
+    },
+    footer = {
+      Row(
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(bottom = 16.dp),
+        horizontalArrangement = Arrangement.SpaceAround,
+        verticalAlignment = Alignment.Bottom
+      ) {
+        AlternateCodeOptions(state, onEvent)
+      }
+    }
+  )
+}
+
+@Composable
+private fun MediumLayout(
+  digits: List<String>,
+  focusRequesters: List<FocusRequester>,
+  state: VerificationCodeState,
+  onEvent: (VerificationCodeScreenEvents) -> Unit,
+  onDigitsChanged: (List<String>) -> Unit
+) {
+  val scrollState = rememberScrollState()
+  RegistrationScreen(
+    modifier = Modifier.fillMaxSize(),
+    content = {
+      Row(
+        modifier = Modifier
+          .fillMaxSize()
+          .verticalScroll(scrollState)
+      ) {
+        Column(
+          modifier = Modifier.weight(1f).padding(horizontal = 24.dp)
+        ) {
+          Spacer(modifier = Modifier.height(40.dp))
+
+          Description(state, onEvent)
+        }
+        Column(
+          modifier = Modifier.weight(1f)
+        ) {
+          Spacer(modifier = Modifier.height(40.dp))
+
+          CodeField(
+            digits = digits,
+            focusRequesters = focusRequesters,
+            state = state,
+            onDigitsChanged = onDigitsChanged
+          )
+
+          Spacer(modifier = Modifier.height(32.dp))
+
+          if (state.shouldShowHavingTrouble()) {
+            TroubleButton(onEvent)
+          }
+        }
+      }
+    },
+    footer = {
+      Row(
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(bottom = 16.dp, start = 24.dp, end = 24.dp),
+        horizontalArrangement = Arrangement.End,
+        verticalAlignment = Alignment.Bottom
+      ) {
+        AlternateCodeOptions(state, onEvent)
+      }
+    }
+  )
+}
+
+@Composable
+private fun LargeLayout(
+  digits: List<String>,
+  focusRequesters: List<FocusRequester>,
+  state: VerificationCodeState,
+  onEvent: (VerificationCodeScreenEvents) -> Unit,
+  onDigitsChanged: (List<String>) -> Unit
+) {
+  val scrollState = rememberScrollState()
+
+  RegistrationScreen(
+    modifier = Modifier.fillMaxSize(),
+    content = {
+      Row(
+        modifier = Modifier
+          .fillMaxSize()
+          .verticalScroll(scrollState)
+      ) {
+        Column(
+          modifier = Modifier.weight(1f).padding(horizontal = 24.dp)
+        ) {
+          Spacer(modifier = Modifier.height(40.dp))
+
+          Description(state, onEvent)
+        }
+        Column(
+          modifier = Modifier.weight(1f)
+        ) {
+          Spacer(modifier = Modifier.height(40.dp))
+
+          CodeField(
+            digits = digits,
+            focusRequesters = focusRequesters,
+            state = state,
+            onDigitsChanged = onDigitsChanged
+          )
+
+          Spacer(modifier = Modifier.height(32.dp))
+
+          if (state.shouldShowHavingTrouble()) {
+            TroubleButton(onEvent)
+          }
+        }
+      }
+    },
+    footer = {
+      Row(
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(bottom = 16.dp, start = 24.dp, end = 24.dp),
+        horizontalArrangement = Arrangement.End,
+        verticalAlignment = Alignment.Bottom
+      ) {
+        AlternateCodeOptions(state, onEvent)
+      }
+    }
+  )
+}
+
+@Composable
+private fun TroubleButton(onEvent: (VerificationCodeScreenEvents) -> Unit) {
+  TextButton(
+    onClick = { onEvent(VerificationCodeScreenEvents.HavingTrouble) },
+    modifier = Modifier
+      .fillMaxWidth()
+      .wrapContentWidth(Alignment.CenterHorizontally)
+      .testTag(TestTags.VERIFICATION_CODE_HAVING_TROUBLE_BUTTON)
+  ) {
+    Text(
+      text = stringResource(R.string.VerificationCodeScreen__having_trouble),
+      color = MaterialTheme.colorScheme.primary
+    )
+  }
+}
+
+@Composable
+private fun CodeField(
+  digits: List<String>,
+  focusRequesters: List<FocusRequester>,
+  state: VerificationCodeState,
+  onDigitsChanged: (List<String>) -> Unit
+) {
+  Box(
+    modifier = Modifier.fillMaxWidth(),
+    contentAlignment = Alignment.Center
+  ) {
+    Row(
+      modifier = Modifier
+        .fillMaxWidth()
+        .testTag(TestTags.VERIFICATION_CODE_INPUT),
+      horizontalArrangement = Arrangement.Center,
+      verticalAlignment = Alignment.CenterVertically
+    ) {
+      for (i in 0..2) {
+        DigitField(
+          value = digits[i],
+          onValueChange = { newValue, isBackspace ->
+            handleDigitChange(
+              index = i,
+              newValue = newValue,
+              isBackspace = isBackspace,
+              digits = digits,
+              focusRequesters = focusRequesters,
+              onDigitsChanged = onDigitsChanged
+            )
+          },
+          focusRequester = focusRequesters[i],
+          testTag = when (i) {
+            0 -> TestTags.VERIFICATION_CODE_DIGIT_0
+            1 -> TestTags.VERIFICATION_CODE_DIGIT_1
+            else -> TestTags.VERIFICATION_CODE_DIGIT_2
+          },
+          enabled = !state.isSubmittingCode
+        )
+        if (i < 2) {
+          Spacer(modifier = Modifier.width(4.dp))
+        }
+      }
+
+      Text(
+        text = "-",
+        style = MaterialTheme.typography.headlineMedium,
+        modifier = Modifier.padding(horizontal = 8.dp),
+        color = if (state.isSubmittingCode) MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f) else MaterialTheme.colorScheme.onSurface
+      )
+
+      for (i in 3..5) {
+        if (i > 3) {
+          Spacer(modifier = Modifier.width(4.dp))
+        }
+        DigitField(
+          value = digits[i],
+          onValueChange = { newValue, isBackspace ->
+            handleDigitChange(
+              index = i,
+              newValue = newValue,
+              isBackspace = isBackspace,
+              digits = digits,
+              focusRequesters = focusRequesters,
+              onDigitsChanged = onDigitsChanged
+            )
+          },
+          focusRequester = focusRequesters[i],
+          testTag = when (i) {
+            3 -> TestTags.VERIFICATION_CODE_DIGIT_3
+            4 -> TestTags.VERIFICATION_CODE_DIGIT_4
+            else -> TestTags.VERIFICATION_CODE_DIGIT_5
+          },
+          enabled = !state.isSubmittingCode
+        )
+      }
+    }
+
+    if (state.isSubmittingCode) {
+      CircularProgressIndicator(
+        modifier = Modifier.size(48.dp)
+      )
+    }
+  }
+}
+
+@Composable
+private fun AlternateCodeOptions(state: VerificationCodeState, onEvent: (VerificationCodeScreenEvents) -> Unit) {
+  val canResendSms = state.canResendSms()
+  val disabledColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+  TextButton(
+    onClick = { onEvent(VerificationCodeScreenEvents.ResendSms) },
+    enabled = canResendSms,
+    modifier = Modifier
+      .testTag(TestTags.VERIFICATION_CODE_RESEND_SMS_BUTTON)
+  ) {
+    Text(
+      text = if (canResendSms) {
+        stringResource(R.string.VerificationCodeScreen__resend_code)
+      } else {
+        val totalSeconds = state.rateLimits.smsResendTimeRemaining.inWholeSeconds.toInt()
+        val minutes = totalSeconds / 60
+        val seconds = totalSeconds % 60
+        stringResource(R.string.VerificationCodeScreen__resend_code) + " " +
+          stringResource(R.string.VerificationCodeScreen__countdown_format, minutes, seconds)
+      },
+      color = if (canResendSms) MaterialTheme.colorScheme.primary else disabledColor,
+      textAlign = TextAlign.Center,
+      style = MaterialTheme.typography.labelLarge
+    )
+  }
+
+  Spacer(modifier = Modifier.width(8.dp))
+
+  val canRequestCall = state.canRequestCall()
+  TextButton(
+    onClick = { onEvent(VerificationCodeScreenEvents.CallMe) },
+    enabled = canRequestCall,
+    modifier = Modifier
+      .testTag(TestTags.VERIFICATION_CODE_CALL_ME_BUTTON)
+  ) {
+    Text(
+      text = if (canRequestCall) {
+        stringResource(R.string.VerificationCodeScreen__call_me_instead)
+      } else {
+        val totalSeconds = state.rateLimits.callRequestTimeRemaining.inWholeSeconds.toInt()
+        val minutes = totalSeconds / 60
+        val seconds = totalSeconds % 60
+        stringResource(R.string.VerificationCodeScreen__call_me_available_in, minutes, seconds)
+      },
+      color = if (canRequestCall) MaterialTheme.colorScheme.primary else disabledColor,
+      textAlign = TextAlign.Center,
+      style = MaterialTheme.typography.labelLarge
+    )
+  }
+}
+
+@Composable
+private fun Description(state: VerificationCodeState, onEvent: (VerificationCodeScreenEvents) -> Unit) {
+  Text(
+    text = stringResource(R.string.VerificationCodeScreen__verification_code),
+    style = MaterialTheme.typography.headlineMedium,
+    modifier = Modifier.fillMaxWidth()
+  )
+
+  Spacer(modifier = Modifier.height(16.dp))
+
+  Text(
+    text = stringResource(R.string.VerificationCodeScreen__enter_the_code_we_sent_to_s, state.e164),
+    style = MaterialTheme.typography.bodyMedium,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
+    modifier = Modifier.fillMaxWidth()
+  )
+
+  Spacer(modifier = Modifier.height(8.dp))
+
+  TextButton(
+    onClick = { onEvent(VerificationCodeScreenEvents.WrongNumber) },
+    contentPadding = PaddingValues(),
+    modifier = Modifier
+      .fillMaxWidth()
+      .wrapContentWidth(Alignment.Start)
+      .testTag(TestTags.VERIFICATION_CODE_WRONG_NUMBER_BUTTON)
+  ) {
+    Text(
+      text = stringResource(R.string.VerificationCodeScreen__wrong_number),
+      color = MaterialTheme.colorScheme.primary
+    )
+  }
+}
+
 private fun handleDigitChange(
   index: Int,
   newValue: String,
@@ -373,28 +534,25 @@ private fun handleDigitChange(
   focusRequesters: List<FocusRequester>,
   onDigitsChanged: (List<String>) -> Unit
 ) {
-  when {
-    // Handle backspace on empty field - move to previous field
-    isBackspace && newValue.isEmpty() && index > 0 -> {
-      val newDigits = digits.toMutableList().apply { this[index] = "" }
-      onDigitsChanged(newDigits)
-      focusRequesters[index - 1].requestFocus()
+  if (isBackspace) {
+    val deleteAt = if (digits[index].isNotEmpty()) index else index - 1
+    if (deleteAt >= 0) {
+      onDigitsChanged(
+        digits.toMutableList().apply {
+          for (j in deleteAt until 5) {
+            this[j] = this[j + 1]
+          }
+          this[5] = ""
+        }
+      )
+      focusRequesters[(index - 1).coerceAtLeast(0)].requestFocus()
     }
-    // Handle new digit input
-    newValue.length <= 1 && (newValue.isEmpty() || newValue.all { it.isDigit() }) -> {
-      val newDigits = digits.toMutableList().apply { this[index] = newValue }
-      onDigitsChanged(newDigits)
-      // Move to next field if digit entered and not last field
-      if (newValue.isNotEmpty() && index < 5) {
-        focusRequesters[index + 1].requestFocus()
-      }
-    }
+  } else if (newValue.isNotEmpty() && newValue[0].isDigit()) {
+    onDigitsChanged(digits.toMutableList().apply { this[index] = newValue })
+    focusRequesters[(index + 1).coerceAtMost(5)].requestFocus()
   }
 }
 
-/**
- * Individual digit input field with backspace handling.
- */
 @Composable
 private fun DigitField(
   value: String,
@@ -407,20 +565,22 @@ private fun DigitField(
   OutlinedTextField(
     value = value,
     onValueChange = { newValue ->
-      // Determine if this is a backspace (new value is empty and old value was not)
-      val isBackspace = newValue.isEmpty() && value.isNotEmpty()
-      onValueChange(newValue, isBackspace)
+      val capped = if (newValue.length > 1) {
+        if (newValue.first().toString() == value) {
+          newValue.last().toString()
+        } else {
+          newValue.first().toString()
+        }
+      } else newValue
+      val isBackspace = capped.isEmpty() && value.isNotEmpty()
+      onValueChange(capped, isBackspace)
     },
     modifier = modifier
       .width(48.dp)
       .focusRequester(focusRequester)
       .testTag(testTag)
       .onKeyEvent { keyEvent ->
-        // Handle hardware backspace key when field is empty
-        if (keyEvent.type == KeyEventType.KeyUp &&
-          (keyEvent.key == Key.Backspace || keyEvent.key == Key.Delete) &&
-          value.isEmpty()
-        ) {
+        if ((keyEvent.key == Key.Backspace || keyEvent.key == Key.Delete) && value.isEmpty()) {
           onValueChange("", true)
           true
         } else {
