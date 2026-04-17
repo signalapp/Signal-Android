@@ -23,7 +23,7 @@ public class VoiceCallShare extends Activity {
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
 
-    if (getIntent().getData() != null && "content".equals(getIntent().getData().getScheme())) {
+    if (getIntent().getData() != null && "content".equals(getIntent().getData().getScheme()) && ContactsContract.AUTHORITY.equals(getIntent().getData().getAuthority())) {
       Cursor cursor = null;
       
       try {
