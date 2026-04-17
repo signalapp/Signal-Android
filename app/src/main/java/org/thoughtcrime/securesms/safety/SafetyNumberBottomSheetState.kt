@@ -3,13 +3,14 @@ package org.thoughtcrime.securesms.safety
 import org.thoughtcrime.securesms.database.IdentityTable
 
 /**
- * Screen state for SafetyNumberBottomSheetFragment and SafetyNumberReviewConnectionsFragment
+ * Screen state for the safety number bottom sheet.
  */
 data class SafetyNumberBottomSheetState(
   val untrustedRecipientCount: Int,
   val hasLargeNumberOfUntrustedRecipients: Boolean,
   val destinationToRecipientMap: Map<SafetyNumberBucket, List<SafetyNumberRecipient>> = emptyMap(),
-  val loadState: LoadState = LoadState.INIT
+  val loadState: LoadState = LoadState.INIT,
+  val sendAnywayFired: Boolean = false
 ) {
 
   fun isEmpty(): Boolean {

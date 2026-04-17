@@ -12,15 +12,23 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.compose.AndroidFragment
 import androidx.fragment.compose.FragmentState
 import androidx.fragment.compose.rememberFragmentState
 import org.signal.core.ui.compose.Fragments.Fragment
+
+/**
+ * Provides the nearest [FragmentManager] to composables that need to show Fragment-based dialogs.
+ * Defaults to null; populated by [ComposeBottomSheetDialogFragment] and similar host fragments.
+ */
+val LocalFragmentManager = compositionLocalOf<FragmentManager?> { null }
 
 object Fragments {
   /**

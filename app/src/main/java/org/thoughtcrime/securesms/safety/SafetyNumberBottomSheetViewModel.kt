@@ -1,98 +1,121 @@
 package org.thoughtcrime.securesms.safety
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Maybe
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.reactive.asFlow
+import kotlinx.coroutines.rx3.await
+import kotlinx.coroutines.rx3.awaitSingleOrNull
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeRepository
 import org.thoughtcrime.securesms.conversation.ui.error.TrustAndVerifyResult
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.rx.RxStore
 
+/** ViewModel for [SafetyNumberBottomSheetFragment]. Manages state and trust-and-verify logic. */
 class SafetyNumberBottomSheetViewModel(
   private val args: SafetyNumberBottomSheetArgs,
   private val repository: SafetyNumberBottomSheetRepository = SafetyNumberBottomSheetRepository(),
-  private val trustAndVerifyRepository: SafetyNumberChangeRepository
+  private val trustAndVerifyRepository: SafetyNumberChangeRepository = SafetyNumberChangeRepository()
 ) : ViewModel() {
 
   companion object {
     private const val MAX_RECIPIENTS_TO_DISPLAY = 5
   }
 
-  private val destinationStore = RxStore(args.destinations)
-  val destinationSnapshot: List<ContactSearchKey.RecipientSearchKey>
-    get() = destinationStore.state
+  private val destinations = MutableStateFlow(args.destinations)
 
-  private val store = RxStore(
+  /** Point-in-time snapshot of send destinations, read after trust-and-verify completes. */
+  val destinationSnapshot: List<ContactSearchKey.RecipientSearchKey>
+    get() = destinations.value
+
+  private val internalState: MutableStateFlow<SafetyNumberBottomSheetState> = MutableStateFlow(
     SafetyNumberBottomSheetState(
       untrustedRecipientCount = args.untrustedRecipients.size,
       hasLargeNumberOfUntrustedRecipients = args.untrustedRecipients.size > MAX_RECIPIENTS_TO_DISPLAY
     )
   )
+  val state: StateFlow<SafetyNumberBottomSheetState> = internalState.asStateFlow()
 
-  val state: Flowable<SafetyNumberBottomSheetState> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
+  private val internalEffects = MutableSharedFlow<SafetyNumberBottomSheetEffect>(extraBufferCapacity = 1)
+  val effects = internalEffects.asSharedFlow()
 
-  private val disposables = CompositeDisposable()
+  val sendAnywayFired: Boolean
+    get() = internalState.value.sendAnywayFired
 
   init {
-    val bucketFlowable: Flowable<Map<SafetyNumberBucket, List<SafetyNumberRecipient>>> = destinationStore.stateFlowable.switchMap { repository.getBuckets(args.untrustedRecipients, it) }
-    disposables += store.update(bucketFlowable) { map, state ->
-      state.copy(
-        destinationToRecipientMap = map,
-        untrustedRecipientCount = map.size,
-        loadState = if (state.loadState == SafetyNumberBottomSheetState.LoadState.INIT) SafetyNumberBottomSheetState.LoadState.READY else state.loadState
-      )
+    viewModelScope.launch {
+      destinations
+        .flatMapLatest { repository.getBuckets(args.untrustedRecipients, it).asFlow() }
+        .collect { map ->
+          internalState.update { state ->
+            state.copy(
+              destinationToRecipientMap = map,
+              untrustedRecipientCount = map.size,
+              loadState = if (state.loadState == SafetyNumberBottomSheetState.LoadState.INIT) SafetyNumberBottomSheetState.LoadState.READY else state.loadState
+            )
+          }
+        }
     }
   }
 
   fun setDone() {
-    store.update { it.copy(loadState = SafetyNumberBottomSheetState.LoadState.DONE) }
+    internalState.update { it.copy(loadState = SafetyNumberBottomSheetState.LoadState.DONE) }
   }
 
-  fun trustAndVerify(): Single<TrustAndVerifyResult> {
-    val recipients: List<SafetyNumberRecipient> = store.state.destinationToRecipientMap.values.flatten().distinct()
-    return if (args.messageId != null) {
-      trustAndVerifyRepository.trustOrVerifyChangedRecipientsAndResendRx(recipients, args.messageId)
-    } else {
-      trustAndVerifyRepository.trustOrVerifyChangedRecipientsRx(recipients).observeOn(AndroidSchedulers.mainThread())
+  fun onEvent(event: SafetyNumberBottomSheetEvent) {
+    when (event) {
+      SafetyNumberBottomSheetEvent.SendAnyway -> {
+        if (internalState.value.sendAnywayFired) return
+        internalState.update { it.copy(sendAnywayFired = true) }
+        viewModelScope.launch {
+          val result = trustAndVerify()
+          internalEffects.tryEmit(SafetyNumberBottomSheetEffect.TrustCompleted(result, destinationSnapshot))
+        }
+      }
+      SafetyNumberBottomSheetEvent.ReviewConnections -> setDone()
+      is SafetyNumberBottomSheetEvent.VerifySafetyNumber -> Unit
+      is SafetyNumberBottomSheetEvent.RemoveFromStory -> removeRecipientFromSelectedStories(event.recipientId)
+      is SafetyNumberBottomSheetEvent.RemoveDestination -> removeDestination(event.recipientId)
+      is SafetyNumberBottomSheetEvent.RemoveAll -> removeAll(event.bucket)
     }
   }
 
-  override fun onCleared() {
-    disposables.clear()
-    destinationStore.dispose()
-    store.dispose()
-  }
-
-  fun getIdentityRecord(recipientId: RecipientId): Maybe<IdentityRecord> {
-    return repository.getIdentityRecord(recipientId).observeOn(AndroidSchedulers.mainThread())
+  /** Fetches the current [IdentityRecord] for [recipientId], or null if none exists. */
+  suspend fun getIdentityRecord(recipientId: RecipientId): IdentityRecord? {
+    return repository.getIdentityRecord(recipientId).awaitSingleOrNull()
   }
 
   fun removeRecipientFromSelectedStories(recipientId: RecipientId) {
-    disposables += repository.removeFromStories(recipientId, destinationStore.state).subscribe()
+    viewModelScope.launch {
+      repository.removeFromStories(recipientId, destinations.value).await()
+    }
   }
 
   fun removeDestination(destination: RecipientId) {
-    destinationStore.update { list -> list.filterNot { it.recipientId == destination } }
+    destinations.update { list -> list.filterNot { it.recipientId == destination } }
   }
 
   fun removeAll(distributionListBucket: SafetyNumberBucket.DistributionListBucket) {
-    val toRemove = store.state.destinationToRecipientMap[distributionListBucket] ?: return
-    disposables += repository.removeAllFromStory(toRemove.map { it.recipient.id }, distributionListBucket.distributionListId).subscribe()
+    val toRemove = internalState.value.destinationToRecipientMap[distributionListBucket] ?: return
+    viewModelScope.launch {
+      repository.removeAllFromStory(toRemove.map { it.recipient.id }, distributionListBucket.distributionListId).await()
+    }
   }
 
-  class Factory(
-    private val args: SafetyNumberBottomSheetArgs,
-    private val trustAndVerifyRepository: SafetyNumberChangeRepository
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(SafetyNumberBottomSheetViewModel(args = args, trustAndVerifyRepository = trustAndVerifyRepository)) as T
+  private suspend fun trustAndVerify(): TrustAndVerifyResult {
+    val recipients = internalState.value.destinationToRecipientMap.values.flatten().distinct()
+    return if (args.messageId != null) {
+      trustAndVerifyRepository.trustOrVerifyChangedRecipientsAndResendRx(recipients, args.messageId).await()
+    } else {
+      trustAndVerifyRepository.trustOrVerifyChangedRecipientsRx(recipients).await()
     }
   }
 }

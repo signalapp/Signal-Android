@@ -46,8 +46,8 @@ public final class SafetyNumberChangeRepository {
 
   private final Context context;
 
-  public SafetyNumberChangeRepository(Context context) {
-    this.context = context.getApplicationContext();
+  public SafetyNumberChangeRepository() {
+    this.context = AppDependencies.getApplication();
   }
 
   @NonNull
