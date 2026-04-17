@@ -69,7 +69,6 @@ import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Renders information about a call (1:1, group, or call link) and provides actions available for
@@ -120,7 +119,6 @@ object CallInfoView {
       onContactDetails = callbacks::onContactDetails,
       onViewSafetyNumber = callbacks::onViewSafetyNumber,
       onGoToChat = callbacks::onGoToChat,
-      isInternalUser = RemoteConfig.internalUser,
       modifier = modifier
     )
   }
@@ -169,7 +167,6 @@ private fun CallInfo(
   onContactDetails: (CallParticipant) -> Unit = {},
   onViewSafetyNumber: (CallParticipant) -> Unit = {},
   onGoToChat: (CallParticipant) -> Unit = {},
-  isInternalUser: Boolean = false,
   modifier: Modifier = Modifier
 ) {
   var selectedParticipant by remember { mutableStateOf<CallParticipant?>(null) }
@@ -278,14 +275,10 @@ private fun CallInfo(
           isSelfAdmin = controlAndInfoState.isSelfAdmin() && !participantsState.inCallLobby,
           isCallLink = controlAndInfoState.callLink != null,
           onBlockClicked = onBlock,
-          onParticipantClicked = if (isInternalUser) {
-            { participant ->
-              if (!participant.recipient.isSelf) {
-                selectedParticipant = participant
-              }
+          onParticipantClicked = { participant ->
+            if (!participant.recipient.isSelf) {
+              selectedParticipant = participant
             }
-          } else {
-            null
           }
         )
       }

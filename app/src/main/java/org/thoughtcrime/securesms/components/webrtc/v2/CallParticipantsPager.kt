@@ -14,11 +14,17 @@ import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.movableContentOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInRoot
 import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
@@ -33,7 +39,7 @@ fun CallParticipantsPager(
   pagerState: PagerState,
   modifier: Modifier = Modifier,
   onTap: (() -> Unit)? = null,
-  onParticipantLongPress: ((CallParticipant) -> Unit)? = null
+  onParticipantLongPress: ((CallParticipant, Offset) -> Unit)? = null
 ) {
   if (callParticipantsPagerState.focusedParticipant == null) {
     return
@@ -57,12 +63,15 @@ fun CallParticipantsPager(
         itemKey = { it.callParticipantId }
       ) { participant, itemModifier ->
         val longPressModifier = if (!participant.recipient.isSelf && currentOnLongPress.value != null) {
-          itemModifier.pointerInput(participant.callParticipantId) {
-            detectTapGestures(
-              onTap = { currentOnTap.value?.invoke() },
-              onLongPress = { currentOnLongPress.value?.invoke(participant) }
-            )
-          }
+          var itemWindowOrigin by remember(participant.callParticipantId) { mutableStateOf(Offset.Zero) }
+          itemModifier
+            .onGloballyPositioned { coords -> itemWindowOrigin = coords.positionInRoot() }
+            .pointerInput(participant.callParticipantId) {
+              detectTapGestures(
+                onTap = { currentOnTap.value?.invoke() },
+                onLongPress = { local -> currentOnLongPress.value?.invoke(participant, itemWindowOrigin + local) }
+              )
+            }
         } else {
           itemModifier
         }

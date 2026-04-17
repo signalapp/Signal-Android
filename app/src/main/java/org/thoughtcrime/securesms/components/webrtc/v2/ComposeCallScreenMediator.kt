@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDial
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
 import kotlin.time.Duration.Companion.seconds
@@ -221,7 +220,6 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           onSwipeToSpeakerHintDismissed = { callScreenViewModel.callScreenState.update { it.copy(displaySwipeToSpeakerHint = false) } },
           onRemoteMuteToastDismissed = { callScreenViewModel.callScreenState.update { it.copy(remoteMuteToastMessage = null) } },
           callParticipantUpdatePopupController = callParticipantUpdatePopupController,
-          isInternalUser = RemoteConfig.internalUser,
           isSelfAdmin = controlAndInfoState.isSelfAdmin(),
           isCallLink = controlAndInfoState.callLink != null,
           onMuteAudio = callInfoCallbacks::onMuteAudio,
