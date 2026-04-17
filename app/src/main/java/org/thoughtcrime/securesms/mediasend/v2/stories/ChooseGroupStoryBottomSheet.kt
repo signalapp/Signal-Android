@@ -11,7 +11,12 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
 import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.getParcelableArrayListCompat
@@ -19,9 +24,13 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
-import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSourceRepository
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchRepository
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchView
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchViewModel
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.search.SearchRepository
 import org.thoughtcrime.securesms.sharing.ShareContact
 import org.thoughtcrime.securesms.sharing.ShareSelectionAdapter
 import org.thoughtcrime.securesms.sharing.ShareSelectionMappingModel
@@ -35,10 +44,22 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
   }
 
   private lateinit var divider: View
-  private lateinit var mediator: ContactSearchMediator
+  private lateinit var contactSearch: ContactSearchView
   private lateinit var innerContainer: View
 
   private var animatorSet: AnimatorSet? = null
+
+  private val contactSearchViewModel: ContactSearchViewModel by viewModels {
+    ContactSearchViewModel.Factory(
+      selectionLimits = RemoteConfig.shareSelectionLimit,
+      isMultiSelect = true,
+      repository = ContactSearchRepository(),
+      performSafetyNumberChecks = false,
+      arbitraryRepository = null,
+      searchRepository = SearchRepository(requireContext().getString(R.string.note_to_self)),
+      contactSearchPagedDataSourceRepository = ContactSearchPagedDataSourceRepository(requireContext())
+    )
+  }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     return inflater.cloneInContext(ContextThemeWrapper(inflater.context, themeResId)).inflate(R.layout.stories_choose_group_bottom_sheet, container, false)
@@ -62,11 +83,10 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
       onDone()
     }
 
-    val contactRecycler: RecyclerView = view.findViewById(R.id.contact_recycler)
-    mediator = ContactSearchMediator(
-      fragment = this,
-      selectionLimits = RemoteConfig.shareSelectionLimit,
-      isMultiSelect = true,
+    contactSearch = view.findViewById(R.id.contact_recycler)
+    contactSearch.bind(
+      viewModel = contactSearchViewModel,
+      fragmentManager = childFragmentManager,
       displayOptions = ContactSearchAdapter.DisplayOptions(
         displayCheckBox = true,
         displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER
@@ -84,33 +104,35 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
           )
         }
       },
-      performSafetyNumberChecks = false
+      contentBottomPaddingDp = 44f
     )
 
-    contactRecycler.adapter = mediator.adapter
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        contactSearchViewModel.selectionState.collect { state ->
+          adapter.submitList(
+            state.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java)
+              .map { it.recipientId }
+              .mapIndexed { index, recipientId ->
+                ShareSelectionMappingModel(
+                  ShareContact(recipientId),
+                  index == 0
+                )
+              }
+          )
 
-    mediator.getSelectionState().observe(viewLifecycleOwner) { state ->
-      adapter.submitList(
-        state.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java)
-          .map { it.recipientId }
-          .mapIndexed { index, recipientId ->
-            ShareSelectionMappingModel(
-              ShareContact(recipientId),
-              index == 0
-            )
+          if (state.isEmpty()) {
+            animateOutBottomBar()
+          } else {
+            animateInBottomBar()
           }
-      )
-
-      if (state.isEmpty()) {
-        animateOutBottomBar()
-      } else {
-        animateInBottomBar()
+        }
       }
     }
 
     val searchField: EditText = view.findViewById(R.id.search_field)
     searchField.doAfterTextChanged {
-      mediator.onFilterChanged(it?.toString())
+      contactSearchViewModel.setQuery(it?.toString())
     }
   }
 
@@ -150,7 +172,7 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
         putParcelableArrayList(
           RESULT_SET,
           ArrayList(
-            mediator.getSelectedContacts()
+            contactSearchViewModel.getSelectedContacts()
               .filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java)
               .map { it.recipientId }
           )

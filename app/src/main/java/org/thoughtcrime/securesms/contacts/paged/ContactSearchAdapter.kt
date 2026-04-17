@@ -825,6 +825,37 @@ open class ContactSearchAdapter(
   class LongClickCallbacksAdapter : LongClickCallbacks {
     override fun onKnownRecipientLongClick(view: View, data: ContactSearchData.KnownRecipient): Boolean = false
   }
+
+  /**
+   * Creates a [PagingMappingAdapter] backed by [ContactSearchAdapter] (or a subclass).
+   * Pass a custom implementation to inject alternative adapters for testing or specialised UIs.
+   */
+  fun interface AdapterFactory {
+    fun create(
+      context: Context,
+      fixedContacts: Set<ContactSearchKey>,
+      displayOptions: DisplayOptions,
+      callbacks: ClickCallbacks,
+      longClickCallbacks: LongClickCallbacks,
+      storyContextMenuCallbacks: StoryContextMenuCallbacks,
+      callButtonClickCallbacks: CallButtonClickCallbacks
+    ): PagingMappingAdapter<ContactSearchKey>
+  }
+
+  /** Standard implementation that creates a plain [ContactSearchAdapter]. */
+  object DefaultAdapterFactory : AdapterFactory {
+    override fun create(
+      context: Context,
+      fixedContacts: Set<ContactSearchKey>,
+      displayOptions: DisplayOptions,
+      callbacks: ClickCallbacks,
+      longClickCallbacks: LongClickCallbacks,
+      storyContextMenuCallbacks: StoryContextMenuCallbacks,
+      callButtonClickCallbacks: CallButtonClickCallbacks
+    ): PagingMappingAdapter<ContactSearchKey> {
+      return ContactSearchAdapter(context, fixedContacts, displayOptions, callbacks, longClickCallbacks, storyContextMenuCallbacks, callButtonClickCallbacks)
+    }
+  }
 }
 
 private data class RecipientDisplayName(val recipient: Recipient, val displayName: String)

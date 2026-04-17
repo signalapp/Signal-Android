@@ -107,7 +107,7 @@ class ContactSearchConfiguration private constructor(
 
     /**
      * A set of arbitrary rows, in the order given in the builder. Usage requires
-     * an implementation of [ArbitraryRepository] to be passed into [ContactSearchMediator]
+     * an implementation of [ArbitraryRepository] to be passed into [ContactSearchViewModel.Factory]
      *
      * Key: [ContactSearchKey.Arbitrary]
      * Data: [ContactSearchData.Arbitrary]

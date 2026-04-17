@@ -17,14 +17,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chipRecycler">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <org.thoughtcrime.securesms.contacts.paged.ContactSearchView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:scrollbarThumbVertical="@drawable/contact_selection_scrollbar_thumb"
-            android:scrollbars="vertical"
-            tools:listitem="@layout/contact_search_item" />
+            android:layout_height="match_parent" />
 
         <TextView
             android:id="@android:id/empty"

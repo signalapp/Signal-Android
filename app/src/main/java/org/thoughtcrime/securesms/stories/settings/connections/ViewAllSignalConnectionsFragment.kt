@@ -4,40 +4,52 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.contacts.LetterHeaderDecoration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
-import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSourceRepository
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchRepository
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchViewModel
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.databinding.ViewAllSignalConnectionsFragmentBinding
 import org.thoughtcrime.securesms.groups.SelectionLimits
+import org.thoughtcrime.securesms.search.SearchRepository
 
 class ViewAllSignalConnectionsFragment : Fragment(R.layout.view_all_signal_connections_fragment) {
 
   private val binding by ViewBinderDelegate(ViewAllSignalConnectionsFragmentBinding::bind)
 
+  private val contactSearchViewModel: ContactSearchViewModel by viewModels {
+    ContactSearchViewModel.Factory(
+      selectionLimits = SelectionLimits(0, 0),
+      isMultiSelect = false,
+      repository = ContactSearchRepository(),
+      performSafetyNumberChecks = false,
+      arbitraryRepository = null,
+      searchRepository = SearchRepository(requireContext().getString(R.string.note_to_self)),
+      contactSearchPagedDataSourceRepository = ContactSearchPagedDataSourceRepository(requireContext())
+    )
+  }
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    binding.recycler.addItemDecoration(LetterHeaderDecoration(requireContext()) { false })
     binding.toolbar.setNavigationOnClickListener {
       requireActivity().onBackPressedDispatcher.onBackPressed()
     }
 
-    val mediator = ContactSearchMediator(
-      fragment = this,
-      selectionLimits = SelectionLimits(0, 0),
-      isMultiSelect = false,
+    binding.recycler.bind(
+      viewModel = contactSearchViewModel,
+      fragmentManager = childFragmentManager,
       displayOptions = ContactSearchAdapter.DisplayOptions(
         displayCheckBox = false,
         displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER
       ),
       mapStateToConfiguration = { getConfiguration() },
-      performSafetyNumberChecks = false
+      itemDecorations = listOf(LetterHeaderDecoration(requireContext()) { false })
     )
-
-    binding.recycler.adapter = mediator.adapter
   }
 
   private fun getConfiguration(): ContactSearchConfiguration {
