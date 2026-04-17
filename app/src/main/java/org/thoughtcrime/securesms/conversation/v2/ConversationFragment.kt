@@ -3746,7 +3746,13 @@ class ConversationFragment :
         "username_edit" -> startActivity(EditProfileActivity.getIntentForUsernameEdit(requireContext()))
         "calls_tab" -> startActivity(MainActivity.clearTopAndOpenTab(requireContext(), MainNavigationListLocation.CALLS))
         "chat_folder" -> startActivity(AppSettingsActivity.chatFolders(requireContext()))
-        "remote_backups" -> startActivity(AppSettingsActivity.remoteBackups(requireContext()))
+        "remote_backups" -> {
+          if (SignalStore.backup.areBackupsEnabled) {
+            startActivity(AppSettingsActivity.remoteBackups(requireContext()))
+          } else {
+            startActivity(AppSettingsActivity.backupsSettings(requireContext(), launchCheckoutFlow = true))
+          }
+        }
       }
     }
 

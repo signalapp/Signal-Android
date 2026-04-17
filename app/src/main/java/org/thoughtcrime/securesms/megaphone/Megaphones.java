@@ -476,7 +476,7 @@ public final class Megaphones {
         .setTitle(R.string.TurnOnSignalBackups__title)
         .setBody(R.string.TurnOnSignalBackups__body)
         .setActionButton(R.string.TurnOnSignalBackups__turn_on, (megaphone, controller) -> {
-          Intent intent = AppSettingsActivity.remoteBackups(controller.getMegaphoneActivity());
+          Intent intent = AppSettingsActivity.backupsSettings(controller.getMegaphoneActivity(), true);
 
           controller.onMegaphoneNavigationRequested(intent);
           controller.onMegaphoneSnooze(Event.BACKUPS_GENERIC_UPSELL);
@@ -692,7 +692,7 @@ public final class Megaphones {
         .setTitle(R.string.BackupMessagesUpsell__title)
         .setBody(R.string.BackupMessagesUpsell__body)
         .setActionButton(R.string.BackupMessagesUpsell__turn_on, (megaphone, controller) -> {
-          Intent intent = AppSettingsActivity.remoteBackups(controller.getMegaphoneActivity());
+          Intent intent = AppSettingsActivity.backupsSettings(controller.getMegaphoneActivity(), true);
           controller.onMegaphoneNavigationRequested(intent);
           controller.onMegaphoneSnooze(Event.BACKUP_MESSAGE_COUNT_UPSELL);
         })

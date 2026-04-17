@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import kotlinx.coroutines.delay
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
@@ -62,6 +63,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.math.BigDecimal
 import java.util.Currency
 import java.util.Locale
+import kotlin.getValue
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.minutes
@@ -76,10 +78,15 @@ class BackupsSettingsFragment : ComposeFragment() {
   private lateinit var checkoutLauncher: ActivityResultLauncher<MessageBackupTier?>
 
   private val viewModel: BackupsSettingsViewModel by viewModels()
+  private val args: BackupsSettingsFragmentArgs by navArgs()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     checkoutLauncher = createBackupsCheckoutLauncher {
       findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_remoteBackupsSettingsFragment)
+    }
+
+    if (savedInstanceState == null && args.launchCheckoutFlow) {
+      checkoutLauncher.launch(null)
     }
   }
 

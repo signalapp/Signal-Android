@@ -83,7 +83,7 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
         )
 
         AppSettingsRoute.ChatsRoute.Chats -> AppSettingsFragmentDirections.actionDirectToChatsSettingsFragment()
-        AppSettingsRoute.BackupsRoute.Backups -> AppSettingsFragmentDirections.actionDirectToBackupsSettingsFragment()
+        is AppSettingsRoute.BackupsRoute.Backups -> AppSettingsFragmentDirections.actionDirectToBackupsSettingsFragment().setLaunchCheckoutFlow(appSettingsRoute.launchCheckoutFlow)
         AppSettingsRoute.Invite -> AppSettingsFragmentDirections.actionDirectToInviteFragment()
         AppSettingsRoute.DataAndStorageRoute.DataAndStorage -> AppSettingsFragmentDirections.actionDirectToStoragePreferenceFragment()
         else -> error("Unsupported start location: ${appSettingsRoute?.javaClass?.name}")
@@ -233,7 +233,8 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
     }
 
     @JvmStatic
-    fun backupsSettings(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.BackupsRoute.Backups)
+    @JvmOverloads
+    fun backupsSettings(context: Context, launchCheckoutFlow: Boolean = false): Intent = getIntentForStartLocation(context, AppSettingsRoute.BackupsRoute.Backups(launchCheckoutFlow = launchCheckoutFlow))
 
     @JvmStatic
     fun invite(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.Invite)

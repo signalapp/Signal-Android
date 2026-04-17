@@ -417,7 +417,7 @@ private fun AppSettingsContent(
               icon = SignalIcons.Backup.imageVector,
               text = stringResource(R.string.preferences_chats__backups),
               onClick = {
-                callbacks.navigate(AppSettingsRoute.BackupsRoute.Backups)
+                callbacks.navigate(AppSettingsRoute.BackupsRoute.Backups())
               },
               onLongClick = {
                 callbacks.copyRemoteBackupsSubscriberIdToClipboard()
