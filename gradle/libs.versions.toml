@@ -189,7 +189,6 @@ rxdogtag = "com.uber.rxdogtag2:rxdogtag:2.0.1"
 conscrypt-android = "org.conscrypt:conscrypt-android:2.5.3"
 mobilecoin = "com.mobilecoin:android-sdk:6.1.2"
 leolin-shortcutbadger = "me.leolin:ShortcutBadger:1.1.22"
-emilsjolander-stickylistheaders = "se.emilsjolander:stickylistheaders:2.7.0"
 glide-glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-ksp = { module = "com.github.bumptech.glide:ksp", version.ref = "glide" }
 roundedimageview = "com.makeramen:roundedimageview:2.1.0"

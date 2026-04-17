@@ -678,7 +678,6 @@ dependencies {
   implementation(libs.mobilecoin)
   implementation(libs.signal.ringrtc)
   implementation(libs.leolin.shortcutbadger)
-  implementation(libs.emilsjolander.stickylistheaders)
   implementation(libs.glide.glide)
   implementation(libs.roundedimageview)
   implementation(libs.materialish.progress)
