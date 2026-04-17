@@ -152,7 +152,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     val isLtr = ViewUtil.isLtr(this)
 
     val statusBar = windowInsets.top
-    val navigationBar = navigationBarInsetOverride ?: if (windowInsets.bottom == 0 && Build.VERSION.SDK_INT <= 29) {
+    val navigationBar = navigationBarInsetOverride ?: if (windowInsets.bottom == 0 && Build.VERSION.SDK_INT <= 29 && !ViewUtil.isGestureNavigation(resources, insets)) {
       ViewUtil.getNavigationBarHeight(resources)
     } else {
       windowInsets.bottom

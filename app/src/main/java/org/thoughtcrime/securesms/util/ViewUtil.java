@@ -406,6 +406,25 @@ public final class ViewUtil {
     return result;
   }
 
+  /**
+   * Heuristic for whether the device is currently using gesture navigation, used to decide
+   * when a zero bottom inset on API <= 29 should be trusted instead of replaced with the
+   * (3-button) navigation_bar_height fallback. Returns true if either signal reports gestures.
+   */
+  public static boolean isGestureNavigation(@NonNull Resources resources, @Nullable WindowInsetsCompat rootInsets) {
+    if (rootInsets != null && rootInsets.getInsets(WindowInsetsCompat.Type.systemGestures()).bottom > 0) {
+      return true;
+    }
+    int resourceId = resources.getIdentifier("config_navBarInteractionMode", "integer", "android");
+    if (resourceId > 0) {
+      try {
+        return resources.getInteger(resourceId) == 2;
+      } catch (Resources.NotFoundException ignored) {
+      }
+    }
+    return false;
+  }
+
   public static void hideKeyboard(@NonNull Context context, @NonNull View view) {
     InputMethodManager inputManager = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
     inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
