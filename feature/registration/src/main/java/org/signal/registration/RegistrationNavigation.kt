@@ -525,7 +525,6 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       factory = RemoteBackupRestoreViewModel.Factory(
         aep = key.aep,
         repository = registrationRepository,
-        parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
     )

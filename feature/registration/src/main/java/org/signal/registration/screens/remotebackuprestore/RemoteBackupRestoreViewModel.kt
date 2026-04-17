@@ -22,16 +22,16 @@ import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
-import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.screens.EventDrivenViewModel
 import org.signal.registration.screens.util.navigateBack
+import kotlin.coroutines.CoroutineContext
 
 class RemoteBackupRestoreViewModel(
   private val aep: AccountEntropyPool,
   private val repository: RegistrationRepository,
-  private val parentState: StateFlow<RegistrationFlowState>,
-  private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
+  private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
+  private val ioDispatcher: CoroutineContext = Dispatchers.IO
 ) : EventDrivenViewModel<RemoteBackupRestoreScreenEvents>(TAG) {
 
   companion object {
@@ -162,7 +162,7 @@ class RemoteBackupRestoreViewModel(
     viewModelScope.launch {
       _state.value = _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Loading, loadAttempts = _state.value.loadAttempts + 1)
 
-      val result = withContext(Dispatchers.IO) {
+      val result = withContext(ioDispatcher) {
         repository.getRemoteBackupInfo(_state.value.aep)
       }
 
@@ -172,7 +172,7 @@ class RemoteBackupRestoreViewModel(
 
 //          parentEventEmitter(RegistrationFlowEvent)
 
-          val lastModifiedResult = withContext(Dispatchers.IO) {
+          val lastModifiedResult = withContext(ioDispatcher) {
             repository.getBackupFileLastModified(_state.value.aep, info)
           }
 
@@ -209,11 +209,10 @@ class RemoteBackupRestoreViewModel(
   class Factory(
     private val aep: AccountEntropyPool,
     private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
     private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return RemoteBackupRestoreViewModel(aep, repository, parentState, parentEventEmitter) as T
+      return RemoteBackupRestoreViewModel(aep, repository, parentEventEmitter) as T
     }
   }
 }
