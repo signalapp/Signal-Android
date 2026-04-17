@@ -43,11 +43,11 @@
     <string name="RegistrationActivity_phone_number_description">លេខទូរសព្ទ</string>
     <string name="RegistrationActivity_next">បន្ទាប់</string>
     <!-- Dialog title to confirm phone number -->
-    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_is_the_phone_number">តើលេខទូរសព្ទខាងក្រោមត្រឹមត្រូវឬទេ?</string>
     <!-- Dialog body to confirm phone number -->
-    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code">លេខកូដផ្ទៀងផ្ទាត់នឹងត្រូវបានផ្ញើទៅកាន់លេខនេះ។ អាចនឹងមានការគិតថ្លៃពីក្រុមហ៊ុនសេវាទូរសព្ទ។</string>
     <!-- Dialog button to edit the number entered -->
-    <string name="RegistrationActivity_edit_number">Edit number</string>
+    <string name="RegistrationActivity_edit_number">កែប្រែលេខ</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->

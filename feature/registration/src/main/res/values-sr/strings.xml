@@ -43,11 +43,11 @@
     <string name="RegistrationActivity_phone_number_description">Број телефона</string>
     <string name="RegistrationActivity_next">Следеће</string>
     <!-- Dialog title to confirm phone number -->
-    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_is_the_phone_number">Да ли је број телефона у наставку тачан?</string>
     <!-- Dialog body to confirm phone number -->
-    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code">На овај број ће бити послата шифра за верификацију. Могу се применити тарифе оператера.</string>
     <!-- Dialog button to edit the number entered -->
-    <string name="RegistrationActivity_edit_number">Edit number</string>
+    <string name="RegistrationActivity_edit_number">Измени број</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -83,7 +83,7 @@
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">Дошло је до неочекиване грешке. Пробајте поново.</string>
     <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__unable_to_send_sms">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="VerificationCodeScreen__unable_to_send_sms">Нисмо у могућности да пошаљемо SMS на ваш број. Пробајте поново за неколико сати.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Слање кода путем означене методе није успело. Пробајте неку другу опцију.</string>
     <!-- Snackbar shown for registration errors -->

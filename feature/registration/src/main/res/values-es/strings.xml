@@ -43,11 +43,11 @@
     <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
     <string name="RegistrationActivity_next">Siguiente</string>
     <!-- Dialog title to confirm phone number -->
-    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_is_the_phone_number">¿Es correcto el siguiente número?</string>
     <!-- Dialog body to confirm phone number -->
-    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code">Se enviará una clave de verificación a ese número. Es posible que tu operador aplique algún cargo.</string>
     <!-- Dialog button to edit the number entered -->
-    <string name="RegistrationActivity_edit_number">Edit number</string>
+    <string name="RegistrationActivity_edit_number">Editar número</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -83,7 +83,7 @@
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">Se ha producido un error inesperado. Inténtalo de nuevo.</string>
     <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__unable_to_send_sms">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="VerificationCodeScreen__unable_to_send_sms">No hemos podido enviarte un SMS a tu número. Vuelve a intentarlo dentro de unas horas.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">No se ha podido enviar la clave a través del método seleccionado. Prueba con otra opción.</string>
     <!-- Snackbar shown for registration errors -->

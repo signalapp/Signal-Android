@@ -736,9 +736,9 @@
     <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
     <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
     <plurals name="ConversationFragment_group_member_count">
-        <item quantity="one">%1$d Member</item>
-        <item quantity="few">%1$d Members</item>
-        <item quantity="other">%1$d Members</item>
+        <item quantity="one">%1$d membru</item>
+        <item quantity="few">%1$d membri</item>
+        <item quantity="other">%1$d de membri</item>
     </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">Numele de profil</string>
@@ -766,13 +766,13 @@
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Sfaturi de siguranță</string>
     <!-- Button text to view more safety tips -->
-    <string name="SafetyTips_view_more">View more</string>
+    <string name="SafetyTips_view_more">Vezi mai multe</string>
     <!-- Content description for previous tip button -->
     <string name="SafetyTips_previous_tip">Sfat anterior</string>
     <!-- Content description for next tip button -->
     <string name="SafetyTips_next_tip">Următorul sfat</string>
 
-    <!-- Summary tip 0 title: Don't respond to chats from Signal -->
+    <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
     <string name="SafetyTips_summary_tip0_title">Don\'t respond to chats from Signal</string>
     <!-- Summary tip 0 message -->
     <string name="SafetyTips_summary_tip0_message">Signal will never message you for your registration code, PIN, or recovery key. Never respond to a chat pretending to be Signal.</string>
@@ -794,7 +794,7 @@
     <!-- Detail tip 1 message -->
     <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\'re unsure who a new request is from it\'s safer to ignore it.</string>
     <!-- Detail tip 2 title -->
-    <string name="SafetyTips_detail_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_detail_tip2_title">Mesaje vagi sau irelevante</string>
     <!-- Detail tip 2 message -->
     <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
     <!-- Detail tip 3 title -->
@@ -802,24 +802,24 @@
     <!-- Detail tip 3 message -->
     <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\'t know that have links to websites. Never visit links from people you don\'t trust.</string>
     <!-- Detail tip 4 title -->
-    <string name="SafetyTips_detail_tip4_title">Crypto or money scams</string>
+    <string name="SafetyTips_detail_tip4_title">Escrocherii cu cripto sau bani</string>
     <!-- Detail tip 4 message -->
     <string name="SafetyTips_detail_tip4_message">If someone you don\'t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\'s likely spam.</string>
     <!-- Detail tip 5 title -->
     <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
     <!-- Detail tip 5 message -->
-    <string name="SafetyTips_detail_tip5_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_detail_tip5_message">Ai grijă la companiile sau agențiile guvernamentale care te contactează. Mesajele care implică agențiile fiscale, curierii și multe altele pot fi spam.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s de pe Signal sunt alese de titularul contului lor.</string>
-    <!-- Bottom sheet text explaining that Signal can't verify names and photos -->
+    <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
     <string name="ProfileNameBottomSheet__signal_cant_verify">Signal can\'t verify names and photos</string>
     <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
     <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal will never contact you for your registration code, PIN, or recovery key</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Ai grijă la conturile care uzurpă identitatea altora</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">Don\'t share personal information with people you don\'t know</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">Nu partaja informații personale cu persoane pe care nu le cunoști</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
     <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s sunt alese de membrii grupului.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
@@ -2408,7 +2408,7 @@
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">Accepți cererea?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren\'t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">Examinează cu atenție solicitările. Numele de profil sunt alese de proprietarul contului și nu sunt verificate.</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
     <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->
@@ -2963,7 +2963,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Ai făcut prea multe încercări pentru înregistrarea acestui număr. Încearcă din nou în %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Nu s-a putut realiza conexiunea la serviciu. Te rugăm verifică conexiunea la rețea și încearcă din nou.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
-    <string name="RegistrationActivity_sms_provider_error">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">Nu putem să trimitem un SMS la numărul tău. Încearcă din nou în câteva ore.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Nu ți-am putut trimite un cod de verificare prin SMS. Încearcă să primești codul prin apel vocal.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->

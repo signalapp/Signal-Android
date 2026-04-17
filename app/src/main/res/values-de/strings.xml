@@ -457,7 +457,7 @@
     <string name="ConversationItem_s_deleted_this_message">%1$s hat diese Nachricht gelöscht</string>
     <string name="ConversationItem_you_deleted_this_message">Du hast diese Nachricht gelöscht</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
-    <string name="ConversationItem_admin_s_deleted_this_message">Administrator %1$s hat diese Nachricht gelöscht</string>
+    <string name="ConversationItem_admin_s_deleted_this_message">Admin %1$s hat diese Nachricht gelöscht</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Nachricht kann nicht heruntergeladen werden. %1$s muss sie erneut verschicken.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -722,8 +722,8 @@
     <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
     <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
     <plurals name="ConversationFragment_group_member_count">
-        <item quantity="one">%1$d Member</item>
-        <item quantity="other">%1$d Members</item>
+        <item quantity="one">%1$d Mitglied</item>
+        <item quantity="other">%1$d Mitglieder</item>
     </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">Profilnamen</string>
@@ -751,7 +751,7 @@
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Sicherheitstipps</string>
     <!-- Button text to view more safety tips -->
-    <string name="SafetyTips_view_more">View more</string>
+    <string name="SafetyTips_view_more">Mehr anzeigen</string>
     <!-- Content description for previous tip button -->
     <string name="SafetyTips_previous_tip">Vorheriger Tipp</string>
     <!-- Content description for next tip button -->
@@ -779,7 +779,7 @@
     <!-- Detail tip 1 message -->
     <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\'re unsure who a new request is from it\'s safer to ignore it.</string>
     <!-- Detail tip 2 title -->
-    <string name="SafetyTips_detail_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_detail_tip2_title">Vage oder irrelevante Nachrichten</string>
     <!-- Detail tip 2 message -->
     <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
     <!-- Detail tip 3 title -->
@@ -787,13 +787,13 @@
     <!-- Detail tip 3 message -->
     <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\'t know that have links to websites. Never visit links from people you don\'t trust.</string>
     <!-- Detail tip 4 title -->
-    <string name="SafetyTips_detail_tip4_title">Crypto or money scams</string>
+    <string name="SafetyTips_detail_tip4_title">Krypto- oder Geldbetrug</string>
     <!-- Detail tip 4 message -->
     <string name="SafetyTips_detail_tip4_message">If someone you don\'t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\'s likely spam.</string>
     <!-- Detail tip 5 title -->
     <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
     <!-- Detail tip 5 message -->
-    <string name="SafetyTips_detail_tip5_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_detail_tip5_message">Sei vorsichtig, wenn Unternehmen oder Regierungsbehörden dich kontaktieren. Nachrichten, bei denen es um Steuerbehörden, Kuriere usw. geht, können Spam sein.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s auf Signal sind frei wählbar.</string>
@@ -804,7 +804,7 @@
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Sei misstrauisch bei Konten, bei denen sich jemand als eine bestimmte Person ausgibt</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">Don\'t share personal information with people you don\'t know</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">Gib keine persönlichen Informationen an Leute weiter, die du nicht kennst</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
     <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s werden von Gruppenmitgliedern gewählt.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
@@ -1684,7 +1684,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">Gruppen-Link</string>
     <string name="ShareableGroupLinkDialogFragment__share">Teilen</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Link zurücksetzen</string>
-    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Administrator-Genehmigung benötigt</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Admin-Genehmigung benötigt</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Ein Admin muss Beitrittsanfragen von neuen Mitgliedern über den Gruppen-Link bestätigen.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Möchtest du den Gruppen-Link wirklich zurücksetzen? Über den derzeitigen Link wird der Gruppe dann niemand mehr beitreten können.</string>
 
@@ -2084,7 +2084,7 @@
     <!-- Shown when another group member changes the member label permission. -->
     <string name="MessageRecord_s_changed_who_can_add_member_labels_to_s">%1$s hat die Berechtigung zum Hinzufügen von Mitgliedslabels zu »%2$s« geändert.</string>
     <!-- Shown when the member label permission is changed by an unknown admin. -->
-    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">Ein Administrator hat die Berechtigung zum Hinzufügen von Mitgliedslabels zu »%1$s« geändert.</string>
+    <string name="MessageRecord_unknown_admin_changed_who_can_add_member_labels_to_s">Ein Admin hat die Berechtigung zum Hinzufügen von Mitgliedslabels zu »%1$s« geändert.</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">Du hast die Gruppen-Einstellungen geändert, um allen Mitgliedern das Senden von Nachrichten zu erlauben.</string>
@@ -2279,7 +2279,7 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Aktualisierungen und Neuigkeiten von %1$s erhalten? Du wirst keine Aktualisierungen erhalten, es sei denn, du erteilst eine Freigabe.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Chat mit dieser Gruppe fortsetzen und deinen Namen und dein Foto mit deren Mitgliedern teilen?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Diese Gruppe alten Typs kann nicht mehr verwendet werden. Erstelle eine neue Gruppe, um neue Funktionen wie @-Erwähnungen und Administrator zu aktivieren.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Diese Gruppe alten Typs kann nicht mehr verwendet werden. Erstelle eine neue Gruppe, um neue Funktionen wie @-Erwähnungen und Admin-Rechte zu aktivieren.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Diese Gruppe alten Typs kann nicht mehr verwendet werden. Die maximale Gruppengröße von %1$d Mitgliedern ist überschritten.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Chat mit %1$s fortsetzen und deinen Namen und dein Foto mit diesem Kontakt teilen?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit ihren Mitgliedern teilen? Diese wissen nicht, dass du ihre Nachrichten gesehen hast, bis du die Anfrage annimmst.</string>
@@ -2337,7 +2337,7 @@
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">Anfrage annehmen?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren\'t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">Prüfe Anfragen sorgfältig. Profilnamen sind frei wählbar und werden nicht verifiziert.</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
     <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->
@@ -2869,7 +2869,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Du hast zu oft versucht, diese Nummer zu registrieren. Bitte versuche es erneut in %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Keine Verbindung zum Dienst möglich. Bitte überprüfe deine Netzverbindung und versuche es erneut.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
-    <string name="RegistrationActivity_sms_provider_error">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">Wir können keine SMS an deine Nummer senden. Bitte versuche es in einigen Stunden erneut.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Wir konnten dir keinen Verifizierungscode per SMS schicken. Versuche stattdessen, den Code per Sprachanruf zu erhalten.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3133,7 +3133,7 @@
     <!-- Thread preview when you deleted a message -->
     <string name="ThreadRecord_you_deleted_this_message">Du hast diese Nachricht gelöscht</string>
     <!-- Thread preview when an admin has deleted a message -->
-    <string name="ThreadRecord_admin_deleted_this_message">Administrator %1$s hat diese Nachricht gelöscht</string>
+    <string name="ThreadRecord_admin_deleted_this_message">Admin %1$s hat diese Nachricht gelöscht</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Du hast {0} eine Anfrage zur Aktivierung von Zahlungen geschickt.</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -5432,7 +5432,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Je nachdem, in wie vielen Gruppen du bist, kann es einige Minuten dauern</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Löschen von Nutzerdaten und Zurücksetzen der App</string>
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Löschen von Daten und Zurücksetzen der App</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__account_not_deleted">Konto nicht gelöscht</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
@@ -7996,7 +7996,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Anrufnamen bearbeiten</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Administrator-Genehmigung benötigt</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Admin-Genehmigung benötigt</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Link über Signal teilen</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -8043,7 +8043,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Anrufnamen hinzufügen</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__require_admin_approval">Administrator-Genehmigung benötigt</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">Admin-Genehmigung benötigt</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">Link teilen</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->

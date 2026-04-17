@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
   <!-- Dialog title shown when the user tries to leave the image editor with unsaved edits. -->
-  <string name="MediaSendDialogs__discard_changes">Discard changes?</string>
+  <string name="MediaSendDialogs__discard_changes">Скінуць змяненні?</string>
   <!-- Dialog body explaining that leaving the image editor will discard any edits made to the current photo. -->
-  <string name="MediaSendDialogs__youll_lose_any_changes">You\'ll lose any changes you\'ve made to this photo.</string>
+  <string name="MediaSendDialogs__youll_lose_any_changes">Вы страціце ўсе змяненні, што вы зрабілі ў гэтай фатаграфіі.</string>
   <!-- Confirmation button that discards the user\'s image edits. -->
-  <string name="MediaSendDialogs__discard">Discard</string>
+  <string name="MediaSendDialogs__discard">Скінуць</string>
 </resources>

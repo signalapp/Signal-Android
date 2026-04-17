@@ -43,11 +43,11 @@
     <string name="RegistrationActivity_phone_number_description">رقم الهاتف</string>
     <string name="RegistrationActivity_next">التالي</string>
     <!-- Dialog title to confirm phone number -->
-    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_is_the_phone_number">هل رقم الهاتف أدناه صحيح؟</string>
     <!-- Dialog body to confirm phone number -->
-    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code">سيُرسَل كود التحقُّق إلى هذا الرقم. قد يتم تطبيق رسوم من قِبَل شركة الاتصالات المُستخدَمة.</string>
     <!-- Dialog button to edit the number entered -->
-    <string name="RegistrationActivity_edit_number">Edit number</string>
+    <string name="RegistrationActivity_edit_number">تعديل الرقم</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -83,7 +83,7 @@
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">حدث خطأ غير متوقع. يُرجى المُحاولة مرّة أخرى.</string>
     <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__unable_to_send_sms">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="VerificationCodeScreen__unable_to_send_sms">لا يمكننا إرسال رسالة قصيرة إلى هذا الرقم. يُرجى المحاولة من جديد في بضع ساعات.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">تعذَّر إرسال الكود عبر الطريقة المختارة. يُرجى محاولة خيار آخر.</string>
     <!-- Snackbar shown for registration errors -->

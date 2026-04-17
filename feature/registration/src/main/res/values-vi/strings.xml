@@ -43,11 +43,11 @@
     <string name="RegistrationActivity_phone_number_description">Số điện thoại</string>
     <string name="RegistrationActivity_next">Tiếp</string>
     <!-- Dialog title to confirm phone number -->
-    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_is_the_phone_number">Số điện thoại dưới đây có chính xác không?</string>
     <!-- Dialog body to confirm phone number -->
-    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code">Mã xác minh sẽ được gửi đến số này. Có thể có cước của nhà mạng.</string>
     <!-- Dialog button to edit the number entered -->
-    <string name="RegistrationActivity_edit_number">Edit number</string>
+    <string name="RegistrationActivity_edit_number">Sửa số</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -83,7 +83,7 @@
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">Đã xảy ra lỗi không mong muốn. Vui lòng thử lại.</string>
     <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__unable_to_send_sms">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="VerificationCodeScreen__unable_to_send_sms">Chúng tôi không thể gửi tin nhắn SMS đến số điện thoại của bạn. Vui lòng thử lại trong vài giờ nữa.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Không thể gửi mã thông qua phương thức đã chọn. Vui lòng thử một lựa chọn khác.</string>
     <!-- Snackbar shown for registration errors -->

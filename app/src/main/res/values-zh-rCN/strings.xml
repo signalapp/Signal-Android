@@ -708,7 +708,7 @@
     <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
     <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
     <plurals name="ConversationFragment_group_member_count">
-        <item quantity="other">%1$d Members</item>
+        <item quantity="other">%1$d 个成员</item>
     </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">昵称</string>
@@ -736,7 +736,7 @@
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">安全提示</string>
     <!-- Button text to view more safety tips -->
-    <string name="SafetyTips_view_more">View more</string>
+    <string name="SafetyTips_view_more">查看更多</string>
     <!-- Content description for previous tip button -->
     <string name="SafetyTips_previous_tip">上一个提示</string>
     <!-- Content description for next tip button -->
@@ -764,7 +764,7 @@
     <!-- Detail tip 1 message -->
     <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\'re unsure who a new request is from it\'s safer to ignore it.</string>
     <!-- Detail tip 2 title -->
-    <string name="SafetyTips_detail_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_detail_tip2_title">模糊或无关消息</string>
     <!-- Detail tip 2 message -->
     <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
     <!-- Detail tip 3 title -->
@@ -772,13 +772,13 @@
     <!-- Detail tip 3 message -->
     <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\'t know that have links to websites. Never visit links from people you don\'t trust.</string>
     <!-- Detail tip 4 title -->
-    <string name="SafetyTips_detail_tip4_title">Crypto or money scams</string>
+    <string name="SafetyTips_detail_tip4_title">加密货币或金钱骗局</string>
     <!-- Detail tip 4 message -->
     <string name="SafetyTips_detail_tip4_message">If someone you don\'t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\'s likely spam.</string>
     <!-- Detail tip 5 title -->
     <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
     <!-- Detail tip 5 message -->
-    <string name="SafetyTips_detail_tip5_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_detail_tip5_message">请谨慎对待与您联系的企业或政府机构。涉及税务机构、快递公司等的消息有可能是垃圾消息。</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal 上的%1$s是账户持有人自行选择的。</string>
@@ -789,7 +789,7 @@
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">请谨慎甄别假冒仿冒账户</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">Don\'t share personal information with people you don\'t know</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">请勿与陌生用户分享您的个人信息</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
     <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s是群组成员自行选择的。</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
@@ -2266,7 +2266,7 @@
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">要接受请求吗？</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren\'t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">请仔细审查请求。昵称是账户持有人自行选择的，未经过验证。</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
     <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->
@@ -2775,7 +2775,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">您尝试注册此号码的次数过多，请在 %1$s 后再试。</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">无法连接到 Signal 服务，请检查网络连接并重试。</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
-    <string name="RegistrationActivity_sms_provider_error">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">我们无法给您的手机号码发送短信。请在几小时后重试。</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">我们无法通过短信给您发送验证码。请尝试通过语音通话进行接收。</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3623,11 +3623,11 @@
     <string name="ConversationUpdateItem_update">更新</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="other">%1$d 个群组更新</item>
+        <item quantity="other">群组有 %1$d 项更新</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="other">%1$d 个聊天更新</item>
+        <item quantity="other">聊天有 %1$d 项更新</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">

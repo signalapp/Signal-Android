@@ -43,11 +43,11 @@
     <string name="RegistrationActivity_phone_number_description">தொலைபேசி எண்</string>
     <string name="RegistrationActivity_next">அடுத்தது</string>
     <!-- Dialog title to confirm phone number -->
-    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_is_the_phone_number">கீழே உள்ள தொலைபேசி எண் சரியானதா?</string>
     <!-- Dialog body to confirm phone number -->
-    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code">இந்த எண்ணுக்கு சரிபார்ப்புக் குறியீடு அனுப்பப்படும். கேரியர் கட்டணங்கள் விதிக்கப்படலாம்.</string>
     <!-- Dialog button to edit the number entered -->
-    <string name="RegistrationActivity_edit_number">Edit number</string>
+    <string name="RegistrationActivity_edit_number">எண்ணை தொகுக்க</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->

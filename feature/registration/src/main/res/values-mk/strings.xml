@@ -43,11 +43,11 @@
     <string name="RegistrationActivity_phone_number_description">Телефонски број</string>
     <string name="RegistrationActivity_next">Следно</string>
     <!-- Dialog title to confirm phone number -->
-    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_is_the_phone_number">Дали телефонскиот број подолу е точен?</string>
     <!-- Dialog body to confirm phone number -->
-    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code">На овој број ќе се испрати код за проверка. Можно е да ви се наплатат тарифи на операторот.</string>
     <!-- Dialog button to edit the number entered -->
-    <string name="RegistrationActivity_edit_number">Edit number</string>
+    <string name="RegistrationActivity_edit_number">Уреди го бројот</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->

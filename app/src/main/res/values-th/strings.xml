@@ -708,7 +708,7 @@
     <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
     <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
     <plurals name="ConversationFragment_group_member_count">
-        <item quantity="other">%1$d Members</item>
+        <item quantity="other">สมาชิก %1$d คน</item>
     </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">ชื่อโปรไฟล์</string>
@@ -736,7 +736,7 @@
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">คำแนะนำเพื่อความปลอดภัย</string>
     <!-- Button text to view more safety tips -->
-    <string name="SafetyTips_view_more">View more</string>
+    <string name="SafetyTips_view_more">ดูเพิ่มเติม</string>
     <!-- Content description for previous tip button -->
     <string name="SafetyTips_previous_tip">คำแนะนำก่อนหน้า</string>
     <!-- Content description for next tip button -->
@@ -764,7 +764,7 @@
     <!-- Detail tip 1 message -->
     <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\'re unsure who a new request is from it\'s safer to ignore it.</string>
     <!-- Detail tip 2 title -->
-    <string name="SafetyTips_detail_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_detail_tip2_title">ข้อความคลุมเครือหรือไม่เจาะจง</string>
     <!-- Detail tip 2 message -->
     <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
     <!-- Detail tip 3 title -->
@@ -772,13 +772,13 @@
     <!-- Detail tip 3 message -->
     <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\'t know that have links to websites. Never visit links from people you don\'t trust.</string>
     <!-- Detail tip 4 title -->
-    <string name="SafetyTips_detail_tip4_title">Crypto or money scams</string>
+    <string name="SafetyTips_detail_tip4_title">การหลอกลวงทางการเงินหรือคริปโต</string>
     <!-- Detail tip 4 message -->
     <string name="SafetyTips_detail_tip4_message">If someone you don\'t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\'s likely spam.</string>
     <!-- Detail tip 5 title -->
     <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
     <!-- Detail tip 5 message -->
-    <string name="SafetyTips_detail_tip5_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_detail_tip5_message">ระวังให้มากเมื่อได้รับการติดต่อจากหน่วยงานรัฐหรือธุรกิจห้างร้าน ข้อความที่เกี่ยวกับสำนักงานภาษี บริษัทขนส่ง หรือหน่วยงานใกล้เคียงกันนี้อาจเป็นสแปม</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$sบน Signal เป็นชื่อที่เจ้าของบัญชีนั้นตั้งเอง</string>
@@ -789,7 +789,7 @@
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">โปรดระวังบัญชีที่แอบอ้างเป็นบุคคลอื่น</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">Don\'t share personal information with people you don\'t know</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">อย่าให้ข้อมูลส่วนตัวกับบุคคลที่คุณไม่รู้จัก</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
     <string name="ProfileNameBottomSheet__group_names_on_signal">%1$sเป็นชื่อที่สมาชิกกลุ่มนั้นตั้งเอง</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
@@ -2266,7 +2266,7 @@
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">ตอบรับคำขอใช่หรือไม่</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren\'t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">โปรดตรวจสอบคำขออย่างถี่ถ้วน และโปรดทราบว่าชื่อโปรไฟล์ที่แสดงเป็นชื่อที่เจ้าของบัญชีนั้นตั้งเองและไม่ได้ผ่านการตรวจยืนยัน</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
     <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->
@@ -2775,7 +2775,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">คุณพยายามลงทะเบียนด้วยหมายเลขนี้หลายครั้งเกินไป โปรดลองอีกครั้งใน %1$s</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ไม่สามารถเชื่อมต่อบริการได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายและลองอีกครั้ง</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
-    <string name="RegistrationActivity_sms_provider_error">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">เราไม่สามารถส่ง SMS ไปยังหมายเลขโทรศัพท์ของคุณได้ โปรดรอประมาณ 2-3 ชั่วโมงแล้วลองใหม่อีกครั้ง</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">เราไม่สามารถส่งรหัสยืนยันผ่านทาง SMS ให้คุณได้ ลองเปลี่ยนไปรับรหัสผ่านทางการโทรแทน</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->

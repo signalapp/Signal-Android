@@ -43,11 +43,11 @@
     <string name="RegistrationActivity_phone_number_description">Nambari ya simu</string>
     <string name="RegistrationActivity_next">Ifuatayo</string>
     <!-- Dialog title to confirm phone number -->
-    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_is_the_phone_number">Je, nambari iliyo hapa chini ni sahihi?</string>
     <!-- Dialog body to confirm phone number -->
-    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code">Kodi ya uthibitisho itatumwa kwenye namba hii. Bei ya mtoa huduma inaweza ikatumiwa.</string>
     <!-- Dialog button to edit the number entered -->
-    <string name="RegistrationActivity_edit_number">Edit number</string>
+    <string name="RegistrationActivity_edit_number">Hariri nambari</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->

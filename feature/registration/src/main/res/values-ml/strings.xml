@@ -43,11 +43,11 @@
     <string name="RegistrationActivity_phone_number_description">ഫോൺ നമ്പർ</string>
     <string name="RegistrationActivity_next">അടുത്തത്</string>
     <!-- Dialog title to confirm phone number -->
-    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_is_the_phone_number">ചുവടെയുള്ള ഫോൺ നമ്പർ ശരിയാണോ?</string>
     <!-- Dialog body to confirm phone number -->
-    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code">പരിശോധിച്ചുറപ്പിക്കൽ കോഡ് ഈ നമ്പറിലേക്ക് അയയ്ക്കും. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
     <!-- Dialog button to edit the number entered -->
-    <string name="RegistrationActivity_edit_number">Edit number</string>
+    <string name="RegistrationActivity_edit_number">നമ്പർ തിരുത്തുക</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->

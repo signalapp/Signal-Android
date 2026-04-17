@@ -708,7 +708,7 @@
     <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
     <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
     <plurals name="ConversationFragment_group_member_count">
-        <item quantity="other">%1$d Members</item>
+        <item quantity="other">အဖွဲ့ဝင် %1$d ဦး</item>
     </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">ပရိုဖိုင်း အမည်များ</string>
@@ -736,7 +736,7 @@
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">ဘေးကင်းရေး အကြံပြုချက်များ</string>
     <!-- Button text to view more safety tips -->
-    <string name="SafetyTips_view_more">View more</string>
+    <string name="SafetyTips_view_more">ပိုမို ကြည့်ရှုရန်</string>
     <!-- Content description for previous tip button -->
     <string name="SafetyTips_previous_tip">ယခင်အကြံပြုချက်</string>
     <!-- Content description for next tip button -->
@@ -764,7 +764,7 @@
     <!-- Detail tip 1 message -->
     <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\'re unsure who a new request is from it\'s safer to ignore it.</string>
     <!-- Detail tip 2 title -->
-    <string name="SafetyTips_detail_tip2_title">Vague or irrelevant messages</string>
+    <string name="SafetyTips_detail_tip2_title">မရှင်းလင်းသော သို့မဟုတ် မသက်ဆိုင်သော မက်ဆေ့ချ်များ</string>
     <!-- Detail tip 2 message -->
     <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
     <!-- Detail tip 3 title -->
@@ -772,13 +772,13 @@
     <!-- Detail tip 3 message -->
     <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\'t know that have links to websites. Never visit links from people you don\'t trust.</string>
     <!-- Detail tip 4 title -->
-    <string name="SafetyTips_detail_tip4_title">Crypto or money scams</string>
+    <string name="SafetyTips_detail_tip4_title">ခရစ်ပ်တို သို့မဟုတ် ငွေကြေး လိမ်လည်မှုများ</string>
     <!-- Detail tip 4 message -->
     <string name="SafetyTips_detail_tip4_message">If someone you don\'t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\'s likely spam.</string>
     <!-- Detail tip 5 title -->
     <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
     <!-- Detail tip 5 message -->
-    <string name="SafetyTips_detail_tip5_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+    <string name="SafetyTips_detail_tip5_message">သင့်ထံဆက်သွယ်လာသော စီးပွားရေးလုပ်ငန်း သို့မဟုတ် အစိုးရအေဂျင်စီများကို သတိပြုပါ။ အခွန်အေဂျင်စီများ၊ စာပို့သူများနှင့် အခြားအရာများ ပါဝင်သော မက်ဆေ့ချ်များသည် လိမ်လည်မှုဖြစ်နိုင်ပါသည်။</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal တွင် %1$s ကို ၎င်းတို့၏ အကောင့်ပိုင်ရှင်က ရွေးချယ်ထားသည်။</string>
@@ -789,7 +789,7 @@
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">အခြားသူများအယောင်ဆောင်ထားသော အကောင့်များကိုသတိထားပါ</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">Don\'t share personal information with people you don\'t know</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">ကိုယ်ရေးကိုယ်တာ အချက်အလက်ကို သင်မသိသူများအား မမျှဝေပါနှင့်</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
     <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s ကို အဖွဲ့ဝင်များက ရွေးချယ်သည်။</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
@@ -2266,7 +2266,7 @@
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">တောင်းဆိုမှုကို လက်ခံပါသလား။</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren\'t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">တောင်းဆိုမှုများကို သေချာ ပြန်သုံးသပ်ပါ။ ပရိုဖိုင်း အမည်များကို ၎င်းတို့၏အကောင့်ပိုင်ရှင်က ရွေးချယ်ထားပြီး အတည်မပြုထားပါ။</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
     <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->

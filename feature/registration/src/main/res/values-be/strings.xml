@@ -43,11 +43,11 @@
     <string name="RegistrationActivity_phone_number_description">Нумар тэлефона</string>
     <string name="RegistrationActivity_next">Далей</string>
     <!-- Dialog title to confirm phone number -->
-    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_is_the_phone_number">Нумар тэлефона, што ніжэй, правільны?</string>
     <!-- Dialog body to confirm phone number -->
-    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code">На гэты нумар будзе адпраўлены праверачны код. Могуць прымяняцца тарыфы аператара.</string>
     <!-- Dialog button to edit the number entered -->
-    <string name="RegistrationActivity_edit_number">Edit number</string>
+    <string name="RegistrationActivity_edit_number">Рэдагаваць нумар</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -83,7 +83,7 @@
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">Адбылася нечаканая памылка. Паўтарыце спробу.</string>
     <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__unable_to_send_sms">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="VerificationCodeScreen__unable_to_send_sms">Не атрымалася адправіць SMS-код на ваш нумар. Паўтарыце спробу праз некалькі гадзін.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Не атрымалася адправіць код выбраным метадам. Паспрабуйце іншы варыянт.</string>
     <!-- Snackbar shown for registration errors -->

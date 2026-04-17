@@ -43,11 +43,11 @@
     <string name="RegistrationActivity_phone_number_description">ફોન નંબર</string>
     <string name="RegistrationActivity_next">આગળ</string>
     <!-- Dialog title to confirm phone number -->
-    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_is_the_phone_number">શું નીચેનો ફોન નંબર સાચો છે?</string>
     <!-- Dialog body to confirm phone number -->
-    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code">આ નંબર પર એક વેરિફિકેશન કોડ મોકલવામાં આવશે. કેરિયર ચાર્જ લાગી શકે છે.</string>
     <!-- Dialog button to edit the number entered -->
-    <string name="RegistrationActivity_edit_number">Edit number</string>
+    <string name="RegistrationActivity_edit_number">નંબરમાં ફેરફાર કરો</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -83,7 +83,7 @@
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">કોઈ અનપેક્ષિત ભૂલ આવી. કૃપા કરીને ફરીથી પ્રયાસ કરો.</string>
     <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__unable_to_send_sms">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="VerificationCodeScreen__unable_to_send_sms">અમે તમારા નંબર પર SMS મોકલી શકતા નથી. કૃપા કરીને થોડા કલાક પછી ફરી પ્રયાસ કરો.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">પસંદ કરેલી પદ્ધતિ દ્વારા કોડ મોકલી શકાયો નથી. કૃપા કરીને અન્ય વિકલ્પ અજમાવી જુઓ.</string>
     <!-- Snackbar shown for registration errors -->

@@ -43,11 +43,11 @@
     <string name="RegistrationActivity_phone_number_description">Numër telefoni</string>
     <string name="RegistrationActivity_next">Tjetër</string>
     <!-- Dialog title to confirm phone number -->
-    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_is_the_phone_number">A është i saktë numri i telefonit më poshtë?</string>
     <!-- Dialog body to confirm phone number -->
-    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code">Një kod verifikimi do të dërgohet në këtë numër. Mund të zbatohen tarifat e operatorit celular.</string>
     <!-- Dialog button to edit the number entered -->
-    <string name="RegistrationActivity_edit_number">Edit number</string>
+    <string name="RegistrationActivity_edit_number">Modifiko numrin</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->

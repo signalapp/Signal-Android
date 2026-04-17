@@ -43,11 +43,11 @@
     <string name="RegistrationActivity_phone_number_description">Puhelinnumero</string>
     <string name="RegistrationActivity_next">Seuraava</string>
     <!-- Dialog title to confirm phone number -->
-    <string name="RegistrationActivity_is_the_phone_number">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_is_the_phone_number">Onko alla oleva puhelinnumero oikea?</string>
     <!-- Dialog body to confirm phone number -->
-    <string name="RegistrationActivity_a_verification_code">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code">Vahvistuskoodi lähetetään tähän numeroon. Operaattori saattaa veloittaa viestistä.</string>
     <!-- Dialog button to edit the number entered -->
-    <string name="RegistrationActivity_edit_number">Edit number</string>
+    <string name="RegistrationActivity_edit_number">Muokkaa numeroa</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -83,7 +83,7 @@
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">Tapahtui odottamaton virhe. Yritä uudelleen.</string>
     <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__unable_to_send_sms">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="VerificationCodeScreen__unable_to_send_sms">Emme voi lähettää tekstiviestikoodia numeroosi. Yritä uudelleen muutaman tunnin kuluttua.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Koodia ei voitu lähettää valitulla tavalla. Kokeile toista vaihtoehtoa.</string>
     <!-- Snackbar shown for registration errors -->
