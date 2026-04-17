@@ -1,42 +1,47 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.database
 
-import io.mockk.mockkStatic
+import android.app.Application
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.signal.core.models.ServiceId.ACI
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.signal.core.util.CursorUtil
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.testing.SignalDatabaseRule
-import org.thoughtcrime.securesms.util.RemoteConfig
-import java.util.UUID
+import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.testutil.RecipientTestRule
 
 @Suppress("ClassName")
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE, application = Application::class)
 class ThreadTableTest_pinned {
 
-  @Rule
-  @JvmField
-  val databaseRule = SignalDatabaseRule()
+  @get:Rule
+  val recipients = RecipientTestRule()
 
-  private lateinit var recipient: Recipient
+  private lateinit var recipient: RecipientId
   private val allChats: ChatFolderRecord = ChatFolderRecord(folderType = ChatFolderRecord.FolderType.ALL)
 
   @Before
   fun setUp() {
-    mockkStatic(RemoteConfig::class)
-
-    recipient = Recipient.resolved(SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID())))
+    recipient = recipients.createRecipient("Alice Android")
   }
 
   @Test
   fun givenAPinnedThread_whenIDeleteTheLastMessage_thenIDoNotDeleteOrUnpinTheThread() {
     // GIVEN
-    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-    val messageId = MmsHelper.insert(recipient = recipient, threadId = threadId)
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipient))
+    val messageId = recipients.insertOutgoingMessage(recipient)
     SignalDatabase.threads.pinConversations(listOf(threadId))
 
     // WHEN
@@ -50,8 +55,8 @@ class ThreadTableTest_pinned {
   @Test
   fun givenAPinnedThread_whenIDeleteTheLastMessage_thenIExpectTheThreadInUnarchivedCount() {
     // GIVEN
-    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-    val messageId = MmsHelper.insert(recipient = recipient, threadId = threadId)
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipient))
+    val messageId = recipients.insertOutgoingMessage(recipient)
     SignalDatabase.threads.pinConversations(listOf(threadId))
 
     // WHEN
@@ -65,8 +70,8 @@ class ThreadTableTest_pinned {
   @Test
   fun givenAPinnedThread_whenIDeleteTheLastMessage_thenIExpectPinnedThreadInUnarchivedList() {
     // GIVEN
-    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-    val messageId = MmsHelper.insert(recipient = recipient, threadId = threadId)
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipient))
+    val messageId = recipients.insertOutgoingMessage(recipient)
     SignalDatabase.threads.pinConversations(listOf(threadId))
 
     // WHEN

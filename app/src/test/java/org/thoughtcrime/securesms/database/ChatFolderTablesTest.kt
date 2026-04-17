@@ -1,11 +1,11 @@
 /*
- * Copyright 2024 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
 package org.thoughtcrime.securesms.database
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import android.app.Application
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
@@ -14,7 +14,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.signal.core.models.ServiceId.ACI
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.deleteAll
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderId
@@ -22,18 +23,18 @@ import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFold
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.testing.SignalActivityRule
+import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.StorageId
-import java.util.UUID
 import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord as RemoteChatFolderRecord
 import org.whispersystems.signalservice.internal.storage.protos.Recipient as RemoteRecipient
 
-@RunWith(AndroidJUnit4::class)
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE, application = Application::class)
 class ChatFolderTablesTest {
 
   @get:Rule
-  val harness = SignalActivityRule()
+  val recipients = RecipientTestRule()
 
   private lateinit var alice: RecipientId
   private lateinit var bob: RecipientId
@@ -44,19 +45,15 @@ class ChatFolderTablesTest {
   private lateinit var folder3: ChatFolderRecord
   private lateinit var folder4: ChatFolderRecord
 
-  private lateinit var recipientIds: List<RecipientId>
-
   private var aliceThread: Long = 0
   private var bobThread: Long = 0
   private var charlieThread: Long = 0
 
   @Before
   fun setUp() {
-    recipientIds = createRecipients(5)
-
-    alice = recipientIds[0]
-    bob = recipientIds[1]
-    charlie = recipientIds[2]
+    alice = recipients.createRecipient("Alice One")
+    bob = recipients.createRecipient("Bob Two")
+    charlie = recipients.createRecipient("Charlie Three")
 
     aliceThread = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(alice))
     bobThread = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(bob))
@@ -189,7 +186,6 @@ class ChatFolderTablesTest {
           excludedRecipients = listOf(
             RemoteRecipient(RemoteRecipient.Contact(Recipient.resolved(charlie).serviceId.get().toString()))
           )
-
         )
       )
 
@@ -222,11 +218,5 @@ class ChatFolderTablesTest {
     val actualFolderIsEmpty = unreadCountAndEmptyAndMutedStatus[actualFolders.first().id]!!.second
 
     assertTrue(actualFolderIsEmpty)
-  }
-
-  private fun createRecipients(count: Int): List<RecipientId> {
-    return (1..count).map {
-      SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID()))
-    }
   }
 }

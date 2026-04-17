@@ -1,34 +1,37 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.database
 
+import android.app.Application
 import androidx.core.content.contentValuesOf
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.mockk.every
 import io.mockk.mockkObject
-import io.mockk.mockkStatic
 import io.mockk.unmockkObject
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.signal.core.models.ServiceId.ACI
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.testing.SignalDatabaseRule
-import org.thoughtcrime.securesms.util.RemoteConfig
-import java.util.UUID
+import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import kotlin.time.Duration.Companion.days
 
-@RunWith(AndroidJUnit4::class)
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE, application = Application::class)
 class CollapsingMessagesTests {
+
+  @get:Rule
+  val recipients = RecipientTestRule()
 
   private lateinit var message: MessageTable
   private lateinit var thread: ThreadTable
-
-  @Rule
-  @JvmField
-  val databaseRule = SignalDatabaseRule()
 
   private lateinit var alice: RecipientId
   private var aliceThread: Long = 0
@@ -37,18 +40,12 @@ class CollapsingMessagesTests {
 
   @Before
   fun setUp() {
-    mockkStatic(RemoteConfig::class)
-
-    every { RemoteConfig.collapseEvents } returns true
-
     message = SignalDatabase.messages
-    message.deleteAllThreads()
-
     thread = SignalDatabase.threads
 
-    alice = SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID()))
+    alice = recipients.createRecipient("Alice Android")
     aliceThread = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(alice))
-    bob = SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID()))
+    bob = recipients.createRecipient("Bob Android")
   }
 
   @Test
@@ -83,7 +80,7 @@ class CollapsingMessagesTests {
   @Test
   fun givenDifferentCollapsedTypes_whenIInsert_thenNoCollapsing() {
     val messageId1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
-    val messageId2 = MmsHelper.insert(message = OutgoingMessage.identityVerifiedMessage(Recipient.resolved(alice), 2000L), threadId = aliceThread)
+    val messageId2 = recipients.insertOutgoingMessage(OutgoingMessage.identityVerifiedMessage(Recipient.resolved(alice), 2000L), aliceThread)
 
     val msg1 = message.getMessageRecord(messageId1)
     val msg2 = message.getMessageRecord(messageId2)
@@ -97,7 +94,7 @@ class CollapsingMessagesTests {
 
   @Test
   fun givenNonCollapsibleTypes_whenIInsert_thenNoCollapsing() {
-    val messageId = MmsHelper.insert(recipient = Recipient.resolved(alice), sentTimeMillis = 1000L)
+    val messageId = recipients.insertOutgoingMessage(alice, sentTimeMillis = 1000L)
 
     val msg = message.getMessageRecord(messageId)
     assertEquals(CollapsedState.NONE, msg.collapsedState)
@@ -125,7 +122,7 @@ class CollapsingMessagesTests {
   @Test
   fun givenRegularMessageBetweenCollapsed_whenIInsertCollapsed_thenNoCollapsing() {
     val messageId1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
-    val messageId2 = MmsHelper.insert(recipient = Recipient.resolved(alice), sentTimeMillis = 2000L)
+    val messageId2 = recipients.insertOutgoingMessage(alice, sentTimeMillis = 2000L)
     val messageId3 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false).messageId
 
     val msg1 = message.getMessageRecord(messageId1)
@@ -199,8 +196,8 @@ class CollapsingMessagesTests {
     val call2 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false)
 
     val recipient = Recipient.resolved(alice)
-    val identity1Id = MmsHelper.insert(message = OutgoingMessage.identityVerifiedMessage(recipient, 3000L), threadId = call1.threadId)
-    val identity2Id = MmsHelper.insert(message = OutgoingMessage.identityVerifiedMessage(recipient, 4000L), threadId = call1.threadId)
+    val identity1Id = recipients.insertOutgoingMessage(OutgoingMessage.identityVerifiedMessage(recipient, 3000L), call1.threadId)
+    val identity2Id = recipients.insertOutgoingMessage(OutgoingMessage.identityVerifiedMessage(recipient, 4000L), call1.threadId)
 
     message.deleteMessage(call1.messageId, call1.threadId)
 

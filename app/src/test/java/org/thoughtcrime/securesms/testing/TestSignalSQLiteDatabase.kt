@@ -191,6 +191,14 @@ class TestSignalSQLiteDatabase(private val database: SupportSQLiteDatabase) : Si
     return database.inTransaction()
   }
 
+  override fun runPostSuccessfulTransaction(task: Runnable) {
+    task.run()
+  }
+
+  override fun runPostSuccessfulTransaction(dedupeKey: String, task: Runnable) {
+    task.run()
+  }
+
   override val isDbLockedByCurrentThread: Boolean
     get() = database.isDbLockedByCurrentThread
 

@@ -1,54 +1,59 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.database
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import android.app.Application
 import org.junit.Assert.assertFalse
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.signal.core.models.ServiceId.ACI
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.signal.core.util.CursorUtil
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.testing.SignalDatabaseRule
-import java.util.UUID
+import org.thoughtcrime.securesms.testutil.RecipientTestRule
 
 @Suppress("ClassName")
-@RunWith(AndroidJUnit4::class)
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE, application = Application::class)
 class ThreadTableTest_recents {
 
-  @Rule
-  @JvmField
-  val databaseRule = SignalDatabaseRule()
+  @get:Rule
+  val recipients = RecipientTestRule()
 
-  private lateinit var recipient: Recipient
+  private lateinit var recipientId: RecipientId
 
   @Before
   fun setUp() {
-    recipient = Recipient.resolved(SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID())))
+    recipientId = recipients.createRecipient("Alice Android")
   }
 
   @Test
   fun getRecentConversationList_excludes_blocked_recipients() {
-    createActiveThreadFor(recipient)
+    createActiveThreadFor(recipientId)
 
-    SignalDatabase.recipients.setBlocked(recipient.id, true)
+    SignalDatabase.recipients.setBlocked(recipientId, true)
 
-    assertFalse(recipient.id in getRecentConversationRecipients(limit = 10))
+    assertFalse(recipientId in getRecentConversationRecipients(limit = 10))
   }
 
   @Test
   fun getRecentConversationList_excludes_hidden_recipients() {
-    createActiveThreadFor(recipient)
+    createActiveThreadFor(recipientId)
 
-    SignalDatabase.recipients.markHidden(recipient.id)
+    SignalDatabase.recipients.markHidden(recipientId)
 
-    assertFalse(recipient.id in getRecentConversationRecipients(limit = 10))
+    assertFalse(recipientId in getRecentConversationRecipients(limit = 10))
   }
 
-  private fun createActiveThreadFor(recipient: Recipient) {
-    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-    MmsHelper.insert(recipient = recipient, threadId = threadId)
+  private fun createActiveThreadFor(id: RecipientId) {
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(id))
+    recipients.insertOutgoingMessage(id)
     SignalDatabase.threads.update(threadId, true)
   }
 

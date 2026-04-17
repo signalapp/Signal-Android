@@ -1,46 +1,46 @@
 /*
- * Copyright 2023 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
 package org.thoughtcrime.securesms.database
 
-import androidx.test.platform.app.InstrumentationRegistry
-import io.mockk.mockkStatic
+import android.app.Application
+import androidx.test.core.app.ApplicationProvider
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.signal.core.models.ServiceId.ACI
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.testing.SignalDatabaseRule
-import org.thoughtcrime.securesms.util.RemoteConfig
-import java.util.UUID
+import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.testutil.RecipientTestRule
 
 @Suppress("ClassName")
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE, application = Application::class)
 class ThreadTableTest_active {
 
-  @Rule
-  @JvmField
-  val databaseRule = SignalDatabaseRule()
+  @get:Rule
+  val recipients = RecipientTestRule()
 
-  private lateinit var recipient: Recipient
+  private lateinit var recipientId: RecipientId
   private val allChats: ChatFolderRecord = ChatFolderRecord(folderType = ChatFolderRecord.FolderType.ALL)
 
   @Before
   fun setUp() {
-    mockkStatic(RemoteConfig::class)
-
-    recipient = Recipient.resolved(SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID())))
+    recipientId = recipients.createRecipient("Alice Android")
   }
 
   @Test
   fun givenActiveUnarchivedThread_whenIGetUnarchivedConversationList_thenIExpectThread() {
-    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-    MmsHelper.insert(recipient = recipient, threadId = threadId)
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
+    recipients.insertOutgoingMessage(recipientId)
     SignalDatabase.threads.update(threadId, false)
 
     SignalDatabase.threads.getUnarchivedConversationList(
@@ -52,17 +52,17 @@ class ThreadTableTest_active {
     ).use { threads ->
       assertEquals(1, threads.count)
 
-      val record = ThreadTable.StaticReader(threads, InstrumentationRegistry.getInstrumentation().context).getNext()
+      val record = ThreadTable.StaticReader(threads, ApplicationProvider.getApplicationContext()).getNext()
 
       assertNotNull(record)
-      assertEquals(record!!.recipient.id, recipient.id)
+      assertEquals(record!!.recipient.id, recipientId)
     }
   }
 
   @Test
   fun givenInactiveUnarchivedThread_whenIGetUnarchivedConversationList_thenIExpectNoThread() {
-    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-    MmsHelper.insert(recipient = recipient, threadId = threadId)
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
+    recipients.insertOutgoingMessage(recipientId)
     SignalDatabase.threads.update(threadId, false)
     SignalDatabase.threads.deleteConversation(threadId)
 
@@ -76,14 +76,14 @@ class ThreadTableTest_active {
       assertEquals(0, threads.count)
     }
 
-    val threadId2 = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+    val threadId2 = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
     assertEquals(threadId2, threadId)
   }
 
   @Test
   fun givenActiveArchivedThread_whenIGetUnarchivedConversationList_thenIExpectNoThread() {
-    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-    MmsHelper.insert(recipient = recipient, threadId = threadId)
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
+    recipients.insertOutgoingMessage(recipientId)
     SignalDatabase.threads.update(threadId, false)
     SignalDatabase.threads.setArchived(setOf(threadId), true)
 
@@ -100,8 +100,8 @@ class ThreadTableTest_active {
 
   @Test
   fun givenActiveArchivedThread_whenIGetArchivedConversationList_thenIExpectThread() {
-    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-    MmsHelper.insert(recipient = recipient, threadId = threadId)
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
+    recipients.insertOutgoingMessage(recipientId)
     SignalDatabase.threads.update(threadId, false)
     SignalDatabase.threads.setArchived(setOf(threadId), true)
 
@@ -116,8 +116,8 @@ class ThreadTableTest_active {
 
   @Test
   fun givenInactiveArchivedThread_whenIGetArchivedConversationList_thenIExpectNoThread() {
-    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-    MmsHelper.insert(recipient = recipient, threadId = threadId)
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
+    recipients.insertOutgoingMessage(recipientId)
     SignalDatabase.threads.update(threadId, false)
     SignalDatabase.threads.deleteConversation(threadId)
     SignalDatabase.threads.setArchived(setOf(threadId), true)
@@ -130,14 +130,14 @@ class ThreadTableTest_active {
       assertEquals(0, threads.count)
     }
 
-    val threadId2 = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+    val threadId2 = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
     assertEquals(threadId2, threadId)
   }
 
   @Test
   fun givenActiveArchivedThread_whenIDeactivateThread_thenIExpectNoMessages() {
-    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-    MmsHelper.insert(recipient = recipient, threadId = threadId)
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
+    recipients.insertOutgoingMessage(recipientId)
     SignalDatabase.threads.update(threadId, false)
 
     SignalDatabase.messages.getConversation(threadId).use {

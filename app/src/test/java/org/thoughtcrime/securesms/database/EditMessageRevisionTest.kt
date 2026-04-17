@@ -1,6 +1,11 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.database
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import android.app.Application
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
@@ -10,27 +15,27 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.signal.core.models.ServiceId.ACI
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.signal.core.util.CursorUtil
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.testing.SignalDatabaseRule
-import java.util.UUID
+import org.thoughtcrime.securesms.testutil.RecipientTestRule
 
-@RunWith(AndroidJUnit4::class)
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE, application = Application::class)
 class EditMessageRevisionTest {
 
   @get:Rule
-  val databaseRule = SignalDatabaseRule()
+  val recipients = RecipientTestRule()
 
   private lateinit var senderId: RecipientId
   private var threadId: Long = 0
 
   @Before
   fun setUp() {
-    val senderAci = ACI.from(UUID.randomUUID())
-    senderId = SignalDatabase.recipients.getOrInsertFromServiceId(senderAci)
+    senderId = recipients.createRecipient("Sender Name")
     threadId = SignalDatabase.threads.getOrCreateThreadIdFor(senderId, false, ThreadTable.DistributionTypes.DEFAULT)
   }
 
@@ -192,7 +197,7 @@ class EditMessageRevisionTest {
   }
 
   private fun getLatestRevisionId(messageId: Long): Long? {
-    return SignalDatabase.rawDatabase
+    return SignalDatabase.writableDatabase
       .query(MessageTable.TABLE_NAME, arrayOf(MessageTable.LATEST_REVISION_ID), "${MessageTable.ID} = ?", arrayOf(messageId.toString()), null, null, null)
       .use { cursor ->
         if (cursor.moveToFirst()) {
@@ -215,14 +220,14 @@ class EditMessageRevisionTest {
   }
 
   private fun markAsRead(messageId: Long) {
-    SignalDatabase.rawDatabase.execSQL(
+    SignalDatabase.writableDatabase.execSQL(
       "UPDATE ${MessageTable.TABLE_NAME} SET ${MessageTable.READ} = 1 WHERE ${MessageTable.ID} = ?",
       arrayOf(messageId)
     )
   }
 
   private fun markAsReadAndNotified(messageId: Long) {
-    SignalDatabase.rawDatabase.execSQL(
+    SignalDatabase.writableDatabase.execSQL(
       "UPDATE ${MessageTable.TABLE_NAME} SET ${MessageTable.READ} = 1, ${MessageTable.NOTIFIED} = 1 WHERE ${MessageTable.ID} = ?",
       arrayOf(messageId)
     )

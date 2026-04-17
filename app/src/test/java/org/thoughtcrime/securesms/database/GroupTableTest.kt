@@ -1,11 +1,20 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.database
 
+import android.app.Application
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.signal.core.util.deleteAll
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
@@ -17,16 +26,20 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.testing.SignalActivityRule
+import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import java.security.SecureRandom
 import kotlin.random.Random
 
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE, application = Application::class)
 class GroupTableTest {
 
   @get:Rule
-  val harness = SignalActivityRule()
+  val recipients = RecipientTestRule()
 
   private lateinit var groupTable: GroupTable
+  private lateinit var alice: RecipientId
+  private lateinit var bob: RecipientId
 
   @Before
   fun setUp() {
@@ -34,6 +47,9 @@ class GroupTableTest {
 
     groupTable.writableDatabase.deleteAll(GroupTable.TABLE_NAME)
     groupTable.writableDatabase.deleteAll(GroupTable.MembershipTable.TABLE_NAME)
+
+    alice = recipients.createRecipient("Buddy #0")
+    bob = recipients.createRecipient("Buddy #1")
   }
 
   @Test
@@ -43,7 +59,7 @@ class GroupTableTest {
     //language=sql
     val members: List<RecipientId> = groupTable.writableDatabase.query(
       """
-      SELECT ${GroupTable.MembershipTable.RECIPIENT_ID} 
+      SELECT ${GroupTable.MembershipTable.RECIPIENT_ID}
       FROM ${GroupTable.MembershipTable.TABLE_NAME}
       WHERE ${GroupTable.MembershipTable.GROUP_ID} = "${groupId.serialize()}"
       """.trimIndent()
@@ -59,7 +75,7 @@ class GroupTableTest {
     val groupId = insertPushGroup()
     insertThread(groupId)
 
-    val groups = groupTable.getGroupsContainingMember(harness.others[0], false)
+    val groups = groupTable.getGroupsContainingMember(alice, false)
 
     assertEquals(1, groups.size)
     assertEquals(groupId, groups[0].id)
@@ -77,7 +93,7 @@ class GroupTableTest {
   @Test
   fun givenGroups_whenIGetGroups_thenIExpectBothGroups() {
     insertPushGroup()
-    insertMmsGroup(members = listOf(harness.others[1]))
+    insertMmsGroup(members = listOf(bob))
 
     val groups = groupTable.getGroups()
 
@@ -90,7 +106,7 @@ class GroupTableTest {
     insertThread(v2Group)
 
     val groupRecord = groupTable.getGroup(v2Group).get()
-    assertEquals(setOf(harness.self.id, harness.others[0]), groupRecord.members.toSet())
+    assertEquals(setOf(recipients.self, alice), groupRecord.members.toSet())
   }
 
   @Test
@@ -99,29 +115,24 @@ class GroupTableTest {
     insertThread(v2Group)
 
     groupTable.writableDatabase.withinTransaction {
-      RemappedRecords.getInstance().addRecipient(harness.others[0], harness.others[1])
+      RemappedRecords.getInstance().addRecipient(alice, bob)
     }
 
     val groupRecord = groupTable.getGroup(v2Group).get()
-    assertEquals(setOf(harness.self.id, harness.others[1]), groupRecord.members.toSet())
+    assertEquals(setOf(recipients.self, bob), groupRecord.members.toSet())
   }
 
   @Test
   fun givenAGroup_whenIRemapRecipientsThatHaveAConflict_thenIExpectDeletion() {
-    val v2Group = insertPushGroupWithSelfAndOthers(
-      listOf(
-        harness.others[0],
-        harness.others[1]
-      )
-    )
+    val v2Group = insertPushGroupWithSelfAndOthers(listOf(alice, bob))
 
     insertThread(v2Group)
 
-    groupTable.remapRecipient(harness.others[0], harness.others[1])
+    groupTable.remapRecipient(alice, bob)
 
     val groupRecord = groupTable.getGroup(v2Group).get()
 
-    assertEquals(setOf(harness.self.id, harness.others[1]), groupRecord.members.toSet())
+    assertEquals(setOf(recipients.self, bob), groupRecord.members.toSet())
   }
 
   @Test
@@ -129,19 +140,18 @@ class GroupTableTest {
     val v2Group = insertPushGroup()
     insertThread(v2Group)
 
-    val newId = harness.others[1]
-    groupTable.remapRecipient(harness.others[0], newId)
+    groupTable.remapRecipient(alice, bob)
 
     val groupRecord = groupTable.getGroup(v2Group).get()
 
-    assertEquals(setOf(harness.self.id, newId), groupRecord.members.toSet())
+    assertEquals(setOf(recipients.self, bob), groupRecord.members.toSet())
   }
 
   @Test
   fun givenAGroupAndMember_whenIIsCurrentMember_thenIExpectTrue() {
     val v2Group = insertPushGroup()
 
-    val actual = groupTable.isCurrentMember(v2Group.requirePush(), harness.others[0])
+    val actual = groupTable.isCurrentMember(v2Group.requirePush(), alice)
 
     assertTrue(actual)
   }
@@ -150,8 +160,8 @@ class GroupTableTest {
   fun givenAGroupAndMember_whenIRemove_thenIExpectNotAMember() {
     val v2Group = insertPushGroup()
 
-    groupTable.remove(v2Group, harness.others[0])
-    val actual = groupTable.isCurrentMember(v2Group.requirePush(), harness.others[0])
+    groupTable.remove(v2Group, alice)
+    val actual = groupTable.isCurrentMember(v2Group.requirePush(), alice)
 
     assertFalse(actual)
   }
@@ -160,7 +170,7 @@ class GroupTableTest {
   fun givenAGroupAndNonMember_whenIIsCurrentMember_thenIExpectFalse() {
     val v2Group = insertPushGroup()
 
-    val actual = groupTable.isCurrentMember(v2Group.requirePush(), harness.others[1])
+    val actual = groupTable.isCurrentMember(v2Group.requirePush(), bob)
 
     assertFalse(actual)
   }
@@ -180,7 +190,7 @@ class GroupTableTest {
   @Test
   fun givenASharedActiveGroupWithoutAThread_whenISearchForRecipientsWithGroupsInCommon_thenIExpectThatGroup() {
     val groupInCommon = insertPushGroup()
-    val expected = Recipient.resolved(harness.others[0])
+    val expected = Recipient.resolved(alice)
 
     SignalDatabase.recipients.setProfileSharing(expected.id, false)
 
@@ -279,16 +289,9 @@ class GroupTableTest {
     return SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(groupRecipient))
   }
 
-  private fun insertMmsGroup(members: List<RecipientId> = listOf(harness.self.id, harness.others[0])): GroupId {
+  private fun insertMmsGroup(members: List<RecipientId> = listOf(recipients.self, alice)): GroupId {
     val id = GroupId.createMms(SecureRandom())
-    groupTable.create(
-      id,
-      null,
-      members.apply {
-        println("Creating a group with ${members.size} members")
-      }
-    )
-
+    groupTable.create(id, null, members)
     return id
   }
 
@@ -296,12 +299,12 @@ class GroupTableTest {
     title: String = "Test Group",
     members: List<DecryptedMember> = listOf(
       DecryptedMember.Builder()
-        .aciBytes(harness.self.requireAci().toByteString())
+        .aciBytes(recipients.selfAci.toByteString())
         .joinedAtRevision(0)
         .role(Member.Role.DEFAULT)
         .build(),
       DecryptedMember.Builder()
-        .aciBytes(Recipient.resolved(harness.others[0]).requireAci().toByteString())
+        .aciBytes(Recipient.resolved(alice).requireAci().toByteString())
         .joinedAtRevision(0)
         .role(Member.Role.DEFAULT)
         .build()
@@ -321,7 +324,7 @@ class GroupTableTest {
     val groupMasterKey = GroupMasterKey(Random.nextBytes(GroupMasterKey.SIZE))
 
     val selfMember: DecryptedMember = DecryptedMember.Builder()
-      .aciBytes(harness.self.requireAci().toByteString())
+      .aciBytes(recipients.selfAci.toByteString())
       .joinedAtRevision(0)
       .role(Member.Role.DEFAULT)
       .build()
