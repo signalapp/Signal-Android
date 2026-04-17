@@ -688,9 +688,6 @@ dependencies {
   implementation(libs.subsampling.scale.image.view) {
     exclude(group = "com.android.support", module = "support-annotations")
   }
-  implementation(libs.android.tooltips) {
-    exclude(group = "com.android.support", module = "appcompat-v7")
-  }
   implementation(libs.lottie)
   implementation(libs.lottie.compose)
   implementation(libs.signal.android.database.sqlcipher)

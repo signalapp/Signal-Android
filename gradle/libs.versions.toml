@@ -194,7 +194,6 @@ glide-ksp = { module = "com.github.bumptech.glide:ksp", version.ref = "glide" }
 roundedimageview = "com.makeramen:roundedimageview:2.1.0"
 materialish-progress = "com.pnikosis:materialish-progress:1.7"
 subsampling-scale-image-view = "com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0"
-android-tooltips = "com.tomergoldst.android:tooltips:1.0.6"
 lottie = "com.airbnb.android:lottie:6.4.0"
 lottie-compose = "com.airbnb.android:lottie-compose:6.4.0"
 dnsjava = "dnsjava:dnsjava:2.1.9"
