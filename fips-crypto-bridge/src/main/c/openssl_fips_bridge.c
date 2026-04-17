@@ -1,3 +1,4 @@
+// DEPRECATED — see proposals/fips-discovery-2026-04-17.md
 
 /**
  * @file openssl_fips_bridge.c

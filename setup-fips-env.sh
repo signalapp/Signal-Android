@@ -1,5 +1,6 @@
 
 #!/bin/bash
+# DEPRECATED — see proposals/fips-discovery-2026-04-17.md
 
 # FIPS Signal Android Environment Setup Script
 # Based on the Linux Build Guide

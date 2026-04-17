@@ -1,3 +1,4 @@
+// DEPRECATED — see proposals/fips-discovery-2026-04-17.md
 
 package org.thoughtcrime.securesms.crypto.fips
 

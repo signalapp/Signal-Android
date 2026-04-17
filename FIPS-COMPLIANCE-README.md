@@ -1,3 +1,5 @@
+> **DEPRECATED** — see proposals/fips-discovery-2026-04-17.md
+
 
 # FIPS Signal Android: FIPS 140-2 Compliance Documentation
 

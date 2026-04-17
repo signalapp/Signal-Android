@@ -1,5 +1,6 @@
 
 #!/bin/bash
+# DEPRECATED — see proposals/fips-discovery-2026-04-17.md
 set -e
 
 OPENSSL_VERSION="3.1.2"
