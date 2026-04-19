@@ -1343,5 +1343,16 @@ object RemoteConfig {
     hotSwappable = false
   )
 
+  /**
+   * Whether to use setExactAlarmAndAllowWhileIdle for exact alarms.
+   */
+  @JvmStatic
+  @get:JvmName("exactAlarm")
+  val exactAlarm: Boolean by remoteBoolean(
+    key = "android.exactAlarm",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   // endregion
 }
