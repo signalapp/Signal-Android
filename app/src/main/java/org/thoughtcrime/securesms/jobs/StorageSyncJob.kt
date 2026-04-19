@@ -8,6 +8,8 @@ import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.InvalidKeyException
+import org.signal.network.service.StorageServiceService
+import org.signal.network.service.StorageServiceService.ManifestIfDifferentVersionResult
 import org.thoughtcrime.securesms.database.ChatFolderTables.ChatFolderTable
 import org.thoughtcrime.securesms.database.NotificationProfileTables
 import org.thoughtcrime.securesms.database.RecipientTable
@@ -47,8 +49,6 @@ import org.whispersystems.signalservice.api.storage.SignalStorageManifest
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.storage.StorageId
-import org.whispersystems.signalservice.api.storage.StorageServiceRepository
-import org.whispersystems.signalservice.api.storage.StorageServiceRepository.ManifestIfDifferentVersionResult
 import org.whispersystems.signalservice.api.storage.toSignalAccountRecord
 import org.whispersystems.signalservice.api.storage.toSignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.toSignalChatFolderRecord
@@ -247,7 +247,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
   private fun performSync(storageServiceKey: StorageKey): Boolean {
     val stopwatch = Stopwatch("StorageSync")
     val db = SignalDatabase.rawDatabase
-    val repository = StorageServiceRepository(SignalNetwork.storageService)
+    val repository = StorageServiceService(SignalNetwork.storageService)
 
     val localManifest = SignalStore.storageService.manifest
     val remoteManifest = if (localManifestOutOfDate || localManifest.version < 1 || runAttempt >= 3) {
@@ -309,10 +309,10 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
         Log.i(TAG, "[Remote Sync] Retrieving records for key difference.")
 
         val remoteOnlyRecords = when (val result = repository.readStorageRecords(storageServiceKey, remoteManifest.recordIkm, idDifference.remoteOnlyIds)) {
-          is StorageServiceRepository.StorageRecordResult.Success -> result.records
-          is StorageServiceRepository.StorageRecordResult.DecryptionError -> throw result.exception
-          is StorageServiceRepository.StorageRecordResult.NetworkError -> throw result.exception
-          is StorageServiceRepository.StorageRecordResult.StatusCodeError -> throw result.exception
+          is StorageServiceService.StorageRecordResult.Success -> result.records
+          is StorageServiceService.StorageRecordResult.DecryptionError -> throw result.exception
+          is StorageServiceService.StorageRecordResult.NetworkError -> throw result.exception
+          is StorageServiceService.StorageRecordResult.StatusCodeError -> throw result.exception
         }
 
         stopwatch.split("remote-records")
@@ -400,10 +400,10 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       StorageSyncValidations.validate(remoteWriteOperation, remoteManifest, needsForcePush, self)
 
       when (val result = repository.writeStorageRecords(storageServiceKey, remoteWriteOperation.manifest, remoteWriteOperation.inserts, remoteWriteOperation.deletes)) {
-        StorageServiceRepository.WriteStorageRecordsResult.Success -> Unit
-        is StorageServiceRepository.WriteStorageRecordsResult.StatusCodeError -> throw result.exception
-        is StorageServiceRepository.WriteStorageRecordsResult.NetworkError -> throw result.exception
-        StorageServiceRepository.WriteStorageRecordsResult.ConflictError -> {
+        StorageServiceService.WriteStorageRecordsResult.Success -> Unit
+        is StorageServiceService.WriteStorageRecordsResult.StatusCodeError -> throw result.exception
+        is StorageServiceService.WriteStorageRecordsResult.NetworkError -> throw result.exception
+        StorageServiceService.WriteStorageRecordsResult.ConflictError -> {
           Log.w(TAG, "Hit a conflict when trying to resolve the conflict! Retrying.")
           localManifestOutOfDate = true
           throw RetryLaterException()
@@ -428,10 +428,10 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       Log.i(TAG, "We have ${knownUnknownIds.size} unknown records that we can now process.")
 
       val remote = when (val result = repository.readStorageRecords(storageServiceKey, remoteManifest.recordIkm, knownUnknownIds)) {
-        is StorageServiceRepository.StorageRecordResult.Success -> result.records
-        is StorageServiceRepository.StorageRecordResult.DecryptionError -> throw result.exception
-        is StorageServiceRepository.StorageRecordResult.NetworkError -> throw result.exception
-        is StorageServiceRepository.StorageRecordResult.StatusCodeError -> throw result.exception
+        is StorageServiceService.StorageRecordResult.Success -> result.records
+        is StorageServiceService.StorageRecordResult.DecryptionError -> throw result.exception
+        is StorageServiceService.StorageRecordResult.NetworkError -> throw result.exception
+        is StorageServiceService.StorageRecordResult.StatusCodeError -> throw result.exception
       }
       val records = StorageRecordCollection(remote)
 

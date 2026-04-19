@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.whispersystems.signalservice.api.storage
+package org.signal.network.service
 
 import com.squareup.wire.FieldEncoding
 import okio.ByteString
@@ -16,6 +16,13 @@ import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
+import org.whispersystems.signalservice.api.storage.RecordIkm
+import org.whispersystems.signalservice.api.storage.SignalStorageCipher
+import org.whispersystems.signalservice.api.storage.SignalStorageManifest
+import org.whispersystems.signalservice.api.storage.SignalStorageRecord
+import org.whispersystems.signalservice.api.storage.StorageId
+import org.whispersystems.signalservice.api.storage.StorageServiceApi
+import org.whispersystems.signalservice.api.storage.typeValue
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord
 import org.whispersystems.signalservice.internal.storage.protos.ReadOperation
 import org.whispersystems.signalservice.internal.storage.protos.StorageItem
@@ -29,10 +36,10 @@ import java.lang.Exception
  * Collection of higher-level storage service operations. Each method tends to make multiple
  * calls to [StorageServiceApi], wrapping the responses in easier-to-use result types.
  */
-class StorageServiceRepository(private val storageServiceApi: StorageServiceApi) {
+class StorageServiceService(private val storageServiceApi: StorageServiceApi) {
 
   companion object {
-    private val TAG = Log.tag(StorageServiceRepository::class)
+    private val TAG = Log.tag(StorageServiceService::class)
 
     private const val STORAGE_READ_MAX_ITEMS: Int = 1000
   }

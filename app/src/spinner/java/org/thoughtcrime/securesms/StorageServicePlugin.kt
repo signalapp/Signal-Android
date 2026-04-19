@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms
 
 import org.signal.core.util.Base64
+import org.signal.network.service.StorageServiceService
 import org.signal.spinner.Plugin
 import org.signal.spinner.PluginResult
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.whispersystems.signalservice.api.storage.StorageServiceRepository
 
 class StorageServicePlugin : Plugin {
   override val name: String = "Storage"
@@ -15,16 +15,16 @@ class StorageServicePlugin : Plugin {
     val columns = listOf("Type", "Id", "Data")
     val rows = mutableListOf<List<String>>()
 
-    val repository = StorageServiceRepository(SignalNetwork.storageService)
+    val repository = StorageServiceService(SignalNetwork.storageService)
     val storageServiceKey = SignalStore.storageService.storageKey
 
     val manifest = when (val result = repository.getStorageManifest(storageServiceKey)) {
-      is StorageServiceRepository.ManifestResult.Success -> result.manifest
+      is StorageServiceService.ManifestResult.Success -> result.manifest
       else -> return PluginResult.StringResult("Failed to find manifest!")
     }
 
     val signalStorageRecords = when (val result = repository.readStorageRecords(storageServiceKey, manifest.recordIkm, manifest.storageIds)) {
-      is StorageServiceRepository.StorageRecordResult.Success -> result.records
+      is StorageServiceService.StorageRecordResult.Success -> result.records
       else -> return PluginResult.StringResult("Failed to read records!")
     }
 

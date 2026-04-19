@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logI
+import org.signal.network.service.StorageServiceService
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderId
 import org.thoughtcrime.securesms.database.ChatFolderTables.ChatFolderTable
 import org.thoughtcrime.securesms.database.NotificationProfileTables
@@ -25,7 +26,6 @@ import org.whispersystems.signalservice.api.storage.RecordIkm
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.StorageId
-import org.whispersystems.signalservice.api.storage.StorageServiceRepository
 import java.io.IOException
 import java.util.Collections
 import java.util.concurrent.TimeUnit
@@ -71,7 +71,7 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     }
 
     val storageServiceKey = SignalStore.storageService.storageKey
-    val repository = StorageServiceRepository(AppDependencies.storageServiceApi)
+    val repository = StorageServiceService(AppDependencies.storageServiceApi)
 
     val currentVersion: Long = when (val result = repository.getManifestVersion()) {
       is NetworkResult.Success -> result.result
@@ -133,10 +133,10 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     if (newVersion > 1) {
       Log.i(TAG, "Force-pushing data. Inserting ${inserts.size} IDs.")
       when (val result = repository.resetAndWriteStorageRecords(storageServiceKey, manifest, inserts)) {
-        StorageServiceRepository.WriteStorageRecordsResult.Success -> Unit
-        is StorageServiceRepository.WriteStorageRecordsResult.StatusCodeError -> throw result.exception
-        is StorageServiceRepository.WriteStorageRecordsResult.NetworkError -> throw result.exception
-        StorageServiceRepository.WriteStorageRecordsResult.ConflictError -> {
+        StorageServiceService.WriteStorageRecordsResult.Success -> Unit
+        is StorageServiceService.WriteStorageRecordsResult.StatusCodeError -> throw result.exception
+        is StorageServiceService.WriteStorageRecordsResult.NetworkError -> throw result.exception
+        StorageServiceService.WriteStorageRecordsResult.ConflictError -> {
           Log.w(TAG, "Hit a conflict. Trying again.")
           throw RetryLaterException()
         }
@@ -144,10 +144,10 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     } else {
       Log.i(TAG, "First version, normal push. Inserting ${inserts.size} IDs.")
       when (val result = repository.writeStorageRecords(storageServiceKey, manifest, inserts, emptyList())) {
-        StorageServiceRepository.WriteStorageRecordsResult.Success -> Unit
-        is StorageServiceRepository.WriteStorageRecordsResult.StatusCodeError -> throw result.exception
-        is StorageServiceRepository.WriteStorageRecordsResult.NetworkError -> throw result.exception
-        is StorageServiceRepository.WriteStorageRecordsResult.ConflictError -> {
+        StorageServiceService.WriteStorageRecordsResult.Success -> Unit
+        is StorageServiceService.WriteStorageRecordsResult.StatusCodeError -> throw result.exception
+        is StorageServiceService.WriteStorageRecordsResult.NetworkError -> throw result.exception
+        is StorageServiceService.WriteStorageRecordsResult.ConflictError -> {
           Log.w(TAG, "Hit a conflict. Trying again.")
           throw RetryLaterException()
         }
