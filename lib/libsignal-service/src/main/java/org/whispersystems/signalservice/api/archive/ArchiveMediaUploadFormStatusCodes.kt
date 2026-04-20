@@ -14,6 +14,7 @@ enum class ArchiveMediaUploadFormStatusCodes(val code: Int) {
   BadArguments(400),
   InvalidPresentationOrSignature(401),
   InsufficientPermissions(403),
+  MediaTooLarge(413),
   RateLimited(429),
   Unknown(-1);
 

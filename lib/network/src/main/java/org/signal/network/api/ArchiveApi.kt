@@ -303,13 +303,14 @@ class ArchiveApi(
    * - 200: Success
    * - 400: Bad request, or made on authenticated channel
    * - 403: Forbidden
+   * - 413: The media is too large
    * - 429: Rate-limited
    */
-  fun getMediaUploadForm(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>): NetworkResult<AttachmentUploadForm> {
+  fun getMediaUploadForm(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>, uploadLength: Long): NetworkResult<AttachmentUploadForm> {
     return getCredentialPresentation(aci, archiveServiceAccess)
       .map { it.toArchiveCredentialPresentation().toHeaders() }
       .then { headers ->
-        val request = WebSocketRequestMessage.get("/v1/archives/media/upload/form", headers)
+        val request = WebSocketRequestMessage.get("/v1/archives/media/upload/form?uploadLength=$uploadLength", headers)
         NetworkResult.fromWebSocketRequest(unauthWebSocket, request, AttachmentUploadForm::class)
       }
   }

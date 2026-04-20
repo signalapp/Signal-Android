@@ -1690,10 +1690,10 @@ object BackupRepository {
    *
    * It's important to note that in order to get this to the archive cdn, you still need to use [copyAttachmentToArchive].
    */
-  fun getAttachmentUploadForm(): NetworkResult<AttachmentUploadForm> {
+  fun getAttachmentUploadForm(uploadLength: Long): NetworkResult<AttachmentUploadForm> {
     return initBackupAndFetchAuth()
       .then { credential ->
-        SignalNetwork.archive.getMediaUploadForm(SignalStore.account.requireAci(), credential.mediaBackupAccess)
+        SignalNetwork.archive.getMediaUploadForm(SignalStore.account.requireAci(), credential.mediaBackupAccess, uploadLength)
       }
   }
 

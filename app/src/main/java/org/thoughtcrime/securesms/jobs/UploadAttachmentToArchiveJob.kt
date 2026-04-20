@@ -36,9 +36,11 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatusCodes
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.FileNotFoundException
@@ -230,8 +232,10 @@ class UploadAttachmentToArchiveJob private constructor(
 
     val existingSpec = uploadSpec?.let { ResumableUploadSpec.from(it) }
 
+    val ciphertextLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size))
+
     val form: AttachmentUploadForm? = if (existingSpec == null) {
-      when (val formResult = BackupRepository.getAttachmentUploadForm()) {
+      when (val formResult = BackupRepository.getAttachmentUploadForm(ciphertextLength)) {
         is NetworkResult.Success -> formResult.result
         is NetworkResult.ApplicationError -> {
           Log.w(TAG, "[$attachmentId]$mediaIdLog Failed to get upload form due to an application error.", formResult.throwable)
@@ -247,6 +251,13 @@ class UploadAttachmentToArchiveJob private constructor(
             ArchiveMediaUploadFormStatusCodes.RateLimited -> {
               Log.w(TAG, "[$attachmentId]$mediaIdLog Rate limited when getting upload form.")
               Result.retry(formResult.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+            }
+            ArchiveMediaUploadFormStatusCodes.MediaTooLarge -> {
+              Log.w(TAG, "[$attachmentId]$mediaIdLog Media is too large to upload to the archive. Marking as a permanent failure.")
+              ArchiveDatabaseExecutor.runBlocking {
+                setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+              }
+              Result.failure()
             }
             else -> Result.retry(defaultBackoff())
           }
