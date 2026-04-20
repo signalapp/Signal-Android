@@ -335,6 +335,35 @@ object Dialogs {
   }
 
   /**
+   * Progress spinner that shows [message] below a determinate circular progress indicator
+   * driven by [progress]. Non-cancellable; use for short actions where the total work is known.
+   */
+  @Composable
+  fun DeterminateProgressDialog(message: String, progress: () -> Float) {
+    BaseAlertDialog(
+      onDismissRequest = {},
+      confirmButton = {},
+      dismissButton = {},
+      text = {
+        Column(
+          verticalArrangement = Arrangement.Center,
+          horizontalAlignment = Alignment.CenterHorizontally,
+          modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+        ) {
+          Spacer(modifier = Modifier.size(24.dp))
+          CircularProgressIndicator(progress = progress)
+          Spacer(modifier = Modifier.size(20.dp))
+          Text(text = message, textAlign = TextAlign.Center)
+        }
+      },
+      modifier = Modifier
+        .size(200.dp)
+    )
+  }
+
+  /**
    * Customizable progress spinner that can be dismissed while showing [message]
    * and [caption] below the spinner to let users know an action is completing
    */

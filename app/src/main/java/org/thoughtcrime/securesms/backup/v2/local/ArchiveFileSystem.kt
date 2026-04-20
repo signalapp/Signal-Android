@@ -14,6 +14,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.supervisorScope
 import org.signal.archive.local.ArchivedFilesReader
 import org.signal.core.models.backup.MediaName
 import org.signal.core.util.Stopwatch
@@ -121,6 +122,57 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
 
     fun openInputStream(context: Context, uri: Uri): InputStream? {
       return context.contentResolver.openInputStream(uri)
+    }
+
+    /**
+     * Recursively delete the entire SignalBackups directory using parallelized SAF calls.
+     */
+    @JvmStatic
+    @JvmOverloads
+    fun deleteAll(signalBackupsDir: DocumentFile, progressListener: AllFilesProgressListener? = null) {
+      Log.i(TAG, "Deleting all backup data")
+
+      val units = mutableListOf<DocumentFile>()
+      for (child in signalBackupsDir.listFiles()) {
+        if (child.isDirectory && child.name == "files") {
+          units += child.listFiles()
+        } else {
+          units += child
+        }
+      }
+
+      if (units.isEmpty()) {
+        signalBackupsDir.delete()
+        return
+      }
+
+      val total = units.size
+      val completed = AtomicInteger(0)
+      val deleted = AtomicInteger(0)
+      val concurrency = Runtime.getRuntime().availableProcessors().coerceAtMost(8)
+      val chunkSize = ((total + concurrency - 1) / concurrency).coerceAtLeast(1)
+
+      runBlocking {
+        coroutineScope {
+          units.chunked(chunkSize).map { chunk ->
+            async(Dispatchers.IO) {
+              for (unit in chunk) {
+                if (unit.delete()) {
+                  deleted.incrementAndGet()
+                }
+                progressListener?.onProgress(completed.incrementAndGet(), total)
+              }
+            }
+          }.awaitAll()
+        }
+      }
+
+      for (child in signalBackupsDir.listFiles()) {
+        child.delete()
+      }
+      signalBackupsDir.delete()
+
+      Log.d(TAG, "Deleted ${deleted.get()}/$total top-level units")
     }
   }
 
@@ -236,8 +288,14 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
   /**
    * Clean up unused files in the shared files directory leveraged across all current snapshots. A file
    * is unused if it is not referenced directly by any current snapshots.
+   *
+   * @param allFilesProgressListener reports progress of the enumeration phase (fast, 256 shards)
+   * @param deletionProgressListener reports progress of the deletion phase (slow, potentially thousands of SAF calls). Fires from multiple threads.
    */
-  fun deleteUnusedFiles(allFilesProgressListener: AllFilesProgressListener? = null) {
+  fun deleteUnusedFiles(
+    allFilesProgressListener: AllFilesProgressListener? = null,
+    deletionProgressListener: AllFilesProgressListener? = null
+  ) {
     Log.i(TAG, "Deleting unused files")
 
     val allFiles: MutableMap<String, DocumentFileInfo> = filesFileSystem.allFiles(allFilesProgressListener).toMutableMap()
@@ -251,16 +309,38 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
         }
       }
 
-    var deleted = 0
-    allFiles
-      .values
-      .forEach {
-        if (it.documentFile.delete()) {
-          deleted++
-        }
-      }
+    val toDelete = allFiles.values.toList()
+    val total = toDelete.size
+    if (total == 0) {
+      Log.d(TAG, "Cleanup removed 0/0 files")
+      return
+    }
 
-    Log.d(TAG, "Cleanup removed $deleted/${allFiles.size} files")
+    val deleted = AtomicInteger(0)
+    val completed = AtomicInteger(0)
+    val concurrency = Runtime.getRuntime().availableProcessors().coerceAtMost(8)
+    val chunkSize = ((total + concurrency - 1) / concurrency).coerceAtLeast(1)
+
+    runBlocking {
+      supervisorScope {
+        toDelete.chunked(chunkSize).map { chunk ->
+          async(Dispatchers.IO) {
+            try {
+              for (info in chunk) {
+                if (info.documentFile.delete()) {
+                  deleted.incrementAndGet()
+                }
+                deletionProgressListener?.onProgress(completed.incrementAndGet(), total)
+              }
+            } catch (e: Exception) {
+              Log.w(TAG, "Failed to clean up a chunk.", e)
+            }
+          }
+        }.awaitAll()
+      }
+    }
+
+    Log.d(TAG, "Cleanup removed ${deleted.get()}/$total files")
   }
 
   /** Useful metadata for a given archive snapshot */

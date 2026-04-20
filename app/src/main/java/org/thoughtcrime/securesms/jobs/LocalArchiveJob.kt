@@ -137,9 +137,11 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
       archiveFileSystem.deleteOldBackups()
       stopwatch.split("delete-old")
 
-      archiveFileSystem.deleteUnusedFiles { completed, total ->
-        setProgress(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.FINALIZING, frameExportCount = completed.toLong(), frameTotalCount = total.toLong())), notification)
-      }
+      archiveFileSystem.deleteUnusedFiles(
+        deletionProgressListener = { completed, total ->
+          setProgress(LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.FINALIZING, frameExportCount = completed.toLong(), frameTotalCount = total.toLong())), notification)
+        }
+      )
       stopwatch.split("delete-unused")
 
       stopwatch.stop(TAG)
