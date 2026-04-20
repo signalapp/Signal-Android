@@ -1612,7 +1612,7 @@ object DataMessageProcessor {
         warn(timestamp, "Sender is not in the group! Thread: ${quotedMessage.threadId} Sender: ${senderRecipient.id}")
         return false
       }
-    } else if (senderRecipient.id != threadRecipient.id) {
+    } else if (senderRecipient.id != threadRecipient.id && !senderRecipient.isSelf) {
       warn(timestamp, "Sender is not a part of the 1:1 thread! Thread: ${quotedMessage.threadId} Sender: ${senderRecipient.id}")
       return false
     }
