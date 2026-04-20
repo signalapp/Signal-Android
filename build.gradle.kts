@@ -81,6 +81,7 @@ tasks.register("qa") {
 gradle.projectsEvaluated {
   val appTestTask = tasks.findByPath(":Signal-Android:testPlayProdReleaseUnitTest")
   val appLintTask = tasks.findByPath(":Signal-Android:lintPlayProdRelease")
+  val appCompileInstrumentationTask = tasks.findByPath(":Signal-Android:compilePlayProdInstrumentationAndroidTestSources")
 
   tasks.named("qa") {
     dependsOn("ktlintCheck")
@@ -90,6 +91,9 @@ gradle.projectsEvaluated {
     // Main app tasks
     appTestTask?.let { dependsOn(it) }
     appLintTask?.let { dependsOn(it) }
+
+    // Instrumentation
+    appCompileInstrumentationTask?.let { dependsOn(it) }
 
     // All subproject ktlint checks
     subprojects.forEach { subproject ->
