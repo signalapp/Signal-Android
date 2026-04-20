@@ -9008,7 +9008,7 @@
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media and using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
     <!-- Backups feature label for e2e encryption -->
     <string name="MessageBackupsEducationScreen__end_to_end_encrypted">End-to-end Encrypted</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->
