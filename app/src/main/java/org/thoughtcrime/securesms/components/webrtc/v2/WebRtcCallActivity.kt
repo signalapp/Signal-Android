@@ -21,6 +21,7 @@ import android.view.Surface
 import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
@@ -147,6 +148,20 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     initializeResources()
     initializeViewModel()
+
+    onBackPressedDispatcher.addCallback(
+      this,
+      object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+          if (viewModel.callParticipantsStateSnapshot.callState != WebRtcViewModel.State.CALL_INCOMING && enterPipModeIfPossible()) {
+            return
+          }
+          isEnabled = false
+          onBackPressedDispatcher.onBackPressed()
+          isEnabled = true
+        }
+      }
+    )
 
     // Restore saved state if recreated while in PIP mode
     val savedAspectRatio = savedInstanceState?.getFloat(SAVED_STATE_PIP_ASPECT_RATIO, 0f) ?: 0f
@@ -328,12 +343,6 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     super.onUserLeaveHint()
     if (viewModel.callParticipantsStateSnapshot.callState != WebRtcViewModel.State.CALL_INCOMING) {
       enterPipModeIfPossible()
-    }
-  }
-
-  override fun onBackPressed() {
-    if (viewModel.callParticipantsStateSnapshot.callState == WebRtcViewModel.State.CALL_INCOMING || !enterPipModeIfPossible()) {
-      super.onBackPressed()
     }
   }
 
@@ -1369,7 +1378,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     }
 
     override fun onNavigateUpClicked() {
-      onBackPressed()
+      onBackPressedDispatcher.onBackPressed()
     }
 
     override fun toggleControls() {
