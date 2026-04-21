@@ -1,53 +1,56 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.database
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import android.app.Application
+import io.mockk.every
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Ignore
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.signal.core.models.ServiceId.ACI
-import org.signal.core.models.ServiceId.PNI
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.StoryType
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import java.util.UUID
+import org.thoughtcrime.securesms.testutil.RecipientTestRule
+import java.util.Optional
 import java.util.concurrent.TimeUnit
 
 @Suppress("ClassName")
-@RunWith(AndroidJUnit4::class)
-class MmsTableTest_stories {
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE, application = Application::class)
+class MessageTableTest_stories {
+
+  @get:Rule
+  val recipients = RecipientTestRule()
 
   private lateinit var mms: MessageTable
 
-  private val localAci = ACI.from(UUID.randomUUID())
-  private val localPni = PNI.from(UUID.randomUUID())
-
   private lateinit var myStory: Recipient
-  private lateinit var recipients: List<RecipientId>
+  private lateinit var others: List<RecipientId>
   private lateinit var releaseChannelRecipient: Recipient
 
   @Before
   fun setUp() {
     mms = SignalDatabase.messages
 
-    mms.deleteAllThreads()
-
-    SignalStore.account.setAci(localAci)
-    SignalStore.account.setPni(localPni)
-
     myStory = Recipient.resolved(SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY))
-    recipients = (0 until 5).map { SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID())) }
+    others = (0 until 5).map { recipients.createRecipient("Other $it") }
     releaseChannelRecipient = Recipient.resolved(SignalDatabase.recipients.insertReleaseChannelRecipient())
 
-    SignalStore.releaseChannel.setReleaseChannelRecipientId(releaseChannelRecipient.id)
+    every { recipients.signalStore.releaseChannel.releaseChannelRecipientId } returns releaseChannelRecipient.id
   }
 
   @Test
@@ -63,26 +66,10 @@ class MmsTableTest_stories {
   fun givenOneOutgoingAndOneIncomingStory_whenIGetOrderedStoryRecipientsAndIds_thenIExpectIncomingThenOutgoing() {
     // GIVEN
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(myStory)
-    val sender = recipients[0]
+    val sender = others[0]
 
-    MmsHelper.insert(
-      recipient = myStory,
-      sentTimeMillis = 1,
-      storyType = StoryType.STORY_WITH_REPLIES,
-      threadId = threadId
-    )
-
-    MmsHelper.insert(
-      IncomingMessage(
-        type = MessageType.NORMAL,
-        from = sender,
-        sentTimeMillis = 2,
-        serverTimeMillis = 2,
-        receivedTimeMillis = 2,
-        storyType = StoryType.STORY_WITH_REPLIES
-      ),
-      -1L
-    )
+    insertOutgoingStory(recipient = myStory, sentTimeMillis = 1, threadId = threadId)
+    insertIncomingStory(from = sender, sentTimeMillis = 2)
 
     // WHEN
     val result = mms.getOrderedStoryRecipientsAndIds(false)
@@ -94,56 +81,35 @@ class MmsTableTest_stories {
   @Test
   fun givenAStory_whenISetIncomingStoryMessageViewed_thenIExpectASetReceiptTimestamp() {
     // GIVEN
-    val sender = recipients[0]
-    val messageId = MmsHelper.insert(
-      IncomingMessage(
-        type = MessageType.NORMAL,
-        from = sender,
-        sentTimeMillis = 2,
-        serverTimeMillis = 2,
-        receivedTimeMillis = 2,
-        storyType = StoryType.STORY_WITH_REPLIES
-      ),
-      -1L
-    ).get().messageId
+    val sender = others[0]
+    val messageId = insertIncomingStory(from = sender, sentTimeMillis = 2).get().messageId
 
-    val messageBeforeMark = SignalDatabase.messages.getMessageRecord(messageId)
+    val messageBeforeMark = mms.getMessageRecord(messageId)
     assertFalse(messageBeforeMark.incomingStoryViewedAtTimestamp > 0)
 
     // WHEN
-    SignalDatabase.messages.setIncomingMessageViewed(messageId)
+    mms.setIncomingMessageViewed(messageId)
 
     // THEN
-    val messageAfterMark = SignalDatabase.messages.getMessageRecord(messageId)
+    val messageAfterMark = mms.getMessageRecord(messageId)
     assertTrue(messageAfterMark.incomingStoryViewedAtTimestamp > 0)
   }
 
-  @Ignore
   @Test
   fun given5ViewedStories_whenIGetOrderedStoryRecipientsAndIds_thenIExpectLatestViewedFirst() {
     // GIVEN
-    val messageIds = recipients.take(5).map {
-      MmsHelper.insert(
-        IncomingMessage(
-          type = MessageType.NORMAL,
-          from = it,
-          sentTimeMillis = 2,
-          serverTimeMillis = 2,
-          receivedTimeMillis = 2,
-          storyType = StoryType.STORY_WITH_REPLIES
-        ),
-        -1L
-      ).get().messageId
+    val messageIds = others.take(5).map {
+      insertIncomingStory(from = it, sentTimeMillis = 2).get().messageId
     }
 
     val randomizedOrderedIds = messageIds.shuffled()
     randomizedOrderedIds.forEach {
-      SignalDatabase.messages.setIncomingMessageViewed(it)
+      mms.setIncomingMessageViewed(it)
       Thread.sleep(5)
     }
 
     // WHEN
-    val result = SignalDatabase.messages.getOrderedStoryRecipientsAndIds(false)
+    val result = mms.getOrderedStoryRecipientsAndIds(false)
     val resultOrderedIds = result.map { it.messageId }
 
     // THEN
@@ -156,50 +122,25 @@ class MmsTableTest_stories {
 
     val unviewedIds: List<Long> = (0 until 5).map {
       Thread.sleep(5)
-      MmsHelper.insert(
-        IncomingMessage(
-          type = MessageType.NORMAL,
-          from = recipients[it],
-          sentTimeMillis = System.currentTimeMillis(),
-          serverTimeMillis = 2,
-          receivedTimeMillis = 2,
-          storyType = StoryType.STORY_WITH_REPLIES
-        ),
-        -1L
-      ).get().messageId
+      insertIncomingStory(from = others[it], sentTimeMillis = System.currentTimeMillis()).get().messageId
     }
 
     val viewedIds: List<Long> = (0 until 5).map {
       Thread.sleep(5)
-      MmsHelper.insert(
-        IncomingMessage(
-          type = MessageType.NORMAL,
-          from = recipients[it],
-          sentTimeMillis = System.currentTimeMillis(),
-          serverTimeMillis = 2,
-          receivedTimeMillis = 2,
-          storyType = StoryType.STORY_WITH_REPLIES
-        ),
-        -1L
-      ).get().messageId
+      insertIncomingStory(from = others[it], sentTimeMillis = System.currentTimeMillis()).get().messageId
     }
 
     val interspersedIds: List<Long> = (0 until 10).map {
       Thread.sleep(5)
       if (it % 2 == 0) {
-        SignalDatabase.messages.setIncomingMessageViewed(viewedIds[it / 2])
+        mms.setIncomingMessageViewed(viewedIds[it / 2])
         viewedIds[it / 2]
       } else {
-        MmsHelper.insert(
-          recipient = myStory,
-          sentTimeMillis = System.currentTimeMillis(),
-          storyType = StoryType.STORY_WITH_REPLIES,
-          threadId = myStoryThread
-        )
+        insertOutgoingStory(recipient = myStory, sentTimeMillis = System.currentTimeMillis(), threadId = myStoryThread)
       }
     }
 
-    val result = SignalDatabase.messages.getOrderedStoryRecipientsAndIds(false)
+    val result = mms.getOrderedStoryRecipientsAndIds(false)
     val resultOrderedIds = result.map { it.messageId }
 
     assertEquals(unviewedIds.reversed() + interspersedIds.reversed(), resultOrderedIds)
@@ -208,7 +149,7 @@ class MmsTableTest_stories {
   @Test
   fun givenNoStories_whenICheckIsOutgoingStoryAlreadyInDatabase_thenIExpectFalse() {
     // WHEN
-    val result = mms.isOutgoingStoryAlreadyInDatabase(recipients[0], 200)
+    val result = mms.isOutgoingStoryAlreadyInDatabase(others[0], 200)
 
     // THEN
     assertFalse(result)
@@ -217,20 +158,10 @@ class MmsTableTest_stories {
   @Test
   fun givenNoOutgoingStories_whenICheckIsOutgoingStoryAlreadyInDatabase_thenIExpectFalse() {
     // GIVEN
-    MmsHelper.insert(
-      IncomingMessage(
-        type = MessageType.NORMAL,
-        from = recipients[0],
-        sentTimeMillis = 200,
-        serverTimeMillis = 2,
-        receivedTimeMillis = 2,
-        storyType = StoryType.STORY_WITH_REPLIES
-      ),
-      -1L
-    )
+    insertIncomingStory(from = others[0], sentTimeMillis = 200)
 
     // WHEN
-    val result = mms.isOutgoingStoryAlreadyInDatabase(recipients[0], 200)
+    val result = mms.isOutgoingStoryAlreadyInDatabase(others[0], 200)
 
     // THEN
     assertFalse(result)
@@ -239,11 +170,7 @@ class MmsTableTest_stories {
   @Test
   fun givenOutgoingStoryExistsForRecipientAndTime_whenICheckIsOutgoingStoryAlreadyInDatabase_thenIExpectTrue() {
     // GIVEN
-    MmsHelper.insert(
-      recipient = myStory,
-      sentTimeMillis = 200,
-      storyType = StoryType.STORY_WITH_REPLIES
-    )
+    insertOutgoingStory(recipient = myStory, sentTimeMillis = 200)
 
     // WHEN
     val result = mms.isOutgoingStoryAlreadyInDatabase(myStory.id, 200)
@@ -255,11 +182,7 @@ class MmsTableTest_stories {
   @Test
   fun givenAGroupStoryWithNoReplies_whenICheckHasSelfReplyInGroupStory_thenIExpectFalse() {
     // GIVEN
-    val groupStoryId = MmsHelper.insert(
-      recipient = myStory,
-      sentTimeMillis = 200,
-      storyType = StoryType.STORY_WITH_REPLIES
-    )
+    val groupStoryId = insertOutgoingStory(recipient = myStory, sentTimeMillis = 200)
 
     // WHEN
     val result = mms.hasGroupReplyOrReactionInStory(groupStoryId)
@@ -268,23 +191,12 @@ class MmsTableTest_stories {
     assertFalse(result)
   }
 
-  @Ignore
   @Test
   fun givenAGroupStoryWithAReplyFromSelf_whenICheckHasSelfReplyInGroupStory_thenIExpectTrue() {
     // GIVEN
-    val groupStoryId = MmsHelper.insert(
-      recipient = myStory,
-      sentTimeMillis = 200,
-      storyType = StoryType.STORY_WITH_REPLIES,
-      threadId = -1L
-    )
+    val groupStoryId = insertOutgoingStory(recipient = myStory, sentTimeMillis = 200)
 
-    MmsHelper.insert(
-      recipient = myStory,
-      sentTimeMillis = 201,
-      storyType = StoryType.NONE,
-      parentStoryId = ParentStoryId.GroupReply(groupStoryId)
-    )
+    insertOutgoingStoryReply(recipient = myStory, sentTimeMillis = 201, parentStoryId = ParentStoryId.GroupReply(groupStoryId))
 
     // WHEN
     val result = mms.hasGroupReplyOrReactionInStory(groupStoryId)
@@ -296,16 +208,11 @@ class MmsTableTest_stories {
   @Test
   fun givenAGroupStoryWithAReactionFromSelf_whenICheckHasSelfReplyInGroupStory_thenIExpectTrue() {
     // GIVEN
-    val groupStoryId = MmsHelper.insert(
-      recipient = myStory,
-      sentTimeMillis = 200,
-      storyType = StoryType.STORY_WITH_REPLIES
-    )
+    val groupStoryId = insertOutgoingStory(recipient = myStory, sentTimeMillis = 200)
 
-    MmsHelper.insert(
+    insertOutgoingStoryReply(
       recipient = myStory,
       sentTimeMillis = 201,
-      storyType = StoryType.NONE,
       parentStoryId = ParentStoryId.GroupReply(groupStoryId),
       isStoryReaction = true
     )
@@ -320,13 +227,10 @@ class MmsTableTest_stories {
   @Test
   fun givenAGroupStoryWithAReplyFromSomeoneElse_whenICheckHasSelfReplyInGroupStory_thenIExpectFalse() {
     // GIVEN
-    val groupStoryId = MmsHelper.insert(
-      recipient = myStory,
-      sentTimeMillis = 200,
-      storyType = StoryType.STORY_WITH_REPLIES
-    )
+    val groupStoryId = insertOutgoingStory(recipient = myStory, sentTimeMillis = 200)
 
-    MmsHelper.insert(
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(myStory, ThreadTable.DistributionTypes.DEFAULT)
+    mms.insertMessageInbox(
       IncomingMessage(
         type = MessageType.NORMAL,
         from = myStory.id,
@@ -335,7 +239,7 @@ class MmsTableTest_stories {
         receivedTimeMillis = 202,
         parentStoryId = ParentStoryId.GroupReply(groupStoryId)
       ),
-      SignalDatabase.threads.getOrCreateThreadIdFor(myStory, ThreadTable.DistributionTypes.DEFAULT)
+      threadId
     )
 
     // WHEN
@@ -349,15 +253,14 @@ class MmsTableTest_stories {
   fun givenNotViewedOnboardingAndOnlyStoryIsOnboardingAndAdded2DaysAgo_whenIGetOldestStoryTimestamp_thenIExpectNull() {
     // GIVEN
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(releaseChannelRecipient)
-    MmsHelper.insert(
+    insertOutgoingStory(
       recipient = releaseChannelRecipient,
       sentTimeMillis = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(2),
-      storyType = StoryType.STORY_WITH_REPLIES,
       threadId = threadId
     )
 
     // WHEN
-    val oldestTimestamp = SignalDatabase.messages.getOldestStorySendTimestamp(false)
+    val oldestTimestamp = mms.getOldestStorySendTimestamp(false)
 
     // THEN
     assertNull(oldestTimestamp)
@@ -368,17 +271,60 @@ class MmsTableTest_stories {
     // GIVEN
     val expected = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(2)
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(releaseChannelRecipient)
-    MmsHelper.insert(
-      recipient = releaseChannelRecipient,
-      sentTimeMillis = expected,
-      storyType = StoryType.STORY_WITH_REPLIES,
-      threadId = threadId
-    )
+    insertOutgoingStory(recipient = releaseChannelRecipient, sentTimeMillis = expected, threadId = threadId)
 
     // WHEN
-    val oldestTimestamp = SignalDatabase.messages.getOldestStorySendTimestamp(true)
+    val oldestTimestamp = mms.getOldestStorySendTimestamp(true)
 
     // THEN
     assertEquals(expected, oldestTimestamp)
+  }
+
+  private fun insertOutgoingStory(
+    recipient: Recipient,
+    sentTimeMillis: Long,
+    threadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+  ): Long {
+    val message = OutgoingMessage(
+      recipient = recipient,
+      body = "body",
+      timestamp = sentTimeMillis,
+      storyType = StoryType.STORY_WITH_REPLIES,
+      isSecure = true
+    )
+    return recipients.insertOutgoingMessage(message, threadId)
+  }
+
+  private fun insertOutgoingStoryReply(
+    recipient: Recipient,
+    sentTimeMillis: Long,
+    parentStoryId: ParentStoryId,
+    isStoryReaction: Boolean = false,
+    threadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+  ): Long {
+    val message = OutgoingMessage(
+      recipient = recipient,
+      body = "body",
+      timestamp = sentTimeMillis,
+      storyType = StoryType.NONE,
+      parentStoryId = parentStoryId,
+      isStoryReaction = isStoryReaction,
+      isSecure = true
+    )
+    return recipients.insertOutgoingMessage(message, threadId)
+  }
+
+  private fun insertIncomingStory(from: RecipientId, sentTimeMillis: Long): Optional<MessageTable.InsertResult> {
+    return mms.insertMessageInbox(
+      IncomingMessage(
+        type = MessageType.NORMAL,
+        from = from,
+        sentTimeMillis = sentTimeMillis,
+        serverTimeMillis = sentTimeMillis,
+        receivedTimeMillis = sentTimeMillis,
+        storyType = StoryType.STORY_WITH_REPLIES
+      ),
+      -1L
+    )
   }
 }
