@@ -387,18 +387,18 @@ private fun NextButton(
     horizontalArrangement = Arrangement.End,
     verticalAlignment = Alignment.CenterVertically
   ) {
-    if (state.showSpinner) {
-      CircularProgressIndicator(
-        modifier = Modifier.size(24.dp),
-        strokeWidth = 3.dp,
-        color = MaterialTheme.colorScheme.primary
-      )
-    } else {
-      Buttons.LargeTonal(
-        onClick = { onEvent(PhoneNumberEntryScreenEvents.PhoneNumberEntered) },
-        enabled = state.isNumberPossible,
-        modifier = Modifier.testTag(TestTags.PHONE_NUMBER_NEXT_BUTTON)
-      ) {
+    Buttons.LargeTonal(
+      onClick = { onEvent(PhoneNumberEntryScreenEvents.PhoneNumberEntered) },
+      enabled = !state.showSpinner && state.isNumberPossible,
+      modifier = Modifier.testTag(TestTags.PHONE_NUMBER_NEXT_BUTTON)
+    ) {
+      if (state.showSpinner) {
+        CircularProgressIndicator(
+          modifier = Modifier.size(24.dp),
+          strokeWidth = 3.dp,
+          color = MaterialTheme.colorScheme.primary
+        )
+      } else {
         Text(stringResource(R.string.RegistrationActivity_next))
       }
     }
