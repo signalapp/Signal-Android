@@ -75,6 +75,7 @@ class AdvancedPrivacySettingsViewModel(
     viewModelScope.launch(SignalDispatchers.IO) {
       if (!enabled) {
         SignalDatabase.recipients.clearAllKeyTransparencyData()
+        SignalStore.account.distinguishedHead = null
       }
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
       StorageSyncHelper.scheduleSyncForDataChange()

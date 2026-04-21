@@ -198,9 +198,10 @@ public class ApplicationMigrations {
     static final int EMOJI_VERSION_13              = 154;
     static final int COLLAPSED_EVENTS              = 155;
     static final int COLLAPSED_EVENTS_2            = 156;
+    static final int KEY_TRANSPARENCY              = 157;
   }
 
-  public static final int CURRENT_VERSION = 156;
+  public static final int CURRENT_VERSION = 157;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -917,6 +918,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.COLLAPSED_EVENTS_2) {
       jobs.put(Version.COLLAPSED_EVENTS_2, new BackfillCollapsedEventsMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.KEY_TRANSPARENCY) {
+      jobs.put(Version.KEY_TRANSPARENCY, new ResetKeyTransparencyMigrationJob());
     }
 
     return jobs;
