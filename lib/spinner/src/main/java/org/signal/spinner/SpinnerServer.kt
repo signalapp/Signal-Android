@@ -286,6 +286,9 @@ internal class SpinnerServer(
       is PluginResult.JsonResult -> {
         return newFixedLengthResponse(Response.Status.OK, "application/json", pluginResult.json)
       }
+      is PluginResult.TsvResult -> {
+        return newChunkedResponse(Response.Status.OK, "text/tab-separated-values", pluginResult.toInputStream())
+      }
       is PluginResult.RawFileResult -> {
         return newFixedLengthResponse(Response.Status.OK, pluginResult.mimeType, pluginResult.data, pluginResult.length)
       }
