@@ -459,7 +459,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
                                                      }
                                                    }));
 
-    if (isSplitPane(getWindowSizeClass(getResources()))) {
+    if (isSplitPane(getResources())) {
       lifecycleDisposable.add(mainNavigationViewModel.getObservableActiveChatThreadId()
                                                      .subscribeOn(AndroidSchedulers.mainThread())
                                                      .subscribe(defaultAdapter::setActiveThreadId));

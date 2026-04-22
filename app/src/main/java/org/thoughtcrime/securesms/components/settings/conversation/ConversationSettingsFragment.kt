@@ -30,7 +30,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.launch
-import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.ui.isSplitPane
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.DimensionUnit
@@ -277,7 +276,7 @@ class ConversationSettingsFragment :
       views = listOf(toolbar!!),
       lifecycleOwner = viewLifecycleOwner,
       setStatusBarColor = { color ->
-        if (!resources.getWindowSizeClass().isSplitPane() || activity is ConversationSettingsActivity) {
+        if (!resources.isSplitPane() || activity is ConversationSettingsActivity) {
           WindowUtil.setStatusBarColor(requireActivity().window, color)
         }
       }

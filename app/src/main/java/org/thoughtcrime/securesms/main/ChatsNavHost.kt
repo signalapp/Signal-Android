@@ -43,11 +43,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
-import androidx.window.core.layout.WindowSizeClass
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import org.signal.core.ui.isSplitPane
 import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavHostFragment
 import org.thoughtcrime.securesms.compose.FragmentBackHandler
@@ -247,17 +245,17 @@ private fun Transition<Boolean>.chatAnimationState(hasFake: Boolean): AppScaffol
  */
 @Stable
 class ChatNavGraphState private constructor(
-  val windowSizeClass: WindowSizeClass,
+  val isSplitPane: Boolean,
   val graphicsLayer: GraphicsLayer
 ) {
   companion object {
     @Composable
-    fun remember(windowSizeClass: WindowSizeClass): ChatNavGraphState {
+    fun remember(isSplitPane: Boolean): ChatNavGraphState {
       val graphicsLayer = rememberGraphicsLayer()
 
-      return remember(windowSizeClass) {
+      return remember(isSplitPane) {
         ChatNavGraphState(
-          windowSizeClass,
+          isSplitPane,
           graphicsLayer
         )
       }
@@ -271,7 +269,7 @@ class ChatNavGraphState private constructor(
 
   suspend fun writeGraphicsLayerToBitmap() {
     // toImageBitmap() uses LayerSnapshot which has format compatibility issues on Android 7 and below
-    if (Build.VERSION.SDK_INT >= 26 && !windowSizeClass.isSplitPane() && hasWrittenToGraphicsLayer) {
+    if (Build.VERSION.SDK_INT >= 26 && !isSplitPane && hasWrittenToGraphicsLayer) {
       chatBitmap = graphicsLayer.toImageBitmap()
     }
   }

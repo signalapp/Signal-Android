@@ -23,7 +23,6 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.launch
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.Snackbars
-import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.ui.isSplitPane
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -133,7 +132,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
         val filteredCount = callLogAdapter.submitCallRows(
           data,
           selected,
-          activeCallLogRowId = activeRowId.orNull().takeIf { resources.getWindowSizeClass().isSplitPane() },
+          activeCallLogRowId = activeRowId.orNull().takeIf { resources.isSplitPane() },
           viewModel.callLogPeekHelper.localDeviceCallRecipientId,
           scrollToPositionDelegate::notifyListCommitted
         )
@@ -187,7 +186,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       }
     }
 
-    if (!resources.getWindowSizeClass().isSplitPane()) {
+    if (!resources.isSplitPane()) {
       ViewUtil.setBottomMargin(binding.bottomActionBar, ViewUtil.getNavigationBarHeight(binding.bottomActionBar))
     }
 

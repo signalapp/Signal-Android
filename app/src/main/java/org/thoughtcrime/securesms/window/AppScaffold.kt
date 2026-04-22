@@ -49,6 +49,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.getWindowBreakpoint
 import org.signal.core.ui.isSplitPane
 import org.signal.core.ui.isWidthExpanded
+import org.signal.core.ui.rememberIsSplitPane
 import org.thoughtcrime.securesms.main.MainFloatingActionButtonsCallback
 import org.thoughtcrime.securesms.main.MainNavigationBar
 import org.thoughtcrime.securesms.main.MainNavigationRail
@@ -274,10 +275,11 @@ private fun ListAndNavigation(
 private fun AppScaffoldPreview() {
   Previews.Preview {
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val isSplitPane = LocalResources.current.rememberIsSplitPane(false)
 
     AppScaffold(
       navigator = rememberAppScaffoldNavigator(
-        isSplitPane = windowSizeClass.isSplitPane(false),
+        isSplitPane = isSplitPane,
         defaultPanePreferredWidth = 416.dp,
         horizontalPartitionSpacerSize = 16.dp
       ),

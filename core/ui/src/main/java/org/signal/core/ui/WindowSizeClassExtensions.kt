@@ -15,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.window.core.layout.WindowSizeClass
 import androidx.window.core.layout.computeWindowSizeClass
 
+private const val TABLET_ASPECT_RATIO = 1.5f
+
 val WindowSizeClass.listPaneDefaultPreferredWidth: Dp get() = if (isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND)) 416.dp else 316.dp
 val WindowSizeClass.horizontalPartitionDefaultSpacerSize: Dp get() = 12.dp
 val WindowSizeClass.detailPaneMaxContentWidth: Dp get() = 624.dp
@@ -50,9 +52,7 @@ fun rememberWindowBreakpoint(): WindowBreakpoint {
  * [Resources] and window size class.
  *
  * This function uses several heuristics:
- * - Returns [WindowBreakpoint.SMALL] if the width or height is compact.
- * - Returns [WindowBreakpoint.LARGE] if the height is at least the expanded lower bound.
- * - Returns [WindowBreakpoint.MEDIUM] if the width is at least the medium lower bound.
+ * - Returns [WindowBreakpoint.SMALL] if the width or height is compact
  * - Otherwise, falls back to aspect ratio heuristics: wider (≥ 1.5) is [WindowBreakpoint.LARGE], else [WindowBreakpoint.MEDIUM].
  *
  * @return the inferred [WindowBreakpoint] for the current device.
@@ -64,15 +64,11 @@ fun Resources.getWindowBreakpoint(): WindowBreakpoint {
     return WindowBreakpoint.SMALL
   }
 
-  if (windowSizeClass.isHeightAtLeastBreakpoint(WindowSizeClass.HEIGHT_DP_EXPANDED_LOWER_BOUND)) {
-    return WindowBreakpoint.LARGE
-  }
-
   val numerator = maxOf(displayMetrics.widthPixels, displayMetrics.heightPixels)
   val denominator = minOf(displayMetrics.widthPixels, displayMetrics.heightPixels)
   val aspectRatio = numerator.toFloat() / denominator
 
-  return if (aspectRatio >= 1.5f) {
+  return if (aspectRatio >= TABLET_ASPECT_RATIO) {
     WindowBreakpoint.LARGE
   } else {
     WindowBreakpoint.MEDIUM
@@ -92,19 +88,34 @@ enum class WindowBreakpoint {
   LARGE
 }
 
+@Composable
+fun Resources.rememberIsSplitPane(
+  forceSplitPane: Boolean = CoreUiDependencies.forceSplitPane
+): Boolean {
+  return remember(this, forceSplitPane) {
+    isSplitPane(forceSplitPane)
+  }
+}
+
 /**
  * Determines whether the UI should display in split-pane mode based on available screen space.
  */
 @JvmOverloads
-fun WindowSizeClass.isSplitPane(
+fun Resources.isSplitPane(
   forceSplitPane: Boolean = CoreUiDependencies.forceSplitPane
 ): Boolean {
   if (forceSplitPane) {
     return true
   }
 
-  return isAtLeastBreakpoint(
-    widthDpBreakpoint = WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND,
-    heightDpBreakpoint = WindowSizeClass.HEIGHT_DP_MEDIUM_LOWER_BOUND
-  )
+  val breakpoint = getWindowBreakpoint()
+  if (breakpoint == WindowBreakpoint.SMALL) {
+    return false
+  }
+
+  if (breakpoint == WindowBreakpoint.LARGE && displayMetrics.widthPixels < displayMetrics.heightPixels) {
+    return false
+  }
+
+  return true
 }

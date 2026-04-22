@@ -15,12 +15,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
@@ -37,7 +37,7 @@ import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Snackbars
-import org.signal.core.ui.isSplitPane
+import org.signal.core.ui.rememberIsSplitPane
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.ringrtc.CallLinkState.Restrictions
@@ -83,7 +83,7 @@ fun CallLinkDetailsScreen(
     state = state,
     showAlreadyInACall = showAlreadyInACall,
     callback = callback,
-    showNavigationIcon = !currentWindowAdaptiveInfo().windowSizeClass.isSplitPane()
+    showNavigationIcon = !LocalResources.current.rememberIsSplitPane()
   )
 }
 

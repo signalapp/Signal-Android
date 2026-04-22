@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.window.core.layout.WindowSizeClass
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.getWindowBreakpoint
-import org.signal.core.ui.isSplitPane
+import org.signal.core.ui.rememberIsSplitPane
 
 private val MEDIUM_CONTENT_CORNERS = 18.dp
 private val EXTENDED_CONTENT_CORNERS = 14.dp
@@ -47,7 +47,7 @@ data class MainContentLayoutData(
    */
   @Composable
   fun hasDragHandle(): Boolean {
-    return currentWindowAdaptiveInfo().windowSizeClass.isSplitPane()
+    return LocalResources.current.rememberIsSplitPane()
   }
 
   /**
@@ -55,11 +55,12 @@ data class MainContentLayoutData(
    */
   @Composable
   fun rememberDefaultPanePreferredWidth(maxWidth: Dp): Dp {
+    val isSplitPane = LocalResources.current.rememberIsSplitPane()
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
     return remember(maxWidth, windowSizeClass) {
       when {
-        !windowSizeClass.isSplitPane() -> maxWidth
+        !isSplitPane -> maxWidth
         windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND) -> 416.dp
         else -> (maxWidth - extraPadding) / 2f
       }
@@ -75,9 +76,9 @@ data class MainContentLayoutData(
       val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
       val resources = LocalResources.current
       val breakpoint = resources.getWindowBreakpoint()
+      val isSplitPane = resources.rememberIsSplitPane()
 
-      return remember(windowSizeClass, mode, breakpoint) {
-        val isSplitPane = windowSizeClass.isSplitPane()
+      return remember(windowSizeClass, mode, breakpoint, isSplitPane) {
         val isLargeWindowSize = breakpoint == WindowBreakpoint.LARGE
 
         MainContentLayoutData(

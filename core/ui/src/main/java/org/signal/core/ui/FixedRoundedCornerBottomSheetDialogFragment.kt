@@ -35,7 +35,7 @@ abstract class FixedRoundedCornerBottomSheetDialogFragment : BottomSheetDialogFr
    * Sheet corner radius in DP
    */
   protected open val cornerRadius: Int
-    get() = if (resources.getWindowSizeClass().isSplitPane()) {
+    get() = if (resources.isSplitPane()) {
       32
     } else {
       18

@@ -666,7 +666,7 @@ class ConversationFragment :
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     viewModel.resetBackPressedState()
     binding.toolbar.isBackInvokedCallbackEnabled = false
-    binding.root.setUseWindowTypes(args.conversationScreenType == ConversationScreenType.NORMAL && !resources.getWindowSizeClass().isSplitPane())
+    binding.root.setUseWindowTypes(args.conversationScreenType == ConversationScreenType.NORMAL && !resources.isSplitPane())
     if (args.conversationScreenType == ConversationScreenType.BUBBLE) {
       binding.root.setNavigationBarInsetOverride(0)
       view.post {
@@ -1763,7 +1763,7 @@ class ConversationFragment :
   }
 
   private fun updateNavigationIconForNormal(isFullScreenPane: Boolean) {
-    if (!resources.getWindowSizeClass().isSplitPane() || isFullScreenPane) {
+    if (!resources.isSplitPane() || isFullScreenPane) {
       binding.toolbar.setNavigationIcon(CoreUiR.drawable.symbol_arrow_start_24)
       binding.toolbar.navigationIcon?.setTint(
         ContextCompat.getColor(
@@ -4359,7 +4359,7 @@ class ConversationFragment :
    */
   private fun navigateTo(location: MainNavigationDetailLocation.Chats) {
     val router = mainNavRouter
-    if (router != null && resources.getWindowSizeClass().isSplitPane()) {
+    if (router != null && resources.isSplitPane()) {
       router.goTo(location)
     } else {
       when (location) {

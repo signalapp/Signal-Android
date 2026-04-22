@@ -61,6 +61,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.DialogFragment
@@ -73,7 +74,6 @@ import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
-import androidx.window.core.layout.WindowSizeClass
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
@@ -88,6 +88,7 @@ import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.isSplitPane
 import org.signal.core.ui.permissions.Permissions
+import org.signal.core.ui.rememberIsSplitPane
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
@@ -429,11 +430,12 @@ class MainActivity :
         )
       }
 
+      val isSplitPane = LocalResources.current.rememberIsSplitPane()
       val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
       val contentLayoutData = MainContentLayoutData.rememberContentLayoutData(mainToolbarState.mode)
 
       MainContainer {
-        val wrappedNavigator = rememberNavigator(windowSizeClass, contentLayoutData, maxWidth)
+        val wrappedNavigator = rememberNavigator(isSplitPane, contentLayoutData, maxWidth)
         val listPaneWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
         val navigationType = NavigationType.rememberNavigationType()
 
@@ -478,7 +480,7 @@ class MainActivity :
           }
         }
 
-        val chatNavGraphState = ChatNavGraphState.remember(windowSizeClass)
+        val chatNavGraphState = ChatNavGraphState.remember(isSplitPane)
         val mutableInteractionSource = remember { MutableInteractionSource() }
         MainNavigationDetailLocationEffect(mainNavigationViewModel, chatNavGraphState::writeGraphicsLayerToBitmap)
 
@@ -624,7 +626,7 @@ class MainActivity :
                   onDestinationSelected = mainNavigationCallback
                 )
 
-                if (!windowSizeClass.isSplitPane()) {
+                if (!LocalResources.current.rememberIsSplitPane()) {
                   Spacer(Modifier.navigationBarsPadding())
                 }
               }
@@ -640,7 +642,7 @@ class MainActivity :
             }
           },
           secondaryContent = {
-            val listContainerColor = if (windowSizeClass.isSplitPane()) {
+            val listContainerColor = if (isSplitPane) {
               SignalTheme.colors.colorSurface1
             } else {
               MaterialTheme.colorScheme.surface
@@ -781,12 +783,12 @@ class MainActivity :
   @OptIn(ExperimentalMaterial3AdaptiveApi::class)
   @Composable
   private fun rememberNavigator(
-    windowSizeClass: WindowSizeClass,
+    isSplitPane: Boolean,
     contentLayoutData: MainContentLayoutData,
     maxWidth: Dp
   ): AppScaffoldNavigator<Any> {
     val scaffoldNavigator = rememberThreePaneScaffoldNavigatorDelegate(
-      isSplitPane = windowSizeClass.isSplitPane(),
+      isSplitPane = isSplitPane,
       horizontalPartitionSpacerSize = contentLayoutData.partitionWidth,
       defaultPanePreferredWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
     )
@@ -800,18 +802,18 @@ class MainActivity :
 
   @Composable
   private fun MainContainer(content: @Composable BoxWithConstraintsScope.() -> Unit) {
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val isSplitPane = LocalResources.current.rememberIsSplitPane()
 
     CompositionLocalProvider(LocalSnackbarStateConsumerRegistry provides mainNavigationViewModel.snackbarRegistry) {
       SignalTheme {
-        val backgroundColor = if (!windowSizeClass.isSplitPane()) {
+        val backgroundColor = if (!isSplitPane) {
           MaterialTheme.colorScheme.surface
         } else {
           SignalTheme.colors.colorSurface1
         }
 
         val modifier = when {
-          windowSizeClass.isSplitPane() -> {
+          isSplitPane -> {
             Modifier
               .systemBarsPadding()
               .displayCutoutPadding()

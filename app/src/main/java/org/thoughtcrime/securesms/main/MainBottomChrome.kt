@@ -13,18 +13,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalResources
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.showSnackbar
 import org.signal.core.ui.isSplitPane
+import org.signal.core.ui.rememberIsSplitPane
 import org.thoughtcrime.securesms.components.snackbars.SnackbarHostKey
 import org.thoughtcrime.securesms.components.snackbars.rememberSnackbarState
 import org.thoughtcrime.securesms.megaphone.Megaphone
@@ -64,7 +65,7 @@ fun MainBottomChrome(
   megaphoneActionController: MegaphoneActionController,
   modifier: Modifier = Modifier
 ) {
-  val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+  val isSplitPane = LocalResources.current.rememberIsSplitPane()
   val navigationType = NavigationType.rememberNavigationType()
 
   Column(
@@ -92,7 +93,7 @@ fun MainBottomChrome(
       )
     }
 
-    if (windowSizeClass.isSplitPane()) {
+    if (isSplitPane) {
       return@Column
     }
 

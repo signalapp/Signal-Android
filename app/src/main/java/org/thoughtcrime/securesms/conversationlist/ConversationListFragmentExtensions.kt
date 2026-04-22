@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
-import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.ui.isSplitPane
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
 
@@ -36,7 +35,7 @@ fun Fragment.listenToEventBusWhileResumed(
     detailLocation
       .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.RESUMED)
       .collectLatest {
-        if (!resources.getWindowSizeClass().isSplitPane()) {
+        if (!resources.isSplitPane()) {
           when (it) {
             is MainNavigationDetailLocation.Chats.Conversation -> unsubscribe()
             MainNavigationDetailLocation.Empty -> subscribe()
