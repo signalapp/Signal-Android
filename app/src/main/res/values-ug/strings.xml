@@ -6358,9 +6358,9 @@
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">ئىئانىنى جەزملەشتۈرەلمىدى</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">ئايلىقى %1$s بولغان ئىئانىڭىزنى جەزملەشتۈرەلمىدى. بانكا ئەپىڭىزنى تەكشۈرۈپ iDEAL پۇل تۆلەشنى تەستىقلاڭ.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">بىر قېتىملىق %1$s ئىئانىڭىزنى جەزملەشتۈرەلمىدى. بانكا ئەپىڭىزنى تەكشۈرۈپ iDEAL پۇل تۆلەشنى تەستىقلاڭ.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
 
     <string name="Boost__enter_custom_amount">ئىختىيارىچە سومما كىرگۈزۈڭ</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -6489,7 +6489,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">تور خاتالىقى سەۋەبىدىن ئىئانىڭىزنى يوللىغىلى بولمىدى. تور ئۇلىنىشىنى تەكشۈرۈپ قايتا سىناڭ.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">iDEAL ئىئانىڭىزنى بىر تەرەپ قىلالمىدى. باشقا پۇل تۆلەش ئۇسۇلىنى سىناپ بېقىڭ ياكى تەپسىلاتى ئۈچۈن بانكا بىلەن ئالاقىلىشىڭ.</string>
+    <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">Your iDEAL | Wero donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">«%1$s» گە ۋاكالىتەن ئىئانە قىلىش</string>
@@ -7393,7 +7393,7 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">ئىئانىڭىزنى تېخىچە بىر تەرەپ قىلىۋاتىدۇ. تور ئۇلىنىشىڭىزغا ئاساسەن بۇنىڭغا بىر نەچچە مىنۇت كېتىشى مۇمكىن. باشقا بىر ئىئانە قىلىشتىن بۇرۇن بۇ پۇل تۆلەشنىڭ تاماملىنىشىنى كۈتۈپ تۇرۇڭ.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">iDEAL ئىئانىڭىزنى بىر تەرەپ قىلىۋاتىدۇ. يەنە بىر ئىئانە قىلىشتىن بۇرۇن بانكا ئەپىڭىزنى تەكشۈرۈپ پۇل تۆلەشنى تەستىقلاڭ.</string>
+    <string name="DonateToSignalFragment__your_ideal_wero_payment_is_still_processing">Your iDEAL | Wero donation is still processing. Check your banking app to approve your payment before making another donation.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">ئىئانە سوممىسى بەك كۆپ بولۇپ كەتكەن</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -7422,11 +7422,13 @@
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">دوستىڭىز ئورنىدا ئىئانە قىلىش</string>
     <!-- Button label for paying with iDEAL -->
-    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+    <string name="GatewaySelectorBottomSheet__ideal_wero">iDEAL | Wero</string>
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Signal چىقىپ ئىئانىنى جەزملەشتۈرەمسىز؟</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">جەزملەشتۈرگەندىن كېيىن، Signal غا قايتىپ ئىئانىڭىزنى داۋاملاشتۇرۇڭ.</string>
+    <!-- Dialog message shown when leaving Signal to complete a donation in an external app. Placeholder is the resolved app name (e.g. a banking app). -->
+    <string name="ExternalNavigationHelper__once_payment_confirmed_in_app">You\'ll be sent to %1$s. When confirmed, return to Signal to finish processing your donation.</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7488,7 +7490,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">بانكىڭىزنى تاللاڭ</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">iDEAL بىلەن ئىئانىڭىزنى جەزملەشتۈرۈڭ</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">Confirm your donation with iDEAL | Wero</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">تەكرار ئىئانە قىلىشنى تەڭشەشتىن بۇرۇن، چېكىپ بانكا بىلەن €0,01 ھەقنى جەزملەشتۈرۈڭ. بۇ سومما ئاپتوماتىك قايتۇرۇلىدۇ ۋە ئايلىق %1$s ئىئانىڭىزنى بانكا ھېساباتىڭىزدىن تۇتىدۇ.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -8807,7 +8809,7 @@
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">ئۇچۇرلىرىڭىزنى ۋە مېدىيالىرىڭىزنى زاپاسلاش ئۈچۈن سىگنالنىڭ بىخەتەر ، ئاخىرىغىچە مەخپىيلەشتۈرۈلگەن ساقلاش مۇلازىمىتىنى ئىشلىتىڭ. يېڭى تېلېفون ئالغاندا ياكى سىگنالنى قايتا قاچىلىغاندا ھەرقانداق ئۇچۇرنى يۈتتۈرۈپ قويمايسىز.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
     <!-- Backups feature label for e2e encryption -->
     <string name="MessageBackupsEducationScreen__end_to_end_encrypted">ئاخىرىغىچە مەخپىيلەشتۈرۈلگەن</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->

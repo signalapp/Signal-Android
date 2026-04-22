@@ -715,11 +715,11 @@
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">সাবধানে পর্যালোচনা করুন</string>
     <!-- Text shown in conversation header when in a message request state that the name is not verified -->
-    <string name="ConversationFragment_name_not_verified">Name not verified</string>
+    <string name="ConversationFragment_name_not_verified">নাম যাচাইকৃত নয়</string>
     <!-- Label for official chat pill shown in the Note to Self conversation header -->
-    <string name="ConversationFragment_official_chat">Official chat</string>
+    <string name="ConversationFragment_official_chat">অফিসিয়াল চ্যাট</string>
     <!-- Description shown in the Signal release notes conversation header -->
-    <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
+    <string name="ConversationFragment_release_notes_description">Signal-এর একমাত্র অফিসিয়াল চ্যাট। খবর ও রিলিজ নোট পেয়ে আপডেট থাকুন।</string>
     <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
     <plurals name="ConversationFragment_group_member_count">
         <item quantity="one">%1$d জন সদস্য</item>
@@ -758,49 +758,49 @@
     <string name="SafetyTips_next_tip">পরবর্তী পরামর্শ</string>
 
     <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
-    <string name="SafetyTips_summary_tip0_title">Don\'t respond to chats from Signal</string>
+    <string name="SafetyTips_summary_tip0_title">Signal থেকে আসা চ্যাটের উত্তর দেবেন না</string>
     <!-- Summary tip 0 message -->
-    <string name="SafetyTips_summary_tip0_message">Signal will never message you for your registration code, PIN, or recovery key. Never respond to a chat pretending to be Signal.</string>
+    <string name="SafetyTips_summary_tip0_message">Signal কখনোই আপনার রেজিস্ট্রেশন কোড, পিন, বা পুনরুদ্ধার \'কি\'-এর জন্য আপনাকে মেসেজ দেবে না। Signal-এর প্রতিনিধি হওয়ার ভান করে এমন কোনো চ্যাটের উত্তর দিবেন না।</string>
     <!-- Summary tip 1 title: Review names and photos -->
-    <string name="SafetyTips_summary_tip1_title">Review names and photos</string>
+    <string name="SafetyTips_summary_tip1_title">নাম ও ছবি রিভিউ করুন</string>
     <!-- Summary tip 1 message -->
-    <string name="SafetyTips_summary_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name in Signal.</string>
+    <string name="SafetyTips_summary_tip1_message">\"নাম যাচাই করা হয়নি\" নোটিশের দিকে খেয়াল রাখুন। প্রত্যেকে Signal-এ তাদের নিজস্ব প্রোফাইল নাম নির্ধারণ করে থাকেন।</string>
     <!-- Summary tip 2 title: Look out for scams -->
-    <string name="SafetyTips_summary_tip2_title">Look out for scams</string>
+    <string name="SafetyTips_summary_tip2_title">জালিয়াতি প্রতিহত করতে সাবধান থাকুন</string>
     <!-- Summary tip 2 message -->
-    <string name="SafetyTips_summary_tip2_message">Avoid vague messages that try to get you to reply. Be aware of financial tips and suspicious web links.</string>
+    <string name="SafetyTips_summary_tip2_message">আপনাকে উত্তর দিতে প্ররোচিত করার উদ্দেশ্যে পাঠানো অস্পষ্ট মেসেজ এড়িয়ে চলুন। আর্থিক পরামর্শ এবং সন্দেহজনক ওয়েব লিংক সম্পর্কে সতর্ক থাকুন।</string>
 
     <!-- Detail tip 0 title -->
-    <string name="SafetyTips_detail_tip0_title">Don\'t respond to chats from Signal</string>
+    <string name="SafetyTips_detail_tip0_title">Signal থেকে আসা চ্যাটের উত্তর দেবেন না</string>
     <!-- Detail tip 0 message -->
-    <string name="SafetyTips_detail_tip0_message">Signal will never message you for your registration code, PIN, or recover key. Don\'t reply to chats pretending to be Signal or Signal Support. Bad actors set up fake chats to try to take over your account.</string>
+    <string name="SafetyTips_detail_tip0_message">Signal আপনার রেজিস্ট্রেশন কোড, পিন বা পুনরুদ্ধার \'কি\'-এর জন্য আপনাকে কখনোই মেসেজ করবে না। এমন কোনো চ্যাটের উত্তর দিবেন না যেখানে Signal বা Signal সাপোর্ট-এর প্রতিনিধি হওয়ার ভান করা হয়। ক্ষতিকর ব্যক্তিরা আপনার অ্যাকাউন্ট দখলের চেষ্টা করার জন্য ভুয়া চ্যাট সেট আপ করে।</string>
     <!-- Detail tip 1 title -->
-    <string name="SafetyTips_detail_tip1_title">Review names and photos</string>
+    <string name="SafetyTips_detail_tip1_title">নাম ও ছবি রিভিউ করুন</string>
     <!-- Detail tip 1 message -->
-    <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\'re unsure who a new request is from it\'s safer to ignore it.</string>
+    <string name="SafetyTips_detail_tip1_message">\"নাম যাচাই করা হয়নি\" নোটিশের দিকে খেয়াল রাখুন। প্রত্যেকে Signal-এ তাদের নিজস্ব প্রোফাইল নাম এবং ছবি নির্ধারণ করে থাকেন। নতুন অনুরোধটি কার কাছ থেকে এসেছে সে বিষয়ে আপনি নিশ্চিত না হলে, সেটি এড়িয়ে যাওয়াটাই নিরাপদ।</string>
     <!-- Detail tip 2 title -->
     <string name="SafetyTips_detail_tip2_title">অস্পষ্ট বা অপ্রাসঙ্গিক মেসেজ</string>
     <!-- Detail tip 2 message -->
-    <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_detail_tip2_message">স্প্যামাররা আপনাকে আকৃষ্ট করার জন্য প্রায়শই \"হাই\"-এর মতো একটি সাধারণ মেসেজ দিয়ে কথোপকথন শুরু করে। আপনি উত্তর দিলে তারা আপনাকে আরো জড়িয়ে ফেলতে পারেন।</string>
     <!-- Detail tip 3 title -->
-    <string name="SafetyTips_detail_tip3_title">Messages with web links</string>
+    <string name="SafetyTips_detail_tip3_title">ওয়েব লিংক সহ মেসেজ</string>
     <!-- Detail tip 3 message -->
-    <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\'t know that have links to websites. Never visit links from people you don\'t trust.</string>
+    <string name="SafetyTips_detail_tip3_message">অপরিচিত ব্যক্তির কাছ থেকে পাওয়া ওয়েবসাইটের লিংকযুক্ত মেসেজ থেকে সাবধান থাকুন। যাদের উপর আপনার আস্থা নেই, তাদের পাঠানো লিংকে কখনো প্রবেশ করবেন না।</string>
     <!-- Detail tip 4 title -->
     <string name="SafetyTips_detail_tip4_title">ক্রিপ্টো বা অর্থ সংক্রান্ত স্ক্যাম</string>
     <!-- Detail tip 4 message -->
-    <string name="SafetyTips_detail_tip4_message">If someone you don\'t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\'s likely spam.</string>
+    <string name="SafetyTips_detail_tip4_message">যদি কোনো অপরিচিত ব্যক্তি ক্রিপ্টোকারেন্সি (যেমন বিটকয়েন) বা কোনো আর্থিক সুযোগ-সুবিধা সংক্রান্ত বিষয়ে মেসেজ পাঠিয়ে থাকেন, তাহলে সতর্ক থাকুন—এটি খুব সম্ভবত একটি স্প্যাম।</string>
     <!-- Detail tip 5 title -->
-    <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
+    <string name="SafetyTips_detail_tip5_title">ভুয়া ব্যবসা প্রতিষ্ঠান</string>
     <!-- Detail tip 5 message -->
     <string name="SafetyTips_detail_tip5_message">কোনো ব্যবসা প্রতিষ্ঠান বা সরকারি সংস্থা যদি আপনার সাথে যোগাযোগ করে তবে সে সম্পর্কে সতর্ক থাকুন। ট্যাক্স এজেন্সি, কুরিয়ার এবং আরো অনেক কিছুর সাথে সম্পর্কিত মেসেজ স্প্যাম হতে পারে।</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal-এ %1$s তাদের অ্যাকাউন্টধারী বেছে নিয়েছেন।</string>
     <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
-    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal can\'t verify names and photos</string>
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal নাম ও ছবি যাচাই করতে পারছে না</string>
     <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
-    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal will never contact you for your registration code, PIN, or recovery key</string>
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal কখনোই আপনার রেজিস্ট্রেশন কোড, পিন, বা পুনরুদ্ধার \'কি\'-এর জন্য আপনার সাথে যোগাযোগ করবে না</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">অন্যদের ছদ্মবেশ ধারণ করে আছে এমন কারো অ্যাকাউন্ট থেকে সাবধান থাকুন</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
@@ -2245,9 +2245,9 @@
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">স্প্যাম হিসেবে রিপোর্ট করা হয়েছে</string>
     <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
-    <string name="MessageRecord_you_accepted_s_message_request">You accepted %1$s\'s message request</string>
+    <string name="MessageRecord_you_accepted_s_message_request">আপনি %1$s-এর মেসেজের অনুরোধ গ্রহণ করেছেন</string>
     <!-- Update message shown in a group chat after accepting a group message request -->
-    <string name="MessageRecord_you_accepted_the_group_request">You accepted the group request</string>
+    <string name="MessageRecord_you_accepted_the_group_request">আপনি গ্ৰুপের অনুরোধ গ্রহণ করেছেন</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">আপনি এই ব্যক্তিকে ব্লক করেছেন</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2271,7 +2271,7 @@
     <string name="MessageRequestBottomView_unblock">আনব্লক করুন</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s-কে আপনাকে মেসেজ দিতে দিন এবং তার সাথে আপনার নাম ও ছবি শেয়ার করুন? আপনি অতীতে এই ব্যক্তিকে মুছে ফেলেছিলেন।</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Let this person message you and share your name and photo with them? They won\'t know you\'ve seen their message until you accept.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">এই ব্যক্তিকে আপনাকে মেসেজ করতে এবং তাদের সাথে আপনার নাম ও ছবি শেয়ার করতে দেবেন? আপনি গ্রহণ না করা পর্যন্ত তারা জানতে পারবেন না যে আপনি তাদের মেসেজটি দেখেছেন।</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s-কে কি আপনাকে ম্যাসেজ পাঠাতে এবং আপনার নাম ও ছবি শেয়ার করতে দেবেন? আপনি তাদের আনব্লক না করা পর্যন্ত তাদের পাঠানো কোনো ম্যাসেজ পাবেন না।</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2333,15 +2333,15 @@
         <item quantity="other">%1$d অন্যান্য</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report</string>
+    <string name="MessageRequestBottomView_report">রিপোর্ট করুন</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">অনুরোধ গ্রহণ করবেন?</string>
     <!-- Alert dialog body to review the message request carefully -->
     <string name="MessageRequestBottomView_review_requests_carefully">সতর্কতার সাথে অনুরোধ পর্যালোচনা করুন। প্রোফাইলের নামগুলি তাদের অ্যাকাউন্টধারী নির্বাচন করে থাকেন এবং সেগুলি যাচাইকৃত নয়।</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
-    <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
+    <string name="MessageRequestBottomView_accept_request_body">আপনি যাদের বিশ্বাস করেন শুধুমাত্র তাদের কাছ থেকেই অনুরোধ গ্রহণ করুন। রেজিস্ট্রেশন কোড, পিন বা পুনরুদ্ধার \'কি\'-এর জন্য আপনাকে %1$s মেসেজ।</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->
-    <string name="MessageRequestBottomView_signal_will_never">Signal will never</string>
+    <string name="MessageRequestBottomView_signal_will_never">Signal কখনোই করবে না</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">গ্রুপে যোগ দেবেন?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -3728,7 +3728,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">আপনি এই ব্যক্তিকে মুছে ফেলেছেন, তাকে আবার মেসেজ পাঠালে আপনার তালিকায় তাকে আবার যোগ করা হবে।</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_block_report">Block or Report…</string>
+    <string name="ConversationUpdateItem_block_report">ব্লক করুন অথবা রিপোর্ট করুন…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">আপডেট করুন</string>
     <!-- Update item button text to show how many group updates there are. -->
@@ -6514,9 +6514,9 @@
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">ডোনেশন নিশ্চিত করা যায়নি</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">আপনার %1$s/মাসের ডোনেশন নিশ্চিত করা যায়নি। আপনার iDEAL পেমেন্ট অনুমোদন করতে আপনার ব্যাংকিং অ্যাপ দেখুন।</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">আপনার এককালীন %1$s ডোনেশন নিশ্চিত করা যায়নি। আপনার iDEAL পেমেন্ট অনুমোদন করতে আপনার ব্যাংকিং অ্যাপ দেখুন।</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
 
     <string name="Boost__enter_custom_amount">কাস্টম পরিমাণ লিখুন</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -6645,7 +6645,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">নেটওয়ার্ক ত্রুটির কারণে আপনার ডোনেশন পাঠানো যায়নি। আপনার নেটওয়ার্ক সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">আপনার iDEAL ডোনেশন প্রক্রিয়া করা যায়নি। আরেকটি পেমেন্ট পদ্ধতি ব্যবহার করে দেখুন বা আরো তথ্যের জন্য আপনার ব্যাংকের সাথে যোগাযোগ করুন।</string>
+    <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">Your iDEAL | Wero donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$s-এর পক্ষ থেকে ডোনেশন</string>
@@ -7570,7 +7570,7 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">আপনার ডোনেশন এখনো প্রক্রিয়া করা হচ্ছে। আপনার সংযোগের উপর ভিত্তি করে এতে কয়েক মিনিট সময় লাগতে পারে। অনুগ্রহ করে আরেকটি ডোনেশন পাঠানোর আগে এই পেমেন্টটি সম্পন্ন হওয়ার আগ পর্যন্ত অপেক্ষা করুন।</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">আপনার iDEAL ডোনেশন এখনো প্রক্রিয়াধীন আছে। আরেকটি ডোনেশন করার আগে আপনার পেমেন্ট অনুমোদন করার জন্য আপনার ব্যাংকিং অ্যাপ দেখুন।</string>
+    <string name="DonateToSignalFragment__your_ideal_wero_payment_is_still_processing">Your iDEAL | Wero donation is still processing. Check your banking app to approve your payment before making another donation.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">ডোনেশনের পরিমাণ খুব বেশি</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -7600,11 +7600,13 @@
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">বন্ধুর জন্য ডোনেট করুন</string>
     <!-- Button label for paying with iDEAL -->
-    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+    <string name="GatewaySelectorBottomSheet__ideal_wero">iDEAL | Wero</string>
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">ডোনেশন নিশ্চিত করতে Signal থেকে বেরিয়ে যাবেন?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">নিশ্চিত হয়ে গেলে, আপনার ডোনেশন প্রক্রিয়াকরণ শেষ করতে Signal-এ ফিরে যান।</string>
+    <!-- Dialog message shown when leaving Signal to complete a donation in an external app. Placeholder is the resolved app name (e.g. a banking app). -->
+    <string name="ExternalNavigationHelper__once_payment_confirmed_in_app">You\'ll be sent to %1$s. When confirmed, return to Signal to finish processing your donation.</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7666,7 +7668,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">আপনার ব্যাংক বেছে নিন</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">iDEAL-এর মাধ্যমে আপনার ডোনেশন নিশ্চিত করুন</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">Confirm your donation with iDEAL | Wero</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">আপনার পুনরাবৃত্ত ডোনেশন সেটআপ করতে, আপনার ব্যাংকের মাধ্যমে €0,01 চার্জ নিশ্চিত করতে \'চালিয়ে যান\' ট্যাপ করুন। এটি স্বয়ংক্রিয়ভাবে ফেরত দেওয়া হবে এবং এটি আপনার অ্যাকাউন্ট থেকে আপনার %1$s/মাসের ডোনেশন ডেবিট করার অনুমতি দেয়।</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7917,7 +7919,7 @@
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">আপনার তৈরি করা কলের লিংকগুলো যাদের কাছে আছে তাদের জন্য আর কাজ করবে না।</string>
     <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
-    <string name="CallLogFragment__cant_start_call_no_longer_a_member">You\'re no longer a member of this group.</string>
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">আপনি আর এই গ্ৰুপটির সদস্য নন।</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -9001,7 +9003,7 @@
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Signal-এর সুরক্ষিত, এন্ড-টু-এন্ড এনক্রিপ্ট করা স্টোরেজ সার্ভিস ব্যবহার করে আপনার মেসেজ এবং মিডিয়ার ব্যাকআপ রাখুন। আপনি যখন একটি নতুন ফোন পাবেন বা Signal পুনরায় ইনস্টল করবেন তখন আর কোনো মেসেজ মিস করবেন না।</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
     <!-- Backups feature label for e2e encryption -->
     <string name="MessageBackupsEducationScreen__end_to_end_encrypted">এন্ড-টু-এন্ড এনক্রিপ্ট করা</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->

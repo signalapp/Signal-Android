@@ -3,7 +3,7 @@
   <!-- Dialog title shown when the user tries to leave the image editor with unsaved edits. -->
   <string name="MediaSendDialogs__discard_changes">បោះបង់ការកែប្រែ?</string>
   <!-- Dialog body explaining that leaving the image editor will discard any edits made to the current photo. -->
-  <string name="MediaSendDialogs__youll_lose_any_changes">អ្នកនឹងបាត់បង់ការផ្លាស់ប្ដូរទាំងអស់ដែលអ្នកបានធ្វើលើរូបភាពនេះ</string>
+  <string name="MediaSendDialogs__youll_lose_any_changes">អ្នកនឹងបាត់បង់ការកែប្រែទាំងឡាយដែលអ្នកបានធ្វើទៅលើរូបថតនេះ។</string>
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">បោះបង់</string>
 </resources>

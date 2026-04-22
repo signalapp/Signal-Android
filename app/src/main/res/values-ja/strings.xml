@@ -701,11 +701,11 @@
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">慎重に確認してください</string>
     <!-- Text shown in conversation header when in a message request state that the name is not verified -->
-    <string name="ConversationFragment_name_not_verified">Name not verified</string>
+    <string name="ConversationFragment_name_not_verified">未確認の名前です</string>
     <!-- Label for official chat pill shown in the Note to Self conversation header -->
-    <string name="ConversationFragment_official_chat">Official chat</string>
+    <string name="ConversationFragment_official_chat">公式チャット</string>
     <!-- Description shown in the Signal release notes conversation header -->
-    <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
+    <string name="ConversationFragment_release_notes_description">Signalからの唯一の公式チャットです。ニュースやリリースノートで最新情報をチェックしてください。</string>
     <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
     <plurals name="ConversationFragment_group_member_count">
         <item quantity="other">%1$d人</item>
@@ -743,49 +743,49 @@
     <string name="SafetyTips_next_tip">次のヒント</string>
 
     <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
-    <string name="SafetyTips_summary_tip0_title">Don\'t respond to chats from Signal</string>
+    <string name="SafetyTips_summary_tip0_title">Signalからのチャットに返信しないでください</string>
     <!-- Summary tip 0 message -->
-    <string name="SafetyTips_summary_tip0_message">Signal will never message you for your registration code, PIN, or recovery key. Never respond to a chat pretending to be Signal.</string>
+    <string name="SafetyTips_summary_tip0_message">Signalは決して、登録コード、PIN、回復キーについて皆さんにメッセージしません。Signalを装ったチャットには返信しないでください。</string>
     <!-- Summary tip 1 title: Review names and photos -->
-    <string name="SafetyTips_summary_tip1_title">Review names and photos</string>
+    <string name="SafetyTips_summary_tip1_title">名前や写真を確認してください</string>
     <!-- Summary tip 1 message -->
-    <string name="SafetyTips_summary_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name in Signal.</string>
+    <string name="SafetyTips_summary_tip1_message">「未確認の名前です」という表示に注意してください。Signalでは、プロフィールの名前を自由に設定できます。</string>
     <!-- Summary tip 2 title: Look out for scams -->
-    <string name="SafetyTips_summary_tip2_title">Look out for scams</string>
+    <string name="SafetyTips_summary_tip2_title">詐欺に注意してください</string>
     <!-- Summary tip 2 message -->
-    <string name="SafetyTips_summary_tip2_message">Avoid vague messages that try to get you to reply. Be aware of financial tips and suspicious web links.</string>
+    <string name="SafetyTips_summary_tip2_message">返信させようとする怪しいメッセージは無視してください。また、利益をうたったものや不審なウェブリンクに注意してください。</string>
 
     <!-- Detail tip 0 title -->
-    <string name="SafetyTips_detail_tip0_title">Don\'t respond to chats from Signal</string>
+    <string name="SafetyTips_detail_tip0_title">Signalからのチャットに返信しないでください</string>
     <!-- Detail tip 0 message -->
-    <string name="SafetyTips_detail_tip0_message">Signal will never message you for your registration code, PIN, or recover key. Don\'t reply to chats pretending to be Signal or Signal Support. Bad actors set up fake chats to try to take over your account.</string>
+    <string name="SafetyTips_detail_tip0_message">Signalは決して、登録コード、PIN、回復キーについて皆さんにメッセージすることはありません。SignalやSignalサポートを装ったチャットには返信しないでください。悪意のある相手は、あなたのアカウントを乗っ取ろうと偽のチャットを設定します。</string>
     <!-- Detail tip 1 title -->
-    <string name="SafetyTips_detail_tip1_title">Review names and photos</string>
+    <string name="SafetyTips_detail_tip1_title">名前や写真を確認してください</string>
     <!-- Detail tip 1 message -->
-    <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\'re unsure who a new request is from it\'s safer to ignore it.</string>
+    <string name="SafetyTips_detail_tip1_message">「未確認の名前です」という表示に注意してください。Signalでは、プロフィールの名前や写真を自由に設定できます。知らない相手から突然リクエストが来たら、無視するのが安全です。</string>
     <!-- Detail tip 2 title -->
     <string name="SafetyTips_detail_tip2_title">曖昧または関連性がないメッセージ</string>
     <!-- Detail tip 2 message -->
-    <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_detail_tip2_message">スパムを送信する相手は、「こんにちわ」などの簡単なメッセージを冒頭に書きます。返信すると、相手はやり取りをさらに続けようとするでしょう。</string>
     <!-- Detail tip 3 title -->
-    <string name="SafetyTips_detail_tip3_title">Messages with web links</string>
+    <string name="SafetyTips_detail_tip3_title">ウェブリンクを含むメッセージ</string>
     <!-- Detail tip 3 message -->
-    <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\'t know that have links to websites. Never visit links from people you don\'t trust.</string>
+    <string name="SafetyTips_detail_tip3_message">知らない相手からのメッセージで、ウェブサイトへのリンクが含まれている場合は注意が必要です。信頼できない相手が送ってきたウェブサイトのリンクは絶対に開かないでください。</string>
     <!-- Detail tip 4 title -->
     <string name="SafetyTips_detail_tip4_title">暗号通貨または金銭詐欺</string>
     <!-- Detail tip 4 message -->
-    <string name="SafetyTips_detail_tip4_message">If someone you don\'t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\'s likely spam.</string>
+    <string name="SafetyTips_detail_tip4_message">知らない相手から暗号通貨（ビットコインなど）や利益をうたったメッセージが送られてきた場合はご注意ください。おそらくスパムです。</string>
     <!-- Detail tip 5 title -->
-    <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
+    <string name="SafetyTips_detail_tip5_title">架空の企業など</string>
     <!-- Detail tip 5 message -->
     <string name="SafetyTips_detail_tip5_message">企業や政府機関からの連絡にはご注意ください。税務署や宅配業者などのメッセージはスパムである可能性があります。</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal上の%1$sという名前は、アカウント所有者によって選択されたものです。</string>
     <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
-    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal can\'t verify names and photos</string>
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signalは名前や写真を確認することはできません</string>
     <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
-    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal will never contact you for your registration code, PIN, or recovery key</string>
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signalは決して、登録コード、PIN、回復キーについて皆さんに連絡しません</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">なりすましの可能性のあるアカウントにはご注意ください</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
@@ -2179,9 +2179,9 @@
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">スパムとして報告する</string>
     <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
-    <string name="MessageRecord_you_accepted_s_message_request">You accepted %1$s\'s message request</string>
+    <string name="MessageRecord_you_accepted_s_message_request">%1$sのメッセージ申請を承認しました</string>
     <!-- Update message shown in a group chat after accepting a group message request -->
-    <string name="MessageRecord_you_accepted_the_group_request">You accepted the group request</string>
+    <string name="MessageRecord_you_accepted_the_group_request">グループ申請を承認しました</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">このユーザーをブロックしました</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2205,7 +2205,7 @@
     <string name="MessageRequestBottomView_unblock">ブロック解除</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s があなたへメッセージを送信できるように、またあなたの名前とプロフィール画像が共有されるようにしますか？過去に削除したメンバーです。</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Let this person message you and share your name and photo with them? They won\'t know you\'ve seen their message until you accept.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">この相手に、メッセージの送信とあなたの名前、写真の共有を許可しますか？承認するまで、相手はこのメッセージをあなたが見たことは分かりません。</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s にあなたへのメッセージ送信や、名前とプロフィール画像の共有を許可しますか？ブロックを解除するまでメッセージは届きません。</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2262,15 +2262,15 @@
         <item quantity="other">ほか%1$d人</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report</string>
+    <string name="MessageRequestBottomView_report">報告</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">申請を承認しますか？</string>
     <!-- Alert dialog body to review the message request carefully -->
     <string name="MessageRequestBottomView_review_requests_carefully">慎重に申請を確認してください。プロフィールネームはアカウント所有者によって選択され、検証はされません。</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
-    <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
+    <string name="MessageRequestBottomView_accept_request_body">信頼できる相手からのリクエストのみ承認してください。%1$s 、登録コード、PIN、回復キーについて皆さんにメッセージしません。</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->
-    <string name="MessageRequestBottomView_signal_will_never">Signal will never</string>
+    <string name="MessageRequestBottomView_signal_will_never">Signalは決して</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">グループに参加しますか？</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -3618,16 +3618,16 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">過去に削除したメンバーです。メッセージを送ると、このメンバーはリストに再度追加されます。</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_block_report">Block or Report…</string>
+    <string name="ConversationUpdateItem_block_report">ブロックまたは報告…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">アップデートする</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="other">%1$d 件のグループ更新</item>
+        <item quantity="other">%1$d 件のグループ内更新</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="other">%1$d 件のチャット更新</item>
+        <item quantity="other">%1$d 件のチャット内更新</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
@@ -6358,9 +6358,9 @@
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">寄付を確認できませんでした</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">%1$sの毎月の寄付を確認できませんでした。 銀行アプリを確認して、iDEALの決済を承認してください。</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">%1$sの都度の寄付を確認できませんでした。銀行アプリを確認して、iDEALの決済を承認してください。</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
 
     <string name="Boost__enter_custom_amount">金額を入力してください</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -6489,7 +6489,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">ネットワークエラーのため寄付を送信できませんでした。インターネット接続を確認して再度試してください。</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">iDEALによる寄付のお手続きができませんでした。 別の決済方法をお試しいただくか、取引先の銀行にお問い合わせください。</string>
+    <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">Your iDEAL | Wero donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$sに代わって寄付をする</string>
@@ -7393,7 +7393,7 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">寄付のお手続きは完了していません。接続状況によっては数分かかる場合があります。この決済が完了してから、次の寄付をおこなってください。</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">iDEALによる寄付はお手続き中です。他の寄付を行う前に、銀行アプリを確認して支払いを承認してください。</string>
+    <string name="DonateToSignalFragment__your_ideal_wero_payment_is_still_processing">Your iDEAL | Wero donation is still processing. Check your banking app to approve your payment before making another donation.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">寄付金額が高すぎます</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -7422,11 +7422,13 @@
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">友達に代わって寄付する</string>
     <!-- Button label for paying with iDEAL -->
-    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+    <string name="GatewaySelectorBottomSheet__ideal_wero">iDEAL | Wero</string>
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">寄付を確認するためにSignalを離れますか？</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">寄付を確認したら、Signalに戻って寄付の手続きを完了させてください。</string>
+    <!-- Dialog message shown when leaving Signal to complete a donation in an external app. Placeholder is the resolved app name (e.g. a banking app). -->
+    <string name="ExternalNavigationHelper__once_payment_confirmed_in_app">You\'ll be sent to %1$s. When confirmed, return to Signal to finish processing your donation.</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7488,7 +7490,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">銀行を選択する</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">iDEALを使って寄付手続きをお願いします</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">Confirm your donation with iDEAL | Wero</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">定期的な寄付を設定するには「続ける」をタップして、銀行で0.01ユーロの手数料がかかることをご確認ください。この手数料は自動的に返金され、毎月%1$sの寄付金がお口座から引き落とされます。</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7735,7 +7737,7 @@
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">作成した通話リンクを消去すると、共有している他のメンバーもこのリンクを使えなくなります。</string>
     <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
-    <string name="CallLogFragment__cant_start_call_no_longer_a_member">You\'re no longer a member of this group.</string>
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">あなたはこのグループのメンバーではなくなりました。</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -8807,7 +8809,7 @@
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Signalの安全なエンドツーエンドの暗号化ストレージサービスを使用して、メッセージやメディアをバックアップしますスマートフォンを買い替えたり、Signalを再インストールしてもメッセージを失うことはありません。</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
     <!-- Backups feature label for e2e encryption -->
     <string name="MessageBackupsEducationScreen__end_to_end_encrypted">エンドツーエンド暗号化されます</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->

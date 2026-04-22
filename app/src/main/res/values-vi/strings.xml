@@ -701,11 +701,11 @@
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">Kiểm tra kỹ</string>
     <!-- Text shown in conversation header when in a message request state that the name is not verified -->
-    <string name="ConversationFragment_name_not_verified">Name not verified</string>
+    <string name="ConversationFragment_name_not_verified">Tên chưa được xác minh</string>
     <!-- Label for official chat pill shown in the Note to Self conversation header -->
-    <string name="ConversationFragment_official_chat">Official chat</string>
+    <string name="ConversationFragment_official_chat">Cuộc trò chuyện chính thức</string>
     <!-- Description shown in the Signal release notes conversation header -->
-    <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
+    <string name="ConversationFragment_release_notes_description">Cuộc trò chuyện chính thức duy nhất từ Signal. Cập nhật tin tức và thông tin về bản cập nhật.</string>
     <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
     <plurals name="ConversationFragment_group_member_count">
         <item quantity="other">%1$d Thành viên</item>
@@ -743,49 +743,49 @@
     <string name="SafetyTips_next_tip">Lời khuyên tiếp theo</string>
 
     <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
-    <string name="SafetyTips_summary_tip0_title">Don\'t respond to chats from Signal</string>
+    <string name="SafetyTips_summary_tip0_title">Đừng trả lời tin nhắn từ Signal</string>
     <!-- Summary tip 0 message -->
-    <string name="SafetyTips_summary_tip0_message">Signal will never message you for your registration code, PIN, or recovery key. Never respond to a chat pretending to be Signal.</string>
+    <string name="SafetyTips_summary_tip0_message">Signal sẽ không bao giờ nhắn tin yêu cầu bạn cung cấp mã đăng ký, mã PIN hoặc mã khóa khôi phục. Đừng bao giờ trả lời tin nhắn giả mạo Signal.</string>
     <!-- Summary tip 1 title: Review names and photos -->
-    <string name="SafetyTips_summary_tip1_title">Review names and photos</string>
+    <string name="SafetyTips_summary_tip1_title">Kiểm tra tên và ảnh</string>
     <!-- Summary tip 1 message -->
-    <string name="SafetyTips_summary_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name in Signal.</string>
+    <string name="SafetyTips_summary_tip1_message">Hãy chú ý đến thông báo \"Tên chưa được xác minh\". Người dùng có thể tự đặt tên hồ sơ của mình trên Signal.</string>
     <!-- Summary tip 2 title: Look out for scams -->
-    <string name="SafetyTips_summary_tip2_title">Look out for scams</string>
+    <string name="SafetyTips_summary_tip2_title">Hãy cảnh giác với các chiêu trò lừa đảo</string>
     <!-- Summary tip 2 message -->
-    <string name="SafetyTips_summary_tip2_message">Avoid vague messages that try to get you to reply. Be aware of financial tips and suspicious web links.</string>
+    <string name="SafetyTips_summary_tip2_message">Tránh những tin nhắn mơ hồ nhằm khiến bạn trả lời. Hãy cảnh giác với các lời khuyên về tài chính và các đường dẫn web đáng ngờ.</string>
 
     <!-- Detail tip 0 title -->
-    <string name="SafetyTips_detail_tip0_title">Don\'t respond to chats from Signal</string>
+    <string name="SafetyTips_detail_tip0_title">Đừng trả lời tin nhắn từ Signal</string>
     <!-- Detail tip 0 message -->
-    <string name="SafetyTips_detail_tip0_message">Signal will never message you for your registration code, PIN, or recover key. Don\'t reply to chats pretending to be Signal or Signal Support. Bad actors set up fake chats to try to take over your account.</string>
+    <string name="SafetyTips_detail_tip0_message">Signal sẽ không bao giờ nhắn tin yêu cầu bạn cung cấp mã đăng ký, mã PIN hoặc mã khóa khôi phục. Đừng trả lời tin nhắn giả danh Signal hoặc bộ phận hỗ trợ của Signal. Kẻ xấu sử dụng tên giả để cố gắng chiếm đoạt tài khoản của bạn.</string>
     <!-- Detail tip 1 title -->
-    <string name="SafetyTips_detail_tip1_title">Review names and photos</string>
+    <string name="SafetyTips_detail_tip1_title">Kiểm tra tên và ảnh</string>
     <!-- Detail tip 1 message -->
-    <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\'re unsure who a new request is from it\'s safer to ignore it.</string>
+    <string name="SafetyTips_detail_tip1_message">Hãy chú ý đến thông báo \"Tên chưa được xác minh\". Người dùng có thể tự đặt tên hồ sơ và ảnh đại diện của mình trên Signal. Nếu bạn không chắc yêu cầu mới đến từ ai, tốt hơn hết là nên bỏ qua.</string>
     <!-- Detail tip 2 title -->
     <string name="SafetyTips_detail_tip2_title">Tin nhắn không liên quan</string>
     <!-- Detail tip 2 message -->
-    <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_detail_tip2_message">Người gửi spam thường gửi cho bạn một tin nhắn đơn giản như “Xin chào” để khiến bạn tò mò. Nếu bạn trả lời, họ có thể sẽ tiếp tục tương tác với bạn.</string>
     <!-- Detail tip 3 title -->
-    <string name="SafetyTips_detail_tip3_title">Messages with web links</string>
+    <string name="SafetyTips_detail_tip3_title">Tin nhắn có chứa đường dẫn web</string>
     <!-- Detail tip 3 message -->
-    <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\'t know that have links to websites. Never visit links from people you don\'t trust.</string>
+    <string name="SafetyTips_detail_tip3_message">Hãy cẩn trọng với tin nhắn từ những người bạn không biết và có chứa đường dẫn đến các trang web. Đừng bao giờ bấm vào các đường dẫn từ những người bạn không tin tưởng.</string>
     <!-- Detail tip 4 title -->
     <string name="SafetyTips_detail_tip4_title">Lừa đảo tiền điện tử hoặc tiền</string>
     <!-- Detail tip 4 message -->
-    <string name="SafetyTips_detail_tip4_message">If someone you don\'t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\'s likely spam.</string>
+    <string name="SafetyTips_detail_tip4_message">Nếu một người bạn không biết gửi tin nhắn về tiền điện tử (như Bitcoin) hay một cơ hội kiếm tiền, hãy cẩn trọng — đó có thể là nội dung spam.</string>
     <!-- Detail tip 5 title -->
-    <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
+    <string name="SafetyTips_detail_tip5_title">Doanh nghiệp giả mạo</string>
     <!-- Detail tip 5 message -->
     <string name="SafetyTips_detail_tip5_message">Hãy cẩn trọng khi có các doanh nghiệp hoặc cơ quan của chính phủ liên hệ với bạn. Tin nhắn có nội dung liên quan đến cơ quan thuế, giao hàng, v.v. có thể là spam.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s trên Signal được chọn bởi chủ tài khoản.</string>
     <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
-    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal can\'t verify names and photos</string>
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal không thể xác minh tên và ảnh</string>
     <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
-    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal will never contact you for your registration code, PIN, or recovery key</string>
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal sẽ không bao giờ nhắn tin yêu cầu bạn cung cấp mã đăng ký, mã PIN hoặc mã khóa khôi phục</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Hãy cẩn trọng với các tài khoản mạo danh</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
@@ -2179,9 +2179,9 @@
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Đã báo cáo là spam</string>
     <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
-    <string name="MessageRecord_you_accepted_s_message_request">You accepted %1$s\'s message request</string>
+    <string name="MessageRecord_you_accepted_s_message_request">Bạn đã chấp nhận yêu cầu gửi tin nhắn của %1$s</string>
     <!-- Update message shown in a group chat after accepting a group message request -->
-    <string name="MessageRecord_you_accepted_the_group_request">You accepted the group request</string>
+    <string name="MessageRecord_you_accepted_the_group_request">Bạn đã chấp nhận yêu cầu tham gia nhóm</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">Bạn đã chặn người này</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2205,7 +2205,7 @@
     <string name="MessageRequestBottomView_unblock">Bỏ chặn</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Cho phép %1$s nhắn tin cho bạn và chia sẻ tên và ảnh của bạn với họ? Bạn đã xóa người này trước đây.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Let this person message you and share your name and photo with them? They won\'t know you\'ve seen their message until you accept.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Cho phép người này nhắn tin cho bạn và chia sẻ tên và ảnh của bạn với họ? Họ sẽ không biết bạn đã đọc tin nhắn của họ cho tới khi bạn đồng ý.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Cho phép %1$s nhắn tin cho bạn và chia sẻ tên và ảnh của bạn với họ? Bạn sẽ không nhận được tin nhắn nào cho tới khi bạn ngưng chặn họ.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2262,15 +2262,15 @@
         <item quantity="other">%1$d người khác</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report</string>
+    <string name="MessageRequestBottomView_report">Báo cáo</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">Chấp nhận yêu cầu?</string>
     <!-- Alert dialog body to review the message request carefully -->
     <string name="MessageRequestBottomView_review_requests_carefully">Kiểm tra các yêu cầu một cách kĩ lưỡng. Tên hồ sơ được chọn bởi chủ tài khoản và không được xác minh.</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
-    <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
+    <string name="MessageRequestBottomView_accept_request_body">Chỉ chấp nhận yêu cầu kết bạn từ những người bạn tin tưởng. %1$s nhắn tin yêu cầu bạn cung cấp mã đăng ký, mã PIN hoặc mã khóa khôi phục.</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->
-    <string name="MessageRequestBottomView_signal_will_never">Signal will never</string>
+    <string name="MessageRequestBottomView_signal_will_never">Signal không bao giờ</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">Tham gia nhóm?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -3618,7 +3618,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Bạn đã xóa người này, nếu nhắn tin lại thì người này sẽ được thêm lại vào danh sách của bạn.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_block_report">Block or Report…</string>
+    <string name="ConversationUpdateItem_block_report">Chặn hoặc báo cáo…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">Cập nhật</string>
     <!-- Update item button text to show how many group updates there are. -->
@@ -6358,9 +6358,9 @@
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Không thể xác nhận khoản ủng hộ</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Khoản ủng hộ %1$s/tháng của bạn không thể được xác nhận. Kiểm tra ứng dụng ngân hàng của bạn để chấp thuận khoản thanh toán iDEAL.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Khoản ủng hộ %1$s một lần của bạn không thể được xác nhận. Kiểm tra ứng dụng ngân hàng của bạn để chấp thuận khoản thanh toán iDEAL.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
 
     <string name="Boost__enter_custom_amount">Nhập vào Số tiền Tuỳ chọn</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -6489,7 +6489,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Khoản ủng hộ của bạn không thể gửi đi được vì lỗi mạng. Kiểm tra kết nối của bạn và thử lại.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Khoản ủng hộ thông qua iDEAL của bạn không thể được xử lý. Hãy thử một phương thức thanh toán khác hoặc liên hệ với ngân hàng của bạn để biết thêm thông tin.</string>
+    <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">Your iDEAL | Wero donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Khoản ủng hộ thay cho %1$s</string>
@@ -7393,7 +7393,7 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Khoản ủng hộ của bạn vẫn đang được xử lý. Quá trình này có thể mất vài phút tùy vào kết nối của bạn. Vui lòng chờ đến khi khoản thanh toán này hoàn tất trước khi gửi thêm khoản ủng hộ khác.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Khoản ủng hộ thông qua iDEAL của bạn không thể được xử lý. Kiểm tra ứng dụng ngân hàng của bạn để chấp thuận khoản thanh toán trước khi tiến hành gửi một khoản ủng hộ khác.</string>
+    <string name="DonateToSignalFragment__your_ideal_wero_payment_is_still_processing">Your iDEAL | Wero donation is still processing. Check your banking app to approve your payment before making another donation.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Khoản ủng hộ quá cao</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -7422,11 +7422,13 @@
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Ủng hộ thay cho một người bạn</string>
     <!-- Button label for paying with iDEAL -->
-    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+    <string name="GatewaySelectorBottomSheet__ideal_wero">iDEAL | Wero</string>
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Rời khỏi Signal để xác nhận khoản ủng hộ?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Khi đã xác nhận, quay lại Signal để hoàn tất xử lý khoản ủng hộ của bạn.</string>
+    <!-- Dialog message shown when leaving Signal to complete a donation in an external app. Placeholder is the resolved app name (e.g. a banking app). -->
+    <string name="ExternalNavigationHelper__once_payment_confirmed_in_app">You\'ll be sent to %1$s. When confirmed, return to Signal to finish processing your donation.</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7488,7 +7490,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Chọn ngân hàng</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">Xác nhận khoản ủng hộ với iDEAL</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">Confirm your donation with iDEAL | Wero</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Để thiết lập khoản ủng hộ định kỳ, nhấn tiếp tục để xác nhận trả một khoản €0,01 qua ngân hàng. Khoản này sẽ được tự động hoàn lại và cho phép khoản ủng hộ %1$s/tháng được trừ từ tài khoản của bạn.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7735,7 +7737,7 @@
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">Các đường dẫn cuộc gọi bạn đã tạo không còn hiệu lực cho những người được bạn gửi đến.</string>
     <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
-    <string name="CallLogFragment__cant_start_call_no_longer_a_member">You\'re no longer a member of this group.</string>
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">Bạn không còn là thành viên của nhóm.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -8807,7 +8809,7 @@
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Sao lưu tin nhắn và tập tin đa phương tiện và sử dụng dịch vụ lưu trữ bảo mật, được mã hóa đầu cuối của Signal. Không bao giờ bị mất tin nhắn khi bạn có điện thoại mới hoặc cài đặt lại Signal.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
     <!-- Backups feature label for e2e encryption -->
     <string name="MessageBackupsEducationScreen__end_to_end_encrypted">Mã hóa đầu cuối</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->

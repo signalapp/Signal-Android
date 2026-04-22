@@ -5,5 +5,5 @@
   <!-- Dialog body explaining that leaving the image editor will discard any edits made to the current photo. -->
   <string name="MediaSendDialogs__youll_lose_any_changes">ഈ ഫോട്ടോയിൽ നിങ്ങൾ വരുത്തിയ മാറ്റങ്ങളെല്ലാം നഷ്‌ടമാകും.</string>
   <!-- Confirmation button that discards the user\'s image edits. -->
-  <string name="MediaSendDialogs__discard">കളയുക</string>
+  <string name="MediaSendDialogs__discard">ഉപേക്ഷിക്കുക</string>
 </resources>

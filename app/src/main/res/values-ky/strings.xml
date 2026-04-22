@@ -256,10 +256,12 @@
     <!-- CallInfoView -->
     <!-- Unknown people row text when the only people in the call are unknowns -->
     <plurals name="CallInfoView__d_people">
+        <item quantity="one"></item>
         <item quantity="other">%1$d киши</item>
     </plurals>
     <!-- Unknown people row, placeholder is the number of unknown people in the call -->
     <plurals name="CallInfoView__plus_d_people">
+        <item quantity="one"></item>
         <item quantity="other">%1$d ашуун адам</item>
     </plurals>
     <!-- Unknown people row icon content description -->
@@ -332,6 +334,7 @@
     <string name="CameraContacts_signal_groups">Signal\'дагы топтор</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one"></item>
         <item quantity="other">Эң көп дегенде %1$d маекте бөлүшө аласыз.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Signal\'дагы алуучуларды тандаңыз</string>
@@ -487,10 +490,12 @@
     <string name="ConversationActivity_message_is_empty_exclamation">Билдирүү бош!</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
+        <item quantity="one"></item>
         <item quantity="other">Оңдоолор бул билдирүү жөнөтүлгөндөн кийин %1$d сааттын ичинде күчүнө кирет.</item>
     </plurals>
     <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
     <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one"></item>
         <item quantity="other">Бул билдирүүнү %1$d жолу гана оңдой аласыз.</item>
     </plurals>
 
@@ -585,6 +590,7 @@
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
+        <item quantity="one"></item>
         <item quantity="other">%1$d билдирүү окула элек</item>
     </plurals>
 
@@ -592,16 +598,20 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">Байланыштар колдонмосу табылган жок.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
+        <item quantity="one"></item>
         <item quantity="other">Тандалган билдирүүлөрдү өчүрөсүзбү?</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Сактагычка сактайсызбы?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+        <item quantity="one"></item>
         <item quantity="other">Ушул %1$d медиафайлдын баарын сактагычка сактасаңыз, алар түзмөгүңүздөгү башка колдонмолорго жеткиликтүү болуп калат.\n\nУлантасызбы?</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments">
+        <item quantity="one"></item>
         <item quantity="other">%1$d тиркеме сакталууда</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+        <item quantity="one"></item>
         <item quantity="other">%1$d тиркеме сактагычка сакталууда…</item>
     </plurals>
     <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
@@ -617,16 +627,19 @@
     <string name="ConversationFragment_delete_for_everyone">Бардык жерде өчсүн</string>
     <!-- Title of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_title">
+        <item quantity="one"></item>
         <item quantity="other">Тандалган билдирүүлөрдү өчүрөсүзбү?</item>
     </plurals>
     <!-- Body of dialog confirming whether to delete the message -->
     <plurals name="ConversationFragment_delete_selected_body">
+        <item quantity="one"></item>
         <item quantity="other">Бул билдирүүлөрдү кимдер үчүн өчүрөсүз?</item>
     </plurals>
     <!-- Confirmation button to delete the message -->
     <string name="ConversationFragment_delete_for_everyone_title">Баары үчүн өчүрүлсүнбү?</string>
     <!-- Body of dialog explaining what happens during deletion -->
     <plurals name="ConversationFragment_delete_for_everyone_body">
+        <item quantity="one"></item>
         <item quantity="other">Signal\'дын соңку версияларындагы топтун катышуучулары ушул билдирүүлөрдү өчүргөнүңүздү көрүшөт.</item>
     </plurals>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
@@ -646,6 +659,7 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Бул маекте өзүңүзгө бир нерселерди белгилеп жазып алсаңыз болот. Аккаунтуңузга байланган түзмөктөр бар болсо, жазып алган нерселериңиз алардын баарында көрүнөт.</string>
     <!-- Text in banner to show how many people have the same name. -->
     <plurals name="ConversationFragment__d_group_members_have_the_same_name">
+        <item quantity="one"></item>
         <item quantity="other">Топтогу %1$d мүчөнүн аттары бирдей.</item>
     </plurals>
     <string name="ConversationFragment__tap_to_review">Басып карап көрүңүз</string>
@@ -701,13 +715,14 @@
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">Этият болуңуз</string>
     <!-- Text shown in conversation header when in a message request state that the name is not verified -->
-    <string name="ConversationFragment_name_not_verified">Name not verified</string>
+    <string name="ConversationFragment_name_not_verified">Ысым текшерилген жок</string>
     <!-- Label for official chat pill shown in the Note to Self conversation header -->
-    <string name="ConversationFragment_official_chat">Official chat</string>
+    <string name="ConversationFragment_official_chat">Расмий маек</string>
     <!-- Description shown in the Signal release notes conversation header -->
-    <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
+    <string name="ConversationFragment_release_notes_description">Signal\'дагы бирден бир расмий маек. Жаңылыктардан артта калбаңыз.</string>
     <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
     <plurals name="ConversationFragment_group_member_count">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мүчө</item>
     </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
@@ -743,49 +758,49 @@
     <string name="SafetyTips_next_tip">Кийинки кеңеш</string>
 
     <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
-    <string name="SafetyTips_summary_tip0_title">Don\'t respond to chats from Signal</string>
+    <string name="SafetyTips_summary_tip0_title">Signal\'дан келген билдирүүлөргө жооп бербеңиз</string>
     <!-- Summary tip 0 message -->
-    <string name="SafetyTips_summary_tip0_message">Signal will never message you for your registration code, PIN, or recovery key. Never respond to a chat pretending to be Signal.</string>
+    <string name="SafetyTips_summary_tip0_message">Signal эч качан сизден каттоо кодуңузду, PIN кодуңузду же калыбына келтирүү ачкычын сурабайт. Өзүн Signal катары көрсөткөн маекке эч качан жооп бербеңиз.</string>
     <!-- Summary tip 1 title: Review names and photos -->
-    <string name="SafetyTips_summary_tip1_title">Review names and photos</string>
+    <string name="SafetyTips_summary_tip1_title">Ысымдар менен сүрөттөрдү текшериңиз</string>
     <!-- Summary tip 1 message -->
-    <string name="SafetyTips_summary_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name in Signal.</string>
+    <string name="SafetyTips_summary_tip1_message">\"Ысым текшерилген эмес\" деген эскертүүнү караңыз. Signal\'да баары өз профилдерине аты-жөнүн көрсөтүшөт.</string>
     <!-- Summary tip 2 title: Look out for scams -->
-    <string name="SafetyTips_summary_tip2_title">Look out for scams</string>
+    <string name="SafetyTips_summary_tip2_title">Алдамчылардан этият болуңуз</string>
     <!-- Summary tip 2 message -->
-    <string name="SafetyTips_summary_tip2_message">Avoid vague messages that try to get you to reply. Be aware of financial tips and suspicious web links.</string>
+    <string name="SafetyTips_summary_tip2_message">Сизден жооп алганга аракет кылган шектүү билдирүүлөргө жооп бербеңиз. Каржы кеңештери менен шектүү веб шилтемелерден этият болуңуз.</string>
 
     <!-- Detail tip 0 title -->
-    <string name="SafetyTips_detail_tip0_title">Don\'t respond to chats from Signal</string>
+    <string name="SafetyTips_detail_tip0_title">Signal\'дан келген билдирүүлөргө жооп бербеңиз</string>
     <!-- Detail tip 0 message -->
-    <string name="SafetyTips_detail_tip0_message">Signal will never message you for your registration code, PIN, or recover key. Don\'t reply to chats pretending to be Signal or Signal Support. Bad actors set up fake chats to try to take over your account.</string>
+    <string name="SafetyTips_detail_tip0_message">Signal эч качан сизден каттоо кодуңузду, PIN кодуңузду же калыбына келтирүү ачкычын сурабайт. Өзүн Signal же Signal\'дын Кардарларды тейлөө кызматы катары көрсөтүп жаткан билдирүүлөргө жооп бербеңиз. Ниети бузук адамдар аккаунтуңузду бузуп киргенге аракет кылып жалган билдирүүлөрдү жөнөтүшү мүмкүн.</string>
     <!-- Detail tip 1 title -->
-    <string name="SafetyTips_detail_tip1_title">Review names and photos</string>
+    <string name="SafetyTips_detail_tip1_title">Ысымдар менен сүрөттөрдү текшериңиз</string>
     <!-- Detail tip 1 message -->
-    <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\'re unsure who a new request is from it\'s safer to ignore it.</string>
+    <string name="SafetyTips_detail_tip1_message">\"Ысым текшерилген эмес\" деген эскертүүнү караңыз. Signal\'да баары өз профилдерине аты-жөнү менен сүрөтүн коюшат. Билдирүүнүн кимден келип жатканын билбесеңиз, ага көңүл бурбай эле койгонуңуз оң.</string>
     <!-- Detail tip 2 title -->
     <string name="SafetyTips_detail_tip2_title">Түшүнүксүз же тиешеси жок билдирүүлөр</string>
     <!-- Detail tip 2 message -->
-    <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_detail_tip2_message">Спамдар көңүлүңүздү буруу үчүн жөнөкөй \"Салам\" деген сөздөн башталат. Алардын кылтагына илинип калбаш үчүн жооп бербеңиз.</string>
     <!-- Detail tip 3 title -->
-    <string name="SafetyTips_detail_tip3_title">Messages with web links</string>
+    <string name="SafetyTips_detail_tip3_title">Вебсайттарга шилтемелери бар билдирүүлөр</string>
     <!-- Detail tip 3 message -->
-    <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\'t know that have links to websites. Never visit links from people you don\'t trust.</string>
+    <string name="SafetyTips_detail_tip3_message">Бейтааныш адамдар жөнөткөн билдирүүлөрдөгү вебсайттардын шилтемелеринен этият болуңуз. Ишеничтүү эмес адамдар жөнөткөн шилтемелерге кирбеңиз.</string>
     <!-- Detail tip 4 title -->
     <string name="SafetyTips_detail_tip4_title">Крипто валютага же акчага байланыштуу алдамчылык</string>
     <!-- Detail tip 4 message -->
-    <string name="SafetyTips_detail_tip4_message">If someone you don\'t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\'s likely spam.</string>
+    <string name="SafetyTips_detail_tip4_message">Белгисиз бирөө криптовалюта (биткойн сыяктуу) же акча табуу мүмкүнчүлүгү тууралуу билдирүү жиберсе, этият болуңуз—ал спам болушу мүмкүн.</string>
     <!-- Detail tip 5 title -->
-    <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
+    <string name="SafetyTips_detail_tip5_title">Фейк компаниялар</string>
     <!-- Detail tip 5 message -->
     <string name="SafetyTips_detail_tip5_message">Сиз менен байланышып жаткан компаниялар же өкмөттүк уюмдардан этият болуңуз. Салык агенттиктери, курьерлер жана башка уюмдар камтылган билдирүүлөр спам болушу мүмкүн.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal\'да %1$s аккаунттун ээси тарабынан гана тандалат.</string>
     <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
-    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal can\'t verify names and photos</string>
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal ысымдар менен сүрөттөрдү текшере албайт</string>
     <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
-    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal will never contact you for your registration code, PIN, or recovery key</string>
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal эч качан сизден каттоо кодуңузду, PIN кодуңузду же калыбына келтирүү ачкычын сурабайт</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Башка бирөөнүн атын жамынып байланышкан аккаунттардан этият болуңуз</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
@@ -802,30 +817,38 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Окула элек маектер жок</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
+        <item quantity="one"></item>
         <item quantity="other">Тандалган маектерди өчүрөсүзбү?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+        <item quantity="one"></item>
         <item quantity="other">Бардык тандалган %1$d маек биротоло өчөт.</item>
     </plurals>
     <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
+        <item quantity="one"></item>
         <item quantity="other">Тандалган %1$d маектин баары бардык түзмөктөрүңүздөн биротоло өчүп калат.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Өчүрүлүүдө</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
+        <item quantity="one"></item>
         <item quantity="other">Тандалган маектер өчүрүлүүдө…</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
+        <item quantity="one"></item>
         <item quantity="other">%1$d маек архивделди</item>
     </plurals>
     <string name="ConversationListFragment_undo">Токтотуу</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+        <item quantity="one"></item>
         <item quantity="other">%1$d маек Келген каттар кутусуна жылды</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
+        <item quantity="one"></item>
         <item quantity="other">Окуу</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
+        <item quantity="one"></item>
         <item quantity="other">Окула элек</item>
     </plurals>
     <string name="ConversationListFragment_pin">Кадоо</string>
@@ -839,6 +862,7 @@
     <string name="ConversationListFragment_select_all">Баарын тандоо</string>
     <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
+        <item quantity="one"></item>
         <item quantity="other">%1$d тандалды</item>
     </plurals>
     <!-- Context menu option to add a chat to a folder -->
@@ -852,6 +876,7 @@
     <string name="AddToFolderBottomSheet_added_to_s">\"%1$s\" папкасына кошулду</string>
     <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
     <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
+        <item quantity="one"></item>
         <item quantity="other">Бул маектер \"%1$s\" папкасына кошулган</item>
     </plurals>
 
@@ -1014,6 +1039,7 @@
     <string name="DateUtils_minutes_ago">%1$dмүн</string>
     <!-- Content description when describing how many minutes ago something has happened -->
     <plurals name="DateUtils_minutes_ago_content_description">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мүнөт</item>
     </plurals>
     <string name="DateUtils_today">Бүгүн</string>
@@ -1026,10 +1052,12 @@
     <string name="DateUtils_tonight">Бүгүн кечинде</string>
     <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. on Jan 15 at 9:00pm -->
     <plurals name="DateUtils_date_time_at">
+        <item quantity="one"></item>
         <item quantity="other">%1$s, %2$s</item>
     </plurals>
     <!-- Used when showing the time a device was linked. e.g. at 9:00pm -->
     <plurals name="DateUtils_time_at">
+        <item quantity="one"></item>
         <item quantity="other">саат %1$s</item>
     </plurals>
 
@@ -1252,6 +1280,7 @@
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+        <item quantity="one"></item>
         <item quantity="other">%1$d кошулуу өтүнүчү жооп күтүүдө.</item>
     </plurals>
     <string name="PendingGroupJoinRequestsReminder_view">Карап көрүү</string>
@@ -1301,6 +1330,7 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
+        <item quantity="one"></item>
         <item quantity="other">%1$d чакыруу жөнөтүлдү</item>
     </plurals>
     <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
@@ -1313,9 +1343,11 @@
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Колдонмо жаңырганда, буга чейинки билдирүүлөр менен медиафайлдардын баары ордунда калды.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Бул топко кайра кошулуу үчүн чакырууну кабыл алышыңыз керек. Болбосо, топтун билдирүүлөрүн албайсыз.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+        <item quantity="one"></item>
         <item quantity="other">Бул мүчөлөр топко кайра кошулуу үчүн чакырууну кабыл алышы керек. Болбосо, топтун билдирүүлөрүн алышпайт.</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+        <item quantity="one"></item>
         <item quantity="other">Бул мүчөлөр топтон чыгышкан. Ага кайра кошулуу үчүн Signal колдонмосунун эң акыркы версиясына жаңыртышы керек:</item>
     </plurals>
 
@@ -1327,35 +1359,44 @@
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Байланыш катасы кетти. Бир аздан соң кайталап көрүңүз.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Жаңырбай калды.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+        <item quantity="one"></item>
         <item quantity="other">Бул мүчөлөр топко кайра кошулуу үчүн чакырууну кабыл алышы керек. Болбосо, топтун билдирүүлөрүн алышпайт.</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+        <item quantity="one"></item>
         <item quantity="other">Бул мүчөлөр жаңы топторго кошула алышпайт жана ушул топтон чыгарылат:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
     <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мүчө жаңы топко кайрадан кошула алышпайт. Аларды азыр кошуп коесузбу?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+        <item quantity="one"></item>
         <item quantity="other">Мүчөлөрдү кошуу</item>
     </plurals>
     <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Жок, рахмат</string>
 
     <!-- GroupsV1MigrationSuggestionsDialog -->
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+        <item quantity="one"></item>
         <item quantity="other">Мүчөлөрдү кошосузбу?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+        <item quantity="one"></item>
         <item quantity="other">Жаңы топ жаңырганда, бул мүчөлөр ага автоматтык түрдө кошула алышпайт:</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+        <item quantity="one"></item>
         <item quantity="other">Мүчөлөрдү кошуу</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+        <item quantity="one"></item>
         <item quantity="other">Мүчөлөр кошулбай калды. Бир аздан соң кайталап көрүңүз.</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+        <item quantity="one"></item>
         <item quantity="other">Мүчөлөрдү кошуу мүмкүн болбой жатат.</item>
     </plurals>
 
@@ -1376,6 +1417,7 @@
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мүчө</item>
     </plurals>
 
@@ -1429,9 +1471,11 @@
     <string name="PendingMembersActivity_revoke_invite">Чакырууну артка кайтаруу</string>
     <string name="PendingMembersActivity_revoke_invites">Чакырууларды артка кайтаруу</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
+        <item quantity="one"></item>
         <item quantity="other">%1$d чакырууну артка кайтаруу</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
+        <item quantity="one"></item>
         <item quantity="other">Чакырууларды артка кайтарууда ката кетти</item>
     </plurals>
 
@@ -1451,6 +1495,7 @@
 
     <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мүчөнү \"%2$s\" тобуна кошосузбу?</item>
     </plurals>
 
@@ -1481,6 +1526,7 @@
     <string name="ManageGroupActivity_who_can_edit_this_groups_info">Бул топтун маалыматын ким өзгөртө алат?</string>
 
     <plurals name="ManageGroupActivity_added">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мүчө кошулду.</item>
     </plurals>
 
@@ -1609,10 +1655,12 @@
     <!-- ManageRecipientActivity -->
     <string name="ManageRecipientActivity_no_groups_in_common">Жалпы топтор жок</string>
     <plurals name="ManageRecipientActivity_d_groups_in_common">
+        <item quantity="one"></item>
         <item quantity="other">%1$d жалпы топ</item>
     </plurals>
 
     <plurals name="GroupMemberList_invited">
+        <item quantity="one"></item>
         <item quantity="other">%1$s %2$d адамды чакырды</item>
     </plurals>
 
@@ -1648,6 +1696,7 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Бул адамга (%1$s) жөнөткөн чакырууңузду артка кайтарасызбы?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+        <item quantity="one"></item>
         <item quantity="other">%1$s жөнөткөн %2$d чакырууну артка кайтарасызбы?</item>
     </plurals>
 
@@ -1676,6 +1725,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_direct_join">Ушул топко кошулуп, атыңыз менен сүрөтүңүздү анын мүчөлөрү менен бөлүшөсүзбү?</string>
     <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Бул топко кошулуу өтүнүчүңүздү топтун администратору кабыл алышы керек. Топко кошулууну өтүнгөнүңүздө, атыңыз менен сүрөтүңүз анын мүчөлөрүнө көрүнөт.</string>
     <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+        <item quantity="one"></item>
         <item quantity="other">Топ · %1$d мүчө</item>
     </plurals>
 
@@ -1733,6 +1783,7 @@
     <string name="InviteActivity_invite_to_signal">Signal\'га чакыруу</string>
     <string name="InviteActivity_send_sms">SMS жөнөтүү (%1$d)</string>
     <plurals name="InviteActivity_send_sms_invites">
+        <item quantity="one"></item>
         <item quantity="other">Бул байланышка (%1$d) SMS чакырууларын жөнөтөсүзбү?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Signal\'га өтүп алыңыз: %1$s</string>
@@ -1761,9 +1812,11 @@
     <string name="MediaOverviewActivity_Links">Шилтемелер</string>
     <string name="MediaOverviewActivity_link">Шилтеме</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+        <item quantity="one"></item>
         <item quantity="other">Тандалган нерселерди өчүрөсүзбү?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+        <item quantity="one"></item>
         <item quantity="other">Тандалган %1$d файлдын баары өчөт. Ушул нерселерге байланыштуу билдирүүлөрдүн тексти да өчүп калат.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Өчүрүлүүдө</string>
@@ -1778,14 +1831,17 @@
     <string name="MediaOverviewActivity_Selected_description">Тандалды</string>
     <string name="MediaOverviewActivity_select_all">Баарын тандоо</string>
     <plurals name="MediaOverviewActivity_save_plural">
+        <item quantity="one"></item>
         <item quantity="other">Сактоо</item>
     </plurals>
     <plurals name="MediaOverviewActivity_delete_plural">
+        <item quantity="one"></item>
         <item quantity="other">Өчүрүү</item>
     </plurals>
 
     <!-- Screen title shown when selecting multiple items in the media overview screen. The first placeholder is the number of items, the second number is the cumulative file size in bytes. -->
     <plurals name="MediaOverviewActivity_d_selected_s">
+        <item quantity="one"></item>
         <item quantity="other">%1$d тандалды (%2$s)</item>
     </plurals>
     <string name="MediaOverviewActivity_file">Файл</string>
@@ -1912,10 +1968,12 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Сизди жаңы топко кошуу мүмкүн эмес болгондуктан, ага кошулууга чакырылдыңыз.</string>
     <string name="MessageRecord_chat_session_refreshed">Маектин сессиясы жаңырды</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+        <item quantity="one"></item>
         <item quantity="other">%1$s мүчөнү жаңы топко кошуу мүмкүн эмес болгондуктан, алар ага кошулууга чакырылышты.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+        <item quantity="one"></item>
         <item quantity="other">%1$s мүчөнү жаңы топко кошуу мүмкүн эмес болгондуктан, алар алынып салынды.</item>
     </plurals>
 
@@ -1963,18 +2021,22 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Сиз %1$s топко чакырдыңыз.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s сизди топко чакырды.</string>
     <plurals name="MessageRecord_s_invited_members">
+        <item quantity="one"></item>
         <item quantity="other">%1$s %2$d адамды топко чакырды.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Сиз топко чакырылгансыз.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+        <item quantity="one"></item>
         <item quantity="other">%1$d адам топко чакырылган.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
+        <item quantity="one"></item>
         <item quantity="other">Сиз %1$d чакырууну артка кайтардыңыз.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
+        <item quantity="one"></item>
         <item quantity="other">%1$s %2$d чакырууну артка кайтарды.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Кимдир бирөө чакырууну четке какты.</string>
@@ -1982,6 +2044,7 @@
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s чакырууңузду артка кайтарды.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Администратор топко чакырууңузду артка кайтарды.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
+        <item quantity="one"></item>
         <item quantity="other">%1$d чакыруу артка кайтарылды.</item>
     </plurals>
 
@@ -2062,6 +2125,7 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s топко шилтеме аркылуу кошулууну өтүндү.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+        <item quantity="one"></item>
         <item quantity="other">%1$s топко шилтеме аркылуу кошулууну %2$dжолу өтүнүп, жокко чыгарды.</item>
     </plurals>
 
@@ -2160,11 +2224,13 @@
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users, a placeholder for the number of users in the call, and a placeholder for formatted time -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call_s">
+        <item quantity="one"></item>
         <item quantity="other">%1$s, %2$s жана дагы %3$d топтук чалууда · %4$s</item>
     </plurals>
 
     <!-- Chat log text for an ongoing group call with more than two participants with placeholders for the first two joined users and a placeholder for the number of users in the call -->
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_call">
+        <item quantity="one"></item>
         <item quantity="other">%1$s, %2$s жана дагы %3$d топтук чалууда</item>
     </plurals>
 
@@ -2179,9 +2245,9 @@
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Спам деп кабарланды</string>
     <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
-    <string name="MessageRecord_you_accepted_s_message_request">You accepted %1$s\'s message request</string>
+    <string name="MessageRecord_you_accepted_s_message_request">%1$s жөнөткөн өтүнүчтү кабыл алдыңыз</string>
     <!-- Update message shown in a group chat after accepting a group message request -->
-    <string name="MessageRecord_you_accepted_the_group_request">You accepted the group request</string>
+    <string name="MessageRecord_you_accepted_the_group_request">Топтук өтүнүчтү кабыл алдыңыз</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">Бул адамды бөгөттөдүңүз</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2205,7 +2271,7 @@
     <string name="MessageRequestBottomView_unblock">Бөгөттөн чыгаруу</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s сизге билдирүү жөнөтүп, сиздин атыңыз менен сүрөтүңүздү көрсүнбү? Бул адамды өчүрүп салгансыз.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Let this person message you and share your name and photo with them? They won\'t know you\'ve seen their message until you accept.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Бул адамга сизге билдирүү жөнөтүп, аты-жөнүн жана сүрөтүн бөлүшкөнгө уруксат бересизби? Билдирүүнү кабыл алмайынча, аны көргөнүңүздү билбейт.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s сиз менен жазышып, атыңыз менен сүрөтүңүз ага көрүнө берсинби? Аны бөгөттөн чыгармайынча, билдирүүлөрдү албайсыз.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2227,18 +2293,22 @@
     <string name="MessageRequestProfileView_member_of_two_groups">%1$s жана %2$s топторунун мүчөсү</string>
     <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s жана %3$s топторунун мүчөсү</string>
     <plurals name="MessageRequestProfileView_members">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мүчө</item>
     </plurals>
     <!-- Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses. -->
     <plurals name="MessageRequestProfileView_members_and_invited">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мүчө (%2$s)</item>
     </plurals>
     <!-- Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited -->
     <plurals name="MessageRequestProfileView_invited">
+        <item quantity="one"></item>
         <item quantity="other">дагы %1$d чакырылды</item>
     </plurals>
     <!-- Describe the total number of groups, besides two groups, that you and a person have in common. Nested inside MessageRequestProfileView_member_of_many_groups -->
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+        <item quantity="one"></item>
         <item quantity="other">дагы %1$d топ</item>
     </plurals>
     <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
@@ -2259,18 +2329,19 @@
     <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s жана дагы %4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
     <plurals name="MessageRequestProfileView_other_members">
+        <item quantity="one"></item>
         <item quantity="other">дагы %1$d адам</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report</string>
+    <string name="MessageRequestBottomView_report">Кабарлоо</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">Сурамды кабыл аласызбы?</string>
     <!-- Alert dialog body to review the message request carefully -->
     <string name="MessageRequestBottomView_review_requests_carefully">Сизден бир нерсе сураган адамдардан этият болуңуз. Профилдерди аккаунттун ээлери каалагандай аташып, алар ырасталбайт.</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
-    <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
+    <string name="MessageRequestBottomView_accept_request_body">Ишеничтүү адамдардын өтүнүчүн гана кабыл алыңыз. %1$s каттоо кодуңузду, PIN кодуңузду же калыбына келтирүү ачкычыңызды сурабайт.</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->
-    <string name="MessageRequestBottomView_signal_will_never">Signal will never</string>
+    <string name="MessageRequestBottomView_signal_will_never">Signal эч качан</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">Топко кошуласызбы?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -2310,6 +2381,7 @@
     <string name="OutdatedBuildReminder_update_now">Жаңыртуу</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal\'дын бул версиясынын мөөнөтү бүгүн бүтөт. Эң акыркы версиясына жаңыртыңыз.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+        <item quantity="one"></item>
         <item quantity="other">Signal\'дын бул версиясынын мөөнөтү %1$d күндөн кийин бүтөт. Эң акыркы версиясына жаңыртыңыз.</item>
     </plurals>
 
@@ -2343,6 +2415,7 @@
     <string name="PinRestoreEntryFragment_cancel">Жокко чыгаруу</string>
     <string name="PinRestoreEntryFragment_skip">Өткөрүп жиберүү</string>
     <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мүмкүнчүлүк гана калды. Эгер баарын колдонуп салсаңыз, жаңы PIN код түзүшүңүз керек. Аккаунт түзүп, аны колдоно алганыңыз менен, профилиңиздеги маалымат сыяктуу айрым сакталган нерселерди жоготуп алышыңыз мүмкүн.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-га Катталуу - Android-ге PIN код үчүн жардам керек</string>
@@ -2448,30 +2521,36 @@
     <string name="WebRtcCallActivity__not_now">Азыр эмес</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one"></item>
         <item quantity="other">%1$d адамды кошосузбу?</item>
     </plurals>
     <!-- Positive action for call link approve all dialog -->
     <string name="WebRtcCallActivity__approve_all">Баарын кошуу</string>
     <!-- Message for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one"></item>
         <item quantity="other">Чалууга %1$d адам кошулат.</item>
     </plurals>
     <!-- Title for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one"></item>
         <item quantity="other">%1$d өтүнүчтү четке кагасызбы?</item>
     </plurals>
     <!-- Message for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one"></item>
         <item quantity="other">Чалууга %1$d адам кошулбайт.</item>
     </plurals>
     <!-- Positive action for call link deny all dialog -->
     <string name="WebRtcCallActivity__deny_all">Баарын четке кагуу</string>
     <!-- Displayed in call status when users are pending -->
     <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one"></item>
         <item quantity="other">%1$d адам күтүп жатат</item>
     </plurals>
     <!-- Displayed in call status during call link when no users are pending -->
     <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one"></item>
         <item quantity="other">%1$d киши</item>
     </plurals>
     <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
@@ -2532,18 +2611,21 @@
     <string name="WebRtcCallView__signal_will_ring_s">Signal чалат: %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal чалат: %1$s менен %2$s</string>
     <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+        <item quantity="one"></item>
         <item quantity="other">Signal чалат: %1$s, %2$s жана башка %3$d</item>
     </plurals>
 
     <string name="WebRtcCallView__s_will_be_notified">%1$s билдирме алат</string>
     <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s менен %2$s билдирме алышат</string>
     <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+        <item quantity="one"></item>
         <item quantity="other">%1$s, %2$s жана дагы %3$d адам билдирме алышат</item>
     </plurals>
 
     <string name="WebRtcCallView__ringing_s">Чалып жатасыз: %1$s</string>
     <string name="WebRtcCallView__ringing_s_and_s">Чалып жатасыз: %1$s менен %2$s</string>
     <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+        <item quantity="one"></item>
         <item quantity="other">Чалып жатасыз: %1$s, %2$s жана дагы %3$d адамга</item>
     </plurals>
 
@@ -2551,6 +2633,7 @@
     <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s сизге жана %2$s чалып жатат</string>
     <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s сизге, %2$s жана %3$s чалып жатат</string>
     <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+        <item quantity="one"></item>
         <item quantity="other">%1$s сизге, %2$s, %3$s жана дагы %4$d адамга чалып жатат</item>
     </plurals>
 
@@ -2561,6 +2644,7 @@
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s менен %2$s ушул чалууда катышууда</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+        <item quantity="one"></item>
         <item quantity="other">%1$s, %2$sжана дагы %3$d адам ушул чалууда катышууда</item>
     </plurals>
 
@@ -2623,6 +2707,7 @@
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s колун көтөрдү</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
     <plurals name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_multiple">
+        <item quantity="one"></item>
         <item quantity="other">%1$s жана дагы %2$d колдорун көтөрүштү</item>
     </plurals>
 
@@ -2630,6 +2715,7 @@
     <string name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_single">%1$s колун көтөрдү</string>
     <!-- A notification to the user that two or more participants in the call successfully raised their hand. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
     <plurals name="CallRaiseHandSnackbar__expanded_third_person_raised_a_hand_multiple">
+        <item quantity="one"></item>
         <item quantity="other">%1$s жана дагы %2$d колдорун көтөрүштү</item>
     </plurals>
 
@@ -2637,6 +2723,7 @@
     <string name="CallRaiseHandSnackbar__collapsed_second_person_raised_hand_single">%1$s</string>
     <!-- A badge to show the user and at least one other participant in the call have their hand raised. The placeholder is a number quantifying how many other hands are also raised, besides the user.  -->
     <plurals name="CallRaiseHandSnackbar__collapsed_second_person_raised_hands_multiple">
+        <item quantity="one"></item>
         <item quantity="other">%1$s жана дагы %2$d</item>
     </plurals>
 
@@ -2644,6 +2731,7 @@
     <string name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_singular">%1$s</string>
     <!-- A badge to show how many hands are raised. The first placeholder is a name. The second placeholder is a number quantifying how many other hands are also raised, in addition to the name. -->
     <plurals name="CallRaiseHandSnackbar__collapsed_third_person_raised_hands_multiple">
+        <item quantity="one"></item>
         <item quantity="other">%1$s жана дагы %2$d</item>
     </plurals>
 
@@ -2676,6 +2764,7 @@
     <string name="AboutSheet__review_requests_carefully">Сурамдарды этияттап караңыз</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
     <plurals name="AboutSheet__d_groups_in">
+        <item quantity="one"></item>
         <item quantity="other">%1$d орток топ</item>
     </plurals>
     <!-- Text displayed in title for external recipients -->
@@ -2689,21 +2778,26 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
+        <item quantity="one"></item>
         <item quantity="other">%1$s орток топ</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
+        <item quantity="one"></item>
         <item quantity="other">Бул чалууда (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_ring">
+        <item quantity="one"></item>
         <item quantity="other">Signal шыңгырайт (%1$d)</item>
     </plurals>
     <!-- Header text shown in a bottom sheet that indicates how many people will be notified about an outgoing call -->
     <plurals name="CallParticipantsListDialog__signal_will_notify">
+        <item quantity="one"></item>
         <item quantity="other">Signal кабарлайт (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__raised_hands">
+        <item quantity="one"></item>
         <item quantity="other">Канча адам кол көтөрдү (%1$d)</item>
     </plurals>
 
@@ -2775,7 +2869,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Бул номерди каттаганга өтө көп жолу аракет кылдыңыз. %1$s кийин кайталап көрүңүз.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Сервиске туташылбай жатат. Тармактык туташууну текшерип, дагы бир жолу аракет кылып көрүңүз.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
-    <string name="RegistrationActivity_sms_provider_error">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">Номериңизге SMS жөнөтө албай жатабыз. Бир нече сааттан кийин кайталап көрүңүз.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Ырастоо кодун SMS аркылуу жөнөтө албайбыз. Кодду аудио чалуу аркылуу алганга аракет кылып көрүңүз.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -2791,6 +2885,7 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
     <string name="RegistrationActivity_code_requested">Ырастоо кодун сурадыңыз</string>
     <plurals name="RegistrationActivity_debug_log_hint">
+        <item quantity="one"></item>
         <item quantity="other">Сиз мүчүлүштүктөрдү оңдоо журналын тапшыруудан %1$dкадамдасыз.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Биз сиздин адам экендигиңизди тастыктообуз зарыл.</string>
@@ -2895,6 +2990,7 @@
     <string name="StickerManagement_title_stickers">Стикерлер</string>
     <!-- Sticker management screen title displayed when multiple sticker packs are selected in order to perform an action. The placeholder is the number of selected items. -->
     <plurals name="StickerManagement_title_n_selected">
+        <item quantity="one"></item>
         <item quantity="other">%1$s тандалды</item>
     </plurals>
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
@@ -2923,6 +3019,7 @@
     <string name="StickerManagement_action_delete_selected">Өчүрүү</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
+        <item quantity="one"></item>
         <item quantity="other">%1$s стикерлер топтомдорун өчүрүү</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
@@ -2931,10 +3028,12 @@
     <string name="StickerManagement_deleted_pack_s">%1$s өчүрүлдү.</string>
     <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
     <plurals name="StickerManagement_deleted_n_packs">
+        <item quantity="one"></item>
         <item quantity="other">%1$s стикерлер топтому өчүрүлдү.</item>
     </plurals>
     <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
     <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
+        <item quantity="one"></item>
         <item quantity="other">%1$s стикер</item>
     </plurals>
 
@@ -3146,6 +3245,7 @@
     <string name="UsernameEditFragment_continue">Улантуу</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+        <item quantity="one"></item>
         <item quantity="other">Signal\'да %1$dбайланышыңыз бар!</item>
     </plurals>
 
@@ -3233,10 +3333,12 @@
     <string name="MessageNotifier_s_in_s">%2$s ичинде %1$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
+        <item quantity="one"></item>
         <item quantity="other">%1$d билдирүү</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
+        <item quantity="one"></item>
         <item quantity="other">%1$d маек</item>
     </plurals>
     <!-- Shown in a notification when you receive multiple chat messages. %s is the contact name of the most recent message -->
@@ -3323,17 +3425,20 @@
 
     <!-- A toast notification that is shown after image/video/audio media was successfully downloaded and saved to the device storage, accessible in other apps. -->
     <plurals name="SaveAttachment_saved_success">
+        <item quantity="one"></item>
         <item quantity="other">Медиа файл сакталды</item>
     </plurals>
 
     <!-- A toast notification that is shown after some image/video/audio media was successfully downloaded and saved to the device storage, but some failed to save
          %1$s is the number of items that failed to save and %2$s is the total number of items that the user requested to save. -->
     <plurals name="SaveAttachment_saved_success_n_failures">
+        <item quantity="one"></item>
         <item quantity="other">Медиа файл сакталды (%2$s ичинен %1$s сакталбай калды)</item>
     </plurals>
 
     <!-- A toast notification that is shown after all of the requested image/video/audio media failed to save to the device storage. -->
     <plurals name="SaveAttachment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one"></item>
         <item quantity="other">Тиркемелерди сактагычка сактоодо ката кетти!</item>
     </plurals>
 
@@ -3342,6 +3447,7 @@
 
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
     <plurals name="AttachmentSaver__this_media_will_be_saved">
+        <item quantity="one"></item>
         <item quantity="other">Бул нерселер телефонуңузга сакталат. Башка колдонмолор аларды телефонуңуздун уруксаттарына жараша пайдаланышы мүмкүн.</item>
     </plurals>
 
@@ -3410,6 +3516,7 @@
 
     <!-- TransferControlView -->
     <plurals name="TransferControlView_n_items">
+        <item quantity="one"></item>
         <item quantity="other">%1$d нерсе</item>
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
@@ -3519,6 +3626,7 @@
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Мүчөлөрдүн саны эң жогорку чекке жетти</string>
     <string name="ContactSelectionListFragment_signal_groups_perform_best_with_s_members_or_fewer">Мүчөлөрдүн саны %1$s же андан азыраак болгондо, Signal топтору жакшы иштейт. Дагы мүчө кошулса, билдирүүлөр кечигип жөнөтүлүп, кечигип алынышы мүмкүн.</string>
     <plurals name="ContactSelectionListFragment_d_members">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мүчө</item>
     </plurals>
     <!-- Text on row item to find user by phone number -->
@@ -3542,10 +3650,12 @@
 
     <!-- contact_selection_list_item -->
     <plurals name="contact_selection_list_item__number_of_members">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мүчө</item>
     </plurals>
     <!-- Displays number of viewers for a story -->
     <plurals name="contact_selection_list_item__number_of_viewers">
+        <item quantity="one"></item>
         <item quantity="other">%1$d адам көрдү</item>
     </plurals>
 
@@ -3618,23 +3728,27 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Бул адамды өчүрдүңүз, ага билдирүү жөнөтсөңүз, тизмеңизге кайра кошулат.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_block_report">Block or Report…</string>
+    <string name="ConversationUpdateItem_block_report">Бөгөттөө же кабарлоо…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">Жаңыртуу</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
+        <item quantity="one"></item>
         <item quantity="other">Топто %1$d жаңылык бар</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
+        <item quantity="one"></item>
         <item quantity="other">Маекте %1$d жаңылык бар</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
+        <item quantity="one"></item>
         <item quantity="other">Жоголуп кетүүчү %1$d билдирүүнүн таймери · %2$s деп өзгөрдү</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
+        <item quantity="one"></item>
         <item quantity="other">%1$d иш-чара</item>
     </plurals>
 
@@ -3721,30 +3835,35 @@
     <string name="expiration_off">Өчүк</string>
 
     <plurals name="expiration_seconds">
+        <item quantity="one"></item>
         <item quantity="other">%1$d секунд</item>
     </plurals>
 
     <string name="expiration_seconds_abbreviated">%1$dсек</string>
 
     <plurals name="expiration_minutes">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мүнөт</item>
     </plurals>
 
     <string name="expiration_minutes_abbreviated">%1$dмүн</string>
 
     <plurals name="expiration_hours">
+        <item quantity="one"></item>
         <item quantity="other">%1$d саат</item>
     </plurals>
 
     <string name="expiration_hours_abbreviated">%1$dс</string>
 
     <plurals name="expiration_days">
+        <item quantity="one"></item>
         <item quantity="other">%1$d күн</item>
     </plurals>
 
     <string name="expiration_days_abbreviated">%1$dк</string>
 
     <plurals name="expiration_weeks">
+        <item quantity="one"></item>
         <item quantity="other">%1$d апта</item>
     </plurals>
 
@@ -3765,6 +3884,7 @@
     <string name="IdentityUtil_untrusted_dialog_many">Жаңы эле %1$s, %2$s жана %3$s менен болгон коопсуздук коддоруңуз өзгөрдү.</string>
 
     <plurals name="identity_others">
+        <item quantity="one"></item>
         <item quantity="other">дагы %1$d адам</item>
     </plurals>
 
@@ -3791,6 +3911,7 @@
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
+        <item quantity="one"></item>
         <item quantity="other">%1$s топко кошулду.</item>
     </plurals>
     <string name="GroupUtil_group_name_is_now">Топтун аталышы эми \'%1$s\'.</string>
@@ -4057,6 +4178,7 @@
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
+        <item quantity="one"></item>
         <item quantity="other">%1$dc</item>
     </plurals>
 
@@ -4203,6 +4325,7 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Түзмөгүңүздөн %1$s эскирген бардык билдирүүлөр жана медиа файлдар өчүрүлөт.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one"></item>
         <item quantity="other">Бардык маектер эң акыркы %1$s билдирүүгө чейин кыскарат.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Түзмөгүңүздөн бардык билдирүүлөр жана медиа файлдар биротоло өчүрүлөт.</string>
@@ -4221,6 +4344,7 @@
     <!-- Option for setting no limit of the length of chat messages -->
     <string name="preferences_storage__none">Эч бир</string>
     <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="one"></item>
         <item quantity="other">%1$s билдирүү</item>
     </plurals>
 
@@ -4525,6 +4649,7 @@
 
     <!-- Heading which shows how many messages are currently selected -->
     <plurals name="conversation_context__s_selected">
+        <item quantity="one"></item>
         <item quantity="other">%1$d тандалды</item>
     </plurals>
 
@@ -4636,6 +4761,7 @@
     <string name="conversation_scheduled_messages_bar__see_all">Баарын көрүү</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
+        <item quantity="one"></item>
         <item quantity="other">%1$d пландалган билдирүүлөр</item>
     </plurals>
 
@@ -4707,9 +4833,11 @@
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+        <item quantity="one"></item>
         <item quantity="other">PIN код кеминде %1$d белгиден турушу керек</item>
     </plurals>
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+        <item quantity="one"></item>
         <item quantity="other">PIN код кеминде %1$d сандан турушу керек</item>
     </plurals>
     <string name="CreateKbsPinFragment__create_a_new_pin">Жаңы PIN код түзүү</string>
@@ -4773,22 +4901,27 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal\'га катталуу - Android PIN коду (v2 PIN) боюнча жардам керек</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+        <item quantity="one"></item>
         <item quantity="other">Купуялыгыңыз жана коопсуздугуңуз үчүн, PIN кодуңузду калыбына келтирүү мүмкүнчүлүгү жок. Эгер PIN кодуңузду унутуп калсаңыз, %1$dкүн иштебей тургандан кийин, SMS менен кайрадан ырастап алсаңыз болот. Мындай учурда, сиздин жеке баракчаңыз жабылат жана ичиндеги бардык маалыматтар өчүрүлөт.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+        <item quantity="one"></item>
         <item quantity="other">Туура эмес PIN-код. %1$d аракет калды.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+        <item quantity="one"></item>
         <item quantity="other">Эгер кирүүгө аракеттериңиздин саны түгөнсө, сиздин жеке баракчаңызга %1$d күнгө кире албай каласыз. %1$dкүн иштебей тургандан кийин, сиз PIN-кодсуз эле кайра катталууңуз мүмкүн. Сиздин жеке баракчаңыз жабылып жана анын ичиндеги маалыматтар өчүрүлөт.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+        <item quantity="one"></item>
         <item quantity="other">Сизде дагы %1$dаракет бар.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__d_attempts_remaining">
+        <item quantity="one"></item>
         <item quantity="other">%1$dаракетиңиз калды.</item>
     </plurals>
 
@@ -5215,18 +5348,22 @@
     <string name="ReviewCardDialogFragment__review_request">Өтүнүчтү карап чыгуу</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
+        <item quantity="one"></item>
         <item quantity="other">Топтогу %1$d мүчөнүн аттары окшош. Аларды карап чыгып, бир нерсе кылыңыз.</item>
     </plurals>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
+        <item quantity="one"></item>
         <item quantity="other">Эгер бул өтүнүч кимден экенин билбесеңиз, төмөнкү мүчөлөрдү карап чыгып, чара көрүңүз.</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Башка орток топтор жок.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Орток топтор жок.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+        <item quantity="one"></item>
         <item quantity="other">Дагы башка %1$d орток топ бар</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+        <item quantity="one"></item>
         <item quantity="other">%1$d орток топ</item>
     </plurals>
     <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s топтон чыгарылсынбы?</string>
@@ -5251,6 +5388,7 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s жана %3$s кошулушту</string>
     <!-- Toast message shown in group call when 3 or more people join -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
+        <item quantity="one"></item>
         <item quantity="other">%1$s, %2$s жана дагы %3$d адам кошулду</item>
     </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
@@ -5259,6 +5397,7 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s жана %3$s чыгышты</string>
     <!-- Toast message shown in group call when 3 or more people leave -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
+        <item quantity="one"></item>
         <item quantity="other">%1$s, %2$s жана дагы %3$d адам чыгып кетти</item>
     </plurals>
 
@@ -5307,6 +5446,7 @@
 
     <!-- Create group screen title displayed when there is at least one group member selected. The placeholder is the total number of group members. -->
     <plurals name="CreateGroupActivity__s_members">
+        <item quantity="one"></item>
         <item quantity="other">%1$s мүчө</item>
     </plurals>
     <!-- Accessibility label for navigating to the next screen in the create group flow. -->
@@ -5409,6 +5549,7 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Калыбына келтирүүчү сүйлөмдү сактоо</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Калыбына келтирүүчү сөз айкашын киргизиңиз</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
+        <item quantity="one"></item>
         <item quantity="other">Signal PIN кодун ырастасаңыз, Signal\'ды кайра орнотконуңузда балансыңыз автоматтык түрдө калыбына келет. Балансыңызды өзүңүз гана билген %1$d сөздөн турган сөз айкашы менен калыбына келтирсеңиз болот. Аны жазып алып, эч ким билбеген жерге катып коюңуз.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
@@ -5637,6 +5778,7 @@
     <string name="ChatsSettingsFragment__add_edit_chat_folder">Папкаларды кошуу же оңдоо</string>
     <!-- Text describing the number of folders you have -->
     <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one"></item>
         <item quantity="other">%1$d папка</item>
     </plurals>
 
@@ -5722,14 +5864,17 @@
     <string name="ChatFoldersFragment__mark_all_read">Баарын окулду деп белгилөө</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
+        <item quantity="one"></item>
         <item quantity="other">%1$d маектин түрлөрү</item>
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
+        <item quantity="one"></item>
         <item quantity="other">%1$d маек</item>
     </plurals>
     <!-- Text describing the number of chats that are excluded in a folder -->
     <plurals name="ChatFoldersFragment__d_chats_excluded">
+        <item quantity="one"></item>
         <item quantity="other">%1$d маек чыгарылды</item>
     </plurals>
     <!-- Badge shown in chat folder tab when unread count is greater than 99 -->
@@ -5807,6 +5952,7 @@
     <string name="PrivacySettingsFragment__blocked">Бөгөттөлдү</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
+        <item quantity="one"></item>
         <item quantity="other">%1$d байланыш же топ</item>
     </plurals>
     <string name="PrivacySettingsFragment__messaging">Билдирүү алмашуу</string>
@@ -5888,6 +6034,7 @@
     <string name="ChatColorSelectionFragment__delete">Өчүрүү</string>
     <string name="ChatColorSelectionFragment__delete_color">Түстү өчүрүү</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+        <item quantity="one"></item>
         <item quantity="other">Бул ыңгайлаштырылган түс %1$d маекте колдонулат. Аны бардык чаттардан жок кылгыңыз келеби?</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">Маектин түсү жок кылынсынбы?</string>
@@ -5902,6 +6049,7 @@
     <string name="CustomChatColorCreatorFragmentPage__save">Сактоо</string>
     <string name="CustomChatColorCreatorFragmentPage__edit_color">Түстү түзөтүү</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+        <item quantity="one"></item>
         <item quantity="other">Бул түс %1$d маекте колдонулат. Бардык маектер үчүн өзгөртүүлөрдү сактагыңыз келеби?</item>
     </plurals>
 
@@ -6021,6 +6169,7 @@
     <string name="ConversationSettingsFragment__delete_chat">Маекти өчүрүү</string>
     <!-- Member section header for terminated groups. %1$d is the member count -->
     <plurals name="ConversationSettingsFragment__d_former_members">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мурунку мүчөлөр</item>
     </plurals>
 
@@ -6110,6 +6259,7 @@
     <string name="NewConversationActivity__accessibility_open_top_bar_menu">Менюну ачуу</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="RecipientLookup_error__not_signal_users">
+        <item quantity="one"></item>
         <item quantity="other">%1$s Signal колдонуучулары эмес</item>
     </plurals>
 
@@ -6170,15 +6320,19 @@
     <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Багытталган билдирүүлөр азыр дароо жөнөтүлөт.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
+        <item quantity="one"></item>
         <item quantity="other">%1$d билдирүү жөнөтүү</item>
     </plurals>
     <plurals name="MultiselectForwardFragment_messages_sent">
+        <item quantity="one"></item>
         <item quantity="other">Билдирүүлөр жөнөтүлдү</item>
     </plurals>
     <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+        <item quantity="one"></item>
         <item quantity="other">Билдирүүлөр жөнөтүлбөй калды</item>
     </plurals>
     <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+        <item quantity="one"></item>
         <item quantity="other">Билдирүүлөрдү багыттоо мүмкүн эмес, анткени алар жеткиликсиз.</item>
     </plurals>
     <!-- Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin -->
@@ -6231,10 +6385,12 @@
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Билдирүү кошууну бүтүрүү</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="one"></item>
         <item quantity="other">%1$d нерсе жогорку сапатка коюлду</item>
     </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="one"></item>
         <item quantity="other">%1$d нерсе стандарттык сапатка коюлду</item>
     </plurals>
 
@@ -6358,9 +6514,9 @@
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Салым ырасталган жок</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Айына %1$s түзгөн салымыңыз ырасталган жок. iDEAL төлөмүңүздү ырастоо үчүн банкыңыздын колдонмосун текшериңиз.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Бир жолку %1$s салымыңыз ырасталган жок. iDEAL төлөмүңүздү ырастоо үчүн банкыңыздын колдонмосун текшериңиз.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
 
     <string name="Boost__enter_custom_amount">Өзүңүздүн суммаңызды киргизиңиз</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -6489,7 +6645,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Интернет жок болгондуктан, колдооңуз жөнөтүлгөн жок. Байланышыңызды текшерип, кайталап көрүңүз.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">iDEAL салымыңыз иштелген жок. Башка төлөм ыкмасын колдонуп көрүңүз же көбүрөөк маалымат алуу үчүн банкыңызга кайрылыңыз.</string>
+    <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">Your iDEAL | Wero donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$s атынан колдоо көрсөттү</string>
@@ -6807,6 +6963,7 @@
     <string name="StoriesLandingFragment__hidden_stories">Жашырылган окуялар</string>
     <!-- Displayed on each sent story under My Stories -->
     <plurals name="MyStories__d_views">
+        <item quantity="one"></item>
         <item quantity="other">%1$d көрүү</item>
     </plurals>
     <!-- Forward story label, displayed in My Stories context menu -->
@@ -6859,19 +7016,23 @@
   <!-- Removed by excludeNonTranslatables <string name="StoryArchive__select_story" translatable="false">Select story</string> -->
     <!-- Confirmation dialog body when deleting stories from archive -->
     <plurals name="StoryArchive__delete_n_stories">
+        <item quantity="one"></item>
         <item quantity="other">%1$d окуяны өчүрөсүзбү? Өчкөн нерселер кайра калыбына келбейт.</item>
     </plurals>
     <!-- Title shown in toolbar when in multi-select mode in story archive, %d is count of selected items -->
     <plurals name="StoryArchive__d_selected">
+        <item quantity="one"></item>
         <item quantity="other">%1$d тандалды</item>
     </plurals>
 
     <!-- Displayed at bottom of story viewer when current item has views -->
     <plurals name="StoryViewerFragment__d_views">
+        <item quantity="one"></item>
         <item quantity="other">%1$d көрүү</item>
     </plurals>
     <!-- Displayed at bottom of story viewer when current item has replies -->
     <plurals name="StoryViewerFragment__d_replies">
+        <item quantity="one"></item>
         <item quantity="other">%1$d жооп</item>
     </plurals>
     <!-- Toast / Snackbar label when unhiding a story during viewer -->
@@ -6935,6 +7096,7 @@
     <string name="MyStorySettingsFragment__my_story">Менин окуям</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
     <plurals name="MyStorySettingsFragment__viewers">
+        <item quantity="one"></item>
         <item quantity="other">%1$d адам көрдү</item>
     </plurals>
     <!-- Button on all signal connections row to view all signal connections. Please keep as short as possible. -->
@@ -6951,6 +7113,7 @@
     <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Окуяңызды белгилүү бир адамдардан жашырып койсоңуз болот</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
+        <item quantity="one"></item>
         <item quantity="other">%1$d адамга көрүнбөйт</item>
     </plurals>
     <!-- Privacy setting title for only sharing your story with specified connections -->
@@ -6959,6 +7122,7 @@
     <string name="MyStorySettingsFragment__only_share_with_selected_people">Тандалган байланыштарга гана көрүнөт</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
+        <item quantity="one"></item>
         <item quantity="other">%1$d адам көрдү</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
@@ -7056,6 +7220,7 @@
     <string name="CreateStoryViewerSelectionFragment__next">Кийинки</string>
     <!-- New story viewer selection screen title as recipients are selected -->
     <plurals name="SelectViewersFragment__d_viewers">
+        <item quantity="one"></item>
         <item quantity="other">%1$d жолу көрүлдү</item>
     </plurals>
     <!-- Name story screen title -->
@@ -7128,12 +7293,14 @@
 
     <!-- Gift price and duration, formatted as: {price} dot {n} day duration -->
     <plurals name="GiftRowItem_s_dot_d_day_duration">
+        <item quantity="one"></item>
         <item quantity="other">%1$s · %2$d күнгө созулат</item>
     </plurals>
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__donate_for_a_friend">Дос үчүн колдоо көрсөтүңүз</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
+        <item quantity="one"></item>
         <item quantity="other">Signal\'ды пайдаланган досуңузга же үй-бүлө мүчөңүзгө белек берип, Signal\'га колдоо көрсөтүңүз. Алар алган төшбелги профилинде %1$d күн көрүнүп турат</item>
     </plurals>
     <!-- Action button label for start fragment for gifting a badge -->
@@ -7182,22 +7349,27 @@
     <string name="ContactSearchItems__only_share_with">Ким менен бөлүшөсүз:</string>
     <!-- Label under name for custom stories -->
     <plurals name="ContactSearchItems__custom_story_d_viewers">
+        <item quantity="one"></item>
         <item quantity="other">Жеке окуя · %1$d адам көрдү</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
+        <item quantity="one"></item>
         <item quantity="other">Топтук окуя · %1$d жолу көрүлдү</item>
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мүчө</item>
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+        <item quantity="one"></item>
         <item quantity="other">%1$s · %2$d жолу көрүлдү</item>
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_excluded">
+        <item quantity="one"></item>
         <item quantity="other">%1$s · %2$d чыгарылган</item>
     </plurals>
     <!-- Label under name for My Story when first sending to my story -->
@@ -7222,14 +7394,17 @@
     <string name="ContactSearchMediator__delete">Өчүрүү</string>
     <!-- Donation for a friend expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
+        <item quantity="one"></item>
         <item quantity="other">%1$d күн калды</item>
     </plurals>
     <!-- Donation for a friend expiry hours remaining -->
     <plurals name="Gifts__d_hours_remaining">
+        <item quantity="one"></item>
         <item quantity="other">%1$d саат калды</item>
     </plurals>
     <!-- Gift expiry minutes remaining -->
     <plurals name="Gifts__d_minutes_remaining">
+        <item quantity="one"></item>
         <item quantity="other">%1$d мүнөт калды</item>
     </plurals>
     <!-- Donation for a friend expiry expired -->
@@ -7261,6 +7436,7 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Бардык байланыштар текшерилди, улантуу үчүн жөнөтүү дегенди басыңыз.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
+        <item quantity="one"></item>
         <item quantity="other">%1$d байланыштары Signal\'ды кайра орнотушу же түзмөктөрдү өзгөртүшү мүмкүн. Алардын коопсуздук номерлерин карап көрүңүз же жөнөтүп улантыңыз.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
@@ -7279,6 +7455,7 @@
     <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Коопсуздук кодунун өзгөрүшү</string>
     <!-- Message of safety number review fragment -->
     <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+        <item quantity="one"></item>
         <item quantity="other">%1$d алуучу Signal колдонмосун кайра орнотуп же түзмөктөрүн алмаштырды окшойт. Жаңы коопсуздук кодун ырастоо үчүн алуучуну басыңыз (баспай деле койсоңуз болот).</item>
     </plurals>
     <!-- Section header for 1:1 contacts in review fragment -->
@@ -7393,7 +7570,7 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Салымыңыз дагы деле иштелүүдө. Байланышыңыздын сапатына жараша бир нече мүнөткө созулушу мүмкүн. Дагы бир салым кошуудан мурун, акы толук алынып бүткүчө күтө туруңуз.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">iDEAL салымыңыз иштелүүдө. Дагы башка салым кошуудан мурун, төлөмүңүздү ырастоо үчүн банкыңыздын колдонмосун текшериңиз.</string>
+    <string name="DonateToSignalFragment__your_ideal_wero_payment_is_still_processing">Your iDEAL | Wero donation is still processing. Check your banking app to approve your payment before making another donation.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Салымдын суммасы өтө чоң</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -7413,6 +7590,7 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signal\'га %1$s салым кошуу</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
+        <item quantity="one"></item>
         <item quantity="other">%1$s төшбелгисин %2$d күнгө аласыз</item>
     </plurals>
     <!-- Button label for paying with a bank transfer -->
@@ -7422,11 +7600,13 @@
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Дос үчүн колдоо көрсөтүңүз</string>
     <!-- Button label for paying with iDEAL -->
-    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+    <string name="GatewaySelectorBottomSheet__ideal_wero">iDEAL | Wero</string>
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Салымды ырастоо үчүн Signal\'дан чыгасызбы?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Ырастагандан кийин, салымыңыз аягына чейин иштелип бүтүшү үчүн Signal\'га кайтыңыз.</string>
+    <!-- Dialog message shown when leaving Signal to complete a donation in an external app. Placeholder is the resolved app name (e.g. a banking app). -->
+    <string name="ExternalNavigationHelper__once_payment_confirmed_in_app">You\'ll be sent to %1$s. When confirmed, return to Signal to finish processing your donation.</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7488,7 +7668,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Банкыңызды тандаңыз</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">iDEAL аркылуу салымыңызды ырастаңыз</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">Confirm your donation with iDEAL | Wero</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Банк эсебиңизден ай сайын €0,01 өлчөмүндө салым алынып тургандай кылсаңыз болот. Автоматтык түрдө кайтарылып, эсебиңизден айына %1$s өлчөмүндө салым алынып турат.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7539,6 +7719,7 @@
     <string name="CdsTemporaryErrorBottomSheet_title">Өтө көп байланыш иштетилди</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
+        <item quantity="one"></item>
         <item quantity="other">Байланыштарыңызды %1$d күндөн кийин дагы бир жолу иштетип көрүңүз.</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
@@ -7695,6 +7876,7 @@
     <string name="CallLogFragment__deletion_failed">Өчпөй калды.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
+        <item quantity="one"></item>
         <item quantity="other">Чалуу шилтемелеринин айрымдары өчпөй калды. Байланышты текшерип, кайталап көрүңүз.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
@@ -7722,10 +7904,12 @@
     <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Өчүрүү</string>
     <plurals name="CallLogFragment__delete_d_calls">
+        <item quantity="one"></item>
         <item quantity="other">%1$d чалууну өчүрөсүзбү?</item>
     </plurals>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
+        <item quantity="one"></item>
         <item quantity="other">%1$d чалуу өчүрүлдү</item>
     </plurals>
     <!-- Shown during empty state -->
@@ -7735,7 +7919,7 @@
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">Сиз түзгөн чалуу шилтемелери аларды алган адамдар үчүн иштебей калат.</string>
     <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
-    <string name="CallLogFragment__cant_start_call_no_longer_a_member">You\'re no longer a member of this group.</string>
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">Бул топтун мүчөсү болбой калгансыз.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -7946,6 +8130,7 @@
     <string name="PendingParticipantsView__would_like_to_join">Кошулгусу келип жатат…</string>
     <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
     <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one"></item>
         <item quantity="other">%1$d ашуун өтүнүч</item>
     </plurals>
 
@@ -7954,6 +8139,7 @@
     <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Чалууга кошулууну сурангандар</string>
     <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
     <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one"></item>
         <item quantity="other">%1$d адам күтүп жатат</item>
     </plurals>
     <!-- Content description for rejecting a user -->
@@ -8132,6 +8318,7 @@
     <string name="LinkedDeviceInactiveMegaphone_title">Байланышкан түзмөк иштебейт</string>
     <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
     <plurals name="LinkedDeviceInactiveMegaphone_body">
+        <item quantity="one"></item>
         <item quantity="other">\"%1$s\" байланган бойдон калышы үчүн ошол түзмөктө Signal\'ды %2$d күндүн ичинде ачыңыз.</item>
     </plurals>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
@@ -8178,6 +8365,7 @@
     <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Жазылуунун мөөнөтү өтүп кетти</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
     <plurals name="BackupAlertBottomSheet__your_backup_plan_has_expired">
+        <item quantity="one"></item>
         <item quantity="other">Учурдагы төлөм ыкмаңыздан акы алынбагандыктан, камдык көчүрмөңүздүн тарифтик планынын мөөнөтү бүтүп калды. %1$d күндөн кийин медиа файлдарыңыздын камдык көчүрмөлөрү өчүрүлөт.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
@@ -8208,6 +8396,7 @@
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Камдык көчүрмөлөр сакталган жок</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
     <plurals name="BackupAlertBottomSheet__your_device_hasnt">
+        <item quantity="one"> </item>
         <item quantity="other">Түзмөгүңүздөгү нерселердин камдык көчүрмөлөрү %1$d күндөн бери сактала элек. Түзмөгүңүздү wi-fi тармагына туташтырып, \"Камдык көчүрмөнү сактоо\" дегенди басыңыз.</item>
     </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
@@ -8442,6 +8631,7 @@
     <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">Бул медиа файлдар жок</string>
     <!-- Subtitle of bottom sheet detailing that with their current plan, there is a limitation to how many days media is stored for. Placeholder is number of days. -->
     <plurals name="UpgradeToStartMediaBackupSheet__your_current_signal_backup_plan_includes">
+        <item quantity="one"></item>
         <item quantity="other">Signal\'дагы учурдагы камдык көчүрмөлөр планында акыркы %1$d күндөгү медиа файлдар бар. Алардын баарынын сактоо үчүн аны жаңыртыңыз.</item>
     </plurals>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
@@ -8489,10 +8679,12 @@
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
+        <item quantity="one"></item>
         <item quantity="other">%1$d күндөн бери эч нерсе сактала элек</item>
     </plurals>
     <!-- Body for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
+        <item quantity="one"></item>
         <item quantity="other">%1$d күндөн бери бир да камдык көчүрмө сактала элек. Билдирүүлөрүңүз менен медиа файлдарыңызды жоготуп албаш үчүн алардын камдык көчүрмөлөрүн сактап коюңуз.</item>
     </plurals>
 
@@ -8553,6 +8745,7 @@
     <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Камдык көчүрмөнүн өлчөмү</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
+        <item quantity="one"></item>
         <item quantity="other">Камдык көчүрмөлөрүңүздө бардык текст билдирүүлөрүңүз жана соңку %1$d күндөгү медиа файдарыңыз камтылган. Көлөмү жаңы медиа файлдар алынып, эски медиа файлдардын жарабай калышы менен өзгөрүп турат.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -8647,6 +8840,7 @@
     <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Бул түзмөктө жазылууңуз табылган жок. Signal Коопсуз камдык көчүрмөлөрүн колдоно берүү үчүн жаңыртыңыз.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
+        <item quantity="one"></item>
         <item quantity="other">Бул түзмөктө жазылууңуз дагы %1$d күнгө чейин жетет. Signal Коопсуз камдык көчүрмөлөр кызматын үзбөй пайдалангыңыз келсе, азыр узартып коюңуз</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
@@ -8665,6 +8859,7 @@
     <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">Internet байланышы күтүлүүдө…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
+        <item quantity="one"></item>
         <item quantity="other">%2$s ичинен %1$s билдирүү иштелди (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
@@ -8677,6 +8872,7 @@
     <string name="RemoteBackupsSettingsFragment__skip_download_question">Жүктөп алууну өткөрүп жибересизби?</string>
     <!-- Dialog body for skipping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
+        <item quantity="one"></item>
         <item quantity="other">Өткөрүп жиберсеңиз, калган медиа файлдарыңыз менен тиркемелериңиз %1$d күндөн кийин өчүп калат.</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
@@ -8807,7 +9003,7 @@
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Билдирүүлөрүңүз менен медиа файлдарыңыздын камдык көчүрмөлөрүн Signal\'дын баштан аяк шифрленген, коопсуз кызматы менен сактаңыз. Алардын баарын жаңы телефонуңузга же жаңы Signal\'га өткөрүп аласыз.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
     <!-- Backups feature label for e2e encryption -->
     <string name="MessageBackupsEducationScreen__end_to_end_encrypted">Баштан аяк шифрленет</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->
@@ -8970,6 +9166,7 @@
     <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Тексттик билдирүүлөрүңүз жана бардык медиа файлдарыңыз</string>
     <!-- Title for paid tier. Placeholder is days of media retention. -->
     <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
+        <item quantity="one"></item>
         <item quantity="other">Тексттик билдирүүлөр жана %1$d күн бою медиа файлдар</item>
     </plurals>
     <!-- Description text for text history feature -->
@@ -8982,6 +9179,7 @@
     <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Signal\'ды колдогонуңуз үчүн чоң рахмат!</string>
     <!-- Description text for free tier media retention. Placeholder is retention day count. -->
     <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
+        <item quantity="one"></item>
         <item quantity="other">Соңку %1$d күндөгү медиа файлдар</item>
     </plurals>
     <!-- Text designating that an option is your current plan -->
@@ -9375,10 +9573,12 @@
     <string name="Notification_an_error_occurred_and_your_backup">Ката кетти. Көбүрөөк билүү үчүн басып коюңуз.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_no_backup_for_d_days">
+        <item quantity="one"></item>
         <item quantity="other">%1$d күндөн бери эч нерсе сактала элек</item>
     </plurals>
     <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_you_have_not_completed_a_backup">
+        <item quantity="one"></item>
         <item quantity="other">%1$d күндөн бери бир да камдык көчүрмө сактала элек. Азыр сактаңыз.</item>
     </plurals>
 
@@ -9417,6 +9617,7 @@
     <string name="Poll__question">Суроо берүү</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
     <plurals name="Poll__num_votes">
+        <item quantity="one"></item>
         <item quantity="other">%1$d добуш</item>
     </plurals>
     <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->

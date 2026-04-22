@@ -715,11 +715,11 @@
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">ಎಚ್ಚರಿಕೆಯಿಂದ ಪರಿಶೀಲಿಸಿ</string>
     <!-- Text shown in conversation header when in a message request state that the name is not verified -->
-    <string name="ConversationFragment_name_not_verified">Name not verified</string>
+    <string name="ConversationFragment_name_not_verified">ಹೆಸರನ್ನು ದೃಢೀಕರಿಸಲಾಗಿಲ್ಲ</string>
     <!-- Label for official chat pill shown in the Note to Self conversation header -->
-    <string name="ConversationFragment_official_chat">Official chat</string>
+    <string name="ConversationFragment_official_chat">ಅಧಿಕೃತ ಚಾಟ್</string>
     <!-- Description shown in the Signal release notes conversation header -->
-    <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
+    <string name="ConversationFragment_release_notes_description">Signal ನ ಏಕೈಕ ಅಧಿಕೃತ ಚಾಟ್. ಸುದ್ದಿ ಮತ್ತು ಆವೃತ್ತಿ ಟಿಪ್ಪಣಿಗಳೊಂದಿಗೆ ಅಪ್ ಟು ಡೇಟ್ ಆಗಿರಿ.</string>
     <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
     <plurals name="ConversationFragment_group_member_count">
         <item quantity="one">%1$d ಸದಸ್ಯ</item>
@@ -758,49 +758,49 @@
     <string name="SafetyTips_next_tip">ಮುಂದಿನ ಸಲಹೆ</string>
 
     <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
-    <string name="SafetyTips_summary_tip0_title">Don\'t respond to chats from Signal</string>
+    <string name="SafetyTips_summary_tip0_title">Signal ನ ಚಾಟ್‌ಗಳಿಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಬೇಡಿ</string>
     <!-- Summary tip 0 message -->
-    <string name="SafetyTips_summary_tip0_message">Signal will never message you for your registration code, PIN, or recovery key. Never respond to a chat pretending to be Signal.</string>
+    <string name="SafetyTips_summary_tip0_message">Signal ಎಂದಿಗೂ ನಿಮ್ಮ ನೋಂದಣಿ ಕೋಡ್, ಪಿನ್ ಅಥವಾ ರಿಕವರ್ ಕೀ ಗಾಗಿ ಮೆಸೇಜ್ ಕಳುಹಿಸುವುದಿಲ್ಲ. Signal ಎಂದು ಸೋಗುಹಾಕುವ ಚಾಟ್‌ಗೆ ಎಂದಿಗೂ ಪ್ರತಿಕ್ರಿಯಿಸಬೇಡಿ.</string>
     <!-- Summary tip 1 title: Review names and photos -->
-    <string name="SafetyTips_summary_tip1_title">Review names and photos</string>
+    <string name="SafetyTips_summary_tip1_title">ಹೆಸರುಗಳು ಮತ್ತು ಫೋಟೋಗಳನ್ನು ಪರಿಶೀಲಿಸಿ</string>
     <!-- Summary tip 1 message -->
-    <string name="SafetyTips_summary_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name in Signal.</string>
+    <string name="SafetyTips_summary_tip1_message">\"ಹೆಸರು ದೃಢೀಕರಿಸಲಾಗಿಲ್ಲ\" ಎಂಬ ಸೂಚನೆಯನ್ನು ಗಮನಿಸಿ. ಪ್ರತಿಯೊಬ್ಬರೂ Signal ನಲ್ಲಿ ತಮ್ಮದೇ ಆದ ಪ್ರೊಫೈಲ್ ಹೆಸರನ್ನು ಸೆಟ್ ಮಾಡುತ್ತಾರೆ.</string>
     <!-- Summary tip 2 title: Look out for scams -->
-    <string name="SafetyTips_summary_tip2_title">Look out for scams</string>
+    <string name="SafetyTips_summary_tip2_title">ವಂಚನೆಗಳ ಬಗ್ಗೆ ಎಚ್ಚರದಿಂದಿರಿ</string>
     <!-- Summary tip 2 message -->
-    <string name="SafetyTips_summary_tip2_message">Avoid vague messages that try to get you to reply. Be aware of financial tips and suspicious web links.</string>
+    <string name="SafetyTips_summary_tip2_message">ನೀವು ಉತ್ತರಿಸುವಂತೆ ಮಾಡಲು ಪ್ರಯತ್ನಿಸುವ ಅಸ್ಪಷ್ಟ ಮೆಸೇಜ್‌ಗಳನ್ನು ತಪ್ಪಿಸಿ. ಹಣಕಾಸು ಸಲಹೆಗಳು ಮತ್ತು ಅನುಮಾನಾಸ್ಪದ ವೆಬ್ ಲಿಂಕ್‌ಗಳ ಕುರಿತು ಎಚ್ಚರದಿಂದಿರಿ.</string>
 
     <!-- Detail tip 0 title -->
-    <string name="SafetyTips_detail_tip0_title">Don\'t respond to chats from Signal</string>
+    <string name="SafetyTips_detail_tip0_title">Signal ನ ಚಾಟ್‌ಗಳಿಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಬೇಡಿ</string>
     <!-- Detail tip 0 message -->
-    <string name="SafetyTips_detail_tip0_message">Signal will never message you for your registration code, PIN, or recover key. Don\'t reply to chats pretending to be Signal or Signal Support. Bad actors set up fake chats to try to take over your account.</string>
+    <string name="SafetyTips_detail_tip0_message">Signal ನಿಮ್ಮ ನೋಂದಣಿ ಕೋಡ್, ಪಿನ್ ಅಥವಾ ರಿಕವರ್ ಕೀ ಗಾಗಿ ಎಂದಿಗೂ ಮೆಸೇಜ್ ಕಳುಹಿಸುವುದಿಲ್ಲ. Signal ಅಥವಾ Signal ಬೆಂಬಲ ಎಂದು ಸೋಗುಹಾಕುವ ಚಾಟ್‌ಗಳಿಗೆ ಉತ್ತರಿಸಬೇಡಿ. ಕೆಟ್ಟವರು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸ್ವಾಧೀನಪಡಿಸಿಕೊಳ್ಳಲು ನಕಲಿ ಚಾಟ್‌ಗಳನ್ನು ಸೆಟಪ್ ಮಾಡುತ್ತಾರೆ.</string>
     <!-- Detail tip 1 title -->
-    <string name="SafetyTips_detail_tip1_title">Review names and photos</string>
+    <string name="SafetyTips_detail_tip1_title">ಹೆಸರುಗಳು ಮತ್ತು ಫೋಟೋಗಳನ್ನು ಪರಿಶೀಲಿಸಿ</string>
     <!-- Detail tip 1 message -->
-    <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\'re unsure who a new request is from it\'s safer to ignore it.</string>
+    <string name="SafetyTips_detail_tip1_message">\"ಹೆಸರು ದೃಢೀಕರಿಸಲಾಗಿಲ್ಲ\" ಎಂಬ ಸೂಚನೆಯನ್ನು ಗಮನಿಸಿ. ಪ್ರತಿಯೊಬ್ಬರೂ Signal ನಲ್ಲಿ ತಮ್ಮದೇ ಆದ ಪ್ರೊಫೈಲ್ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಸೆಟ್ ಮಾಡುತ್ತಾರೆ. ಹೊಸ ವಿನಂತಿಯು ಯಾರಿಂದ ಬಂದಿದೆ ಎಂದು ನಿಮಗೆ ಖಚಿತವಿಲ್ಲದಿದ್ದರೆ ಅದನ್ನು ನಿರ್ಲಕ್ಷಿಸುವುದು ಸುರಕ್ಷಿತ.</string>
     <!-- Detail tip 2 title -->
     <string name="SafetyTips_detail_tip2_title">ಅಸ್ಪಷ್ಟ ಅಥವಾ ಅಪ್ರಸ್ತುತ ಮೆಸೇಜ್‌ಗಳು</string>
     <!-- Detail tip 2 message -->
-    <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_detail_tip2_message">ಸ್ಪ್ಯಾಮರ್‌ಗಳು ನಿಮ್ಮನ್ನು ಸೆಳೆಯಲು ಸಾಮಾನ್ಯವಾಗಿ \"ಹಾಯ್\" ಎಂಬ ರೀತಿಯ ಸರಳ ಮೆಸೇಜ್‌ನಿಂದ ಪ್ರಾರಂಭಿಸುತ್ತಾರೆ. ನೀವು ಪ್ರತಿಕ್ರಿಯಿಸಿದರೆ ಅವರು ಇನ್ನಷ್ಟು ಮುಂದುವರಿಯುತ್ತಾರೆ.</string>
     <!-- Detail tip 3 title -->
-    <string name="SafetyTips_detail_tip3_title">Messages with web links</string>
+    <string name="SafetyTips_detail_tip3_title">ವೆಬ್ ಲಿಂಕ್‌ಗಳಿರುವ ಮೆಸೇಜ್‌ಗಳು</string>
     <!-- Detail tip 3 message -->
-    <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\'t know that have links to websites. Never visit links from people you don\'t trust.</string>
+    <string name="SafetyTips_detail_tip3_message">ಅಪರಿಚಿತರು ಕಳುಹಿಸಿದ, ವೆಬ್‌ಸೈಟ್‌ಗಳಿಗೆ ಲಿಂಕ್‌ಗಳನ್ನು ಹೊಂದಿರುವ ಮೆಸೇಜ್‌ಗಳ ಬಗ್ಗೆ ಎಚ್ಚರವಹಿಸಿ. ನೀವು ವಿಶ್ವಾಸವಿಡದವರಿಂದ ಪಡೆದ ಲಿಂಕ್‌ಗಳನ್ನು ಎಂದೂ ತೆರೆಯಬೇಡಿ.</string>
     <!-- Detail tip 4 title -->
     <string name="SafetyTips_detail_tip4_title">ಕ್ರಿಪ್ಟೊ ಅಥವಾ ಹಣದ ಹಗರಣಗಳು</string>
     <!-- Detail tip 4 message -->
-    <string name="SafetyTips_detail_tip4_message">If someone you don\'t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\'s likely spam.</string>
+    <string name="SafetyTips_detail_tip4_message">ನಿಮಗೆ ಪರಿಚಯವಿಲ್ಲದ ಯಾರಾದರೂ ಕ್ರಿಪ್ಟೊಕರೆನ್ಸಿ (ಬಿಟ್‌ಕಾಯಿನ್‌ನಂಥ) ಅಥವಾ ಹಣಕಾಸಿನ ಅವಕಾಶದ ಕುರಿತು ಮೆಸೇಜ್‌ಗಳನ್ನು ಕಳುಹಿಸಿದರೆ, ಎಚ್ಚರವಹಿಸಿ— ಅದು ಸ್ಪ್ಯಾಮ್ ಆಗಿರುವ ಸಾಧ್ಯತೆಯಿರುತ್ತದೆ.</string>
     <!-- Detail tip 5 title -->
-    <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
+    <string name="SafetyTips_detail_tip5_title">ನಕಲಿ ವ್ಯಾಪಾರಗಳು</string>
     <!-- Detail tip 5 message -->
     <string name="SafetyTips_detail_tip5_message">ನಿಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸುತ್ತಿರುವ ವ್ಯವಹಾರಗಳು ಮತ್ತು ಸರಕಾರಿ ಏಜೆನ್ಸಿಗಳ ಬಗ್ಗೆ ಎಚ್ಚರವಹಿಸಿ. ಟ್ಯಾಕ್ಸ್ ಏಜೆನ್ಸಿಗಳು, ಕೊರಿಯರ್‌ಗಳು ಮತ್ತು ಇನ್ನೂ ಬೇರೆಯವುಗಳನ್ನೊಳಗೊಂಡ ಮೆಸೇಜ್‌ಗಳು ಸ್ಪ್ಯಾಮ್ ಆಗಿರಬಹುದು.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal ನಲ್ಲಿನ %1$s ಅವುಗಳ ಖಾತೆದಾರರು ಆಯ್ಕೆಮಾಡುತ್ತಾರೆ.</string>
     <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
-    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal can\'t verify names and photos</string>
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal ಹೆಸರುಗಳು ಮತ್ತು ಫೋಟೋಗಳನ್ನು ದೃಢೀಕರಿಸುವುದಿಲ್ಲ</string>
     <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
-    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal will never contact you for your registration code, PIN, or recovery key</string>
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal ಎಂದಿಗೂ ನಿಮ್ಮ ನೋಂದಣಿ ಕೋಡ್, ಪಿನ್ ಅಥವಾ ರಿಕವರ್ ಕೀ ಗಾಗಿ ನಿಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸುವುದಿಲ್ಲ</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">ಇತರರಂತೆ ಸೋಗುಹಾಕುವ ಖಾತೆಗಳ ಬಗ್ಗೆ ಜಾಗರೂಕರಾಗಿರಿ</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
@@ -2245,9 +2245,9 @@
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">ಸ್ಪ್ಯಾಮ್ ಎಂದು ವರದಿ ಮಾಡಲಾಗಿದೆ</string>
     <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
-    <string name="MessageRecord_you_accepted_s_message_request">You accepted %1$s\'s message request</string>
+    <string name="MessageRecord_you_accepted_s_message_request">ನೀವು %1$s ಅವರ ಸಂದೇಶ ವಿನಂತಿಯನ್ನು ಸ್ವೀಕರಿಸಿದ್ದೀರಿ</string>
     <!-- Update message shown in a group chat after accepting a group message request -->
-    <string name="MessageRecord_you_accepted_the_group_request">You accepted the group request</string>
+    <string name="MessageRecord_you_accepted_the_group_request">ನೀವು ಗುಂಪು ವಿನಂತಿಯನ್ನು ಸ್ವೀಕರಿಸಿದ್ದೀರಿ</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">ನೀವು ಈ ವ್ಯಕ್ತಿಯನ್ನು ಬ್ಲಾಕ್ ಮಾಡಿದಿರಿ</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2271,7 +2271,7 @@
     <string name="MessageRequestBottomView_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s ಅವರು ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡಲು ಮತ್ತು ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೊಟೋವನ್ನು ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲು ನೀವು ಅನುಮತಿಸುತ್ತೀರಾ? ಈ ವ್ಯಕ್ತಿಯನ್ನು ಈ ಹಿಂದೆ ನೀವು ತೆಗೆದುಹಾಕಿದ್ದಿರಿ.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Let this person message you and share your name and photo with them? They won\'t know you\'ve seen their message until you accept.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">ಈ ವ್ಯಕ್ತಿ ನಿಮಗೆ ಮೆಸೇಜ್ ಕಳುಹಿಸಲು ಮತ್ತು ನಿಮ್ಮ ಹೆಸರು ಹಾಗೂ ಫೋಟೋವನ್ನು ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲು ಅನುಮತಿಸುವುದೇ? ನೀವು ಸ್ವೀಕರಿಸುವವರೆಗೂ ಅವರ ಮೆಸೇಜ್ ಅನ್ನು ನೀವು ನೋಡಿದ್ದೀರಿ ಎಂದು ಅವರಿಗೆ ತಿಳಿಯುವುದಿಲ್ಲ.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s ಅವರು ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡಲು ಮತ್ತು ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲು ಅನುಮತಿಸುತ್ತೀರಾ? ನೀವು ಅವರನ್ನು ಅನ್‌ಬ್ಲಾಕ್ ಮಾಡುವವರೆಗೆ ನೀವು ಯಾವುದೇ ಮೆಸೇಜ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2333,15 +2333,15 @@
         <item quantity="other">%1$d ಇತರರು</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report</string>
+    <string name="MessageRequestBottomView_report">ವರದಿಮಾಡಿ</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">ವಿನಂತಿಯನ್ನು ಸ್ವೀಕರಿಸುವುದೇ?</string>
     <!-- Alert dialog body to review the message request carefully -->
     <string name="MessageRequestBottomView_review_requests_carefully">ವಿನಂತಿಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಪರಿಶೀಲಿಸಿ. ಪ್ರೊಫೈಲ್ ಹೆಸರುಗಳನ್ನು ಅವುಗಳ ಖಾತೆ ಮಾಲೀಕರು ಆಯ್ಕೆಮಾಡುತ್ತಾರೆ ಮತ್ತು ಅವುಗಳನ್ನು ಪರಿಶೀಲಿಸಲಾಗುವುದಿಲ್ಲ.</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
-    <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
+    <string name="MessageRequestBottomView_accept_request_body">ನೀವು ವಿಶ್ವಾಸವಿಡುವ ಜನರಿಂದ ಮಾತ್ರ ವಿನಂತಿಗಳನ್ನು ಸ್ವೀಕರಿಸಿ. %1$s ನೋಂದಣಿ ಕೋಡ್, ಪಿನ್ ಅಥವಾ ರಿಕವರಿ ಕೀ ಗಾಗಿ ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡುತ್ತಾರೆ.</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->
-    <string name="MessageRequestBottomView_signal_will_never">Signal will never</string>
+    <string name="MessageRequestBottomView_signal_will_never">Signal ಎಂದಿಗೂ</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">ಗುಂಪಿಗೆ ಸೇರಿಕೊಳ್ಳುವುದೇ?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -2869,7 +2869,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">ಈ ಸಂಖ್ಯೆಯನ್ನು ನೋಂದಾಯಿಸಲು ನೀವು ತುಂಬಾ ಪ್ರಯತ್ನಗಳನ್ನು ಮಾಡಿದ್ದೀರಿ. ದಯವಿಟ್ಟು %1$s ನಲ್ಲಿ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ಸೇವೆಗೆ ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
-    <string name="RegistrationActivity_sms_provider_error">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">ನಿಮ್ಮ ಸಂಖ್ಯೆಗೆ SMS ಕಳುಹಿಸಲು ನಮಗೆ ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ. ಕೆಲವು ಗಂಟೆಗಳ ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">SMS ಮೂಲಕ ನಿಮಗೆ ದೃಢೀಕರಣ ಕೋಡ್ ಅನ್ನು ಕಳುಹಿಸಲು ನಮಗೆ ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಬದಲಾಗಿ ಧ್ವನಿ ಕರೆ ಮೂಲಕ ನಿಮ್ಮ ಕೋಡ್ ಸ್ವೀಕರಿಸಲು ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3728,7 +3728,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">ಈ ವ್ಯಕ್ತಿಯನ್ನು ನೀವು ತೆಗೆದುಹಾಕಿದ್ದೀರಿ, ಅವರಿಗೆ ಮೆಸೇಜ್ ಮಾಡುವುದರಿಂದ ಅವರು ಮತ್ತೆ ನಿಮ್ಮ ಪಟ್ಟಿಗೆ ಸೇರುತ್ತಾರೆ.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_block_report">Block or Report…</string>
+    <string name="ConversationUpdateItem_block_report">ನಿರ್ಬಂಧಿಸಿ ಅಥವಾ ವರದಿಮಾಡಿ…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">ನವೀಕರಿಸಿ</string>
     <!-- Update item button text to show how many group updates there are. -->
@@ -6514,9 +6514,9 @@
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">ದೇಣಿಗೆಯನ್ನು ದೃಢೀಕರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">ನಿಮ್ಮ %1$s/ತಿಂಗಳು ದೇಣಿಗೆಯನ್ನು ದೃಢೀಕರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ iDEAL ಪಾವತಿಯನ್ನು ಅನುಮೋದಿಸಲು ನಿಮ್ಮ ಬ್ಯಾಂಕಿಂಗ್ ಆ್ಯಪ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">ನಿಮ್ಮ ಒಂದು ಬಾರಿಯ %1$s ದೇಣಿಗೆಯನ್ನು ದೃಢೀಕರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ iDEAL ಪಾವತಿಯನ್ನು ಅನುಮೋದಿಸಲು ನಿಮ್ಮ ಬ್ಯಾಂಕಿಂಗ್ ಆ್ಯಪ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
 
     <string name="Boost__enter_custom_amount">ಕಸ್ಟಮ್‌ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -6645,7 +6645,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">ನೆಟ್‌ವರ್ಕ್ ದೋಷದಿಂದಾಗಿ ನಿಮ್ಮ ದೇಣಿಗೆಯನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಇನ್ನೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">ನಿಮ್ಮ iDEAL ದೇಣಿಗೆಯನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಇನ್ನೊಂದು ಪಾವತಿ ವಿಧಾನವನ್ನು ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗಾಗಿ ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಅನ್ನು ಸಂಪರ್ಕಿಸಿ.</string>
+    <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">Your iDEAL | Wero donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$s ಅವರ ಪರವಾಗಿ ದೇಣಿಗೆ</string>
@@ -7570,7 +7570,7 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">ನಿಮ್ಮ ದೇಣಿಗೆಯು ಇನ್ನೂ ಪ್ರಕ್ರಿಯೆಗೊಳ್ಳುತ್ತಿದೆ. ಇದು ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಅವಲಂಬಿಸಿಕೊಂಡು ಕೆಲವು ನಿಮಿಷಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಬಹುದು. ಇನ್ನೊಂದು ದೇಣಿಗೆಯನ್ನು ಮಾಡುವ ಮುನ್ನ ಈ ಪಾವತಿ ಪೂರ್ಣಗೊಳ್ಳುವ ತನಕ ದಯವಿಟ್ಟು ಕಾಯಿರಿ.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">ನಿಮ್ಮ iDEAL ದೇಣಿಗೆ ಇನ್ನೂ ಪ್ರಕ್ರಿಯೆಗೊಳ್ಳುತ್ತಿದೆ. ಇನ್ನೊಂದು ದೇಣಿಗೆ ನೀಡುವ ಮುನ್ನ ನಿಮ್ಮ ಪಾವತಿಯನ್ನು ಅನುಮೋದಿಸಲು ನಿಮ್ಮ ಬ್ಯಾಂಕಿಂಗ್ ಆ್ಯಪ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ.</string>
+    <string name="DonateToSignalFragment__your_ideal_wero_payment_is_still_processing">Your iDEAL | Wero donation is still processing. Check your banking app to approve your payment before making another donation.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">ದೇಣಿಗೆ ಮೊತ್ತ ತೀರಾ ಅಧಿಕವಾಗಿದೆ</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -7600,11 +7600,13 @@
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">ಸ್ನೇಹಿತರಿಗಾಗಿ ದೇಣಿಗೆ ನೀಡಿ</string>
     <!-- Button label for paying with iDEAL -->
-    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+    <string name="GatewaySelectorBottomSheet__ideal_wero">iDEAL | Wero</string>
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">ದೇಣಿಗೆಯನ್ನು ದೃಢೀಕರಿಸಲು Signal ಅನ್ನು ತೊರೆಯಬೇಕೇ?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">ದೃಢೀಕರಣಗೊಂಡಾಗ, ನಿಮ್ಮ ದೇಣಿಗೆಯ ಪ್ರಕ್ರಿಯೆಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು Signal ಗೆ ಹಿಂತಿರುಗಿ.</string>
+    <!-- Dialog message shown when leaving Signal to complete a donation in an external app. Placeholder is the resolved app name (e.g. a banking app). -->
+    <string name="ExternalNavigationHelper__once_payment_confirmed_in_app">You\'ll be sent to %1$s. When confirmed, return to Signal to finish processing your donation.</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7666,7 +7668,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಆರಿಸಿ</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">iDEAL ಮೂಲಕ ನಿಮ್ಮ ದೇಣಿಗೆಯನ್ನು ದೃಢೀಕರಿಸಿ</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">Confirm your donation with iDEAL | Wero</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">ನಿಮ್ಮ ಮರುಕಳಿಸುವ ದೇಣಿಗೆಯನ್ನು ಸೆಟಪ್ ಮಾಡಲು ನಿಮ್ಮ ಬ್ಯಾಂಕ್‌ನೊಂದಿಗೆ €0,01 ಶುಲ್ಕವನ್ನು ಖಚಿತಪಡಿಸಲು ಮುಂದುವರಿಸಿ. ಇದನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮರುಪಾವತಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ %1$s/ತಿಂಗಳ ದೇಣಿಗೆಯನ್ನು ನಿಮ್ಮ ಖಾತೆಯಿಂದ ಡೆಬಿಟ್ ಮಾಡಲು ಅನುಮತಿಸುತ್ತದೆ.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7917,7 +7919,7 @@
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">ನೀವು ರಚಿಸಿದ ಕರೆ ಲಿಂಕ್‌ಗಳನ್ನು ಹೊಂದಿರುವ ಯಾರಿಗೂ ಇದು ಕಾರ್ಯಾಚರಿಸುವುದಿಲ್ಲ.</string>
     <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
-    <string name="CallLogFragment__cant_start_call_no_longer_a_member">You\'re no longer a member of this group.</string>
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">ನೀವು ಇನ್ನು ಮುಂದೆ ಗುಂಪಿನ ಸದಸ್ಯರಲ್ಲ.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -9001,7 +9003,7 @@
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Signal ನ ಸುರಕ್ಷಿತ, ಎಂಡ್-ಟು-ಎಂಡ್ ಎನ್ಕ್ರಿಪ್ಟ್ ಆಗಿರುವ ಸಂಗ್ರಹಣೆ ಸೇವೆಯನ್ನು ಬಳಸಿಕೊಂಡು ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗಳು ಮತ್ತು ಮೀಡಿಯಾವನ್ನು ಬ್ಯಾಕಪ್ ಮಾಡಿ. ನೀವು ಹೊಸ ಫೋನ್ ಅನ್ನು ಪಡೆದಾಗ ಅಥವಾ Signal ಅನ್ನು ಮರುಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದಾಗ ಎಂದಿಗೂ ಮೆಸೇಜ್ ಅನ್ನು ಕಳೆದುಕೊಳ್ಳಬೇಡಿ.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
     <!-- Backups feature label for e2e encryption -->
     <string name="MessageBackupsEducationScreen__end_to_end_encrypted">ಎಂಡ್-ಟು-ಎಂಡ್ ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗಿದೆ</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->

@@ -715,11 +715,11 @@
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">Kagua kwa uangalifu</string>
     <!-- Text shown in conversation header when in a message request state that the name is not verified -->
-    <string name="ConversationFragment_name_not_verified">Name not verified</string>
+    <string name="ConversationFragment_name_not_verified">Jina halijathibitishwa</string>
     <!-- Label for official chat pill shown in the Note to Self conversation header -->
-    <string name="ConversationFragment_official_chat">Official chat</string>
+    <string name="ConversationFragment_official_chat">Gumzo rasmi</string>
     <!-- Description shown in the Signal release notes conversation header -->
-    <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
+    <string name="ConversationFragment_release_notes_description">Gumzo rasmi pekee kutoka Signal. Pata taarifa mpya za habari na matoleo.</string>
     <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
     <plurals name="ConversationFragment_group_member_count">
         <item quantity="one">Mwanachama %1$d</item>
@@ -758,49 +758,49 @@
     <string name="SafetyTips_next_tip">Kidokezo kifuatacho</string>
 
     <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
-    <string name="SafetyTips_summary_tip0_title">Don\'t respond to chats from Signal</string>
+    <string name="SafetyTips_summary_tip0_title">Usijibu gumzo kutoka Signal</string>
     <!-- Summary tip 0 message -->
-    <string name="SafetyTips_summary_tip0_message">Signal will never message you for your registration code, PIN, or recovery key. Never respond to a chat pretending to be Signal.</string>
+    <string name="SafetyTips_summary_tip0_message">Signal haiwezi kukutumia ujumbe ikiomba code yako ya usajili, Nenosiri au ufunguo wa kurejesha akaunti. Usijibu gumzo linaloiga kuwa Signal.</string>
     <!-- Summary tip 1 title: Review names and photos -->
-    <string name="SafetyTips_summary_tip1_title">Review names and photos</string>
+    <string name="SafetyTips_summary_tip1_title">Kagua majina na picha</string>
     <!-- Summary tip 1 message -->
-    <string name="SafetyTips_summary_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name in Signal.</string>
+    <string name="SafetyTips_summary_tip1_message">Angalia ilani ya \"Jina halijathibitishwa\". Kila mtu huweka jina lake la wasifu katika Signal.</string>
     <!-- Summary tip 2 title: Look out for scams -->
-    <string name="SafetyTips_summary_tip2_title">Look out for scams</string>
+    <string name="SafetyTips_summary_tip2_title">Kuwa makini na ulaghai</string>
     <!-- Summary tip 2 message -->
-    <string name="SafetyTips_summary_tip2_message">Avoid vague messages that try to get you to reply. Be aware of financial tips and suspicious web links.</string>
+    <string name="SafetyTips_summary_tip2_message">Epuka jumbe zisizoeleweka zinazojaribu kukufanya ujibu. Kuwa makini na dondoo za fedha na viungo vya tovuti vinavyotiliwa shaka.</string>
 
     <!-- Detail tip 0 title -->
-    <string name="SafetyTips_detail_tip0_title">Don\'t respond to chats from Signal</string>
+    <string name="SafetyTips_detail_tip0_title">Usijibu gumzo kutoka Signal</string>
     <!-- Detail tip 0 message -->
-    <string name="SafetyTips_detail_tip0_message">Signal will never message you for your registration code, PIN, or recover key. Don\'t reply to chats pretending to be Signal or Signal Support. Bad actors set up fake chats to try to take over your account.</string>
+    <string name="SafetyTips_detail_tip0_message">Signal haiwezi kukutumia ujumbe ikiomba code yako ya usajili, Nenosiri au ufunguo wa kurejesha akaunti. Usijibu magumzo yanayoiga kuwa Signal au timu ya Usaidizi ya Signal. Waigizaji wahalifu huanzisha mazungumzo ya uwongo ili kujaribu kuchukua udhibiti wa akaunti yako.</string>
     <!-- Detail tip 1 title -->
-    <string name="SafetyTips_detail_tip1_title">Review names and photos</string>
+    <string name="SafetyTips_detail_tip1_title">Kagua majina na picha</string>
     <!-- Detail tip 1 message -->
-    <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\'re unsure who a new request is from it\'s safer to ignore it.</string>
+    <string name="SafetyTips_detail_tip1_message">Angalia ilani ya \"Jina halijathibitishwa\". Kila mtu huweka jina la wasifu na picha yake kwenye Signal. Ikiwa hauna uhakika ombi jipya limetoka wapi ni salama zaidi ukilipuuzia.</string>
     <!-- Detail tip 2 title -->
     <string name="SafetyTips_detail_tip2_title">Jumbe zisizoeleweka au zisizohusiana</string>
     <!-- Detail tip 2 message -->
-    <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_detail_tip2_message">Walaghai mara nyingi huanza na ujumbe rahisi kama vile \"Hujambo\" ili kukuvutia. Ukijibu wanaweza kuendelea kuwasiliana nawe.</string>
     <!-- Detail tip 3 title -->
-    <string name="SafetyTips_detail_tip3_title">Messages with web links</string>
+    <string name="SafetyTips_detail_tip3_title">Jumbe zenye viungo vya tovuti</string>
     <!-- Detail tip 3 message -->
-    <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\'t know that have links to websites. Never visit links from people you don\'t trust.</string>
+    <string name="SafetyTips_detail_tip3_message">Kuwa makini na jumbe kutoka kwa watu usiowafahamu ambazo zina viungo vya tovuti. Usitembelee viungo kutoka kwa watu usiowaamini.</string>
     <!-- Detail tip 4 title -->
     <string name="SafetyTips_detail_tip4_title">Ulaghai wa crypto au fedha</string>
     <!-- Detail tip 4 message -->
-    <string name="SafetyTips_detail_tip4_message">If someone you don\'t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\'s likely spam.</string>
+    <string name="SafetyTips_detail_tip4_message">Iwapo mtu usiyemfahamu atakutumia ujumbe kuhusu sarafu ya dijitali (kama vile Bitcoin) au fursa ya kifedha, kuwa makini—inawezekana ni ulaghai.</string>
     <!-- Detail tip 5 title -->
-    <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
+    <string name="SafetyTips_detail_tip5_title">Biashara bandia</string>
     <!-- Detail tip 5 message -->
     <string name="SafetyTips_detail_tip5_message">Kuwa makini na biashara au mawakala wa serikali wanaokutafuta. Ujumbe unaohusisha mawakala wa kodi, matarishi, na zaidi unaweza kuwa wa ulaghai.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s kwenye Signal yamechaguliwa na mwenye akaunti.</string>
     <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
-    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal can\'t verify names and photos</string>
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal haiwezi kuthibitisha majina na picha</string>
     <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
-    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal will never contact you for your registration code, PIN, or recovery key</string>
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal haiwezi kuwasiliana nawe kwa ajili ya code yako ya usajili, Nenosiri au ufunguo wa kurejesha akaunti</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Kuwa makini na akaunti zinazoiga wengine</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
@@ -2245,9 +2245,9 @@
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Imeripotiwa kuwa spam</string>
     <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
-    <string name="MessageRecord_you_accepted_s_message_request">You accepted %1$s\'s message request</string>
+    <string name="MessageRecord_you_accepted_s_message_request">Umekubali ombi la ujumbe la %1$s</string>
     <!-- Update message shown in a group chat after accepting a group message request -->
-    <string name="MessageRecord_you_accepted_the_group_request">You accepted the group request</string>
+    <string name="MessageRecord_you_accepted_the_group_request">Umekubali ombi la kikundi</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">Umemzuia mtu huyu</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2271,7 +2271,7 @@
     <string name="MessageRequestBottomView_unblock">Ondoa kizuizi</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Ruhusu %1$s akutumie ujumbe na ushiriki jina na picha yako nao? Ulikuwa umemuondoa mtu huyu hapo zamani.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Let this person message you and share your name and photo with them? They won\'t know you\'ve seen their message until you accept.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ungependa kumruhusu mtu huyu akutumie ujumbe na umtumie jina na picha yako? Hawatajua kuwa umeona ujumbe wao hadi ukikubali.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Je ungependa kumruhusu %1$s akutumie ujumbe na ushiriki naye jina na picha yako? Hutapokea ujumbe wowote mpaka utakapoondoa kizuizi kwake.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2333,15 +2333,15 @@
         <item quantity="other">%1$d Wengine</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report</string>
+    <string name="MessageRequestBottomView_report">Ripoti</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">Je, kubali ombi?</string>
     <!-- Alert dialog body to review the message request carefully -->
     <string name="MessageRequestBottomView_review_requests_carefully">Kagua maombi kwa uangalifu. Majina ya wasifu huchaguliwa na mmiliki wa akaunti na huwa hayathibitishwi.</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
-    <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
+    <string name="MessageRequestBottomView_accept_request_body">Kubali tu maombi kutoka kwa watu unaowaamini. %1$s amekutumia ujumbe akiomba code yako ya usajili, Nenosiri au ufunguo wa kurejesha akaunti.</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->
-    <string name="MessageRequestBottomView_signal_will_never">Signal will never</string>
+    <string name="MessageRequestBottomView_signal_will_never">Signal haitawahi kufanya hivyo</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">Ujiunge na kikundi?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -2869,7 +2869,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Umefanya majaribio mengi ya kusajili nambari hii. Tafadhali jaribu tena baada ya %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Imeshindwa kuunganisha kwenye huduma. Tafadhali angalia muunganisho wako wa mtandao na ujaribu tena.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
-    <string name="RegistrationActivity_sms_provider_error">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">Hatuwezi kutuma SMS kwenye namba yako. Tafadhali jaribu tena baada ya saa kadhaa.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Tumeshindwa kukutumia msimbo wa kuthibitisha kupitia SMS. Badala yake, jaribu kupokea msimbo wako wa kuthibitisha kupitia simu ya kawaida.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3728,7 +3728,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Umemuondoa mtu huyu, kuwatumia tena jumbe kutawarudisha kwenye orodha yako.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_block_report">Block or Report…</string>
+    <string name="ConversationUpdateItem_block_report">Zuia au ripoti…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">Sasisha</string>
     <!-- Update item button text to show how many group updates there are. -->
@@ -6514,9 +6514,9 @@
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Haijaweza kuthibitisha mchango</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Mchango wako wa %1$s/kwa mwezi haujathibitishwa. Angalia programu yako ya benki ili kuthibitisha malipo yako ya iDEAL.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Mchango wako wa mara moja wa %1$s haujathibitishwa. Angalia programu yako ya benki ili kuthibitisha malipo yako ya iDEAL.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
 
     <string name="Boost__enter_custom_amount">Weka Kiasi Maalum</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -6645,7 +6645,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Mchango wako umeshindwa kutumwa kwa sababu ya hitilafu za kimtandao. Angalia muunganisho wa mtandao wako kisha ujaribu tena.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Mchango wako wa iDEAL haukuweza kuchakatwa. Jaribu njia nyingine ya malipo au wasiliana na benki unayotumia kwa maelezo zaidi.</string>
+    <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">Your iDEAL | Wero donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Mchango kwa niaba ya %1$s</string>
@@ -7570,7 +7570,7 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Mchango wako bado unachakatwa. Hii inaweza kuchukua dakika kadhaa kutegemeana na mtandao wako. Tafadhali subiri hadi malipo haya yatakapokamilika kabla hujatoa mchango mwingine.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Mchango wako wa iDEAL bado unachakatwa. Angalia programu yako ya benki ili kuthibitisha malipo kabla kufanya mchango mwingine.</string>
+    <string name="DonateToSignalFragment__your_ideal_wero_payment_is_still_processing">Your iDEAL | Wero donation is still processing. Check your banking app to approve your payment before making another donation.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Kiwango cha mchango ni kikubwa sana</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -7600,11 +7600,13 @@
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Mchangie rafiki</string>
     <!-- Button label for paying with iDEAL -->
-    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+    <string name="GatewaySelectorBottomSheet__ideal_wero">iDEAL | Wero</string>
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Toka Signal ili kuthibitisha mchango?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Utakapothibitishwa, rudi Signal kumaliza kuchakata mchango wako.</string>
+    <!-- Dialog message shown when leaving Signal to complete a donation in an external app. Placeholder is the resolved app name (e.g. a banking app). -->
+    <string name="ExternalNavigationHelper__once_payment_confirmed_in_app">You\'ll be sent to %1$s. When confirmed, return to Signal to finish processing your donation.</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7666,7 +7668,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Chagua benki yako</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">Thibitisha mchango wako kwa kutumia iDEAL</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">Confirm your donation with iDEAL | Wero</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Ili kuweka mipangilio ya michango inayojirudia gusa endelea ili kuthibitisha tozo la €0,01 kwenye benki unayotumia. Hii itafidiwa kiotomatiki na inawezesha mchango wako wa %1$s/kila mwezi kukatwa kutoka kwa akaunti yako.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7917,7 +7919,7 @@
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">Viungo vya simu ulivyounda havitafanya kazi tena kwa watu walionavyo.</string>
     <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
-    <string name="CallLogFragment__cant_start_call_no_longer_a_member">You\'re no longer a member of this group.</string>
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">Wewe si mwanachama wa kikundi hiki tena.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -9001,7 +9003,7 @@
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Hifadhi jumbe na video na picha zako kwa kutumia huduma ya uhifadhi ya Signal iliyo salama na iliyosimbwa fiche. Usipoteze ujumbe unapopata simu mpya au kusakinisha tena Signal.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
     <!-- Backups feature label for e2e encryption -->
     <string name="MessageBackupsEducationScreen__end_to_end_encrypted">Imesimbwa fiche</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->

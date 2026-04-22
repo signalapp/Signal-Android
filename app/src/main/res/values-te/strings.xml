@@ -715,11 +715,11 @@
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">జాగ్రత్తగా సమీక్షించండి</string>
     <!-- Text shown in conversation header when in a message request state that the name is not verified -->
-    <string name="ConversationFragment_name_not_verified">Name not verified</string>
+    <string name="ConversationFragment_name_not_verified">పేరు ధృవీకరించబడలేదు</string>
     <!-- Label for official chat pill shown in the Note to Self conversation header -->
-    <string name="ConversationFragment_official_chat">Official chat</string>
+    <string name="ConversationFragment_official_chat">అధికారిక చాట్</string>
     <!-- Description shown in the Signal release notes conversation header -->
-    <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
+    <string name="ConversationFragment_release_notes_description">Signal నుండి వచ్చిన ఏకైక అధికారిక చాట్. వార్తలు మరియు విడుదల గమనికలతో అప్ టూ డేట్‌గా ఉండండి.</string>
     <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
     <plurals name="ConversationFragment_group_member_count">
         <item quantity="one">%1$d సభ్యుడు</item>
@@ -758,49 +758,49 @@
     <string name="SafetyTips_next_tip">తర్వాతి చిట్కా</string>
 
     <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
-    <string name="SafetyTips_summary_tip0_title">Don\'t respond to chats from Signal</string>
+    <string name="SafetyTips_summary_tip0_title">Signal నుండి వచ్చే చాట్‌లకు స్పందించవద్దు</string>
     <!-- Summary tip 0 message -->
-    <string name="SafetyTips_summary_tip0_message">Signal will never message you for your registration code, PIN, or recovery key. Never respond to a chat pretending to be Signal.</string>
+    <string name="SafetyTips_summary_tip0_message">Signal మీ నమోదు కోడ్, PIN లేదా రికవర్ కీ కోసం మీకు ఎప్పటికీ సందేశం పంపదు. Signal అని నటిస్తూ చేసే చాట్‌కు ఎప్పుడూ స్పందించవద్దు.</string>
     <!-- Summary tip 1 title: Review names and photos -->
-    <string name="SafetyTips_summary_tip1_title">Review names and photos</string>
+    <string name="SafetyTips_summary_tip1_title">పేర్లు మరియు ఫోటోలను సమీక్షించండి</string>
     <!-- Summary tip 1 message -->
-    <string name="SafetyTips_summary_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name in Signal.</string>
+    <string name="SafetyTips_summary_tip1_message">\"పేరు ధృవీకరించబడలేదు\" అనే ప్రకటన కోసం చూడండి. Signal లో ప్రతిఒక్కరూ తమ సొంత ప్రొఫైల్ పేరును సెట్ చేసుకుంటారు.</string>
     <!-- Summary tip 2 title: Look out for scams -->
-    <string name="SafetyTips_summary_tip2_title">Look out for scams</string>
+    <string name="SafetyTips_summary_tip2_title">భారీ మోసాల పట్ల జాగ్రత్త వహించండి</string>
     <!-- Summary tip 2 message -->
-    <string name="SafetyTips_summary_tip2_message">Avoid vague messages that try to get you to reply. Be aware of financial tips and suspicious web links.</string>
+    <string name="SafetyTips_summary_tip2_message">మీరు ప్రత్యుత్తరం ఇచ్చేలా చేసే అస్పష్టమైన సందేశాలను తప్పించండి. ఆర్థిక సలహాలు మరియు అనుమానాస్పద వెబ్ లింక్‌ల పట్ల అప్రమత్తంగా ఉండండి.</string>
 
     <!-- Detail tip 0 title -->
-    <string name="SafetyTips_detail_tip0_title">Don\'t respond to chats from Signal</string>
+    <string name="SafetyTips_detail_tip0_title">Signal నుండి వచ్చే చాట్‌లకు స్పందించవద్దు</string>
     <!-- Detail tip 0 message -->
-    <string name="SafetyTips_detail_tip0_message">Signal will never message you for your registration code, PIN, or recover key. Don\'t reply to chats pretending to be Signal or Signal Support. Bad actors set up fake chats to try to take over your account.</string>
+    <string name="SafetyTips_detail_tip0_message">Signal మీ నమోదు కోడ్, PIN లేదా రికవర్ కీ కోసం మీకు ఎప్పటికీ సందేశం పంపదు. Signal లేదా Signal మద్దతు అని నటిస్తూ చేసే చాట్‌లకు ప్రత్యుత్తరము ఇవ్వకండి. చెడ్డవారు మీ ఖాతాను స్వాధీనం చేసుకోవడానికి నకిలీ చాట్‌లను సెటప్ చేస్తారు.</string>
     <!-- Detail tip 1 title -->
-    <string name="SafetyTips_detail_tip1_title">Review names and photos</string>
+    <string name="SafetyTips_detail_tip1_title">పేర్లు మరియు ఫోటోలను సమీక్షించండి</string>
     <!-- Detail tip 1 message -->
-    <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\'re unsure who a new request is from it\'s safer to ignore it.</string>
+    <string name="SafetyTips_detail_tip1_message">\"పేరు ధృవీకరించబడలేదు\" అనే ప్రకటన కోసం చూడండి. Signal లో ప్రతిఒక్కరూ తమ సొంత ప్రొఫైల్ పేరు మరియు ఫోటోను సెట్ చేసుకుంటారు. కొత్త అభ్యర్థన ఎవరి నుండి వచ్చిందో మీకు ఖచ్చితంగా తెలియకపోతే, దానిని విస్మరించడం సురక్షితం.</string>
     <!-- Detail tip 2 title -->
     <string name="SafetyTips_detail_tip2_title">అస్పష్టమైన లేదా అసంబద్ధమైన సందేశాలు</string>
     <!-- Detail tip 2 message -->
-    <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
+    <string name="SafetyTips_detail_tip2_message">స్పామర్లు తరచుగా మిమ్మల్ని ఆకర్షించడానికి \"హాయ్\" వంటి సాధారణ సందేశంతో ప్రారంభిస్తారు. ఒకవేళ మీరు సమాధానం ఇస్తే, వారు మిమ్మల్ని మరింత నిమగ్నం చేయవచ్చు.</string>
     <!-- Detail tip 3 title -->
-    <string name="SafetyTips_detail_tip3_title">Messages with web links</string>
+    <string name="SafetyTips_detail_tip3_title">వెబ్ లింక్‌లతో కూడిన సందేశాలు</string>
     <!-- Detail tip 3 message -->
-    <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\'t know that have links to websites. Never visit links from people you don\'t trust.</string>
+    <string name="SafetyTips_detail_tip3_message">మీకు పరిచయం లేని వ్యక్తుల నుండి వచ్చే వెబ్‌సైట్‌లకు లింక్‌లతో ఉన్న సందేశాల పట్ల జాగ్రత్తగా ఉండండి. మీరు విశ్వసించని వ్యక్తుల నుంచి వచ్చిన లింక్‌లను ఎప్పుడూ సందర్శించకండి.</string>
     <!-- Detail tip 4 title -->
     <string name="SafetyTips_detail_tip4_title">క్రిప్టో లేదా నగదు స్కామ్‌లు</string>
     <!-- Detail tip 4 message -->
-    <string name="SafetyTips_detail_tip4_message">If someone you don\'t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it\'s likely spam.</string>
+    <string name="SafetyTips_detail_tip4_message">మీకు పరిచయం లేని ఎవరైనా ఒకవేళ క్రిప్టోకరెన్సీ (బిట్‌కాయిన్ వంటివి) లేదా ఆర్థిక అవకాశం గురించిన సందేశాలు పంపితే, జాగ్రత్తగా ఉండండి—అది స్పామ్ కావచ్చు.</string>
     <!-- Detail tip 5 title -->
-    <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
+    <string name="SafetyTips_detail_tip5_title">నకిలీ వ్యాపారాలు</string>
     <!-- Detail tip 5 message -->
     <string name="SafetyTips_detail_tip5_message">మిమ్మల్ని సంప్రదించే వ్యాపారాలు లేదా ప్రభుత్వ ఏజెన్సీల విషయంలో జాగ్రత్తగా ఉండండి. పన్ను ఏజెన్సీలు, కొరియర్‌లు మరియు మరిన్నింటికి సంబంధించిన సందేశాలు స్పామ్ కావచ్చు.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal లోని %1$s వారి ఖాతాదారుడిచే ఎంపిక చేయబడతారు.</string>
     <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
-    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal can\'t verify names and photos</string>
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal పేర్లు మరియు ఫోటోలను ధృవీకరించలేదు</string>
     <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
-    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal will never contact you for your registration code, PIN, or recovery key</string>
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal మీ నమోదు కోడ్, PIN లేదా రికవర్ కీ కోసం మిమ్మల్ని ఎప్పటికీ సంప్రదించదు</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">ఇతరులను అనుకరించే ఖాతాల పట్ల జాగ్రత్తగా ఉండండి</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
@@ -2245,9 +2245,9 @@
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">స్పామ్‌గా నివేదించబడింది</string>
     <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
-    <string name="MessageRecord_you_accepted_s_message_request">You accepted %1$s\'s message request</string>
+    <string name="MessageRecord_you_accepted_s_message_request">మీరు %1$s యొక్క సందేశ అభ్యర్థనను అంగీకరించారు</string>
     <!-- Update message shown in a group chat after accepting a group message request -->
-    <string name="MessageRecord_you_accepted_the_group_request">You accepted the group request</string>
+    <string name="MessageRecord_you_accepted_the_group_request">మీరు గ్రూప్ అభ్యర్థనను అంగీకరించారు</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">మీరు ఈ వ్యక్తిని బ్లాక్ చేశారు</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2271,7 +2271,7 @@
     <string name="MessageRequestBottomView_unblock">అన్‌బ్లాక్ చేయండి</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s మీకు సందేశం పంపనివ్వండి మరియు మీ పేరు మరియు ఫోటోను వారితో పంచుకునేదా? మీరు గతంలో ఈ వ్యక్తిని తొలగించారు.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Let this person message you and share your name and photo with them? They won\'t know you\'ve seen their message until you accept.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">ఈ వ్యక్తి మీకు సందేశం పంపనివ్వండి మరియు మీ పేరు, ఫోటోను వారితో పంచుకోండి? మీరు అంగీకరించేంత వరకు మీరు వారి సందేశాన్ని చూశారని వారికి తెలియదు.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s మీకు సందేశం పంపనివ్వండి మరియు మీ పేరు మరియు ఫోటోను వారితో పంచుకునేదా? మీరు వారిని అన్‌బ్లాక్ చేసేంతవరకు మీరు ఎటువంటి సందేశాలు అందుకోరు.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2333,15 +2333,15 @@
         <item quantity="other">%1$dఇతరులు</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report</string>
+    <string name="MessageRequestBottomView_report">నివేదించండి</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">అభ్యర్థనను అంగీకరిస్తారా?</string>
     <!-- Alert dialog body to review the message request carefully -->
     <string name="MessageRequestBottomView_review_requests_carefully">అభ్యర్థనలను జాగ్రత్తగా సమీక్షించండి. ప్రొఫైల్ పేర్లు వాటి ఖాతా యజమానిచే ఎంచుకోబడతాయి మరియు అవి ధృవీకరించబడలేదు.</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
-    <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
+    <string name="MessageRequestBottomView_accept_request_body">మీరు విశ్వసించే వ్యక్తుల నుండి వచ్చే అభ్యర్థనలను మాత్రమే స్వీకరించండి. నమోదు కోడ్, PIN లేదా రికవరీ కీ కోసం %1$s మీకు సందేశం పంపడం జరుగుతుంది.</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->
-    <string name="MessageRequestBottomView_signal_will_never">Signal will never</string>
+    <string name="MessageRequestBottomView_signal_will_never">Signal ఎప్పటికీ ఇలా చేయదు</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">గ్రూప్‌లో చేరుతారా?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -2869,7 +2869,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">ఈ నంబర్‌ను నమోదు చేయడానికి మీరు చాలా ఎక్కువ ప్రయత్నాలు చేశారు. దయచేసి %1$sలో మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">కనెక్ట్ చేయడం సాధ్యం కాలేదు. దయచేసి నెట్వర్క్ కనెక్షన్ను తనిఖీ చేసి మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
-    <string name="RegistrationActivity_sms_provider_error">We are unable to send an SMS to your number. Please try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">మేము మీ నంబర్‌కు SMS పంపలేకపోతున్నాము. దయచేసి కొన్ని గంటల తర్వాత మళ్ళీ ప్రయత్నించండి.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">SMS ద్వారా ధృవీకరణ కోడ్‌ను మేము పంపలేకపోయాము. బదులుగా స్వర కాల్ ద్వారా మీ కోడ్‌ను అందుకోవడానికి ప్రయత్నించండి.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3728,7 +3728,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">మీరు ఈ వ్యక్తిని తొలగించారు, వారికి మళ్ళీ సందేశం పంపడం వల్ల వారిని మీ జాబితాకు తిరిగి జోడిస్తుంది.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_block_report">Block or Report…</string>
+    <string name="ConversationUpdateItem_block_report">బ్లాక్ చేయండి లేదా నివేదించండి…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">నవీకరణ</string>
     <!-- Update item button text to show how many group updates there are. -->
@@ -6514,9 +6514,9 @@
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">విరాళాన్ని ధృవీకరించడం సాధ్యం కాదు</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">నెలకు %1$s మీ విరాళం ధృవీకరించబడలేదు. మీ iDEAL చెల్లింపును ఆమోదించడానికి మీ బ్యాంకింగ్ యాప్‌ను తనిఖీ చేయండి.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">మీ ఒక్కసారి %1$s విరాళం ధృవీకరించబడలేదు. మీ iDEAL చెల్లింపును ఆమోదించడానికి మీ బ్యాంకింగ్ యాప్‌ను తనిఖీ చేయండి.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
 
     <string name="Boost__enter_custom_amount">అనుకూల మొత్తాన్ని ఎంటర్ చేయండి</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -6645,7 +6645,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">ఒక నెట్‌వర్క్ దోషం కారణంగా మీ విరాళాన్ని పంపలేరు. మీ కనెక్షన్‌ను తనిఖీ చేయండి మరియు మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">మీ iDEAL విరాళం ప్రక్రియ చేయబడలేదు. మరో చెల్లింపు విధానాన్ని ప్రయత్నించండి లేదా మరింత సమాచారం కొరకు మీ బ్యాంక్‌ను సంప్రదించండి.</string>
+    <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">Your iDEAL | Wero donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$s తరఫున విరాళం</string>
@@ -7570,7 +7570,7 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">మీ విరాళం ఇంకా ప్రక్రియ చేయబడుతోంది. మీ కనెక్షన్ ఆధారంగా దీనికి కొన్ని నిమిషాలు పట్టవచ్చు. మరొక విరాళం ఇచ్చే ముందు ఈ చెల్లింపు పూర్తయ్యే వరకు దయచేసి వేచి ఉండండి.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">మీ iDEAL విరాళం ఇంకా ప్రక్రియ చేయబడుతోంది. మరొక విరాాళం చేయడానికి ముందు మీ చెల్లింపును ఆమోదించడానికి మీ బ్యాంకింగ్ యాప్‌ను తనిఖీ చేయండి.</string>
+    <string name="DonateToSignalFragment__your_ideal_wero_payment_is_still_processing">Your iDEAL | Wero donation is still processing. Check your banking app to approve your payment before making another donation.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">విరాళం మొత్తం చాలా ఎక్కువగా ఉంది</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -7600,11 +7600,13 @@
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">ఒక స్నేహితుడి కొరకు విరాళం ఇవ్వండి</string>
     <!-- Button label for paying with iDEAL -->
-    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+    <string name="GatewaySelectorBottomSheet__ideal_wero">iDEAL | Wero</string>
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">విరాళాన్ని ధృవీకరించడానికి Signal నుండి నిష్క్రమించేదా?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">ధృవీకరించిన తర్వాత, మీ విరాళాన్ని ప్రక్రియ చేయడం పూర్తి చేయడానికి Signal కు తిరిగి రండి.</string>
+    <!-- Dialog message shown when leaving Signal to complete a donation in an external app. Placeholder is the resolved app name (e.g. a banking app). -->
+    <string name="ExternalNavigationHelper__once_payment_confirmed_in_app">You\'ll be sent to %1$s. When confirmed, return to Signal to finish processing your donation.</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7666,7 +7668,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">మీ బ్యాంక్‌ను ఎంచుకోండి</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">iDEAL తో మీ విరాళాన్ని నిర్ధారించండి</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">Confirm your donation with iDEAL | Wero</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">మీ పునరావృత విరాళాన్ని సెటప్ చేయడానికి, మీ బ్యాంక్‌తో €0,01 ఛార్జీని నిర్ధారించేందుకు కొనసాగించండిని తట్టండి. ఇది ఆటోమేటిక్‌గా రీఫండ్ చేయబడుతుంది మరియు మీ ఖాతా నుండి నెలకు %1$s మీ విరాళాన్ని డెబిట్ చేయడానికి అనుమతిస్తుంది.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7917,7 +7919,7 @@
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">మీరు సృష్టించిన కాల్ లింక్‌లు, వాటిని కలిగి ఉన్న వ్యక్తులకు ఇకపై అవి పని చేయవు.</string>
     <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
-    <string name="CallLogFragment__cant_start_call_no_longer_a_member">You\'re no longer a member of this group.</string>
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">మీరు ఇకపై ఈ గ్రూప్‌లో సభ్యులు కాదు.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -9001,7 +9003,7 @@
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">మీ సందేశాలు అలాగే మీడియాను Signal యొక్క సురక్షితమైన ఎండ్-టు-ఎండ్ గుప్తీకరణ ఉన్న నిల్వ సేవను ఉపయోగించి బ్యాకప్ చేయండి. మీరు కొత్త ఫోన్ కొనుక్కునప్పుడు లేదా Signal రీ-ఇన్‌స్టాల్ చేసినప్పుడు ఎప్పుడూ ఒక్క సందేశాన్ని కూడా కోల్పోవద్దు.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
     <!-- Backups feature label for e2e encryption -->
     <string name="MessageBackupsEducationScreen__end_to_end_encrypted">ఎండ్-టు-ఎండ్ గుప్తీకరించబడింది</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->
