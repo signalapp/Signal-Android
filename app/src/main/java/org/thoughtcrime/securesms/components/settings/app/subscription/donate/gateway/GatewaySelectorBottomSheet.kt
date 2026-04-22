@@ -18,10 +18,10 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
-import org.thoughtcrime.securesms.components.settings.NO_TINT
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
+import org.thoughtcrime.securesms.components.settings.app.subscription.models.IdealWeroButton
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.PayPalButton
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
@@ -51,6 +51,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     GooglePayButton.register(adapter)
     PayPalButton.register(adapter)
     IndeterminateLoadingCircle.register(adapter)
+    IdealWeroButton.register(adapter)
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
 
@@ -190,17 +191,16 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     if (state.isIDEALAvailable) {
       space(16.dp)
 
-      tonalButton(
-        text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__ideal),
-        icon = DSLSettingsIcon.from(R.drawable.logo_ideal, NO_TINT),
-        disableOnClick = true,
-        onClick = {
-          lifecycleDisposable += viewModel.updateInAppPaymentMethod(InAppPaymentData.PaymentMethodType.IDEAL)
-            .subscribeBy {
-              findNavController().popBackStack()
-              setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to it))
-            }
-        }
+      customPref(
+        IdealWeroButton.Model(
+          onClick = {
+            lifecycleDisposable += viewModel.updateInAppPaymentMethod(InAppPaymentData.PaymentMethodType.IDEAL)
+              .subscribeBy {
+                findNavController().popBackStack()
+                setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to it))
+              }
+          }
+        )
       )
     }
   }
