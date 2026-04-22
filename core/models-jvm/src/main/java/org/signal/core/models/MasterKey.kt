@@ -52,10 +52,10 @@ class MasterKey(masterKey: ByteArray) {
     return masterKey.clone()
   }
 
-  override fun equals(o: Any?): Boolean {
-    if (o == null || o.javaClass != javaClass) return false
+  override fun equals(other: Any?): Boolean {
+    if (other == null || other.javaClass != javaClass) return false
 
-    return (o as MasterKey).masterKey.contentEquals(masterKey)
+    return (other as MasterKey).masterKey.contentEquals(masterKey)
   }
 
   override fun hashCode(): Int {
