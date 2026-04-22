@@ -2041,6 +2041,11 @@ public class SignalServiceMessageSender {
           Log.d(TAG, "[sendMessage][" + timestamp + "] Sending a SKDM to " + messages.getDestination() + " for devices: " + messages.getDevices() + (content.getContent().get().dataMessage != null ? " (it's piggy-backing on a DataMessage)" : ""));
         }
 
+        if (messages.getDevices().isEmpty()) {
+          Log.w(TAG, "[sendMessage][" + timestamp + "] Skipping send - no devices with valid sessions (isMultiDevice=" + aciStore.isMultiDevice() + ").");
+          return SendMessageResult.success(recipient, messages.getDevices(), false, false, System.currentTimeMillis() - startTime, content.getContent());
+        }
+
         if (cancelationSignal != null && cancelationSignal.isCanceled()) {
           return SendMessageResult.canceledFailure(recipient);
         }
