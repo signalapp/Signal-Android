@@ -58,7 +58,7 @@ data class MainContentLayoutData(
     val isSplitPane = LocalResources.current.rememberIsSplitPane()
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
-    return remember(maxWidth, windowSizeClass) {
+    return remember(maxWidth, windowSizeClass, isSplitPane) {
       when {
         !isSplitPane -> maxWidth
         windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND) -> 416.dp

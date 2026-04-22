@@ -44,7 +44,6 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.layout.PaneAdaptedValue
 import androidx.compose.material3.adaptive.layout.PaneExpansionAnchor
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
@@ -431,7 +430,6 @@ class MainActivity :
       }
 
       val isSplitPane = LocalResources.current.rememberIsSplitPane()
-      val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
       val contentLayoutData = MainContentLayoutData.rememberContentLayoutData(mainToolbarState.mode)
 
       MainContainer {
@@ -439,7 +437,7 @@ class MainActivity :
         val listPaneWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
         val navigationType = NavigationType.rememberNavigationType()
 
-        val anchors = remember(contentLayoutData, mainToolbarState) {
+        val anchors = remember(contentLayoutData, mainToolbarState, listPaneWidth, navigationType) {
           val halfPartitionWidth = contentLayoutData.partitionWidth / 2
 
           val detailOffset = when {
@@ -467,7 +465,7 @@ class MainActivity :
           anchors.indexOf(paneExpansionState.currentAnchor)
         }
 
-        LaunchedEffect(windowSizeClass) {
+        LaunchedEffect(anchors) {
           val index = when {
             paneAnchorIndex < 0 -> 1
             paneAnchorIndex > anchors.lastIndex -> anchors.lastIndex

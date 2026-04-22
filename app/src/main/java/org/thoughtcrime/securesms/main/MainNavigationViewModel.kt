@@ -120,7 +120,7 @@ class MainNavigationViewModel(
    * where the user can change configurations (such as opening a foldable) and we will restore state and errantly
    * take them back into a PRIMARY pane. This boolean helps avoid these cases.
    */
-  private var lockPaneToSecondary: Boolean by savedStateHandle.delegate(LOCK_PANE_TO_SECONDARY, false)
+  private var lockPaneToSecondary: Boolean by savedStateHandle.delegate(LOCK_PANE_TO_SECONDARY, true)
 
   val snackbarRegistry = SnackbarStateConsumerRegistry()
 
