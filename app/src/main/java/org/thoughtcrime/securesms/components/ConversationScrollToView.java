@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -47,6 +48,20 @@ public final class ConversationScrollToView extends FrameLayout {
       int        srcId = array.getResourceId(R.styleable.ConversationScrollToView_cstv_scroll_button_src, 0);
 
       scrollButton.setImageResource(srcId);
+
+      int badgeGravity = array.getInt(R.styleable.ConversationScrollToView_cstv_badge_gravity, 0);
+      if (badgeGravity != 0) {
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) unreadCount.getLayoutParams();
+        params.gravity = badgeGravity;
+        unreadCount.setLayoutParams(params);
+      }
+
+      int iconPadding = array.getDimensionPixelSize(
+          R.styleable.ConversationScrollToView_cstv_icon_padding, 0);
+      if (iconPadding > 0) {
+        scrollButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        scrollButton.setPadding(iconPadding, iconPadding, iconPadding, iconPadding);
+      }
 
       array.recycle();
     }
