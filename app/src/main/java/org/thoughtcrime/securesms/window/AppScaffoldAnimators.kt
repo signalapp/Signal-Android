@@ -16,7 +16,6 @@ import androidx.compose.material3.adaptive.layout.PaneAdaptedValue
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldPaneScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.Dp
@@ -220,24 +219,32 @@ fun ThreePaneScaffoldPaneScope.defaultDetailSeekAnimationState(): AppScaffoldAni
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun ThreePaneScaffoldPaneScope.defaultDetailReleaseAnimationState(from: AppScaffoldAnimationState): AppScaffoldAnimationState {
-  val scale = remember { from.contentScale }
-  val offset = remember { from.contentOffset }
-  val corners = remember { from.contentCorners }
+  val initialScale = remember { from.contentScale }
+  val initialOffset = remember { from.contentOffset }
 
-  val scaleState = remember { mutableStateOf(scale) }
-  val offsetState = remember { mutableStateOf(offset) }
-  val cornersState = remember { mutableStateOf(corners) }
+  val scale = animateFloat(
+    targetWhenHiding = { initialScale },
+    targetWhenShowing = { 1f }
+  )
+
+  val offset = animateDp(
+    targetWhenHiding = { initialOffset },
+    targetWhenShowing = { 0.dp }
+  )
+
+  val cornersState = animateDp(
+    targetWhenHiding = { 0.dp },
+    targetWhenShowing = { 0.dp }
+  )
 
   val alpha = animateFloat { 1f }
 
-  return remember {
-    AppScaffoldAnimationState(
-      scale = scaleState,
-      scaleMinimum = from.scaleMinimum,
-      offset = offsetState,
-      corners = cornersState,
-      cornersMaximum = from.cornersMaximum,
-      alpha = alpha
-    )
-  }
+  return AppScaffoldAnimationState(
+    scale = scale,
+    scaleMinimum = from.scaleMinimum,
+    offset = offset,
+    corners = cornersState,
+    cornersMaximum = 0.dp,
+    alpha = alpha
+  )
 }

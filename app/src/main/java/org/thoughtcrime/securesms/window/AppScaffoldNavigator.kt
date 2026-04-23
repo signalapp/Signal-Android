@@ -40,17 +40,19 @@ open class AppScaffoldNavigator<T> @RememberInComposition constructor(private va
   var state: NavigationState by mutableStateOf(NavigationState.ENTER)
     private set
 
+  private var wasSeekInProgress = false
+
   override suspend fun navigateTo(pane: ThreePaneScaffoldRole, contentKey: T?) {
+    wasSeekInProgress = false
     state = NavigationState.ENTER
     return delegate.navigateTo(pane, contentKey)
   }
 
   override suspend fun navigateBack(backNavigationBehavior: BackNavigationBehavior): Boolean {
-    if (state == NavigationState.SEEK) {
+    if (state == NavigationState.SEEK || wasSeekInProgress) {
+      wasSeekInProgress = false
       state = NavigationState.RELEASE
-    }
-
-    if (state == NavigationState.ENTER) {
+    } else if (state == NavigationState.ENTER) {
       state = NavigationState.EXIT
     }
 
@@ -59,7 +61,10 @@ open class AppScaffoldNavigator<T> @RememberInComposition constructor(private va
 
   override suspend fun seekBack(backNavigationBehavior: BackNavigationBehavior, fraction: Float) {
     if (fraction > 0f && state != NavigationState.SEEK) {
+      wasSeekInProgress = true
       state = NavigationState.SEEK
+    } else if (fraction < 0.001f && state == NavigationState.SEEK) {
+      state = NavigationState.ENTER
     }
 
     return delegate.seekBack(backNavigationBehavior, fraction)
