@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:viewBindingIgnore="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView android:id="@+id/information"
+              android:layout_width="match_parent"
+              android:layout_height="60dp"
+              android:gravity="center"
+              android:text="@string/verify_scan_fragment__scan_the_qr_code_on_your_contact"
+              style="@style/TextAppearance.Signal.Body2"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent" />
+
+    <org.signal.qr.QrScannerView
+            android:id="@+id/scanner"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/information" />
+
+    <FrameLayout android:id="@+id/overlay"
+                 android:layout_width="match_parent"
+                 android:layout_height="0dp"
+                 android:orientation="vertical"
+                 app:layout_constraintTop_toTopOf="parent"
+                 app:layout_constraintBottom_toTopOf="@id/information"
+                 app:layout_constraintEnd_toStartOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView android:id="@+id/camera_marks"
+                   android:layout_width="50dp"
+                   android:layout_height="50dp"
+                   android:layout_gravity="center"
+                   app:srcCompat="@drawable/ic_camera_outline" />
+
+        <org.thoughtcrime.securesms.components.ShapeScrim
+                android:id="@+id/camera_scrim"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:radius="0.3"
+                app:shape="square" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
