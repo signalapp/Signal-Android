@@ -85,25 +85,25 @@ public class FcmRefreshJob extends BaseJob {
 
     Log.i(TAG, "Reregistering FCM...");
 
-    int result = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context);
+    Optional<String> token = FcmUtil.getToken(context);
 
-    if (result != ConnectionResult.SUCCESS) {
-      notifyFcmFailure();
+    if (token.isPresent()) {
+      String oldToken = SignalStore.account().getFcmToken();
+
+      if (!token.get().equals(oldToken)) {
+        int oldLength = oldToken != null ? oldToken.length() : -1;
+        Log.i(TAG, "Token changed. oldLength: " + oldLength + "  newLength: " + token.get().length());
+      } else {
+        Log.i(TAG, "Token didn't change.");
+      }
+
+      NetworkResultUtil.toBasicLegacy(SignalNetwork.account().setFcmToken(token.get()));
+      SignalStore.account().setFcmToken(token.get());
     } else {
-      Optional<String> token = FcmUtil.getToken(context);
-
-      if (token.isPresent()) {
-        String oldToken = SignalStore.account().getFcmToken();
-
-        if (!token.get().equals(oldToken)) {
-          int oldLength = oldToken != null ? oldToken.length() : -1;
-          Log.i(TAG, "Token changed. oldLength: " + oldLength + "  newLength: " + token.get().length());
-        } else {
-          Log.i(TAG, "Token didn't change.");
-        }
-
-        NetworkResultUtil.toBasicLegacy(SignalNetwork.account().setFcmToken(token.get()));
-        SignalStore.account().setFcmToken(token.get());
+      int result = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context);
+      if (result != ConnectionResult.SUCCESS) {
+        Log.w(TAG, "FCM token retrieval failed, and Play Services are not available. Code: " + result);
+        notifyFcmFailure();
       } else {
         throw new RetryLaterException(new IOException("Failed to retrieve a token."));
       }
