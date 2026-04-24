@@ -15,6 +15,7 @@ import org.whispersystems.signalservice.internal.crypto.AttachmentDigest
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
+import java.io.OutputStream
 
 /**
  * This [RequestBody] encrypts the data written to it before it is sent.
@@ -40,10 +41,26 @@ class DigestingRequestBody(
     return contentType.toMediaTypeOrNull()
   }
 
+  /**
+   * nowhereOutputStream allows a programmer to write out data into the void. This has no memory
+   * implications, as we don't actually store bytes.
+   */
+  private val nowhereOutputStream = OutputStream.nullOutputStream()
+
+  @Throws(IOException::class)
+  fun writeToNowhere() {
+    writeToImpl(nowhereOutputStream)
+  }
+
   @Throws(IOException::class)
   override fun writeTo(sink: BufferedSink) {
+    writeToImpl(sink.outputStream())
+  }
+
+  @Throws(IOException::class)
+  private fun writeToImpl(outputStream: OutputStream) {
     val digestStream = ByteArrayOutputStream()
-    val inner = SkippingOutputStream(contentStart, NonClosingOutputStream(sink.outputStream()))
+    val inner = SkippingOutputStream(contentStart, NonClosingOutputStream(outputStream))
     val isIncremental = incremental && outputStreamFactory is AttachmentCipherOutputStreamFactory
     val sizeChoice: ChunkSizeChoice = ChunkSizeChoice.inferChunkSize(contentLength.toInt())
     val outputStream: DigestingOutputStream = if (isIncremental) {

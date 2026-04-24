@@ -1031,9 +1031,7 @@ public class PushServiceSocket {
 
     if (resumeInfo.contentStart == length) {
       Log.w(TAG, "Resume start point == content length");
-      try (NowhereBufferedSink buffer = new NowhereBufferedSink()) {
-        file.writeTo(buffer);
-      }
+      file.writeToNowhere();
       return file.getAttachmentDigest();
     }
 
@@ -1103,9 +1101,7 @@ public class PushServiceSocket {
 
     if (resumeInfo.contentStart == length) {
       Log.w(TAG, "Resume start point == content length");
-      try (NowhereBufferedSink buffer = new NowhereBufferedSink()) {
-        file.writeTo(buffer);
-      }
+      file.writeToNowhere();
       return file.getAttachmentDigest();
     } else if (resumeInfo.contentStart != 0) {
       Log.w(TAG, "Resuming previous attachment upload");
