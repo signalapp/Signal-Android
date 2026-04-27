@@ -4320,7 +4320,7 @@
     <string name="PaymentsHomeFragment__send">보내기</string>
     <string name="PaymentsHomeFragment__sent_s">%1$s을(를) 보냈습니다.</string>
     <string name="PaymentsHomeFragment__received_s">%1$s을(를) 받았습니다.</string>
-    <string name="PaymentsHomeFragment__transfer_to_exchange">교환으로 이체</string>
+    <string name="PaymentsHomeFragment__transfer_to_exchange">거래소로 이체</string>
     <string name="PaymentsHomeFragment__currency_conversion">통화 환산</string>
     <string name="PaymentsHomeFragment__deactivate_payments">결제 비활성화</string>
     <string name="PaymentsHomeFragment__recovery_phrase">복원 문구</string>
@@ -4347,7 +4347,7 @@
     <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Signal을 사용하여 MobileCoin을 주고받으세요. 모든 결제에는 MobileCoins와 MobileCoin Wallet의 사용 약관이 적용됩니다. 일부 문제가 발생할 수 있으며, 손실된 결제나 잔액은 복구할 수 없습니다. </string>
     <string name="PaymentsHomeFragment__activate">활성화</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin 용어 보기</string>
-    <string name="PaymentsHomeFragment__payments_not_available">Signal 결제는 더 이상 사용할 수 없습니다. 여전히 거래소로 자금을 이체할 수 있지만 더 이상 지불을 주고받거나 자금을 추가할 수 없습니다.</string>
+    <string name="PaymentsHomeFragment__payments_not_available">Signal 결제 서비스를 더 이상 이용할 수 없습니다. 기존 자금을 거래소로 보내는 것은 가능하지만, 새로운 결제나 송금, 금액 충전은 제한됩니다.</string>
 
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
@@ -4426,7 +4426,7 @@
     <string name="PaymentsTransferFragment__transfer">이체</string>
     <string name="PaymentsTransferFragment__scan_qr_code">QR 코드 스캔</string>
     <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">수신자: 지갑 주소 스캔 또는 입력</string>
-    <string name="PaymentsTransferFragment__you_can_transfer">거래소에서 제공한 지갑 주소로 송금을 완료하면 MobileCoin을 송금할 수 있습니다. 지갑 주소는 QR 코드 아래 가장 일반적으로 사용되는 숫자와 문자의 문자열입니다.</string>
+    <string name="PaymentsTransferFragment__you_can_transfer">거래소에서 발급받은 지갑 주소로 이체를 진행하면 MobileCoin을 송금할 수 있습니다. 지갑 주소는 대개 QR 코드 아래에 표시된 영문과 숫자의 조합입니다.</string>
     <string name="PaymentsTransferFragment__next">다음</string>
     <string name="PaymentsTransferFragment__invalid_address">유효하지 않은 주소</string>
     <string name="PaymentsTransferFragment__check_the_wallet_address">이체하려는 지갑 주소를 확인하고 다시 시도하세요.</string>
@@ -5090,13 +5090,13 @@
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">데이터 이전 중</string>
     <string name="DeviceTransfer__keep_both_devices_near_each_other">두 기기를 서로 가까이 두고 Signal을 계속 열어 두세요. 모든 과정은 종단간 암호화로 안전하게 보호됩니다.</string>
-    <string name="DeviceTransfer__d_messages_so_far">지금까지 %1$d개의 메시지…</string>
+    <string name="DeviceTransfer__d_messages_so_far">현재까지 메시지 %1$d개 이전 완료</string>
     <!-- Filled in with total percentage of messages transferred -->
-    <string name="DeviceTransfer__s_of_messages_so_far">현재까지 메시지 %1$s%% 전송 완료</string>
+    <string name="DeviceTransfer__s_of_messages_so_far">현재까지 메시지 %1$s%% 이전 완료</string>
     <string name="DeviceTransfer__cancel">취소</string>
     <string name="DeviceTransfer__try_again">다시 시도해 주세요.</string>
     <string name="DeviceTransfer__stop_transfer">이전 중단</string>
-    <string name="DeviceTransfer__all_transfer_progress_will_be_lost">모든 진행 상황이 손실됩니다.</string>
+    <string name="DeviceTransfer__all_transfer_progress_will_be_lost">지금 중단하면 모든 진행 사항이 사라집니다.</string>
     <string name="DeviceTransfer__transfer_failed">이전 실패</string>
     <string name="DeviceTransfer__unable_to_transfer">이전할 수 없음</string>
 
@@ -5374,7 +5374,7 @@
     <string name="payment_info_card_adding_funds">자금 추가</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">MobileCoin을 지갑 주소로 전송하여 Signal에서 사용할 자금을 추가할 수 있습니다.</string>
     <string name="payment_info_card_cashing_out">현금화</string>
-    <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoin을 지원하는 거래소에서 언제든지 MobileCoin을 현금화할 수 있습니다. 해당 거래소에서 계좌로 이체하기만 하면 됩니다.</string>
+    <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoin 지원 거래소에서 언제든지 현금화할 수 있습니다. 거래소에서 본인의 계좌로 출금 이체만 진행하시면 됩니다.</string>
     <string name="payment_info_card_hide_this_card">이 카드를 숨길까요?</string>
     <string name="payment_info_card_hide">숨기기</string>
     <!-- Title of save recovery phrase card -->
@@ -5393,7 +5393,7 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">지갑 비활성화</string>
     <string name="DeactivateWalletFragment__your_balance">잔액</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">결제를 비활성화하기 전에 다른 지갑 주소로 자금을 이체하는 것이 좋습니다. 지금 자금을 이체하지 않기로 선택할 경우 결제를 다시 활성화하면 자금이 Signal에 연결된 지갑에 남아 있게 됩니다.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">결제를 비활성화하기 전에 다른 지갑 주소로 자금을 이체하는 것이 좋습니다. 지금 이체하지 않더라도, 나중에 결제 기능을 다시 활성화하면 Signal에 연결된 지갑 내 잔액을 그대로 이용하실 수 있습니다.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">잔액 이체</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">이전하지 않고 비활성화</string>
     <string name="DeactivateWalletFragment__deactivate">비활성화</string>
@@ -5818,7 +5818,7 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">새 대화를 위한 기본 타이머</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">내가 새로 시작하는 모든 대화에 자동 삭제 메시지 타이머를 기본으로 설정합니다.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">자금 이체 시 Android 화면을 잠그거나 지문 인증하기</string>
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">자금 이체 시 Android 화면 잠금 또는 지문 인증을 요구합니다.</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">결제 잠금 기능을 활성화할 수 없습니다.</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
@@ -6376,7 +6376,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">송금 대기 중</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">%1$s의 은행 송금이 대기 중입니다. 은행 송금을 완료하는 데 영업일 기준 1~14일이 걸릴 수 있습니다.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">%1$s의 계좌 이체가 대기 중입니다. 계좌 이체를 완료하는 데 영업일 기준 1~14일이 걸릴 수 있습니다.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">자세히 알아보기</string>
     <!-- Displayed when a subscription refresh is being performed -->
@@ -7397,7 +7397,7 @@
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">후원금이 한도 금액을 초과했어요</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">은행 송금을 통해 보낼 수 있는 최대 금액은 %1$s입니다. 다른 금액이나 다른 결제 방법으로 시도해 주세요.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">계좌 이체를 통해 보낼 수 있는 최대 금액은 %1$s입니다. 다른 금액이나 다른 결제 방법으로 시도해 주세요.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">월 정기후원</string>
@@ -7416,7 +7416,7 @@
         <item quantity="other">%2$d일 동안 %1$s 배지 사용 가능</item>
     </plurals>
     <!-- Button label for paying with a bank transfer -->
-    <string name="GatewaySelectorBottomSheet__bank_transfer">송금</string>
+    <string name="GatewaySelectorBottomSheet__bank_transfer">계좌 이체</string>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">신용카드 또는 체크카드</string>
     <!-- Sheet summary when giving donating for a friend -->
@@ -7432,7 +7432,7 @@
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
-    <string name="BankTransferMandateFragment__bank_transfer">송금</string>
+    <string name="BankTransferMandateFragment__bank_transfer">계좌 이체</string>
     <!-- Subtitle of screen displaying the bank transfer mandate, placeholder is \'Learn more\' -->
     <string name="BankTransferMandateFragment__stripe_processes_donations">Signal에 대한 후원금 결제는 Stripe를 통해 처리됩니다. Signal은 개인정보를 수집하거나 저장하지 않습니다. %1$s</string>
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
@@ -7512,7 +7512,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">일회성 기부가 처리 대기 중입니다. 후원이 완료되면 프로필에 %1$s 배지를 표시할 수 있어요.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">은행 송금을 처리하는 데 영업일 기준 1~14일이 걸릴 수 있습니다. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">계좌 이체를 처리하는 데 영업일 기준 1~14일이 걸릴 수 있습니다. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">자세히 알아보기</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -7521,7 +7521,7 @@
     <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">후원을 처리하지 못했어요</string>
     <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__were_having_trouble">은행 송금을 진행하는 중에 문제가 발생했습니다. 요금이 청구되지 않았습니다. 다른 결제 수단을 시도하거나 은행에 자세한 정보를 문의하세요.</string>
+    <string name="DonationErrorBottomSheet__were_having_trouble">계좌 이체를 진행하는 중에 문제가 발생했습니다. 요금은 청구되지 않았습니다. 다른 결제 수단을 시도하거나 은행에 자세한 정보를 문의하세요.</string>
     <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__try_again">다시 시도해 주세요.</string>
     <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
@@ -7530,7 +7530,7 @@
     <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompletedBottomSheet__donation_complete">후원 완료</string>
     <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
-    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">은행 송금이 완료되었습니다. 프로필에 이 배지를 표시하여 Signal에 대한 지지를 보여줄 수 있습니다.</string>
+    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">계좌 이체가 완료되었습니다. 후원 사실을 알리고 싶다면 프로필에 이 배지를 표시해 보세요.</string>
     <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
     <string name="DonationCompleteBottomSheet__done">확인</string>
 
@@ -8371,7 +8371,7 @@
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__bank_transfer">송금</string>
+    <string name="BackupsTypeSettingsFragment__bank_transfer">계좌 이체</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->

@@ -165,7 +165,7 @@
     <!-- Title for the backup picker bottom sheet -->
     <string name="LocalBackupRestoreScreen__choose_a_backup_to_restore">रीस्टोर करने के लिए बैकअप चुनें</string>
     <!-- Warning text in the backup picker bottom sheet -->
-    <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">पुराना बैकअप चुनने पर मैसेज या मीडिया गुम हो जाने की संभावना रहती है।</string>
+    <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">पुराना बैकअप चुनने पर मैसेज या मीडिया गुम हो सकता है।</string>
     <!-- Title when no backup is found -->
     <string name="LocalBackupRestoreScreen__no_backup_found">कोई बैकअप नहीं मिला</string>
     <!-- Description when no backup is found -->

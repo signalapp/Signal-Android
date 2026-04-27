@@ -789,7 +789,7 @@
     <!-- Detail tip 4 title -->
     <string name="SafetyTips_detail_tip4_title">क्रिप्टो या मनी स्कैम</string>
     <!-- Detail tip 4 message -->
-    <string name="SafetyTips_detail_tip4_message">अगर कोई अनजान व्यक्ति आपको क्रिप्टोकरंसी (जैसे कि Bitcoin) या फिर दूसरे आर्थिक अवसरों के बारे में मैसेज करे, तो सावधान हो जाएं—यह स्पैम हो सकता है।</string>
+    <string name="SafetyTips_detail_tip4_message">अगर कोई अनजान व्यक्ति आपको Bitcoin जैसी क्रिप्टोकरंसी या फिर दूसरे आर्थिक अवसरों के बारे में मैसेज करे, तो सावधान हो जाएं—यह स्पैम हो सकता है।</string>
     <!-- Detail tip 5 title -->
     <string name="SafetyTips_detail_tip5_title">फ़र्ज़ी कंपनियां</string>
     <!-- Detail tip 5 message -->
@@ -800,11 +800,11 @@
     <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
     <string name="ProfileNameBottomSheet__signal_cant_verify">Signal नाम और फ़ोटो वेरिफ़ाई नहीं कर सकता</string>
     <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
-    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal आपसे कभी भी आपका रजिस्ट्रेशन कोड, पिन या \'रिकवरी की\' मांगने के लिए संपर्क नहीं करेगा</string>
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal आपसे कभी भी आपका रजिस्ट्रेशन कोड, पिन या \'रिकवरी की\' मांगने के लिए संपर्क नहीं करता</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">नकली पहचान बताकर बात करने वाले अकाउंट से सावधान रहें</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">आप जिन लोगों को नहीं जानते उनके साथ व्यक्तिगत जानकारी शेयर न करें</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">अनजान लोगों के साथ निजी जानकारी जानकारी शेयर न करें</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
     <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s, ग्रुप के सदस्य चुनते हैं।</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
@@ -1591,7 +1591,7 @@
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">सपोर्ट टीम से संपर्क करें</string>
     <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">कोई गड़बड़ी हुई है और इस वजह से आपका अकाउंट ट्रांसफ़र नहीं किया जा सका। ट्रांसफ़र करने का तरीका चुनें और फिर से कोशिश करें।</string>
+    <string name="RemoteRestoreActivity__error_occurred">कोई गड़बड़ी हुई है और इस वजह से आपका अकाउंट डेटा ट्रांसफ़र नहीं हो पाया।ट्रांसफ़र करने का तरीका चुनें और फिर से कोशिश करें।</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
     <string name="RemoteRestoreActivity__couldnt_restore">यह बैकअप रीस्टोर नहीं हो सका</string>
     <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
@@ -1629,7 +1629,7 @@
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_title">अपना यूज़रनेम शेयर करें</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">अपना यूनीक QR कोड या लिंक शेयर करें, ताकि लोग आपसे चैट कर सकें।</string>
+    <string name="ManageProfileFragment__link_tooltip_body">अपना यूनिक QR कोड या लिंक शेयर करें, ताकि लोग आपसे चैट कर सकें।</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">यूज़रनेम बनाया गया</string>
     <!-- Snackbar message after copying username -->
@@ -1653,7 +1653,7 @@
 
 
     <!-- ManageRecipientActivity -->
-    <string name="ManageRecipientActivity_no_groups_in_common">कोई साझा ग्रुप मौजूद नहीं है</string>
+    <string name="ManageRecipientActivity_no_groups_in_common">आपके बीच कोई कॉमन ग्रुप नहीं है</string>
     <plurals name="ManageRecipientActivity_d_groups_in_common">
         <item quantity="one">%1$d साझा ग्रुप मौजूद है</item>
         <item quantity="other">%1$d साझे ग्रुप मौजूद हैं</item>
@@ -5029,7 +5029,7 @@
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">फ़ोन नंबर</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">तय करें कि कौन आपका फ़ोन नंबर देख सकता है और कौन इसके ज़रिए आपसे Signal पर संपर्क कर सकता है।</string>
+    <string name="preferences_app_protection__choose_who_can_see">चुनें कि कौन आपका फ़ोन नंबर देख सकता है और कौन इसके ज़रिए आपसे Signal पर संपर्क कर सकता है।</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">मेरा नंबर कौन देख सकता है</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
@@ -5357,7 +5357,7 @@
         <item quantity="other">अगर आपको नहीं पता है कि अनुरोध भेजने वाले लोग कौन हैं, तो कॉन्टैक्ट देखें और सही कदम उठाएं।</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">कोई दूसरा कॉमन ग्रुप नहीं है।</string>
-    <string name="ReviewCardDialogFragment__no_groups_in_common">कोई कॉमन ग्रुप मौजूद नहीं है।</string>
+    <string name="ReviewCardDialogFragment__no_groups_in_common">आपके बीच कोई कॉमन ग्रुप नहीं है</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
         <item quantity="one">%1$d और ग्रुप कॉमन है</item>
         <item quantity="other">%1$d और ग्रुप कॉमन हैं</item>
@@ -6017,7 +6017,7 @@
     <string name="DataAndStorageSettingsFragment__media_quality">मीडिया की क्वालिटी</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">भेजे गए मीडिया की क्वालिटी</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">हाई क्वालिटी मीडिया भेजने के लिए ज़्यादा डेटा लगेगा।</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">हाई क्वालिटी मीडिया भेजने में ज़्यादा डेटा लगेगा।</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">हाई</string>
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
@@ -6487,7 +6487,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">आप भी</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">बन सकते/सकती हैं मासिक सस्टेनर।</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">प्रोफ़ाइल पर दिखाएं</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">फ़ीचर किया हुआ बैज बनाएँ</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">फ़ीचर किया हुआ बैज बनाएं</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">जारी रखें</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">जब आपके पास एक से ज़्यादा बैज हों तब आप अपनी प्रोफ़ाइल पर दूसरों को प्रमुखता से दिखाने के लिए कोई एक चुन सकते हैं।</string>
 
@@ -7489,7 +7489,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">स्टोरी अपडेट 24 घंटे बाद अपने आप गायब हो जाती हैं। तय करें कि आपकी स्टोरी कौन देश सकता है या फिर चुनिंदा व्यूअर या ग्रुप के लिए नई स्टोरी बनाएं।</string>
+    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">स्टोरी अपडेट 24 घंटे बाद अपने आप गायब हो जाती हैं। चुनें कि आपकी स्टोरी कौन देश सकता है या फिर चुनिंदा व्यूअर या ग्रुप के लिए नई स्टोरी बनाएं।</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">स्टोरीज़ बंद करें</string>
     <!-- Preference summary to turn off stories -->

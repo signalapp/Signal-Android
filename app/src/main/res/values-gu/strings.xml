@@ -3733,13 +3733,13 @@
     <string name="ConversationUpdateItem_update">અપડેટ</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="one">%1$d ગ્રૂપ અપડેટ</item>
-        <item quantity="other">%1$d ગ્રૂપ અપડેટ</item>
+        <item quantity="one">%1$d ગ્રૂપ નોટિફિકેશન</item>
+        <item quantity="other">%1$d ગ્રૂપ નોટિફિકેશન</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="one">%1$d ચેટ અપડેટ</item>
-        <item quantity="other">%1$d ચેટ અપડેટ</item>
+        <item quantity="one">%1$d ચેટ નોટિફિકેશન</item>
+        <item quantity="other">%1$d ચેટ નોટિફિકેશન</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">

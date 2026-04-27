@@ -2749,7 +2749,7 @@
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Połączenie Signal</string>
     <string name="WebRtcCallView__signal_video_call">Połączenie wideo Signal</string>
-    <string name="WebRtcCallView__start_call">Rozpocznij połączenie</string>
+    <string name="WebRtcCallView__start_call">Połącz</string>
     <string name="WebRtcCallView__join_call">Dołącz do rozmowy</string>
     <string name="WebRtcCallView__call_is_full">Połączenie jest pełne</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">W połączeniu uczestniczy już maksymalna liczba osób (%1$d). Spróbuj ponownie później.</string>
