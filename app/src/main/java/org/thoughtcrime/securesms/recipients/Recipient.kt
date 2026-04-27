@@ -370,7 +370,7 @@ class Recipient(
 
   /** A cheap way to check if wallpaper is set without doing any unnecessary proto parsing. */
   val hasWallpaper: Boolean
-    get() = wallpaperValue != null || SignalStore.wallpaper.hasWallpaperSet()
+    get() = wallpaperValue != null || SignalStore.wallpaper.hasWallpaperSet() || isReleaseNotes
 
   /** The color of the chat bubbles to use in a chat with this recipient. */
   val chatColors: ChatColors

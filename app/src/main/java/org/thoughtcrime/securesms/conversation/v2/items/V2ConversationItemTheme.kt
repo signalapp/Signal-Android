@@ -44,6 +44,10 @@ class V2ConversationItemTheme(
       return conversationContext.getColorizer().getIncomingFooterTextColor(context, conversationContext.hasWallpaper())
     }
 
+    if (!conversationMessage.messageRecord.isOutgoing && conversationMessage.threadRecipient.isReleaseNotes) {
+      return ContextCompat.getColor(context, R.color.release_notes_bubble_text)
+    }
+
     return getColor(
       conversationMessage,
       conversationContext.getColorizer()::getOutgoingFooterTextColor,
@@ -55,6 +59,9 @@ class V2ConversationItemTheme(
   fun getBodyTextColor(
     conversationMessage: ConversationMessage
   ): Int {
+    if (!conversationMessage.messageRecord.isOutgoing && conversationMessage.threadRecipient.isReleaseNotes) {
+      return ContextCompat.getColor(context, R.color.release_notes_bubble_text)
+    }
     return getColor(
       conversationMessage,
       conversationContext.getColorizer()::getOutgoingBodyTextColor,
@@ -79,6 +86,8 @@ class V2ConversationItemTheme(
   ): Int {
     return if (conversationMessage.messageRecord.isOutgoing) {
       Color.TRANSPARENT
+    } else if (conversationMessage.threadRecipient.isReleaseNotes) {
+      ContextCompat.getColor(context, R.color.release_notes_bubble)
     } else {
       if (conversationContext.hasWallpaper()) {
         ContextCompat.getColor(context, R.color.conversation_item_recv_bubble_color_wallpaper)

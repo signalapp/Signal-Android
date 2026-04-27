@@ -204,6 +204,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private Optional<MessageRecord>     nextMessageRecord;
   private Locale                      locale;
   private boolean                     groupThread;
+  private boolean                     isReleaseNotes;
   private LiveRecipient               author;
   private RequestManager              requestManager;
   private Optional<MessageRecord>     previousMessage;
@@ -412,6 +413,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.batchSelected         = batchSelected;
     this.conversationRecipient = conversationRecipient.live();
     this.groupThread           = conversationRecipient.isGroup();
+    this.isReleaseNotes        = conversationRecipient.isReleaseNotes();
     this.author                = messageRecord.getFromRecipient().live();
     this.canPlayContent        = false;
     this.mediaItem             = null;
@@ -772,6 +774,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private @ColorInt int getDefaultBubbleColor(boolean hasWallpaper) {
+    if (isReleaseNotes) {
+      return ContextCompat.getColor(context, R.color.release_notes_bubble);
+    }
     return hasWallpaper ? defaultBubbleColorForWallpaper : defaultBubbleColor;
   }
 
@@ -919,9 +924,18 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       footer.setOnlyShowSendingStatus(messageRecord.isRemoteDelete(), messageRecord);
     } else {
       bodyBubble.getBackground().setColorFilter(getDefaultBubbleColor(hasWallpaper), PorterDuff.Mode.SRC_IN);
-      footer.setTextColor(colorizer.getIncomingFooterTextColor(context, hasWallpaper));
-      footer.setIconColor(colorizer.getIncomingFooterIconColor(context, hasWallpaper));
-      footer.setRevealDotColor(colorizer.getIncomingFooterIconColor(context, hasWallpaper));
+      if (isReleaseNotes) {
+        int releaseNotesTextColor = ContextCompat.getColor(context, R.color.release_notes_bubble_text);
+        bodyText.setTextColor(releaseNotesTextColor);
+        bodyText.setLinkTextColor(releaseNotesTextColor);
+        footer.setTextColor(releaseNotesTextColor);
+        footer.setIconColor(releaseNotesTextColor);
+        footer.setRevealDotColor(releaseNotesTextColor);
+      } else {
+        footer.setTextColor(colorizer.getIncomingFooterTextColor(context, hasWallpaper));
+        footer.setIconColor(colorizer.getIncomingFooterIconColor(context, hasWallpaper));
+        footer.setRevealDotColor(colorizer.getIncomingFooterIconColor(context, hasWallpaper));
+      }
       footer.setOnlyShowSendingStatus(false, messageRecord);
     }
 
@@ -1718,8 +1732,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         int end   = messageBody.getSpanEnd(placeholder);
         URLSpan span = new InterceptableLongClickCopyLinkSpan(placeholder.getValue(),
                                                               urlClickListener,
-                                                              ContextCompat.getColor(getContext(), R.color.signal_accent_primary),
-                                                              false);
+                                                              ContextCompat.getColor(getContext(), isReleaseNotes ? R.color.release_notes_bubble_text : R.color.signal_accent_primary),
+                                                              isReleaseNotes);
 
         messageBody.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       }

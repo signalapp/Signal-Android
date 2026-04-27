@@ -132,7 +132,7 @@ final class RecipientDialogViewModel extends ViewModel {
 
   private void updateRecipientDetailsState(@NonNull Recipient recipient) {
     GroupId groupId   = recipientDialogRepository.getGroupId();
-    String  aboutText = recipient.isReleaseNotes() ? context.getString(R.string.ReleaseNotes__signal_release_notes_and_news) : recipient.getCombinedAboutAndEmoji();
+    String  aboutText = recipient.isReleaseNotes() ? null : recipient.getCombinedAboutAndEmoji();
 
     if (groupId != null && groupId.isV2() && recipient.isIndividual() && !recipient.isSelf()) {
       SignalExecutors.BOUNDED.execute(() -> {

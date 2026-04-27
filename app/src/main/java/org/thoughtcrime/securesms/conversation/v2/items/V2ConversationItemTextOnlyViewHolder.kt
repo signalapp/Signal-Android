@@ -444,14 +444,21 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     V2ConversationItemUtils.linkifyUrlLinks(messageBody, conversationContext.selectedItems.isEmpty(), conversationContext.clickListener::onUrlClicked)
 
     if (conversationMessage.hasStyleLinks()) {
+      val isReleaseNotes = conversationMessage.threadRecipient.isReleaseNotes
+      val linkColor = if (isReleaseNotes) {
+        themeDelegate.getBodyTextColor(conversationMessage)
+      } else {
+        ContextCompat.getColor(getContext(), R.color.signal_accent_primary)
+      }
+      val underline = isReleaseNotes
       messageBody.getSpans(0, messageBody.length, PlaceholderURLSpan::class.java).forEach { placeholder ->
         val start = messageBody.getSpanStart(placeholder)
         val end = messageBody.getSpanEnd(placeholder)
         val span: URLSpan = InterceptableLongClickCopyLinkSpan(
           placeholder.value,
           conversationContext.clickListener::onUrlClicked,
-          ContextCompat.getColor(getContext(), R.color.signal_accent_primary),
-          false
+          linkColor,
+          underline
         )
 
         messageBody.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
