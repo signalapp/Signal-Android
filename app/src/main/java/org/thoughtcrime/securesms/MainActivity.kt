@@ -532,9 +532,21 @@ class MainActivity :
 
               is MainNavigationDetailLocation.Stories -> storiesNavHostController.navigateToDetailLocation(location)
             }
+
+            if (isSplitPane && paneExpansionState.currentAnchor != detailOnlyAnchor) {
+              val target = if (location is MainNavigationDetailLocation.Empty) listOnlyAnchor else detailAndListAnchor
+              if (paneExpansionState.currentAnchor != target) {
+                paneExpansionState.animateTo(target)
+              }
+            }
           }
 
-          mainNavigationViewModel.earlyNavigationDetailLocationRequested?.let { navigateToLocation(it) }
+          val earlyLocation = mainNavigationViewModel.earlyNavigationDetailLocationRequested
+          if (earlyLocation != null) {
+            navigateToLocation(earlyLocation)
+          } else if (isSplitPane && paneExpansionState.currentAnchor != detailOnlyAnchor) {
+            paneExpansionState.animateTo(listOnlyAnchor)
+          }
           mainNavigationViewModel.clearEarlyDetailLocation()
 
           mainNavigationViewModel.detailLocation.collect { navigateToLocation(it) }
