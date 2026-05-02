@@ -223,8 +223,6 @@ object MessageDecryptor {
         } else {
           Log.w(TAG, "${logPrefix(envelope)} Ignoring PNI signature because the sourceServiceId isn't an ACI!")
         }
-      } else if (cipherResult.content.pniSignatureMessage != null) {
-        Log.w(TAG, "${logPrefix(envelope)} Ignoring PNI signature because the feature flag is disabled!")
       }
 
       // TODO We can move this to the "message processing" stage once we give it access to the envelope. But for now it'll stay here.
