@@ -362,6 +362,7 @@ open class MessageContentProcessor(private val context: Context) {
     }
   }
 
+  @Deprecated("In favor of processExceptionV2")
   fun processException(messageState: MessageState, exceptionMetadata: ExceptionMetadata, timestamp: Long) {
     val sender = Recipient.external(exceptionMetadata.sender)
 
@@ -427,6 +428,66 @@ open class MessageContentProcessor(private val context: Context) {
       MessageState.DUPLICATE_MESSAGE -> warn(timestamp, "Duplicate message. Dropping.")
 
       else -> throw AssertionError("Not handled $messageState. ($timestamp)")
+    }
+  }
+
+  fun processExceptionV2(resultClass: String?, exceptionMetadata: ExceptionMetadata, timestamp: Long) {
+    val sender = Recipient.external(exceptionMetadata.sender)
+
+    if (sender == null) {
+      warn("Failed to create Recipient for identifier: $resultClass")
+      return
+    }
+
+    if (sender.isBlocked) {
+      warn("Ignoring exception content from blocked sender, message state: $resultClass")
+      return
+    }
+
+    when (resultClass) {
+      MessageDecryptor.Result.DecryptionError::class.qualifiedName -> {
+        warn(timestamp, "Handling encryption error.")
+
+        val threadRecipient = if (exceptionMetadata.groupId != null) Recipient.externalPossiblyMigratedGroup(exceptionMetadata.groupId) else sender
+        val threadId: Long? = SignalDatabase.threads.getThreadIdFor(threadRecipient.id)
+
+        if (threadId != null) {
+          SignalDatabase
+            .messages
+            .insertBadDecryptMessage(
+              recipientId = sender.id,
+              senderDevice = exceptionMetadata.senderDevice,
+              sentTimestamp = timestamp,
+              receivedTimestamp = System.currentTimeMillis(),
+              threadId = threadId
+            )
+        } else {
+          warn(timestamp, "Could not find a thread for the target recipient. Skipping.")
+        }
+      }
+
+      MessageDecryptor.Result.InvalidVersion::class.qualifiedName -> {
+        warn(timestamp, "Handling invalid version.")
+        insertErrorMessage(context, sender, timestamp, exceptionMetadata.groupId.toOptional()) { messageId ->
+          SignalDatabase.messages.markAsInvalidVersionKeyExchange(messageId)
+        }
+      }
+
+      MessageDecryptor.Result.LegacyMessage::class.qualifiedName -> {
+        warn(timestamp, "Handling legacy message.")
+        insertErrorMessage(context, sender, timestamp, exceptionMetadata.groupId.toOptional()) { messageId ->
+          SignalDatabase.messages.markAsLegacyVersion(messageId)
+        }
+      }
+
+      MessageDecryptor.Result.UnsupportedDataMessage::class.qualifiedName -> {
+        warn(timestamp, "Handling unsupported data message.")
+        insertErrorMessage(context, sender, timestamp, exceptionMetadata.groupId.toOptional()) { messageId ->
+          SignalDatabase.messages.markAsUnsupportedProtocolVersion(messageId)
+        }
+      }
+
+      else -> throw AssertionError("Not handled $resultClass. ($timestamp)")
     }
   }
 

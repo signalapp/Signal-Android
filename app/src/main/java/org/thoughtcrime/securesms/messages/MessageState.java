@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.messages;
 
 /**
  * Message processing state/result
+ * @deprecated as it is only used by a deprecated job
  */
 public enum MessageState {
   DECRYPTED_OK,

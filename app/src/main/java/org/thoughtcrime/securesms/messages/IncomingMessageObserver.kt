@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil
 import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil.startWhenCapable
-import org.thoughtcrime.securesms.jobs.PushProcessMessageErrorJob
+import org.thoughtcrime.securesms.jobs.PushProcessMessageErrorV3Job
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.jobs.UnableToStartException
@@ -343,11 +343,7 @@ class IncomingMessageObserver(
             }
           }
 
-          jobs += PushProcessMessageErrorJob(
-            result.toMessageState(),
-            result.errorMetadata.toExceptionMetadata(),
-            result.envelope.clientTimestamp!!
-          )
+          jobs += PushProcessMessageErrorV3Job(result)
 
           AppDependencies.jobManager.startChain(jobs)
         }
@@ -375,25 +371,6 @@ class IncomingMessageObserver(
     Log.i(TAG, "Received server receipt. Sender: $senderId, Device: ${envelope.sourceDeviceId}, Timestamp: ${envelope.clientTimestamp}")
     SignalDatabase.messages.incrementDeliveryReceiptCount(envelope.clientTimestamp!!, senderId, System.currentTimeMillis())
     SignalDatabase.messageLog.deleteEntryForRecipient(envelope.clientTimestamp!!, senderId, envelope.sourceDeviceId!!)
-  }
-
-  private fun MessageDecryptor.Result.toMessageState(): MessageState {
-    return when (this) {
-      is MessageDecryptor.Result.DecryptionError -> MessageState.DECRYPTION_ERROR
-      is MessageDecryptor.Result.Ignore -> MessageState.NOOP
-      is MessageDecryptor.Result.InvalidVersion -> MessageState.INVALID_VERSION
-      is MessageDecryptor.Result.LegacyMessage -> MessageState.LEGACY_MESSAGE
-      is MessageDecryptor.Result.Success -> MessageState.DECRYPTED_OK
-      is MessageDecryptor.Result.UnsupportedDataMessage -> MessageState.UNSUPPORTED_DATA_MESSAGE
-    }
-  }
-
-  private fun MessageDecryptor.ErrorMetadata.toExceptionMetadata(): ExceptionMetadata {
-    return ExceptionMetadata(
-      this.sender,
-      this.senderDevice,
-      this.groupId
-    )
   }
 
   private inner class MessageRetrievalThread : Thread("MessageRetrievalService"), Thread.UncaughtExceptionHandler {

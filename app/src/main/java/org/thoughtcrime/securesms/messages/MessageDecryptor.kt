@@ -600,7 +600,7 @@ object MessageDecryptor {
       override val serverDeliveredTimestamp: Long,
       override val errorMetadata: ErrorMetadata,
       override val followUpOperations: List<FollowUpOperation>
-    ) : Result, Error
+    ) : Error
 
     /** The envelope used an invalid version of the Signal protocol. */
     class InvalidVersion(
@@ -608,7 +608,7 @@ object MessageDecryptor {
       override val serverDeliveredTimestamp: Long,
       override val errorMetadata: ErrorMetadata,
       override val followUpOperations: List<FollowUpOperation>
-    ) : Result, Error
+    ) : Error
 
     /** The envelope used an old format that hasn't been used since 2015. This shouldn't be happening. */
     class LegacyMessage(
@@ -616,7 +616,7 @@ object MessageDecryptor {
       override val serverDeliveredTimestamp: Long,
       override val errorMetadata: ErrorMetadata,
       override val followUpOperations: List<FollowUpOperation>
-    ) : Result, Error
+    ) : Error
 
     /**
      * Indicates the that the [org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage.getRequiredProtocolVersion]
@@ -627,7 +627,7 @@ object MessageDecryptor {
       override val serverDeliveredTimestamp: Long,
       override val errorMetadata: ErrorMetadata,
       override val followUpOperations: List<FollowUpOperation>
-    ) : Result, Error
+    ) : Error
 
     /** There are no further results from this envelope that need to be processed. There may still be [followUpOperations]. */
     class Ignore(
@@ -636,7 +636,7 @@ object MessageDecryptor {
       override val followUpOperations: List<FollowUpOperation>
     ) : Result
 
-    interface Error {
+    interface Error : Result {
       val errorMetadata: ErrorMetadata
     }
   }
@@ -647,6 +647,14 @@ object MessageDecryptor {
     val groupMasterKey: GroupMasterKey?
   ) {
     val groupId: GroupId.V2? by lazy { groupMasterKey?.let { GroupId.v2(it) } }
+
+    fun toExceptionMetadata(): ExceptionMetadata {
+      return ExceptionMetadata(
+        this.sender,
+        this.senderDevice,
+        this.groupId
+      )
+    }
   }
 
   data class DecryptionErrorCount(

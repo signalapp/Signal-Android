@@ -11,27 +11,27 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint
+import org.thoughtcrime.securesms.jobs.PushProcessMessageJob.Companion.getQueueName
 import org.thoughtcrime.securesms.messages.ExceptionMetadata
 import org.thoughtcrime.securesms.messages.MessageContentProcessor
-import org.thoughtcrime.securesms.messages.MessageState
+import org.thoughtcrime.securesms.messages.MessageDecryptor
 import org.thoughtcrime.securesms.recipients.Recipient
 
 /**
  * Process messages that did not decrypt/validate successfully.
  */
-@Deprecated("In favor of PushProcessMessageErrorV3Job, that doesn't use MessageState")
-class PushProcessMessageErrorJob private constructor(
+class PushProcessMessageErrorV3Job private constructor(
   parameters: Parameters,
-  private val messageState: MessageState,
+  private val resultClass: String?,
   private val exceptionMetadata: ExceptionMetadata,
   private val timestamp: Long
 ) : BaseJob(parameters) {
 
-  constructor(messageState: MessageState, exceptionMetadata: ExceptionMetadata, timestamp: Long) : this(
-    parameters = createParameters(exceptionMetadata),
-    messageState = messageState,
-    exceptionMetadata = exceptionMetadata,
-    timestamp = timestamp
+  constructor(result: MessageDecryptor.Result.Error) : this(
+    createParameters(result.errorMetadata.toExceptionMetadata()),
+    result::class.qualifiedName,
+    result.errorMetadata.toExceptionMetadata(),
+    result.envelope.clientTimestamp!!
   )
 
   override fun getFactoryKey(): String = KEY
@@ -40,7 +40,7 @@ class PushProcessMessageErrorJob private constructor(
 
   override fun serialize(): ByteArray? {
     return JsonJobData.Builder()
-      .putInt(KEY_MESSAGE_STATE, messageState.ordinal)
+      .putString(KEY_RESULT_CLASS, resultClass)
       .putLong(KEY_TIMESTAMP, timestamp)
       .putString(KEY_EXCEPTION_SENDER, exceptionMetadata.sender)
       .putInt(KEY_EXCEPTION_DEVICE, exceptionMetadata.senderDevice)
@@ -49,24 +49,18 @@ class PushProcessMessageErrorJob private constructor(
   }
 
   override fun onRun() {
-    if (messageState == MessageState.DECRYPTED_OK || messageState == MessageState.NOOP) {
-      Log.w(TAG, "Error job queued for valid or no-op decryption, generally this shouldn't happen. Bailing on state: $messageState")
-      return
-    }
-
-    MessageContentProcessor.create(context).processException(messageState, exceptionMetadata, timestamp)
+    MessageContentProcessor.create(context).processExceptionV2(resultClass, exceptionMetadata, timestamp)
   }
 
   override fun onShouldRetry(e: Exception): Boolean = false
 
   override fun onFailure() = Unit
 
-  class Factory : Job.Factory<PushProcessMessageErrorJob?> {
-    override fun create(parameters: Parameters, serializedData: ByteArray?): PushProcessMessageErrorJob {
+  class Factory : Job.Factory<PushProcessMessageErrorV3Job?> {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): PushProcessMessageErrorV3Job {
       val data = JsonJobData.deserialize(serializedData)
 
-      val state = MessageState.entries[data.getInt(KEY_MESSAGE_STATE)]
-      check(state != MessageState.DECRYPTED_OK && state != MessageState.NOOP)
+      val resultClass = data.getString(KEY_RESULT_CLASS)
 
       val exceptionMetadata = ExceptionMetadata(
         sender = data.getString(KEY_EXCEPTION_SENDER),
@@ -74,16 +68,16 @@ class PushProcessMessageErrorJob private constructor(
         groupId = GroupId.parseNullableOrThrow(data.getStringOrDefault(KEY_EXCEPTION_GROUP_ID, null))
       )
 
-      return PushProcessMessageErrorJob(parameters, state, exceptionMetadata, data.getLong(KEY_TIMESTAMP))
+      return PushProcessMessageErrorV3Job(parameters, resultClass, exceptionMetadata, data.getLong(KEY_TIMESTAMP))
     }
   }
 
   companion object {
-    const val KEY = "PushProcessMessageErrorV2Job"
+    const val KEY = "PushProcessMessageErrorV3Job"
 
-    val TAG = Log.tag(PushProcessMessageErrorJob::class.java)
+    val TAG = Log.tag(PushProcessMessageErrorV3Job::class.java)
 
-    private const val KEY_MESSAGE_STATE = "message_state"
+    private const val KEY_RESULT_CLASS = "result_class"
     private const val KEY_TIMESTAMP = "timestamp"
     private const val KEY_EXCEPTION_SENDER = "exception_sender"
     private const val KEY_EXCEPTION_DEVICE = "exception_device"
@@ -100,7 +94,7 @@ class PushProcessMessageErrorJob private constructor(
       return Parameters.Builder()
         .setMaxAttempts(Parameters.UNLIMITED)
         .addConstraint(ChangeNumberConstraint.KEY)
-        .setQueue(recipient?.let { PushProcessMessageJob.getQueueName(it.id) })
+        .setQueue(recipient?.let { getQueueName(it.id) })
         .build()
     }
   }

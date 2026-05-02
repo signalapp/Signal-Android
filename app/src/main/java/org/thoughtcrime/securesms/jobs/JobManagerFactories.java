@@ -247,6 +247,7 @@ public final class JobManagerFactories {
       put(PostRegistrationBackupRedemptionJob.KEY,     new PostRegistrationBackupRedemptionJob.Factory());
       put(PushProcessEarlyMessagesJob.KEY,             new PushProcessEarlyMessagesJob.Factory());
       put(PushProcessMessageErrorJob.KEY,              new PushProcessMessageErrorJob.Factory());
+      put(PushProcessMessageErrorV3Job.KEY,            new PushProcessMessageErrorV3Job.Factory());
       put(PushProcessMessageJob.KEY,                   new PushProcessMessageJob.Factory());
       put(QuoteThumbnailBackfillJob.KEY,               new QuoteThumbnailBackfillJob.Factory());
       put(QuoteThumbnailReconstructionJob.KEY,         new QuoteThumbnailReconstructionJob.Factory());
