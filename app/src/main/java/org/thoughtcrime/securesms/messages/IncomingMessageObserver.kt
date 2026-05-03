@@ -137,7 +137,7 @@ class IncomingMessageObserver(
           // TODO [no-more-rest] Move the connection listener to a neutral location so this isn't passed in
           unauthWebSocket.disconnect()
         }
-        connectionNecessarySemaphore.release()
+        notifyConnectionConditionsChanged()
       }
     },
     onProxyChanged = {
@@ -201,7 +201,7 @@ class IncomingMessageObserver(
       .subscribeBy {
         if (it == WebSocketConnectionState.CONNECTED) {
           lock.withLock {
-            connectionNecessarySemaphore.release()
+            notifyConnectionConditionsChanged()
           }
         }
       }
@@ -209,7 +209,7 @@ class IncomingMessageObserver(
     authWebSocket.addKeepAliveChangeListener {
       SignalExecutors.BOUNDED.execute {
         lock.withLock {
-          connectionNecessarySemaphore.release()
+          notifyConnectionConditionsChanged()
         }
       }
     }
@@ -217,14 +217,14 @@ class IncomingMessageObserver(
     clockSkewScope.launch {
       ClockSkewDetector.detected.collect {
         lock.withLock {
-          connectionNecessarySemaphore.release()
+          notifyConnectionConditionsChanged()
         }
       }
     }
   }
 
   fun notifyRegistrationStateChanged() {
-    connectionNecessarySemaphore.release()
+    notifyConnectionConditionsChanged()
   }
 
   fun notifyRestoreDecisionMade() {
@@ -248,7 +248,7 @@ class IncomingMessageObserver(
       appVisible = true
       ClockSkewDetector.recheck()
       BackgroundService.start(context)
-      connectionNecessarySemaphore.release()
+      notifyConnectionConditionsChanged()
     }
   }
 
@@ -257,7 +257,7 @@ class IncomingMessageObserver(
       appVisible = false
       ClockSkewDetector.recheck()
       lastInteractionTime = System.currentTimeMillis()
-      connectionNecessarySemaphore.release()
+      notifyConnectionConditionsChanged()
     }
   }
 
@@ -303,17 +303,20 @@ class IncomingMessageObserver(
   }
 
   private fun waitForConnectionNecessary() {
-    try {
-      connectionNecessarySemaphore.drainPermits()
-      while (ClockSkewDetector.isDetected || (!isConnectionNecessary() && !isConnectionAvailable())) {
-        val numberDrained = connectionNecessarySemaphore.drainPermits()
-        if (numberDrained == 0) {
-          connectionNecessarySemaphore.acquire()
-        }
+    while (ClockSkewDetector.isDetected || (!isConnectionNecessary() && !isConnectionAvailable())) {
+      val numberDrained = connectionNecessarySemaphore.drainPermits()
+      if (numberDrained == 0) {
+        connectionNecessarySemaphore.acquireUninterruptibly()
       }
-    } catch (e: InterruptedException) {
-      throw AssertionError(e)
     }
+  }
+
+  /**
+   * Signals that a condition affecting the connection decision may have changed.
+   */
+  private fun notifyConnectionConditionsChanged() {
+    connectionNecessarySemaphore.drainPermits()
+    connectionNecessarySemaphore.release()
   }
 
   fun terminate() {
