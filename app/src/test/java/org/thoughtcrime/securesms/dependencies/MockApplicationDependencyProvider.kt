@@ -253,7 +253,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideLibsignalNetwork(config: SignalServiceConfiguration): Network {
+  override fun provideLibsignalNetwork(config: SignalServiceConfiguration, proxyState: NetworkProxyState): Network {
     return mockk(relaxed = true)
   }
 

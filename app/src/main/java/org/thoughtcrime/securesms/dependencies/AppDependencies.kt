@@ -314,6 +314,10 @@ object AppDependencies {
     get() = networkModule.libsignalNetwork
 
   @JvmStatic
+  val networkProxyState: NetworkProxyState
+    get() = networkModule.networkProxyState
+
+  @JvmStatic
   val authWebSocket: SignalWebSocket.AuthenticatedWebSocket
     get() = networkModule.authWebSocket
 
@@ -494,7 +498,7 @@ object AppDependencies {
     fun provideOkHttpClient(): OkHttpClient
     fun provideScheduledMessageManager(): ScheduledMessageManager
     fun providePinnedMessageManager(): PinnedMessageManager
-    fun provideLibsignalNetwork(config: SignalServiceConfiguration): Network
+    fun provideLibsignalNetwork(config: SignalServiceConfiguration, proxyState: NetworkProxyState): Network
     fun provideBillingApi(): BillingApi
     fun provideArchiveApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, pushServiceSocket: PushServiceSocket, signalServiceConfiguration: SignalServiceConfiguration): ArchiveApi
     fun provideKeysApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): KeysApi

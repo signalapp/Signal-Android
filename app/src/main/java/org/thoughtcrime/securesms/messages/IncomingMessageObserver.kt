@@ -23,7 +23,8 @@ import org.signal.core.util.SleepTimer
 import org.signal.core.util.UptimeSleepTimer
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
-import org.signal.network.config.HttpProxy
+import org.signal.core.util.orNull
+import org.signal.network.config.SignalProxy
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.clockskew.ClockSkewDetector
@@ -43,6 +44,8 @@ import org.thoughtcrime.securesms.messages.MessageDecryptor.FollowUpOperation
 import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.net.ConnectivityState
 import org.thoughtcrime.securesms.net.InternetConnectivityMonitor
+import org.thoughtcrime.securesms.net.configureProxy
+import org.thoughtcrime.securesms.net.resolveProxyConfig
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AlarmSleepTimer
@@ -99,6 +102,9 @@ class IncomingMessageObserver(
     private val censored: Boolean
       get() = AppDependencies.signalServiceNetworkAccess.isCensored()
 
+    private val signalProxy: SignalProxy?
+      get() = AppDependencies.signalServiceNetworkAccess.getConfiguration().signalProxy.orNull()
+
     /**
      * Stops the foreground service for websocket users.
      */
@@ -135,8 +141,15 @@ class IncomingMessageObserver(
       }
     },
     onProxyChanged = {
-      Log.i(TAG, "System proxy configuration changed, network reset.")
-      AppDependencies.resetNetwork()
+      val proxyConfig = resolveProxyConfig(signalProxy)
+      val proxyChanged = AppDependencies.networkProxyState.update(proxyConfig)
+      if (proxyChanged) {
+        AppDependencies.libsignalNetwork.configureProxy(proxyConfig)
+        Log.i(TAG, "Proxy config changed, disconnecting websocket...")
+        decryptionDrained = false
+        authWebSocket.disconnect()
+        unauthWebSocket.disconnect()
+      }
     }
   )
 

@@ -25,6 +25,7 @@ class MockAppDependenciesRule : ExternalResource() {
     "databaseObserver",
     "groupsV2Authorization",
     "isInitialized",
+    "networkProxyState",
     "okHttpClient",
     "signalOkHttpClient",
     "webSocketObserver"
