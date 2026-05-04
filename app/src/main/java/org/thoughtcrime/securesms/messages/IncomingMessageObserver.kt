@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.groups.GroupsV2ProcessingLock
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.PushProcessMessageErrorJob
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
@@ -42,8 +41,9 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
 import org.thoughtcrime.securesms.messages.MessageDecryptor.FollowUpOperation
 import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
+import org.thoughtcrime.securesms.net.ConnectivityState
+import org.thoughtcrime.securesms.net.InternetConnectivityMonitor
 import org.thoughtcrime.securesms.notifications.NotificationChannels
-import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess.Companion.toApplicableSystemHttpProxy
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AlarmSleepTimer
 import org.thoughtcrime.securesms.util.Environment
@@ -112,13 +112,19 @@ class IncomingMessageObserver(
 
   private val lock: ReentrantLock = ReentrantLock()
   private val connectionNecessarySemaphore = Semaphore(0)
-  private var previousSystemHttpProxy: HttpProxy? = null
-  private val networkConnectionListener = NetworkConnectionListener(
+
+  /** Tracks Internet connection as reported by [InternetConnectivityMonitor]. */
+  @Volatile
+  private var internetConnection: ConnectivityState = ConnectivityState.OFFLINE
+
+  private val internetConnectivityMonitor = InternetConnectivityMonitor(
     context = context,
-    onNetworkLost = { isNetworkUnavailable ->
+    onConnectivityUpdated = { state ->
       lock.withLock {
-        AppDependencies.libsignalNetwork.onNetworkChange()
-        if (isNetworkUnavailable()) {
+        internetConnection = state
+        if (state.isOnline) {
+          AppDependencies.libsignalNetwork.onNetworkChange()
+        } else {
           Log.w(TAG, "Lost network connection. Resetting the drained state.")
           decryptionDrained = false
           authWebSocket.disconnect()
@@ -128,15 +134,9 @@ class IncomingMessageObserver(
         connectionNecessarySemaphore.release()
       }
     },
-    onProxySettingsChanged = { proxyInfo ->
-      val systemHttpProxy = proxyInfo.toApplicableSystemHttpProxy()
-      if (systemHttpProxy?.host != previousSystemHttpProxy?.host || systemHttpProxy?.port != previousSystemHttpProxy?.port) {
-        val networkReset = AppDependencies.onSystemHttpProxyChange(systemHttpProxy)
-        if (networkReset) {
-          Log.i(TAG, "System proxy configuration changed, network reset.")
-        }
-      }
-      previousSystemHttpProxy = systemHttpProxy
+    onProxyChanged = {
+      Log.i(TAG, "System proxy configuration changed, network reset.")
+      AppDependencies.resetNetwork()
     }
   )
 
@@ -180,7 +180,7 @@ class IncomingMessageObserver(
       }
     })
 
-    networkConnectionListener.register()
+    internetConnectivityMonitor.register()
 
     webSocketStateDisposable = authWebSocket
       .state
@@ -260,7 +260,7 @@ class IncomingMessageObserver(
     val registered = SignalStore.account.isRegistered
     val unauthorizedReceived = TextSecurePreferences.isUnauthorizedReceived(context)
     val fcmEnabled = SignalStore.account.fcmEnabled
-    val hasNetwork = NetworkConstraint.isMet(context)
+    val hasNetwork = internetConnection.isOnline
     val hasProxy = SignalStore.proxy.isProxyEnabled
     val forceWebsocket = SignalStore.settings.forceWebsocketMode.isEnabled
     val websocketAlreadyOpen = isConnectionAvailable()
@@ -285,7 +285,8 @@ class IncomingMessageObserver(
   }
 
   private fun isConnectionAvailable(): Boolean {
-    return !TextSecurePreferences.isUnauthorizedReceived(context) && SignalStore.account.isRegistered && (authWebSocket.stateSnapshot == WebSocketConnectionState.CONNECTED || (authWebSocket.shouldSendKeepAlives() && NetworkConstraint.isMet(context)))
+    val hasNetwork = internetConnection.isOnline
+    return !TextSecurePreferences.isUnauthorizedReceived(context) && SignalStore.account.isRegistered && (authWebSocket.stateSnapshot == WebSocketConnectionState.CONNECTED || (authWebSocket.shouldSendKeepAlives() && hasNetwork))
   }
 
   private fun waitForConnectionNecessary() {
@@ -305,7 +306,7 @@ class IncomingMessageObserver(
   fun terminate() {
     Log.w(TAG, "Termination! ${this.hashCode()}", Throwable())
     INSTANCE_COUNT.decrementAndGet()
-    networkConnectionListener.unregister()
+    internetConnectivityMonitor.unregister()
     webSocketStateDisposable.dispose()
     clockSkewScope.cancel()
     terminated = true

@@ -12,7 +12,6 @@ import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.concurrent.DeadlockDetector
 import org.signal.core.util.concurrent.LatestValueObservable
 import org.signal.core.util.contentproviders.BlobProvider
-import org.signal.core.util.orNull
 import org.signal.core.util.resettableLazy
 import org.signal.donations.permits.DonationPermitsRepository
 import org.signal.glide.SignalGlideDependencies
@@ -35,7 +34,6 @@ import org.signal.network.api.RegistrationApiV2
 import org.signal.network.api.RemoteConfigApi
 import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
-import org.signal.network.config.HttpProxy
 import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.rest.SignalRestClient
 import org.signal.network.service.MessageService
@@ -451,16 +449,6 @@ object AppDependencies {
   @JvmStatic
   fun startNetwork() {
     networkModule.openConnections()
-  }
-
-  fun onSystemHttpProxyChange(systemHttpProxy: HttpProxy?): Boolean {
-    val currentSystemProxy = signalServiceNetworkAccess.getConfiguration().systemHttpProxy.orNull()
-    return if (currentSystemProxy?.host != systemHttpProxy?.host || currentSystemProxy?.port != systemHttpProxy?.port) {
-      resetNetwork()
-      true
-    } else {
-      false
-    }
   }
 
   interface Provider {
