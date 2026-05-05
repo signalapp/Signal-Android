@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.help.refactor
+package org.thoughtcrime.securesms.help
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

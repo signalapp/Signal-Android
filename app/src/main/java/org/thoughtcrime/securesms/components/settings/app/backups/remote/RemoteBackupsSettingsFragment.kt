@@ -106,7 +106,7 @@ import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupState
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
-import org.thoughtcrime.securesms.help.refactor.HelpFragment.Companion.REMOTE_BACKUPS_INDEX
+import org.thoughtcrime.securesms.help.HelpFragment.Companion.REMOTE_BACKUPS_INDEX
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
