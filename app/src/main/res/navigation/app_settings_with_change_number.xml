@@ -584,9 +584,22 @@
             app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
+    <!--  TODO: remove comments, once done  -->
+    <!--    <fragment-->
+    <!--        android:id="@+id/helpFragment"-->
+    <!--        android:name="org.thoughtcrime.securesms.help.HelpFragment"-->
+    <!--        android:label="help_fragment">-->
+
+    <!--        <argument-->
+    <!--            android:name="start_category_index"-->
+    <!--            android:defaultValue="0"-->
+    <!--            app:argType="integer"-->
+    <!--            app:nullable="false" />-->
+    <!--    </fragment>-->
+
     <fragment
         android:id="@+id/helpFragment"
-        android:name="org.thoughtcrime.securesms.help.HelpFragment"
+        android:name="org.thoughtcrime.securesms.help.refactor.HelpFragment"
         android:label="help_fragment">
 
         <argument

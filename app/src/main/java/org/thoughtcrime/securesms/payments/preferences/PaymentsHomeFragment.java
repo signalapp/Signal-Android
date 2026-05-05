@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.banner.BannerManager;
 import org.thoughtcrime.securesms.banner.banners.EnclaveFailureBanner;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
-import org.thoughtcrime.securesms.help.HelpFragment;
+import org.thoughtcrime.securesms.help.refactor.HelpFragment;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil;

@@ -6,7 +6,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.database.InAppPaymentTable
-import org.thoughtcrime.securesms.help.HelpFragment
+import org.thoughtcrime.securesms.help.refactor.HelpFragment
 import org.thoughtcrime.securesms.util.CommunicationActions
 
 /**
