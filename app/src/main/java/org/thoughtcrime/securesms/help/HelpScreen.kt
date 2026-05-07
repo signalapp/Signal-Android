@@ -78,7 +78,7 @@ fun HelpScreen(
   startCategoryIndex: Int = 0,
   onNavigationClick: () -> Unit,
   onWhatIsDebugLogClick: () -> Unit,
-  onFaqClick: () -> Unit,
+  onFaqClick: () -> Unit
 ) {
   val activity = LocalActivity.current
   val context = LocalContext.current
@@ -100,7 +100,7 @@ fun HelpScreen(
             context,
             SupportEmailUtil.getSupportEmailAddress(context),
             event.subject,
-            event.body,
+            event.body
           )
         }
         is HelpScreenEvents.ShowSnackbar -> {
@@ -132,7 +132,7 @@ fun HelpScreen(
     onCategorySelected = viewModel::onCategorySelected,
     onFeelingSelected = viewModel::onFeelingSelected,
     onDebugLogsToggled = viewModel::onDebugLogsToggled,
-    onNextClick = viewModel::onNextClick,
+    onNextClick = viewModel::onNextClick
   )
 }
 
@@ -148,30 +148,30 @@ private fun HelpScreenContent(
   onCategorySelected: (Int) -> Unit,
   onFeelingSelected: (Feeling) -> Unit,
   onDebugLogsToggled: (Boolean) -> Unit,
-  onNextClick: () -> Unit,
+  onNextClick: () -> Unit
 ) {
   Scaffolds.Settings(
     snackbarHost = { Snackbars.Host(snackbarHostState = snackbarHostState) },
     title = stringResource(R.string.preferences__help),
     onNavigationClick = onNavigationClick,
-    navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationIcon = SignalIcons.ArrowStart.imageVector
   ) { paddingValues ->
     Column(
       modifier = Modifier
         .fillMaxSize()
-        .padding(paddingValues),
+        .padding(paddingValues)
     ) {
       Column(
         modifier = Modifier
           .weight(1f)
           .verticalScroll(rememberScrollState())
-          .padding(horizontal = 16.dp),
+          .padding(horizontal = 16.dp)
       ) {
         Text(
           modifier = Modifier.padding(top = 8.dp),
           text = stringResource(id = R.string.HelpFragment__contact_us),
           style = MaterialTheme.typography.bodyMedium,
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -184,12 +184,12 @@ private fun HelpScreenContent(
           },
           keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,
-            capitalization = KeyboardCapitalization.Sentences,
+            capitalization = KeyboardCapitalization.Sentences
           ),
           maxLines = Int.MAX_VALUE,
           modifier = Modifier
             .fillMaxWidth()
-            .defaultMinSize(minHeight = 144.dp),
+            .defaultMinSize(minHeight = 144.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -197,7 +197,7 @@ private fun HelpScreenContent(
         Text(
           text = stringResource(id = R.string.HelpFragment__tell_us_why_youre_reaching_out),
           style = MaterialTheme.typography.bodyMedium,
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -205,7 +205,7 @@ private fun HelpScreenContent(
         CategoryDropdown(
           categories = categories,
           selectedIndex = state.categoryIndex,
-          onCategorySelected = onCategorySelected,
+          onCategorySelected = onCategorySelected
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -213,35 +213,35 @@ private fun HelpScreenContent(
         Text(
           text = stringResource(id = R.string.HelpFragment__how_do_you_feel),
           style = MaterialTheme.typography.bodyMedium,
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Spacer(modifier = Modifier.height(12.dp))
 
         EmojiRatingRow(
           selectedFeeling = state.selectedFeeling,
-          onFeelingSelected = onFeelingSelected,
+          onFeelingSelected = onFeelingSelected
         )
 
         Spacer(modifier = Modifier.height(12.dp))
 
         Row(
           modifier = Modifier.fillMaxWidth(),
-          verticalAlignment = Alignment.CenterVertically,
+          verticalAlignment = Alignment.CenterVertically
         ) {
           Checkbox(
             checked = state.includeDebugLog,
-            onCheckedChange = { onDebugLogsToggled(it) },
+            onCheckedChange = { onDebugLogsToggled(it) }
           )
           Text(
             text = stringResource(id = R.string.HelpFragment__include_debug_log),
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
           )
           TextButton(onClick = onWhatIsDebugLogClick) {
             Text(
               text = stringResource(id = R.string.HelpFragment__whats_this),
-              color = MaterialTheme.colorScheme.primary,
+              color = MaterialTheme.colorScheme.primary
             )
           }
         }
@@ -253,7 +253,7 @@ private fun HelpScreenContent(
         modifier = Modifier
           .fillMaxWidth()
           .padding(bottom = 16.dp, start = 16.dp),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
       ) {
         Text(
           modifier = Modifier
@@ -268,16 +268,16 @@ private fun HelpScreenContent(
             ) {
               append(stringResource(R.string.HelpFragment__have_you_read_our_faq_yet))
             }
-          },
+          }
         )
 
         CircularProgressWrapper(
-          isLoading = state.isSubmitting,
+          isLoading = state.isSubmitting
         ) {
           Buttons.LargeTonal(
             modifier = Modifier.padding(end = 16.dp),
             onClick = onNextClick,
-            enabled = !state.isSubmitting,
+            enabled = !state.isSubmitting
           ) {
             Text(stringResource(R.string.HelpFragment__next))
           }
@@ -292,24 +292,24 @@ private fun HelpScreenContent(
 private fun CategoryDropdown(
   categories: List<String>,
   selectedIndex: Int,
-  onCategorySelected: (Int) -> Unit,
+  onCategorySelected: (Int) -> Unit
 ) {
   var expanded by remember { mutableStateOf(false) }
 
   ExposedDropdownMenuBox(
     expanded = expanded,
-    onExpandedChange = { expanded = !expanded },
+    onExpandedChange = { expanded = !expanded }
   ) {
     TextField(
       modifier = Modifier.menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable, true),
       value = categories.getOrElse(selectedIndex) { "" },
       onValueChange = {},
       readOnly = true,
-      trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+      trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) }
     )
     ExposedDropdownMenu(
       expanded = expanded,
-      onDismissRequest = { expanded = false },
+      onDismissRequest = { expanded = false }
     ) {
       categories.forEachIndexed { index, category ->
         DropdownMenuItem(
@@ -317,7 +317,7 @@ private fun CategoryDropdown(
           onClick = {
             onCategorySelected(index)
             expanded = false
-          },
+          }
         )
       }
     }
@@ -327,17 +327,17 @@ private fun CategoryDropdown(
 @Composable
 private fun EmojiRatingRow(
   selectedFeeling: Feeling?,
-  onFeelingSelected: (Feeling) -> Unit,
+  onFeelingSelected: (Feeling) -> Unit
 ) {
   Row(
     modifier = Modifier.fillMaxWidth(),
-    horizontalArrangement = Arrangement.spacedBy(8.dp),
+    horizontalArrangement = Arrangement.spacedBy(8.dp)
   ) {
     Feeling.entries.forEach { feeling ->
       EmojiButton(
         feeling = feeling,
         isSelected = feeling == selectedFeeling,
-        onClick = { onFeelingSelected(feeling) },
+        onClick = { onFeelingSelected(feeling) }
       )
     }
   }
@@ -347,7 +347,7 @@ private fun EmojiRatingRow(
 private fun EmojiButton(
   feeling: Feeling,
   isSelected: Boolean,
-  onClick: () -> Unit,
+  onClick: () -> Unit
 ) {
   val isDark = isSystemInDarkTheme()
 
@@ -363,7 +363,7 @@ private fun EmojiButton(
       .background(backgroundColor, shape = CircleShape)
       .padding(4.dp)
       .clickable(onClick = onClick),
-    contentAlignment = Alignment.Center,
+    contentAlignment = Alignment.Center
   ) {
     AndroidView(
       factory = { context ->
@@ -381,10 +381,10 @@ private fun EmojiButton(
 
 enum class Feeling(val emojiCode: String, val labelRes: Int) {
   ECSTATIC(emojiCode = "\ud83d\ude00", labelRes = R.string.HelpFragment__emoji_5),
-  HAPPY(emojiCode    = "\ud83d\ude42", labelRes = R.string.HelpFragment__emoji_4),
+  HAPPY(emojiCode = "\ud83d\ude42", labelRes = R.string.HelpFragment__emoji_4),
   AMBIVALENT(emojiCode = "\ud83d\ude10", labelRes = R.string.HelpFragment__emoji_3),
-  UNHAPPY(emojiCode  = "\ud83d\ude41", labelRes = R.string.HelpFragment__emoji_2),
-  ANGRY(emojiCode    = "\ud83d\ude20", labelRes = R.string.HelpFragment__emoji_1),
+  UNHAPPY(emojiCode = "\ud83d\ude41", labelRes = R.string.HelpFragment__emoji_2),
+  ANGRY(emojiCode = "\ud83d\ude20", labelRes = R.string.HelpFragment__emoji_1)
 }
 
 @DayNightPreviews
@@ -402,7 +402,7 @@ private fun HelpScreenPreview() {
       onCategorySelected = {},
       onFeelingSelected = {},
       onDebugLogsToggled = {},
-      onNextClick = {},
+      onNextClick = {}
     )
   }
 }

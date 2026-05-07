@@ -76,7 +76,7 @@ class HelpViewModel(application: Application) : AndroidViewModel(application) {
     val context = application
     val state = internalState.value
     val englishCategories: Array<String> = ResourceUtil.getEnglishResources(context)
-        .getStringArray(R.array.HelpFragment__categories_6)
+      .getStringArray(R.array.HelpFragment__categories_6)
     val categoryLabel = englishCategories.getOrElse(state.categoryIndex) { "" }
 
     val suffix = buildString {
@@ -95,12 +95,12 @@ class HelpViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     val subject = context.getString(R.string.HelpFragment__signal_android_support_request)
-    val body    = SupportEmailUtil.generateSupportEmailBody(
+    val body = SupportEmailUtil.generateSupportEmailBody(
       context,
       R.string.HelpFragment__signal_android_support_request,
       " - $categoryLabel",
       "${state.problemText}\n\n",
-      suffix,
+      suffix
     )
 
     viewModelScope.launch {

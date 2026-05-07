@@ -10,7 +10,7 @@ data class HelpScreenState(
   val categoryIndex: Int = 0,
   val selectedFeeling: Feeling? = null,
   val includeDebugLog: Boolean = true,
-  val isSubmitting: Boolean = false,
+  val isSubmitting: Boolean = false
 ) {
   val isFormValid: Boolean
     get() = problemText.length >= MINIMUM_PROBLEM_CHARS && categoryIndex > 0

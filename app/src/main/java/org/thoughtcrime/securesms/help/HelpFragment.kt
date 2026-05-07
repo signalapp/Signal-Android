@@ -34,14 +34,14 @@ class HelpFragment : ComposeFragment() {
           requireContext(),
           getString(R.string.HelpFragment__link__faq)
         )
-      },
+      }
     )
   }
 
   companion object {
     const val START_CATEGORY_INDEX = "start_category_index"
-    const val PAYMENT_INDEX        = 6
-    const val DONATION_INDEX       = 7
+    const val PAYMENT_INDEX = 6
+    const val DONATION_INDEX = 7
     const val REMOTE_BACKUPS_INDEX = 8
   }
 }
