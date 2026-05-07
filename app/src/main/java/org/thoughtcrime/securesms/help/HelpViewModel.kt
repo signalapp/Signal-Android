@@ -22,43 +22,43 @@ import org.thoughtcrime.securesms.util.SupportEmailUtil
 
 class HelpViewModel(application: Application) : AndroidViewModel(application) {
 
-  private val _state = MutableStateFlow(HelpScreenState())
-  val state = _state.asStateFlow()
+  private val internalState = MutableStateFlow(HelpScreenState())
+  val state = internalState.asStateFlow()
 
-  private val _events = Channel<HelpScreenEvents>(Channel.BUFFERED)
-  val events = _events.receiveAsFlow()
+  private val internalEvents = Channel<HelpScreenEvents>(Channel.BUFFERED)
+  val events = internalEvents.receiveAsFlow()
 
   private val submitDebugLogRepository = SubmitDebugLogRepository()
 
   fun onProblemChanged(text: String) {
-    _state.update { it.copy(problemText = text) }
+    internalState.update { it.copy(problemText = text) }
   }
 
   fun onCategorySelected(index: Int) {
-    _state.update { it.copy(categoryIndex = index) }
+    internalState.update { it.copy(categoryIndex = index) }
   }
 
   fun onFeelingSelected(feeling: Feeling) {
-    _state.update { current ->
+    internalState.update { current ->
       current.copy(selectedFeeling = if (current.selectedFeeling == feeling) null else feeling)
     }
   }
 
   fun onDebugLogsToggled(include: Boolean) {
-    _state.update { it.copy(includeDebugLog = include) }
+    internalState.update { it.copy(includeDebugLog = include) }
   }
 
   fun onNextClick() {
     if (!state.value.isFormValid) {
       viewModelScope.launch {
-        _events.send(HelpScreenEvents.ShowSnackbar(R.string.HelpFragment__please_be_as_descriptive_as_possible))
+        internalEvents.send(HelpScreenEvents.ShowSnackbar(R.string.HelpFragment__please_be_as_descriptive_as_possible))
       }
       return
     }
 
     viewModelScope.launch {
-      if (_state.value.includeDebugLog) {
-        _state.update { it.copy(isSubmitting = true) }
+      if (internalState.value.includeDebugLog) {
+        internalState.update { it.copy(isSubmitting = true) }
 
         submitDebugLogRepository.buildAndSubmitLog { optionalUrl ->
           val debugLogUrl = if (optionalUrl.isPresent) optionalUrl.get()
@@ -74,7 +74,7 @@ class HelpViewModel(application: Application) : AndroidViewModel(application) {
 
   private fun dispatchEmail(debugLogUrl: String?) {
     val context = application
-    val state = _state.value
+    val state = internalState.value
     val englishCategories: Array<String> = ResourceUtil.getEnglishResources(context)
         .getStringArray(R.array.HelpFragment__categories_6)
     val categoryLabel = englishCategories.getOrElse(state.categoryIndex) { "" }
@@ -104,8 +104,8 @@ class HelpViewModel(application: Application) : AndroidViewModel(application) {
     )
 
     viewModelScope.launch {
-      _events.send(HelpScreenEvents.OpenEmail(subject = subject, body = body))
-      _state.update { it.copy(isSubmitting = false) }
+      internalEvents.send(HelpScreenEvents.OpenEmail(subject = subject, body = body))
+      internalState.update { it.copy(isSubmitting = false) }
     }
   }
 }
