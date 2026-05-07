@@ -5,12 +5,11 @@
 
 package org.thoughtcrime.securesms.help
 
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.fragment.app.viewModels
 import org.signal.core.ui.compose.ComposeFragment
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.util.CommunicationActions
 
 class HelpFragment : ComposeFragment() {
 
@@ -18,21 +17,23 @@ class HelpFragment : ComposeFragment() {
 
   @Composable
   override fun FragmentContent() {
-    val startCategoryIndex = arguments?.getInt(START_CATEGORY_INDEX, 0) ?: 6
+    val startCategoryIndex = arguments?.getInt(START_CATEGORY_INDEX, 0) ?: PAYMENT_INDEX
 
     HelpScreen(
       viewModel = viewModel,
       startCategoryIndex = startCategoryIndex,
       onNavigationClick = { requireActivity().onBackPressedDispatcher.onBackPressed() },
       onWhatIsDebugLogClick = {
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.setData(Uri.parse(getString(R.string.HelpFragment__link__debug_info)))
-        startActivity(intent)
+        CommunicationActions.openBrowserLink(
+          requireContext(),
+          getString(R.string.HelpFragment__link__debug_info)
+        )
       },
       onFaqClick = {
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.setData(Uri.parse(getString(R.string.HelpFragment__link__faq)))
-        startActivity(intent)
+        CommunicationActions.openBrowserLink(
+          requireContext(),
+          getString(R.string.HelpFragment__link__faq)
+        )
       },
     )
   }

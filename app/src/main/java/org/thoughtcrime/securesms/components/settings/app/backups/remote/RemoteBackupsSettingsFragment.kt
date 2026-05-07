@@ -106,7 +106,7 @@ import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupState
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
-import org.thoughtcrime.securesms.help.HelpFragment.Companion.REMOTE_BACKUPS_INDEX
+import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
@@ -234,7 +234,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
 
     override fun onContactSupport() {
       requireActivity().finish()
-      requireActivity().startActivity(AppSettingsActivity.help(requireContext(), REMOTE_BACKUPS_INDEX))
+      requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.REMOTE_BACKUPS_INDEX))
     }
 
     override fun onLearnMoreAboutBackupFailure() {
