@@ -20,9 +20,14 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 
-class HelpViewModel(application: Application) : AndroidViewModel(application) {
+class HelpViewModel(
+  startCategoryIndex: Int,
+  application: Application
+) : AndroidViewModel(application) {
 
-  private val internalState = MutableStateFlow(HelpScreenState())
+  private val internalState = MutableStateFlow(HelpScreenState(
+    categoryIndex = startCategoryIndex
+  ))
   val state = internalState.asStateFlow()
 
   private val internalSideEffect = Channel<HelpScreenSideEffect>(Channel.BUFFERED)

@@ -75,7 +75,6 @@ import org.thoughtcrime.securesms.util.SupportEmailUtil
 @Composable
 fun HelpScreen(
   viewModel: HelpViewModel,
-  startCategoryIndex: Int = 0,
   onNavigationClick: () -> Unit,
   onWhatIsDebugLogClick: () -> Unit,
   onFaqClick: () -> Unit
@@ -87,10 +86,6 @@ fun HelpScreen(
   val state by viewModel.state.collectAsStateWithLifecycle()
 
   val snackbarHostState = remember { SnackbarHostState() }
-
-  LaunchedEffect(startCategoryIndex) {
-    viewModel.onCategorySelected(startCategoryIndex)
-  }
 
   LaunchedEffect(Unit) {
     viewModel.sideEffect.collect { event ->
