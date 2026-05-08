@@ -93,9 +93,9 @@ fun HelpScreen(
   }
 
   LaunchedEffect(Unit) {
-    viewModel.events.collect { event ->
+    viewModel.sideEffect.collect { event ->
       when (event) {
-        is HelpScreenEvents.OpenEmail -> {
+        is HelpScreenSideEffect.OpenEmail -> {
           CommunicationActions.openEmail(
             context,
             SupportEmailUtil.getSupportEmailAddress(context),
@@ -103,7 +103,7 @@ fun HelpScreen(
             event.body
           )
         }
-        is HelpScreenEvents.ShowSnackbar -> {
+        is HelpScreenSideEffect.ShowSnackbar -> {
           snackbarHostState.showSnackbar(context.getString(event.messageRes))
         }
       }

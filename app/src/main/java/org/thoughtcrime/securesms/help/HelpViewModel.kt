@@ -25,8 +25,8 @@ class HelpViewModel(application: Application) : AndroidViewModel(application) {
   private val internalState = MutableStateFlow(HelpScreenState())
   val state = internalState.asStateFlow()
 
-  private val internalEvents = Channel<HelpScreenEvents>(Channel.BUFFERED)
-  val events = internalEvents.receiveAsFlow()
+  private val internalSideEffect = Channel<HelpScreenSideEffect>(Channel.BUFFERED)
+  val sideEffect = internalSideEffect.receiveAsFlow()
 
   private val submitDebugLogRepository = SubmitDebugLogRepository()
 
@@ -51,7 +51,7 @@ class HelpViewModel(application: Application) : AndroidViewModel(application) {
   fun onNextClick() {
     if (!state.value.isFormValid) {
       viewModelScope.launch {
-        internalEvents.send(HelpScreenEvents.ShowSnackbar(R.string.HelpFragment__please_be_as_descriptive_as_possible))
+        internalSideEffect.send(HelpScreenSideEffect.ShowSnackbar(R.string.HelpFragment__please_be_as_descriptive_as_possible))
       }
       return
     }
@@ -104,7 +104,7 @@ class HelpViewModel(application: Application) : AndroidViewModel(application) {
     )
 
     viewModelScope.launch {
-      internalEvents.send(HelpScreenEvents.OpenEmail(subject = subject, body = body))
+      internalSideEffect.send(HelpScreenSideEffect.OpenEmail(subject = subject, body = body))
       internalState.update { it.copy(isSubmitting = false) }
     }
   }
