@@ -10,9 +10,9 @@ minSdk = "23"
 ndk = "28.0.13004108"
 javaVersion = "17"
 kotlinJvmTarget = "17"
-gradle = "9.1.1"
+gradle = "9.3.1"
 kotlin = "2.2.20"
-android-gradle-plugin = "9.1.1"
+android-gradle-plugin = "9.3.1"
 
 # Other versions
 androidx-appcompat = "1.7.1"
