@@ -30,7 +30,7 @@ class HelpViewModel(
   ))
   val state = internalState.asStateFlow()
 
-  private val internalSideEffect = Channel<HelpScreenSideEffect>(Channel.BUFFERED)
+  private val internalSideEffect = Channel<HelpScreenSideEffects>(Channel.BUFFERED)
   val sideEffect = internalSideEffect.receiveAsFlow()
 
   private val submitDebugLogRepository = SubmitDebugLogRepository()
@@ -66,7 +66,7 @@ class HelpViewModel(
   private fun onNextClick() {
     if (!state.value.isFormValid) {
       viewModelScope.launch {
-        internalSideEffect.send(HelpScreenSideEffect.ShowSnackbar(R.string.HelpFragment__please_be_as_descriptive_as_possible))
+        internalSideEffect.send(HelpScreenSideEffects.ShowSnackbar(R.string.HelpFragment__please_be_as_descriptive_as_possible))
       }
       return
     }
@@ -119,7 +119,7 @@ class HelpViewModel(
     )
 
     viewModelScope.launch {
-      internalSideEffect.send(HelpScreenSideEffect.OpenEmail(subject = subject, body = body))
+      internalSideEffect.send(HelpScreenSideEffects.OpenEmail(subject = subject, body = body))
       internalState.update { it.copy(isSubmitting = false) }
     }
   }

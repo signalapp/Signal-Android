@@ -77,7 +77,7 @@ import org.thoughtcrime.securesms.util.SupportEmailUtil
 fun HelpScreenContent(
   state: HelpScreenState,
   onEvent: (HelpScreenEvents) -> Unit,
-  sideEffect: Flow<HelpScreenSideEffect>,
+  sideEffect: Flow<HelpScreenSideEffects>,
   onNavigationClick: () -> Unit,
   onWhatIsDebugLogClick: () -> Unit,
   onFaqClick: () -> Unit,
@@ -91,7 +91,7 @@ fun HelpScreenContent(
   LaunchedEffect(Unit) {
     sideEffect.collect { sideEffect ->
       when (sideEffect) {
-        is HelpScreenSideEffect.OpenEmail -> {
+        is HelpScreenSideEffects.OpenEmail -> {
           CommunicationActions.openEmail(
             context,
             SupportEmailUtil.getSupportEmailAddress(context),
@@ -99,7 +99,7 @@ fun HelpScreenContent(
             sideEffect.body
           )
         }
-        is HelpScreenSideEffect.ShowSnackbar -> {
+        is HelpScreenSideEffects.ShowSnackbar -> {
           snackbarHostState.showSnackbar(context.getString(sideEffect.messageRes))
         }
       }
