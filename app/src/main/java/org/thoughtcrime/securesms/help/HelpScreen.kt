@@ -59,7 +59,8 @@ import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.CircularProgressWrapper
 import org.signal.core.ui.compose.DayNightPreviews
@@ -73,33 +74,33 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 
 @Composable
-fun HelpScreen(
-  viewModel: HelpViewModel,
+fun HelpScreenContent(
+  state: HelpScreenState,
+  onEvent: (HelpScreenEvents) -> Unit,
+  sideEffect: Flow<HelpScreenSideEffect>,
   onNavigationClick: () -> Unit,
   onWhatIsDebugLogClick: () -> Unit,
-  onFaqClick: () -> Unit
+  onFaqClick: () -> Unit,
 ) {
   val activity = LocalActivity.current
   val context = LocalContext.current
   val categories = stringArrayResource(R.array.HelpFragment__categories_6).toList()
 
-  val state by viewModel.state.collectAsStateWithLifecycle()
-
   val snackbarHostState = remember { SnackbarHostState() }
 
   LaunchedEffect(Unit) {
-    viewModel.sideEffect.collect { event ->
-      when (event) {
+    sideEffect.collect { sideEffect ->
+      when (sideEffect) {
         is HelpScreenSideEffect.OpenEmail -> {
           CommunicationActions.openEmail(
             context,
             SupportEmailUtil.getSupportEmailAddress(context),
-            event.subject,
-            event.body
+            sideEffect.subject,
+            sideEffect.body
           )
         }
         is HelpScreenSideEffect.ShowSnackbar -> {
-          snackbarHostState.showSnackbar(context.getString(event.messageRes))
+          snackbarHostState.showSnackbar(context.getString(sideEffect.messageRes))
         }
       }
     }
@@ -116,35 +117,6 @@ fun HelpScreen(
     }
   }
 
-  HelpScreenContent(
-    state = state,
-    categories = categories,
-    snackbarHostState = snackbarHostState,
-    onNavigationClick = { onNavigationClick() },
-    onWhatIsDebugLogClick = { onWhatIsDebugLogClick() },
-    onFaqClick = { onFaqClick() },
-    onProblemTextChanged = viewModel::onProblemChanged,
-    onCategorySelected = viewModel::onCategorySelected,
-    onFeelingSelected = viewModel::onFeelingSelected,
-    onDebugLogsToggled = viewModel::onDebugLogsToggled,
-    onNextClick = viewModel::onNextClick
-  )
-}
-
-@Composable
-private fun HelpScreenContent(
-  state: HelpScreenState,
-  categories: List<String>,
-  snackbarHostState: SnackbarHostState,
-  onNavigationClick: () -> Unit,
-  onWhatIsDebugLogClick: () -> Unit,
-  onFaqClick: () -> Unit,
-  onProblemTextChanged: (String) -> Unit,
-  onCategorySelected: (Int) -> Unit,
-  onFeelingSelected: (Feeling) -> Unit,
-  onDebugLogsToggled: (Boolean) -> Unit,
-  onNextClick: () -> Unit
-) {
   Scaffolds.Settings(
     snackbarHost = { Snackbars.Host(snackbarHostState = snackbarHostState) },
     title = stringResource(R.string.preferences__help),
@@ -173,7 +145,7 @@ private fun HelpScreenContent(
 
         TextField(
           value = state.problemText,
-          onValueChange = { onProblemTextChanged(it) },
+          onValueChange = { onEvent(HelpScreenEvents.ProblemTextChanged(it)) },
           placeholder = {
             Text(text = stringResource(id = R.string.HelpFragment__tell_us_whats_going_on))
           },
@@ -200,7 +172,7 @@ private fun HelpScreenContent(
         CategoryDropdown(
           categories = categories,
           selectedIndex = state.categoryIndex,
-          onCategorySelected = onCategorySelected
+          onCategorySelected = { onEvent(HelpScreenEvents.CategorySelected(it)) }
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -215,7 +187,7 @@ private fun HelpScreenContent(
 
         EmojiRatingRow(
           selectedFeeling = state.selectedFeeling,
-          onFeelingSelected = onFeelingSelected
+          onFeelingSelected = { onEvent(HelpScreenEvents.FeelingSelected(it)) }
         )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -226,7 +198,7 @@ private fun HelpScreenContent(
         ) {
           Checkbox(
             checked = state.includeDebugLog,
-            onCheckedChange = { onDebugLogsToggled(it) }
+            onCheckedChange = { onEvent(HelpScreenEvents.DebugLogsToggled(it)) }
           )
           Text(
             text = stringResource(id = R.string.HelpFragment__include_debug_log),
@@ -271,7 +243,7 @@ private fun HelpScreenContent(
         ) {
           Buttons.LargeTonal(
             modifier = Modifier.padding(end = 16.dp),
-            onClick = onNextClick,
+            onClick = { onEvent(HelpScreenEvents.OnNextClick) },
             enabled = !state.isSubmitting
           ) {
             Text(stringResource(R.string.HelpFragment__next))
@@ -388,16 +360,11 @@ private fun HelpScreenPreview() {
   Previews.Preview {
     HelpScreenContent(
       state = HelpScreenState(),
-      categories = emptyList(),
-      snackbarHostState = SnackbarHostState(),
+      onEvent = {},
+      sideEffect = emptyFlow(),
       onNavigationClick = {},
       onWhatIsDebugLogClick = {},
       onFaqClick = {},
-      onProblemTextChanged = {},
-      onCategorySelected = {},
-      onFeelingSelected = {},
-      onDebugLogsToggled = {},
-      onNextClick = {}
     )
   }
 }

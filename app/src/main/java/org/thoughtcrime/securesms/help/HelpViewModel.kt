@@ -35,25 +35,35 @@ class HelpViewModel(
 
   private val submitDebugLogRepository = SubmitDebugLogRepository()
 
-  fun onProblemChanged(text: String) {
+  fun onEvent(event: HelpScreenEvents) {
+    when (event) {
+      is HelpScreenEvents.ProblemTextChanged -> onProblemChanged(event.text)
+      is HelpScreenEvents.CategorySelected -> onCategorySelected(event.index)
+      is HelpScreenEvents.FeelingSelected -> onFeelingSelected(event.feeling)
+      is HelpScreenEvents.DebugLogsToggled -> onDebugLogsToggled(event.toggle)
+      is HelpScreenEvents.OnNextClick -> onNextClick()
+    }
+  }
+
+  private fun onProblemChanged(text: String) {
     internalState.update { it.copy(problemText = text) }
   }
 
-  fun onCategorySelected(index: Int) {
+  private fun onCategorySelected(index: Int) {
     internalState.update { it.copy(categoryIndex = index) }
   }
 
-  fun onFeelingSelected(feeling: Feeling) {
+  private fun onFeelingSelected(feeling: Feeling) {
     internalState.update { current ->
       current.copy(selectedFeeling = if (current.selectedFeeling == feeling) null else feeling)
     }
   }
 
-  fun onDebugLogsToggled(include: Boolean) {
+  private fun onDebugLogsToggled(include: Boolean) {
     internalState.update { it.copy(includeDebugLog = include) }
   }
 
-  fun onNextClick() {
+  private fun onNextClick() {
     if (!state.value.isFormValid) {
       viewModelScope.launch {
         internalSideEffect.send(HelpScreenSideEffect.ShowSnackbar(R.string.HelpFragment__please_be_as_descriptive_as_possible))

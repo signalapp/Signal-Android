@@ -6,6 +6,8 @@
 package org.thoughtcrime.securesms.help
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.core.ui.compose.ComposeFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -23,8 +25,12 @@ class HelpFragment : ComposeFragment() {
 
   @Composable
   override fun FragmentContent() {
-    HelpScreen(
-      viewModel = viewModel,
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    HelpScreenContent(
+      state = state,
+      onEvent = viewModel::onEvent,
+      sideEffect = viewModel.sideEffect,
       onNavigationClick = { requireActivity().onBackPressedDispatcher.onBackPressed() },
       onWhatIsDebugLogClick = {
         CommunicationActions.openBrowserLink(
