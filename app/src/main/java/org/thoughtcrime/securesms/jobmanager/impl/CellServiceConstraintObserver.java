@@ -43,7 +43,9 @@ public class CellServiceConstraintObserver implements ConstraintObserver {
     TelephonyManager           telephonyManager     = ServiceUtil.getTelephonyManager(application);
     LegacyServiceStateListener serviceStateListener = new LegacyServiceStateListener();
 
-    if (Build.VERSION.SDK_INT >= 31) {
+    if (Build.VERSION.SDK_INT >= 33) {
+      telephonyManager.registerTelephonyCallback(TelephonyManager.INCLUDE_LOCATION_DATA_NONE, SignalExecutors.BOUNDED, new ServiceStateListenerApi31());
+    } else if (Build.VERSION.SDK_INT >= 31) {
       telephonyManager.registerTelephonyCallback(SignalExecutors.BOUNDED, new ServiceStateListenerApi31());
     } else {
       HandlerThread handlerThread = SignalExecutors.getAndStartHandlerThread("CellServiceConstraintObserver", Thread.NORM_PRIORITY);
