@@ -77,7 +77,7 @@ fun HelpScreenContent(
   sideEffect: Flow<HelpScreenSideEffects>,
   onNavigationClick: () -> Unit,
   onWhatIsDebugLogClick: () -> Unit,
-  onFaqClick: () -> Unit,
+  onFaqClick: () -> Unit
 ) {
   val context = LocalContext.current
   val categories = stringArrayResource(R.array.HelpFragment__categories_6).toList()
@@ -348,7 +348,7 @@ private fun HelpScreenPreview() {
       sideEffect = emptyFlow(),
       onNavigationClick = {},
       onWhatIsDebugLogClick = {},
-      onFaqClick = {},
+      onFaqClick = {}
     )
   }
 }

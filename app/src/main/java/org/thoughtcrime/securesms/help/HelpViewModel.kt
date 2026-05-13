@@ -25,9 +25,11 @@ class HelpViewModel(
   application: Application
 ) : AndroidViewModel(application) {
 
-  private val internalState = MutableStateFlow(HelpScreenState(
-    categoryIndex = startCategoryIndex
-  ))
+  private val internalState = MutableStateFlow(
+    HelpScreenState(
+      categoryIndex = startCategoryIndex
+    )
+  )
   val state = internalState.asStateFlow()
 
   private val internalSideEffect = Channel<HelpScreenSideEffects>(Channel.BUFFERED)
