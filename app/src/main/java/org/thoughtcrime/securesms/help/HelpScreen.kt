@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.help
 
 import android.widget.ImageView
-import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -37,7 +36,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -58,7 +56,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.view.WindowCompat
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import org.signal.core.ui.compose.Buttons
@@ -82,7 +79,6 @@ fun HelpScreenContent(
   onWhatIsDebugLogClick: () -> Unit,
   onFaqClick: () -> Unit,
 ) {
-  val activity = LocalActivity.current
   val context = LocalContext.current
   val categories = stringArrayResource(R.array.HelpFragment__categories_6).toList()
 
@@ -106,17 +102,6 @@ fun HelpScreenContent(
     }
   }
 
-  DisposableEffect(Unit) {
-    activity?.window?.let {
-      WindowCompat.setDecorFitsSystemWindows(it, false)
-    }
-    onDispose {
-      activity?.window?.let {
-        WindowCompat.setDecorFitsSystemWindows(it, true)
-      }
-    }
-  }
-
   Scaffolds.Settings(
     snackbarHost = { Snackbars.Host(snackbarHostState = snackbarHostState) },
     title = stringResource(R.string.preferences__help),
@@ -125,7 +110,6 @@ fun HelpScreenContent(
   ) { paddingValues ->
     Column(
       modifier = Modifier
-        .fillMaxSize()
         .padding(paddingValues)
     ) {
       Column(
