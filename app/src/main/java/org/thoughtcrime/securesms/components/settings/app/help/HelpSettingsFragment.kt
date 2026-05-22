@@ -26,6 +26,7 @@ import org.signal.core.ui.compose.Rows.TextAndLabel
 import org.signal.core.ui.compose.Rows.defaultPadding
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.util.Util
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -74,7 +75,10 @@ class HelpSettingsFragment : ComposeFragment() {
         item {
           Rows.TextRow(
             text = stringResource(R.string.HelpSettingsFragment__version),
-            label = BuildConfig.VERSION_NAME
+            label = BuildConfig.VERSION_NAME,
+            onClick = {
+              Util.copyToClipboard(context, BuildConfig.VERSION_NAME)
+            }
           )
         }
 
