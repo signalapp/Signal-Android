@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.models.media.Media
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.util.LinkUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.UriUtil
@@ -24,7 +25,7 @@ class ShareRepository(context: Context) {
     return when (unresolvedShareData) {
       is UnresolvedShareData.ExternalMultiShare -> Single.fromCallable { resolve(unresolvedShareData) }
       is UnresolvedShareData.ExternalSingleShare -> Single.fromCallable { resolve(unresolvedShareData) }
-      is UnresolvedShareData.ExternalPrimitiveShare -> Single.just(ResolvedShareData.Primitive(unresolvedShareData.text))
+      is UnresolvedShareData.ExternalPrimitiveShare -> Single.just(ResolvedShareData.Primitive(prettifyIfUrl(unresolvedShareData.text)))
     }.subscribeOn(Schedulers.io())
   }
 
@@ -129,6 +130,11 @@ class ShareRepository(context: Context) {
 
   companion object {
     private val TAG = Log.tag(ShareRepository::class.java)
+
+    private fun prettifyIfUrl(text: CharSequence): CharSequence {
+      val trimmed = text.toString().trim()
+      return if (LinkUtil.isLegalUrl(trimmed)) LinkUtil.toDisplayUrl(trimmed) else text
+    }
 
     private fun getMimeType(context: Context, uri: Uri, mimeType: String?, fileExtension: String? = null): String {
       var updatedMimeType = MediaUtil.getMimeType(context, uri, fileExtension)
