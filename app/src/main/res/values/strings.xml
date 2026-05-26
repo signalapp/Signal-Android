@@ -6047,6 +6047,8 @@
     <string name="HelpSettingsFragment__support_center">Support center</string>
     <string name="HelpSettingsFragment__contact_us">Contact us</string>
     <string name="HelpSettingsFragment__version">Version</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Copied to clipboard</string>
     <string name="HelpSettingsFragment__debug_log">Debug log</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licenses</string>

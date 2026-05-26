@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.help
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -76,8 +77,9 @@ class HelpSettingsFragment : ComposeFragment() {
           Rows.TextRow(
             text = stringResource(R.string.HelpSettingsFragment__version),
             label = BuildConfig.VERSION_NAME,
-            onClick = {
+            onLongClick = {
               Util.copyToClipboard(context, BuildConfig.VERSION_NAME)
+              Toast.makeText(context, R.string.HelpSettingsFragment__copied_to_clipboard, Toast.LENGTH_SHORT).show()
             }
           )
         }
