@@ -12,7 +12,7 @@ RUN apt install -oAcquire::https::Verify-Peer=false -y ca-certificates
 
 # Back to normal, verification back on
 RUN apt update
-RUN apt install -y git openjdk-17-jdk unzip wget
+RUN apt install -y git openjdk-21-jdk unzip wget
 
 ENV ANDROID_COMMAND_LINE_TOOLS_FILENAME commandlinetools-linux-10406996_latest.zip
 ENV ANDROID_API_LEVELS                  android-36
