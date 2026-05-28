@@ -390,6 +390,7 @@ import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
+import java.time.ZoneOffset
 import java.util.Locale
 import java.util.Optional
 import java.util.concurrent.ExecutionException
@@ -5247,7 +5248,7 @@ class ConversationFragment :
         datePicker.addOnPositiveButtonClickListener { selectedDate ->
           if (selectedDate != null) {
             val localMidnightTimestamp = Instant.ofEpochMilli(selectedDate)
-              .atZone(ZoneId.systemDefault())
+              .atZone(ZoneOffset.UTC)
               .toLocalDate()
               .atStartOfDay(ZoneId.systemDefault())
               .toInstant()
