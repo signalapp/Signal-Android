@@ -16,6 +16,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
+import java.time.ZoneOffset
 import java.time.temporal.TemporalAdjusters
 import java.util.concurrent.Executor
 import kotlin.time.Duration.Companion.days
@@ -105,7 +106,7 @@ class JumpToDateValidator private constructor(
 
   private fun normalizeToLocalMidnight(timestamp: Long): Long {
     return Instant.ofEpochMilli(timestamp)
-      .atZone(zoneId)
+      .atZone(ZoneOffset.UTC)
       .toLocalDate()
       .atStartOfDay(zoneId)
       .toInstant()
