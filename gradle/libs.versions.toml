@@ -161,7 +161,7 @@ google-ez-vcard = "com.googlecode.ez-vcard:ez-vcard:0.9.11"
 google-jsr305 = "com.google.code.findbugs:jsr305:3.0.2"
 google-guava-android = "com.google.guava:guava:33.6.0-android"
 google-flexbox = "com.google.android.flexbox:flexbox:3.0.0"
-com-google-devtools-ksp-gradle-plugin = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.3.2"
+com-google-devtools-ksp-gradle-plugin = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.3.7"
 
 # Firebase
 firebase-messaging = "com.google.firebase:firebase-messaging:25.0.1"

@@ -87,12 +87,6 @@ val selectableVariants = listOf(
   "githubProdRelease"
 )
 
-// Wire 5.x iterates Android source sets and expects matching Kotlin source sets.
-// AGP 9.0's built-in Kotlin doesn't create all source sets automatically.
-val kotlinExt = extensions.getByName("kotlin") as KotlinAndroidProjectExtension
-android.sourceSets.all {
-  kotlinExt.sourceSets.findByName(name) ?: kotlinExt.sourceSets.create(name)
-}
 // AGP 9.0's built-in Kotlin doesn't pick up extra java.srcDir entries from Android
 // source sets, so add shared dirs directly to the relevant Kotlin compile tasks.
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).configureEach {
