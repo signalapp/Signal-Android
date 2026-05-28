@@ -164,7 +164,7 @@ object SlowNotificationHeuristics {
       return false
     }
 
-    if (failures.size / (failures.size + successes.size) >= failurePercentage) {
+    if (failures.size.toFloat() / (failures.size + successes.size) >= failurePercentage) {
       Log.w(TAG, "User often unable start FCM service. ${failures.size} failed : ${successes.size} successful")
       return true
     }
