@@ -1,3 +1,8 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.signal.imageeditor.core;
 
 import android.graphics.Matrix;
@@ -9,13 +14,16 @@ import org.signal.imageeditor.core.model.EditorElement;
 
 final class ElementScaleEditSession extends ElementEditSession {
 
-  private ElementScaleEditSession(@NonNull EditorElement selected, @NonNull Matrix inverseMatrix) {
+  private final float initialRotationRadians;
+
+  private ElementScaleEditSession(@NonNull EditorElement selected, @NonNull Matrix inverseMatrix, float initialRotationRadians) {
     super(selected, inverseMatrix);
+    this.initialRotationRadians = initialRotationRadians;
   }
 
   static ElementScaleEditSession startScale(@NonNull ElementDragEditSession session, @NonNull Matrix inverseMatrix, @NonNull PointF point, int p) {
     session.commit();
-    ElementScaleEditSession newSession = new ElementScaleEditSession(session.selected, inverseMatrix);
+    ElementScaleEditSession newSession = new ElementScaleEditSession(session.selected, inverseMatrix, session.selected.getLocalRotationAngle());
     newSession.setScreenStartPoint(1 - p, session.endPointScreen[0]);
     newSession.setScreenEndPoint(1 - p, session.endPointScreen[0]);
     newSession.setScreenStartPoint(p, point);
@@ -38,6 +46,7 @@ final class ElementScaleEditSession extends ElementEditSession {
       editorMatrix.postScale(scale, scale);
 
       double angle = angle(endPointElement[0], endPointElement[1]) - angle(startPointElement[0], startPointElement[1]);
+      angle = RotationSnap.snapToAngle(initialRotationRadians, angle);
 
       if (!selected.getFlags().isRotateLocked()) {
         editorMatrix.postRotate((float) Math.toDegrees(angle));
