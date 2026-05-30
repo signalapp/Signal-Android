@@ -2341,6 +2341,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     AppDependencies.databaseObserver.notifyConversationListListeners()
   }
 
+  fun markAsUnread(messageId: Long) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(READ to 0)
+      .where("$ID = ?", messageId)
+      .run()
+  }
+
   fun markAsRemoteDelete(targetMessage: MessageRecord, deletedBy: RecipientId) {
     writableDatabase.withinTransaction { db ->
       val hasRevision = (targetMessage as? MmsMessageRecord)?.latestRevisionId?.id != null

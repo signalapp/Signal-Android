@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.IndividualSendJobV2Data
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientUtil
@@ -219,12 +220,13 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
         SignalDatabase.messages.markAsSent(messageId, success.sentUnidentified)
         PushSendJob.markAttachmentsUploaded(messageId, message)
 
-        SignalDatabase.threads.updateSilently(threadId, false)
+        SignalDatabase.threads.update(threadId, false)
 
         if (recipient.isSelf) {
           SignalDatabase.messages.incrementDeliveryReceiptCount(message.sentTimeMillis, recipient.id, System.currentTimeMillis())
           SignalDatabase.messages.incrementReadReceiptCount(message.sentTimeMillis, recipient.id, System.currentTimeMillis())
           SignalDatabase.messages.incrementViewedReceiptCount(message.sentTimeMillis, recipient.id, System.currentTimeMillis())
+          AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(threadId))
         }
 
         val accessMode = recipient.sealedSenderAccessMode

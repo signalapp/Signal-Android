@@ -214,7 +214,8 @@ object NotificationFactory {
     }
     val canAlertBasedOnTime: Boolean = lastNotificationTimestamp < System.currentTimeMillis() - throttle.inWholeMilliseconds || lastNotificationTimestamp > System.currentTimeMillis()
 
-    return ((conversation.hasNewNotifications() && canAlertBasedOnTime) || alertOverride) && !conversation.mostRecentNotification.authorRecipient.isSelf
+    return ((conversation.hasNewNotifications() && canAlertBasedOnTime) || alertOverride) &&
+      (!conversation.mostRecentNotification.authorRecipient.isSelf || conversation.recipient.isSelf)
   }
 
   @WorkerThread

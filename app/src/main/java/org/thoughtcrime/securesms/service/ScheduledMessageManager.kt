@@ -56,6 +56,9 @@ class ScheduledMessageManager(
     for (record in scheduledMessagesToSend) {
       val expiresIn = SignalDatabase.recipients.getExpiresInSeconds(record.toRecipient.id)
       if (messagesTable.clearScheduledStatus(record.threadId, record.id, expiresIn.seconds.inWholeMilliseconds)) {
+        if (record.toRecipient.isSelf) {
+          messagesTable.markAsUnread(record.id)
+        }
         if (record.toRecipient.isPushGroup) {
           PushGroupSendJob.enqueue(application, AppDependencies.jobManager, record.id, record.toRecipient.id, emptySet(), true)
         } else {

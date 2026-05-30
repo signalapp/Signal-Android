@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob.Companion.enqueue
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.OutgoingMessage
+import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientUtil
@@ -169,13 +170,13 @@ class IndividualSendJob private constructor(parameters: Parameters, private val 
       markAttachmentsUploaded(messageId, message)
       SignalDatabase.messages.markUnidentified(messageId, unidentified)
 
-      // For scheduled messages, which may not have updated the thread with its snippet yet
-      SignalDatabase.threads.updateSilently(threadId, false)
+      SignalDatabase.threads.update(threadId, false)
 
       if (recipient.isSelf) {
         SignalDatabase.messages.incrementDeliveryReceiptCount(message.sentTimeMillis, recipient.id, System.currentTimeMillis())
         SignalDatabase.messages.incrementReadReceiptCount(message.sentTimeMillis, recipient.id, System.currentTimeMillis())
         SignalDatabase.messages.incrementViewedReceiptCount(message.sentTimeMillis, recipient.id, System.currentTimeMillis())
+        AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(threadId))
       }
 
       if (unidentified && accessMode == SealedSenderAccessMode.UNKNOWN && profileKey == null) {
