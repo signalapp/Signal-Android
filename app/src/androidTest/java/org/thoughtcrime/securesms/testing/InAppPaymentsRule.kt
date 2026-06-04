@@ -8,9 +8,9 @@ package org.thoughtcrime.securesms.testing
 import androidx.test.platform.app.InstrumentationRegistry
 import io.mockk.every
 import org.junit.rules.ExternalResource
+import org.signal.core.util.JsonUtils
 import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 
 /**

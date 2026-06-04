@@ -21,7 +21,9 @@ import org.signal.network.api.AttachmentApi
 import org.signal.network.api.CallingApi
 import org.signal.network.api.CdsApi
 import org.signal.network.api.CertificateApi
+import org.signal.network.api.KeysApiV2
 import org.signal.network.api.LinkDeviceApi
+import org.signal.network.api.MessageApiV2
 import org.signal.network.api.PaymentsApi
 import org.signal.network.api.ProvisioningApi
 import org.signal.network.api.RateLimitChallengeApi
@@ -29,6 +31,7 @@ import org.signal.network.api.RemoteConfigApi
 import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
 import org.signal.network.rest.SignalRestClient
+import org.signal.network.service.MessageService
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization
 import org.thoughtcrime.securesms.groups.GroupsV2AuthorizationMemoryValueCache
@@ -94,6 +97,12 @@ class NetworkDependenciesModule(
     provider.provideSignalServiceMessageSender(protocolStore, pushServiceSocket, messageApi, keysApi)
   }
   val signalServiceMessageSender: SignalServiceMessageSender by _signalServiceMessageSender
+
+  val messageApiV2: MessageApiV2 by lazy { MessageApiV2(authWebSocket, unauthWebSocket) }
+
+  val keysApiV2: KeysApiV2 by lazy { KeysApiV2(authWebSocket, unauthWebSocket) }
+
+  val messageService: MessageService by lazy { provider.provideMessageService(protocolStore, messageApiV2, keysApiV2) }
 
   val incomingMessageObserver: IncomingMessageObserver by lazy {
     provider.provideIncomingMessageObserver(authWebSocket, unauthWebSocket)

@@ -121,12 +121,14 @@ data class RecipientRecord(
   )
 
   data class Capabilities(
-    val rawBits: Long
+    val rawBits: Long,
+    val usernameSyncMessages: Recipient.Capability
   ) {
     companion object {
       @JvmField
       val UNKNOWN = Capabilities(
-        rawBits = 0
+        rawBits = 0,
+        usernameSyncMessages = Recipient.Capability.UNKNOWN
       )
     }
   }

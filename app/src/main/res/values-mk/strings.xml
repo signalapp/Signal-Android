@@ -329,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Испрати</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Скорешни контакти</string>
-    <string name="CameraContacts_signal_contacts">Signal контакти</string>
-    <string name="CameraContacts_signal_groups">Signal групи</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Можете да споделите со најмногу %1$d разговор.</item>
-        <item quantity="other">Можете да споделите со најмногу %1$d разговори.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Избери Signal примачи</string>
-    <string name="CameraContacts_no_signal_contacts">Нема Signal контакти</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Можете да го користите само копчето за камерата за да испраќате слики на Signal контакти. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Не можете да го најдете контактот што го барате?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Поканете контакт да се приклучи на Signal</string>
     <string name="CameraContacts__menu_search">Барај</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4372,7 +4358,7 @@
     <string name="preferences_data_and_storage__never">Никогаш</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi и податоци преку мобилен</string>
     <string name="preferences_data_and_storage__mobile_data_only">Податоци само преку мобилен</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Користење на помалку податоци може да ги подобри повиците на лоши мрежи</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Користење на помалку податоци може да ги подобри повиците на лоши мрежи.</string>
     <string name="preferences_notifications__in_chat_sounds">Звуци во разговор</string>
     <string name="preferences_notifications__show">Прикажи</string>
     <string name="preferences_notifications__ringtone">Звук за ѕвонење</string>
@@ -6042,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">Центар за поддршка</string>
     <string name="HelpSettingsFragment__contact_us">Контактирајте нѐ</string>
     <string name="HelpSettingsFragment__version">Верзија</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Копирано на таблата со исечоци</string>
     <string name="HelpSettingsFragment__debug_log">Запис за отстранување грешки</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Лиценци</string>
@@ -6063,6 +6051,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Стандарден</string>
     <string name="DataAndStorageSettingsFragment__calls">Повици</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Останете поврзани во позадина</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Ако останете поврзани во позадина, ќе има зголемено трошење на батеријата. Ова не е потребно на повеќето уреди. Овозможете ја оваа опција само ако имате проблеми со известувањата.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Овозможи</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9399,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Контактирајте го тимот за корисничка поддршка</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Да се вклучат резервни копиии на уредот?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">За да продолжите да користите резервни копии на уредот, треба да ги овозможите за оваа корисничка сметка и да го зачувате вашиот нов клуч за враќање резервни копии. Ова можете да го направите во кое било време преку Поставувања &gt; Резервни копии.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">За да продолжите да користите резервни копии на уредот, треба да ги овозможите за оваа корисничка сметка. Ова можете да го направите во кое било време преку Поставувања &gt; Резервни копии.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Вклучи сега</string>

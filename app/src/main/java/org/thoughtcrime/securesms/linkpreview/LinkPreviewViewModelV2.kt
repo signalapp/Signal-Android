@@ -12,10 +12,10 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.util.Debouncer
 import org.signal.core.util.Result
 import org.signal.core.util.isAbsent
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.delegate
 import org.thoughtcrime.securesms.util.rx.RxStore
 import java.util.Optional

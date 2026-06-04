@@ -14,7 +14,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import org.signal.core.util.ContextUtil;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation;
-import org.thoughtcrime.securesms.util.DrawableUtil;
+import org.signal.core.util.DrawableUtil;
 import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 

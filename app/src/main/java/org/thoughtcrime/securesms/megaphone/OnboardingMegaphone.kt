@@ -222,7 +222,7 @@ enum class OnboardingListItem(
   ),
   ADD_PHOTO(
     title = R.string.Megaphones_add_a_profile_photo,
-    icon = R.drawable.symbol_person_circle_24,
+    icon = CoreUiR.drawable.symbol_person_circle_24,
     cardColor = R.color.onboarding_background_4
   ),
   APPEARANCE(

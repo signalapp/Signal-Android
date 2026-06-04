@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.registration.ui.shared.RegistrationScreen
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
 import kotlin.getValue
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Shown when the old device is iOS and they are trying to transfer/restore on Android without a Signal Backup.
@@ -137,7 +138,7 @@ private fun NoBackupToRestoreContent(
       verticalArrangement = Arrangement.spacedBy(24.dp),
       modifier = Modifier.padding(horizontal = 32.dp)
     ) {
-      StepRow(icon = painterResource(R.drawable.symbol_device_phone_24), text = stringResource(id = R.string.NoBackupToRestore_step1))
+      StepRow(icon = painterResource(CoreUiR.drawable.symbol_device_phone_24), text = stringResource(id = R.string.NoBackupToRestore_step1))
 
       StepRow(icon = SignalIcons.Backup.painter, text = stringResource(id = R.string.NoBackupToRestore_step2))
 

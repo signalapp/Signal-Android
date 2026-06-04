@@ -242,7 +242,7 @@ private fun BackupsSettingsContent(
       item {
         Rows.TextRow(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__on_device_backups),
-          icon = ImageVector.vectorResource(R.drawable.symbol_device_phone_24),
+          icon = ImageVector.vectorResource(CoreUiR.drawable.symbol_device_phone_24),
           label = stringResource(R.string.RemoteBackupsSettingsFragment__save_your_backups_to),
           onClick = onOnDeviceBackupsRowClick
         )

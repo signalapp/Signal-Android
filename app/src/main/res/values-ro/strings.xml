@@ -331,21 +331,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Trimite</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Contacte recente</string>
-    <string name="CameraContacts_signal_contacts">Contacte Signal</string>
-    <string name="CameraContacts_signal_groups">Grupuri Signal</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Poți distribui cu un maxim de %1$d conversație.</item>
-        <item quantity="few">Poți distribui cu un maxim de %1$d conversații.</item>
-        <item quantity="other">Poți distribui cu un maxim de %1$d de conversații.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Selectează destinatarii Signal</string>
-    <string name="CameraContacts_no_signal_contacts">Niciun contact Signal</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Poți utiliza butonul de cameră pentru a trimite fotografii doar contactelor Signal. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Nu poți găsi pe cine cauți?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Invită un contact să se alăture pe Signal</string>
     <string name="CameraContacts__menu_search">Caută</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -398,7 +383,7 @@
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
     <string name="ContactsCursorLoader_group_members">Membri grupului</string>
     <!-- Label for my stories when selecting who to send media to -->
-    <string name="ContactsCursorLoader_my_stories">Poveștile Mele</string>
+    <string name="ContactsCursorLoader_my_stories">Poveștile mele</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">Nou</string>
     <!-- Header for conversation search section labeled "Chats" -->
@@ -3097,9 +3082,9 @@
         <item quantity="other">%1$s selectate</item>
     </plurals>
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Disponibil</string>
+    <string name="StickerManagement_available_tab_label">Disponibile</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Instalat</string>
+    <string name="StickerManagement_installed_tab_label">Instalate</string>
     <!-- Shown when there are no sticker packs available for installation. -->
     <string name="StickerManagement_available_tab_empty_text">Nu e disponibil niciun pachet de autocolante</string>
     <!-- Shown when there are no sticker packs currently installed. -->
@@ -3127,7 +3112,7 @@
         <item quantity="other">Elimină %1$s de pachete de autocolante</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
-    <string name="StickerManagement_installed_pack_s">%1$s a fost instalat.</string>
+    <string name="StickerManagement_installed_pack_s">%1$s a fost instalate.</string>
     <!-- Message shown after uninstalling a sticker pack. The placeholder is the name of the sticker pack that was deleted. -->
     <string name="StickerManagement_deleted_pack_s">%1$s a fost eliminat.</string>
     <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
@@ -3981,7 +3966,7 @@
         <item quantity="other">%1$d de ore</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%1$do</string>
+    <string name="expiration_hours_abbreviated">%1$dh</string>
 
     <plurals name="expiration_days">
         <item quantity="one">%1$d zi</item>
@@ -4310,9 +4295,9 @@
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
-        <item quantity="one">%1$do</item>
-        <item quantity="few">%1$do</item>
-        <item quantity="other">%1$do</item>
+        <item quantity="one">%1$dh</item>
+        <item quantity="few">%1$dh</item>
+        <item quantity="other">%1$dh</item>
     </plurals>
 
     <!-- preferences.xml -->
@@ -4496,7 +4481,7 @@
     <string name="preferences_data_and_storage__never">Niciodată</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi și date mobile</string>
     <string name="preferences_data_and_storage__mobile_data_only">Doar date mobile</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Reducând consumul de date, se pot îmbunătăți apelurile în rețelele cu probleme</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Reducând consumul de date, se pot îmbunătăți apelurile în rețelele cu probleme.</string>
     <string name="preferences_notifications__in_chat_sounds">Sunete în conversații</string>
     <string name="preferences_notifications__show">Afișează</string>
     <string name="preferences_notifications__ringtone">Ton de apel</string>
@@ -6192,6 +6177,8 @@
     <string name="HelpSettingsFragment__support_center">Centru de asistență</string>
     <string name="HelpSettingsFragment__contact_us">Contactează-ne</string>
     <string name="HelpSettingsFragment__version">Versiunea</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">S-a copiat în clipboard</string>
     <string name="HelpSettingsFragment__debug_log">Jurnal depanare</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licențe</string>
@@ -6213,6 +6200,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Standard</string>
     <string name="DataAndStorageSettingsFragment__calls">Apeluri</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Rămâi conectat(ă) în fundal</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Dacă aplicația rămâne activă în fundal, este probabil ca consumul bateriei să crească. Nu e necesar pentru majoritatea dispozitivelor. Activează asta doar dacă ai avut probleme cu notificările.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Activează</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -7122,7 +7115,7 @@
     <!-- Menu item on stories landing page -->
     <string name="StoriesLandingFragment__story_privacy">Confidențialitatea poveștilor</string>
     <!-- Title for "My Stories" row item in Stories landing page -->
-    <string name="StoriesLandingFragment__my_stories">Poveștile Mele</string>
+    <string name="StoriesLandingFragment__my_stories">Poveștile mele</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add">Atinge ca să adaugi</string>
     <!-- Displayed when there are no stories to display -->
@@ -8186,7 +8179,7 @@
 
     <!-- CreateCallLink -->
     <!-- Call link creation item title on calls tab -->
-    <string name="CreateCallLink__create_a_call_link">Creează un Link de Apel</string>
+    <string name="CreateCallLink__create_a_call_link">Creează o legătură pentru apel</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Trimite un link pentru un apel Signal</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
@@ -8212,7 +8205,7 @@
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">Creează un link de apel</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">Creează o legătură pentru apel</string>
     <!-- Displayed as a default name for the signal call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Apel Signal</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
@@ -8402,7 +8395,7 @@
     <!-- Body of Megaphone C: upsell to upgrade backups when user has lots of media -->
     <string name="BackupMediaUpsell__body">Planurile plătite de Backup-uri securizate Signal păstrează toate fișierele media, până la 100 GB.</string>
     <!-- Primary button of Megaphone C -->
-    <string name="BackupMediaUpsell__upgrade">Actualizează</string>
+    <string name="BackupMediaUpsell__upgrade">Îmbunătățește</string>
     <!-- Secondary button of Megaphone C -->
     <string name="BackupMediaUpsell__not_now">Nu acum</string>
 
@@ -8411,7 +8404,7 @@
     <!-- Body of Megaphone D: upsell backups when device storage is low -->
     <string name="BackupStorageUpsell__body">Abonamentele plătite de Backup-uri securizate pot economisi spațiu de stocare prin descărcarea suporturilor media.</string>
     <!-- Primary button of Megaphone D when user has free tier backups -->
-    <string name="BackupStorageUpsell__upgrade">Actualizează</string>
+    <string name="BackupStorageUpsell__upgrade">Îmbunătățește</string>
     <!-- Primary button of Megaphone D when user has no backups -->
     <string name="BackupStorageUpsell__turn_on">Activare</string>
     <!-- Secondary button of Megaphone D -->
@@ -8447,14 +8440,14 @@
     <!-- Subtitle for the optimize storage toggle -->
     <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Fișierele neutilizate vor fi mutate, dar pot fi descărcate oricând din backup.</string>
     <!-- Primary button on the setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__back_up_now">Faceți un backup acum</string>
+    <string name="BackupSetupCompleteBottomSheet__back_up_now">Fă un backup acum</string>
 
     <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__title">Folosește backup-uri noi pe dispozitiv</string>
     <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__body">Backup-urile de pe dispozitiv se salvează acum mai rapid și utilizează mai puține date.</string>
     <!-- Button of a megaphone that will take the user to the upgrade flow -->
-    <string name="UseNewOnDeviceBackups__upgrade">Actualizează</string>
+    <string name="UseNewOnDeviceBackups__upgrade">Îmbunătățește</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">Nu acum</string>
 
@@ -8646,7 +8639,7 @@
     <!-- Primary action button to open backups management screen -->
     <string name="BackupAlertBottomSheet__manage_backups">Gestionează copiile de rezervă</string>
     <!-- Primary action button to start backup immediately -->
-    <string name="BackupAlertBottomSheet__back_up_now">Faceți un backup acum</string>
+    <string name="BackupAlertBottomSheet__back_up_now">Fă un backup acum</string>
     <!-- Primary action button when user doesn\'t have enough space -->
     <string name="BackupAlertBottomSheet__got_it">Am înțeles</string>
     <!-- Primary action button to manage subscription in Google Play -->
@@ -8973,7 +8966,7 @@
     <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Fișierele media și mesajele tale primesc backup zilnic.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Efectuează backup folosind date mobile</string>
+    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Fă backup folosind datele mobile</string>
     <!-- Row label for viewing recovery key -->
     <string name="RemoteBackupsSettingsFragment__view_backup_key">Vezi codul de recuperare</string>
     <!-- Prompt title for unlocking device to view recovery key -->
@@ -9017,7 +9010,7 @@
     <!-- Displayed in card while waiting for network -->
     <string name="RemoteBackupsSettingsFragment__waiting_for_network">Se așteaptă rețeaua…</string>
     <!-- String for free backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Planul tău de back-up este gratuit</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Planul tău de backup este gratuit</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__renews_s">Se reînnoiește %1$s</string>
     <!-- Displays the date the subscription will expire. Placeholder is the date. -->
@@ -9035,7 +9028,7 @@
     <!-- Button label to manage or cancel backups -->
     <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Gestionează sau anulează</string>
     <!-- button label to upgrade backups -->
-    <string name="RemoteBackupsSettingsFragment__upgrade">Actualizează</string>
+    <string name="RemoteBackupsSettingsFragment__upgrade">Îmbunătățește</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
@@ -9045,7 +9038,7 @@
     <!-- Subtext describing when a backup has never taken place. -->
     <string name="RemoteBackupsSettingsFragment__never">Niciodată</string>
     <!-- Button label to perform a backup immediately -->
-    <string name="RemoteBackupsSettingsFragment__back_up_now">Faceți un backup acum</string>
+    <string name="RemoteBackupsSettingsFragment__back_up_now">Fă un backup acum</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Dezactivezi și elimini backup-urile?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
@@ -9599,11 +9592,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Contactează Asistența</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Activezi Backup-urile pe dispozitiv?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Pentru a continua să utilizezi backup-urile pe dispozitiv, trebuie să le activezi pentru acest cont și să notezi noul tău cod de recuperare. Poți să faci asta oricând din Setări &gt; Backup-uri.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Pentru a continua să utilizezi backup-urile pe dispozitiv, trebuie să le activezi pentru acest cont. Poți să faci asta oricând din Setări &gt; Backup-uri.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Activează acum</string>
@@ -9728,7 +9721,7 @@
     <!-- Prepare Device screen last backup text format, %1$s is the date and %2$s is the time -->
     <string name="PrepareDevice_last_backup">Ultima copie de rezervă a fost făcută pe %1$s la %2$s.</string>
     <!-- Prepare Device screen back up now button -->
-    <string name="PrepareDevice_back_up_now">Faceți un backup acum</string>
+    <string name="PrepareDevice_back_up_now">Fă un backup acum</string>
     <!-- Prepare Device screen skip and continue button -->
     <string name="PrepareDevice_skip_and_continue">Sari peste și continuă</string>
     <!-- A string describing the last time the user\'s backup was made. The placeholder represents a date-time. An example would be "Your last backup was made on July 18, 2025 at 9:00am." -->

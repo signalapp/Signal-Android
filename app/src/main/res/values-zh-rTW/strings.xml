@@ -327,19 +327,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">傳送</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">最近的聯絡人</string>
-    <string name="CameraContacts_signal_contacts">Signal 聯絡人</string>
-    <string name="CameraContacts_signal_groups">Signal 群組</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="other">你可以分享最多 %1$d 個聊天。</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">選擇 Signal 收件人</string>
-    <string name="CameraContacts_no_signal_contacts">沒有 Signal 聯絡人</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">你只能使用相機按鈕將照片傳送到 Signal 聯絡人。 </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">找不到你要找的人？</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">邀請一個聯絡人來使用 Signal</string>
     <string name="CameraContacts__menu_search">搜尋</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4248,7 +4235,7 @@
     <string name="preferences_data_and_storage__never">永不</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi 與行動網路</string>
     <string name="preferences_data_and_storage__mobile_data_only">僅限行動網路</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">使用較少的數據可能改善不良網路上的通話</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">使用較少的數據可能會改善不良網路上的通話。</string>
     <string name="preferences_notifications__in_chat_sounds">聊天音效</string>
     <string name="preferences_notifications__show">顯示</string>
     <string name="preferences_notifications__ringtone">鈴聲</string>
@@ -5892,6 +5879,8 @@
     <string name="HelpSettingsFragment__support_center">支援中心</string>
     <string name="HelpSettingsFragment__contact_us">與我們聯繫</string>
     <string name="HelpSettingsFragment__version">版本</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">已複製到剪貼簿</string>
     <string name="HelpSettingsFragment__debug_log">除錯紀錄</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">許可證</string>
@@ -5913,6 +5902,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">標準</string>
     <string name="DataAndStorageSettingsFragment__calls">通話</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">在背景中保持連線</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">在背景中保持連線可能會導致電池消耗增加。對於大部份裝置來說，這並非必要。請只在你遇到通知問題時才啟用此功能。</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">啟用</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9199,11 +9194,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">聯絡支援</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">要開啟裝置上備份嗎？</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">若要繼續使用裝置上備份，你需要為此帳戶啟用該功能，並記錄你的新恢復金鑰。你可以隨時透過「設定」&gt;「備份」來執行此操作。</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">若要繼續使用裝置上備份，你需要為此帳戶啟用該功能。你可以隨時透過「設定」&gt;「備份」來執行此操作。</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">立即開啟</string>

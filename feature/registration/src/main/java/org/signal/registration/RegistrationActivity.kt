@@ -29,7 +29,8 @@ class RegistrationActivity : ComponentActivity() {
     RegistrationRepository(
       context = this.application,
       networkController = RegistrationDependencies.get().networkController,
-      storageController = RegistrationDependencies.get().storageController
+      storageController = RegistrationDependencies.get().storageController,
+      isLinkAndSyncAvailable = RegistrationDependencies.get().isLinkAndSyncAvailable
     )
   }
 

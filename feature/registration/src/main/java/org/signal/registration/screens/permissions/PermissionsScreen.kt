@@ -8,6 +8,7 @@
 package org.signal.registration.screens.permissions
 
 import android.Manifest
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -41,6 +42,7 @@ import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
+import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.util.MockMultiplePermissionsState
 import org.signal.registration.screens.util.MockPermissionsState
 import org.signal.registration.test.TestTags
@@ -111,7 +113,7 @@ private fun OnePaneLayout(
           Text(
             text = stringResource(id = R.string.GrantPermissionsFragment__allow_permissions),
             style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().attachDebugLogHelper()
           )
 
           Text(
@@ -130,7 +132,7 @@ private fun OnePaneLayout(
         onProceed = onProceed,
         permissionsState = permissionsState,
         showElevation = scrollState.canScrollForward,
-        modifier = Modifier.padding(params.bottomInset)
+        modifier = Modifier.padding(params.footerPadding)
       )
     }
   )
@@ -159,7 +161,7 @@ private fun TwoPaneLayout(
         Text(
           text = stringResource(id = R.string.GrantPermissionsFragment__allow_permissions),
           style = MaterialTheme.typography.headlineMedium,
-          modifier = Modifier.fillMaxWidth()
+          modifier = Modifier.fillMaxWidth().attachDebugLogHelper()
         )
 
         Text(
@@ -186,7 +188,7 @@ private fun TwoPaneLayout(
         onProceed = onProceed,
         permissionsState = permissionsState,
         showElevation = scrollState.canScrollForward,
-        modifier = Modifier.padding(params.bottomInset)
+        modifier = Modifier.padding(params.footerPadding)
       )
     }
   )
@@ -311,6 +313,7 @@ private fun PermissionButtons(
   }
 }
 
+@SuppressLint("InlinedApi")
 @AllDevicePreviews
 @Composable
 private fun PermissionsScreenPreview() {

@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import java.util.stream.Stream;
 
 import static org.thoughtcrime.securesms.util.ConversationUtil.CONVERSATION_SUPPORT_VERSION;
+import org.signal.core.util.ServiceUtil;
 
 /**
  * Bubble-related utility methods.

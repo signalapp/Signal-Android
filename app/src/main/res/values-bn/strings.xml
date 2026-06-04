@@ -329,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">পাঠান</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">সাম্প্রতিক যোগাযোগ</string>
-    <string name="CameraContacts_signal_contacts">Signal পরিচিতিসমূহ</string>
-    <string name="CameraContacts_signal_groups">Signal গ্রুপসমূহ</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">আপনি সর্বোচ্চ %1$dটি চ্যাটের সাথে শেয়ার করতে পারবেন।</item>
-        <item quantity="other">আপনি সর্বোচ্চ %1$dটি চ্যাটের সাথে শেয়ার করতে পারবেন।</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Signal প্রাপকসমূহ নির্বাচন করুন</string>
-    <string name="CameraContacts_no_signal_contacts">কোনও Signal পরিচিতি নেই</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">শুধুমাত্র Signal পরিচিতিদের ছবি পাঠাতে ক্যামেরা বোতাম ব্যবহার করতে পারবেন। </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">আপনি যাকে খুঁজছেন তাকে খুঁজে পাচ্ছেন না?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Signal -এ যোগ দিতে একটি পরিচিতিকে আমন্ত্রণ জানান</string>
     <string name="CameraContacts__menu_search">খুঁজুন</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4372,7 +4358,7 @@
     <string name="preferences_data_and_storage__never">কখনোই না</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">ওয়াইফাই এবং মোবাইল ডেটা</string>
     <string name="preferences_data_and_storage__mobile_data_only">কেবল মোবাইল ডেটা</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">কম ডেটা ব্যবহার করা হলে খারাপ নেটওয়ার্কগুলিতে কলের মান উন্নত করতে পারে</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">কম ডেটা ব্যবহার করলে খারাপ নেটওয়ার্কগুলিতে কলের মান উন্নত হতে পারে।</string>
     <string name="preferences_notifications__in_chat_sounds">চ্যাটের মধ্যকার শব্দ</string>
     <string name="preferences_notifications__show">দেখান</string>
     <string name="preferences_notifications__ringtone">রিংটোন</string>
@@ -6042,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">সহায়তা কেন্দ্র</string>
     <string name="HelpSettingsFragment__contact_us">আমাদের সাথে যোগাযোগ করুন</string>
     <string name="HelpSettingsFragment__version">সংস্করণ</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">ক্লিপবোর্ডে কপি করা হয়েছে</string>
     <string name="HelpSettingsFragment__debug_log">ডিবাগ লগ</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">লাইসেন্স</string>
@@ -6063,6 +6051,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">স্ট্যান্ডার্ড</string>
     <string name="DataAndStorageSettingsFragment__calls">কল সমূহ</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">ব্যাকগ্রাউন্ডে সংযুক্ত থাকুন</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">ব্যাকগ্রাউন্ডে সংযুক্ত থাকলে ব্যাটারির ব্যবহার বেড়ে যাওয়ার সম্ভাবনা থাকে। বেশিরভাগ ডিভাইসের জন্য এটির প্রয়োজন নেই। আপনি যদি নোটিফিকেশন সংক্রান্ত সমস্যার সম্মুখীন হয়ে থাকেন, তবেই এটি সক্রিয় করুন।</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">সক্রিয় করুন</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9399,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">সহায়তা কেন্দ্রে যোগাযোগ করুন</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">অন-ডিভাইস ব্যাকআপ চালু করবেন?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">অন-ডিভাইস ব্যাকআপ ব্যবহার করা চালিয়ে যেতে, আপনাকে এই অ্যাকাউন্টের জন্য সেগুলো সক্রিয় করতে হবে এবং আপনার নতুন পুনরুদ্ধার \'কি\' লিখে রাখতে হবে। আপনি সেটিংস &gt; ব্যাকআপ থেকে যেকোনো সময় এটি করতে পারেন।</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">ডিভাইসে ব্যাকআপ ব্যবহার চালিয়ে যেতে, আপনাকে এই অ্যাকাউন্টের জন্য সেগুলো সক্রিয় করতে হবে। আপনি সেটিংস &gt; ব্যাকআপ থেকে যেকোনো সময় এটি করতে পারবেন।</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">এখনই চালু করুন</string>

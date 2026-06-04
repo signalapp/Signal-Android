@@ -184,7 +184,7 @@ class RecipientTestRule : TestRule {
     val id = SignalDatabase.recipients.getOrInsertFromServiceId(aci)
     SignalDatabase.recipients.setProfileName(id, profileName)
     SignalDatabase.recipients.setProfileKeyIfAbsent(id, ProfileKey(Random.nextBytes(32)))
-    SignalDatabase.recipients.setCapabilities(id, SignalServiceProfile.Capabilities(true, true))
+    SignalDatabase.recipients.setCapabilities(id, SignalServiceProfile.Capabilities(true, true, true))
     SignalDatabase.recipients.setProfileSharing(id, profileSharing)
     SignalDatabase.recipients.markRegistered(id, aci)
     return id

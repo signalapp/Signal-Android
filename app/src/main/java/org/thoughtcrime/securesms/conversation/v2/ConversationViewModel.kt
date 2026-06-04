@@ -246,6 +246,7 @@ class ConversationViewModel(
     disposables += chatColors.update(chatColorsDataObservable.toFlowable(BackpressureStrategy.LATEST)) { c, _ -> c }
 
     disposables += repository.getConversationThreadState(threadId, requestedStartingPosition)
+      .subscribeOn(Schedulers.io())
       .subscribeBy(onSuccess = {
         pagingController.set(it.items.controller)
         _conversationThreadState.onNext(it)

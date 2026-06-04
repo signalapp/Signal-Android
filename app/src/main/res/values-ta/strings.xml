@@ -329,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">அனுப்புக</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">சமீபத்திய தொடர்புகள்</string>
-    <string name="CameraContacts_signal_contacts">Signal தொடர்புகள்</string>
-    <string name="CameraContacts_signal_groups">Signal குழுக்கள்</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">நீங்கள் அதிகபட்சம் %1$d சாட்டுடன் பகிரலாம்.</item>
-        <item quantity="other">நீங்கள் அதிகபட்சம் %1$d சாட்களுடன் பகிரலாம்.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Signal பெறுநர்களைத் தேர்ந்தெடுக்கவும்</string>
-    <string name="CameraContacts_no_signal_contacts">Signal தொடர்புகள் இல்லை</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Signal தொடர்புகளுக்கு புகைப்படங்களை அனுப்ப கேமரா பொத்தானை மட்டுமே நீங்கள் பயன்படுத்த முடியும். </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">நீங்கள் யாரைத் தேடுகிறீர்கள் என்று கண்டுபிடிக்க முடியவில்லையா?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Signal லில் சேர ஒரு தொடர்பை அழைக்கவும்</string>
     <string name="CameraContacts__menu_search">தேடல்</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4372,7 +4358,7 @@
     <string name="preferences_data_and_storage__never">ஒருபோதுமில்லை</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">வைஃபை மற்றும் மொபைல் தரவு</string>
     <string name="preferences_data_and_storage__mobile_data_only">மொபைல் தரவு மட்டும்</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">குறைந்த தரவைப் பயன்படுத்துவது மோசமான நெட்வொர்க்குகளில் அழைப்புகளை மேம்படுத்தலாம்</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">குறைந்த தரவைப் பயன்படுத்துவது மோசமான நெட்வொர்க்குகளில் அழைப்புகளை மேம்படுத்தலாம்.</string>
     <string name="preferences_notifications__in_chat_sounds">உள்-சாட் ஒலிகள்</string>
     <string name="preferences_notifications__show">காட்டு</string>
     <string name="preferences_notifications__ringtone">ரிங்டோன்</string>
@@ -6042,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">ஆதரவு மையம்</string>
     <string name="HelpSettingsFragment__contact_us">எங்களை தொடர்பு கொள்ள</string>
     <string name="HelpSettingsFragment__version">பதிப்பு</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
     <string name="HelpSettingsFragment__debug_log">பிழைத்திருத்த பதிவு</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">உரிமங்கள்</string>
@@ -6063,6 +6051,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">தரநிலை</string>
     <string name="DataAndStorageSettingsFragment__calls">அழைப்புகள்</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">பின்னணியில் இணைந்திரு</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">பின்னணியில் இணைந்திருப்பதால் பேட்டரி நுகர்வு அதிகரிக்கும். பெரும்பாலான சாதனங்களுக்கு இவ்வாறு செயல்பட வேண்டியதில்லை. அறிவிப்புச் சிக்கல்களைச் சந்தித்தால் மட்டுமே இதைச் செயல்படுத்துங்கள்.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">செயல்படுத்து</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9399,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">ஆதரவைத் தொடர்பு கொள்க</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">சாதனத்தில் உள்ள காப்புப்பிரதிகளை ஆன் செய்யவா?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">சாதனத்தில் உள்ள காப்புப்பிரதிகளைத் தொடர்ந்து பயன்படுத்த, இந்தக் கணக்கிற்கு அவற்றைச் செயல்படுத்தி உங்கள் புதிய மீட்புக் குறியீட்டை பதிவுசெய்ய வேண்டும். அமைப்புகள் &gt; காப்புப்பிரதிகள் என்பதற்குச் சென்று எந்த நேரத்திலும் இதை நீங்கள் செய்யலாம்.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">சாதனத்தில் உள்ள காப்புப்பிரதிகளைத் தொடர்ந்து பயன்படுத்த, இந்தக் கணக்கிற்கு அவற்றைச் செயல்படுத்த வேண்டும். அமைப்புகள் &gt; காப்புப்பிரதிகள் என்பதற்குச் சென்று எந்த நேரத்திலும் இதை நீங்கள் செய்யலாம்.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">இப்போதே ஆன் செய்க</string>

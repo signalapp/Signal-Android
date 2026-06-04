@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException
 import org.thoughtcrime.securesms.util.MessageUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents
 import org.whispersystems.signalservice.api.crypto.ContentHint
@@ -67,12 +68,21 @@ class IndividualSendJob private constructor(parameters: Parameters, private val 
         throw AssertionError("This job does not send group messages!")
       }
 
-      return IndividualSendJob(messageId, recipient, hasMedia, isScheduledSend)
+      return if (RemoteConfig.useIndividualSendJobV2) {
+        IndividualSendJobV2.create(messageId, recipient, hasMedia, isScheduledSend)
+      } else {
+        IndividualSendJob(messageId, recipient, hasMedia, isScheduledSend)
+      }
     }
 
     @JvmStatic
     @WorkerThread
     fun enqueue(context: Context, jobManager: JobManager, messageId: Long, recipient: Recipient, isScheduledSend: Boolean) {
+      if (RemoteConfig.useIndividualSendJobV2) {
+        IndividualSendJobV2.enqueue(context, messageId, recipient, isScheduledSend)
+        return
+      }
+
       try {
         val message = SignalDatabase.messages.getOutgoingMessage(messageId)
         if (message.scheduledDate != -1L) {
@@ -155,7 +165,7 @@ class IndividualSendJob private constructor(parameters: Parameters, private val 
 
       val unidentified = deliver(message, originalEditedMessage)
 
-      SignalDatabase.messages.markAsSent(messageId, true)
+      SignalDatabase.messages.markAsSent(messageId)
       markAttachmentsUploaded(messageId, message)
       SignalDatabase.messages.markUnidentified(messageId, unidentified)
 

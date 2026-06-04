@@ -7,13 +7,13 @@ package org.thoughtcrime.securesms
 
 import android.app.Application
 import org.signal.benchmark.setup.NoOpJob
+import org.signal.core.util.UptimeSleepTimer
 import org.signal.libsignal.net.Network
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider
 import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobs.JobManagerFactories
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor
-import org.whispersystems.signalservice.api.util.UptimeSleepTimer
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.websocket.BenchmarkWebSocketConnection

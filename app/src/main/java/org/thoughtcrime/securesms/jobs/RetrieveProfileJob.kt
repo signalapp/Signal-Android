@@ -5,6 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.signal.core.util.Base64.decode
+import org.signal.core.util.ExpiringProfileCredentialUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.SignalExecutors
@@ -48,7 +49,6 @@ import org.whispersystems.signalservice.api.profiles.ProfileRepository.ProfileFe
 import org.whispersystems.signalservice.api.profiles.ProfileRepository.ProfileFetchResult
 import org.whispersystems.signalservice.api.profiles.ProfileRepository.SignalServiceProfileWithCredential
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
-import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.milliseconds

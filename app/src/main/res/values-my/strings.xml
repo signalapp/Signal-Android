@@ -327,19 +327,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">ပို့ပါ</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">နောက်ဆုံး အဆက်အသွယ်များ</string>
-    <string name="CameraContacts_signal_contacts">Signal အဆက်အသွယ်များ</string>
-    <string name="CameraContacts_signal_groups">Signal အဖွဲ့များ</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="other">အများဆုံး ချက်(တ်) %1$d ခုထံ မျှဝေနိုင်သည်။</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Signal လက်ခံရရှိသူများကို ရွေးချယ်ပါ</string>
-    <string name="CameraContacts_no_signal_contacts">Signal အဆက်အသွယ်များ မရှိပါ</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Signal အဆက်အသွယ်များထံသို့ ကင်မရာခလုတ်နှိပ်၍သာ ဓာတ်ပုံပို့နိုင်သည်။ </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">သင်ရှာတဲ့သူကို မတွေ့ဘူးလား။</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Signal အသုံးပြုရန် ဖိတ်ခေါ်ပါ</string>
     <string name="CameraContacts__menu_search">ရှာရန်</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4248,7 +4235,7 @@
     <string name="preferences_data_and_storage__never">ဘယ်တော့မှမ</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">ဝိုင်ဖိုင် နှင့် အင်တာနက်</string>
     <string name="preferences_data_and_storage__mobile_data_only">အင်တာနက်</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">မကောင်းသော ချိတ်ဆက်မှုလိုင်းပေါ်တွင် ဒေတာပိုနည်းစွာသုံးလျှင် ခေါ်ဆိုမှုများ ပိုကြည်လင်ကောင်းမွန် နိုင်ပါသည်</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ဒေတာလျှော့သုံးခြင်းဖြင့် လိုင်းမကောင်းသော ကွန်ရက်များပေါ်တွင် ဖုန်းခေါ်ဆိုမှု အရည်အသွေးကို ပိုမိုကောင်းမွန်စေနိုင်ပါသည်။</string>
     <string name="preferences_notifications__in_chat_sounds">ချက်(တ်)အတွင်း အသံများ</string>
     <string name="preferences_notifications__show">ပြပါ</string>
     <string name="preferences_notifications__ringtone">ဖုန်းသံစဉ်များ</string>
@@ -5892,6 +5879,8 @@
     <string name="HelpSettingsFragment__support_center">အကူအညီရယူရေး စင်တာ</string>
     <string name="HelpSettingsFragment__contact_us">ကျွန်ုပ်တို့ကိုဆက်သွယ်ရန်</string>
     <string name="HelpSettingsFragment__version">ဗားရှင်း</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">ကလစ်ဘုတ်သို့ ကူးယူပြီး</string>
     <string name="HelpSettingsFragment__debug_log">ပြစ်ချက်မှတ်တမ်း</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">လိုင်စင်များ</string>
@@ -5913,6 +5902,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">အသင့်အတင့်</string>
     <string name="DataAndStorageSettingsFragment__calls">ဖုန်းခေါ်ဆိုမှုများ</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">နောက်ခံတွင် ချိတ်ဆက်ထားရန်</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">နောက်ခံတွင် ရှိနေစဉ် ချိတ်ဆက်နေခြင်းသည် ဘက်ထရီအသုံးပြုမှုကို မြင့်တက်စေနိုင်သည်။ ၎င်းသည် စက်အများစုအတွက် မလိုအပ်ပါ။ အသိပေးချက် ပြဿနာများ ကြုံတွေ့နေရမှသာ ၎င်းကိုဖွင့်ပါ။</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">ဖွင့်မည်</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9199,11 +9194,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">ပံ့ပိုးရေးသို့ ဆက်သွယ်ရန်</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">စက်တွင်းရှိ ဘက်ခ်အပ်ကို ဖွင့်မည်လား။</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">စက်တွင်းရှိ ဘက်ခ်အပ်ကို ဆက်လက်အသုံးပြုရန်အတွက် ဤအကောင့်တွင် ဘက်ခ်အပ်ကိုဖွင့်ပြီး သင်၏ ပြန်လည်ရယူရေးကီးအသစ်ကို မှတ်တမ်းတင်ရန် လိုအပ်ပါသည်။ ၎င်းကို ဆက်တင် &gt; ဘက်ခ်အပ်မှ အချိန်မရွေး လုပ်ဆောင်နိုင်ပါသည်။</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">စက်တွင်းရှိ ဘက်ခ်အပ်များကို ဆက်လက်အသုံးပြုရန်အတွက် ဤအကောင့်ကိုဖွင့်ထားရန် လိုအပ်ပါသည်။ ၎င်းကို ဆက်တင် &gt; ဘက်ခ်အပ်မှ အချိန်မရွေး လုပ်ဆောင်နိုင်ပါသည်။</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">ယခုဖွင့်မည်</string>

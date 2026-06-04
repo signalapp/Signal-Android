@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
+import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.time.Duration.Companion.days
 
 @RunWith(RobolectricTestRunner::class)
@@ -46,11 +47,13 @@ class CollapsingMessagesTests {
     alice = recipients.createRecipient("Alice Android")
     aliceThread = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(alice))
     bob = recipients.createRecipient("Bob Android")
+
+    every { RemoteConfig.disappearMore } returns false
   }
 
   @Test
   fun givenCollapsibleMessage_whenIInsert_thenItBecomesHead() {
-    val messageId = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
+    val messageId = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
 
     val msg = message.getMessageRecord(messageId)
     assertEquals(CollapsedState.HEAD_COLLAPSED, msg.collapsedState)
@@ -59,9 +62,9 @@ class CollapsingMessagesTests {
 
   @Test
   fun givenSameCollapsibleTypes_whenIInsert_thenAllCollapseUnderHead() {
-    val messageId1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
-    val messageId2 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false).messageId
-    val messageId3 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false).messageId
+    val messageId1 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
+    val messageId2 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false).messageId
+    val messageId3 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false).messageId
 
     val msg1 = message.getMessageRecord(messageId1)
     val msg2 = message.getMessageRecord(messageId2)
@@ -79,7 +82,7 @@ class CollapsingMessagesTests {
 
   @Test
   fun givenDifferentCollapsedTypes_whenIInsert_thenNoCollapsing() {
-    val messageId1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
+    val messageId1 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
     val messageId2 = recipients.insertOutgoingMessage(OutgoingMessage.identityVerifiedMessage(Recipient.resolved(alice), 2000L), aliceThread)
 
     val msg1 = message.getMessageRecord(messageId1)
@@ -103,7 +106,7 @@ class CollapsingMessagesTests {
 
   @Test
   fun givenMessagesOnDifferentDays_whenIInsert_thenNoCollapsing() {
-    val messageId1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
+    val messageId1 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
 
     message.writableDatabase.update(
       MessageTable.TABLE_NAME,
@@ -112,7 +115,7 @@ class CollapsingMessagesTests {
       arrayOf(messageId1.toString())
     )
 
-    val messageId2 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false).messageId
+    val messageId2 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false).messageId
 
     val msg2 = message.getMessageRecord(messageId2)
     assertEquals(CollapsedState.HEAD_COLLAPSED, msg2.collapsedState)
@@ -121,9 +124,9 @@ class CollapsingMessagesTests {
 
   @Test
   fun givenRegularMessageBetweenCollapsed_whenIInsertCollapsed_thenNoCollapsing() {
-    val messageId1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
+    val messageId1 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
     val messageId2 = recipients.insertOutgoingMessage(alice, sentTimeMillis = 2000L)
-    val messageId3 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false).messageId
+    val messageId3 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false).messageId
 
     val msg1 = message.getMessageRecord(messageId1)
     val msg2 = message.getMessageRecord(messageId2)
@@ -141,8 +144,8 @@ class CollapsingMessagesTests {
 
   @Test
   fun givenDifferentThreads_whenIInsertCollapsed_thenNoCollapsing() {
-    val messageId1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
-    val messageId2 = message.insertCallLog(bob, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false).messageId
+    val messageId1 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
+    val messageId2 = message.insertOneToOneCallLog(bob, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false).messageId
 
     val msg1 = message.getMessageRecord(messageId1)
     val msg2 = message.getMessageRecord(messageId2)
@@ -156,9 +159,9 @@ class CollapsingMessagesTests {
 
   @Test
   fun givenCollapsedMessages_whenIDeleteFirstMessage_thenNextMessageBecomesHead() {
-    val messageId1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
-    val messageId2 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false).messageId
-    val messageId3 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false).messageId
+    val messageId1 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
+    val messageId2 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false).messageId
+    val messageId3 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false).messageId
 
     message.deleteMessage(messageId1, aliceThread)
 
@@ -174,9 +177,9 @@ class CollapsingMessagesTests {
 
   @Test
   fun givenCollapsedMessages_whenIDeleteNonFirstMessage_thenFirstMessageStaysHead() {
-    val messageId1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
-    val messageId2 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false).messageId
-    val messageId3 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false).messageId
+    val messageId1 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
+    val messageId2 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false).messageId
+    val messageId3 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false).messageId
 
     message.deleteMessage(messageId2, aliceThread)
 
@@ -192,8 +195,8 @@ class CollapsingMessagesTests {
 
   @Test
   fun givenTwoCollapsingTypes_whenIDeleteHeadOfFirstGroup_thenSecondGroupIsUnchanged() {
-    val call1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false)
-    val call2 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false)
+    val call1 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false)
+    val call2 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false)
 
     val recipient = Recipient.resolved(alice)
     val identity1Id = recipients.insertOutgoingMessage(OutgoingMessage.identityVerifiedMessage(recipient, 3000L), call1.threadId)
@@ -215,12 +218,12 @@ class CollapsingMessagesTests {
 
   @Test
   fun givenPendingCollapsingEvents_whenIMarkSeenAtASpecificTime_thenEverythingBeforeThatTimeIsCollapsed() {
-    val call1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false)
-    val call2 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false)
+    val call1 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false)
+    val call2 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false)
 
     message.collapsePendingCollapsibleEvents(aliceThread, System.currentTimeMillis())
 
-    val call3 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false)
+    val call3 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false)
 
     val msgCall1 = message.getMessageRecord(call1.messageId)
     val msgCall2 = message.getMessageRecord(call2.messageId)
@@ -233,12 +236,12 @@ class CollapsingMessagesTests {
 
   @Test
   fun givenPendingCollapsingEvents_whenIMarkAllAsSeen_thenEverythingIsCollapsed() {
-    val call1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false)
-    val call2 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false)
+    val call1 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false)
+    val call2 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false)
 
     message.collapseAllPendingCollapsibleEvents()
 
-    val call3 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false)
+    val call3 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false)
 
     val msgCall1 = message.getMessageRecord(call1.messageId)
     val msgCall2 = message.getMessageRecord(call2.messageId)
@@ -251,10 +254,10 @@ class CollapsingMessagesTests {
 
   @Test
   fun givenCollapsedEvents_whenITrimTheThreadByCount_thenIExpectANewHead() {
-    val call1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false)
-    val call2 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false)
-    val call3 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false)
-    val call4 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 4000L, false)
+    val call1 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false)
+    val call2 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false)
+    val call3 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false)
+    val call4 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 4000L, false)
 
     val msgCall1 = message.getMessageRecord(call1.messageId)
     val msgCall2 = message.getMessageRecord(call2.messageId)
@@ -274,11 +277,11 @@ class CollapsingMessagesTests {
 
   @Test
   fun givenCollapsedEvents_whenITrimTheThreadByDate_thenIExpectANewHead() {
-    val call1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false)
-    val call2 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false)
+    val call1 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false)
+    val call2 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false)
     val trimBeforeDate = System.currentTimeMillis()
-    val call3 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false)
-    val call4 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 4000L, false)
+    val call3 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false)
+    val call4 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 4000L, false)
 
     message.collapsePendingCollapsibleEvents(aliceThread, System.currentTimeMillis())
 
@@ -303,9 +306,9 @@ class CollapsingMessagesTests {
     mockkObject(CollapsibleEvents)
     every { CollapsibleEvents.MAX_SIZE } returns 2
 
-    val messageId1 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
-    val messageId2 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false).messageId
-    val messageId3 = message.insertCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false).messageId
+    val messageId1 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 1000L, false).messageId
+    val messageId2 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 2000L, false).messageId
+    val messageId3 = message.insertOneToOneCallLog(alice, MessageTypes.INCOMING_AUDIO_CALL_TYPE, 3000L, false).messageId
 
     val msg1 = message.getMessageRecord(messageId1)
     val msg2 = message.getMessageRecord(messageId2)

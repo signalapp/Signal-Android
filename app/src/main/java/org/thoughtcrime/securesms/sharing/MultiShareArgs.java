@@ -20,7 +20,7 @@ import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ParcelUtil;
+import org.signal.core.util.ParcelUtil;
 import org.signal.core.util.Util;
 
 import java.io.IOException;

@@ -78,7 +78,7 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
-import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil;
+import org.signal.core.util.ExpiringProfileCredentialUtil;
 
 import java.io.IOException;
 import java.util.Collections;

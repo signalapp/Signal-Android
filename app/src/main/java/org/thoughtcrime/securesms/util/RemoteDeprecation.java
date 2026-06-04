@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.stream.Stream;
+import org.signal.core.util.JsonUtils;
+import org.signal.core.util.SemanticVersion;
 
 public final class RemoteDeprecation {
 

@@ -142,7 +142,8 @@ private fun SampleNavHost(
     RegistrationRepository(
       context = context.applicationContext,
       networkController = registrationDependencies.networkController,
-      storageController = registrationDependencies.storageController
+      storageController = registrationDependencies.storageController,
+      isLinkAndSyncAvailable = false
     )
   }
 

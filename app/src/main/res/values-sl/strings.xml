@@ -333,22 +333,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Pošlji</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Nedavni stiki</string>
-    <string name="CameraContacts_signal_contacts">Uporabniki_ce Signala</string>
-    <string name="CameraContacts_signal_groups">Skupine Signal</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Delite lahko z največ %1$d klepetom.</item>
-        <item quantity="two">Delite lahko z največ %1$d klepetoma.</item>
-        <item quantity="few">Delite lahko z največ %1$d klepeti.</item>
-        <item quantity="other">Delite lahko z največ %1$d klepeti.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Izberite prejemnike Signal</string>
-    <string name="CameraContacts_no_signal_contacts">Ni uporabnikov_ic Signala</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Za pošiljanje fotografij uporabnikom_cam storitve Signal morate uporabiti gumb za kamero. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Ne najdete uporabnika_ce, ki ga_jo iščete?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Povabite prijatelja_ico k uporabi aplikacije Signal</string>
     <string name="CameraContacts__menu_search">Iskanje</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4620,7 +4604,7 @@
     <string name="preferences_data_and_storage__never">Nikoli</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi in mobilni podatki</string>
     <string name="preferences_data_and_storage__mobile_data_only">Samo mobilni podatki</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Poraba manj podatkov pri klicih lahko izboljša zanesljivost klicov v slabih omrežjih</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Poraba manj podatkov pri klicih lahko izboljša zanesljivost klicev v slabih omrežjih.</string>
     <string name="preferences_notifications__in_chat_sounds">Zvoki znotraj klepeta</string>
     <string name="preferences_notifications__show">Prikaži</string>
     <string name="preferences_notifications__ringtone">Zvonjenje</string>
@@ -6342,6 +6326,8 @@
     <string name="HelpSettingsFragment__support_center">Center za podporo</string>
     <string name="HelpSettingsFragment__contact_us">Kontaktirajte nas</string>
     <string name="HelpSettingsFragment__version">Različica</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Kopirano v odložišče</string>
     <string name="HelpSettingsFragment__debug_log">Sistemska zabeležba</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licence</string>
@@ -6363,6 +6349,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Standardna</string>
     <string name="DataAndStorageSettingsFragment__calls">Klici</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Ostanite povezani v ozadju</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Ostati povezan v ozadju bo verjetno povzročilo večjo porabo baterije. To ni nujno za večino naprav. Omogočite le, če ste imeli težave z obvestili.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Omogoči</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9799,11 +9791,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Obrnite se na službo za podporo</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Želite vklopiti varnostne kopije v napravi?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Če želite še naprej uporabljati varnostne kopije v napravi, jih morate omogočiti za ta račun in shraniti nov obnovitveni ključ. To lahko kadarkoli storite v Nastavitvah &gt; Varnostne kopije.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Če želite še naprej uporabljati varnostne kopije v napravi, jih morate omogočiti za ta račun. To lahko kadarkoli storite v Nastavitvah &gt; Varnostne kopije.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Vklopi</string>

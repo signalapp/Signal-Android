@@ -76,6 +76,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.signal.core.ui.R as CoreUiR
 
 private const val PLACEHOLDER = "__ICON_PLACEHOLDER__"
 
@@ -503,7 +504,7 @@ fun DeviceRow(device: Device, isInternalUser: Boolean, setDeviceToRemove: (Devic
       .fillMaxWidth()
   ) {
     Image(
-      painter = painterResource(id = R.drawable.symbol_devices_24),
+      painter = painterResource(id = CoreUiR.drawable.symbol_devices_24),
       contentDescription = null,
       colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
       contentScale = ContentScale.Inside,

@@ -11,8 +11,8 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 
 /**
- * Visual formatter for backup keys. Preserves whatever the user typed verbatim (no character
- * swapping) and just groups characters with spaces.
+ * Visual formatter for backup keys. Uppercases and groups characters with spaces without swapping
+ * display-equivalent characters.
  *
  * @param chunkSize character count per group
  */
@@ -26,7 +26,7 @@ class BackupKeyVisualTransformation(private val chunkSize: Int) : VisualTransfor
       }
     }
 
-    val transformed = output.trimEnd()
+    val transformed = output.trimEnd().uppercase()
 
     return TransformedText(
       text = AnnotatedString(transformed),

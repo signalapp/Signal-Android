@@ -92,6 +92,14 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
+  override fun provideMessageService(
+    protocolStore: SignalServiceDataStore,
+    messageApiV2: org.signal.network.api.MessageApiV2,
+    keysApiV2: org.signal.network.api.KeysApiV2
+  ): org.signal.network.service.MessageService {
+    return mockk(relaxed = true)
+  }
+
   override fun provideSignalServiceMessageReceiver(pushServiceSocket: PushServiceSocket): SignalServiceMessageReceiver {
     return mockk(relaxed = true)
   }

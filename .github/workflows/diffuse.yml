@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest-8-cores
 
     steps:
-    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+    - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
       # gh api repos/actions/checkout/commits/v6 --jq '.sha'
       with:
         submodules: true
@@ -53,7 +53,7 @@ jobs:
       if: steps.cache-base.outputs.cache-hit != 'true'
       run: mv app/build/outputs/apk/playProd/release/*arm64*.apk diffuse-base.apk
 
-    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+    - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
       # gh api repos/actions/checkout/commits/v6 --jq '.sha'
       with:
         submodules: true

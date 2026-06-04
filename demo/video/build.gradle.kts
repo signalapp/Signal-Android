@@ -94,7 +94,7 @@ dependencies {
   implementation(project(":core:ui"))
   implementation(libs.androidx.documentfile)
   implementation(libs.androidx.compose.ui.tooling.core)
-  implementation(libs.androidx.compose.ui.test.manifest)
+  debugImplementation(libs.androidx.compose.ui.test.manifest)
   androidTestImplementation(testLibs.junit.junit)
   androidTestImplementation(testLibs.androidx.test.runner)
   androidTestImplementation(testLibs.androidx.test.ext.junit.ktx)

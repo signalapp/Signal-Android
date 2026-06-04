@@ -59,7 +59,7 @@ fun MediaEditScreen(
       .fillMaxSize()
       .navigationBarsPadding()
   ) {
-    val isSmallWindowBreakpoint = rememberWindowBreakpoint() == WindowBreakpoint.SMALL
+    val isSmallWindowBreakpoint = rememberWindowBreakpoint() is WindowBreakpoint.Small
     val controllers = remember { EditorController.Container() }
 
     val currentController = state.focusedMedia?.let {

@@ -53,6 +53,7 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val CALLING_ASSETS_VERSION = "misc.calling_assets_version"
     private const val LAST_SYNC_MESSAGE_SEEN_TIME_MS = "misc.last_sync_message_seen_time"
     private const val LAST_APPLIED_PNI_CHANGE_SERVER_TIMESTAMP = "misc.last_applied_pni_change_server_timestamp"
+    private const val LAST_MISSING_PLAY_SERVICES_FCM_VERIFICATION_TIME = "misc.last_missing_play_services_fcm_verification_time"
   }
 
   public override fun onFirstEverAppLaunch() {
@@ -348,4 +349,9 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
    * if new assets need to be fetched.
    */
   var callingAssetsVersion: Int by integerValue(CALLING_ASSETS_VERSION, 0)
+
+  /**
+   * The last time we tried to get an FCM token for a user reporting missing Play Services.
+   */
+  var lastMissingPlayServicesFcmVerificationTime: Long by longValue(LAST_MISSING_PLAY_SERVICES_FCM_VERIFICATION_TIME, 0)
 }

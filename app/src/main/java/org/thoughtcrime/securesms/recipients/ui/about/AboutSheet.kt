@@ -312,7 +312,7 @@ private fun Content(
 
     if (!model.isSelf && model.systemContact) {
       AboutRow(
-        startIcon = ImageVector.vectorResource(id = R.drawable.symbol_person_circle_24),
+        startIcon = ImageVector.vectorResource(id = CoreUiR.drawable.symbol_person_circle_24),
         text = stringResource(id = R.string.AboutSheet__s_is_in_your_system_contacts, model.shortName),
         modifier = Modifier.fillMaxWidth()
       )

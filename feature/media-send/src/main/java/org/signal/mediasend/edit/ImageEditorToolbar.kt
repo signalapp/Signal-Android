@@ -292,7 +292,7 @@ private fun OrientedImageEditorToolbar(
   content: @Composable () -> Unit
 ) {
   val windowBreakpoint = rememberWindowBreakpoint()
-  val isRow = windowBreakpoint == WindowBreakpoint.SMALL
+  val isRow = windowBreakpoint is WindowBreakpoint.Small
 
   if (isRow) {
     Row(modifier = modifier.height(48.dp)) {

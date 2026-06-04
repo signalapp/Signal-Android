@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Process;
 
@@ -116,7 +115,7 @@ public class VoiceNotePlaybackService extends MediaSessionService {
   @Nullable
   @Override
   public MediaSession onGetSession(@NonNull MediaSession.ControllerInfo controllerInfo) {
-    if (Build.VERSION.SDK_INT >= 28 && controllerInfo.getUid() != Process.myUid()) {
+    if (controllerInfo.getUid() != Process.myUid()) {
       Log.w(TAG, "Denying session to external caller: " + controllerInfo.getPackageName());
       return null;
     }

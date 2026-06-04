@@ -49,6 +49,7 @@ import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
 import org.thoughtcrime.securesms.events.CallParticipant
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Small moveable local video renderer that displays the user's video in a draggable and expandable view.
@@ -160,7 +161,7 @@ fun MoveableLocalVideoRenderer(
         ) {
           Icon(
             imageVector = ImageVector.vectorResource(
-              if (isFocused) R.drawable.symbol_minimize_24 else R.drawable.symbol_maximize_24
+              if (isFocused) R.drawable.symbol_minimize_24 else CoreUiR.drawable.symbol_maximize_24
             ),
             tint = MaterialTheme.colorScheme.onSecondaryContainer,
             contentDescription = stringResource(

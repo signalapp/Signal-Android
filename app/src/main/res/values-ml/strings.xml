@@ -329,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">അയയ്‌ക്കുക</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">സമീപകാല കോൺടാക്റ്റുകൾ</string>
-    <string name="CameraContacts_signal_contacts">Signal കോൺടാക്റ്റുകൾ</string>
-    <string name="CameraContacts_signal_groups">Signal ഗ്രൂപ്പുകൾ</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">നിങ്ങൾക്ക് പരമാവധി %1$d ചാറ്റുമായി വരെ പങ്കിടാം.</item>
-        <item quantity="other">നിങ്ങൾക്ക് പരമാവധി %1$d ചാറ്റുകളുമായി വരെ പങ്കിടാം.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Signal സ്വീകർത്താക്കളെ തിരഞ്ഞെടുക്കുക</string>
-    <string name="CameraContacts_no_signal_contacts">Signal കോൺടാക്റ്റുകളൊന്നുമില്ല</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Signal കോൺടാക്റ്റുകളിലേക്ക് ഫോട്ടോകൾ അയയ്ക്കാൻ മാത്രമെ നിങ്ങൾക്ക് ക്യാമറ ബട്ടൺ ഉപയോഗിക്കാൻ കഴിയൂ. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">നിങ്ങൾ തിരയുന്ന ആളെ കണ്ടെത്താൻ കഴിയുന്നില്ലേ?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">ഒരു കോൺടാക്റ്റിനെ Signal-ൽ ചേരാൻ ക്ഷണിക്കുക</string>
     <string name="CameraContacts__menu_search">തിരയൽ</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4372,7 +4358,7 @@
     <string name="preferences_data_and_storage__never">ഒരിക്കലും വേണ്ട</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">വൈഫൈ, മൊബൈൽ ഡാറ്റ</string>
     <string name="preferences_data_and_storage__mobile_data_only">മൊബൈൽ ഡാറ്റ മാത്രം</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുന്നത് ബലഹീന നെറ്വർക്കിൽ ഗുണമേന്മ ഉയർത്തിയേക്കാം.</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുന്നത് മോശം നെറ്റ്‌വർക്കുകളിലും കോളുകൾ മെച്ചപ്പെടുത്താൻ സഹായിച്ചേക്കാം.</string>
     <string name="preferences_notifications__in_chat_sounds">ഇൻ-ചാറ്റ് ശബ്‌ദങ്ങള്‍</string>
     <string name="preferences_notifications__show">കാണിക്കുക</string>
     <string name="preferences_notifications__ringtone">റിംഗ്‌ടോൺ</string>
@@ -6042,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">സഹായ കേന്ദ്രം</string>
     <string name="HelpSettingsFragment__contact_us">ഞങ്ങളെ സമീപിക്കുക</string>
     <string name="HelpSettingsFragment__version">പതിപ്പ്</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
     <string name="HelpSettingsFragment__debug_log">ഡീബഗ് ലോഗ്</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">ലൈസൻസുകൾ</string>
@@ -6063,6 +6051,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">സ്റ്റാൻഡേർഡ്</string>
     <string name="DataAndStorageSettingsFragment__calls">കോളുകൾ</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">പശ്ചാത്തലത്തിൽ കണക്റ്റ് ചെയ്ത് തുടരുക</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">പശ്ചാത്തലത്തിൽ കണക്റ്റ് ചെയ്ത് തുടരുന്നത് ബാറ്ററി ഉപയോഗം വർദ്ധിപ്പിക്കാൻ ഇടയാക്കിയേക്കാം. മിക്ക ഉപകരണങ്ങൾക്കും ഇത് ആവശ്യമില്ല. നിങ്ങൾക്ക് അറിയിപ്പ് നൽകുന്നതിൽ പ്രശ്നങ്ങൾ ഉണ്ടാകുന്നുണ്ടെങ്കിൽ മാത്രം ഇത് പ്രവർത്തനക്ഷമമാക്കുക.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">പ്രവർത്തനക്ഷമമാക്കുക</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9399,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">ഓൺ-ഡിവൈസ് ബാക്കപ്പുകൾ ഓൺ ചെയ്യണോ?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">ഓൺ-ഡിവൈസ് ബാക്കപ്പുകൾ ഉപയോഗിക്കുന്നത് തുടരുന്നതിന്, ഈ അക്കൗണ്ടിനായി അവ പ്രവർത്തനക്ഷമമാക്കുകയും നിങ്ങളുടെ പുതിയ വീണ്ടെടുക്കൽ കീ രേഖപ്പെടുത്തുകയും ചെയ്യേണ്ടതുണ്ട്. നിങ്ങൾക്ക് ക്രമീകരണങ്ങൾ &gt; ബാക്കപ്പുകൾ എന്നതിൽ നിന്ന് എപ്പോൾ വേണമെങ്കിലും ഇത് ചെയ്യാം.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">ഓൺ-ഡിവൈസ് ബാക്കപ്പുകൾ തുടർന്നും ഉപയോഗിക്കുന്നതിന്, ഈ അക്കൗണ്ടിനായി നിങ്ങൾ അവ പ്രവർത്തനക്ഷമമാക്കേണ്ടതുണ്ട്. നിങ്ങൾക്ക് ക്രമീകരണങ്ങൾ &gt; ബാക്കപ്പുകൾ എന്നതിൽ നിന്ന് എപ്പോൾ വേണമെങ്കിലും ഇത് ചെയ്യാം.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">ഇപ്പോൾ ഓൺ ചെയ്യുക</string>

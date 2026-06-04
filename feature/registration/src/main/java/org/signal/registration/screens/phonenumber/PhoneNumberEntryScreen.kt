@@ -61,6 +61,7 @@ import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
+import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryState.OneTimeEvent
 import org.signal.registration.test.TestTags
 
@@ -214,7 +215,11 @@ private fun OnePaneLayout(
       }
     },
     footer = {
-      NextButton(state, onEvent)
+      RegistrationScaffold.FooterSurface(
+        isContentScrolledUnder = scrollState.canScrollForward
+      ) {
+        NextButton(state, onEvent)
+      }
     }
   )
 }
@@ -275,7 +280,11 @@ private fun TwoPaneLayout(
       }
     },
     footer = {
-      NextButton(state, onEvent)
+      RegistrationScaffold.FooterSurface(
+        isContentScrolledUnder = scrollState.canScrollForward
+      ) {
+        NextButton(state, onEvent)
+      }
     }
   )
 }
@@ -285,7 +294,9 @@ private fun Description() {
   Text(
     text = stringResource(R.string.RegistrationActivity_phone_number),
     style = MaterialTheme.typography.headlineMedium,
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier
+      .fillMaxWidth()
+      .attachDebugLogHelper()
   )
 
   Spacer(modifier = Modifier.height(16.dp))

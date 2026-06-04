@@ -331,21 +331,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Sūtīt</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Pēdējie kontakti</string>
-    <string name="CameraContacts_signal_contacts">Signal kontakti</string>
-    <string name="CameraContacts_signal_groups">Signal grupas</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="zero">Jūs varat kopīgot ar maksimums %1$d sarunām.</item>
-        <item quantity="one">Jūs varat kopīgot ar maksimums %1$d sarunu.</item>
-        <item quantity="other">Jūs varat kopīgot ar maksimums %1$d sarunām.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Izvēlēties Signal adresātus</string>
-    <string name="CameraContacts_no_signal_contacts">Nav Signal kontaktu</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Jūs variet izmantot kameru tikai, lai sūtītu attēlus Signal kontaktiem. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Neatradāt, ko meklējāt?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Uzaicināt kontaktpersonu pievienoties Signal</string>
     <string name="CameraContacts__menu_search">Meklēt</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4496,7 +4481,7 @@
     <string name="preferences_data_and_storage__never">Nekad</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi un mobilie dati</string>
     <string name="preferences_data_and_storage__mobile_data_only">Tikai mobilie dati</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Taupīgāka datu lietošana var uzlabot sarunas kvalitāti sliktos tīklos</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Taupīgāka datu lietošana var uzlabot zvanu kvalitāti sliktos tīklos.</string>
     <string name="preferences_notifications__in_chat_sounds">Skaņas sarunā</string>
     <string name="preferences_notifications__show">Rādīt</string>
     <string name="preferences_notifications__ringtone">Zvana signāls</string>
@@ -6192,6 +6177,8 @@
     <string name="HelpSettingsFragment__support_center">Atbalsta centrs</string>
     <string name="HelpSettingsFragment__contact_us">Sazināties ar mums</string>
     <string name="HelpSettingsFragment__version">Versija</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Iekopēts starpliktuvē</string>
     <string name="HelpSettingsFragment__debug_log">Atkļūdošanas žurnāls</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licences</string>
@@ -6213,6 +6200,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Standarta</string>
     <string name="DataAndStorageSettingsFragment__calls">Zvani</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Saglabāt savienojumu fonā</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Saglabājot savienojumu fonā, visticamāk, palielināsies akumulatora enerģijas patēriņš. Lielākajai daļai ierīču tas nav nepieciešams. Iespējojiet tikai tad, ja jums ir problēmas ar paziņojumiem.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Iespējot</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9599,11 +9592,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Sazināties ar atbalstu</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Vai ieslēgt rezerves kopijas ierīcē?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Lai turpinātu lietot rezerves kopijas ierīcē, tās jāiespējo šim kontam un jāpieraksta jaunā atkopšanas atslēga. To jebkurā laikā var izdarīt sadaļā Iestatījumi &gt; Rezerves kopijas.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Lai turpinātu lietot rezerves kopijas ierīcē, tās jāiespējo šim kontam. To var izdarīt jebkurā laikā sadaļā Iestatījumi &gt; Rezerves kopijas.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Ieslēgt tūlīt</string>

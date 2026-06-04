@@ -369,7 +369,8 @@ interface NetworkController {
       val storage: Boolean,
       val versionedExpirationTimer: Boolean,
       val attachmentBackfill: Boolean,
-      val spqr: Boolean
+      val spqr: Boolean,
+      val usernameChangeSyncMessage: Boolean
     )
   }
 

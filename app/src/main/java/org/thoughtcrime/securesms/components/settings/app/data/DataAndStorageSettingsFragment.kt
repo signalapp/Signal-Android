@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
@@ -90,6 +91,18 @@ class DataAndStorageSettingsFragment : ComposeFragment() {
     override fun onRoamingDataAutoDownloadSelectionChanged(selection: Array<String>) {
       viewModel.setRoamingAutoDownloadValues(selection.toSet())
     }
+
+    override fun onForceWebsocketModeChanged(enabled: Boolean) {
+      viewModel.onForceWebsocketModeToggled(enabled)
+    }
+
+    override fun onConfirmStayConnectedInBackground() {
+      viewModel.confirmStayConnectedInBackground()
+    }
+
+    override fun onDismissStayConnectedInBackgroundDialog() {
+      viewModel.dismissStayConnectedInBackgroundDialog()
+    }
   }
 }
 
@@ -102,6 +115,9 @@ private interface DataAndStorageSettingsCallbacks {
   fun onMobileDataAutoDownloadSelectionChanged(selection: Array<String>) = Unit
   fun onWifiDataAutoDownloadSelectionChanged(selection: Array<String>) = Unit
   fun onRoamingDataAutoDownloadSelectionChanged(selection: Array<String>) = Unit
+  fun onForceWebsocketModeChanged(enabled: Boolean) = Unit
+  fun onConfirmStayConnectedInBackground() = Unit
+  fun onDismissStayConnectedInBackgroundDialog() = Unit
 
   object Empty : DataAndStorageSettingsCallbacks
 }
@@ -253,6 +269,19 @@ private fun DataAndStorageSettingsScreen(
       }
 
       item {
+        Rows.ToggleRow(
+          checked = state.forceWebsocketMode || !state.playServicesAvailable,
+          text = stringResource(R.string.DataAndStorageSettingsFragment__stay_connected_in_background),
+          enabled = state.playServicesAvailable,
+          onCheckChanged = callbacks::onForceWebsocketModeChanged
+        )
+      }
+
+      item {
+        Dividers.Default()
+      }
+
+      item {
         Texts.SectionHeader(stringResource(R.string.preferences_proxy))
       }
 
@@ -263,6 +292,17 @@ private fun DataAndStorageSettingsScreen(
           onClick = callbacks::onUseProxyClick
         )
       }
+    }
+
+    if (state.showStayConnectedDialog) {
+      Dialogs.SimpleAlertDialog(
+        title = "",
+        body = stringResource(R.string.DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage),
+        confirm = stringResource(R.string.DataAndStorageSettingsFragment__enable),
+        dismiss = stringResource(android.R.string.cancel),
+        onConfirm = callbacks::onConfirmStayConnectedInBackground,
+        onDismiss = callbacks::onDismissStayConnectedInBackgroundDialog
+      )
     }
   }
 }
@@ -279,7 +319,10 @@ private fun DataAndStorageSettingsScreenPreview() {
         roamingAutoDownloadValues = setOf(),
         callDataMode = CallDataMode.HIGH_ALWAYS,
         isProxyEnabled = false,
-        sentMediaQuality = SentMediaQuality.STANDARD
+        sentMediaQuality = SentMediaQuality.STANDARD,
+        forceWebsocketMode = false,
+        playServicesAvailable = true,
+        showStayConnectedDialog = false
       ),
       callbacks = DataAndStorageSettingsCallbacks.Empty
     )

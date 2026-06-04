@@ -64,10 +64,10 @@ import org.thoughtcrime.securesms.scribbles.stickers.DigitalClockStickerRenderer
 import org.thoughtcrime.securesms.scribbles.stickers.FeatureSticker;
 import org.thoughtcrime.securesms.scribbles.stickers.TappableRenderer;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ParcelUtil;
+import org.signal.core.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ThrottledDebouncer;
+import org.signal.core.util.ThrottledDebouncer;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
@@ -817,6 +817,20 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
                        .forData(outputStream.toByteArray())
                        .withMimeType(MediaUtil.IMAGE_JPEG)
                        .createForSingleUseInMemory();
+  }
+
+  @WorkerThread
+  public static @NonNull Uri renderToSingleSessionBlob(@NonNull Context context, @NonNull EditorModel editorModel) {
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    Bitmap                image        = editorModel.render(context, new FontTypefaceProvider());
+
+    image.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
+    image.recycle();
+
+    return BlobProvider.getInstance()
+                       .forData(outputStream.toByteArray())
+                       .withMimeType(MediaUtil.IMAGE_JPEG)
+                       .createForSingleSessionInMemory();
   }
 
   private void onDrawingChanged(boolean stillTouching, boolean isUserEdit) {

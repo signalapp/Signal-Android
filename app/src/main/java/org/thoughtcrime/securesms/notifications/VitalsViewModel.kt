@@ -68,7 +68,7 @@ class VitalsViewModel(private val context: Application) : AndroidViewModel(conte
         return@fromCallable State.PROMPT_SPECIFIC_BATTERY_SAVER_DIALOG
       }
 
-      if (havingDelayedNotifications && SlowNotificationHeuristics.shouldPromptBatterySaver()) {
+      if (havingDelayedNotifications && SlowNotificationHeuristics.shouldPromptBatterySaver() && SlowNotificationHeuristics.isBatteryOptimizationsOn()) {
         return@fromCallable State.PROMPT_GENERAL_BATTERY_SAVER_DIALOG
       }
 

@@ -7,21 +7,9 @@ package org.signal.core.models
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import org.junit.After
-import org.junit.Before
 import org.junit.Test
 
 class AccountEntropyPoolTest {
-
-  @Before
-  fun setUp() {
-    AccountEntropyPool.temporarilyDisplayAsStorage = false
-  }
-
-  @After
-  fun tearDown() {
-    AccountEntropyPool.temporarilyDisplayAsStorage = true
-  }
 
   @Test
   fun `formatForDisplay - swaps storage characters for their display equivalents`() {
@@ -131,19 +119,5 @@ class AccountEntropyPoolTest {
   @Test
   fun `removeIllegalCharacters - preserves alphanumerics and display-map characters`() {
     assertThat(AccountEntropyPool.removeIllegalCharacters("aZ0 9!#=?")).isEqualTo("aZ09#=")
-  }
-
-  @Test
-  fun `formatForDisplay - production default short-circuits to formatForStorage`() {
-    AccountEntropyPool.temporarilyDisplayAsStorage = true
-
-    assertThat(AccountEntropyPool.formatForDisplay("O")).isEqualTo("O")
-    assertThat(AccountEntropyPool.formatForDisplay("0")).isEqualTo("0")
-    assertThat(AccountEntropyPool.formatForDisplay("#")).isEqualTo("O")
-    assertThat(AccountEntropyPool.formatForDisplay("=")).isEqualTo("0")
-    assertThat(AccountEntropyPool.formatForDisplay("ABCxyz123")).isEqualTo("ABCxyz123")
-
-    val aep = AccountEntropyPool("abcdef0123456789".repeat(4))
-    assertThat(aep.displayValue).isEqualTo("ABCDEF0123456789".repeat(4))
   }
 }

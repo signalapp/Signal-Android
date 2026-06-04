@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.lock.v2
 
+import android.os.Bundle
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 import android.widget.EditText
@@ -8,12 +10,18 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinViewModel.NavigationEvent
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinViewModel.PinErrorEvent
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class CreateSvrPinFragment : BaseSvrPinFragment<CreateSvrPinViewModel?>() {
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    TemporaryScreenshotSecurity.bindToViewLifecycleOwner(this)
+  }
+
   override fun initializeViewStates() {
     val args = CreateSvrPinFragmentArgs.fromBundle(requireArguments())
     if (args.isPinChange) {

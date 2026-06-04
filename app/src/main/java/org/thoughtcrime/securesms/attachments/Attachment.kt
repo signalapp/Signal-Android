@@ -10,11 +10,11 @@ import android.os.Parcelable
 import androidx.core.os.ParcelCompat
 import org.signal.blurhash.BlurHash
 import org.signal.core.models.media.TransformProperties
+import org.signal.core.util.ParcelUtil
 import org.signal.core.util.UuidUtil
 import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
-import org.thoughtcrime.securesms.util.ParcelUtil
 import java.util.UUID
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds

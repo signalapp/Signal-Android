@@ -34,9 +34,6 @@ class AccountEntropyPool(value: String) {
     private val STORAGE_TO_DISPLAY: Map<Char, Char> = CHARACTER_DISPLAY_MAP
     private val DISPLAY_TO_STORAGE: Map<Char, Char> = CHARACTER_DISPLAY_MAP.entries.associate { (k, v) -> v to k }
 
-    /** Need to ship read support for at least one release before write support. */
-    internal var temporarilyDisplayAsStorage: Boolean = true
-
     /** Storage charset (alphanumeric) plus any display characters from [CHARACTER_DISPLAY_MAP]. */
     private val INVALID_CHARACTERS: Regex = run {
       val extras = CHARACTER_DISPLAY_MAP.values.joinToString("") { Regex.escape(it.toString()) }
@@ -71,11 +68,6 @@ class AccountEntropyPool(value: String) {
      * ('O'). Characters not in the map are passed through unchanged.
      */
     fun formatForDisplay(input: String): String {
-      // Just for one release to allow read support to propagate
-      if (temporarilyDisplayAsStorage) {
-        return formatForStorage(input)
-      }
-
       if (STORAGE_TO_DISPLAY.isEmpty()) {
         return input
       }

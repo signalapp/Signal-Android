@@ -17,7 +17,7 @@ android-gradle-plugin = "9.1.1"
 # Other versions
 androidx-appcompat = "1.7.1"
 androidx-activity = "1.13.0"
-androidx-camera = "1.5.2"
+androidx-camera = "1.6.1"
 androidx-fragment = "1.8.9"
 androidx-lifecycle = "2.10.0"
 androidx-lifecycle-navigation3 = "2.10.0"
@@ -27,14 +27,13 @@ androidx-navigation3-core = "1.0.0"
 androidx-core-telecom = "1.1.0-alpha04"
 androidx-window = "1.3.0"
 glide = "4.15.1"
-libsignal-client = "0.94.1"
+libsignal-client = "0.94.4"
 mp4parser = "1.9.39"
 accompanist = "0.28.0"
 nanohttpd = "2.3.1"
 navigation-safe-args-gradle-plugin = "2.9.8"
 protobuf-gradle-plugin = "0.10.0"
 ktlint = "14.2.0"
-ui-test-junit4 = "1.11.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
@@ -172,7 +171,7 @@ libsignal-client = { module = "org.signal:libsignal-client", version.ref = "libs
 libsignal-android = { module = "org.signal:libsignal-android", version.ref = "libsignal-client" }
 protobuf-gradle-plugin = { module = "com.google.protobuf:protobuf-gradle-plugin", version.ref = "protobuf-gradle-plugin" }
 signal-aesgcmprovider = "org.signal:aesgcmprovider:0.0.4"
-signal-ringrtc = "org.signal:ringrtc-android:2.69.1"
+signal-ringrtc = "org.signal:ringrtc-android:2.69.2"
 
 # Third Party
 signal-android-database-sqlcipher = "net.zetetic:sqlcipher-android:4.16.0"
@@ -200,6 +199,7 @@ dnsjava = "dnsjava:dnsjava:3.6.4"
 nanohttpd-webserver = { module = "org.nanohttpd:nanohttpd-webserver", version.ref = "nanohttpd" }
 nanohttpd-websocket = { module = "org.nanohttpd:nanohttpd-websocket", version.ref = "nanohttpd" }
 kotlinx-collections-immutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.4.0"
+arrow-core = "io.arrow-kt:arrow-core:2.2.2.1"
 
 # Can't use the newest version because it hits some weird NoClassDefFoundException
 jknack-handlebars = "com.github.jknack:handlebars:4.0.7"
@@ -208,7 +208,6 @@ jknack-handlebars = "com.github.jknack:handlebars:4.0.7"
 mp4parser-isoparser = { module = "org.mp4parser:isoparser", version.ref = "mp4parser" }
 mp4parser-streaming = { module = "org.mp4parser:streaming", version.ref = "mp4parser" }
 mp4parser-muxer = { module = "org.mp4parser:muxer", version.ref = "mp4parser" }
-androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "ui-test-junit4" }
 
 [bundles]
 media3 = ["androidx-media3-exoplayer", "androidx-media3-session", "androidx-media3-ui"]

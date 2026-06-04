@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs
 
 import android.text.TextUtils
 import org.signal.core.util.Base64
+import org.signal.core.util.ExpiringProfileCredentialUtil
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
@@ -33,7 +34,6 @@ import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
-import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil
 import java.io.IOException
 
 /**

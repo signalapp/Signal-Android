@@ -50,7 +50,7 @@ import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig;
 import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton;
 import org.signal.glide.decryptableuri.DecryptableUri;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.signal.core.util.ServiceUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.ViewUtil;
 

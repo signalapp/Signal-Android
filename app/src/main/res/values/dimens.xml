@@ -30,7 +30,6 @@
     <dimen name="album_5_cell_size_big">104dp</dimen>
     <dimen name="album_5_cell_size_small">69dp</dimen>
 
-    <dimen name="camera_contacts_horizontal_margin">16dp</dimen>
     <dimen name="camera_capture_button_size">124dp</dimen>
     <dimen name="camera_capture_image_button_size">76dp</dimen>
 
@@ -246,7 +245,7 @@
     <dimen name="chat_folder_row_height">64dp</dimen>
 
 
-    <dimen name="donation_pill_max_width">150dp</dimen>
+    <dimen name="donation_pill_max_width">180dp</dimen>
 
     <dimen name="call_screen_overflow_item_size">72dp</dimen>
 

@@ -188,7 +188,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
               message = OutgoingMessage(threadRecipient = recipient, sentTimeMillis = time, body = "Outgoing: $i"),
               threadId = targetThread
             ).messageId
-            SignalDatabase.messages.markAsSent(id, true)
+            SignalDatabase.messages.markAsSent(id)
           } else {
             SignalDatabase.messages.insertMessageInbox(
               retrieved = IncomingMessage(type = MessageType.NORMAL, from = recipient.id, sentTimeMillis = time, serverTimeMillis = time, receivedTimeMillis = System.currentTimeMillis(), body = "Incoming: $i"),
@@ -218,7 +218,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
             message = OutgoingMessage(threadRecipient = recipient, sentTimeMillis = time, body = "Outgoing: $i", attachments = listOf(attachment)),
             threadId = targetThread
           ).messageId
-          SignalDatabase.messages.markAsSent(id, true)
+          SignalDatabase.messages.markAsSent(id)
           SignalDatabase.attachments.getAttachmentsForMessage(id).forEach {
             SignalDatabase.attachments.debugMakeValidForArchive(it.attachmentId)
             SignalDatabase.attachments.createRemoteKeyIfNecessary(it.attachmentId)
@@ -252,7 +252,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
       false,
       null
     ).messageId
-    SignalDatabase.messages.markAsSent(messageId, true)
+    SignalDatabase.messages.markAsSent(messageId)
 
     SignalDatabase.threads.update(splitThreadId, true)
 

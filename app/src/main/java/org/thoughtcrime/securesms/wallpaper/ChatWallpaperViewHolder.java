@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.DisplayMetricsUtil;
+import org.signal.core.util.DisplayMetricsUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.Factory;
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;

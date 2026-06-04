@@ -103,6 +103,8 @@ class LinkifierTest(private val case: Case) {
       Case("multiple trailing punctuation chars are all trimmed", "Wow https://signal.org!!! amazing", listOf(web("https://signal.org"))),
       Case("trailing slash is preserved", "https://signal.org/ end", listOf(web("https://signal.org/"))),
       Case("trailing underscore is preserved", "https://example.com/path_ tail", listOf(web("https://example.com/path_"))),
+      Case("comma in url path is preserved", "Go to https://example.com/a,b/c", listOf(web("https://example.com/a,b/c"))),
+      Case("comma in url query is preserved", "Go to https://example.com/search?q=a,b", listOf(web("https://example.com/search?q=a,b"))),
 
       // ----- bracket / paren handling -----
       Case("trailing closing paren without opener is trimmed", "(see https://signal.org)", listOf(web("https://signal.org"))),

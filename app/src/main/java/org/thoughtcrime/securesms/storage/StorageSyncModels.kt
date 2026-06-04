@@ -192,8 +192,10 @@ object StorageSyncModels {
     }
 
     return SignalContactRecord.newBuilder(recipient.syncExtras.storageProto).apply {
+      aciBinary = recipient.aci?.toByteString() ?: ByteString.EMPTY
       aci = ""
       e164 = recipient.e164 ?: ""
+      pniBinary = recipient.pni?.toByteStringWithoutPrefix() ?: ByteString.EMPTY
       pni = ""
       profileKey = recipient.profileKey?.toByteString() ?: ByteString.EMPTY
       givenName = recipient.signalProfileName.givenName
@@ -216,8 +218,6 @@ object StorageSyncModels {
       nickname = recipient.nickname.takeUnless { it.isEmpty }?.let { ContactRecord.Name(given = it.givenName, family = it.familyName) }
       note = recipient.note ?: ""
       avatarColor = localToRemoteAvatarColor(recipient.avatarColor)
-      aciBinary = recipient.aci?.toByteString() ?: ByteString.EMPTY
-      pniBinary = recipient.pni?.toByteStringWithoutPrefix() ?: ByteString.EMPTY
     }.build().toSignalContactRecord(StorageId.forContact(rawStorageId))
   }
 

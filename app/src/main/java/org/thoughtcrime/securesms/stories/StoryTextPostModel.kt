@@ -17,6 +17,7 @@ import com.bumptech.glide.load.ResourceDecoder
 import com.bumptech.glide.load.engine.Resource
 import com.bumptech.glide.load.resource.SimpleResource
 import org.signal.core.util.Base64
+import org.signal.core.util.ParcelUtil
 import org.signal.core.util.concurrent.safeBlockingGet
 import org.signal.core.util.readParcelableCompat
 import org.signal.glide.decryptableuri.DecryptableUri
@@ -32,7 +33,6 @@ import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.fonts.TextToScript
 import org.thoughtcrime.securesms.fonts.TypefaceCache
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.ParcelUtil
 import java.io.IOException
 import java.security.MessageDigest
 

@@ -5,10 +5,10 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.ObjectNode
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.JsonUtils
 import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.providers.BlobProvider
-import org.thoughtcrime.securesms.util.JsonUtils
 
 class ExportAccountDataRepository {
 

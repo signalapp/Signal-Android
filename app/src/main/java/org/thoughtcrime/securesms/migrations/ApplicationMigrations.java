@@ -10,12 +10,12 @@ import androidx.lifecycle.MutableLiveData;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.Util;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 
 import java.util.LinkedHashMap;
@@ -200,9 +200,13 @@ public class ApplicationMigrations {
     static final int COLLAPSED_EVENTS_2            = 156;
     static final int KEY_TRANSPARENCY              = 157;
     static final int RELEASE_NOTES_CHAT_SYNC       = 158;
+    static final int READ_INDEX_DB_MIGRATION       = 159;
+    // Need to skip 160 due to release ordering issues
+    static final int SVR2_ENCLAVE_UPDATE_6         = 161;
+    static final int NOTIFICATION_INDEX__MIGRATION = 162;
   }
 
-  public static final int CURRENT_VERSION = 158;
+  public static final int CURRENT_VERSION = 162;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -927,6 +931,18 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.RELEASE_NOTES_CHAT_SYNC) {
       jobs.put(Version.RELEASE_NOTES_CHAT_SYNC, new AccountRecordMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.READ_INDEX_DB_MIGRATION) {
+      jobs.put(Version.READ_INDEX_DB_MIGRATION, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.SVR2_ENCLAVE_UPDATE_6) {
+      jobs.put(Version.SVR2_ENCLAVE_UPDATE_6, new Svr2MirrorMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.NOTIFICATION_INDEX__MIGRATION) {
+      jobs.put(Version.NOTIFICATION_INDEX__MIGRATION, new DatabaseMigrationJob());
     }
 
     return jobs;

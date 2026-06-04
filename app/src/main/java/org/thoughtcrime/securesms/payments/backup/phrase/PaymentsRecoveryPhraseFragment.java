@@ -24,9 +24,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.signal.core.util.ClearClipboardAlarmReceiver;
 import org.signal.core.util.PendingIntentFlags;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.Mnemonic;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.signal.core.util.ServiceUtil;
 import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
@@ -47,6 +48,8 @@ public class PaymentsRecoveryPhraseFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    TemporaryScreenshotSecurity.bindToViewLifecycleOwner(this);
+
     Toolbar                            toolbar           = view.findViewById(R.id.payments_recovery_phrase_fragment_toolbar);
     RecyclerView                       recyclerView      = view.findViewById(R.id.payments_recovery_phrase_fragment_recycler);
     TextView                           message           = view.findViewById(R.id.payments_recovery_phrase_fragment_message);

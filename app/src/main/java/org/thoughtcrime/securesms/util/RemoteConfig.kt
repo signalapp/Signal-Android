@@ -11,6 +11,7 @@ import org.signal.core.util.gibiBytes
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -683,6 +684,16 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** Whether we log and surface notifications for slow database transactions/queries. */
+  @JvmStatic
+  @get:JvmName("slowDatabaseNotifications")
+  val slowDatabaseNotifications: Boolean by remoteBoolean(
+    key = "android.slowDatabaseNotifications",
+    defaultValue = false,
+    hotSwappable = true,
+    onChangeListener = { SQLiteDatabase.setSlowWriteLoggingEnabled(it.newValue.asBoolean(false)) }
+  )
+
   /** How often we allow an automatic session reset.  */
   @JvmStatic
   @get:JvmName("automaticSessionResetIntervalSeconds")
@@ -1181,6 +1192,19 @@ object RemoteConfig {
   )
 
   /**
+   * When true, individual 1:1 sends are routed through [IndividualSendJobV2], which uses the
+   * network-module [org.signal.network.service.MessageService] instead of the legacy
+   * [SignalServiceMessageSender] send path.
+   */
+  @JvmStatic
+  @get:JvmName("useIndividualSendJobV2")
+  val useIndividualSendJobV2: Boolean by remoteBoolean(
+    key = "android.useIndividualSendJobV2.2",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /**
    * Also determines how long an unregistered/deleted record should remain in storage service
    */
   val messageQueueTime: Long by remoteValue(
@@ -1430,6 +1454,14 @@ object RemoteConfig {
   val requirePqRatio: Double by remoteDouble(
     key = "android.requirePqRatio",
     defaultValue = 0.0,
+    hotSwappable = true
+  )
+
+  @JvmStatic
+  @get:JvmName("disappearMore")
+  val disappearMore: Boolean by remoteBoolean(
+    key = "android.disappearMore",
+    defaultValue = false,
     hotSwappable = true
   )
 

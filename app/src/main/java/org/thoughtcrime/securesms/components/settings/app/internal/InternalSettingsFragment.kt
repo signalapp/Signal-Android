@@ -6,9 +6,12 @@ import android.content.Context
 import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -74,8 +77,10 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.data.QuickstartCredentialExporter
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.thoughtcrime.securesms.util.setIncognitoKeyboardEnabled
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import java.util.Optional
 import java.util.UUID
@@ -83,15 +88,15 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.max
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.Duration.Companion.seconds
 
-class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__internal_preferences) {
+class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__internal_preferences, R.menu.internal_settings) {
 
   companion object {
     private val TAG = Log.tag(InternalSettingsFragment::class.java)
   }
 
   private lateinit var viewModel: InternalSettingsViewModel
+  private var searchMenuItem: MenuItem? = null
 
   private var scrollToPosition: Int = 0
   private val layoutManager: LinearLayoutManager?
@@ -108,6 +113,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     scrollToPosition = SignalStore.internal.lastScrollPosition
+    initializeSearch(view)
 
     setFragmentResultListener(CallQualityBottomSheetFragment.REQUEST_KEY) { _, bundle ->
       if (bundle.getBoolean(CallQualityBottomSheetFragment.REQUEST_KEY, false)) {
@@ -126,12 +132,65 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
     viewModel = ViewModelProvider(this, factory)[InternalSettingsViewModel::class.java]
 
     viewModel.state.observe(viewLifecycleOwner) {
-      adapter.submitList(getConfiguration(it).toMappingModelList()) {
-        if (scrollToPosition != 0) {
+      val mappingModelList = getConfiguration(it).toMappingModelList()
+      val filteredList = viewModel.filterPreferences(requireContext(), mappingModelList, it.searchQuery)
+
+      adapter.submitList(filteredList) {
+        if (scrollToPosition != 0 && it.searchQuery.isBlank()) {
           layoutManager?.scrollToPositionWithOffset(scrollToPosition, 0)
           scrollToPosition = 0
         }
       }
+    }
+  }
+
+  override fun onToolbarNavigationClicked() {
+    if (searchMenuItem?.isActionViewExpanded == true) {
+      searchMenuItem?.collapseActionView()
+    } else {
+      super.onToolbarNavigationClicked()
+    }
+  }
+
+  private fun initializeSearch(view: View) {
+    val toolbar: Toolbar = view.findViewById(R.id.toolbar)
+    searchMenuItem = toolbar.menu.findItem(R.id.menu_search)
+
+    val searchView: SearchView = searchMenuItem?.actionView as? SearchView ?: return
+    val queryListener = object : SearchView.OnQueryTextListener {
+      override fun onQueryTextSubmit(query: String?): Boolean {
+        searchView.clearFocus()
+        viewModel.setSearchQuery(query.orEmpty())
+        return true
+      }
+
+      override fun onQueryTextChange(newText: String?): Boolean {
+        viewModel.setSearchQuery(newText.orEmpty())
+        return true
+      }
+    }
+
+    searchView.maxWidth = Integer.MAX_VALUE
+    searchView.queryHint = getString(R.string.CameraContacts__menu_search)
+
+    searchMenuItem?.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+      override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+        searchView.setIncognitoKeyboardEnabled(TextSecurePreferences.isIncognitoKeyboardEnabled(requireContext()))
+        searchView.setOnQueryTextListener(queryListener)
+        return true
+      }
+
+      override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+        searchView.setOnQueryTextListener(null)
+        searchView.setQuery("", false)
+        viewModel.setSearchQuery("")
+        return true
+      }
+    })
+
+    val currentQuery = viewModel.state.value?.searchQuery.orEmpty()
+    if (currentQuery.isNotBlank() && searchMenuItem?.expandActionView() == true) {
+      searchView.setQuery(currentQuery, false)
     }
   }
 
@@ -510,25 +569,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       dividerPref()
 
       sectionHeaderPref(DSLSettingsText.from("Network"))
-
-      switchPref(
-        title = DSLSettingsText.from("Force websocket mode"),
-        summary = DSLSettingsText.from("Pretend you have no Play Services. Ignores websocket messages and keeps the websocket open in a foreground service. You have to manually force-stop the app for changes to take effect."),
-        isChecked = state.forceWebsocketMode,
-        onClick = {
-          viewModel.setForceWebsocketMode(!state.forceWebsocketMode)
-          SimpleTask.run({
-            val jobState = AppDependencies.jobManager.runSynchronously(RefreshAttributesJob(), 10.seconds.inWholeMilliseconds)
-            return@run jobState.isPresent && jobState.get().isComplete
-          }, { success ->
-            if (success) {
-              Toast.makeText(context, "Successfully refreshed attributes. Force-stop the app for changes to take effect.", Toast.LENGTH_SHORT).show()
-            } else {
-              Toast.makeText(context, "Failed to refresh attributes.", Toast.LENGTH_SHORT).show()
-            }
-          })
-        }
-      )
 
       switchPref(
         title = DSLSettingsText.from("Allow censorship circumvention toggle"),

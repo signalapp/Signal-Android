@@ -11,6 +11,7 @@ plugins {
   id("org.jetbrains.kotlin.jvm")
   id("idea")
   id("org.jlleitschuh.gradle.ktlint")
+  alias(libs.plugins.kotlinx.serialization)
 }
 
 java {
@@ -40,21 +41,20 @@ tasks.whenTaskAdded {
 
 dependencies {
   api(project(":lib:libsignal-service"))
+  api(project(":core:network"))
+  implementation(project(":core:util-jvm"))
+  implementation(project(":core:models-jvm"))
+  implementation(project(":core:serialization"))
 
   implementation(libs.libsignal.client)
-  api(libs.square.okhttp3)
   api(libs.square.okio)
 
   api(libs.rxjava3.rxjava)
-  implementation(libs.rxjava3.rxkotlin)
 
   implementation(libs.kotlin.stdlib.jdk8)
   implementation(libs.kotlinx.coroutines.core)
   implementation(libs.kotlinx.coroutines.core.jvm)
-
-  api(project(":core:network"))
-  implementation(project(":core:util-jvm"))
-  implementation(project(":core:models-jvm"))
+  implementation(libs.kotlinx.serialization.json)
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertk)

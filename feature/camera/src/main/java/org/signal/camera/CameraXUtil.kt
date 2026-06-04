@@ -5,14 +5,13 @@
 
 package org.signal.camera
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraCharacteristics
+import android.hardware.camera2.CameraManager
 import android.hardware.camera2.CameraMetadata
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.camera.camera2.internal.compat.CameraManagerCompat
 import org.signal.core.util.MemoryFileDescriptor
 import org.signal.core.util.logging.Log
 
@@ -55,8 +54,7 @@ object CameraXUtil {
   }
 
   fun getLowestSupportedHardwareLevel(context: Context): Int {
-    @SuppressLint("RestrictedApi")
-    val cameraManager = CameraManagerCompat.from(context.applicationContext).unwrap()
+    val cameraManager = context.applicationContext.getSystemService(Context.CAMERA_SERVICE) as CameraManager
 
     try {
       var supported = maxHardwareLevel()

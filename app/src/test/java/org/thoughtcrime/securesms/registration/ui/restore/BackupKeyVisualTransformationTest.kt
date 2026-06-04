@@ -48,6 +48,15 @@ class BackupKeyVisualTransformationTest {
   }
 
   @Test
+  fun `Given display-equivalent characters, ensure characters are not swapped`() {
+    val testSubject = BackupKeyVisualTransformation(chunkSize = 4)
+
+    val result = testSubject.filter(AnnotatedString("a0O#=b")).text
+
+    assertThat(result).isEqualTo(AnnotatedString("A0O# =B"))
+  }
+
+  @Test
   fun `Given output length, when I originalToTransformed, then I expect proper output`() {
     val testSubject = BackupKeyVisualTransformation(chunkSize = 4)
     val text = AnnotatedString("AAAAAAAA")

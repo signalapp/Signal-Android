@@ -75,7 +75,7 @@ fun PictureInPictureCallScreen(
       renderInPip = true,
       raiseHandAllowed = false,
       onInfoMoreInfoClick = null,
-      mirrorVideo = isFullScreenLocalParticipant,
+      mirrorVideo = isFullScreenLocalParticipant && !fullScreenParticipant.isScreenSharing,
       modifier = Modifier.fillMaxSize()
     )
 

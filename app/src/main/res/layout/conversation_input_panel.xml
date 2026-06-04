@@ -87,32 +87,29 @@
         tools:src="@tools:sample/avatars"
         tools:visibility="visible" />
 
-    <org.thoughtcrime.securesms.components.QuoteView
-        android:id="@+id/quote_view"
+    <ViewStub
+        android:id="@+id/quote_view_stub"
+        android:inflatedId="@+id/quote_view"
+        android:layout="@layout/conversation_input_quote_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="6dp"
         android:layout_marginTop="6dp"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/compose_bubble"
         app:layout_constraintStart_toStartOf="@+id/compose_bubble"
-        app:layout_constraintTop_toBottomOf="@+id/edit_message_title"
-        app:message_type="preview"
-        app:quote_colorPrimary="@color/signal_text_primary"
-        app:quote_colorSecondary="@color/signal_text_primary"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_message_title" />
 
-    <org.thoughtcrime.securesms.components.LinkPreviewView
-        android:id="@+id/link_preview"
+    <ViewStub
+        android:id="@+id/link_preview_stub"
+        android:inflatedId="@+id/link_preview"
+        android:layout="@layout/conversation_input_link_preview_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="6dp"
         android:layout_marginTop="6dp"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/compose_bubble"
         app:layout_constraintStart_toStartOf="@+id/compose_bubble"
-        app:layout_constraintTop_toBottomOf="@+id/quote_view"
-        app:linkpreview_type="compose" />
+        app:layout_constraintTop_toBottomOf="@+id/quote_view" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/compose_bubble_top_elements"
@@ -245,16 +242,16 @@
         app:layout_constraintTop_toBottomOf="@id/compose_bubble_top_elements"
         tools:visibility="gone" />
 
-    <org.thoughtcrime.securesms.conversation.VoiceNoteDraftView
-        android:id="@+id/voice_note_draft_view"
+    <ViewStub
+        android:id="@+id/voice_note_draft_view_stub"
+        android:inflatedId="@+id/voice_note_draft_view"
+        android:layout="@layout/conversation_input_voice_note_draft_view"
         android:layout_width="0dp"
         android:layout_height="@dimen/conversation_compose_height"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/compose_bubble"
         app:layout_constraintEnd_toEndOf="@id/compose_bubble"
         app:layout_constraintStart_toStartOf="@id/compose_bubble"
-        app:layout_constraintTop_toBottomOf="@id/compose_bubble_top_elements"
-        tools:visibility="gone" />
+        app:layout_constraintTop_toBottomOf="@id/compose_bubble_top_elements" />
 
     <org.thoughtcrime.securesms.components.AnimatingToggle
         android:id="@+id/button_toggle"

@@ -228,12 +228,6 @@ public class MmsMessageRecord extends MessageRecord {
   public SpannableString getDisplayBody(@NonNull Context context) {
     if (MessageTypes.isChatSessionRefresh(type)) {
       return emphasisAdded(context.getString(R.string.MessageRecord_chat_session_refreshed));
-    } else if (MessageTypes.isDuplicateMessageType(type)) {
-      return emphasisAdded(context.getString(R.string.SmsMessageRecord_duplicate_message));
-    } else if (MessageTypes.isNoRemoteSessionType(type)) {
-      return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
-    } else if (isLegacyMessage()) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
     } else if (isPaymentNotification() && payment != null) {
       return new SpannableString(context.getString(R.string.MessageRecord__payment_s, payment.getAmount().toString(FormatterOptions.defaults())));
     } else if (isPaymentTombstone() || isPaymentNotification()) {
@@ -265,13 +259,13 @@ public class MmsMessageRecord extends MessageRecord {
 
         if (call.getEvent() == CallTable.Event.NOT_ACCEPTED) {
           int message = isVideoCall ? R.string.MessageRecord_unanswered_video_call : R.string.MessageRecord_unanswered_voice_call;
-          return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(message), callDateString),
+          return staticUpdateDescriptionWithExpiration(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(message), callDateString),
                                          icon,
                                          ContextCompat.getColor(context, R.color.core_red_shade),
                                          ContextCompat.getColor(context, R.color.core_red));
         } else {
           int updateString = isVideoCall ? R.string.MessageRecord_outgoing_video_call : R.string.MessageRecord_outgoing_voice_call;
-          return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), icon);
+          return staticUpdateDescriptionWithExpiration(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), icon);
         }
       } else {
         boolean isVideoCall = call.getType() == CallTable.Type.VIDEO_CALL;
@@ -279,7 +273,7 @@ public class MmsMessageRecord extends MessageRecord {
         if (accepted || !call.isDisplayedAsMissedCallInUi()) {
           int updateString = isVideoCall ? R.string.MessageRecord_incoming_video_call : R.string.MessageRecord_incoming_voice_call;
           Glyph icon       = isVideoCall ? Glyph.VIDEO_CAMERA : Glyph.PHONE;
-          return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), icon);
+          return staticUpdateDescriptionWithExpiration(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), icon);
         } else {
           Glyph icon = isVideoCall ? Glyph.VIDEO_CAMERA : Glyph.PHONE;
           int message;
@@ -291,7 +285,7 @@ public class MmsMessageRecord extends MessageRecord {
             message = isVideoCall ? R.string.MessageRecord_missed_video_call : R.string.MessageRecord_missed_voice_call;
           }
 
-          return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date,
+          return staticUpdateDescriptionWithExpiration(context.getString(R.string.MessageRecord_call_message_with_date,
                                                            context.getString(message),
                                                            callDateString),
                                          icon,

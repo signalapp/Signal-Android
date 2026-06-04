@@ -24,6 +24,23 @@ object TestTags {
   const val PERMISSIONS_NEXT_BUTTON = "permissions_next_button"
   const val PERMISSIONS_NOT_NOW_BUTTON = "permissions_not_now_button"
 
+  // Allow Notifications Screen
+  const val ALLOW_NOTIFICATIONS_SCREEN = "allow_notifications_screen"
+  const val ALLOW_NOTIFICATIONS_NEXT_BUTTON = "allow_notifications_next_button"
+  const val ALLOW_NOTIFICATIONS_NOT_NOW_BUTTON = "allow_notifications_not_now_button"
+
+  // Link Account Screen
+  const val LINK_ACCOUNT_SCREEN = "link_account_screen"
+  const val LINK_ACCOUNT_GET_HELP_BUTTON = "link_account_get_help_button"
+  const val LINK_ACCOUNT_CREATE_ACCOUNT_LINK = "link_account_create_account_link"
+  const val LINK_ACCOUNT_DISPLAY_OVERLAY_BUTTON = "link_account_display_overlay_button"
+  const val LINK_ACCOUNT_HIDE_OVERLAY_BUTTON = "link_account_hide_overlay_button"
+
+  // Message Sync Screen
+  const val MESSAGE_SYNC_SCREEN = "message_sync_screen"
+  const val MESSAGE_SYNC_LEARN_MORE_LINK = "message_sync_learn_more_link"
+  const val MESSAGE_SYNC_CANCEL_BUTTON = "message_sync_cancel_button"
+
   // Phone Number Screen
   const val PHONE_NUMBER_SCREEN = "phone_number_screen"
   const val PHONE_NUMBER_COUNTRY_PICKER = "phone_number_country_picker"

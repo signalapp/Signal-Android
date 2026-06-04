@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util.concurrent;
 import androidx.annotation.NonNull;
 
 import java.util.concurrent.Executor;
+import org.signal.core.util.concurrent.SerialExecutor;
 
 /**
  * Wraps another executor to make a new executor that only keeps around two tasks:

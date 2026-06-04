@@ -327,19 +327,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">ส่ง</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">ผู้ที่ติดต่อล่าสุด</string>
-    <string name="CameraContacts_signal_contacts">รายชื่อผู้ติดต่อใน Signal</string>
-    <string name="CameraContacts_signal_groups">กลุ่ม Signal</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="other">คุณแชร์กับแชทได้สูงสุด %1$d รายการเท่านั้น</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">เลือกผู้รับใน Signal</string>
-    <string name="CameraContacts_no_signal_contacts">ไม่มีรายชื่อใน Signal</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">คุณสามารถใช้ปุ่มกล้องสำหรับส่งรูปให้รายชื่อผู้ติดต่อใน Signal เท่านั้น </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">ไม่พบรายชื่อที่คุณมองหาหรือ?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">ส่งคำเชิญให้รายชื่อผู้ติดต่อมาใช้ Signal</string>
     <string name="CameraContacts__menu_search">ค้นหา</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4248,7 +4235,7 @@
     <string name="preferences_data_and_storage__never">ไม่เลย</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi และข้อมูลมือถือ</string>
     <string name="preferences_data_and_storage__mobile_data_only">ข้อมูลมือถือเท่านั้น</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">การใช้ข้อมูลน้อยลงอาจช่วยปรับปรุงการโทรในเครือข่ายที่ไม่ดี</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">การใช้อินเทอร์เน็ตมือถือน้อยลงอาจช่วยปรับปรุงการโทรบนเครือข่ายที่ไม่เสถียร</string>
     <string name="preferences_notifications__in_chat_sounds">เสียงในแชท</string>
     <string name="preferences_notifications__show">แสดง</string>
     <string name="preferences_notifications__ringtone">เสียงเรียกเข้า</string>
@@ -5892,6 +5879,8 @@
     <string name="HelpSettingsFragment__support_center">ศูนย์ความช่วยเหลือ</string>
     <string name="HelpSettingsFragment__contact_us">ติดต่อเรา</string>
     <string name="HelpSettingsFragment__version">รุ่น</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">คัดลอกไปยังคลิปบอร์ดแล้ว</string>
     <string name="HelpSettingsFragment__debug_log">ปูมดีบัก</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">ใบอนุญาต</string>
@@ -5913,6 +5902,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">มาตรฐาน</string>
     <string name="DataAndStorageSettingsFragment__calls">การโทร</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">เชื่อมต่อเสมอในพื้นหลัง</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">การทำงานแบบเชื่อมต่อเสมอในพื้นหลังจะทำให้อุปกรณ์ใช้แบตเตอรี่มากขึ้น อุปกรณ์ส่วนใหญ่มักไม่จำเป็นต้องใช้ตัวเลือกนี้ เราขอแนะนำให้เปิดใช้งานในกรณีที่คุณประสบปัญหาเกี่ยวกับการแจ้งเตือนเท่านั้น</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">เปิดใช้งาน</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9199,11 +9194,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">ติดต่อฝ่ายสนับสนุน</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">เปิดใช้งานการสำรองข้อมูลไว้บนอุปกรณ์ใช่หรือไม่</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">หากต้องการใช้การสำรองข้อมูลไว้บนอุปกรณ์ต่อไป คุณจำเป็นต้องเปิดใช้งานการสำรองข้อมูลดังกล่าวสำหรับบัญชีนี้และบันทึกกุญแจกู้คืนใหม่ของคุณ โดยสามารถเปิดใช้งานได้ทุกเมื่อจากการตั้งค่า &gt; ข้อมูลสำรอง</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">หากต้องการใช้การสำรองข้อมูลไว้บนอุปกรณ์ต่อไป คุณจำเป็นต้องเปิดใช้งานการสำรองข้อมูลดังกล่าวสำหรับบัญชีนี้ โดยสามารถเปิดใช้งานได้ทุกเมื่อจากการตั้งค่า &gt; ข้อมูลสำรอง</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">เปิดใช้งานตอนนี้</string>

@@ -42,12 +42,12 @@ public final class LiveUpdateMessage {
     }
 
     List<LiveData<Recipient>> allMentionedRecipients = updateDescription.getMentioned().stream()
-                                                                        .map(uuid -> Recipient.resolved(RecipientId.from(uuid)).live().getLiveData()).collect(Collectors.toList());
+                                                                        .map(uuid -> Recipient.live(RecipientId.from(uuid)).getLiveDataResolved()).collect(Collectors.toList());
 
     LiveData<?> mentionedRecipientChangeStream = allMentionedRecipients.isEmpty() ? LiveDataUtil.just(new Object())
                                                                                   : LiveDataUtil.merge(allMentionedRecipients);
 
-    return Transformations.map(mentionedRecipientChangeStream, event -> toSpannable(context, updateDescription, updateDescription.getSpannable(), defaultTint, adjustPosition));
+    return LiveDataUtil.mapAsync(mentionedRecipientChangeStream, event -> toSpannable(context, updateDescription, updateDescription.getSpannable(), defaultTint, adjustPosition));
   }
 
   /**

@@ -329,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">ಕಳುಹಿಸು</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">ಇತ್ತೀಚಿನ ಸಂಪರ್ಕಗಳು</string>
-    <string name="CameraContacts_signal_contacts">Signal ಸಂಪರ್ಕಗಳು</string>
-    <string name="CameraContacts_signal_groups">Signal ಗುಂಪುಗಳು</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">ನೀವು ಗರಿಷ್ಠ %1$d ಚಾಟ್‍‌ ಅನ್ನು ಹಂಚಿಕೊಳ್ಳಬಹುದು.</item>
-        <item quantity="other">ನೀವು ಗರಿಷ್ಠ %1$d ಚಾಟ್‍‌ಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಬಹುದು.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Signal ಸ್ವೀಕೃತಿದಾರರನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
-    <string name="CameraContacts_no_signal_contacts">Signal ಸಂಪರ್ಕಗಳಿಲ್ಲ</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Signal ಸಂಪರ್ಕಗಳಿಗೆ ಫೋಟೋಗಳನ್ನು ಕಳುಹಿಸಲು ನೀವು ಕ್ಯಾಮರಾ ಬಟನ್ ಅನ್ನು ಮಾತ್ರ ಬಳಸಬಹುದು. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">ನೀವು ಹುಡುಕುತ್ತಿರುವುದನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗುತ್ತಿಲ್ಲವೇ?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Signal ಗೆ ಸೇರಲು ಸಂಪರ್ಕವನ್ನು ಆಹ್ವಾನಿಸಿ</string>
     <string name="CameraContacts__menu_search">ಹುಡುಕಿ</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4372,7 +4358,7 @@
     <string name="preferences_data_and_storage__never">ಎಂದಿಗೂ ಇಲ್ಲ</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">ವೈಫೈ ಮತ್ತು ಮೊಬೈಲ್ ಡೇಟಾ</string>
     <string name="preferences_data_and_storage__mobile_data_only">ಮೊಬೈಲ್ ಡೇಟಾ ಮಾತ್ರ</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ಕಡಿಮೆ ಡೇಟಾ ಬಳಸುವುದರಿಂದ ಕೆಟ್ಟ ನೆಟ್‌ವರ್ಕ್‌ಗಳಲ್ಲಿ ಕಾಲ್‌ಗಳನ್ನು ಸುಧಾರಿಸಬಹುದು</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ಕಡಿಮೆ ಡೇಟಾ ಬಳಸುವುದರಿಂದ ಕೆಟ್ಟ ನೆಟ್‌ವರ್ಕ್‌ಗಳಲ್ಲಿ ಕರೆಗಳನ್ನು ಸುಧಾರಿಸಬಹುದು.</string>
     <string name="preferences_notifications__in_chat_sounds">ಚಾಟ್‌ ನಲ್ಲಿನ ಶಬ್ದಗಳು</string>
     <string name="preferences_notifications__show">ತೋರಿಸು</string>
     <string name="preferences_notifications__ringtone">ರಿಂಗ್ಟೋನ್</string>
@@ -6042,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">ಬೆಂಬಲ ಕೇಂದ್ರ</string>
     <string name="HelpSettingsFragment__contact_us">ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
     <string name="HelpSettingsFragment__version">ಆವೃತ್ತಿ</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
     <string name="HelpSettingsFragment__debug_log">ಡೀಬಗ್ ಲಾಗ್</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">ಪರವಾನಗಿಗಳು</string>
@@ -6063,6 +6051,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">ಪ್ರಮಾಣಿತ</string>
     <string name="DataAndStorageSettingsFragment__calls">ಕರೆಗಳು</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಸಂಪರ್ಕದಲ್ಲಿರಿ</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">ಹಿನ್ನೆಲೆಯಲ್ಲಿದ್ದುಕೊಂಡು ಸಂಪರ್ಕದಲ್ಲಿರುವುದು ಬ್ಯಾಟರಿ ಬಳಕೆಯನ್ನು ಹೆಚ್ಚಿಸುವ ಸಾಧ್ಯತೆಯಿದೆ. ಬಹುತೇಕ ಸಾಧನಗಳಿಗೆ ಇದು ಅಗತ್ಯವಿಲ್ಲ. ನೀವು ನೋಟಿಫಿಕೇಷನ್ ಸಮಸ್ಯೆಗಳನ್ನು ಎದುರಿಸುತ್ತಿದ್ದರೆ ಮಾತ್ರ ಇದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9399,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">ಬೆಂಬಲವನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಆನ್ ಮಾಡಬೇಕೇ?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಬಳಸುವುದನ್ನು ಮುಂದುವರಿಸಲು, ಈ ಖಾತೆಗಾಗಿ ನೀವು ಅವುಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಬೇಕು ಮತ್ತು ನಿಮ್ಮ ಹೊಸ ರಿಕವರಿ ಕೀ ಅನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಬೇಕು. ಸೆಟ್ಟಿಂಗ್‌ಗಳು &gt; ಬ್ಯಾಕಪ್‌ಗಳು ಎಂಬುದರಿಂದ ನೀವು ಇದನ್ನು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಮಾಡಬಹುದು.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಬಳಸುವುದನ್ನು ಮುಂದುವರಿಸಲು, ಈ ಖಾತೆಗಾಗಿ ನೀವು ಅವುಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಬೇಕು. ಸೆಟ್ಟಿಂಗ್‌ಗಳು &gt; ಬ್ಯಾಕಪ್‌ಗಳು ಎಂಬುದರಿಂದ ನೀವು ಇದನ್ನು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಮಾಡಬಹುದು.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">ಈಗ ಆನ್ ಮಾಡಿ</string>

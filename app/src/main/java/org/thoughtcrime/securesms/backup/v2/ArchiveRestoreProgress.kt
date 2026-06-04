@@ -31,6 +31,9 @@ import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.DiskSpaceNotLowConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
+import org.thoughtcrime.securesms.jobs.CheckRestoreMediaLeftJob
+import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
+import org.thoughtcrime.securesms.jobs.RestoreLocalAttachmentJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
@@ -155,6 +158,22 @@ object ArchiveRestoreProgress {
   @JvmStatic
   fun forceUpdate() {
     update()
+  }
+
+  /**
+   * Self-heal hook for restores that appear active (banner showing, media still remaining) but have no jobs left actually working on them.
+   */
+  fun checkForStalledRestore() {
+    SignalExecutors.BOUNDED.execute {
+      val stalled = SignalStore.backup.restoreState.isMediaRestoreOperation &&
+        SignalDatabase.attachments.getRemainingRestorableAttachmentSize() > 0L &&
+        AppDependencies.jobManager.areFactoriesEmpty(setOf(RestoreAttachmentJob.KEY, RestoreLocalAttachmentJob.KEY, CheckRestoreMediaLeftJob.KEY))
+
+      if (stalled) {
+        Log.w(TAG, "Detected a stalled media restore with no active jobs. Enqueueing a check job to recover.")
+        CheckRestoreMediaLeftJob.enqueueStalledRecoveryCheck()
+      }
+    }
   }
 
   fun clearLocalRestoreDirectoryError() {

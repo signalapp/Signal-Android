@@ -327,19 +327,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">ئەۋەت</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">يېقىنقى ئالاقەداشلار</string>
-    <string name="CameraContacts_signal_contacts">Signal ئالاقەداشلار</string>
-    <string name="CameraContacts_signal_groups">Signal گۇرۇپپىلىرى</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="other">كۆپ بولغاندا %1$d پاراڭ بىلەن ئورتاقلىشالايسىز.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Signal تاپشۇرۇۋالغۇچىلارنى تاللاش</string>
-    <string name="CameraContacts_no_signal_contacts">Signal ئالاقەداش يوق</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">سىز پەقەت كامېرا كۇنۇپكىسىنى ئىشلىتىش ئارقىلىق Signal دىكى ئالاقەداشلىرىڭىزغا رەسىم ئەۋەتەلەيسىز. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">ئىزدەۋاتقان كىشىڭىزنى تاپالمايۋاتامسىز؟</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">بىر ئالاقەداشنى Signal غا تەكلىپ قىلىش</string>
     <string name="CameraContacts__menu_search">ئىزدە</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4248,7 +4235,7 @@
     <string name="preferences_data_and_storage__never">ھەرگىز</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">كۆچمە مەلۇمات ۋە WiFi</string>
     <string name="preferences_data_and_storage__mobile_data_only">كۆچمە سانلىق مەلۇماتلا</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ئاز مەلۇمات ئىشلىتىش ناچار تور شارائىتىدىكى چاقىرىقنى ياخشىلايدۇ</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">تور ناچار ئەھۋالدا سانلىق مەلۇماتنى ئاز ئىشلىتىش تاللانسا سۆزلىشىش سۈپىتىنى ياخشىلايدۇ.</string>
     <string name="preferences_notifications__in_chat_sounds">پاراڭ ئىچىدىكى ئاۋاز</string>
     <string name="preferences_notifications__show">كۆرسەت</string>
     <string name="preferences_notifications__ringtone">قوڭغۇراق ئاۋازى</string>
@@ -5892,6 +5879,8 @@
     <string name="HelpSettingsFragment__support_center">قوللاش مەركىزى</string>
     <string name="HelpSettingsFragment__contact_us">بىز بىلەن ئالاقىلىشىڭ</string>
     <string name="HelpSettingsFragment__version">نەشر</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">چاپلاش تاختىسىغا كۆچۈرۈلدى</string>
     <string name="HelpSettingsFragment__debug_log">سازلاش خاتىرىسى</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">ئىجازەتنامە</string>
@@ -5913,6 +5902,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">ئۆلچەملىك</string>
     <string name="DataAndStorageSettingsFragment__calls">چاقىرىشلار</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">ئارقا سۇپىدا ئۇچۇق ھالەتتە تۇرۇش</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">ئەپ ئارقا سۇپىدا ئوچۇق ھالەتتە تۇرغاندا باتارىيەنىڭ تۈگۈشىنى تېزلەشتۈرۈۋېتىشى مۇمكىن. بۇ مۇتلەق كۆپ قىسىم ئۈسكۈنىلەر ئۈچۈن لازىم ئەمەس. بۇنى پەقەت ئۇقتۇرۇش تاپشۇرۇۋېلىشتا مەسىلە كۆرۈلگەندىلا ئاندىن قوزغىتىڭ.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">قوزغىتىش</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9199,11 +9194,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">ياردەم خادىمى بىلەن ئالاقىلىشىش</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">ئۈسكۈنىدىكى زاپاسلاشلارنى قوزغىتامسىز؟</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">ئۈسكۈنىدىكى زاپاسلاشلارنى داۋاملىق ئىشلىتىش ئۈچۈن، بۇ ھېساباتتا ئۇلارنى قايتىدىن قوزغىتىڭ ھەمدە يېڭى ئەسلىگە كەلتۈرۈش ئاچقۇچىڭىزنى سەپلەڭ. بۇنى سىز خالىغان ۋاقىتتا «تەڭشەك &gt; زاپاشلاشلار» دىن قىلالايسىز.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">ئۈسكۈنىدىكى زاپاسلارنى داۋاملىق ئىشلىتىش ئۈچۈن، بۇ ھېساباتتا ئۇلارنى قايتىدىن قوزغىتىڭ. بۇنى سىز خالىغان ۋاقىتتا « تەڭشەك &gt; زاپاسلار » دىن قىلالايسىز.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">ھازىر قوزغىتىش</string>

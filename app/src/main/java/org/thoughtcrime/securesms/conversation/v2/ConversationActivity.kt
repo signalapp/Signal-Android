@@ -12,6 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import kotlinx.coroutines.launch
+import org.signal.core.util.ConfigurationUtil
+import org.signal.core.util.Debouncer
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.Log.tag
 import org.thoughtcrime.securesms.MainActivity
@@ -27,8 +29,6 @@ import org.thoughtcrime.securesms.jobs.ConversationShortcutUpdateJob
 import org.thoughtcrime.securesms.main.MainNavigationChatDetailRouter
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment
-import org.thoughtcrime.securesms.util.ConfigurationUtil
-import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import java.util.concurrent.TimeUnit
 

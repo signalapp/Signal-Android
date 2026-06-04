@@ -164,6 +164,14 @@ class RegistrationViewModel(private val repository: RegistrationRepository, save
     }
   }
 
+  fun getRequiredLinkedDevicePermission(): String? {
+    return if (Build.VERSION.SDK_INT >= 33) {
+      Manifest.permission.POST_NOTIFICATIONS
+    } else {
+      null
+    }
+  }
+
   private suspend fun persistFlowState(event: RegistrationFlowEvent) {
     when (event) {
       is RegistrationFlowEvent.ResetState -> repository.clearFlowState()

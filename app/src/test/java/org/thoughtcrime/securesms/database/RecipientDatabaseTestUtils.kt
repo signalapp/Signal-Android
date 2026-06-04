@@ -122,7 +122,8 @@ object RecipientDatabaseTestUtils {
       notificationChannel = notificationChannel,
       sealedSenderAccessMode = sealedSenderAccessMode,
       capabilities = RecipientRecord.Capabilities(
-        rawBits = capabilities
+        rawBits = capabilities,
+        usernameSyncMessages = Recipient.Capability.SUPPORTED
       ),
       storageId = storageId,
       mentionSetting = mentionSetting,

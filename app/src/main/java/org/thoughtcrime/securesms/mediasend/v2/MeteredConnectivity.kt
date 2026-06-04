@@ -7,7 +7,7 @@ import android.content.IntentFilter
 import android.net.ConnectivityManager
 import androidx.core.net.ConnectivityManagerCompat
 import io.reactivex.rxjava3.core.Observable
-import org.thoughtcrime.securesms.util.ServiceUtil
+import org.signal.core.util.ServiceUtil
 
 @Suppress("DEPRECATION")
 object MeteredConnectivity {

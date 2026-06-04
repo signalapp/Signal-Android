@@ -333,22 +333,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Адправіць</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Нядаўнія кантакты</string>
-    <string name="CameraContacts_signal_contacts">Кантакты Signal</string>
-    <string name="CameraContacts_signal_groups">Групы Signal</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Вы можаце абагуліць максімум з %1$d чатам.</item>
-        <item quantity="few">Вы можаце абагуліць максімум з %1$d чатамі.</item>
-        <item quantity="many">Вы можаце абагуліць максімум з %1$d чатамі.</item>
-        <item quantity="other">Вы можаце абагуліць максімум з %1$d чатамі.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Выберыце атрымальнікаў Signal</string>
-    <string name="CameraContacts_no_signal_contacts">Няма кантактаў Signal</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Вы можаце выкарыстоўваць толькі кнопку камеры для адпраўкі фота кантактам Signal. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Не можаце знайсці патрэбнага чалавека?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Запрасіць кантакт далучыцца да Signal</string>
     <string name="CameraContacts__menu_search">Пошук</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4620,7 +4604,7 @@
     <string name="preferences_data_and_storage__never">Ніколі</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi і мабільныя даныя</string>
     <string name="preferences_data_and_storage__mobile_data_only">Толькі мабільныя даныя</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Эканомія трафіка можа палепшыць званкі падчас дрэннай сувязі</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Эканомія трафіка можа палепшыць званкі падчас дрэннай сувязі.</string>
     <string name="preferences_notifications__in_chat_sounds">Гукі ўнутры чата</string>
     <string name="preferences_notifications__show">Паказаць</string>
     <string name="preferences_notifications__ringtone">Рынгтон</string>
@@ -6342,6 +6326,8 @@
     <string name="HelpSettingsFragment__support_center">Цэнтр падтрымкі</string>
     <string name="HelpSettingsFragment__contact_us">Звярнуцца да нас</string>
     <string name="HelpSettingsFragment__version">Версія</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Скапіравана ў буфер абмену</string>
     <string name="HelpSettingsFragment__debug_log">Журнал адладкі</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Ліцэнзіі</string>
@@ -6363,6 +6349,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Стандартная</string>
     <string name="DataAndStorageSettingsFragment__calls">Званкі</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Падключыць у фонавым рэжыме</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Падключэнне ў фонавым рэжыме, часцей за ўсё, прыводзіць да павелічэння выкарыстання батарэі. Для большасці прылад гэта рабіць неабавязкова. Уключайце гэту наладу толькі тады, калі ў вас узніклі праблемы з апавяшчэннямі.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Уключыць</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9799,11 +9791,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Звярнуцца да службы падтрымкі</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Уключыць рэзервовае капіраванне на прыладзе?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Каб працягваць выкарыстоўваць рэзервовыя копіі на прыладзе, вам трэба ўключыць іх для гэтага ўліковага запісу і запісаць новы код для аднаўлення. Вы можаце ў любы час зрабіць гэта ў «Налады» &gt; «Рэзервовыя копіі».</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Каб працягваць выкарыстоўваць рэзервовыя копіі на прыладзе, вам трэба ўключыць іх для гэтага ўліковага запісу. Вы можаце ў любы час зрабіць гэта ў «Налады» &gt; «Рэзервовыя копіі».</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Уключыць зараз</string>

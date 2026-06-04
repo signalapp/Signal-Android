@@ -61,6 +61,7 @@ import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
+import org.signal.registration.screens.attachDebugLogHelper
 
 /**
  * Screen that allows someone to search and select a country code from a supported list of countries.
@@ -102,7 +103,8 @@ private fun OnePaneLayout(
         }
         Text(
           stringResource(R.string.CountryCodeSelectScreen__your_country),
-          style = MaterialTheme.typography.titleLarge
+          style = MaterialTheme.typography.titleLarge,
+          modifier = Modifier.attachDebugLogHelper()
         )
       }
     }
@@ -144,7 +146,8 @@ private fun TwoPaneLayout(
       ) {
         Text(
           stringResource(R.string.CountryCodeSelectScreen__your_country),
-          style = MaterialTheme.typography.titleLarge
+          style = MaterialTheme.typography.titleLarge,
+          modifier = Modifier.attachDebugLogHelper()
         )
       }
     },

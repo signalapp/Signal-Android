@@ -95,8 +95,8 @@ import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserExce
 import org.whispersystems.signalservice.api.util.AttachmentPointerUtil;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.signal.network.util.Preconditions;
-import org.whispersystems.signalservice.api.util.Uint64RangeException;
-import org.whispersystems.signalservice.api.util.Uint64Util;
+import org.signal.core.util.Uint64RangeException;
+import org.signal.core.util.Uint64Util;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
@@ -903,7 +903,7 @@ public class SignalServiceMessageSender {
     return sendMessage(address, sealedSenderAccess, System.currentTimeMillis(), envelopeContent, false, null, null, false, false);
   }
 
-  private PniSignatureMessage createPniSignatureMessage() {
+  public PniSignatureMessage createPniSignatureMessage() {
     byte[] signature = localPniIdentity.signAlternateIdentity(aciStore.getIdentityKeyPair().getPublicKey());
 
     return new PniSignatureMessage.Builder()

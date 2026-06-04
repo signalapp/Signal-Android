@@ -333,22 +333,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Poslať</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Nedávne kontakty</string>
-    <string name="CameraContacts_signal_contacts">Kontakty Signal</string>
-    <string name="CameraContacts_signal_groups">Skupiny Signal</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Môžete zdieľať s maximálne %1$d četom.</item>
-        <item quantity="few">Môžete zdieľať s maximálne %1$d četmi.</item>
-        <item quantity="many">Môžete zdieľať s maximálne %1$d četom.</item>
-        <item quantity="other">Môžete zdieľať s maximálne %1$d četmi.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Vybrať príjemcov Signal</string>
-    <string name="CameraContacts_no_signal_contacts">Žiadne kontakty Signal</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Na odoslanie fotiek kontaktom Signal môžete použiť tlačidlo fotoaparátu. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Nenašli ste hľadaný kontakt?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Pozvite kontakt, aby použival Signal</string>
     <string name="CameraContacts__menu_search">Hľadať</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4620,7 +4604,7 @@
     <string name="preferences_data_and_storage__never">Nikdy</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi a mobilné dáta</string>
     <string name="preferences_data_and_storage__mobile_data_only">Iba mobilné dáta</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Využitie menšieho množstva dát môže zlepšiť hovory v zlých sieťach.</string>
     <string name="preferences_notifications__in_chat_sounds">Zvuky v čete</string>
     <string name="preferences_notifications__show">Zobraziť</string>
     <string name="preferences_notifications__ringtone">Zvonenie</string>
@@ -6342,6 +6326,8 @@
     <string name="HelpSettingsFragment__support_center">Centrum podpory</string>
     <string name="HelpSettingsFragment__contact_us">Kontaktujte nás</string>
     <string name="HelpSettingsFragment__version">Verzia</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Skopírované do schránky</string>
     <string name="HelpSettingsFragment__debug_log">Ladiaci log</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licencie</string>
@@ -6363,6 +6349,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Štandardná</string>
     <string name="DataAndStorageSettingsFragment__calls">Volania</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Zostať pripojený na pozadí</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Udržiavanie pripojenia na pozadí pravdepodobne spôsobí vyššiu spotrebu batérie. Pre väčšinu zariadení to nie je potrebné. Povoľte túto možnosť iba v prípade, že máte problémy s upozorneniami.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Povoliť</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9799,11 +9791,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Kontaktovať podporu</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Zapnúť zálohy na zariadení?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Ak chcete naďalej používať zálohy na zariadení, musíte ich pre tento účet povoliť a zaznamenať si nový kľúč na obnovenie. Môžete tak urobiť kedykoľvek v časti Nastavenia &gt; Zálohy.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Ak chcete naďalej používať zálohy na zariadení, musíte ich pre tento účet povoliť. Môžete tak urobiť kedykoľvek v časti Nastavenia &gt; Zálohy.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Zapnúť teraz</string>

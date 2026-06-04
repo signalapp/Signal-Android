@@ -329,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Bidali</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Azkenaldiko kontaktuak</string>
-    <string name="CameraContacts_signal_contacts">Signal kontaktuak</string>
-    <string name="CameraContacts_signal_groups">Signal taldeak</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Gehienez %1$d txatekin parteka dezakezu.</item>
-        <item quantity="other">Gehienez %1$d txatekin parteka dezakezu.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Aukeratu Signal hartzaileak</string>
-    <string name="CameraContacts_no_signal_contacts">Signal kontakturik ez</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Signal kontaktuei argazkiak bidaltzeko kamerako botoia erabil dezakezu soilik. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Ez al duzu aurkitzen bilatzen ari zarena?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Gonbidatu kontaktu bat Signal aplikazaiora batzeko</string>
     <string name="CameraContacts__menu_search">Bilatu</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4372,7 +4358,7 @@
     <string name="preferences_data_and_storage__never">Inoiz ez</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wifia eta datu-konexioa</string>
     <string name="preferences_data_and_storage__mobile_data_only">Datu-konexioa soilik</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Datu gutxiago erabiltzeak sare txarretan deiak hobetzea ekarri dezake</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Datu gutxiago erabiliz gero, baliteke sare txarretan deiak hobetzea.</string>
     <string name="preferences_notifications__in_chat_sounds">Txat barruko soinuak</string>
     <string name="preferences_notifications__show">Erakutsi</string>
     <string name="preferences_notifications__ringtone">Doinua</string>
@@ -6042,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">Laguntza zentroa</string>
     <string name="HelpSettingsFragment__contact_us">Harremanetan jarri gurekin</string>
     <string name="HelpSettingsFragment__version">Bertsioa</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Arbelera kopiatuta</string>
     <string name="HelpSettingsFragment__debug_log">Arazteko informazioa</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Lizentziak</string>
@@ -6063,6 +6051,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Estandarra</string>
     <string name="DataAndStorageSettingsFragment__calls">Deiak</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Mantendu konektatuta atzeko planoan</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Atzeko planoan konektatuta mantenduz gero, seguruenik bateria gehiago kontsumituko da. Hori ez da beharrezkoa gailu gehienetan. Gaitu aukera hori jakinarazpenekin lotutako arazoak izan badituzu bakarrik.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Gaitu</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9399,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Jarri harremanetan laguntza-zerbitzuarekin</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Gailuko babeskopiak aktibatu nahi dituzu?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Gailuko babeskopiak erabiltzen jarraitzeko, kontu honetarako gaitu behar dituzu, eta berreskuratze-gako berria erregistratu. Horretarako, joan Ezarpenak &gt; Babeskopiak atalera.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Gailuko babeskopiak erabiltzen jarraitzeko, kontu honetarako gaitu behar dituzu. Horretarako, joan Ezarpenak &gt; Babeskopiak atalera.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Aktibatu orain</string>

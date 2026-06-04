@@ -333,22 +333,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Udostępnij</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Ostatnie kontakty</string>
-    <string name="CameraContacts_signal_contacts">Kontakty Signal</string>
-    <string name="CameraContacts_signal_groups">Grupy Signal</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Możesz to udostępnić w maksymalnie %1$d czacie.</item>
-        <item quantity="few">Możesz to udostępnić w maksymalnie %1$d czatach.</item>
-        <item quantity="many">Możesz to udostępnić w maksymalnie %1$d czatach.</item>
-        <item quantity="other">Możesz to udostępnić w maksymalnie %1$d czatu.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Wybierz odbiorców wśród kontaktów Signal</string>
-    <string name="CameraContacts_no_signal_contacts">Brak kontaktów Signal</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Za pomocą przycisku aparatu możesz wysyłać zdjęcia tylko kontaktom Signal. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Nie możesz znaleźć kontaktu?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Zaproś do aplikacji Signal</string>
     <string name="CameraContacts__menu_search">Wyszukaj</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4620,7 +4604,7 @@
     <string name="preferences_data_and_storage__never">Nigdy</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi i dane mobilne</string>
     <string name="preferences_data_and_storage__mobile_data_only">Tylko dane mobilne</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Mniejsze zużycie danych może poprawić jakość połączeń przy słabym zasięgu sieci</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Mniejsze zużycie danych może poprawić jakość połączeń przy słabym zasięgu sieci.</string>
     <string name="preferences_notifications__in_chat_sounds">Dźwięki podczas rozmowy na czacie</string>
     <string name="preferences_notifications__show">Pokazuj</string>
     <string name="preferences_notifications__ringtone">Dzwonek</string>
@@ -6342,6 +6326,8 @@
     <string name="HelpSettingsFragment__support_center">Centrum pomocy</string>
     <string name="HelpSettingsFragment__contact_us">Skontaktuj się z nami</string>
     <string name="HelpSettingsFragment__version">Wersja</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Skopiowano do schowka</string>
     <string name="HelpSettingsFragment__debug_log">Dziennik debugowania</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licencje</string>
@@ -6363,6 +6349,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Standardowa</string>
     <string name="DataAndStorageSettingsFragment__calls">Połączenia</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Zachowaj połączenie z usługą w tle</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Połączenie z usługą w tle prawdopodobnie spowoduje większe zużycie baterii. Nie dotyczy to wszystkich urządzeń. Włącz tę funkcję, jeśli nie otrzymujesz wszystkich powiadomień.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Włącz</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9799,11 +9791,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Skontaktuj się z pomocą techniczną</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Włączyć tworzenie lokalnych kopii zapasowych?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Jeśli chcesz nadal tworzyć lokalne kopie zapasowe, włącz tę opcję na tym koncie i zapisz nowy kod odzyskiwania. Możesz to zrobić w dowolnym momencie – w tym celu przejdź do sekcji Ustawienia &gt; Kopie zapasowe.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Jeśli chcesz nadal tworzyć kopie zapasowe na urządzeniu, włącz tę opcję na tym koncie. Możesz to zrobić w dowolnym momencie – w tym celu przejdź do sekcji Ustawienia &gt; Kopie zapasowe.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Włącz teraz</string>

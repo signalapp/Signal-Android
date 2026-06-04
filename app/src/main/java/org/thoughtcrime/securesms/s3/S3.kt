@@ -8,11 +8,11 @@ import okhttp3.Response
 import okio.HashingSink
 import okio.sink
 import org.signal.core.util.Hex
+import org.signal.core.util.JsonUtils
 import org.signal.core.util.logging.Log
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.EncryptedStreamUtils
-import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.websocket.DefaultErrorMapper
 import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper

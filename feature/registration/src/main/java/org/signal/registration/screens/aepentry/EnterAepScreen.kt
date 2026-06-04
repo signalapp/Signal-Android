@@ -54,6 +54,7 @@ import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
+import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.localbackuprestore.attachBackupKeyAutoFillHelper
 import org.signal.registration.screens.localbackuprestore.backupKeyAutoFillHelper
 
@@ -94,21 +95,27 @@ private fun OnePaneLayout(
       }
     },
     footer = {
-      Row(
-        modifier = Modifier.fillMaxWidth().padding(16.dp),
-        horizontalArrangement = Arrangement.SpaceEvenly
+      RegistrationScaffold.FooterSurface(
+        isContentScrolledUnder = scrollState.canScrollForward
       ) {
-        Box(
-          modifier = Modifier.weight(1f),
-          contentAlignment = Alignment.CenterStart
+        Row(
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+          horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-          NoRecoverKeyButton(onEvent)
-        }
-        Box(
-          modifier = Modifier.weight(1f),
-          contentAlignment = Alignment.CenterEnd
-        ) {
-          NextButton(state, onEvent)
+          Box(
+            modifier = Modifier.weight(1f),
+            contentAlignment = Alignment.CenterStart
+          ) {
+            NoRecoverKeyButton(onEvent)
+          }
+          Box(
+            modifier = Modifier.weight(1f),
+            contentAlignment = Alignment.CenterEnd
+          ) {
+            NextButton(state, onEvent)
+          }
         }
       }
     }
@@ -149,13 +156,19 @@ private fun TwoPaneLayout(
       }
     },
     footer = {
-      Row(
-        horizontalArrangement = Arrangement.End,
-        modifier = Modifier.fillMaxWidth().padding(16.dp)
+      RegistrationScaffold.FooterSurface(
+        isContentScrolledUnder = scrollState.canScrollForward
       ) {
-        NoRecoverKeyButton(onEvent)
-        Spacer(modifier = Modifier.size(24.dp))
-        NextButton(state, onEvent)
+        Row(
+          horizontalArrangement = Arrangement.End,
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+        ) {
+          NoRecoverKeyButton(onEvent)
+          Spacer(modifier = Modifier.size(24.dp))
+          NextButton(state, onEvent)
+        }
       }
     }
   )
@@ -166,7 +179,9 @@ private fun Description() {
   Text(
     text = stringResource(R.string.EnterAepScreen__enter_your_recovery_key),
     style = MaterialTheme.typography.headlineMedium,
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier
+      .fillMaxWidth()
+      .attachDebugLogHelper()
   )
 
   Spacer(modifier = Modifier.size(8.dp))
@@ -264,10 +279,10 @@ private fun NextButton(state: EnterAepState, onEvent: (EnterAepEvents) -> Unit, 
 }
 
 /**
- * Visual formatter for backup keys — groups characters with spaces. Preserves whatever the user
- * typed verbatim (no character swapping).
+ * Visual formatter for backup keys. Uppercases and groups characters with spaces without swapping
+ * display-equivalent characters.
  */
-private class AepVisualTransformation(private val chunkSize: Int) : VisualTransformation {
+internal class AepVisualTransformation(private val chunkSize: Int) : VisualTransformation {
   override fun filter(text: AnnotatedString): TransformedText {
     var output = ""
     for ((i, c) in text.text.withIndex()) {

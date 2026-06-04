@@ -5,7 +5,7 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.ThreadTable;
-import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.database.model.ThreadWithRecipient;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.CursorUtil;
@@ -37,7 +37,7 @@ public class ConversationReader extends ThreadTable.StaticReader {
   }
 
   @Override
-  public ThreadRecord getCurrent() {
+  public ThreadWithRecipient getCurrent() {
     if (cursor.getColumnIndex(HEADER_COLUMN[0]) == -1) {
       return super.getCurrent();
     } else {
@@ -45,7 +45,7 @@ public class ConversationReader extends ThreadTable.StaticReader {
     }
   }
 
-  private ThreadRecord buildThreadRecordForHeader() {
+  private ThreadWithRecipient buildThreadRecordForHeader() {
     Conversation.Type type  = Conversation.Type.valueOf(CursorUtil.requireString(cursor, HEADER_COLUMN[0]));
     int               count = 0;
     if (type == Conversation.Type.ARCHIVED_FOOTER) {
@@ -60,8 +60,8 @@ public class ConversationReader extends ThreadTable.StaticReader {
     return buildThreadRecordForType(type, count, showTip);
   }
 
-  public static ThreadRecord buildThreadRecordForType(@NonNull Conversation.Type type, int count, boolean showTip) {
-    return new ThreadRecord.Builder(-(100 + type.ordinal()))
+  public static ThreadWithRecipient buildThreadRecordForType(@NonNull Conversation.Type type, int count, boolean showTip) {
+    return new ThreadWithRecipient.Builder(-(100 + type.ordinal()))
         .setBody(type.toString())
         .setDate(100)
         .setRecipient(Recipient.UNKNOWN)

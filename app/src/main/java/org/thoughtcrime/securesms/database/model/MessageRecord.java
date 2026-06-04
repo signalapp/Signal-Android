@@ -180,10 +180,6 @@ public abstract class MessageRecord extends DisplayRecord {
     return MessageTypes.isSecureType(type);
   }
 
-  public boolean isLegacyMessage() {
-    return MessageTypes.isLegacyType(type);
-  }
-
   @Override
   public boolean isFailed() {
     return super.isFailed() || isFailedAdminDelete();
@@ -509,6 +505,10 @@ public abstract class MessageRecord extends DisplayRecord {
 
   protected static @NonNull UpdateDescription staticUpdateDescriptionWithExpiration(@NonNull String string, Glyph glyph) {
     return UpdateDescription.staticDescriptionWithExpiration(string, glyph);
+  }
+
+  protected static @NonNull UpdateDescription staticUpdateDescriptionWithExpiration(@NonNull String string, Glyph glyph, @ColorInt int lightTint, @ColorInt int darkTint) {
+    return UpdateDescription.staticDescriptionWithExpiration(string, glyph, lightTint, darkTint);
   }
 
   protected static @NonNull UpdateDescription staticUpdateDescription(@NonNull String string,

@@ -39,6 +39,18 @@ public class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcesso
     this.actionProcessorFactory = actionProcessorFactory;
   }
 
+  protected GroupNetworkUnavailableActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory,
+                                                   @NonNull WebRtcInteractor webRtcInteractor,
+                                                   @NonNull String tag)
+  {
+    super(webRtcInteractor, tag);
+    this.actionProcessorFactory = actionProcessorFactory;
+  }
+
+  protected @NonNull MultiPeerActionProcessorFactory getActionProcessorFactory() {
+    return actionProcessorFactory;
+  }
+
   @Override
   protected @NonNull WebRtcServiceState handleIsInCallQuery(@NonNull WebRtcServiceState currentState, @Nullable ResultReceiver resultReceiver) {
     if (resultReceiver != null) {

@@ -24,6 +24,7 @@ import org.signal.core.models.ServiceId
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
+import org.signal.core.util.SleepTimer
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.net.RequestResult
@@ -59,7 +60,6 @@ import org.whispersystems.signalservice.api.provisioning.ProvisioningSocket
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2
-import org.whispersystems.signalservice.api.util.SleepTimer
 import org.whispersystems.signalservice.api.websocket.HealthMonitor
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory
@@ -885,7 +885,8 @@ class DemoNetworkController(
         storage = !RegistrationPreferences.pinsOptedOut,
         versionedExpirationTimer = true,
         attachmentBackfill = true,
-        spqr = true
+        spqr = true,
+        usernameChangeSyncMessage = true
       ),
       name = null,
       pniRegistrationId = RegistrationPreferences.pniRegistrationId,
@@ -1127,7 +1128,8 @@ class DemoNetworkController(
       storage,
       versionedExpirationTimer,
       attachmentBackfill,
-      spqr
+      spqr,
+      usernameChangeSyncMessage
     )
   }
 

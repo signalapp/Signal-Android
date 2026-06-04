@@ -32,6 +32,7 @@ import androidx.navigation3.ui.NavDisplay
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import com.google.accompanist.permissions.rememberPermissionState
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.TypeParceler
 import kotlinx.serialization.Serializable
@@ -48,6 +49,7 @@ import org.signal.registration.screens.aepentry.EnterAepForLocalBackupViewModel
 import org.signal.registration.screens.aepentry.EnterAepForRemoteBackupPostRegistrationViewModel
 import org.signal.registration.screens.aepentry.EnterAepForRemoteBackupPreRegistrationViewModel
 import org.signal.registration.screens.aepentry.EnterAepScreen
+import org.signal.registration.screens.allownotifications.AllowNotificationsScreen
 import org.signal.registration.screens.captcha.CaptchaScreen
 import org.signal.registration.screens.captcha.CaptchaScreenEvents
 import org.signal.registration.screens.captcha.CaptchaState
@@ -55,11 +57,17 @@ import org.signal.registration.screens.countrycode.Country
 import org.signal.registration.screens.countrycode.CountryCodePickerRepository
 import org.signal.registration.screens.countrycode.CountryCodePickerScreen
 import org.signal.registration.screens.countrycode.CountryCodePickerViewModel
+import org.signal.registration.screens.linkaccount.LinkAccountScreen
+import org.signal.registration.screens.linkaccount.LinkAccountScreenEvent
+import org.signal.registration.screens.linkaccount.LinkAccountViewModel
 import org.signal.registration.screens.localbackuprestore.EnterLocalBackupV1PassphaseScreen
 import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreEvents
 import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreResult
 import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreScreen
 import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreViewModel
+import org.signal.registration.screens.messagesync.MessageSyncScreen
+import org.signal.registration.screens.messagesync.MessageSyncScreenEvent
+import org.signal.registration.screens.messagesync.MessageSyncViewModel
 import org.signal.registration.screens.permissions.PermissionsScreen
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryScreenEvents
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryViewModel
@@ -97,6 +105,15 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
 
   @Serializable
   data class Permissions(val nextRoute: RegistrationRoute) : RegistrationRoute
+
+  @Serializable
+  data class AllowNotifications(val nextRoute: RegistrationRoute) : RegistrationRoute
+
+  @Serializable
+  data object LinkAccount : RegistrationRoute
+
+  @Serializable
+  data object MessageSync : RegistrationRoute
 
   @Serializable
   data object PhoneNumberEntry : RegistrationRoute
@@ -316,11 +333,19 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   entry<RegistrationRoute.Welcome> {
     val context = LocalContext.current
     val termsAndPrivacyUrl = stringResource(R.string.terms_and_privacy_policy_url)
+
     WelcomeScreen(
+      isLinkAndSyncAvailable = registrationRepository.isLinkAndSyncAvailable,
       onEvent = { event ->
         when (event) {
           WelcomeScreenEvents.Continue -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(nextRoute = RegistrationRoute.PhoneNumberEntry))
-          WelcomeScreenEvents.LinkDevice -> throw NotImplementedError("Haven't implemented linked devices yet")
+          WelcomeScreenEvents.LinkDevice -> {
+            if (registrationViewModel.getRequiredLinkedDevicePermission().isNullOrBlank()) {
+              parentEventEmitter.navigateTo(RegistrationRoute.LinkAccount)
+            } else {
+              parentEventEmitter.navigateTo(RegistrationRoute.AllowNotifications(RegistrationRoute.LinkAccount))
+            }
+          }
           WelcomeScreenEvents.HasOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(nextRoute = RegistrationRoute.QuickRestoreQrScan))
           WelcomeScreenEvents.DoesNotHaveOldPhone -> parentEventEmitter.navigateTo(RegistrationRoute.Permissions(nextRoute = RegistrationRoute.ArchiveRestoreSelection.forManualRestore()))
           WelcomeScreenEvents.ViewTermsAndPrivacy -> {
@@ -345,6 +370,72 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     PermissionsScreen(
       permissionsState = localPermissionsState,
       onProceed = onProceed
+    )
+  }
+
+  // --- Allow Notifications Screen
+  entry<RegistrationRoute.AllowNotifications> { key ->
+    val onProceed = { parentEventEmitter.navigateTo(key.nextRoute) }
+    val localPermissionState = rememberPermissionState(
+      permission = registrationViewModel.getRequiredLinkedDevicePermission()!!,
+      onPermissionResult = { onProceed() }
+    )
+
+    AllowNotificationsScreen(
+      permissionState = localPermissionState,
+      onProceed = onProceed
+    )
+  }
+
+  // --- Link account Screen
+  entry<RegistrationRoute.LinkAccount> {
+    val viewModel: LinkAccountViewModel = viewModel(
+      factory = LinkAccountViewModel.Factory(
+        repository = registrationRepository,
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val context = LocalContext.current
+    val url = stringResource(R.string.terms_and_privacy_policy_url) // TODO [regv5] update with proper url
+
+    LinkAccountScreen(
+      state = state,
+      onEvent = {
+        when (it) {
+          LinkAccountScreenEvent.GetHelpClick -> LinkActions.openUrl(context, url) {
+            Toast.makeText(context, R.string.LinkActions_error_no_browser_found, Toast.LENGTH_SHORT).show()
+          }
+          else -> viewModel.onEvent(it)
+        }
+      }
+    )
+  }
+
+  // --- Message Sync Screen
+  entry<RegistrationRoute.MessageSync> {
+    val viewModel: MessageSyncViewModel = viewModel(
+      factory = MessageSyncViewModel.Factory(
+        repository = registrationRepository,
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val context = LocalContext.current
+    val url = stringResource(R.string.terms_and_privacy_policy_url) // TODO [regv5] update with proper url
+
+    MessageSyncScreen(
+      state = state,
+      onEvent = {
+        when (it) {
+          MessageSyncScreenEvent.LearnMoreClick -> LinkActions.openUrl(context, url) {
+            Toast.makeText(context, R.string.LinkActions_error_no_browser_found, Toast.LENGTH_SHORT).show()
+          }
+          else -> viewModel.onEvent(it)
+        }
+      }
     )
   }
 

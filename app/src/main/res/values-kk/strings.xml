@@ -329,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Жіберу</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Соңғы контактілер</string>
-    <string name="CameraContacts_signal_contacts">Signal контактілері</string>
-    <string name="CameraContacts_signal_groups">Signal топтары</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Максимум %1$d чатпен бөлісе аласыз.</item>
-        <item quantity="other">Максимум %1$d чатпен бөлісе аласыз.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Signal алушыларын таңдау</string>
-    <string name="CameraContacts_no_signal_contacts">Signal контактілері жоқ</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Фотосуреттерді Signal контактілеріне жіберу үшін ғана камера түймесін қолдана аласыз. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Іздеген адамыңызды таба алмай жатырсыз ба?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Контактіні Signal-ға қосылуға шақырыңыз</string>
     <string name="CameraContacts__menu_search">Іздеу</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4372,7 +4358,7 @@
     <string name="preferences_data_and_storage__never">Ешқашан</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi және мобильдік интернет</string>
     <string name="preferences_data_and_storage__mobile_data_only">Мобильдік интернет қана</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Азырақ деректерді қолдансаңыз, желі нашар ұстап тұрған кезде қоңыраулар сапасын жақсартуға көмектеседі</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Трафикті аз қолдану желілер әлсіз болғанда қоңыраулар сапасын жақсартуға көмектеседі.</string>
     <string name="preferences_notifications__in_chat_sounds">Чаттағы дауыстар</string>
     <string name="preferences_notifications__show">Көрсету</string>
     <string name="preferences_notifications__ringtone">Рингтон</string>
@@ -6042,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">Қолдау көрсету орталығы</string>
     <string name="HelpSettingsFragment__contact_us">Байланыс мәліметі</string>
     <string name="HelpSettingsFragment__version">Нұсқа</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Буферге көшірілді</string>
     <string name="HelpSettingsFragment__debug_log">Ақауларды түзету журналы</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Лицензиялар</string>
@@ -6063,6 +6051,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Стандарт</string>
     <string name="DataAndStorageSettingsFragment__calls">Қоңыраулар</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Фондық режимде байланыста болыңыз</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Фондық режимде байланыста болсаңыз, батарея заряды көп шығындалуы мүмкін. Көп құрылғы үшін мұның қажеті жоқ. Оны хабарландыруларға қатысты мәселелер туындап жатқан жағдайда ғана іске қосыңыз.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Іске қосу</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9399,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Қолдау қызметіне хабарласу</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Құрылғыдағы сақтық көшірмені қосу керек пе?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Құрылғыдағы сақтық көшірмені пайдалана беру үшін оны осы аккаунтта іске қосып, өзіңіздің жаңа қалпына келтіру кілтіңізді жазуыңыз керек. Оны кез келген уақытта \"Параметрлер &gt; Сақтық көшірме\" тармағында жасай аласыз.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Құрылғыдағы сақтық көшірмелерді пайдалана беру үшін оны осы аккаунтта іске қосуыңыз керек. Оны кез келген уақытта \"Параметрлер &gt; Сақтық көшірмелер\" тармағында жасай аласыз.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Қазір қосу</string>

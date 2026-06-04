@@ -129,7 +129,7 @@
     <!-- Alert dialog description asking for location permission -->
     <string name="AttachmentManager_signal_allow_signal_access_location">Beri Signal akses untuk mengirim info lokasi Anda.</string>
     <!-- Toast text explaining Signal\'s need for location access -->
-    <string name="AttachmentManager_signal_needs_location_access">Signal butuh akses lokasi untuk mengirim info lokasi Anda.</string>
+    <string name="AttachmentManager_signal_needs_location_access">Signal memerlukan akses ke lokasi untuk mengirimkan lokasi Anda.</string>
     <!-- Dialog title asking users for gallery storage permission -->
     <string name="AttachmentManager_signal_allow_storage">Izinkan akses ke penyimpanan</string>
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
@@ -299,11 +299,11 @@
     <!-- Text explaining why Signal needs camera access to scan QR codes -->
     <string name="CameraXFragment_to_scan_qr_code_allow_camera">Untuk memindai kode QR, izinkan Signal mengakses kamera.</string>
     <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
-    <string name="CameraXFragment_signal_needs_camera_access_capture_photos">Signal butuh akses kamera untuk mengambil foto</string>
+    <string name="CameraXFragment_signal_needs_camera_access_capture_photos">Signal memerlukan akses ke kamera untuk mengambil foto</string>
     <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
-    <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">Signal butuh akses kamera untuk memindai kode QR</string>
+    <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">Signal memerlukan akses ke kamera untuk memindai kode QR</string>
     <!-- Toast dialog explaining why Signal needs microphone permissions -->
-    <string name="CameraXFragment_signal_needs_microphone_access_video">Signal butuh akses mikrofon untuk mengambil video</string>
+    <string name="CameraXFragment_signal_needs_microphone_access_video">Signal memerlukan akses ke mikrofon untuk merekam video</string>
     <!-- Dialog description that explains the steps needed to give camera permission -->
     <string name="CameraXFragment_to_capture_photos">Untuk mengambil foto di Signal:</string>
     <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
@@ -327,19 +327,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Kirim</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Kontak terbaru</string>
-    <string name="CameraContacts_signal_contacts">Kontak Signal</string>
-    <string name="CameraContacts_signal_groups">Grup Signal</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="other">Anda dapat berbagi dengan maksimal %1$d obrolan.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Pilih penerima</string>
-    <string name="CameraContacts_no_signal_contacts">Tidak ada kontak Signal</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Anda hanya dapat menggunakan tombol kamera ini untuk mengirim foto ke kontak Signal. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Tidak menemukan kontak yang Anda cari?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Undang kontak untuk bergabung dengan Signal</string>
     <string name="CameraContacts__menu_search">Pencarian</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -530,7 +517,7 @@
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Untuk mengirim pesan suara, izinkan Signal mengakses mikrofon Anda.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal butuh akses mikrofon untuk merekam pesan suara.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal memerlukan akses ke mikrofon untuk merekam pesan suara.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Anda harus mengizinkan Signal untuk menggunakan mikrofon untuk dapat mengirim pesan audio. Harap buka pengaturan aplikasi, pilih \"Perizinan\", lalu izinkan Signal mengakses \"Mikrofon\".</string>
 
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Anda harus mengizinkan Signal untuk menggunakan mikrofon dan kamera untuk dapat memanggil %1$s. Harap buka pengaturan aplikasi, pilih \"Perizinan\", lalu izinkan Signal mengakses \"Mikrofon\" dan \"Kamera\".</string>
@@ -562,7 +549,7 @@
     <!-- Alert dialog description asking for microphone permission in order to start a voice call -->
     <string name="ConversationActivity__to_call_signal_needs_access_to_your_microphone">Untuk memulai panggilan, izinkan Signal mengakses mikrofon Anda.</string>
     <!-- Toast text explaining Signal\'s need for microphone access for a voice call -->
-    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal butuh akses mikrofon untuk memulai panggilan.</string>
+    <string name="ConversationActivity_signal_needs_microphone_access_voice_call">Signal memerlukan akses ke mikrofon untuk memulai panggilan.</string>
 
 
     <string name="ConversationActivity_join">Gabung</string>
@@ -1491,7 +1478,7 @@
     <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Gagal memperbarui grup. Mohon coba lagi nanti</string>
     <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Gagal memperbarui grup karena kesalahan jaringan. Mohon coba lagi nanti</string>
 
-    <string name="ManageGroupActivity_edit_name_and_picture">Sunting nama dan gambar</string>
+    <string name="ManageGroupActivity_edit_name_and_picture">Edit nama dan gambar</string>
     <string name="ManageGroupActivity_legacy_group">Grup Lama</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">Ini adalah grup lama. Fitur seperti admin grup hanya tersedia untuk grup baru.</string>
@@ -2304,7 +2291,7 @@
     <string name="DeviceProvisioningActivity_link_a_signal_device">Hubungkan perangkat Signal?</string>
     <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Untuk menghubungkan desktop atau iPad ke akun Signal ini, buka Perangkat Terhubung lalu ketuk \"Hubungkan Perangkat Baru\", dan pindai kode QR lagi. Pastikan Anda hanya memindai kode QR yang diperoleh langsung dari Signal.</string>
 
-    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal butuh izin pemanfaatan Kamera untuk memindai kode QR, tetapi saat ini izin tidak diberikan. Mohon buka pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kamera\".</string>
+    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal memerlukan izin Kamera untuk memindai kode QR, tetapi izin tersebut telah ditolak secara permanen. Silakan buka pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kamera\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Tidak bisa memindai kode QR tanpa izin Kamera</string>
 
     <!-- OutdatedBuildReminder -->
@@ -2496,9 +2483,9 @@
     <!-- Dialog description explaining why camera permissions are needed to enable a user\'s video in a call -->
     <string name="WebRtcCallActivity__to_enable_video_allow_camera">Untuk mengaktifkan video, beri Signal izin ke kamera Anda.</string>
     <!-- Toast describing why microphone permissions are needed to start or join a call -->
-    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal butuh izin mikrofon untuk memulai atau gabung ke panggilan.</string>
+    <string name="WebRtcCallActivity__signal_needs_microphone_start_call">Signal memerlukan izin mikrofon untuk memulai atau bergabung dalam panggilan.</string>
     <!-- Toast describing why camera permissions are needed to enable a video in a call -->
-    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal butuh akses kamera untuk mengaktifkan video Anda</string>
+    <string name="WebRtcCallActivity__signal_needs_camera_access_enable_video">Signal memerlukan akses ke kamera untuk mengaktifkan video Anda</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
     <string name="WebRtcCallActivity__to_start_call">Untuk memulai atau gabung ke panggilan:</string>
     <!-- Dialog description that will explain the steps needed to give camera permissions -->
@@ -2769,7 +2756,7 @@
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Anda akan menerima panggilan untuk memverifikasi nomor ini.</string>
-    <string name="RegistrationActivity_edit_number">Sunting nomor</string>
+    <string name="RegistrationActivity_edit_number">Edit nomor</string>
     <string name="RegistrationActivity_missing_google_play_services">Google Play Services tidak ditemukan</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">Perangkat ini tidak memiliki Google Play Services. Anda tetap dapat menggunakan Signal, namun pengaturan ini bisa mengakibatkan berkurangnya keandalan dan kinerja Signal.\n\nJika Anda bukan pengguna tingkat lanjut, tidak menjalankan Android ROM setelah pembelian, atau yakin yang Anda lihat ini adalah sebuah kekeliruan, mohon menghubungi support@signal.org untuk membantu penyelesaian masalah.</string>
     <string name="RegistrationActivity_i_understand">Saya mengerti</string>
@@ -2984,7 +2971,7 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Gagal memuat paket stiker</string>
 
     <!-- SubmitDebugLogActivity -->
-    <string name="SubmitDebugLogActivity_edit">Sunting</string>
+    <string name="SubmitDebugLogActivity_edit">Edit</string>
     <string name="SubmitDebugLogActivity_done">Selesai</string>
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Simpan</string>
@@ -3171,7 +3158,7 @@
     <string name="VerifyIdentityActivity_our_signal_safety_number">Nomor keamanan Signal kami:</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
     <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Tidak ada nomor keamanan untuk dibandingkan yang ditemukan di papan klip</string>
-    <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal butuh izin pemanfaatan Kamera untuk memindai kode QR, tetapi saat ini izin tidak diberikan. Mohon buka pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kamera\".</string>
+    <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal memerlukan izin Kamera untuk memindai kode QR, tetapi izin tersebut telah ditolak secara permanen. Silakan buka pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kamera\".</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Tidak bisa memindai kode QR tanpa izin Kamera</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Anda harus bertukar pesan terlebih dulu untuk melihat nomor keamanan %1$s.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
@@ -3838,7 +3825,7 @@
     <string name="EditAboutFragment_working_on_something_new">Sedang mengerjakan sesuatu yang baru</string>
 
     <!-- EditProfileFragment -->
-    <string name="EditProfileFragment__edit_group">Sunting grup</string>
+    <string name="EditProfileFragment__edit_group">Edit grup</string>
     <string name="EditProfileFragment__group_name">Nama grup</string>
     <string name="EditProfileFragment__group_description">Deskripsi grup</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
@@ -4248,7 +4235,7 @@
     <string name="preferences_data_and_storage__never">Tidak pernah</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi dan data seluler</string>
     <string name="preferences_data_and_storage__mobile_data_only">Data seluler saja</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Mengurangi penggunaan data mungkin dapat memperbaiki panggilan pada jaringan buruk</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Mengurangi penggunaan data mungkin dapat memperbaiki panggilan pada jaringan buruk.</string>
     <string name="preferences_notifications__in_chat_sounds">Suara dalam obrolan</string>
     <string name="preferences_notifications__show">Tampilkan</string>
     <string name="preferences_notifications__ringtone">Nada dering</string>
@@ -4442,9 +4429,9 @@
     <string name="PaymentsTransferFragment__invalid_address">Alamat salah</string>
     <string name="PaymentsTransferFragment__check_the_wallet_address">Periksa alamat dompet digital yang coba Anda kirimkan dan coba lagi.</string>
     <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Anda tidak dapat mentransfer ke alamat dompet digital Signal milik pribadi. Masukkan alamat dompet digital dari akun Anda di sebuah tempat penukaran yang didukung.</string>
-    <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Untuk memindai kode QR, Signal membutuhkan akses ke kamera.</string>
-    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal butuh akses ke Kamera untuk menangkap kode QR. Buka pengaturan, pilih \"Izin\", lalu aktifkan \"Kamera\".</string>
-    <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Untuk memindai kode QR, Signal membutuhkan akses ke kamera.</string>
+    <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Untuk memindai kode QR, Signal memerlukan akses ke kamera.</string>
+    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal memerlukan izin Kamera untuk memindai kode QR. Buka pengaturan, pilih \"Izin\", lalu aktifkan \"Kamera\".</string>
+    <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Untuk memindai kode QR, Signal memerlukan akses ke kamera.</string>
     <string name="PaymentsTransferFragment__settings">Pengaturan</string>
 
     <!-- PaymentsTransferQrScanFragment -->
@@ -4695,7 +4682,7 @@
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Simpan</string>
-    <string name="media_preview__edit_title">Sunting</string>
+    <string name="media_preview__edit_title">Edit</string>
 
 
     <!-- media_preview_activity -->
@@ -5045,7 +5032,7 @@
     <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Menyiapkan untuk menghubungkan ke perangkat Android lama …</string>
     <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Sedang dalam proses, akan siap segera</string>
     <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Menunggu perangkat Android lama tersambung …</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal butuh akses ke izin lokasi untuk menemukan dan menjalin koneksi dengan perangkat lawas Android milik Anda.</string>
+    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal memerlukan izin lokasi untuk mendeteksi dan terhubung ke perangkat Android lama Anda.</string>
     <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal memerluhkan layanan lokasi diaktifkan untuk menemukan dan menyambungkan dengan perangkat Android lama Anda.</string>
     <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal memerlukan Wi-Fi untuk menemukan dan menyambungkan dengan perangkat Android lama Anda. Wi-Fi diperukan untuk diaktifkan namun tidak harus tersambung ke jaringan Wi-Fi.</string>
     <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Maaf, sepertinya perangkat ini tidak mendukung Wi-Fi Direct. Signal menggunakan Wi-Fi Direct untuk mencari dan menyambungkan dengan perangkat Android lama Anda. Anda tetap dapat memulihkan cadangan untuk mengembalikan akun dari perangkat Android lama Anda.</string>
@@ -5054,7 +5041,7 @@
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Mencari perangkat Android baru …</string>
-    <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal butuh akses ke izin lokasi untuk menemukan dan menjalin koneksi dengan perangkat baru Android milik Anda.</string>
+    <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal memerlukan izin lokasi untuk mendeteksi dan terhubung ke perangkat Android baru Anda.</string>
     <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal memerluhkan layanan lokasi diaktifkan untuk menemukan dan menyambungkan dengan perangkat Android baru Anda.</string>
     <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal memerlukan Wi-Fi untuk menemukan dan menyambungkan dengan perangkat Android baru Anda. Wi-Fi diperukan untuk diaktifkan namun tidak harus tersambung ke jaringan Wi-Fi.</string>
     <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Maaf, sepertinya perangkat ini tidak mendukung Wi-Fi Direct. Signal menggunakan Wi-Fi Direct untuk mencari dan menyambungkan dengan perangkat Android baru Anda. Anda tetap dapat memulihkan cadangan untuk mengembalikan akun dari perangkat Android baru Anda.</string>
@@ -5146,7 +5133,7 @@
     <string name="DeviceToDeviceTransferService_status_starting_up">Bersiap untuk menghubungkan ke perangkat Android lain Anda …</string>
     <string name="DeviceToDeviceTransferService_status_discovery">Mencari perangkat Android lain Anda …</string>
     <string name="DeviceToDeviceTransferService_status_network_connected">Menghubungkan ke perangkat Android lain Anda …</string>
-    <string name="DeviceToDeviceTransferService_status_verification_required">Verifikasi dibutuhkan</string>
+    <string name="DeviceToDeviceTransferService_status_verification_required">Verifikasi diperlukan</string>
     <string name="DeviceToDeviceTransferService_status_service_connected">Mentransfer akun …</string>
 
     <!-- OldDeviceTransferLockedDialog -->
@@ -5451,7 +5438,7 @@
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">Berikutnya</string>
-    <string name="PaymentsRecoveryPhraseFragment__edit">Sunting</string>
+    <string name="PaymentsRecoveryPhraseFragment__edit">Edit</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Frasa pemulihan Anda</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Tuliskan %1$d kata-kata berikut secara berurutan. Simpan di tempat yang aman.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Pastikan Anda memasukkan frasa secara benar.</string>
@@ -5626,12 +5613,12 @@
     <string name="ChangeNumberVerifyFragment__change_number">Ubah Nomor</string>
     <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">Memverifikasi %1$s</string>
-    <string name="ChangeNumberVerifyFragment__captcha_required">Captcha dibutuhkan</string>
+    <string name="ChangeNumberVerifyFragment__captcha_required">Captcha diperlukan</string>
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Ganti nomor</string>
     <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Anda akan mengubah nomor telepon dari %1$s ke %2$s.\n\nSebelum melanjutkan, mohon verifikasi bahwa nomor di bawah sudah benar.</string>
-    <string name="ChangeNumberConfirmFragment__edit_number">Sunting nomor</string>
+    <string name="ChangeNumberConfirmFragment__edit_number">Edit nomor</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
     <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Penggantian Nomor Signal - Butuh bantuan mengenai PIN untuk Android (v2 PIN)</string>
@@ -5825,7 +5812,7 @@
     <string name="NotificationsSettingsFragment__notify_when">Beritahukan ketika …</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Kontak bergabung di Signal</string>
     <!-- Notification preference header -->
-    <string name="NotificationsSettingsFragment__notification_profiles">Profil-profil Pemberitahuan</string>
+    <string name="NotificationsSettingsFragment__notification_profiles">Profil notifikasi</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Profil</string>
     <!-- Notification preference summary text -->
@@ -5833,7 +5820,7 @@
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="NotificationProfilesFragment__notification_profiles">Profil-profil Pemberitahuan</string>
+    <string name="NotificationProfilesFragment__notification_profiles">Profil notifikasi</string>
     <!-- Button text to create a notification profile -->
     <string name="NotificationProfilesFragment__create_profile">Buat profil</string>
 
@@ -5892,6 +5879,8 @@
     <string name="HelpSettingsFragment__support_center">Pusat bantuan</string>
     <string name="HelpSettingsFragment__contact_us">Hubungi kami</string>
     <string name="HelpSettingsFragment__version">Versi</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Disalin ke papan klip</string>
     <string name="HelpSettingsFragment__debug_log">Catatan Awakutu</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Lisensi</string>
@@ -5913,13 +5902,19 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Standar</string>
     <string name="DataAndStorageSettingsFragment__calls">Panggilan</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Tetap terhubung di latar belakang</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Tetap terhubung saat aplikasi berada di latar belakang kemungkinan akan meningkatkan penggunaan baterai. Ini tidak diperlukan untuk sebagian besar perangkat. Aktifkan pilihan ini hanya jika Anda mengalami masalah dengan notifikasi.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Aktifkan</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
     <string name="ChatColorSelectionFragment__auto">Auto</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">Gunakan warna kustom</string>
     <string name="ChatColorSelectionFragment__chat_color">Warna obrolan</string>
-    <string name="ChatColorSelectionFragment__edit">Sunting</string>
+    <string name="ChatColorSelectionFragment__edit">Edit</string>
     <string name="ChatColorSelectionFragment__duplicate">Duplikat</string>
     <string name="ChatColorSelectionFragment__delete">Hapus</string>
     <string name="ChatColorSelectionFragment__delete_color">Hapus warna</string>
@@ -5936,7 +5931,7 @@
 
     <!-- CustomChatColorCreatorFragmentPage -->
     <string name="CustomChatColorCreatorFragmentPage__save">Simpan</string>
-    <string name="CustomChatColorCreatorFragmentPage__edit_color">Sunting warna</string>
+    <string name="CustomChatColorCreatorFragmentPage__edit_color">Edit warna</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
         <item quantity="other">Warna ini digunakan di %1$d obrolan. Apakah Anda ingin menyimpan perubahan untuk semua obrolan?</item>
     </plurals>
@@ -6062,7 +6057,7 @@
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Tambahkan anggota</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Sunting informasi grup</string>
+    <string name="PermissionsSettingsFragment__edit_group_info">Edit informasi grup</string>
     <string name="PermissionsSettingsFragment__send_messages">Kirim pesan</string>
     <string name="PermissionsSettingsFragment__all_members">Semua anggota</string>
     <string name="PermissionsSettingsFragment__only_admins">Khusus para admin</string>
@@ -6615,7 +6610,7 @@
     <!-- Call to action button once the profile name is edited -->
     <string name="EditNotificationProfileFragment__save">Simpan</string>
     <!-- Title of edit notification profile screen -->
-    <string name="EditNotificationProfileFragment__edit_this_profile">Sunting profil ini</string>
+    <string name="EditNotificationProfileFragment__edit_this_profile">Edit profil ini</string>
     <!-- Error message shown when attempting to create or edit a profile name to an existing profile name -->
     <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Profil dengan nama ini sudah ada</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
@@ -6667,7 +6662,7 @@
     <!-- Dialog button to delete profile -->
     <string name="NotificationProfileDetails__delete">Hapus</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
-    <string name="NotificationProfileDetails__edit_notification_profile">Sunting profil pemberitahuan</string>
+    <string name="NotificationProfileDetails__edit_notification_profile">Edit profil notifikasi</string>
     <!-- Schedule description if all days are selected -->
     <string name="NotificationProfileDetails__everyday">Setiap hari</string>
     <!-- Profile status on if it is the active profile -->
@@ -6690,7 +6685,7 @@
     <!-- Title for add schedule to profile in create flow -->
     <string name="EditNotificationProfileSchedule__add_a_schedule">Tambahkan jadwal</string>
     <!-- Descriptor text indicating what the user can do with this screen -->
-    <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Atur jadwal untuk mengaktifkan profil pemberitahuan ini secara otomatis.</string>
+    <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Atur jadwal agar profil notifikasi ini diaktifkan secara otomatis.</string>
     <!-- Text shown next to toggle switch to enable/disable schedule -->
     <string name="EditNotificationProfileSchedule__schedule">Jadwal</string>
     <!-- Label for showing the start time for the schedule -->
@@ -8065,7 +8060,7 @@
     <!-- Title of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__title">Semua sudah siap. Mulai pencadangan sekarang.</string>
     <!-- Body of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__body">Proses ini butuh waktu. Anda dapat menggunakan Signal seperti biasa sementara pencadangan berlangsung.</string>
+    <string name="BackupSetupCompleteBottomSheet__body">Ini mungkin memerlukan waktu cukup lama. Anda dapat menggunakan Signal seperti biasa selama proses pencadangan berlangsung.</string>
     <!-- Label for the optimize storage toggle -->
     <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimalkan penyimpanan Signal</string>
     <!-- Subtitle for the optimize storage toggle -->
@@ -8236,7 +8231,7 @@
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Kosongkan ruang %1$s di perangkat ini</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">Untuk menyelesaikan pengunduhan Cadangan Signal, perangkat butuh ruang penyimpanan sebesar %1$s.</string>
+    <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">Untuk menyelesaikan pengunduhan Cadangan Signal, perangkat Anda memerlukan ruang penyimpanan sebesar %1$s.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. -->
     <string name="BackupAlertBottomSheet__to_free_up_space_offload">Untuk mengosongkan ruang, offload atau hapus aplikasi tidak terpakai atau file berukuran besar.</string>
     <!-- Sheet title when user payment failed to process -->
@@ -9178,7 +9173,7 @@
     <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
     <string name="RestoreLocalBackupActivity__restoring_backup">Memulihkan cadangan</string>
     <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Tergantung seberapa besar data cadangan Anda, proses ini mungkin butuh waktu.</string>
+    <string name="RestoreLocalBackupActivity__depending_on_the_size">Tergantung pada ukuran cadangan Anda, proses ini mungkin memerlukan waktu beberapa menit.</string>
     <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
     <string name="RestoreLocalBackupActivity__restoring_messages">Memulihkan pesan …</string>
     <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
@@ -9199,11 +9194,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Hubungi tim dukungan</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Aktifkan cadangan di perangkat?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Untuk lanjut menggunakan cadangan di perangkat, Anda harus mengaktifkannya untuk akun ini dan menyimpan kunci pemulihan yang baru. Ini bisa dilakukan kapan saja di Pengaturan &gt; Cadangan.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Untuk terus menggunakan cadangan di perangkat, Anda perlu mengaktifkannya untuk akun ini. Ini bisa dilakukan kapan saja di Pengaturan &gt; Cadangan.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Oke</string>

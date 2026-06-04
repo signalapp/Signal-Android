@@ -11,10 +11,10 @@ import android.media.audiofx.NoiseSuppressor
 import android.os.Build
 import androidx.annotation.VisibleForTesting
 import com.fasterxml.jackson.annotation.JsonProperty
+import org.signal.core.util.JsonUtils
 import org.signal.core.util.logging.Log
 import org.signal.ringrtc.AudioConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.RemoteConfig
 import java.io.IOException
 

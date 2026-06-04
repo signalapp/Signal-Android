@@ -352,6 +352,9 @@ class Recipient(
     sealedSenderAccessModeValue
   }
 
+  /** The user's capability to receive username sync messages */
+  val usernameSyncMessagesCapability: Capability = capabilities.usernameSyncMessages
+
   /** The wallpaper to render as the chat background, if present. */
   val wallpaper: ChatWallpaper?
     get() {
@@ -1063,7 +1066,7 @@ class Recipient(
       } else if (NumberUtil.isValidEmail(identifier)) {
         SignalDatabase.recipients.getOrInsertFromEmail(identifier)
       } else {
-        val e164 = SignalE164Util.formatAsE164(identifier) ?: return null
+        val e164 = SignalE164Util.formatNonShortCodeAsE164(identifier) ?: return null
         SignalDatabase.recipients.getOrInsertFromE164(e164)
       }
 

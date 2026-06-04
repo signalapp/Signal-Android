@@ -73,7 +73,7 @@ abstract class PushSendJob protected constructor(parameters: Parameters) : BaseJ
     private val TAG = Log.tag(PushSendJob::class.java)
 
     @JvmStatic
-    protected fun enqueueCompressingAndUploadAttachmentsChains(jobManager: JobManager, message: OutgoingMessage): Set<String> {
+    fun enqueueCompressingAndUploadAttachmentsChains(jobManager: JobManager, message: OutgoingMessage): Set<String> {
       val attachments: MutableList<Attachment> = mutableListOf()
 
       attachments += message.attachments
@@ -109,7 +109,7 @@ abstract class PushSendJob protected constructor(parameters: Parameters) : BaseJ
     }
 
     @JvmStatic
-    protected fun notifyMediaMessageDeliveryFailed(context: Context, messageId: Long) {
+    fun notifyMediaMessageDeliveryFailed(context: Context, messageId: Long) {
       val threadId = messages.getThreadIdForMessage(messageId)
       val recipient = threads.getRecipientForThreadId(threadId)
       val groupReplyStoryId = messages.getParentStoryIdForGroupReply(messageId)
@@ -135,7 +135,7 @@ abstract class PushSendJob protected constructor(parameters: Parameters) : BaseJ
     }
 
     @JvmStatic
-    protected fun markAttachmentsUploaded(messageId: Long, message: OutgoingMessage) {
+    fun markAttachmentsUploaded(messageId: Long, message: OutgoingMessage) {
       val attachments: MutableList<Attachment> = mutableListOf()
 
       attachments += message.attachments

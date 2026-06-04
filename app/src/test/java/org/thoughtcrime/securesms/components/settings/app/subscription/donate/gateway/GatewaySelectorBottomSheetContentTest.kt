@@ -13,6 +13,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToNode
 import androidx.test.core.app.ApplicationProvider
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,6 +27,7 @@ import org.signal.donations.InAppPaymentType
  * Tests for GatewaySelectorBottomSheetContent that validate event emissions.
  * Uses Robolectric to run fast JUnit tests without an emulator.
  */
+@Ignore("Does not work with prod release builds")
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
 class GatewaySelectorBottomSheetContentTest {

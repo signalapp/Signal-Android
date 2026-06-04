@@ -1,5 +1,5 @@
 package org.thoughtcrime.securesms.search
 
-import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.database.model.ThreadWithRecipient
 
-data class ThreadSearchResult(val results: List<ThreadRecord>, val query: String)
+data class ThreadSearchResult(val results: List<ThreadWithRecipient>, val query: String)

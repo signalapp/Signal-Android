@@ -195,12 +195,16 @@ public class SignalServiceProfile {
     @JsonProperty("ssre2")
     private boolean storageServiceEncryptionV2;
 
+    @JsonProperty("usernameChangeSyncMessage")
+    private boolean usernameSyncMessages;
+
     @JsonCreator
     public Capabilities() {}
 
-    public Capabilities(boolean storage, boolean storageServiceEncryptionV2) {
+    public Capabilities(boolean storage, boolean storageServiceEncryptionV2, boolean usernameSyncMessages) {
       this.storage                    = storage;
       this.storageServiceEncryptionV2 = storageServiceEncryptionV2;
+      this.usernameSyncMessages       = usernameSyncMessages;
     }
 
     public boolean isStorage() {
@@ -209,6 +213,10 @@ public class SignalServiceProfile {
 
     public boolean isStorageServiceEncryptionV2() {
       return storageServiceEncryptionV2;
+    }
+
+    public boolean isUsernameSyncMessages() {
+      return usernameSyncMessages;
     }
   }
 

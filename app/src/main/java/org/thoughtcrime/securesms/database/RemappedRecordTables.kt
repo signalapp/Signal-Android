@@ -56,16 +56,11 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
   fun getAllRecipientMappings(): Map<RecipientId, RecipientId> {
     val recipientMap: MutableMap<RecipientId, RecipientId> = HashMap()
 
-    readableDatabase.withinTransaction { db ->
-      trimInvalidRecipientEntries(db)
-      trimInvalidThreadEntries(db)
-
-      val mappings = getAllMappings(db, Recipients.TABLE_NAME)
-      for (mapping in mappings) {
-        val oldId = RecipientId.from(mapping.oldId)
-        val newId = RecipientId.from(mapping.newId)
-        recipientMap[oldId] = newId
-      }
+    val mappings = getAllMappings(readableDatabase, Recipients.TABLE_NAME)
+    for (mapping in mappings) {
+      val oldId = RecipientId.from(mapping.oldId)
+      val newId = RecipientId.from(mapping.newId)
+      recipientMap[oldId] = newId
     }
 
     return recipientMap
@@ -74,14 +69,19 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
   fun getAllThreadMappings(): Map<Long, Long> {
     val threadMap: MutableMap<Long, Long> = HashMap()
 
-    readableDatabase.withinTransaction { db ->
-      val mappings = getAllMappings(db, Threads.TABLE_NAME)
-      for (mapping in mappings) {
-        threadMap[mapping.oldId] = mapping.newId
-      }
+    val mappings = getAllMappings(readableDatabase, Threads.TABLE_NAME)
+    for (mapping in mappings) {
+      threadMap[mapping.oldId] = mapping.newId
     }
 
     return threadMap
+  }
+
+  fun trimStaleMappings() {
+    writableDatabase.withinTransaction { db ->
+      trimInvalidRecipientEntries(db)
+      trimInvalidThreadEntries(db)
+    }
   }
 
   fun addRecipientMapping(oldId: RecipientId, newId: RecipientId) {

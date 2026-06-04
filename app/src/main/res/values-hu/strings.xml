@@ -329,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Küldés</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Friss kontaktok</string>
-    <string name="CameraContacts_signal_contacts">Signal kontaktok</string>
-    <string name="CameraContacts_signal_groups">Signal csoportok</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Maximum %1$d csevegéssel oszthatod meg.</item>
-        <item quantity="other">Maximum %1$d csevegéssel oszthatod meg.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Signal címzettek kiválasztása</string>
-    <string name="CameraContacts_no_signal_contacts">Nincs Signal kontakt</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">A kamera gombbal csak Signal kontaktoknak küldhetsz fotókat. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Nem találod, akit keresel?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Hívd meg egy ismerősödet Signalra!</string>
     <string name="CameraContacts__menu_search">Keresés</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4372,7 +4358,7 @@
     <string name="preferences_data_and_storage__never">Soha</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi és mobil adat</string>
     <string name="preferences_data_and_storage__mobile_data_only">Csak mobil adat</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">A kevesebb adat használatának beállítása javíthatja a hívások minőségét gyenge hálózatokon</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Mérsékeltebb adathasználat javíthatja a hívások minőségét gyenge hálózatokon.</string>
     <string name="preferences_notifications__in_chat_sounds">Csevegésen belüli hangok</string>
     <string name="preferences_notifications__show">Megjelenítés</string>
     <string name="preferences_notifications__ringtone">Csengőhang</string>
@@ -6042,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">Támogatási központ</string>
     <string name="HelpSettingsFragment__contact_us">Kapcsolat</string>
     <string name="HelpSettingsFragment__version">Verzió</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Vágólapra másolva</string>
     <string name="HelpSettingsFragment__debug_log">Hibakeresési napló</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licencek</string>
@@ -6063,6 +6051,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Normál</string>
     <string name="DataAndStorageSettingsFragment__calls">Hívások</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Maradj elérhető a háttérben</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Ha a háttérben elérhető maradsz online, valószínűleg megnövekedett akkumulátorhasználatot eredményez. A legtöbb eszköz esetében erre nincs szükség. Csak akkor engedélyezd ezt, ha problémákat tapasztaltál az értesítésekkel.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Engedélyezés</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9399,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Segítségkérés</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Eszközön tárolt biztonsági mentések bekapcsolása?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Az eszközön tárolt biztonsági mentések további használatához engedélyezned kell azokat ehhez a fiókhoz, és fel kell jegyezned az új helyreállítási kulcsot. Ezt bármikor megteheted a Beállítások &gt; Biztonsági mentések menüpontban.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Az eszközön tárolt biztonsági mentések további használatához engedélyezned kell azokat ehhez a fiókhoz. Ezt bármikor megteheted a Beállítások &gt; Biztonsági mentések menüpontban.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Bekapcsolás most</string>

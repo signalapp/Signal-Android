@@ -7,11 +7,13 @@ import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.databinding.ConversationSettingsCallPreferenceItemBinding
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingViewHolder
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
+import org.thoughtcrime.securesms.util.visible
 
 /**
  * Renders a single call preference row when displaying call info.
@@ -41,6 +43,25 @@ object CallPreference {
       binding.callIcon.setImageResource(getCallIcon(model.call))
       binding.callType.text = getCallType(model.call)
       binding.callTime.text = getCallTime(model.record)
+      presentTimer(model.record)
+    }
+
+    private fun presentTimer(messageRecord: MessageRecord) {
+      if (messageRecord.expiresIn > 0) {
+        binding.callTimer.visible = true
+        binding.callTimer.setPercentComplete(0f)
+
+        if (messageRecord.expireStarted > 0) {
+          binding.callTimer.setExpirationTime(messageRecord.expireStarted, messageRecord.expiresIn)
+          binding.callTimer.startAnimation()
+
+          if (messageRecord.expireStarted + messageRecord.expiresIn <= System.currentTimeMillis()) {
+            AppDependencies.expiringMessageManager.checkSchedule()
+          }
+        }
+      } else {
+        binding.callTimer.visible = false
+      }
     }
 
     @DrawableRes

@@ -81,8 +81,9 @@ enum class NavigationType {
       val windowBreakpoint = remember(config) { resources.getWindowBreakpoint() }
 
       return when (windowBreakpoint) {
-        WindowBreakpoint.SMALL, WindowBreakpoint.MEDIUM -> BAR
-        WindowBreakpoint.LARGE_WIDTH, WindowBreakpoint.LARGE_HEIGHT -> RAIL
+        is WindowBreakpoint.Small -> BAR
+        is WindowBreakpoint.Medium -> if (windowBreakpoint.isWidthExpanded) RAIL else BAR
+        is WindowBreakpoint.Large -> RAIL
       }
     }
   }

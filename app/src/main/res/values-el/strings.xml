@@ -329,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Αποστολή</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Πρόσφατες επαφές</string>
-    <string name="CameraContacts_signal_contacts">Επαφές Signal</string>
-    <string name="CameraContacts_signal_groups">Ομάδες Signal</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Μπορείς να μοιραστείς το πολύ με %1$d συνομιλία.</item>
-        <item quantity="other">Μπορείς να μοιραστείς το πολύ με %1$d συνομιλίες.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Επιλογή παραληπτών Signal</string>
-    <string name="CameraContacts_no_signal_contacts">Δεν υπάρχουν επαφές Signal</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Μπορείς να στείλεις φωτογραφίες σε επαφές Signal μόνο χρησιμοποιώντας το κουμπί της κάμερας. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Δεν βρήκες αυτόν ή αυτήν που ψάχνεις;</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Προσκάλεσε μια επαφή σου να έρθει στο Signal</string>
     <string name="CameraContacts__menu_search">Αναζήτηση</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4372,7 +4358,7 @@
     <string name="preferences_data_and_storage__never">Ποτέ</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi και δεδομένα κινητής</string>
     <string name="preferences_data_and_storage__mobile_data_only">Μόνο δεδομένα κινητής</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Η χρήση λιγότερων δεδομένων ίσως βελτιώσει τη ποιότητα των κλήσεων σε δίκτυα με κακή σύνδεση</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Η χρήση λιγότερων δεδομένων ίσως βελτιώσει τη ποιότητα των κλήσεων σε δίκτυα με κακή σύνδεση.</string>
     <string name="preferences_notifications__in_chat_sounds">Ήχοι μέσα στη συνομιλία</string>
     <string name="preferences_notifications__show">Εμφάνιση</string>
     <string name="preferences_notifications__ringtone">Ήχος κλήσης</string>
@@ -6042,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">Κέντρο υποστήριξης</string>
     <string name="HelpSettingsFragment__contact_us">Επικοινώνησε μαζί μας</string>
     <string name="HelpSettingsFragment__version">Έκδοση</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
     <string name="HelpSettingsFragment__debug_log">Αρχείο καταγραφής αποσφαλμάτωσης</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Άδειες</string>
@@ -6063,6 +6051,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Κανονική</string>
     <string name="DataAndStorageSettingsFragment__calls">Κλήσεις</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Μείνε σε σύνδεση στο παρασκήνιο</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Η διατήρηση της σύνδεσης ενώ η εφαρμογή βρίσκεται στο παρασκήνιο πιθανότατα θα οδηγήσει σε αυξημένη κατανάλωση μπαταρίας. Αυτό δεν είναι απαραίτητο για τις περισσότερες συσκευές. Ενεργοποίησε αυτή την επιλογή μόνο αν αντιμετωπίζεις προβλήματα με τις ειδοποιήσεις.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Ενεργοποίηση</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9399,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Επικοινωνία με την υποστήριξη</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Ενεργοποίηση αντιγράφων ασφαλείας στη συσκευή;</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Για να συνεχίσεις να χρησιμοποιείς τα αντίγραφα ασφαλείας στη συσκευή, πρέπει να τα ενεργοποιήσεις για αυτόν τον λογαριασμό και να καταγράψεις το νέο κλειδί ανάκτησης. Μπορείς να το κάνεις ανά πάσα στιγμή πηγαίνοντας στις Ρυθμίσεις &gt; Αντίγραφα ασφαλείας.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Για να συνεχίσεις να χρησιμοποιείς τα αντίγραφα ασφαλείας στη συσκευή, πρέπει να τα ενεργοποιήσεις για αυτόν τον λογαριασμό. Μπορείς να το κάνεις ανά πάσα στιγμή πηγαίνοντας στις Ρυθμίσεις &gt; Αντίγραφα ασφαλείας.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Ενεργοποίηση τώρα</string>

@@ -335,23 +335,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Seol</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Teagmhálaithe le déanaí</string>
-    <string name="CameraContacts_signal_contacts">Teagmhálaithe Signal</string>
-    <string name="CameraContacts_signal_groups">Braislí Signal</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Is féidir leat comhroinnt le %1$d chomhrá ar a mhéad.</item>
-        <item quantity="two">Is féidir leat comhroinnt le %1$d chomhrá ar a mhéad.</item>
-        <item quantity="few">Is féidir leat comhroinnt le %1$d chomhrá ar a mhéad.</item>
-        <item quantity="many">Is féidir leat comhroinnt le %1$d gcomhrá ar a mhéad.</item>
-        <item quantity="other">Is féidir leat comhroinnt le %1$d comhrá ar a mhéad.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Roghnaigh faighteoirí Signal</string>
-    <string name="CameraContacts_no_signal_contacts">Níl aon teagmhálaithe Signal ann</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Ní féidir feidhm a bhaint as cnaipe an cheamara chun grianghraif a sheoladh ach le teagmhálaithe ar Signal amháin. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Nach féidir an duine atá lorg agat a aimsiú?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Tabhair cuireadh do theagmhálaí chuig Signal</string>
     <string name="CameraContacts__menu_search">Cuardaigh</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4744,7 +4727,7 @@
     <string name="preferences_data_and_storage__never">Choíche</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wifi agus sonraí móibíleacha</string>
     <string name="preferences_data_and_storage__mobile_data_only">Sonraí móibíleacha amháin</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Seans go bhfeabhsódh glaonna má úsáidtear níos lú sonraí ar dhrochlíonraí</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Seans go bhfeabhsófaí glaonna ar dhrochlíonraí má úsáidtear níos lú sonraí.</string>
     <string name="preferences_notifications__in_chat_sounds">Fuaimeanna sna comhráite</string>
     <string name="preferences_notifications__show">Taispeáin</string>
     <string name="preferences_notifications__ringtone">Glaofhuaim</string>
@@ -6492,6 +6475,8 @@
     <string name="HelpSettingsFragment__support_center">Lárionad Tacaíochta</string>
     <string name="HelpSettingsFragment__contact_us">Déan teagmháil linn</string>
     <string name="HelpSettingsFragment__version">Leagan</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Cóipeáilte chuig an ngearrthaisce</string>
     <string name="HelpSettingsFragment__debug_log">Logchomhad dífhabhtaithe</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Ceadúnais</string>
@@ -6513,6 +6498,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Caighdeánach</string>
     <string name="DataAndStorageSettingsFragment__calls">Glaonna</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Fan nasctha sa chúlra</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Is dócha go méadófar úsáid cheallra mar thoradh ar fhanacht nasctha sa chúlra. Níl sé sin riachtanach i gcás an chuid is mó de ghléasanna. Ná cumasaigh é sin ach amháin má bhíonn fadhbanna le fógraí agat.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Cumasaigh é</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9999,11 +9990,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Déan teagmháil leis an bhfoireann tacaíochta</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Cas air cúltacaí ar an ngléas?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Le leanúint le cúltacaí ar an ngléas a úsáid, beidh ort iad a chumasú don chuntas seo agus d\'eochair athshlánaithe nua a thaifeadadh. Is féidir leat é sin a dhéanamh am ar bith i Socruithe &gt; Cúltacaí.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Le leanúint le cúltacaí ar an ngléas a úsáid, beidh ort iad a chumasú don chuntas seo. Is féidir leat é sin a dhéanamh am ar bith i Socruithe &gt; Cúltacaí.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Cas air anois iad</string>

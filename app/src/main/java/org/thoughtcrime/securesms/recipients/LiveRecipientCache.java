@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
-import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -17,13 +16,12 @@ import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.RecipientTable.MissingRecipientException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
-import org.thoughtcrime.securesms.database.model.RecipientRecord;
-import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.database.model.ThreadWithRecipient;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.LRUCache;
 import org.signal.core.util.Stopwatch;
-import org.thoughtcrime.securesms.util.concurrent.FilteredExecutor;
+import org.signal.core.util.concurrent.FilteredExecutor;
 import org.signal.core.models.ServiceId.ACI;
 
 import java.util.ArrayList;
@@ -252,8 +250,8 @@ public final class LiveRecipientCache {
       List<Recipient> recipients  = new ArrayList<>();
 
       try (ThreadTable.Reader reader = threadTable.readerFor(threadTable.getRecentConversationList(THREAD_CACHE_WARM_MAX, false, false))) {
-        int          i      = 0;
-        ThreadRecord record = null;
+        int                 i      = 0;
+        ThreadWithRecipient record = null;
 
         while ((record = reader.getNext()) != null && i < THREAD_CACHE_WARM_MAX) {
           recipients.add(record.getRecipient());

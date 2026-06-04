@@ -239,6 +239,9 @@ class MultiselectForwardFragment :
           if (contactSelection.isNotEmpty() && !bottomBar.isVisible) {
             bottomBar.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_fade_from_bottom)
             bottomBar.visible = true
+            if (args.forceDisableAddMessage) {
+              ViewUtil.hideKeyboard(requireContext(), bottomBar)
+            }
           } else if (contactSelection.isEmpty() && bottomBar.isVisible) {
             bottomBar.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_fade_to_bottom)
             bottomBar.visible = false

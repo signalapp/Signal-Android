@@ -329,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Enviar</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Contactos recientes</string>
-    <string name="CameraContacts_signal_contacts">Contactos de Signal</string>
-    <string name="CameraContacts_signal_groups">Grupos de Signal</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">No puedes seleccionar más de %1$d chat.</item>
-        <item quantity="other">No puedes seleccionar más de %1$d chats.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Selecciona contactos de Signal</string>
-    <string name="CameraContacts_no_signal_contacts">No hay contactos de Signal</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Puedes usar el botón de la cámara solo para enviar fotos a tus contactos de Signal. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">¿No encuentras a quien que buscas?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Invita a un contacto a usar Signal</string>
     <string name="CameraContacts__menu_search">Buscar</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -6042,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">Centro de asistencia</string>
     <string name="HelpSettingsFragment__contact_us">Contacta con nosotros</string>
     <string name="HelpSettingsFragment__version">Versión</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Copiado al portapapeles</string>
     <string name="HelpSettingsFragment__debug_log">Registro de depuración</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licencias</string>
@@ -6063,6 +6051,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Estándar</string>
     <string name="DataAndStorageSettingsFragment__calls">Llamadas</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Activar conexión en segundo plano</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Es probable que mantener la conexión en segundo plano aumente el consumo de batería. En la mayoría de dispositivos no es necesario habilitar esta opción. Actívala solo si las notificaciones no están funcionando correctamente.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Activar</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9399,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Contactar con asistencia</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">¿Activar las copias de seguridad locales?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Para continuar usando las copias de seguridad locales, deberás activarlas en esta cuenta y registrar tu nueva clave de recuperación. Puedes hacerlo en Ajustes &gt; Copias de seguridad.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Para continuar usando las copias de seguridad locales, deberás activarlas en esta cuenta. Puedes hacerlo en Ajustes &gt; Copias de seguridad.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Activar ahora</string>

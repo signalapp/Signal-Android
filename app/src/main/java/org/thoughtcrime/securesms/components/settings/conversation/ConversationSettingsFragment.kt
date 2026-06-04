@@ -1041,11 +1041,11 @@ class ConversationSettingsFragment :
           isEnabled = !state.isDeprecatedOrUnregistered,
           onClick = {
             if (state.recipient.isBlocked) {
-              BlockUnblockDialog.showUnblockFor(requireContext(), viewLifecycleOwner.lifecycle, state.recipient) {
+              BlockUnblockDialog.showUnblockFor(requireContext(), state.recipient) {
                 viewModel.unblock()
               }
             } else {
-              BlockUnblockDialog.showBlockFor(requireContext(), viewLifecycleOwner.lifecycle, state.recipient) {
+              BlockUnblockDialog.showBlockFor(requireContext(), state.recipient) {
                 viewModel.block()
               }
             }
@@ -1061,7 +1061,6 @@ class ConversationSettingsFragment :
             onClick = {
               BlockUnblockDialog.showReportSpamFor(
                 requireContext(),
-                viewLifecycleOwner.lifecycle,
                 state.recipient,
                 {
                   viewModel
@@ -1110,7 +1109,6 @@ class ConversationSettingsFragment :
             onClick = {
               BlockUnblockDialog.showReportSpamFor(
                 requireContext(),
-                viewLifecycleOwner.lifecycle,
                 state.recipient,
                 {
                   viewModel

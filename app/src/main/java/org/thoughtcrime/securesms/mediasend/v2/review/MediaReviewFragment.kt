@@ -236,7 +236,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
                 if (MediaUtil.isImageType(media.contentType) && editorData != null && editorData is ImageEditorFragment.Data) {
                   val model = editorData.readModel()
                   if (model != null) {
-                    ImageEditorFragment.renderToSingleUseBlob(requireContext(), model)
+                    ImageEditorFragment.renderToSingleSessionBlob(requireContext(), model)
                   } else {
                     media.uri
                   }

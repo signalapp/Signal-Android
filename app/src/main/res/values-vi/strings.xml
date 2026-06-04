@@ -327,19 +327,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Gửi</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Liên hệ gần đây</string>
-    <string name="CameraContacts_signal_contacts">Liên hệ Signal</string>
-    <string name="CameraContacts_signal_groups">Nhóm Signal</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="other">Bạn có thể chia sẻ với tối đa %1$d cuộc trò chuyện.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Chọn người nhận Signal</string>
-    <string name="CameraContacts_no_signal_contacts">Không có liên hệ Signal</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Bạn chỉ có thể dùng nút chụp ảnh để gửi ảnh cho các liên hệ Signal. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Không tìm thấy người bạn cần tìm?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Mời một liên hệ dùng Signal</string>
     <string name="CameraContacts__menu_search">Tìm kiếm</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4248,7 +4235,7 @@
     <string name="preferences_data_and_storage__never">Không bao giờ</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi và dữ liệu di động</string>
     <string name="preferences_data_and_storage__mobile_data_only">Chỉ dữ liệu di động</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Sử dụng ít lưu lượng data có thể cải thiện chất lượng cuộc gọi trong môi trường mạng kém</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Sử dụng ít lưu lượng data có thể cải thiện chất lượng cuộc gọi trong môi trường mạng kém.</string>
     <string name="preferences_notifications__in_chat_sounds">Âm thanh khi đang trò chuyện</string>
     <string name="preferences_notifications__show">Hiện</string>
     <string name="preferences_notifications__ringtone">Nhạc chuông</string>
@@ -5892,6 +5879,8 @@
     <string name="HelpSettingsFragment__support_center">Trung tâm hỗ trợ</string>
     <string name="HelpSettingsFragment__contact_us">Liên hệ với chúng tôi</string>
     <string name="HelpSettingsFragment__version">Phiên bản</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Đã sao chép vào clipboard</string>
     <string name="HelpSettingsFragment__debug_log">Nhật ký gỡ lỗi</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Các loại giấy phép</string>
@@ -5913,6 +5902,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Tiêu chuẩn</string>
     <string name="DataAndStorageSettingsFragment__calls">Cuộc gọi</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Duy trì kết nối ở chế độ nền</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Việc duy trì kết nối khi ứng dụng chạy ngầm có thể dẫn đến việc tiêu hao pin nhiều hơn. Điều này không cần thiết đối với hầu hết thiết bị. Chỉ bật tùy chọn này nếu bạn đang gặp vấn đề về thông báo.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Bật</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9199,11 +9194,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Liên hệ hỗ trợ</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Bật sao lưu trên thiết bị?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Để tiếp tục sử dụng tính năng sao lưu trên thiết bị, bạn cần bật tính năng này cho tài khoản và ghi lại mã khóa khôi phục mới của mình. Bạn có thể làm điều này bất cứ lúc nào trong Cài đặt &gt; Sao lưu.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Để tiếp tục sử dụng tính năng sao lưu trên thiết bị, bạn cần bật tính năng này cho tài khoản. Bạn có thể làm điều này bất cứ lúc nào trong Cài đặt &gt; Sao lưu.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Bật ngay</string>

@@ -333,22 +333,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Pošalji</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Nedavni kontakti</string>
-    <string name="CameraContacts_signal_contacts">Signal kontakti</string>
-    <string name="CameraContacts_signal_groups">Signal grupe</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Moguće je podijeliti s najviše %1$d razgovorom.</item>
-        <item quantity="few">Moguće je podijeliti s najviše %1$d razgovora.</item>
-        <item quantity="many">Moguće je podijeliti s najviše %1$d razgovora.</item>
-        <item quantity="other">Moguće je podijeliti s najviše %1$d razgovora.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Odaberi Signal primatelje</string>
-    <string name="CameraContacts_no_signal_contacts">Nema Signal kontakata</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Okidač kamere možete samo koristiti za slanje fotografija Signal kontaktima. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Niste našli što tražite?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Pozovite kontakt da pridruži Signalu</string>
     <string name="CameraContacts__menu_search">Pretraži</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4620,7 +4604,7 @@
     <string name="preferences_data_and_storage__never">Nikada</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi i mobilni podaci</string>
     <string name="preferences_data_and_storage__mobile_data_only">Samo mobilni podaci</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Korištenjem manje mobilnih podataka mogu se poboljšati pozivi na lošim mrežama</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Korištenjem manje mobilnih podataka mogu se poboljšati pozivi na lošim mrežama.</string>
     <string name="preferences_notifications__in_chat_sounds">Zvukovi unutar razgovora</string>
     <string name="preferences_notifications__show">Prikaži</string>
     <string name="preferences_notifications__ringtone">Melodija zvona</string>
@@ -6342,6 +6326,8 @@
     <string name="HelpSettingsFragment__support_center">Centar za podršku</string>
     <string name="HelpSettingsFragment__contact_us">Kontaktirajte nas</string>
     <string name="HelpSettingsFragment__version">Verzija</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Kopirano u međuspremnik</string>
     <string name="HelpSettingsFragment__debug_log">Zapisnik pogreške</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licence</string>
@@ -6363,6 +6349,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Standardno</string>
     <string name="DataAndStorageSettingsFragment__calls">Pozivi</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Ostanite povezani u pozadini</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Ostanete li povezani i kada aktivno ne koristite aplikaciju, to će vjerojatno rezultirati povećanom potrošnjom baterije. Za većinu uređaja to nije potrebno. Omogućite ovu opciju samo ako imate poteškoća s obavijestima.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Omogući</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9799,11 +9791,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Kontaktiraj podršku</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Želite li uključiti sigurnosno kopiranje na uređaju?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Za nastavak korištenja sigurnosnog kopiranja na uređaju, najprije morate omogućiti sigurnosno kopiranje za ovaj račun i spremiti novi ključ za oporavak. To možete učiniti bilo kada u Postavkama &gt; Sigurnosne kopije.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Za nastavak korištenja sigurnosnog kopiranja na uređaju, najprije morate omogućiti sigurnosno kopiranje za ovaj račun. To možete učiniti bilo kada u Postavkama &gt; Sigurnosne kopije.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Uključi</string>

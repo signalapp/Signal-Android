@@ -533,13 +533,12 @@ object DataMessageProcessor {
       return null
     }
 
-    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
-    if (targetThread == null) {
+    val targetThreadRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(targetMessage.threadId)
+    if (targetThreadRecipientId == null) {
       warn(envelope.clientTimestamp!!, "[handleReaction] Could not find a thread for the message! timestamp: " + targetSentTimestamp + "  author: " + targetAuthor.id)
       return null
     }
 
-    val targetThreadRecipientId = targetThread.recipient.id
     val groupRecord = SignalDatabase.groups.getGroup(targetThreadRecipientId).orNull()
     if (groupRecord != null && !groupRecord.members.contains(senderRecipientId)) {
       warn(envelope.clientTimestamp!!, "[handleReaction] Reaction author is not in the group! timestamp: " + targetSentTimestamp + "  author: " + targetAuthor.id)
@@ -1275,13 +1274,13 @@ object DataMessageProcessor {
       return null
     }
 
-    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
-    if (targetThread == null) {
+    val targetThreadRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(targetMessage.threadId)
+    if (targetThreadRecipientId == null) {
       warn(envelope.clientTimestamp!!, "[handlePinMessage] Could not find a thread for the message! timestamp: ${pinMessage.targetSentTimestamp}")
       return null
     }
 
-    if (targetThread.recipient.id != threadRecipient.id) {
+    if (targetThreadRecipientId != threadRecipient.id) {
       warn(envelope.clientTimestamp!!, "[handlePinMessage] Target message is in a different thread than the thread recipient! timestamp: ${pinMessage.targetSentTimestamp}")
       return null
     }
@@ -1367,13 +1366,13 @@ object DataMessageProcessor {
       return null
     }
 
-    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
-    if (targetThread == null) {
+    val targetThreadRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(targetMessage.threadId)
+    if (targetThreadRecipientId == null) {
       warn(envelope.clientTimestamp!!, "[handleUnpinMessage] Could not find a thread for the message! timestamp: ${unpinMessage.targetSentTimestamp}")
       return null
     }
 
-    if (targetThread.recipient.id != threadRecipient.id) {
+    if (targetThreadRecipientId != threadRecipient.id) {
       warn(envelope.clientTimestamp!!, "[handleUnpinMessage] Target message is in a different thread than the thread recipient! timestamp: ${unpinMessage.targetSentTimestamp}")
       return null
     }
@@ -1427,13 +1426,12 @@ object DataMessageProcessor {
       return null
     }
 
-    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
-    if (targetThread == null) {
+    val targetThreadRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(targetMessage.threadId)
+    if (targetThreadRecipientId == null) {
       warn(envelope.clientTimestamp!!, "[handleAdminRemoteDelete] Could not find a thread for the message! timestamp: $targetSentTimestamp author: ${targetAuthor.id}")
       return null
     }
 
-    val targetThreadRecipientId = targetThread.recipient.id
     if (targetThreadRecipientId != threadRecipient.id) {
       warn(envelope.clientTimestamp!!, "[handleAdminRemoteDelete] Target message is in a different thread than the admin delete! timestamp: $targetSentTimestamp")
       return null
@@ -1616,17 +1614,17 @@ object DataMessageProcessor {
       return null
     }
 
-    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
-    if (targetThread == null) {
+    val targetThreadRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(targetMessage.threadId)
+    if (targetThreadRecipientId == null) {
       warn(envelope.clientTimestamp!!, "[handlePollValidation] Could not find a thread for the message. timestamp: $targetSentTimestamp  author: ${targetAuthor.id}")
       return null
     }
 
-    val groupRecord = SignalDatabase.groups.getGroup(targetThread.recipient.id).orNull()
+    val groupRecord = SignalDatabase.groups.getGroup(targetThreadRecipientId).orNull()
     if (groupRecord != null && !groupRecord.members.contains(senderRecipient.id)) {
       warn(envelope.clientTimestamp!!, "[handlePollValidation] Sender is not in the group. timestamp: $targetSentTimestamp author: ${targetAuthor.id}")
       return null
-    } else if (groupRecord == null && senderRecipient.id != targetThread.recipient.id && senderRecipient.id != Recipient.self().id) {
+    } else if (groupRecord == null && senderRecipient.id != targetThreadRecipientId && senderRecipient.id != Recipient.self().id) {
       warn(envelope.clientTimestamp!!, "[handlePollValidation] Sender is not a part of the 1:1 thread!")
       return null
     }

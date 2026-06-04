@@ -190,7 +190,7 @@ fun SelfPipContent(
     Box(modifier = modifier) {
       VideoRenderer(
         participant = participant,
-        mirror = participant.cameraDirection == CameraState.Direction.FRONT,
+        mirror = !participant.isScreenSharing && participant.cameraDirection == CameraState.Direction.FRONT,
         modifier = Modifier.fillMaxSize()
       )
 

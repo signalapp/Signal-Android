@@ -38,8 +38,8 @@ object AvatarPickerStorage {
       .getAllAvatars()
       .filterIsInstance<Avatar.Photo>()
 
-    val inDatabaseFileNames = photoAvatars.map { PartAuthority.getAvatarPickerFilename(it.uri) }
-    val onDiskFileNames = avatarFiles.map { it.name }
+    val inDatabaseFileNames = photoAvatars.mapTo(mutableSetOf()) { PartAuthority.getAvatarPickerFilename(it.uri) }
+    val onDiskFileNames = avatarFiles.mapTo(mutableSetOf()) { it.name }
 
     val inDatabaseButNotOnDisk = inDatabaseFileNames - onDiskFileNames
     val onDiskButNotInDatabase = onDiskFileNames - inDatabaseFileNames

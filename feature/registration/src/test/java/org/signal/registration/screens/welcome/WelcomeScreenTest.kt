@@ -65,6 +65,7 @@ class WelcomeScreenTest {
     composeTestRule.setContent {
       SignalTheme {
         WelcomeScreen(
+          isLinkAndSyncAvailable = true,
           onEvent = { event ->
             emittedEvent = event
           }
@@ -73,10 +74,10 @@ class WelcomeScreenTest {
     }
 
     // When
-    composeTestRule.onNodeWithTag(TestTags.WELCOME_GET_STARTED_BUTTON).performClick()
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_LINK_DEVICE_BUTTON).performClick()
 
     // Then
-    assert(emittedEvent == WelcomeScreenEvents.Continue)
+    assert(emittedEvent == WelcomeScreenEvents.LinkDevice)
   }
 
   @Test

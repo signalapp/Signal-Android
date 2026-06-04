@@ -850,6 +850,8 @@ message SyncMessage {
     }
   }
 
+  message UsernameChange {}
+
   oneof content {
     Sent sent = 1;
     Contacts contacts = 2;
@@ -870,6 +872,7 @@ message SyncMessage {
     DeviceNameChange deviceNameChange = 23;
     AttachmentBackfillRequest attachmentBackfillRequest = 24;
     AttachmentBackfillResponse attachmentBackfillResponse = 25;
+    UsernameChange usernameChange = 26;
   }
 
   reserved /*groups*/ 3;

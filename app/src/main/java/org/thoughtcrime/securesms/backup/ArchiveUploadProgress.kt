@@ -6,14 +6,18 @@
 package org.thoughtcrime.securesms.backup
 
 import androidx.annotation.WorkerThread
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.withContext
 import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
@@ -46,6 +50,8 @@ object ArchiveUploadProgress {
 
   private val TAG = Log.tag(ArchiveUploadProgress::class)
 
+  private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+
   private val _progress: MutableSharedFlow<Unit> = MutableSharedFlow(replay = 1)
 
   private var uploadProgress: ArchiveUploadProgressState = SignalStore.backup.archiveUploadState ?: ArchiveUploadProgressState(
@@ -61,7 +67,7 @@ object ArchiveUploadProgress {
   /**
    * Observe this to get updates on the current upload progress.
    */
-  val progress: Flow<ArchiveUploadProgressState> = _progress
+  val progress: SharedFlow<ArchiveUploadProgressState> = _progress
     .throttleLatest(500.milliseconds) {
       uploadProgress.state == ArchiveUploadProgressState.State.None ||
         (uploadProgress.state == ArchiveUploadProgressState.State.UploadBackupFile && uploadProgress.backupFileUploadedBytes == 0L) ||
@@ -114,6 +120,11 @@ object ArchiveUploadProgress {
     }
     .onStart { emit(uploadProgress) }
     .flowOn(Dispatchers.IO)
+    .shareIn(scope, SharingStarted.Eagerly, replay = 1)
+
+  init {
+    _progress.tryEmit(Unit)
+  }
 
   val inProgress
     get() = uploadProgress.state != ArchiveUploadProgressState.State.None && uploadProgress.state != ArchiveUploadProgressState.State.UserCanceled

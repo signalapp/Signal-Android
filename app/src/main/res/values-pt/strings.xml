@@ -329,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Enviar</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Contactos recentes</string>
-    <string name="CameraContacts_signal_contacts">Contactos Signal</string>
-    <string name="CameraContacts_signal_groups">Grupos Signal</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Pode partilhar com um máximo de %1$d chat.</item>
-        <item quantity="other">Pode partilhar com um máximo de %1$d chats.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Selecione os destinatários Signal</string>
-    <string name="CameraContacts_no_signal_contacts">Sem contactos Signal</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Apenas pode utilizar o botão da câmara para enviar fotografias para contactos Signal. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Não consegue encontrar quem procura?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Convide um contacto para se juntar ao Signal</string>
     <string name="CameraContacts__menu_search">Procurar</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4372,7 +4358,7 @@
     <string name="preferences_data_and_storage__never">Nunca</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-fi e dados móveis</string>
     <string name="preferences_data_and_storage__mobile_data_only">Apenas dados móveis</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">A utilização de menos dados poderá melhorar as chamadas em redes más</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">A utilização de menos dados poderá melhorar as chamadas em redes más.</string>
     <string name="preferences_notifications__in_chat_sounds">Sons no chat</string>
     <string name="preferences_notifications__show">Exibir</string>
     <string name="preferences_notifications__ringtone">Toque</string>
@@ -6042,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">Centro de suporte</string>
     <string name="HelpSettingsFragment__contact_us">Contacte-nos</string>
     <string name="HelpSettingsFragment__version">Versão</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Copiado para a área de transferência</string>
     <string name="HelpSettingsFragment__debug_log">Relatório de depuração</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licenças</string>
@@ -6063,6 +6051,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Normal</string>
     <string name="DataAndStorageSettingsFragment__calls">Chamadas</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Manter a conexão em segundo plano</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Manter a conexão em segundo plano provavelmente resultará num maior consumo de bateria. Isto não é necessário para a maior parte dos dispositivos. Ative esta opção só se estiver com problemas com notificações.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Ativar</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9399,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Contactar o Suporte</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Ativar cópias de segurança no dispositivo?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Para continuar a usar cópias de segurança no dispositivo, tem de as ativar para esta conta e gravar a sua nova chave de recuperação. Pode fazer isto a qualquer altura nas Definições &gt; Cópias de segurança.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Para continuar a usar cópias de segurança no dispositivo, tem de as ativar para esta conta. Pode fazer isto a qualquer altura nas Definições &gt; Cópias de segurança.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Ativar agora</string>

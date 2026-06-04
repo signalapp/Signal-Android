@@ -329,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">ارسال</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">آخرین مخاطبین</string>
-    <string name="CameraContacts_signal_contacts">مخاطبین سیگنال</string>
-    <string name="CameraContacts_signal_groups">گروه‌‌های سیگنال</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">می‌توانید با حداکثر %1$d گفتگو به اشتراک بگذارید.</item>
-        <item quantity="other">می‌توانید با حداکثر %1$d گفتگو به اشتراک بگذارید.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">گیرندگان سیگنال را انتخاب کنید</string>
-    <string name="CameraContacts_no_signal_contacts">هیچ مخاطب سیگنالی وجود ندارد</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">شما تنها با استفاده از دکمهٔ دوربین می‌توانید برای مخاطبین سیگنال عکس ارسال کنید. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">نمی‌توانید فردی را که بدنبالش هستید پیدا کنید؟</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">دعوت یک مخاطب برای پیوستن به سیگنال</string>
     <string name="CameraContacts__menu_search">جستجو</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4372,7 +4358,7 @@
     <string name="preferences_data_and_storage__never">هرگز</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi و داده‌های تلفن همراه</string>
     <string name="preferences_data_and_storage__mobile_data_only">و داده‌های تلفن همراه</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">استفادهٔ کمتر داده‌ها ممکن است کیفیت تماس‌ها را بر روی شبکه‌های ضعیف بهبود ببخشد</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">استفادهٔ کمتر داده‌ها ممکن است کیفیت تماس‌ها را بر روی شبکه‌های ضعیف بهبود ببخشد.</string>
     <string name="preferences_notifications__in_chat_sounds">صداها در حین گفتگو</string>
     <string name="preferences_notifications__show">نمایش</string>
     <string name="preferences_notifications__ringtone">صدای زنگ</string>
@@ -6042,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">مرکز پشتیبانی</string>
     <string name="HelpSettingsFragment__contact_us">تماس با ما</string>
     <string name="HelpSettingsFragment__version">نسخه</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">در کلیپ‌بورد کپی شد</string>
     <string name="HelpSettingsFragment__debug_log">گزارش عیب‌یابی</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">گواهینامه‌ها</string>
@@ -6063,6 +6051,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">استاندارد</string>
     <string name="DataAndStorageSettingsFragment__calls">تماس‌ها</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">در پس‌زمینه متصل بمانید</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">متصل ماندن در پس‌زمینه احتمالاً باعث افزایش مصرف باتری خواهد شد. برای بیشتر دستگاه‌ها این کار ضروری نیست. فقط در صورتی این گزینه را فعال کنید که با مشکل دریافت اعلان‌ها مواجه شده‌اید.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">فعال‌سازی</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9399,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">ارتباط با پشتیبانی</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">پشتیبان‌گیری در دستگاه روشن شود؟</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">برای ادامه استفاده از پشتیبان‌گیری در دستگاه، باید آن را برای این حساب فعال کنید و رمز بازیابی جدیدتان را ثبت کنید. می‌توانید این کار را در هر زمانی در «تنظیمات &gt; پشتیبان‌گیری» انجام دهید.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">برای ادامه استفاده از پشتیبان‌گیری‌های در دستگاه، باید آن‌ها را برای این حساب فعال کنید. می‌توانید این کار را در هر زمانی در «تنظیمات &gt; پشتیبان‌گیری» انجام دهید.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">اکنون روشن شود</string>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <item
+      android:id="@+id/menu_search"
+      android:icon="@drawable/symbol_search_24"
+      android:title="@string/CameraContacts__menu_search"
+      app:actionViewClass="org.thoughtcrime.securesms.components.SearchView"
+      app:iconTint="@color/signal_colorOnSurface"
+      app:showAsAction="collapseActionView|always" />
+
+</menu>

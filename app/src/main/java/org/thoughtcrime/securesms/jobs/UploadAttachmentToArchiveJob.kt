@@ -400,6 +400,8 @@ class UploadAttachmentToArchiveJob private constructor(
         SignalDatabase.attachments.setArchiveTransferStateFailure(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
       }
     }
+
+    ArchiveUploadProgress.onAttachmentFinished(attachmentId)
   }
 
   private fun setArchiveTransferStateWithDelayedNotification(attachmentId: AttachmentId, transferState: AttachmentTable.ArchiveTransferState) {

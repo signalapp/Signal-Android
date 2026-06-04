@@ -198,15 +198,27 @@ class ContactRecordProcessor(
       local.proto.e164 != remote.proto.e164
 
     if (e164sMatchButPnisDont) {
-      Log.w(TAG, "Matching E164s, but the PNIs differ! Trusting our local pair.")
-      // TODO [pnp] Schedule CDS fetch?
-      mergedPni = localPni
-      mergedE164 = local.proto.e164
+      if (SignalStore.account.isPrimaryDevice) {
+        Log.w(TAG, "Matching E164s, but the PNIs differ! Trusting our local pair.")
+        // TODO [pnp] Schedule CDS fetch?
+        mergedPni = localPni
+        mergedE164 = local.proto.e164
+      } else {
+        Log.w(TAG, "Matching E164s, but the PNIs differ! Linked device — trusting the remote pair.")
+        mergedPni = remotePni
+        mergedE164 = remote.proto.e164
+      }
     } else if (pnisMatchButE164sDont) {
-      Log.w(TAG, "Matching PNIs, but the E164s differ! Trusting our local pair.")
-      // TODO [pnp] Schedule CDS fetch?
-      mergedPni = localPni
-      mergedE164 = local.proto.e164
+      if (SignalStore.account.isPrimaryDevice) {
+        Log.w(TAG, "Matching PNIs, but the E164s differ! Trusting our local pair.")
+        // TODO [pnp] Schedule CDS fetch?
+        mergedPni = localPni
+        mergedE164 = local.proto.e164
+      } else {
+        Log.w(TAG, "Matching PNIs, but the E164s differ! Linked device — trusting the remote pair.")
+        mergedPni = remotePni
+        mergedE164 = remote.proto.e164
+      }
     } else {
       mergedPni = remotePni ?: localPni
       mergedE164 = remote.proto.e164.nullIfBlank() ?: local.proto.e164.nullIfBlank()
@@ -214,8 +226,10 @@ class ContactRecordProcessor(
 
     val merged = SignalContactRecord.newBuilder(remote.serializedUnknowns).apply {
       e164 = mergedE164 ?: ""
-      aci = local.proto.aci.nullIfBlank() ?: remote.proto.aci
-      pni = mergedPni?.toStringWithoutPrefix() ?: ""
+      aciBinary = local.proto.aciBinary.nullIfEmpty() ?: remote.proto.aciBinary
+      aci = ""
+      pniBinary = mergedPni?.toByteStringWithoutPrefix() ?: byteArrayOf().toByteString()
+      pni = ""
       givenName = mergedProfileGivenName
       familyName = mergedProfileFamilyName
       profileKey = remote.proto.profileKey.nullIfEmpty()?.takeIf { ProfileKeyUtil.profileKeyOrNull(it.toByteArray()) != null } ?: local.proto.profileKey
@@ -237,8 +251,6 @@ class ContactRecordProcessor(
       pniSignatureVerified = remote.proto.pniSignatureVerified || local.proto.pniSignatureVerified
       note = remote.proto.note.nullIfBlank() ?: ""
       avatarColor = if (SignalStore.account.isPrimaryDevice) local.proto.avatarColor else remote.proto.avatarColor
-      aciBinary = local.proto.aciBinary.nullIfEmpty() ?: remote.proto.aciBinary
-      pniBinary = mergedPni?.toByteStringWithoutPrefix() ?: byteArrayOf().toByteString()
     }.build().toSignalContactRecord(StorageId.forContact(keyGenerator.generate()))
 
     val matchesRemote = doParamsMatch(remote, merged)

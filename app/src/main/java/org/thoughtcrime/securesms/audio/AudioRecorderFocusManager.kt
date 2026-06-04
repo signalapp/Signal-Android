@@ -7,7 +7,7 @@ import android.media.AudioManager
 import android.media.AudioManager.OnAudioFocusChangeListener
 import android.os.Build
 import androidx.annotation.RequiresApi
-import org.thoughtcrime.securesms.util.ServiceUtil
+import org.signal.core.util.ServiceUtil
 
 abstract class AudioRecorderFocusManager(val context: Context) {
   protected val audioManager: AudioManager = ServiceUtil.getAudioManager(context)

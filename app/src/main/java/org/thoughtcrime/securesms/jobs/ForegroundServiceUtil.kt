@@ -10,12 +10,12 @@ import android.os.Build
 import android.os.SystemClock
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
+import org.signal.core.util.AppForegroundObserver
 import org.signal.core.util.PendingIntentFlags
+import org.signal.core.util.ServiceUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.service.GenericForegroundService
 import org.thoughtcrime.securesms.service.NotificationController
-import org.thoughtcrime.securesms.util.AppForegroundObserver
-import org.thoughtcrime.securesms.util.ServiceUtil
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.ReentrantLock

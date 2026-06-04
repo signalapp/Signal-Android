@@ -51,7 +51,7 @@ import javax.crypto.Cipher
 import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
-class RegistrationRepository(val context: Context, val networkController: NetworkController, val storageController: StorageController) {
+class RegistrationRepository(val context: Context, val networkController: NetworkController, val storageController: StorageController, val isLinkAndSyncAvailable: Boolean) {
 
   companion object {
     private val TAG = Log.tag(RegistrationRepository::class)
@@ -369,7 +369,8 @@ class RegistrationRepository(val context: Context, val networkController: Networ
         storage = true, // True initially -- can turn off later if users opt-out
         versionedExpirationTimer = true,
         attachmentBackfill = true,
-        spqr = true
+        spqr = true,
+        usernameChangeSyncMessage = false // TODO(michelle): Turn on once all clients support it
       ),
       name = null,
       pniRegistrationId = keyMaterial.pniRegistrationId,

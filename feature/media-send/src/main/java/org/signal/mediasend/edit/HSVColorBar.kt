@@ -43,7 +43,7 @@ fun HSVColorBar(
   onColorChanged: (Int) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val orientation = if (rememberWindowBreakpoint() == WindowBreakpoint.SMALL) {
+  val orientation = if (rememberWindowBreakpoint() is WindowBreakpoint.Small) {
     ColorBarOrientation.HORIZONTAL
   } else {
     ColorBarOrientation.VERTICAL

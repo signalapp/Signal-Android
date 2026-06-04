@@ -5,6 +5,8 @@
 
 package org.thoughtcrime.securesms.util
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import org.signal.core.util.dp
 import kotlin.math.ceil
 import kotlin.math.floor
@@ -35,4 +37,14 @@ object AdaptiveBitmapMetrics {
 
   @get:JvmStatic
   val padding = (outerWidth - innerWidth) / 2f
+
+  @JvmStatic
+  fun wrapBitmap(toWrap: Bitmap): Bitmap {
+    val bitmap = Bitmap.createBitmap(outerWidth, outerWidth, Bitmap.Config.ARGB_8888)
+    val scaled = Bitmap.createScaledBitmap(toWrap, innerWidth, innerWidth, true)
+
+    Canvas(bitmap).drawBitmap(scaled, padding, padding, null)
+
+    return bitmap
+  }
 }

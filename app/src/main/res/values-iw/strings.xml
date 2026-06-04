@@ -333,22 +333,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">שלח</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">אנשי קשר אחרונים</string>
-    <string name="CameraContacts_signal_contacts">אנשי קשר של Signal</string>
-    <string name="CameraContacts_signal_groups">קבוצות Signal</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">אפשר לשתף עם מקסימום צ׳אט %1$d.</item>
-        <item quantity="two">אפשר לשתף עם מקסימום %1$d צ׳אטים.</item>
-        <item quantity="many">אפשר לשתף עם מקסימום %1$d צ׳אטים.</item>
-        <item quantity="other">אפשר לשתף עם מקסימום %1$d צ׳אטים.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">בחר מקבלי Signal</string>
-    <string name="CameraContacts_no_signal_contacts">אין אנשי קשר של Signal</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">אתה יכול להשתמש רק בכפתור המצלמה כדי לשלוח תמונות אל אנשי קשר של Signal. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">אינך מוצא מה שאתה מחפש?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">הזמן איש קשר להצטרף אל Signal</string>
     <string name="CameraContacts__menu_search">חפש</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4620,7 +4604,7 @@
     <string name="preferences_data_and_storage__never">אף פעם</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi ונתונים סלולריים</string>
     <string name="preferences_data_and_storage__mobile_data_only">נתונים סלולריים בלבד</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">שימוש בפחות נתונים עשוי לשפר שיחות על רשתות גרועות</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">שימוש בפחות נתונים עשוי לשפר שיחות על רשתות גרועות.</string>
     <string name="preferences_notifications__in_chat_sounds">צלילים בתוך צ׳אט</string>
     <string name="preferences_notifications__show">הראה</string>
     <string name="preferences_notifications__ringtone">צלצול</string>
@@ -6342,6 +6326,8 @@
     <string name="HelpSettingsFragment__support_center">מרכז תמיכה</string>
     <string name="HelpSettingsFragment__contact_us">צור קשר</string>
     <string name="HelpSettingsFragment__version">גרסה</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">הועתק ללוח</string>
     <string name="HelpSettingsFragment__debug_log">יומן תקלים</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">רישיונות</string>
@@ -6363,6 +6349,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">תקנית</string>
     <string name="DataAndStorageSettingsFragment__calls">שיחות</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">להישאר במצב מחובר ברקע</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">הישארות במצב מחובר כשהאפליקציה פועלת ברקע עלולה לגרום לצריכת סוללה מוגברת. זה לא הכרחי עבור רוב המכשירים. יש להפעיל אפשרות זו רק אם נתקלת בבעיות בקבלת התראות.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">הפעלה</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9799,11 +9791,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">יצירת קשר עם התמיכה</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">להפעיל גיבויים במכשיר?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">כדי להמשיך להשתמש בגיבויים מקומיים במכשיר, צריך להפעיל אותם עבור חשבון זה ולתעד את מפתח השחזור החדש שלך. אפשר לעשות זאת בכל עת מהגדרות &gt; גיבויים.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">כדי להמשיך להשתמש בגיבויים מקומיים במכשיר, צריך להפעיל אותם עבור חשבון זה. אפשר לעשות זאת בכל עת מהגדרות &gt; גיבויים.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">הפעלה כעת</string>

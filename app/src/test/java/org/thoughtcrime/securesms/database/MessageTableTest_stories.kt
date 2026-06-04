@@ -18,10 +18,12 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.database.model.DistributionListId
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.OutgoingMessage
+import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
@@ -280,6 +282,164 @@ class MessageTableTest_stories {
     assertEquals(expected, oldestTimestamp)
   }
 
+  // region deleteUnarchivedStoriesOlderThan
+
+  @Test
+  fun givenExpiredStory_whenIDeleteUnarchivedStoriesOlderThan_thenStoryIsDeleted() {
+    // GIVEN
+    val sender = others[0]
+    val storyId = insertIncomingStory(from = sender, sentTimeMillis = 100L).get().messageId
+
+    // WHEN
+    val deleted = mms.deleteUnarchivedStoriesOlderThan(150L, hasSeenReleaseChannelStories = true)
+
+    // THEN
+    assertEquals(1, deleted)
+    assertNull(mms.getMessageRecordOrNull(storyId))
+  }
+
+  @Test
+  fun givenFreshStory_whenIDeleteUnarchivedStoriesOlderThan_thenStoryIsPreserved() {
+    // GIVEN
+    val sender = others[0]
+    val storyId = insertIncomingStory(from = sender, sentTimeMillis = 200L).get().messageId
+
+    // WHEN
+    val deleted = mms.deleteUnarchivedStoriesOlderThan(150L, hasSeenReleaseChannelStories = true)
+
+    // THEN
+    assertEquals(0, deleted)
+    assertFalse(mms.getMessageRecordOrNull(storyId) == null)
+  }
+
+  @Test
+  fun givenExpiredStoryWithGroupReply_whenIDeleteUnarchivedStoriesOlderThan_thenGroupReplyIsDeleted() {
+    // GIVEN
+    val sender = others[0]
+    val storyId = insertIncomingStory(from = sender, sentTimeMillis = 100L).get().messageId
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(sender), ThreadTable.DistributionTypes.DEFAULT)
+    val replyId = insertIncomingGroupReply(from = sender, sentTimeMillis = 101L, parentStoryId = storyId, threadId = threadId)
+
+    // WHEN
+    mms.deleteUnarchivedStoriesOlderThan(150L, hasSeenReleaseChannelStories = true)
+
+    // THEN
+    assertNull(mms.getMessageRecordOrNull(replyId))
+  }
+
+  @Test
+  fun givenExpiredStoryWithDirectReply_whenIDeleteUnarchivedStoriesOlderThan_thenDirectReplyIsDisassociated() {
+    // GIVEN
+    val sender = others[0]
+    val storyId = insertIncomingStory(from = sender, sentTimeMillis = 100L).get().messageId
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(sender), ThreadTable.DistributionTypes.DEFAULT)
+    val replyId = insertIncomingDirectReply(from = sender, sentTimeMillis = 101L, parentStoryId = storyId, threadId = threadId)
+
+    // WHEN
+    mms.deleteUnarchivedStoriesOlderThan(150L, hasSeenReleaseChannelStories = true)
+
+    // THEN
+    assertTrue(getQuote(replyId)!!.isOriginalMissing)
+    assertEquals("", getQuote(replyId)!!.displayText.toString())
+  }
+
+  @Test
+  fun givenFreshStoryWithReplies_whenIDeleteUnarchivedStoriesOlderThan_thenRepliesArePreserved() {
+    // GIVEN
+    val sender = others[0]
+    val storyId = insertIncomingStory(from = sender, sentTimeMillis = 200L).get().messageId
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(sender), ThreadTable.DistributionTypes.DEFAULT)
+    val groupReplyId = insertIncomingGroupReply(from = sender, sentTimeMillis = 201L, parentStoryId = storyId, threadId = threadId)
+    val directReplyId = insertIncomingDirectReply(from = sender, sentTimeMillis = 202L, parentStoryId = storyId, threadId = threadId)
+
+    // WHEN
+    mms.deleteUnarchivedStoriesOlderThan(150L, hasSeenReleaseChannelStories = true)
+
+    // THEN
+    assertFalse(mms.getMessageRecordOrNull(groupReplyId) == null)
+    assertFalse(getQuote(directReplyId)!!.isOriginalMissing)
+  }
+
+  // endregion
+
+  // region deleteStoriesForRecipient
+
+  @Test
+  fun givenStoriesForRecipient_whenIDeleteStoriesForRecipient_thenStoriesAreDeleted() {
+    // GIVEN
+    val sender = others[0]
+    val story1 = insertIncomingStory(from = sender, sentTimeMillis = 100L).get().messageId
+    val story2 = insertIncomingStory(from = sender, sentTimeMillis = 200L).get().messageId
+
+    // WHEN
+    val deleted = mms.deleteStoriesForRecipient(sender)
+
+    // THEN
+    assertEquals(2, deleted)
+    assertNull(mms.getMessageRecordOrNull(story1))
+    assertNull(mms.getMessageRecordOrNull(story2))
+  }
+
+  @Test
+  fun givenStoriesForMultipleRecipients_whenIDeleteStoriesForRecipient_thenOtherStoriesArePreserved() {
+    // GIVEN
+    val sender = others[0]
+    val otherSender = others[1]
+    insertIncomingStory(from = sender, sentTimeMillis = 100L)
+    val otherStory = insertIncomingStory(from = otherSender, sentTimeMillis = 100L).get().messageId
+
+    // WHEN
+    mms.deleteStoriesForRecipient(sender)
+
+    // THEN
+    assertFalse(mms.getMessageRecordOrNull(otherStory) == null)
+  }
+
+  @Test
+  fun givenStoryWithGroupReply_whenIDeleteStoriesForRecipient_thenGroupReplyIsDeleted() {
+    // GIVEN
+    val sender = others[0]
+    val storyId = insertIncomingStory(from = sender, sentTimeMillis = 100L).get().messageId
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(sender), ThreadTable.DistributionTypes.DEFAULT)
+    val replyId = insertIncomingGroupReply(from = sender, sentTimeMillis = 101L, parentStoryId = storyId, threadId = threadId)
+
+    // WHEN
+    mms.deleteStoriesForRecipient(sender)
+
+    // THEN
+    assertNull(mms.getMessageRecordOrNull(replyId))
+  }
+
+  @Test
+  fun givenStoryWithDirectReply_whenIDeleteStoriesForRecipient_thenDirectReplyIsDisassociated() {
+    // GIVEN
+    val sender = others[0]
+    val storyId = insertIncomingStory(from = sender, sentTimeMillis = 100L).get().messageId
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(sender), ThreadTable.DistributionTypes.DEFAULT)
+    val replyId = insertIncomingDirectReply(from = sender, sentTimeMillis = 101L, parentStoryId = storyId, threadId = threadId)
+
+    // WHEN
+    mms.deleteStoriesForRecipient(sender)
+
+    // THEN
+    assertTrue(getQuote(replyId)!!.isOriginalMissing)
+    assertEquals("", getQuote(replyId)!!.displayText.toString())
+  }
+
+  @Test
+  fun givenNoThread_whenIDeleteStoriesForRecipient_thenReturnZero() {
+    // GIVEN
+    val recipient = recipients.createRecipient("No Thread")
+
+    // WHEN
+    val deleted = mms.deleteStoriesForRecipient(recipient)
+
+    // THEN
+    assertEquals(0, deleted)
+  }
+
+  // endregion
+
   private fun insertOutgoingStory(
     recipient: Recipient,
     sentTimeMillis: Long,
@@ -327,4 +487,35 @@ class MessageTableTest_stories {
       -1L
     )
   }
+
+  private fun insertIncomingGroupReply(from: RecipientId, sentTimeMillis: Long, parentStoryId: Long, threadId: Long): Long {
+    return mms.insertMessageInbox(
+      IncomingMessage(
+        type = MessageType.NORMAL,
+        from = from,
+        sentTimeMillis = sentTimeMillis,
+        serverTimeMillis = sentTimeMillis,
+        receivedTimeMillis = sentTimeMillis,
+        parentStoryId = ParentStoryId.GroupReply(parentStoryId)
+      ),
+      threadId
+    ).get().messageId
+  }
+
+  private fun insertIncomingDirectReply(from: RecipientId, sentTimeMillis: Long, parentStoryId: Long, threadId: Long): Long {
+    return mms.insertMessageInbox(
+      IncomingMessage(
+        type = MessageType.NORMAL,
+        from = from,
+        sentTimeMillis = sentTimeMillis,
+        serverTimeMillis = sentTimeMillis,
+        receivedTimeMillis = sentTimeMillis,
+        parentStoryId = ParentStoryId.DirectReply(parentStoryId),
+        quote = QuoteModel(parentStoryId, from, "original story text", false, null, null, QuoteModel.Type.NORMAL, null)
+      ),
+      threadId
+    ).get().messageId
+  }
+
+  private fun getQuote(messageId: Long) = (mms.getMessageRecord(messageId) as MmsMessageRecord).quote
 }

@@ -14,9 +14,10 @@ import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;
-import org.whispersystems.signalservice.api.util.SleepTimer;
+import org.signal.core.util.SleepTimer;
 
 import java.util.concurrent.ConcurrentSkipListSet;
+import org.signal.core.util.ServiceUtil;
 
 /**
  * A sleep timer that is based on elapsed realtime, so that it works properly, even in low-power sleep modes.

@@ -434,6 +434,7 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
 
     if (TextUtils.isEmpty(quoteTargetContentType)) {
       thumbnailView.setVisibility(GONE);
+      attachmentVideoOVerlayStub.setVisibility(GONE);
       attachmentNameViewStub.setVisibility(GONE);
 
       if (dismissStub.resolved()) {

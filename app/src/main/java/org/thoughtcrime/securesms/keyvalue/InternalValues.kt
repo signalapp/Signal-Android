@@ -26,7 +26,6 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val CALLING_USE_INPUT_VOICE_COMM: String = "internal.calling_use_input_voice_comm"
     const val SHAKE_TO_REPORT: String = "internal.shake_to_report"
     const val DISABLE_STORAGE_SERVICE: String = "internal.disable_storage_service"
-    const val FORCE_WEBSOCKET_MODE: String = "internal.force_websocket_mode"
     const val LAST_SCROLL_POSITION: String = "internal.last_scroll_position"
     const val CONVERSATION_ITEM_V2_MEDIA: String = "internal.conversation_item_v2_media"
     const val WEB_SOCKET_SHADOWING_STATS: String = "internal.web_socket_shadowing_stats"
@@ -169,11 +168,6 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
    * If overriding the audio settings, use Voice Comm for the input or not.
    */
   var callingUseInputVoiceComm by booleanValue(CALLING_USE_INPUT_VOICE_COMM, true).defaultForExternalUsers()
-
-  /**
-   * Whether or not the system is forced to be in 'websocket mode', where FCM is ignored and we use a foreground service to keep the app alive.
-   */
-  var isWebsocketModeForced: Boolean by booleanValue(FORCE_WEBSOCKET_MODE, false).defaultForExternalUsers()
 
   var hevcEncoding by booleanValue(ENCODE_HEVC, false).defaultForExternalUsers()
 

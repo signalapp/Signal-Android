@@ -65,6 +65,7 @@ import org.signal.core.ui.isWidthExpanded
 import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.registration.R
 import org.signal.registration.screens.RegistrationScaffold
+import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.test.TestTags
 
 /**
@@ -73,6 +74,7 @@ import org.signal.registration.test.TestTags
  */
 @Composable
 fun WelcomeScreen(
+  isLinkAndSyncAvailable: Boolean = false,
   onEvent: (WelcomeScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -82,7 +84,7 @@ fun WelcomeScreen(
   val onTermsAndPrivacyClick = { onEvent(WelcomeScreenEvents.ViewTermsAndPrivacy) }
 
   when (windowBreakpoint) {
-    WindowBreakpoint.SMALL -> {
+    is WindowBreakpoint.Small -> {
       CompactLayout(
         onEvent = onEvent,
         onRestoreOrTransferClick = onRestoreOrTransferClick,
@@ -91,7 +93,7 @@ fun WelcomeScreen(
       )
     }
 
-    WindowBreakpoint.MEDIUM -> {
+    is WindowBreakpoint.Medium -> {
       MediumLayout(
         onEvent = onEvent,
         onRestoreOrTransferClick = onRestoreOrTransferClick,
@@ -100,8 +102,9 @@ fun WelcomeScreen(
       )
     }
 
-    WindowBreakpoint.LARGE_WIDTH, WindowBreakpoint.LARGE_HEIGHT -> {
+    is WindowBreakpoint.Large -> {
       LargeLayout(
+        isLinkAndSyncAvailable = isLinkAndSyncAvailable,
         onEvent = onEvent,
         onTermsAndPrivacyClick = onTermsAndPrivacyClick,
         onRestoreOrTransferClick = onRestoreOrTransferClick,
@@ -237,6 +240,7 @@ private fun MediumLayout(
 
 @Composable
 private fun LargeLayout(
+  isLinkAndSyncAvailable: Boolean,
   onEvent: (WelcomeScreenEvents) -> Unit,
   onTermsAndPrivacyClick: () -> Unit,
   onRestoreOrTransferClick: () -> Unit,
@@ -281,10 +285,16 @@ private fun LargeLayout(
                 .padding(bottom = 8.dp)
             )
 
-            PrimaryDeviceCallToActionButtons(
-              onEvent = onEvent,
-              onRestoreOrTransferClick = onRestoreOrTransferClick
-            )
+            if (isLinkAndSyncAvailable) {
+              SecondaryDeviceCallToActionButtons(
+                onEvent = onEvent
+              )
+            } else {
+              PrimaryDeviceCallToActionButtons(
+                onEvent = onEvent,
+                onRestoreOrTransferClick = onRestoreOrTransferClick
+              )
+            }
           }
         }
       }
@@ -299,7 +309,7 @@ private fun HeroImage(
   Image(
     painter = painterResource(R.drawable.welcome),
     contentDescription = null,
-    modifier = modifier,
+    modifier = modifier.attachDebugLogHelper(),
     contentScale = ContentScale.Fit
   )
 }
@@ -316,6 +326,7 @@ private fun Headline(
     textAlign = textAlign,
     modifier = modifier
       .testTag(TestTags.WELCOME_HEADLINE)
+      .attachDebugLogHelper()
   )
 }
 

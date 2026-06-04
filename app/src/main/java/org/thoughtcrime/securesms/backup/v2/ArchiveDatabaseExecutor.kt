@@ -6,8 +6,8 @@
 package org.thoughtcrime.securesms.backup.v2
 
 import androidx.annotation.VisibleForTesting
+import org.signal.core.util.ThrottledDebouncer
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.util.ThrottledDebouncer
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.Executors
 import kotlin.time.Duration.Companion.seconds

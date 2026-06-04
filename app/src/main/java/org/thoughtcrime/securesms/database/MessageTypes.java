@@ -345,19 +345,11 @@ public interface MessageTypes {
   }
 
   static boolean isChatSessionRefresh(long type) {
-    return (type & ENCRYPTION_REMOTE_FAILED_BIT) != 0;
-  }
-
-  static boolean isDuplicateMessageType(long type) {
-    return (type & ENCRYPTION_REMOTE_DUPLICATE_BIT) != 0;
-  }
-
-  static boolean isNoRemoteSessionType(long type) {
-    return (type & ENCRYPTION_REMOTE_NO_SESSION_BIT) != 0;
-  }
-
-  static boolean isLegacyType(long type) {
-    return (type & ENCRYPTION_REMOTE_LEGACY_BIT) != 0 ||
+    return (type & ENCRYPTION_REMOTE_FAILED_BIT) != 0 ||
+           // These are legacy encryption error types that we just bundle into this type
+           (type & ENCRYPTION_REMOTE_NO_SESSION_BIT) != 0 ||
+           (type & ENCRYPTION_REMOTE_DUPLICATE_BIT) != 0 ||
+           (type & ENCRYPTION_REMOTE_LEGACY_BIT) != 0 ||
            (type & ENCRYPTION_REMOTE_BIT) != 0;
   }
 

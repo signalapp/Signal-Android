@@ -43,7 +43,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.ByteUnit;
+import org.signal.core.util.ByteUnit;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
@@ -277,20 +277,23 @@ public final class PushGroupSendJob extends PushSendJob {
     }
 
     try {
-      GroupId.Push                                     groupId            = groupRecipient.requireGroupId().requirePush();
-      Optional<byte[]>                                 profileKey         = getProfileKey(groupRecipient);
-      Optional<SignalServiceDataMessage.Sticker>       sticker            = getStickerFor(message);
-      List<SharedContact>                              sharedContacts     = getSharedContactsFor(message);
-      List<SignalServicePreview>                       previews           = getPreviewsFor(message);
-      List<SignalServiceDataMessage.Mention>           mentions           = getMentionsFor(message.getMentions());
-      List<BodyRange>                                  bodyRanges         = getBodyRanges(message);
-      SignalServiceDataMessage.PollCreate              pollCreate         = getPollCreate(message);
-      SignalServiceDataMessage.PollTerminate           pollTerminate      = getPollTerminate(message);
-      SignalServiceDataMessage.PinnedMessage           pinnedMessage      = getPinnedMessage(message);
-      List<Attachment>                                 attachments        = message.getAttachments().stream().filter(attachment -> !attachment.isSticker()).collect(Collectors.toList());
-      List<SignalServiceAttachment>                    attachmentPointers = getAttachmentPointersFor(attachments);
-      boolean isRecipientUpdate = SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId).stream()
-                                                .anyMatch(info -> info.getStatus() > GroupReceiptTable.STATUS_UNDELIVERED);
+      GroupId.Push                               groupId                          = groupRecipient.requireGroupId().requirePush();
+      Optional<byte[]>                           profileKey                       = getProfileKey(groupRecipient);
+      Optional<SignalServiceDataMessage.Sticker> sticker                          = getStickerFor(message);
+      List<SharedContact>                        sharedContacts                   = getSharedContactsFor(message);
+      List<SignalServicePreview>                 previews                         = getPreviewsFor(message);
+      List<SignalServiceDataMessage.Mention>     mentions                         = getMentionsFor(message.getMentions());
+      List<BodyRange>                            bodyRanges                       = getBodyRanges(message);
+      SignalServiceDataMessage.PollCreate        pollCreate                       = getPollCreate(message);
+      SignalServiceDataMessage.PollTerminate     pollTerminate                    = getPollTerminate(message);
+      SignalServiceDataMessage.PinnedMessage     pinnedMessage                    = getPinnedMessage(message);
+      List<Attachment>                           attachments                      = message.getAttachments().stream().filter(attachment -> !attachment.isSticker()).collect(Collectors.toList());
+      List<SignalServiceAttachment>              attachmentPointers               = getAttachmentPointersFor(attachments);
+      boolean                                    hasPreviouslyDeliveredRecipients = SignalDatabase.groupReceipts()
+                                                                                                  .getGroupReceiptInfo(messageId)
+                                                                                                  .stream()
+                                                                                                  .anyMatch(info -> info.getStatus() > GroupReceiptTable.STATUS_UNDELIVERED);
+      boolean                                    isRecipientUpdate                = hasPreviouslyDeliveredRecipients && SignalDatabase.messages().isSent(messageId);
 
       if (message.getStoryType().isStory()) {
         Optional<GroupRecord> groupRecord = SignalDatabase.groups().getGroup(groupId);
@@ -492,7 +495,7 @@ public final class PushGroupSendJob extends PushSendJob {
     }
 
     if (existingNetworkFailures.isEmpty() && existingIdentityMismatches.isEmpty()) {
-      database.markAsSent(messageId, true);
+      database.markAsSent(messageId);
 
       markAttachmentsUploaded(messageId, message);
 

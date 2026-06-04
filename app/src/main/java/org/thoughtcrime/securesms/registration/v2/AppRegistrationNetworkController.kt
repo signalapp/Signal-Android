@@ -731,7 +731,8 @@ class AppRegistrationNetworkController(
       storage,
       versionedExpirationTimer,
       attachmentBackfill,
-      spqr
+      spqr,
+      usernameChangeSyncMessage
     )
   }
 

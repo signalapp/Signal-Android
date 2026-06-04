@@ -30,7 +30,7 @@ buildscript {
     classpath(libs.gradle)
     classpath(libs.androidx.navigation.safe.args.gradle.plugin)
     classpath(libs.protobuf.gradle.plugin)
-    classpath("com.squareup.wire:wire-gradle-plugin:6.0.0-alpha02") {
+    classpath("com.squareup.wire:wire-gradle-plugin:6.4.0") {
       exclude(group = "com.squareup.wire", module = "wire-swift-generator")
       exclude(group = "com.squareup.wire", module = "wire-grpc-client")
       exclude(group = "com.squareup.wire", module = "wire-grpc-jvm")
@@ -57,7 +57,7 @@ subprojects {
   }
 
   tasks.withType<Test>().configureEach {
-    maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
+    maxParallelForks = (Runtime.getRuntime().availableProcessors() / 4).coerceAtLeast(1)
   }
 }
 
@@ -79,9 +79,9 @@ tasks.register("qa") {
 
 // Wire up QA dependencies after all projects are evaluated
 gradle.projectsEvaluated {
-  val appTestTask = tasks.findByPath(":Signal-Android:testPlayProdReleaseUnitTest")!!
-  val appLintTask = tasks.findByPath(":Signal-Android:lintPlayProdRelease")!!
-  val appCompileInstrumentationTask = tasks.findByPath(":Signal-Android:compilePlayProdInstrumentationAndroidTestSources")
+  val appTestTask = tasks.findByPath(":Signal-Android:testPlayProdDebugUnitTest")!!
+  val appLintTask = tasks.findByPath(":Signal-Android:lintPlayProdDebug")!!
+  val appCompileInstrumentationTask = tasks.findByPath(":Signal-Android:compilePlayProdDebugAndroidTestSources")
 
   tasks.named("qa") {
     dependsOn("ktlintCheck")
@@ -102,8 +102,7 @@ gradle.projectsEvaluated {
 
     // Library module tasks
     subprojects.filter { it.name != "Signal-Android" }.forEach { subproject ->
-      val testTask = subproject.tasks.findByName("testDebugUnitTest")
-        ?: subproject.tasks.findByName("test")
+      val testTask = subproject.tasks.findByName("testDebugUnitTest") ?: subproject.tasks.findByName("test")
       testTask?.let { dependsOn(it) }
 
       subproject.tasks.findByName("lintDebug")?.let { dependsOn(it) }

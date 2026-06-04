@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.database.model;
 
+import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.ui.util.ThemeUtil;
 import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
 import org.signal.core.models.ServiceId;
 
@@ -98,7 +100,14 @@ public final class UpdateDescription {
    * Create an update description that's string value is fixed with a start glyph and has the ability to expire when a disappearing timer is set.
    */
   public static UpdateDescription staticDescriptionWithExpiration(@NonNull String staticString, Glyph glyph) {
-    return new UpdateDescription(Collections.emptyList(), null, new SpannableString(staticString), glyph, true,0, 0);
+    return staticDescriptionWithExpiration(staticString, glyph, 0, 0);
+  }
+
+  /**
+   * Create an update description that's string value is fixed with a start glyph and has the ability to expire when a disappearing timer is set.
+   */
+  public static UpdateDescription staticDescriptionWithExpiration(@NonNull String staticString, Glyph glyph, @ColorInt int lightTint, @ColorInt int darkTint) {
+    return new UpdateDescription(Collections.emptyList(), null, new SpannableString(staticString), glyph, true, lightTint, darkTint);
   }
 
   /**
@@ -159,6 +168,11 @@ public final class UpdateDescription {
 
   public @ColorInt int getDarkTint() {
     return darkTint;
+  }
+
+  public @ColorInt int getTint(Context context) {
+    boolean isDarkTheme = ThemeUtil.isDarkTheme(context);
+    return isDarkTheme ? getDarkTint() : getLightTint();
   }
 
   public boolean hasExpiration() {

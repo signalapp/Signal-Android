@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement;
-import org.thoughtcrime.securesms.util.AccessibilityUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.signal.core.util.AccessibilityUtil;
+import org.signal.core.util.ServiceUtil;
 
 import java.util.Objects;
 

@@ -54,7 +54,7 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.SignalIcons
-import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.database.model.ThreadWithRecipient
 
 class DataSeedingPlaygroundFragment : ComposeFragment() {
 
@@ -285,7 +285,7 @@ fun Screen(
 
 @Composable
 private fun ThreadSelectionRow(
-  thread: ThreadRecord,
+  thread: ThreadWithRecipient,
   isSelected: Boolean,
   onSelectionChanged: (Boolean) -> Unit
 ) {

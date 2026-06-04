@@ -394,7 +394,7 @@ private fun UserMessagesHost(
     is UserMessage.Prompt.ConfirmBlockRecipient -> {
       val lifecycle = LocalLifecycleOwner.current.lifecycle
       LaunchedEffect(userMessage.recipient) {
-        BlockUnblockDialog.showBlockFor(context, lifecycle, userMessage.recipient) {
+        BlockUnblockDialog.showBlockFor(context, userMessage.recipient) {
           onBlockConfirmed(userMessage.recipient)
         }
       }

@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.payments;
 
-import org.whispersystems.signalservice.api.util.Uint64RangeException;
-import org.whispersystems.signalservice.api.util.Uint64Util;
+import org.signal.core.util.Uint64RangeException;
+import org.signal.core.util.Uint64Util;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

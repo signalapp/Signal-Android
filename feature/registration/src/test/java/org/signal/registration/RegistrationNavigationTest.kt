@@ -5,6 +5,7 @@
 
 package org.signal.registration
 
+import android.Manifest
 import android.app.Application
 import android.os.Looper
 import androidx.compose.ui.test.assertIsDisplayed
@@ -15,6 +16,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.test.core.app.ApplicationProvider
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import io.mockk.coEvery
+import io.mockk.every
 import io.mockk.mockk
 import org.junit.Before
 import org.junit.Rule
@@ -186,6 +188,178 @@ class RegistrationNavigationTest {
     // Then - verify Permissions screen is displayed
     // (After permissions, user would go to RestoreViaQr screen)
     composeTestRule.onNodeWithTag(TestTags.PERMISSIONS_SCREEN).assertIsDisplayed()
+  }
+
+  @Test
+  @Config(qualifiers = "w1280dp-h800dp-xhdpi")
+  fun `when isLinkAndSyncAvailable is true, Welcome shows the link device button`() {
+    // Given
+    every { mockRepository.isLinkAndSyncAvailable } returns true
+    val permissionsState = createMockPermissionsState()
+
+    composeTestRule.setContent {
+      SignalTheme {
+        RegistrationNavHost(
+          registrationRepository = mockRepository,
+          registrationViewModel = viewModel,
+          permissionsState = permissionsState
+        )
+      }
+    }
+
+    // Then
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_LINK_DEVICE_BUTTON).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_RESTORE_OR_TRANSFER_BUTTON).assertDoesNotExist()
+  }
+
+  @Test
+  fun `when isLinkAndSyncAvailable is true on compact display, link device button is not shown`() {
+    // Given
+    every { mockRepository.isLinkAndSyncAvailable } returns true
+    val permissionsState = createMockPermissionsState()
+
+    composeTestRule.setContent {
+      SignalTheme {
+        RegistrationNavHost(
+          registrationRepository = mockRepository,
+          registrationViewModel = viewModel,
+          permissionsState = permissionsState
+        )
+      }
+    }
+
+    // Then - compact layout always uses the primary buttons regardless of the flag
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_LINK_DEVICE_BUTTON).assertDoesNotExist()
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_GET_STARTED_BUTTON).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_RESTORE_OR_TRANSFER_BUTTON).assertIsDisplayed()
+  }
+
+  @Test
+  @Config(qualifiers = "w800dp-h800dp-xhdpi")
+  fun `when isLinkAndSyncAvailable is true on medium display, link device button is not shown`() {
+    // Given
+    every { mockRepository.isLinkAndSyncAvailable } returns true
+    val permissionsState = createMockPermissionsState()
+
+    composeTestRule.setContent {
+      SignalTheme {
+        RegistrationNavHost(
+          registrationRepository = mockRepository,
+          registrationViewModel = viewModel,
+          permissionsState = permissionsState
+        )
+      }
+    }
+
+    // Then - medium layout always uses the primary buttons regardless of the flag
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_LINK_DEVICE_BUTTON).assertDoesNotExist()
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_GET_STARTED_BUTTON).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_RESTORE_OR_TRANSFER_BUTTON).assertIsDisplayed()
+  }
+
+  @Test
+  @Config(qualifiers = "w1280dp-h800dp-xhdpi")
+  fun `when isLinkAndSyncAvailable is false, Welcome does not show the link device button`() {
+    // Given - relaxed mock returns false for isLinkAndSyncAvailable by default
+    val permissionsState = createMockPermissionsState()
+
+    composeTestRule.setContent {
+      SignalTheme {
+        RegistrationNavHost(
+          registrationRepository = mockRepository,
+          registrationViewModel = viewModel,
+          permissionsState = permissionsState
+        )
+      }
+    }
+
+    // Then
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_LINK_DEVICE_BUTTON).assertDoesNotExist()
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_RESTORE_OR_TRANSFER_BUTTON).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_GET_STARTED_BUTTON).assertIsDisplayed()
+  }
+
+  @Test
+  @Config(qualifiers = "w1280dp-h800dp-xhdpi")
+  fun `clicking Link Device on Welcome navigates to AllowNotifications when notifications permission is required`() {
+    // Given
+    every { mockRepository.isLinkAndSyncAvailable } returns true
+    val permissionsState = createMockPermissionsState()
+
+    composeTestRule.setContent {
+      SignalTheme {
+        RegistrationNavHost(
+          registrationRepository = mockRepository,
+          registrationViewModel = viewModel,
+          permissionsState = permissionsState
+        )
+      }
+    }
+
+    // When
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_LINK_DEVICE_BUTTON).performClick()
+    Shadows.shadowOf(Looper.getMainLooper()).idle()
+
+    // Then - notifications permission is required on the default Robolectric SDK (>= 33)
+    composeTestRule.onNodeWithTag(TestTags.ALLOW_NOTIFICATIONS_SCREEN).assertIsDisplayed()
+  }
+
+  @Test
+  @Config(qualifiers = "w1280dp-h800dp-xhdpi")
+  fun `clicking Next on AllowNotifications navigates to LinkAccount`() {
+    // Given
+    every { mockRepository.isLinkAndSyncAvailable } returns true
+    val permissionsState = createMockPermissionsState()
+    Shadows.shadowOf(ApplicationProvider.getApplicationContext<Application>())
+      .grantPermissions(Manifest.permission.POST_NOTIFICATIONS)
+
+    composeTestRule.setContent {
+      SignalTheme {
+        RegistrationNavHost(
+          registrationRepository = mockRepository,
+          registrationViewModel = viewModel,
+          permissionsState = permissionsState
+        )
+      }
+    }
+
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_LINK_DEVICE_BUTTON).performClick()
+    Shadows.shadowOf(Looper.getMainLooper()).idle()
+
+    // When
+    composeTestRule.onNodeWithTag(TestTags.ALLOW_NOTIFICATIONS_NEXT_BUTTON).performClick()
+    Shadows.shadowOf(Looper.getMainLooper()).idle()
+
+    // Then
+    composeTestRule.onNodeWithTag(TestTags.LINK_ACCOUNT_SCREEN).assertIsDisplayed()
+  }
+
+  @Test
+  @Config(qualifiers = "w1280dp-h800dp-xhdpi")
+  fun `clicking Not now on AllowNotifications navigates to LinkAccount`() {
+    // Given
+    every { mockRepository.isLinkAndSyncAvailable } returns true
+    val permissionsState = createMockPermissionsState()
+
+    composeTestRule.setContent {
+      SignalTheme {
+        RegistrationNavHost(
+          registrationRepository = mockRepository,
+          registrationViewModel = viewModel,
+          permissionsState = permissionsState
+        )
+      }
+    }
+
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_LINK_DEVICE_BUTTON).performClick()
+    Shadows.shadowOf(Looper.getMainLooper()).idle()
+
+    // When
+    composeTestRule.onNodeWithTag(TestTags.ALLOW_NOTIFICATIONS_NOT_NOW_BUTTON).performClick()
+    Shadows.shadowOf(Looper.getMainLooper()).idle()
+
+    // Then
+    composeTestRule.onNodeWithTag(TestTags.LINK_ACCOUNT_SCREEN).assertIsDisplayed()
   }
 
   @Test

@@ -76,6 +76,7 @@ public final class SettingsValues extends SignalStoreValues {
   private static final String SCREEN_LOCK_ENABLED                     = "settings.screen.lock.enabled";
   private static final String SCREEN_LOCK_TIMEOUT                     = "settings.screen.lock.timeout";
   private static final String AUTOMATIC_VERIFICATION_ENABLED          = "settings.automatic.verification.enabled";
+  private static final String FORCE_WEBSOCKET_MODE                    = "settings.force.websocket.mode.2";
 
   public static final int BACKUP_DEFAULT_HOUR   = 2;
   public static final int BACKUP_DEFAULT_MINUTE = 0;
@@ -570,6 +571,17 @@ public final class SettingsValues extends SignalStoreValues {
     putBoolean(AUTOMATIC_VERIFICATION_ENABLED, enabled);
   }
 
+  public @NonNull ForceWebsocketMode getForceWebsocketMode() {
+    if (getStore().containsKey(FORCE_WEBSOCKET_MODE)) {
+      return ForceWebsocketMode.deserialize(getInteger(FORCE_WEBSOCKET_MODE, ForceWebsocketMode.DISABLED.serialize()));
+    }
+    return getBoolean(FORCE_WEBSOCKET_MODE, false) ? ForceWebsocketMode.ENABLED_BY_USER : ForceWebsocketMode.DISABLED;
+  }
+
+  public void setForceWebsocketMode(@NonNull ForceWebsocketMode mode) {
+    putInteger(FORCE_WEBSOCKET_MODE, mode.serialize());
+  }
+
   private @Nullable Uri getUri(@NonNull String key) {
     String uri = getString(key, "");
 
@@ -604,6 +616,37 @@ public final class SettingsValues extends SignalStoreValues {
 
     public int serialize() {
       return value;
+    }
+  }
+
+  public enum ForceWebsocketMode {
+    DISABLED(0), ENABLED_BY_USER(1), ENABLED_AUTOMATICALLY(2);
+
+    private final int value;
+
+    ForceWebsocketMode(int value) {
+      this.value = value;
+    }
+
+    public boolean isEnabled() {
+      return this != DISABLED;
+    }
+
+    public int serialize() {
+      return value;
+    }
+
+    public static ForceWebsocketMode deserialize(int value) {
+      switch (value) {
+        case 0:
+          return DISABLED;
+        case 1:
+          return ENABLED_BY_USER;
+        case 2:
+          return ENABLED_AUTOMATICALLY;
+        default:
+          throw new IllegalArgumentException("Bad value: " + value);
+      }
     }
   }
 

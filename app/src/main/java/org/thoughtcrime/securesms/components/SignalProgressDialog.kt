@@ -12,8 +12,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.progressindicator.CircularProgressIndicator
+import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.padding
+import org.thoughtcrime.securesms.util.visible
 
 /**
  * Wraps a normal progress dialog for showing blocking in-progress UI.
@@ -81,8 +84,14 @@ class SignalProgressDialog private constructor(
       val progressView: CircularProgressIndicator = customView.findViewById(R.id.progress_dialog_progressbar)
 
       titleView.text = title
+      titleView.visible = title != null
       messageView.text = message
+      messageView.visible = message != null
       progressView.isIndeterminate = indeterminate
+
+      if (title == null && message == null) {
+        progressView.padding(top = 32.dp, bottom = 32.dp)
+      }
 
       builder.setView(customView)
       val dialog = builder.show()

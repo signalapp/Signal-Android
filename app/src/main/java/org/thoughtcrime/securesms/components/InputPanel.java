@@ -38,10 +38,12 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.ui.view.Stub;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.core.util.logging.Log;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.animation.AnimationStartListener;
@@ -63,7 +65,6 @@ import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
-import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -91,32 +92,33 @@ public class InputPanel extends ConstraintLayout
   private static final long QUOTE_REVEAL_DURATION_MILLIS = 150;
   private static final int  FADE_TIME                    = 150;
 
-  private RecyclerView    stickerSuggestion;
-  private QuoteView       quoteView;
-  private LinkPreviewView linkPreview;
-  private EmojiToggle     mediaKeyboard;
-  private ComposeText     composeText;
-  private ImageButton     quickCameraToggle;
-  private ImageButton     quickAudioToggle;
-  private AnimatingToggle buttonToggle;
-  private SendButton      sendButton;
-  private View            recordingContainer;
-  private View            recordLockCancel;
-  private View            composeContainer;
-  private View            editMessageCancel;
-  private ImageView       editMessageThumbnail;
-  private View            editMessageTitle;
-  private FrameLayout     composeTextContainer;
+  private RecyclerView          stickerSuggestion;
+  private Stub<QuoteView>       quoteViewStub;
+  private Stub<LinkPreviewView> linkPreviewStub;
+  private EmojiToggle           mediaKeyboard;
+  private ComposeText           composeText;
+  private ImageButton           quickCameraToggle;
+  private ImageButton           quickAudioToggle;
+  private AnimatingToggle       buttonToggle;
+  private SendButton            sendButton;
+  private View                  recordingContainer;
+  private View                  recordLockCancel;
+  private View                  composeContainer;
+  private View                  editMessageCancel;
+  private ImageView             editMessageThumbnail;
+  private View                  editMessageTitle;
+  private FrameLayout           composeTextContainer;
 
-  private MicrophoneRecorderView microphoneRecorderView;
-  private SlideToCancel          slideToCancel;
-  private RecordTime             recordTime;
-  private ValueAnimator          quoteAnimator;
-  private ValueAnimator          editMessageAnimator;
-  private VoiceNoteDraftView     voiceNoteDraftView;
+  private MicrophoneRecorderView   microphoneRecorderView;
+  private SlideToCancel            slideToCancel;
+  private RecordTime               recordTime;
+  private ValueAnimator            quoteAnimator;
+  private ValueAnimator            editMessageAnimator;
+  private Stub<VoiceNoteDraftView> voiceNoteDraftViewStub;
 
   private @Nullable Listener listener;
   private           boolean  emojiVisible;
+  private           boolean  wallpaperEnabled;
 
   private boolean hideForMessageRequestState;
   private boolean hideForGroupState;
@@ -126,6 +128,12 @@ public class InputPanel extends ConstraintLayout
 
   private ConversationStickerSuggestionAdapter stickerSuggestionAdapter;
   private MessageRecord                        messageToEdit;
+
+  private final Observer<VoiceNotePlaybackState> playbackStateObserverProxy = state -> {
+    if (voiceNoteDraftViewStub.resolved()) {
+      voiceNoteDraftViewStub.get().getPlaybackStateObserver().onChanged(state);
+    }
+  };
 
   public InputPanel(Context context) {
     super(context);
@@ -143,12 +151,10 @@ public class InputPanel extends ConstraintLayout
   public void onFinishInflate() {
     super.onFinishInflate();
 
-    View quoteDismiss = findViewById(R.id.quote_dismiss_stub);
-
     this.composeContainer       = findViewById(R.id.compose_bubble);
     this.stickerSuggestion      = findViewById(R.id.input_panel_sticker_suggestion);
-    this.quoteView              = findViewById(R.id.quote_view);
-    this.linkPreview            = findViewById(R.id.link_preview);
+    this.quoteViewStub          = new Stub<>(findViewById(R.id.quote_view_stub));
+    this.linkPreviewStub        = new Stub<>(findViewById(R.id.link_preview_stub));
     this.mediaKeyboard          = findViewById(R.id.emoji_toggle);
     this.composeText            = findViewById(R.id.embedded_text_editor);
     this.composeTextContainer   = findViewById(R.id.embedded_text_editor_container);
@@ -158,7 +164,7 @@ public class InputPanel extends ConstraintLayout
     this.sendButton             = findViewById(R.id.send_button);
     this.recordingContainer     = findViewById(R.id.recording_container);
     this.recordLockCancel       = findViewById(R.id.record_cancel);
-    this.voiceNoteDraftView     = findViewById(R.id.voice_note_draft_view);
+    this.voiceNoteDraftViewStub = new Stub<>(findViewById(R.id.voice_note_draft_view_stub));
     this.slideToCancel          = new SlideToCancel(findViewById(R.id.slide_to_cancel));
     this.microphoneRecorderView = findViewById(R.id.recorder_view);
     this.microphoneRecorderView.setHandler(this);
@@ -175,14 +181,6 @@ public class InputPanel extends ConstraintLayout
     mediaKeyboard.setVisibility(View.VISIBLE);
     emojiVisible = true;
 
-    quoteDismiss.setOnClickListener(v -> clearQuote());
-
-    linkPreview.setCloseClickedListener(() -> {
-      if (listener != null) {
-        listener.onLinkPreviewCanceled();
-      }
-    });
-
     stickerSuggestionAdapter = new ConversationStickerSuggestionAdapter(Glide.with(this), this);
 
     stickerSuggestion.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -197,7 +195,6 @@ public class InputPanel extends ConstraintLayout
     this.listener = listener;
 
     mediaKeyboard.setOnClickListener(v -> listener.onEmojiToggle());
-    voiceNoteDraftView.setListener(listener);
 
     if (Camera.getNumberOfCameras() > 0) {
       quickCameraToggle.setOnClickListener(v -> listener.onQuickCameraToggleClicked());
@@ -214,34 +211,35 @@ public class InputPanel extends ConstraintLayout
                        @NonNull SlideDeck attachments,
                        @NonNull QuoteModel.Type quoteType)
   {
-    this.quoteView.setQuote(requestManager, id, author, body, false, attachments, null, quoteType, true, null);
+    QuoteView quoteView = requireQuoteView();
+
+    quoteView.setQuote(requestManager, id, author, body, false, attachments, null, quoteType, true, null);
     if (listener != null) {
-      this.quoteView.setOnClickListener(v -> listener.onQuoteClicked(id, author.getId()));
+      quoteView.setOnClickListener(v -> listener.onQuoteClicked(id, author.getId()));
     }
 
-    int originalHeight = this.quoteView.getVisibility() == VISIBLE ? this.quoteView.getMeasuredHeight()
-                                                                   : 0;
+    int originalHeight = quoteView.getVisibility() == VISIBLE ? quoteView.getMeasuredHeight() : 0;
 
-    this.quoteView.setVisibility(VISIBLE);
+    quoteView.setVisibility(VISIBLE);
 
     int maxWidth = composeContainer.getWidth();
     if (quoteView.getLayoutParams() instanceof MarginLayoutParams) {
       MarginLayoutParams layoutParams = (MarginLayoutParams) quoteView.getLayoutParams();
       maxWidth -= layoutParams.leftMargin + layoutParams.rightMargin;
     }
-    this.quoteView.measure(MeasureSpec.makeMeasureSpec(maxWidth, MeasureSpec.AT_MOST), 0);
+    quoteView.measure(MeasureSpec.makeMeasureSpec(maxWidth, MeasureSpec.AT_MOST), 0);
 
     if (quoteAnimator != null) {
       quoteAnimator.cancel();
     }
 
-    quoteAnimator = createHeightAnimator(quoteView, originalHeight, this.quoteView.getMeasuredHeight(), null);
+    quoteAnimator = createHeightAnimator(quoteView, originalHeight, quoteView.getMeasuredHeight(), null);
 
     quoteAnimator.start();
 
-    if (this.linkPreview.getVisibility() == View.VISIBLE) {
+    if (linkPreviewStub.getVisibility() == View.VISIBLE) {
       int cornerRadius = readDimen(R.dimen.message_corner_collapse_radius);
-      this.linkPreview.setCorners(cornerRadius, cornerRadius);
+      linkPreviewStub.get().setCorners(cornerRadius, cornerRadius);
     }
 
     if (listener != null) {
@@ -250,6 +248,12 @@ public class InputPanel extends ConstraintLayout
   }
 
   public void clearQuote() {
+    if (!quoteViewStub.resolved()) {
+      return;
+    }
+
+    QuoteView quoteView = quoteViewStub.get();
+
     if (quoteAnimator != null) {
       quoteAnimator.cancel();
     }
@@ -259,9 +263,9 @@ public class InputPanel extends ConstraintLayout
       public void onAnimationEnd(Animator animation) {
         quoteView.dismiss();
 
-        if (linkPreview.getVisibility() == View.VISIBLE) {
+        if (linkPreviewStub.getVisibility() == View.VISIBLE) {
           int cornerRadius = readDimen(R.dimen.message_corner_radius);
-          linkPreview.setCorners(cornerRadius, cornerRadius);
+          linkPreviewStub.get().setCorners(cornerRadius, cornerRadius);
         }
       }
     });
@@ -271,6 +275,20 @@ public class InputPanel extends ConstraintLayout
     if (listener != null) {
       listener.onQuoteCleared();
     }
+  }
+
+  private @NonNull QuoteView requireQuoteView() {
+    boolean   wasResolved = quoteViewStub.resolved();
+    QuoteView quoteView   = quoteViewStub.get();
+    if (!wasResolved) {
+      quoteView.setWallpaperEnabled(wallpaperEnabled);
+      View quoteDismiss = quoteView.findViewById(R.id.quote_dismiss_stub);
+      if (quoteDismiss != null) {
+        quoteDismiss.setOnClickListener(v -> clearQuote());
+      }
+    }
+
+    return quoteView;
   }
 
   private static ValueAnimator createHeightAnimator(@NonNull View view,
@@ -294,11 +312,12 @@ public class InputPanel extends ConstraintLayout
     return animator;
   }
 
-  public boolean hasSaveableContent() {
-    return getQuote().isPresent() || voiceNoteDraftView.getDraft() != null;
-  }
-
   public Optional<QuoteModel> getQuote() {
+    if (!quoteViewStub.resolved()) {
+      return Optional.empty();
+    }
+
+    QuoteView quoteView = quoteViewStub.get();
     if (quoteView.getQuoteId() > 0 && quoteView.getVisibility() == View.VISIBLE) {
       return Optional.of(new QuoteModel(quoteView.getQuoteId(),
                                         quoteView.getAuthor().getId(),
@@ -314,39 +333,51 @@ public class InputPanel extends ConstraintLayout
   }
 
   public boolean hasLinkPreview() {
-    return linkPreview.getVisibility() == View.VISIBLE;
+    return linkPreviewStub.getVisibility() == View.VISIBLE;
   }
 
   public void setLinkPreviewLoading() {
-    this.linkPreview.setVisibility(View.VISIBLE);
-    this.linkPreview.setLoading();
+    LinkPreviewView linkPreview = requireLinkPreview();
+    linkPreview.setVisibility(View.VISIBLE);
+    linkPreview.setLoading();
   }
 
   public void setLinkPreviewNoPreview(@Nullable LinkPreviewRepository.Error customError) {
-    this.linkPreview.setVisibility(View.VISIBLE);
-    this.linkPreview.setNoPreview(customError);
+    LinkPreviewView linkPreview = requireLinkPreview();
+    linkPreview.setVisibility(View.VISIBLE);
+    linkPreview.setNoPreview(customError);
   }
 
   public void setLinkPreview(@NonNull RequestManager requestManager, @NonNull Optional<LinkPreview> preview) {
     if (preview.isPresent()) {
-      this.linkPreview.setVisibility(View.VISIBLE);
-      this.linkPreview.setLinkPreview(requestManager, preview.get(), true);
+      LinkPreviewView linkPreview = requireLinkPreview();
+      linkPreview.setVisibility(View.VISIBLE);
+      linkPreview.setLinkPreview(requestManager, preview.get(), true);
     } else {
-      this.linkPreview.setVisibility(View.GONE);
+      linkPreviewStub.setVisibility(View.GONE);
     }
 
-    int cornerRadius = quoteView.getVisibility() == VISIBLE ? readDimen(R.dimen.message_corner_collapse_radius)
-                                                            : readDimen(R.dimen.message_corner_radius);
+    if (linkPreviewStub.resolved()) {
+      int cornerRadius = quoteViewStub.getVisibility() == VISIBLE ? readDimen(R.dimen.message_corner_collapse_radius) : readDimen(R.dimen.message_corner_radius);
+      linkPreviewStub.get().setCorners(cornerRadius, cornerRadius);
+    }
+  }
 
-    this.linkPreview.setCorners(cornerRadius, cornerRadius);
+  private @NonNull LinkPreviewView requireLinkPreview() {
+    boolean         wasResolved = linkPreviewStub.resolved();
+    LinkPreviewView view        = linkPreviewStub.get();
+
+    if (!wasResolved) {
+      view.setCloseClickedListener(() -> {
+        if (listener != null) listener.onLinkPreviewCanceled();
+      });
+    }
+
+    return view;
   }
 
   public void clickOnComposeInput() {
     composeText.performClick();
-  }
-
-  public void setMediaKeyboard(@NonNull MediaKeyboard mediaKeyboard) {
-    this.mediaKeyboard.attach(mediaKeyboard);
   }
 
   public void setStickerSuggestions(@NonNull List<StickerRecord> stickers) {
@@ -403,7 +434,10 @@ public class InputPanel extends ConstraintLayout
     quickCameraToggle.setColorFilter(iconTint);
     composeText.setTextColor(textColor);
     composeText.setHintTextColor(textHintColor);
-    quoteView.setWallpaperEnabled(enabled);
+    wallpaperEnabled = enabled;
+    if (quoteViewStub.resolved()) {
+      quoteViewStub.get().setWallpaperEnabled(enabled);
+    }
   }
 
   public void enterEditModeIfPossible(@NonNull RequestManager requestManager, @NonNull ConversationMessage conversationMessageToEdit, boolean fromDraft, boolean clearQuote) {
@@ -493,7 +527,9 @@ public class InputPanel extends ConstraintLayout
     if (messageToEdit != null) {
       composeText.setText("");
       messageToEdit = null;
-      quoteView.setMessageType(QuoteView.MessageType.PREVIEW);
+      if (quoteViewStub.resolved()) {
+        quoteViewStub.get().setMessageType(QuoteView.MessageType.PREVIEW);
+      }
       clearQuote();
     }
     updateEditModeUi();
@@ -647,7 +683,7 @@ public class InputPanel extends ConstraintLayout
   }
 
   public @NonNull Observer<VoiceNotePlaybackState> getPlaybackStateObserver() {
-    return voiceNoteDraftView.getPlaybackStateObserver();
+    return playbackStateObserverProxy;
   }
 
   public void setEnabled(boolean enabled) {
@@ -666,7 +702,7 @@ public class InputPanel extends ConstraintLayout
     future.addListener(new AssertedSuccessListener<Void>() {
       @Override
       public void onSuccess(Void result) {
-        if (voiceNoteDraftView.getDraft() == null) {
+        if (!voiceNoteDraftViewStub.resolved() || voiceNoteDraftViewStub.get().getDraft() == null) {
           fadeInNormalComposeViews();
         }
       }
@@ -678,10 +714,6 @@ public class InputPanel extends ConstraintLayout
   @Override
   public void onKeyboardShown() {
     mediaKeyboard.setToMedia();
-  }
-
-  public void setToIme() {
-    mediaKeyboard.setToIme();
   }
 
   @Override
@@ -715,20 +747,35 @@ public class InputPanel extends ConstraintLayout
 
   public void setVoiceNoteDraft(@Nullable DraftTable.Draft voiceNoteDraft) {
     if (voiceNoteDraft != null) {
+      VoiceNoteDraftView voiceNoteDraftView = requireVoiceNoteDraft();
       voiceNoteDraftView.setDraft(voiceNoteDraft);
       voiceNoteDraftView.setVisibility(VISIBLE);
       hideNormalComposeViews();
       fadeIn(buttonToggle);
       buttonToggle.displayQuick(sendButton);
     } else {
-      voiceNoteDraftView.clearDraft();
-      ViewUtil.fadeOut(voiceNoteDraftView, FADE_TIME);
+      if (voiceNoteDraftViewStub.resolved()) {
+        VoiceNoteDraftView voiceNoteDraftView = voiceNoteDraftViewStub.get();
+        voiceNoteDraftView.clearDraft();
+        ViewUtil.fadeOut(voiceNoteDraftView, FADE_TIME);
+      }
       fadeInNormalComposeViews();
     }
   }
 
   public @Nullable DraftTable.Draft getVoiceNoteDraft() {
-    return voiceNoteDraftView.getDraft();
+    if (!voiceNoteDraftViewStub.resolved()) return null;
+    return voiceNoteDraftViewStub.get().getDraft();
+  }
+
+  private @NonNull VoiceNoteDraftView requireVoiceNoteDraft() {
+    boolean            wasResolved        = voiceNoteDraftViewStub.resolved();
+    VoiceNoteDraftView voiceNoteDraftView = voiceNoteDraftViewStub.get();
+    if (!wasResolved) {
+      voiceNoteDraftView.setListener(listener);
+    }
+
+    return voiceNoteDraftView;
   }
 
   private void hideNormalComposeViews() {

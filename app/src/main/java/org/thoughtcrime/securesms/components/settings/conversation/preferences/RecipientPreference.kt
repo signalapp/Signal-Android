@@ -105,7 +105,7 @@ object RecipientPreference {
       } else {
         if (recipient.isSystemContact) {
           SpannableStringBuilder(recipient.getDisplayName(context)).apply {
-            val drawable = context.requireDrawable(R.drawable.symbol_person_circle_24).apply {
+            val drawable = context.requireDrawable(CoreUiR.drawable.symbol_person_circle_24).apply {
               setTint(ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurface))
             }
             SpanUtil.appendCenteredImageSpan(this, drawable, 16, 16)

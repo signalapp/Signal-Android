@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.database.model.ThreadWithRecipient;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -79,7 +79,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
     Set<RecipientId>   needsResolve  = new HashSet<>();
 
     try (ConversationReader reader = new ConversationReader(getCursor(start, length))) {
-      ThreadRecord record;
+      ThreadWithRecipient record;
       while ((record = reader.getNext()) != null && !cancellationSignal.isCanceled()) {
         conversations.add(new Conversation(record));
         recipients.add(record.getRecipient());

@@ -292,7 +292,7 @@ message AccountRecord {
            reserved                          /* backupsSubscriberId */                    36;
            reserved                          /* backupsSubscriberCurrencyCode */          37;
            reserved                          /* backupsSubscriptionManuallyCancelled */   38;
-  optional bool                              hasBackup                                  = 39; // Set to true after backups are enabled and one is uploaded.
+           reserved                          /* hasBackup */                              39;
   optional uint64                            backupTier                                 = 40; // See zkgroup for integer particular values. Unset if backups are not enabled.
            IAPSubscriberData                 backupSubscriberData                       = 41;
   optional AvatarColor                       avatarColor                                = 42;

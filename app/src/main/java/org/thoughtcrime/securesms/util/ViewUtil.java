@@ -49,6 +49,7 @@ import androidx.lifecycle.Lifecycle;
 import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.core.ui.view.Stub;
+import org.signal.core.util.ServiceUtil;
 
 public final class ViewUtil {
 

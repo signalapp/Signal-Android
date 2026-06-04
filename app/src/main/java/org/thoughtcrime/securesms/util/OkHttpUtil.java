@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
+import org.signal.core.util.ByteUnit;
 
 public final class OkHttpUtil {
 

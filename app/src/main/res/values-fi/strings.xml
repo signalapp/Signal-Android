@@ -329,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Lähetä</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Viimeisimmät yhteystiedot</string>
-    <string name="CameraContacts_signal_contacts">Signal-yhteystiedot</string>
-    <string name="CameraContacts_signal_groups">Signal-ryhmät</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Voit jakaa sisältöä enintään %1$d keskusteluun.</item>
-        <item quantity="other">Voit jakaa sisältöä enintään %1$d keskusteluun.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Valitse Signal-vastaanottajat</string>
-    <string name="CameraContacts_no_signal_contacts">Ei Signal-yhteystietoja</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Voit lähettää valokuvia Signal-yhteystiedoillesi vain kamerapainikkeella. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Etkö löydä etsimääsi?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Kutsu kavereita Signaliin</string>
     <string name="CameraContacts__menu_search">Haku</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -4372,7 +4358,7 @@
     <string name="preferences_data_and_storage__never">ei koskaan</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi ja mobiilidata</string>
     <string name="preferences_data_and_storage__mobile_data_only">Vain mobiilidata</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Pienempi datankäyttö voi parantaa puheluja heikolla verkkoyhteydellä</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Saattaa parantaa puhelun laatua heikolla verkkoyhteydellä.</string>
     <string name="preferences_notifications__in_chat_sounds">Äänet keskusteluissa</string>
     <string name="preferences_notifications__show">Näytä</string>
     <string name="preferences_notifications__ringtone">Soittoääni</string>
@@ -6042,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">Tukikeskus</string>
     <string name="HelpSettingsFragment__contact_us">Ota yhteyttä</string>
     <string name="HelpSettingsFragment__version">Versio</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Kopioitu leikepöydälle</string>
     <string name="HelpSettingsFragment__debug_log">Virheenkorjausloki</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Lisenssit</string>
@@ -6063,6 +6051,12 @@
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Vakio</string>
     <string name="DataAndStorageSettingsFragment__calls">Puhelut</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Pidä yhteys päällä taustalla</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Yhteyden pitäminen päällä taustalla lisää todennäköisesti laitteen akun käyttöä. Asetus ei ole tarpeen useimmissa laitteissa. Kytke se päälle vain, jos ilmoitusten kanssa on ollut ongelmia.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Laita päälle</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -9399,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Ota yhteyttä tukeen</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Otetaanko laitteessa olevat varmuuskopiot käyttöön?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Jotta voit jatkaa laitteessa olevien varmuuskopioiden käyttöä, sinun on otettava ne käyttöön tälle tilille ja tallennettava uusi palautusavain. Voit tehdä sen menemällä kohtaan Asetukset &gt; Varmuuskopiointi.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Jotta voit jatkaa laitteessa olevien varmuuskopioiden käyttöä, sinun on otettava ne käyttöön tälle tilille. Voit tehdä sen menemällä kohtaan Asetukset &gt; Varmuuskopiointi.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Ota käyttöön</string>

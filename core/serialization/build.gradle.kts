@@ -27,4 +27,5 @@ dependencies {
 
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.libsignal.client)
+  api(libs.arrow.core)
 }

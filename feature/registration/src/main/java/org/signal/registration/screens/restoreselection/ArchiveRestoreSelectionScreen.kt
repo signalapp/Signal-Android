@@ -41,6 +41,7 @@ import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
+import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.test.TestTags
 
 @Composable
@@ -96,12 +97,18 @@ private fun OnePaneLayout(
       }
     },
     footer = {
-      if (state.showSkipButton) {
-        Row(
-          modifier = Modifier.fillMaxWidth(),
-          horizontalArrangement = Arrangement.Center
-        ) {
-          SkipRestoreButton(onEvent)
+      RegistrationScaffold.FooterSurface(
+        isContentScrolledUnder = scrollState.canScrollForward
+      ) {
+        if (state.showSkipButton) {
+          Row(
+            modifier = Modifier
+              .fillMaxWidth()
+              .padding(params.footerPadding),
+            horizontalArrangement = Arrangement.Center
+          ) {
+            SkipRestoreButton(onEvent)
+          }
         }
       }
     }
@@ -142,12 +149,18 @@ private fun TwoPaneLayout(
       }
     },
     footer = {
-      if (state.showSkipButton) {
-        Row(
-          modifier = Modifier.fillMaxWidth().padding(end = 32.dp),
-          horizontalArrangement = Arrangement.End
-        ) {
-          SkipRestoreButton(onEvent)
+      RegistrationScaffold.FooterSurface(
+        isContentScrolledUnder = scrollState.canScrollForward
+      ) {
+        if (state.showSkipButton) {
+          Row(
+            modifier = Modifier
+              .fillMaxWidth()
+              .padding(params.footerPadding),
+            horizontalArrangement = Arrangement.End
+          ) {
+            SkipRestoreButton(onEvent)
+          }
         }
       }
     }
@@ -159,7 +172,9 @@ private fun Description() {
   Text(
     text = stringResource(R.string.ArchiveRestoreSelectionScreen__restore_or_transfer_account),
     style = MaterialTheme.typography.headlineMedium,
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier
+      .fillMaxWidth()
+      .attachDebugLogHelper()
   )
 
   Spacer(modifier = Modifier.height(8.dp))
@@ -190,7 +205,6 @@ private fun SkipRestoreButton(onEvent: (ArchiveRestoreSelectionScreenEvents) -> 
   TextButton(
     onClick = { onEvent(ArchiveRestoreSelectionScreenEvents.Skip) },
     modifier = Modifier
-      .padding(bottom = 32.dp)
       .testTag(TestTags.ARCHIVE_RESTORE_SELECTION_SKIP)
   ) {
     Text(
@@ -216,6 +230,7 @@ private fun RestoreOptionCard(
         modifier = modifier.testTag(TestTags.ARCHIVE_RESTORE_SELECTION_FROM_SIGNAL_BACKUPS)
       )
     }
+
     ArchiveRestoreOption.DeviceTransfer -> {
       SelectionCard(
         imageVector = ImageVector.vectorResource(R.drawable.symbol_transfer_24),
@@ -225,6 +240,7 @@ private fun RestoreOptionCard(
         modifier = modifier.testTag(TestTags.ARCHIVE_RESTORE_SELECTION_DEVICE_TRANSFER)
       )
     }
+
     ArchiveRestoreOption.LocalBackup -> {
       SelectionCard(
         imageVector = ImageVector.vectorResource(R.drawable.symbol_folder_24),
