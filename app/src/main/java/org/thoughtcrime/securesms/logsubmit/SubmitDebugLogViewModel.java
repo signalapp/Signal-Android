@@ -15,6 +15,7 @@ import org.signal.core.util.tracing.Tracer;
 import org.signal.debuglogsviewer.DebugLogsViewer;
 import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 
 import java.util.ArrayList;
@@ -28,20 +29,23 @@ public class SubmitDebugLogViewModel extends ViewModel {
 
   private static final String TAG = Log.tag(SubmitDebugLogViewModel.class);
 
-  private static final int CHUNK_SIZE = 10_000;
+  private static final int  CHUNK_SIZE                     = 10_000;
+  private static final long SLOW_PREFIX_THRESHOLD_MILLIS   = 3_000L;
 
   private final SubmitDebugLogRepository    repo;
   private final MutableLiveData<Mode>       mode;
   private final SingleLiveEvent<Event>      event;
+  private final SingleLiveEvent<Long>       slowPrefixWarning;
   private final long                        firstViewTime;
   private final byte[]                      trace;
 
   private SubmitDebugLogViewModel() {
-    this.repo          = new SubmitDebugLogRepository();
-    this.mode          = new MutableLiveData<>();
-    this.trace         = Tracer.getInstance().serialize();
-    this.firstViewTime = System.currentTimeMillis();
-    this.event         = new SingleLiveEvent<>();
+    this.repo              = new SubmitDebugLogRepository();
+    this.mode              = new MutableLiveData<>();
+    this.trace             = Tracer.getInstance().serialize();
+    this.firstViewTime     = System.currentTimeMillis();
+    this.event             = new SingleLiveEvent<>();
+    this.slowPrefixWarning = new SingleLiveEvent<>();
   }
 
   @NonNull Observable<List<String>> getLogLinesObservable() {
@@ -50,7 +54,13 @@ public class SubmitDebugLogViewModel extends ViewModel {
       try {
         mode.postValue(Mode.LOADING);
 
+        long prefixStartTime = System.currentTimeMillis();
         repo.getPrefixLogLines(prefixLines -> {
+          long prefixDurationMillis = System.currentTimeMillis() - prefixStartTime;
+          if (prefixDurationMillis > SLOW_PREFIX_THRESHOLD_MILLIS && RemoteConfig.showSlowDebugLogWarning()) {
+            slowPrefixWarning.postValue(prefixDurationMillis);
+          }
+
           try {
             List<String> prefixStrings = new ArrayList<>();
             for (LogLine line : prefixLines) {
@@ -140,6 +150,10 @@ public class SubmitDebugLogViewModel extends ViewModel {
 
   @NonNull LiveData<Event> getEvents() {
     return event;
+  }
+
+  @NonNull LiveData<Long> getSlowPrefixWarning() {
+    return slowPrefixWarning;
   }
 
   void onDiskSaveLocationReady(@Nullable Uri uri) {

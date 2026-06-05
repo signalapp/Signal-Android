@@ -50,7 +50,6 @@ data class OutgoingMessage(
   val isUrgent: Boolean = true,
   val networkFailures: Set<NetworkFailure> = emptySet(),
   val identityKeyMismatches: Set<IdentityKeyMismatch> = emptySet(),
-  val isEndSession: Boolean = false,
   val isIdentityVerified: Boolean = false,
   val isIdentityDefault: Boolean = false,
   val scheduledDate: Long = -1,
@@ -398,21 +397,6 @@ data class OutgoingMessage(
         threadRecipient = threadRecipient,
         sentTimeMillis = sentTimeMillis,
         isIdentityDefault = true,
-        isUrgent = false,
-        isSecure = true
-      )
-    }
-
-    /**
-     * A legacy message that represented that the user manually reset the session. We don't send these anymore, and could probably get rid of them,
-     * but it doesn't hurt to support receiving them in sync messages.
-     */
-    @JvmStatic
-    fun endSessionMessage(threadRecipient: Recipient, sentTimeMillis: Long): OutgoingMessage {
-      return OutgoingMessage(
-        threadRecipient = threadRecipient,
-        sentTimeMillis = sentTimeMillis,
-        isEndSession = true,
         isUrgent = false,
         isSecure = true
       )

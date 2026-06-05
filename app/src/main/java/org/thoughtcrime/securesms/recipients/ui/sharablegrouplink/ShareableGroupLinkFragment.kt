@@ -26,7 +26,7 @@ class ShareableGroupLinkFragment : DSLSettingsFragment(
   private var busyDialog: SimpleProgressDialog.DismissibleDialog? = null
 
   private val groupId: GroupId.V2
-    get() = GroupId.parseOrThrow(ShareableGroupLinkFragmentArgs.fromBundle(requireArguments()).groupId).requireV2()
+    get() = ShareableGroupLinkFragmentArgs.fromBundle(requireArguments()).groupId.requireV2()
 
   private val viewModel: ShareableGroupLinkViewModel by viewModels(
     factoryProducer = {

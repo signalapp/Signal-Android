@@ -9,7 +9,7 @@ import android.os.Parcel
 import kotlinx.parcelize.Parceler
 import org.signal.core.models.ServiceId
 
-class ACIParceler : Parceler<ServiceId.ACI> {
+object ACIParceler : Parceler<ServiceId.ACI> {
   override fun ServiceId.ACI.write(parcel: Parcel, flags: Int) {
     parcel.writeByteArray(this.toByteArray())
   }

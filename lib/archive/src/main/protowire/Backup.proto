@@ -182,7 +182,7 @@ message AccountData {
   AndroidSpecificSettings androidSpecificSettings = 12;
   string bioText = 13;
   string bioEmoji = 14;
-  optional bytes keyTransparencyData = 15;
+  reserved /*keyTransparencyData*/ 15; // No longer want to persist self-KT data
 }
 
 message Recipient {

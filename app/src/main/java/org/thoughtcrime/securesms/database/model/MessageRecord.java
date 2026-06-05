@@ -30,7 +30,7 @@ import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.Base64;
 import org.signal.core.util.BidiUtil;
@@ -180,10 +180,6 @@ public abstract class MessageRecord extends DisplayRecord {
     return MessageTypes.isSecureType(type);
   }
 
-  public boolean isLegacyMessage() {
-    return MessageTypes.isLegacyType(type);
-  }
-
   @Override
   public boolean isFailed() {
     return super.isFailed() || isFailedAdminDelete();
@@ -310,7 +306,8 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isReportedSpam()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_reported_as_spam), Glyph.SPAM);
     } else if (isMessageRequestAccepted()) {
-      return staticUpdateDescription(context.getString(R.string.MessageRecord_you_accepted_the_message_request), Glyph.THREAD);
+      return isGroupV2() ? staticUpdateDescription(context.getString(R.string.MessageRecord_you_accepted_the_group_request), Glyph.THREAD)
+                         : fromRecipient(getToRecipient(), r -> context.getString(R.string.MessageRecord_you_accepted_s_message_request, r.getDisplayName(context)), Glyph.THREAD);
     } else if (isBlocked()) {
       return staticUpdateDescription(context.getString(isGroupV2() ? R.string.MessageRecord_you_blocked_this_group : R.string.MessageRecord_you_blocked_this_person), Glyph.BLOCK);
     } else if (isUnblocked()) {
@@ -510,6 +507,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return UpdateDescription.staticDescriptionWithExpiration(string, glyph);
   }
 
+  protected static @NonNull UpdateDescription staticUpdateDescriptionWithExpiration(@NonNull String string, Glyph glyph, @ColorInt int lightTint, @ColorInt int darkTint) {
+    return UpdateDescription.staticDescriptionWithExpiration(string, glyph, lightTint, darkTint);
+  }
+
   protected static @NonNull UpdateDescription staticUpdateDescription(@NonNull String string,
                                                                       Glyph glyph,
                                                                       @ColorInt int lightTint,
@@ -592,11 +593,9 @@ public abstract class MessageRecord extends DisplayRecord {
   public static @NonNull UpdateDescription getGroupCallUpdateDescription(@NonNull Context context, @NonNull String body, boolean withTime) {
     GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(body);
 
-    List<ServiceId> joinedMembers = Stream.of(groupCallUpdateDetails.inCallUuids)
-                                          .map(UuidUtil::parseOrNull)
-                                          .withoutNulls()
-                                          .<ServiceId>map(ACI::from)
-                                          .toList();
+    List<ServiceId> joinedMembers = groupCallUpdateDetails.inCallUuids.stream()
+                                                                      .map(UuidUtil::parseOrNull).filter(Objects::nonNull)
+                                                                      .<ServiceId>map(ACI::from).collect(Collectors.toList());
 
     UpdateDescription.SpannableFactory stringFactory = new GroupCallUpdateMessageFactory(context, joinedMembers, withTime, groupCallUpdateDetails);
 

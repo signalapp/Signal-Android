@@ -13,6 +13,8 @@ import org.signal.core.util.inRoundedDays
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readLength
+import org.signal.network.NetworkResult
+import org.signal.network.api.AttachmentUploadResult
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentId
@@ -33,11 +35,12 @@ import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.service.AttachmentProgressService
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatusCodes
-import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
+import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.FileNotFoundException
@@ -229,8 +232,10 @@ class UploadAttachmentToArchiveJob private constructor(
 
     val existingSpec = uploadSpec?.let { ResumableUploadSpec.from(it) }
 
+    val ciphertextLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size))
+
     val form: AttachmentUploadForm? = if (existingSpec == null) {
-      when (val formResult = BackupRepository.getAttachmentUploadForm()) {
+      when (val formResult = BackupRepository.getAttachmentUploadForm(ciphertextLength)) {
         is NetworkResult.Success -> formResult.result
         is NetworkResult.ApplicationError -> {
           Log.w(TAG, "[$attachmentId]$mediaIdLog Failed to get upload form due to an application error.", formResult.throwable)
@@ -246,6 +251,13 @@ class UploadAttachmentToArchiveJob private constructor(
             ArchiveMediaUploadFormStatusCodes.RateLimited -> {
               Log.w(TAG, "[$attachmentId]$mediaIdLog Rate limited when getting upload form.")
               Result.retry(formResult.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+            }
+            ArchiveMediaUploadFormStatusCodes.MediaTooLarge -> {
+              Log.w(TAG, "[$attachmentId]$mediaIdLog Media is too large to upload to the archive. Marking as a permanent failure.")
+              ArchiveDatabaseExecutor.runBlocking {
+                setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+              }
+              Result.failure()
             }
             else -> Result.retry(defaultBackoff())
           }
@@ -318,7 +330,10 @@ class UploadAttachmentToArchiveJob private constructor(
           is NetworkResult.NetworkError -> {
             Log.w(TAG, "[$attachmentId]$mediaIdLog Failed to upload due to network error.", result.exception)
 
-            if (result.exception.cause is ProtocolException) {
+            if (result.exception is ResumeLocationInvalidException) {
+              Log.w(TAG, "[$attachmentId]$mediaIdLog Resume location is invalid. Clearing upload spec before retrying.")
+              uploadSpec = null
+            } else if (result.exception.cause is ProtocolException) {
               Log.w(TAG, "[$attachmentId]$mediaIdLog Length may be incorrect. Recalculating.", result.exception)
 
               val actualLength = SignalDatabase.attachments.getAttachmentStream(attachmentId, 0)
@@ -328,6 +343,7 @@ class UploadAttachmentToArchiveJob private constructor(
                 ArchiveDatabaseExecutor.runBlocking {
                   SignalDatabase.attachments.updateAttachmentLength(attachmentId, actualLength)
                 }
+                uploadSpec = null
               } else {
                 Log.i(TAG, "[$attachmentId]$mediaIdLog Length was correct. No action needed. Will retry.")
               }
@@ -384,6 +400,8 @@ class UploadAttachmentToArchiveJob private constructor(
         SignalDatabase.attachments.setArchiveTransferStateFailure(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
       }
     }
+
+    ArchiveUploadProgress.onAttachmentFinished(attachmentId)
   }
 
   private fun setArchiveTransferStateWithDelayedNotification(attachmentId: AttachmentId, transferState: AttachmentTable.ArchiveTransferState) {

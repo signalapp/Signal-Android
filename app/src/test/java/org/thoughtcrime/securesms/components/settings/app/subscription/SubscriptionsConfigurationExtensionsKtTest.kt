@@ -11,9 +11,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.network.util.JsonUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
-import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.util.Currency
 
 @RunWith(RobolectricTestRunner::class)

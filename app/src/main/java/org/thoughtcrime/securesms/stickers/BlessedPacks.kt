@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.stickers
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import org.signal.network.util.JsonUtil
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
-import org.whispersystems.signalservice.internal.util.JsonUtil
 
 /**
  * Maintains a list of "blessed" sticker packs that essentially serve as defaults.

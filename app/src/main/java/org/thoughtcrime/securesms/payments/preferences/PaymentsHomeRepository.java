@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.jobs.SendPaymentsActivatedJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.ProfileUtil;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.internal.push.exceptions.PaymentsRegionException;
 
 import java.io.IOException;

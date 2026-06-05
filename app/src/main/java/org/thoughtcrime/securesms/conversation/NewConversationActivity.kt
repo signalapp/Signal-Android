@@ -29,6 +29,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
@@ -53,6 +54,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.RecipientLookupFailureMessage
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker
+import org.thoughtcrime.securesms.recipients.ui.RecipientPicker.DisplayMode
 import org.thoughtcrime.securesms.recipients.ui.RecipientPickerCallbacks
 import org.thoughtcrime.securesms.recipients.ui.RecipientPickerScaffold
 import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
@@ -310,6 +312,7 @@ private fun NewConversationRecipientPicker(
     searchQuery = uiState.searchQuery,
     isRefreshing = uiState.isRefreshingContacts,
     shouldResetContactsList = uiState.shouldResetContactsList,
+    displayModes = setOf(DisplayMode.PUSH, DisplayMode.ACTIVE_GROUPS, DisplayMode.INACTIVE_GROUPS, DisplayMode.SELF),
     callbacks = remember(callbacks) {
       RecipientPickerCallbacks(
         listActions = callbacks,
@@ -333,20 +336,21 @@ private fun UserMessagesHost(
   snackbarHostState: SnackbarHostState
 ) {
   val context = LocalContext.current
+  val resources = LocalResources.current
 
   when (userMessage) {
     null -> {}
 
     is UserMessage.Info.RecipientRemoved -> LaunchedEffect(userMessage) {
       snackbarHostState.showSnackbar(
-        message = context.getString(R.string.NewConversationActivity__s_has_been_removed, userMessage.recipient.getDisplayName(context))
+        message = resources.getString(R.string.NewConversationActivity__s_has_been_removed, userMessage.recipient.getDisplayName(context))
       )
       onDismiss(userMessage)
     }
 
     is UserMessage.Info.RecipientBlocked -> LaunchedEffect(userMessage) {
       snackbarHostState.showSnackbar(
-        message = context.getString(R.string.NewConversationActivity__s_has_been_blocked, userMessage.recipient.getDisplayName(context))
+        message = resources.getString(R.string.NewConversationActivity__s_has_been_blocked, userMessage.recipient.getDisplayName(context))
       )
       onDismiss(userMessage)
     }
@@ -358,18 +362,24 @@ private fun UserMessagesHost(
       )
     }
 
-    is UserMessage.Info.UserAlreadyInAnotherCall -> LaunchedEffect(userMessage) {
-      snackbarHostState.showSnackbar(
-        message = context.getString(R.string.CommunicationActions__you_are_already_in_a_call)
-      )
-      onDismiss(userMessage)
+    is UserMessage.Info.UserAlreadyInAnotherCall -> {
+      val youAreAlreadyInACall = stringResource(R.string.CommunicationActions__you_are_already_in_a_call)
+      LaunchedEffect(userMessage) {
+        snackbarHostState.showSnackbar(
+          message = youAreAlreadyInACall
+        )
+        onDismiss(userMessage)
+      }
     }
 
-    is UserMessage.Info.ContactsRefreshFailed -> LaunchedEffect(userMessage) {
-      snackbarHostState.showSnackbar(
-        message = context.getString(R.string.ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection)
-      )
-      onDismiss(userMessage)
+    is UserMessage.Info.ContactsRefreshFailed -> {
+      val errorRetrievingContacts = stringResource(R.string.ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection)
+      LaunchedEffect(userMessage) {
+        snackbarHostState.showSnackbar(
+          message = errorRetrievingContacts
+        )
+        onDismiss(userMessage)
+      }
     }
 
     is UserMessage.Prompt.ConfirmRemoveRecipient -> Dialogs.SimpleAlertDialog(
@@ -384,7 +394,7 @@ private fun UserMessagesHost(
     is UserMessage.Prompt.ConfirmBlockRecipient -> {
       val lifecycle = LocalLifecycleOwner.current.lifecycle
       LaunchedEffect(userMessage.recipient) {
-        BlockUnblockDialog.showBlockFor(context, lifecycle, userMessage.recipient) {
+        BlockUnblockDialog.showBlockFor(context, userMessage.recipient) {
           onBlockConfirmed(userMessage.recipient)
         }
       }

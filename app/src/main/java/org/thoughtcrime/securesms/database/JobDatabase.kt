@@ -485,7 +485,7 @@ class JobDatabase(
 
   /** Should only be used for debugging! */
   fun debugResetBackoffInterval() {
-    writableDatabase.update(Jobs.TABLE_NAME, contentValuesOf(Jobs.NEXT_BACKOFF_INTERVAL to 0), null, null)
+    writableDatabase.update(Jobs.TABLE_NAME, contentValuesOf(Jobs.NEXT_BACKOFF_INTERVAL to 0, Jobs.INITIAL_DELAY to 0), null, null)
   }
 
   private fun JobSpec.toContentValues(): ContentValues {

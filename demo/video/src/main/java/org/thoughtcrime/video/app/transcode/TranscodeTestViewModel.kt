@@ -22,7 +22,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.video.TranscodingPreset
-import org.thoughtcrime.securesms.video.TranscodingQuality
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter
 import kotlin.math.roundToInt
 
@@ -129,20 +128,5 @@ class TranscodeTestViewModel : ViewModel() {
   companion object {
     private const val MEGABIT = 1_000_000
     private const val KILOBIT = 1_000
-
-    private fun calculateVideoMegaBitrateFromPreset(preset: TranscodingPreset): Float {
-      val quality = TranscodingQuality.createFromPreset(preset, -1)
-      return quality.targetVideoBitRate.toFloat() / MEGABIT
-    }
-
-    private fun calculateAudioKiloBitrateFromPreset(preset: TranscodingPreset): Int {
-      val quality = TranscodingQuality.createFromPreset(preset, -1)
-      return quality.targetAudioBitRate / KILOBIT
-    }
-
-    private fun convertPresetToVideoResolution(preset: TranscodingPreset) = when (preset) {
-      TranscodingPreset.LEVEL_3, TranscodingPreset.LEVEL_3_H265 -> VideoResolution.HD
-      else -> VideoResolution.SD
-    }
   }
 }

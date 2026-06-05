@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.PaymentTable;
@@ -56,9 +56,9 @@ public class PaymentsRepository {
   }
 
   private void updateDatabaseWithNewBlockInformation(@NonNull List<Payment> reconcileOutput) {
-    List<LedgerReconcile.BlockOverridePayment> blockOverridePayments = Stream.of(reconcileOutput)
-                                                                             .select(LedgerReconcile.BlockOverridePayment.class)
-                                                                             .toList();
+    List<LedgerReconcile.BlockOverridePayment> blockOverridePayments = reconcileOutput.stream()
+                                                                                      .filter(x -> x instanceof LedgerReconcile.BlockOverridePayment)
+                                                                                      .map(x -> (LedgerReconcile.BlockOverridePayment)x).collect(Collectors.toList());
 
     if (blockOverridePayments.isEmpty()) {
       return;
@@ -101,8 +101,7 @@ public class PaymentsRepository {
   private @NonNull List<Payment> filterPayments(@NonNull List<Payment> payments,
                                                 @NonNull Direction direction)
   {
-    return Stream.of(payments)
-                 .filter(p -> p.getDirection() == direction)
-                 .toList();
+    return payments.stream()
+                   .filter(p -> p.getDirection() == direction).collect(Collectors.toList());
   }
 }

@@ -23,8 +23,8 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.PushNetworkException;
 
 import java.io.File;
 import java.io.IOException;

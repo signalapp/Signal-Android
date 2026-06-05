@@ -44,7 +44,6 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.layout.PaneAdaptedValue
 import androidx.compose.material3.adaptive.layout.PaneExpansionAnchor
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
@@ -61,6 +60,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.DialogFragment
@@ -73,7 +73,6 @@ import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
-import androidx.window.core.layout.WindowSizeClass
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
@@ -86,8 +85,9 @@ import kotlinx.coroutines.withContext
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.core.ui.isSplitPane
 import org.signal.core.ui.permissions.Permissions
+import org.signal.core.ui.rememberIsSplitPane
+import org.signal.core.util.AppForegroundObserver
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
@@ -117,6 +117,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePay
 import org.thoughtcrime.securesms.components.snackbars.LocalSnackbarStateConsumerRegistry
 import org.thoughtcrime.securesms.components.snackbars.SnackbarHostKey
 import org.thoughtcrime.securesms.components.snackbars.SnackbarState
+import org.thoughtcrime.securesms.components.verificationrequested.VerificationCodeRequestedBottomSheet
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversation.ConversationIntents
@@ -163,6 +164,7 @@ import org.thoughtcrime.securesms.main.rememberFocusRequester
 import org.thoughtcrime.securesms.main.storiesNavGraphBuilder
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
+import org.thoughtcrime.securesms.mediasend.v3.mediaSendLauncher
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.Megaphones
@@ -178,7 +180,6 @@ import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.archive.StoryArchiveActivity
 import org.thoughtcrime.securesms.stories.landing.StoriesLandingFragment
 import org.thoughtcrime.securesms.stories.settings.StorySettingsActivity
-import org.thoughtcrime.securesms.util.AppForegroundObserver
 import org.thoughtcrime.securesms.util.AppStartup
 import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -195,6 +196,7 @@ import org.thoughtcrime.securesms.window.AppScaffoldNavigator
 import org.thoughtcrime.securesms.window.NavigationType
 import org.thoughtcrime.securesms.window.rememberThreePaneScaffoldNavigatorDelegate
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
+import kotlin.time.Duration.Companion.minutes
 import org.signal.core.ui.R as CoreUiR
 
 class MainActivity :
@@ -271,7 +273,7 @@ class MainActivity :
   override val googlePayRepository: GooglePayRepository by lazy { GooglePayRepository(this) }
   override val googlePayResultPublisher: Subject<GooglePayComponent.GooglePayResult> = PublishSubject.create()
 
-  private lateinit var mediaActivityLauncher: ActivityResultLauncher<MediaSendActivityContract.Args>
+  private lateinit var mediaSendLauncher: ActivityResultLauncher<MediaSendActivityContract.Args>
 
   override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
     return motionEventRelay.offer(ev) || super.dispatchTouchEvent(ev)
@@ -298,7 +300,7 @@ class MainActivity :
     super.onCreate(savedInstanceState, ready)
     navigator = MainNavigator(this, mainNavigationViewModel)
 
-    mediaActivityLauncher = registerForActivityResult(MediaSendActivityContract()) { }
+    mediaSendLauncher = mediaSendLauncher()
 
     AppForegroundObserver.addListener(object : AppForegroundObserver.Listener {
       override fun onForeground() {
@@ -354,6 +356,25 @@ class MainActivity :
               ArchiveRestoreProgress.clearLocalRestoreDirectoryError()
               CouldNotCompleteBackupRestoreSheet().show(supportFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
               Log.i(TAG, "Local restore directory became unavailable.")
+            }
+        }
+      }
+
+      launch {
+        repeatOnLifecycle(Lifecycle.State.RESUMED) {
+          SignalStore
+            .account
+            .verificationCodeRequestedAtMsFlow
+            .filter { it > 0L }
+            .collect { requestedAt ->
+              val notificationThreshold = requestedAt + 10.minutes.inWholeMilliseconds
+              if (System.currentTimeMillis() < notificationThreshold) {
+                VerificationCodeRequestedBottomSheet.show(supportFragmentManager, requestedAt)
+              } else {
+                Log.i(TAG, "Verification code requested but is older than 10 minutes, not showing sheet")
+              }
+
+              SignalStore.account.verificationCodeRequestedAtMs = 0L
             }
         }
       }
@@ -428,15 +449,15 @@ class MainActivity :
         )
       }
 
-      val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+      val isSplitPane = LocalResources.current.rememberIsSplitPane()
       val contentLayoutData = MainContentLayoutData.rememberContentLayoutData(mainToolbarState.mode)
 
       MainContainer {
-        val wrappedNavigator = rememberNavigator(windowSizeClass, contentLayoutData, maxWidth)
+        val wrappedNavigator = rememberNavigator(isSplitPane, contentLayoutData, maxWidth)
         val listPaneWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
         val navigationType = NavigationType.rememberNavigationType()
 
-        val anchors = remember(contentLayoutData, mainToolbarState) {
+        val anchors = remember(contentLayoutData, mainToolbarState, listPaneWidth, navigationType) {
           val halfPartitionWidth = contentLayoutData.partitionWidth / 2
 
           val detailOffset = when {
@@ -464,7 +485,7 @@ class MainActivity :
           anchors.indexOf(paneExpansionState.currentAnchor)
         }
 
-        LaunchedEffect(windowSizeClass) {
+        LaunchedEffect(anchors) {
           val index = when {
             paneAnchorIndex < 0 -> 1
             paneAnchorIndex > anchors.lastIndex -> anchors.lastIndex
@@ -477,7 +498,7 @@ class MainActivity :
           }
         }
 
-        val chatNavGraphState = ChatNavGraphState.remember(windowSizeClass)
+        val chatNavGraphState = ChatNavGraphState.remember(isSplitPane)
         val mutableInteractionSource = remember { MutableInteractionSource() }
         MainNavigationDetailLocationEffect(mainNavigationViewModel, chatNavGraphState::writeGraphicsLayerToBitmap)
 
@@ -520,15 +541,14 @@ class MainActivity :
                 }.navigateToDetailLocation(location)
               }
 
-              is MainNavigationDetailLocation.Chats -> {
-                if (location is MainNavigationDetailLocation.Chats.Conversation) {
-                  chatNavGraphState.writeGraphicsLayerToBitmap()
-                }
+              is MainNavigationDetailLocation.Conversation -> {
+                chatNavGraphState.writeGraphicsLayerToBitmap()
                 chatsNavHostController.navigateToDetailLocation(location)
               }
 
+              is MainNavigationDetailLocation.Chats -> chatsNavHostController.navigateToDetailLocation(location)
+              is MainNavigationDetailLocation.CallLinkDetails -> callsNavHostController.navigateToDetailLocation(location)
               is MainNavigationDetailLocation.Calls -> callsNavHostController.navigateToDetailLocation(location)
-
               is MainNavigationDetailLocation.Stories -> storiesNavHostController.navigateToDetailLocation(location)
             }
           }
@@ -623,7 +643,7 @@ class MainActivity :
                   onDestinationSelected = mainNavigationCallback
                 )
 
-                if (!windowSizeClass.isSplitPane()) {
+                if (!LocalResources.current.rememberIsSplitPane()) {
                   Spacer(Modifier.navigationBarsPadding())
                 }
               }
@@ -639,7 +659,7 @@ class MainActivity :
             }
           },
           secondaryContent = {
-            val listContainerColor = if (windowSizeClass.isSplitPane()) {
+            val listContainerColor = if (isSplitPane) {
               SignalTheme.colors.colorSurface1
             } else {
               MaterialTheme.colorScheme.surface
@@ -780,12 +800,12 @@ class MainActivity :
   @OptIn(ExperimentalMaterial3AdaptiveApi::class)
   @Composable
   private fun rememberNavigator(
-    windowSizeClass: WindowSizeClass,
+    isSplitPane: Boolean,
     contentLayoutData: MainContentLayoutData,
     maxWidth: Dp
   ): AppScaffoldNavigator<Any> {
     val scaffoldNavigator = rememberThreePaneScaffoldNavigatorDelegate(
-      isSplitPane = windowSizeClass.isSplitPane(),
+      isSplitPane = isSplitPane,
       horizontalPartitionSpacerSize = contentLayoutData.partitionWidth,
       defaultPanePreferredWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
     )
@@ -799,18 +819,18 @@ class MainActivity :
 
   @Composable
   private fun MainContainer(content: @Composable BoxWithConstraintsScope.() -> Unit) {
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val isSplitPane = LocalResources.current.rememberIsSplitPane()
 
     CompositionLocalProvider(LocalSnackbarStateConsumerRegistry provides mainNavigationViewModel.snackbarRegistry) {
       SignalTheme {
-        val backgroundColor = if (!windowSizeClass.isSplitPane()) {
+        val backgroundColor = if (!isSplitPane) {
           MaterialTheme.colorScheme.surface
         } else {
           SignalTheme.colors.colorSurface1
         }
 
         val modifier = when {
-          windowSizeClass.isSplitPane() -> {
+          isSplitPane -> {
             Modifier
               .systemBarsPadding()
               .displayCutoutPadding()
@@ -847,7 +867,7 @@ class MainActivity :
 
     val detailLocation = extras.getParcelableCompat(KEY_DETAIL_LOCATION, MainNavigationDetailLocation::class.java)
     if (detailLocation != null) {
-      mainNavigationViewModel.goTo(detailLocation)
+      goTo(detailLocation)
       return
     }
 
@@ -1033,7 +1053,7 @@ class MainActivity :
   private fun handleConversationIntent(intent: Intent) {
     if (ConversationIntents.isConversationIntent(intent)) {
       mainNavigationViewModel.goTo(MainNavigationListLocation.CHATS)
-      mainNavigationViewModel.goTo(MainNavigationDetailLocation.Chats.Conversation(ConversationIntents.readArgsFromBundle(intent.extras!!)))
+      mainNavigationViewModel.goTo(MainNavigationDetailLocation.Conversation(ConversationIntents.readArgsFromBundle(intent.extras!!)))
       intent.action = null
       setIntent(intent)
     }
@@ -1124,7 +1144,7 @@ class MainActivity :
       if (isForQuickRestore) {
         startActivity(MediaSelectionActivity.cameraForQuickRestore(context = this@MainActivity))
       } else if (SignalStore.internal.useNewMediaActivity) {
-        mediaActivityLauncher.launch(
+        mediaSendLauncher.launch(
           MediaSendActivityContract.Args(
             isCameraFirst = false,
             isStory = destination == MainNavigationListLocation.STORIES

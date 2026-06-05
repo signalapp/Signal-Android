@@ -11,6 +11,7 @@ import org.signal.core.util.gibiBytes
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -369,6 +370,13 @@ object RemoteConfig {
     }
   }
 
+  private fun Any?.asDouble(defaultValue: Double): Double {
+    return when (this) {
+      is String -> this.toDoubleOrNull() ?: defaultValue
+      else -> defaultValue
+    }
+  }
+
   private fun <T : String?> Any?.asString(defaultValue: T): T {
     @Suppress("UNCHECKED_CAST")
     return when (this) {
@@ -483,6 +491,23 @@ object RemoteConfig {
       active = active,
       onChangeListener = onChangeListener,
       transformer = { it.asLong(defaultValue) }
+    )
+  }
+
+  private fun remoteDouble(
+    key: String,
+    defaultValue: Double,
+    hotSwappable: Boolean,
+    active: Boolean = true,
+    onChangeListener: OnFlagChange? = null
+  ): Config<Double> {
+    return remoteValue(
+      key = key,
+      hotSwappable = hotSwappable,
+      sticky = false,
+      active = active,
+      onChangeListener = onChangeListener,
+      transformer = { it.asDouble(defaultValue) }
     )
   }
 
@@ -648,6 +673,25 @@ object RemoteConfig {
     key = "android.automaticSessionReset.2",
     defaultValue = true,
     hotSwappable = true
+  )
+
+  /** Whether to surface a warning dialog when debug log prefix generation exceeds a threshold. */
+  @JvmStatic
+  @get:JvmName("showSlowDebugLogWarning")
+  val showSlowDebugLogWarning: Boolean by remoteBoolean(
+    key = "android.showSlowDebugLogWarning",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /** Whether we log and surface notifications for slow database transactions/queries. */
+  @JvmStatic
+  @get:JvmName("slowDatabaseNotifications")
+  val slowDatabaseNotifications: Boolean by remoteBoolean(
+    key = "android.slowDatabaseNotifications",
+    defaultValue = false,
+    hotSwappable = true,
+    onChangeListener = { SQLiteDatabase.setSlowWriteLoggingEnabled(it.newValue.asBoolean(false)) }
   )
 
   /** How often we allow an automatic session reset.  */
@@ -1087,14 +1131,6 @@ object RemoteConfig {
   }
 
   @JvmStatic
-  @get:JvmName("libsignalEnforceMinTlsVersion")
-  val libsignalEnforceMinTlsVersion by remoteBoolean(
-    key = "android.libsignalEnforceMinTlsVersion",
-    defaultValue = false,
-    hotSwappable = false
-  )
-
-  @JvmStatic
   val backgroundMessageProcessInterval: Long by remoteValue(
     key = "android.messageProcessor.alarmIntervalMins",
     hotSwappable = true,
@@ -1131,14 +1167,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /** Whether or not to show chat folders. */
-  @JvmStatic
-  val showChatFolders: Boolean by remoteBoolean(
-    key = "android.showChatFolders.2",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** Whether or not to use the new pinned chat UI. */
   @JvmStatic
   val inlinePinnedChats: Boolean by remoteBoolean(
@@ -1158,7 +1186,20 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("useMessageSendRestFallback")
   val useMessageSendRestFallback: Boolean by remoteBoolean(
-    key = "android.useMessageSendRestFallback",
+    key = "android.useMessageSendRestFallback.2",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /**
+   * When true, individual 1:1 sends are routed through [IndividualSendJobV2], which uses the
+   * network-module [org.signal.network.service.MessageService] instead of the legacy
+   * [SignalServiceMessageSender] send path.
+   */
+  @JvmStatic
+  @get:JvmName("useIndividualSendJobV2")
+  val useIndividualSendJobV2: Boolean by remoteBoolean(
+    key = "android.useIndividualSendJobV2.3",
     defaultValue = false,
     hotSwappable = true
   )
@@ -1200,19 +1241,10 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /** Whether or not to send over binary service ids (alongside string service ids). */
-  @JvmStatic
-  @get:JvmName("useBinaryId")
-  val useBinaryId: Boolean by remoteBoolean(
-    key = "android.useBinaryServiceId.2",
-    defaultValue = true,
-    hotSwappable = false
-  )
-
   @JvmStatic
   @get:JvmName("backupsMegaphone")
   val backupsMegaphone: Boolean by remoteBoolean(
-    key = "android.backupsMegaphone.3",
+    key = "android.backupsMegaphone.4",
     defaultValue = false,
     hotSwappable = true
   )
@@ -1299,8 +1331,19 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("dredDuration")
   val dredDuration: Int by remoteInt(
-    key = "global.calling.dredDuration",
+    key = "android.calling.dredDuration",
     defaultValue = 0,
+    hotSwappable = true
+  )
+
+  /**
+   * Enables software Vp9 support for 1:1 calls
+   */
+  @JvmStatic
+  @get:JvmName("enableSoftwareVp9")
+  val enableSoftwareVp9: Boolean by remoteBoolean(
+    key = "android.calling.enableSoftwareVp9",
+    defaultValue = false,
     hotSwappable = true
   )
 
@@ -1354,9 +1397,72 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("localPlaintextExport")
   val localPlaintextExport: Boolean by remoteBoolean(
-    key = "android.localPlaintextExport.2",
+    key = "android.localPlaintextExport.3",
     defaultValue = false,
     hotSwappable = false
+  )
+
+  /**
+   * Whether to use setExactAlarmAndAllowWhileIdle for exact alarms.
+   */
+  @JvmStatic
+  @get:JvmName("exactAlarm")
+  val exactAlarm: Boolean by remoteBoolean(
+    key = "android.exactAlarm",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /**
+   * Whether to use our custom [org.signal.core.util.Linkifier] for web URL detection.
+   */
+  @JvmStatic
+  @get:JvmName("useNewLinkifier")
+  val useNewLinkifier: Boolean by remoteBoolean(
+    key = "android.useNewLinkifier",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /**
+   * Whether screen sharing is available during calls.
+   */
+  @JvmStatic
+  @get:JvmName("screenSharing")
+  val screenSharing: Boolean by remoteBoolean(
+    key = "android.calling.screenSharing",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /** Seconds after registration during which change-number is blocked. */
+  @JvmStatic
+  @get:JvmName("changeNumberPostRegistrationWaitingPeriodSeconds")
+  val changeNumberPostRegistrationWaitingPeriodSeconds: Long by remoteLong(
+    key = "global.changeNumber.postRegistrationWaitingPeriodSeconds",
+    defaultValue = 3600,
+    hotSwappable = true
+  )
+
+  /**
+   * A ratio between 0 and 1, where 0 means that a session is never archived due
+   * to a lack of PQ, and 1 means that a session is always archived due to a
+   * lack of PQ.
+   */
+  @JvmStatic
+  @get:JvmName("requirePqRatio")
+  val requirePqRatio: Double by remoteDouble(
+    key = "android.requirePqRatio",
+    defaultValue = 0.0,
+    hotSwappable = true
+  )
+
+  @JvmStatic
+  @get:JvmName("disappearMore")
+  val disappearMore: Boolean by remoteBoolean(
+    key = "android.disappearMore",
+    defaultValue = false,
+    hotSwappable = true
   )
 
   // endregion

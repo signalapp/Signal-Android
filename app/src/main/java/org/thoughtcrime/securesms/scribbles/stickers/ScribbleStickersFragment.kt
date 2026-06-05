@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import org.signal.core.util.Throttler
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyboard.sticker.KeyboardStickerListAdapter
 import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment
-import org.thoughtcrime.securesms.util.Throttler
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList

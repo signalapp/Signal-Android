@@ -10,8 +10,7 @@ import android.content.ComponentName;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -19,6 +18,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 @RequiresApi(26)
 public final class JobSchedulerScheduler implements Scheduler {
@@ -37,12 +37,11 @@ public final class JobSchedulerScheduler implements Scheduler {
     SignalExecutors.BOUNDED.execute(() -> {
       JobScheduler jobScheduler = application.getSystemService(JobScheduler.class);
 
-      String constraintNames = constraints.isEmpty() ? ""
-                                                     : Stream.of(constraints)
-                                                             .map(Constraint::getJobSchedulerKeyPart)
-                                                             .withoutNulls()
-                                                             .sorted()
-                                                             .collect(Collectors.joining("-"));
+      String constraintNames;
+      constraintNames = constraints.isEmpty() ? "" : constraints.stream()
+                                                                .map(Constraint::getJobSchedulerKeyPart).filter(Objects::nonNull)
+                                                                .sorted()
+                                                                .collect(Collectors.joining("-"));
 
       int jobId = constraintNames.hashCode();
 

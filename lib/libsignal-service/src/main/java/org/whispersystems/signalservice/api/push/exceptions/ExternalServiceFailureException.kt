@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.api.push.exceptions
 
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
+
 /**
  * known possible values for @property[reason]:
  * providerRejected - indicates that the provider understood the request, but declined to deliver a verification SMS/call (potentially due to fraud prevention rules)

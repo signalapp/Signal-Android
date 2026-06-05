@@ -97,26 +97,37 @@ private fun SenderNameWithLabel(
   modifier: Modifier = Modifier,
   labelSlot: @Composable (MemberLabel) -> Unit
 ) {
-  FlowRow(
-    modifier = modifier,
-    horizontalArrangement = Arrangement.spacedBy(4.dp),
-    verticalArrangement = Arrangement.spacedBy(2.dp),
-    itemVerticalAlignment = Alignment.CenterVertically
-  ) {
-    ProvideTextStyle(MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold)) {
-      Emojifier(text = senderName) { annotatedText, inlineContent ->
-        Text(
-          text = annotatedText,
-          inlineContent = inlineContent,
-          color = senderColor,
-          maxLines = 1,
-          overflow = TextOverflow.Ellipsis
-        )
-      }
-    }
-
-    if (memberLabel != null) {
+  if (memberLabel != null) {
+    FlowRow(
+      modifier = modifier,
+      horizontalArrangement = Arrangement.spacedBy(4.dp),
+      verticalArrangement = Arrangement.spacedBy(2.dp),
+      itemVerticalAlignment = Alignment.CenterVertically
+    ) {
+      SenderNameText(senderName, senderColor)
       labelSlot(memberLabel)
+    }
+  } else {
+    SenderNameText(senderName, senderColor, modifier)
+  }
+}
+
+@Composable
+private fun SenderNameText(
+  senderName: String,
+  senderColor: Color,
+  modifier: Modifier = Modifier
+) {
+  ProvideTextStyle(MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold)) {
+    Emojifier(text = senderName) { annotatedText, inlineContent ->
+      Text(
+        modifier = modifier,
+        text = annotatedText,
+        inlineContent = inlineContent,
+        color = senderColor,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis
+      )
     }
   }
 }

@@ -22,6 +22,7 @@
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
 
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
@@ -326,19 +327,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">ပို့ပါ</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">နောက်ဆုံး အဆက်အသွယ်များ</string>
-    <string name="CameraContacts_signal_contacts">Signal အဆက်အသွယ်များ</string>
-    <string name="CameraContacts_signal_groups">Signal အဖွဲ့များ</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="other">အများဆုံး ချက်(တ်) %1$d ခုထံ မျှဝေနိုင်သည်။</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Signal လက်ခံရရှိသူများကို ရွေးချယ်ပါ</string>
-    <string name="CameraContacts_no_signal_contacts">Signal အဆက်အသွယ်များ မရှိပါ</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Signal အဆက်အသွယ်များထံသို့ ကင်မရာခလုတ်နှိပ်၍သာ ဓာတ်ပုံပို့နိုင်သည်။ </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">သင်ရှာတဲ့သူကို မတွေ့ဘူးလား။</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Signal အသုံးပြုရန် ဖိတ်ခေါ်ပါ</string>
     <string name="CameraContacts__menu_search">ရှာရန်</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -512,7 +500,7 @@
     <string name="ConversationActivity_unable_to_record_audio">အသံဖမ်း၍ မရနိုင်ပါ!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">သင်သည်အဖွဲ့ဝင်မဟုတ်တော့သောကြောင့် ဤအဖွဲ့သို့စာများပို့မရပါ။</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">အဖွဲ့ပြီးဆုံးသွားပြီဖြစ်၍ မက်ဆေ့ချ်ပေးပို့မရပါ။</string>
     <string name="ConversationActivity_only_s_can_send_messages">%1$s သာလျှင် မက်ဆေ့ချ်များ ပို့နိုင်ပါမည်။</string>
     <string name="ConversationActivity_admins">အက်ဒ်မင်များ</string>
     <string name="ConversationActivity_message_an_admin">အက်ဒ်မင်ထံ မက်ဆေ့ချ် ပို့ရန်</string>
@@ -646,7 +634,7 @@
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ဤချက်(တ်)တွင် သင်ကိုယ်တိုင်အတွက် မှတ်စုများ ထည့်နိုင်ပါသည်။ သင့်အကောင့်နှင့် ချိတ်ထားသည့် စက်များရှိပါက မှတ်စုအသစ်များကို ချိန်ကိုက်ပါမည်။</string>
     <!-- Text in banner to show how many people have the same name. -->
     <plurals name="ConversationFragment__d_group_members_have_the_same_name">
-        <item quantity="other">%1$d group members have the same name.</item>
+        <item quantity="other">အဖွဲ့ဝင် %1$d ဦးတွင် အမည်တူ ရှိနေပါသည်။</item>
     </plurals>
     <string name="ConversationFragment__tap_to_review">ပြန်လည်သုံးသပ်ရန်ကိုအသာပုတ်ပါ</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
@@ -700,10 +688,18 @@
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">%1$s ထံမှ မက်ဆေ့ချ်တောင်းဆိုချက်တစ်ခုကို သင် လက်ခံခဲ့ပါသည်။ ၎င်းသည် မှားယွင်းခဲ့ခြင်းဖြစ်ပါက အောက်ပါလုပ်ဆောင်ချက်တစ်ခုကို ရွေးချယ်နိုင်ပါသည်။</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">သေချာပြန်လည်စစ်ဆေးပါ</string>
-    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s ကို အတည်မပြုထားပါ</string>
-    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
-    <string name="ConversationFragment_group_names_not_verified">%1$s ကို အတည်မပြုထားပါ</string>
+    <!-- Text shown in conversation header when in a message request state that the name is not verified -->
+    <string name="ConversationFragment_name_not_verified">အမည်ကို အတည်မပြုထားပါ</string>
+    <!-- Label for official chat pill shown in the Note to Self conversation header -->
+    <string name="ConversationFragment_official_chat">တရားဝင် ချက်(တ်)</string>
+    <!-- Description shown in the Signal release notes conversation header -->
+    <string name="ConversationFragment_release_notes_description">Signal မှ တစ်ခုတည်းသော တရားဝင်ချက်(တ်)။ သတင်းများနှင့် ထုတ်ဝေမှုမှတ်ချက်များကို အပ်ဒိတ်ရယူလိုက်ပါ။</string>
+    <!-- Label shown in place of the input in the Signal release notes conversation -->
+    <string name="ConversationFragment_the_only_official_chat_from_signal">Signal မှ တစ်ခုတည်းသော တရားဝင်ချက်(တ်)</string>
+    <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
+    <plurals name="ConversationFragment_group_member_count">
+        <item quantity="other">အဖွဲ့ဝင် %1$d ဦး</item>
+    </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">ပရိုဖိုင်း အမည်များ</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
@@ -729,39 +725,57 @@
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">ဘေးကင်းရေး အကြံပြုချက်များ</string>
-    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">သင်မသိသူများထံမှ မက်ဆေ့ချ်တောင်းဆိုချက်များကို လက်ခံသောအခါ သတိထားပါ။ ဤသည်တို့ကို သတိပြုပါ-</string>
-    <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">ဤတောင်းဆိုချက်ကို သေချာစွာစိစစ်ပါ။ သင့်အဆက်အသွယ်များ သို့မဟုတ် သင် ချက်(တ်)ထားသူများထဲမှ မည်သူမျှ ဤအဖွဲ့တွင် မပါဝင်ပါ။ ဤသည်တို့မှာ သတိထားရမည့်အချက်အချို့ ဖြစ်ပါသည်-</string>
-    <!-- Button text to move to the previous tip-->
+    <!-- Button text to view more safety tips -->
+    <string name="SafetyTips_view_more">ပိုမို ကြည့်ရှုရန်</string>
+    <!-- Content description for previous tip button -->
     <string name="SafetyTips_previous_tip">ယခင်အကြံပြုချက်</string>
-    <!-- Button text to move to the next tip -->
+    <!-- Content description for next tip button -->
     <string name="SafetyTips_next_tip">နောက်ထပ်အကြံပြုချက်</string>
-    <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">အမည်အတုနှင့် အကောင့်များ</string>
-    <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal သည် သင်၏ကုဒ် သို့မဟုတ် ပင်နံပါတ်ကို မည်သည့်အခါမျှ ဆက်သွယ်မေးမြန်းမည်မဟုတ်ပါ။ အခြားသူများအယောင်ဆောင်၍ တောင်းဆိုမှုများကို သတိထားပါ။ ပရိုဖိုင်း အမည်များကို ၎င်းတို့၏အကောင့်ပိုင်ရှင်က ရွေးချယ်ထားပြီး အတည်မပြုထားပါ။</string>
-    <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">ခရစ်ပ်တို သို့မဟုတ် ငွေကြေး လိမ်လည်မှုများ</string>
-    <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">သင်မသိသူတစ်ဦးက ခရစ်ပ်တိုငွေကြေး (Bitcoin ကဲ့သို့) သို့မဟုတ် ငွေကြေးဆိုင်ရာ အခွင့်အလမ်းတစ်ရပ်နှင့် ပတ်သက်၍ သင့်ကို မက်ဆေ့ချ်ပို့လာပါက သတိထားပါ—လိမ်လည်မှု ဖြစ်နိုင်ပါသည်။</string>
-    <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">မရှင်းလင်းသော သို့မဟုတ် မသက်ဆိုင်သော မက်ဆေ့ချ်များ</string>
-    <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">လိမ်လည်ရန်စာပို့သူများသည် \"Hi\" ကဲ့သို့သော ရိုးရှင်းသည့်မက်ဆေ့ချ်ဖြင့် သင့်ကို ဆွဲဆောင်လေ့ရှိပါသည်။ သင် တုံ့ပြန်လိုက်ပါက သင့်ကို ထပ်မံဆက်သွယ်နိုင်ပါသည်။</string>
-    <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">လင့်ခ်ပါသော မက်ဆေ့ချ်များ</string>
-    <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">သင်မသိသူများထံမှ ဝက်ဘ်ဆိုက်လင့်ခ်များပါသော မက်ဆေ့ချ်များကို သတိထားပါ။ သင် မယုံကြည်သောသူများထံမှ လင့်ခ်များကို ဘယ်တော့မှဝင်မကြည့်ပါနှင့်။</string>
-    <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">စီးပွားရေးလုပ်ငန်းနှင့် အဖွဲ့အစည်း အတုများ</string>
-    <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">သင့်ထံဆက်သွယ်လာသော စီးပွားရေးလုပ်ငန်း သို့မဟုတ် အစိုးရအေဂျင်စီများကို သတိပြုပါ။ အခွန်အေဂျင်စီများ၊ စာပို့သူများနှင့် အခြားအရာများ ပါဝင်သော မက်ဆေ့ချ်များသည် လိမ်လည်မှုဖြစ်နိုင်ပါသည်။</string>
+
+    <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
+    <string name="SafetyTips_summary_tip0_title">Signal မှ ချက်(တ်)များကို မတုံ့ပြန်ပါနှင့်</string>
+    <!-- Summary tip 0 message -->
+    <string name="SafetyTips_summary_tip0_message">Signal က သင့် စာရင်းသွင်းကုဒ်၊ PIN သို့မဟုတ် ပြန်လည်ရယူရေးကီးကို မည်သည့်အခါမျှ မက်ဆေ့ချ်ပို့မည်မဟုတ်ပါ။ Signal ဟန်ဆောင်ထားသည့် ချက်(တ်)ကို စာမပြန်ပါနှင့်။</string>
+    <!-- Summary tip 1 title: Review names and photos -->
+    <string name="SafetyTips_summary_tip1_title">အမည်များနှင့် ဓာတ်ပုံများကို ပြန်လည်သုံးသပ်ပါ</string>
+    <!-- Summary tip 1 message -->
+    <string name="SafetyTips_summary_tip1_message">\"အမည်ကို အတည်မပြုရသေးပါ\" ဟူသော အသိပေးချက်ကို သတိပြုပါ။ Signal တွင် လူတိုင်းက ၎င်းတို့၏ ကိုယ်ပိုင် ပရိုဖိုင်အမည်ကို သတ်မှတ်ကြပါသည်။</string>
+    <!-- Summary tip 2 title: Look out for scams -->
+    <string name="SafetyTips_summary_tip2_title">လိမ်လည်မှုများကို သတိထားပါ</string>
+    <!-- Summary tip 2 message -->
+    <string name="SafetyTips_summary_tip2_message">သင့်ထံမှ အကြောင်းပြန်ရန် ကြိုးစားသည့် မရှင်းလင်းသော မက်ဆေ့ချ်များကို ရှောင်ပါ။ ငွေကြေးဆိုင်ရာ အကြံပြုချက်များနှင့် သံသယဖြစ်ဖွယ် ဝက်ဘ်လင့်ခ်များကို သတိပြုပါ။</string>
+
+    <!-- Detail tip 0 title -->
+    <string name="SafetyTips_detail_tip0_title">Signal မှ ချက်(တ်)များကို မတုံ့ပြန်ပါနှင့်</string>
+    <!-- Detail tip 0 message -->
+    <string name="SafetyTips_detail_tip0_message">Signal က သင့် စာရင်းသွင်းသည့်ကုဒ်၊ PIN သို့မဟုတ် ပြန်လည်ရယူရေးကီးကို မည်သည့်အခါမျှ မက်ဆေ့ချ်ပို့မည်မဟုတ်ပါ။ Signal သို့မဟုတ် Signal ပံ့ပိုးမှု ဟန်ဆောင်ထားသော ချက်(တ်)များကို အကြောင်းမပြန်ပါနှင့်။ မသမာသူများသည် သင့်အကောင့်ကို သိမ်းပိုက်ရန် အတုအယောင်ချက်(တ်)များကို ဖန်တီးကြပါသည်။</string>
+    <!-- Detail tip 1 title -->
+    <string name="SafetyTips_detail_tip1_title">အမည်များနှင့် ဓာတ်ပုံများကို ပြန်လည်သုံးသပ်ပါ</string>
+    <!-- Detail tip 1 message -->
+    <string name="SafetyTips_detail_tip1_message">\"အမည်ကို အတည်မပြုရသေးပါ\" ဟူသော အသိပေးချက်ကို သတိပြုပါ။ Signal တွင် လူတိုင်းက ၎င်းတို့၏ကိုယ်ပိုင်ပရိုဖိုင်အမည်နဲ့ ဓာတ်ပုံကို သတ်မှတ်ကြပါသည်။ တောင်းဆိုချက်အသစ်က မည်သူဆိုသည်ကို မသေချာလျှင် လျစ်လျူရှုထားလိုက်ခြင်းက ပိုလုံခြုံပါသည်။</string>
+    <!-- Detail tip 2 title -->
+    <string name="SafetyTips_detail_tip2_title">မရှင်းလင်းသော သို့မဟုတ် မသက်ဆိုင်သော မက်ဆေ့ချ်များ</string>
+    <!-- Detail tip 2 message -->
+    <string name="SafetyTips_detail_tip2_message">Spammer များသည် သင့်အားဆွဲဆောင်ရန် \"Hi\" ကဲ့သို့သော ရိုးရှင်းသော မက်ဆေ့ချ်ဖြင့် စတင်လေ့ရှိသည်။ သင် တုံ့ပြန်လိုက်ပါက သင့်ကို ထပ်မံဆက်သွယ်နိုင်ပါသည်။</string>
+    <!-- Detail tip 3 title -->
+    <string name="SafetyTips_detail_tip3_title">ဝက်ဘ်လင့်ခ်များပါသော မက်ဆေ့ချ်များ</string>
+    <!-- Detail tip 3 message -->
+    <string name="SafetyTips_detail_tip3_message">သင်မသိသူများထံမှ ဝက်ဘ်ဆိုက်လင့်ခ်များပါသော မက်ဆေ့ချ်များကို သတိထားပါ။ သင် မယုံကြည်သောသူများထံမှ လင့်ခ်များကို ဘယ်တော့မှ ဝင်မကြည့်ပါနှင့်။</string>
+    <!-- Detail tip 4 title -->
+    <string name="SafetyTips_detail_tip4_title">ခရစ်ပ်တို သို့မဟုတ် ငွေကြေး လိမ်လည်မှုများ</string>
+    <!-- Detail tip 4 message -->
+    <string name="SafetyTips_detail_tip4_message">သင်မသိသူတစ်ဦးက ခရစ်ပ်တိုငွေကြေး (Bitcoin ကဲ့သို့) သို့မဟုတ် ငွေကြေးဆိုင်ရာ အခွင့်အလမ်းတစ်ရပ်နှင့် ပတ်သက်၍ သင့်ကို မက်ဆေ့ချ်ပို့လာပါက သတိထားပါ—လိမ်လည်မှု ဖြစ်နိုင်ပါသည်။</string>
+    <!-- Detail tip 5 title -->
+    <string name="SafetyTips_detail_tip5_title">အတုအယောင် လုပ်ငန်းများ</string>
+    <!-- Detail tip 5 message -->
+    <string name="SafetyTips_detail_tip5_message">သင့်ထံဆက်သွယ်လာသော စီးပွားရေးလုပ်ငန်း သို့မဟုတ် အစိုးရအေဂျင်စီများကို သတိပြုပါ။ အခွန်အေဂျင်စီများ၊ စာပို့သူများနှင့် အခြားအရာများ ပါဝင်သော မက်ဆေ့ချ်များသည် လိမ်လည်မှုဖြစ်နိုင်ပါသည်။</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal တွင် %1$s ကို ၎င်းတို့၏ အကောင့်ပိုင်ရှင်က ရွေးချယ်ထားသည်။</string>
-    <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">ပရိုဖိုင်း အမည်များကို မစစ်ဆေးထားပါ</string>
+    <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal က အမည်နှင့် ဓာတ်ပုံများကို အတည်ပြု၍မရပါ</string>
+    <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal က သင့် စာရင်းသွင်းကုဒ်၊ PIN သို့မဟုတ် ပြန်လည်ရယူရေးကီးအတွက် မည်သည့်အခါမျှ ဆက်သွယ်မည်မဟုတ်ပါ။</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">အခြားသူများအယောင်ဆောင်ထားသော အကောင့်များကိုသတိထားပါ</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
@@ -1232,10 +1246,6 @@
     </plurals>
     <string name="PendingGroupJoinRequestsReminder_view">ကြည့်မည်။</string>
 
-    <!-- GcmRefreshJob -->
-    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal ဆက်သွယ်မှု လုံးဝမလုပ်နိုင်ပါ။</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ကို Google Play Services ဖြင့် မှတ်ပုံတင်၍မရနိုင်ပါ။ Signal စာတိုနှင့် ဖုန်းခေါ်ဆိုမှု ကိုပိတ်လိုက်သည်။ ပြင်ဆင်ခြင်း &gt; အဆင့်မြင့်တွင် ပြန်လည်မှတ်ပုံတင်ကြည့်ပါ။</string>
-
 
     <!-- GiphyActivity -->
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">GIF ပုံ၏ မူရင်းအရည်အသွေးကို ပြသရန်အခက်အခဲရှိ</string>
@@ -1635,7 +1645,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ကွန်ယက် မှားယွင်းချက် တစ်ခုနှင့် ကြုံတွေ့ခဲ့ရသည်</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">၎င်းအဖွဲ့လင့်ခ်သည် အသက်မဝင်ပါ</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">ဤအဖွဲ့ထဲ ပါဝင်၍မရပါ။</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">အဖွဲ့ဝင်အရေအတွက် ကန့်သတ်ချက် ပြည့်သွားသဖြင့် အဖွဲ့ထဲဝင်၍မရတော့ပါ</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1744,6 +1754,8 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">ဖျက်နေဆဲ</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">မက်ဆေ့ချ်များကို ဖျက်နေပါသည်…</string>
+    <!-- Format string showing current vs. total items being deleted, e.g. "12 of 207" -->
+    <string name="MediaOverviewActivity_Media_delete_progress_count">%1$d/%2$d</string>
     <string name="MediaOverviewActivity_Sort_by">၎င်းအလိုက်စီရင်ပါ</string>
     <string name="MediaOverviewActivity_Newest">နောက်ဆုံးပေါ်</string>
     <string name="MediaOverviewActivity_Oldest">အဟောင်းဆုံး</string>
@@ -1777,6 +1789,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">သင်မှ %1$s သို့ ပို့ခဲ့သည်</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">ဤမီဒီယာကို မပို့ရသေးပါ။</string>
+    <string name="MediaOverviewActivity_jump_to_message">မက်ဆေ့ချ်သို့ တိုက်ရိုက်သွားရန်</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">နောက်မှပြန်သတိပေးပါ</string>
@@ -1845,7 +1858,7 @@
     <string name="MessageRecord_you_updated_group">အဖွဲ့အား သင်ပြောင်းလဲမှုပြုလိုက်သည်။</string>
     <string name="MessageRecord_the_group_was_updated">အဖွဲ့အား အပ်ဒိတ်ပြီးပါပြီ</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">အဖွဲ့ပြီးဆုံးသွားပါပြီ။</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s မှ အဖွဲ့ကို အဆုံးသတ်လိုက်သည်</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -1866,6 +1879,10 @@
     <string name="MessageRecord_declined_voice_call">ငြင်းပယ်ခဲ့သော အော်ဒီယိုကောလ်</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">ငြင်းပယ်ခဲ့သော ဗီဒီယိုကောလ်</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">မဖြေဆိုသော အော်ဒီယိုကောလ်</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">မဖြေဆိုသော ဗီဒီယိုကောလ်</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">အသိပေးချက် ပရိုဖိုင်ကို ဖွင့်ထားစဉ် အော်ဒီယိုကောလ် လွတ်သွားသည်</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2149,8 +2166,10 @@
     <string name="MessageRecord__payment_tombstone">ငွေပေးချေမှု</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">လိမ်လည်မှုအဖြစ် ရီပို့(တ်)လုပ်ပြီးပါပြီ</string>
-    <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">မက်ဆေ့ချ် တောင်းဆိုမှုကို သင် လက်ခံခဲ့သည်</string>
+    <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
+    <string name="MessageRecord_you_accepted_s_message_request">သင်သည် %1$s ၏ မက်ဆေ့ချ်တောင်းဆိုမှုကို လက်ခံလိုက်ပါပြီ</string>
+    <!-- Update message shown in a group chat after accepting a group message request -->
+    <string name="MessageRecord_you_accepted_the_group_request">အဖွဲ့တောင်းဆိုချက်ကို သင်လက်ခံလိုက်ပါပြီ</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">ဒီလူကို သင် ဘလော့ခ်ထားသည်</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2174,7 +2193,7 @@
     <string name="MessageRequestBottomView_unblock">ဘလော့ခ်ဖြေရန်</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s အား သင့်ထံ မက်ဆေ့ချ်ပို့ခွင့်ပြုပြီး သင့်အမည်နှင့် ဓာတ်ပုံကို ဝေမျှပေးမည်လား။ ဤလူကို ယခင်က ဖယ်ရှားထားပါသည်။</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s မှ သင့်ကို မက်ဆေ့ချ်ပို့ရန် ခွင့်ပြုပြီး သင်၏ အမည်နှင့် ရုပ်ပုံတို့ကို ၎င်းနှင့် မျှဝေမည်လား? ၎င်းသည် သင်မှ ၎င်းတို့၏ မက်ဆေ့ချ်များကို ဖတ်ရှုခဲ့သည်ကို သင်လက်ခံသည်အထိ မတွေ့ရပါ။</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">ဤသူကို သင့်ထံ မက်ဆေ့ချ်ပို့ပြီး သင့်အမည်နှင့် ဓာတ်ပုံကို မျှဝေခွင့်ပြုမည်လား။ သင်လက်မခံမချင်း ၎င်းတို့၏ မက်ဆေ့ချ်ကို သင်မြင်ပြီးပြီဆိုသည်ကို ၎င်းတို့မသိနိုင်ပါ။</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s အား သင့်ထံ မက်ဆေ့ချ်ပို့ခွင့်ပြုပြီး သင်၏ အမည်နှင့် ပုံကို ၎င်းထံ မျှဝေမည်လား။ ၎င်းတို့အား ဘလော့ခ် မဖြေမချင်း မက်ဆေ့ချ်များ ရရှိမည် မဟုတ်ပါ။</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2231,11 +2250,15 @@
         <item quantity="other">အခြား %1$d ယောက်</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">ရီပို့(တ်)လုပ်ရန်…</string>
+    <string name="MessageRequestBottomView_report">ရီပို့(တ်)လုပ်ရန်</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">တောင်းဆိုမှုကို လက်ခံပါသလား။</string>
     <!-- Alert dialog body to review the message request carefully -->
     <string name="MessageRequestBottomView_review_requests_carefully">တောင်းဆိုမှုများကို သေချာ ပြန်သုံးသပ်ပါ။ ပရိုဖိုင်း အမည်များကို ၎င်းတို့၏အကောင့်ပိုင်ရှင်က ရွေးချယ်ထားပြီး အတည်မပြုထားပါ။</string>
+    <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
+    <string name="MessageRequestBottomView_accept_request_body">သင်ယုံကြည်ရသူများထံမှသာ တောင်းဆိုမှုများကို လက်ခံပါ။ %1$s သည် စာရင်းသွင်းကုဒ်၊ PIN သို့မဟုတ် ပြန်လည်ရယူရေးကီးအတွက် သင့်ထံ မက်ဆေ့ချ်ပို့ပါသည်။</string>
+    <!-- Bold substring used in accept request body: "Signal will never" -->
+    <string name="MessageRequestBottomView_signal_will_never">Signal သည် မည်သည့်အခါမျှ</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">အဖွဲ့တွင် ပါဝင်မလား။</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -2578,6 +2601,10 @@
     <string name="CallOverflowPopupWindow__lower_hand">လက်ပြန်ချမည်</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">မလုပ်တော့ပါ</string>
+    <!-- A clickable button to share your screen in a call -->
+    <string name="CallOverflowPopupWindow__share_screen">စခရင်ကို မျှဝေပါ</string>
+    <!-- A clickable button to stop sharing your screen in a call -->
+    <string name="CallOverflowPopupWindow__stop_screen_share">ဝေမျှမှု ရပ်ရန်</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">ကြည့်မယ်</string>
 
@@ -2692,6 +2719,8 @@
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">စခရင် မျှဝေမှုကို ကြည့်ရန် ပွတ်ဆွဲပါ</string>
+    <!-- Hint shown to teach the user they can swipe between the grid view and the active speaker view -->
+    <string name="CallToastPopupWindow__swipe_to_view_speaker">စပီကာကိုကြည့်ရန် ပွတ်ဆွဲပါ</string>
 
     <!-- ProxyBottomSheetFragment -->
     <string name="ProxyBottomSheetFragment_proxy_server">ကြားခံဆာဗာ</string>
@@ -2739,8 +2768,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">ဤနံပါတ်ကို မှတ်ပုံတင်ရန် ကြိုးပမ်းမှုများစွာ ဆောင်ရွက်ခဲ့ပါသည်။ %1$s အကြာတွင် ထပ်ကြိုးစားကြည့်ပါ။</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ဝန်ဆောင်မှုနှင့် ဆက်သွယ်၍ မရနိုင်ပါ။ အင်တာနက်ချိတ်ဆက်မှုအား နောက်တစ်ကြိမ် စစ်ဆေး၍ ပြန်လည်ကြိုးစားကြည့်ပါ။</string>
-    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">SMS ဝန်ဆောင်မှုပေးသူနှင့် ပတ်သက်သည့်ပြဿနာများကြောင့် Signal သည် SMS ကုဒ်ကို ပေးပို့၍မရပါ။ နာရီအနည်းငယ်အကြာတွင် ထပ်ကြိုးစားကြည့်ပါ။</string>
+    <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
+    <string name="RegistrationActivity_sms_provider_error">သင့်နံပါတ်သို့ SMS ပို့၍မရပါ။ နာရီအနည်းငယ်အကြာတွင် ထပ်မံကြိုးစားပါ။</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">SMS မှတစ်ဆင့် သင့်ထံ အတည်ပြုကုဒ် ပို့၍ မရနိုင်ခဲ့ပါ။ ၎င်းအစား အော်ဒီယိုကောလ်မှတစ်ဆင့် သင့်ကုဒ်ကို လက်ခံကြည့်ပါ။</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -2968,6 +2997,10 @@
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
+    <!-- Title of dialog shown when debug log prefix generation is unusually slow -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_slow_log_title" translatable="false">Slow log generation</string> -->
+    <!-- Body of dialog shown when debug log prefix generation is unusually slow. %1$d is duration in seconds. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_slow_log_message" translatable="false">Generating the debug log header took %1$d seconds. We should figure out what\&apos;s slowing things down.</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2978,6 +3011,8 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">မှတ်ပုံတင်မှု သော့ပိတ်ထားခြင်း -</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">အဖွဲ့ကို ပြင်ဆင်ပြီး</string>
@@ -3528,7 +3563,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">အသံဖိုင်တွဲ၏ အသံသွင်းချက်ကို လော့ခ်ချပါ</string>
     <string name="conversation_activity__message_could_not_be_sent">မက်ဆေ့ချ်ပို့ လို့မရပါ။ သင်၏ အင်တာနက်လိုင်းကို စစ်၍ ပြန်စမ်းကြည့်ပါ။</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">အဖွဲ့ပြီးဆုံးသွားပြီဖြစ်၍ ဤအဖွဲ့တွင် မက်ဆေ့ချ်များ ပေးပို့ခြင်း၊ လက်ခံခြင်းတို့ကို ပြုလုပ်နိုင်တော့မည်မဟုတ်ပါ။</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">အဖွဲ့ပြီးဆုံးသွားပြီဖြစ်သောကြောင့် ဤလုပ်ဆောင်ချက်ကို လုပ်၍မရနိုင်ပါ။</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3581,24 +3616,24 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">ဤလူကို ဖယ်ရှားထားပါသည်၊ ထိုသူတို့ထံ မက်ဆေ့ချ်ပို့ခြင်းဖြင့် ထိုသူတို့ကို သင့်စာရင်းတွင် ပြန်လည်ပေါင်းထည့်ပေးသွားပါမည်။</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">ရွေးချယ်စရာများ</string>
+    <string name="ConversationUpdateItem_block_report">ဘလော့ခ်လုပ်ရန် သို့မဟုတ် တိုင်ကြားရန်…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">အပ်ဒိတ်လုပ်မည်</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="other">အဖွဲ့အပ်ဒိတ် %1$d ခု</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="other">ချက်(တ်)အပ်ဒိတ် %1$d ခု</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="other">ပျောက်သွားမည့် မက်ဆေ့ချ် %1$d ခု၏ တိုင်မာ ပြောင်းလဲမှု · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="other">%1$d call events</item>
+        <item quantity="other">ခေါ်ဆိုမှု အခြေအနေ %1$d ခု</item>
     </plurals>
 
     <!-- audio_view -->
@@ -3845,11 +3880,11 @@
     <!-- Bottom sheet title when encryption is auto-verified -->
     <string name="EncryptionVerifiedSheet__title_success">ဤချက်(တ်)အတွက် ကုဒ်ပြောင်းဝှက်ခြင်းကို အလိုအလျောက် အတည်ပြုပြီးပါပြီ</string>
     <!-- Bottom sheet body when encryption is auto-verified -->
-    <string name="EncryptionVerifiedSheet__body_success">ဖုန်းနံပါတ်ဖြင့် ချိတ်ဆက်ထားသော အဆက်အသွယ်များအတွက် Signal သည် ကီး ပွင့်လင်းမြင်သာမှုဟုခေါ်သော လုပ်ငန်းစဉ်ကို အသုံးပြု၍ ချိတ်ဆက်မှု လုံခြုံခြင်းရှိမရှိကို အလိုအလျောက် အတည်ပြုနိုင်သည်။ လုံခြုံရေး ပိုမိုမြင့်မားစေရန်အတွက် ယခင်စခရင်ပေါ်ရှိ နံပါတ်များကို နှိုင်းယှဉ်ခြင်း သို့မဟုတ် ၎င်းတို့၏စက်ပေါ်ရှိ ကုဒ်ကို စကင်ဖတ်ခြင်းဖြင့် ဟိုဘက်သည်ဘက်ကုဒ်ပြောင်းဝှက်ခြင်းကို ကိုယ်တိုင်အတည်ပြုပါ။</string>
+    <string name="EncryptionVerifiedSheet__body_success">ဖုန်းနံပါတ်ဖြင့် ချိတ်ဆက်ထားသူများအတွက် Signal သည် ကီး ပွင့်လင်းမြင်သာမှုဟုခေါ်သော လုပ်ငန်းစဉ်ကို အသုံးပြု၍ ချိတ်ဆက်မှု လုံခြုံခြင်းရှိမရှိကို အလိုအလျောက် အတည်ပြုနိုင်သည်။ လုံခြုံရေး ပိုမိုမြင့်မားစေရန်အတွက် ယခင်စခရင်ပေါ်ရှိ နံပါတ်များကို နှိုင်းယှဉ်ခြင်း သို့မဟုတ် ၎င်းတို့၏စက်ပေါ်ရှိ ကုဒ်ကို စကင်ဖတ်ခြင်းဖြင့် ဟိုဘက်သည်ဘက်ကုဒ်ပြောင်းဝှက်ခြင်းကို ကိုယ်တိုင်အတည်ပြုပါ။</string>
     <!-- Bottom sheet title when encryption is no longer auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">ဤချက်(တ်)အတွက် အလိုအလျောက်အတည်ပြုခြင်းကို အသုံးမပြုနိုင်တော့ပါ</string>
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">ဤချက်(တ်)အတွက် အလိုအလျောက်အတည်ပြုခြင်း မရရှိနိုင်ပါ</string>
     <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
-    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal သည် ဤချက်(တ်)အတွက် ကုဒ်ပြောင်းဝှက်ခြင်းကို အလိုအလျောက် အတည်ပြုနိုင်တော့မည် မဟုတ်ပါ။ %1$s သည် ၎င်း၏ဖုန်းနံပါတ်ကို ပြောင်းလိုက်ခြင်းကြောင့် ဖြစ်နိုင်ပါသည်။ ယခင် စခရင်ပေါ်ရှိ နံပါတ်များကို နှိုင်းယှဉ်ခြင်း သို့မဟုတ် ၎င်းတို့၏စက်ပေါ်ရှိ ကုဒ်ကို စကင်ဖတ်ခြင်းဖြင့် ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ခြင်းကို ကိုယ်တိုင်အတည်ပြုပါ။</string>
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal သည် ဤချက်(တ်)အတွက် ကုဒ်ပြောင်းဝှက်ခြင်းကို အလိုအလျောက် အတည်မပြုနိုင်ပါ။ %1$s သည် သူ၏ ဖုန်းနံပါတ် သို့မဟုတ် ဖုန်းနံပါတ် ကိုယ်ပိုင်အချက်ဆက်တင်ကို ပြောင်းလဲလိုက်သောကြောင့် ဖြစ်နိုင်သည်။ ယခင် စခရင်ပေါ်ရှိ နံပါတ်များကို နှိုင်းယှဉ်ခြင်း သို့မဟုတ် ၎င်းတို့၏စက်ပေါ်ရှိ ကုဒ်ကို စကင်ဖတ်ခြင်းဖြင့် ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ခြင်းကို ကိုယ်တိုင်အတည်ပြုပါ။</string>
     <!-- Bottom sheet title when encryption cannot be auto-verified -->
     <string name="EncryptionVerifiedSheet__title_unavailable">ဤချက်(တ်)အတွက် အလိုအလျောက်အတည်ပြုခြင်း မရရှိနိုင်ပါ</string>
     <!-- Bottom sheet body when encryption cannot be auto-verified -->
@@ -4200,7 +4235,7 @@
     <string name="preferences_data_and_storage__never">ဘယ်တော့မှမ</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">ဝိုင်ဖိုင် နှင့် အင်တာနက်</string>
     <string name="preferences_data_and_storage__mobile_data_only">အင်တာနက်</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">မကောင်းသော ချိတ်ဆက်မှုလိုင်းပေါ်တွင် ဒေတာပိုနည်းစွာသုံးလျှင် ခေါ်ဆိုမှုများ ပိုကြည်လင်ကောင်းမွန် နိုင်ပါသည်</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ဒေတာလျှော့သုံးခြင်းဖြင့် လိုင်းမကောင်းသော ကွန်ရက်များပေါ်တွင် ဖုန်းခေါ်ဆိုမှု အရည်အသွေးကို ပိုမိုကောင်းမွန်စေနိုင်ပါသည်။</string>
     <string name="preferences_notifications__in_chat_sounds">ချက်(တ်)အတွင်း အသံများ</string>
     <string name="preferences_notifications__show">ပြပါ</string>
     <string name="preferences_notifications__ringtone">ဖုန်းသံစဉ်များ</string>
@@ -5538,6 +5573,29 @@
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">အိုကေ</string>
 
+    <!-- ChangeNumberPostRegistrationWaitSheet: title of the sheet shown when the user tries to change number too soon after registering -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__title">နံပါတ်ပြောင်း၍မရပါ</string>
+    <!-- ChangeNumberPostRegistrationWaitSheet: explanation body shown above the wait-time line -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__body">မကြာသေးမီကပင် ဤအကောင့်ကို မှတ်ပုံတင်ခဲ့သောကြောင့် ဖုန်းနံပါတ်ကို ယခုပြောင်းလဲ၍မရပါ။ ခဏတာစောင့်ဆိုင်းခြင်းက သင့်အကောင့်ကို ကာကွယ်ပေးပါသည်။</string>
+    <!-- ChangeNumberPostRegistrationWaitSheet: remaining-wait line when wait is one hour or more, %1$d is the number of hours, rounded up -->
+    <plurals name="ChangeNumberPostRegistrationWaitSheet__try_again_in_hours">
+        <item quantity="other">%1$d နာရီအကြာတွင် ထပ်စမ်းကြည့်ပါ။</item>
+    </plurals>
+    <!-- ChangeNumberPostRegistrationWaitSheet: remaining-wait line when wait is under one hour, %1$d is the number of minutes, rounded up -->
+    <plurals name="ChangeNumberPostRegistrationWaitSheet__try_again_in_minutes">
+        <item quantity="other">%1$d နာရီအကြာတွင် ထပ်စမ်းကြည့်ပါ။</item>
+    </plurals>
+    <!-- ChangeNumberPostRegistrationWaitSheet: dismiss button -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__ok">အိုကေ</string>
+    <!-- ChangeNumberEnterCodeFragment: rate-limit dialog message when retry-after is one hour or more, %1$d is hours rounded up -->
+    <plurals name="ChangeNumberEnterCodeFragment__too_many_attempts_try_again_in_hours">
+        <item quantity="other">သင်သည် အကြိမ်များစွာ ကြိုးစားပြီးပါပြီ၊ %1$d နာရီအကြာတွင် ထပ်စမ်းကြည့်ပါ။</item>
+    </plurals>
+    <!-- ChangeNumberEnterCodeFragment: rate-limit dialog message when retry-after is under one hour, %1$d is minutes rounded up -->
+    <plurals name="ChangeNumberEnterCodeFragment__too_many_attempts_try_again_in_minutes">
+        <item quantity="other">သင်သည် အကြိမ်များစွာ ကြိုးစားပြီးပါပြီ၊ %1$d နာရီအကြာတွင် ထပ်စမ်းကြည့်ပါ။</item>
+    </plurals>
+
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">နံပါတ် ပြောင်းရန်</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">သင့်နံပါတ်အဟောင်း</string>
@@ -5608,35 +5666,35 @@
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">သင့်ချက်(တ်)အားလုံး၏ စက်ဖြင့်ဖတ်နိုင်သော JSON မိတ္တူကို ထုတ်ယူပါ။ ပျောက်သွားမည့် မက်ဆေ့ချ်များကို ထုတ်ယူမည်မဟုတ်ပါ။</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">ချက်(တ်)မှတ်တမ်းကို ထုတ်ယူရန် လော့ခ်ဖွင့်ပါ</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">Authentication failed</string>
+    <string name="ChatsSettingsFragment__authentication_failed">စစ်မှန်ကြောင်းအတည်ပြုခြင်း မအောင်မြင်ပါ</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">ထုတ်ယူမှုကို ပယ်ဖျက်နေသည်…</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">ချက်(တ်)မှတ်တမ်းကို ထုတ်ယူမလား။</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">သတိထားပါ။</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">ဤဖိုင်ကို မည်သူနှင့်မျှ မမျှဝေပါနှင့်။ သင့်ချက်(တ်)မှတ်တမ်းကို သင့်စက်တွင် သိမ်းဆည်းမည်ဖြစ်ပြီး သင့်စက်၏ ခွင့်ပြုချက်များပေါ်မူတည်၍ အခြားအက်ပ်များက ဝင်ရောက်ကြည့်ရှုနိုင်ပါသည်။ မီဒီယာဖြင့် ထုတ်ယူလျှင် ဖိုင်အရွယ်အစား ပိုကြီးသွားပါလိမ့်မည်။</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">မီဒီယာဖြင့် ထုတ်ယူမည်</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">မီဒီယာမပါဘဲ ထုတ်ယူမည်</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">ဖိုင်တွဲတစ်ခုရွေးချယ်ပါ</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">သင့်စက်၏ ထားသိုမှုထဲတွင် ချက်(တ်)မှတ်တမ်းကို သိမ်းဆည်းမည့် ဖိုင်တွဲတစ်ခုကို ရွေးချယ်ပါ။</string>
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">ဖိုင်တွဲတစ်ခုရွေးချယ်ပါ</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">ချက်(တ်) ထုတ်ယူမှု ပြီးပါပြီ</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">သတိထားပါ</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">သင်ထုတ်ယူထားသော ချက်(တ်)ဖိုင် သိမ်းဆည်းထားသည့် နေရာကို မည်သူနှင့်မျှ မမျှဝေပါနှင့်။ သင့်ဖုန်း၏ ခွင့်ပြုချက်များပေါ်မူတည်၍ အခြားအက်ပ်များက ၎င်းကိုဝင်ရောက် အသုံးပြုနိုင်ပါသည်။</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -5821,6 +5879,8 @@
     <string name="HelpSettingsFragment__support_center">အကူအညီရယူရေး စင်တာ</string>
     <string name="HelpSettingsFragment__contact_us">ကျွန်ုပ်တို့ကိုဆက်သွယ်ရန်</string>
     <string name="HelpSettingsFragment__version">ဗားရှင်း</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">ကလစ်ဘုတ်သို့ ကူးယူပြီး</string>
     <string name="HelpSettingsFragment__debug_log">ပြစ်ချက်မှတ်တမ်း</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">လိုင်စင်များ</string>
@@ -5835,11 +5895,19 @@
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">မီဒီယာ အရည်အသွေး ပို့ပြီး</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">အရည်အသွေးမြင့်သည့် မီဒီယာဖိုင်ကို ပို့လျှင် ဒေတာ ပိုသုံးပါလိမ့်မည်။</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">အသံမက်ဆေ့(ချ်)နှင့် စတစ်ကာများ (%1$s အောက်) ကို အမြဲတမ်း အလိုအလျောက် ဒေါင်းလုဒ်လုပ်ပါသည်။</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">မြင့်သော</string>
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">အသင့်အတင့်</string>
     <string name="DataAndStorageSettingsFragment__calls">ဖုန်းခေါ်ဆိုမှုများ</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">နောက်ခံတွင် ချိတ်ဆက်ထားရန်</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">နောက်ခံတွင် ရှိနေစဉ် ချိတ်ဆက်နေခြင်းသည် ဘက်ထရီအသုံးပြုမှုကို မြင့်တက်စေနိုင်သည်။ ၎င်းသည် စက်အများစုအတွက် မလိုအပ်ပါ။ အသိပေးချက် ပြဿနာများ ကြုံတွေ့နေရမှသာ ၎င်းကိုဖွင့်ပါ။</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">ဖွင့်မည်</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -5977,7 +6045,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">အဖွဲ့ကို အဆုံးသတ်မည်</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">ဤအဖွဲ့ ပြီးဆုံးသွားပါပြီ။</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">ချက်(တ်)ကို မှတ်တမ်းတင်ရန်</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6321,9 +6389,9 @@
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">လှူဒါန်းမှုကို အတည်ပြုနိုင်ခြင်းမရှိပါ</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">သင်၏ တစ်လလျှင် %1$s လှူဒါန်းမှုကို အတည်မပြုနိုင်ပါ။ သင်၏ iDEAL ငွေပေးချေမှုကို အတည်ပြုရန် သင့်ဘဏ်အက်ပ်ကို စစ်ဆေးပါ။</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero">သင်၏ တစ်လလျှင် %1$s လှူဒါန်းမှုကို အတည်မပြုနိုင်ပါ။ iDEAL | Wero ငွေပေးချေမှုကို အတည်ပြုရန် သင့်ဘဏ်အက်ပ်ကို စစ်ဆေးပါ။</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">သင်၏ %1$s တစ်ကြိမ်စာ လှူဒါန်းမှုကို အတည်မပြုနိုင်ပါ။ သင်၏ iDEAL ငွေပေးချေမှုကို အတည်ပြုရန် သင့်ဘဏ်အက်ပ်ကို စစ်ဆေးပါ။</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero">သင်၏ တစ်ကြိမ်စာ လှူဒါန်းမှု %1$s ကို အတည်မပြုနိုင်ပါ။ iDEAL | Wero ငွေပေးချေမှုကို အတည်ပြုရန် သင့်ဘဏ်အက်ပ်ကို စစ်ဆေးပါ။</string>
 
     <string name="Boost__enter_custom_amount">စိတ်ကြိုက်ပမာဏကို ရိုက်ထည့်ပါ</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -6452,7 +6520,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">ကွန်ရက်ချို့ယွင်းချက်ကြောင့် သင့်လှူဒါန်းမှုကို မပေးပို့နိုင်ပါ။ ချိတ်ဆက်မှုစစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">သင့် iDEAL လှူဒါန်းမှုကို စီမံလုပ်ဆောင်၍ မရနိုင်ပါ။ အခြားသော ငွေပေးချေနည်းကို သုံးကြည့်ပါ သို့မဟုတ် နောက်ထပ်အချက်အလက်များအတွက် သင့်ဘဏ်ကို ဆက်သွယ်ပါ။</string>
+    <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">သင့် iDEAL | Wero လှူဒါန်းမှုကို လုပ်ဆောင်၍မရပါ။ အခြားသော ငွေပေးချေနည်းကို သုံးကြည့်ပါ သို့မဟုတ် နောက်ထပ်အချက်အလက်များအတွက် သင့်ဘဏ်ကို ဆက်သွယ်ပါ။</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$s ကိုယ်စား လှူဒါန်းမှု</string>
@@ -6680,12 +6748,6 @@
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">ဖွင့်မည်</string>
 
-    <!-- Description shown for the Signal Release Notes channel -->
-    <string name="ReleaseNotes__signal_release_notes_and_news">Signal ပြန်ကြားရေး မှတ်စုများနှင့် သတင်းများ</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">Signal မှ တစ်ခုတည်းသော တရားဝင်ချက်(တ်)ဖြစ်သည်။</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">သတင်းများနှင့် ထုတ်ဝေမှုမှတ်ချက်များကို အပ်ဒိတ်ရယူလိုက်ပါ။</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">Signal မှ တစ်ခုတည်းသော တရားဝင်ချက်(တ်)ဖြစ်သည်</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
@@ -6785,7 +6847,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">ဤစတိုရီကို သင့်အတွက်နှင့် ၎င်းကို လက်ခံရရှိသူတိုင်းအတွက် ဖျက်ပါမည်။</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">အဖွဲ့ပြီးဆုံးသွားပြီဖြစ်၍ သင့်အတွက်သာ ဖျက်ပစ်ပါမည်။</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">သိမ်း၍ မရနိုင်ပါ</string>
 
@@ -7360,7 +7422,7 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">သင့်လှူဒါန်းမှုကို လုပ်ဆောင်နေဆဲ ဖြစ်ပါသည်။ သင့်ချိတ်ဆက်မှုအပေါ် မူတည်၍ မိနစ်အနည်းငယ် ကြာနိုင်ပါသည်။ နောက်ထပ်လှူဒါန်းမှု မပြုလုပ်မီ ထိုငွေပေးချေမှု ပြီးစီးသည်အထိ စောင့်ဆိုင်းပေးပါ။</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">သင့် iDEAL လှူဒါန်းမှုကို စီမံလုပ်ဆောင်နေဆဲ ဖြစ်ပါသည်။ အခြားလှူဒါန်းမှုတစ်ခု မပြုလုပ်မီ သင့်ငွေပေးချေမှုကို အတည်ပြုရန် သင့်ဘဏ်အက်ပ်ကို စစ်ဆေးပါ။</string>
+    <string name="DonateToSignalFragment__your_ideal_wero_payment_is_still_processing">သင့် iDEAL | Wero လှူဒါန်းမှုကို လုပ်ဆောင်နေဆဲဖြစ်သည်။ အခြားလှူဒါန်းမှုတစ်ခု မပြုလုပ်မီ သင့်ငွေပေးချေမှုကို အတည်ပြုရန် သင့်ဘဏ်အက်ပ်ကို စစ်ဆေးပါ။</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">လှူဒါန်းမည့်ပမာဏ များလွန်းနေပါသည်</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -7389,11 +7451,13 @@
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">မိတ်ဆွေတစ်ယောက်အတွက် လှူရန်</string>
     <!-- Button label for paying with iDEAL -->
-    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+    <string name="GatewaySelectorBottomSheet__ideal_wero">iDEAL | Wero</string>
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">လှူဒါန်းမှုကို အတည်ပြုရန် Signal မှ ထွက်ပါမည်လား။</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">အတည်ပြုပြီးသောအခါ သင်၏လှူဒါန်းမှုကို အပြီးသတ်ဆောင်ရွက်ရန် Signal သို့ ပြန်သွားပါ။</string>
+    <!-- Dialog message shown when leaving Signal to complete a donation in an external app. Placeholder is the resolved app name (e.g. a banking app). -->
+    <string name="ExternalNavigationHelper__once_payment_confirmed_in_app">သင့်ကို %1$s သို့ ပို့ပေးပါမည်။ အတည်ပြုပြီးသောအခါ သင်၏လှူဒါန်းမှုကို အပြီးသတ်ဆောင်ရွက်ရန် Signal သို့ ပြန်သွားပါ။</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7455,7 +7519,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">သင့်ဘဏ်ကို ရွေးချယ်ပါ</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">iDEAL ဖြင့် သင်၏ လှူဒါန်းမှုကို အတည်ပြုပါ</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">iDEAL | Wero ဖြင့် သင်၏လှူဒါန်းမှုကို အတည်ပြုပါ</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">သင်၏ ထပ်တလဲလဲလှူဒါန်းမှုကို သတ်မှတ်ရန်အတွက် သင့်ဘဏ်တွင် €0,01 ကောက်ခံမှုကို အတည်ပြုရန် ဆက်လုပ်မည်ကို နှိပ်ပါ။ ၎င်းသည် အလိုအလျောက် ပြန်အမ်းပေးမည်ဖြစ်ပြီး သင်၏ တစ်လလျှင် %1$s လှူဒါန်းမှုကို သင့်အကောင့်မှ ငွေထုတ်ခွင့်ပြုပါမည်။</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7618,6 +7682,8 @@
     <string name="CallLogAdapter__incoming">အဝင်</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">အထွက်</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">မဖြေဆိုခဲ့သော ကောလ်</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">လွတ်သွားသည်</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -7699,6 +7765,8 @@
     <string name="CallLogFragment__get_started_by_calling_a_friend">သူငယ်ချင်းတစ်ယောက်ကို ခေါ်ဆိုခြင်းဖြင့် စတင်လိုက်ပါ။</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">သင် ဖန်တီးထားသော ကောလ် လင့်ခ်များသည် ၎င်းတို့ကို ရရှိထားသူများအတွက် အလုပ်လုပ်တော့မည်မဟုတ်ပါ။</string>
+    <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">သင်သည် ဤအဖွဲ့၏ အဖွဲ့ဝင် မဟုတ်တော့ပါ။</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -8008,6 +8076,15 @@
     <string name="UseNewOnDeviceBackups__upgrade">အဆင့်မြှင့်တင်ပါ</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">အခုမဟုတ်သေးပါ</string>
+
+    <!-- Title of a megaphone shown to prompt the user to open Signal on their primary device -->
+    <string name="InactivePrimary__title">သင့်ဖုန်းတွင် Signal ကို ဖွင့်ရန်</string>
+    <!-- Body of a megaphone shown to prompt the user to open Signal on their primary device -->
+    <string name="InactivePrimary__body">သင့်အကောင့်ကို အသက်ဝင်နေစေရန်အတွက် သင့်ပင်မစက်တွင် Signal ကိုဖွင့်ပါ။</string>
+    <!-- Button of a megaphone shown to prompt the user to open Signal on their primary device that will navigate to a support page -->
+    <string name="InactivePrimary__learn_more">ပိုမိုလေ့လာရန်</string>
+    <!-- Button of a megaphone shown to prompt the user to open Signal on their primary device that will snooze the megaphone -->
+    <string name="InactivePrimary__got_it">ရပြီ</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
     <string name="OnDeviceBackupsScreen__to_restore_a_backup">"ဘက်ခ်အပ်ကို ပြန်ယူလိုလျှင် Signal မိတ္တူအသစ်ကို ထည့်သွင်းပါ။ အက်ပ်ကိုဖွင့်၍ ဘက်ခ်အပ်ကိုပြန်လည်ရယူပါကို နှိပ်ပြီး ဘက်ခ်အပ်ဖိုင်ကို ရှာဖွေရွေးပေးပါ။"</string>
@@ -8431,14 +8508,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">အဖွဲ့ကို အဆုံးသတ်နေသည်…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">အဖွဲ့ကို အဆုံးသတ်၍မရပါ။ သင့်အင်တာနက်ချိတ်ဆက်မှုကို ပြန်စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">ထပ်မံကြိုးစားမည်</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s မှ အဖွဲ့ကို အဆုံးသတ်လိုက်သည်</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">အဖွဲ့ ပြီးဆုံးသွားပါပြီ။</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">ဤအဖွဲ့တွင် မက်ဆေ့ချ်များ သို့မဟုတ် ဖုန်းခေါ်ဆိုမှုများ ပေးပို့ခြင်းနှင့် လက်ခံခြင်းတို့ကို သင်ပြုလုပ်နိုင်တော့မည်မဟုတ်ပါ။</string>
 
@@ -8804,7 +8881,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">၎င်းသည် သင့်စက်ပေါ်ရှိ ပြန်လည်ရယူရေးကီးနှင့် အတူတူပင်ဖြစ်သည်။</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">၎င်းသည် Signal လုံခြုံရေးဘက်ခ်အပ် ပြန်လည်ရယူရေးကီးနှင့် အတူတူပင်ဖြစ်သည်။</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">ဤကီးကို အသုံးပြုပါ-</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9117,11 +9194,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">ပံ့ပိုးရေးသို့ ဆက်သွယ်ရန်</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">စက်တွင်းရှိ ဘက်ခ်အပ်ကို ဖွင့်မည်လား။</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">စက်တွင်းရှိ ဘက်ခ်အပ်ကို ဆက်လက်အသုံးပြုရန်အတွက် ဤအကောင့်တွင် ဘက်ခ်အပ်ကိုဖွင့်ပြီး သင်၏ ပြန်လည်ရယူရေးကီးအသစ်ကို မှတ်တမ်းတင်ရန် လိုအပ်ပါသည်။ ၎င်းကို ဆက်တင် &gt; ဘက်ခ်အပ်မှ အချိန်မရွေး လုပ်ဆောင်နိုင်ပါသည်။</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">စက်တွင်းရှိ ဘက်ခ်အပ်များကို ဆက်လက်အသုံးပြုရန်အတွက် ဤအကောင့်ကိုဖွင့်ထားရန် လိုအပ်ပါသည်။ ၎င်းကို ဆက်တင် &gt; ဘက်ခ်အပ်မှ အချိန်မရွေး လုပ်ဆောင်နိုင်ပါသည်။</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">ယခုဖွင့်မည်</string>
@@ -9604,13 +9681,43 @@
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
-    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__title">ဘက်ခ်အပ်ကို ပြန်လည်ရယူ၍မရပါ</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့ပြီး သင်၏ ဘက်ခ်အပ်ကို ပြန်လည်ရယူ၍မရပါ။ သင့် ဘက်ခ်အပ်ကို ပြန်လည်ရယူနေစဉ်တွင် ဘက်ခ်အပ်ဖိုင်တွဲကို သင့်စက်ပေါ်တွင် ရွှေ့လိုက်သောကြောင့် ဖြစ်နိုင်သည်။</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">ထပ်ကြိုးစားရန် ဤစက်တွင် Signal ကို ဖြုတ်ပြီး ပြန်လည်ထည့်သွင်းပါ၊ ထို့နောက် \"ပြန်လည်ရယူရန် သို့မဟုတ် လွှဲပြောင်းရန်\" ကို ရွေးချယ်ပါ။</string>
+
+    <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
+    <string name="VerificationCodeRequestedBottomSheet__title">အတည်ပြုကုဒ် တောင်းဆိုထားပါသည်</string>
+    <!-- First paragraph of the body of the verification code requested sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__body_1">အတည်ပြုကုဒ်ကို မည်သူကိုမျှ မပေးပါနှင့်။ Signal သည် ၎င်းအတွက်မည်သည့်အခါမျှ မက်ဆေ့ချ်ပို့မည်မဟုတ်ပါ။ Signal အဖြစ်ဟန်ဆောင်ထားသူထံမှ မက်ဆေ့ချ်တစ်စောင် လက်ခံရရှိပါက ၎င်းသည် လိမ်လည်မှုတစ်ခုဖြစ်သည်။</string>
+    <!-- Second paragraph of the body of the verification code requested sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__body_2">သင်ကိုယ်တိုင် ကုဒ်ကို တောင်းဆိုပါက ဤမက်ဆေ့ချ်ကို ဘေးကင်းစွာ လျစ်လျူရှုနိုင်ပါသည်။</string>
+    <!-- Button on the verification code requested sheet that opens the safety tips screen -->
+    <string name="VerificationCodeRequestedBottomSheet__safety_tips">ဘေးကင်းရေး အကြံပြုချက်များ</string>
+    <!-- Button on the verification code requested sheet that dismisses the sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__ok">အိုကေ</string>
+    <!-- Subtitle on the verification code requested sheet showing the time the code was requested followed by the relative day. %1$s is the time (e.g. "3:25 PM"), %2$s is the relative day (e.g. "Today", "Yesterday", "Jan 15") -->
+    <string name="VerificationCodeRequestedBottomSheet__time_with_day">%1$s %2$s</string>
+
+    <!-- Title of the safety tips screen within the verification code requested sheet -->
+    <string name="SafetyTipsBottomSheet__title">ဘေးကင်းရေး အကြံပြုချက်များ</string>
+    <!-- Title of the first safety tip: don\'t respond to chats claiming to be Signal -->
+    <string name="SafetyTipsBottomSheet__tip_1_title">Signal မှ ချက်(တ်)များကို မတုံ့ပြန်ပါနှင့်</string>
+    <!-- Body of the first safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_1_body">Signal က သင့် စာရင်းသွင်းကုဒ်၊ PIN သို့မဟုတ် ပြန်လည်ရယူရေးကီးကို မည်သည့်အခါမျှ မက်ဆေ့ချ်ပို့မည်မဟုတ်ပါ။ Signal ဟန်ဆောင်ထားသည့် ချက်(တ်)ကို စာမပြန်ပါနှင့်။</string>
+    <!-- Title of the second safety tip: keep your verification code safe -->
+    <string name="SafetyTipsBottomSheet__tip_2_title">သင့် အတည်ပြုကုဒ်ကို လုံခြုံအောင်ထားပါ</string>
+    <!-- Body of the second safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_2_body">သင်မတောင်းဆိုထားသော အတည်ပြုကုဒ်ကို လက်ခံရရှိပါက တစ်စုံတစ်ယောက်သည် သင့်အကောင့်သို့ ဝင်ရောက်ရန် ကြိုးစားနေခြင်း ဖြစ်နိုင်သည်။ သင်၏ကုဒ်ကို မျှဝေခြင်းမပြုပါနှင့်။</string>
+    <!-- Title of the third safety tip: enable registration lock -->
+    <string name="SafetyTipsBottomSheet__tip_3_title">အကောင့်ဆက်တင်တွင် မှတ်ပုံတင်ခြင်းလော့ခ်ဖွင့်ပါ</string>
+    <!-- Body of the third safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_3_body">Signal တွင် မှတ်ပုံတင်သည့်အခါ အတည်ပြုကုဒ်အပြင် သင့် Signal PIN ကို ထည့်သွင်းပေးခြင်းဖြင့် သင့်အကောင့်ကို ကာကွယ်ပါ။</string>
+    <!-- Button on the safety tips screen that opens account settings -->
+    <string name="SafetyTipsBottomSheet__open_account_settings">အကောင့်ဆက်တင် ဖွင့်ရန်</string>
 
     <!-- EOF -->
 </resources>

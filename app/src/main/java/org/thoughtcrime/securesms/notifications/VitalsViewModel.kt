@@ -53,23 +53,26 @@ class VitalsViewModel(private val context: Application) : AndroidViewModel(conte
     return Single.fromCallable {
       val deviceSpecificCondition = SlowNotificationHeuristics.getDeviceSpecificShowCondition()
 
-      if (deviceSpecificCondition == ShowCondition.ALWAYS && SlowNotificationHeuristics.shouldShowDeviceSpecificDialog()) {
+      val shouldShowDeviceSpecificDialog = SlowNotificationHeuristics.shouldShowDeviceSpecificDialog()
+      val havingDelayedNotifications = SlowNotificationHeuristics.isHavingDelayedNotifications()
+
+      if (deviceSpecificCondition == ShowCondition.ALWAYS && shouldShowDeviceSpecificDialog) {
         return@fromCallable State.PROMPT_SPECIFIC_BATTERY_SAVER_DIALOG
       }
 
-      if (deviceSpecificCondition == ShowCondition.HAS_BATTERY_OPTIMIZATION_ON && SlowNotificationHeuristics.shouldShowDeviceSpecificDialog() && SlowNotificationHeuristics.isBatteryOptimizationsOn()) {
+      if (deviceSpecificCondition == ShowCondition.HAS_BATTERY_OPTIMIZATION_ON && shouldShowDeviceSpecificDialog && SlowNotificationHeuristics.isBatteryOptimizationsOn()) {
         return@fromCallable State.PROMPT_SPECIFIC_BATTERY_SAVER_DIALOG
       }
 
-      if (deviceSpecificCondition == ShowCondition.HAS_SLOW_NOTIFICATIONS && SlowNotificationHeuristics.shouldShowDeviceSpecificDialog() && SlowNotificationHeuristics.isHavingDelayedNotifications()) {
+      if (deviceSpecificCondition == ShowCondition.HAS_SLOW_NOTIFICATIONS && shouldShowDeviceSpecificDialog && havingDelayedNotifications) {
         return@fromCallable State.PROMPT_SPECIFIC_BATTERY_SAVER_DIALOG
       }
 
-      if (SlowNotificationHeuristics.isHavingDelayedNotifications() && SlowNotificationHeuristics.shouldPromptBatterySaver()) {
+      if (havingDelayedNotifications && SlowNotificationHeuristics.shouldPromptBatterySaver() && SlowNotificationHeuristics.isBatteryOptimizationsOn()) {
         return@fromCallable State.PROMPT_GENERAL_BATTERY_SAVER_DIALOG
       }
 
-      if (SlowNotificationHeuristics.isHavingDelayedNotifications() && SlowNotificationHeuristics.shouldPromptUserForDelayedNotificationLogs()) {
+      if (havingDelayedNotifications && SlowNotificationHeuristics.shouldPromptUserForDelayedNotificationLogs()) {
         return@fromCallable State.PROMPT_DEBUGLOGS_FOR_NOTIFICATIONS
       }
 

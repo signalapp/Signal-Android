@@ -63,10 +63,10 @@ public class PreJoinActionProcessor extends DeviceAwareActionProcessor {
   protected @NonNull WebRtcServiceState handleSetEnableVideo(@NonNull WebRtcServiceState currentState, boolean enable) {
     Log.i(TAG, "handleSetEnableVideo(): Changing for pre-join call.");
 
-    currentState.getVideoState().getCamera().setEnabled(enable);
+    currentState.getVideoState().getRouter().setEnabled(enable);
     return currentState.builder()
                        .changeLocalDeviceState()
-                       .cameraState(currentState.getVideoState().getCamera().getCameraState())
+                       .cameraState(currentState.getVideoState().getRouter().getCameraState())
                        .build();
   }
 

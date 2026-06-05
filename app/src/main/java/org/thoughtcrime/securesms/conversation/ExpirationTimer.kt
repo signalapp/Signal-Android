@@ -41,6 +41,10 @@ class ExpirationTimer(
   }
 
   fun calculateProgress(): Float {
+    if (startedAt == 0L) {
+      return 0f
+    }
+
     val progressed = System.currentTimeMillis() - startedAt
     val percentComplete = progressed.toFloat() / expiresIn.toFloat()
 

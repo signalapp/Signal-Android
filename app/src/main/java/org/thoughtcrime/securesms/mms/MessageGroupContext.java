@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.mms;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
-
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
@@ -25,7 +23,11 @@ import org.whispersystems.signalservice.internal.push.GroupContextV2;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Represents either a GroupV1 or GroupV2 encoded context.
@@ -128,13 +130,13 @@ public final class MessageGroupContext {
     public @NonNull List<RecipientId> getMembersListExcludingSelf() {
       RecipientId selfId = Recipient.self().getId();
 
-      return Stream.of(groupContext.members)
+      return groupContext.members.stream()
                    .filter(m -> SignalE164Util.isPotentialE164(m.e164))
                    .map(m -> m.e164)
-                   .withoutNulls()
+                   .filter(Objects::nonNull)
                    .map(RecipientId::fromE164)
-                   .filterNot(selfId::equals)
-                   .toList();
+                   .filter(other -> !selfId.equals(other))
+                   .collect(Collectors.toList());
     }
   }
 
@@ -175,9 +177,8 @@ public final class MessageGroupContext {
                        DecryptedGroupUtil.removedMembersServiceIdList(groupChange),
                        DecryptedGroupUtil.removedPendingMembersServiceIdList(groupChange),
                        DecryptedGroupUtil.removedRequestingMembersServiceIdList(groupChange))
-                   .flatMap(Stream::of)
-                   .filterNot(ServiceId::isUnknown)
-                   .toList();
+                   .flatMap(Collection::stream)
+                   .filter(serviceId -> !serviceId.isUnknown()).collect(Collectors.toList());
     }
 
     @Override

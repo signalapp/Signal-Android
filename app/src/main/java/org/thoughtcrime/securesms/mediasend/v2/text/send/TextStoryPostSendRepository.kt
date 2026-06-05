@@ -32,7 +32,7 @@ class TextStoryPostSendRepository {
       val outputStream = ByteArrayOutputStream()
       bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
       bitmap.recycle()
-      BlobProvider.getInstance().forData(outputStream.toByteArray()).createForSingleUseInMemory()
+      BlobProvider.getInstance().forData(outputStream.toByteArray()).createForSingleSessionInMemory()
     }.subscribeOn(Schedulers.computation())
   }
 

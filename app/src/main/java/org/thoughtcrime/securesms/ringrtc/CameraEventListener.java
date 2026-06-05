@@ -11,4 +11,5 @@ public interface CameraEventListener {
   void onFullyInitialized();
   void onCameraSwitchCompleted(@NonNull CameraState newCameraState);
   void onCameraStopped();
+  void onScreenShareStopped();
 }

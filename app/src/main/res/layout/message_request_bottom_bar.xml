@@ -5,6 +5,24 @@
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
     tools:viewBindingIgnore="true">
 
+    <TextView
+        android:id="@+id/message_request_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:paddingTop="16dp"
+        android:textAppearance="@style/Signal.Text.LabelLarge"
+        android:textColor="@color/signal_colorOnWarning"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/message_request_question"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="⚠ Review requests carefully"
+        tools:visibility="visible" />
+
     <org.thoughtcrime.securesms.util.views.LearnMoreTextView
         android:id="@+id/message_request_question"
         android:layout_width="match_parent"
@@ -13,7 +31,6 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:paddingTop="16dp"
         android:textAppearance="@style/Signal.Text.BodySmall"
         app:layout_constraintBottom_toTopOf="@id/message_request_button_layout"
         app:layout_constraintEnd_toEndOf="parent"

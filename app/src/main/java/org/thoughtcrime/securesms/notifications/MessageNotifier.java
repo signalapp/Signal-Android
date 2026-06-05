@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
@@ -21,13 +22,14 @@ public interface MessageNotifier {
   void clearVisibleThread(@NonNull ConversationId conversationId);
   void setVisibleBubbleThread(@Nullable ConversationId conversationId);
   void clearVisibleBubbleThread();
-  void setLastDesktopActivityTimestamp(long timestamp);
   void notifyMessageDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId);
   void notifyStoryDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId);
   void notifyProofRequired(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId);
   void cancelDelayedNotifications();
   void updateNotification(@NonNull Context context);
   void updateNotification(@NonNull Context context, @NonNull ConversationId conversationId);
+
+  @WorkerThread
   void forceBubbleNotification(@NonNull Context context, @NonNull ConversationId conversationId);
   void addStickyThread(@NonNull ConversationId conversationId, long earliestTimestamp);
   void removeStickyThread(@NonNull ConversationId conversationId);

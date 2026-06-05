@@ -100,6 +100,8 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
       setCondensedMode(ConversationItemDisplayMode.Condensed(ConversationItemDisplayMode.MessageMode.SCHEDULED))
     }
 
+    val stickyHeaders = StickyHeaderDecoration(messageAdapter, false, false, ConversationAdapter.HEADER_TYPE_INLINE_DATE)
+
     val list: RecyclerView = view.findViewById<RecyclerView>(R.id.scheduled_list).apply {
       layoutManager = SmoothScrollingLinearLayoutManager(requireContext(), true)
       adapter = messageAdapter
@@ -107,7 +109,7 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
 
       doOnNextLayout {
         // Adding this without waiting for a layout pass would result in an indeterminate amount of padding added to the top of the view
-        addItemDecoration(StickyHeaderDecoration(messageAdapter, false, false, ConversationAdapter.HEADER_TYPE_INLINE_DATE))
+        addItemDecoration(stickyHeaders)
       }
     }
 
@@ -127,6 +129,9 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
         } else if (!list.canScrollVertically(1)) {
           list.layoutManager?.scrollToPosition(0)
         }
+
+        stickyHeaders.invalidateCache()
+        list.invalidateItemDecorations()
       }
       recyclerViewColorizer.setChatColors(conversationRecipient.chatColors)
     }
@@ -145,7 +150,7 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
     val callback = GiphyMp4ProjectionRecycler(holders)
 
     GiphyMp4PlaybackController.attach(list, callback, maxPlayback)
-    list.addItemDecoration(GiphyMp4ItemDecoration(callback) {}, 0)
+    list.addItemDecoration(GiphyMp4ItemDecoration(callback), 0)
 
     return callback
   }

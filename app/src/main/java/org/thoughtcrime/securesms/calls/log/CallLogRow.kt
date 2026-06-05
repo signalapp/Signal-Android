@@ -41,7 +41,7 @@ sealed class CallLogRow {
     val children: Set<Long>,
     val searchQuery: String?,
     val callLinkPeekInfo: CallLinkPeekInfo?,
-    val canUserBeginCall: Boolean,
+    val canUserBeginCall: CanStartCall,
     override val id: Id = Id.Call(children)
   ) : CallLogRow()
 
@@ -110,5 +110,12 @@ sealed class CallLogRow {
         }
       }
     }
+  }
+
+  enum class CanStartCall {
+    ALLOWED,
+    ADMIN_ONLY,
+    NOT_A_MEMBER,
+    GROUP_TERMINATED
   }
 }

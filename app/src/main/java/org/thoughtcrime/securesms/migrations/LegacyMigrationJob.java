@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MessageTable.MmsReader;
@@ -23,7 +22,6 @@ import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -98,15 +96,6 @@ public class LegacyMigrationJob extends MigrationJob {
   void performMigration() throws RetryLaterException {
     Log.i(TAG, "Running background upgrade..");
     int          lastSeenVersion = VersionTracker.getLastSeenVersion(context);
-    MasterSecret masterSecret    = KeyCachingService.getMasterSecret(context);
-    
-    if (lastSeenVersion < SQLCIPHER && masterSecret != null) {
-      SignalDatabase.onApplicationLevelUpgrade(context, masterSecret, lastSeenVersion, (progress, total) -> {
-        Log.i(TAG, "onApplicationLevelUpgrade: " + progress + "/" + total);
-      });
-    } else if (lastSeenVersion < SQLCIPHER) {
-      throw new RetryLaterException();
-    }
 
     if (lastSeenVersion < NO_V1_VERSION) {
       File v1sessions = new File(context.getFilesDir(), "sessions");

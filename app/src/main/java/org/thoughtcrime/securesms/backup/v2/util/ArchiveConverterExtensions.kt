@@ -87,7 +87,7 @@ fun FilePointer?.toLocalAttachment(
     AttachmentType.TRANSIT -> {
       val signalAttachmentPointer = SignalServiceAttachmentPointer(
         cdnNumber = locatorInfo.transitCdnNumber ?: Cdn.CDN_0.cdnNumber,
-        remoteId = SignalServiceAttachmentRemoteId.from(locatorInfo.transitCdnKey!!),
+        remoteId = SignalServiceAttachmentRemoteId.from(locatorInfo.transitCdnKey!!, locatorInfo.transitCdnNumber ?: Cdn.CDN_0.cdnNumber),
         contentType = contentType,
         key = locatorInfo.key.toByteArray(),
         size = Optional.ofNullable(locatorInfo.size),

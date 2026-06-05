@@ -48,13 +48,17 @@ import kotlin.time.Duration.Companion.milliseconds
  * [MediaSendState] is fully [Parcelable] and saved directly as a single key.
  */
 class MediaSendViewModel(
-  private val args: MediaSendActivityContract.Args,
-  private val identityChangesSince: Long,
-  isMeteredFlow: Flow<Boolean>,
   private val savedStateHandle: SavedStateHandle,
   private val repository: MediaSendRepository,
-  private val preUploadController: PreUploadController
+  private val preUploadController: PreUploadController,
+  isMeteredFlow: Flow<Boolean>
 ) : ViewModel(), MediaSendCallback {
+
+  private val args: MediaSendActivityContract.Args = savedStateHandle[KEY_ARGS]
+    ?: throw IllegalStateException("MediaSendViewModel requires args in SavedStateHandle. Use Factory to create.")
+
+  private val identityChangesSince: Long = savedStateHandle[KEY_IDENTITY_CHANGES_SINCE]
+    ?: throw IllegalStateException("MediaSendViewModel requires identityChangesSince in SavedStateHandle. Use Factory to create.")
 
   private val defaultState = MediaSendState(
     isCameraFirst = args.isCameraFirst,
@@ -138,7 +142,7 @@ class MediaSendViewModel(
         it.copy(
           mediaFolders = folders,
           selectedMediaFolder = if (it.selectedMediaFolder in folders) it.selectedMediaFolder else null,
-          selectedMedia = if (it.selectedMediaFolder in folders) it.selectedMediaFolderItems else emptyList()
+          selectedMediaFolderItems = if (it.selectedMediaFolder in folders) it.selectedMediaFolderItems else emptyList()
         )
       }
     }
@@ -568,8 +572,8 @@ class MediaSendViewModel(
     updateState { copy(message = text) }
   }
 
-  override fun onMessageChanged(text: CharSequence?) {
-    setMessage(text?.toString())
+  override fun onMessageChange(message: String) {
+    setMessage(message)
   }
 
   //endregion
@@ -711,33 +715,43 @@ class MediaSendViewModel(
 
   //endregion
 
-  //region Factory
+  companion object {
+    private const val KEY_ARGS = "media_send_vm_args"
+    private const val KEY_IDENTITY_CHANGES_SINCE = "media_send_vm_identity_changes_since"
+    private const val KEY_STATE = "media_send_vm_state"
+    private const val KEY_EDITED_VIDEO_URIS = "media_send_vm_edited_video_uris"
+  }
 
+  /**
+   * Factory that creates [MediaSendViewModel] from a [SavedStateHandle] and static dependencies.
+   *
+   * On first creation, [args] and [identityChangesSince] are written into the [SavedStateHandle].
+   * On process death restoration, the [SavedStateHandle] already contains the persisted values
+   * and the constructor parameters are ignored.
+   */
   class Factory(
     private val args: MediaSendActivityContract.Args,
     private val identityChangesSince: Long = System.currentTimeMillis(),
-    private val isMeteredFlow: Flow<Boolean>
+    private val repository: MediaSendRepository = MediaSendDependencies.mediaSendRepository,
+    private val isMeteredFlow: Flow<Boolean> = MeteredConnectivity.isMetered(MediaSendDependencies.application)
   ) : ViewModelProvider.Factory {
-
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
       val savedStateHandle = extras.createSavedStateHandle()
 
+      if (!savedStateHandle.contains(KEY_ARGS)) {
+        savedStateHandle[KEY_ARGS] = args
+      }
+      if (!savedStateHandle.contains(KEY_IDENTITY_CHANGES_SINCE)) {
+        savedStateHandle[KEY_IDENTITY_CHANGES_SINCE] = identityChangesSince
+      }
+
       return MediaSendViewModel(
-        args = args,
-        identityChangesSince = identityChangesSince,
-        isMeteredFlow = isMeteredFlow,
         savedStateHandle = savedStateHandle,
-        repository = MediaSendDependencies.mediaSendRepository,
-        preUploadController = PreUploadController()
+        repository = repository,
+        preUploadController = PreUploadController(),
+        isMeteredFlow = isMeteredFlow
       ) as T
     }
-  }
-
-  //endregion
-
-  companion object {
-    private const val KEY_STATE = "media_send_vm_state"
-    private const val KEY_EDITED_VIDEO_URIS = "media_send_vm_edited_video_uris"
   }
 }

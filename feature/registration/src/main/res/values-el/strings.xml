@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedScreen__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Πάρε την ιδιωτικότητα μαζί σου.\nΝα είσαι ο εαυτός σου σε κάθε μήνυμα.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">Το Signal είναι ένας μη κερδοσκοπικός οργανισμός.\n Όροι και Πολιτική Απορρήτου</string>
@@ -42,6 +45,20 @@
     <string name="RegistrationActivity_select_a_country">Επιλογή χώρας</string>
     <string name="RegistrationActivity_phone_number_description">Αριθμός τηλεφώνου</string>
     <string name="RegistrationActivity_next">Επόμενο</string>
+    <!-- Dialog title to confirm phone number -->
+    <string name="RegistrationActivity_is_the_phone_number">Είναι σωστός ο παρακάτω αριθμός τηλεφώνου;</string>
+    <!-- Dialog body to confirm phone number -->
+    <string name="RegistrationActivity_a_verification_code">Θα σταλεί κωδικός επαλήθευσης σε αυτό το νούμερο. Ενδέχεται να ισχύουν χρεώσεις εταιρείας κινητής τηλεφωνίας.</string>
+    <!-- Dialog button to edit the number entered -->
+    <string name="RegistrationActivity_edit_number">Επεξεργασία αριθμού</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="RegistrationActivity_open_menu">Άνοιγμα μενού</string>
+    <!-- Menu option to use a proxy -->
+    <string name="RegistrationActivity_use_proxy">Χρήση proxy</string>
+    <!-- Menu option to link this as a device -->
+    <string name="RegistrationActivity_link_device">Σύνδεση συσκευής</string>
+    <!-- Clickable text that opens a corresponding URL -->
+    <string name="RegistrationActivity_learn_more">Μάθε περισσότερα</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -76,8 +93,8 @@
     <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Υπερβολικά πολλές προσπάθειες. Δοκίμασε ξανά σε %1$s.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">Παρουσιάστηκε απρόσμενο σφάλμα. Δοκίμασε ξανά.</string>
-    <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">Παρουσιάστηκε πρόβλημα κατά την αποστολή του κωδικού επαλήθευσης. Δοκίμασε ξανά.</string>
+    <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__unable_to_send_sms">Δεν μπορούμε να στείλουμε SMS στον αριθμό σου. Δοκίμασε ξανά σε λίγες ώρες.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Δεν ήταν δυνατή η αποστολή κωδικού μέσω της επιλεγμένης μεθόδου. Δοκίμασε μια άλλη επιλογή.</string>
     <!-- Snackbar shown for registration errors -->
@@ -130,4 +147,255 @@
     <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">Αν παραλείψεις την επαναφορά τώρα, δε θα μπορείς να τα επαναφέρεις αργότερα. Εάν ενεργοποιήσεις ξανά τα αντίγραφα ασφαλείας μετά την παράλειψη της επαναφοράς, το τρέχον αντίγραφο ασφαλείας θα αντικατασταθεί από το νέο ιστορικό μηνυμάτων σου.</string>
     <!-- Confirm button text for the skip restore dialog -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">Παράλειψη επαναφοράς</string>
+
+    <!-- LocalBackupRestoreScreen -->
+    <!-- Title for the local backup restore screen -->
+    <string name="LocalBackupRestoreScreen__restore_on_device_backup">Επαναφορά αντιγράφων ασφαλείας στη συσκευή</string>
+    <!-- Description on the folder selection screen -->
+    <string name="LocalBackupRestoreScreen__select_folder_description">Επανάφερε τα μηνύματά σου από το αντίγραφο ασφαλείας που έχεις αποθηκεύσει στη συσκευή σου. Αν δεν τα επαναφέρεις τώρα, δε θα μπορείς να τα επαναφέρεις αργότερα.</string>
+    <!-- Title for the choose backup folder card -->
+    <string name="LocalBackupRestoreScreen__choose_backup_folder">Επίλεξε φάκελο αντιγράφων ασφαλείας</string>
+    <!-- Subtitle for the choose backup folder card -->
+    <string name="LocalBackupRestoreScreen__choose_folder_subtitle">Επίλεξε τον φάκελο στη συσκευή σου όπου είναι αποθηκευμένο το αντίγραφο ασφαλείας</string>
+    <!-- Text shown while scanning for backups -->
+    <string name="LocalBackupRestoreScreen__scanning_folder">Αναζήτηση αντιγράφων ασφαλείας…</string>
+    <!-- Description shown when a backup is found -->
+    <string name="LocalBackupRestoreScreen__backup_found_description">Επανάφερε τα μηνύματά σου από τον φάκελο αντιγράφων ασφαλείας που έχεις αποθηκεύσει στη συσκευή σου. Αν δεν τα επαναφέρεις τώρα, δε θα μπορείς να τα επαναφέρεις αργότερα.</string>
+    <!-- Title for the latest backup card -->
+    <string name="LocalBackupRestoreScreen__your_latest_backup">Τα τελευταία αντίγραφα ασφαλείας σου:</string>
+    <!-- Restore backup button text -->
+    <string name="LocalBackupRestoreScreen__restore_backup">Επαναφορά αντίγραφου ασφαλείας</string>
+    <!-- Link to choose an earlier backup -->
+    <string name="LocalBackupRestoreScreen__choose_earlier_backup">Επίλεξε ένα παλαιότερο αντίγραφο ασφαλείας</string>
+    <!-- Title for the backup picker bottom sheet -->
+    <string name="LocalBackupRestoreScreen__choose_a_backup_to_restore">Επίλεξε ένα αντίγραφο ασφαλείας για επαναφορά</string>
+    <!-- Warning text in the backup picker bottom sheet -->
+    <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">Η επιλογή ενός παλαιότερου αντιγράφου ασφαλείας μπορεί να οδηγήσει σε απώλεια μηνυμάτων ή πολυμέσων.</string>
+    <!-- Title when no backup is found -->
+    <string name="LocalBackupRestoreScreen__no_backup_found">Δεν βρέθηκε αντίγραφο ασφαλείας</string>
+    <!-- Description when no backup is found -->
+    <string name="LocalBackupRestoreScreen__no_backup_found_description">Δεν βρέθηκε αντίγραφο ασφαλείας Signal στον επιλεγμένο φάκελο. Επίλεξε διαφορετικό φάκελο.</string>
+    <!-- Button to try a different folder -->
+    <string name="LocalBackupRestoreScreen__try_different_folder">Δοκίμασε έναν διαφορετικό φάκελο</string>
+    <!-- Title for V1 passphrase entry screen -->
+    <string name="LocalBackupRestoreScreen__enter_backup_passphrase">Εισαγωγή συνθηματικό αντίγραφου ασφαλείας</string>
+    <!-- Description for V1 passphrase entry screen -->
+    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">To τοπικό συνθηματικό αντίγραφου ασφαλείας είναι ένας 30ψήφιος κωδικός που απαιτείται για την ανάκτηση του λογαριασμού και των δεδομένων σου.</string>
+    <!-- Label for the recovery key text field -->
+    <string name="LocalBackupRestoreScreen__recovery_key">Κλειδί ανάκτησης</string>
+    <!-- Error text when passphrase is too long -->
+    <string name="LocalBackupRestoreScreen__too_long">Πολύ μακροσκελές (%1$d/%2$d)</string>
+    <!-- Link for users who don\'t have their passphrase -->
+    <string name="LocalBackupRestoreScreen__no_passphrase">Δεν έχεις συνθηματικό;</string>
+    <!-- Next button text -->
+    <string name="LocalBackupRestoreScreen__next">Επόμενο</string>
+    <!-- EnterAepScreen -->
+    <!-- Title for recovery key entry screen -->
+    <string name="EnterAepScreen__enter_your_recovery_key">Γράψε το κλειδί ανάκτησής σου</string>
+    <!-- Description for recovery key entry screen -->
+    <string name="EnterAepScreen__your_recovery_key_is_a_64_character_code">Το κλειδί ανάκτησής σου είναι ένας κωδικός 64 χαρακτήρων που απαιτείται για την ανάκτηση του λογαριασμού και των δεδομένων σου.</string>
+    <!-- Label for the recovery key text field -->
+    <string name="EnterAepScreen__recovery_key">Κλειδί ανάκτησης</string>
+    <!-- Link for users who don\'t have their recovery key -->
+    <string name="EnterAepScreen__no_recovery_key">Δεν υπάρχει κλειδί ανάκτησης;</string>
+    <!-- Error text when key is too long -->
+    <string name="EnterAepScreen__too_long">Πολύ μακροσκελές (%1$d/%2$d)</string>
+    <!-- Error text when key is invalid -->
+    <string name="EnterAepScreen__invalid_recovery_key">Μη έγκυρο κλειδί ανάκτησης</string>
+    <!-- Error text when key is correct format but does not match account -->
+    <string name="EnterAepScreen__incorrect_recovery_key">Λανθασμένο κλειδί ανάκτησης</string>
+    <!-- Text shown while preparing the restore -->
+    <string name="LocalBackupRestoreScreen__preparing_restore">Προετοιμασία για επαναφορά…</string>
+    <!-- Title shown while restore is in progress -->
+    <string name="LocalBackupRestoreScreen__restoring_backup">Επαναφορά αντίγραφου ασφαλείας</string>
+    <!-- Description shown while restore is in progress -->
+    <string name="LocalBackupRestoreScreen__restoring_description">Περίμενε όσο τα μηνύματά σου και τα δεδομένα σου επαναφέρονται.</string>
+    <!-- Description shown when restore is complete -->
+    <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
+    <!-- Continue button text after restore is complete -->
+    <string name="LocalBackupRestoreScreen__continue_button">Συνέχεια</string>
+    <!-- Title shown when restore fails -->
+    <string name="LocalBackupRestoreScreen__restore_failed">Η επαναφορά απέτυχε</string>
+    <!-- Description shown when restore fails with an unknown error -->
+    <string name="LocalBackupRestoreScreen__restore_failed_description">Παρουσιάστηκε σφάλμα κατά την επαναφορά του αντιγράφου ασφαλείας σου. Δοκίμασε ξανά.</string>
+    <!-- Button to retry restore after failure -->
+    <string name="LocalBackupRestoreScreen__try_again">Δοκίμασε ξανά</string>
+    <!-- Button to link an existing Signal account to this device -->
+    <string name="WelcomeScreen__link_your_account">Σύνδεσε τον λογαριασμό σου</string>
+    <!-- Prompt shown to users who don\'t have a Signal account yet -->
+    <string name="WelcomeScreen__not_on_signal_yet">Δεν είσαι ακόμα στο Signal;</string>
+    <!-- Button to create a new Signal account -->
+    <string name="WelcomeScreen__create_account">Δημιουργία λογαριασμού</string>
+
+    <!-- RemoteRestoreScreen -->
+    <!-- Title for the remote backup restore screen -->
+    <string name="RemoteRestoreScreen__restore_from_backup">Επαναφορά από αντίγραφο ασφαλείας</string>
+    <!-- Shown while fetching backup details from server -->
+    <string name="RemoteRestoreScreen__fetching_backup_details">Λήψη στοιχείων αντιγράφων ασφαλείας…</string>
+    <!-- Button to start restoring the backup -->
+    <string name="RemoteRestoreScreen__restore_backup">Επαναφορά αντίγραφου ασφαλείας</string>
+    <!-- Subtitle showing when the last backup was made, with date and time placeholders -->
+    <string name="RemoteRestoreScreen__your_last_backup_was_made_on_s_at_s">Το τελευταίο σου αντίγραφο ασφαλείας έγινε στις %1$s στις %2$s.</string>
+    <!-- Description telling the user their media will restore in the background -->
+    <string name="RemoteRestoreScreen__your_media_will_restore_in_the_background">Η επαναφορά των πολυμέσων σου θα πραγματοποιηθεί στο παρασκήνιο. Αν δεν επιλέξεις να τα επαναφέρεις τώρα, δε θα μπορείς να τα επαναφέρεις αργότερα.</string>
+    <!-- Title for the backup not found dialog -->
+    <string name="RemoteRestoreScreen__backup_not_found">Το αντίγραφο ασφαλείας δεν βρέθηκε</string>
+    <!-- Body for the backup not found dialog -->
+    <string name="RemoteRestoreScreen__no_backup_was_found">Δεν βρέθηκαν αντίγραφα ασφαλείας για αυτόν τον λογαριασμό.</string>
+    <!-- Title for the restore failed dialog -->
+    <string name="RemoteRestoreScreen__cant_restore_backup">Δεν είναι δυνατή η επαναφορά του αντιγράφου ασφαλείας</string>
+    <!-- Body for the restore failed dialog -->
+    <string name="RemoteRestoreScreen__your_backup_cant_be_restored_right_now">Δεν είναι δυνατή η επαναφορά του αντιγράφου ασφαλείας σου προς το παρόν. Δοκίμασε ξανά.</string>
+    <!-- Button to try again -->
+    <string name="RemoteRestoreScreen__try_again">Δοκίμασε ξανά</string>
+    <!-- Title for the network error dialog -->
+    <string name="RemoteRestoreScreen__couldnt_finish_restore">Δεν ήταν δυνατή η ολοκλήρωση της επαναφοράς</string>
+    <!-- Body for the network error dialog -->
+    <string name="RemoteRestoreScreen__error_connecting">Παρουσιάστηκε σφάλμα κατά τη σύνδεση με τον διακομιστή. \'Ελεγξε τη σύνδεσή σου και δοκίμασε ξανά.</string>
+    <!-- Body for the general restore failure dialog -->
+    <string name="RemoteRestoreScreen__error_occurred">Παρουσιάστηκε σφάλμα κατά την επαναφορά του αντιγράφου ασφαλείας σου. Δοκίμασε ξανά.</string>
+    <!-- Title for the invalid backup version dialog -->
+    <string name="RemoteRestoreScreen__couldnt_restore_this_backup">Δεν ήταν δυνατή η επαναφορά αυτού του αντιγράφου ασφαλείας</string>
+    <!-- Body for the invalid backup version dialog -->
+    <string name="RemoteRestoreScreen__update_latest">Αυτή η έκδοση του Signal δεν μπορεί να επαναφέρει το αντίγραφο ασφαλείας σου. Ενημέρωσε το Signal στην τελευταία έκδοση και δοκίμασε ξανά.</string>
+    <!-- Button to update Signal -->
+    <string name="RemoteRestoreScreen__update_signal">Αναβάθμισε το Signal</string>
+    <!-- Button to dismiss update dialog -->
+    <string name="RemoteRestoreScreen__not_now">Όχι τώρα</string>
+    <!-- Title for unrecoverable backup failure dialog -->
+    <string name="RemoteRestoreScreen__cant_restore_this_backup">Δεν είναι δυνατή η επαναφορά του αντιγράφου ασφαλείας</string>
+    <!-- Body for unrecoverable backup failure dialog prompting user to contact support -->
+    <string name="RemoteRestoreScreen__your_backup_is_not_recoverable">Παρουσιάστηκε σφάλμα κατά την επαναφορά του αντιγράφου ασφαλείας σου. Το αντίγραφο ασφαλείας σου δεν μπορεί να ανακτηθεί. Επικοινώνησε με την υποστήριξη για βοήθεια.</string>
+    <!-- Button to contact support -->
+    <string name="RemoteRestoreScreen__contact_support">Επικοινωνία με την υποστήριξη</string>
+    <!-- Shown while downloading the backup from the server -->
+    <string name="RemoteRestoreScreen__downloading_backup">Λήψη αντιγράφων ασφαλείας…</string>
+    <!-- Shown while restoring messages from the downloaded backup -->
+    <string name="RemoteRestoreScreen__restoring_messages">Επαναφορά μηνυμάτων…</string>
+    <!-- Shown while finalizing the restore -->
+    <string name="RemoteRestoreScreen__finishing_restore">Ολοκλήρωση…</string>
+    <!-- Shown as a generic restoring message -->
+    <string name="RemoteRestoreScreen__restoring">Επαναφορά…</string>
+    <!-- Byte progress text, e.g. "1.2 MB of 10 MB (12.34%)" -->
+    <string name="RemoteRestoreScreen__s_of_s_s">%1$s από %2$s (%3$s)</string>
+    <!-- Shown when attempting to open a URL in the web browser, but a browser app cannot be found. -->
+    <string name="LinkActions_error_no_browser_found">Δεν βρέθηκε περιηγητής.</string>
+
+    <!-- Title for screen when your account is locked -->
+    <string name="AccountLockedScreen__account_locked">Κλειδωμένος λογαριασμός</string>
+    <!-- Description for screen when account is locked -->
+    <string name="AccountLockedScreen__your_account">Ο λογαριασμός σου έχει κλειδωθεί για να προστατεύσουμε το απόρρητο και την ασφάλειά σου. Μετά από %1$d ημέρες αδράνειας του λογαριασμού σου, θα μπορείς να επανεγγράψεις αυτό τον αριθμό τηλεφώνου χωρίς να χρειάζεται το PIN σου. Όλα τα περιεχόμενα θα διαγραφούν.</string>
+
+    <!-- Step 1 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_1">Άνοιξε το Signal στην παλιά σου συσκευή</string>
+    <!-- Step 2 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_2">Πάτα το εικονίδιο της κάμερας </string>
+    <!-- Step 3 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_3">Σάρωσε αυτόν τον κωδικό με την κάμερα</string>
+    <!-- Loading dialog text when registering -->
+    <string name="QuickRestoreQRScreen__reregister">Εγγραφή…</string>
+    <!-- Error message text shown if registering fails -->
+    <string name="QuickRestoreQRScreen__error">Προέκυψε σφάλμα κατά την εγγραφή</string>
+    <!-- Title for quick restoring -->
+    <string name="QuickRestoreQRScreen__scan">Σάρωσε αυτόν τον κωδικό με το παλιό σου τηλέφωνο</string>
+    <!-- Confirmation dialog when qr code is successfully scanned -->
+    <string name="QuickRestoreQRScreen__scanned">Έγινε σάρωση του κωδικού QR</string>
+    <!-- Button text to retry scanning the QR code -->
+    <string name="QuickRestoreQRScreen__retry">Επανάληψη</string>
+    <!-- Failure text when a code could not be generated -->
+    <string name="QuickRestoreQRScreen__failed">Δεν είναι δυνατή η δημιουργία κωδικού QR</string>
+
+    <!-- Toast text hinting to submit a debug log with %d being how many more taps are left -->
+    <plurals name="RegistrationActivity_debug_log_hint">
+        <item quantity="one">Είσαι %1$d βήμα μακριά από την καταχώρηση ενός αρχείου αποσφαλμάτωσης.</item>
+        <item quantity="other">Είσαι %1$d βήματα μακριά από την καταχώρηση ενός αρχείου αποσφαλμάτωσης.</item>
+    </plurals>
+
+    <!-- PIN creation screen title. -->
+    <string name="PinCreationScreen__create_your_pin">Δημιουργία του PIN σου</string>
+    <!-- PIN creation screen title when confirming the new Signal PIN. -->
+    <string name="PinCreationScreen__confirm_your_pin">Επαλήθευσε το PIN σου</string>
+    <!-- Describes how to confirm the new Signal PIN. -->
+    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <!-- Describes the purpose of creating a Signal PIN. -->
+    <string name="PinCreationScreen__pins_can_help">Τα PIN μπορούν να σε βοηθήσουν να επαναφέρεις τον λογαριασμό σου εάν χάσεις το κινητό σου. </string>
+    <!-- Labels the button to learn more about Signal PINs. -->
+    <string name="PinCreationScreen__learn_more">Μάθε περισσότερα</string>
+    <!-- Labels the button to switch to the numeric PIN keyboard type. -->
+    <string name="PinCreationScreen__switch_to_numeric">Αλλαγή σε αριθμητικό πληκτρολόγιο</string>
+    <!-- Labels the button to switch to the alphanumeric PIN keyboard type. -->
+    <string name="PinCreationScreen__switch_to_alphanumeric">Αλλαγή σε αλφαριθμητικό πληκτρολόγιο</string>
+    <!-- Labels the button to submit a new Signal PIN. -->
+    <string name="PinCreationScreen__next">Επόμενο</string>
+    <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
+    <string name="PinCreationScreen__pin_at_least_4_digits">Το PIN πρέπει να έχει τουλάχιστον 4 ψηφία</string>
+    <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
+    <string name="PinCreationScreen__pin_at_least_4_characters">Το PIN πρέπει να έχει τουλάχιστον 4 χαρακτήρες</string>
+    <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
+    <string name="PinCreationScreen__reenter_pin">Ξαναγράψε το PIN</string>
+
+    <!-- PIN entry screen title when registration lock is active. -->
+    <string name="PinEntryScreen__registration_lock">Κλείδωμα εγγραφής</string>
+    <!-- PIN entry screen title when restoring an account. -->
+    <string name="PinEntryScreen__enter_your_pin">Γράψε το PIN σου</string>
+    <!-- Describes the PIN that needs to be entered. -->
+    <string name="PinEntryScreen__enter_the_pin_you_created">Συμπλήρωσε το PIN που δημιούργησες όταν εγκατέστησες το Signal για πρώτη φορά</string>
+    <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
+    <plurals name="PinEntryScreen__incorrect_pin">
+        <item quantity="one">Λάθος PIN. Απομένει %1$d προσπάθεια.</item>
+        <item quantity="other">Λάθος PIN. Απομένουν %1$d προσπάθειες.</item>
+    </plurals>
+    <!-- Labels the button to get help with PIN entry. -->
+    <string name="PinEntryScreen__need_help">Χρειάζεσαι βοήθεια;</string>
+    <!-- Labels the button to switch between the numeric and alphanumeric keyboard. -->
+    <string name="PinEntryScreen__switch_keyboard">Εναλλαγή πληκτρολογίου</string>
+    <!-- Labels the button to skip PIN entry. -->
+    <string name="PinEntryScreen__skip">Παράλειψη</string>
+    <!-- Labels the button to submit the PIN. -->
+    <string name="PinEntryScreen__continue">Συνέχεια</string>
+
+    <!-- Title for the screen asking the user to grant the notification permission -->
+    <string name="AllowNotificationsScreen__allow_notifications">Να επιτρέπονται οι ειδοποιήσεις</string>
+    <!-- Description for the screen asking the user to grant the notification permission -->
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <!-- Button label that dismisses the notification permission request without granting it -->
+    <string name="AllowNotificationsScreen__not_now">Όχι τώρα</string>
+    <!-- Button label that proceeds with the notification permission request -->
+    <string name="AllowNotificationsScreen__next">Επόμενο</string>
+
+    <!-- Title shown while messages are syncing from the primary device -->
+    <string name="MessageSyncScreen__syncing_messages">Συγχρονισμός μηνυμάτων</string>
+    <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
+    <string name="MessageSyncScreen__downloading_s_of_s">Λήψη %1$s από %2$s</string>
+    <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
+    <string name="MessageSyncScreen__learn_more">Μάθε περισσότερα</string>
+    <!-- Button label that cancels the in-progress message sync -->
+    <string name="MessageSyncScreen__cancel">Ακύρωση</string>
+
+    <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
+    <string name="LinkAccountScreen__open_signal_on_your_phone">Άνοιξε το Signal στο κινητό σου</string>
+    <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <!-- Button label opening help content for users who can\'t complete the link-account steps -->
+    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
+    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
+    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <!-- Error label shown in place of the QR code if it could not be generated -->
+    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
+    <string name="LinkAccountScreen__create_account">Δημιουργία λογαριασμού</string>
 </resources>

@@ -105,7 +105,12 @@ class LogSectionRemoteBackups : LogSection {
     }
 
     output.append("\n -- Attachment Stats\n")
-    output.append(SignalDatabase.attachments.debugGetAttachmentStats().prettyString())
+    val backupInProgress = SignalStore.backup.archiveUploadState?.state?.let { it != ArchiveUploadProgressState.State.None && it != ArchiveUploadProgressState.State.UserCanceled } ?: false
+    if (SignalStore.backup.hasBackupCreationError || backupInProgress) {
+      output.append(SignalDatabase.attachments.debugGetAttachmentStats().prettyString())
+    } else {
+      output.append("Skipped (last backup succeeded and no upload in progress)\n")
+    }
 
     return output
   }

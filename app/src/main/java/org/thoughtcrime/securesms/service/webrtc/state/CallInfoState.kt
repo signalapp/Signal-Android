@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.service.webrtc.state
 
-import com.annimon.stream.OptionalLong
 import org.signal.ringrtc.CallId
 import org.signal.ringrtc.CallManager.CallEndReason
 import org.signal.ringrtc.GroupCall
@@ -13,6 +12,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
 import org.thoughtcrime.securesms.service.webrtc.CallLinkDisconnectReason
 import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
+import java.util.Optional
 
 /**
  * General state of ongoing calls.
@@ -29,7 +29,7 @@ data class CallInfoState(
   var groupCall: GroupCall? = null,
   @get:JvmName("getGroupCallState") var groupState: WebRtcViewModel.GroupCallState = WebRtcViewModel.GroupCallState.IDLE,
   var identityChangedRecipients: MutableSet<RecipientId> = mutableSetOf(),
-  var remoteDevicesCount: OptionalLong = OptionalLong.empty(),
+  var remoteDevicesCount: Optional<Long> = Optional.empty(),
   var participantLimit: Long? = null,
   var pendingParticipants: PendingParticipantCollection = PendingParticipantCollection(),
   var callLinkDisconnectReason: CallLinkDisconnectReason? = null,

@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString.Builder
@@ -37,7 +38,6 @@ import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.thoughtcrime.securesms.util.DateUtils
-import java.util.Locale
 import kotlin.time.Duration.Companion.days
 import org.signal.core.ui.R as CoreUiR
 
@@ -53,7 +53,7 @@ fun BackupCreateErrorRow(
   onLearnMoreClick: () -> Unit = {}
 ) {
   val context = LocalContext.current
-  val locale = Locale.getDefault()
+  val locale = LocalLocale.current
 
   when (error) {
     BackupValues.BackupCreationError.TRANSIENT -> {
@@ -82,7 +82,7 @@ fun BackupCreateErrorRow(
     BackupValues.BackupCreationError.BACKUP_FILE_TOO_LARGE -> {
       BackupAlertText {
         if (lastMessageCutoffTime > 0) {
-          append(stringResource(R.string.BackupStatusRow__not_backing_up_old_messages, DateUtils.getDayPrecisionTimeString(context, locale, lastMessageCutoffTime)))
+          append(stringResource(R.string.BackupStatusRow__not_backing_up_old_messages, DateUtils.getDayPrecisionTimeString(context, locale.platformLocale, lastMessageCutoffTime)))
         } else {
           append(stringResource(R.string.BackupStatusRow__backup_file_too_large))
         }
@@ -91,7 +91,7 @@ fun BackupCreateErrorRow(
 
     BackupValues.BackupCreationError.NOT_ENOUGH_DISK_SPACE -> {
       BackupAlertText {
-        append(stringResource(R.string.BackupStatusRow__not_enough_disk_space, DateUtils.getDayPrecisionTimeString(context, locale, lastMessageCutoffTime)))
+        append(stringResource(R.string.BackupStatusRow__not_enough_disk_space, DateUtils.getDayPrecisionTimeString(context, locale.platformLocale, lastMessageCutoffTime)))
       }
     }
   }

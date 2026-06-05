@@ -18,6 +18,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.launch
+import org.signal.core.util.ServiceUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.getParcelableCompat
@@ -57,7 +58,6 @@ import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPager
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
 import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReplyComposer
 import org.thoughtcrime.securesms.util.DeleteDialog
-import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.fragments.findListener

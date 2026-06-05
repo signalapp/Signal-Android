@@ -6,8 +6,8 @@
 package org.thoughtcrime.securesms.registration.data.network
 
 import org.signal.core.util.orNull
-import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.push.exceptions.MalformedRequestException
+import org.signal.network.NetworkResult
+import org.signal.network.exceptions.MalformedRequestException
 import org.whispersystems.signalservice.api.push.exceptions.NoSuchSessionException
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException

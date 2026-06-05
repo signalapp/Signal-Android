@@ -205,7 +205,7 @@ private fun FeatureBullet(text: String) {
     modifier = Modifier.padding(vertical = 2.dp)
   ) {
     Icon(
-      imageVector = ImageVector.vectorResource(id = R.drawable.symbol_check_24),
+      imageVector = ImageVector.vectorResource(id = CoreUiR.drawable.symbol_check_24),
       contentDescription = null,
       tint = MaterialTheme.colorScheme.primary,
       modifier = Modifier.size(20.dp)

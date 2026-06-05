@@ -2,7 +2,7 @@ package org.whispersystems.signalservice.api.messages;
 
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
-import org.whispersystems.signalservice.api.util.Preconditions;
+import org.signal.network.util.Preconditions;
 import org.whispersystems.signalservice.internal.push.GroupContextV2;
 
 import io.reactivex.rxjava3.annotations.NonNull;

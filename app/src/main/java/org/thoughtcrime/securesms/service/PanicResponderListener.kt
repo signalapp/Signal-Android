@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.service
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import org.signal.core.util.ServiceUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.ServiceUtil
 
 /**
  * Respond to a PanicKit trigger Intent by locking the app.  PanicKit provides a

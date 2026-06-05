@@ -252,7 +252,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       hasProcessedSupportedPayload = true
     }
 
-    if (hasProcessedSupportedPayload) {
+    if (hasProcessedSupportedPayload && V2Payload.WALLPAPER !in payload) {
       return
     }
 
@@ -444,14 +444,21 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     V2ConversationItemUtils.linkifyUrlLinks(messageBody, conversationContext.selectedItems.isEmpty(), conversationContext.clickListener::onUrlClicked)
 
     if (conversationMessage.hasStyleLinks()) {
+      val isReleaseNotes = conversationMessage.threadRecipient.isReleaseNotes
+      val linkColor = if (isReleaseNotes) {
+        themeDelegate.getBodyTextColor(conversationMessage)
+      } else {
+        ContextCompat.getColor(getContext(), R.color.signal_accent_primary)
+      }
+      val underline = isReleaseNotes
       messageBody.getSpans(0, messageBody.length, PlaceholderURLSpan::class.java).forEach { placeholder ->
         val start = messageBody.getSpanStart(placeholder)
         val end = messageBody.getSpanEnd(placeholder)
         val span: URLSpan = InterceptableLongClickCopyLinkSpan(
           placeholder.value,
           conversationContext.clickListener::onUrlClicked,
-          ContextCompat.getColor(getContext(), R.color.signal_accent_primary),
-          false
+          linkColor,
+          underline
         )
 
         messageBody.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -631,8 +638,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     val tintColor = conversationContext.getColorizer().getIncomingGroupSenderColor(context, sender)
 
     nameWithLabelView.apply {
-      setSender(sender.getDisplayName(context), tintColor)
-      setLabel(conversationMessage.memberLabel)
+      bind(sender.getDisplayName(context), tintColor, conversationMessage.memberLabel)
       visible = true
     }
 

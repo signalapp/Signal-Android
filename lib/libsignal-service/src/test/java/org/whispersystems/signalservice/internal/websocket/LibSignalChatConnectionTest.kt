@@ -20,6 +20,9 @@ import org.signal.libsignal.net.ChatConnectionListener
 import org.signal.libsignal.net.ChatServiceException
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.net.UnauthenticatedChatConnection
+import org.signal.network.websocket.WebSocketRequestMessage
+import org.signal.network.websocket.WebSocketResponseMessage
+import org.signal.network.websocket.WebsocketResponse
 import org.whispersystems.signalservice.api.websocket.HealthMonitor
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import java.io.IOException
@@ -54,6 +57,7 @@ class LibSignalChatConnectionTest {
     clearAllMocks()
     every { healthMonitor.onMessageError(any(), any()) }
     every { healthMonitor.onKeepAliveResponse(any(), any()) }
+    every { healthMonitor.onReceivedAlerts(any(), any()) }
 
     // NB: We provide default success behavior mocks here to cut down on boilerplate later, but it is
     //  expected that some tests will override some of these to test failures.
@@ -259,12 +263,13 @@ class LibSignalChatConnectionTest {
   }
 
   // Test keepAlive that fails at the transport layer (send() throws),
-  // which transitions from CONNECTED -> DISCONNECTED.
+  // which disconnects the underlying chat connection before transitioning to DISCONNECTED.
   @Test
   fun keepAliveConnectionFailure() {
     val connectionFailure = RuntimeException("Sending keep-alive failed")
 
     val keepAliveFailureLatch = CountDownLatch(1)
+    disconnectLatch = CountDownLatch(1)
 
     every { chatConnection.send(any()) } answers {
       delay {
@@ -281,15 +286,22 @@ class LibSignalChatConnectionTest {
     connection.sendKeepAlive()
 
     keepAliveFailureLatch.await(100, TimeUnit.MILLISECONDS)
+    disconnectLatch!!.await(100, TimeUnit.MILLISECONDS)
+    observer.awaitCount(3)
 
     observer.assertNotComplete()
     observer.assertValues(
       // We start in the connected state
       WebSocketConnectionState.CONNECTED,
-      // Disconnects as a result of keep-alive failure
+      // Starts an underlying disconnect as a result of keep-alive failure
+      WebSocketConnectionState.DISCONNECTING,
+      // Disconnects once libsignal confirms the connection was interrupted
       WebSocketConnectionState.DISCONNECTED
     )
     observer.assertNoConsecutiveDuplicates()
+    verify(exactly = 1) {
+      chatConnection.disconnect()
+    }
     verify(exactly = 0) {
       healthMonitor.onKeepAliveResponse(any(), any())
       healthMonitor.onMessageError(any(), any())

@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.Base64;
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.signal.core.util.JsonUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

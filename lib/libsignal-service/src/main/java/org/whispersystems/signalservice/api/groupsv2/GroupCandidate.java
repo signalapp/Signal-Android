@@ -2,7 +2,7 @@ package org.whispersystems.signalservice.api.groupsv2;
 
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.core.models.ServiceId;
-import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil;
+import org.signal.core.util.ExpiringProfileCredentialUtil;
 
 import java.util.HashSet;
 import java.util.Optional;

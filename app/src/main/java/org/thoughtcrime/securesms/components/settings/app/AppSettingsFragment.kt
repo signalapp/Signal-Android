@@ -81,6 +81,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.signal.core.ui.R as CoreUiR
 
 class AppSettingsFragment : ComposeFragment(), Callbacks {
 
@@ -295,7 +296,7 @@ private fun AppSettingsContent(
           item {
             Rows.TextRow(
               text = stringResource(R.string.AccountSettingsFragment__account),
-              icon = painterResource(R.drawable.symbol_person_circle_24),
+              icon = painterResource(CoreUiR.drawable.symbol_person_circle_24),
               onClick = {
                 callbacks.navigate(AppSettingsRoute.AccountRoute.Account)
               }
@@ -305,56 +306,56 @@ private fun AppSettingsContent(
           item {
             Rows.TextRow(
               text = stringResource(R.string.preferences__linked_devices),
-              icon = painterResource(R.drawable.symbol_devices_24),
+              icon = painterResource(CoreUiR.drawable.symbol_devices_24),
               onClick = {
                 callbacks.navigate(AppSettingsRoute.LinkDeviceRoute.LinkDevice)
               },
               enabled = isRegisteredAndUpToDate
             )
           }
+        }
 
-          item {
-            val context = LocalContext.current
-            val donateUrl = stringResource(R.string.donate_url)
+        item {
+          val context = LocalContext.current
+          val donateUrl = stringResource(R.string.donate_url)
 
-            Rows.TextRow(
-              text = {
-                Text(
-                  text = stringResource(R.string.preferences__donate_to_signal),
-                  modifier = Modifier.weight(1f)
-                )
+          Rows.TextRow(
+            text = {
+              Text(
+                text = stringResource(R.string.preferences__donate_to_signal),
+                modifier = Modifier.weight(1f)
+              )
 
-                if (state.hasExpiredGiftBadge) {
-                  Icon(
-                    painter = painterResource(R.drawable.symbol_info_fill_24),
-                    tint = colorResource(R.color.signal_accent_primary),
-                    contentDescription = null
-                  )
-                }
-              },
-              icon = {
+              if (state.hasExpiredGiftBadge) {
                 Icon(
-                  painter = painterResource(R.drawable.symbol_heart_24),
-                  contentDescription = null,
-                  tint = MaterialTheme.colorScheme.onSurface
+                  painter = painterResource(R.drawable.symbol_info_fill_24),
+                  tint = colorResource(R.color.signal_accent_primary),
+                  contentDescription = null
                 )
-              },
-              onClick = {
-                if (state.allowUserToGoToDonationManagementScreen) {
-                  callbacks.navigate(AppSettingsRoute.DonationsRoute.Donations())
-                } else {
-                  CommunicationActions.openBrowserLink(context, donateUrl)
-                }
-              },
-              onLongClick = {
-                callbacks.copyDonorBadgeSubscriberIdToClipboard()
               }
-            )
-          }
+            },
+            icon = {
+              Icon(
+                painter = painterResource(R.drawable.symbol_heart_24),
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurface
+              )
+            },
+            onClick = {
+              if (state.allowUserToGoToDonationManagementScreen) {
+                callbacks.navigate(AppSettingsRoute.DonationsRoute.Donations())
+              } else {
+                CommunicationActions.openBrowserLink(context, donateUrl)
+              }
+            },
+            onLongClick = {
+              callbacks.copyDonorBadgeSubscriberIdToClipboard()
+            }
+          )
+        }
 
-          item {
-            Dividers.Default()
-          }
+        item {
+          Dividers.Default()
         }
 
         item {
@@ -417,7 +418,7 @@ private fun AppSettingsContent(
               icon = SignalIcons.Backup.imageVector,
               text = stringResource(R.string.preferences_chats__backups),
               onClick = {
-                callbacks.navigate(AppSettingsRoute.BackupsRoute.Backups)
+                callbacks.navigate(AppSettingsRoute.BackupsRoute.Backups())
               },
               onLongClick = {
                 callbacks.copyRemoteBackupsSubscriberIdToClipboard()

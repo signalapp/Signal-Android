@@ -21,6 +21,7 @@ import org.signal.libsignal.protocol.state.SignalProtocolStore
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.libsignal.protocol.util.KeyHelper
 import org.signal.libsignal.protocol.util.Medium
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.SvrNoDataException
@@ -103,6 +103,83 @@ class ChangeNumberRepository(
 
   @WorkerThread
   fun changeLocalNumber(e164: String, pni: ServiceId.PNI) {
+    val metadata: PendingChangeNumberMetadata? = SignalStore.misc.pendingChangeNumberMetadata
+    if (metadata == null) {
+      Log.w(TAG, "No change number metadata, this shouldn't happen")
+      throw AssertionError("No change number metadata")
+    }
+
+    val pniIdentityKeyPair = IdentityKeyPair(metadata.pniIdentityKeyPair.toByteArray())
+    val pniRegistrationId = metadata.pniRegistrationId
+    val pniSignedPreKeyId = metadata.pniSignedPreKeyId
+    val pniLastResortKyberPreKeyId = metadata.pniLastResortKyberPreKeyId
+
+    // Prekeys were generated and stored during createChangeNumberRequest; reload them so we can pass them through and reuse for the upload below.
+    val preResetPniStore = AppDependencies.protocolStore.pni()
+    val signedPreKey = preResetPniStore.loadSignedPreKey(pniSignedPreKeyId)
+    val lastResortKyberPreKey = preResetPniStore.loadLastResortKyberPreKeys().firstOrNull { it.id == pniLastResortKyberPreKeyId }
+
+    applyLocalNumberChange(
+      e164 = e164,
+      pni = pni,
+      pniIdentityKeyPair = pniIdentityKeyPair,
+      pniSignedPreKey = signedPreKey,
+      pniLastResortKyberPreKey = lastResortKyberPreKey,
+      pniRegistrationId = pniRegistrationId
+    )
+
+    AppDependencies.resetNetwork()
+    AppDependencies.startNetwork()
+
+    val pniProtocolStore = AppDependencies.protocolStore.pni()
+    val pniMetadataStore = SignalStore.account.pniPreKeys
+
+    val oneTimeEcPreKeys = PreKeyUtil.generateAndStoreOneTimeEcPreKeys(pniProtocolStore, pniMetadataStore)
+    val oneTimeKyberPreKeys = PreKeyUtil.generateAndStoreOneTimeKyberPreKeys(pniProtocolStore, pniMetadataStore)
+
+    Log.i(TAG, "Submitting prekeys with PNI identity key: ${pniIdentityKeyPair.publicKey.fingerprint}")
+
+    retryChangeLocalNumberNetworkOperation {
+      SignalNetwork.keys.setPreKeysSync(
+        PreKeyUpload(
+          serviceIdType = ServiceIdType.PNI,
+          signedPreKey = signedPreKey,
+          oneTimeEcPreKeys = oneTimeEcPreKeys,
+          lastResortKyberPreKey = lastResortKyberPreKey,
+          oneTimeKyberPreKeys = oneTimeKyberPreKeys
+        )
+      )
+    }.successOrThrow()
+
+    pniMetadataStore.isSignedPreKeyRegistered = true
+    pniMetadataStore.lastResortKyberPreKeyId = pniLastResortKyberPreKeyId
+
+    SignalStore.misc.hasPniInitializedDevices = true
+
+    AppDependencies.jobManager.add(RefreshAttributesJob())
+
+    rotateCertificates()
+
+    SignalStore.misc.unlockChangeNumber()
+  }
+
+  /**
+   * Applies the local state for a successful number change: self recipient row, account values,
+   * PNI protocol store, and identity entry.
+   *
+   * Does NOT reset the network — callers must do so before any subsequent traffic that needs to
+   * use the new PNI. Does NOT make any server requests and does NOT flag prekeys as registered
+   * server-side — the caller is responsible for that once it can attest to server state.
+   */
+  @WorkerThread
+  fun applyLocalNumberChange(
+    e164: String,
+    pni: ServiceId.PNI,
+    pniIdentityKeyPair: IdentityKeyPair,
+    pniSignedPreKey: SignedPreKeyRecord,
+    pniLastResortKyberPreKey: KyberPreKeyRecord?,
+    pniRegistrationId: Int
+  ) {
     SignalDatabase.recipients.updateSelfE164(e164, pni)
     AppDependencies.recipientCache.clear()
 
@@ -117,49 +194,20 @@ class ChangeNumberRepository(
 
     AppDependencies.groupsV2Authorization.clear()
 
-    val metadata: PendingChangeNumberMetadata? = SignalStore.misc.pendingChangeNumberMetadata
-    if (metadata == null) {
-      Log.w(TAG, "No change number metadata, this shouldn't happen")
-      throw AssertionError("No change number metadata")
-    }
-
-    val pniIdentityKeyPair = IdentityKeyPair(metadata.pniIdentityKeyPair.toByteArray())
-    val pniRegistrationId = metadata.pniRegistrationId
-    val pniSignedPreyKeyId = metadata.pniSignedPreKeyId
-    val pniLastResortKyberPreKeyId = metadata.pniLastResortKyberPreKeyId
-
     val pniProtocolStore = AppDependencies.protocolStore.pni()
     val pniMetadataStore = SignalStore.account.pniPreKeys
 
     SignalStore.account.pniRegistrationId = pniRegistrationId
     SignalStore.account.setPniIdentityKeyAfterChangeNumber(pniIdentityKeyPair)
 
-    val signedPreKey = pniProtocolStore.loadSignedPreKey(pniSignedPreyKeyId)
-    val oneTimeEcPreKeys = PreKeyUtil.generateAndStoreOneTimeEcPreKeys(pniProtocolStore, pniMetadataStore)
-    val lastResortKyberPreKey = pniProtocolStore.loadLastResortKyberPreKeys().firstOrNull { it.id == pniLastResortKyberPreKeyId }
-    val oneTimeKyberPreKeys = PreKeyUtil.generateAndStoreOneTimeKyberPreKeys(pniProtocolStore, pniMetadataStore)
+    PreKeyUtil.storeSignedPreKey(pniProtocolStore, pniMetadataStore, pniSignedPreKey)
+    pniMetadataStore.activeSignedPreKeyId = pniSignedPreKey.id
 
-    if (lastResortKyberPreKey == null) {
+    if (pniLastResortKyberPreKey != null) {
+      PreKeyUtil.storeLastResortKyberPreKey(pniProtocolStore, pniMetadataStore, pniLastResortKyberPreKey)
+    } else {
       Log.w(TAG, "Last-resort kyber prekey is missing!")
     }
-
-    pniMetadataStore.activeSignedPreKeyId = signedPreKey.id
-    Log.i(TAG, "Submitting prekeys with PNI identity key: ${pniIdentityKeyPair.publicKey.fingerprint}")
-
-    retryChangeLocalNumberNetworkOperation {
-      SignalNetwork.keys.setPreKeys(
-        PreKeyUpload(
-          serviceIdType = ServiceIdType.PNI,
-          signedPreKey = signedPreKey,
-          oneTimeEcPreKeys = oneTimeEcPreKeys,
-          lastResortKyberPreKey = lastResortKyberPreKey,
-          oneTimeKyberPreKeys = oneTimeKyberPreKeys
-        )
-      )
-    }.successOrThrow()
-
-    pniMetadataStore.isSignedPreKeyRegistered = true
-    pniMetadataStore.lastResortKyberPreKeyId = pniLastResortKyberPreKeyId
 
     pniProtocolStore.identities().saveIdentityWithoutSideEffects(
       Recipient.self().id,
@@ -171,20 +219,8 @@ class ChangeNumberRepository(
       true
     )
 
-    SignalStore.misc.hasPniInitializedDevices = true
-    AppDependencies.groupsV2Authorization.clear()
-
     Recipient.self().fresh()
     StorageSyncHelper.scheduleSyncForDataChange()
-
-    AppDependencies.resetNetwork()
-    AppDependencies.startNetwork()
-
-    AppDependencies.jobManager.add(RefreshAttributesJob())
-
-    rotateCertificates()
-
-    SignalStore.misc.unlockChangeNumber()
   }
 
   @WorkerThread
@@ -335,7 +371,7 @@ class ChangeNumberRepository(
         } else {
           PreKeyUtil.generateSignedPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
-        devicePniSignedPreKeys[deviceId] = SignedPreKeyEntity(signedPreKeyRecord.id, signedPreKeyRecord.keyPair.publicKey, signedPreKeyRecord.signature)
+        devicePniSignedPreKeys[deviceId] = SignedPreKeyEntity(signedPreKeyRecord.id.toLong(), signedPreKeyRecord.keyPair.publicKey, signedPreKeyRecord.signature)
 
         // Last-resort kyber prekeys
         val lastResortKyberPreKeyRecord: KyberPreKeyRecord = if (deviceId == primaryDeviceId) {
@@ -343,7 +379,7 @@ class ChangeNumberRepository(
         } else {
           PreKeyUtil.generateLastResortKyberPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
-        devicePniLastResortKyberPreKeys[deviceId] = KyberPreKeyEntity(lastResortKyberPreKeyRecord.id, lastResortKyberPreKeyRecord.keyPair.publicKey, lastResortKyberPreKeyRecord.signature)
+        devicePniLastResortKyberPreKeys[deviceId] = KyberPreKeyEntity(lastResortKyberPreKeyRecord.id.toLong(), lastResortKyberPreKeyRecord.keyPair.publicKey, lastResortKyberPreKeyRecord.signature)
 
         // Registration Ids
         var pniRegistrationId = -1
@@ -383,8 +419,8 @@ class ChangeNumberRepository(
       previousPni = SignalStore.account.pni!!.toByteString(),
       pniIdentityKeyPair = pniIdentity.serialize().toByteString(),
       pniRegistrationId = pniRegistrationIds[primaryDeviceId]!!,
-      pniSignedPreKeyId = devicePniSignedPreKeys[primaryDeviceId]!!.keyId,
-      pniLastResortKyberPreKeyId = devicePniLastResortKyberPreKeys[primaryDeviceId]!!.keyId,
+      pniSignedPreKeyId = devicePniSignedPreKeys[primaryDeviceId]!!.keyId.toInt(),
+      pniLastResortKyberPreKeyId = devicePniLastResortKyberPreKeys[primaryDeviceId]!!.keyId.toInt(),
       previousE164 = SignalStore.account.requireE164(),
       newE164 = newE164
     )

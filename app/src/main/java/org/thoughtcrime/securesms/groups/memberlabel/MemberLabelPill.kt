@@ -16,6 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -54,12 +55,16 @@ fun MemberLabelPill(
   maxLines: Int = 1
 ) {
   val isDark = isSystemInDarkTheme()
-  val backgroundColor = tintColor.copy(alpha = if (isDark) 0.32f else 0.10f)
+  val backgroundColor = remember(isDark, tintColor) {
+    tintColor.copy(alpha = if (isDark) 0.32f else 0.10f)
+  }
 
-  val textColor = if (isDark) {
-    Color.White.copy(alpha = 0.25f).compositeOver(tintColor)
-  } else {
-    Color.Black.copy(alpha = 0.30f).compositeOver(tintColor)
+  val textColor = remember(isDark, tintColor) {
+    if (isDark) {
+      Color.White.copy(alpha = 0.25f).compositeOver(tintColor)
+    } else {
+      Color.Black.copy(alpha = 0.30f).compositeOver(tintColor)
+    }
   }
 
   MemberLabelPill(

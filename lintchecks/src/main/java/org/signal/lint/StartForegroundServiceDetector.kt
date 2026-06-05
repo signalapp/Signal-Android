@@ -15,7 +15,7 @@ class StartForegroundServiceDetector : Detector(), Detector.UastScanner {
     return listOf("startForegroundService")
   }
 
-  override fun visitMethodCall(context: JavaContext, call: UCallExpression, method: PsiMethod) {
+  override fun visitMethodCall(context: JavaContext, node: UCallExpression, method: PsiMethod) {
     val evaluator = context.evaluator
 
     val classes = context.uastFile?.classes.orEmpty()
@@ -27,15 +27,15 @@ class StartForegroundServiceDetector : Detector(), Detector.UastScanner {
     if (evaluator.isMemberInClass(method, "androidx.core.content.ContextCompat")) {
       context.report(
         issue = START_FOREGROUND_SERVICE_ISSUE,
-        scope = call,
-        location = context.getLocation(call),
+        scope = node,
+        location = context.getLocation(node),
         message = "Using 'ContextCompat.startForegroundService' instead of a ForegroundServiceUtil"
       )
     } else if (evaluator.isMemberInClass(method, "android.content.Context")) {
       context.report(
         issue = START_FOREGROUND_SERVICE_ISSUE,
-        scope = call,
-        location = context.getLocation(call),
+        scope = node,
+        location = context.getLocation(node),
         message = "Using 'Context.startForegroundService' instead of a ForegroundServiceUtil"
       )
     }

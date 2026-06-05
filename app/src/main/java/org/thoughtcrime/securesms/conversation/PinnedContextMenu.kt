@@ -93,7 +93,7 @@ object PinnedContextMenu {
         message.slideDeck.getStickerSlide() == null
       ) {
         add(
-          ActionItem(R.drawable.symbol_save_android_24, context.getString(R.string.conversation_selection__menu_save)) {
+          ActionItem(CoreUiR.drawable.symbol_save_android_24, context.getString(R.string.conversation_selection__menu_save)) {
             callbacks.onSave()
           }
         )

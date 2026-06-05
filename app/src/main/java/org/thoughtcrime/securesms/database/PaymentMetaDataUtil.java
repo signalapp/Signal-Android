@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.database;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
 import com.mobilecoin.lib.KeyImage;
 import com.mobilecoin.lib.Receipt;
 import com.mobilecoin.lib.RistrettoPublic;
@@ -87,6 +86,9 @@ public final class PaymentMetaDataUtil {
   }
 
   public static byte[] receiptPublic(@NonNull PaymentMetaData paymentMetaData) {
-    return Stream.of(paymentMetaData.mobileCoinTxoIdentification.publicKey).single().toByteArray();
+    if (paymentMetaData.mobileCoinTxoIdentification.publicKey.size() != 1) {
+      throw new IllegalStateException("Unexpected number of public keys!");
+    }
+    return paymentMetaData.mobileCoinTxoIdentification.publicKey.get(0).toByteArray();
   }
 }

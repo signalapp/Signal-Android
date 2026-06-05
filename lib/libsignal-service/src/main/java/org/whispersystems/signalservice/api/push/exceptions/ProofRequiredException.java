@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.api.push.exceptions;
 
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
+
 import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.internal.push.ProofRequiredResponse;
 

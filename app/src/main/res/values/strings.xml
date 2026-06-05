@@ -24,6 +24,7 @@
     <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string>
     <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string>
     <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string>
+    <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string>
 
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
@@ -330,20 +331,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Send</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Recent contacts</string>
-    <string name="CameraContacts_signal_contacts">Signal contacts</string>
-    <string name="CameraContacts_signal_groups">Signal groups</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">You can share with a maximum of %d chat.</item>
-        <item quantity="other">You can share with a maximum of %d chats.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Select Signal recipients</string>
-    <string name="CameraContacts_no_signal_contacts">No Signal contacts</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">You can only use the camera button to send photos to Signal contacts. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Can\'t find who you\'re looking for?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Invite a contact to join Signal</string>
     <string name="CameraContacts__menu_search">Search</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -716,10 +703,19 @@
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">Review carefully</string>
-    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%s are not verified</string>
-    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
-    <string name="ConversationFragment_group_names_not_verified">%s are not verified</string>
+    <!-- Text shown in conversation header when in a message request state that the name is not verified -->
+    <string name="ConversationFragment_name_not_verified">Name not verified</string>
+    <!-- Label for official chat pill shown in the Note to Self conversation header -->
+    <string name="ConversationFragment_official_chat">Official chat</string>
+    <!-- Description shown in the Signal release notes conversation header -->
+    <string name="ConversationFragment_release_notes_description">The only official chat from Signal. Keep up to date with news and release notes.</string>
+    <!-- Label shown in place of the input in the Signal release notes conversation -->
+    <string name="ConversationFragment_the_only_official_chat_from_signal">The only official chat from Signal</string>
+    <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
+    <plurals name="ConversationFragment_group_member_count">
+        <item quantity="one">%1$d Member</item>
+        <item quantity="other">%1$d Members</item>
+    </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">Profile names</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
@@ -745,43 +741,61 @@
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Safety Tips</string>
-    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Be careful when accepting message requests from people you don’t know. Watch out for:</string>
-    <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Review this request carefully. None of your contacts or people you chat with are in this group. Here are a few things to watch out for:</string>
-    <!-- Button text to move to the previous tip-->
+    <!-- Button text to view more safety tips -->
+    <string name="SafetyTips_view_more">View more</string>
+    <!-- Content description for previous tip button -->
     <string name="SafetyTips_previous_tip">Previous tip</string>
-    <!-- Button text to move to the next tip -->
+    <!-- Content description for next tip button -->
     <string name="SafetyTips_next_tip">Next tip</string>
-    <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">Fake names and accounts</string>
-    <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal will never contact you for your registration code or PIN. Be cautious of requests that impersonate others. Profile names are chosen by their account holder and aren\'t verified.</string>
-    <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Crypto or money scams</string>
-    <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">If someone you don’t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful—it’s likely spam.</string>
-    <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Vague or irrelevant messages</string>
-    <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spammers often start with a simple message like “Hi” to draw you in. If you respond they may engage you further.</string>
-    <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Messages with links</string>
-    <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Be careful of messages from people you don’t know that have links to websites. Never visit links from people you don’t trust.</string>
-    <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Fake businesses and institutions</string>
-    <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
+
+    <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
+    <string name="SafetyTips_summary_tip0_title">Don\'t respond to chats from Signal</string>
+    <!-- Summary tip 0 message -->
+    <string name="SafetyTips_summary_tip0_message">Signal will never message you for your registration code, PIN, or recovery key. Never respond to a chat pretending to be Signal.</string>
+    <!-- Summary tip 1 title: Review names and photos -->
+    <string name="SafetyTips_summary_tip1_title">Review names and photos</string>
+    <!-- Summary tip 1 message -->
+    <string name="SafetyTips_summary_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name in Signal.</string>
+    <!-- Summary tip 2 title: Look out for scams -->
+    <string name="SafetyTips_summary_tip2_title">Look out for scams</string>
+    <!-- Summary tip 2 message -->
+    <string name="SafetyTips_summary_tip2_message">Avoid vague messages that try to get you to reply. Be aware of financial tips and suspicious web links.</string>
+
+    <!-- Detail tip 0 title -->
+    <string name="SafetyTips_detail_tip0_title">Don\'t respond to chats from Signal</string>
+    <!-- Detail tip 0 message -->
+    <string name="SafetyTips_detail_tip0_message">Signal will never message you for your registration code, PIN, or recover key. Don\'t reply to chats pretending to be Signal or Signal Support. Bad actors set up fake chats to try to take over your account.</string>
+    <!-- Detail tip 1 title -->
+    <string name="SafetyTips_detail_tip1_title">Review names and photos</string>
+    <!-- Detail tip 1 message -->
+    <string name="SafetyTips_detail_tip1_message">Look out for the \"Name not verified\" notice. Everyone sets their own profile name and photo in Signal. If you\'re unsure who a new request is from it\'s safer to ignore it.</string>
+    <!-- Detail tip 2 title -->
+    <string name="SafetyTips_detail_tip2_title">Vague or irrelevant messages</string>
+    <!-- Detail tip 2 message -->
+    <string name="SafetyTips_detail_tip2_message">Spammers often start with a simple message like \"Hi\" to draw you in. If you respond they may engage you further.</string>
+    <!-- Detail tip 3 title -->
+    <string name="SafetyTips_detail_tip3_title">Messages with web links</string>
+    <!-- Detail tip 3 message -->
+    <string name="SafetyTips_detail_tip3_message">Be careful of messages from people you don\'t know that have links to websites. Never visit links from people you don\'t trust.</string>
+    <!-- Detail tip 4 title -->
+    <string name="SafetyTips_detail_tip4_title">Crypto or money scams</string>
+    <!-- Detail tip 4 message -->
+    <string name="SafetyTips_detail_tip4_message">If someone you don\'t know messages about cryptocurrency (like Bitcoin) or a financial opportunity, be careful&#8212;it\'s likely spam.</string>
+    <!-- Detail tip 5 title -->
+    <string name="SafetyTips_detail_tip5_title">Fake businesses</string>
+    <!-- Detail tip 5 message -->
+    <string name="SafetyTips_detail_tip5_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">%s on Signal are chosen by their account holder.</string>
-    <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profile names aren’t verified</string>
+    <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal can\'t verify names and photos</string>
+    <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal will never contact you for your registration code, PIN, or recovery key</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Be cautious of accounts that impersonate others</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">Don’t share personal information with people you don’t know</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">Don\'t share personal information with people you don\'t know</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
     <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s are chosen by members of the group.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
@@ -1261,10 +1275,6 @@
         <item quantity="other">%d pending member requests.</item>
     </plurals>
     <string name="PendingGroupJoinRequestsReminder_view">View</string>
-
-    <!-- GcmRefreshJob -->
-    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal communication failure!</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was unable to register with Google Play Services. Signal messages and calls have been disabled, please try re-registering in Settings &gt; Advanced.</string>
 
 
     <!-- GiphyActivity -->
@@ -1798,6 +1808,8 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Deleting</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Deleting messages…</string>
+    <!-- Format string showing current vs. total items being deleted, e.g. "12 of 207" -->
+    <string name="MediaOverviewActivity_Media_delete_progress_count">%1$d of %2$d</string>
     <string name="MediaOverviewActivity_Sort_by">Sort by</string>
     <string name="MediaOverviewActivity_Newest">Newest</string>
     <string name="MediaOverviewActivity_Oldest">Oldest</string>
@@ -1834,6 +1846,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">Sent by you to %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_jump_to_message">Jump to message</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Remind me later</string>
@@ -1923,6 +1936,10 @@
     <string name="MessageRecord_declined_voice_call">Declined voice call</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">Unanswered video call</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Missed voice call while notification profile on</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2216,8 +2233,10 @@
     <string name="MessageRecord__payment_tombstone">Payment</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Reported as spam</string>
-    <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">You accepted the message request</string>
+    <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
+    <string name="MessageRecord_you_accepted_s_message_request">You accepted %1$s\'s message request</string>
+    <!-- Update message shown in a group chat after accepting a group message request -->
+    <string name="MessageRecord_you_accepted_the_group_request">You accepted the group request</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">You blocked this person</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2241,7 +2260,7 @@
     <string name="MessageRequestBottomView_unblock">Unblock</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Let %1$s message you and share your name and photo with them? They won\'t know you\'ve seen their message until you accept.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Let this person message you and share your name and photo with them? They won\'t know you\'ve seen their message until you accept.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Let %1$s message you and share your name and photo with them? You won\'t receive any messages until you unblock them.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2303,11 +2322,15 @@
         <item quantity="other">%1$d others</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Report…</string>
+    <string name="MessageRequestBottomView_report">Report</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">Accept request?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren\'t verified.</string>
+    <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
+    <string name="MessageRequestBottomView_accept_request_body">Only accept requests from people you trust. %1$s message you for a registration code, PIN, or recovery key.</string>
+    <!-- Bold substring used in accept request body: "Signal will never" -->
+    <string name="MessageRequestBottomView_signal_will_never">Signal will never</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">Join group?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -2664,6 +2687,10 @@
     <string name="CallOverflowPopupWindow__lower_hand">Lower</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">Cancel</string>
+    <!-- A clickable button to share your screen in a call -->
+    <string name="CallOverflowPopupWindow__share_screen">Share screen</string>
+    <!-- A clickable button to stop sharing your screen in a call -->
+    <string name="CallOverflowPopupWindow__stop_screen_share">Stop sharing</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">View</string>
 
@@ -2788,6 +2815,8 @@
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Swipe to view screen share</string>
+    <!-- Hint shown to teach the user they can swipe between the grid view and the active speaker view -->
+    <string name="CallToastPopupWindow__swipe_to_view_speaker">Swipe to view speaker</string>
 
     <!-- ProxyBottomSheetFragment -->
     <string name="ProxyBottomSheetFragment_proxy_server">Proxy server</string>
@@ -2837,8 +2866,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Unable to connect to service. Please check network connection and try again.</string>
-    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
+    <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
+    <string name="RegistrationActivity_sms_provider_error">We are unable to send an SMS to your number. Please try again in several hours.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3071,6 +3100,10 @@
     <string name="SubmitDebugLogActivity_info" translatable="false">Info</string>
     <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string>
     <string name="SubmitDebugLogActivity_error" translatable="false">Error</string>
+    <!-- Title of dialog shown when debug log prefix generation is unusually slow -->
+    <string name="SubmitDebugLogActivity_slow_log_title" translatable="false">Slow log generation</string>
+    <!-- Body of dialog shown when debug log prefix generation is unusually slow. %1$d is duration in seconds. -->
+    <string name="SubmitDebugLogActivity_slow_log_message" translatable="false">Generating the debug log header took %1$d seconds. We should figure out what\'s slowing things down.</string>
 
     <!-- SupportEmailUtil -->
     <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
@@ -3081,6 +3114,8 @@
     <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string>
     <string name="SupportEmailUtil_registration_lock">Registration lock:</string>
     <string name="SupportEmailUtil_locale" translatable="false">Locale:</string>
+    <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string>
+    <string name="SupportEmailUtil_registered" translatable="false">Registered:</string>
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Group updated</string>
@@ -3695,7 +3730,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Options</string>
+    <string name="ConversationUpdateItem_block_report">Block or Report…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">Update</string>
     <!-- Update item button text to show how many group updates there are. -->
@@ -3970,11 +4005,11 @@
     <!-- Bottom sheet title when encryption is auto-verified -->
     <string name="EncryptionVerifiedSheet__title_success">Encryption was auto-verified for this chat</string>
     <!-- Bottom sheet body when encryption is auto-verified -->
-    <string name="EncryptionVerifiedSheet__body_success">For contacts you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <string name="EncryptionVerifiedSheet__body_success">For people you’re connected to by phone number, Signal can automatically confirm whether the connection is secure using a process called key transparency. For added security, verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
     <!-- Bottom sheet title when encryption is no longer auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Auto-verification is no longer available for this chat</string>
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Auto-verification is not available for this chat</string>
     <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
-    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal can no longer automatically verify the encryption for this chat. This is likely because %1$s changed their phone number. Verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal can not automatically verify the encryption for this chat. This could be because %1$s changed their phone number or their phone number privacy settings. Verify end-to-end encryption manually by comparing the numbers on the previous screen or scanning the code on their device.</string>
     <!-- Bottom sheet title when encryption cannot be auto-verified -->
     <string name="EncryptionVerifiedSheet__title_unavailable">Auto-verification not available for this chat</string>
     <!-- Bottom sheet body when encryption cannot be auto-verified -->
@@ -4328,7 +4363,7 @@
     <string name="preferences_data_and_storage__never">Never</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi and mobile data</string>
     <string name="preferences_data_and_storage__mobile_data_only">Mobile data only</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks.</string>
     <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
     <string name="preferences_notifications__show">Show</string>
     <string name="preferences_notifications__ringtone">Ringtone</string>
@@ -5683,6 +5718,33 @@
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">Okay</string>
 
+    <!-- ChangeNumberPostRegistrationWaitSheet: title of the sheet shown when the user tries to change number too soon after registering -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__title">Can\'t change number</string>
+    <!-- ChangeNumberPostRegistrationWaitSheet: explanation body shown above the wait-time line -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__body">Because you recently registered this account, you can\'t change phone numbers right now. A short waiting period helps protect your account.</string>
+    <!-- ChangeNumberPostRegistrationWaitSheet: remaining-wait line when wait is one hour or more, %1$d is the number of hours, rounded up -->
+    <plurals name="ChangeNumberPostRegistrationWaitSheet__try_again_in_hours">
+        <item quantity="one">Try again in %1$d hour.</item>
+        <item quantity="other">Try again in %1$d hours.</item>
+    </plurals>
+    <!-- ChangeNumberPostRegistrationWaitSheet: remaining-wait line when wait is under one hour, %1$d is the number of minutes, rounded up -->
+    <plurals name="ChangeNumberPostRegistrationWaitSheet__try_again_in_minutes">
+        <item quantity="one">Try again in %1$d minute.</item>
+        <item quantity="other">Try again in %1$d minutes.</item>
+    </plurals>
+    <!-- ChangeNumberPostRegistrationWaitSheet: dismiss button -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__ok">OK</string>
+    <!-- ChangeNumberEnterCodeFragment: rate-limit dialog message when retry-after is one hour or more, %1$d is hours rounded up -->
+    <plurals name="ChangeNumberEnterCodeFragment__too_many_attempts_try_again_in_hours">
+        <item quantity="one">You have made too many attempts. Please try again in %1$d hour.</item>
+        <item quantity="other">You have made too many attempts. Please try again in %1$d hours.</item>
+    </plurals>
+    <!-- ChangeNumberEnterCodeFragment: rate-limit dialog message when retry-after is under one hour, %1$d is minutes rounded up -->
+    <plurals name="ChangeNumberEnterCodeFragment__too_many_attempts_try_again_in_minutes">
+        <item quantity="one">You have made too many attempts. Please try again in %1$d minute.</item>
+        <item quantity="other">You have made too many attempts. Please try again in %1$d minutes.</item>
+    </plurals>
+
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Change Number</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Your old number</string>
@@ -5971,6 +6033,8 @@
     <string name="HelpSettingsFragment__support_center">Support center</string>
     <string name="HelpSettingsFragment__contact_us">Contact us</string>
     <string name="HelpSettingsFragment__version">Version</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Copied to clipboard</string>
     <string name="HelpSettingsFragment__debug_log">Debug log</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licenses</string>
@@ -5985,11 +6049,19 @@
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent media quality</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending high quality media will use more data.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Voice messages and stickers (under %1$s) are always auto-downloaded.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">High</string>
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Standard</string>
     <string name="DataAndStorageSettingsFragment__calls">Calls</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Stay connected in background</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Staying connected while in the background will likely result in increased battery usage. This is not necessary for most devices. Only enable this if you\'ve been experiencing notification issues.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Enable</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -6481,9 +6553,9 @@
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL | Wero payment.</string>
 
     <string name="Boost__enter_custom_amount">Enter Custom Amount</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -6612,7 +6684,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Your donation could not be sent because of a network error. Check your connection and try again.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">Your iDEAL | Wero donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
@@ -6840,12 +6912,6 @@
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Turn on</string>
 
-    <!-- Description shown for the Signal Release Notes channel -->
-    <string name="ReleaseNotes__signal_release_notes_and_news">Signal Release Notes &amp; News</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">This is the official and only chat from Signal.</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">Keep up to date with news and release notes.</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">This is the official and only chat from Signal</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
@@ -7541,7 +7607,7 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
+    <string name="DonateToSignalFragment__your_ideal_wero_payment_is_still_processing">Your iDEAL | Wero donation is still processing. Check your banking app to approve your payment before making another donation.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -7571,11 +7637,13 @@
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Donate for a friend</string>
     <!-- Button label for paying with iDEAL -->
-    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+    <string name="GatewaySelectorBottomSheet__ideal_wero">iDEAL | Wero</string>
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
+    <!-- Dialog message shown when leaving Signal to complete a donation in an external app. Placeholder is the resolved app name (e.g. a banking app). -->
+    <string name="ExternalNavigationHelper__once_payment_confirmed_in_app">You\'ll be sent to %1$s. When confirmed, return to Signal to finish processing your donation.</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7637,7 +7705,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Choose your bank</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">Confirm your donation with iDEAL</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">Confirm your donation with iDEAL | Wero</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">To setup your recurring donation tap continue to confirm a €0,01 charge with your bank. This will be automatically refunded and allows your %1$s/month donation to debited from your account.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7801,6 +7869,8 @@
     <string name="CallLogAdapter__incoming">Incoming</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">Outgoing</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">Unanswered</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Missed</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -7885,6 +7955,8 @@
     <string name="CallLogFragment__get_started_by_calling_a_friend">Get started by calling a friend.</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">Call links you\'ve created will no longer work for people who have them.</string>
+    <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">You\'re no longer a member of this group.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -8196,6 +8268,15 @@
     <string name="UseNewOnDeviceBackups__upgrade">Upgrade</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">Not now</string>
+
+    <!-- Title of a megaphone shown to prompt the user to open Signal on their primary device -->
+    <string name="InactivePrimary__title">Open Signal on your phone</string>
+    <!-- Body of a megaphone shown to prompt the user to open Signal on their primary device -->
+    <string name="InactivePrimary__body">To keep your account active, open Signal on your primary device.</string>
+    <!-- Button of a megaphone shown to prompt the user to open Signal on their primary device that will navigate to a support page -->
+    <string name="InactivePrimary__learn_more">Learn more</string>
+    <!-- Button of a megaphone shown to prompt the user to open Signal on their primary device that will snooze the megaphone -->
+    <string name="InactivePrimary__got_it">Got it</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
     <string name="OnDeviceBackupsScreen__to_restore_a_backup">To restore a backup, install a new copy of Signal. Open the app and tap "Restore backup", then locate a backup file.</string>
@@ -8968,7 +9049,7 @@
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media and using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Back up your messages and media using Signal\'s secure, end-to-end encrypted storage service. Never lose a message when you get a new phone or reinstall Signal.</string>
     <!-- Backups feature label for e2e encryption -->
     <string name="MessageBackupsEducationScreen__end_to_end_encrypted">End-to-end Encrypted</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->
@@ -9317,11 +9398,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Contact support</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Turn on on-device backups?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">To continue using on-device backups, you need to enable them for this account and record your new recovery key. You can do this at any time from Settings &gt; Backups.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">To continue using on-device backups, you need to enable them for this account. You can do this at any time from Settings &gt; Backups.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Turn on now</string>
@@ -9814,6 +9895,36 @@
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+
+    <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
+    <string name="VerificationCodeRequestedBottomSheet__title">A verification code was requested</string>
+    <!-- First paragraph of the body of the verification code requested sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__body_1">Do not give your verification code to anyone. Signal will never message you for it. If you received a message from someone pretending to be Signal, it is a scam.</string>
+    <!-- Second paragraph of the body of the verification code requested sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__body_2">You can safely ignore this message if you requested the code yourself.</string>
+    <!-- Button on the verification code requested sheet that opens the safety tips screen -->
+    <string name="VerificationCodeRequestedBottomSheet__safety_tips">Safety tips</string>
+    <!-- Button on the verification code requested sheet that dismisses the sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__ok">OK</string>
+    <!-- Subtitle on the verification code requested sheet showing the time the code was requested followed by the relative day. %1$s is the time (e.g. "3:25 PM"), %2$s is the relative day (e.g. "Today", "Yesterday", "Jan 15") -->
+    <string name="VerificationCodeRequestedBottomSheet__time_with_day">%1$s %2$s</string>
+
+    <!-- Title of the safety tips screen within the verification code requested sheet -->
+    <string name="SafetyTipsBottomSheet__title">Safety Tips</string>
+    <!-- Title of the first safety tip: don\'t respond to chats claiming to be Signal -->
+    <string name="SafetyTipsBottomSheet__tip_1_title">Don\'t respond to chats from Signal</string>
+    <!-- Body of the first safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_1_body">Signal will never message you for your registration code, PIN, or recovery key. Never respond to a chat pretending to be Signal.</string>
+    <!-- Title of the second safety tip: keep your verification code safe -->
+    <string name="SafetyTipsBottomSheet__tip_2_title">Keep your verification code safe</string>
+    <!-- Body of the second safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_2_body">If you received a verification code you didn\'t request, someone may be attempting to access your account. Do not share your code.</string>
+    <!-- Title of the third safety tip: enable registration lock -->
+    <string name="SafetyTipsBottomSheet__tip_3_title">Turn on registration lock in account settings</string>
+    <!-- Body of the third safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_3_body">Protect your account by requiring your Signal PIN, in addition to your verification code, when registering with Signal.</string>
+    <!-- Button on the safety tips screen that opens account settings -->
+    <string name="SafetyTipsBottomSheet__open_account_settings">Open account settings</string>
 
     <!-- EOF -->
 </resources>

@@ -22,7 +22,7 @@ import org.signal.storageservice.storage.protos.groups.GroupResponse;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupJoinInfo;
-import org.whispersystems.signalservice.api.NetworkResult;
+import org.signal.network.NetworkResult;
 import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.models.ServiceId.PNI;
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket;

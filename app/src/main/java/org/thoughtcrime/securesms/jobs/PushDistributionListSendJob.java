@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -178,7 +177,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
         targets.addAll(filterRecipientIds.stream().map(Recipient::resolved).collect(Collectors.toList()));
         targets.addAll(existingNetworkFailures.stream().map(NetworkFailure::getRecipientId).distinct().map(Recipient::resolved).collect(Collectors.toList()));
       } else if (!existingNetworkFailures.isEmpty()) {
-        targets = Stream.of(existingNetworkFailures).map(NetworkFailure::getRecipientId).distinct().map(Recipient::resolved).toList();
+        targets = existingNetworkFailures.stream().map(NetworkFailure::getRecipientId).distinct().map(Recipient::resolved).collect(Collectors.toList());
       } else {
         Stories.SendData data = Stories.getRecipientsToSendTo(messageId, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies());
         targets = data.getTargets();
@@ -206,11 +205,11 @@ public final class PushDistributionListSendJob extends PushSendJob {
       throws IOException, UntrustedIdentityException, UndeliverableMessageException
   {
     try {
-      List<Attachment>                    attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<Attachment>                    attachments        = message.getAttachments().stream().filter(attachment -> !attachment.isSticker()).collect(Collectors.toList());
       List<SignalServiceAttachment> attachmentPointers = getAttachmentPointersFor(attachments);
       List<BodyRange>               bodyRanges         = getBodyRanges(message);
-      boolean                             isRecipientUpdate  = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
-                                                                     .anyMatch(info -> info.getStatus() > GroupReceiptTable.STATUS_UNDELIVERED);
+      boolean                             isRecipientUpdate  = SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId).stream()
+                                                                             .anyMatch(info -> info.getStatus() > GroupReceiptTable.STATUS_UNDELIVERED);
 
       final SignalServiceStoryMessage storyMessage;
       if (message.getStoryType().isTextStory()) {

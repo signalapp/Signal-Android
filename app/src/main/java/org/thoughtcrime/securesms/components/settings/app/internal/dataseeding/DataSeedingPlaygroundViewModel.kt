@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.database.model.ThreadWithRecipient
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -43,7 +43,7 @@ class DataSeedingPlaygroundViewModel(application: Application) : AndroidViewMode
   fun loadThreads() {
     viewModelScope.launch(Dispatchers.IO) {
       try {
-        val threads = mutableListOf<ThreadRecord>()
+        val threads = mutableListOf<ThreadWithRecipient>()
         val cursor: Cursor = SignalDatabase.threads.getRecentConversationList(
           limit = MAX_RECENT_THREADS,
           includeInactiveGroups = false,
@@ -213,7 +213,7 @@ class DataSeedingPlaygroundViewModel(application: Application) : AndroidViewMode
 }
 
 data class DataSeedingPlaygroundState(
-  val threads: List<ThreadRecord> = emptyList(),
+  val threads: List<ThreadWithRecipient> = emptyList(),
   val selectedThreads: Set<Long> = emptySet(),
   val mediaFiles: List<String> = emptyList(),
   val selectedFolderPath: String = ""

@@ -8,7 +8,7 @@ import org.signal.libsignal.protocol.IdentityKey;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.internal.push.KyberPreKeyEntity;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage;
-import org.whispersystems.signalservice.internal.util.JsonUtil;
+import org.signal.network.util.JsonUtil;
 
 import java.util.List;
 import java.util.Map;

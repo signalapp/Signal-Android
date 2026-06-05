@@ -24,6 +24,7 @@ import kotlinx.coroutines.withContext
 import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
+import org.signal.core.util.next
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
@@ -45,7 +46,6 @@ import org.thoughtcrime.securesms.jobs.InAppPaymentPurchaseTokenJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.next
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import kotlin.time.Duration.Companion.seconds

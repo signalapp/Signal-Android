@@ -5,7 +5,7 @@ import assertk.assertions.containsExactly
 import assertk.assertions.hasSize
 import assertk.assertions.isEqualTo
 import org.junit.Test
-import org.whispersystems.signalservice.internal.util.JsonUtil
+import org.signal.network.util.JsonUtil
 
 class GroupMismatchedDevicesTest {
   @Test

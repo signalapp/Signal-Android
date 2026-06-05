@@ -15,8 +15,8 @@ import org.thoughtcrime.securesms.keyvalue.EmojiValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.s3.S3;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
-import org.whispersystems.signalservice.internal.util.JsonUtil;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.util.JsonUtil;
 
 import java.io.IOException;
 import java.util.Arrays;

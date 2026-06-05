@@ -112,7 +112,7 @@
 
     <color name="conversation_scroll_to_bottom_foreground_color">@color/signal_colorOnSurfaceVariant</color>
 
-    <color name="conversation_list_selected_color">@color/signal_colorSurface2</color>
+    <color name="conversation_list_selected_color">@color/signal_colorSurface3</color>
 
     <color name="camera_icon_background_tint">@color/core_grey_02</color>
 
@@ -209,4 +209,16 @@
 
     <color name="safety_tip_background">@color/core_white</color>
     <color name="safety_tip_image_background">#99F2F5F9</color>
+
+    <color name="signal_colorOnWarning">#FFB44828</color>
+
+    <color name="release_notes_bubble">#FF9294BC</color>
+    <color name="release_notes_bubble_text">#FFFFFFFF</color>
+    <color name="release_notes_cta_background">#FFD0D1E9</color>
+    <color name="release_notes_background_pattern">#FFE3E4E9</color>
+    <color name="release_notes_header_border">#FFE3E4E9</color>
+    <color name="release_notes_background">#FFF3F3F7</color>
+    <color name="release_notes_header_background">#FFF6F7FF</color>
+    <color name="release_notes_toolbar_scrolled">#FFEAEDF8</color>
+    <color name="release_notes_toolbar_transparent">#00EAEDF8</color>
 </resources>

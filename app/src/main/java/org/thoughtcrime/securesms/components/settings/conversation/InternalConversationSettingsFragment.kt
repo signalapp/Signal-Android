@@ -28,6 +28,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
+import org.thoughtcrime.securesms.components.SignalProgressDialog
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -187,7 +188,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
               message = OutgoingMessage(threadRecipient = recipient, sentTimeMillis = time, body = "Outgoing: $i"),
               threadId = targetThread
             ).messageId
-            SignalDatabase.messages.markAsSent(id, true)
+            SignalDatabase.messages.markAsSent(id)
           } else {
             SignalDatabase.messages.insertMessageInbox(
               retrieved = IncomingMessage(type = MessageType.NORMAL, from = recipient.id, sentTimeMillis = time, serverTimeMillis = time, receivedTimeMillis = System.currentTimeMillis(), body = "Incoming: $i"),
@@ -217,7 +218,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
             message = OutgoingMessage(threadRecipient = recipient, sentTimeMillis = time, body = "Outgoing: $i", attachments = listOf(attachment)),
             threadId = targetThread
           ).messageId
-          SignalDatabase.messages.markAsSent(id, true)
+          SignalDatabase.messages.markAsSent(id)
           SignalDatabase.attachments.getAttachmentsForMessage(id).forEach {
             SignalDatabase.attachments.debugMakeValidForArchive(it.attachmentId)
             SignalDatabase.attachments.createRemoteKeyIfNecessary(it.attachmentId)
@@ -251,7 +252,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
       false,
       null
     ).messageId
-    SignalDatabase.messages.markAsSent(messageId, true)
+    SignalDatabase.messages.markAsSent(messageId)
 
     SignalDatabase.threads.update(splitThreadId, true)
 
@@ -297,15 +298,38 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
   }
 
   override fun clearSenderKeyAndArchiveSessions(recipientId: RecipientId) {
-    clearSenderKey(recipientId)
+    lifecycleScope.launch {
+      val dialog = withContext(Dispatchers.Main) {
+        SignalProgressDialog.show(requireContext(), "Clearing...", cancelable = false, indeterminate = true)
+      }
 
-    val group = SignalDatabase.groups.getGroup(recipientId).orNull()
-    if (group == null) {
-      Log.w(TAG, "Couldn't find group for recipientId: $recipientId")
-      return
+      withContext(Dispatchers.Default) {
+        clearSenderKey(recipientId)
+
+        val group = SignalDatabase.groups.getGroup(recipientId).orNull()
+        if (group == null) {
+          Log.w(TAG, "Couldn't find group for recipientId: $recipientId")
+          return@withContext
+        }
+
+        group.members.forEach { memberId ->
+          archiveSessions(memberId)
+
+          val member = Recipient.resolved(memberId)
+          if (member.hasAci) {
+            AppDependencies.protocolStore.aci().identities().delete(member.requireAci().toString())
+          }
+
+          if (member.hasPni) {
+            AppDependencies.protocolStore.aci().identities().delete(member.requirePni().toString())
+          }
+        }
+      }
+
+      withContext(Dispatchers.Main) {
+        dialog.dismiss()
+      }
     }
-
-    group.members.forEach { archiveSessions(it) }
   }
 
   class InternalViewModel(

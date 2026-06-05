@@ -15,11 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.text.util.LinkifyCompat;
 
-import com.annimon.stream.Stream;
-
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.util.LinkUtil;
+import org.thoughtcrime.securesms.util.Linkification;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 
 public final class GroupDescriptionUtil {
@@ -38,21 +37,16 @@ public final class GroupDescriptionUtil {
     SpannableString descriptionSpannable = new SpannableString(scrubbedDescription);
 
     if (linkify) {
-      int     linkPattern = Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS;
-      boolean hasLinks    = LinkifyCompat.addLinks(descriptionSpannable, linkPattern);
+      LinkifyCompat.addLinks(descriptionSpannable, Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS);
+      Linkification.applyWebUrlSpans(descriptionSpannable);
 
-      if (hasLinks) {
-        Stream.of(descriptionSpannable.getSpans(0, descriptionSpannable.length(), URLSpan.class))
-              .filterNot(url -> LinkUtil.isLegalUrl(url.getURL()))
-              .forEach(descriptionSpannable::removeSpan);
-
-        URLSpan[] urlSpans = descriptionSpannable.getSpans(0, descriptionSpannable.length(), URLSpan.class);
-
-        for (URLSpan urlSpan : urlSpans) {
-          int     start = descriptionSpannable.getSpanStart(urlSpan);
-          int     end   = descriptionSpannable.getSpanEnd(urlSpan);
-          URLSpan span  = new LongClickCopySpan(urlSpan.getURL());
-          descriptionSpannable.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      for (URLSpan urlSpan : descriptionSpannable.getSpans(0, descriptionSpannable.length(), URLSpan.class)) {
+        String url   = urlSpan.getURL();
+        int    start = descriptionSpannable.getSpanStart(urlSpan);
+        int    end   = descriptionSpannable.getSpanEnd(urlSpan);
+        descriptionSpannable.removeSpan(urlSpan);
+        if (LinkUtil.isLegalUrl(url)) {
+          descriptionSpannable.setSpan(new LongClickCopySpan(url), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
       }
     }

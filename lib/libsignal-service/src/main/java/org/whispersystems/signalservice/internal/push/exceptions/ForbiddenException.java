@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.internal.push.exceptions;
 
 
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 
 import java.util.Optional;
 

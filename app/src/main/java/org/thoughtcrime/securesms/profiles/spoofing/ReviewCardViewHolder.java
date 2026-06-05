@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.databinding.ReviewCardBinding;
 import org.thoughtcrime.securesms.util.SpanUtil;
-import org.whispersystems.signalservice.api.util.Preconditions;
+import org.signal.network.util.Preconditions;
 
 import java.util.ArrayList;
 import java.util.Arrays;

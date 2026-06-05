@@ -5,11 +5,11 @@
 
 package org.thoughtcrime.securesms.components.settings.app.changenumber
 
+import org.signal.network.NetworkResult
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.registration.data.network.RegistrationResult
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.PushServiceSocket.RegistrationLockFailure

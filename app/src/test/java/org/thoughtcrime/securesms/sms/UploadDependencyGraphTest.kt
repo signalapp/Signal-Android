@@ -10,6 +10,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.models.media.TransformProperties
+import org.signal.core.util.JsonUtils
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testutil.UriAttachmentBuilder
-import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.util.concurrent.atomic.AtomicLong
 

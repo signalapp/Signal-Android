@@ -9,11 +9,11 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.util.ContextUtil;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ContextUtil;
-import org.thoughtcrime.securesms.util.DrawableUtil;
+import org.signal.core.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;

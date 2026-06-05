@@ -1,8 +1,9 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway
 
 import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.signal.core.util.money.FiatMoney
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.getAvailablePaymentMethods
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -35,8 +36,8 @@ object GatewaySelectorRepository {
       }
   }
 
-  fun setInAppPaymentMethodType(inAppPayment: InAppPaymentTable.InAppPayment, paymentMethodType: InAppPaymentData.PaymentMethodType): Single<InAppPaymentTable.InAppPayment> {
-    return Single.fromCallable {
+  suspend fun setInAppPaymentMethodType(inAppPayment: InAppPaymentTable.InAppPayment, paymentMethodType: InAppPaymentData.PaymentMethodType): InAppPaymentTable.InAppPayment {
+    return withContext(Dispatchers.IO) {
       SignalDatabase.inAppPayments.update(
         inAppPayment.copy(
           data = inAppPayment.data.copy(
@@ -44,7 +45,9 @@ object GatewaySelectorRepository {
           )
         )
       )
-    }.flatMap { InAppPaymentsRepository.requireInAppPayment(inAppPayment.id) }
+
+      SignalDatabase.inAppPayments.getById(inAppPayment.id) ?: throw Exception("Not found.")
+    }
   }
 
   data class GatewayConfiguration(

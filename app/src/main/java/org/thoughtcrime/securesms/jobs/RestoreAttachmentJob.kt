@@ -19,6 +19,8 @@ import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidMacException
 import org.signal.libsignal.protocol.InvalidMessageException
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
+import org.signal.network.exceptions.PushNetworkException
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -56,8 +58,6 @@ import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.I
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.RangeException
 import java.io.File
 import java.io.IOException

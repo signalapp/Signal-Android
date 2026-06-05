@@ -10,7 +10,6 @@ class LabsValues internal constructor(store: KeyValueStore) : SignalStoreValues(
     const val GROUP_SUGGESTIONS_FOR_MEMBERS: String = "labs.group_suggestions_for_members"
     const val BETTER_SEARCH: String = "labs.better_search"
     const val AUTO_LOWER_HAND: String = "labs.auto_lower_hand"
-
     const val STARRED_MESSAGES: String = "labs.starred_messages"
   }
 

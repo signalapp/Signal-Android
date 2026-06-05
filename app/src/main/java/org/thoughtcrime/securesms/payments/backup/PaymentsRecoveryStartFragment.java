@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.BiometricDeviceAuthentication;
 import org.thoughtcrime.securesms.BiometricDeviceLockContract;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.signal.core.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 import org.whispersystems.signalservice.api.payments.PaymentsConstants;

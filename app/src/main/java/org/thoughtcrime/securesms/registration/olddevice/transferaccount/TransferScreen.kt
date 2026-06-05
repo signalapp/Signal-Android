@@ -102,7 +102,7 @@ fun TransferAccountScreen(
 
       Text(
         text = buildAnnotatedString {
-          SignalSymbol(SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.LOCK)
+          SignalSymbol(SignalSymbols.Glyph.LOCK)
           append(" ")
           append(stringResource(id = R.string.TransferAccount_messages_e2e))
         },

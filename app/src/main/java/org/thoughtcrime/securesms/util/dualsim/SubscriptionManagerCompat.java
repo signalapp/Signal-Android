@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.signal.core.util.ServiceUtil;
 
 import java.util.Collection;
 import java.util.Collections;

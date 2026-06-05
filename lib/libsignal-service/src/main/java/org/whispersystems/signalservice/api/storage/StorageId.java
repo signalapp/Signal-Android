@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.storage;
 
 
-import org.whispersystems.signalservice.api.util.Preconditions;
+import org.signal.network.util.Preconditions;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 
 import java.util.Arrays;

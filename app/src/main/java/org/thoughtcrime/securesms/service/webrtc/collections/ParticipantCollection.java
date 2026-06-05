@@ -3,9 +3,6 @@ package org.thoughtcrime.securesms.service.webrtc.collections;
 import androidx.annotation.CheckResult;
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.ComparatorCompat;
-import com.annimon.stream.Stream;
-
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 
@@ -34,9 +31,9 @@ public class ParticipantCollection {
       return 0;
     }
   };
-  private static final Comparator<CallParticipant> COMPLEX_COMPARATOR_CHAIN = ComparatorCompat.chain(HAND_RAISED)
-                                                                                              .thenComparing(MOST_RECENTLY_SPOKEN)
-                                                                                              .thenComparing(LEAST_RECENTLY_ADDED);
+  private static final Comparator<CallParticipant> COMPLEX_COMPARATOR_CHAIN = HAND_RAISED
+      .thenComparing(MOST_RECENTLY_SPOKEN)
+      .thenComparing(LEAST_RECENTLY_ADDED);
 
   private final int                   maxGridCellCount;
   private final List<CallParticipant> participants;
@@ -63,18 +60,18 @@ public class ParticipantCollection {
       List<CallParticipant> newParticipants = new ArrayList<>(participants);
       Collections.sort(newParticipants, COMPLEX_COMPARATOR_CHAIN);
 
-      List<CallParticipantId> oldGridParticipantIds = Stream.of(getGridParticipants())
-                                                            .map(CallParticipant::getCallParticipantId)
-                                                            .toList();
+      List<CallParticipantId> oldGridParticipantIds = getGridParticipants().stream()
+                                                                           .map(CallParticipant::getCallParticipantId)
+                                                                           .collect(Collectors.toList());
 
       for (int i = 0; i < oldGridParticipantIds.size(); i++) {
         CallParticipantId oldId = oldGridParticipantIds.get(i);
 
-        int newIndex = Stream.of(newParticipants)
-                             .takeUntilIndexed((j, p) -> j >= maxGridCellCount)
-                             .map(CallParticipant::getCallParticipantId)
-                             .toList()
-                             .indexOf(oldId);
+        int newIndex = newParticipants.stream()
+                                      .limit(maxGridCellCount)
+                                      .map(CallParticipant::getCallParticipantId)
+                                      .collect(Collectors.toList())
+                                      .indexOf(oldId);
 
         if (newIndex != -1 && newIndex != i) {
           Collections.swap(newParticipants, newIndex, Math.min(i, newParticipants.size() - 1));

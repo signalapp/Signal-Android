@@ -29,7 +29,7 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
     Log.i(tag, "handleAudioDeviceChanged(): active: " + activeDevice + " available: " + availableDevices);
 
     if (currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_CONNECTED) {
-      boolean localVideoEnabled  = currentState.getLocalDeviceState().getCameraState().isEnabled();
+      boolean localVideoEnabled  = currentState.getLocalDeviceState().getCameraState().isEnabled() || currentState.getLocalDeviceState().isScreenSharing();
       boolean remoteVideoEnabled = currentState.getCallInfoState().getRemoteCallParticipantsMap().values().stream().anyMatch(CallParticipant::isVideoEnabled);
       webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, remoteVideoEnabled));
     } else {
@@ -61,11 +61,11 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleSetCameraFlip(@NonNull WebRtcServiceState currentState) {
     Log.i(tag, "handleSetCameraFlip():");
 
-    if (currentState.getLocalDeviceState().getCameraState().isEnabled() && currentState.getVideoState().getCamera() != null) {
-      currentState.getVideoState().getCamera().flip();
+    if (currentState.getLocalDeviceState().getCameraState().isEnabled() && currentState.getVideoState().getRouter() != null) {
+      currentState.getVideoState().getRouter().flip();
       return currentState.builder()
                          .changeLocalDeviceState()
-                         .cameraState(currentState.getVideoState().getCamera().getCameraState())
+                         .cameraState(currentState.getVideoState().getRouter().getCameraState())
                          .build();
     }
     return currentState;

@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.EditTextExtensionsKt;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.signal.core.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.signal.core.util.Util;
 

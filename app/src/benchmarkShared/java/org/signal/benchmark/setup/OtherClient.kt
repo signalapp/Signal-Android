@@ -74,7 +74,7 @@ class OtherClient(val serviceId: ServiceId, val e164: String, val identityKeyPai
     val cipher = SignalServiceCipher(serviceAddress, 1, aciStore, sessionLock, null)
 
     if (!aciStore.containsSession(getAliceProtocolAddress())) {
-      val sessionBuilder = SignalSessionBuilder(sessionLock, SessionBuilder(aciStore, getAliceProtocolAddress()))
+      val sessionBuilder = SignalSessionBuilder(sessionLock, SessionBuilder(aciStore, getAliceProtocolAddress(), SignalProtocolAddress(serviceAddress.identifier, 1)))
       sessionBuilder.process(getAlicePreKeyBundle())
     }
 

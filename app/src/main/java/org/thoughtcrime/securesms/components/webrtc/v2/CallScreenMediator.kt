@@ -43,6 +43,7 @@ interface CallScreenMediator {
   fun enableRingGroup(canRing: Boolean)
   fun showSpeakerViewHint()
   fun hideSpeakerViewHint()
+  fun showScreenShareHint()
   fun showVideoTooltip(): Dismissible
   fun showCameraTooltip(): Dismissible
   fun onCallStateUpdate(callControlsChange: CallControlsChange)

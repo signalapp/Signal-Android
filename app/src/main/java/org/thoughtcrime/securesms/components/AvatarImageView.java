@@ -30,11 +30,12 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 
+import org.signal.core.util.ContextUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable;
-import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity;
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavigator;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
@@ -53,9 +54,7 @@ import java.util.List;
 import java.util.Objects;
 
 public final class AvatarImageView extends AppCompatImageView {
-
   private static final int SIZE_LARGE = 1;
-  private static final int SIZE_SMALL = 2;
 
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(AvatarImageView.class);
@@ -156,10 +155,10 @@ public final class AvatarImageView extends AppCompatImageView {
 
   public void setAvatar(@NonNull RequestManager requestManager, @Nullable Recipient recipient, boolean quickContactEnabled, boolean useSelfProfileAvatar, boolean useBlurGradient) {
     setAvatar(requestManager, recipient, new AvatarOptions.Builder(this)
-                                                          .withUseSelfProfileAvatar(useSelfProfileAvatar)
-                                                          .withQuickContactEnabled(quickContactEnabled)
-                                                          .withUseBlurGradient(useBlurGradient)
-                                                          .build());
+        .withUseSelfProfileAvatar(useSelfProfileAvatar)
+        .withQuickContactEnabled(quickContactEnabled)
+        .withUseBlurGradient(useBlurGradient)
+        .build());
   }
 
   private void setAvatar(@Nullable Recipient recipient, @NonNull AvatarOptions avatarOptions) {
@@ -182,8 +181,8 @@ public final class AvatarImageView extends AppCompatImageView {
 
       if (!photo.equals(recipientContactPhoto) || shouldBlur != blurred || !Objects.equals(chatColors, this.chatColors) || !Objects.equals(initials, this.initials)) {
         requestManager.clear(this);
-        this.chatColors = chatColors;
-        this.initials   = initials;
+        this.chatColors       = chatColors;
+        this.initials         = initials;
         recipientContactPhoto = photo;
 
         FallbackAvatarProvider activeFallbackPhotoProvider = this.fallbackAvatarProvider;
@@ -215,12 +214,12 @@ public final class AvatarImageView extends AppCompatImageView {
           List<Transformation<Bitmap>> transforms = Collections.singletonList(new CircleCrop());
 
           RequestBuilder<Drawable> request = requestManager.load(photo.contactPhoto)
-                                                         .fallback(fallback)
-                                                         .error(fallback)
-                                                         .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                                         .downsample(DownsampleStrategy.CENTER_INSIDE)
-                                                         .transform(new MultiTransformation<>(transforms))
-                                                         .addListener(redownloadRequestListener);
+                                                           .fallback(fallback)
+                                                           .error(fallback)
+                                                           .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                           .downsample(DownsampleStrategy.CENTER_INSIDE)
+                                                           .transform(new MultiTransformation<>(transforms))
+                                                           .addListener(redownloadRequestListener);
 
           if (wasUnblurred) {
             blurred = shouldBlur;
@@ -260,17 +259,12 @@ public final class AvatarImageView extends AppCompatImageView {
   private void setAvatarClickHandler(@NonNull final Recipient recipient, boolean quickContactEnabled) {
     if (quickContactEnabled) {
       super.setOnClickListener(v -> {
-        Context context = getContext();
+        FragmentActivity activity = ContextUtil.requireFragmentActivity(getContext());
+
         if (recipient.isPushGroup()) {
-          context.startActivity(ConversationSettingsActivity.forGroup(context, recipient.requireGroupId().requirePush()),
-                                ConversationSettingsActivity.createTransitionBundle(context, this));
+          ConversationSettingsNavigator.navigate(activity, recipient);
         } else {
-          if (context instanceof FragmentActivity) {
-            RecipientBottomSheetDialogFragment.show(((FragmentActivity) context).getSupportFragmentManager(), recipient.getId(), null);
-          } else {
-            context.startActivity(ConversationSettingsActivity.forRecipient(context, recipient.getId()),
-                                  ConversationSettingsActivity.createTransitionBundle(context, this));
-          }
+          RecipientBottomSheetDialogFragment.show(activity.getSupportFragmentManager(), recipient.getId(), null);
         }
       });
     } else {
@@ -283,13 +277,13 @@ public final class AvatarImageView extends AppCompatImageView {
     Drawable fallback = new FallbackAvatarDrawable(getContext(), new FallbackAvatar.Resource.Group(color)).circleCrop();
 
     Glide.with(this)
-            .load(avatarBytes)
-            .dontAnimate()
-            .fallback(fallback)
-            .error(fallback)
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .circleCrop()
-            .into(this);
+         .load(avatarBytes)
+         .dontAnimate()
+         .fallback(fallback)
+         .error(fallback)
+         .diskCacheStrategy(DiskCacheStrategy.ALL)
+         .circleCrop()
+         .into(this);
   }
 
   public void setNonAvatarImageResource(@DrawableRes int imageResource) {
@@ -308,7 +302,8 @@ public final class AvatarImageView extends AppCompatImageView {
     }
   }
 
-  private static class DefaultFallbackAvatarProvider implements FallbackAvatarProvider {}
+  private static class DefaultFallbackAvatarProvider implements FallbackAvatarProvider {
+  }
 
   private static class RecipientContactPhoto {
 

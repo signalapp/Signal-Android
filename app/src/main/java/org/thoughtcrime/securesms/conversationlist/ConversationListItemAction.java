@@ -13,7 +13,7 @@ import com.bumptech.glide.RequestManager;
 import org.thoughtcrime.securesms.BindableConversationListItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
-import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.database.model.ThreadWithRecipient;
 
 import java.util.Locale;
 import java.util.Set;
@@ -42,7 +42,7 @@ public class ConversationListItemAction extends FrameLayout implements BindableC
 
   @Override
   public void bind(@NonNull LifecycleOwner lifecycleOwner,
-                   @NonNull ThreadRecord thread,
+                   @NonNull ThreadWithRecipient thread,
                    @NonNull RequestManager requestManager,
                    @NonNull Locale locale,
                    @NonNull Set<Long> typingThreads,

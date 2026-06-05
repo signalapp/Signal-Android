@@ -69,6 +69,7 @@ public class RecaptchaProofActivity extends PassphraseRequiredActivity {
       }
     });
 
+    SignalStore.misc().setCaptchaLastViewedAt(System.currentTimeMillis());
     webView.loadUrl(BuildConfig.RECAPTCHA_PROOF_URL);
   }
 

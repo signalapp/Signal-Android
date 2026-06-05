@@ -56,7 +56,6 @@ object RecipientDatabaseTestUtils {
     signalProfileAvatar: String? = null,
     profileAvatarFileDetails: ProfileAvatarFileDetails = ProfileAvatarFileDetails.NO_DETAILS,
     profileSharing: Boolean = false,
-    lastProfileFetch: Long = 0L,
     notificationChannel: String? = null,
     sealedSenderAccessMode: RecipientTable.SealedSenderAccessMode = RecipientTable.SealedSenderAccessMode.UNKNOWN,
     capabilities: Long = 0L,
@@ -120,11 +119,11 @@ object RecipientDatabaseTestUtils {
       signalProfileAvatar = signalProfileAvatar,
       profileAvatarFileDetails = profileAvatarFileDetails,
       profileSharing = profileSharing,
-      lastProfileFetch = lastProfileFetch,
       notificationChannel = notificationChannel,
       sealedSenderAccessMode = sealedSenderAccessMode,
       capabilities = RecipientRecord.Capabilities(
-        rawBits = capabilities
+        rawBits = capabilities,
+        usernameSyncMessages = Recipient.Capability.SUPPORTED
       ),
       storageId = storageId,
       mentionSetting = mentionSetting,

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.signal.network.exceptions.PushNetworkException
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -13,7 +14,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
 import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
 import java.io.IOException
 import java.util.concurrent.TimeUnit

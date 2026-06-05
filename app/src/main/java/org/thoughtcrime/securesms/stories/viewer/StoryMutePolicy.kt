@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.stories.viewer
 
-import org.thoughtcrime.securesms.util.AppForegroundObserver
+import org.signal.core.util.AppForegroundObserver
 
 /**
  * Stories are to start muted, and once unmuted, remain as such until the

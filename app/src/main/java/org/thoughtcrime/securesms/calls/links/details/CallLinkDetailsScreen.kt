@@ -15,12 +15,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
@@ -37,7 +37,7 @@ import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Snackbars
-import org.signal.core.ui.isSplitPane
+import org.signal.core.ui.rememberIsSplitPane
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.ringrtc.CallLinkState.Restrictions
@@ -46,8 +46,8 @@ import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar.YouAreAlrea
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.SignalCallRow
 import org.thoughtcrime.securesms.database.CallLinkTable
+import org.thoughtcrime.securesms.main.MainNavigationCallDetailRouter
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
-import org.thoughtcrime.securesms.main.MainNavigationRouter
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
@@ -63,7 +63,7 @@ fun CallLinkDetailsScreen(
   viewModel: CallLinkDetailsViewModel = viewModel {
     CallLinkDetailsViewModel(roomId)
   },
-  router: MainNavigationRouter = viewModel<MainNavigationViewModel>(viewModelStoreOwner = LocalActivity.current as ComponentActivity) {
+  router: MainNavigationCallDetailRouter = viewModel<MainNavigationViewModel>(viewModelStoreOwner = LocalActivity.current as ComponentActivity) {
     error("Should already be created.")
   }
 ) {
@@ -83,14 +83,14 @@ fun CallLinkDetailsScreen(
     state = state,
     showAlreadyInACall = showAlreadyInACall,
     callback = callback,
-    showNavigationIcon = !currentWindowAdaptiveInfo().windowSizeClass.isSplitPane()
+    showNavigationIcon = !LocalResources.current.rememberIsSplitPane()
   )
 }
 
 class DefaultCallLinkDetailsCallback(
   private val activity: FragmentActivity,
   private val viewModel: CallLinkDetailsViewModel,
-  private val router: MainNavigationRouter
+  private val router: MainNavigationCallDetailRouter
 ) : CallLinkDetailsCallback {
 
   private val lifecycleDisposable = LifecycleDisposable()
@@ -113,7 +113,7 @@ class DefaultCallLinkDetailsCallback(
   }
 
   override fun onEditNameClicked() {
-    router.goTo(MainNavigationDetailLocation.Calls.CallLinks.EditCallLinkName(callLinkRoomId = viewModel.recipientSnapshot!!.requireCallLinkRoomId()))
+    router.goToCallDetail(MainNavigationDetailLocation.Calls.CallLinks.EditCallLinkName(callLinkRoomId = viewModel.recipientSnapshot!!.requireCallLinkRoomId()))
   }
 
   override fun onShareClicked() {
@@ -152,7 +152,7 @@ class DefaultCallLinkDetailsCallback(
     viewModel.setDisplayRevocationDialog(false)
     activity.lifecycleScope.launch {
       if (viewModel.delete()) {
-        router.goTo(MainNavigationDetailLocation.Empty)
+        router.exitDetailLocation()
       }
     }
   }

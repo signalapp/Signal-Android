@@ -6,9 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
-
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.util.Base64;
@@ -43,6 +40,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Sends an update to a group without inserting a change message locally.
@@ -74,11 +73,11 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
     List<ACI>       memberAcis        = DecryptedGroupUtil.toAciList(decryptedGroup.members);
     List<ServiceId> pendingServiceIds = DecryptedGroupUtil.pendingToServiceIdList(decryptedGroup.pendingMembers);
 
-    Stream<ACI>       memberServiceIds          = Stream.of(memberAcis)
-                                                        .filter(ACI::isValid)
-                                                        .filter(aci -> !SignalStore.account().requireAci().equals(aci));
-    Stream<ServiceId> filteredPendingServiceIds = Stream.of(pendingServiceIds)
-                                                        .filterNot(ServiceId::isUnknown);
+    Stream<ACI> memberServiceIds          = memberAcis.stream()
+                                                      .filter(ACI::isValid)
+                                                      .filter(aci -> !SignalStore.account().requireAci().equals(aci));
+    Stream<ServiceId> filteredPendingServiceIds = pendingServiceIds.stream()
+                                                        .filter(serviceId1 -> !serviceId1.isUnknown());
 
     Set<RecipientId> recipients = Stream.concat(memberServiceIds, filteredPendingServiceIds)
                                         .map(serviceId -> Recipient.externalPush(serviceId))
@@ -145,7 +144,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
       return;
     }
 
-    List<Recipient> destinations = Stream.of(recipients).map(Recipient::resolved).toList();
+    List<Recipient> destinations = recipients.stream().map(Recipient::resolved).collect(Collectors.toList());
     List<Recipient> completions  = deliver(destinations, groupId);
 
     for (Recipient completion : completions) {

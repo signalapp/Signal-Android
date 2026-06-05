@@ -145,7 +145,7 @@ fun IncomingCallScreen(
           MaterialTheme.typography.headlineMedium.copy(shadow = textShadow)
         },
         color = Color.White,
-        modifier = Modifier.padding(top = 16.dp)
+        modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
       )
 
       if (callStatus != null) {

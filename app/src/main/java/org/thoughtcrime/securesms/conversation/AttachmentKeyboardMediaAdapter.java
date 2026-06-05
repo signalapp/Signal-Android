@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.adapter.StableIdGenerator;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -75,7 +76,7 @@ class AttachmentKeyboardMediaAdapter extends RecyclerView.Adapter<AttachmentKeyb
 
   public void setMedia(@NonNull List<Media> media, boolean addFooter) {
     this.media.clear();
-    this.media.addAll(media.stream().map(MediaContent::new).collect(java.util.stream.Collectors.toList()));
+    this.media.addAll(media.stream().map(MediaContent::new).collect(Collectors.toList()));
     if (addFooter) {
       this.media.add(new MediaContent(true));
     }

@@ -14,6 +14,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.lifecycle.ViewModel
@@ -49,7 +50,6 @@ import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDial
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
 import kotlin.time.Duration.Companion.seconds
@@ -111,6 +111,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
       val recipient by viewModel.getRecipientFlow().collectAsStateWithLifecycle(Recipient.UNKNOWN)
       val webRtcCallState by callScreenViewModel.callState.collectAsStateWithLifecycle()
       val callScreenState by callScreenViewModel.callScreenState.collectAsStateWithLifecycle()
+      val isLocalScreenSharing by viewModel.isLocalScreenSharing.collectAsStateWithLifecycle()
       val callControlsState by viewModel.getCallControlsState().collectAsStateWithLifecycle(CallControlsState())
       val callParticipantsViewState by callScreenViewModel.callParticipantsViewState.collectAsStateWithLifecycle()
       val callParticipantsState = remember(callParticipantsViewState) { callParticipantsViewState.callParticipantsState }
@@ -163,6 +164,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
 
       val callScreenController = CallScreenController.rememberCallScreenController(
         skipHiddenState = callControlsState.skipHiddenState,
+        hasMultipleRemoteParticipants = callParticipantsPagerState.callParticipants.size > 1,
         onControlsToggled = onControlsToggled,
         callControlsState = callControlsState,
         callControlsListener = callScreenControlsListener
@@ -172,6 +174,22 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
         callScreenViewModel.callScreenControllerEvents.collectLatest {
           callScreenController.handleEvent(it)
         }
+      }
+
+      LaunchedEffect(isLocalScreenSharing) {
+        callScreenViewModel.callScreenState.update { it.copy(isLocalScreenSharing = isLocalScreenSharing) }
+      }
+
+      LaunchedEffect(callScreenController, callScreenControlsListener) {
+        snapshotFlow { callScreenController.callParticipantsVerticalPagerState.settledPage }
+          .collect { page ->
+            val selected = if (page == 1) {
+              CallParticipantsState.SelectedPage.FOCUSED
+            } else {
+              CallParticipantsState.SelectedPage.GRID
+            }
+            callScreenControlsListener.onPageChanged(selected)
+          }
       }
 
       val controlAndInfoState by controlsAndInfoViewModel.state
@@ -218,10 +236,9 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           onControlsToggled = onControlsToggled,
           onCallScreenDialogDismissed = { callScreenViewModel.dialog.update { CallScreenDialogType.NONE } },
           onWifiToCellularPopupDismissed = { callScreenViewModel.callScreenState.update { it.copy(displayWifiToCellularPopup = false) } },
-          onSwipeToSpeakerHintDismissed = { callScreenViewModel.callScreenState.update { it.copy(displaySwipeToSpeakerHint = false) } },
+          onSwipeToSpeakerHintDismissed = { callScreenViewModel.callScreenState.update { it.copy(swipeHint = SwipeHintType.NONE) } },
           onRemoteMuteToastDismissed = { callScreenViewModel.callScreenState.update { it.copy(remoteMuteToastMessage = null) } },
           callParticipantUpdatePopupController = callParticipantUpdatePopupController,
-          isInternalUser = RemoteConfig.internalUser,
           isSelfAdmin = controlAndInfoState.isSelfAdmin(),
           isCallLink = controlAndInfoState.callLink != null,
           onMuteAudio = callInfoCallbacks::onMuteAudio,
@@ -324,11 +341,15 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
   }
 
   override fun showSpeakerViewHint() {
-    callScreenViewModel.callScreenState.update { it.copy(displaySwipeToSpeakerHint = true) }
+    callScreenViewModel.callScreenState.update { it.copy(swipeHint = SwipeHintType.SPEAKER_VIEW) }
   }
 
   override fun hideSpeakerViewHint() {
-    callScreenViewModel.callScreenState.update { it.copy(displaySwipeToSpeakerHint = false) }
+    callScreenViewModel.callScreenState.update { it.copy(swipeHint = SwipeHintType.NONE) }
+  }
+
+  override fun showScreenShareHint() {
+    callScreenViewModel.callScreenState.update { it.copy(swipeHint = SwipeHintType.SCREEN_SHARE) }
   }
 
   override fun showVideoTooltip(): Dismissible {
@@ -393,6 +414,11 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
   override fun onRaiseHandClick(raised: Boolean) {
     AppDependencies.signalCallManager.raiseHand(raised)
     callScreenViewModel.callScreenState.update { it.copy(displayAdditionalActionsDialog = false) }
+  }
+
+  override fun onScreenShareClick(sharing: Boolean) {
+    callScreenViewModel.callScreenState.update { it.copy(displayAdditionalActionsDialog = false) }
+    controlsListener.value.onScreenShareChanged(sharing)
   }
 
   private fun handleFailure() {

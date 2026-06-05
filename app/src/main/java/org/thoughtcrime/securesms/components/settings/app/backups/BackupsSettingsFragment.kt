@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -38,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import kotlinx.coroutines.delay
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
@@ -62,6 +64,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.math.BigDecimal
 import java.util.Currency
 import java.util.Locale
+import kotlin.getValue
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.minutes
@@ -76,10 +79,15 @@ class BackupsSettingsFragment : ComposeFragment() {
   private lateinit var checkoutLauncher: ActivityResultLauncher<MessageBackupTier?>
 
   private val viewModel: BackupsSettingsViewModel by viewModels()
+  private val args: BackupsSettingsFragmentArgs by navArgs()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     checkoutLauncher = createBackupsCheckoutLauncher {
       findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_remoteBackupsSettingsFragment)
+    }
+
+    if (savedInstanceState == null && args.launchCheckoutFlow) {
+      checkoutLauncher.launch(null)
     }
   }
 
@@ -234,7 +242,7 @@ private fun BackupsSettingsContent(
       item {
         Rows.TextRow(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__on_device_backups),
-          icon = ImageVector.vectorResource(R.drawable.symbol_device_phone_24),
+          icon = ImageVector.vectorResource(CoreUiR.drawable.symbol_device_phone_24),
           label = stringResource(R.string.RemoteBackupsSettingsFragment__save_your_backups_to),
           onClick = onOnDeviceBackupsRowClick
         )
@@ -500,6 +508,7 @@ private fun ActiveBackupsRow(
           style = MaterialTheme.typography.bodyLarge
         )
 
+        val locale = LocalLocale.current.platformLocale
         when (val type = backupState.messageBackupsType) {
           is MessageBackupsType.Paid -> {
             val body = if (backupState is BackupState.Canceled) {
@@ -507,13 +516,13 @@ private fun ActiveBackupsRow(
             } else if (type.pricePerMonth.amount == BigDecimal.ZERO) {
               stringResource(
                 R.string.BackupsSettingsFragment_renews_s,
-                DateUtils.formatDateWithYear(Locale.getDefault(), backupState.renewalTime.inWholeMilliseconds)
+                DateUtils.formatDateWithYear(locale, backupState.renewalTime.inWholeMilliseconds)
               )
             } else {
               stringResource(
                 R.string.BackupsSettingsFragment_s_month_renews_s,
                 FiatMoneyUtil.format(LocalContext.current.resources, type.pricePerMonth),
-                DateUtils.formatDateWithYear(Locale.getDefault(), backupState.renewalTime.inWholeMilliseconds)
+                DateUtils.formatDateWithYear(locale, backupState.renewalTime.inWholeMilliseconds)
               )
             }
 

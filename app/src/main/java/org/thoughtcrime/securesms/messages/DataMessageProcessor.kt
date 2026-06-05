@@ -14,6 +14,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
+import org.signal.network.util.Preconditions
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.LocalStickerAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
-import org.thoughtcrime.securesms.crypto.SecurityEvent
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult
@@ -78,7 +78,6 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.expireTimerDur
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupMasterKey
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.hasGroupContext
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.hasRemoteDelete
-import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isEndSession
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isExpirationUpdate
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isInvalid
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isMediaMessage
@@ -109,7 +108,6 @@ import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.isStory
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.payments.Money
-import org.whispersystems.signalservice.api.util.Preconditions
 import org.whispersystems.signalservice.internal.push.BodyRange
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
@@ -172,7 +170,6 @@ object DataMessageProcessor {
     SignalTrace.beginSection("DataMessageProcessor#messageInsert")
     when {
       message.isInvalid -> handleInvalidMessage(context, senderRecipient.id, groupId, envelope.clientTimestamp!!)
-      message.isEndSession -> insertResult = handleEndSessionMessage(context, senderRecipient.id, envelope, metadata)
       message.isExpirationUpdate -> insertResult = handleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient.id, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime, false)
       message.isStoryReaction -> insertResult = handleStoryReaction(context, envelope, metadata, message, senderRecipient.id, groupId)
       message.reaction != null -> messageId = handleReaction(context, envelope, message, senderRecipient.id, earlyMessageCacheEntry)
@@ -307,36 +304,6 @@ object DataMessageProcessor {
     if (insertResult != null) {
       SignalDatabase.messages.markAsInvalidMessage(insertResult.messageId)
       AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
-    }
-  }
-
-  private fun handleEndSessionMessage(
-    context: Context,
-    senderRecipientId: RecipientId,
-    envelope: Envelope,
-    metadata: EnvelopeMetadata
-  ): InsertResult? {
-    log(envelope.clientTimestamp!!, "End session message.")
-
-    val incomingMessage = IncomingMessage(
-      from = senderRecipientId,
-      sentTimeMillis = envelope.clientTimestamp!!,
-      serverTimeMillis = envelope.serverTimestamp!!,
-      receivedTimeMillis = System.currentTimeMillis(),
-      isUnidentified = metadata.sealedSender,
-      serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
-      type = MessageType.END_SESSION
-    )
-
-    val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(incomingMessage).orNull()
-
-    return if (insertResult != null) {
-      AppDependencies.protocolStore.aci().deleteAllSessions(metadata.sourceServiceId.toString())
-      SecurityEvent.broadcastSecurityUpdateEvent(context)
-      AppDependencies.messageNotifier.updateNotification(context, ConversationId.forConversation(insertResult.threadId))
-      insertResult
-    } else {
-      null
     }
   }
 
@@ -566,13 +533,12 @@ object DataMessageProcessor {
       return null
     }
 
-    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
-    if (targetThread == null) {
+    val targetThreadRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(targetMessage.threadId)
+    if (targetThreadRecipientId == null) {
       warn(envelope.clientTimestamp!!, "[handleReaction] Could not find a thread for the message! timestamp: " + targetSentTimestamp + "  author: " + targetAuthor.id)
       return null
     }
 
-    val targetThreadRecipientId = targetThread.recipient.id
     val groupRecord = SignalDatabase.groups.getGroup(targetThreadRecipientId).orNull()
     if (groupRecord != null && !groupRecord.members.contains(senderRecipientId)) {
       warn(envelope.clientTimestamp!!, "[handleReaction] Reaction author is not in the group! timestamp: " + targetSentTimestamp + "  author: " + targetAuthor.id)
@@ -973,14 +939,16 @@ object DataMessageProcessor {
       SignalDatabase.runPostSuccessfulTransaction {
         if (insertResult.insertedAttachments != null) {
           val downloadJobs: List<AttachmentDownloadJob> = insertResult.insertedAttachments.mapNotNull { (attachment, attachmentId) ->
-            if (attachment.isSticker) {
-              if (attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE) {
-                AttachmentDownloadJob(messageId = insertResult.messageId, attachmentId = attachmentId, forceDownload = true)
-              } else {
-                null
-              }
+            if (attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE) {
+              AttachmentDownloadJob(
+                messageId = insertResult.messageId,
+                attachmentId = attachmentId,
+                forceDownload = false,
+                skipInCallConstraint = attachment.isSticker,
+                isHighPriority = attachment.isSticker
+              )
             } else {
-              AttachmentDownloadJob(messageId = insertResult.messageId, attachmentId = attachmentId, forceDownload = false)
+              null
             }
           }
           AppDependencies.jobManager.addAll(downloadJobs)
@@ -1252,7 +1220,7 @@ object DataMessageProcessor {
 
     SignalDatabase.polls.insertVotes(
       pollId = pollId,
-      pollOptionIds = pollVote.optionIndexes.map { index -> allOptionIds[index] },
+      pollOptionIds = pollVote.optionIndexes.distinct().map { index -> allOptionIds[index] },
       voterId = senderRecipient.id.toLong(),
       voteCount = pollVote.voteCount?.toLong() ?: 0,
       messageId = messageId
@@ -1306,13 +1274,13 @@ object DataMessageProcessor {
       return null
     }
 
-    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
-    if (targetThread == null) {
+    val targetThreadRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(targetMessage.threadId)
+    if (targetThreadRecipientId == null) {
       warn(envelope.clientTimestamp!!, "[handlePinMessage] Could not find a thread for the message! timestamp: ${pinMessage.targetSentTimestamp}")
       return null
     }
 
-    if (targetThread.recipient.id != threadRecipient.id) {
+    if (targetThreadRecipientId != threadRecipient.id) {
       warn(envelope.clientTimestamp!!, "[handlePinMessage] Target message is in a different thread than the thread recipient! timestamp: ${pinMessage.targetSentTimestamp}")
       return null
     }
@@ -1398,13 +1366,13 @@ object DataMessageProcessor {
       return null
     }
 
-    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
-    if (targetThread == null) {
+    val targetThreadRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(targetMessage.threadId)
+    if (targetThreadRecipientId == null) {
       warn(envelope.clientTimestamp!!, "[handleUnpinMessage] Could not find a thread for the message! timestamp: ${unpinMessage.targetSentTimestamp}")
       return null
     }
 
-    if (targetThread.recipient.id != threadRecipient.id) {
+    if (targetThreadRecipientId != threadRecipient.id) {
       warn(envelope.clientTimestamp!!, "[handleUnpinMessage] Target message is in a different thread than the thread recipient! timestamp: ${unpinMessage.targetSentTimestamp}")
       return null
     }
@@ -1458,13 +1426,12 @@ object DataMessageProcessor {
       return null
     }
 
-    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
-    if (targetThread == null) {
+    val targetThreadRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(targetMessage.threadId)
+    if (targetThreadRecipientId == null) {
       warn(envelope.clientTimestamp!!, "[handleAdminRemoteDelete] Could not find a thread for the message! timestamp: $targetSentTimestamp author: ${targetAuthor.id}")
       return null
     }
 
-    val targetThreadRecipientId = targetThread.recipient.id
     if (targetThreadRecipientId != threadRecipient.id) {
       warn(envelope.clientTimestamp!!, "[handleAdminRemoteDelete] Target message is in a different thread than the admin delete! timestamp: $targetSentTimestamp")
       return null
@@ -1586,26 +1553,33 @@ object DataMessageProcessor {
     }
 
     warn(timestamp, "Didn't find matching message record...")
+    val cappedQuoteRanges = quote.bodyRanges.take(BODY_RANGE_PROCESSING_LIMIT)
     return QuoteModel(
       id = quote.id!!,
       author = authorId,
       text = quote.text ?: "",
       isOriginalMissing = true,
       attachment = quote.attachments.firstNotNullOfOrNull { PointerAttachment.forPointer(it).orNull() },
-      mentions = getMentions(quote.bodyRanges),
+      mentions = getMentions(cappedQuoteRanges),
       type = QuoteModel.Type.fromProto(quote.type),
-      bodyRanges = quote.bodyRanges.filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toBodyRangeList()
+      bodyRanges = cappedQuoteRanges.filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toBodyRangeList()
     )
   }
 
   private fun isSenderValid(quotedMessage: MmsMessageRecord, timestamp: Long, senderRecipient: Recipient, threadRecipient: Recipient): Boolean {
+    val destinationThreadId = SignalDatabase.threads.getThreadIdIfExistsFor(threadRecipient.id)
+    if (quotedMessage.threadId != destinationThreadId) {
+      warn(timestamp, "Quoted message is in a different thread! QuotedThread: ${quotedMessage.threadId} DestinationThread: $destinationThreadId")
+      return false
+    }
+
     if (threadRecipient.isGroup) {
       val groupRecord = SignalDatabase.groups.getGroup(threadRecipient.id).orNull()
       if (groupRecord != null && !groupRecord.members.contains(senderRecipient.id)) {
         warn(timestamp, "Sender is not in the group! Thread: ${quotedMessage.threadId} Sender: ${senderRecipient.id}")
         return false
       }
-    } else if (senderRecipient.id != threadRecipient.id) {
+    } else if (senderRecipient.id != threadRecipient.id && !senderRecipient.isSelf) {
       warn(timestamp, "Sender is not a part of the 1:1 thread! Thread: ${quotedMessage.threadId} Sender: ${senderRecipient.id}")
       return false
     }
@@ -1640,17 +1614,17 @@ object DataMessageProcessor {
       return null
     }
 
-    val targetThread = SignalDatabase.threads.getThreadRecord(targetMessage.threadId)
-    if (targetThread == null) {
+    val targetThreadRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(targetMessage.threadId)
+    if (targetThreadRecipientId == null) {
       warn(envelope.clientTimestamp!!, "[handlePollValidation] Could not find a thread for the message. timestamp: $targetSentTimestamp  author: ${targetAuthor.id}")
       return null
     }
 
-    val groupRecord = SignalDatabase.groups.getGroup(targetThread.recipient.id).orNull()
+    val groupRecord = SignalDatabase.groups.getGroup(targetThreadRecipientId).orNull()
     if (groupRecord != null && !groupRecord.members.contains(senderRecipient.id)) {
       warn(envelope.clientTimestamp!!, "[handlePollValidation] Sender is not in the group. timestamp: $targetSentTimestamp author: ${targetAuthor.id}")
       return null
-    } else if (groupRecord == null && senderRecipient.id != targetThread.recipient.id && senderRecipient.id != Recipient.self().id) {
+    } else if (groupRecord == null && senderRecipient.id != targetThreadRecipientId && senderRecipient.id != Recipient.self().id) {
       warn(envelope.clientTimestamp!!, "[handlePollValidation] Sender is not a part of the 1:1 thread!")
       return null
     }

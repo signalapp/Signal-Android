@@ -7,12 +7,12 @@ package org.thoughtcrime.securesms.notifications
 
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
+import org.signal.core.util.JsonUtils
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.DeviceProperties
-import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig
 import org.thoughtcrime.securesms.util.PowerManagerCompat
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -90,6 +90,10 @@ object SlowNotificationHeuristics {
   @WorkerThread
   @JvmStatic
   fun isHavingDelayedNotifications(): Boolean {
+    if (SignalStore.account.isLinkedDevice) {
+      // Linked devices are expected to be off for long stretches, so the heuristic produces spurious warnings
+      return false
+    }
     if (!SignalStore.settings.isMessageNotificationsEnabled ||
       !NotificationChannels.getInstance().areNotificationsEnabled()
     ) {
@@ -160,7 +164,7 @@ object SlowNotificationHeuristics {
       return false
     }
 
-    if (failures.size / (failures.size + successes.size) >= failurePercentage) {
+    if (failures.size.toFloat() / (failures.size + successes.size) >= failurePercentage) {
       Log.w(TAG, "User often unable start FCM service. ${failures.size} failed : ${successes.size} successful")
       return true
     }

@@ -2,15 +2,17 @@ package org.thoughtcrime.securesms.database;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.whispersystems.signalservice.api.util.Preconditions;
+import org.signal.network.util.Preconditions;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Merging together recipients and threads is messy business. We can easily replace *almost* all of
@@ -30,8 +32,10 @@ class RemappedRecords {
 
   private static final RemappedRecords INSTANCE = new RemappedRecords();
 
-  private Map<RecipientId, RecipientId> recipientMap;
-  private Map<Long, Long>               threadMap;
+  private volatile Map<RecipientId, RecipientId> recipientMap;
+  private volatile Map<Long, Long>               threadMap;
+
+  private final AtomicBoolean staleTrimScheduled = new AtomicBoolean(false);
 
   private RemappedRecords() {}
 
@@ -106,13 +110,31 @@ class RemappedRecords {
 
   private void ensureRecipientMapIsPopulated() {
     if (recipientMap == null) {
-      recipientMap = SignalDatabase.remappedRecords().getAllRecipientMappings();
+      Map<RecipientId, RecipientId> loaded = SignalDatabase.remappedRecords().getAllRecipientMappings();
+      synchronized (this) {
+        if (recipientMap == null) {
+          recipientMap = loaded;
+        }
+      }
+      scheduleStaleTrimIfNeeded(loaded.isEmpty());
     }
   }
 
   private void ensureThreadMapIsPopulated() {
     if (threadMap == null) {
-      threadMap = SignalDatabase.remappedRecords().getAllThreadMappings();
+      Map<Long, Long> loaded = SignalDatabase.remappedRecords().getAllThreadMappings();
+      synchronized (this) {
+        if (threadMap == null) {
+          threadMap = loaded;
+        }
+      }
+      scheduleStaleTrimIfNeeded(loaded.isEmpty());
+    }
+  }
+
+  private void scheduleStaleTrimIfNeeded(boolean loadedMapWasEmpty) {
+    if (!loadedMapWasEmpty && staleTrimScheduled.compareAndSet(false, true)) {
+      SignalExecutors.BOUNDED.execute(() -> SignalDatabase.remappedRecords().trimStaleMappings());
     }
   }
 

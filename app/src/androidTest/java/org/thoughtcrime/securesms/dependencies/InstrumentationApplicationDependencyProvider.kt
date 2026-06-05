@@ -4,17 +4,17 @@ import android.app.Application
 import io.mockk.mockk
 import io.mockk.spyk
 import org.signal.core.util.billing.BillingApi
+import org.signal.network.api.ArchiveApi
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache
 import org.whispersystems.signalservice.api.SignalServiceDataStore
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.account.AccountApi
-import org.whispersystems.signalservice.api.archive.ArchiveApi
-import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.donations.DonationsApi
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.message.MessageApi
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
+import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 
 /**
@@ -41,7 +41,7 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
     return recipientCache
   }
 
-  override fun provideArchiveApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, pushServiceSocket: PushServiceSocket): ArchiveApi {
+  override fun provideArchiveApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, pushServiceSocket: PushServiceSocket, signalServiceConfiguration: SignalServiceConfiguration): ArchiveApi {
     return mockk()
   }
 
@@ -52,12 +52,11 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
   override fun provideSignalServiceMessageSender(
     protocolStore: SignalServiceDataStore,
     pushServiceSocket: PushServiceSocket,
-    attachmentApi: AttachmentApi,
     messageApi: MessageApi,
     keysApi: KeysApi
   ): SignalServiceMessageSender {
     if (signalServiceMessageSender == null) {
-      signalServiceMessageSender = spyk(objToCopy = default.provideSignalServiceMessageSender(protocolStore, pushServiceSocket, attachmentApi, messageApi, keysApi))
+      signalServiceMessageSender = spyk(objToCopy = default.provideSignalServiceMessageSender(protocolStore, pushServiceSocket, messageApi, keysApi))
     }
     return signalServiceMessageSender!!
   }

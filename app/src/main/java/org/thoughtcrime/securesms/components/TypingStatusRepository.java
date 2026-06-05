@@ -7,13 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.Util;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.signal.core.util.Util;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -140,7 +139,7 @@ public class TypingStatusRepository {
 
     notifier.postValue(new TypingState(new ArrayList<>(uniqueTypists), isReplacedByIncomingMessage));
 
-    Set<Long> activeThreads = Stream.of(typistMap.keySet()).filter(t -> !typistMap.get(t).isEmpty()).collect(Collectors.toSet());
+    Set<Long> activeThreads = typistMap.keySet().stream().filter(t -> !typistMap.get(t).isEmpty()).collect(Collectors.toSet());
     threadsNotifier.postValue(activeThreads);
   }
 

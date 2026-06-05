@@ -1,7 +1,10 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.android.build.api.dsl.ManagedVirtualDevice
+import com.android.build.api.artifact.ArtifactTransformationRequest
+import com.android.build.api.artifact.SingleArtifact
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import java.time.Instant
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -10,7 +13,6 @@ import java.util.Properties
 
 plugins {
   alias(libs.plugins.android.application)
-  alias(libs.plugins.jetbrains.kotlin.android)
   alias(libs.plugins.ktlint)
   alias(libs.plugins.compose.compiler)
   alias(libs.plugins.kotlinx.serialization)
@@ -22,21 +24,22 @@ plugins {
   id("licenses")
 }
 
-apply(from = "static-ips.gradle.kts")
+val staticIps = Properties().apply { file("static-ips.properties").reader().use { load(it) } }
+staticIps.stringPropertyNames().forEach { rootProject.extra[it] = staticIps.getProperty(it) }
 
-val canonicalVersionCode = 1674
-val canonicalVersionName = "8.6.1"
+val canonicalVersionCode = 1701
+val canonicalVersionName = "8.14.1"
 val currentHotfixVersion = 0
 val maxHotfixVersions = 100
 
 // We don't want versions to ever end in 0 so that they don't conflict with nightly versions
 val possibleHotfixVersions = (0 until maxHotfixVersions).toList().filter { it % 10 != 0 }
 
-val debugKeystorePropertiesProvider = providers.of(PropertiesFileValueSource::class.java) {
+val debugKeystorePropertiesProvider: Provider<Properties> = providers.of(PropertiesFileValueSource::class.java) {
   parameters.file.set(rootProject.layout.projectDirectory.file("keystore.debug.properties"))
 }
 
-val languagesProvider = providers.of(LanguageListValueSource::class.java) {
+val languagesProvider: Provider<List<String>> = providers.of(LanguageListValueSource::class.java) {
   parameters.resDir.set(layout.projectDirectory.dir("src/main/res"))
 }
 
@@ -53,6 +56,11 @@ val localProperties: Properties? = if (localPropertiesFile.exists()) {
 val quickstartCredentialsDir: String? = localProperties?.getProperty("quickstart.credentials.dir")
 val benchmarkBackupFile: String? = localProperties?.getProperty("benchmark.backup.file")
 
+val isInstrumentationTestRun = gradle.startParameter.taskNames.any { taskName ->
+  val lower = taskName.lowercase()
+  lower.contains("androidtest") || lower.contains("connectedcheck")
+}
+
 val selectableVariants = listOf(
   "nightlyProdSpinner",
   "nightlyProdPerf",
@@ -65,13 +73,11 @@ val selectableVariants = listOf(
   "playProdMocked",
   "playProdNonMinifiedMocked",
   "playProdBenchmark",
-  "playProdInstrumentation",
   "playProdRelease",
   "playStagingDebug",
   "playStagingCanary",
   "playStagingSpinner",
   "playStagingPerf",
-  "playStagingInstrumentation",
   "playStagingRelease",
   "playProdQuickstart",
   "playStagingQuickstart",
@@ -80,6 +86,27 @@ val selectableVariants = listOf(
   "githubProdSpinner",
   "githubProdRelease"
 )
+
+// Wire 5.x iterates Android source sets and expects matching Kotlin source sets.
+// AGP 9.0's built-in Kotlin doesn't create all source sets automatically.
+val kotlinExt = extensions.getByName("kotlin") as KotlinAndroidProjectExtension
+android.sourceSets.all {
+  kotlinExt.sourceSets.findByName(name) ?: kotlinExt.sourceSets.create(name)
+}
+// AGP 9.0's built-in Kotlin doesn't pick up extra java.srcDir entries from Android
+// source sets, so add shared dirs directly to the relevant Kotlin compile tasks.
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).configureEach {
+  val isTestTask = name.contains("UnitTest") || name.contains("AndroidTest")
+  if (isTestTask) {
+    source("$projectDir/src/testShared")
+  }
+  if (!isTestTask && (name.contains("Mocked") || name.contains("Benchmark"))) {
+    source("$projectDir/src/benchmarkShared/java")
+  }
+  if (isTestTask && name.contains("AndroidTest")) {
+    source("$projectDir/src/benchmarkShared/java")
+  }
+}
 
 wire {
   kotlin {
@@ -94,8 +121,6 @@ wire {
     srcDir("${project.rootDir}/lib/libsignal-service/src/main/protowire")
     srcDir("${project.rootDir}/lib/archive/src/main/protowire")
   }
-  // Handled by libsignal
-  prune("signalservice.DecryptionErrorMessage")
 }
 
 ktlint {
@@ -106,21 +131,14 @@ android {
   namespace = "org.thoughtcrime.securesms"
 
   buildToolsVersion = libs.versions.buildTools.get()
-  compileSdkVersion = libs.versions.compileSdk.get()
+  compileSdkVersion(libs.versions.compileSdk.get())
   ndkVersion = libs.versions.ndk.get()
 
   flavorDimensions += listOf("distribution", "environment")
-  testBuildType = "instrumentation"
 
   android.bundle.language.enableSplit = false
 
-  kotlinOptions {
-    jvmTarget = libs.versions.kotlinJvmTarget.get()
-    freeCompilerArgs = listOf("-Xjvm-default=all")
-    suppressWarnings = true
-  }
-
-  debugKeystorePropertiesProvider.orNull?.let { properties ->
+  debugKeystorePropertiesProvider.get().takeIf { it.isNotEmpty() }?.let { properties ->
     signingConfigs.getByName("debug").apply {
       storeFile = file("${project.rootDir}/${properties.getProperty("storeFile")}")
       storePassword = properties.getProperty("storePassword")
@@ -137,8 +155,8 @@ android {
     }
 
     managedDevices {
-      devices {
-        create<ManagedVirtualDevice>("pixel3api30") {
+      localDevices {
+        create("pixel3api30") {
           device = "Pixel 3"
           apiLevel = 30
           systemImageSource = "google-atd"
@@ -155,6 +173,7 @@ android {
 
     getByName("androidTest") {
       java.srcDir("$projectDir/src/testShared")
+      java.srcDir("$projectDir/src/benchmarkShared/java")
     }
   }
 
@@ -195,16 +214,16 @@ android {
     compose = true
   }
 
-  composeOptions {
-    kotlinCompilerExtensionVersion = "1.5.4"
-  }
-
   defaultConfig {
     if (currentHotfixVersion >= maxHotfixVersions) {
       throw AssertionError("Hotfix version offset is too large!")
     }
     versionCode = (canonicalVersionCode * maxHotfixVersions) + possibleHotfixVersions[currentHotfixVersion]
     versionName = canonicalVersionName
+
+    if (isInstrumentationTestRun) {
+      applicationIdSuffix = ".test_run"
+    }
 
     minSdk = libs.versions.minSdk.get().toInt()
     targetSdk = libs.versions.targetSdk.get().toInt()
@@ -240,8 +259,8 @@ android {
     buildConfigField("String[]", "SIGNAL_CDSI_IPS", rootProject.extra["cdsi_ips"] as String)
     buildConfigField("String[]", "SIGNAL_SVR2_IPS", rootProject.extra["svr2_ips"] as String)
     buildConfigField("String", "SIGNAL_AGENT", "\"OWA\"")
-    buildConfigField("String", "SVR2_MRENCLAVE_LEGACY", "\"29cd63c87bea751e3bfd0fbd401279192e2e5c99948b4ee9437eafc4968355fb\"")
-    buildConfigField("String", "SVR2_MRENCLAVE", "\"1240acbd4aa26974184844c8a46b1022d3957ac8a76c1fd8f5b1a15141ee0708\"")
+    buildConfigField("String", "SVR2_MRENCLAVE_LEGACY", "\"1240acbd4aa26974184844c8a46b1022d3957ac8a76c1fd8f5b1a15141ee0708\"")
+    buildConfigField("String", "SVR2_MRENCLAVE", "\"ced8217b26228e4b210c985786999d095c4958a94faf37b14acaf25c4cbb02a4\"")
     buildConfigField("String[]", "UNIDENTIFIED_SENDER_TRUST_ROOTS", "new String[]{ \"BXu6QIKVz5MA8gstzfOgRQGqyLqOwNKHL6INkv3IHWMF\", \"BUkY0I+9+oPgDCn4+Ac6Iu813yvqkDr/ga8DzLxFxuk6\"}")
     buildConfigField("String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"AMhf5ywVwITZMsff/eCyudZx9JDmkkkbV6PInzG4p8x3VqVJSFiMvnvlEKWuRob/1eaIetR31IYeAbm0NdOuHH8Qi+Rexi1wLlpzIo1gstHWBfZzy1+qHRV5A4TqPp15YzBPm0WSggW6PbSn+F4lf57VCnHF7p8SvzAA2ZZJPYJURt8X7bbg+H3i+PEjH9DXItNEqs2sNcug37xZQDLm7X36nOoGPs54XsEGzPdEV+itQNGUFEjY6X9Uv+Acuks7NpyGvCoKxGwgKgE5XyJ+nNKlyHHOLb6N1NuHyBrZrgtY/JYJHRooo5CEqYKBqdFnmbTVGEkCvJKxLnjwKWf+fEPoWeQFj5ObDjcKMZf2Jm2Ae69x+ikU5gBXsRmoF94GXTLfN0/vLt98KDPnxwAQL9j5V1jGOY8jQl6MLxEs56cwXN0dqCnImzVH3TZT1cJ8SW1BRX6qIVxEzjsSGx3yxF3suAilPMqGRp4ffyopjMD1JXiKR2RwLKzizUe5e8XyGOy9fplzhw3jVzTRyUZTRSZKkMLWcQ/gv0E4aONNqs4P+NameAZYOD12qRkxosQQP5uux6B2nRyZ7sAV54DgFyLiRcq1FvwKw2EPQdk4HDoePrO/RNUbyNddnM/mMgj4FW65xCoT1LmjrIjsv/Ggdlx46ueczhMgtBunx1/w8k8V+l8LVZ8gAT6wkU5J+DPQalQguMg12Jzug3q4TbdHiGCmD9EunCwOmsLuLJkz6EcSYXtrlDEnAM+hicw7iergYLLlMXpfTdGxJCWJmP4zqUFeTTmsmhsjGBt7NiEB/9pFFEB3pSbf4iiUukw63Eo8Aqnf4iwob6X1QviCWuc8t0LUlT9vALgh/f2DPVOOmR0RW6bgRvc7DSF20V/omg+YBw==\"")
     buildConfigField("String", "GENERIC_SERVER_PUBLIC_PARAMS", "\"AByD873dTilmOSG0TjKrvpeaKEsUmIO8Vx9BeMmftwUs9v7ikPwM8P3OHyT0+X3EUMZrSe9VUp26Wai51Q9I8mdk0hX/yo7CeFGJyzoOqn8e/i4Ygbn5HoAyXJx5eXfIbqpc0bIxzju4H/HOQeOpt6h742qii5u/cbwOhFZCsMIbElZTaeU+BWMBQiZHIGHT5IE0qCordQKZ5iPZom0HeFa8Yq0ShuEyAl0WINBiY6xE3H/9WnvzXBbMuuk//eRxXgzO8ieCeK8FwQNxbfXqZm6Ro1cMhCOF3u7xoX83QhpN\"")
@@ -263,7 +282,6 @@ android {
     buildConfigField("String", "STRIPE_PUBLISHABLE_KEY", "\"pk_live_6cmGZopuTsV8novGgJJW9JpC00vLIgtQ1D\"")
     buildConfigField("boolean", "TRACING_ENABLED", "false")
     buildConfigField("boolean", "LINK_DEVICE_UX_ENABLED", "false")
-    buildConfigField("boolean", "USE_STRING_ID", "false")
 
     ndk {
       abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
@@ -279,7 +297,11 @@ android {
       }
     }
 
-    testInstrumentationRunner = "org.thoughtcrime.securesms.testing.SignalTestRunner"
+    testInstrumentationRunner = if (project.hasProperty("imoTests")) {
+      "org.thoughtcrime.securesms.testing.incomingmessageobserver.IncomingMessageObserverTestRunner"
+    } else {
+      "org.thoughtcrime.securesms.testing.SignalTestRunner"
+    }
     testInstrumentationRunnerArguments["clearPackageData"] = "true"
   }
 
@@ -291,7 +313,7 @@ android {
       isDefault = true
       isMinifyEnabled = false
       proguardFiles(
-        getDefaultProguardFile("proguard-android.txt"),
+        getDefaultProguardFile("proguard-android-optimize.txt"),
         "proguard/proguard-firebase-messaging.pro",
         "proguard/proguard-google-play-services.pro",
         "proguard/proguard-jackson.pro",
@@ -308,6 +330,7 @@ android {
         "proguard/proguard-retrolambda.pro",
         "proguard/proguard-okhttp.pro",
         "proguard/proguard-ez-vcard.pro",
+        "proguard/proguard-dnsjava.pro",
         "proguard/proguard.cfg"
       )
       testProguardFiles(
@@ -325,17 +348,6 @@ android {
       isMinifyEnabled = true
       proguardFiles(*buildTypes["debug"].proguardFiles.toTypedArray())
       buildConfigField("String", "BUILD_VARIANT_TYPE", "\"Release\"")
-    }
-
-    create("instrumentation") {
-      initWith(getByName("debug"))
-      isDefault = false
-      isMinifyEnabled = false
-      matchingFallbacks += "debug"
-      applicationIdSuffix = ".instrumentation"
-
-      buildConfigField("String", "BUILD_VARIANT_TYPE", "\"Instrumentation\"")
-      buildConfigField("String", "STRIPE_BASE_URL", "\"http://127.0.0.1:8080/stripe\"")
     }
 
     create("spinner") {
@@ -453,8 +465,8 @@ android {
       buildConfigField("String", "SIGNAL_CDN3_URL", "\"https://cdn3-staging.signal.org\"")
       buildConfigField("String", "SIGNAL_CDSI_URL", "\"https://cdsi.staging.signal.org\"")
       buildConfigField("String", "SIGNAL_SVR2_URL", "\"https://svr2.staging.signal.org\"")
-      buildConfigField("String", "SVR2_MRENCLAVE_LEGACY", "\"a75542d82da9f6914a1e31f8a7407053b99cc99a0e7291d8fbd394253e19b036\"")
-      buildConfigField("String", "SVR2_MRENCLAVE", "\"97f151f6ed078edbbfd72fa9cae694dcc08353f1f5e8d9ccd79a971b10ffc535\"")
+      buildConfigField("String", "SVR2_MRENCLAVE_LEGACY", "\"97f151f6ed078edbbfd72fa9cae694dcc08353f1f5e8d9ccd79a971b10ffc535\"")
+      buildConfigField("String", "SVR2_MRENCLAVE", "\"3c699f4975aaa3d172c0aad042f94f031b2b03e10b9c19a45116a01693d83302\"")
       buildConfigField("String[]", "UNIDENTIFIED_SENDER_TRUST_ROOTS", "new String[]{\"BbqY1DzohE4NUZoVF+L18oUPrK3kILllLEJh2UnPSsEx\", \"BYhU6tPjqP46KGZEzRs1OL4U39V5dlPJ/X09ha4rErkm\"}")
       buildConfigField("String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"ABSY21VckQcbSXVNCGRYJcfWHiAMZmpTtTELcDmxgdFbtp/bWsSxZdMKzfCp8rvIs8ocCU3B37fT3r4Mi5qAemeGeR2X+/YmOGR5ofui7tD5mDQfstAI9i+4WpMtIe8KC3wU5w3Inq3uNWVmoGtpKndsNfwJrCg0Hd9zmObhypUnSkfYn2ooMOOnBpfdanRtrvetZUayDMSC5iSRcXKpdlukrpzzsCIvEwjwQlJYVPOQPj4V0F4UXXBdHSLK05uoPBCQG8G9rYIGedYsClJXnbrgGYG3eMTG5hnx4X4ntARBgELuMWWUEEfSK0mjXg+/2lPmWcTZWR9nkqgQQP0tbzuiPm74H2wMO4u1Wafe+UwyIlIT9L7KLS19Aw8r4sPrXZSSsOZ6s7M1+rTJN0bI5CKY2PX29y5Ok3jSWufIKcgKOnWoP67d5b2du2ZVJjpjfibNIHbT/cegy/sBLoFwtHogVYUewANUAXIaMPyCLRArsKhfJ5wBtTminG/PAvuBdJ70Z/bXVPf8TVsR292zQ65xwvWTejROW6AZX6aqucUjlENAErBme1YHmOSpU6tr6doJ66dPzVAWIanmO/5mgjNEDeK7DDqQdB1xd03HT2Qs2TxY3kCK8aAb/0iM0HQiXjxZ9HIgYhbtvGEnDKW5ILSUydqH/KBhW4Pb0jZWnqN/YgbWDKeJxnDbYcUob5ZY5Lt5ZCMKuaGUvCJRrCtuugSMaqjowCGRempsDdJEt+cMaalhZ6gczklJB/IbdwENW9KeVFPoFNFzhxWUIS5ML9riVYhAtE6JE5jX0xiHNVIIPthb458cfA8daR0nYfYAUKogQArm0iBezOO+mPk5vCNWI+wwkyFCqNDXz/qxl1gAntuCJtSfq9OC3NkdhQlgYQ==\"")
       buildConfigField("String", "GENERIC_SERVER_PUBLIC_PARAMS", "\"AHILOIrFPXX9laLbalbA9+L1CXpSbM/bTJXZGZiuyK1JaI6dK5FHHWL6tWxmHKYAZTSYmElmJ5z2A5YcirjO/yfoemE03FItyaf8W1fE4p14hzb5qnrmfXUSiAIVrhaXVwIwSzH6RL/+EO8jFIjJ/YfExfJ8aBl48CKHgu1+A6kWynhttonvWWx6h7924mIzW0Czj2ROuh4LwQyZypex4GuOPW8sgIT21KNZaafgg+KbV7XM1x1tF3XA17B4uGUaDbDw2O+nR1+U5p6qHPzmJ7ggFjSN6Utu+35dS1sS0P9N\"")
@@ -480,70 +492,6 @@ android {
     lintConfig = rootProject.file("lint.xml")
   }
 
-  androidComponents {
-    beforeVariants { variant ->
-      variant.enable = variant.name in selectableVariants
-    }
-    onVariants(selector().all()) { variant: com.android.build.api.variant.ApplicationVariant ->
-      // Include the test-only library on debug builds.
-      if (variant.buildType != "instrumentation") {
-        variant.packaging.jniLibs.excludes.add("**/libsignal_jni_testing.so")
-      }
-
-      // Starting with minSdk 23, Android leaves native libraries uncompressed, which is fine for the Play Store, but not for our self-distributed APKs.
-      // This reverts it to the legacy behavior, compressing the native libraries, and drastically reducing the APK file size.
-      if (variant.name.contains("website", ignoreCase = true) || variant.name.contains("github", ignoreCase = true)) {
-        variant.packaging.jniLibs.useLegacyPackaging.set(true)
-      }
-
-      // Version overrides
-      if (variant.name.contains("nightly", ignoreCase = true)) {
-        var tag = getNightlyTagForCurrentCommit()
-        if (!tag.isNullOrEmpty()) {
-          if (tag.startsWith("v")) {
-            tag = tag.substring(1)
-          }
-
-          // We add a multiple of maxHotfixVersions to nightlies to ensure we're always at least that many versions ahead
-          val nightlyBuffer = (5 * maxHotfixVersions)
-          val nightlyVersionCode = (canonicalVersionCode * maxHotfixVersions) + (getNightlyBuildNumber(tag) * 10) + nightlyBuffer
-
-          variant.outputs.forEach { output ->
-            output.versionName.set("$tag | ${getLastCommitDateTimeUtc()}")
-            output.versionCode.set(nightlyVersionCode)
-          }
-        }
-      }
-    }
-
-    onVariants(selector().withBuildType("quickstart")) { variant ->
-      val environment = variant.flavorName?.let { name ->
-        when {
-          name.contains("staging", ignoreCase = true) -> "staging"
-          name.contains("prod", ignoreCase = true) -> "prod"
-          else -> "prod"
-        }
-      } ?: "prod"
-
-      val taskProvider = tasks.register<CopyQuickstartCredentialsTask>("copyQuickstartCredentials${variant.name.capitalize()}") {
-        if (quickstartCredentialsDir != null) {
-          inputDir.set(File(quickstartCredentialsDir))
-        }
-        filePrefix.set("${environment}_")
-      }
-      variant.sources.assets?.addGeneratedSourceDirectory(taskProvider) { it.outputDir }
-    }
-
-    onVariants(selector().withBuildType("benchmark")) { variant ->
-      val taskProvider = tasks.register<CopyBenchmarkBackupTask>("copyBenchmarkBackup${variant.name.capitalize()}") {
-        if (benchmarkBackupFile != null) {
-          inputFile.set(File(benchmarkBackupFile))
-        }
-      }
-      variant.sources.assets?.addGeneratedSourceDirectory(taskProvider) { it.outputDir }
-    }
-  }
-
   val releaseDir = "$projectDir/src/release/java"
   val debugDir = "$projectDir/src/debug/java"
 
@@ -565,14 +513,82 @@ android {
       manifest.srcFile("$projectDir/src/benchmarkShared/AndroidManifest.xml")
     }
   }
+}
 
-  applicationVariants.configureEach {
-    outputs.configureEach {
-      if (this is com.android.build.gradle.internal.api.BaseVariantOutputImpl) {
-        val fileVersionName = versionName.substringBefore(" |")
-        outputFileName = outputFileName.replace(".apk", "-$fileVersionName.apk")
+androidComponents {
+  beforeVariants { variant ->
+    variant.enable = variant.name in selectableVariants
+    if (variant.enable) {
+      (variant as? com.android.build.api.variant.HasUnitTestBuilder)?.enableUnitTest = true
+    }
+  }
+  onVariants(selector().all()) { variant: com.android.build.api.variant.ApplicationVariant ->
+    // Rename APK to include version name
+    val renameTask = tasks.register<RenameApkTask>("renameApk${variant.name.replaceFirstChar { it.uppercase() }}")
+    val renameRequest = variant.artifacts.use(renameTask)
+      .wiredWithDirectories(RenameApkTask::apkFolder, RenameApkTask::outFolder)
+      .toTransformMany(SingleArtifact.APK)
+    renameTask.configure {
+      transformationRequest.set(renameRequest)
+    }
+
+    // Include the test-only library on non-release builds.
+    if (variant.buildType == "release") {
+      variant.packaging.jniLibs.excludes.add("**/libsignal_jni_testing.so")
+      variant.androidResources.ignoreAssetsPatterns.add("libsignal-testing.md")
+    }
+
+    // Starting with minSdk 23, Android leaves native libraries uncompressed, which is fine for the Play Store, but not for our self-distributed APKs.
+    // This reverts it to the legacy behavior, compressing the native libraries, and drastically reducing the APK file size.
+    if (variant.name.contains("website", ignoreCase = true) || variant.name.contains("github", ignoreCase = true)) {
+      variant.packaging.jniLibs.useLegacyPackaging.set(true)
+    }
+
+    // Version overrides
+    if (variant.name.contains("nightly", ignoreCase = true)) {
+      var tag = getNightlyTagForCurrentCommit()
+      if (!tag.isNullOrEmpty()) {
+        if (tag.startsWith("v")) {
+          tag = tag.substring(1)
+        }
+
+        // We add a multiple of maxHotfixVersions to nightlies to ensure we're always at least that many versions ahead
+        val nightlyBuffer = (5 * maxHotfixVersions)
+        val nightlyVersionCode = (canonicalVersionCode * maxHotfixVersions) + (getNightlyBuildNumber(tag) * 10) + nightlyBuffer
+
+        variant.outputs.forEach { output ->
+          output.versionName.set("$tag | ${getLastCommitDateTimeUtc()}")
+          output.versionCode.set(nightlyVersionCode)
+        }
       }
     }
+  }
+
+  onVariants(selector().withBuildType("quickstart")) { variant ->
+    val environment = variant.flavorName?.let { name ->
+      when {
+        name.contains("staging", ignoreCase = true) -> "staging"
+        name.contains("prod", ignoreCase = true) -> "prod"
+        else -> "prod"
+      }
+    } ?: "prod"
+
+    val taskProvider = tasks.register<CopyQuickstartCredentialsTask>("copyQuickstartCredentials${variant.name.capitalize()}") {
+      if (quickstartCredentialsDir != null) {
+        inputDir.set(File(quickstartCredentialsDir))
+      }
+      filePrefix.set("${environment}_")
+    }
+    variant.sources.assets?.addGeneratedSourceDirectory(taskProvider) { it.outputDir }
+  }
+
+  onVariants(selector().withBuildType("benchmark")) { variant ->
+    val taskProvider = tasks.register<CopyBenchmarkBackupTask>("copyBenchmarkBackup${variant.name.capitalize()}") {
+      if (benchmarkBackupFile != null) {
+        inputFile.set(File(benchmarkBackupFile))
+      }
+    }
+    variant.sources.assets?.addGeneratedSourceDirectory(taskProvider) { it.outputDir }
   }
 }
 
@@ -590,6 +606,14 @@ baselineProfile {
   dexLayoutOptimization = false
 }
 
+kotlin {
+  compilerOptions {
+    jvmTarget = JvmTarget.fromTarget(libs.versions.kotlinJvmTarget.get())
+    freeCompilerArgs.addAll("-Xjvm-default=all")
+    suppressWarnings = true
+  }
+}
+
 dependencies {
   lintChecks(project(":lintchecks"))
   ktlintRuleset(libs.ktlint.twitter.compose)
@@ -597,6 +621,7 @@ dependencies {
 
   implementation(project(":lib:archive"))
   implementation(project(":lib:libsignal-service"))
+  implementation(project(":lib:network"))
   implementation(project(":lib:paging"))
   implementation(project(":core:util"))
   implementation(project(":lib:glide"))
@@ -618,11 +643,7 @@ dependencies {
   implementation(project(":lib:apng"))
 
   implementation(libs.androidx.fragment.ktx)
-  implementation(libs.androidx.appcompat) {
-    version {
-      strictly("1.6.1")
-    }
-  }
+  implementation(libs.androidx.appcompat)
   implementation(libs.androidx.window.window)
   implementation(libs.androidx.window.java)
   implementation(libs.androidx.recyclerview)
@@ -671,6 +692,7 @@ dependencies {
   implementation(libs.google.play.services.maps)
   implementation(libs.google.play.services.auth)
   implementation(libs.google.signin)
+  implementation(libs.androidx.media)
   implementation(libs.bundles.media3)
   implementation(libs.conscrypt.android)
   implementation(libs.signal.aesgcmprovider)
@@ -678,7 +700,6 @@ dependencies {
   implementation(libs.mobilecoin)
   implementation(libs.signal.ringrtc)
   implementation(libs.leolin.shortcutbadger)
-  implementation(libs.emilsjolander.stickylistheaders)
   implementation(libs.glide.glide)
   implementation(libs.roundedimageview)
   implementation(libs.materialish.progress)
@@ -689,10 +710,6 @@ dependencies {
   implementation(libs.subsampling.scale.image.view) {
     exclude(group = "com.android.support", module = "support-annotations")
   }
-  implementation(libs.android.tooltips) {
-    exclude(group = "com.android.support", module = "appcompat-v7")
-  }
-  implementation(libs.stream)
   implementation(libs.lottie)
   implementation(libs.lottie.compose)
   implementation(libs.signal.android.database.sqlcipher)
@@ -704,6 +721,7 @@ dependencies {
   }
   implementation(libs.dnsjava)
   implementation(libs.kotlinx.collections.immutable)
+  implementation(libs.arrow.core)
   implementation(libs.accompanist.permissions)
   implementation(libs.accompanist.drawablepainter)
   implementation(libs.kotlin.stdlib.jdk8)
@@ -725,7 +743,7 @@ dependencies {
 
   "canaryImplementation"(libs.square.leakcanary)
 
-  "instrumentationImplementation"(libs.androidx.fragment.testing) {
+  androidTestImplementation(libs.androidx.fragment.testing) {
     exclude(group = "androidx.test", module = "core")
   }
 
@@ -747,6 +765,7 @@ dependencies {
   }
   testImplementation(testLibs.conscrypt.openjdk.uber)
   testImplementation(testLibs.mockk)
+  testImplementation(testFixtures(project(":core:ui")))
   testImplementation(testFixtures(project(":lib:libsignal-service")))
   testImplementation(testLibs.espresso.core)
   testImplementation(testLibs.kotlinx.coroutines.test)
@@ -861,7 +880,7 @@ abstract class LanguageListValueSource : ValueSource<List<String>, LanguageListV
   }
 }
 
-abstract class PropertiesFileValueSource : ValueSource<Properties?, PropertiesFileValueSource.Params> {
+abstract class PropertiesFileValueSource : ValueSource<Properties, PropertiesFileValueSource.Params> {
   interface Params : ValueSourceParameters {
     @get:InputFile
     @get:Optional
@@ -869,9 +888,9 @@ abstract class PropertiesFileValueSource : ValueSource<Properties?, PropertiesFi
     val file: RegularFileProperty
   }
 
-  override fun obtain(): Properties? {
+  override fun obtain(): Properties {
     val f: File = parameters.file.asFile.get()
-    if (!f.exists()) return null
+    if (!f.exists()) return Properties()
 
     return Properties().apply {
       f.inputStream().use { load(it) }
@@ -939,5 +958,32 @@ abstract class CopyBenchmarkBackupTask : DefaultTask() {
     val backupFile = inputFile.get().asFile
     logger.lifecycle("Using benchmark backup: ${backupFile.absolutePath} (${backupFile.length() / 1024}KB)")
     backupFile.copyTo(dest.resolve("backup.binproto"), overwrite = true)
+  }
+}
+
+abstract class RenameApkTask : DefaultTask() {
+  @get:InputFiles
+  abstract val apkFolder: DirectoryProperty
+
+  @get:OutputDirectory
+  abstract val outFolder: DirectoryProperty
+
+  @get:Internal
+  abstract val transformationRequest: Property<ArtifactTransformationRequest<RenameApkTask>>
+
+  @TaskAction
+  fun rename() {
+    transformationRequest.get().submit(this) { artifact ->
+      val originalFile = File(artifact.outputFile)
+      val versionName = artifact.versionName?.substringBefore(" |")
+      val newName = if (!versionName.isNullOrEmpty()) {
+        originalFile.name.replace(".apk", "-$versionName.apk")
+      } else {
+        originalFile.name
+      }
+      val newFile = File(outFolder.get().asFile, newName)
+      originalFile.copyTo(newFile, overwrite = true)
+      newFile
+    }
   }
 }

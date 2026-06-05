@@ -4,6 +4,7 @@ import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.accessors.dm.LibrariesForTestLibs
 import org.gradle.api.JavaVersion
 import org.gradle.kotlin.dsl.the
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 val libs = the<LibrariesForLibs>()
 val testLibs = the<LibrariesForTestLibs>()
@@ -12,13 +13,12 @@ plugins {
   // We cannot use the version catalog in the plugins block in convention plugins (it's not supported).
   // Instead, plugin versions are controlled through the dependencies block in the build.gradle.kts.
   id("com.android.application")
-  id("kotlin-android")
   id("ktlint")
 }
 
 android {
   buildToolsVersion = libs.versions.buildTools.get()
-  compileSdkVersion = libs.versions.compileSdk.get()
+  compileSdkVersion(libs.versions.compileSdk.get())
 
   defaultConfig {
     versionCode = 1
@@ -34,18 +34,16 @@ android {
     targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
   }
 
-  kotlinOptions {
-    jvmTarget = libs.versions.kotlinJvmTarget.get()
-    suppressWarnings = true
-  }
-
   buildFeatures {
     buildConfig = true
     compose = true
   }
+}
 
-  composeOptions {
-    kotlinCompilerExtensionVersion = "1.5.4"
+kotlin {
+  compilerOptions {
+    jvmTarget = JvmTarget.fromTarget(libs.versions.kotlinJvmTarget.get())
+    suppressWarnings = true
   }
 }
 

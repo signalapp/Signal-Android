@@ -3,7 +3,7 @@
 
 [versions]
 androidx-test-ext-junit = "1.3.0"
-baselineprofile = "1.4.1"
+baselineprofile = "1.5.0-alpha03"
 
 [plugins]
 baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }

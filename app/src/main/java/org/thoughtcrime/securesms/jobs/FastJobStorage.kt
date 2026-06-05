@@ -492,6 +492,10 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   private fun placeJobInEligibleList(jobCandidate: MinimalJobSpec) {
     val existingJobInQueue = jobCandidate.queueKey?.let { mostEligibleJobForQueue[it] }
     if (existingJobInQueue != null) {
+      if (existingJobInQueue.isRunning) {
+        return
+      }
+
       if (jobCandidate.globalPriority < existingJobInQueue.globalPriority) {
         return
       }

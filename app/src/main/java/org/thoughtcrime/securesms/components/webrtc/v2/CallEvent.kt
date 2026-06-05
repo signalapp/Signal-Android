@@ -22,7 +22,7 @@ sealed interface CallEvent {
   data class StartCall(val isVideoCall: Boolean) : CallEvent
   data class ShowGroupCallSafetyNumberChange(val identityRecords: List<IdentityRecord>) : CallEvent
   data object SwitchToSpeaker : CallEvent
-  data object ShowSwipeToSpeakerHint : CallEvent
+  data object ShowSwipeToScreenShareHint : CallEvent
   data object ShowLargeGroupAutoMuteToast : CallEvent
   data class ShowRemoteMuteToast(private val muted: Recipient, private val mutedBy: Recipient) : CallEvent {
     fun getDescription(context: Context): String {

@@ -5,6 +5,7 @@ import org.signal.libsignal.protocol.NoSessionException
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.state.SessionRecord
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.SignalServiceSessionStore
 import kotlin.jvm.Throws
@@ -76,7 +77,7 @@ class BufferedSessionStore(private val selfServiceId: ServiceId) : SignalService
 
       if (fromDatabase != null) {
         store[address] = fromDatabase
-        return fromDatabase.hasSenderChain()
+        return fromDatabase.hasSenderChain(RemoteConfig.requirePqRatio)
       } else {
         false
       }

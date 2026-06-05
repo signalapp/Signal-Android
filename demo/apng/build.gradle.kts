@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-  namespace = "org.signal.apng"
+  namespace = "org.signal.apng.demo"
 
   defaultConfig {
     applicationId = "org.signal.apng"

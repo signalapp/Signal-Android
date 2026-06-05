@@ -57,7 +57,6 @@ class LabsSettingsViewModel : ViewModel() {
       groupSuggestionsForMembers = SignalStore.labs.groupSuggestionsForMembers,
       betterSearch = SignalStore.labs.betterSearch,
       autoLowerHand = SignalStore.labs.autoLowerHand,
-
       starredMessages = SignalStore.labs.starredMessages
     )
   }

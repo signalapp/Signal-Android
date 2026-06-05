@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedScreen__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Не відмовляйте собі в конфіденційності.\nБудьте собою в кожному повідомленні.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">Signal є неприбутковою організацією\nУмови надання послуг і Політика конфіденційності</string>
@@ -42,6 +45,20 @@
     <string name="RegistrationActivity_select_a_country">Оберіть країну</string>
     <string name="RegistrationActivity_phone_number_description">Номер телефону</string>
     <string name="RegistrationActivity_next">Далі</string>
+    <!-- Dialog title to confirm phone number -->
+    <string name="RegistrationActivity_is_the_phone_number">Чи правильно зазначено номер телефону?</string>
+    <!-- Dialog body to confirm phone number -->
+    <string name="RegistrationActivity_a_verification_code">На цей номер буде надіслано код підтвердження. Може стягуватися плата згідно з тарифами оператора.</string>
+    <!-- Dialog button to edit the number entered -->
+    <string name="RegistrationActivity_edit_number">Виправити номер</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="RegistrationActivity_open_menu">Відкрити меню</string>
+    <!-- Menu option to use a proxy -->
+    <string name="RegistrationActivity_use_proxy">Проксі-сервер</string>
+    <!-- Menu option to link this as a device -->
+    <string name="RegistrationActivity_link_device">Зв\'язати пристрій</string>
+    <!-- Clickable text that opens a corresponding URL -->
+    <string name="RegistrationActivity_learn_more">Докладніше</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -76,8 +93,8 @@
     <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Забагато спроб. Спробуйте ще раз через %1$s.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">Сталася неочікувана помилка. Спробуйте ще раз.</string>
-    <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">Не вдалося надіслати ваш код підтвердження. Будь ласка, спробуйте ще раз.</string>
+    <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__unable_to_send_sms">Не вдається надіслати SMS на ваш номер. Будь ласка, спробуйте знову через кілька годин.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Не вдалося надіслати код обраним способом. Будь ласка, оберіть інший.</string>
     <!-- Snackbar shown for registration errors -->
@@ -130,4 +147,259 @@
     <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">Якщо ви не відновите дані зараз, то не зможете зробити цього пізніше. Якщо пропустити відновлення, а потім знову ввімкнути резервне копіювання, поточну резервну копію буде замінено на нову історію повідомлень.</string>
     <!-- Confirm button text for the skip restore dialog -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">Не відновлювати</string>
+
+    <!-- LocalBackupRestoreScreen -->
+    <!-- Title for the local backup restore screen -->
+    <string name="LocalBackupRestoreScreen__restore_on_device_backup">Відновлення з резервної копії на пристрої</string>
+    <!-- Description on the folder selection screen -->
+    <string name="LocalBackupRestoreScreen__select_folder_description">Відновіть повідомлення з резервної копії, збереженої на пристрої. Якщо ви не відновите їх зараз, то не зможете зробити цього пізніше.</string>
+    <!-- Title for the choose backup folder card -->
+    <string name="LocalBackupRestoreScreen__choose_backup_folder">Папка резервної копії</string>
+    <!-- Subtitle for the choose backup folder card -->
+    <string name="LocalBackupRestoreScreen__choose_folder_subtitle">Виберіть папку з резервною копією на пристрої</string>
+    <!-- Text shown while scanning for backups -->
+    <string name="LocalBackupRestoreScreen__scanning_folder">Пошук резервних копій…</string>
+    <!-- Description shown when a backup is found -->
+    <string name="LocalBackupRestoreScreen__backup_found_description">Відновіть повідомлення з папки з резервною копією, збереженою на пристрої. Якщо ви не відновите їх зараз, то не зможете зробити цього пізніше.</string>
+    <!-- Title for the latest backup card -->
+    <string name="LocalBackupRestoreScreen__your_latest_backup">Остання резервна копія:</string>
+    <!-- Restore backup button text -->
+    <string name="LocalBackupRestoreScreen__restore_backup">Відновити з резервної копії</string>
+    <!-- Link to choose an earlier backup -->
+    <string name="LocalBackupRestoreScreen__choose_earlier_backup">Вибрати попередню резервну копію</string>
+    <!-- Title for the backup picker bottom sheet -->
+    <string name="LocalBackupRestoreScreen__choose_a_backup_to_restore">Виберіть резервну копію</string>
+    <!-- Warning text in the backup picker bottom sheet -->
+    <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">Якщо вибрати старішу резервну копію, ви можете втратити якісь повідомлення і медіафайли.</string>
+    <!-- Title when no backup is found -->
+    <string name="LocalBackupRestoreScreen__no_backup_found">Резервної копії не знайдено</string>
+    <!-- Description when no backup is found -->
+    <string name="LocalBackupRestoreScreen__no_backup_found_description">У цій папці не було знайдено резервної копії Signal. Виберіть іншу папку.</string>
+    <!-- Button to try a different folder -->
+    <string name="LocalBackupRestoreScreen__try_different_folder">Вибрати іншу папку</string>
+    <!-- Title for V1 passphrase entry screen -->
+    <string name="LocalBackupRestoreScreen__enter_backup_passphrase">Введіть пароль</string>
+    <!-- Description for V1 passphrase entry screen -->
+    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Ваш пароль від локальної резервної копії — це 30-значний код, який дозволяє відновити акаунт і пов\'язані з ним дані.</string>
+    <!-- Label for the recovery key text field -->
+    <string name="LocalBackupRestoreScreen__recovery_key">Ключ відновлення</string>
+    <!-- Error text when passphrase is too long -->
+    <string name="LocalBackupRestoreScreen__too_long">Ключ задовгий (%1$d/%2$d)</string>
+    <!-- Link for users who don\'t have their passphrase -->
+    <string name="LocalBackupRestoreScreen__no_passphrase">Забули пароль?</string>
+    <!-- Next button text -->
+    <string name="LocalBackupRestoreScreen__next">Далі</string>
+    <!-- EnterAepScreen -->
+    <!-- Title for recovery key entry screen -->
+    <string name="EnterAepScreen__enter_your_recovery_key">Введіть ключ відновлення</string>
+    <!-- Description for recovery key entry screen -->
+    <string name="EnterAepScreen__your_recovery_key_is_a_64_character_code">Ключ відновлення — це код із 64 символів, який дає змогу відновити акаунт і пов\'язані з ним дані.</string>
+    <!-- Label for the recovery key text field -->
+    <string name="EnterAepScreen__recovery_key">Ключ відновлення</string>
+    <!-- Link for users who don\'t have their recovery key -->
+    <string name="EnterAepScreen__no_recovery_key">Забули ключ відновлення?</string>
+    <!-- Error text when key is too long -->
+    <string name="EnterAepScreen__too_long">Ключ задовгий (%1$d/%2$d)</string>
+    <!-- Error text when key is invalid -->
+    <string name="EnterAepScreen__invalid_recovery_key">Недійсний ключ відновлення</string>
+    <!-- Error text when key is correct format but does not match account -->
+    <string name="EnterAepScreen__incorrect_recovery_key">Неправильний ключ відновлення</string>
+    <!-- Text shown while preparing the restore -->
+    <string name="LocalBackupRestoreScreen__preparing_restore">Підготовка до відновлення…</string>
+    <!-- Title shown while restore is in progress -->
+    <string name="LocalBackupRestoreScreen__restoring_backup">Відновлення даних з резервної копії</string>
+    <!-- Description shown while restore is in progress -->
+    <string name="LocalBackupRestoreScreen__restoring_description">Відновлення повідомлень і даних займе певний час.</string>
+    <!-- Description shown when restore is complete -->
+    <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
+    <!-- Continue button text after restore is complete -->
+    <string name="LocalBackupRestoreScreen__continue_button">Продовжити</string>
+    <!-- Title shown when restore fails -->
+    <string name="LocalBackupRestoreScreen__restore_failed">Помилка відновлення</string>
+    <!-- Description shown when restore fails with an unknown error -->
+    <string name="LocalBackupRestoreScreen__restore_failed_description">Під час відновлення даних з резервної копії сталася помилка. Будь ласка, спробуйте ще раз.</string>
+    <!-- Button to retry restore after failure -->
+    <string name="LocalBackupRestoreScreen__try_again">Повторити спробу</string>
+    <!-- Button to link an existing Signal account to this device -->
+    <string name="WelcomeScreen__link_your_account">Зв\'язати акаунт</string>
+    <!-- Prompt shown to users who don\'t have a Signal account yet -->
+    <string name="WelcomeScreen__not_on_signal_yet">Ще не зареєстровані?</string>
+    <!-- Button to create a new Signal account -->
+    <string name="WelcomeScreen__create_account">Створіть акаунт</string>
+
+    <!-- RemoteRestoreScreen -->
+    <!-- Title for the remote backup restore screen -->
+    <string name="RemoteRestoreScreen__restore_from_backup">Відновлення з резервної копії</string>
+    <!-- Shown while fetching backup details from server -->
+    <string name="RemoteRestoreScreen__fetching_backup_details">Отримання інформації про резервну копію…</string>
+    <!-- Button to start restoring the backup -->
+    <string name="RemoteRestoreScreen__restore_backup">Відновити з резервної копії</string>
+    <!-- Subtitle showing when the last backup was made, with date and time placeholders -->
+    <string name="RemoteRestoreScreen__your_last_backup_was_made_on_s_at_s">Дата і час створення останньої резервної копії: %1$s, %2$s.</string>
+    <!-- Description telling the user their media will restore in the background -->
+    <string name="RemoteRestoreScreen__your_media_will_restore_in_the_background">Відновлення медіафайлів відбувається у фоновому режимі. Якщо ви не відновите дані зараз, то не зможете зробити цього пізніше.</string>
+    <!-- Title for the backup not found dialog -->
+    <string name="RemoteRestoreScreen__backup_not_found">Резервної копії не знайдено.</string>
+    <!-- Body for the backup not found dialog -->
+    <string name="RemoteRestoreScreen__no_backup_was_found">Для цього акаунту не знайдено резервної копії.</string>
+    <!-- Title for the restore failed dialog -->
+    <string name="RemoteRestoreScreen__cant_restore_backup">Не вдається відновити дані</string>
+    <!-- Body for the restore failed dialog -->
+    <string name="RemoteRestoreScreen__your_backup_cant_be_restored_right_now">Не вдається відновити дані з резервної копії. Будь ласка, спробуйте ще раз.</string>
+    <!-- Button to try again -->
+    <string name="RemoteRestoreScreen__try_again">Повторити спробу</string>
+    <!-- Title for the network error dialog -->
+    <string name="RemoteRestoreScreen__couldnt_finish_restore">Не вдалося завершити відновлення</string>
+    <!-- Body for the network error dialog -->
+    <string name="RemoteRestoreScreen__error_connecting">Під час з\'єднання із сервером сталася помилка. Перевірте з\'єднання з мережею і спробуйте знову.</string>
+    <!-- Body for the general restore failure dialog -->
+    <string name="RemoteRestoreScreen__error_occurred">Під час відновлення даних з резервної копії сталася помилка. Будь ласка, спробуйте ще раз.</string>
+    <!-- Title for the invalid backup version dialog -->
+    <string name="RemoteRestoreScreen__couldnt_restore_this_backup">Не вдалося відновити дані</string>
+    <!-- Body for the invalid backup version dialog -->
+    <string name="RemoteRestoreScreen__update_latest">Ця версія Signal не може відновити дані з вашої резервної копії. Оновіть застосунок до останньої версії та спробуйте ще раз.</string>
+    <!-- Button to update Signal -->
+    <string name="RemoteRestoreScreen__update_signal">Оновити Signal</string>
+    <!-- Button to dismiss update dialog -->
+    <string name="RemoteRestoreScreen__not_now">Не зараз</string>
+    <!-- Title for unrecoverable backup failure dialog -->
+    <string name="RemoteRestoreScreen__cant_restore_this_backup">Не вдається відновити дані</string>
+    <!-- Body for unrecoverable backup failure dialog prompting user to contact support -->
+    <string name="RemoteRestoreScreen__your_backup_is_not_recoverable">Під час відновлення даних з резервної копії сталася помилка. Ваші дані неможливо відновити. Будь ласка, зверніться до служби підтримки по допомогу.</string>
+    <!-- Button to contact support -->
+    <string name="RemoteRestoreScreen__contact_support">Звернутися в службу підтримки</string>
+    <!-- Shown while downloading the backup from the server -->
+    <string name="RemoteRestoreScreen__downloading_backup">Завантаження резервної копії…</string>
+    <!-- Shown while restoring messages from the downloaded backup -->
+    <string name="RemoteRestoreScreen__restoring_messages">Відновлення повідомлень…</string>
+    <!-- Shown while finalizing the restore -->
+    <string name="RemoteRestoreScreen__finishing_restore">Завершення…</string>
+    <!-- Shown as a generic restoring message -->
+    <string name="RemoteRestoreScreen__restoring">Відновлення…</string>
+    <!-- Byte progress text, e.g. "1.2 MB of 10 MB (12.34%)" -->
+    <string name="RemoteRestoreScreen__s_of_s_s">%1$s з %2$s (%3$s)</string>
+    <!-- Shown when attempting to open a URL in the web browser, but a browser app cannot be found. -->
+    <string name="LinkActions_error_no_browser_found">Браузер не знайдено.</string>
+
+    <!-- Title for screen when your account is locked -->
+    <string name="AccountLockedScreen__account_locked">Акаунт заблоковано</string>
+    <!-- Description for screen when account is locked -->
+    <string name="AccountLockedScreen__your_account">Ваш акаунт заблоковано з міркувань конфіденційності й безпеки. Через %1$d днів без активності в акаунті ви зможете заново зареєструвати цей номер телефону без введення PIN-коду. Весь вміст буде видалено.</string>
+
+    <!-- Step 1 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_1">Відкрийте Signal на старому пристрої</string>
+    <!-- Step 2 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_2">Торкніться значка камери </string>
+    <!-- Step 3 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_3">Зіскануйте QR-код камерою</string>
+    <!-- Loading dialog text when registering -->
+    <string name="QuickRestoreQRScreen__reregister">Реєстрація…</string>
+    <!-- Error message text shown if registering fails -->
+    <string name="QuickRestoreQRScreen__error">Під час реєстрації виникла помилка</string>
+    <!-- Title for quick restoring -->
+    <string name="QuickRestoreQRScreen__scan">Зіскануйте цей QR-код старим телефоном</string>
+    <!-- Confirmation dialog when qr code is successfully scanned -->
+    <string name="QuickRestoreQRScreen__scanned">QR-код зіскановано</string>
+    <!-- Button text to retry scanning the QR code -->
+    <string name="QuickRestoreQRScreen__retry">Повторити спробу</string>
+    <!-- Failure text when a code could not be generated -->
+    <string name="QuickRestoreQRScreen__failed">Не вдалося створити QR-код</string>
+
+    <!-- Toast text hinting to submit a debug log with %d being how many more taps are left -->
+    <plurals name="RegistrationActivity_debug_log_hint">
+        <item quantity="one">Ще %1$d крок, і журнал налагодження буде надіслано</item>
+        <item quantity="few">Ще %1$d кроки, і журнал налагодження буде надіслано</item>
+        <item quantity="many">Ще %1$d кроків, і журнал налагодження буде надіслано</item>
+        <item quantity="other">Ще %1$d кроку, і журнал налагодження буде надіслано</item>
+    </plurals>
+
+    <!-- PIN creation screen title. -->
+    <string name="PinCreationScreen__create_your_pin">Створіть PIN-код</string>
+    <!-- PIN creation screen title when confirming the new Signal PIN. -->
+    <string name="PinCreationScreen__confirm_your_pin">Підтвердьте PIN-код</string>
+    <!-- Describes how to confirm the new Signal PIN. -->
+    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <!-- Describes the purpose of creating a Signal PIN. -->
+    <string name="PinCreationScreen__pins_can_help">PIN-код потрібен для відновлення акаунту, якщо ви загубите телефон. </string>
+    <!-- Labels the button to learn more about Signal PINs. -->
+    <string name="PinCreationScreen__learn_more">Докладніше</string>
+    <!-- Labels the button to switch to the numeric PIN keyboard type. -->
+    <string name="PinCreationScreen__switch_to_numeric">Перемкнутися на цифрову клавіатуру</string>
+    <!-- Labels the button to switch to the alphanumeric PIN keyboard type. -->
+    <string name="PinCreationScreen__switch_to_alphanumeric">Перемкнутися на буквено-цифрову клавіатуру</string>
+    <!-- Labels the button to submit a new Signal PIN. -->
+    <string name="PinCreationScreen__next">Далі</string>
+    <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
+    <string name="PinCreationScreen__pin_at_least_4_digits">Мінімальна довжина PIN-коду — 4 цифри</string>
+    <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
+    <string name="PinCreationScreen__pin_at_least_4_characters">Мінімальна довжина PIN-коду — 4 символи</string>
+    <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
+    <string name="PinCreationScreen__reenter_pin">Введіть PIN-код ще раз</string>
+
+    <!-- PIN entry screen title when registration lock is active. -->
+    <string name="PinEntryScreen__registration_lock">Блокування реєстрації</string>
+    <!-- PIN entry screen title when restoring an account. -->
+    <string name="PinEntryScreen__enter_your_pin">Введіть свій PIN-код</string>
+    <!-- Describes the PIN that needs to be entered. -->
+    <string name="PinEntryScreen__enter_the_pin_you_created">Введіть PIN-код, який ви створили, коли вперше встановили Signal</string>
+    <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
+    <plurals name="PinEntryScreen__incorrect_pin">
+        <item quantity="one">Неправильний PIN-код. У вас є ще %1$d спроба.</item>
+        <item quantity="few">Неправильний PIN-код. У вас є ще %1$d спроби.</item>
+        <item quantity="many">Неправильний PIN-код. У вас є ще %1$d спроб.</item>
+        <item quantity="other">Неправильний PIN-код. У вас є ще %1$d спроби.</item>
+    </plurals>
+    <!-- Labels the button to get help with PIN entry. -->
+    <string name="PinEntryScreen__need_help">Потрібна допомога?</string>
+    <!-- Labels the button to switch between the numeric and alphanumeric keyboard. -->
+    <string name="PinEntryScreen__switch_keyboard">Перемкнути клавіатуру</string>
+    <!-- Labels the button to skip PIN entry. -->
+    <string name="PinEntryScreen__skip">Пропустити</string>
+    <!-- Labels the button to submit the PIN. -->
+    <string name="PinEntryScreen__continue">Продовжити</string>
+
+    <!-- Title for the screen asking the user to grant the notification permission -->
+    <string name="AllowNotificationsScreen__allow_notifications">Дозвольте сповіщення</string>
+    <!-- Description for the screen asking the user to grant the notification permission -->
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <!-- Button label that dismisses the notification permission request without granting it -->
+    <string name="AllowNotificationsScreen__not_now">Не зараз</string>
+    <!-- Button label that proceeds with the notification permission request -->
+    <string name="AllowNotificationsScreen__next">Далі</string>
+
+    <!-- Title shown while messages are syncing from the primary device -->
+    <string name="MessageSyncScreen__syncing_messages">Синхронізація повідомлень</string>
+    <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
+    <string name="MessageSyncScreen__downloading_s_of_s">Завантаження: %1$s з %2$s</string>
+    <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
+    <string name="MessageSyncScreen__learn_more">Докладніше</string>
+    <!-- Button label that cancels the in-progress message sync -->
+    <string name="MessageSyncScreen__cancel">Закрити</string>
+
+    <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
+    <string name="LinkAccountScreen__open_signal_on_your_phone">Відкрийте Signal на телефоні</string>
+    <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <!-- Button label opening help content for users who can\'t complete the link-account steps -->
+    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
+    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
+    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <!-- Error label shown in place of the QR code if it could not be generated -->
+    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
+    <string name="LinkAccountScreen__create_account">Створіть акаунт</string>
 </resources>

@@ -123,7 +123,9 @@ private val lightExtendedColors = ExtendedColors(
   colorTransparentInverse4 = Color(0xB8000000),
   colorTransparentInverse5 = Color(0xE0000000),
   colorNeutralInverse = Color(0xFF121212),
-  colorNeutralVariantInverse = Color(0xFF5C5C5C)
+  colorNeutralVariantInverse = Color(0xFF5C5C5C),
+  colorWarning = Color(0x1FB44828),
+  colorOnWarning = Color(0xFFB44828)
 )
 
 private val darkExtendedColors = ExtendedColors(
@@ -148,7 +150,9 @@ private val darkExtendedColors = ExtendedColors(
   colorTransparentInverse4 = Color(0xB8000000),
   colorTransparentInverse5 = Color(0xF5000000),
   colorNeutralInverse = Color(0xE0FFFFFF),
-  colorNeutralVariantInverse = Color(0xA3FFFFFF)
+  colorNeutralVariantInverse = Color(0xA3FFFFFF),
+  colorWarning = Color(0x1FEB977D),
+  colorOnWarning = Color(0xFFEB977D)
 )
 
 private val darkColorScheme = darkColorScheme(

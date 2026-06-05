@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
-
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Controls playback of gifs in a {@link RecyclerView}. The maximum number of gifs that will play back at any one
@@ -95,11 +95,12 @@ public final class GiphyMp4PlaybackController extends RecyclerView.OnScrollListe
   }
 
   private @NonNull Set<Integer> getPlaybackSet(@NonNull Set<Integer> playablePositions, int firstVisiblePosition, int lastVisiblePosition) {
-    return Stream.rangeClosed(firstVisiblePosition, lastVisiblePosition)
-                 .sorted(new RangeComparator(firstVisiblePosition, lastVisiblePosition))
-                 .filter(playablePositions::contains)
-                 .limit(maxSimultaneousPlayback)
-                 .collect(Collectors.toSet());
+    return IntStream.rangeClosed(firstVisiblePosition, lastVisiblePosition)
+                    .boxed()
+                    .sorted(new RangeComparator(firstVisiblePosition, lastVisiblePosition))
+                    .filter(playablePositions::contains)
+                    .limit(maxSimultaneousPlayback)
+                    .collect(Collectors.toSet());
   }
 
   private static int[] findFirstVisibleItemPositions(@NonNull RecyclerView.LayoutManager layoutManager) {

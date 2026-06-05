@@ -24,7 +24,6 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
 import java.io.InputStream
-import java.time.Instant
 
 /**
  * Repository that performs video transcoding using coroutines.
@@ -43,9 +42,10 @@ class TranscodeTestRepository {
     preset: TranscodingPreset,
     enableFastStart: Boolean,
     enableAudioRemux: Boolean,
+    outputTag: String = "preset01",
     onProgress: (Int) -> Unit
   ): TranscodeResult {
-    return doTranscode(context, inputUri, enableFastStart, onProgress) { inputFile ->
+    return doTranscode(context, inputUri, enableFastStart, outputTag, onProgress) { inputFile ->
       val dataSource = FileMediaDataSource(inputFile)
       StreamingTranscoder(dataSource, null, preset, DEFAULT_FILE_SIZE_LIMIT, enableAudioRemux)
     }
@@ -59,9 +59,10 @@ class TranscodeTestRepository {
     context: Context,
     inputUri: Uri,
     options: CustomTranscodingOptions,
+    outputTag: String = "preset01",
     onProgress: (Int) -> Unit
   ): TranscodeResult {
-    return doTranscode(context, inputUri, options.enableFastStart, onProgress) { inputFile ->
+    return doTranscode(context, inputUri, options.enableFastStart, outputTag, onProgress) { inputFile ->
       val dataSource = FileMediaDataSource(inputFile)
       StreamingTranscoder.createManuallyForTesting(
         dataSource,
@@ -80,12 +81,13 @@ class TranscodeTestRepository {
     context: Context,
     inputUri: Uri,
     enableFastStart: Boolean,
+    outputTag: String,
     onProgress: (Int) -> Unit,
     createTranscoder: (File) -> StreamingTranscoder
   ): TranscodeResult {
     val inputFilename = inputUri.lastPathSegment?.substringAfterLast('/') ?: "input"
     val baseName = inputFilename.substringBeforeLast('.')
-    val filenameBase = "transcoded-${Instant.now()}-$baseName"
+    val filenameBase = "transcoded-$outputTag-$baseName"
     val tempTranscodeFilename = "$filenameBase.tmp"
     val outputFilename = "$filenameBase.mp4"
 

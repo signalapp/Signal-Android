@@ -25,6 +25,7 @@ import com.google.android.material.animation.ArgbEvaluatorCompat
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.models.media.Media
 import org.signal.core.util.BreakIteratorCompat
+import org.signal.core.util.Debouncer
 import org.signal.core.util.OVERRIDE_TRANSITION_CLOSE_COMPAT
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableArrayListExtraCompat
@@ -47,7 +48,6 @@ import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendReposi
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate

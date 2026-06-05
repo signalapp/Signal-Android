@@ -14,13 +14,20 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
+import org.signal.core.ui.compose.LocalFragmentManager
 import org.signal.core.ui.compose.theme.SignalTheme
 
+/**
+ * Base class for bottom sheets whose content is entirely Compose.
+ * Provides [LocalFragmentManager] and [SignalTheme] to the composition, and delegates
+ * content rendering to the abstract [SheetContent] composable.
+ */
 abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFragment() {
 
   protected open val forceDarkTheme = false
@@ -34,13 +41,15 @@ abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetD
         } else {
           LocalConfiguration.current.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
         }
-        SignalTheme(isDarkMode = isDark) {
-          Surface(
-            shape = RoundedCornerShape(cornerRadius.dp, cornerRadius.dp),
-            color = SignalTheme.colors.colorSurface1,
-            contentColor = MaterialTheme.colorScheme.onSurface
-          ) {
-            SheetContent()
+        CompositionLocalProvider(LocalFragmentManager provides childFragmentManager) {
+          SignalTheme(isDarkMode = isDark) {
+            Surface(
+              shape = RoundedCornerShape(cornerRadius.dp, cornerRadius.dp),
+              color = SignalTheme.colors.colorSurface1,
+              contentColor = MaterialTheme.colorScheme.onSurface
+            ) {
+              SheetContent()
+            }
           }
         }
       }

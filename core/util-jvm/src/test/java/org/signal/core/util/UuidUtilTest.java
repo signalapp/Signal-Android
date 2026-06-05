@@ -6,7 +6,6 @@
 package org.signal.core.util;
 
 import org.junit.Test;
-import org.signal.libsignal.protocol.util.Hex;
 
 import java.io.IOException;
 import java.util.UUID;

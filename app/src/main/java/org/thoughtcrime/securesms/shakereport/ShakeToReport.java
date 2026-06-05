@@ -21,8 +21,8 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository;
 import org.thoughtcrime.securesms.sharing.MultiShareArgs;
-import org.thoughtcrime.securesms.util.AppForegroundObserver;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.signal.core.util.AppForegroundObserver;
+import org.signal.core.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.lang.ref.WeakReference;

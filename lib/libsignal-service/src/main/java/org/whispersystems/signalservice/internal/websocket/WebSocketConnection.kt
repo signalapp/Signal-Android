@@ -2,10 +2,14 @@ package org.whispersystems.signalservice.internal.websocket
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import org.signal.network.websocket.WebSocketRequestMessage
+import org.signal.network.websocket.WebSocketResponseMessage
+import org.signal.network.websocket.WebsocketResponse
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import java.io.IOException
 import java.util.Optional
 import java.util.concurrent.TimeoutException
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -28,6 +32,13 @@ interface WebSocketConnection {
 
   fun disconnect()
 
+  /**
+   * Unlike [disconnect], this connection should not be reused after calling this method.
+   */
+  fun shutdown() {
+    disconnect()
+  }
+
   @Throws(IOException::class)
   fun sendRequest(request: WebSocketRequestMessage): Single<WebsocketResponse> {
     return sendRequest(request, DEFAULT_SEND_TIMEOUT.inWholeSeconds)
@@ -35,6 +46,10 @@ interface WebSocketConnection {
 
   @Throws(IOException::class)
   fun sendRequest(request: WebSocketRequestMessage, timeoutSeconds: Long): Single<WebsocketResponse>
+
+  suspend fun sendRequestSuspend(request: WebSocketRequestMessage, timeout: Duration = DEFAULT_SEND_TIMEOUT): WebsocketResponse {
+    throw UnsupportedOperationException("This connection does not support suspend sendRequest")
+  }
 
   @Throws(IOException::class)
   fun sendKeepAlive()

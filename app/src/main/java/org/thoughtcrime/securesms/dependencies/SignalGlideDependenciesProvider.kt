@@ -11,7 +11,7 @@ import org.signal.glide.common.io.InputStreamFactory
 import org.thoughtcrime.securesms.glide.DecryptableStreamFactory
 
 object SignalGlideDependenciesProvider : SignalGlideDependencies.Provider {
-  override fun getUriInputStreamFactory(uri: Uri): InputStreamFactory {
-    return DecryptableStreamFactory(uri)
+  override fun getUriInputStreamFactory(uri: Uri, thumbnailTimeUs: Long): InputStreamFactory {
+    return DecryptableStreamFactory(uri, thumbnailTimeUs)
   }
 }

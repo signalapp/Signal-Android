@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import org.signal.core.util.Throttler
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.mediasend.v2.videos.VideoTrimData
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.VideoSlide
 import org.thoughtcrime.securesms.scribbles.VideoEditorPlayButtonLayout
-import org.thoughtcrime.securesms.util.Throttler
 import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.video.VideoPlayer
 import org.thoughtcrime.securesms.video.VideoPlayer.PlayerCallback

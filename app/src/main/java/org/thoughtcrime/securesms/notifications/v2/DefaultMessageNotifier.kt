@@ -8,10 +8,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.service.notification.StatusBarNotification
+import androidx.annotation.WorkerThread
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import me.leolin.shortcutbadger.ShortcutBadger
 import org.signal.core.util.PendingIntentFlags
+import org.signal.core.util.ServiceUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -28,7 +30,6 @@ import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPrefere
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.BubbleUtil.BubbleState
-import org.thoughtcrime.securesms.util.ServiceUtil
 import org.whispersystems.signalservice.internal.util.Util
 import java.util.Optional
 import java.util.concurrent.ConcurrentHashMap
@@ -47,8 +48,6 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
   private val visibleThread: AtomicReference<ConversationId?> = AtomicReference(null)
 
   @Volatile private var visibleBubbleThread: ConversationId? = null
-
-  @Volatile private var lastDesktopActivityTimestamp: Long = -1
 
   @Volatile private var lastAudibleNotification: Long = -1
 
@@ -94,10 +93,6 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     setVisibleBubbleThread(null)
   }
 
-  override fun setLastDesktopActivityTimestamp(timestamp: Long) {
-    lastDesktopActivityTimestamp = timestamp
-  }
-
   override fun notifyMessageDeliveryFailed(context: Context, recipient: Recipient, conversationId: ConversationId) {
     NotificationFactory.notifyMessageDeliveryFailed(context, recipient, conversationId, visibleThread.get(), visibleBubbleThread)
   }
@@ -114,12 +109,14 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     executor.cancel()
   }
 
+  @WorkerThread
   override fun updateNotification(context: Context) {
     updateNotification(context, null, BubbleState.HIDDEN)
   }
 
+  @WorkerThread
   override fun updateNotification(context: Context, conversationId: ConversationId) {
-    if (System.currentTimeMillis() - lastDesktopActivityTimestamp < DESKTOP_ACTIVITY_PERIOD) {
+    if (System.currentTimeMillis() - SignalStore.misc.lastSyncMessageSeenTimeMs < DESKTOP_ACTIVITY_PERIOD) {
       Log.i(TAG, "Scheduling delayed notification...")
       executor.enqueue(context, conversationId)
     } else {
@@ -127,10 +124,12 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     }
   }
 
+  @WorkerThread
   override fun forceBubbleNotification(context: Context, conversationId: ConversationId) {
     updateNotification(context, conversationId, BubbleState.SHOWN)
   }
 
+  @WorkerThread
   private fun updateNotification(
     context: Context,
     conversationId: ConversationId?,
@@ -188,6 +187,7 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
 
     if (state.isEmpty) {
       Log.i(TAG, "State is empty, cancelling all notifications")
+      cancelDelayedNotifications()
       NotificationCancellationHelper.cancelAllMessageNotifications(context, stickyThreads.map { it.value.notificationId }.toSet())
       updateBadge(context, 0)
       clearReminderInternal(context)

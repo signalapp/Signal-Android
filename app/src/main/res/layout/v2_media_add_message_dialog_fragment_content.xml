@@ -110,18 +110,21 @@
         tools:text="50"
         tools:visibility="visible" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/confirm_button"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="2dp"
-        android:padding="6dp"
+        android:background="@color/signal_colorSecondaryContainer"
         android:contentDescription="@string/MediaReviewFragment__finish_adding_a_message_accessibility_label"
+        android:padding="6dp"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/input_barrier"
-        app:srcCompat="@drawable/v2_media_add_a_message_check" />
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
+        app:srcCompat="@drawable/symbol_check_white_24" />
 
     <ViewStub
         android:id="@+id/emoji_drawer_stub"

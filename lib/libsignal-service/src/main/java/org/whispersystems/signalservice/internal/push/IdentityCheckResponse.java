@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.core.models.ServiceId;
-import org.whispersystems.signalservice.internal.util.JsonUtil;
+import org.signal.network.util.JsonUtil;
 
 import java.util.List;
 

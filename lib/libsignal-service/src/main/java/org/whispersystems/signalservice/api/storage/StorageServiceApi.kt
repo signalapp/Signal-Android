@@ -6,15 +6,16 @@
 package org.whispersystems.signalservice.api.storage
 
 import okhttp3.Credentials
-import org.whispersystems.signalservice.api.NetworkResult
+import org.signal.network.NetworkResult
+import org.signal.network.websocket.WebSocketRequestMessage
+import org.signal.network.websocket.get
+import org.whispersystems.signalservice.api.fromWebSocketRequest
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
-import org.whispersystems.signalservice.internal.get
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.storage.protos.ReadOperation
 import org.whispersystems.signalservice.internal.storage.protos.StorageItems
 import org.whispersystems.signalservice.internal.storage.protos.StorageManifest
 import org.whispersystems.signalservice.internal.storage.protos.WriteOperation
-import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 
 /**
  * Class to interact with storage service endpoints.

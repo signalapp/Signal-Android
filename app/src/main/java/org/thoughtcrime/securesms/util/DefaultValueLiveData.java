@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.util;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import org.whispersystems.signalservice.api.util.Preconditions;
+import org.signal.network.util.Preconditions;
 
 
 /**

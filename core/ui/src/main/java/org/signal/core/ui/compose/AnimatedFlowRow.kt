@@ -128,7 +128,7 @@ fun AnimatedFlowRow(
   val hasExistingItems = knownKeys.isNotEmpty()
 
   newKeys.forEach { key ->
-    alphaAnimatables[key] = if (hasExistingItems) Animatable(0f) else Animatable(1f)
+    alphaAnimatables[key] = if (hasExistingItems) remember(key) { Animatable(0f) } else remember(key) { Animatable(1f) }
     knownKeys.add(key)
   }
 

@@ -5,13 +5,13 @@
 
 package org.thoughtcrime.securesms.registration.data.network
 
+import org.signal.network.NetworkResult
+import org.signal.network.exceptions.MalformedRequestException
 import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.registration.data.AccountRegistrationResult
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException
 import org.whispersystems.signalservice.api.push.exceptions.IncorrectRegistrationRecoveryPasswordException
-import org.whispersystems.signalservice.api.push.exceptions.MalformedRequestException
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials

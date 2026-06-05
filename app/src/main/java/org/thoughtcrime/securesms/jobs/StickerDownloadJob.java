@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.signal.core.util.Hex;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.signal.network.exceptions.PushNetworkException;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;

@@ -8,28 +8,31 @@ package org.whispersystems.signalservice.api.keys
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toByteArray
 import org.signal.libsignal.protocol.IdentityKey
+import org.signal.libsignal.protocol.InvalidKeyException
+import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.kem.KEMPublicKey
 import org.signal.libsignal.protocol.state.PreKeyBundle
 import org.signal.libsignal.protocol.state.PreKeyRecord
-import org.whispersystems.signalservice.api.NetworkResult
+import org.signal.network.NetworkResult
+import org.signal.network.websocket.WebSocketRequestMessage
+import org.signal.network.websocket.get
+import org.signal.network.websocket.post
+import org.signal.network.websocket.put
+import org.whispersystems.signalservice.api.InvalidPreKeyException
 import org.whispersystems.signalservice.api.account.PreKeyUpload
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
+import org.whispersystems.signalservice.api.fromWebSocketRequest
 import org.whispersystems.signalservice.api.push.ServiceIdType
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
-import org.whispersystems.signalservice.internal.get
-import org.whispersystems.signalservice.internal.post
 import org.whispersystems.signalservice.internal.push.CheckRepeatedUsedPreKeysRequest
 import org.whispersystems.signalservice.internal.push.KyberPreKeyEntity
 import org.whispersystems.signalservice.internal.push.PreKeyEntity
 import org.whispersystems.signalservice.internal.push.PreKeyResponse
 import org.whispersystems.signalservice.internal.push.PreKeyState
-import org.whispersystems.signalservice.internal.put
-import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
-import java.io.IOException
 import java.security.MessageDigest
 import java.util.LinkedList
 
@@ -53,7 +56,7 @@ class KeysApi(
    * - 200: Everything matches
    * - 409: Something doesn't match
    */
-  fun checkRepeatedUseKeys(
+  fun checkRepeatedUseKeysSync(
     serviceIdType: ServiceIdType,
     identityKey: IdentityKey,
     signedPreKeyId: Int,
@@ -81,7 +84,7 @@ class KeysApi(
    * GET /v2/keys?identity=[serviceIdType]
    * - 200: Success
    */
-  fun getAvailablePreKeyCounts(serviceIdType: ServiceIdType): NetworkResult<OneTimePreKeyCounts> {
+  fun getAvailablePreKeyCountsSync(serviceIdType: ServiceIdType): NetworkResult<OneTimePreKeyCounts> {
     val request = WebSocketRequestMessage.get("/v2/keys?identity=${serviceIdType.queryParam()}")
     return NetworkResult.fromWebSocketRequest(authWebSocket, request, OneTimePreKeyCounts::class)
   }
@@ -91,10 +94,10 @@ class KeysApi(
    *
    * PUT /v2/keys?identity=[preKeyUpload]`.serviceIdType`
    */
-  fun setPreKeys(preKeyUpload: PreKeyUpload): NetworkResult<Unit> {
+  fun setPreKeysSync(preKeyUpload: PreKeyUpload): NetworkResult<Unit> {
     val signedPreKey: SignedPreKeyEntity? = if (preKeyUpload.signedPreKey != null) {
       SignedPreKeyEntity(
-        preKeyUpload.signedPreKey.id,
+        preKeyUpload.signedPreKey.id.toLong(),
         preKeyUpload.signedPreKey.keyPair.publicKey,
         preKeyUpload.signedPreKey.signature
       )
@@ -105,14 +108,14 @@ class KeysApi(
     val oneTimeEcPreKeys: List<PreKeyEntity>? = if (preKeyUpload.oneTimeEcPreKeys != null) {
       preKeyUpload
         .oneTimeEcPreKeys
-        .map { oneTimeEcKey: PreKeyRecord -> PreKeyEntity(oneTimeEcKey.id, oneTimeEcKey.keyPair.publicKey) }
+        .map { oneTimeEcKey: PreKeyRecord -> PreKeyEntity(oneTimeEcKey.id.toLong(), oneTimeEcKey.keyPair.publicKey) }
     } else {
       null
     }
 
     val lastResortKyberPreKey: KyberPreKeyEntity? = if (preKeyUpload.lastResortKyberPreKey != null) {
       KyberPreKeyEntity(
-        preKeyUpload.lastResortKyberPreKey.id,
+        preKeyUpload.lastResortKyberPreKey.id.toLong(),
         preKeyUpload.lastResortKyberPreKey.keyPair.publicKey,
         preKeyUpload.lastResortKyberPreKey.signature
       )
@@ -123,7 +126,7 @@ class KeysApi(
     val oneTimeKyberPreKeys: List<KyberPreKeyEntity>? = if (preKeyUpload.oneTimeKyberPreKeys != null) {
       preKeyUpload
         .oneTimeKyberPreKeys
-        .map { record -> KyberPreKeyEntity(record.id, record.keyPair.publicKey, record.signature) }
+        .map { record -> KyberPreKeyEntity(record.id.toLong(), record.keyPair.publicKey, record.signature) }
     } else {
       null
     }
@@ -145,7 +148,18 @@ class KeysApi(
    * - 404: No keys found for address/device
    * - 429: Rate limited
    */
-  fun getPreKeys(
+  fun getPreKeysSync(
+    destination: SignalServiceAddress,
+    sealedSenderAccess: SealedSenderAccess?,
+    deviceId: Int
+  ): NetworkResult<List<PreKeyBundle>> {
+    return getPreKeysBySpecifierSync(destination, sealedSenderAccess, if (deviceId == 1) "*" else deviceId.toString())
+  }
+
+  /**
+   * Coroutine-friendly variant of [getPreKeysSync] that suspends instead of blocking the calling thread.
+   */
+  suspend fun getPreKeys(
     destination: SignalServiceAddress,
     sealedSenderAccess: SealedSenderAccess?,
     deviceId: Int
@@ -163,13 +177,14 @@ class KeysApi(
    * - 404: No keys found for address/device
    * - 429: Rate limited
    */
-  fun getPreKey(destination: SignalServiceAddress, deviceId: Int): NetworkResult<PreKeyBundle> {
-    return getPreKeysBySpecifier(destination, null, deviceId.toString())
+  fun getPreKeySync(destination: SignalServiceAddress, deviceId: Int): NetworkResult<PreKeyBundle> {
+    return getPreKeysBySpecifierSync(destination, null, deviceId.toString())
       .then { bundles ->
         if (bundles.isNotEmpty()) {
           NetworkResult.Success(bundles[0])
         } else {
-          NetworkResult.NetworkError(IOException("No prekeys available!"))
+          val address = SignalProtocolAddress(destination.identifier, deviceId)
+          NetworkResult.NetworkError(InvalidPreKeyException(address, InvalidKeyException("No valid prekeys available for $address")))
         }
       }
   }
@@ -185,9 +200,8 @@ class KeysApi(
    * - 404: No keys found for address/device
    * - 429: Rate limited
    */
-  private fun getPreKeysBySpecifier(destination: SignalServiceAddress, sealedSenderAccess: SealedSenderAccess?, deviceSpecifier: String): NetworkResult<List<PreKeyBundle>> {
-    val request = WebSocketRequestMessage.get("/v2/keys/${destination.identifier}/$deviceSpecifier")
-    Log.d(TAG, "Fetching prekeys for ${destination.identifier}.$deviceSpecifier, i.e. GET ${request.path}")
+  private fun getPreKeysBySpecifierSync(destination: SignalServiceAddress, sealedSenderAccess: SealedSenderAccess?, deviceSpecifier: String): NetworkResult<List<PreKeyBundle>> {
+    val request = preKeysRequest(destination, deviceSpecifier)
 
     val result: NetworkResult<PreKeyResponse> = NetworkResult.fromWebSocket {
       if (sealedSenderAccess != null) {
@@ -197,26 +211,63 @@ class KeysApi(
       }
     }
 
-    if (result is NetworkResult.StatusCodeError && result.code == 404) {
-      return NetworkResult.NetworkError(UnregisteredUserException(destination.identifier, result.exception))
+    return result.toPreKeyBundles(destination)
+  }
+
+  /**
+   * Coroutine-friendly counterpart to [getPreKeysBySpecifierSync] that suspends instead of blocking the calling thread.
+   */
+  private suspend fun getPreKeysBySpecifier(
+    destination: SignalServiceAddress,
+    sealedSenderAccess: SealedSenderAccess?,
+    deviceSpecifier: String
+  ): NetworkResult<List<PreKeyBundle>> {
+    val request = preKeysRequest(destination, deviceSpecifier)
+    val converter = NetworkResult.DefaultWebSocketConverter(PreKeyResponse::class)
+
+    val result: NetworkResult<PreKeyResponse> = NetworkResult.fromWebSocketSuspend(converter) {
+      if (sealedSenderAccess != null) {
+        unauthWebSocket.requestSuspend(request, sealedSenderAccess)
+      } else {
+        authWebSocket.requestSuspend(request)
+      }
     }
 
-    return result.map { response ->
+    return result.toPreKeyBundles(destination)
+  }
+
+  private fun preKeysRequest(destination: SignalServiceAddress, deviceSpecifier: String): WebSocketRequestMessage {
+    val request = WebSocketRequestMessage.get("/v2/keys/${destination.identifier}/$deviceSpecifier")
+    Log.d(TAG, "Fetching prekeys for ${destination.identifier}.$deviceSpecifier, i.e. GET ${request.path}")
+    return request
+  }
+
+  private fun NetworkResult<PreKeyResponse>.toPreKeyBundles(destination: SignalServiceAddress): NetworkResult<List<PreKeyBundle>> {
+    if (this is NetworkResult.StatusCodeError && this.code == 404) {
+      return NetworkResult.NetworkError(UnregisteredUserException(destination.identifier, this.exception))
+    }
+
+    return this.map { response ->
       val bundles: MutableList<PreKeyBundle> = LinkedList()
 
       for (device in response.getDevices()) {
         var preKey: ECPublicKey? = null
-        var signedPreKey: ECPublicKey? = null
-        var signedPreKeySignature: ByteArray? = null
+        var signedPreKey: ECPublicKey?
+        var signedPreKeySignature: ByteArray?
         var preKeyId = PreKeyBundle.NULL_PRE_KEY_ID
-        var signedPreKeyId = PreKeyBundle.NULL_PRE_KEY_ID
-        var kyberPreKeyId = PreKeyBundle.NULL_PRE_KEY_ID
-        var kyberPreKey: KEMPublicKey? = null
-        var kyberPreKeySignature: ByteArray? = null
+        var signedPreKeyId: Int
+        var kyberPreKeyId: Int
+        var kyberPreKey: KEMPublicKey?
+        var kyberPreKeySignature: ByteArray?
 
         if (device.getSignedPreKey() != null) {
+          val rawSignedPreKeyId = device.getSignedPreKey().keyId
+          if (rawSignedPreKeyId !in 0..Int.MAX_VALUE.toLong()) {
+            Log.w(TAG, "Signed pre-key ID for device ${device.deviceId} is out of valid range! Skipping.")
+            continue
+          }
           signedPreKey = device.getSignedPreKey().publicKey
-          signedPreKeyId = device.getSignedPreKey().keyId
+          signedPreKeyId = rawSignedPreKeyId.toInt()
           signedPreKeySignature = device.getSignedPreKey().signature
         } else {
           Log.w(TAG, "No signed prekey for device ${device.deviceId}! Skipping.")
@@ -224,13 +275,23 @@ class KeysApi(
         }
 
         if (device.getPreKey() != null) {
-          preKeyId = device.getPreKey().keyId
+          val rawPreKeyId = device.getPreKey().keyId
+          if (rawPreKeyId !in 0..Int.MAX_VALUE.toLong()) {
+            Log.w(TAG, "Pre-key ID for device ${device.deviceId} is out of valid range! Skipping.")
+            continue
+          }
+          preKeyId = rawPreKeyId.toInt()
           preKey = device.getPreKey().publicKey
         }
 
         if (device.getKyberPreKey() != null) {
+          val rawKyberPreKeyId = device.getKyberPreKey().keyId
+          if (rawKyberPreKeyId !in 0..Int.MAX_VALUE.toLong()) {
+            Log.w(TAG, "Kyber pre-key ID for device ${device.deviceId} is out of valid range! Skipping.")
+            continue
+          }
           kyberPreKey = device.getKyberPreKey().publicKey
-          kyberPreKeyId = device.getKyberPreKey().keyId
+          kyberPreKeyId = rawKyberPreKeyId.toInt()
           kyberPreKeySignature = device.getKyberPreKey().signature
         } else {
           Log.w(TAG, "No kyber prekey for device ${device.deviceId}! Skipping.")

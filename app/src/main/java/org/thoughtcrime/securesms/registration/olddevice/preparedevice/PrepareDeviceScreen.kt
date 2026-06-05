@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -34,7 +35,6 @@ import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceState
 import org.thoughtcrime.securesms.util.DateUtils
-import java.util.Locale
 import org.signal.core.ui.R as CoreUiR
 
 @Composable
@@ -82,8 +82,9 @@ fun PrepareDeviceScreen(
 
       if (state.lastBackupTimestamp > 0) {
         val context = LocalContext.current
+        val locale = LocalLocale.current.platformLocale
 
-        val dateString = DateUtils.getDateTimeString(context, Locale.getDefault(), state.lastBackupTimestamp)
+        val dateString = DateUtils.getDateTimeString(context, locale, state.lastBackupTimestamp)
 
         Text(
           text = stringResource(R.string.PrepareDevice_last_backup_description, dateString),

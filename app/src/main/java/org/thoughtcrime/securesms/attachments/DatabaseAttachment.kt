@@ -5,11 +5,11 @@ import android.os.Parcel
 import androidx.core.os.ParcelCompat
 import org.signal.blurhash.BlurHash
 import org.signal.core.models.media.TransformProperties
+import org.signal.core.util.ParcelUtil
 import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.stickers.StickerLocator
-import org.thoughtcrime.securesms.util.ParcelUtil
 import java.util.UUID
 
 class DatabaseAttachment : Attachment {

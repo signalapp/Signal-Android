@@ -7,7 +7,7 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.money.FiatMoney;
@@ -195,10 +195,9 @@ public class PaymentsHomeViewModel extends ViewModel {
   private @NonNull PaymentsHomeState updateRecentPayments(@NonNull List<Payment> payments,
                                                           @NonNull PaymentsHomeState state)
   {
-    List<PaymentItem> paymentItems = Stream.of(payments)
-                                           .limit(MAX_PAYMENT_ITEMS)
-                                           .map(PaymentItem::fromPayment)
-                                           .toList();
+    List<PaymentItem> paymentItems = payments.stream()
+                                             .limit(MAX_PAYMENT_ITEMS)
+                                             .map(PaymentItem::fromPayment).collect(Collectors.toList());
 
     return state.updatePayments(paymentItems, payments.size());
   }

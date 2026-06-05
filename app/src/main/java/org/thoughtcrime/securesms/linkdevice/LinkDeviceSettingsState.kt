@@ -13,7 +13,6 @@ data class LinkDeviceSettingsState(
   val dialogState: DialogState = DialogState.None,
   val deviceListLoading: Boolean = false,
   val oneTimeEvent: OneTimeEvent = OneTimeEvent.None,
-  val showFrontCamera: Boolean? = null,
   val qrCodeState: QrCodeState = QrCodeState.NONE,
   val linkUri: Uri? = null,
   val linkDeviceResult: LinkDeviceResult = LinkDeviceResult.None,

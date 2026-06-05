@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
@@ -47,6 +48,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
@@ -55,6 +57,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -78,6 +81,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.ringrtc.CameraState
 import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
+import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.math.max
 import kotlin.math.round
 import kotlin.time.Duration.Companion.milliseconds
@@ -100,8 +104,10 @@ fun CallScreen(
   savedLocalParticipantLandscape: Boolean = false,
   callScreenState: CallScreenState,
   callControlsState: CallControlsState,
+  callParticipantsPagerState: CallParticipantsPagerState,
   callScreenController: CallScreenController = CallScreenController.rememberCallScreenController(
     skipHiddenState = callControlsState.skipHiddenState,
+    hasMultipleRemoteParticipants = callParticipantsPagerState.callParticipants.size > 1,
     onControlsToggled = {},
     callControlsState = callControlsState,
     callControlsListener = CallScreenControlsListener.Empty
@@ -109,7 +115,6 @@ fun CallScreen(
   callScreenControlsListener: CallScreenControlsListener = CallScreenControlsListener.Empty,
   callScreenSheetDisplayListener: CallScreenSheetDisplayListener = CallScreenSheetDisplayListener.Empty,
   additionalActionsListener: AdditionalActionsListener = AdditionalActionsListener.Empty,
-  callParticipantsPagerState: CallParticipantsPagerState,
   pendingParticipantsListener: PendingParticipantsListener = PendingParticipantsListener.Empty,
   callParticipantUpdatePopupController: CallParticipantUpdatePopupController,
   overflowParticipants: List<CallParticipant>,
@@ -127,7 +132,6 @@ fun CallScreen(
   onWifiToCellularPopupDismissed: () -> Unit = {},
   onSwipeToSpeakerHintDismissed: () -> Unit = {},
   onRemoteMuteToastDismissed: () -> Unit = {},
-  isInternalUser: Boolean = false,
   isSelfAdmin: Boolean = false,
   isCallLink: Boolean = false,
   onMuteAudio: (CallParticipant) -> Unit = {},
@@ -169,11 +173,16 @@ fun CallScreen(
   val additionalActionsPopupState = TriggerAlignedPopupState.rememberTriggerAlignedPopupState()
   val additionalActionsState = remember(
     callScreenState.reactions,
-    localParticipant.isHandRaised
+    localParticipant.isHandRaised,
+    callScreenState.isLocalScreenSharing,
+    callControlsState.displayEndCallButton
   ) {
     AdditionalActionsState(
       reactions = callScreenState.reactions,
       isSelfHandRaised = localParticipant.isHandRaised,
+      isScreenSharing = callScreenState.isLocalScreenSharing,
+      displayScreenShareToggle = callControlsState.displayEndCallButton && RemoteConfig.screenSharing,
+      isGroupCall = callControlsState.isGroupCall,
       listener = additionalActionsListener,
       triggerAlignedPopupState = additionalActionsPopupState
     )
@@ -329,13 +338,20 @@ fun CallScreen(
         }
       } else if (webRtcCallState.isPassedPreJoin) {
         var longPressedParticipantId by remember { mutableStateOf<CallParticipantId?>(null) }
+        var longPressWindowOffset by remember { mutableStateOf(Offset.Zero) }
+        var anchorWindowOrigin by remember { mutableStateOf(Offset.Zero) }
         val longPressedParticipant = longPressedParticipantId?.let { id ->
           callParticipantsPagerState.callParticipants.find { it.callParticipantId == id }
+        }
+        val density = LocalDensity.current
+        val contextMenuAnchorOffset = remember(longPressWindowOffset, anchorWindowOrigin, density) {
+          val local = longPressWindowOffset - anchorWindowOrigin
+          with(density) { IntOffset(local.x.toInt(), local.y.toInt()) }
         }
 
         CallElementsLayout(
           callGridSlot = {
-            Box {
+            Box(modifier = Modifier.onGloballyPositioned { anchorWindowOrigin = it.positionInRoot() }) {
               CallParticipantsPager(
                 callParticipantsPagerState = callParticipantsPagerState,
                 pagerState = callScreenController.callParticipantsVerticalPagerState,
@@ -356,24 +372,25 @@ fun CallScreen(
                     }
                   }
                 },
-                onParticipantLongPress = if (isInternalUser) {
-                  { participant -> longPressedParticipantId = participant.callParticipantId }
-                } else {
-                  null
+                onParticipantLongPress = { participant, windowOffset ->
+                  longPressedParticipantId = participant.callParticipantId
+                  longPressWindowOffset = windowOffset
                 }
               )
 
-              ParticipantContextMenu(
-                participant = longPressedParticipant,
-                isSelfAdmin = isSelfAdmin,
-                isCallLink = isCallLink,
-                onDismiss = { longPressedParticipantId = null },
-                onMuteAudio = onMuteAudio,
-                onRemoveFromCall = onRemoveFromCall,
-                onContactDetails = onContactDetails,
-                onViewSafetyNumber = onViewSafetyNumber,
-                onGoToChat = onGoToChat
-              )
+              Box(modifier = Modifier.offset { contextMenuAnchorOffset }) {
+                ParticipantContextMenu(
+                  participant = longPressedParticipant,
+                  isSelfAdmin = isSelfAdmin,
+                  isCallLink = isCallLink,
+                  onDismiss = { longPressedParticipantId = null },
+                  onMuteAudio = onMuteAudio,
+                  onRemoveFromCall = onRemoveFromCall,
+                  onContactDetails = onContactDetails,
+                  onViewSafetyNumber = onViewSafetyNumber,
+                  onGoToChat = onGoToChat
+                )
+              }
             }
           },
           pictureInPictureSlot = {
@@ -495,7 +512,7 @@ fun CallScreen(
   )
 
   SwipeToSpeakerHintPopup(
-    visible = callScreenState.displaySwipeToSpeakerHint,
+    hintType = callScreenState.swipeHint,
     onDismiss = onSwipeToSpeakerHintDismissed,
     modifier = Modifier
       .statusBarsPadding()
@@ -526,7 +543,7 @@ private fun LargeLocalVideoRenderer(
     participant = localParticipant,
     renderInPip = false,
     raiseHandAllowed = false,
-    mirrorVideo = localParticipant.cameraDirection == CameraState.Direction.FRONT,
+    mirrorVideo = !localParticipant.isScreenSharing && localParticipant.cameraDirection == CameraState.Direction.FRONT,
     showAudioIndicator = false,
     onInfoMoreInfoClick = null,
     modifier = modifier

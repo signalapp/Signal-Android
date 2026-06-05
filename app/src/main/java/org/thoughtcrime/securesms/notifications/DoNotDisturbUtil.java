@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.signal.core.util.ServiceUtil;
 
 import java.util.concurrent.TimeUnit;
 

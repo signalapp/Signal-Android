@@ -44,5 +44,9 @@ sealed interface MultiPeerActionProcessorFactory {
     override fun createConnectedActionProcessor(webRtcInteractor: WebRtcInteractor): GroupConnectedActionProcessor {
       return CallLinkConnectedActionProcessor(this, webRtcInteractor)
     }
+
+    override fun createNetworkUnavailableActionProcessor(webRtcInteractor: WebRtcInteractor): GroupNetworkUnavailableActionProcessor {
+      return CallLinkNetworkUnavailableActionProcessor(this, webRtcInteractor)
+    }
   }
 }

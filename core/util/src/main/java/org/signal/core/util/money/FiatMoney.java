@@ -15,6 +15,7 @@ public class FiatMoney {
   private static final Set<String> SPECIAL_CASE_MULTIPLICANDS = new HashSet<>() {{
     add("UGX");
     add("ISK");
+    add("HUF");
   }};
 
   private final BigDecimal amount;
@@ -41,13 +42,6 @@ public class FiatMoney {
 
   public long getTimestamp() {
     return timestamp;
-  }
-
-  /**
-   * @return amount, rounded to the default fractional amount.
-   */
-  public @NonNull String getDefaultPrecisionString() {
-    return getDefaultPrecisionString(Locale.getDefault());
   }
 
   /**

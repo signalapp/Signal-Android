@@ -2,10 +2,12 @@ package org.thoughtcrime.securesms.mediapreview
 
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
+import android.os.Build
 import android.os.Bundle
 import android.text.Annotation
 import android.text.SpannableString
@@ -42,9 +44,11 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.signal.core.models.media.Media
 import org.signal.core.ui.logging.LoggingFragment
+import org.signal.core.util.Debouncer
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
+import org.signal.core.util.requireDrawable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentSaver
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -67,9 +71,8 @@ import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter.ImageL
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.ContextUtil
+import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
@@ -486,7 +489,7 @@ class MediaPreviewV2Fragment :
     val builder = SpannableStringBuilder(text)
 
     val onSurfaceColor = ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurface)
-    val chevron = ContextUtil.requireDrawable(requireContext(), R.drawable.ic_chevron_end_24)
+    val chevron = requireContext().requireDrawable(R.drawable.ic_chevron_end_24)
     chevron.colorFilter = PorterDuffColorFilter(onSurfaceColor, PorterDuff.Mode.SRC_IN)
 
     SpanUtil.appendCenteredImageSpan(builder, chevron, 10, 10)
@@ -577,6 +580,10 @@ class MediaPreviewV2Fragment :
         .setType(mimeType)
         .createChooserIntent()
         .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+      if (Build.VERSION.SDK_INT < 34) {
+        shareIntent.putExtra(Intent.EXTRA_EXCLUDE_COMPONENTS, arrayOf(ComponentName(requireContext(), ShareActivity::class.java)))
+      }
 
       try {
         startActivity(shareIntent)

@@ -197,24 +197,24 @@ fun groupRecord(
 ): Optional<GroupRecord> {
   return Optional.of(
     GroupRecord(
-      id,
-      recipientId,
-      decryptedGroup.title,
-      members,
-      unmigratedV1Members,
-      avatarId,
-      avatarKey,
-      avatarContentType,
-      active,
+      id = id,
+      recipientId = recipientId,
+      title = decryptedGroup.title,
+      serializedMembers = members,
+      serializedUnmigratedV1Members = unmigratedV1Members,
+      avatarId = avatarId,
+      avatarKey = avatarKey,
+      avatarContentType = avatarContentType,
+      isMember = active,
       terminatedBy = if (decryptedGroup.terminated) -1L else 0L,
-      avatarDigest,
-      mms,
-      masterKey.serialize(),
-      decryptedGroup.revision,
-      decryptedGroup.encode(),
-      distributionId,
-      System.currentTimeMillis(),
-      0
+      avatarDigest = avatarDigest,
+      isMms = mms,
+      groupMasterKeyBytes = masterKey.serialize(),
+      groupRevision = decryptedGroup.revision,
+      decryptedGroupBytes = decryptedGroup.encode(),
+      distributionId = distributionId,
+      lastForceUpdateTimestamp = System.currentTimeMillis(),
+      groupSendEndorsementExpiration = 0
     )
   )
 }

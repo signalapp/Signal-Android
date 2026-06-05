@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedScreen__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Mang quyền riêng tư luôn bên bạn.\nHãy là chính mình trong từng tin nhắn.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">Signal là một tổ chức phi lợi nhuận\nĐiều khoản &amp; Chính sách Quyền riêng tư</string>
@@ -42,6 +45,20 @@
     <string name="RegistrationActivity_select_a_country">Chọn quốc gia</string>
     <string name="RegistrationActivity_phone_number_description">Số điện thoại</string>
     <string name="RegistrationActivity_next">Tiếp</string>
+    <!-- Dialog title to confirm phone number -->
+    <string name="RegistrationActivity_is_the_phone_number">Số điện thoại dưới đây có chính xác không?</string>
+    <!-- Dialog body to confirm phone number -->
+    <string name="RegistrationActivity_a_verification_code">Mã xác minh sẽ được gửi đến số này. Có thể có cước của nhà mạng.</string>
+    <!-- Dialog button to edit the number entered -->
+    <string name="RegistrationActivity_edit_number">Sửa số</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="RegistrationActivity_open_menu">Mở menu</string>
+    <!-- Menu option to use a proxy -->
+    <string name="RegistrationActivity_use_proxy">Sử dụng proxy</string>
+    <!-- Menu option to link this as a device -->
+    <string name="RegistrationActivity_link_device">Liên kết thiết bị</string>
+    <!-- Clickable text that opens a corresponding URL -->
+    <string name="RegistrationActivity_learn_more">Tìm hiểu thêm</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -76,8 +93,8 @@
     <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Đã thử quá nhiều lần. Thử lại trong %1$s.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">Đã xảy ra lỗi không mong muốn. Vui lòng thử lại.</string>
-    <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">Đã xảy ra sự cố khi gửi mã xác minh của bạn. Vui lòng thử lại.</string>
+    <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__unable_to_send_sms">Chúng tôi không thể gửi tin nhắn SMS đến số điện thoại của bạn. Vui lòng thử lại trong vài giờ nữa.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Không thể gửi mã thông qua phương thức đã chọn. Vui lòng thử một lựa chọn khác.</string>
     <!-- Snackbar shown for registration errors -->
@@ -130,4 +147,253 @@
     <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">Nếu bạn bỏ qua việc khôi phục bây giờ, bạn sẽ không thể khôi phục sau này. Nếu bạn bật lại tính năng sao lưu sau khi bỏ qua việc khôi phục, bản sao lưu hiện tại sẽ được thay thế bởi lịch sử tin nhắn mới.</string>
     <!-- Confirm button text for the skip restore dialog -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">Bỏ qua</string>
+
+    <!-- LocalBackupRestoreScreen -->
+    <!-- Title for the local backup restore screen -->
+    <string name="LocalBackupRestoreScreen__restore_on_device_backup">Khôi phục bản sao lưu trên thiết bị</string>
+    <!-- Description on the folder selection screen -->
+    <string name="LocalBackupRestoreScreen__select_folder_description">Khôi phục tin nhắn từ một tập tin sao lưu bạn đã lưu trên thiết bị của mình. Nếu bạn không khôi phục bây giờ, bạn sẽ không khôi phục được sau này.</string>
+    <!-- Title for the choose backup folder card -->
+    <string name="LocalBackupRestoreScreen__choose_backup_folder">Chọn thư mục sao lưu</string>
+    <!-- Subtitle for the choose backup folder card -->
+    <string name="LocalBackupRestoreScreen__choose_folder_subtitle">Chọn thư mục trên thiết bị của bạn, nơi lưu trữ bản sao lưu của bạn</string>
+    <!-- Text shown while scanning for backups -->
+    <string name="LocalBackupRestoreScreen__scanning_folder">Đang tìm bản sao lưu…</string>
+    <!-- Description shown when a backup is found -->
+    <string name="LocalBackupRestoreScreen__backup_found_description">Khôi phục tin nhắn từ một thư mục sao lưu bạn đã lưu trên thiết bị của mình. Nếu bạn không khôi phục bây giờ, bạn sẽ không khôi phục được sau này.</string>
+    <!-- Title for the latest backup card -->
+    <string name="LocalBackupRestoreScreen__your_latest_backup">Bản sao lưu mới nhất của bạn:</string>
+    <!-- Restore backup button text -->
+    <string name="LocalBackupRestoreScreen__restore_backup">Khôi phục từ bản sao lưu</string>
+    <!-- Link to choose an earlier backup -->
+    <string name="LocalBackupRestoreScreen__choose_earlier_backup">Chọn bản sao lưu cũ hơn</string>
+    <!-- Title for the backup picker bottom sheet -->
+    <string name="LocalBackupRestoreScreen__choose_a_backup_to_restore">Chọn bản sao lưu để khôi phục</string>
+    <!-- Warning text in the backup picker bottom sheet -->
+    <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">Thao tác chọn một bản sao lưu cũ hơn có thể dẫn đến mất tin nhắn hoặc tập tin đa phương tiện.</string>
+    <!-- Title when no backup is found -->
+    <string name="LocalBackupRestoreScreen__no_backup_found">Không tìm thấy bản sao lưu</string>
+    <!-- Description when no backup is found -->
+    <string name="LocalBackupRestoreScreen__no_backup_found_description">Không tìm thấy bản sao lưu Signal trong thư mục đã chọn. Vui lòng thử một thư mục khác.</string>
+    <!-- Button to try a different folder -->
+    <string name="LocalBackupRestoreScreen__try_different_folder">Thử một thư mục khác</string>
+    <!-- Title for V1 passphrase entry screen -->
+    <string name="LocalBackupRestoreScreen__enter_backup_passphrase">Điền mật khẩu sao lưu</string>
+    <!-- Description for V1 passphrase entry screen -->
+    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Yêu cầu có mật khẩu sao lưu trên thiết bị có 30 chữ số của bạn để khôi phục tài khoản và dữ liệu.</string>
+    <!-- Label for the recovery key text field -->
+    <string name="LocalBackupRestoreScreen__recovery_key">Mã khóa khôi phục</string>
+    <!-- Error text when passphrase is too long -->
+    <string name="LocalBackupRestoreScreen__too_long">Quá dài (%1$d/%2$d)</string>
+    <!-- Link for users who don\'t have their passphrase -->
+    <string name="LocalBackupRestoreScreen__no_passphrase">Không có mật khẩu?</string>
+    <!-- Next button text -->
+    <string name="LocalBackupRestoreScreen__next">Tiếp</string>
+    <!-- EnterAepScreen -->
+    <!-- Title for recovery key entry screen -->
+    <string name="EnterAepScreen__enter_your_recovery_key">Nhập mã khóa khôi phục</string>
+    <!-- Description for recovery key entry screen -->
+    <string name="EnterAepScreen__your_recovery_key_is_a_64_character_code">Yêu cầu có mã khóa khôi phục có 64 ký tự của bạn để khôi phục tài khoản và dữ liệu.</string>
+    <!-- Label for the recovery key text field -->
+    <string name="EnterAepScreen__recovery_key">Mã khóa khôi phục</string>
+    <!-- Link for users who don\'t have their recovery key -->
+    <string name="EnterAepScreen__no_recovery_key">Không có mã khôi phục?</string>
+    <!-- Error text when key is too long -->
+    <string name="EnterAepScreen__too_long">Quá dài (%1$d/%2$d)</string>
+    <!-- Error text when key is invalid -->
+    <string name="EnterAepScreen__invalid_recovery_key">Mã khóa khôi phục không hợp lệ</string>
+    <!-- Error text when key is correct format but does not match account -->
+    <string name="EnterAepScreen__incorrect_recovery_key">Mã khóa khôi phục không đúng</string>
+    <!-- Text shown while preparing the restore -->
+    <string name="LocalBackupRestoreScreen__preparing_restore">Đang chuẩn bị khôi phục…</string>
+    <!-- Title shown while restore is in progress -->
+    <string name="LocalBackupRestoreScreen__restoring_backup">Đang khôi phục bản sao lưu</string>
+    <!-- Description shown while restore is in progress -->
+    <string name="LocalBackupRestoreScreen__restoring_description">Vui lòng chờ trong thời gian tin nhắn và dữ liệu của bạn được tiến hành khôi phục.</string>
+    <!-- Description shown when restore is complete -->
+    <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
+    <!-- Continue button text after restore is complete -->
+    <string name="LocalBackupRestoreScreen__continue_button">Tiếp tục</string>
+    <!-- Title shown when restore fails -->
+    <string name="LocalBackupRestoreScreen__restore_failed">Khôi phục không thành công</string>
+    <!-- Description shown when restore fails with an unknown error -->
+    <string name="LocalBackupRestoreScreen__restore_failed_description">Có lỗi xảy ra trong quá trình khôi phục bản sao lưu của bạn. Vui lòng thử lại.</string>
+    <!-- Button to retry restore after failure -->
+    <string name="LocalBackupRestoreScreen__try_again">Thử lại</string>
+    <!-- Button to link an existing Signal account to this device -->
+    <string name="WelcomeScreen__link_your_account">Liên kết tài khoản của bạn</string>
+    <!-- Prompt shown to users who don\'t have a Signal account yet -->
+    <string name="WelcomeScreen__not_on_signal_yet">Chưa sử dụng Signal?</string>
+    <!-- Button to create a new Signal account -->
+    <string name="WelcomeScreen__create_account">Tạo tài khoản</string>
+
+    <!-- RemoteRestoreScreen -->
+    <!-- Title for the remote backup restore screen -->
+    <string name="RemoteRestoreScreen__restore_from_backup">Khôi phục từ bản sao lưu</string>
+    <!-- Shown while fetching backup details from server -->
+    <string name="RemoteRestoreScreen__fetching_backup_details">Đang thu thập thông tin bản sao lưu…</string>
+    <!-- Button to start restoring the backup -->
+    <string name="RemoteRestoreScreen__restore_backup">Khôi phục từ bản sao lưu</string>
+    <!-- Subtitle showing when the last backup was made, with date and time placeholders -->
+    <string name="RemoteRestoreScreen__your_last_backup_was_made_on_s_at_s">Bản sao lưu gần nhất của bạn là vào lúc %2$s ngày %1$s.</string>
+    <!-- Description telling the user their media will restore in the background -->
+    <string name="RemoteRestoreScreen__your_media_will_restore_in_the_background">Tập tin đa phương tiện sẽ khôi phục ở chế độ nền. Nếu bạn chọn không khôi phục bây giờ, bạn sẽ không khôi phục được sau này.</string>
+    <!-- Title for the backup not found dialog -->
+    <string name="RemoteRestoreScreen__backup_not_found">Không tìm thấy bản sao lưu</string>
+    <!-- Body for the backup not found dialog -->
+    <string name="RemoteRestoreScreen__no_backup_was_found">Không tìm thấy bản sao lưu nào cho tài khoản này.</string>
+    <!-- Title for the restore failed dialog -->
+    <string name="RemoteRestoreScreen__cant_restore_backup">Không thể khôi phục bản sao lưu</string>
+    <!-- Body for the restore failed dialog -->
+    <string name="RemoteRestoreScreen__your_backup_cant_be_restored_right_now">Hiện không thể khôi phục bản sao lưu của bạn. Vui lòng thử lại.</string>
+    <!-- Button to try again -->
+    <string name="RemoteRestoreScreen__try_again">Thử lại</string>
+    <!-- Title for the network error dialog -->
+    <string name="RemoteRestoreScreen__couldnt_finish_restore">Không thể hoàn tất khôi phục</string>
+    <!-- Body for the network error dialog -->
+    <string name="RemoteRestoreScreen__error_connecting">Có lỗi xảy ra khi kết nối với máy chủ. Vui lòng kiểm tra kết nối và thử lại.</string>
+    <!-- Body for the general restore failure dialog -->
+    <string name="RemoteRestoreScreen__error_occurred">Có lỗi xảy ra trong quá trình khôi phục bản sao lưu của bạn. Vui lòng thử lại.</string>
+    <!-- Title for the invalid backup version dialog -->
+    <string name="RemoteRestoreScreen__couldnt_restore_this_backup">Không thể khôi phục bản sao lưu này</string>
+    <!-- Body for the invalid backup version dialog -->
+    <string name="RemoteRestoreScreen__update_latest">Phiên bản Signal này không thể khôi phục bản sao lưu của bạn. Cập nhật phiên bản mới nhất và thử lại.</string>
+    <!-- Button to update Signal -->
+    <string name="RemoteRestoreScreen__update_signal">Cập nhật Signal</string>
+    <!-- Button to dismiss update dialog -->
+    <string name="RemoteRestoreScreen__not_now">Để sau</string>
+    <!-- Title for unrecoverable backup failure dialog -->
+    <string name="RemoteRestoreScreen__cant_restore_this_backup">Không thể khôi phục bản sao lưu</string>
+    <!-- Body for unrecoverable backup failure dialog prompting user to contact support -->
+    <string name="RemoteRestoreScreen__your_backup_is_not_recoverable">Có lỗi xảy ra trong quá trình khôi phục bản sao lưu của bạn. Bản sao lưu của bạn không thể khôi phục được. Vui lòng liên hệ bộ phận hỗ trợ để được trợ giúp.</string>
+    <!-- Button to contact support -->
+    <string name="RemoteRestoreScreen__contact_support">Liên hệ hỗ trợ</string>
+    <!-- Shown while downloading the backup from the server -->
+    <string name="RemoteRestoreScreen__downloading_backup">Đang tải bản sao lưu…</string>
+    <!-- Shown while restoring messages from the downloaded backup -->
+    <string name="RemoteRestoreScreen__restoring_messages">Đang khôi phục tin nhắn…</string>
+    <!-- Shown while finalizing the restore -->
+    <string name="RemoteRestoreScreen__finishing_restore">Đang hoàn tất…</string>
+    <!-- Shown as a generic restoring message -->
+    <string name="RemoteRestoreScreen__restoring">Đang khôi phục…</string>
+    <!-- Byte progress text, e.g. "1.2 MB of 10 MB (12.34%)" -->
+    <string name="RemoteRestoreScreen__s_of_s_s">%1$s của tổng số %2$s (%3$s)</string>
+    <!-- Shown when attempting to open a URL in the web browser, but a browser app cannot be found. -->
+    <string name="LinkActions_error_no_browser_found">Không tìm thấy trình duyệt.</string>
+
+    <!-- Title for screen when your account is locked -->
+    <string name="AccountLockedScreen__account_locked">Tài khoản bị khoá.</string>
+    <!-- Description for screen when account is locked -->
+    <string name="AccountLockedScreen__your_account">Tài khoản của bạn đã bị khóa để đảm bảo sự riêng tư và bảo mật. Sau %1$d ngày không sử dụng bạn có thể đăng ký lại số điện thoại mà không cần mã PIN nhưng toàn bộ dữ liệu sẽ bị xóa.</string>
+
+    <!-- Step 1 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_1">Mở Signal trên thiết bị cũ của bạn</string>
+    <!-- Step 2 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_2">Nhấn biểu tượng camera </string>
+    <!-- Step 3 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_3">Quét mã này với camera</string>
+    <!-- Loading dialog text when registering -->
+    <string name="QuickRestoreQRScreen__reregister">Đang đăng ký…</string>
+    <!-- Error message text shown if registering fails -->
+    <string name="QuickRestoreQRScreen__error">Đã xảy ra lỗi trong quá trình đăng ký</string>
+    <!-- Title for quick restoring -->
+    <string name="QuickRestoreQRScreen__scan">Quét mã với điện thoại của bạn</string>
+    <!-- Confirmation dialog when qr code is successfully scanned -->
+    <string name="QuickRestoreQRScreen__scanned">Đã quét mã QR</string>
+    <!-- Button text to retry scanning the QR code -->
+    <string name="QuickRestoreQRScreen__retry">Thử lại</string>
+    <!-- Failure text when a code could not be generated -->
+    <string name="QuickRestoreQRScreen__failed">Không thể tạo mã QR</string>
+
+    <!-- Toast text hinting to submit a debug log with %d being how many more taps are left -->
+    <plurals name="RegistrationActivity_debug_log_hint">
+        <item quantity="other">Còn %1$d bước nữa để bạn hoàn thành gửi báo cáo lỗi.</item>
+    </plurals>
+
+    <!-- PIN creation screen title. -->
+    <string name="PinCreationScreen__create_your_pin">Tạo mã PIN của bạn</string>
+    <!-- PIN creation screen title when confirming the new Signal PIN. -->
+    <string name="PinCreationScreen__confirm_your_pin">Xác nhận mã PIN của bạn</string>
+    <!-- Describes how to confirm the new Signal PIN. -->
+    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <!-- Describes the purpose of creating a Signal PIN. -->
+    <string name="PinCreationScreen__pins_can_help">Mã PIN có thể giúp bạn khôi phục tài khoản nếu bạn làm mất điện thoại. </string>
+    <!-- Labels the button to learn more about Signal PINs. -->
+    <string name="PinCreationScreen__learn_more">Tìm hiểu thêm</string>
+    <!-- Labels the button to switch to the numeric PIN keyboard type. -->
+    <string name="PinCreationScreen__switch_to_numeric">Chuyển sang dạng số</string>
+    <!-- Labels the button to switch to the alphanumeric PIN keyboard type. -->
+    <string name="PinCreationScreen__switch_to_alphanumeric">Chuyển sang dạng chữ số</string>
+    <!-- Labels the button to submit a new Signal PIN. -->
+    <string name="PinCreationScreen__next">Tiếp</string>
+    <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
+    <string name="PinCreationScreen__pin_at_least_4_digits">PIN must be at least 4 digits</string>
+    <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
+    <string name="PinCreationScreen__pin_at_least_4_characters">PIN must be at least 4 characters</string>
+    <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
+    <string name="PinCreationScreen__reenter_pin">Re-enter PIN</string>
+
+    <!-- PIN entry screen title when registration lock is active. -->
+    <string name="PinEntryScreen__registration_lock">Khóa Đăng ký</string>
+    <!-- PIN entry screen title when restoring an account. -->
+    <string name="PinEntryScreen__enter_your_pin">Nhập mã PIN của bạn</string>
+    <!-- Describes the PIN that needs to be entered. -->
+    <string name="PinEntryScreen__enter_the_pin_you_created">Nhập mã PIN bạn tạo ở thời điểm bắt đầu cài Signal</string>
+    <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
+    <plurals name="PinEntryScreen__incorrect_pin">
+        <item quantity="other">Sai mã PIN. Còn %1$d lần thử.</item>
+    </plurals>
+    <!-- Labels the button to get help with PIN entry. -->
+    <string name="PinEntryScreen__need_help">Cần hỗ trợ?</string>
+    <!-- Labels the button to switch between the numeric and alphanumeric keyboard. -->
+    <string name="PinEntryScreen__switch_keyboard">Đổi bàn phím</string>
+    <!-- Labels the button to skip PIN entry. -->
+    <string name="PinEntryScreen__skip">Bỏ qua</string>
+    <!-- Labels the button to submit the PIN. -->
+    <string name="PinEntryScreen__continue">Tiếp tục</string>
+
+    <!-- Title for the screen asking the user to grant the notification permission -->
+    <string name="AllowNotificationsScreen__allow_notifications">Cho Phép Thông Báo</string>
+    <!-- Description for the screen asking the user to grant the notification permission -->
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <!-- Button label that dismisses the notification permission request without granting it -->
+    <string name="AllowNotificationsScreen__not_now">Để sau</string>
+    <!-- Button label that proceeds with the notification permission request -->
+    <string name="AllowNotificationsScreen__next">Tiếp</string>
+
+    <!-- Title shown while messages are syncing from the primary device -->
+    <string name="MessageSyncScreen__syncing_messages">Đang đồng bộ tin nhắn</string>
+    <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
+    <string name="MessageSyncScreen__downloading_s_of_s">Đang tải %1$s trên tổng số %2$s</string>
+    <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
+    <string name="MessageSyncScreen__learn_more">Tìm hiểu thêm</string>
+    <!-- Button label that cancels the in-progress message sync -->
+    <string name="MessageSyncScreen__cancel">Hủy</string>
+
+    <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
+    <string name="LinkAccountScreen__open_signal_on_your_phone">Mở Signal trên điện thoại của bạn</string>
+    <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <!-- Button label opening help content for users who can\'t complete the link-account steps -->
+    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
+    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
+    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <!-- Error label shown in place of the QR code if it could not be generated -->
+    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
+    <string name="LinkAccountScreen__create_account">Tạo tài khoản</string>
 </resources>

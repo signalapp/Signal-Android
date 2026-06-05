@@ -18,23 +18,19 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.ContextUtil;
 import org.signal.core.util.ByteSize;
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.util.ContextUtil;
-import org.thoughtcrime.securesms.util.DrawableUtil;
+import org.signal.core.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
-import org.signal.core.util.Util;
 
 public class ViewOnceMessageView extends LinearLayout {
-
-  private static final String TAG = Log.tag(ViewOnceMessageView.class);
 
   private AppCompatImageView icon;
   private ProgressWheel      progress;

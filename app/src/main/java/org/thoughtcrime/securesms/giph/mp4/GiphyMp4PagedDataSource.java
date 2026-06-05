@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.model.GiphyResponse;
 import org.thoughtcrime.securesms.net.ContentProxySelector;
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.signal.core.util.JsonUtils;
 
 import java.io.IOException;
 import java.util.LinkedList;

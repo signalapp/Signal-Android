@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.registration.data.network
 
 import org.signal.core.util.logging.Log
-import org.whispersystems.signalservice.api.NetworkResult
+import org.signal.network.NetworkResult
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 
 sealed class SubmitCaptchaResult(cause: Throwable?) : RegistrationResult(cause) {

@@ -8,6 +8,7 @@ import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.logging.Log
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
+import org.signal.network.util.JsonUtil
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
-import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.util.Currency
 import java.util.Locale
 import java.util.Optional

@@ -35,6 +35,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
@@ -58,7 +59,6 @@ import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ScheduledMessagesRepository
-import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.plaintext.PlaintextExportRepository
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
@@ -101,7 +101,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
+import java.io.File
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.time.Duration
 
 /**
@@ -110,7 +112,6 @@ import kotlin.time.Duration
 class ConversationViewModel(
   val threadId: Long,
   requestedStartingPosition: Int,
-  initialChatColors: ChatColors,
   private val repository: ConversationRepository,
   recipientRepository: ConversationRecipientRepository,
   messageRequestRepository: MessageRequestRepository,
@@ -158,7 +159,7 @@ class ConversationViewModel(
     .observeOn(AndroidSchedulers.mainThread())
 
   private val chatBounds: BehaviorSubject<Rect> = BehaviorSubject.create()
-  private val chatColors: RxStore<ChatColorsDrawable.ChatColorsData> = RxStore(ChatColorsDrawable.ChatColorsData(initialChatColors, null))
+  private val chatColors: RxStore<ChatColorsDrawable.ChatColorsData> = RxStore(ChatColorsDrawable.ChatColorsData(null, null))
   val chatColorsSnapshot: ChatColorsDrawable.ChatColorsData get() = chatColors.state
 
   @Volatile
@@ -171,6 +172,8 @@ class ConversationViewModel(
 
   val isPushAvailable: Boolean
     get() = recipientSnapshot?.isRegistered == true && Recipient.self().isRegistered
+
+  val wallpaper: Flow<ChatWallpaper?> = recipient.asFlow().map { it.wallpaper }.distinctUntilChanged()
 
   val wallpaperSnapshot: ChatWallpaper?
     get() = recipientSnapshot?.wallpaper
@@ -216,7 +219,7 @@ class ConversationViewModel(
   private val _plaintextExportState = MutableStateFlow<PlaintextExportState>(PlaintextExportState.None)
   val plaintextExportState: StateFlow<PlaintextExportState> = _plaintextExportState
 
-  private val plaintextExportCancelled = java.util.concurrent.atomic.AtomicBoolean(false)
+  private val plaintextExportCancelled = AtomicBoolean(false)
 
   init {
     disposables += recipient
@@ -243,6 +246,7 @@ class ConversationViewModel(
     disposables += chatColors.update(chatColorsDataObservable.toFlowable(BackpressureStrategy.LATEST)) { c, _ -> c }
 
     disposables += repository.getConversationThreadState(threadId, requestedStartingPosition)
+      .subscribeOn(Schedulers.io())
       .subscribeBy(onSuccess = {
         pagingController.set(it.items.controller)
         _conversationThreadState.onNext(it)
@@ -326,7 +330,8 @@ class ConversationViewModel(
       recipientRepository.groupRecord
     ) { _, r, g -> Pair(r, g) }
       .subscribeOn(Schedulers.io())
-      .flatMapSingle { (r, g) -> repository.getIdentityRecords(r, g.orNull()) }
+      .throttleLatest(250, TimeUnit.MILLISECONDS, true)
+      .switchMapSingle { (r, g) -> repository.getIdentityRecords(r, g.orNull()) }
       .subscribeBy { newState ->
         identityRecordsStore.update { newState }
       }
@@ -759,9 +764,16 @@ class ConversationViewModel(
     }
   }
 
-  fun startPlaintextExport(context: Context, directoryUri: Uri) {
+  fun startPlaintextExport(context: Context, includeMedia: Boolean) {
     val recipient = recipientSnapshot ?: return
     val chatName = if (recipient.isSelf) context.getString(R.string.note_to_self) else recipient.getDisplayName(context)
+
+    val exportDir = File(context.externalCacheDir, "chat_exports")
+    exportDir.mkdirs()
+    exportDir.listFiles()?.forEach { it.delete() }
+
+    val sanitizedName = PlaintextExportRepository.sanitizeFileName(chatName)
+    val outputFile = File(exportDir, "$sanitizedName.zip")
 
     plaintextExportCancelled.set(false)
     _plaintextExportState.value = PlaintextExportState.Preparing
@@ -770,14 +782,19 @@ class ConversationViewModel(
       val success = PlaintextExportRepository.export(
         context = context,
         threadId = threadId,
-        directoryUri = directoryUri,
+        outputFile = outputFile,
         chatName = chatName,
+        includeMedia = includeMedia,
         progressListener = { messagesProcessed, messageCount, attachmentsProcessed, attachmentCount ->
-          val messagePercent = if (messageCount > 0) (messagesProcessed * 25) / messageCount else 25
-          val attachmentPercent = if (attachmentCount > 0) (attachmentsProcessed * 75) / attachmentCount else 75
-          val percent = messagePercent + attachmentPercent
+          val percent = if (includeMedia) {
+            val messagePercent = if (messageCount > 0) (messagesProcessed * 25) / messageCount else 25
+            val attachmentPercent = if (attachmentCount > 0) (attachmentsProcessed * 75) / attachmentCount else 75
+            messagePercent + attachmentPercent
+          } else {
+            if (messageCount > 0) (messagesProcessed * 100) / messageCount else 100
+          }
 
-          val status = if (attachmentsProcessed > 0 || messagesProcessed >= messageCount) {
+          val status = if (includeMedia && (attachmentsProcessed > 0 || messagesProcessed >= messageCount)) {
             "Exporting media ($attachmentsProcessed/$attachmentCount)..."
           } else {
             "Exporting messages ($messagesProcessed/$messageCount)..."
@@ -789,8 +806,11 @@ class ConversationViewModel(
       )
 
       _plaintextExportState.value = when {
-        plaintextExportCancelled.get() -> PlaintextExportState.Cancelled
-        success -> PlaintextExportState.Complete
+        plaintextExportCancelled.get() -> {
+          outputFile.delete()
+          PlaintextExportState.Cancelled
+        }
+        success -> PlaintextExportState.Complete(outputFile)
         else -> PlaintextExportState.Failed
       }
     }
@@ -814,7 +834,7 @@ class ConversationViewModel(
     data object None : PlaintextExportState
     data object Preparing : PlaintextExportState
     data class InProgress(val percent: Int, val status: String) : PlaintextExportState
-    data object Complete : PlaintextExportState
+    data class Complete(val zipFile: File) : PlaintextExportState
     data object Failed : PlaintextExportState
     data object Cancelled : PlaintextExportState
   }

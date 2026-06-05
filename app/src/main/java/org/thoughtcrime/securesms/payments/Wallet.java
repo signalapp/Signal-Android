@@ -39,8 +39,8 @@ import org.thoughtcrime.securesms.keyvalue.PaymentsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.proto.MobileCoinLedger;
 import org.whispersystems.signalservice.api.payments.Money;
-import org.whispersystems.signalservice.api.util.Uint64RangeException;
-import org.whispersystems.signalservice.api.util.Uint64Util;
+import org.signal.core.util.Uint64RangeException;
+import org.signal.core.util.Uint64Util;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 
 import java.io.IOException;

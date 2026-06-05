@@ -19,7 +19,7 @@ import org.signal.core.util.Hex;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest.StickerInfo;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.signal.network.exceptions.PushNetworkException;
 
 import java.io.IOException;
 import java.util.ArrayList;

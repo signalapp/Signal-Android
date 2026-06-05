@@ -507,7 +507,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
     } else {
       Log.w(TAG, "Unable to request new verification code, prompting to start new session")
       MaterialAlertDialogBuilder(requireContext()).apply {
-        setMessage(R.string.RegistrationActivity_unable_to_connect_to_service)
+        setMessage(R.string.RegistrationActivity_sms_provider_error)
         setPositiveButton(R.string.NetworkFailure__retry) { _, _ ->
           onRegistrationButtonClicked()
         }

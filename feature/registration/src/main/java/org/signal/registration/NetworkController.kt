@@ -10,13 +10,15 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.util.serialization.ByteArrayToBase64Serializer
+import org.signal.libsignal.net.BadRequestError
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
-import java.io.IOException
 import java.util.Locale
 import kotlin.time.Duration
 
@@ -27,21 +29,21 @@ interface NetworkController {
    *
    * `POST /v1/verification/session`
    */
-  suspend fun createSession(e164: String, fcmToken: String?, mcc: String?, mnc: String?): RegistrationNetworkResult<SessionMetadata, CreateSessionError>
+  suspend fun createSession(e164: String, fcmToken: String?, mcc: String?, mnc: String?): RequestResult<SessionMetadata, CreateSessionError>
 
   /**
    * Retrieve current status of a registration session.
    *
    * `GET /v1/verification/session/{session-id}`
    */
-  suspend fun getSession(sessionId: String): RegistrationNetworkResult<SessionMetadata, GetSessionStatusError>
+  suspend fun getSession(sessionId: String): RequestResult<SessionMetadata, GetSessionStatusError>
 
   /**
    * Update the session with new information.
    *
    * `PATCH /v1/verification/session/{session-id}`
    */
-  suspend fun updateSession(sessionId: String?, pushChallengeToken: String?, captchaToken: String?): RegistrationNetworkResult<SessionMetadata, UpdateSessionError>
+  suspend fun updateSession(sessionId: String?, pushChallengeToken: String?, captchaToken: String?): RequestResult<SessionMetadata, UpdateSessionError>
 
   /**
    * Request an SMS verification code. On success, the server will send an SMS verification code to this Signal user.
@@ -55,14 +57,14 @@ interface NetworkController {
     locale: Locale?,
     androidSmsRetrieverSupported: Boolean,
     transport: VerificationCodeTransport
-  ): RegistrationNetworkResult<SessionMetadata, RequestVerificationCodeError>
+  ): RequestResult<SessionMetadata, RequestVerificationCodeError>
 
   /**
    * Submit a verification code sent by the service via one of the supported channels (SMS, phone call) to prove the registrant's control of the phone number.
    *
    * `PUT /v1/verification/session/{session-id}/code`
    */
-  suspend fun submitVerificationCode(sessionId: String, verificationCode: String): RegistrationNetworkResult<SessionMetadata, SubmitVerificationCodeError>
+  suspend fun submitVerificationCode(sessionId: String, verificationCode: String): RequestResult<SessionMetadata, SubmitVerificationCodeError>
 
   /**
    * Officially register an account.
@@ -83,7 +85,7 @@ interface NetworkController {
     pniPreKeys: PreKeyCollection,
     fcmToken: String?,
     skipDeviceTransfer: Boolean
-  ): RegistrationNetworkResult<RegisterAccountResponse, RegisterAccountError>
+  ): RequestResult<RegisterAccountResponse, RegisterAccountError>
 
   /**
    * Retrieves an FCM token, if possible. Null means that this device does not support FCM.
@@ -117,7 +119,7 @@ interface NetworkController {
   suspend fun restoreMasterKeyFromSvr(
     svrCredentials: SvrCredentials,
     pin: String
-  ): RegistrationNetworkResult<MasterKeyResponse, RestoreMasterKeyError>
+  ): RequestResult<MasterKeyResponse, RestoreMasterKeyError>
 
   /**
    * Backs up the master key to SVR, protected by the user's PIN.
@@ -129,7 +131,7 @@ interface NetworkController {
   suspend fun setPinAndMasterKeyOnSvr(
     pin: String,
     masterKey: MasterKey
-  ): RegistrationNetworkResult<SvrCredentials?, BackupMasterKeyError>
+  ): RequestResult<SvrCredentials?, BackupMasterKeyError>
 
   /**
    * Requests that the currently-set PIN and [MasterKey] are backed up to SVR.
@@ -144,14 +146,14 @@ interface NetworkController {
    *
    * @return Success or an appropriate error.
    */
-  suspend fun enableRegistrationLock(): RegistrationNetworkResult<Unit, SetRegistrationLockError>
+  suspend fun enableRegistrationLock(): RequestResult<Unit, SetRegistrationLockError>
 
   /**
    * Disables registration lock on the account.
    *
    * @return Success or an appropriate error.
    */
-  suspend fun disableRegistrationLock(): RegistrationNetworkResult<Unit, SetRegistrationLockError>
+  suspend fun disableRegistrationLock(): RequestResult<Unit, SetRegistrationLockError>
 
   /**
    * Retrieves SVR2 authentication credentials for the authenticated account.
@@ -160,7 +162,7 @@ interface NetworkController {
    *
    * @return SVR credentials on success, or an appropriate error.
    */
-  suspend fun getSvrCredentials(): RegistrationNetworkResult<SvrCredentials, GetSvrCredentialsError>
+  suspend fun getSvrCredentials(): RequestResult<SvrCredentials, GetSvrCredentialsError>
 
   /**
    * Checks if the SVR2 credentials are valid for the given phone number.
@@ -169,7 +171,7 @@ interface NetworkController {
    *
    * @return A response containing a mapping of which credentials are matches.
    */
-  suspend fun checkSvrCredentials(e164: String, credentials: List<SvrCredentials>): RegistrationNetworkResult<CheckSvrCredentialsResponse, CheckSvrCredentialsError>
+  suspend fun checkSvrCredentials(e164: String, credentials: List<SvrCredentials>): RequestResult<CheckSvrCredentialsResponse, CheckSvrCredentialsError>
 
   /**
    * Updates account attributes on the server.
@@ -179,7 +181,40 @@ interface NetworkController {
    * @param attributes The account attributes to set.
    * @return Success or an appropriate error.
    */
-  suspend fun setAccountAttributes(attributes: AccountAttributes): RegistrationNetworkResult<Unit, SetAccountAttributesError>
+  suspend fun setAccountAttributes(attributes: AccountAttributes): RequestResult<Unit, SetAccountAttributesError>
+
+  /**
+   * Enqueue a durable unit of work to sync your account attributes based on the current state of your own storage.
+   * This is typically done at the end of the registration process to clean up any possible changes to the AEP
+   * that may be made post-registration (for instance, you may restore a backup post-registration with a new AEP that
+   * we'd like to re-use).
+   */
+  suspend fun enqueueAccountAttributesSyncJob()
+
+  /**
+   * Fetches metadata about your current backup. This will be different for different key/credential pairs. For example, message credentials will always
+   * return 0 for used space since that is stored under the media key/credential.
+   *
+   * GET /v1/archives
+   * - 200: Success
+   * - 400: Bad arguments. The request may have been made on an authenticated channel.
+   * - 401: The provided backup auth credential presentation could not be verified or the public key signature was invalid or there is no backup associated with
+   *        the backup-id in the presentation or the credential was of the wrong type (messages/media)
+   * - 403: Forbidden
+   * - 404: No backup
+   * - 429: Rate limited
+   */
+  suspend fun getRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<GetBackupInfoResponse, GetBackupInfoError>
+
+  /**
+   * Gets the last-modified timestamp of the backup file on the CDN.
+   * Requires [GetBackupInfoResponse] to know the CDN location of the backup.
+   *
+   * @param aep The Account Entropy Pool used to derive backup credentials.
+   * @param backupInfo The backup info response containing CDN location details.
+   * @return The last-modified time as epoch milliseconds, or an appropriate error.
+   */
+  suspend fun getBackupFileLastModified(aep: AccountEntropyPool, backupInfo: GetBackupInfoResponse): RequestResult<Long, GetBackupInfoError>
 
   /**
    * Starts a provisioning session for QR-based quick restore.
@@ -212,40 +247,24 @@ interface NetworkController {
 //   */
 //  suspend fun registerAsSecondaryDevice(verificationCode: String, attributes: AccountAttributes, aciPreKeys: PreKeyCollection, pniPreKeys: PreKeyCollection, fcmToken: String?)
 
-  sealed interface RegistrationNetworkResult<out SuccessModel, out FailureModel> {
-    data class Success<T>(val data: T) : RegistrationNetworkResult<T, Nothing>
-    data class Failure<T>(val error: T) : RegistrationNetworkResult<Nothing, T>
-    data class NetworkError(val exception: IOException) : RegistrationNetworkResult<Nothing, Nothing>
-    data class ApplicationError(val exception: Throwable) : RegistrationNetworkResult<Nothing, Nothing>
-
-    fun <NewSuccessModel> mapSuccess(transform: (SuccessModel) -> NewSuccessModel): RegistrationNetworkResult<NewSuccessModel, FailureModel> {
-      return when (this) {
-        is Success<SuccessModel> -> Success(transform(this.data))
-        is Failure<FailureModel> -> Failure(this.error)
-        is NetworkError -> NetworkError(this.exception)
-        is ApplicationError -> ApplicationError(this.exception)
-      }
-    }
-  }
-
-  sealed class CreateSessionError() {
+  sealed class CreateSessionError : BadRequestError {
     data class InvalidRequest(val message: String) : CreateSessionError()
     data class RateLimited(val retryAfter: Duration) : CreateSessionError()
   }
 
-  sealed class GetSessionStatusError() {
+  sealed class GetSessionStatusError : BadRequestError {
     data class InvalidSessionId(val message: String) : GetSessionStatusError()
     data class SessionNotFound(val message: String) : GetSessionStatusError()
     data class InvalidRequest(val message: String) : GetSessionStatusError()
   }
 
-  sealed class UpdateSessionError() {
+  sealed class UpdateSessionError : BadRequestError {
     data class RejectedUpdate(val message: String) : UpdateSessionError()
     data class InvalidRequest(val message: String) : UpdateSessionError()
     data class RateLimited(val retryAfter: Duration, val session: SessionMetadata) : UpdateSessionError()
   }
 
-  sealed class RequestVerificationCodeError() {
+  sealed class RequestVerificationCodeError : BadRequestError {
     data class InvalidSessionId(val message: String) : RequestVerificationCodeError()
     data class SessionNotFound(val message: String) : RequestVerificationCodeError()
     data class MissingRequestInformationOrAlreadyVerified(val session: SessionMetadata) : RequestVerificationCodeError()
@@ -255,14 +274,14 @@ interface NetworkController {
     data class ThirdPartyServiceError(val data: ThirdPartyServiceErrorResponse) : RequestVerificationCodeError()
   }
 
-  sealed class SubmitVerificationCodeError() {
+  sealed class SubmitVerificationCodeError : BadRequestError {
     data class InvalidSessionIdOrVerificationCode(val message: String) : SubmitVerificationCodeError()
     data class SessionNotFound(val message: String) : SubmitVerificationCodeError()
     data class SessionAlreadyVerifiedOrNoCodeRequested(val session: SessionMetadata) : SubmitVerificationCodeError()
     data class RateLimited(val retryAfter: Duration, val session: SessionMetadata) : SubmitVerificationCodeError()
   }
 
-  sealed class RegisterAccountError() {
+  sealed class RegisterAccountError : BadRequestError {
     data class SessionNotFoundOrNotVerified(val message: String) : RegisterAccountError()
     data class RegistrationRecoveryPasswordIncorrect(val message: String) : RegisterAccountError()
     data object DeviceTransferPossible : RegisterAccountError()
@@ -271,36 +290,44 @@ interface NetworkController {
     data class RateLimited(val retryAfter: Duration) : RegisterAccountError()
   }
 
-  sealed class RestoreMasterKeyError() {
+  sealed class RestoreMasterKeyError : BadRequestError {
     data class WrongPin(val triesRemaining: Int) : RestoreMasterKeyError()
     data object NoDataFound : RestoreMasterKeyError()
   }
 
-  sealed class BackupMasterKeyError() {
+  sealed class BackupMasterKeyError : BadRequestError {
     data object EnclaveNotFound : BackupMasterKeyError()
     data object NotRegistered : BackupMasterKeyError()
   }
 
-  sealed class SetRegistrationLockError() {
+  sealed class SetRegistrationLockError : BadRequestError {
     data class InvalidRequest(val message: String) : SetRegistrationLockError()
     data object Unauthorized : SetRegistrationLockError()
     data object NotRegistered : SetRegistrationLockError()
     data object NoPinSet : SetRegistrationLockError()
   }
 
-  sealed class SetAccountAttributesError() {
+  sealed class SetAccountAttributesError : BadRequestError {
     data class InvalidRequest(val message: String) : SetAccountAttributesError()
     data object Unauthorized : SetAccountAttributesError()
   }
 
-  sealed class GetSvrCredentialsError() {
+  sealed class GetSvrCredentialsError : BadRequestError {
     data object Unauthorized : GetSvrCredentialsError()
     data object NoServiceCredentialsAvailable : GetSvrCredentialsError()
   }
 
-  sealed class CheckSvrCredentialsError() {
+  sealed class CheckSvrCredentialsError : BadRequestError {
     data object Unauthorized : CheckSvrCredentialsError()
     data class InvalidRequest(val message: String) : CheckSvrCredentialsError()
+  }
+
+  sealed class GetBackupInfoError : BadRequestError {
+    data class BadArguments(val body: String? = null) : GetBackupInfoError()
+    data class BadAuthCredential(val body: String? = null) : GetBackupInfoError()
+    data class Forbidden(val body: String? = null) : GetBackupInfoError()
+    data object NoBackup : GetBackupInfoError()
+    data class RateLimited(val retryAfter: Duration) : GetBackupInfoError()
   }
 
   data class MasterKeyResponse(
@@ -342,7 +369,8 @@ interface NetworkController {
       val storage: Boolean,
       val versionedExpirationTimer: Boolean,
       val attachmentBackfill: Boolean,
-      val spqr: Boolean
+      val spqr: Boolean,
+      val usernameChangeSyncMessage: Boolean
     )
   }
 
@@ -446,6 +474,15 @@ interface NetworkController {
   enum class VerificationCodeTransport {
     SMS, VOICE
   }
+
+  @Serializable
+  data class GetBackupInfoResponse(
+    val cdn: Int?,
+    val backupDir: String?,
+    val mediaDir: String?,
+    val backupName: String?,
+    val usedSpace: Long?
+  )
 
   /**
    * Data received from the old device during QR-based provisioning.

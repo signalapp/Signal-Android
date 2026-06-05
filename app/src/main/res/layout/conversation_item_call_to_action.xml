@@ -5,4 +5,6 @@
     android:id="@+id/conversation_item_call_to_action"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:backgroundTint="@color/release_notes_cta_background"
+    android:textColor="@color/signal_colorOnSurface"
     tools:text="Click me" />

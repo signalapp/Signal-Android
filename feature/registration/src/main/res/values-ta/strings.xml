@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedScreen__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">உங்களுடன் தனியுரிமையைப் பெறுங்கள். ஒவ்வொரு செய்தியிலும் நீங்கள் நீங்கலாய் இருங்கள் .</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">சிக்னல் ஓர் இலாப நோக்கற்ற அமைப்பாகும்\nவிதிமுறைகள் &amp; தனியுரிமைக் கொள்கை</string>
@@ -42,6 +45,20 @@
     <string name="RegistrationActivity_select_a_country">ஒரு நாட்டைத் தேர்வு செய்யுங்கள்</string>
     <string name="RegistrationActivity_phone_number_description">தொலைபேசி எண்</string>
     <string name="RegistrationActivity_next">அடுத்தது</string>
+    <!-- Dialog title to confirm phone number -->
+    <string name="RegistrationActivity_is_the_phone_number">கீழே உள்ள தொலைபேசி எண் சரியானதா?</string>
+    <!-- Dialog body to confirm phone number -->
+    <string name="RegistrationActivity_a_verification_code">இந்த எண்ணுக்கு சரிபார்ப்புக் குறியீடு அனுப்பப்படும். கேரியர் கட்டணங்கள் விதிக்கப்படலாம்.</string>
+    <!-- Dialog button to edit the number entered -->
+    <string name="RegistrationActivity_edit_number">எண்ணை தொகுக்க</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="RegistrationActivity_open_menu">மெனுவைத் திறக்கவும்</string>
+    <!-- Menu option to use a proxy -->
+    <string name="RegistrationActivity_use_proxy">பதிலியைப் பயன்படுத்து.</string>
+    <!-- Menu option to link this as a device -->
+    <string name="RegistrationActivity_link_device">கருவியை இனைக்க</string>
+    <!-- Clickable text that opens a corresponding URL -->
+    <string name="RegistrationActivity_learn_more">மேலும் அறிக</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -76,8 +93,8 @@
     <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">அதிக அளவிலான முயற்சிகள். %1$s-இல் மீண்டும் முயலுங்கள்.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">எதிர்பாராத பிழை ஏற்பட்டது. மீண்டும் முயலுங்கள்.</string>
-    <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">உங்கள் சரிபார்ப்புக் குறியீட்டை அனுப்புவதில் சிக்கல் ஏற்பட்டது. மீண்டும் முயலுங்கள்.</string>
+    <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__unable_to_send_sms">உங்கள் எண்ணுக்கு எங்களால் SMSஐ அனுப்ப முடியவில்லை. சில மணிநேரம் கழித்து மீண்டும் முயலுங்கள்.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">தேர்ந்தெடுக்கப்பட்ட முறையின் வழியாகக் குறியீட்டை அனுப்ப முடியவில்லை. வேறொரு விருப்பத்தேர்வை முயற்சிக்கவும்.</string>
     <!-- Snackbar shown for registration errors -->
@@ -130,4 +147,255 @@
     <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">நீங்கள் இப்போது மீட்டெடுக்கவில்லை எனில், பின்னர் மீட்டெடுக்க முடியாது. மீட்டெடுப்பதைத் தவிர்த்த பிறகு நீங்கள் காப்புப்பிரதிகளை மீண்டும் செயல்படுத்தினால், உங்கள் தற்போதைய காப்புப்பிரதி உங்கள் புதிய செய்தி வரலாற்றுடன் மாற்றப்படும்.</string>
     <!-- Confirm button text for the skip restore dialog -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">மீட்டமைப்பதைத் தவிர்</string>
+
+    <!-- LocalBackupRestoreScreen -->
+    <!-- Title for the local backup restore screen -->
+    <string name="LocalBackupRestoreScreen__restore_on_device_backup">சாதனத்திலுள்ள காப்புப்பிரதியை மீட்டெடு</string>
+    <!-- Description on the folder selection screen -->
+    <string name="LocalBackupRestoreScreen__select_folder_description">உங்கள் சாதனத்தில் நீங்கள் சேமித்த காப்புப்பிரதியிலிருந்து மெசேஜ்களை மீட்டெடுக்கவும். நீங்கள் இப்போது மீட்டெடுக்கவில்லை என்றால், உங்களால் பிறகு மீட்டெடுக்க முடியாது.</string>
+    <!-- Title for the choose backup folder card -->
+    <string name="LocalBackupRestoreScreen__choose_backup_folder">காப்புப்பிரதிக் கோப்புறையைத் தேர்ந்தெடு</string>
+    <!-- Subtitle for the choose backup folder card -->
+    <string name="LocalBackupRestoreScreen__choose_folder_subtitle">உங்கள் காப்புப்பிரதி சேமிக்கப்பட்டுள்ள உங்கள் சாதனத்திலுள்ள கோப்புறையைத் தேர்ந்தெடுக்கவும்</string>
+    <!-- Text shown while scanning for backups -->
+    <string name="LocalBackupRestoreScreen__scanning_folder">காப்புப்பிரதிகளைத் தேடுகிறது…</string>
+    <!-- Description shown when a backup is found -->
+    <string name="LocalBackupRestoreScreen__backup_found_description">உங்கள் சாதனத்தில் நீங்கள் சேமித்த காப்புப்பிரதிக் கோப்புறையிலிருந்து உங்கள் மெசேஜ்களை மீட்டெடுக்கவும். நீங்கள் இப்போது மீட்டெடுக்கவில்லை என்றால், உங்களால் பிறகு மீட்டெடுக்க முடியாது.</string>
+    <!-- Title for the latest backup card -->
+    <string name="LocalBackupRestoreScreen__your_latest_backup">உங்களின் அண்மைய காப்புப்பிரதி:</string>
+    <!-- Restore backup button text -->
+    <string name="LocalBackupRestoreScreen__restore_backup">காப்புப்பதிவு பயனர் தரவு மீட்டமை</string>
+    <!-- Link to choose an earlier backup -->
+    <string name="LocalBackupRestoreScreen__choose_earlier_backup">முந்தைய காப்புப்பிரதியைத் தேர்ந்தெடு</string>
+    <!-- Title for the backup picker bottom sheet -->
+    <string name="LocalBackupRestoreScreen__choose_a_backup_to_restore">மீட்டெடுக்க ஒரு காப்புப்பிரதியைத் தேர்ந்தெடு</string>
+    <!-- Warning text in the backup picker bottom sheet -->
+    <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">பழைய காப்புப்பிரதியைத் தேர்ந்தெடுப்பது, மெசேஜ்கள் அல்லது ஊடகத்தை இழக்கச் செய்யலாம்.</string>
+    <!-- Title when no backup is found -->
+    <string name="LocalBackupRestoreScreen__no_backup_found">காப்புப்பிரதி கிடைக்கவில்லை</string>
+    <!-- Description when no backup is found -->
+    <string name="LocalBackupRestoreScreen__no_backup_found_description">தேர்ந்தெடுத்த கோப்புறையில் சிக்னல் காப்புப்பிரதி எதுவும் இல்லை. வேறு கோப்புறையை முயலவும்</string>
+    <!-- Button to try a different folder -->
+    <string name="LocalBackupRestoreScreen__try_different_folder">வேறு கோப்புறையை முயலவும்</string>
+    <!-- Title for V1 passphrase entry screen -->
+    <string name="LocalBackupRestoreScreen__enter_backup_passphrase">காப்புப்பதிவு பயனர் தரவு கடவுச்சொற்றொடரை உள்ளிடவும்</string>
+    <!-- Description for V1 passphrase entry screen -->
+    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">உங்கள் உள்ளகக் காப்புப்பிரதிக்கான கடவுச்சொற்றொடர் என்பது உங்கள் கணக்கையும் தரவையும் மீட்டெடுக்க தேவையான 30 இலக்கக் குறியீடாகும்.</string>
+    <!-- Label for the recovery key text field -->
+    <string name="LocalBackupRestoreScreen__recovery_key">மீட்புக் குறியீடு</string>
+    <!-- Error text when passphrase is too long -->
+    <string name="LocalBackupRestoreScreen__too_long">மிக நீளமாக உள்ளது (%1$d/%2$d)</string>
+    <!-- Link for users who don\'t have their passphrase -->
+    <string name="LocalBackupRestoreScreen__no_passphrase">கடவுச்சொற்றொடர் இல்லையா?</string>
+    <!-- Next button text -->
+    <string name="LocalBackupRestoreScreen__next">அடுத்தது</string>
+    <!-- EnterAepScreen -->
+    <!-- Title for recovery key entry screen -->
+    <string name="EnterAepScreen__enter_your_recovery_key">உங்கள் மீட்புக் குறியீட்டை உள்ளிடுங்க்ள</string>
+    <!-- Description for recovery key entry screen -->
+    <string name="EnterAepScreen__your_recovery_key_is_a_64_character_code">உங்கள் மீட்புக் குறியீடு என்பது உங்கள் கணக்கையும் தரவையும் மீட்டெடுக்க உதவும் 64 இலக்கக் குறியீடாகும்.</string>
+    <!-- Label for the recovery key text field -->
+    <string name="EnterAepScreen__recovery_key">மீட்புக் குறியீடு</string>
+    <!-- Link for users who don\'t have their recovery key -->
+    <string name="EnterAepScreen__no_recovery_key">மீட்புக் குறியீடு இல்லையா?</string>
+    <!-- Error text when key is too long -->
+    <string name="EnterAepScreen__too_long">மிக நீளமாக உள்ளது (%1$d/%2$d)</string>
+    <!-- Error text when key is invalid -->
+    <string name="EnterAepScreen__invalid_recovery_key">தவறான மீட்புக் குறியீடு</string>
+    <!-- Error text when key is correct format but does not match account -->
+    <string name="EnterAepScreen__incorrect_recovery_key">தவறான மீட்புக் குறியீடு</string>
+    <!-- Text shown while preparing the restore -->
+    <string name="LocalBackupRestoreScreen__preparing_restore">மீட்டமைக்கத் தயாராகிறது…</string>
+    <!-- Title shown while restore is in progress -->
+    <string name="LocalBackupRestoreScreen__restoring_backup">காப்புப்பிரதி மீட்டெடுக்கப்படுகிறது</string>
+    <!-- Description shown while restore is in progress -->
+    <string name="LocalBackupRestoreScreen__restoring_description">உங்கள் மெசேஜ்கள் மற்றும் தரவு மீட்டமைக்கப்படும் வரை காத்திருக்கவும்.</string>
+    <!-- Description shown when restore is complete -->
+    <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
+    <!-- Continue button text after restore is complete -->
+    <string name="LocalBackupRestoreScreen__continue_button">தொடர்</string>
+    <!-- Title shown when restore fails -->
+    <string name="LocalBackupRestoreScreen__restore_failed">மீட்டெடுக்க முடியவில்லை</string>
+    <!-- Description shown when restore fails with an unknown error -->
+    <string name="LocalBackupRestoreScreen__restore_failed_description">உங்கள் காப்புப்பிரதியை மீட்டெடுக்கும்போது பிழை ஏற்பட்டது. மீண்டும் முயலுங்கள்.</string>
+    <!-- Button to retry restore after failure -->
+    <string name="LocalBackupRestoreScreen__try_again">மீண்டும் முயற்சிக்கவும்</string>
+    <!-- Button to link an existing Signal account to this device -->
+    <string name="WelcomeScreen__link_your_account">உங்கள் கணக்கை இணைக்கவும்</string>
+    <!-- Prompt shown to users who don\'t have a Signal account yet -->
+    <string name="WelcomeScreen__not_on_signal_yet">சிக்னலில் இணையவில்லையா?</string>
+    <!-- Button to create a new Signal account -->
+    <string name="WelcomeScreen__create_account">கணக்கை உருவாக்கவும்</string>
+
+    <!-- RemoteRestoreScreen -->
+    <!-- Title for the remote backup restore screen -->
+    <string name="RemoteRestoreScreen__restore_from_backup">மீட்டமை இருந்து காப்புப்பிரதி</string>
+    <!-- Shown while fetching backup details from server -->
+    <string name="RemoteRestoreScreen__fetching_backup_details">காப்புப்பிரதி விவரங்களைப் பெறுகிறது…</string>
+    <!-- Button to start restoring the backup -->
+    <string name="RemoteRestoreScreen__restore_backup">காப்புப்பதிவு பயனர் தரவு மீட்டமை</string>
+    <!-- Subtitle showing when the last backup was made, with date and time placeholders -->
+    <string name="RemoteRestoreScreen__your_last_backup_was_made_on_s_at_s">உங்களின் கடைசி காப்புப் பிரதி %1$sஅன்று %2$s மணிக்கு செய்யப்பட்டது.</string>
+    <!-- Description telling the user their media will restore in the background -->
+    <string name="RemoteRestoreScreen__your_media_will_restore_in_the_background">உங்கள் ஊடகமானது பின்னணியில் மீட்டெடுக்கப்படும். இப்போது மீட்டெடுக்க வேண்டாம் என்பதை நீங்கள் தேர்வுசெய்தால், பின்னர் நீங்கள் மீட்டெடுக்கவே முடியாது.</string>
+    <!-- Title for the backup not found dialog -->
+    <string name="RemoteRestoreScreen__backup_not_found">காப்புப்பிரதி கிடைக்கவில்லை</string>
+    <!-- Body for the backup not found dialog -->
+    <string name="RemoteRestoreScreen__no_backup_was_found">இந்தக் கணக்கிற்கான காப்புப்பிரதி எதுவும் கிடைக்கவில்லை.</string>
+    <!-- Title for the restore failed dialog -->
+    <string name="RemoteRestoreScreen__cant_restore_backup">காப்புப்பிரதியை மீட்டெடுக்க முடியவில்லை</string>
+    <!-- Body for the restore failed dialog -->
+    <string name="RemoteRestoreScreen__your_backup_cant_be_restored_right_now">தற்போது உங்கள் காப்புப்பிரதியை மீட்டெடுக்க முடியவில்லை. மீண்டும் முயலுங்கள்.</string>
+    <!-- Button to try again -->
+    <string name="RemoteRestoreScreen__try_again">மீண்டும் முயற்சிக்கவும்</string>
+    <!-- Title for the network error dialog -->
+    <string name="RemoteRestoreScreen__couldnt_finish_restore">மீட்டெடுப்பை முடிக்க முடியவில்லை</string>
+    <!-- Body for the network error dialog -->
+    <string name="RemoteRestoreScreen__error_connecting">சேவையகத்துடன் இணைக்கும்போது ஒரு பிழை ஏற்பட்டுள்ளது. உங்கள் இணைப்பை சரிபாரப்பார்த்து மீண்டும் முயலவும்.</string>
+    <!-- Body for the general restore failure dialog -->
+    <string name="RemoteRestoreScreen__error_occurred">உங்கள் காப்புப்பிரதியை மீட்டெடுக்கும்போது பிழை ஏற்பட்டது. மீண்டும் முயலுங்கள்.</string>
+    <!-- Title for the invalid backup version dialog -->
+    <string name="RemoteRestoreScreen__couldnt_restore_this_backup">இந்தக் காப்புப்பிரதியை மீண்டும் மீட்டமைக்கவில்லை</string>
+    <!-- Body for the invalid backup version dialog -->
+    <string name="RemoteRestoreScreen__update_latest">சிக்னலின் இந்தப் பதிப்பினால் உங்கள் காப்புப்பிரதியை மீட்டெடுக்க முடியாது. அண்மைய பதிப்புக்குப் புதுப்பித்து மீண்டும் முயலுங்கள்.</string>
+    <!-- Button to update Signal -->
+    <string name="RemoteRestoreScreen__update_signal">Signal லைப் புதுப்பிக்கவும்</string>
+    <!-- Button to dismiss update dialog -->
+    <string name="RemoteRestoreScreen__not_now">இப்போது வேண்டாம்</string>
+    <!-- Title for unrecoverable backup failure dialog -->
+    <string name="RemoteRestoreScreen__cant_restore_this_backup">காப்புப்பிரதியை மீட்டெடுக்க முடியவில்லை</string>
+    <!-- Body for unrecoverable backup failure dialog prompting user to contact support -->
+    <string name="RemoteRestoreScreen__your_backup_is_not_recoverable">உங்கள் காப்புப்பிரதியை மீட்டெடுக்கும்போது பிழை ஏற்பட்டது. உங்கள் காப்புப்பிரதி மீட்டெடுக்கப்படவில்லை. உதவிக்கு ஆதரவைத் தொடர்பு கொள்ளுங்கள்.</string>
+    <!-- Button to contact support -->
+    <string name="RemoteRestoreScreen__contact_support">ஆதரவைத் தொடர்பு கொள்க</string>
+    <!-- Shown while downloading the backup from the server -->
+    <string name="RemoteRestoreScreen__downloading_backup">காப்புப்பிரதியை பதிவிறக்குகிறது…</string>
+    <!-- Shown while restoring messages from the downloaded backup -->
+    <string name="RemoteRestoreScreen__restoring_messages">செய்திகள் மீட்டெடுக்கப்படுகிறது…</string>
+    <!-- Shown while finalizing the restore -->
+    <string name="RemoteRestoreScreen__finishing_restore">முடிக்கிறது…</string>
+    <!-- Shown as a generic restoring message -->
+    <string name="RemoteRestoreScreen__restoring">மீட்டெடுக்கப்படுகிறது…</string>
+    <!-- Byte progress text, e.g. "1.2 MB of 10 MB (12.34%)" -->
+    <string name="RemoteRestoreScreen__s_of_s_s">%2$s இல் %1$s (%3$s)</string>
+    <!-- Shown when attempting to open a URL in the web browser, but a browser app cannot be found. -->
+    <string name="LinkActions_error_no_browser_found">இணைய உலாவி இல்லை.</string>
+
+    <!-- Title for screen when your account is locked -->
+    <string name="AccountLockedScreen__account_locked">கணக்கில் பூட்டப்பட்டுள்ளது</string>
+    <!-- Description for screen when account is locked -->
+    <string name="AccountLockedScreen__your_account">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பைப் பாதுகாக்க உங்கள் கணக்கு பூட்டப்பட்டுள்ளது. உங்கள் கணக்கில் %1$d நாட்கள் செயலற்ற நிலையில் இருந்தபின், உங்கள் பின் தேவைப்படாமல் இந்த தொலைபேசி எண்ணை மீண்டும் பதிவு செய்ய முடியும். எல்லா உள்ளடக்கமும் நீக்கப்படும்.</string>
+
+    <!-- Step 1 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_1">உங்களின் பழைய சாதனத்தில் சிக்னலைத் திறந்திடுங்கள்</string>
+    <!-- Step 2 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_2">கேமரா ஐகானைத் தட்டவும் </string>
+    <!-- Step 3 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_3">இந்தக் குறியீட்டைக் கேமரா கொண்டு ஸ்கேன் செய்யவும்</string>
+    <!-- Loading dialog text when registering -->
+    <string name="QuickRestoreQRScreen__reregister">பதிவு செய்கிறது…</string>
+    <!-- Error message text shown if registering fails -->
+    <string name="QuickRestoreQRScreen__error">பதிவு செய்தலின் போது பிழை ஏற்பட்டது</string>
+    <!-- Title for quick restoring -->
+    <string name="QuickRestoreQRScreen__scan">உங்களின் பழைய ஃபோன் கொண்டு இந்தக் குறியீட்டை ஸ்கேன் செய்யவும்</string>
+    <!-- Confirmation dialog when qr code is successfully scanned -->
+    <string name="QuickRestoreQRScreen__scanned">QR குறியீடு ஸ்கேன் செய்யப்பட்டது</string>
+    <!-- Button text to retry scanning the QR code -->
+    <string name="QuickRestoreQRScreen__retry">மீண்டும் முயற்சி செய்</string>
+    <!-- Failure text when a code could not be generated -->
+    <string name="QuickRestoreQRScreen__failed">QR குறியீட்டை உருவாக்க முடியவில்லை</string>
+
+    <!-- Toast text hinting to submit a debug log with %d being how many more taps are left -->
+    <plurals name="RegistrationActivity_debug_log_hint">
+        <item quantity="one">பிழைத்திருத்த பதிவைச் சமர்ப்பிப்பதில் இருந்து இப்போது நீங்கள் %1$d விலகிவிட்டீர்கள்.</item>
+        <item quantity="other">பிழைத்திருத்த பதிவைச் சமர்ப்பிப்பதில் இருந்து இப்போது நீங்கள் %1$d படிகள் தொலைவில் உள்ளீர்கள்.</item>
+    </plurals>
+
+    <!-- PIN creation screen title. -->
+    <string name="PinCreationScreen__create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
+    <!-- PIN creation screen title when confirming the new Signal PIN. -->
+    <string name="PinCreationScreen__confirm_your_pin">Confirm your PIN</string>
+    <!-- Describes how to confirm the new Signal PIN. -->
+    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <!-- Describes the purpose of creating a Signal PIN. -->
+    <string name="PinCreationScreen__pins_can_help">நீங்கள் உங்கள் பேசியைத் தொலைத்துவிட்டால் உங்கள் கணக்கை மீட்டெடுக்க பின்கள் உதவும். </string>
+    <!-- Labels the button to learn more about Signal PINs. -->
+    <string name="PinCreationScreen__learn_more">மேலும் அறிக</string>
+    <!-- Labels the button to switch to the numeric PIN keyboard type. -->
+    <string name="PinCreationScreen__switch_to_numeric">எண்ணியலுக்கு மாறுக</string>
+    <!-- Labels the button to switch to the alphanumeric PIN keyboard type. -->
+    <string name="PinCreationScreen__switch_to_alphanumeric">எண்ணெழுத்துக்கு மாறுக</string>
+    <!-- Labels the button to submit a new Signal PIN. -->
+    <string name="PinCreationScreen__next">அடுத்தது</string>
+    <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
+    <string name="PinCreationScreen__pin_at_least_4_digits">PIN must be at least 4 digits</string>
+    <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
+    <string name="PinCreationScreen__pin_at_least_4_characters">PIN must be at least 4 characters</string>
+    <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
+    <string name="PinCreationScreen__reenter_pin">Re-enter PIN</string>
+
+    <!-- PIN entry screen title when registration lock is active. -->
+    <string name="PinEntryScreen__registration_lock">பதிவு பூட்டு</string>
+    <!-- PIN entry screen title when restoring an account. -->
+    <string name="PinEntryScreen__enter_your_pin">உங்கள் பின்னை உள்ளிடவும்</string>
+    <!-- Describes the PIN that needs to be entered. -->
+    <string name="PinEntryScreen__enter_the_pin_you_created">நீங்கள் முதலில் சிக்னலை நிறுவியபோது உருவாக்கிய பின்னை உள்ளிடுங்கள்</string>
+    <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
+    <plurals name="PinEntryScreen__incorrect_pin">
+        <item quantity="one">தவறான பின். %1$d முயற்சிகள் மீதமுள்ளன.</item>
+        <item quantity="other">தவறான பின். %1$dமுயற்சிகள் மீதமுள்ளன.</item>
+    </plurals>
+    <!-- Labels the button to get help with PIN entry. -->
+    <string name="PinEntryScreen__need_help">உங்களுக்கு உதவி வேண்டுமா?</string>
+    <!-- Labels the button to switch between the numeric and alphanumeric keyboard. -->
+    <string name="PinEntryScreen__switch_keyboard">கீபோர்டை மாற்றுக</string>
+    <!-- Labels the button to skip PIN entry. -->
+    <string name="PinEntryScreen__skip">தவிர்</string>
+    <!-- Labels the button to submit the PIN. -->
+    <string name="PinEntryScreen__continue">தொடர்</string>
+
+    <!-- Title for the screen asking the user to grant the notification permission -->
+    <string name="AllowNotificationsScreen__allow_notifications">Allow Notifications</string>
+    <!-- Description for the screen asking the user to grant the notification permission -->
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <!-- Button label that dismisses the notification permission request without granting it -->
+    <string name="AllowNotificationsScreen__not_now">இப்போது வேண்டாம்</string>
+    <!-- Button label that proceeds with the notification permission request -->
+    <string name="AllowNotificationsScreen__next">அடுத்தது</string>
+
+    <!-- Title shown while messages are syncing from the primary device -->
+    <string name="MessageSyncScreen__syncing_messages">மெசேஜ்களை ஒத்திசைக்கிறது</string>
+    <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
+    <string name="MessageSyncScreen__downloading_s_of_s">%2$s இல் %1$s ஐப் பதிவிறக்குகிறது</string>
+    <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
+    <string name="MessageSyncScreen__learn_more">மேலும் அறிக</string>
+    <!-- Button label that cancels the in-progress message sync -->
+    <string name="MessageSyncScreen__cancel">ரத்துசெய்</string>
+
+    <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
+    <string name="LinkAccountScreen__open_signal_on_your_phone">உங்கள் மொபைலில் சிக்னல்-ஐத் திறக்கவும்</string>
+    <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <!-- Button label opening help content for users who can\'t complete the link-account steps -->
+    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
+    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
+    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <!-- Error label shown in place of the QR code if it could not be generated -->
+    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
+    <string name="LinkAccountScreen__create_account">கணக்கை உருவாக்கவும்</string>
 </resources>

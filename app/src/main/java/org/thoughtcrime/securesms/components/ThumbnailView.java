@@ -36,6 +36,7 @@ import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 
+import org.signal.core.models.media.TransformProperties;
 import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.core.util.logging.Log;
@@ -608,7 +609,14 @@ public class ThumbnailView extends FrameLayout {
   }
 
   private RequestBuilder<Drawable> buildThumbnailRequestBuilder(@NonNull RequestManager requestManager, @NonNull Slide slide) {
-    RequestBuilder<Drawable> requestBuilder = applySizing(requestManager.load(new DecryptableUri(Objects.requireNonNull(slide.getDisplayUri())))
+    long                videoTrimStartTimeUs = 0;
+    TransformProperties transformProperties  = slide.asAttachment().transformProperties;
+
+    if (transformProperties != null && !transformProperties.shouldSkipTransform()) {
+      videoTrimStartTimeUs = transformProperties.videoTrimStartTimeUs;
+    }
+
+    RequestBuilder<Drawable> requestBuilder = applySizing(requestManager.load(new DecryptableUri(Objects.requireNonNull(slide.getDisplayUri()), videoTrimStartTimeUs))
                                                               .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                                                               .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
                                                               .transition(withCrossFade()));

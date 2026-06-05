@@ -31,7 +31,7 @@ public class SignedPreKeyEntity extends PreKeyEntity {
 
   public SignedPreKeyEntity() {}
 
-  public SignedPreKeyEntity(int keyId, ECPublicKey publicKey, byte[] signature) {
+  public SignedPreKeyEntity(long keyId, ECPublicKey publicKey, byte[] signature) {
     super(keyId, publicKey);
     this.signature = signature;
   }

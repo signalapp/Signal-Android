@@ -12,20 +12,29 @@ import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.signal.core.util.SleepTimer
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.libsignal.internal.CompletableFuture
+import org.signal.libsignal.net.AuthenticatedChatConnection
 import org.signal.libsignal.net.BadRequestError
+import org.signal.libsignal.net.ChatConnection
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.UnauthenticatedChatConnection
+import org.signal.network.websocket.WebSocketRequestMessage
+import org.signal.network.websocket.WebSocketResponseMessage
+import org.signal.network.websocket.WebsocketResponse
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.messages.EnvelopeResponse
-import org.whispersystems.signalservice.api.util.SleepTimer
 import org.whispersystems.signalservice.internal.push.Envelope
+import org.whispersystems.signalservice.internal.util.awaitRequest
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection
-import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
-import org.whispersystems.signalservice.internal.websocket.WebSocketResponseMessage
-import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
 import java.io.IOException
 import java.util.concurrent.CancellationException
 import java.util.concurrent.CompletionException
@@ -55,6 +64,7 @@ sealed class SignalWebSocket(
     const val FOREGROUND_KEEPALIVE = "Foregrounded"
   }
 
+  @Volatile
   private var connection: WebSocketConnection? = null
   val connectionName
     get() = connection?.name ?: "[null]"
@@ -65,7 +75,10 @@ sealed class SignalWebSocket(
   private val keepAliveTokens: MutableSet<String> = CopyOnWriteArraySet()
   private val keepAliveChangeListeners: MutableSet<Listener> = CopyOnWriteArraySet()
 
-  private var delayedDisconnectThread: DelayedDisconnectThread? = null
+  private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
+  @Volatile
+  private var delayedDisconnectJob: Job? = null
 
   val state: Observable<WebSocketConnectionState> = _state
   val stateSnapshot: WebSocketConnectionState
@@ -88,7 +101,7 @@ sealed class SignalWebSocket(
     if (connection != null) {
       disposable.dispose()
 
-      connection!!.disconnect()
+      connection!!.shutdown()
       connection = null
 
       if (!_state.value!!.isFailure) {
@@ -117,8 +130,8 @@ sealed class SignalWebSocket(
     }
 
     synchronized(this) {
-      delayedDisconnectThread?.abort()
-      delayedDisconnectThread = null
+      delayedDisconnectJob?.cancel()
+      delayedDisconnectJob = null
 
       if (canConnect.canConnect()) {
         try {
@@ -153,7 +166,7 @@ sealed class SignalWebSocket(
 
   fun request(request: WebSocketRequestMessage): Single<WebsocketResponse> {
     return try {
-      delayedDisconnectThread?.resetLastInteractionTime()
+      restartDelayedDisconnectIfNecessary()
       getWebSocket().sendRequest(request)
     } catch (e: IOException) {
       Single.error(e)
@@ -162,11 +175,19 @@ sealed class SignalWebSocket(
 
   fun request(request: WebSocketRequestMessage, timeout: Duration): Single<WebsocketResponse> {
     return try {
-      delayedDisconnectThread?.resetLastInteractionTime()
+      restartDelayedDisconnectIfNecessary()
       getWebSocket().sendRequest(request, timeout.inWholeSeconds)
     } catch (e: IOException) {
       Single.error(e)
     }
+  }
+
+  /**
+   * Coroutine-friendly variant of [request].
+   */
+  suspend fun requestSuspend(request: WebSocketRequestMessage, timeout: Duration = WebSocketConnection.DEFAULT_SEND_TIMEOUT): WebsocketResponse {
+    restartDelayedDisconnectIfNecessary()
+    return getWebSocket().sendRequestSuspend(request, timeout)
   }
 
   @Throws(IOException::class)
@@ -175,25 +196,42 @@ sealed class SignalWebSocket(
   }
 
   /**
-   * Executes the given callback with the underlying libsignal chat connection when available.
-   *
-   * This is only supported for LibSignal-based connections.
-   *
-   * @param callback The callback to execute with the connection. Should be very quick and
-   *                 non-blocking, because it may block other operations on that connection.
+   * Issues a libsignal future-returning request on the chat connection, awaits the result,
+   * and converts any failure into a [RequestResult] error variant.
    */
-  suspend fun <T> runWithChatConnection(callback: (org.signal.libsignal.net.ChatConnection) -> T): T {
-    return getWebSocket().runWithChatConnection(callback)
+  protected suspend fun <Result, Error : BadRequestError> runCatchingWithChatConnectionInternal(
+    callback: (ChatConnection) -> CompletableFuture<RequestResult<Result, Error>>
+  ): RequestResult<Result, Error> {
+    return try {
+      val future = getWebSocket().runWithChatConnection(callback)
+      future.awaitRequest()
+    } catch (e: kotlinx.coroutines.CancellationException) {
+      throw e
+    } catch (throwable: Throwable) {
+      throwable.toNetworkRequestResult()
+    }
   }
 
-  @Synchronized
   @Throws(WebSocketUnavailableException::class)
   protected fun getWebSocket(): WebSocketConnection {
     if (!canConnect.canConnect()) {
       throw WebSocketUnavailableException()
     }
 
+    connection?.takeIf { !it.isDead() }?.let { return it }
+
+    return getOrCreateWebSocketLocked()
+  }
+
+  @Synchronized
+  @Throws(WebSocketUnavailableException::class)
+  private fun getOrCreateWebSocketLocked(): WebSocketConnection {
+    if (!canConnect.canConnect()) {
+      throw WebSocketUnavailableException()
+    }
+
     if (connection == null || connection?.isDead() == true) {
+      connection?.shutdown()
       disposable.dispose()
 
       disposable = CompositeDisposable()
@@ -216,8 +254,25 @@ sealed class SignalWebSocket(
 
   private fun startDelayedDisconnectIfNecessary() {
     if (connection.isAlive() && keepAliveTokens.isEmpty()) {
-      delayedDisconnectThread?.abort()
-      delayedDisconnectThread = DelayedDisconnectThread().also { it.start() }
+      delayedDisconnectJob?.cancel()
+      delayedDisconnectJob = scope.launch {
+        Log.v(TAG, "$connectionName Disconnect scheduled in $disconnectTimeout")
+        delay(disconnectTimeout)
+        if (!shouldSendKeepAlives()) {
+          disconnect()
+        }
+      }
+    }
+  }
+
+  private fun restartDelayedDisconnectIfNecessary() {
+    if (delayedDisconnectJob?.isActive != true) {
+      return
+    }
+    synchronized(this) {
+      if (delayedDisconnectJob?.isActive == true) {
+        startDelayedDisconnectIfNecessary()
+      }
     }
   }
 
@@ -225,50 +280,6 @@ sealed class SignalWebSocket(
   fun forceNewWebSocket() {
     Log.i(TAG, "$connectionName Forcing new WebSocket, canConnect: ${canConnect.canConnect()}")
     disconnect()
-  }
-
-  /**
-   * Allow the WebSocket to self destruct if there are no keep alive tokens and it's been longer
-   * than [disconnectTimeout] since the last request was made.
-   */
-  private inner class DelayedDisconnectThread : Thread() {
-    private var abort = false
-
-    @Volatile
-    private var lastInteractionTime = Duration.ZERO
-
-    fun abort() {
-      if (!abort && isAlive) {
-        Log.v(TAG, "$connectionName Scheduled disconnect aborted.")
-        abort = true
-        interrupt()
-      }
-    }
-
-    fun resetLastInteractionTime() {
-      lastInteractionTime = System.currentTimeMillis().milliseconds
-    }
-
-    override fun run() {
-      lastInteractionTime = System.currentTimeMillis().milliseconds
-      try {
-        while (!abort && (lastInteractionTime + disconnectTimeout) > System.currentTimeMillis().milliseconds) {
-          val now = System.currentTimeMillis().milliseconds
-          if (lastInteractionTime > now) {
-            lastInteractionTime = now
-          }
-          val sleepDuration = (lastInteractionTime + disconnectTimeout) - now
-          if (sleepDuration.isPositive()) {
-            Log.v(TAG, "$connectionName Disconnect scheduled in $sleepDuration")
-            sleepTimer.sleep(sleepDuration.inWholeMilliseconds)
-          }
-        }
-      } catch (_: InterruptedException) { }
-
-      if (!abort && !shouldSendKeepAlives()) {
-        disconnect()
-      }
-    }
   }
 
   private fun WebSocketConnection?.isAlive(): Boolean {
@@ -330,33 +341,43 @@ sealed class SignalWebSocket(
       }
     }
 
-    suspend fun <Result, Error : BadRequestError> runCatchingWithUnauthChatConnection(
-      callback: (UnauthenticatedChatConnection) -> CompletableFuture<RequestResult<Result, Error>>
-    ): CompletableFuture<RequestResult<Result, Error>> {
-      val requestFuture = try {
-        getWebSocket().runWithChatConnection { chatConnection ->
-          val unauthenticatedConnection = chatConnection as? UnauthenticatedChatConnection
-            ?: throw IllegalStateException("Expected unauthenticated chat connection but got ${chatConnection::class.java.simpleName}")
-          callback(unauthenticatedConnection)
-        }
-      } catch (throwable: Throwable) {
-        return CompletableFuture.completedFuture(throwable.toNetworkRequestResult())
+    /**
+     * Coroutine-friendly variant of the sealed-sender [request].
+     */
+    suspend fun requestSuspend(requestMessage: WebSocketRequestMessage, sealedSenderAccess: SealedSenderAccess): WebsocketResponse {
+      val headers: MutableList<String> = requestMessage.headers.toMutableList()
+      if (sealedSenderAccess.applyHeader()) {
+        headers.add(sealedSenderAccess.header)
       }
 
-      return requestFuture.handle { result, throwable ->
-        when {
-          throwable != null -> throwable.toNetworkRequestResult()
-          result != null -> result
-          else -> RequestResult.ApplicationError(IllegalStateException("RequestResult was null"))
+      val message = requestMessage
+        .newBuilder()
+        .headers(headers)
+        .build()
+
+      val response = requestSuspend(message)
+      if (response.status == 401) {
+        val fallback = sealedSenderAccess.switchToFallback()
+        if (fallback != null) {
+          return requestSuspend(requestMessage, fallback)
         }
       }
+      return response
     }
+
+    suspend fun <Result, Error : BadRequestError> runCatchingWithChatConnection(
+      callback: (UnauthenticatedChatConnection) -> CompletableFuture<RequestResult<Result, Error>>
+    ): RequestResult<Result, Error> = runCatchingWithChatConnectionInternal { callback(it as UnauthenticatedChatConnection) }
   }
 
   /**
    * WebSocket type for communicating with the server with authentication. Also known as "identified".
    */
   class AuthenticatedWebSocket(connectionFactory: WebSocketFactory, canConnect: CanConnect, sleepTimer: SleepTimer, disconnectTimeoutMs: Long) : SignalWebSocket(connectionFactory, canConnect, sleepTimer, disconnectTimeoutMs.milliseconds) {
+
+    suspend fun <Result, Error : BadRequestError> runCatchingWithChatConnection(
+      callback: (AuthenticatedChatConnection) -> CompletableFuture<RequestResult<Result, Error>>
+    ): RequestResult<Result, Error> = runCatchingWithChatConnectionInternal { callback(it as AuthenticatedChatConnection) }
 
     /**
      * The reads a batch of messages off of the websocket.

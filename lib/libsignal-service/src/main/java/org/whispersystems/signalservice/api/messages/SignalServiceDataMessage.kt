@@ -24,7 +24,6 @@ import org.whispersystems.signalservice.internal.push.DataMessage.Quote as Quote
  * @param groupContext The group information (or null if none).
  * @param attachments The attachments (or null if none).
  * @param body The message contents.
- * @param isEndSession Flag indicating whether this message should close a session.
  * @param expiresInSeconds Number of seconds in which the message should disappear after being seen.
  */
 class SignalServiceDataMessage private constructor(
@@ -32,7 +31,6 @@ class SignalServiceDataMessage private constructor(
   val groupContext: Optional<SignalServiceGroupV2>,
   val attachments: Optional<List<SignalServiceAttachment>>,
   val body: Optional<String>,
-  val isEndSession: Boolean,
   val expiresInSeconds: Int,
   val expireTimerVersion: Int,
   val isExpirationUpdate: Boolean,
@@ -89,7 +87,6 @@ class SignalServiceDataMessage private constructor(
     private var groupV2: SignalServiceGroupV2? = null
     private val attachments: MutableList<SignalServiceAttachment> = LinkedList<SignalServiceAttachment>()
     private var body: String? = null
-    private var endSession: Boolean = false
     private var expiresInSeconds: Int = 0
     private var expireTimerVersion: Int = 1
     private var expirationUpdate: Boolean = false
@@ -132,12 +129,6 @@ class SignalServiceDataMessage private constructor(
 
     fun withBody(body: String?): Builder {
       this.body = body
-      return this
-    }
-
-    @JvmOverloads
-    fun asEndSessionMessage(endSession: Boolean = true): Builder {
-      this.endSession = endSession
       return this
     }
 
@@ -277,7 +268,6 @@ class SignalServiceDataMessage private constructor(
         groupContext = groupV2.asOptional(),
         attachments = attachments.asOptional(),
         body = body.emptyIfStringEmpty(),
-        isEndSession = endSession,
         expiresInSeconds = expiresInSeconds,
         expireTimerVersion = expireTimerVersion,
         isExpirationUpdate = expirationUpdate,

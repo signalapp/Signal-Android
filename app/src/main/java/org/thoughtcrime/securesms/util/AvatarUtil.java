@@ -42,6 +42,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
+import org.signal.core.util.DrawableUtil;
 
 public final class AvatarUtil {
 
@@ -114,7 +115,7 @@ public final class AvatarUtil {
 
   @WorkerThread
   public static @NonNull IconCompat getIconCompat(@NonNull Context context, @NonNull Recipient recipient) {
-    if (Build.VERSION.SDK_INT > 29) {
+    if (Build.VERSION.SDK_INT > 29 && Build.VERSION.SDK_INT < 36) {
       return IconCompat.createWithContentUri(AvatarProvider.getContentUri(recipient.getId()));
     } else {
       return IconCompat.createWithBitmap(getBitmapForNotification(context, recipient, AdaptiveBitmapMetrics.getInnerWidth()));

@@ -3,25 +3,21 @@
 import com.android.build.api.dsl.ManagedVirtualDevice
 import org.gradle.api.JavaVersion
 import org.gradle.kotlin.dsl.extra
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 val benchmarkLibs = the<org.gradle.accessors.dm.LibrariesForBenchmarkLibs>()
 
 plugins {
     id("com.android.test")
-    id("org.jetbrains.kotlin.android")
 }
 
 android {
     namespace = "org.signal.benchmark"
-    compileSdkVersion = libs.versions.compileSdk.get()
+    compileSdkVersion(libs.versions.compileSdk.get())
 
     compileOptions {
         sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
         targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
-    }
-
-    kotlinOptions {
-        jvmTarget = libs.versions.kotlinJvmTarget.get()
     }
 
     defaultConfig {
@@ -61,6 +57,12 @@ android {
         }
     }
 
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.fromTarget(libs.versions.kotlinJvmTarget.get())
+    }
 }
 
 dependencies {

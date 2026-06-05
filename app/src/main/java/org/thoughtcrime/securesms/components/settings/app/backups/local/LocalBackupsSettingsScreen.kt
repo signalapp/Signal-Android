@@ -233,7 +233,15 @@ internal fun LocalBackupsSettingsScreen(
   }
 
   if (state.isDeleting) {
-    Dialogs.IndeterminateProgressDialog(message = stringResource(id = R.string.BackupDialog_deleting_local_backup))
+    val message = stringResource(id = R.string.BackupDialog_deleting_local_backup)
+    if (state.deleteTotal > 0) {
+      Dialogs.DeterminateProgressDialog(
+        message = message,
+        progress = { state.deleteCompleted.toFloat() / state.deleteTotal }
+      )
+    } else {
+      Dialogs.IndeterminateProgressDialog(message = message)
+    }
   }
 }
 

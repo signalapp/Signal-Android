@@ -27,6 +27,8 @@ import org.signal.core.util.billing.BillingPurchaseState
 import org.signal.core.util.billing.BillingResponseCode
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
+import org.signal.network.NetworkResult
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -42,8 +44,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure

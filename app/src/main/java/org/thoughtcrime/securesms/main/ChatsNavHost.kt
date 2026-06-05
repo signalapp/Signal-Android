@@ -34,6 +34,7 @@ import androidx.compose.ui.graphics.layer.GraphicsLayer
 import androidx.compose.ui.graphics.layer.drawLayer
 import androidx.compose.ui.graphics.rememberGraphicsLayer
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.unit.dp
 import androidx.fragment.compose.AndroidFragment
 import androidx.fragment.compose.rememberFragmentState
@@ -43,11 +44,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
-import androidx.window.core.layout.WindowSizeClass
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import org.signal.core.ui.isSplitPane
+import org.signal.core.ui.rememberIsSplitPane
 import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavHostFragment
 import org.thoughtcrime.securesms.compose.FragmentBackHandler
@@ -64,19 +64,25 @@ import org.thoughtcrime.securesms.window.AppScaffoldAnimationState
 import kotlin.reflect.typeOf
 import kotlin.time.Duration.Companion.milliseconds
 
+private val conversationArgsType = typeOf<ConversationArgs>()
+private val recipientIdType = typeOf<RecipientId>()
+private val messageIdType = typeOf<MessageId>()
+
 fun NavGraphBuilder.chatNavGraphBuilder(
   chatNavGraphState: ChatNavGraphState
 ) {
   composable<MainNavigationDetailLocation.Empty> {
-    EmptyDetailScreen()
+    if (LocalResources.current.rememberIsSplitPane()) {
+      EmptyDetailScreen()
+    }
   }
 
-  composable<MainNavigationDetailLocation.Chats.Conversation>(
+  composable<MainNavigationDetailLocation.Conversation>(
     typeMap = mapOf(
-      typeOf<ConversationArgs>() to JsonSerializableNavType(ConversationArgs.serializer())
+      conversationArgsType to JsonSerializableNavType(ConversationArgs.serializer())
     )
   ) { navBackStackEntry ->
-    val route = navBackStackEntry.toRoute<MainNavigationDetailLocation.Chats.Conversation>()
+    val route = navBackStackEntry.toRoute<MainNavigationDetailLocation.Conversation>()
     val fragmentState = key(route) { rememberFragmentState() }
     val context = LocalContext.current
 
@@ -149,8 +155,8 @@ fun NavGraphBuilder.chatNavGraphBuilder(
 
   composable<MainNavigationDetailLocation.Chats.MessageDetails>(
     typeMap = mapOf(
-      typeOf<RecipientId>() to JsonSerializableNavType(RecipientId.serializer()),
-      typeOf<MessageId>() to MessageId.NavType()
+      recipientIdType to JsonSerializableNavType(RecipientId.serializer()),
+      messageIdType to MessageId.NavType()
     )
   ) { navBackStackEntry ->
     val context = LocalContext.current
@@ -175,13 +181,13 @@ fun NavGraphBuilder.chatNavGraphBuilder(
 
   composable<MainNavigationDetailLocation.Chats.ConversationSettings>(
     typeMap = mapOf(
-      typeOf<RecipientId>() to JsonSerializableNavType(RecipientId.serializer())
+      recipientIdType to JsonSerializableNavType(RecipientId.serializer())
     )
   ) { navBackStackEntry ->
 
     val navigatorProvider = LocalContext.current as? MainNavigator.NavigatorProvider
-    val fragmentState = key(route) { rememberFragmentState() }
     val route = navBackStackEntry.toRoute<MainNavigationDetailLocation.Chats.ConversationSettings>()
+    val fragmentState = key(route) { rememberFragmentState() }
     val arguments: Bundle? by produceState(null, route.recipientId) {
       value = ConversationSettingsNavHostFragment.createArgs(route.recipientId)
     }
@@ -247,17 +253,17 @@ private fun Transition<Boolean>.chatAnimationState(hasFake: Boolean): AppScaffol
  */
 @Stable
 class ChatNavGraphState private constructor(
-  val windowSizeClass: WindowSizeClass,
+  val isSplitPane: Boolean,
   val graphicsLayer: GraphicsLayer
 ) {
   companion object {
     @Composable
-    fun remember(windowSizeClass: WindowSizeClass): ChatNavGraphState {
+    fun remember(isSplitPane: Boolean): ChatNavGraphState {
       val graphicsLayer = rememberGraphicsLayer()
 
-      return remember(windowSizeClass) {
+      return remember(isSplitPane) {
         ChatNavGraphState(
-          windowSizeClass,
+          isSplitPane,
           graphicsLayer
         )
       }
@@ -271,7 +277,7 @@ class ChatNavGraphState private constructor(
 
   suspend fun writeGraphicsLayerToBitmap() {
     // toImageBitmap() uses LayerSnapshot which has format compatibility issues on Android 7 and below
-    if (Build.VERSION.SDK_INT >= 26 && !windowSizeClass.isSplitPane() && hasWrittenToGraphicsLayer) {
+    if (Build.VERSION.SDK_INT >= 26 && !isSplitPane && hasWrittenToGraphicsLayer) {
       chatBitmap = graphicsLayer.toImageBitmap()
     }
   }

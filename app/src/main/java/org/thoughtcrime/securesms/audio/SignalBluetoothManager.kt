@@ -16,8 +16,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.media.AudioManager
 import org.signal.core.util.logging.Log
+import org.signal.core.util.safeUnregisterReceiver
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.util.safeUnregisterReceiver
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioHandler
 import java.util.concurrent.TimeUnit
 

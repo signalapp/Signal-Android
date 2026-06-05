@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.internal.push;
 
 
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.svr.Svr3Credentials;
 
 public final class LockedException extends NonSuccessfulResponseCodeException {

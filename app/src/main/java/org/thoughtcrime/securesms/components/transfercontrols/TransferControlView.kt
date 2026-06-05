@@ -18,6 +18,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.ByteSize
+import org.signal.core.util.ThrottledDebouncer
 import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -29,7 +30,6 @@ import org.thoughtcrime.securesms.databinding.TransferControlsViewBinding
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.ThrottledDebouncer
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import java.util.UUID

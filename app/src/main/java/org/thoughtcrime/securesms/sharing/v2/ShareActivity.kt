@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Process
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -74,7 +76,9 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
   }
 
   private val directShareTarget: RecipientId?
-    get() = intent.getStringExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID).let { ConversationUtil.getRecipientId(it) }
+    get() = intent.getStringExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID)
+      .let { ConversationUtil.getRecipientId(it) }
+      ?.takeUnless { it.isUnknown }
 
   override fun onPreCreate() {
     super.onPreCreate()
@@ -194,12 +198,14 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
   override fun getDialogBackgroundColor(): Int = ContextCompat.getColor(this, R.color.signal_background_primary)
 
   private fun getUnresolvedShareData(): Result<UnresolvedShareData, IntentError> {
+    val isInternalShare = Build.VERSION.SDK_INT >= 34 && getLaunchedFromUid() == Process.myUid()
+
     return when (intent.action) {
       Intent.ACTION_SEND_MULTIPLE if intent.hasExtra(Intent.EXTRA_STREAM) -> {
         intent.getParcelableArrayListExtraCompat(Intent.EXTRA_STREAM, Uri::class.java)?.let { uris ->
           val text: CharSequence? = intent.getCharSequenceArrayListExtra(Intent.EXTRA_TEXT)
             ?.let { textExtras -> combineTextExtras(textExtras) }
-          Result.success(UnresolvedShareData.ExternalMultiShare(uris, text))
+          Result.success(UnresolvedShareData.ExternalMultiShare(uris, text, isInternalShare))
         } ?: Result.failure(IntentError.SEND_MULTIPLE_STREAM)
       }
 
@@ -215,7 +221,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
           extractSingleExtraTextFromIntent(IntentError.SEND_STREAM)
         } else {
           val text: CharSequence? = if (intent.hasExtra(Intent.EXTRA_TEXT)) intent.getCharSequenceExtra(Intent.EXTRA_TEXT) else null
-          Result.success(UnresolvedShareData.ExternalSingleShare(uri, intent.type, text))
+          Result.success(UnresolvedShareData.ExternalSingleShare(uri, intent.type, text, isInternalShare))
         }
       }
 
@@ -274,24 +280,30 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
 
     val multiShareArgs = shareEvent.getMultiShareArgs()
     lifecycleDisposable += ConversationIntents.createBuilder(this, shareEvent.contact.recipientId, -1L)
-      .subscribeBy { conversationIntentBuilder ->
-        conversationIntentBuilder
-          .withDataUri(multiShareArgs.dataUri)
-          .withDataType(multiShareArgs.dataType)
-          .withMedia(multiShareArgs.media)
-          .withDraftText(multiShareArgs.draftText)
-          .withStickerLocator(multiShareArgs.stickerLocator)
-          .asBorderless(multiShareArgs.isBorderless)
-          .withShareDataTimestamp(System.currentTimeMillis())
+      .subscribeBy(
+        onSuccess = { conversationIntentBuilder ->
+          conversationIntentBuilder
+            .withDataUri(multiShareArgs.dataUri)
+            .withDataType(multiShareArgs.dataType)
+            .withMedia(multiShareArgs.media)
+            .withDraftText(multiShareArgs.draftText)
+            .withStickerLocator(multiShareArgs.stickerLocator)
+            .asBorderless(multiShareArgs.isBorderless)
+            .withShareDataTimestamp(System.currentTimeMillis())
 
-        val conversationIntent = conversationIntentBuilder.build()
-        val mainActivityIntent = MainActivity.clearTop(this).apply {
-          action = ConversationIntents.ACTION
-          putExtras(conversationIntent)
+          val conversationIntent = conversationIntentBuilder.build()
+          val mainActivityIntent = MainActivity.clearTop(this).apply {
+            action = ConversationIntents.ACTION
+            putExtras(conversationIntent)
+          }
+          finish()
+          startActivity(mainActivityIntent)
+        },
+        onError = { throwable ->
+          Log.w(TAG, "Failed to build conversation intent for share target.", throwable)
+          finish()
         }
-        finish()
-        startActivity(mainActivityIntent)
-      }
+      )
   }
 
   private fun openMediaInterstitial(shareEvent: ShareEvent.OpenMediaInterstitial) {

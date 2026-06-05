@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.backup.proto.SharedPreference;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.keyvalue.SettingsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
@@ -97,7 +96,6 @@ public class TextSecurePreferences {
   private static final String DATABASE_UNENCRYPTED_SECRET   = "pref_database_unencrypted_secret";
   private static final String ATTACHMENT_ENCRYPTED_SECRET   = "pref_attachment_encrypted_secret";
   private static final String ATTACHMENT_UNENCRYPTED_SECRET = "pref_attachment_unencrypted_secret";
-  private static final String NEEDS_SQLCIPHER_MIGRATION     = "pref_needs_sql_cipher_migration";
 
   public static final String CALL_NOTIFICATIONS_PREF = "pref_call_notifications";
   public static final String CALL_RINGTONE_PREF      = "pref_call_ringtone";
@@ -334,15 +332,6 @@ public class TextSecurePreferences {
 
   public static long getNextBackupTime(@NonNull Context context) {
     return getLongPreference(context, BACKUP_TIME, -1);
-  }
-
-  public static void setNeedsSqlCipherMigration(@NonNull Context context, boolean value) {
-    setBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, value);
-    EventBus.getDefault().post(new SqlCipherMigrationConstraintObserver.SqlCipherNeedsMigrationEvent());
-  }
-
-  public static boolean getNeedsSqlCipherMigration(@NonNull Context context) {
-    return getBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, false);
   }
 
   public static void setAttachmentEncryptedSecret(@NonNull Context context, @NonNull String secret) {

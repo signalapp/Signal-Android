@@ -23,6 +23,7 @@ import java.io.ByteArrayOutputStream
 import java.io.EOFException
 import java.io.IOException
 import java.io.InputStream
+import java.security.MessageDigest
 import java.util.zip.GZIPInputStream
 import javax.crypto.Cipher
 import javax.crypto.CipherInputStream
@@ -49,6 +50,7 @@ class EncryptedBackupReader private constructor(
 
   companion object {
     const val MAC_SIZE = 32
+    private const val MAX_FORWARD_SECRECY_METADATA_SIZE = 16 * 1024
 
     /**
      * Estimated upperbound need to read backup secrecy metadata from the start of a file.
@@ -123,6 +125,9 @@ class EncryptedBackupReader private constructor(
         return null
       }
       val metadataLength = stream.readVarInt32()
+      if (metadataLength < 0 || metadataLength > MAX_FORWARD_SECRECY_METADATA_SIZE) {
+        throw IOException("Invalid forward secrecy metadata length: $metadataLength")
+      }
       return stream.readNBytesOrThrow(metadataLength)
     }
 
@@ -141,7 +146,7 @@ class EncryptedBackupReader private constructor(
       val calculatedMac = macStream.mac.doFinal()
       val expectedMac = dataStream.readNBytesOrThrow(MAC_SIZE)
 
-      if (!calculatedMac.contentEquals(expectedMac)) {
+      if (!MessageDigest.isEqual(calculatedMac, expectedMac)) {
         throw IOException("Invalid MAC!")
       }
     }

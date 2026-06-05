@@ -2,11 +2,13 @@ package org.thoughtcrime.securesms.lock.v2
 
 import android.app.Activity
 import android.content.DialogInterface
+import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.lock.v2.ConfirmSvrPinViewModel.SaveAnimation
 import org.thoughtcrime.securesms.megaphone.Megaphones
@@ -15,6 +17,11 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.SpanUtil
 
 internal class ConfirmSvrPinFragment : BaseSvrPinFragment<ConfirmSvrPinViewModel>() {
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    TemporaryScreenshotSecurity.bindToViewLifecycleOwner(this)
+  }
 
   override fun initializeViewStates() {
     val args = ConfirmSvrPinFragmentArgs.fromBundle(requireArguments())
@@ -115,6 +122,6 @@ internal class ConfirmSvrPinFragment : BaseSvrPinFragment<ConfirmSvrPinViewModel
   }
 
   private fun markMegaphoneSeenIfNecessary() {
-    AppDependencies.megaphoneRepository.markSeen(Megaphones.Event.PINS_FOR_ALL)
+    AppDependencies.megaphoneRepository.markInteractedWith(Megaphones.Event.PINS_FOR_ALL)
   }
 }

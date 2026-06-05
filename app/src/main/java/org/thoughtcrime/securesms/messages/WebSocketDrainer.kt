@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.messages
 import android.os.PowerManager
 import androidx.annotation.AnyThread
 import androidx.annotation.WorkerThread
+import org.signal.core.util.ServiceUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -13,7 +14,6 @@ import org.thoughtcrime.securesms.jobs.MarkerJob
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
 import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.util.PowerManagerCompat
-import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.WakeLockUtil
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit

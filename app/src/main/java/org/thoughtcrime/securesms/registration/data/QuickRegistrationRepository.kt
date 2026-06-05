@@ -16,13 +16,13 @@ import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.ecc.ECPublicKey
+import org.signal.network.NetworkResult
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.provisioning.RestoreMethod
 import java.io.IOException
 import kotlin.coroutines.coroutineContext

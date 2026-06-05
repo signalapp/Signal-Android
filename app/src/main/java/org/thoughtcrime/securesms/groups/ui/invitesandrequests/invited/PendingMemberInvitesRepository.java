@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;
 
-import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -28,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Executor;
+import java.util.stream.Collectors;
 
 import okio.ByteString;
 
@@ -59,8 +59,9 @@ final class PendingMemberInvitesRepository {
       ByteString                                   self               = SignalStore.account().requireAci().toByteString();
       boolean                                      selfIsAdmin        = v2GroupProperties.isAdmin(Recipient.self());
 
-      Stream.of(pendingMembersList)
-            .groupBy(m -> m.addedByAci)
+      pendingMembersList.stream()
+          .collect(Collectors.groupingBy(m -> m.addedByAci))
+          .entrySet()
             .forEach(g ->
               {
                 ByteString                   inviterAci     = g.getKey();

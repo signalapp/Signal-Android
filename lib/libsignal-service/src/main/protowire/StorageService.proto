@@ -172,6 +172,7 @@ message GroupV2Record {
   reserved   /* storySendEnabled */            9;
   StorySendMode storySendMode                = 10;
   optional AvatarColor avatarColor           = 11;
+  bytes         verifiedNameHash             = 12; // SHA-256 of UTF-8 encoded decrypted group title that was last verified
 }
 
 message Payments {
@@ -194,10 +195,13 @@ message AccountRecord {
       bytes  serviceIdBinary = 3; // service ID binary (i.e. 16 byte UUID for ACI, 1 byte prefix + 16 byte UUID for PNI)
     }
 
+    message ReleaseNotes {}
+
     oneof identifier {
-      Contact contact        = 1;
-      bytes   legacyGroupId  = 3;
-      bytes   groupMasterKey = 4;
+      Contact      contact        = 1;
+      bytes        legacyGroupId  = 3;
+      bytes        groupMasterKey = 4;
+      ReleaseNotes releaseNotes   = 5;
     }
   }
 
@@ -288,7 +292,7 @@ message AccountRecord {
            reserved                          /* backupsSubscriberId */                    36;
            reserved                          /* backupsSubscriberCurrencyCode */          37;
            reserved                          /* backupsSubscriptionManuallyCancelled */   38;
-  optional bool                              hasBackup                                  = 39; // Set to true after backups are enabled and one is uploaded.
+           reserved                          /* hasBackup */                              39;
   optional uint64                            backupTier                                 = 40; // See zkgroup for integer particular values. Unset if backups are not enabled.
            IAPSubscriberData                 backupSubscriberData                       = 41;
   optional AvatarColor                       avatarColor                                = 42;
@@ -297,6 +301,10 @@ message AccountRecord {
            bool                              notificationProfileSyncDisabled            = 45;
            bool                              automaticKeyVerificationDisabled           = 46;
            bool                              hasSeenAdminDeleteEducationDialog          = 47;
+  optional bool                              releaseNotesChatArchived                   = 48;
+  optional uint64                            releaseNotesChatMutedUntilTimestamp        = 49;
+  optional bool                              releaseNotesChatBlocked                    = 50;
+  optional bool                              releaseNotesChatMarkedUnread               = 51;
 }
 
 message StoryDistributionListRecord {

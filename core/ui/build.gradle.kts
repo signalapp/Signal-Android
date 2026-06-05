@@ -11,10 +11,6 @@ android {
     compose = true
   }
 
-  composeOptions {
-    kotlinCompilerExtensionVersion = "1.5.4"
-  }
-
   testFixtures {
     enable = true
   }
@@ -25,10 +21,8 @@ dependencies {
 
   api(project(":core:util"))
 
-  platform(libs.androidx.compose.bom).let { composeBom ->
-    api(composeBom)
-    androidTestApi(composeBom)
-  }
+  api(platform(libs.androidx.compose.bom))
+  androidTestImplementation(platform(libs.androidx.compose.bom))
 
   api(libs.androidx.compose.material3)
   api(libs.androidx.compose.material3.adaptive)

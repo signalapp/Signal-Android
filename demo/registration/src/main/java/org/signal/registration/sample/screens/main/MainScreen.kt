@@ -5,7 +5,10 @@
 
 package org.signal.registration.sample.screens.main
 
+import android.widget.Toast
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,6 +37,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -224,9 +230,24 @@ private fun RegistrationInfo(data: MainScreenState.ExistingRegistrationState) {
   }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun RegistrationField(label: String, value: String) {
-  Column(modifier = Modifier.padding(vertical = 4.dp)) {
+  val clipboardManager = LocalClipboardManager.current
+  val context = LocalContext.current
+
+  Column(
+    modifier = Modifier
+      .fillMaxWidth()
+      .combinedClickable(
+        onClick = {},
+        onLongClick = {
+          clipboardManager.setText(AnnotatedString(value))
+          Toast.makeText(context, "Copied $label", Toast.LENGTH_SHORT).show()
+        }
+      )
+      .padding(vertical = 4.dp)
+  ) {
     Text(
       text = label,
       style = MaterialTheme.typography.labelSmall,

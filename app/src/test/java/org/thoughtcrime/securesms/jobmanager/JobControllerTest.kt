@@ -13,10 +13,10 @@ import io.mockk.verify
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
+import org.signal.core.util.Debouncer
 import org.thoughtcrime.securesms.jobmanager.persistence.DependencySpec
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage
-import org.thoughtcrime.securesms.util.Debouncer
 import kotlin.time.Duration.Companion.seconds
 
 @Ignore("When running tests in bulk, this causes the JVM to OOM, I think because we're creating lots of threads that don't get cleaned up, and I haven't figured out a nice way to fix it yet.")

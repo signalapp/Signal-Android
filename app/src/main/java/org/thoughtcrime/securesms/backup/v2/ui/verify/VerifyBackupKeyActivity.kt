@@ -108,9 +108,10 @@ fun VerifyBackupPinScreen(
     append(stringResource(id = R.string.VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded))
     append(" ")
 
+    val supportUrl = stringResource(R.string.remote_backup_support_url)
     withLink(
       LinkAnnotation.Clickable(tag = "learn-more") {
-        CommunicationActions.openBrowserLink(context, context.getString(R.string.remote_backup_support_url))
+        CommunicationActions.openBrowserLink(context, supportUrl)
       }
     ) {
       withStyle(SpanStyle(color = MaterialTheme.colorScheme.primary)) {

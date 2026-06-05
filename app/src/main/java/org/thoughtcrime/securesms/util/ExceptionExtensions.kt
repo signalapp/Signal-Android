@@ -7,7 +7,7 @@
 
 package org.thoughtcrime.securesms.util
 
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import java.io.IOException
 
 /**

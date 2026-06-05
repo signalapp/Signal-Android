@@ -10,9 +10,11 @@ import io.mockk.every
 import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import org.junit.rules.ExternalResource
+import org.thoughtcrime.securesms.database.RemappedRecordsTestHelper
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.database.SearchTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.JdbcSqliteDatabase
 import org.thoughtcrime.securesms.testing.TestSignalDatabase
 
@@ -27,15 +29,21 @@ class SignalDatabaseRule : ExternalResource() {
     get() = signalDatabase.signalWritableDatabase
 
   override fun before() {
+    RecipientId.clearCache()
+    RemappedRecordsTestHelper.resetInstance()
+
     signalDatabase = inMemorySignalDatabase()
 
     mockkObject(SignalDatabase)
     every { SignalDatabase.instance } returns signalDatabase
+    every { SignalDatabase.inTransaction } answers { signalDatabase.signalWritableDatabase.inTransaction() }
   }
 
   override fun after() {
     unmockkObject(SignalDatabase)
     signalDatabase.close()
+    RecipientId.clearCache()
+    RemappedRecordsTestHelper.resetInstance()
   }
 
   companion object {

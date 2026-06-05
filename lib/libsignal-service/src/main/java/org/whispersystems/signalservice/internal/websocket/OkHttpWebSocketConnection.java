@@ -1,9 +1,14 @@
 package org.whispersystems.signalservice.internal.websocket;
 
+import org.signal.network.websocket.WebSocketRequestMessage;
+import org.signal.network.websocket.WebSocketResponseMessage;
+import org.signal.network.websocket.WebSocketMessage;
+import org.signal.network.websocket.WebsocketResponse;
+
 import org.jetbrains.annotations.NotNull;
 import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.api.push.TrustStore;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.api.util.TlsProxySocketFactory;

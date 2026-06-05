@@ -34,9 +34,9 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewaySelectorBottomSheet
-import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
-import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.app.subscription.thanks.ThanksForYourSupportBottomSheetDialogFragment
+import org.thoughtcrime.securesms.components.settings.app.subscription.ui.CurrencySelection
+import org.thoughtcrime.securesms.components.settings.app.subscription.ui.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
@@ -348,7 +348,7 @@ class DonateToSignalFragment :
       if (state.oneTimeDonationState.isOneTimeDonationLongRunning) {
         R.string.DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime
       } else if (state.oneTimeDonationState.isNonVerifiedIdeal) {
-        R.string.DonateToSignalFragment__your_ideal_payment_is_still_processing
+        R.string.DonateToSignalFragment__your_ideal_wero_payment_is_still_processing
       } else {
         R.string.DonateToSignalFragment__your_payment_is_still_being_processed_onetime
       }
@@ -356,7 +356,7 @@ class DonateToSignalFragment :
       if (state.monthlyDonationState.activeSubscription?.paymentMethod == ActiveSubscription.PaymentMethod.SEPA_DEBIT) {
         R.string.DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly
       } else if (state.monthlyDonationState.nonVerifiedMonthlyDonation != null) {
-        R.string.DonateToSignalFragment__your_ideal_payment_is_still_processing
+        R.string.DonateToSignalFragment__your_ideal_wero_payment_is_still_processing
       } else {
         R.string.DonateToSignalFragment__your_payment_is_still_being_processed_monthly
       }

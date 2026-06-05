@@ -10,7 +10,6 @@ data class InternalSettingsState(
   val gv2forceInvites: Boolean,
   val gv2ignoreP2PChanges: Boolean,
   val allowCensorshipSetting: Boolean,
-  val forceWebsocketMode: Boolean,
   val callingServer: String,
   val callingDataMode: CallManager.DataMode,
   val callingDisableTelecom: Boolean,
@@ -31,6 +30,8 @@ data class InternalSettingsState(
   val hasPendingOneTimeDonation: Boolean,
   val hevcEncoding: Boolean,
   val forceSplitPane: Boolean,
+  val forceSinglePane: Boolean,
   val useNewMediaActivity: Boolean,
-  val disableInternalUser: Boolean
+  val disableInternalUser: Boolean,
+  val searchQuery: String = ""
 )

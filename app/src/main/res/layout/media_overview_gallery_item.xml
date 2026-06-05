@@ -4,7 +4,8 @@
     tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:foreground="@drawable/media_overview_item_selected_foreground">
 
     <org.thoughtcrime.securesms.components.ThumbnailView
         android:id="@+id/image"

@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -96,7 +96,7 @@ public class RefreshAttributesJob extends BaseJob {
     }
 
     int       registrationId              = SignalStore.account().getRegistrationId();
-    boolean   fetchesMessages             = !SignalStore.account().isFcmEnabled() || SignalStore.internal().isWebsocketModeForced();
+    boolean   fetchesMessages             = !SignalStore.account().isFcmEnabled() || SignalStore.settings().getForceWebsocketMode().isEnabled();
     byte[]    unidentifiedAccessKey       = UnidentifiedAccess.deriveAccessKeyFrom(ProfileKeyUtil.getSelfProfileKey());
     boolean   universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
     String    registrationLockV2          = null;

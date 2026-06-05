@@ -5,6 +5,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -12,7 +13,6 @@ import org.thoughtcrime.securesms.jobs.protos.Svr3MirrorJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.Svr3Migration
 import org.thoughtcrime.securesms.pin.SvrRepository
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.PinChangeSession
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3

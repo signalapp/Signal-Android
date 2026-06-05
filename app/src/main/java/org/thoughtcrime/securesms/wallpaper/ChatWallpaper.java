@@ -33,6 +33,10 @@ public interface ChatWallpaper extends Parcelable {
     return true;
   }
 
+  default boolean isPrefetched() {
+    return true;
+  }
+
   default boolean isPhoto() {
     return false;
   }

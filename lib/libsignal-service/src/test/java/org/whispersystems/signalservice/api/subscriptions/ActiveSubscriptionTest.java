@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.subscriptions;
 
 import org.junit.Test;
-import org.whispersystems.signalservice.internal.util.JsonUtil;
+import org.signal.network.util.JsonUtil;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

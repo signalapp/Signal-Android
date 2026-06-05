@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.conversation.v2
 
-import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -15,32 +14,39 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
@@ -50,7 +56,6 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 
 /**
@@ -83,84 +88,196 @@ class SafetyTipsBottomSheetDialog : ComposeBottomSheetDialogFragment() {
   }
 }
 
-data class SafetyTipData(
+private data class SafetyTipSummary(
+  @DrawableRes val icon: Int,
+  @StringRes val titleText: Int,
+  @StringRes val messageText: Int
+)
+
+private data class SafetyTipDetail(
   @DrawableRes val heroImage: Int,
   @StringRes val titleText: Int,
   @StringRes val messageText: Int
 )
 
-private val tips = listOf(
-  SafetyTipData(heroImage = R.drawable.safety_tip0, titleText = R.string.SafetyTips_tip0_title, messageText = R.string.SafetyTips_tip0_message),
-  SafetyTipData(heroImage = R.drawable.safety_tip1, titleText = R.string.SafetyTips_tip1_title, messageText = R.string.SafetyTips_tip1_message),
-  SafetyTipData(heroImage = R.drawable.safety_tip2, titleText = R.string.SafetyTips_tip2_title, messageText = R.string.SafetyTips_tip2_message),
-  SafetyTipData(heroImage = R.drawable.safety_tip3, titleText = R.string.SafetyTips_tip3_title, messageText = R.string.SafetyTips_tip3_message),
-  SafetyTipData(heroImage = R.drawable.safety_tip4, titleText = R.string.SafetyTips_tip4_title, messageText = R.string.SafetyTips_tip4_message)
+private val summaryTips = listOf(
+  SafetyTipSummary(icon = R.drawable.safetytip_48_01, titleText = R.string.SafetyTips_summary_tip0_title, messageText = R.string.SafetyTips_summary_tip0_message),
+  SafetyTipSummary(icon = R.drawable.safetytip_48_02, titleText = R.string.SafetyTips_summary_tip1_title, messageText = R.string.SafetyTips_summary_tip1_message),
+  SafetyTipSummary(icon = R.drawable.safetytip_48_03, titleText = R.string.SafetyTips_summary_tip2_title, messageText = R.string.SafetyTips_summary_tip2_message)
 )
 
-@DayNightPreviews
+private val detailTips = listOf(
+  SafetyTipDetail(heroImage = R.drawable.safetytip_240_01, titleText = R.string.SafetyTips_detail_tip0_title, messageText = R.string.SafetyTips_detail_tip0_message),
+  SafetyTipDetail(heroImage = R.drawable.safetytip_240_02, titleText = R.string.SafetyTips_detail_tip1_title, messageText = R.string.SafetyTips_detail_tip1_message),
+  SafetyTipDetail(heroImage = R.drawable.safetytip_240_03, titleText = R.string.SafetyTips_detail_tip2_title, messageText = R.string.SafetyTips_detail_tip2_message),
+  SafetyTipDetail(heroImage = R.drawable.safetytip_240_04, titleText = R.string.SafetyTips_detail_tip3_title, messageText = R.string.SafetyTips_detail_tip3_message),
+  SafetyTipDetail(heroImage = R.drawable.safetytip_240_05, titleText = R.string.SafetyTips_detail_tip4_title, messageText = R.string.SafetyTips_detail_tip4_message),
+  SafetyTipDetail(heroImage = R.drawable.safetytip_240_06, titleText = R.string.SafetyTips_detail_tip5_title, messageText = R.string.SafetyTips_detail_tip5_message)
+)
+
 @Composable
-private fun SafetyTipsContentPreview() {
-  Previews.Preview {
-    Surface {
-      SafetyTipsContent()
+private fun SafetyTipsContent(forGroup: Boolean = false, modifier: Modifier = Modifier) {
+  var showDetails by rememberSaveable { mutableStateOf(false) }
+
+  if (showDetails) {
+    SafetyTipsDetailContent(modifier = modifier)
+  } else {
+    SafetyTipsSummaryContent(
+      onViewMore = { showDetails = true },
+      modifier = modifier
+    )
+  }
+}
+
+@Composable
+private fun SafetyTipsSummaryContent(
+  onViewMore: () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  val scrollState = rememberScrollState()
+
+  Column(
+    modifier = Modifier.fillMaxWidth()
+  ) {
+    Box(
+      contentAlignment = Alignment.Center,
+      modifier = Modifier.fillMaxWidth()
+    ) {
+      BottomSheets.Handle()
+    }
+
+    Column(
+      modifier = modifier
+        .fillMaxWidth()
+        .weight(weight = 1f, fill = false)
+        .verticalScroll(state = scrollState)
+        .padding(horizontal = 36.dp)
+    ) {
+      Text(
+        text = stringResource(id = R.string.SafetyTips_title),
+        style = MaterialTheme.typography.titleLarge,
+        modifier = Modifier
+          .padding(top = 28.dp, bottom = 34.dp)
+          .align(Alignment.CenterHorizontally)
+      )
+
+      summaryTips.forEach { tip ->
+        SafetyTipSummaryRow(tip)
+      }
+
+      Spacer(Modifier.height(8.dp))
+
+      Buttons.LargeTonal(
+        onClick = onViewMore,
+        modifier = Modifier.fillMaxWidth()
+      ) {
+        Text(text = stringResource(id = R.string.SafetyTips_view_more))
+      }
+
+      Spacer(Modifier.height(36.dp))
+    }
+  }
+}
+
+@Composable
+private fun SafetyTipSummaryRow(tip: SafetyTipSummary) {
+  Row(
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(bottom = 40.dp),
+    verticalAlignment = Alignment.Top
+  ) {
+    Image(
+      painter = painterResource(id = tip.icon),
+      contentDescription = null,
+      modifier = Modifier.size(48.dp)
+    )
+
+    Column(
+      modifier = Modifier
+        .weight(1f)
+        .padding(start = 24.dp)
+    ) {
+      Text(
+        text = stringResource(id = tip.titleText),
+        style = MaterialTheme.typography.titleMedium
+      )
+
+      Text(
+        text = stringResource(id = tip.messageText),
+        style = MaterialTheme.typography.bodyLarge,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.padding(top = 2.dp)
+      )
     }
   }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun SafetyTipsContent(forGroup: Boolean = false, modifier: Modifier = Modifier) {
-  Box(
-    contentAlignment = Alignment.Center,
-    modifier = Modifier.fillMaxWidth()
-  ) {
-    BottomSheets.Handle()
-  }
-
-  val size = remember { tips.size }
-  val pagerState = rememberPagerState(
-    pageCount = { size }
-  )
-  val scrollState = rememberScrollState()
+private fun SafetyTipsDetailContent(modifier: Modifier = Modifier) {
+  val size = remember { detailTips.size }
+  val pagerState = rememberPagerState(pageCount = { size })
+  val coroutineScope = rememberCoroutineScope()
 
   Column(
     modifier = Modifier.fillMaxWidth()
   ) {
+    Box(
+      contentAlignment = Alignment.Center,
+      modifier = Modifier.fillMaxWidth()
+    ) {
+      BottomSheets.Handle()
+    }
+
     Column(
       modifier = modifier
         .fillMaxWidth()
         .weight(weight = 1f, fill = false)
-        .padding(top = 22.dp)
-        .verticalScroll(state = scrollState)
     ) {
-      Text(
-        text = stringResource(id = R.string.SafetyTips_title),
-        style = MaterialTheme.typography.headlineMedium.copy(textAlign = TextAlign.Center),
-        modifier = Modifier
-          .padding(start = 24.dp, end = 24.dp, bottom = 4.dp, top = 26.dp)
-          .fillMaxWidth()
-      )
-
-      Text(
-        text = if (forGroup) stringResource(id = R.string.SafetyTips_subtitle_group) else stringResource(id = R.string.SafetyTips_subtitle_individual),
-        style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onSurfaceVariant),
-        modifier = Modifier
-          .padding(start = 36.dp, end = 36.dp)
-          .fillMaxWidth()
-      )
-
       HorizontalPager(
         state = pagerState,
         beyondViewportPageCount = size,
-        modifier = Modifier.padding(top = 24.dp)
-      ) {
-        SafetyTip(tips[it])
+        verticalAlignment = Alignment.Top,
+        modifier = Modifier.weight(weight = 1f, fill = false)
+      ) { page ->
+        SafetyTipDetailPage(detailTips[page])
+      }
+    }
+
+    Row(
+      horizontalArrangement = Arrangement.SpaceBetween,
+      verticalAlignment = Alignment.CenterVertically,
+      modifier = Modifier
+        .fillMaxWidth()
+        .padding(start = 24.dp, end = 24.dp, bottom = 36.dp, top = 16.dp)
+    ) {
+      if (pagerState.currentPage > 0) {
+        IconButton(
+          onClick = {
+            coroutineScope.launch {
+              pagerState.animateScrollToPage(pagerState.currentPage - 1)
+            }
+          },
+          colors = IconButtonDefaults.iconButtonColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+          ),
+          modifier = Modifier
+            .size(48.dp)
+            .clip(CircleShape)
+        ) {
+          Icon(
+            imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_right_24),
+            contentDescription = stringResource(R.string.SafetyTips_previous_tip),
+            modifier = Modifier.graphicsLayer(scaleX = -1f)
+          )
+        }
+      } else {
+        Spacer(Modifier.size(48.dp))
       }
 
       Row(
-        Modifier
-          .fillMaxWidth()
-          .padding(top = 20.dp),
         horizontalArrangement = Arrangement.Center
       ) {
         repeat(pagerState.pageCount) { iteration ->
@@ -178,103 +295,92 @@ private fun SafetyTipsContent(forGroup: Boolean = false, modifier: Modifier = Mo
           )
         }
       }
-    }
 
-    Surface(
-      shadowElevation = if (scrollState.canScrollForward) 8.dp else 0.dp,
-      modifier = Modifier.fillMaxWidth(),
-      color = SignalTheme.colors.colorSurface1,
-      contentColor = MaterialTheme.colorScheme.onSurface
-    ) {
-      Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier
-          .padding(start = 24.dp, end = 24.dp, bottom = 36.dp, top = 24.dp)
-          .fillMaxWidth()
-      ) {
-        val coroutineScope = rememberCoroutineScope()
-
-        TextButton(
-          onClick = {
-            coroutineScope.launch {
-              pagerState.animateScrollToPage(pagerState.currentPage - 1)
-            }
-          },
-          enabled = pagerState.currentPage > 0,
-          modifier = Modifier
-        ) {
-          Text(text = stringResource(id = R.string.SafetyTips_previous_tip))
-        }
-
-        Buttons.LargeTonal(
+      if (pagerState.currentPage < pagerState.pageCount - 1) {
+        IconButton(
           onClick = {
             coroutineScope.launch {
               pagerState.animateScrollToPage(pagerState.currentPage + 1)
             }
           },
-          enabled = pagerState.currentPage + 1 < pagerState.pageCount
+          colors = IconButtonDefaults.iconButtonColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+          ),
+          modifier = Modifier
+            .size(48.dp)
+            .clip(CircleShape)
         ) {
-          Text(text = stringResource(id = R.string.SafetyTips_next_tip))
+          Icon(
+            imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_right_24),
+            contentDescription = stringResource(R.string.SafetyTips_next_tip)
+          )
         }
+      } else {
+        Spacer(Modifier.size(48.dp))
       }
     }
   }
 }
 
-@Preview(name = "Light Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark Theme", group = "screen", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun SafetyTipPreview() {
-  Previews.Preview {
-    Surface {
-      SafetyTip(tips[0])
-    }
-  }
-}
-
-@Composable
-private fun SafetyTip(safetyTip: SafetyTipData) {
-  Surface(
-    shape = RoundedCornerShape(18.dp),
-    color = colorResource(id = R.color.safety_tip_background),
-    contentColor = MaterialTheme.colorScheme.onSurface,
+private fun SafetyTipDetailPage(tip: SafetyTipDetail) {
+  Column(
     modifier = Modifier
       .fillMaxWidth()
-      .padding(start = 24.dp, end = 24.dp)
+      .verticalScroll(rememberScrollState())
+      .padding(horizontal = 36.dp)
   ) {
-    Column(
-      horizontalAlignment = Alignment.CenterHorizontally,
+    Image(
+      painter = painterResource(id = tip.heroImage),
+      contentDescription = null,
       modifier = Modifier
         .fillMaxWidth()
-    ) {
-      Surface(
-        shape = RoundedCornerShape(12.dp),
-        color = colorResource(id = R.color.safety_tip_image_background),
-        modifier = Modifier
-          .padding(12.dp)
-          .fillMaxWidth()
-      ) {
-        Image(
-          painter = painterResource(id = safetyTip.heroImage),
-          contentDescription = null,
-          modifier = Modifier
-            .padding(16.dp)
-        )
-      }
+        .padding(top = 16.dp, bottom = 16.dp)
+        .height(160.dp)
+        .align(Alignment.CenterHorizontally)
+    )
 
-      Text(
-        text = stringResource(id = safetyTip.titleText),
-        style = MaterialTheme.typography.titleMedium,
-        modifier = Modifier
-          .padding(start = 24.dp, end = 24.dp, top = 8.dp, bottom = 4.dp)
-      )
+    Text(
+      text = stringResource(id = tip.titleText),
+      style = MaterialTheme.typography.titleMedium
+    )
 
-      Text(
-        text = stringResource(id = safetyTip.messageText),
-        style = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onSurfaceVariant, textAlign = TextAlign.Center),
-        modifier = Modifier
-          .padding(start = 24.dp, end = 24.dp, bottom = 24.dp)
-      )
+    Text(
+      text = stringResource(id = tip.messageText),
+      style = MaterialTheme.typography.bodyLarge,
+      color = MaterialTheme.colorScheme.onSurfaceVariant,
+      modifier = Modifier.padding(top = 4.dp)
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun SafetyTipsSummaryPreview() {
+  Previews.Preview {
+    Surface {
+      SafetyTipsSummaryContent(onViewMore = {})
+    }
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun SafetyTipsDetailPreview() {
+  Previews.Preview {
+    Surface {
+      SafetyTipsDetailContent()
+    }
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun SafetyTipDetailPagePreview() {
+  Previews.Preview {
+    Surface {
+      SafetyTipDetailPage(detailTips[0])
     }
   }
 }

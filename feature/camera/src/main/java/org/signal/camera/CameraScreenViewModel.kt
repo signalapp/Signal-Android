@@ -40,13 +40,14 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.zxing.BarcodeFormat
 import com.google.zxing.BinaryBitmap
+import com.google.zxing.ChecksumException
 import com.google.zxing.DecodeHintType
-import com.google.zxing.MultiFormatReader
+import com.google.zxing.FormatException
 import com.google.zxing.NotFoundException
 import com.google.zxing.PlanarYUVLuminanceSource
 import com.google.zxing.common.HybridBinarizer
+import com.google.zxing.qrcode.QRCodeReader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -101,11 +102,10 @@ class CameraScreenViewModel : ViewModel() {
    */
   val qrCodeDetected: Flow<String> = _qrCodeDetected.throttleLatest(2.seconds)
 
-  private val qrCodeReader = MultiFormatReader().apply {
-    val hints = EnumMap<DecodeHintType, Any>(DecodeHintType::class.java)
-    hints[DecodeHintType.POSSIBLE_FORMATS] = listOf(BarcodeFormat.QR_CODE)
-    hints[DecodeHintType.TRY_HARDER] = true
-    setHints(hints)
+  private val qrCodeReader = QRCodeReader()
+  private val qrCodeHint = EnumMap<DecodeHintType, Any>(DecodeHintType::class.java).apply {
+    set(DecodeHintType.TRY_HARDER, true)
+    set(DecodeHintType.CHARACTER_SET, "ISO-8859-1")
   }
 
   fun onEvent(event: CameraScreenEvents) {
@@ -779,12 +779,16 @@ class CameraScreenViewModel : ViewModel() {
       val binaryBitmap = BinaryBitmap(HybridBinarizer(source))
 
       try {
-        val result = qrCodeReader.decodeWithState(binaryBitmap)
-        qrCodeReader.reset() // Reset state after successful decode
-        _qrCodeDetected.tryEmit(result.text)
+        val result = qrCodeReader.decode(binaryBitmap, qrCodeHint)
+        if (result != null) {
+          _qrCodeDetected.tryEmit(result.text)
+        }
       } catch (_: NotFoundException) {
         // No QR code found in this frame, which is normal
-        qrCodeReader.reset() // Reset state for next attempt
+      } catch (_: ChecksumException) {
+        // QR code detected but checksum failed
+      } catch (_: FormatException) {
+        // QR code detected but format is invalid
       }
     } catch (e: Exception) {
       Log.e(TAG, "Error processing image for QR code: ${e.message}", e)

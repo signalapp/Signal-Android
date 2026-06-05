@@ -14,6 +14,7 @@ import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.audio.AudioSink
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.video.exo.SignalMediaSourceFactory
 
 /**
@@ -35,6 +36,10 @@ class VoiceNotePlayer @JvmOverloads constructor(
     .setHandleAudioBecomingNoisy(true).build()
 ) : ForwardingPlayer(internalPlayer) {
 
+  companion object {
+    private val TAG = Log.tag(VoiceNotePlayer::class.java)
+  }
+
   init {
     val audioManager = ContextCompat.getSystemService(context, AudioManager::class.java)
 
@@ -47,6 +52,10 @@ class VoiceNotePlayer @JvmOverloads constructor(
             .build()
         )
         .setOnAudioFocusChangeListener {
+          if (it == AudioManager.AUDIOFOCUS_LOSS || it == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+            Log.d(TAG, "Audio focus change to $it. Pausing.")
+            this.pause()
+          }
         }
         .build()
     } else {

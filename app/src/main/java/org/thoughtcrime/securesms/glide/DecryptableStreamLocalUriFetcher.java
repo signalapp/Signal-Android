@@ -35,16 +35,19 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
   private static final long TOTAL_PIXEL_SIZE_LIMIT = 200_000_000L; // 200 megapixels
 
   private final Context context;
+  private final long    thumbnailTimeUs;
 
-  DecryptableStreamLocalUriFetcher(Context context, Uri uri) {
+  DecryptableStreamLocalUriFetcher(Context context, Uri uri, long thumbnailTimeUs) {
     super(context.getContentResolver(), uri);
-    this.context = context;
+    this.context          = context;
+    this.thumbnailTimeUs  = thumbnailTimeUs;
   }
 
   @Override
   protected InputStream loadResource(Uri uri, ContentResolver contentResolver) throws FileNotFoundException {
     if (MediaUtil.hasVideoThumbnail(context, uri)) {
-      Bitmap thumbnail = MediaUtil.getVideoThumbnail(context, uri, 1000);
+      long   timeUs    = thumbnailTimeUs > 0 ? thumbnailTimeUs : 1000;
+      Bitmap thumbnail = MediaUtil.getVideoThumbnail(context, uri, timeUs);
 
       if (thumbnail != null) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

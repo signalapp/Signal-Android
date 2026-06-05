@@ -22,6 +22,7 @@
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
 
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
@@ -326,19 +327,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">发送</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">最近联系人</string>
-    <string name="CameraContacts_signal_contacts">Signal 联系人</string>
-    <string name="CameraContacts_signal_groups">Signal 群组</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="other">您最多可与 %1$d 个聊天分享。</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">选择 Signal 收件人</string>
-    <string name="CameraContacts_no_signal_contacts">没有 Signal 联系人</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">仅可通过相机按钮来发送照片给 Signal 联系人。 </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">未找到联系人？</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">邀请联系人加入 Signal</string>
     <string name="CameraContacts__menu_search">搜索</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -512,7 +500,7 @@
     <string name="ConversationActivity_unable_to_record_audio">无法录音！</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">您已不是此群组成员，不能向其发送消息。</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">您无法发送消息，因为此群组已解散。</string>
     <string name="ConversationActivity_only_s_can_send_messages">只有 %1$s 可发送消息。</string>
     <string name="ConversationActivity_admins">管理员</string>
     <string name="ConversationActivity_message_an_admin">给管理人发消息</string>
@@ -700,10 +688,18 @@
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">您接受了来自%1$s的消息请求。如果这是一个误操作，您可以选择以下任意操作。</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">请仔细审查</string>
-    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s未经过验证</string>
-    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
-    <string name="ConversationFragment_group_names_not_verified">%1$s未经过验证</string>
+    <!-- Text shown in conversation header when in a message request state that the name is not verified -->
+    <string name="ConversationFragment_name_not_verified">昵称未验证</string>
+    <!-- Label for official chat pill shown in the Note to Self conversation header -->
+    <string name="ConversationFragment_official_chat">官方聊天号</string>
+    <!-- Description shown in the Signal release notes conversation header -->
+    <string name="ConversationFragment_release_notes_description">这是 Signal 的唯一官方聊天号，方便您及时了解新闻动态和版本发布说明。</string>
+    <!-- Label shown in place of the input in the Signal release notes conversation -->
+    <string name="ConversationFragment_the_only_official_chat_from_signal">这是 Signal 的唯一官方聊天号</string>
+    <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
+    <plurals name="ConversationFragment_group_member_count">
+        <item quantity="other">%1$d 个成员</item>
+    </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">昵称</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
@@ -729,39 +725,57 @@
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">安全提示</string>
-    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">接受陌生人发来的消息请求时须谨慎。需要当心的是：</string>
-    <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">请仔细审核此请求。您的联系人或与您聊天的用户均不在此群组中。以下是一些需要注意的事项：</string>
-    <!-- Button text to move to the previous tip-->
+    <!-- Button text to view more safety tips -->
+    <string name="SafetyTips_view_more">查看更多</string>
+    <!-- Content description for previous tip button -->
     <string name="SafetyTips_previous_tip">上一个提示</string>
-    <!-- Button text to move to the next tip -->
+    <!-- Content description for next tip button -->
     <string name="SafetyTips_next_tip">下一个提示</string>
-    <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">假名和虚假账户</string>
-    <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal 绝不会联系您获取您的注册码或 PIN 码。请谨慎甄别假冒仿冒账户提出的请求。昵称是账户持有人自行选择的，未经过验证。</string>
-    <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">加密货币或金钱骗局</string>
-    <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">如有陌生人给您发送有关加密货币（如比特币）或金融投资机会的消息，请当心，这很可能是垃圾消息。</string>
-    <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">模糊或无关消息</string>
-    <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">垃圾消息发送者通常会以“您好”这样的简单问候吸引您的注意。当您回应后，他们可能会进一步引诱您。</string>
-    <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">含链接的消息</string>
-    <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">当心陌生人发来的含网站链接的消息。千万不要访问不信任的人发来的链接。</string>
-    <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">假冒企业和机构</string>
-    <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">请谨慎对待与您联系的企业或政府机构。涉及税务机构、快递公司等的消息有可能是垃圾消息。</string>
+
+    <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
+    <string name="SafetyTips_summary_tip0_title">请勿回复 Signal 发送的聊天消息</string>
+    <!-- Summary tip 0 message -->
+    <string name="SafetyTips_summary_tip0_message">Signal 绝不会发消息向您索要注册码、密码或恢复密钥。请勿回复冒充 Signal 的聊天。</string>
+    <!-- Summary tip 1 title: Review names and photos -->
+    <string name="SafetyTips_summary_tip1_title">检查昵称和头像</string>
+    <!-- Summary tip 1 message -->
+    <string name="SafetyTips_summary_tip1_message">请留意“昵称未验证”的提示。每个人都可以在 Signal 上自行设置自己的昵称。</string>
+    <!-- Summary tip 2 title: Look out for scams -->
+    <string name="SafetyTips_summary_tip2_title">谨防诈骗</string>
+    <!-- Summary tip 2 message -->
+    <string name="SafetyTips_summary_tip2_message">请勿理会试图引诱您回复的不明消息。警惕各种理财建议和可疑网页链接。</string>
+
+    <!-- Detail tip 0 title -->
+    <string name="SafetyTips_detail_tip0_title">请勿回复 Signal 发送的聊天消息</string>
+    <!-- Detail tip 0 message -->
+    <string name="SafetyTips_detail_tip0_message">Signal 绝不会发消息向您索要注册码、密码或恢复密钥。请勿回复冒充 Signal 或 Signal 支持的聊天。不法分子会伪造虚假聊天，企图接管您的账户。</string>
+    <!-- Detail tip 1 title -->
+    <string name="SafetyTips_detail_tip1_title">检查昵称和头像</string>
+    <!-- Detail tip 1 message -->
+    <string name="SafetyTips_detail_tip1_message">请留意“昵称未验证”的提示。每个人都可以在 Signal 上自行设置自己的昵称和头像。如果您不确定新请求发送者的身份，为安全起见，请忽略该请求。</string>
+    <!-- Detail tip 2 title -->
+    <string name="SafetyTips_detail_tip2_title">模糊或无关消息</string>
+    <!-- Detail tip 2 message -->
+    <string name="SafetyTips_detail_tip2_message">垃圾消息发送者通常会以“你好”这样的简单问候吸引您与之聊天。当您回应后，他们可能会进一步引诱您。</string>
+    <!-- Detail tip 3 title -->
+    <string name="SafetyTips_detail_tip3_title">含网页链接的消息</string>
+    <!-- Detail tip 3 message -->
+    <string name="SafetyTips_detail_tip3_message">当心陌生人发来的含网页链接的消息。千万不要点击可疑用户发来的链接。</string>
+    <!-- Detail tip 4 title -->
+    <string name="SafetyTips_detail_tip4_title">加密货币或资金诈骗</string>
+    <!-- Detail tip 4 message -->
+    <string name="SafetyTips_detail_tip4_message">如有陌生人给您发送有关加密货币（如比特币）或投资机会的消息，请当心，这很可能是垃圾消息。</string>
+    <!-- Detail tip 5 title -->
+    <string name="SafetyTips_detail_tip5_title">虚假机构</string>
+    <!-- Detail tip 5 message -->
+    <string name="SafetyTips_detail_tip5_message">请谨慎对待与您联系的企业或政府机构。涉及税务机构、快递公司等的消息有可能是垃圾消息。</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal 上的%1$s是账户持有人自行选择的。</string>
-    <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">昵称未经过验证</string>
+    <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal 无法验证用户的昵称和头像</string>
+    <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal 绝不会联系您索要注册码、密码或恢复密钥</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">请谨慎甄别假冒仿冒账户</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
@@ -1232,10 +1246,6 @@
     </plurals>
     <string name="PendingGroupJoinRequestsReminder_view">查看</string>
 
-    <!-- GcmRefreshJob -->
-    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal 持续连接失效！</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 无法注册 Google Play 服务。Signal 消息和呼叫已禁用。请尝试在设置 &gt; 高级中重新注册。</string>
-
 
     <!-- GiphyActivity -->
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">获取原始分辨率的 GIF 图片时出错</string>
@@ -1635,7 +1645,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">网络出错。</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">此群组链接未激活</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">无法加入此群组。</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">已达到群组上限，无法加入群组</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1744,6 +1754,8 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">正在删除</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">正在删除消息…</string>
+    <!-- Format string showing current vs. total items being deleted, e.g. "12 of 207" -->
+    <string name="MediaOverviewActivity_Media_delete_progress_count">%1$d / %2$d</string>
     <string name="MediaOverviewActivity_Sort_by">排序</string>
     <string name="MediaOverviewActivity_Newest">最新</string>
     <string name="MediaOverviewActivity_Oldest">最旧</string>
@@ -1777,6 +1789,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">由您发送至 %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">此媒体尚未发送。</string>
+    <string name="MediaOverviewActivity_jump_to_message">跳至消息</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">稍后提醒</string>
@@ -1845,7 +1858,7 @@
     <string name="MessageRecord_you_updated_group">您已更新该群组</string>
     <string name="MessageRecord_the_group_was_updated">群组已更新。</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">此群组已解散。</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s 解散了群组</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -1866,6 +1879,10 @@
     <string name="MessageRecord_declined_voice_call">拒接的语音通话</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">拒接的视频通话</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">未接语音通话</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">未接视频通话</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">语音通话由于开启通知配置而未接通</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2149,8 +2166,10 @@
     <string name="MessageRecord__payment_tombstone">付款</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">已举报为垃圾消息</string>
-    <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">您接受了消息请求</string>
+    <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
+    <string name="MessageRecord_you_accepted_s_message_request">您接受了 %1$s 的消息请求</string>
+    <!-- Update message shown in a group chat after accepting a group message request -->
+    <string name="MessageRecord_you_accepted_the_group_request">您接受了群组请求</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">您已屏蔽此用户</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2174,7 +2193,7 @@
     <string name="MessageRequestBottomView_unblock">取消屏蔽</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">是否允许%1$s给您发送消息并与其分享您的名字和照片？您此前已移除该用户。</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">是否允许 %1$s 给您发消息并查看您的昵称头像？您同意前对方无法知晓您是否查看了其消息。</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">是否允许此用户给您发送消息并查看您的昵称和头像？在您同意前，对方无法知晓您是否查看了其消息。</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">是否允许%1$s给您发送消息并向其显示您的名称和照片？在取消屏蔽之前，您不会收到对方的任何消息。</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2231,11 +2250,15 @@
         <item quantity="other">%1$d 个其他人</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">举报…</string>
+    <string name="MessageRequestBottomView_report">举报</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">要接受请求吗？</string>
     <!-- Alert dialog body to review the message request carefully -->
     <string name="MessageRequestBottomView_review_requests_carefully">请仔细审查请求。昵称是账户持有人自行选择的，未经过验证。</string>
+    <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
+    <string name="MessageRequestBottomView_accept_request_body">请仅接受来自可信用户的请求。%1$s发消息向您索要注册码、密码或恢复密钥。</string>
+    <!-- Bold substring used in accept request body: "Signal will never" -->
+    <string name="MessageRequestBottomView_signal_will_never">Signal 绝不会</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">要加入群组吗？</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -2578,6 +2601,10 @@
     <string name="CallOverflowPopupWindow__lower_hand">放下</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">取消</string>
+    <!-- A clickable button to share your screen in a call -->
+    <string name="CallOverflowPopupWindow__share_screen">共享屏幕</string>
+    <!-- A clickable button to stop sharing your screen in a call -->
+    <string name="CallOverflowPopupWindow__stop_screen_share">停止共享</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">查看</string>
 
@@ -2692,6 +2719,8 @@
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">轻扫查看屏幕共享</string>
+    <!-- Hint shown to teach the user they can swipe between the grid view and the active speaker view -->
+    <string name="CallToastPopupWindow__swipe_to_view_speaker">滑动查看扬声器</string>
 
     <!-- ProxyBottomSheetFragment -->
     <string name="ProxyBottomSheetFragment_proxy_server">代理服务器</string>
@@ -2739,8 +2768,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">您尝试注册此号码的次数过多，请在 %1$s 后再试。</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">无法连接到 Signal 服务，请检查网络连接并重试。</string>
-    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">由于短信提供商的问题，Signal 无法发送短信代码。请在几个小时后重试。</string>
+    <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
+    <string name="RegistrationActivity_sms_provider_error">我们无法给您的手机号码发送短信。请在几小时后重试。</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">我们无法通过短信给您发送验证码。请尝试通过语音通话进行接收。</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -2968,6 +2997,10 @@
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
+    <!-- Title of dialog shown when debug log prefix generation is unusually slow -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_slow_log_title" translatable="false">Slow log generation</string> -->
+    <!-- Body of dialog shown when debug log prefix generation is unusually slow. %1$d is duration in seconds. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_slow_log_message" translatable="false">Generating the debug log header took %1$d seconds. We should figure out what\&apos;s slowing things down.</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2978,6 +3011,8 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">注册锁定：</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">群组已更新</string>
@@ -3528,7 +3563,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">锁定音频附件录音状态</string>
     <string name="conversation_activity__message_could_not_be_sent">无法发送消息，请检查您的网络后再试。</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">您已无法在此群组中收发消息，因为此群组已解散。</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">此操作不可用，因为群组已解散。</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3581,24 +3616,24 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">你已移除该用户，与对方发送消息会将其重新添加到您的列表中。</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">选项</string>
+    <string name="ConversationUpdateItem_block_report">屏蔽或举报…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">更新</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="other">群组有 %1$d 项更新</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="other">聊天有 %1$d 项更新</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="other">%1$d 个限时消息定时器更改 · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="other">%1$d call events</item>
+        <item quantity="other">%1$d 个通话事件</item>
     </plurals>
 
     <!-- audio_view -->
@@ -3845,11 +3880,11 @@
     <!-- Bottom sheet title when encryption is auto-verified -->
     <string name="EncryptionVerifiedSheet__title_success">此聊天加密已自动验证</string>
     <!-- Bottom sheet body when encryption is auto-verified -->
-    <string name="EncryptionVerifiedSheet__body_success">对于通过手机号码连接的联系人，Signal 可以使用一个名为“密钥透明度”的流程自动确认连接是否安全。如要提高安全性，您可以比对前一个屏幕上的数字或扫描对方设备上的二维码以手动验证端对端加密。</string>
+    <string name="EncryptionVerifiedSheet__body_success">对于通过手机号码连接的人，Signal 可以使用一个名为“密钥透明度”的流程自动确认连接是否安全。如要提高安全性，您可以比对前一个屏幕上的数字或扫描对方设备上的二维码来手动验证端对端加密。</string>
     <!-- Bottom sheet title when encryption is no longer auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">此聊天已无法使用自动验证</string>
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">此聊天无法使用自动验证</string>
     <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
-    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal 已无法自动验证此聊天的加密。这可能是因为 %1$s 更改了手机号码。请通过比对前一个屏幕上的数字或扫描对方设备上的二维码手动验证端对端加密。</string>
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal 无法自动验证此聊天的加密。这可能是因为 %1$s 更改了手机号码或手机号码隐私设置。请通过比对前一个屏幕上的数字或扫描对方设备上的二维码来手动验证端对端加密。</string>
     <!-- Bottom sheet title when encryption cannot be auto-verified -->
     <string name="EncryptionVerifiedSheet__title_unavailable">此聊天无法使用自动验证</string>
     <!-- Bottom sheet body when encryption cannot be auto-verified -->
@@ -4200,7 +4235,7 @@
     <string name="preferences_data_and_storage__never">永不</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi 和移动数据</string>
     <string name="preferences_data_and_storage__mobile_data_only">仅移动数据</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">网络较差时，使用更少数据可能改善通话</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">网络较差时，使用更少数据可能改善通话。</string>
     <string name="preferences_notifications__in_chat_sounds">聊天音效</string>
     <string name="preferences_notifications__show">显示</string>
     <string name="preferences_notifications__ringtone">铃声</string>
@@ -5538,6 +5573,29 @@
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">好的</string>
 
+    <!-- ChangeNumberPostRegistrationWaitSheet: title of the sheet shown when the user tries to change number too soon after registering -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__title">无法更改号码</string>
+    <!-- ChangeNumberPostRegistrationWaitSheet: explanation body shown above the wait-time line -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__body">由于您近期才注册此账户，您暂时无法更改手机号码。设置短暂的等待期有助于保护您的账户。</string>
+    <!-- ChangeNumberPostRegistrationWaitSheet: remaining-wait line when wait is one hour or more, %1$d is the number of hours, rounded up -->
+    <plurals name="ChangeNumberPostRegistrationWaitSheet__try_again_in_hours">
+        <item quantity="other">请在 %1$d 小时后再试。</item>
+    </plurals>
+    <!-- ChangeNumberPostRegistrationWaitSheet: remaining-wait line when wait is under one hour, %1$d is the number of minutes, rounded up -->
+    <plurals name="ChangeNumberPostRegistrationWaitSheet__try_again_in_minutes">
+        <item quantity="other">请在 %1$d 分钟后再试。</item>
+    </plurals>
+    <!-- ChangeNumberPostRegistrationWaitSheet: dismiss button -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__ok">好</string>
+    <!-- ChangeNumberEnterCodeFragment: rate-limit dialog message when retry-after is one hour or more, %1$d is hours rounded up -->
+    <plurals name="ChangeNumberEnterCodeFragment__too_many_attempts_try_again_in_hours">
+        <item quantity="other">您的尝试次数过多。请在 %1$d 小时后再试。</item>
+    </plurals>
+    <!-- ChangeNumberEnterCodeFragment: rate-limit dialog message when retry-after is under one hour, %1$d is minutes rounded up -->
+    <plurals name="ChangeNumberEnterCodeFragment__too_many_attempts_try_again_in_minutes">
+        <item quantity="other">您的尝试次数过多。请在 %1$d 分钟后再试。</item>
+    </plurals>
+
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">更换号码</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">您的旧号码</string>
@@ -5608,35 +5666,35 @@
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">导出您所有聊天的机器可读 JSON 副本。限时消息将不会导出。</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">解锁以导出聊天记录</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
     <string name="ChatsSettingsFragment__authentication_failed">认证失败</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">正在取消导出…</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">要导出聊天记录？</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">请务必小心！</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">请勿与任何人分享此文件。您的聊天记录将会保存到您的设备中。根据您设备的权限设置，其他应用或许能访问该文件。连同媒体导出会导致导出文件更大。</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">连同媒体导出</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">不连媒体导出</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">选择文件夹</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">在您设备的存储空间中选择一个文件夹，来保存您的聊天记录。</string>
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">选择文件夹</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">聊天导出完成</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">请务必谨慎</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">选择聊天导出文件的存放位置，切勿与任何人分享。根据您设备的权限设置，设备上的其他应用或许能访问此文件。</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -5821,6 +5879,8 @@
     <string name="HelpSettingsFragment__support_center">支持中心</string>
     <string name="HelpSettingsFragment__contact_us">联系我们</string>
     <string name="HelpSettingsFragment__version">版本</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">已复制到剪贴板</string>
     <string name="HelpSettingsFragment__debug_log">调试日志</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">许可证</string>
@@ -5835,11 +5895,19 @@
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">已发送媒体质量</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">发送高质量媒体将会使用更多数据。</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">语音消息和表情（小于 %1$s）始终自动下载。</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">高</string>
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">标准</string>
     <string name="DataAndStorageSettingsFragment__calls">通话</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">在后台保持连接</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">在后台保持连接可能会增加电量消耗。大多数设备无需启用此功能。请仅在遇到通知问题时才启用此功能。</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">启用</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -5977,7 +6045,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">解散群组</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">此群组已解散。</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">存档聊天</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6321,9 +6389,9 @@
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">无法确认捐款</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">您的 %1$s/月捐款无法确认。请检查您的银行应用以批准您的 iDEAL 付款。</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero">您的 %1$s/月捐款无法确认。请检查您的银行应用以批准您的 iDEAL | Wero 付款。</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">您的 %1$s 单次捐款无法确认。请检查您的银行应用以批准您的 iDEAL 付款。</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero">您的 %1$s 单次捐款无法确认。请检查您的银行应用以批准您的 iDEAL | Wero 付款。</string>
 
     <string name="Boost__enter_custom_amount">输入自定义金额</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -6452,7 +6520,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">由于出现网络错误，您的捐款无法送出。请检查您的网络连接并重试。</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">您的 iDEAL 捐款无法处理。请尝试另一种付款方式或联系您的银行了解详情。</string>
+    <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">您的 iDEAL | Wero 捐款无法处理。请尝试另一种付款方式或联系您的银行了解详情。</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">代%1$s捐款</string>
@@ -6680,12 +6748,6 @@
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">开启</string>
 
-    <!-- Description shown for the Signal Release Notes channel -->
-    <string name="ReleaseNotes__signal_release_notes_and_news">Signal 版本说明与新闻</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">这是 Signal 的官方且唯一聊天号。</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">让您掌握新闻动态和版本发布说明。</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">这是 Signal 的官方且唯一聊天号</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
@@ -6785,7 +6847,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">您和收到此动态的所有人将看不到此动态。</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">由于该群组已解散，此动态将仅对您删除。</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">无法保存</string>
 
@@ -7360,7 +7422,7 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">您的捐款仍在处理中。这可能需要几分钟时间，视您的网络连接情况而定。请等待这笔付款完成后再进行另一笔捐款。</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">您的 iDEAL 捐款仍在处理中。请先检查您的银行应用以批准您的付款，然后再进行另一笔捐款。</string>
+    <string name="DonateToSignalFragment__your_ideal_wero_payment_is_still_processing">您的 iDEAL | Wero 捐款仍在处理中。请先检查您的银行应用以批准您的付款，然后再进行另一笔捐款。</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">捐款金额太高</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -7389,11 +7451,13 @@
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">代朋友捐款</string>
     <!-- Button label for paying with iDEAL -->
-    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+    <string name="GatewaySelectorBottomSheet__ideal_wero">iDEAL | Wero</string>
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">要离开 Signal 以确认捐款吗？</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">确认捐款后，请返回 Signal 以完成捐款处理。</string>
+    <!-- Dialog message shown when leaving Signal to complete a donation in an external app. Placeholder is the resolved app name (e.g. a banking app). -->
+    <string name="ExternalNavigationHelper__once_payment_confirmed_in_app">您将会跳转至 %1$s。确认捐款后，请返回 Signal 以完成捐款处理。</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7455,7 +7519,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">选择您的银行</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">请确认使用 iDEAL 捐款</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">确认您的 iDEAL | Wero 捐款</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">如要设置您的定期捐款，请点击“继续”以便与您的银行确认扣除一笔 0.01 欧元的费用。这笔费用将会自动退还，并允许每月从您的账户中扣除 %1$s 用于捐款。</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7618,6 +7682,8 @@
     <string name="CallLogAdapter__incoming">来电</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">去电</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">未接</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">未接</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -7699,6 +7765,8 @@
     <string name="CallLogFragment__get_started_by_calling_a_friend">呼叫朋友开始互动吧。</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">已拥有您创建的通话链接的用户将无法重复使用此链接。</string>
+    <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">您已不再是此群组的成员。</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -8008,6 +8076,15 @@
     <string name="UseNewOnDeviceBackups__upgrade">升级</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">稍后再说</string>
+
+    <!-- Title of a megaphone shown to prompt the user to open Signal on their primary device -->
+    <string name="InactivePrimary__title">在您的手机上打开 Signal</string>
+    <!-- Body of a megaphone shown to prompt the user to open Signal on their primary device -->
+    <string name="InactivePrimary__body">要使您的账户保持活跃状态，请在您的主设备上打开 Signal。</string>
+    <!-- Button of a megaphone shown to prompt the user to open Signal on their primary device that will navigate to a support page -->
+    <string name="InactivePrimary__learn_more">了解详情</string>
+    <!-- Button of a megaphone shown to prompt the user to open Signal on their primary device that will snooze the megaphone -->
+    <string name="InactivePrimary__got_it">知道了</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
     <string name="OnDeviceBackupsScreen__to_restore_a_backup">"如要恢复备份，请安装新版 Signal。打开应用并点击“恢复备份”，然后找到备份文件夹。"</string>
@@ -8431,14 +8508,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">正在解散群组…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">无法解散群组。请检查您的网络连接并重试。</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">重试</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s 解散了群组</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">此群组已解散。</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">您无法在此群组中收发消息或进行通话。</string>
 
@@ -8804,7 +8881,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">这与您的本地恢复密钥相同。</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">这与您的 Signal 安全备份恢复密钥相同。</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">使用此密钥可以：</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9117,11 +9194,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">联系支持人员</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">要启用设备本地备份吗？</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">要继续使用设备本地备份，您需要为此账户启用该功能，并记录您的新恢复密钥。您随时可以在“设置” &gt; “备份”中进行此操作。</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">要继续使用设备本地备份，您需要为此账户启用该功能。您随时可以在“设置” &gt; “备份”中进行此操作。</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">立即启用</string>
@@ -9604,13 +9681,43 @@
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
-    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__title">无法恢复备份</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">发生错误，您的备份无法恢复。这可能是因为在备份恢复过程中，备份文件夹在您的设备上被移动了。</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">如要重试，请在此设备上先卸载 Signal 并重新安装，然后选择“恢复或转移”。</string>
+
+    <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
+    <string name="VerificationCodeRequestedBottomSheet__title">已请求验证码</string>
+    <!-- First paragraph of the body of the verification code requested sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__body_1">请勿将您的验证码告知任何人。Signal 绝不会发消息给您索要验证码。如果您收到了冒充 Signal 的消息，这是诈骗。</string>
+    <!-- Second paragraph of the body of the verification code requested sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__body_2">如果是您本人请求验证码，您可以放心忽略此消息。</string>
+    <!-- Button on the verification code requested sheet that opens the safety tips screen -->
+    <string name="VerificationCodeRequestedBottomSheet__safety_tips">安全提示</string>
+    <!-- Button on the verification code requested sheet that dismisses the sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__ok">好</string>
+    <!-- Subtitle on the verification code requested sheet showing the time the code was requested followed by the relative day. %1$s is the time (e.g. "3:25 PM"), %2$s is the relative day (e.g. "Today", "Yesterday", "Jan 15") -->
+    <string name="VerificationCodeRequestedBottomSheet__time_with_day">%1$s %2$s</string>
+
+    <!-- Title of the safety tips screen within the verification code requested sheet -->
+    <string name="SafetyTipsBottomSheet__title">安全提示</string>
+    <!-- Title of the first safety tip: don\'t respond to chats claiming to be Signal -->
+    <string name="SafetyTipsBottomSheet__tip_1_title">请勿回复 Signal 发送的聊天消息</string>
+    <!-- Body of the first safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_1_body">Signal 绝不会发消息向您索要注册码、密码或恢复密钥。请勿回复冒充 Signal 的聊天。</string>
+    <!-- Title of the second safety tip: keep your verification code safe -->
+    <string name="SafetyTipsBottomSheet__tip_2_title">妥善保管您的验证码</string>
+    <!-- Body of the second safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_2_body">如果您收到了不是您本人请求的验证码，那么可能有人企图访问您的账户。请勿分享您的验证码。</string>
+    <!-- Title of the third safety tip: enable registration lock -->
+    <string name="SafetyTipsBottomSheet__tip_3_title">在账户设置中打开注册锁定</string>
+    <!-- Body of the third safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_3_body">注册 Signal 时，除验证码外，还设置必须输入您的 Signal 密码，以保障账户安全。</string>
+    <!-- Button on the safety tips screen that opens account settings -->
+    <string name="SafetyTipsBottomSheet__open_account_settings">打开账户设置</string>
 
     <!-- EOF -->
 </resources>

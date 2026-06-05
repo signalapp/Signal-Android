@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
@@ -56,7 +55,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.DrawableUtil;
+import org.signal.core.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
@@ -104,6 +103,7 @@ public final class ConversationUpdateItem extends FrameLayout
   private EventListener             eventListener;
   private Button                    collapsedButton;
   private float                     lastYDownRelativeToThis;
+  private int                       tint;
 
   private final UpdateObserver updateObserver = new UpdateObserver();
 
@@ -221,13 +221,18 @@ public final class ConversationUpdateItem extends FrameLayout
     observeDisplayBody(lifecycleOwner, spannableMessage);
     observeDisplayBodyWithTimer(lifecycleOwner);
 
+    this.tint = updateDescription.getTint(getContext());
+
+    boolean donationRequest = conversationMessage.getMessageRecord().isReleaseChannelDonationRequest();
+
     present(conversationMessage, nextMessageRecord, conversationRecipient, isMessageRequestAccepted);
     presentTimer(updateDescription);
     presentBackground(shouldCollapse(messageRecord, previousMessageRecord),
                       shouldCollapse(messageRecord, nextMessageRecord),
-                      hasWallpaper);
+                      hasWallpaper,
+                      donationRequest);
 
-    presentActionButton(hasWallpaper, conversationMessage.getMessageRecord().isReleaseChannelDonationRequest());
+    presentActionButton(hasWallpaper, donationRequest);
     presentCollapsedHead(conversationMessage.getMessageRecord().getCollapsedState());
 
     updateSelectedState();
@@ -484,8 +489,9 @@ public final class ConversationUpdateItem extends FrameLayout
 
     SpannableStringBuilder builder = new SpannableStringBuilder(displayBody);
 
+    int color = tint != 0 ? tint : ContextCompat.getColor(getContext(), R.color.signal_icon_tint_secondary);
     if (latestFrame != 0) {
-      Drawable drawable = DrawableUtil.tint(getContext().getDrawable(latestFrame), ContextCompat.getColor(getContext(), R.color.signal_icon_tint_secondary));
+      Drawable drawable = DrawableUtil.tint(getContext().getDrawable(latestFrame), color);
       SpanUtil.appendCenteredImageSpan(builder, drawable, 12, 12);
     }
 
@@ -729,7 +735,7 @@ public final class ConversationUpdateItem extends FrameLayout
         }
       });
     } else if (conversationMessage.getMessageRecord().isMessageRequestAccepted()) {
-      actionButton.setText(R.string.ConversationUpdateItem_options);
+      actionButton.setText(R.string.ConversationUpdateItem_block_report);
       actionButton.setVisibility(VISIBLE);
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
@@ -781,11 +787,11 @@ public final class ConversationUpdateItem extends FrameLayout
       return false;
     }
 
-    return (messageRecord.isCollapsedGroupV2JoinUpdate() && !nextMessageRecord.map(m -> m.isGroupV2JoinRequest(toBlock.requireServiceId())).orElse(false)) ||
+    return (messageRecord.isCollapsedGroupV2JoinUpdate(toBlock.requireServiceId()) && !nextMessageRecord.map(m -> m.isGroupV2JoinRequest(toBlock.requireServiceId())).orElse(false)) ||
            (messageRecord.isGroupV2JoinRequest(toBlock.requireServiceId()) && previousMessageRecord.map(m -> m.isCollapsedGroupV2JoinUpdate(toBlock.requireServiceId())).orElse(false));
   }
 
-  private void presentBackground(boolean collapseAbove, boolean collapseBelow, boolean hasWallpaper) {
+  private void presentBackground(boolean collapseAbove, boolean collapseBelow, boolean hasWallpaper, boolean isDonationRequest) {
     int marginDefault    = getContext().getResources().getDimensionPixelOffset(R.dimen.conversation_update_vertical_margin);
     int marginCollapsed  = 0;
     int paddingDefault   = getContext().getResources().getDimensionPixelOffset(R.dimen.conversation_update_vertical_padding);
@@ -843,7 +849,11 @@ public final class ConversationUpdateItem extends FrameLayout
       ViewUtil.updateLayoutParams(background, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
       if (hasWallpaper) {
-        background.setBackgroundResource(R.drawable.conversation_update_wallpaper_background_singular);
+        if (isDonationRequest) {
+          background.setBackgroundResource(R.drawable.conversation_update_release_note_background);
+        } else {
+          background.setBackgroundResource(R.drawable.conversation_update_wallpaper_background_singular);
+        }
       } else {
         background.setBackground(null);
       }
@@ -852,8 +862,8 @@ public final class ConversationUpdateItem extends FrameLayout
 
   private void presentActionButton(boolean hasWallpaper, boolean isBoostRequest) {
     if (isBoostRequest) {
-      actionButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorSecondaryContainer)));
-      actionButton.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorOnSecondaryContainer)));
+      actionButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.release_notes_cta_background)));
+      actionButton.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorOnSurface)));
     } else if (hasWallpaper) {
       actionButton.setBackgroundTintList(AppCompatResources.getColorStateList(getContext(), R.color.conversation_update_item_button_background_wallpaper));
       actionButton.setTextColor(AppCompatResources.getColorStateList(getContext(), R.color.conversation_update_item_button_text_color_wallpaper));

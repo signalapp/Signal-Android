@@ -6,6 +6,8 @@
 
 package org.whispersystems.signalservice.api.push.exceptions;
 
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
+
 public class NoContentException extends NonSuccessfulResponseCodeException {
   public NoContentException(String s) {
     super(204, s);

@@ -243,7 +243,11 @@ public class EmojiTextView extends AppCompatTextView {
             return;
           }
 
-          textView.setPrecomputedText(precomputedTextCompat);
+          try {
+            textView.setPrecomputedText(precomputedTextCompat);
+          } catch (IllegalArgumentException e) {
+            textView.setText(text, type);
+          }
 
           if (textView.sizeChangeInProgress) {
             textView.sizeChangeInProgress = false;

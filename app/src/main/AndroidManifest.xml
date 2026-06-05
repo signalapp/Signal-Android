@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-sdk tools:overrideLibrary="androidx.camera.core,androidx.camera.camera2,androidx.camera.lifecycle,androidx.camera.view" />
-
     <!-- ======================================= -->
     <!-- Features                                -->
     <!-- ======================================= -->
@@ -40,6 +38,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_PHONE_CALL" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_REMOTE_MESSAGING" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -482,7 +481,7 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing" />
 
         <activity
-            android:name="org.signal.mediasend.MediaSendActivity"
+            android:name=".mediasend.v3.MediaSendV3Activity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
             android:exported="false"
             android:launchMode="singleTop"
@@ -1405,7 +1404,7 @@
         <service
             android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallForegroundService"
             android:exported="false"
-            android:foregroundServiceType="dataSync|microphone|camera|phoneCall" />
+            android:foregroundServiceType="dataSync|microphone|camera|phoneCall|mediaProjection" />
 
         <service
             android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"

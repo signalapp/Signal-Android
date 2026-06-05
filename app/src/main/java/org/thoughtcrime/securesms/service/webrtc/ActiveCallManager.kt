@@ -288,12 +288,16 @@ class ActiveCallManager(
       private const val EXTRA_RECIPIENT_ID = "RECIPIENT_ID"
       private const val EXTRA_IS_VIDEO_CALL = "IS_VIDEO_CALL"
       private const val EXTRA_TYPE = "TYPE"
+      private const val EXTRA_SCREEN_SHARING = "SCREEN_SHARING"
 
-      fun update(context: Context, @CallNotificationBuilder.CallNotificationType type: Int, recipientId: RecipientId, isVideoCall: Boolean) {
+      @JvmStatic
+      @JvmOverloads
+      fun update(context: Context, @CallNotificationBuilder.CallNotificationType type: Int, recipientId: RecipientId, isVideoCall: Boolean, isScreenSharing: Boolean = false) {
         val extras = bundleOf(
           EXTRA_TYPE to type,
           EXTRA_RECIPIENT_ID to recipientId,
-          EXTRA_IS_VIDEO_CALL to isVideoCall
+          EXTRA_IS_VIDEO_CALL to isVideoCall,
+          EXTRA_SCREEN_SHARING to isScreenSharing
         )
 
         if (!SafeForegroundService.update(context, ActiveCallForegroundService::class.java, extras)) {
@@ -308,33 +312,13 @@ class ActiveCallManager(
       }
     }
 
+    private var isScreenSharing: Boolean = false
+
     override val tag: String
       get() = TAG
 
     override val notificationId: Int
       get() = CallNotificationBuilder.WEBRTC_NOTIFICATION
-
-    @get:RequiresApi(30)
-    override val serviceType: Int
-      get() {
-        val telecom = Build.VERSION.SDK_INT >= 34 && AndroidTelecomUtil.hasActiveController()
-
-        return if (telecom) {
-          ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL
-        } else {
-          var type = ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
-
-          if (Permissions.hasAll(this, Manifest.permission.RECORD_AUDIO)) {
-            type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
-          }
-
-          if (Permissions.hasAll(this, Manifest.permission.CAMERA)) {
-            type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA
-          }
-
-          type
-        }
-      }
 
     @Suppress("DEPRECATION")
     private var hangUpRtcOnDeviceCallAnswered: PhoneStateListener? = null
@@ -385,6 +369,31 @@ class ActiveCallManager(
       }
     }
 
+    @RequiresApi(30)
+    override fun serviceType(intent: Intent): Int {
+      val telecom = Build.VERSION.SDK_INT >= 36 && AndroidTelecomUtil.hasActiveController()
+
+      var type = if (telecom) {
+        ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL
+      } else {
+        ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
+      }
+
+      if (Permissions.hasAll(this, Manifest.permission.RECORD_AUDIO)) {
+        type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+      }
+
+      if (Permissions.hasAll(this, Manifest.permission.CAMERA)) {
+        type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA
+      }
+
+      if (intent.getBooleanExtra(EXTRA_SCREEN_SHARING, false)) {
+        type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
+      }
+
+      return type
+    }
+
     override fun getForegroundNotification(intent: Intent): Notification {
       notificationDisposable.dispose()
 
@@ -402,25 +411,32 @@ class ActiveCallManager(
       val recipient: Recipient = Recipient.resolved(IntentCompat.getParcelableExtra(intent, EXTRA_RECIPIENT_ID, RecipientId::class.java)!!)
       val isVideoCall = intent.getBooleanExtra(EXTRA_IS_VIDEO_CALL, false)
 
-      if (requiresAsyncNotificationLoad) {
-        if (asyncServiceNotification != null && lastAsyncServiceNotificationType == type) {
-          return asyncServiceNotification!!
-        }
-
-        val requestTime = System.currentTimeMillis()
-        lastAsyncServiceNotificationRequestTime = requestTime
-        notificationDisposable = Single.fromCallable { createNotification(type, recipient, isVideoCall, skipAvatarLoad = false) }
-          .subscribeOn(Schedulers.io())
-          .filter { requestTime == lastAsyncServiceNotificationRequestTime }
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribeBy { notification ->
-            lastAsyncServiceNotificationType = type
-            asyncServiceNotification = notification
-            update(this, type, recipient.id, isVideoCall)
-          }
+      if (asyncServiceNotification != null && lastAsyncServiceNotificationType == type) {
+        return asyncServiceNotification!!
       }
 
-      return createNotification(type, recipient, isVideoCall, skipAvatarLoad = requiresAsyncNotificationLoad)
+      val requestTime = System.currentTimeMillis()
+      lastAsyncServiceNotificationRequestTime = requestTime
+      notificationDisposable = Single.fromCallable { createNotification(type, recipient, isVideoCall, skipAvatarLoad = false) }
+        .subscribeOn(Schedulers.io())
+        .filter { requestTime == lastAsyncServiceNotificationRequestTime }
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeBy { notification ->
+          lastAsyncServiceNotificationType = type
+          asyncServiceNotification = notification
+          update(this, type, recipient.id, isVideoCall)
+        }
+
+      return createNotification(type, recipient, isVideoCall, skipAvatarLoad = true)
+    }
+
+    override fun onServiceUpdateCommandReceived(intent: Intent) {
+      val wasScreenSharing = isScreenSharing
+      isScreenSharing = intent.getBooleanExtra(EXTRA_SCREEN_SHARING, false)
+
+      if (isScreenSharing && !wasScreenSharing) {
+        AppDependencies.signalCallManager.onScreenSharingServiceReady()
+      }
     }
 
     private fun createNotification(type: Int, recipient: Recipient, isVideoCall: Boolean, skipAvatarLoad: Boolean): Notification {

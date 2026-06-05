@@ -34,6 +34,10 @@ public class UriUtilTest_isValidExternalUri {
   public static Collection<Object[]> data() {
     return Arrays.asList(new Object[][]{
         { "content://other.app.package.name.org/path/public.txt",             true  },
+        { "content://" + APPLICATION_ID + ".part/part/42",                   false },
+        { "content://" + APPLICATION_ID + ".blob/blob/42",                   false },
+        { "content://" + APPLICATION_ID + ".avatar/avatar/42",               false },
+        { "content://" + APPLICATION_ID + ".fileprovider/external_files/f",  false },
         { "file:///sdcard/public.txt",                                        true  },
         {"file:///data/data/" + APPLICATION_ID + "/private.txt",              false },
         {"file:///any/path/with/package/name/" + APPLICATION_ID,              false },
@@ -44,6 +48,7 @@ public class UriUtilTest_isValidExternalUri {
         { "file:///encoded/back/reference/%2F..%2F..path%2Fto%2Fprivate.txt", false },
         { "file:///public/%2E%2E%2Fprivate%2Fprivate.txt",                    false },
         { "file:///data/no/paths/in/data",                                    false },
+        { "file://",                                                          false },
     });
   }
 

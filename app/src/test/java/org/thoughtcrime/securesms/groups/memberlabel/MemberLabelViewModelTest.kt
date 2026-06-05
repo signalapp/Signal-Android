@@ -19,6 +19,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelUiState.SaveStat
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
-import org.whispersystems.signalservice.api.NetworkResult
 import java.io.IOException
 
 @OptIn(ExperimentalCoroutinesApi::class)

@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;

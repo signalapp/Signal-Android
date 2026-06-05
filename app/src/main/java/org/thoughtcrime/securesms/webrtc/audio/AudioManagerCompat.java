@@ -19,7 +19,7 @@ import androidx.annotation.RequiresApi;
 
 import org.jetbrains.annotations.Nullable;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.signal.core.util.ServiceUtil;
 
 import java.util.List;
 
@@ -206,6 +206,22 @@ public abstract class AudioManagerCompat {
       if (type == AudioDeviceInfo.TYPE_WIRED_HEADSET) {
         return true;
       } else if (type == AudioDeviceInfo.TYPE_USB_DEVICE) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean isHeadsetConnected() {
+    AudioDeviceInfo[] devices = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS);
+    for (AudioDeviceInfo device : devices) {
+      final int type = device.getType();
+      if (type == AudioDeviceInfo.TYPE_WIRED_HEADSET ||
+          type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES ||
+          type == AudioDeviceInfo.TYPE_USB_HEADSET ||
+          type == AudioDeviceInfo.TYPE_BLUETOOTH_A2DP ||
+          type == AudioDeviceInfo.TYPE_BLUETOOTH_SCO) {
+        Log.i(TAG, "Headset connected: " + type);
         return true;
       }
     }

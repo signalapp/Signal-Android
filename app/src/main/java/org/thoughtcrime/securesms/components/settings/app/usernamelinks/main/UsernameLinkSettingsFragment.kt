@@ -7,7 +7,6 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.animation.AnimatedVisibility
@@ -49,8 +48,7 @@ import androidx.core.app.ShareCompat
 import androidx.core.app.TaskStackBuilder
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -58,8 +56,10 @@ import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
-import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineScope
+import org.signal.camera.CameraScreenEvents
+import org.signal.camera.CameraScreenState
+import org.signal.camera.CameraScreenViewModel
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -69,7 +69,6 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.permissions.Permissions
-import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
@@ -85,7 +84,6 @@ import java.util.UUID
 class UsernameLinkSettingsFragment : ComposeFragment() {
 
   private val viewModel: UsernameLinkSettingsViewModel by viewModels()
-  private val disposables: LifecycleDisposable = LifecycleDisposable()
 
   private lateinit var galleryLauncher: ActivityResultLauncher<Unit>
 
@@ -115,21 +113,29 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
     val linkCopiedEvent: UUID? by viewModel.linkCopiedEvent
     val helpText = stringResource(id = R.string.UsernameLinkSettings_scan_this_qr_code)
 
+    val cameraViewModel: CameraScreenViewModel = viewModel { CameraScreenViewModel() }
+    val cameraState by cameraViewModel.state
+
     val cameraPermissionState: PermissionState = rememberPermissionState(permission = Manifest.permission.CAMERA) {
       viewModel.onTabSelected(ActiveTab.Scan)
+    }
+
+    LaunchedEffect(cameraViewModel) {
+      cameraViewModel.qrCodeDetected.collect { data ->
+        viewModel.onQrCodeScanned(data)
+      }
     }
 
     MainScreen(
       state = state,
       navController = navController,
-      lifecycleOwner = viewLifecycleOwner,
-      disposables = disposables.disposables,
+      cameraState = cameraState,
+      cameraEmitter = cameraViewModel::onEvent,
       cameraPermissionState = cameraPermissionState,
       onCodeTabSelected = { viewModel.onTabSelected(ActiveTab.Code) },
       onScanTabSelected = { viewModel.onTabSelected(ActiveTab.Scan) },
       onUsernameLinkResetResultHandled = { viewModel.onUsernameLinkResetResultHandled() },
       onShareBadge = { shareQrBadge(requireActivity(), viewModel.generateQrCodeImage(helpText)) },
-      onQrCodeScanned = { data -> viewModel.onQrCodeScanned(data) },
       onQrResultHandled = { viewModel.onQrResultHandled() },
       onOpenCameraClicked = { askCameraPermissions() },
       onOpenGalleryClicked = { galleryLauncher.launch(Unit) },
@@ -141,10 +147,6 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
 
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
-  }
-
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    disposables.bindTo(viewLifecycleOwner)
   }
 
   override fun onResume() {
@@ -167,14 +169,13 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
 private fun MainScreen(
   state: UsernameLinkSettingsState,
   navController: NavController? = null,
-  lifecycleOwner: LifecycleOwner = previewLifecycleOwner,
-  disposables: CompositeDisposable = CompositeDisposable(),
+  cameraState: CameraScreenState = CameraScreenState(),
+  cameraEmitter: (CameraScreenEvents) -> Unit = {},
   cameraPermissionState: PermissionState = previewPermissionState(),
   onCodeTabSelected: () -> Unit = {},
   onScanTabSelected: () -> Unit = {},
   onUsernameLinkResetResultHandled: () -> Unit = {},
   onShareBadge: () -> Unit = {},
-  onQrCodeScanned: (String) -> Unit = {},
   onQrResultHandled: () -> Unit = {},
   onOpenCameraClicked: () -> Unit = {},
   onOpenGalleryClicked: () -> Unit = {},
@@ -238,10 +239,9 @@ private fun MainScreen(
       exit = slideOutHorizontally(targetOffsetX = { fullWidth -> fullWidth })
     ) {
       UsernameQrScanScreen(
-        lifecycleOwner = lifecycleOwner,
-        disposables = disposables,
         qrScanResult = state.qrScanResult,
-        onQrCodeScanned = onQrCodeScanned,
+        cameraState = cameraState,
+        cameraEmitter = cameraEmitter,
         onQrResultHandled = onQrResultHandled,
         onOpenCameraClicked = onOpenCameraClicked,
         onOpenGalleryClicked = onOpenGalleryClicked,
@@ -392,11 +392,6 @@ private fun previewPermissionState(): PermissionState {
     override val status: PermissionStatus = PermissionStatus.Granted
     override fun launchPermissionRequest() = Unit
   }
-}
-
-private val previewLifecycleOwner: LifecycleOwner = object : LifecycleOwner {
-  override val lifecycle: Lifecycle
-    get() = throw UnsupportedOperationException("Only for tests")
 }
 
 private fun shareQrBadge(activity: Activity, badge: Bitmap?) {

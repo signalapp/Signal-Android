@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonParseException
 import org.json.JSONArray
 import org.json.JSONObject
 import org.signal.core.util.logging.Log
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.s3.S3
 import org.thoughtcrime.securesms.transport.RetryLaterException
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import java.util.Locale
 
 /**

@@ -33,6 +33,11 @@ final class LogSectionBadges implements LogSection {
     InAppPaymentTable.InAppPayment latestRecurringDonation = SignalDatabase.inAppPayments().getLatestInAppPaymentByType(InAppPaymentType.RECURRING_DONATION);
 
     if (latestRecurringDonation != null) {
+      InAppPaymentSubscriberRecord donationSubscriber = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION);
+      boolean shouldCancel = donationSubscriber != null
+          ? donationSubscriber.getRequiresCancel()
+          : SignalStore.inAppPayments().getShouldCancelSubscriptionBeforeNextSubscribeAttempt();
+
       return new StringBuilder().append("Badge Count                       : ").append(Recipient.self().getBadges().size()).append("\n")
                                 .append("ExpiredBadge                      : ").append(SignalStore.inAppPayments().getExpiredBadge() != null).append("\n")
                                 .append("LastKeepAliveLaunchTime           : ").append(SignalStore.inAppPayments().getLastKeepAliveLaunchTime()).append("\n")
@@ -44,7 +49,7 @@ final class LogSectionBadges implements LogSection {
                                 .append("InAppPaymentData.Error            : ").append(getError(latestRecurringDonation.getData())).append("\n")
                                 .append("InAppPaymentData.Cancellation     : ").append(getCancellation(latestRecurringDonation.getData())).append("\n")
                                 .append("DisplayBadgesOnProfile            : ").append(SignalStore.inAppPayments().getDisplayBadgesOnProfile()).append("\n")
-                                .append("ShouldCancelBeforeNextAttempt     : ").append(InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(InAppPaymentSubscriberRecord.Type.DONATION)).append("\n")
+                                .append("ShouldCancelBeforeNextAttempt     : ").append(shouldCancel).append("\n")
                                 .append("IsUserManuallyCancelledDonation   : ").append(SignalStore.inAppPayments().isDonationSubscriptionManuallyCancelled()).append("\n");
 
     } else {

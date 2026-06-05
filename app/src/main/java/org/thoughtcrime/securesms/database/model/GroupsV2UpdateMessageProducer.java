@@ -54,6 +54,7 @@ import org.signal.archive.proto.GroupMemberRemovedUpdate;
 import org.signal.archive.proto.GroupMembershipAccessLevelChangeUpdate;
 import org.signal.archive.proto.GroupNameUpdate;
 import org.signal.archive.proto.GroupSelfInvitationRevokedUpdate;
+import org.signal.archive.proto.GroupSequenceOfRequestsAndCancelsUpdate;
 import org.signal.archive.proto.GroupTerminateChangeUpdate;
 import org.signal.archive.proto.GroupUnknownInviteeUpdate;
 import org.signal.archive.proto.GroupV2AccessLevel;
@@ -199,6 +200,8 @@ final class GroupsV2UpdateMessageProducer {
       describeGroupJoinRequestApprovedUpdate(update.groupJoinRequestApprovalUpdate, updates);
     } else if (update.groupJoinRequestCanceledUpdate != null) {
       describeGroupJoinRequestCanceledUpdate(update.groupJoinRequestCanceledUpdate, updates);
+    } else if (update.groupSequenceOfRequestsAndCancelsUpdate != null) {
+      describeGroupSequenceOfRequestsAndCancelsUpdate(update.groupSequenceOfRequestsAndCancelsUpdate, updates);
     } else if (update.groupInviteLinkResetUpdate != null) {
       describeInviteLinkResetUpdate(update.groupInviteLinkResetUpdate, updates);
     } else if (update.groupInviteLinkEnabledUpdate != null) {
@@ -375,6 +378,18 @@ final class GroupsV2UpdateMessageProducer {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_you_canceled_your_request_to_join_the_group), Glyph.PERSON_X));
     } else {
       updates.add(updateDescription(R.string.MessageRecord_s_canceled_their_request_to_join_the_group, update.requestorAci, Glyph.PERSON_X));
+    }
+  }
+
+  private void describeGroupSequenceOfRequestsAndCancelsUpdate(@NonNull GroupSequenceOfRequestsAndCancelsUpdate update, @NonNull List<UpdateDescription> updates) {
+    if (selfIds.matches(update.requestorAci)) {
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_you_canceled_your_request_to_join_the_group), Glyph.GROUP));
+    } else {
+      updates.add(updateDescription(R.plurals.MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link,
+                                    update.count,
+                                    update.requestorAci,
+                                    update.count,
+                                    Glyph.GROUP));
     }
   }
 

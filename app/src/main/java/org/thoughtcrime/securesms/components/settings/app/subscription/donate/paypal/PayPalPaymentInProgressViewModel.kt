@@ -14,6 +14,7 @@ import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
 import org.signal.donations.PayPalPaymentSource
 import org.signal.donations.PaymentSourceType
+import org.signal.network.util.Preconditions
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.rx.RxStore
-import org.whispersystems.signalservice.api.util.Preconditions
 
 class PayPalPaymentInProgressViewModel : ViewModel() {
 

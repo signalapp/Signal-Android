@@ -72,6 +72,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -413,7 +414,7 @@ private fun IssueChip(
     leadingIcon = {
       Icon(
         imageVector = if (isSelected) {
-          ImageVector.vectorResource(R.drawable.symbol_check_24)
+          ImageVector.vectorResource(CoreUiR.drawable.symbol_check_24)
         } else {
           ImageVector.vectorResource(issue.category.icon)
         },

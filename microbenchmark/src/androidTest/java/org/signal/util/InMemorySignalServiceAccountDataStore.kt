@@ -203,7 +203,7 @@ class InMemorySignalServiceAccountDataStore : SignalServiceAccountDataStore {
   }
 
   private fun SessionRecord.isValid(): Boolean {
-    return this.hasSenderChain()
+    return this.hasSenderChain(0.0)
   }
 
   private data class SenderKeyLocator(val address: SignalProtocolAddress, val distributionId: UUID)

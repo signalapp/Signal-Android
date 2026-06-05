@@ -8,6 +8,7 @@ import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.LongSerializer
 import org.signal.core.util.logging.Log
+import org.signal.network.util.JsonUtil
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.keyvalue.protos.BackupDownloadNotifierState
 import org.thoughtcrime.securesms.util.Environment
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
-import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.io.IOException
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.time.Duration

@@ -221,7 +221,7 @@ private fun Title(
         style = MaterialTheme.typography.headlineMedium
       )
       Icon(
-        painter = painterResource(id = R.drawable.symbol_person_circle_24),
+        painter = painterResource(id = CoreUiR.drawable.symbol_person_circle_24),
         contentDescription = null,
         modifier = Modifier
           .padding(start = 6.dp)

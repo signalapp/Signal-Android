@@ -75,6 +75,10 @@ public class SignalIdentityKeyStore implements IdentityKeyStore {
     return baseStore.getIdentityRecord(recipientId);
   }
 
+  public @NonNull Optional<IdentityRecord> getIdentityRecord(@NonNull Recipient recipient) {
+    return baseStore.getIdentityRecord(recipient);
+  }
+
   public @NonNull IdentityRecordList getIdentityRecords(@NonNull List<Recipient> recipients) {
     return baseStore.getIdentityRecords(recipients);
   }

@@ -23,7 +23,6 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.launch
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.Snackbars
-import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.ui.isSplitPane
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -133,7 +132,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
         val filteredCount = callLogAdapter.submitCallRows(
           data,
           selected,
-          activeCallLogRowId = activeRowId.orNull().takeIf { resources.getWindowSizeClass().isSplitPane() },
+          activeCallLogRowId = activeRowId.orNull().takeIf { resources.isSplitPane() },
           viewModel.callLogPeekHelper.localDeviceCallRecipientId,
           scrollToPositionDelegate::notifyListCommitted
         )
@@ -187,7 +186,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       }
     }
 
-    if (!resources.getWindowSizeClass().isSplitPane()) {
+    if (!resources.isSplitPane()) {
       ViewUtil.setBottomMargin(binding.bottomActionBar, ViewUtil.getNavigationBarHeight(binding.bottomActionBar))
     }
 
@@ -334,7 +333,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     if (viewModel.selectionStateSnapshot.isNotEmpty(binding.recycler.adapter!!.itemCount)) {
       viewModel.toggleSelected(callLogRow.id)
     } else {
-      mainNavigationViewModel.goTo(MainNavigationDetailLocation.Calls.CallLinks.CallLinkDetails(callLogRow.record.roomId))
+      mainNavigationViewModel.goTo(MainNavigationDetailLocation.CallLinkDetails(callLogRow.record.roomId))
     }
   }
 
@@ -364,18 +363,21 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     }
   }
 
-  override fun onStartVideoCallClicked(recipient: Recipient, canUserBeginCall: Boolean) {
-    if (canUserBeginCall) {
-      CommunicationActions.startVideoCall(this, recipient) {
-        mainNavigationViewModel.snackbarRegistry.emit(
-          SnackbarState(
-            getString(R.string.CommunicationActions__you_are_already_in_a_call),
-            hostKey = MainSnackbarHostKey.MainChrome
+  override fun onStartVideoCallClicked(recipient: Recipient, canUserBeginCall: CallLogRow.CanStartCall) {
+    when (canUserBeginCall) {
+      CallLogRow.CanStartCall.ALLOWED -> {
+        CommunicationActions.startVideoCall(this, recipient) {
+          mainNavigationViewModel.snackbarRegistry.emit(
+            SnackbarState(
+              getString(R.string.CommunicationActions__you_are_already_in_a_call),
+              hostKey = MainSnackbarHostKey.MainChrome
+            )
           )
-        )
+        }
       }
-    } else {
-      ConversationDialogs.displayCannotStartGroupCallDueToPermissionsDialog(requireContext())
+      CallLogRow.CanStartCall.GROUP_TERMINATED -> ConversationDialogs.displayCannotStartGroupCallDueToGroupEndedDialog(requireContext())
+      CallLogRow.CanStartCall.NOT_A_MEMBER -> ConversationDialogs.displayCannotStartGroupCallDueToNoLongerAMemberDialog(requireContext())
+      CallLogRow.CanStartCall.ADMIN_ONLY -> ConversationDialogs.displayCannotStartGroupCallDueToPermissionsDialog(requireContext())
     }
   }
 

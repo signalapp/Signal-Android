@@ -2,9 +2,6 @@ package org.thoughtcrime.securesms.payments.history;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -18,6 +15,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -72,7 +71,7 @@ public final class BlockTransactionReconstructionTests {
     TransactionReconstruction estimate = TransactionReconstruction.estimateBlockLevelActivity(spentTransactionOutputs.getMoney(), unspentTransactionOutputs.getMoney());
 
     assertEquals(expectedReceivedTransactions.getMoney(), toValueList(estimate.received()));
-    assertTrue(Stream.of(estimate.received()).allMatch(t -> t.getDirection() == Direction.RECEIVED));
+    assertTrue(estimate.received().stream().allMatch(t -> t.getDirection() == Direction.RECEIVED));
   }
 
   @Test
@@ -80,7 +79,7 @@ public final class BlockTransactionReconstructionTests {
     TransactionReconstruction estimate = TransactionReconstruction.estimateBlockLevelActivity(spentTransactionOutputs.getMoney(), unspentTransactionOutputs.getMoney());
 
     assertEquals(expectedSentTransactions.getMoney(), toValueList(estimate.sent()));
-    assertTrue(Stream.of(estimate.sent()).allMatch(t -> t.getDirection() == Direction.SENT));
+    assertTrue(estimate.sent().stream().allMatch(t -> t.getDirection() == Direction.SENT));
   }
 
   @Test
@@ -115,7 +114,7 @@ public final class BlockTransactionReconstructionTests {
   }
 
   private static @NonNull List<TransactionReconstruction.Transaction> sort(@NonNull List<TransactionReconstruction.Transaction> transactions) {
-    return Stream.of(transactions)
+    return transactions.stream()
                  .sorted((o1, o2) -> {
                    if (o1.getDirection() != o2.getDirection()) {
                      if (o1.getDirection() == Direction.RECEIVED) {
@@ -130,13 +129,13 @@ public final class BlockTransactionReconstructionTests {
   }
 
   private static List<Money.MobileCoin> toValueList(List<TransactionReconstruction.Transaction> received) {
-    return Stream.of(received)
+    return received.stream()
                  .map(TransactionReconstruction.Transaction::getValue)
                  .toList();
   }
 
   private static List<Money.MobileCoin> toValueListWithDirection(List<TransactionReconstruction.Transaction> received) {
-    return Stream.of(received)
+    return received.stream()
                  .map(TransactionReconstruction.Transaction::getValueWithDirection)
                  .toList();
   }
@@ -159,7 +158,7 @@ public final class BlockTransactionReconstructionTests {
 
     @Override
     public @NonNull String toString() {
-      return "[" + Stream.of(money)
+      return "[" + money.stream()
                          .map(f -> f.toString(MONEY_FORMATTER))
                          .collect(Collectors.joining(", ")) +
              "]";

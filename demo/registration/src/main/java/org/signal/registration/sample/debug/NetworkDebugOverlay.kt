@@ -27,8 +27,10 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FilledTonalIconButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -160,6 +162,10 @@ private fun NetworkDebugDialog(
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        SkipPushChallengeToggle()
+
+        HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
+
         LazyColumn(
           modifier = Modifier
             .fillMaxWidth()
@@ -191,6 +197,37 @@ private fun NetworkDebugDialog(
         }
       }
     }
+  }
+}
+
+@Composable
+private fun SkipPushChallengeToggle() {
+  val skipPushChallenge by NetworkDebugState.skipPushChallenge.collectAsState()
+
+  Row(
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(horizontal = 4.dp),
+    verticalAlignment = Alignment.CenterVertically,
+    horizontalArrangement = Arrangement.SpaceBetween
+  ) {
+    Column(modifier = Modifier.weight(1f)) {
+      Text(
+        text = "Skip push challenge",
+        style = MaterialTheme.typography.bodyMedium,
+        fontWeight = FontWeight.Medium
+      )
+      Text(
+        text = "Always return null, forcing captcha",
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+      )
+    }
+
+    Switch(
+      checked = skipPushChallenge,
+      onCheckedChange = { NetworkDebugState.setSkipPushChallenge(it) }
+    )
   }
 }
 

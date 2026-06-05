@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.thoughtcrime.securesms.database.model.MessageId;
 
@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Observable;
 
 public class ReactionsViewModel extends ViewModel {
@@ -29,13 +28,13 @@ public class ReactionsViewModel extends ViewModel {
   public @NonNull Observable<List<EmojiCount>> getEmojiCounts() {
     return repository.getReactions(messageId)
                      .map(reactionList -> {
-                       List<EmojiCount> emojiCounts = Stream.of(reactionList)
-                                                            .groupBy(ReactionDetails::getBaseEmoji)
+                       List<EmojiCount> emojiCounts = reactionList.stream()
+                                                                 .collect(Collectors.groupingBy(ReactionDetails::getBaseEmoji))
+                                                                 .entrySet().stream()
                                                             .sorted(this::compareReactions)
                                                             .map(entry -> new EmojiCount(entry.getKey(),
                                                                                          getCountDisplayEmoji(entry.getValue()),
-                                                                                         entry.getValue()))
-                                                            .toList();
+                                                                                         entry.getValue())).collect(Collectors.toList());
 
                        emojiCounts.add(0, EmojiCount.all(reactionList));
 
@@ -55,10 +54,10 @@ public class ReactionsViewModel extends ViewModel {
   }
 
   private long getLatestTimestamp(List<ReactionDetails> reactions) {
-    return Stream.of(reactions)
-                 .max(Comparator.comparingLong(ReactionDetails::getTimestamp))
-                 .map(ReactionDetails::getTimestamp)
-                 .orElse(-1L);
+    return reactions.stream()
+                    .max(Comparator.comparingLong(ReactionDetails::getTimestamp))
+                    .map(ReactionDetails::getTimestamp)
+                    .orElse(-1L);
   }
 
   private @NonNull String getCountDisplayEmoji(@NonNull List<ReactionDetails> reactions) {

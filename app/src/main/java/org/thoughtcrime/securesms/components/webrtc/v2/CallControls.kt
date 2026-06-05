@@ -82,7 +82,7 @@ fun CallControls(
       }
 
       val hasCameraPermission = ContextCompat.checkSelfPermission(LocalContext.current, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
-      if (callControlsState.displayVideoToggle) {
+      if (callControlsState.displayVideoToggle && !callControlsState.isLocalScreenSharing) {
         CallScreenTooltipBox(
           text = stringResource(R.string.WebRtcCallActivity__tap_here_to_turn_on_your_video),
           displayTooltip = displayVideoTooltip,
@@ -211,10 +211,12 @@ data class CallControlsState(
   val displayGroupRingingToggle: Boolean = false,
   val isGroupRingingEnabled: Boolean = false,
   val isGroupRingingAllowed: Boolean = false,
+  val isGroupCall: Boolean = false,
   val displayAdditionalActions: Boolean = false,
   val displayStartCallButton: Boolean = false,
   val startCallButtonText: Int = R.string.WebRtcCallView__start_call,
-  val displayEndCallButton: Boolean = false
+  val displayEndCallButton: Boolean = false,
+  val isLocalScreenSharing: Boolean = false
 ) {
 
   val hasAnyControls: Boolean
@@ -235,7 +237,8 @@ data class CallControlsState(
       callParticipantsState: CallParticipantsState,
       webRtcControls: WebRtcControls,
       groupMemberCount: Int,
-      isAudioDeviceChangePending: Boolean = false
+      isAudioDeviceChangePending: Boolean = false,
+      isLocalScreenSharing: Boolean = false
     ): CallControlsState {
       return CallControlsState(
         isEarpieceAvailable = webRtcControls.isEarpieceAvailableForAudioToggle,
@@ -250,12 +253,14 @@ data class CallControlsState(
         displayMicToggle = webRtcControls.displayMuteAudio(),
         isMicEnabled = callParticipantsState.localParticipant.isMicrophoneEnabled,
         displayGroupRingingToggle = webRtcControls.displayRingToggle(),
+        isGroupCall = webRtcControls.isGroupCall,
         isGroupRingingEnabled = callParticipantsState.ringGroup,
         isGroupRingingAllowed = groupMemberCount <= RemoteConfig.maxGroupCallRingSize,
         displayAdditionalActions = webRtcControls.displayOverflow(),
         displayStartCallButton = webRtcControls.displayStartCallControls(),
         startCallButtonText = webRtcControls.startCallButtonText,
-        displayEndCallButton = webRtcControls.displayEndCall()
+        displayEndCallButton = webRtcControls.displayEndCall(),
+        isLocalScreenSharing = isLocalScreenSharing
       )
     }
   }

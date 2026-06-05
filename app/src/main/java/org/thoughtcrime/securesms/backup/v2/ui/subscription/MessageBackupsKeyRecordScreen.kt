@@ -59,6 +59,7 @@ import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.Util
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyCredentialManagerHandler
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
 import org.thoughtcrime.securesms.fonts.MonoTypeface
@@ -133,6 +134,8 @@ fun MessageBackupsKeyRecordScreen(
   mode: MessageBackupsKeyRecordMode = MessageBackupsKeyRecordMode.Next(onNextClick = {}),
   notifyKeyIsSameAsOnDeviceBackupKey: Boolean = false
 ) {
+  TemporaryScreenshotSecurity.bind()
+
   val snackbarHostState = remember { SnackbarHostState() }
   val backupKeyString = remember(backupKey) {
     backupKey.chunked(4).joinToString("  ")

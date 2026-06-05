@@ -8,12 +8,12 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobLogger
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.RemoteConfig.serverErrorMaxBackoff
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
 import org.whispersystems.signalservice.api.push.exceptions.RetryNetworkException

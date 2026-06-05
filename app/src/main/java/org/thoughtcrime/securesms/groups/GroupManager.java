@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult;
+import org.thoughtcrime.securesms.jobs.ConversationShortcutUpdateJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
@@ -82,6 +83,7 @@ public final class GroupManager {
     try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
       edit.terminateGroup();
       SignalDatabase.groups().setTerminatedBy(groupId, Recipient.self().getId());
+      ConversationShortcutUpdateJob.enqueue();
       Log.i(TAG, "Terminated group " + groupId);
     } catch (GroupInsufficientRightsException e) {
       Log.w(TAG, "Insufficient rights to terminate " + groupId, e);

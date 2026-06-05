@@ -16,9 +16,8 @@ import androidx.fragment.app.FragmentActivity
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
+import org.thoughtcrime.securesms.main.MainNavigationCallDetailRouter
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
-import org.thoughtcrime.securesms.main.MainNavigationListLocation
-import org.thoughtcrime.securesms.main.MainNavigationRouter
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.util.viewModel
 
@@ -56,23 +55,17 @@ class CallLinkDetailsActivity : FragmentActivity() {
     }
   }
 
-  private inner class Router : MainNavigationRouter {
-    override fun goTo(location: MainNavigationDetailLocation) {
+  private inner class Router : MainNavigationCallDetailRouter {
+    override fun goToCallDetail(location: MainNavigationDetailLocation.Calls) {
       when (location) {
         is MainNavigationDetailLocation.Calls.CallLinks.EditCallLinkName -> {
           EditCallLinkNameDialogFragment().apply {
             arguments = bundleOf(EditCallLinkNameDialogFragment.ARG_NAME to viewModel.nameSnapshot)
           }.show(supportFragmentManager, null)
         }
-
-        is MainNavigationDetailLocation.Empty -> {
-          finishAfterTransition()
-        }
-
-        else -> error("Unsupported route $location")
       }
     }
 
-    override fun goTo(location: MainNavigationListLocation) = Unit
+    override fun exitDetailLocation() = finishAfterTransition()
   }
 }

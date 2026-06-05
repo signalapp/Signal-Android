@@ -86,7 +86,7 @@ public final class WebRtcUtil {
   }
 
   public static void enableSpeakerPhoneIfNeeded(@NonNull WebRtcInteractor webRtcInteractor, WebRtcServiceState currentState) {
-    if (!currentState.getLocalDeviceState().getCameraState().isEnabled()) {
+    if (!currentState.getLocalDeviceState().getCameraState().isEnabled() && !currentState.getLocalDeviceState().isScreenSharing()) {
       return;
     }
 

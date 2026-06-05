@@ -5,11 +5,15 @@
 
 package org.thoughtcrime.securesms.main
 
+import androidx.compose.ui.platform.LocalResources
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import org.signal.core.ui.rememberIsSplitPane
 
 fun NavGraphBuilder.storiesNavGraphBuilder() {
   composable<MainNavigationDetailLocation.Empty> {
-    EmptyDetailScreen()
+    if (LocalResources.current.rememberIsSplitPane()) {
+      EmptyDetailScreen()
+    }
   }
 }

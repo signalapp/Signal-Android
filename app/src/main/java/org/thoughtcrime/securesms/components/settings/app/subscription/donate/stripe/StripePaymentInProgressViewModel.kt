@@ -16,6 +16,7 @@ import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSource
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
+import org.signal.network.util.Preconditions
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
@@ -29,7 +30,6 @@ import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.util.rx.RxStore
-import org.whispersystems.signalservice.api.util.Preconditions
 
 class StripePaymentInProgressViewModel : ViewModel() {
 

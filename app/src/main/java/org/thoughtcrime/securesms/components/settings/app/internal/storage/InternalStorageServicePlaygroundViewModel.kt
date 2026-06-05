@@ -16,11 +16,11 @@ import kotlinx.coroutines.withContext
 import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
+import org.signal.network.service.StorageServiceService
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
-import org.whispersystems.signalservice.api.storage.StorageServiceRepository
 
 class InternalStorageServicePlaygroundViewModel : ViewModel() {
 
@@ -47,12 +47,12 @@ class InternalStorageServicePlaygroundViewModel : ViewModel() {
   fun onViewTabSelected() {
     viewModelScope.launch {
       withContext(Dispatchers.IO) {
-        val repository = StorageServiceRepository(AppDependencies.storageServiceApi)
+        val repository = StorageServiceService(AppDependencies.storageServiceApi)
         val storageKey = SignalStore.storageService.storageKeyForInitialDataRestore ?: SignalStore.storageService.storageKey
 
         val manifest = when (val result = repository.getStorageManifest(storageKey)) {
-          is StorageServiceRepository.ManifestResult.Success -> result.manifest
-          is StorageServiceRepository.ManifestResult.NotFoundError -> {
+          is StorageServiceService.ManifestResult.Success -> result.manifest
+          is StorageServiceService.ManifestResult.NotFoundError -> {
             Log.w(TAG, "Manifest not found!")
             _oneOffEvents.value = OneOffEvent.ManifestNotFoundError
             return@withContext
@@ -66,7 +66,7 @@ class InternalStorageServicePlaygroundViewModel : ViewModel() {
         _manifest.value = manifest
 
         val records = when (val result = repository.readStorageRecords(storageKey, manifest.recordIkm, manifest.storageIds)) {
-          is StorageServiceRepository.StorageRecordResult.Success -> result.records
+          is StorageServiceService.StorageRecordResult.Success -> result.records
           else -> {
             Log.w(TAG, "Failed to fetch records!")
             _oneOffEvents.value = OneOffEvent.StorageRecordDecryptionError

@@ -190,7 +190,7 @@ fun SelfPipContent(
     Box(modifier = modifier) {
       VideoRenderer(
         participant = participant,
-        mirror = participant.cameraDirection == CameraState.Direction.FRONT,
+        mirror = !participant.isScreenSharing && participant.cameraDirection == CameraState.Direction.FRONT,
         modifier = Modifier.fillMaxSize()
       )
 
@@ -653,6 +653,10 @@ private fun InfoOverlay(
       if (!renderInPip) {
         Spacer(modifier = Modifier.size(12.dp))
 
+        val shortDisplayName = rememberRecipientField(recipient) { getShortDisplayName(context) }
+        val sIsBlocked = stringResource(R.string.CallParticipantView__s_is_blocked, shortDisplayName)
+        val canNotReceiveAudio = stringResource(R.string.CallParticipantView__cant_receive_audio_video_from_s, shortDisplayName)
+
         // Use AndroidView for EmojiTextView
         AndroidView(
           factory = { ctx ->
@@ -670,15 +674,9 @@ private fun InfoOverlay(
           },
           update = { view ->
             view.text = if (isBlocked) {
-              context.getString(
-                R.string.CallParticipantView__s_is_blocked,
-                recipient.getShortDisplayName(context)
-              )
+              sIsBlocked
             } else {
-              context.getString(
-                R.string.CallParticipantView__cant_receive_audio_video_from_s,
-                recipient.getShortDisplayName(context)
-              )
+              canNotReceiveAudio
             }
           },
           modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)

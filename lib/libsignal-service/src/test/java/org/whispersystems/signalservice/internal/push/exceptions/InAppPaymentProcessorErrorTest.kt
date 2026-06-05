@@ -7,8 +7,8 @@ package org.whispersystems.signalservice.internal.push.exceptions
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.signal.network.util.JsonUtil
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
-import org.whispersystems.signalservice.internal.util.JsonUtil
 
 class InAppPaymentProcessorErrorTest {
 

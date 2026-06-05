@@ -11,6 +11,7 @@ import org.signal.core.util.logging.Log;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+import org.signal.core.util.ServiceUtil;
 
 /**
  * Tracks the frame rate of the app and logs when things are bad.

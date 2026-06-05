@@ -12,7 +12,7 @@ import org.signal.core.util.Base64;
 import org.signal.core.util.SqlUtil;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
-import org.whispersystems.signalservice.api.util.Preconditions;
+import org.signal.network.util.Preconditions;
 
 import java.io.IOException;
 import java.util.ArrayList;

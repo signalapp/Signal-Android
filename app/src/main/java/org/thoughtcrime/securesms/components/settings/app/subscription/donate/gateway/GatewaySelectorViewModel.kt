@@ -1,29 +1,33 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway
 
 import androidx.lifecycle.ViewModel
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import org.signal.donations.PaymentSourceType
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.rx.RxStore
+import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
+import java.math.BigDecimal
 
 class GatewaySelectorViewModel(
   args: GatewaySelectorBottomSheetArgs,
   repository: GooglePayRepository
 ) : ViewModel() {
 
-  private val store = RxStore<GatewaySelectorState>(GatewaySelectorState.Loading)
+  private val store = MutableStateFlow<GatewaySelectorState>(GatewaySelectorState.Loading)
   private val disposables = CompositeDisposable()
 
-  val state = store.stateFlowable
+  val state = store.asStateFlow()
 
   init {
     val inAppPayment = InAppPaymentsRepository.requireInAppPayment(args.inAppPaymentId)
@@ -48,13 +52,28 @@ class GatewaySelectorViewModel(
   }
 
   override fun onCleared() {
-    store.dispose()
     disposables.clear()
   }
 
-  fun updateInAppPaymentMethod(inAppPaymentMethodType: InAppPaymentData.PaymentMethodType): Single<InAppPaymentTable.InAppPayment> {
-    val state = store.state as GatewaySelectorState.Ready
+  fun getSepaMaximum(): BigDecimal {
+    val state = store.value as GatewaySelectorState.Ready
+    return state.sepaEuroMaximum!!.amount
+  }
 
-    return GatewaySelectorRepository.setInAppPaymentMethodType(state.inAppPayment, inAppPaymentMethodType).observeOn(AndroidSchedulers.mainThread())
+  fun checkIsSepaPaymentValidAmount(): Boolean {
+    val state = store.value as GatewaySelectorState.Ready
+
+    val price = state.inAppPayment.data.amount!!.toFiatMoney()
+    return !(
+      state.sepaEuroMaximum != null &&
+        price.currency == CurrencyUtil.EURO &&
+        price.amount > state.sepaEuroMaximum.amount
+      )
+  }
+
+  suspend fun updateInAppPaymentMethod(inAppPaymentMethodType: InAppPaymentData.PaymentMethodType): InAppPaymentTable.InAppPayment {
+    val state = store.value as GatewaySelectorState.Ready
+
+    return GatewaySelectorRepository.setInAppPaymentMethodType(state.inAppPayment, inAppPaymentMethodType)
   }
 }

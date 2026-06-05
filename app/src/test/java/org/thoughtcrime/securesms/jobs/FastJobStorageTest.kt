@@ -776,6 +776,26 @@ class FastJobStorageTest {
   }
 
   @Test
+  fun `getNextEligibleJob - newly-inserted higher-priority job does not replace running job in same queue`() {
+    // This test is for a specific bug, where a newly-added job could replace a lower-priority job in the same
+    // queue even if the existing job was actively running. This is a defensive test to make sure that we don't replace
+    // running jobs with another job, even if it's higher priority.
+    val runningJob = jobSpec(id = "1", factoryKey = "f1", queueKey = "q", isRunning = true)
+    val subject = FastJobStorage(mockDatabase(listOf(FullSpec(runningJob, emptyList(), emptyList()))))
+    subject.init()
+
+    assertThat(subject.getNextEligibleJob(10, NO_PREDICATE)).isNull()
+
+    val higherPriorityJob = jobSpec(id = "2", factoryKey = "f2", queueKey = "q", globalPriority = Job.Parameters.PRIORITY_HIGH)
+    subject.insertJobs(listOf(FullSpec(higherPriorityJob, emptyList(), emptyList())))
+
+    assertThat(subject.getNextEligibleJob(10, NO_PREDICATE)).isNull()
+
+    subject.deleteJob("1")
+    assertThat(subject.getNextEligibleJob(10, NO_PREDICATE)).isEqualTo(higherPriorityJob)
+  }
+
+  @Test
   fun `getNextEligibleJob - updating job to have a higher global priority replaces lower priority in queue`() {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()

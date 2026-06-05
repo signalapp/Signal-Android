@@ -1,45 +1,50 @@
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.LifecycleOwner
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
+import org.signal.camera.CameraCaptureMode
+import org.signal.camera.CameraScreen
+import org.signal.camera.CameraScreenEvents
+import org.signal.camera.CameraScreenState
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.qr.QrScannerView
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig
-import org.thoughtcrime.securesms.qr.QrScanScreens
+import org.thoughtcrime.securesms.qr.QrCrosshair
 import org.thoughtcrime.securesms.recipients.Recipient
-import java.util.concurrent.TimeUnit
 
 /**
  * A screen that allows you to scan a QR code to start a chat.
  */
 @Composable
 fun UsernameQrScanScreen(
-  lifecycleOwner: LifecycleOwner,
-  disposables: CompositeDisposable,
   qrScanResult: QrScanResult?,
-  onQrCodeScanned: (String) -> Unit,
+  cameraState: CameraScreenState,
+  cameraEmitter: (CameraScreenEvents) -> Unit,
   onQrResultHandled: () -> Unit,
   onOpenCameraClicked: () -> Unit,
   onOpenGalleryClicked: () -> Unit,
@@ -88,26 +93,49 @@ fun UsernameQrScanScreen(
       modifier = Modifier
         .fillMaxWidth()
         .weight(1f, true)
+        .background(Color.Black)
     ) {
-      QrScanScreens.QrScanScreen(
-        factory = { context ->
-          val view = QrScannerView(context)
-          disposables += view.qrData.throttleFirst(3000, TimeUnit.MILLISECONDS).subscribe { data ->
-            onQrCodeScanned(data)
+      if (hasCameraPermission) {
+        CameraScreen(
+          state = cameraState,
+          emitter = cameraEmitter,
+          enableQrScanning = true,
+          captureMode = CameraCaptureMode.ImageOnly,
+          roundCorners = false,
+          fillViewport = true,
+          modifier = Modifier.fillMaxSize()
+        ) {
+          QrCrosshair(modifier = Modifier.fillMaxSize())
+        }
+      } else {
+        Column(
+          verticalArrangement = Arrangement.Center,
+          horizontalAlignment = Alignment.CenterHorizontally,
+          modifier = Modifier
+            .align(Alignment.Center)
+            .padding(48.dp)
+        ) {
+          Text(
+            text = stringResource(R.string.CameraXFragment_to_scan_qr_code_allow_camera),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyLarge,
+            color = Color.White
+          )
+          Buttons.MediumTonal(
+            colors = ButtonDefaults.filledTonalButtonColors(),
+            onClick = onOpenCameraClicked
+          ) {
+            Text(stringResource(R.string.CameraXFragment_allow_access))
           }
-          view
-        },
-        update = { view ->
-          view.start(lifecycleOwner = lifecycleOwner, forceLegacy = CameraXRemoteConfig.isBlocklisted())
-        },
-        hasPermission = hasCameraPermission,
-        onRequestPermissions = onOpenCameraClicked,
-        qrHeaderLabelString = ""
-      )
+        }
+      }
+
       FloatingActionButton(
         shape = CircleShape,
         containerColor = SignalTheme.colors.colorSurface1,
-        modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 24.dp),
+        modifier = Modifier
+          .align(Alignment.BottomCenter)
+          .padding(bottom = 24.dp),
         onClick = onOpenGalleryClicked
       ) {
         Image(
@@ -142,4 +170,38 @@ private fun QrScanResultDialog(title: String? = null, message: String, onDismiss
     dismiss = stringResource(id = android.R.string.ok),
     onDismiss = onDismiss
   )
+}
+
+@DayNightPreviews
+@Composable
+private fun UsernameQrScanScreenPreview() {
+  Previews.Preview {
+    UsernameQrScanScreen(
+      qrScanResult = null,
+      cameraState = CameraScreenState(),
+      cameraEmitter = {},
+      onQrResultHandled = {},
+      onOpenCameraClicked = {},
+      onOpenGalleryClicked = {},
+      onRecipientFound = {},
+      hasCameraPermission = true
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun UsernameQrScanScreenNoPermissionPreview() {
+  Previews.Preview {
+    UsernameQrScanScreen(
+      qrScanResult = null,
+      cameraState = CameraScreenState(),
+      cameraEmitter = {},
+      onQrResultHandled = {},
+      onOpenCameraClicked = {},
+      onOpenGalleryClicked = {},
+      onRecipientFound = {},
+      hasCameraPermission = false
+    )
+  }
 }

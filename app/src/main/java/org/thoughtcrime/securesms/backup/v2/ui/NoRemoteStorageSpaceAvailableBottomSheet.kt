@@ -31,10 +31,11 @@ class NoRemoteStorageSpaceAvailableBottomSheet : ComposeBottomSheetDialogFragmen
   @Composable
   override fun SheetContent() {
     val context = LocalContext.current
+    val supportUrl = stringResource(R.string.remote_backup_support_url)
 
     NoRemoteStorageSpaceAvailableBottomSheetContent(
       onLearnMoreClick = {
-        CommunicationActions.openBrowserLink(context, context.getString(R.string.remote_backup_support_url))
+        CommunicationActions.openBrowserLink(context, supportUrl)
       },
       onContactSupportClick = {
         ContactSupportDialogFragment.create(

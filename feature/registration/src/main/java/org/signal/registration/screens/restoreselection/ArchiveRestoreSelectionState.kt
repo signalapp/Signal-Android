@@ -9,6 +9,7 @@ import org.signal.registration.util.DebugLoggableModel
 
 data class ArchiveRestoreSelectionState(
   val restoreOptions: List<ArchiveRestoreOption> = emptyList(),
-  val showSkipButton: Boolean = false,
-  val showSkipRestoreWarning: Boolean = false
-) : DebugLoggableModel()
+  val showSkipWarningDialog: Boolean = false
+) : DebugLoggableModel() {
+  val showSkipButton: Boolean get() = ArchiveRestoreOption.None !in restoreOptions
+}

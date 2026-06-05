@@ -2,7 +2,7 @@ package org.whispersystems.signalservice.api.subscriptions;
 
 
 import org.signal.core.util.Base64;
-import org.whispersystems.signalservice.api.util.Preconditions;
+import org.signal.network.util.Preconditions;
 
 import java.io.IOException;
 import java.security.SecureRandom;

@@ -12,9 +12,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.signal.network.util.JsonUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.signalservice.internal.util.JsonUtil
 
 class InternalMessageDetailsViewModel(val messageId: Long) : ViewModel() {
 

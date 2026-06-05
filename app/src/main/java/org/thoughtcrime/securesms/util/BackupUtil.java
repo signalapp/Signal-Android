@@ -93,6 +93,10 @@ public class BackupUtil {
   }
 
   public static void deleteUnifiedBackups(@NonNull Context context, @Nullable String backupDirectoryPath) {
+    deleteUnifiedBackups(context, backupDirectoryPath, null);
+  }
+
+  public static void deleteUnifiedBackups(@NonNull Context context, @Nullable String backupDirectoryPath, @Nullable org.thoughtcrime.securesms.backup.v2.local.AllFilesProgressListener progressListener) {
     if (backupDirectoryPath != null) {
       Uri          backupDirectoryUri = Uri.parse(backupDirectoryPath);
       DocumentFile backupDirectory    = DocumentFile.fromTreeUri(context, backupDirectoryUri);
@@ -104,7 +108,7 @@ public class BackupUtil {
 
       for (DocumentFile file : backupDirectory.listFiles()) {
         if (file.isDirectory() && Objects.equals(file.getName(), ArchiveFileSystem.MAIN_DIRECTORY_NAME)) {
-          file.delete();
+          ArchiveFileSystem.deleteAll(file, progressListener);
         }
       }
     }

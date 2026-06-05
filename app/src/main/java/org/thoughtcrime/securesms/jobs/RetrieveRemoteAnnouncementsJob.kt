@@ -35,8 +35,12 @@ import org.whispersystems.signalservice.internal.ServiceResponse
 import java.io.IOException
 import java.lang.Integer.max
 import java.security.MessageDigest
+import java.time.LocalTime
+import java.time.ZonedDateTime
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Retrieves and processes release channel messages.
@@ -52,6 +56,9 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
     private val TAG = Log.tag(RetrieveRemoteAnnouncementsJob::class.java)
     private val RETRIEVE_FREQUENCY = TimeUnit.DAYS.toMillis(3)
 
+    private val WINDOW_START = LocalTime.of(9, 0)
+    private val WINDOW_END = LocalTime.of(21, 0)
+
     @JvmStatic
     @JvmOverloads
     fun enqueue(force: Boolean = false) {
@@ -65,13 +72,18 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
         return
       }
 
+      val windowDelay = calculateTimeToNextWindow()
+      if (windowDelay > Duration.ZERO) {
+        Log.i(TAG, "Outside window, delaying ${windowDelay.inWholeMinutes} minutes")
+      }
+
       val job = RetrieveRemoteAnnouncementsJob(
         force,
         Parameters.Builder()
           .setQueue("RetrieveReleaseChannelJob")
-          .setMaxInstancesForFactory(1)
           .setMaxAttempts(3)
           .addConstraint(NetworkConstraint.KEY)
+          .setInitialDelay(windowDelay.inWholeMilliseconds)
           .build()
       )
 
@@ -79,6 +91,23 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
         .startChain(CreateReleaseChannelJob.create())
         .then(job)
         .enqueue()
+    }
+
+    private fun calculateTimeToNextWindow(): Duration {
+      val now = ZonedDateTime.now()
+      val time = now.toLocalTime()
+
+      if (time.isAfter(WINDOW_START) && time.isBefore(WINDOW_END)) {
+        return Duration.ZERO
+      }
+
+      val next9am = if (time.isBefore(WINDOW_START)) {
+        now.with(WINDOW_START)
+      } else {
+        now.plusDays(1).with(WINDOW_START)
+      }
+
+      return (next9am.toInstant().toEpochMilli() - System.currentTimeMillis()).milliseconds
     }
   }
 
@@ -103,6 +132,13 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
 
     if (!force && System.currentTimeMillis() < values.nextScheduledCheck) {
       Log.i(TAG, "Too soon to check for updated release notes")
+      return
+    }
+
+    val delay = calculateTimeToNextWindow()
+    if (delay > Duration.ZERO) {
+      Log.i(TAG, "Outside window, re-enqueuing")
+      enqueue(force = force)
       return
     }
 

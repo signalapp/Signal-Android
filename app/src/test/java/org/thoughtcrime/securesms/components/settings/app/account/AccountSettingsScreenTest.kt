@@ -17,6 +17,7 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToNode
 import io.mockk.mockk
 import io.mockk.verify
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -24,6 +25,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 
+@Ignore("Does not work with prod release builds")
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
 class AccountSettingsScreenTest {

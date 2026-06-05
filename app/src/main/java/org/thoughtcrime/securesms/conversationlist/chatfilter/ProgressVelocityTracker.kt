@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.conversationlist.chatfilter
 
 import androidx.annotation.FloatRange
-import org.whispersystems.signalservice.api.util.Preconditions
+import org.signal.network.util.Preconditions
 import kotlin.time.Duration
 
 /**

@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.payments.PaymentTransactionId;
 import org.thoughtcrime.securesms.payments.Payments;
 import org.thoughtcrime.securesms.payments.Wallet;
 import org.thoughtcrime.securesms.util.RemoteConfig;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 
 import java.io.IOException;
 import java.util.Objects;

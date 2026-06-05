@@ -23,7 +23,7 @@ import org.signal.storageservice.storage.protos.groups.GroupChanges;
 import org.signal.storageservice.storage.protos.groups.GroupJoinInfo;
 import org.signal.storageservice.storage.protos.groups.GroupResponse;
 import org.signal.storageservice.storage.protos.groups.Member;
-import org.whispersystems.signalservice.api.NetworkResult;
+import org.signal.network.NetworkResult;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
@@ -47,17 +47,17 @@ import org.whispersystems.signalservice.api.push.exceptions.HttpConflictExceptio
 import org.whispersystems.signalservice.api.push.exceptions.IncorrectRegistrationRecoveryPasswordException;
 import org.whispersystems.signalservice.api.push.exceptions.InvalidRegistrationSessionIdException;
 import org.whispersystems.signalservice.api.push.exceptions.InvalidTransportModeException;
-import org.whispersystems.signalservice.api.push.exceptions.MalformedRequestException;
-import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
+import org.signal.network.exceptions.MalformedRequestException;
+import org.signal.network.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
 import org.whispersystems.signalservice.api.push.exceptions.MustRequestNewCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NoSuchSessionException;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResumableUploadResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.signal.network.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.RangeException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.RequestVerificationCodeRateLimitException;
@@ -67,7 +67,6 @@ import org.whispersystems.signalservice.api.push.exceptions.SubmitVerificationCo
 import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.registration.RestoreMethodBody;
-import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigResponse;
 import org.whispersystems.signalservice.api.svr.Svr3Credentials;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
@@ -95,7 +94,7 @@ import org.whispersystems.signalservice.internal.storage.protos.StorageItems;
 import org.whispersystems.signalservice.internal.storage.protos.StorageManifest;
 import org.whispersystems.signalservice.internal.storage.protos.WriteOperation;
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
-import org.whispersystems.signalservice.internal.util.JsonUtil;
+import org.signal.network.util.JsonUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.ByteArrayInputStream;
@@ -403,55 +402,13 @@ public class PushServiceSocket {
    * V2 API: Submits registration request and returns the raw Response for manual handling.
    * Caller is responsible for closing the response.
    */
-  public Response submitRegistrationRequestV2(@Nullable String sessionId, @Nullable String recoveryPassword, AccountAttributes attributes, PreKeyCollection aciPreKeys, PreKeyCollection pniPreKeys, @Nullable String fcmToken, boolean skipDeviceTransfer) throws IOException {
-    String path = REGISTRATION_PATH;
-    if (sessionId == null && recoveryPassword == null) {
-      throw new IllegalArgumentException("Neither Session ID nor Recovery Password provided.");
-    }
-
-    if (sessionId != null && recoveryPassword != null) {
-      throw new IllegalArgumentException("You must supply one and only one of either: Session ID, or Recovery Password.");
-    }
-
-    GcmRegistrationId gcmRegistrationId;
-    if (attributes.getFetchesMessages()) {
-      gcmRegistrationId = null;
-    } else {
-      gcmRegistrationId = new GcmRegistrationId(fcmToken, true);
-    }
-
-    RegistrationSessionRequestBody body;
-    try {
-      final SignedPreKeyEntity aciSignedPreKey = new SignedPreKeyEntity(Objects.requireNonNull(aciPreKeys.getSignedPreKey()).getId(),
-                                                                        aciPreKeys.getSignedPreKey().getKeyPair().getPublicKey(),
-                                                                        aciPreKeys.getSignedPreKey().getSignature());
-      final SignedPreKeyEntity pniSignedPreKey = new SignedPreKeyEntity(Objects.requireNonNull(pniPreKeys.getSignedPreKey()).getId(),
-                                                                        pniPreKeys.getSignedPreKey().getKeyPair().getPublicKey(),
-                                                                        pniPreKeys.getSignedPreKey().getSignature());
-      final KyberPreKeyEntity aciLastResortKyberPreKey = new KyberPreKeyEntity(Objects.requireNonNull(aciPreKeys.getLastResortKyberPreKey()).getId(),
-                                                                               aciPreKeys.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
-                                                                               aciPreKeys.getLastResortKyberPreKey().getSignature());
-      final KyberPreKeyEntity pniLastResortKyberPreKey = new KyberPreKeyEntity(Objects.requireNonNull(pniPreKeys.getLastResortKyberPreKey()).getId(),
-                                                                               pniPreKeys.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
-                                                                               pniPreKeys.getLastResortKyberPreKey().getSignature());
-
-      body = new RegistrationSessionRequestBody(sessionId,
-                                                recoveryPassword,
-                                                attributes,
-                                                Base64.encodeWithoutPadding(aciPreKeys.getIdentityKey().serialize()),
-                                                Base64.encodeWithoutPadding(pniPreKeys.getIdentityKey().serialize()),
-                                                aciSignedPreKey,
-                                                pniSignedPreKey,
-                                                aciLastResortKyberPreKey,
-                                                pniLastResortKyberPreKey,
-                                                gcmRegistrationId,
-                                                skipDeviceTransfer,
-                                                true);
-    } catch (InvalidKeyException e) {
-      throw new AssertionError("unexpected invalid key", e);
-    }
-
-    return makeServiceRequestWithoutValidation(path, "POST", jsonRequestBody(JsonUtil.toJson(body)), NO_HEADERS, SealedSenderAccess.NONE, false);
+  /**
+   * V2 API: Checks SVR2 auth credentials and returns the raw Response for manual handling.
+   * Caller is responsible for closing the response.
+   */
+  public Response checkSvr2AuthCredentialsV2(@Nullable String number, @Nonnull List<String> passwords) throws IOException {
+    String jsonBody = JsonUtil.toJson(new BackupAuthCheckRequest(number, passwords));
+    return makeServiceRequestWithoutValidation(BACKUP_AUTH_CHECK_V2, "POST", jsonRequestBody(jsonBody), NO_HEADERS, SealedSenderAccess.NONE, false);
   }
 
   /**
@@ -668,14 +625,6 @@ public class PushServiceSocket {
   public void pingStorageService() throws IOException {
     try (Response response = makeStorageRequest(null, "/ping", "GET", null, NO_HANDLER)) {
       return;
-    }
-  }
-
-  public RemoteConfigResponse getRemoteConfig() throws IOException {
-    try (Response response = makeServiceRequest(REMOTE_CONFIG, "GET", jsonRequestBody(null), NO_HEADERS, NO_HANDLER, SealedSenderAccess.NONE, false)) {
-      RemoteConfigResponse remoteConfigResponse = JsonUtil.fromJson(readBodyString(response), RemoteConfigResponse.class);
-      remoteConfigResponse.setServerEpochTime(response.headers().get("X-Signal-Timestamp") != null ? Long.parseLong(response.headers().get("X-Signal-Timestamp")) : System.currentTimeMillis());
-      return remoteConfigResponse;
     }
   }
 

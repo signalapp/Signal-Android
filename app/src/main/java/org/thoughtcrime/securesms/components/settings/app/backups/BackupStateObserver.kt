@@ -21,6 +21,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.core.util.throttleLatest
 import org.signal.donations.InAppPaymentType
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
@@ -33,7 +34,6 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.math.BigDecimal
 import java.util.Currency

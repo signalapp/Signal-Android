@@ -29,10 +29,12 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.isNotNullOrBlank
 
 @Composable
-internal fun AddAMessageRow(
+fun AddAMessageRow(
   message: String?,
   callback: AddAMessageRowCallback,
-  modifier: Modifier = Modifier
+  onNextClick: () -> Unit,
+  modifier: Modifier = Modifier,
+  onEmojiKeyboardClick: () -> Unit = {}
 ) {
   Row(
     horizontalArrangement = Arrangement.Center,
@@ -47,7 +49,7 @@ internal fun AddAMessageRow(
         .heightIn(min = 40.dp)
     ) {
       IconButtons.IconButton(
-        onClick = callback::onEmojiKeyboardClick
+        onClick = onEmojiKeyboardClick
       ) {
         Icon(
           painter = SignalIcons.Emoji.painter,
@@ -74,7 +76,7 @@ internal fun AddAMessageRow(
     }
 
     IconButtons.IconButton(
-      onClick = callback::onNextClick,
+      onClick = onNextClick,
       modifier = Modifier
         .padding(start = 12.dp)
         .background(
@@ -99,19 +101,16 @@ private fun AddAMessageRowPreview() {
   Previews.Preview {
     AddAMessageRow(
       message = null,
-      callback = AddAMessageRowCallback.Empty
+      callback = AddAMessageRowCallback.Empty,
+      onNextClick = {}
     )
   }
 }
 
-internal interface AddAMessageRowCallback {
+interface AddAMessageRowCallback {
   fun onMessageChange(message: String)
-  fun onEmojiKeyboardClick()
-  fun onNextClick()
 
   object Empty : AddAMessageRowCallback {
     override fun onMessageChange(message: String) = Unit
-    override fun onEmojiKeyboardClick() = Unit
-    override fun onNextClick() = Unit
   }
 }

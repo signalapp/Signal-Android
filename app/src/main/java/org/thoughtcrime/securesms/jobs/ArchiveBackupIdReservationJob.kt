@@ -6,13 +6,13 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.NetworkResult
 
 /**
  * Reserves backupIds for both text+media. The intention is that every registered user should be doing this, so it should happen post-registration

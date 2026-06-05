@@ -6,7 +6,9 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -19,6 +21,12 @@ import java.util.Stack;
  * the start of the stack.
  */
 final class ElementStack implements Parcelable {
+
+  /**
+   * A full stack can blow past the ~1MB Binder transaction limit when several edited images are
+   * persisted together in saved state, crashing the app and discarding the draft.
+   */
+  private static final int PERSISTED_LIMIT = 10;
 
   private final int           limit;
   private final Stack<byte[]> stack = new Stack<>();
@@ -121,12 +129,28 @@ final class ElementStack implements Parcelable {
 
   @Override
   public void writeToParcel(Parcel dest, int flags) {
+    List<byte[]> persisted = entriesToPersist();
+
     dest.writeInt(limit);
-    final int count = stack.size();
-    dest.writeInt(count);
-    for (int i = 0; i < count; i++) {
-      dest.writeByteArray(stack.get(i));
+    dest.writeInt(persisted.size());
+    for (byte[] entry : persisted) {
+      dest.writeByteArray(entry);
     }
+  }
+
+  /**
+   * Keeps the oldest snapshot so undo can still reach the original state, plus the most recent
+   * entries.
+   */
+  private @NonNull List<byte[]> entriesToPersist() {
+    if (stack.size() <= PERSISTED_LIMIT) {
+      return stack;
+    }
+
+    List<byte[]> persisted = new ArrayList<>(PERSISTED_LIMIT);
+    persisted.add(stack.get(0));
+    persisted.addAll(stack.subList(stack.size() - (PERSISTED_LIMIT - 1), stack.size()));
+    return persisted;
   }
 
   boolean stackContainsStateDifferentFrom(@NonNull EditorElement element) {

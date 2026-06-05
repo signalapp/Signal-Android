@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import org.signal.apng.demo.R
 
 class DemoActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {

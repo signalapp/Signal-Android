@@ -29,8 +29,8 @@ import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.completed.InAppPaymentsBottomSheetDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity
-import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.app.subscription.thanks.ThanksForYourSupportBottomSheetDialogFragment
+import org.thoughtcrime.securesms.components.settings.app.subscription.ui.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
 import org.thoughtcrime.securesms.database.InAppPaymentTable
@@ -130,7 +130,7 @@ class ManageDonationsFragment :
 
         MaterialAlertDialogBuilder(requireContext())
           .setTitle(R.string.ManageDonationsFragment__couldnt_confirm_donation)
-          .setMessage(getString(R.string.ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed, amount))
+          .setMessage(getString(R.string.ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero, amount))
           .setPositiveButton(android.R.string.ok, null)
           .show()
       } else if (state.pendingOneTimeDonation?.pendingVerification == true &&
@@ -143,7 +143,7 @@ class ManageDonationsFragment :
 
         MaterialAlertDialogBuilder(requireContext())
           .setTitle(R.string.ManageDonationsFragment__couldnt_confirm_donation)
-          .setMessage(getString(R.string.ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed, amount))
+          .setMessage(getString(R.string.ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero, amount))
           .setPositiveButton(android.R.string.ok, null)
           .show()
       }
@@ -440,7 +440,7 @@ class ManageDonationsFragment :
 
       else -> {
         val message = if (isIdeal) {
-          R.string.DonationsErrors__your_ideal_couldnt_be_processed
+          R.string.DonationsErrors__your_ideal_wero_couldnt_be_processed
         } else {
           R.string.DonationsErrors__try_another_payment_method
         }

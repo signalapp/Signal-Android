@@ -2,58 +2,43 @@ package org.thoughtcrime.securesms.verify
 
 import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.ContextMenu
 import android.view.ContextMenu.ContextMenuInfo
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.core.widget.ImageViewCompat
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.signal.core.util.ThreadUtil
-import org.signal.core.util.Util
-import org.signal.core.util.logging.Log
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.requireParcelableCompat
-import org.signal.libsignal.protocol.fingerprint.Fingerprint
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.ViewBinderDelegate
-import org.thoughtcrime.securesms.components.verify.SafetyNumberQrView.Companion.getSegments
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable
-import org.thoughtcrime.securesms.databinding.VerifyDisplayFragmentBinding
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.visible
-import java.nio.charset.StandardCharsets
-import java.util.Locale
-import org.signal.core.ui.R as CoreUiR
+import org.thoughtcrime.securesms.util.CommunicationActions
 
 /**
  * Fragment to display a user's identity key.
  */
-class VerifyDisplayFragment : Fragment() {
-  private lateinit var viewModel: VerifySafetyNumberViewModel
+class VerifyDisplayFragment : ComposeFragment() {
+  private val viewModel: VerifyDisplayScreenViewModel by viewModels {
+    val isVerified = requireArguments().getBoolean(VERIFIED_STATE, false)
+    val recipientId = requireArguments().requireParcelableCompat(RECIPIENT_ID, RecipientId::class.java)
+    val localIdentity = requireArguments().requireParcelableCompat(LOCAL_IDENTITY, IdentityKeyParcelable::class.java).get()!!
+    val remoteIdentity = requireArguments().requireParcelableCompat(REMOTE_IDENTITY, IdentityKeyParcelable::class.java).get()!!
 
-  private val binding by ViewBinderDelegate(VerifyDisplayFragmentBinding::bind)
+    VerifyDisplayScreenViewModel.Factory(
+      isSafetyNumberVerified = isVerified,
+      recipientId = recipientId,
+      localIdentity = localIdentity,
+      remoteIdentity = remoteIdentity
+    )
+  }
 
   private var callback: Callback? = null
-
-  private var animateCodeChanges = true
-
-  private var animateSuccessOnDraw = false
-  private var animateFailureOnDraw = false
-  private var currentVerifiedState = false
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
@@ -66,145 +51,15 @@ class VerifyDisplayFragment : Fragment() {
     }
   }
 
-  override fun onCreateView(inflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?): View? {
-    return ViewUtil.inflate(inflater, viewGroup!!, R.layout.verify_display_fragment)
-  }
+  @Composable
+  override fun FragmentContent() {
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    initializeViewModel()
-
-    if (RemoteConfig.internalUser && SignalStore.settings.automaticVerificationEnabled && !SignalStore.uiHints.hasSeenVerifyAutomaticallySheet()) {
-      VerifyAutomaticallyEducationSheet.show(parentFragmentManager)
-    }
-
-    updateVerifyButton(requireArguments().getBoolean(VERIFIED_STATE, false), false)
-
-    binding.automaticVerification.visible = RemoteConfig.internalUser && SignalStore.settings.automaticVerificationEnabled
-    binding.safetyQrView.verifyButton.setOnClickListener { updateVerifyButton(!currentVerifiedState, true) }
-    binding.toolbar.setNavigationOnClickListener { requireActivity().onBackPressed() }
-    binding.toolbar.setTitle(R.string.AndroidManifest__verify_safety_number)
-
-    binding.caption.text = getString(R.string.verify_display_fragment__auto_verify_not_available)
-    binding.caption.setLink(getString(R.string.verify_display_fragment__link))
-    binding.caption.setLinkColor(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorPrimary))
-
-    viewModel.getAutomaticVerification().observe(viewLifecycleOwner) { status ->
-      if (status == AutomaticVerificationStatus.NONE) {
-        binding.autoVerifyContainer.setOnClickListener {
-          viewModel.verifyAutomatically()
-        }
-      } else {
-        binding.autoVerifyContainer.setOnClickListener(null)
-      }
-      animateStatus(status)
-    }
-
-    viewModel.recipient.observe(this) { recipient: Recipient -> setRecipientText(recipient) }
-    viewModel.getFingerprint().observe(viewLifecycleOwner) { fingerprint: SafetyNumberFingerprint? ->
-      if (fingerprint == null) {
-        val resolved = viewModel.recipient.resolve()
-        Log.w(TAG, String.format(Locale.ENGLISH, "Could not show proper verification! verifyV2: %s, hasUuid: %s, hasE164: %s", RemoteConfig.verifyV2, resolved.serviceId.isPresent, resolved.e164.isPresent))
-        MaterialAlertDialogBuilder(requireContext())
-          .setMessage(getString(R.string.VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view, resolved.getDisplayName(requireContext())))
-          .setPositiveButton(android.R.string.ok) { dialog: DialogInterface?, which: Int -> requireActivity().finish() }
-          .setOnDismissListener { dialog: DialogInterface ->
-            requireActivity().finish()
-            dialog.dismiss()
-          }
-          .show()
-        return@observe
-      }
-
-      binding.safetyQrView.setFingerprintViews(fingerprint.fingerprint, animateCodeChanges)
-      binding.safetyQrView.shareButton.setOnClickListener { v: View? -> handleShare(fingerprint.fingerprint) }
-      binding.safetyQrView.qrCodeContainer.setOnClickListener { v: View? -> callback!!.onQrCodeContainerClicked() }
-      registerForContextMenu(binding.safetyQrView.numbersContainer)
-    }
-  }
-
-  private fun animateStatus(status: AutomaticVerificationStatus) {
-    if (status == AutomaticVerificationStatus.NONE || status == AutomaticVerificationStatus.UNAVAILABLE_PERMANENT) {
-      updateStatus(status)
-    } else {
-      binding.autoVerifyContainer.animate()
-        .alpha(0f)
-        .setDuration(FADE_TIME)
-        .withEndAction {
-          updateStatus(status)
-
-          binding.autoVerifyContainer.animate()
-            .alpha(1f)
-            .setDuration(FADE_TIME)
-            .start()
-        }
-        .start()
-    }
-  }
-
-  private fun updateStatus(status: AutomaticVerificationStatus) {
-    when (status) {
-      AutomaticVerificationStatus.NONE -> {
-        binding.autoVerifyText.text = getString(R.string.verify_display_fragment__verify_automatic)
-        binding.autoVerifyIcon.setImageResource(R.drawable.symbol_key_24)
-        binding.autoVerifyIcon.imageTintList = null
-        binding.autoVerifyMore.visible = false
-      }
-      AutomaticVerificationStatus.VERIFYING -> {
-        binding.autoVerifyText.text = getString(R.string.verify_display_fragment__verifying)
-        binding.autoVerifyMore.visible = false
-      }
-      AutomaticVerificationStatus.UNAVAILABLE_PERMANENT -> {
-        binding.autoVerifyText.text = getString(R.string.verify_display_fragment__encryption_unavailable)
-        binding.autoVerifyIcon.setImageResource(CoreUiR.drawable.symbol_info_24)
-        ImageViewCompat.setImageTintList(binding.autoVerifyIcon, ColorStateList.valueOf(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant)))
-        binding.autoVerifyMore.visible = true
-      }
-      AutomaticVerificationStatus.UNAVAILABLE_TEMPORARY -> {
-        binding.autoVerifyText.text = getString(R.string.verify_display_fragment__encryption_unavailable)
-        binding.autoVerifyIcon.setImageResource(CoreUiR.drawable.symbol_info_24)
-        ImageViewCompat.setImageTintList(binding.autoVerifyIcon, ColorStateList.valueOf(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnSurfaceVariant)))
-        binding.autoVerifyMore.visible = true
-      }
-      AutomaticVerificationStatus.VERIFIED -> {
-        binding.autoVerifyText.text = getString(R.string.verify_display_fragment__encryption_verified)
-        binding.autoVerifyIcon.setImageResource(R.drawable.symbol_check_filled_circle_24)
-        binding.autoVerifyIcon.imageTintList = null
-        binding.autoVerifyMore.visible = true
-      }
-    }
-
-    if (status == AutomaticVerificationStatus.VERIFYING) {
-      binding.autoVerifySpinner.visible = true
-      binding.autoVerifyIcon.visible = false
-    } else {
-      binding.autoVerifySpinner.visible = false
-      binding.autoVerifyIcon.visible = true
-    }
-    binding.autoVerifyMore.setOnClickListener { EncryptionVerifiedSheet.show(parentFragmentManager, status, viewModel.recipient.resolve().getDisplayName(requireContext())) }
-  }
-
-  private fun initializeViewModel() {
-    val recipientId = requireArguments().requireParcelableCompat(RECIPIENT_ID, RecipientId::class.java)
-    val localIdentity = requireArguments().requireParcelableCompat(LOCAL_IDENTITY, IdentityKeyParcelable::class.java).get()!!
-    val remoteIdentity = requireArguments().requireParcelableCompat(REMOTE_IDENTITY, IdentityKeyParcelable::class.java).get()!!
-
-    viewModel = ViewModelProvider(this, VerifySafetyNumberViewModel.Factory(recipientId, localIdentity, remoteIdentity)).get(VerifySafetyNumberViewModel::class.java)
-  }
-
-  override fun onResume() {
-    super.onResume()
-    setRecipientText(viewModel.recipient.get())
-    if (animateSuccessOnDraw) {
-      animateSuccessOnDraw = false
-      ThreadUtil.postToMain {
-        animateSuccess()
-      }
-    } else if (animateFailureOnDraw) {
-      animateFailureOnDraw = false
-      ThreadUtil.postToMain {
-        animateFailure()
-      }
-    }
+    VerifyDisplayScreen(
+      state = state,
+      emitter = this::onEvent,
+      onQrViewInitialized = this::onQrViewInitialised
+    )
   }
 
   override fun onCreateContextMenu(
@@ -213,7 +68,7 @@ class VerifyDisplayFragment : Fragment() {
     menuInfo: ContextMenuInfo?
   ) {
     super.onCreateContextMenu(menu, view, menuInfo)
-    val fingerprint = viewModel.getFingerprint().value
+    val fingerprint = viewModel.fingerprintSnapshot
     if (fingerprint != null) {
       val inflater = requireActivity().menuInflater
       inflater.inflate(R.menu.verify_display_fragment_context_menu, menu)
@@ -221,126 +76,47 @@ class VerifyDisplayFragment : Fragment() {
   }
 
   override fun onContextItemSelected(item: MenuItem): Boolean {
-    if (currentFingerprint == null) return super.onContextItemSelected(item)
-    return if (item.itemId == R.id.menu_copy) {
-      handleCopyToClipboard(currentFingerprint)
-      true
-    } else if (item.itemId == R.id.menu_compare) {
-      handleCompareWithClipboard()
-      true
-    } else {
-      super.onContextItemSelected(item)
+    if (viewModel.fingerprintSnapshot == null) return super.onContextItemSelected(item)
+    return when (item.itemId) {
+      R.id.menu_copy -> {
+        viewModel.copyFingerprintToClipboard()
+        true
+      }
+      R.id.menu_compare -> {
+        viewModel.compareClipboardToFingerprint()
+        true
+      }
+      else -> {
+        super.onContextItemSelected(item)
+      }
     }
   }
-
-  private val currentFingerprint: Fingerprint?
-    get() {
-      return viewModel.getFingerprint().value?.fingerprint
-    }
 
   fun setScannedFingerprint(scanned: String) {
-    animateCodeChanges = false
-
-    currentFingerprint?.let {
-      try {
-        if (currentFingerprint!!.scannableFingerprint.compareTo(scanned.toByteArray(StandardCharsets.ISO_8859_1))) {
-          animateSuccessOnDraw = true
-        } else {
-          animateFailureOnDraw = true
-        }
-      } catch (e: Exception) {
-        Log.w(TAG, e)
-        showAlertDialog(R.string.VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number)
-        animateFailureOnDraw = true
-        return
-      }
-    }
+    viewModel.setScannedFingerprint(scanned)
   }
 
-  private fun showAlertDialog(stringResId: Int) {
-    MaterialAlertDialogBuilder(requireContext())
-      .setMessage(stringResId)
-      .setPositiveButton(R.string.VerifyDisplayFragment__scan_result_dialog_ok, null)
-      .show()
-  }
-
-  private fun getFormattedSafetyNumbers(fingerprint: Fingerprint): String {
-    val segments = getSegments(fingerprint)
-    val result = StringBuilder()
-    for (i in segments.indices) {
-      result.append(segments[i])
-      if (i != segments.size - 1) {
-        if ((i + 1) % 4 == 0) result.append('\n') else result.append(' ')
-      }
-    }
-    return result.toString()
-  }
-
-  private fun handleCopyToClipboard(fingerprint: Fingerprint?) {
-    Util.writeTextToClipboard(requireContext(), "Safety numbers", getFormattedSafetyNumbers(fingerprint!!))
-  }
-
-  private fun handleCompareWithClipboard() {
-    val clipboardData = Util.readTextFromClipboard(requireActivity())
-    if (clipboardData == null) {
-      showAlertDialog(R.string.VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard)
-      return
-    }
-    val numericClipboardData = clipboardData.replace("\\D".toRegex(), "")
-    if (TextUtils.isEmpty(numericClipboardData) || numericClipboardData.length != 60) {
-      showAlertDialog(R.string.VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard)
-      return
-    }
-    if (currentFingerprint?.displayableFingerprint?.displayText == numericClipboardData) {
-      animateSuccess()
-    } else {
-      animateFailure()
-    }
-  }
-
-  private fun animateSuccess() {
-    animateCodeChanges = false
-    binding.safetyQrView.animateVerifiedSuccess()
-  }
-
-  private fun animateFailure() {
-    animateCodeChanges = false
-    binding.safetyQrView.animateVerifiedFailure()
-  }
-
-  private fun handleShare(fingerprint: Fingerprint) {
-    val shareString = """
-        ${getString(R.string.VerifyIdentityActivity_our_signal_safety_number)}
-        ${getFormattedSafetyNumbers(fingerprint)}
-        
-    """.trimIndent()
-    val intent = Intent().apply {
-      action = Intent.ACTION_SEND
-      type = "text/plain"
-      putExtra(Intent.EXTRA_TEXT, shareString)
-    }
+  private fun handleShare() {
     try {
-      startActivity(Intent.createChooser(intent, getString(R.string.VerifyIdentityActivity_share_safety_number_via)))
+      startActivity(Intent.createChooser(viewModel.createShareIntent(requireActivity()), getString(R.string.VerifyIdentityActivity_share_safety_number_via)))
     } catch (e: ActivityNotFoundException) {
       Toast.makeText(activity, R.string.VerifyIdentityActivity_no_app_to_share_to, Toast.LENGTH_LONG).show()
     }
   }
 
-  private fun setRecipientText(recipient: Recipient) {
-    binding.description.text = getString(R.string.verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s, recipient.getDisplayName(requireContext()))
-    binding.description.setLink("https://signal.org/redirect/safety-numbers")
-    binding.description.setLinkColor(ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorPrimary))
+  private fun onQrViewInitialised(view: View) {
+    registerForContextMenu(view)
   }
 
-  private fun updateVerifyButton(verified: Boolean, update: Boolean) {
-    currentVerifiedState = verified
-    if (verified) {
-      binding.safetyQrView.verifyButton.setText(R.string.verify_display_fragment__clear_verification)
-    } else {
-      binding.safetyQrView.verifyButton.setText(R.string.verify_display_fragment__mark_as_verified)
-    }
-    if (update) {
-      viewModel.updateSafetyNumberVerification(verified)
+  private fun onEvent(event: VerifyDisplayScreenEvent) {
+    when (event) {
+      VerifyDisplayScreenEvent.EducationDismiss -> viewModel.setSeenEducationSheet()
+      VerifyDisplayScreenEvent.EducationLearnMoreClick -> CommunicationActions.openBrowserLink(requireContext(), getString(R.string.verify_display_fragment__link))
+      VerifyDisplayScreenEvent.QrClick -> callback?.onQrCodeContainerClicked()
+      VerifyDisplayScreenEvent.ShareClick -> handleShare()
+      VerifyDisplayScreenEvent.VerifyAutomaticallyClick -> viewModel.verifyAutomatically()
+      is VerifyDisplayScreenEvent.VerifyButtonClick -> viewModel.updateSafetyNumberVerification(event.isVerified)
+      VerifyDisplayScreenEvent.YouMustFirstExchangeMessagesDialogDismiss -> requireActivity().finish()
     }
   }
 
@@ -349,14 +125,11 @@ class VerifyDisplayFragment : Fragment() {
   }
 
   companion object {
-    private val TAG = Log.tag(VerifyDisplayFragment::class.java)
-
     private const val RECIPIENT_ID = "recipient_id"
     private const val REMOTE_IDENTITY = "remote_identity"
     private const val LOCAL_IDENTITY = "local_identity"
     private const val LOCAL_NUMBER = "local_number"
     private const val VERIFIED_STATE = "verified_state"
-    private const val FADE_TIME = 250L
 
     fun create(
       recipientId: RecipientId,

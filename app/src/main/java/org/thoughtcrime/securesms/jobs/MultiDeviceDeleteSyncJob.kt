@@ -13,7 +13,6 @@ import org.signal.core.util.Base64
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
-import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
@@ -378,16 +377,8 @@ class MultiDeviceDeleteSyncJob private constructor(
   private fun Recipient.toDeleteSyncConversationId(): ConversationIdentifier? {
     return when {
       isGroup -> ConversationIdentifier(threadGroupId = requireGroupId().decodedId.toByteString())
-      hasAci -> if (BuildConfig.USE_STRING_ID) {
-        ConversationIdentifier(threadServiceId = requireAci().toString())
-      } else {
-        ConversationIdentifier(threadServiceIdBinary = requireAci().toByteString())
-      }
-      hasPni -> if (BuildConfig.USE_STRING_ID) {
-        ConversationIdentifier(threadServiceId = requirePni().toString())
-      } else {
-        ConversationIdentifier(threadServiceIdBinary = requirePni().toByteString())
-      }
+      hasAci -> ConversationIdentifier(threadServiceIdBinary = requireAci().toByteString())
+      hasPni -> ConversationIdentifier(threadServiceIdBinary = requirePni().toByteString())
       hasE164 -> ConversationIdentifier(threadE164 = requireE164())
       else -> null
     }
@@ -395,11 +386,7 @@ class MultiDeviceDeleteSyncJob private constructor(
 
   private fun DeleteSyncJobData.AddressableMessage.toDeleteSyncMessage(): AddressableMessage? {
     val author: Recipient = Recipient.resolved(RecipientId.from(authorRecipientId))
-    val authorServiceId = if (BuildConfig.USE_STRING_ID) {
-      author.aci.orNull()?.toString() ?: author.pni.orNull()?.toString()
-    } else {
-      author.aci.orNull()?.toByteString() ?: author.pni.orNull()?.toByteString()
-    }
+    val authorServiceId: ByteString? = author.aci.orNull()?.toByteString() ?: author.pni.orNull()?.toByteString()
 
     val authorE164: String? = if (authorServiceId == null) {
       author.e164.orNull()
@@ -411,19 +398,11 @@ class MultiDeviceDeleteSyncJob private constructor(
       Log.w(TAG, "Unable to send sync message without serviceId or e164 recipient: ${author.id}")
       null
     } else {
-      if (BuildConfig.USE_STRING_ID) {
-        AddressableMessage(
-          authorServiceId = authorServiceId as String?,
-          authorE164 = authorE164,
-          sentTimestamp = sentTimestamp
-        )
-      } else {
-        AddressableMessage(
-          authorServiceIdBinary = authorServiceId as ByteString?,
-          authorE164 = authorE164,
-          sentTimestamp = sentTimestamp
-        )
-      }
+      AddressableMessage(
+        authorServiceIdBinary = authorServiceId,
+        authorE164 = authorE164,
+        sentTimestamp = sentTimestamp
+      )
     }
   }
 

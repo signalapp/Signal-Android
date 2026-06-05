@@ -30,9 +30,10 @@ import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.ui.RegistrationActivity;
+import org.thoughtcrime.securesms.util.Environment;
 import org.thoughtcrime.securesms.restore.RestoreActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.AppForegroundObserver;
+import org.signal.core.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -134,8 +135,12 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
     Intent    intent           = getIntentForState(applicationState);
     if (intent != null) {
       Log.d(TAG, "routeApplicationState(), intent: " + intent.getComponent());
-      startActivity(intent);
-      finish();
+      if (applicationState == STATE_WELCOME_PUSH_SCREEN && Environment.USE_NEW_REGISTRATION) {
+        startActivity(intent);
+      } else {
+        startActivity(intent);
+        finish();
+      }
     }
   }
 
@@ -173,7 +178,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       return STATE_ENTER_SIGNAL_PIN;
     } else if (userMustSetProfileName()) {
       return STATE_CREATE_PROFILE_NAME;
-    } else if (userMustCreateSignalPin()) {
+    } else if (userMustCreateSignalPin() && getClass() != CreateSvrPinActivity.class) {
       return STATE_CREATE_SIGNAL_PIN;
     } else if (EventBus.getDefault().getStickyEvent(TransferStatus.class) != null && getClass() != OldDeviceTransferActivity.class) {
       return STATE_TRANSFER_ONGOING;
@@ -221,7 +226,11 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private Intent getPushRegistrationIntent() {
-    return RegistrationActivity.newIntentForNewRegistration(this, getIntent());
+    if (Environment.USE_NEW_REGISTRATION) {
+      return org.signal.registration.RegistrationActivity.createIntent(this);
+    } else {
+      return RegistrationActivity.newIntentForNewRegistration(this, getIntent());
+    }
   }
 
   private Intent getEnterSignalPinIntent() {

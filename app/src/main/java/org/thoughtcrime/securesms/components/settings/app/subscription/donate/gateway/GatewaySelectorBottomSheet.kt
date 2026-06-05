@@ -1,34 +1,28 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway
 
 import android.content.Context
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import org.signal.core.util.concurrent.LifecycleDisposable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.util.dp
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.badges.models.BadgeDisplay112
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
-import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFragment
-import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
-import org.thoughtcrime.securesms.components.settings.NO_TINT
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
-import org.thoughtcrime.securesms.components.settings.app.subscription.models.PayPalButton
-import org.thoughtcrime.securesms.components.settings.configure
-import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
-import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.viewModel
 import org.signal.core.ui.R as CoreUiR
@@ -36,172 +30,56 @@ import org.signal.core.ui.R as CoreUiR
 /**
  * Entry point to capturing the necessary payment token to pay for a donation
  */
-class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
-
-  private val lifecycleDisposable = LifecycleDisposable()
+class GatewaySelectorBottomSheet : ComposeBottomSheetDialogFragment() {
 
   private val args: GatewaySelectorBottomSheetArgs by navArgs()
+  override val peekHeightPercentage: Float = 1f
 
   private val viewModel: GatewaySelectorViewModel by viewModel {
     GatewaySelectorViewModel(args, requireListener<GooglePayComponent>().googlePayRepository)
   }
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
-    BadgeDisplay112.register(adapter)
-    GooglePayButton.register(adapter)
-    PayPalButton.register(adapter)
-    IndeterminateLoadingCircle.register(adapter)
+  @Composable
+  override fun SheetContent() {
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
-    lifecycleDisposable.bindTo(viewLifecycleOwner)
-
-    lifecycleDisposable += viewModel.state.subscribe { state ->
-      adapter.submitList(getConfiguration(state).toMappingModelList())
-    }
+    GatewaySelectorBottomSheetContent(state, onEvent = this::onEvent)
   }
 
-  private fun getConfiguration(state: GatewaySelectorState): DSLConfiguration {
-    return when (state) {
-      GatewaySelectorState.Loading -> {
-        configure {
-          space(16.dp)
-          customPref(IndeterminateLoadingCircle)
-          space(16.dp)
+  private fun onEvent(event: GatewaySelectorBottomSheetEvent) {
+    when (event) {
+      GatewaySelectorBottomSheetEvent.GOOGLE_PAY_SELECTED -> {
+        setPaymentMethodAndDismiss(InAppPaymentData.PaymentMethodType.GOOGLE_PAY)
+      }
+
+      GatewaySelectorBottomSheetEvent.PAYPAL_SELECTED -> {
+        setPaymentMethodAndDismiss(InAppPaymentData.PaymentMethodType.PAYPAL)
+      }
+
+      GatewaySelectorBottomSheetEvent.SEPA_SELECTED -> {
+        if (viewModel.checkIsSepaPaymentValidAmount()) {
+          setPaymentMethodAndDismiss(InAppPaymentData.PaymentMethodType.SEPA_DEBIT)
+        } else {
+          findNavController().popBackStack()
+          setFragmentResult(REQUEST_KEY, bundleOf(FAILURE_KEY to true, SEPA_EURO_MAX to viewModel.getSepaMaximum()))
         }
       }
-      is GatewaySelectorState.Ready -> {
-        configure {
-          customPref(
-            BadgeDisplay112.Model(
-              badge = state.inAppPayment.data.badge!!.let { Badges.fromDatabaseBadge(it) },
-              withDisplayText = false
-            )
-          )
 
-          space(12.dp)
+      GatewaySelectorBottomSheetEvent.IDEAL_SELECTED -> {
+        setPaymentMethodAndDismiss(InAppPaymentData.PaymentMethodType.IDEAL)
+      }
 
-          presentTitleAndSubtitle(requireContext(), state.inAppPayment)
-
-          space(16.dp)
-
-          state.gatewayOrderStrategy.orderedGateways.forEach { gateway ->
-            when (gateway) {
-              InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING -> error("Unsupported payment method.")
-              InAppPaymentData.PaymentMethodType.GOOGLE_PAY -> renderGooglePayButton(state)
-              InAppPaymentData.PaymentMethodType.PAYPAL -> renderPayPalButton(state)
-              InAppPaymentData.PaymentMethodType.CARD -> renderCreditCardButton(state)
-              InAppPaymentData.PaymentMethodType.SEPA_DEBIT -> renderSEPADebitButton(state)
-              InAppPaymentData.PaymentMethodType.IDEAL -> renderIDEALButton(state)
-              InAppPaymentData.PaymentMethodType.UNKNOWN -> error("Unsupported payment method.")
-            }
-          }
-
-          space(16.dp)
-        }
+      GatewaySelectorBottomSheetEvent.CREDIT_CARD_SELECTED -> {
+        setPaymentMethodAndDismiss(InAppPaymentData.PaymentMethodType.CARD)
       }
     }
   }
 
-  private fun DSLConfiguration.renderGooglePayButton(state: GatewaySelectorState.Ready) {
-    if (state.isGooglePayAvailable) {
-      space(16.dp)
-
-      customPref(
-        GooglePayButton.Model(
-          isEnabled = true,
-          onClick = {
-            lifecycleDisposable += viewModel.updateInAppPaymentMethod(InAppPaymentData.PaymentMethodType.GOOGLE_PAY)
-              .subscribeBy {
-                findNavController().popBackStack()
-                setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to it))
-              }
-          }
-        )
-      )
-    }
-  }
-
-  private fun DSLConfiguration.renderPayPalButton(state: GatewaySelectorState.Ready) {
-    if (state.isPayPalAvailable) {
-      space(16.dp)
-
-      customPref(
-        PayPalButton.Model(
-          onClick = {
-            lifecycleDisposable += viewModel.updateInAppPaymentMethod(InAppPaymentData.PaymentMethodType.PAYPAL)
-              .subscribeBy {
-                findNavController().popBackStack()
-                setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to it))
-              }
-          },
-          isEnabled = true
-        )
-      )
-    }
-  }
-
-  private fun DSLConfiguration.renderCreditCardButton(state: GatewaySelectorState.Ready) {
-    if (state.isCreditCardAvailable) {
-      space(16.dp)
-
-      primaryButton(
-        text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__credit_or_debit_card),
-        icon = DSLSettingsIcon.from(R.drawable.credit_card, CoreUiR.color.signal_colorOnCustom),
-        disableOnClick = true,
-        onClick = {
-          lifecycleDisposable += viewModel.updateInAppPaymentMethod(InAppPaymentData.PaymentMethodType.CARD)
-            .subscribeBy {
-              findNavController().popBackStack()
-              setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to it))
-            }
-        }
-      )
-    }
-  }
-
-  private fun DSLConfiguration.renderSEPADebitButton(state: GatewaySelectorState.Ready) {
-    if (state.isSEPADebitAvailable) {
-      space(16.dp)
-
-      tonalButton(
-        text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__bank_transfer),
-        icon = DSLSettingsIcon.from(R.drawable.bank_transfer),
-        disableOnClick = true,
-        onClick = {
-          val price = state.inAppPayment.data.amount!!.toFiatMoney()
-          if (state.sepaEuroMaximum != null &&
-            price.currency == CurrencyUtil.EURO &&
-            price.amount > state.sepaEuroMaximum.amount
-          ) {
-            findNavController().popBackStack()
-            setFragmentResult(REQUEST_KEY, bundleOf(FAILURE_KEY to true, SEPA_EURO_MAX to state.sepaEuroMaximum.amount))
-          } else {
-            lifecycleDisposable += viewModel.updateInAppPaymentMethod(InAppPaymentData.PaymentMethodType.SEPA_DEBIT)
-              .subscribeBy {
-                findNavController().popBackStack()
-                setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to it))
-              }
-          }
-        }
-      )
-    }
-  }
-
-  private fun DSLConfiguration.renderIDEALButton(state: GatewaySelectorState.Ready) {
-    if (state.isIDEALAvailable) {
-      space(16.dp)
-
-      tonalButton(
-        text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__ideal),
-        icon = DSLSettingsIcon.from(R.drawable.logo_ideal, NO_TINT),
-        disableOnClick = true,
-        onClick = {
-          lifecycleDisposable += viewModel.updateInAppPaymentMethod(InAppPaymentData.PaymentMethodType.IDEAL)
-            .subscribeBy {
-              findNavController().popBackStack()
-              setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to it))
-            }
-        }
-      )
+  private fun setPaymentMethodAndDismiss(type: InAppPaymentData.PaymentMethodType) {
+    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+      val inAppPayment = viewModel.updateInAppPaymentMethod(type)
+      findNavController().popBackStack()
+      setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to inAppPayment))
     }
   }
 

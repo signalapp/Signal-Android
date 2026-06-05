@@ -18,7 +18,8 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.RemoteConfig;
+import org.signal.core.util.ServiceUtil;
 
 /**
  * Class to help manage scheduling events to happen in the future, whether the app is open or not.
@@ -108,7 +109,13 @@ public abstract class TimedEventManager<E> {
     boolean hasManagerPermission = Build.VERSION.SDK_INT < 31 || alarmManager.canScheduleExactAlarms();
     if (hasManagerPermission) {
       try {
-        alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(timestamp, showIntent), pendingIntent);
+        if (Build.VERSION.SDK_INT >= 31 && RemoteConfig.exactAlarm()) {
+          Log.d(TAG, "[trySetExactAlarm] Using setExactAndAllowWhileIdle(), API: " + Build.VERSION.SDK_INT);
+          alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timestamp, pendingIntent);
+        } else {
+          Log.d(TAG, "[trySetExactAlarm] Using setAlarmClock(), API: " + Build.VERSION.SDK_INT);
+          alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(timestamp, showIntent), pendingIntent);
+        }
         return;
       } catch (Exception e) {
         Log.w(TAG, e);

@@ -14,6 +14,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import org.signal.core.util.logging.Log
+import org.signal.core.util.requireDrawable
 import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.view.AvatarView
@@ -22,7 +23,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
-import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
@@ -297,7 +297,7 @@ object StoriesLandingItem {
     }
 
     private fun getReleaseNotesPresentation(model: Model): CharSequence {
-      val official = ContextUtil.requireDrawable(context, R.drawable.ic_official_20)
+      val official = context.requireDrawable(R.drawable.ic_official_20)
 
       val name = SpannableStringBuilder(model.data.storyRecipient.getDisplayName(context))
       SpanUtil.appendCenteredImageSpan(name, official, 20, 20)

@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.AllDevicePreviews
@@ -34,6 +35,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.detailPaneMaxContentWidth
 import org.signal.core.ui.isSplitPane
+import org.signal.core.ui.rememberIsSplitPane
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.compose.ScreenTitlePane
 import org.thoughtcrime.securesms.window.AppScaffold
@@ -53,8 +55,8 @@ fun RecipientPickerScaffold(
   primaryContent: @Composable () -> Unit,
   floatingActionButton: (@Composable () -> Unit)? = null
 ) {
+  val isSplitPane = LocalResources.current.rememberIsSplitPane(forceSplitPane)
   val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-  val isSplitPane = windowSizeClass.isSplitPane(forceSplitPane = forceSplitPane)
 
   AppScaffold(
     topBarContent = {

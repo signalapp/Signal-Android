@@ -26,6 +26,12 @@ class CheckRestoreMediaLeftJob private constructor(parameters: Parameters) : Job
     const val KEY = "CheckRestoreMediaLeftJob"
 
     private val TAG = Log.tag(CheckRestoreMediaLeftJob::class)
+    private val FINALIZE_LOCK = Any()
+    private const val STALLED_RECOVERY_QUEUE = "CheckRestoreMediaLeftJob::StalledRecovery"
+
+    fun enqueueStalledRecoveryCheck() {
+      AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(STALLED_RECOVERY_QUEUE))
+    }
   }
 
   constructor(queue: String) : this(
@@ -46,26 +52,61 @@ class CheckRestoreMediaLeftJob private constructor(parameters: Parameters) : Job
 
     if (remainingAttachmentSize == 0L) {
       Log.d(TAG, "Media restore complete: there are no remaining restorable attachments.")
-      ArchiveRestoreProgress.allMediaRestored()
-      BackupMediaRestoreService.stop(context)
-
-      if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
-        SignalStore.backup.deletionState = DeletionState.MEDIA_DOWNLOAD_FINISHED
-      }
-
-      if (!SignalStore.backup.backsUpMedia) {
-        SignalDatabase.attachments.markQuotesThatNeedReconstruction()
-        AppDependencies.jobManager.add(QuoteThumbnailReconstructionJob())
-      }
+      onMediaRestoreComplete()
     } else if (runAttempt == 0) {
       Log.w(TAG, "Still have remaining data to restore, will retry before checking job queues, queue: ${parameters.queue} estimated remaining: $remainingAttachmentSize")
-      return Result.retry(15.seconds.inWholeMilliseconds)
+      return Result.retry(30.seconds.inWholeMilliseconds)
     } else {
-      Log.w(TAG, "Max retries reached, queue: ${parameters.queue} estimated remaining: $remainingAttachmentSize")
-      // todo [local-backup] inspect jobs/queues and raise some alarm/abort?
+      handleRemainingAfterMaxAttempts(remainingAttachmentSize)
     }
 
     return Result.success()
+  }
+
+  /**
+   * Reached the retry limit while attachments still appear restorable. Figure out whether there is anything left actively working on the
+   * restore before deciding the restore is finished.
+   */
+  private fun handleRemainingAfterMaxAttempts(remainingAttachmentSize: Long) {
+    synchronized(FINALIZE_LOCK) {
+      val otherCheckJobs = AppDependencies.jobManager.find { it.factoryKey == KEY && it.id != id }
+      if (otherCheckJobs.isNotEmpty()) {
+        Log.w(TAG, "Max retries reached but ${otherCheckJobs.size} other check job(s) remain, deferring to them. queue: ${parameters.queue} estimated remaining: $remainingAttachmentSize")
+        return
+      }
+
+      val orphanedCount = SignalDatabase.attachments.markRestorableAttachmentsWithoutMessageAsFailed()
+      if (orphanedCount > 0) {
+        Log.w(TAG, "$orphanedCount orphaned restorable attachments marked failed")
+      }
+      val restoreQueues = AppDependencies.jobManager
+        .find { it.factoryKey == RestoreAttachmentJob.KEY || it.factoryKey == RestoreLocalAttachmentJob.KEY }
+        .mapNotNull { it.queueKey }
+        .toSet()
+
+      if (restoreQueues.isNotEmpty()) {
+        Log.w(TAG, "Max retries reached but restore jobs remain in ${restoreQueues.size} queue(s), re-enqueueing check jobs. estimated remaining: $remainingAttachmentSize")
+        AppDependencies.jobManager.addAll(restoreQueues.map { CheckRestoreMediaLeftJob(it) })
+        return
+      }
+
+      Log.w(TAG, "Max retries reached and no restore jobs remain, treating restore as complete. estimated remaining: $remainingAttachmentSize")
+      onMediaRestoreComplete()
+    }
+  }
+
+  private fun onMediaRestoreComplete() {
+    ArchiveRestoreProgress.allMediaRestored()
+    BackupMediaRestoreService.stop(context)
+
+    if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
+      SignalStore.backup.deletionState = DeletionState.MEDIA_DOWNLOAD_FINISHED
+    }
+
+    if (!SignalStore.backup.backsUpMedia) {
+      SignalDatabase.attachments.markQuotesThatNeedReconstruction()
+      AppDependencies.jobManager.add(QuoteThumbnailReconstructionJob())
+    }
   }
 
   override fun onFailure() = Unit

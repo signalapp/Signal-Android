@@ -50,7 +50,7 @@ public class MainNavigator {
                                                                       .withStartingPosition(startingPosition)
                                                                       .asIncognito(incognito)
                                                                       .toConversationArgs())
-                                               .subscribe(args -> viewModel.goTo(new MainNavigationDetailLocation.Chats.Conversation(args)));
+                                               .subscribe(args -> viewModel.goTo(new MainNavigationDetailLocation.Conversation(args)));
 
     lifecycleDisposable.add(disposable);
   }

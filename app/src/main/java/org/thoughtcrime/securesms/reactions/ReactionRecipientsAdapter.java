@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.util.AvatarUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -79,9 +78,8 @@ final class ReactionRecipientsAdapter extends RecyclerView.Adapter<ReactionRecip
 
       if (reaction.getSender().isSelf()) {
         this.recipient.setText(R.string.ReactionsRecipientAdapter_you);
-        this.avatar.setAvatar(Glide.with(avatar), null, false);
+        this.avatar.setRecipient(reaction.getSender());
         this.badge.setBadge(null);
-        AvatarUtil.loadIconIntoImageView(reaction.getSender(), avatar);
         if (isGroupTerminated) {
           itemView.setOnClickListener(null);
           tapToRemoveText.setVisibility(View.GONE);

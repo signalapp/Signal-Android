@@ -27,7 +27,7 @@ class SenderNameWithLabelView : AbstractComposeView {
   constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
   init {
-    setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+    setViewCompositionStrategy(ViewCompositionStrategy.Default)
   }
 
   private var senderName: String by mutableStateOf("")
@@ -36,6 +36,28 @@ class SenderNameWithLabelView : AbstractComposeView {
   private var labelBackgroundColor: Color by mutableStateOf(Color.Unspecified)
 
   private var memberLabel: MemberLabel? by mutableStateOf(null)
+
+  /**
+   * Sets sender and label state and forces fresh composition to avoid stale measurements from a previously bound item.
+   * Intended for use in a RecyclerView.
+   */
+  fun bind(name: String, @ColorInt tintColor: Int, label: MemberLabel?) {
+    setSender(name, tintColor)
+    setLabel(label)
+
+    // AbstractComposeView caches measurements across RecyclerView recycling. This forces fresh composition on the
+    // next measure to avoid stale cached measurements during recycling that can cause sender name / label clipping.
+    disposeComposition()
+  }
+
+  /**
+   * Variant of [bind] with explicit label text/background colors.
+   */
+  fun bind(name: String, @ColorInt tintColor: Int, label: MemberLabel?, @ColorInt textColor: Int, @ColorInt backgroundColor: Int) {
+    setSender(name, tintColor)
+    setLabel(label, textColor, backgroundColor)
+    disposeComposition()
+  }
 
   fun setSender(name: String, @ColorInt tintColor: Int) {
     senderName = name

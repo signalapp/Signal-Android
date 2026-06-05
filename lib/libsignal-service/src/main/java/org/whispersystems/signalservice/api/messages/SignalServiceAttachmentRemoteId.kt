@@ -30,6 +30,9 @@ sealed interface SignalServiceAttachmentRemoteId {
 
   companion object {
 
+    /** The lowest CDN number that uses opaque string keys rather than numeric ids */
+    private const val FIRST_KEY_BASED_CDN = 3
+
     @JvmStatic
     @Throws(InvalidMessageStructureException::class)
     fun from(attachmentPointer: AttachmentPointer): SignalServiceAttachmentRemoteId {
@@ -42,13 +45,13 @@ sealed interface SignalServiceAttachmentRemoteId {
       }
     }
 
-    /**
-     * Guesses that strings which contain values parseable to `long` should use an id-based
-     * CDN path. Otherwise, use key-based CDN path.
-     */
     @JvmStatic
-    fun from(string: String): SignalServiceAttachmentRemoteId {
-      return string.toLongOrNull()?.let { V2(it) } ?: V4(string)
+    fun from(string: String, cdnNumber: Int): SignalServiceAttachmentRemoteId {
+      return if (cdnNumber >= FIRST_KEY_BASED_CDN) {
+        V4(string)
+      } else {
+        string.toLongOrNull()?.let { V2(it) } ?: V4(string)
+      }
     }
   }
 }

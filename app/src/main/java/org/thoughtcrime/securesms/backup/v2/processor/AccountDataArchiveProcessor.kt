@@ -156,8 +156,7 @@ object AccountDataArchiveProcessor {
             navigationBarSize = signalStore.settingsValues.useCompactNavigationBar.toRemoteNavigationBarSize()
           ).takeUnless { Environment.IS_INSTRUMENTATION && SignalStore.backup.importedEmptyAndroidSettings },
           bioText = selfRecord.about ?: "",
-          bioEmoji = selfRecord.aboutEmoji ?: "",
-          keyTransparencyData = selfRecord.keyTransparencyData?.toByteString()
+          bioEmoji = selfRecord.aboutEmoji ?: ""
         )
       )
     )
@@ -251,7 +250,7 @@ object AccountDataArchiveProcessor {
       SignalStore.account.usernameLink = null
     }
 
-    SignalDatabase.recipients.setKeyTransparencyData(Recipient.self().aci.get(), accountData.keyTransparencyData?.toByteArray())
+    SignalDatabase.recipients.clearSelfKeyTransparencyData()
 
     SignalDatabase.runPostSuccessfulTransaction { ProfileUtil.handleSelfProfileKeyChange() }
 

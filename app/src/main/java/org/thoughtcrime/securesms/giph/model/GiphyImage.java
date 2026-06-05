@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.thoughtcrime.securesms.util.ByteUnit;
+import org.signal.core.util.ByteUnit;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 
 public class GiphyImage implements MappingModel<GiphyImage> {

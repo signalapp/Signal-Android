@@ -158,9 +158,16 @@ class V2ConversationItemThumbnail @JvmOverloads constructor(
     }
 
     if (thumbnailUri != null) {
+      val transformProperties = thumbnailAttachment.transformProperties
+      val videoTrimStartTimeUs = if (transformProperties != null && !transformProperties.skipTransform) {
+        transformProperties.videoTrimStartTimeUs
+      } else {
+        0L
+      }
+
       conversationContext
         .requestManager
-        .load(DecryptableUri(thumbnailUri))
+        .load(DecryptableUri(thumbnailUri, videoTrimStartTimeUs))
         .centerInside()
         .dontAnimate()
         .override(thumbnailSize.width, thumbnailSize.height)

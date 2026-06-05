@@ -292,6 +292,24 @@
         app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
         app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
 
+    <TextView
+        android:id="@+id/conversation_release_notes_floating_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/release_notes_input_pill_background"
+        android:elevation="6dp"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="10dp"
+        android:text="@string/ConversationFragment_the_only_official_chat_from_signal"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/signal_text_primary"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/keyboard_guideline"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
+
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/conversation_input_panel_barrier"
         android:layout_width="wrap_content"

@@ -6,7 +6,7 @@ import android.os.ResultReceiver;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.CallState;
-import org.thoughtcrime.securesms.ringrtc.Camera;
+import org.thoughtcrime.securesms.ringrtc.OutgoingVideoSourceRouter;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.CallMetadata;
@@ -43,7 +43,7 @@ import org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedOfferMetadat
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
-import org.thoughtcrime.securesms.util.AppForegroundObserver;
+import org.signal.core.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
@@ -414,6 +414,16 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  protected @NonNull WebRtcServiceState handleSetLocalScreenShare(@NonNull WebRtcServiceState currentState, boolean enable, @Nullable android.content.Intent mediaProjectionData) {
+    Log.i(tag, "handleSetLocalScreenShare not processed");
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleScreenSharingServiceReady(@NonNull WebRtcServiceState currentState) {
+    Log.i(tag, "handleScreenSharingServiceReady not processed");
+    return currentState;
+  }
+
   protected @NonNull WebRtcServiceState handleReceivedHangup(@NonNull WebRtcServiceState currentState,
                                                              @NonNull CallMetadata callMetadata,
                                                              @NonNull HangupMetadata hangupMetadata)
@@ -533,9 +543,9 @@ public abstract class WebRtcActionProcessor {
   protected final @NonNull WebRtcServiceState handleSendIceCandidates(@NonNull WebRtcServiceState currentState, @NonNull CallMetadata callMetadata, boolean broadcast, @NonNull List<byte[]> iceCandidates) {
     Log.i(tag, "handleSendIceCandidates(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
 
-    List<IceUpdateMessage> iceUpdateMessages = Stream.of(iceCandidates)
-                                                     .map(c -> new IceUpdateMessage(callMetadata.getCallId().longValue(), c))
-                                                     .toList();
+    List<IceUpdateMessage> iceUpdateMessages = iceCandidates.stream()
+                                                            .map(c -> new IceUpdateMessage(callMetadata.getCallId().longValue(), c))
+                                                            .collect(Collectors.toList());
 
     Integer                  destinationDeviceId = broadcast ? null : callMetadata.getRemoteDevice();
     SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forIceUpdates(iceUpdateMessages, destinationDeviceId);
@@ -638,9 +648,9 @@ public abstract class WebRtcActionProcessor {
   }
 
   protected @NonNull WebRtcServiceState handleOrientationChanged(@NonNull WebRtcServiceState currentState, boolean isLandscapeEnabled, int orientationDegrees) {
-    Camera camera = currentState.getVideoState().getCamera();
-    if (camera != null) {
-      camera.setOrientation(orientationDegrees);
+    OutgoingVideoSourceRouter router = currentState.getVideoState().getRouter();
+    if (router != null) {
+      router.setOrientation(orientationDegrees);
     }
 
     int sinkRotationDegrees  = isLandscapeEnabled ? BroadcastVideoSink.DEVICE_ROTATION_IGNORE : orientationDegrees;

@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.trustedPush
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncModels.localToRemoteRecord
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.storage.signalAci
@@ -199,15 +198,27 @@ class ContactRecordProcessor(
       local.proto.e164 != remote.proto.e164
 
     if (e164sMatchButPnisDont) {
-      Log.w(TAG, "Matching E164s, but the PNIs differ! Trusting our local pair.")
-      // TODO [pnp] Schedule CDS fetch?
-      mergedPni = localPni
-      mergedE164 = local.proto.e164
+      if (SignalStore.account.isPrimaryDevice) {
+        Log.w(TAG, "Matching E164s, but the PNIs differ! Trusting our local pair.")
+        // TODO [pnp] Schedule CDS fetch?
+        mergedPni = localPni
+        mergedE164 = local.proto.e164
+      } else {
+        Log.w(TAG, "Matching E164s, but the PNIs differ! Linked device — trusting the remote pair.")
+        mergedPni = remotePni
+        mergedE164 = remote.proto.e164
+      }
     } else if (pnisMatchButE164sDont) {
-      Log.w(TAG, "Matching PNIs, but the E164s differ! Trusting our local pair.")
-      // TODO [pnp] Schedule CDS fetch?
-      mergedPni = localPni
-      mergedE164 = local.proto.e164
+      if (SignalStore.account.isPrimaryDevice) {
+        Log.w(TAG, "Matching PNIs, but the E164s differ! Trusting our local pair.")
+        // TODO [pnp] Schedule CDS fetch?
+        mergedPni = localPni
+        mergedE164 = local.proto.e164
+      } else {
+        Log.w(TAG, "Matching PNIs, but the E164s differ! Linked device — trusting the remote pair.")
+        mergedPni = remotePni
+        mergedE164 = remote.proto.e164
+      }
     } else {
       mergedPni = remotePni ?: localPni
       mergedE164 = remote.proto.e164.nullIfBlank() ?: local.proto.e164.nullIfBlank()
@@ -215,8 +226,10 @@ class ContactRecordProcessor(
 
     val merged = SignalContactRecord.newBuilder(remote.serializedUnknowns).apply {
       e164 = mergedE164 ?: ""
-      aci = local.proto.aci.nullIfBlank() ?: remote.proto.aci
-      pni = mergedPni?.toStringWithoutPrefix() ?: ""
+      aciBinary = local.proto.aciBinary.nullIfEmpty() ?: remote.proto.aciBinary
+      aci = ""
+      pniBinary = mergedPni?.toByteStringWithoutPrefix() ?: byteArrayOf().toByteString()
+      pni = ""
       givenName = mergedProfileGivenName
       familyName = mergedProfileFamilyName
       profileKey = remote.proto.profileKey.nullIfEmpty()?.takeIf { ProfileKeyUtil.profileKeyOrNull(it.toByteArray()) != null } ?: local.proto.profileKey
@@ -238,8 +251,6 @@ class ContactRecordProcessor(
       pniSignatureVerified = remote.proto.pniSignatureVerified || local.proto.pniSignatureVerified
       note = remote.proto.note.nullIfBlank() ?: ""
       avatarColor = if (SignalStore.account.isPrimaryDevice) local.proto.avatarColor else remote.proto.avatarColor
-      aciBinary = if (RemoteConfig.useBinaryId) local.proto.aciBinary.nullIfEmpty() ?: remote.proto.aciBinary else ByteString.EMPTY
-      pniBinary = if (RemoteConfig.useBinaryId) mergedPni?.toByteStringWithoutPrefix() ?: byteArrayOf().toByteString() else ByteString.EMPTY
     }.build().toSignalContactRecord(StorageId.forContact(keyGenerator.generate()))
 
     val matchesRemote = doParamsMatch(remote, merged)

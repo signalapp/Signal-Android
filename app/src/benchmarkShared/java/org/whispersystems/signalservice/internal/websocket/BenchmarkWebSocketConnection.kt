@@ -8,7 +8,10 @@ package org.whispersystems.signalservice.internal.websocket
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import org.thoughtcrime.securesms.util.JsonUtils
+import org.signal.network.websocket.WebSocketRequestMessage
+import org.signal.network.websocket.WebSocketResponseMessage
+import org.signal.network.websocket.WebsocketResponse
+import org.signal.core.util.JsonUtils
 import org.thoughtcrime.securesms.util.SignalTrace
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.internal.push.SendMessageResponse
@@ -64,6 +67,18 @@ class BenchmarkWebSocketConnection : WebSocketConnection {
     @Synchronized
     fun addQueueEmptyMessage() {
       authInstances.filterNot(BenchmarkWebSocketConnection::isShutdown).forEach { it.addQueueEmptyMessage() }
+    }
+
+    fun awaitAllMessagesConsumed(timeoutMs: Long): Boolean {
+      val deadline = System.currentTimeMillis() + timeoutMs
+      while (System.currentTimeMillis() < deadline) {
+        val activeInstances = synchronized(this) { authInstances.filterNot(BenchmarkWebSocketConnection::isShutdown).toList() }
+        if (activeInstances.isNotEmpty() && activeInstances.all { it.incomingRequests.isEmpty() && it.incomingSemaphore.availablePermits() == 0 }) {
+          return true
+        }
+        Thread.sleep(25)
+      }
+      return false
     }
   }
 

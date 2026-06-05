@@ -27,6 +27,7 @@ import org.signal.archive.proto.ViewOnceMessage
 import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
+import org.signal.core.util.JsonUtils
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.asList
@@ -81,7 +82,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.MessageUtil
 import org.whispersystems.signalservice.api.payments.Money
 import org.whispersystems.signalservice.internal.push.DataMessage
@@ -362,12 +362,13 @@ class ChatItemArchiveImporter(
       } else if (pinMessage != null) {
         followUps += { pinUpdateMessageId ->
           val targetAuthorId = importState.remoteToLocalRecipientId[pinMessage.authorId]
-          if (targetAuthorId != null) {
+          val targetAuthorAci = targetAuthorId?.let { recipients.getRecord(it).aci }
+          if (targetAuthorId != null && targetAuthorAci != null) {
             val pinnedMessageId = SignalDatabase.messages.getMessageFor(pinMessage.targetSentTimestamp, targetAuthorId)?.id ?: -1
             val messageExtras = MessageExtras(
               pinnedMessage = PinnedMessage(
                 pinnedMessageId = pinnedMessageId,
-                targetAuthorAci = recipients.getRecord(targetAuthorId).aci!!.toByteString(),
+                targetAuthorAci = targetAuthorAci.toByteString(),
                 targetTimestamp = pinMessage.targetSentTimestamp
               )
             )
@@ -383,6 +384,8 @@ class ChatItemArchiveImporter(
                 .where("${MessageTable.ID} = ?", pinnedMessageId)
                 .run()
             }
+          } else {
+            Log.w(TAG, "Pin message target author not found or has no ACI, skipping pin message extras.")
           }
         }
       }
@@ -715,7 +718,7 @@ class ChatItemArchiveImporter(
     when {
       itemStandardMessage != null -> contentValues.addStandardMessage(itemStandardMessage)
       itemRemoteDeletedMessage != null -> contentValues.put(MessageTable.DELETED_BY, fromRecipientId.toLong())
-      itemUpdateMessage != null -> contentValues.addUpdateMessage(itemUpdateMessage, fromRecipientId, toRecipientId)
+      itemUpdateMessage != null -> contentValues.addUpdateMessage(itemUpdateMessage, fromRecipientId, toRecipientId, chatRecipientId)
       itemPaymentNotification != null -> contentValues.addPaymentNotification(this, chatRecipientId)
       itemGiftBadge != null -> contentValues.addGiftBadge(itemGiftBadge)
       itemViewOnceMessage != null -> contentValues.addViewOnce(itemViewOnceMessage)
@@ -863,7 +866,7 @@ class ChatItemArchiveImporter(
     }
   }
 
-  private fun ContentValues.addUpdateMessage(updateMessage: ChatUpdateMessage, fromRecipientId: RecipientId, toRecipientId: RecipientId) {
+  private fun ContentValues.addUpdateMessage(updateMessage: ChatUpdateMessage, fromRecipientId: RecipientId, toRecipientId: RecipientId, chatRecipientId: RecipientId) {
     var typeFlags: Long = 0
     val simpleUpdate = updateMessage.simpleUpdate
     val expirationTimerChange = updateMessage.expirationTimerChange
@@ -883,8 +886,8 @@ class ChatItemArchiveImporter(
           SimpleChatUpdate.Type.UNKNOWN -> typeWithoutBase
           SimpleChatUpdate.Type.JOINED_SIGNAL -> MessageTypes.JOINED_TYPE or typeWithoutBase
           SimpleChatUpdate.Type.IDENTITY_UPDATE -> MessageTypes.KEY_EXCHANGE_IDENTITY_UPDATE_BIT or typeWithoutBase
-          SimpleChatUpdate.Type.IDENTITY_VERIFIED -> MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT or typeWithoutBase
-          SimpleChatUpdate.Type.IDENTITY_DEFAULT -> MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT or typeWithoutBase
+          SimpleChatUpdate.Type.IDENTITY_VERIFIED -> MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT or typeWithoutBase or MessageTypes.BASE_SENT_TYPE
+          SimpleChatUpdate.Type.IDENTITY_DEFAULT -> MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT or typeWithoutBase or MessageTypes.BASE_SENT_TYPE
           SimpleChatUpdate.Type.CHANGE_NUMBER -> MessageTypes.CHANGE_NUMBER_TYPE
           SimpleChatUpdate.Type.RELEASE_CHANNEL_DONATION_REQUEST -> MessageTypes.RELEASE_CHANNEL_DONATION_REQUEST_TYPE
           SimpleChatUpdate.Type.END_SESSION -> MessageTypes.END_SESSION_BIT or typeWithoutBase
@@ -903,6 +906,11 @@ class ChatItemArchiveImporter(
         if (simpleUpdate.type == SimpleChatUpdate.Type.IDENTITY_VERIFIED || simpleUpdate.type == SimpleChatUpdate.Type.IDENTITY_DEFAULT) {
           put(MessageTable.FROM_RECIPIENT_ID, toRecipientId.serialize())
           put(MessageTable.TO_RECIPIENT_ID, fromRecipientId.serialize())
+        }
+
+        // directionless 1:1 message requests expect to recipient to be the other recipient not self
+        if (simpleUpdate.type == SimpleChatUpdate.Type.MESSAGE_REQUEST_ACCEPTED) {
+          put(MessageTable.TO_RECIPIENT_ID, chatRecipientId.serialize())
         }
       }
       expirationTimerChange != null -> {

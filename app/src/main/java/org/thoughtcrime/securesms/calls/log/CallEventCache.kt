@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 import java.util.concurrent.Executor
 import kotlin.math.max
 import kotlin.math.min
@@ -67,7 +68,7 @@ class CallEventCache(
 
       val output = mutableListOf<CallLogRow.Call>()
       val groupCallStateMap = mutableMapOf<Long, CallLogRow.GroupCallState>()
-      val canUserBeginCallMap = mutableMapOf<Long, Boolean>()
+      val canUserBeginCallMap = mutableMapOf<Long, CallLogRow.CanStartCall>()
       val callLinksSeen = hashSetOf<Long>()
 
       while (recordIterator.hasNext()) {
@@ -85,7 +86,7 @@ class CallEventCache(
     private fun ListIterator<CacheRecord>.readNextCallLog(
       filterState: FilterState,
       groupCallStateMap: MutableMap<Long, CallLogRow.GroupCallState>,
-      canUserBeginCallMap: MutableMap<Long, Boolean>,
+      canUserBeginCallMap: MutableMap<Long, CallLogRow.CanStartCall>,
       callLinksSeen: MutableSet<Long>
     ): CallLogRow.Call? {
       val parent = next()
@@ -143,14 +144,16 @@ class CallEventCache(
       return (child.timestamp - parent.timestamp) <= 4.hours.inWholeMilliseconds
     }
 
-    private fun canUserBeginCall(peer: Recipient, decryptedGroup: ByteArray?): Boolean {
-      return if (peer.isGroup && decryptedGroup != null) {
+    private fun canUserBeginCall(peer: Recipient, decryptedGroup: ByteArray?): CallLogRow.CanStartCall {
+      if (peer.isGroup && decryptedGroup != null) {
         val proto = DecryptedGroup.ADAPTER.decode(decryptedGroup)
-        return proto.isAnnouncementGroup != EnabledState.ENABLED ||
-          proto.members.firstOrNull() { it.aciBytes == SignalStore.account.aci?.toByteString() }?.role == Member.Role.ADMINISTRATOR
-      } else {
-        true
+        when {
+          proto.terminated -> return CallLogRow.CanStartCall.GROUP_TERMINATED
+          DecryptedGroupUtil.findMemberByAci(proto.members, SignalStore.account.requireAci()).isEmpty -> return CallLogRow.CanStartCall.NOT_A_MEMBER
+          proto.isAnnouncementGroup == EnabledState.ENABLED && proto.members.firstOrNull { it.aciBytes == SignalStore.account.aci?.toByteString() }?.role != Member.Role.ADMINISTRATOR -> return CallLogRow.CanStartCall.ADMIN_ONLY
+        }
       }
+      return CallLogRow.CanStartCall.ALLOWED
     }
 
     private fun getGroupCallState(body: String?): CallLogRow.GroupCallState {
@@ -167,7 +170,7 @@ class CallEventCache(
       children: Set<Long>,
       filterState: FilterState,
       groupCallStateCache: MutableMap<Long, CallLogRow.GroupCallState>,
-      canUserBeginCallMap: MutableMap<Long, Boolean>
+      canUserBeginCallMap: MutableMap<Long, CallLogRow.CanStartCall>
     ): CallLogRow.Call {
       val peer = Recipient.resolved(RecipientId.from(parent.peer))
       return CallLogRow.Call(
@@ -195,10 +198,10 @@ class CallEventCache(
         searchQuery = filterState.query,
         callLinkPeekInfo = AppDependencies.signalCallManager.peekInfoSnapshot[peer.id],
         canUserBeginCall = if (peer.isGroup) {
-          if (peer.isActiveGroup) {
-            canUserBeginCallMap.getOrPut(parent.peer) { canUserBeginCall(peer, parent.decryptedGroupBytes) }
-          } else false
-        } else true
+          canUserBeginCallMap.getOrPut(parent.peer) { canUserBeginCall(peer, parent.decryptedGroupBytes) }
+        } else {
+          CallLogRow.CanStartCall.ALLOWED
+        }
       )
     }
 

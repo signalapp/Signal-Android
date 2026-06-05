@@ -21,7 +21,7 @@ import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.I
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 
 import java.io.File;
 import java.io.IOException;

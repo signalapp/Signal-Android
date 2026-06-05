@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.conversation.mutiselect.forward
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.network.util.Preconditions
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -10,7 +11,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.sharing.MultiShareSender
 import org.thoughtcrime.securesms.stories.Stories
-import org.whispersystems.signalservice.api.util.Preconditions
 import java.util.Optional
 
 class MultiselectForwardRepository {

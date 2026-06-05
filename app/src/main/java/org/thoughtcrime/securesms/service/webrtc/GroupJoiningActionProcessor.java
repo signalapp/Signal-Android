@@ -9,7 +9,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
-import org.thoughtcrime.securesms.ringrtc.Camera;
+import org.thoughtcrime.securesms.ringrtc.OutgoingVideoSourceRouter;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -73,7 +73,7 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
           webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, remoteVideoEnabled));
 
           try {
-            groupCall.setOutgoingVideoMuted(!currentState.getLocalDeviceState().getCameraState().isEnabled());
+            groupCall.setOutgoingVideoMuted(!currentState.getLocalDeviceState().getCameraState().isEnabled(), false);
             groupCall.setOutgoingAudioMuted(!currentState.getLocalDeviceState().isMicrophoneEnabled());
             groupCall.setDataMode(NetworkUtil.getCallingDataMode(context, device.getNetworkRoute().getLocalAdapterType()));
           } catch (CallException e) {
@@ -142,19 +142,19 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleSetEnableVideo(@NonNull WebRtcServiceState currentState, boolean enable) {
-    GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
-    Camera    camera    = currentState.getVideoState().requireCamera();
+    GroupCall                 groupCall = currentState.getCallInfoState().requireGroupCall();
+    OutgoingVideoSourceRouter router    = currentState.getVideoState().requireRouter();
 
     try {
-      groupCall.setOutgoingVideoMuted(!enable);
+      groupCall.setOutgoingVideoMuted(!enable, false);
     } catch (CallException e) {
       return groupCallFailure(currentState, "Unable to set video muted", e);
     }
-    camera.setEnabled(enable);
+    router.setEnabled(enable);
 
     currentState = currentState.builder()
                                .changeLocalDeviceState()
-                               .cameraState(camera.getCameraState())
+                               .cameraState(router.getCameraState())
                                .build();
 
     WebRtcUtil.enableSpeakerPhoneIfNeeded(webRtcInteractor, currentState);

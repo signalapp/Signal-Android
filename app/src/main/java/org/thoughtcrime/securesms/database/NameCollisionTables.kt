@@ -280,13 +280,11 @@ class NameCollisionTables(
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
-    val count = writableDatabase
-      .update(NameCollisionMembershipTable.TABLE_NAME)
-      .values(NameCollisionMembershipTable.RECIPIENT_ID to toId.serialize())
-      .where("${NameCollisionMembershipTable.RECIPIENT_ID} = ?", fromId)
-      .run()
-
-    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
+    writableDatabase.execSQL(
+      "UPDATE OR REPLACE ${NameCollisionMembershipTable.TABLE_NAME} SET ${NameCollisionMembershipTable.RECIPIENT_ID} = ? WHERE ${NameCollisionMembershipTable.RECIPIENT_ID} = ?",
+      arrayOf(toId.serialize(), fromId.serialize())
+    )
+    Log.d(TAG, "Remapped $fromId to $toId")
   }
 
   private fun handleNameCollisions(
@@ -469,7 +467,7 @@ class NameCollisionTables(
           SELECT ${NameCollisionMembershipTable.COLLISION_ID}
           FROM ${NameCollisionMembershipTable.TABLE_NAME}
           GROUP BY ${NameCollisionMembershipTable.COLLISION_ID}
-          HAVING COUNT($ID) >= 2
+          HAVING COUNT(*) >= 2
       )
       """.trimIndent()
     )

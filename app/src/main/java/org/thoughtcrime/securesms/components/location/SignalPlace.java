@@ -13,7 +13,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.maps.AddressData;
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.signal.core.util.JsonUtils;
 
 import java.io.IOException;
 

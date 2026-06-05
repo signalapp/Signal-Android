@@ -187,6 +187,30 @@ public final class SqlUtilTest {
   }
 
   @Test
+  public void buildFastCollectionQuery_withPrefix() {
+    SqlUtil.Query updateQuery = SqlUtil.buildFastCollectionQuery("a", Arrays.asList(1), "b = 1 AND");
+
+    assertEquals("b = 1 AND a IN (SELECT e.value FROM json_each(?) e)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "[\"1\"]" }, updateQuery.getWhereArgs());
+  }
+
+  @Test
+  public void buildFastCollectionQuery_withPrefixTrailingSpace() {
+    SqlUtil.Query updateQuery = SqlUtil.buildFastCollectionQuery("a", Arrays.asList(1), "b = 1 AND ");
+
+    assertEquals("b = 1 AND a IN (SELECT e.value FROM json_each(?) e)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "[\"1\"]" }, updateQuery.getWhereArgs());
+  }
+
+  @Test
+  public void buildFastCollectionQuery_emptyPrefix() {
+    SqlUtil.Query updateQuery = SqlUtil.buildFastCollectionQuery("a", Arrays.asList(1), "");
+
+    assertEquals("a IN (SELECT e.value FROM json_each(?) e)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "[\"1\"]" }, updateQuery.getWhereArgs());
+  }
+
+  @Test
   public void buildCustomCollectionQuery_single_singleBatch() {
     List<String[]> args = new ArrayList<>();
     args.add(SqlUtil.buildArgs(1, 2));

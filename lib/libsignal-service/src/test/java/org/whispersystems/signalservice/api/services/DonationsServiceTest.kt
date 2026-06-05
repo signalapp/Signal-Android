@@ -7,9 +7,9 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.whispersystems.signalservice.api.NetworkResult
+import org.signal.network.NetworkResult
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.donations.DonationsApi
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 

@@ -12,8 +12,10 @@ import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.DiskUtil
 import org.signal.core.util.FontUtil.canRenderEmojiAtFontSize
+import org.signal.core.util.ServiceUtil
 import org.signal.core.util.Util
 import org.signal.core.util.bytes
+import org.signal.core.util.getAnimationScale
 import org.signal.core.util.roundedString
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -24,12 +26,10 @@ import org.thoughtcrime.securesms.notifications.SlowNotificationHeuristics.isHav
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.self
 import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil.telecomSupported
 import org.thoughtcrime.securesms.util.AppSignatureUtil
-import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.DeviceProperties
 import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.util.PowerManagerCompat
 import org.thoughtcrime.securesms.util.ScreenDensity
-import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.VersionTracker.getDaysSinceFirstInstalled
 import java.util.Locale
@@ -52,7 +52,7 @@ class LogSectionSystemInfo : LogSection {
       Screen            : ${getScreenResolution(context)}, ${ScreenDensity.get(context)}, ${getScreenRefreshRate(context)}
       WindowSizeClass   : ${context.resources.getWindowSizeClass()}
       Font Scale        : ${context.resources.configuration.fontScale}
-      Animation Scale   : ${ContextUtil.getAnimationScale(context)}
+      Animation Scale   : ${context.getAnimationScale()}
       Android           : ${Build.VERSION.RELEASE}, API ${Build.VERSION.SDK_INT} (${Build.VERSION.INCREMENTAL}, ${Build.DISPLAY})
       ABIs              : ${Build.SUPPORTED_ABIS.joinToString(separator = ", ")}
       Memory            : ${getMemoryUsage()}

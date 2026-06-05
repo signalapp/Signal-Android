@@ -4,10 +4,8 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Stream;
-
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.signal.core.util.Util;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.util.Map;
 
@@ -24,9 +22,9 @@ public class LogSectionRemoteConfig implements LogSection {
     Map<String, Object> memory        = RemoteConfig.getMemoryValues();
     Map<String, Object> disk          = RemoteConfig.getDebugDiskValues();
     Map<String, Object> pending       = RemoteConfig.getDebugPendingDiskValues();
-    int                 remoteLength  = Stream.of(memory.keySet()).map(String::length).max(Integer::compareTo).orElse(0);
-    int                 diskLength    = Stream.of(disk.keySet()).map(String::length).max(Integer::compareTo).orElse(0);
-    int                 pendingLength = Stream.of(pending.keySet()).map(String::length).max(Integer::compareTo).orElse(0);
+    int                 remoteLength  = memory.keySet().stream().map(String::length).max(Integer::compareTo).orElse(0);
+    int                 diskLength    = disk.keySet().stream().map(String::length).max(Integer::compareTo).orElse(0);
+    int                 pendingLength = pending.keySet().stream().map(String::length).max(Integer::compareTo).orElse(0);
 
     out.append("-- Memory\n");
     for (Map.Entry<String, Object> entry : memory.entrySet()) {

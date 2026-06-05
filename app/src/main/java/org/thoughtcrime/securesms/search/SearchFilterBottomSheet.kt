@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
@@ -75,6 +76,7 @@ class SearchFilterBottomSheet : ComposeBottomSheetDialogFragment() {
   @Composable
   override fun SheetContent() {
     val context = LocalContext.current
+    val resources = LocalResources.current
     val args = requireArguments()
 
     var startDate by remember {
@@ -96,12 +98,12 @@ class SearchFilterBottomSheet : ComposeBottomSheetDialogFragment() {
 
     val startDateText = remember(startDate) {
       startDate?.let { DateUtils.getDayPrecisionTimeString(context, Locale.getDefault(), it) }
-        ?: context.getString(R.string.SearchFilterBottomSheet__not_set)
+        ?: resources.getString(R.string.SearchFilterBottomSheet__not_set)
     }
 
     val endDateText = remember(endDate) {
       endDate?.let { DateUtils.getDayPrecisionTimeString(context, Locale.getDefault(), it) }
-        ?: context.getString(R.string.SearchFilterBottomSheet__not_set)
+        ?: resources.getString(R.string.SearchFilterBottomSheet__not_set)
     }
 
     SearchFilterSheetContent(
@@ -110,7 +112,7 @@ class SearchFilterBottomSheet : ComposeBottomSheetDialogFragment() {
       authorName = authorName ?: stringResource(R.string.SearchFilterBottomSheet__anyone),
       onStartDateClick = {
         val datePicker = MaterialDatePicker.Builder.datePicker()
-          .setTitleText(context.getString(R.string.SearchFilterBottomSheet__select_date))
+          .setTitleText(resources.getString(R.string.SearchFilterBottomSheet__select_date))
           .apply {
             startDate?.let { setSelection(it) }
           }
@@ -123,7 +125,7 @@ class SearchFilterBottomSheet : ComposeBottomSheetDialogFragment() {
       },
       onEndDateClick = {
         val datePicker = MaterialDatePicker.Builder.datePicker()
-          .setTitleText(context.getString(R.string.SearchFilterBottomSheet__select_date))
+          .setTitleText(resources.getString(R.string.SearchFilterBottomSheet__select_date))
           .apply {
             endDate?.let { setSelection(it) }
           }

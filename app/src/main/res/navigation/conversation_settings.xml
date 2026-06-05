@@ -44,7 +44,7 @@
 
         <argument
             android:name="group_id"
-            app:argType="android.os.Parcelable"
+            app:argType="org.thoughtcrime.securesms.groups.GroupId"
             app:nullable="true" />
 
         <argument
@@ -90,7 +90,7 @@
 
             <argument
                 android:name="group_id"
-                app:argType="android.os.Parcelable"
+                app:argType="org.thoughtcrime.securesms.groups.GroupId"
                 app:nullable="true" />
         </action>
 
@@ -126,7 +126,7 @@
 
             <argument
                 android:name="group_id"
-                app:argType="android.os.Parcelable"
+                app:argType="org.thoughtcrime.securesms.groups.GroupId"
                 app:nullable="false" />
         </action>
 
@@ -185,8 +185,8 @@
 
         <argument
             android:name="group_id"
-            app:argType="android.os.Parcelable"
-            app:nullable="true" />
+            app:argType="org.thoughtcrime.securesms.groups.GroupId"
+            app:nullable="false" />
     </fragment>
 
     <fragment
@@ -205,7 +205,8 @@
 
         <argument
             android:name="group_id"
-            app:argType="string" />
+            app:argType="org.thoughtcrime.securesms.groups.GroupId"
+            app:nullable="false" />
 
     </fragment>
 
@@ -215,7 +216,7 @@
 
         <argument
             android:name="group_id"
-            app:argType="android.os.Parcelable"
+            app:argType="org.thoughtcrime.securesms.groups.GroupId"
             app:nullable="false" />
     </fragment>
 

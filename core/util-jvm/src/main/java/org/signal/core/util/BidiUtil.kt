@@ -10,6 +10,12 @@ import java.util.regex.Pattern
 object BidiUtil {
   private val ALL_ASCII_PATTERN: Pattern = Pattern.compile("^[\\x00-\\x7F]*$")
 
+  object BidiCodepoint {
+    const val LRI = "\u2066"
+
+    const val PDI = "\u2069"
+  }
+
   private object Bidi {
     /** Override text direction   */
     val OVERRIDES: Set<Int> = SetUtil.newHashSet(

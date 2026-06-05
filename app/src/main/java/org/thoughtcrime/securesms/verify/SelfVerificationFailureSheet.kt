@@ -74,8 +74,8 @@ class SelfVerificationFailureSheet : ComposeBottomSheetDialogFragment() {
 
     LaunchedEffect(state.sendEmail) {
       if (state.sendEmail && state.debugLogUrl != null) {
-        val subject = context.getString(R.string.SelfVerificationFailureSheet__email_subject)
-        val prefix = "\n${context.getString(R.string.HelpFragment__debug_log)} ${state.debugLogUrl}\n\n"
+        val subject = getString(R.string.SelfVerificationFailureSheet__email_subject)
+        val prefix = "\n${getString(R.string.HelpFragment__debug_log)} ${state.debugLogUrl}\n\n"
         val body = SupportEmailUtil.generateSupportEmailBody(context, R.string.SelfVerificationFailureSheet__email_filter, prefix, null)
         CommunicationActions.openEmail(context, SupportEmailUtil.getSupportEmailAddress(context), subject, body)
         dismissAllowingStateLoss()

@@ -29,12 +29,12 @@ object SignalGlideDependencies {
   val application: Application
     get() = _application
 
-  fun getUriInputStreamFactory(uri: Uri): InputStreamFactory = _provider.getUriInputStreamFactory(uri)
+  fun getUriInputStreamFactory(uri: Uri, thumbnailTimeUs: Long = 0): InputStreamFactory = _provider.getUriInputStreamFactory(uri, thumbnailTimeUs)
 
   interface Provider {
     /**
-     * A factory which can create an [java.io.InputStream] from a given [Uri]
+     * A factory which can create an [java.io.InputStream] from a given [Uri]. For videos, [thumbnailTimeUs] specifies the frame time to extract.
      */
-    fun getUriInputStreamFactory(uri: Uri): InputStreamFactory
+    fun getUriInputStreamFactory(uri: Uri, thumbnailTimeUs: Long = 0): InputStreamFactory
   }
 }

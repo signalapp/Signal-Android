@@ -5,6 +5,7 @@
 
 package org.whispersystems.signalservice.api.push.exceptions
 
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 
 /**

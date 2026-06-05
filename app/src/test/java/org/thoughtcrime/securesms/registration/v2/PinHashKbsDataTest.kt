@@ -9,11 +9,11 @@ import org.junit.Test
 import org.signal.core.models.MasterKey
 import org.signal.core.util.StreamUtil
 import org.signal.libsignal.svr2.PinHash
+import org.signal.network.util.JsonUtil
 import org.thoughtcrime.securesms.registration.v2.testdata.KbsTestVector
 import org.thoughtcrime.securesms.testutil.SecureRandomTestUtil
 import org.whispersystems.signalservice.api.kbs.PinHashUtil.createNewKbsData
 import org.whispersystems.signalservice.api.kbs.PinHashUtil.decryptSvrDataIVCipherText
-import org.whispersystems.signalservice.internal.util.JsonUtil
 
 class PinHashKbsDataTest {
   @Test

@@ -11,8 +11,6 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
-
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.util.Util;
@@ -70,7 +68,7 @@ import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
 import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkManager;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
-import org.thoughtcrime.securesms.util.AppForegroundObserver;
+import org.signal.core.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.rx.RxStore;
@@ -78,7 +76,7 @@ import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
-import org.whispersystems.signalservice.api.NetworkResult;
+import org.signal.network.NetworkResult;
 import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -265,6 +263,18 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   public void setEnableVideo(boolean enabled) {
     process((s, p) -> p.handleSetEnableVideo(s, enabled));
+  }
+
+  public void startScreenShare(@NonNull android.content.Intent mediaProjectionData) {
+    process((s, p) -> p.handleSetLocalScreenShare(s, true, mediaProjectionData));
+  }
+
+  public void stopScreenShare() {
+    process((s, p) -> p.handleSetLocalScreenShare(s, false, null));
+  }
+
+  public void onScreenSharingServiceReady() {
+    process((s, p) -> p.handleScreenSharingServiceReady(s));
   }
 
   public void setIncomingRingingVanity(boolean enabled) {
@@ -481,9 +491,8 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         GroupId.V2              groupId    = group.requireGroupId().requireV2();
         ExternalGroupCredential credential = GroupManager.getExternalGroupCredential(context, groupId);
 
-        List<GroupCall.GroupMemberInfo> members = Stream.of(GroupManager.getUuidCipherTexts(context, groupId))
-                                                        .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize()))
-                                                        .toList();
+        List<GroupCall.GroupMemberInfo> members = GroupManager.getUuidCipherTexts(context, groupId).entrySet().stream()
+                                                              .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize())).collect(Collectors.toList());
         callManager.peekGroupCall(SignalStore.internal().getGroupCallingServer(), credential.token.getBytes(Charsets.UTF_8), members, peekInfo -> {
           Long threadId = SignalDatabase.threads().getThreadIdFor(group.getId());
 
@@ -960,9 +969,8 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     SignalExecutors.BOUNDED_IO.execute(() -> {
       List<Pair<String, String>> headerPairs;
       if (headers != null) {
-        headerPairs = Stream.of(headers)
-                            .map(header -> new Pair<>(header.getName(), header.getValue()))
-                            .toList();
+        headerPairs = headers.stream()
+                             .map(header -> new Pair<>(header.getName(), header.getValue())).collect(Collectors.toList());
       } else {
         headerPairs = Collections.emptyList();
       }
@@ -1088,6 +1096,11 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   public void onCameraStopped() {
     Log.i(TAG, "Camera error. Muting video.");
     setEnableVideo(false);
+  }
+
+  @Override
+  public void onScreenShareStopped() {
+    stopScreenShare();
   }
 
   @Override
@@ -1362,6 +1375,13 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   public @NonNull SignalCallLinkManager getCallLinkManager() {
     return new SignalCallLinkManager(Objects.requireNonNull(callManager));
+  }
+
+  public void addAsset(String assetGroup, byte[] content) throws CallException {
+    if (callManager == null) {
+      throw new CallException("Unable to add asset, call manager is not initialized");
+    }
+    callManager.addAsset(assetGroup, content);
   }
 
   public void relaunchPipOnForeground() {

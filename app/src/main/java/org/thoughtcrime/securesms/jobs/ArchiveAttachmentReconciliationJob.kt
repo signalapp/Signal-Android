@@ -21,6 +21,7 @@ import org.signal.core.util.Stopwatch
 import org.signal.core.util.forEach
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
@@ -37,7 +38,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.wallpaper.WallpaperStorage
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours

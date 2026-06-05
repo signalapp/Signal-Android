@@ -22,6 +22,7 @@
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
 
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
@@ -328,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">পাঠান</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">সাম্প্রতিক যোগাযোগ</string>
-    <string name="CameraContacts_signal_contacts">Signal পরিচিতিসমূহ</string>
-    <string name="CameraContacts_signal_groups">Signal গ্রুপসমূহ</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">আপনি সর্বোচ্চ %1$dটি চ্যাটের সাথে শেয়ার করতে পারবেন।</item>
-        <item quantity="other">আপনি সর্বোচ্চ %1$dটি চ্যাটের সাথে শেয়ার করতে পারবেন।</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Signal প্রাপকসমূহ নির্বাচন করুন</string>
-    <string name="CameraContacts_no_signal_contacts">কোনও Signal পরিচিতি নেই</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">শুধুমাত্র Signal পরিচিতিদের ছবি পাঠাতে ক্যামেরা বোতাম ব্যবহার করতে পারবেন। </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">আপনি যাকে খুঁজছেন তাকে খুঁজে পাচ্ছেন না?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Signal -এ যোগ দিতে একটি পরিচিতিকে আমন্ত্রণ জানান</string>
     <string name="CameraContacts__menu_search">খুঁজুন</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -517,7 +504,7 @@
     <string name="ConversationActivity_unable_to_record_audio">অডিও রেকর্ড করা যাচ্ছেনা!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">আপনি এই গ্রুপে বার্তা পাঠাতে পারবেন না কারন আপনি আর এই গ্রুপের সদস্য না</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">আপনি এই গ্রুপে মেসেজ পাঠাতে পারবেন না, কারণ এই গ্রুপটি বন্ধ হয়ে গিয়েছে।</string>
     <string name="ConversationActivity_only_s_can_send_messages">কেবল %1$s বার্তা পাঠাতে পারবে।</string>
     <string name="ConversationActivity_admins">এডমিনগণ</string>
     <string name="ConversationActivity_message_an_admin">একজন এডমিনকে বার্তা পাঠান</string>
@@ -714,10 +701,19 @@
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">আপনি %1$s-এর কাছ থেকে একটি মেসেজের অনুরোধ গ্রহণ করেছেন। যদি এটি একটি ভুল হয়ে থাকে, তাহলে আপনি নিচের একটি পদক্ষেপ বেছে নিতে পারেন।</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">সাবধানে পর্যালোচনা করুন</string>
-    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s যাচাইকৃত নয়</string>
-    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
-    <string name="ConversationFragment_group_names_not_verified">%1$s যাচাইকৃত নয়</string>
+    <!-- Text shown in conversation header when in a message request state that the name is not verified -->
+    <string name="ConversationFragment_name_not_verified">নাম যাচাইকৃত নয়</string>
+    <!-- Label for official chat pill shown in the Note to Self conversation header -->
+    <string name="ConversationFragment_official_chat">অফিসিয়াল চ্যাট</string>
+    <!-- Description shown in the Signal release notes conversation header -->
+    <string name="ConversationFragment_release_notes_description">Signal-এর একমাত্র অফিসিয়াল চ্যাট। খবর ও রিলিজ নোট পেয়ে আপডেট থাকুন।</string>
+    <!-- Label shown in place of the input in the Signal release notes conversation -->
+    <string name="ConversationFragment_the_only_official_chat_from_signal">Signal-এর একমাত্র অফিসিয়াল চ্যাট</string>
+    <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
+    <plurals name="ConversationFragment_group_member_count">
+        <item quantity="one">%1$d জন সদস্য</item>
+        <item quantity="other">%1$d জন সদস্য</item>
+    </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">প্রোফাইলের নাম</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
@@ -743,39 +739,57 @@
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">নিরাপত্তা সংক্রান্ত পরামর্শ</string>
-    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">আপনি চেনেন না এমন কোনো ব্যক্তির কাছ থেকে মেসেজের অনুরোধ গ্রহণ করার ব্যাপারে সতর্ক থাকুন। যেসব বিষয়ে সতর্ক থাকবেন:</string>
-    <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">সতর্কতার সাথে এই অনুরোধটি পর্যালোচনা করুন। আপনার কন্টাক্টদের কেউই বা আপনি যাদের সাথে চ্যাট করেন তাদের কেউই এই গ্রুপে নেই। খেয়াল রাখার মতো কিছু বিষয় এখানে দেওয়া হলো:</string>
-    <!-- Button text to move to the previous tip-->
+    <!-- Button text to view more safety tips -->
+    <string name="SafetyTips_view_more">আরো দেখুন</string>
+    <!-- Content description for previous tip button -->
     <string name="SafetyTips_previous_tip">পূর্ববর্তী পরামর্শ</string>
-    <!-- Button text to move to the next tip -->
+    <!-- Content description for next tip button -->
     <string name="SafetyTips_next_tip">পরবর্তী পরামর্শ</string>
-    <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">নকল নাম ও অ্যাকাউন্ট</string>
-    <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal কখনোই আপনার রেজিস্ট্রেশন কোড বা পিনের জন্য আপনার সাথে যোগাযোগ করবে না। অন্যদের ছদ্মবেশ ধারণ করে আছে এমন কারো অনুরোধ থেকে সাবধান থাকুন। প্রোফাইলের নামগুলো তাদের অ্যাকাউন্টধারী নির্বাচন করে থাকেন এবং সেগুলো যাচাইকৃত নয়।</string>
-    <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">ক্রিপ্টো বা অর্থ সংক্রান্ত স্ক্যাম</string>
-    <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">আপনি চেনেন না এমন কেউ যদি আপনাকে ক্রিপ্টোকারেন্সি (যেমন বিটকয়েন) বা আর্থিক সুযোগ সম্পর্কে মেসেজ করেন যাকেন, তবে সতর্ক হোন—এটি সম্ভবত স্প্যাম।</string>
-    <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">অস্পষ্ট বা অপ্রাসঙ্গিক মেসেজ</string>
-    <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">স্প্যামাররা প্রায়শই আপনাকে আকর্ষণ করার জন্য \"হাই\"-এর মতো একটি সাধারণ মেসেজ দিয়ে কথা শুরু করেন। আপনি উত্তর দিলে তারা আপনাকে আরো জড়িয়ে ফেলতে পারেন।</string>
-    <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">লিংক সহ মেসেজ</string>
-    <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">আপনি চেনেন না এমন কোনো ব্যক্তির কাছ থেকে আসা মেসেজের ব্যাপারে সতর্ক থাকুন, বিশেষ করে যেসব মেসেজে ওয়েবসাইটের লিংক রয়েছে। আপনি আস্থা রাখতে পারেন না এমন ব্যক্তিদের কাছ থেকে আসা লিংকগুলোতে ভিজিট করবেন না।</string>
-    <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">ভুয়া ব্যবসা ও প্রতিষ্ঠান</string>
-    <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">কোনো ব্যবসা প্রতিষ্ঠান বা সরকারি সংস্থা যদি আপনার সাথে যোগাযোগ করে তবে সে সম্পর্কে সতর্ক থাকুন। ট্যাক্স এজেন্সি, কুরিয়ার এবং আরো অনেক কিছুর সাথে সম্পর্কিত মেসেজ স্প্যাম হতে পারে।</string>
+
+    <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
+    <string name="SafetyTips_summary_tip0_title">Signal থেকে আসা চ্যাটের উত্তর দেবেন না</string>
+    <!-- Summary tip 0 message -->
+    <string name="SafetyTips_summary_tip0_message">Signal কখনোই আপনার রেজিস্ট্রেশন কোড, পিন, বা পুনরুদ্ধার \'কি\'-এর জন্য আপনাকে মেসেজ দেবে না। Signal-এর প্রতিনিধি হওয়ার ভান করে এমন কোনো চ্যাটের উত্তর দিবেন না।</string>
+    <!-- Summary tip 1 title: Review names and photos -->
+    <string name="SafetyTips_summary_tip1_title">নাম ও ছবি রিভিউ করুন</string>
+    <!-- Summary tip 1 message -->
+    <string name="SafetyTips_summary_tip1_message">\"নাম যাচাই করা হয়নি\" নোটিশের দিকে খেয়াল রাখুন। প্রত্যেকে Signal-এ তাদের নিজস্ব প্রোফাইল নাম নির্ধারণ করে থাকেন।</string>
+    <!-- Summary tip 2 title: Look out for scams -->
+    <string name="SafetyTips_summary_tip2_title">জালিয়াতি প্রতিহত করতে সাবধান থাকুন</string>
+    <!-- Summary tip 2 message -->
+    <string name="SafetyTips_summary_tip2_message">আপনাকে উত্তর দিতে প্ররোচিত করার উদ্দেশ্যে পাঠানো অস্পষ্ট মেসেজ এড়িয়ে চলুন। আর্থিক পরামর্শ এবং সন্দেহজনক ওয়েব লিংক সম্পর্কে সতর্ক থাকুন।</string>
+
+    <!-- Detail tip 0 title -->
+    <string name="SafetyTips_detail_tip0_title">Signal থেকে আসা চ্যাটের উত্তর দেবেন না</string>
+    <!-- Detail tip 0 message -->
+    <string name="SafetyTips_detail_tip0_message">Signal আপনার রেজিস্ট্রেশন কোড, পিন বা পুনরুদ্ধার \'কি\'-এর জন্য আপনাকে কখনোই মেসেজ করবে না। এমন কোনো চ্যাটের উত্তর দিবেন না যেখানে Signal বা Signal সাপোর্ট-এর প্রতিনিধি হওয়ার ভান করা হয়। ক্ষতিকর ব্যক্তিরা আপনার অ্যাকাউন্ট দখলের চেষ্টা করার জন্য ভুয়া চ্যাট সেট আপ করে।</string>
+    <!-- Detail tip 1 title -->
+    <string name="SafetyTips_detail_tip1_title">নাম ও ছবি রিভিউ করুন</string>
+    <!-- Detail tip 1 message -->
+    <string name="SafetyTips_detail_tip1_message">\"নাম যাচাই করা হয়নি\" নোটিশের দিকে খেয়াল রাখুন। প্রত্যেকে Signal-এ তাদের নিজস্ব প্রোফাইল নাম এবং ছবি নির্ধারণ করে থাকেন। নতুন অনুরোধটি কার কাছ থেকে এসেছে সে বিষয়ে আপনি নিশ্চিত না হলে, সেটি এড়িয়ে যাওয়াটাই নিরাপদ।</string>
+    <!-- Detail tip 2 title -->
+    <string name="SafetyTips_detail_tip2_title">অস্পষ্ট বা অপ্রাসঙ্গিক মেসেজ</string>
+    <!-- Detail tip 2 message -->
+    <string name="SafetyTips_detail_tip2_message">স্প্যামাররা আপনাকে আকৃষ্ট করার জন্য প্রায়শই \"হাই\"-এর মতো একটি সাধারণ মেসেজ দিয়ে কথোপকথন শুরু করে। আপনি উত্তর দিলে তারা আপনাকে আরো জড়িয়ে ফেলতে পারেন।</string>
+    <!-- Detail tip 3 title -->
+    <string name="SafetyTips_detail_tip3_title">ওয়েব লিংক সহ মেসেজ</string>
+    <!-- Detail tip 3 message -->
+    <string name="SafetyTips_detail_tip3_message">অপরিচিত ব্যক্তির কাছ থেকে পাওয়া ওয়েবসাইটের লিংকযুক্ত মেসেজ থেকে সাবধান থাকুন। যাদের উপর আপনার আস্থা নেই, তাদের পাঠানো লিংকে কখনো প্রবেশ করবেন না।</string>
+    <!-- Detail tip 4 title -->
+    <string name="SafetyTips_detail_tip4_title">ক্রিপ্টো বা অর্থ সংক্রান্ত স্ক্যাম</string>
+    <!-- Detail tip 4 message -->
+    <string name="SafetyTips_detail_tip4_message">যদি কোনো অপরিচিত ব্যক্তি ক্রিপ্টোকারেন্সি (যেমন বিটকয়েন) বা কোনো আর্থিক সুযোগ-সুবিধা সংক্রান্ত বিষয়ে মেসেজ পাঠিয়ে থাকেন, তাহলে সতর্ক থাকুন—এটি খুব সম্ভবত একটি স্প্যাম।</string>
+    <!-- Detail tip 5 title -->
+    <string name="SafetyTips_detail_tip5_title">ভুয়া ব্যবসা প্রতিষ্ঠান</string>
+    <!-- Detail tip 5 message -->
+    <string name="SafetyTips_detail_tip5_message">কোনো ব্যবসা প্রতিষ্ঠান বা সরকারি সংস্থা যদি আপনার সাথে যোগাযোগ করে তবে সে সম্পর্কে সতর্ক থাকুন। ট্যাক্স এজেন্সি, কুরিয়ার এবং আরো অনেক কিছুর সাথে সম্পর্কিত মেসেজ স্প্যাম হতে পারে।</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal-এ %1$s তাদের অ্যাকাউন্টধারী বেছে নিয়েছেন।</string>
-    <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">প্রোফাইলের নাম যাচাই করা হয়নি</string>
+    <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal নাম ও ছবি যাচাই করতে পারছে না</string>
+    <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal কখনোই আপনার রেজিস্ট্রেশন কোড, পিন, বা পুনরুদ্ধার \'কি\'-এর জন্য আপনার সাথে যোগাযোগ করবে না</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">অন্যদের ছদ্মবেশ ধারণ করে আছে এমন কারো অ্যাকাউন্ট থেকে সাবধান থাকুন</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
@@ -1260,10 +1274,6 @@
     </plurals>
     <string name="PendingGroupJoinRequestsReminder_view">দেখান</string>
 
-    <!-- GcmRefreshJob -->
-    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal স্থায়ীভাবে যোগাযোগ স্থাপনে ব্যর্থ!</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal গুগল প্লে পরিষেবাদিতে নিবন্ধন করতে অক্ষম ছিল। Signal বার্তা এবং কল সমূহ অক্ষম করা হয়েছে, দয়া করে পুনরায় নিবন্ধকরণ চেষ্টা করুন সেটিংস &gt; উন্নত।</string>
-
 
     <!-- GiphyActivity -->
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">সম্পূর্ণ রেজোলিউশনে GIF পুনরুদ্ধার করার সময় ত্রুটি</string>
@@ -1683,7 +1693,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">একটি নেটওয়ার্ক ত্রুটি সম্মুখীন।</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">এই গ্রুপ লিংকটি সচল নেই</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">এই গ্রুপে যোগ দেওয়া যাচ্ছে না।</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">গ্রুপের সদস্য সর্বোচ্চ সংখ্যার সীমা পেরিয়ে গেছে, গ্রুপে যোগ দেয়া যাচ্ছে না</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1796,6 +1806,8 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">মোছা হচ্ছে…</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">বার্তা সমূহ মোছা হচ্ছে…</string>
+    <!-- Format string showing current vs. total items being deleted, e.g. "12 of 207" -->
+    <string name="MediaOverviewActivity_Media_delete_progress_count">%1$d এর %2$d</string>
     <string name="MediaOverviewActivity_Sort_by">ক্রমানুসার</string>
     <string name="MediaOverviewActivity_Newest">নতুন</string>
     <string name="MediaOverviewActivity_Oldest">পুরাতন</string>
@@ -1832,6 +1844,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">%1$sকে আপনার প্রেরিত</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">এই মিডিয়াটি এখনো পাঠানো হয়নি।</string>
+    <string name="MediaOverviewActivity_jump_to_message">মেসেজটিতে যান</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">আমাকে পরে মনে করিয়ে দিবেন</string>
@@ -1900,7 +1913,7 @@
     <string name="MessageRecord_you_updated_group">আপনি গ্রুপ আপডেট করেছেন।</string>
     <string name="MessageRecord_the_group_was_updated">গ্রুপটি আপডেট করা হয়েছিল।</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">এই গ্রুপটি বন্ধ হয়ে গিয়েছে।</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s গ্ৰুপটি বন্ধ করেছেন</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -1921,6 +1934,10 @@
     <string name="MessageRecord_declined_voice_call">প্রত্যাখ্যান করা হয়েছে এমন ভয়েস কল</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">প্রত্যাখ্যান করা হয়েছে এমন ভিডিও কল</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">উত্তর না দেওয়া ভয়েস কল</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">উত্তর না দেওয়া ভিডিও কল</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">নোটিফিকেশন প্রোফাইল চালু থাকা অবস্থায় মিসড ভয়েস কল</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2214,8 +2231,10 @@
     <string name="MessageRecord__payment_tombstone">পেমেন্ট</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">স্প্যাম হিসেবে রিপোর্ট করা হয়েছে</string>
-    <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">আপনি মেসেজের অনুরোধ গ্রহণ করেছেন</string>
+    <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
+    <string name="MessageRecord_you_accepted_s_message_request">আপনি %1$s-এর মেসেজের অনুরোধ গ্রহণ করেছেন</string>
+    <!-- Update message shown in a group chat after accepting a group message request -->
+    <string name="MessageRecord_you_accepted_the_group_request">আপনি গ্ৰুপের অনুরোধ গ্রহণ করেছেন</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">আপনি এই ব্যক্তিকে ব্লক করেছেন</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2239,7 +2258,7 @@
     <string name="MessageRequestBottomView_unblock">আনব্লক করুন</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s-কে আপনাকে মেসেজ দিতে দিন এবং তার সাথে আপনার নাম ও ছবি শেয়ার করুন? আপনি অতীতে এই ব্যক্তিকে মুছে ফেলেছিলেন।</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s-কে কি আপনাকে মেসেজ পাঠাতে এবং আপনার নাম ও ছবি শেয়ার করতে দেবেন? আপনি গ্রহণ না করা পর্যন্ত আপনি যে তাদের মেসেজটি দেখেছেন সেটি তারা জানতে পারবেন না।</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">এই ব্যক্তিকে আপনাকে মেসেজ করতে এবং তাদের সাথে আপনার নাম ও ছবি শেয়ার করতে দেবেন? আপনি গ্রহণ না করা পর্যন্ত তারা জানতে পারবেন না যে আপনি তাদের মেসেজটি দেখেছেন।</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s-কে কি আপনাকে ম্যাসেজ পাঠাতে এবং আপনার নাম ও ছবি শেয়ার করতে দেবেন? আপনি তাদের আনব্লক না করা পর্যন্ত তাদের পাঠানো কোনো ম্যাসেজ পাবেন না।</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2301,11 +2320,15 @@
         <item quantity="other">%1$d অন্যান্য</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">রিপোর্ট…</string>
+    <string name="MessageRequestBottomView_report">রিপোর্ট করুন</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">অনুরোধ গ্রহণ করবেন?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">সতর্কতার সাথে অনুরোধ পর্যালোচনা করুন। প্রোফাইলের নামগুলো তাদের অ্যাকাউন্টধারী নির্বাচন করে থাকেন এবং সেগুলো যাচাইকৃত নয়।</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">সতর্কতার সাথে অনুরোধ পর্যালোচনা করুন। প্রোফাইলের নামগুলি তাদের অ্যাকাউন্টধারী নির্বাচন করে থাকেন এবং সেগুলি যাচাইকৃত নয়।</string>
+    <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
+    <string name="MessageRequestBottomView_accept_request_body">আপনি যাদের বিশ্বাস করেন শুধুমাত্র তাদের কাছ থেকেই অনুরোধ গ্রহণ করুন। রেজিস্ট্রেশন কোড, পিন বা পুনরুদ্ধার \'কি\'-এর জন্য আপনাকে %1$s মেসেজ।</string>
+    <!-- Bold substring used in accept request body: "Signal will never" -->
+    <string name="MessageRequestBottomView_signal_will_never">Signal কখনোই করবে না</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">গ্রুপে যোগ দেবেন?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -2661,6 +2684,10 @@
     <string name="CallOverflowPopupWindow__lower_hand">নামান</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">বাতিল করুন</string>
+    <!-- A clickable button to share your screen in a call -->
+    <string name="CallOverflowPopupWindow__share_screen">স্ক্রিন শেয়ার করুন</string>
+    <!-- A clickable button to stop sharing your screen in a call -->
+    <string name="CallOverflowPopupWindow__stop_screen_share">শেয়ার করা থামান</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">দেখুন</string>
 
@@ -2785,6 +2812,8 @@
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">স্ক্রিন শেয়ার দেখতে সোয়াইপ করুন</string>
+    <!-- Hint shown to teach the user they can swipe between the grid view and the active speaker view -->
+    <string name="CallToastPopupWindow__swipe_to_view_speaker">স্পিকার দেখতে সোয়াইপ করুন</string>
 
     <!-- ProxyBottomSheetFragment -->
     <string name="ProxyBottomSheetFragment_proxy_server">প্রক্সি সার্ভার</string>
@@ -2832,8 +2861,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">আপনি এই নম্বরটি রেজিস্ট্রেশন করার জন্য ইতোমধ্যে অনেকবার চেষ্টা করে ফেলেছেন। অনুগ্রহ করে %1$s মিনিটের মধ্যে আবার চেষ্টা করুন।</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">পরিষেবাতে সংযোগ করতে অক্ষম। নেটওয়ার্ক সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
-    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">SMS প্রোভাইডারের সাথে সৃষ্ট সমস্যার কারণে Signal কোনো SMS কোড পাঠাতে পারেনি। কয়েক ঘন্টা পরে আবার চেষ্টা করুন।</string>
+    <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
+    <string name="RegistrationActivity_sms_provider_error">আমরা আপনার নম্বরে SMS পাঠাতে পারছি না। অনুগ্রহ করে কয়েক ঘন্টা পর আবার চেষ্টা করুন।</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">আমরা আপনাকে SMS-এর মাধ্যমে যাচাইকরণ কোড পাঠাতে পারিনি। এর পরিবর্তে আপনি ভয়েস কলের মাধ্যমে আপনার কোড পাওয়ার চেষ্টা করুন।</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3066,6 +3095,10 @@
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
+    <!-- Title of dialog shown when debug log prefix generation is unusually slow -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_slow_log_title" translatable="false">Slow log generation</string> -->
+    <!-- Body of dialog shown when debug log prefix generation is unusually slow. %1$d is duration in seconds. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_slow_log_message" translatable="false">Generating the debug log header took %1$d seconds. We should figure out what\&apos;s slowing things down.</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3076,6 +3109,8 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">রেজিস্ট্রেশন লক</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">গ্রুপ অাপডেট হয়েছে</string>
@@ -3637,7 +3672,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">অডিও সংযুক্তি রেকর্ডিং লক্ করুন</string>
     <string name="conversation_activity__message_could_not_be_sent">মেসেজ পাঠানো যায়নি। আপনার সংযোগটি পরীক্ষা করুন ও পুনরায় চেষ্টা করুন।</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">এই গ্রুপটি বন্ধ হয়ে যাওয়ায় আপনি আর এখানে মেসেজ পাঠাতে ও গ্রহণ করতে পারবেন না।</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">গ্রুপটি বন্ধ করার কারণে এই কার্যক্রমটি করা সম্ভব নয়।</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3690,28 +3725,28 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">আপনি এই ব্যক্তিকে মুছে ফেলেছেন, তাকে আবার মেসেজ পাঠালে আপনার তালিকায় তাকে আবার যোগ করা হবে।</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">অপশন</string>
+    <string name="ConversationUpdateItem_block_report">ব্লক করুন অথবা রিপোর্ট করুন…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">আপডেট করুন</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="one">%1$d group update</item>
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="one">%1$dটি গ্রুপ আপডেট</item>
+        <item quantity="other">%1$dটি গ্রুপ আপডেট</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="one">%1$d chat update</item>
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="one">%1$dটি চ্যাট আপডেট</item>
+        <item quantity="other">%1$dটি চ্যাট আপডেট</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="one">%1$dটি অদৃশ্য হতে যাওয়া মেসেজের টাইমারে পরিবর্তন · %2$s</item>
+        <item quantity="other">%1$dটি অদৃশ্য হতে যাওয়া মেসেজের টাইমারে পরিবর্তন · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="one">%1$d call event</item>
-        <item quantity="other">%1$d call events</item>
+        <item quantity="one">%1$dটি কল ইভেন্ট</item>
+        <item quantity="other">%1$dটি কল ইভেন্ট</item>
     </plurals>
 
     <!-- audio_view -->
@@ -3967,9 +4002,9 @@
     <!-- Bottom sheet body when encryption is auto-verified -->
     <string name="EncryptionVerifiedSheet__body_success">ফোন নম্বরের মাধ্যমে আপনি যেসব কন্টাক্টের সাথে সংযুক্ত আছেন, তাদের জন্য Signal স্বয়ংক্রিয়ভাবে \'কি\' ট্রান্সপারেন্সি নামক একটি প্রক্রিয়া ব্যবহার করে সংযোগটি সুরক্ষিত কিনা তা নিশ্চিত করতে পারে। বাড়তি নিরাপত্তার জন্য, আগের স্ক্রিনে থাকা নম্বর তুলনা করে বা তাদের ডিভাইসে কোড স্ক্যান করে ম্যানুয়ালি এন্ড-টু-এন্ড এনক্রিপশন যাচাই করুন।</string>
     <!-- Bottom sheet title when encryption is no longer auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">এই চ্যাটের ক্ষেত্রে আর স্বয়ংক্রিয়-যাচাইকরণের সুবিধা নেই</string>
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">এই চ্যাটের ক্ষেত্রে স্বয়ংক্রিয়-যাচাইকরণের সুবিধা নেই</string>
     <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
-    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal আর এই চ্যাটের এনক্রিপশন স্বয়ংক্রিয়ভাবে যাচাই করতে পারবে না। এটি ঘটার কারণ সম্ভবত %1$s তার ফোন নম্বর পরিবর্তন করেছেন। আগের স্ক্রিনে থাকা নম্বর তুলনা করে অথবা তাদের ডিভাইসে কোড স্ক্যান করে ম্যানুয়ালি এন্ড-টু-এন্ড এনক্রিপশন যাচাই করুন।</string>
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal এই চ্যাটের এনক্রিপশন স্বয়ংক্রিয়ভাবে যাচাই করতে পারবে না। এর কারণ হতে পারে যে %1$s তার ফোন নম্বর অথবা ফোন নম্বরের গোপনীয়তা সেটিংস পরিবর্তন করেছেন। আগের স্ক্রিনে থাকা নম্বর তুলনা করে অথবা তাদের ডিভাইসে কোড স্ক্যান করে ম্যানুয়ালি এন্ড-টু-এন্ড এনক্রিপশন যাচাই করুন।</string>
     <!-- Bottom sheet title when encryption cannot be auto-verified -->
     <string name="EncryptionVerifiedSheet__title_unavailable">এই চ্যাটের ক্ষেত্রে স্বয়ংক্রিয়-যাচাইকরণের সুবিধা নেই</string>
     <!-- Bottom sheet body when encryption cannot be auto-verified -->
@@ -4323,7 +4358,7 @@
     <string name="preferences_data_and_storage__never">কখনোই না</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">ওয়াইফাই এবং মোবাইল ডেটা</string>
     <string name="preferences_data_and_storage__mobile_data_only">কেবল মোবাইল ডেটা</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">কম ডেটা ব্যবহার করা হলে খারাপ নেটওয়ার্কগুলিতে কলের মান উন্নত করতে পারে</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">কম ডেটা ব্যবহার করলে খারাপ নেটওয়ার্কগুলিতে কলের মান উন্নত হতে পারে।</string>
     <string name="preferences_notifications__in_chat_sounds">চ্যাটের মধ্যকার শব্দ</string>
     <string name="preferences_notifications__show">দেখান</string>
     <string name="preferences_notifications__ringtone">রিংটোন</string>
@@ -5678,6 +5713,33 @@
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">ঠিক আছে</string>
 
+    <!-- ChangeNumberPostRegistrationWaitSheet: title of the sheet shown when the user tries to change number too soon after registering -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__title">নম্বর পরিবর্তন করা যাবে না</string>
+    <!-- ChangeNumberPostRegistrationWaitSheet: explanation body shown above the wait-time line -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__body">যেহেতু আপনি সম্প্রতি এই অ্যাকাউন্টটি নিবন্ধন করেছেন, তাই এই মুহূর্তে ফোন নম্বর পরিবর্তন করতে পারবেন না। এই স্বল্পকালীন অপেক্ষার সময়টি আপনার অ্যাকাউন্ট সুরক্ষিত রাখতে সাহায্য করে।</string>
+    <!-- ChangeNumberPostRegistrationWaitSheet: remaining-wait line when wait is one hour or more, %1$d is the number of hours, rounded up -->
+    <plurals name="ChangeNumberPostRegistrationWaitSheet__try_again_in_hours">
+        <item quantity="one">%1$d ঘন্টা পরে আবার চেষ্টা করুন।</item>
+        <item quantity="other">%1$d ঘন্টা পরে আবার চেষ্টা করুন।</item>
+    </plurals>
+    <!-- ChangeNumberPostRegistrationWaitSheet: remaining-wait line when wait is under one hour, %1$d is the number of minutes, rounded up -->
+    <plurals name="ChangeNumberPostRegistrationWaitSheet__try_again_in_minutes">
+        <item quantity="one">%1$d মিনিট পরে আবার চেষ্টা করুন।</item>
+        <item quantity="other">%1$d মিনিট পরে আবার চেষ্টা করুন।</item>
+    </plurals>
+    <!-- ChangeNumberPostRegistrationWaitSheet: dismiss button -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__ok">ঠিক আছে</string>
+    <!-- ChangeNumberEnterCodeFragment: rate-limit dialog message when retry-after is one hour or more, %1$d is hours rounded up -->
+    <plurals name="ChangeNumberEnterCodeFragment__too_many_attempts_try_again_in_hours">
+        <item quantity="one">আপনি অনেকবার চেষ্টা করেছেন। অনুগ্রহ করে %1$d ঘন্টা পর আবার চেষ্টা করুন।</item>
+        <item quantity="other">আপনি অনেকবার চেষ্টা করেছেন। অনুগ্রহ করে %1$d ঘন্টা পর আবার চেষ্টা করুন।</item>
+    </plurals>
+    <!-- ChangeNumberEnterCodeFragment: rate-limit dialog message when retry-after is under one hour, %1$d is minutes rounded up -->
+    <plurals name="ChangeNumberEnterCodeFragment__too_many_attempts_try_again_in_minutes">
+        <item quantity="one">আপনি অনেকবার চেষ্টা করেছেন। অনুগ্রহ করে %1$d মিনিট পর আবার চেষ্টা করুন।</item>
+        <item quantity="other">আপনি অনেকবার চেষ্টা করেছেন। অনুগ্রহ করে %1$d মিনিট পর আবার চেষ্টা করুন।</item>
+    </plurals>
+
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">নম্বর পরিবর্তন করুন</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">আপনার পুরাতন নাম্বার</string>
@@ -5749,35 +5811,35 @@
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">আপনার সব চ্যাটের একটি মেশিন কর্তৃক পাঠযোগ্য JSON কপি এক্সপোর্ট করুন। অদৃশ্য হতে যাওয়া মেসেজ এক্সপোর্ট করা হবে না।</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">চ্যাটের ইতিহাস এক্সপোর্ট করতে আনলক করুন</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
     <string name="ChatsSettingsFragment__authentication_failed">প্রমাণীকরণ ব্যর্থ।</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">এক্সপোর্ট বাতিল করা হচ্ছে…</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">চ্যাট-এর ইতিহাস এক্সপোর্ট করবেন?</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">সাবধান!</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">এই ফাইলটি কারো সাথে শেয়ার করবেন না। আপনার চ্যাটের ইতিহাস আপনার ডিভাইসে সংরক্ষণ করা হবে এবং আপনার ডিভাইসের অনুমতির উপর নির্ভর করে অন্যান্য অ্যাপ এটি অ্যাক্সেস করতে পারবে। মিডিয়া সহ এক্সপোর্ট করলে ফাইলের আকার বড় হবে।</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">মিডিয়া সহ এক্সপোর্ট করুন</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">মিডিয়া ছাড়া এক্সপোর্ট করুন</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">একটি ফোল্ডার বেছে নিন</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">আপনার ডিভাইসের স্টোরেজে এমন একটি ফোল্ডার বেছে নিন যেখানে আপনার চ্যাটের ইতিহাস সংরক্ষিত হবে।</string>
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">ফোল্ডার চয়ন করুন</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">চ্যাট এক্সপোর্ট সম্পন্ন হয়েছে</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">সাবধান</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">কোথায় আপনার চ্যাট এক্সপোর্ট ফাইলটি সংরক্ষণ করবেন এবং কারো সাথে শেয়ার করবেন না। আপনার ডিভাইসের অনুমতির উপর নির্ভর করে, ডিভাইসের অন্যান্য অ্যাপ এটি অ্যাক্সেস করতে পারে।</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -5966,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">সহায়তা কেন্দ্র</string>
     <string name="HelpSettingsFragment__contact_us">আমাদের সাথে যোগাযোগ করুন</string>
     <string name="HelpSettingsFragment__version">সংস্করণ</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">ক্লিপবোর্ডে কপি করা হয়েছে</string>
     <string name="HelpSettingsFragment__debug_log">ডিবাগ লগ</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">লাইসেন্স</string>
@@ -5980,11 +6044,19 @@
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">পাঠানো মিডিয়ার মান</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">উচ্চ মানের মিডিয়া প্রেরণে আরও ডেটা ব্যবহার হবে।</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">ভয়েস মেসেজ ও স্টিকার (%1$s-এর চেয়ে কম) সবসময় স্বয়ংক্রিয়ভাবে ডাউনলোড হয়।</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">উচ্চ</string>
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">স্ট্যান্ডার্ড</string>
     <string name="DataAndStorageSettingsFragment__calls">কল সমূহ</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">ব্যাকগ্রাউন্ডে সংযুক্ত থাকুন</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">ব্যাকগ্রাউন্ডে সংযুক্ত থাকলে ব্যাটারির ব্যবহার বেড়ে যাওয়ার সম্ভাবনা থাকে। বেশিরভাগ ডিভাইসের জন্য এটির প্রয়োজন নেই। আপনি যদি নোটিফিকেশন সংক্রান্ত সমস্যার সম্মুখীন হয়ে থাকেন, তবেই এটি সক্রিয় করুন।</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">সক্রিয় করুন</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -6124,7 +6196,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">গ্ৰুপ বন্ধ করুন</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">এই গ্রুপটি বন্ধ হয়ে গিয়েছে।</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">চ্যাট আর্কাইভ করুন</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6476,9 +6548,9 @@
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">ডোনেশন নিশ্চিত করা যায়নি</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">আপনার %1$s/মাসের ডোনেশন নিশ্চিত করা যায়নি। আপনার iDEAL পেমেন্ট অনুমোদন করতে আপনার ব্যাংকিং অ্যাপ দেখুন।</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero">আপনার %1$s/মাসের ডোনেশন নিশ্চিত করা যায়নি। আপনার iDEAL | Wero পেমেন্ট অনুমোদন করতে আপনার ব্যাংকিং অ্যাপটি দেখুন।</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">আপনার এককালীন %1$s ডোনেশন নিশ্চিত করা যায়নি। আপনার iDEAL পেমেন্ট অনুমোদন করতে আপনার ব্যাংকিং অ্যাপ দেখুন।</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero">আপনার এককালীন %1$s ডোনেশন নিশ্চিত করা যায়নি। আপনার iDEAL | Wero পেমেন্ট অনুমোদন করতে আপনার ব্যাংকিং অ্যাপটি দেখুন।</string>
 
     <string name="Boost__enter_custom_amount">কাস্টম পরিমাণ লিখুন</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -6607,7 +6679,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">নেটওয়ার্ক ত্রুটির কারণে আপনার ডোনেশন পাঠানো যায়নি। আপনার নেটওয়ার্ক সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">আপনার iDEAL ডোনেশন প্রক্রিয়া করা যায়নি। আরেকটি পেমেন্ট পদ্ধতি ব্যবহার করে দেখুন বা আরো তথ্যের জন্য আপনার ব্যাংকের সাথে যোগাযোগ করুন।</string>
+    <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">আপনার iDEAL | Wero ডোনেশনটি প্রক্রিয়া করা যায়নি। আরেকটি পেমেন্ট পদ্ধতি ব্যবহার করে দেখুন বা আরো তথ্যের জন্য আপনার ব্যাংকের সাথে যোগাযোগ করুন।</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$s-এর পক্ষ থেকে ডোনেশন</string>
@@ -6835,12 +6907,6 @@
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">চালু করুন</string>
 
-    <!-- Description shown for the Signal Release Notes channel -->
-    <string name="ReleaseNotes__signal_release_notes_and_news">Signal রিলিজ নোট &amp; নিউজ</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">এটি Signal-এর অফিসিয়াল ও একমাত্র চ্যাট।</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">খবর ও রিলিজ নোট পেয়ে আপডেট থাকুন।</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">এটি Signal-এর অফিসিয়াল ও একমাত্র চ্যাট</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
@@ -6941,7 +7007,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">এই স্টোরিটি আপনার জন্য এবং যারা এটি পেয়েছেন তাদের জন্য মুছে ফেলা হবে।</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">গ্রুপটি বন্ধ হয়ে যাওয়ায় এটি শুধু আপনার জন্য মুছে যাবে।</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">সেভ করা যায়নি</string>
 
@@ -7536,7 +7602,7 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">আপনার ডোনেশন এখনো প্রক্রিয়া করা হচ্ছে। আপনার সংযোগের উপর ভিত্তি করে এতে কয়েক মিনিট সময় লাগতে পারে। অনুগ্রহ করে আরেকটি ডোনেশন পাঠানোর আগে এই পেমেন্টটি সম্পন্ন হওয়ার আগ পর্যন্ত অপেক্ষা করুন।</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">আপনার iDEAL ডোনেশন এখনো প্রক্রিয়াধীন আছে। আরেকটি ডোনেশন করার আগে আপনার পেমেন্ট অনুমোদন করার জন্য আপনার ব্যাংকিং অ্যাপ দেখুন।</string>
+    <string name="DonateToSignalFragment__your_ideal_wero_payment_is_still_processing">আপনার iDEAL | Wero ডোনেশন এখনো প্রক্রিয়াধীন আছে। আরেকটি ডোনেশন করার আগে আপনার পেমেন্ট অনুমোদন করার জন্য আপনার ব্যাংকিং অ্যাপ দেখুন।</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">ডোনেশনের পরিমাণ খুব বেশি</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -7566,11 +7632,13 @@
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">বন্ধুর জন্য ডোনেট করুন</string>
     <!-- Button label for paying with iDEAL -->
-    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+    <string name="GatewaySelectorBottomSheet__ideal_wero">iDEAL | Wero</string>
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">ডোনেশন নিশ্চিত করতে Signal থেকে বেরিয়ে যাবেন?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">নিশ্চিত হয়ে গেলে, আপনার ডোনেশন প্রক্রিয়াকরণ শেষ করতে Signal-এ ফিরে যান।</string>
+    <!-- Dialog message shown when leaving Signal to complete a donation in an external app. Placeholder is the resolved app name (e.g. a banking app). -->
+    <string name="ExternalNavigationHelper__once_payment_confirmed_in_app">আপনাকে %1$s-এ পাঠানো হবে। নিশ্চিত হয়ে গেলে, আপনার ডোনেশন প্রক্রিয়াকরণ শেষ করতে Signal-এ ফিরে যান।</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7632,7 +7700,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">আপনার ব্যাংক বেছে নিন</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">iDEAL-এর মাধ্যমে আপনার ডোনেশন নিশ্চিত করুন</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">iDEAL | Wero-এর মাধ্যমে আপনার ডোনেশন নিশ্চিত করুন</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">আপনার পুনরাবৃত্ত ডোনেশন সেটআপ করতে, আপনার ব্যাংকের মাধ্যমে €0,01 চার্জ নিশ্চিত করতে \'চালিয়ে যান\' ট্যাপ করুন। এটি স্বয়ংক্রিয়ভাবে ফেরত দেওয়া হবে এবং এটি আপনার অ্যাকাউন্ট থেকে আপনার %1$s/মাসের ডোনেশন ডেবিট করার অনুমতি দেয়।</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7796,6 +7864,8 @@
     <string name="CallLogAdapter__incoming">কল আসছে</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">আউটগোয়িং কল</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">উত্তর দেওয়া হয়নি</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">মিসড কল</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -7880,6 +7950,8 @@
     <string name="CallLogFragment__get_started_by_calling_a_friend">একজন বন্ধুকে কল দিয়ে শুরু করুন।</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">আপনার তৈরি করা কলের লিংকগুলো যাদের কাছে আছে তাদের জন্য আর কাজ করবে না।</string>
+    <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">আপনি আর এই গ্ৰুপটির সদস্য নন।</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -8191,6 +8263,15 @@
     <string name="UseNewOnDeviceBackups__upgrade">আপগ্রেড করুন</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">এখন না</string>
+
+    <!-- Title of a megaphone shown to prompt the user to open Signal on their primary device -->
+    <string name="InactivePrimary__title">আপনার ফোনে সিগন্যাল খুলুন</string>
+    <!-- Body of a megaphone shown to prompt the user to open Signal on their primary device -->
+    <string name="InactivePrimary__body">আপনার অ্যাকাউন্ট সক্রিয় রাখতে, আপনার মূল ডিভাইসে Signal খুলুন।</string>
+    <!-- Button of a megaphone shown to prompt the user to open Signal on their primary device that will navigate to a support page -->
+    <string name="InactivePrimary__learn_more">আরো জানুন</string>
+    <!-- Button of a megaphone shown to prompt the user to open Signal on their primary device that will snooze the megaphone -->
+    <string name="InactivePrimary__got_it">বুঝতে পেরেছি</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
     <string name="OnDeviceBackupsScreen__to_restore_a_backup">"ব্যাকআপ পুনর্বহাল করতে, Signal-এর একটি নতুন কপি ইনস্টল করুন। অ্যাপটি খুলুন ও ব্যাকআপ পুনর্বহাল করতে ট্যাপ করুন, তারপর ব্যাকআপ ফাইলটি শনাক্ত করুন।"</string>
@@ -8618,14 +8699,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">গ্ৰুপটি বন্ধ করা হচ্ছে…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">গ্রুপটি বন্ধ করা যায়নি। আপনার নেটওয়ার্ক সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">আবার চেষ্টা করুন</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s গ্ৰুপটি বন্ধ করেছেন</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">এই গ্রুপটি বন্ধ হয়ে গিয়েছে।</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">আপনি এই গ্রুপে আর মেসেজ পাঠাতে ও গ্রহণ করতে বা কল করতে পারবেন না।</string>
 
@@ -8963,7 +9044,7 @@
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Signal-এর সুরক্ষিত, এন্ড-টু-এন্ড এনক্রিপ্ট করা স্টোরেজ সার্ভিস ব্যবহার করে আপনার মেসেজ এবং মিডিয়ার ব্যাকআপ রাখুন। আপনি যখন একটি নতুন ফোন পাবেন বা Signal পুনরায় ইনস্টল করবেন তখন আর কোনো মেসেজ মিস করবেন না।</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Signal-এর সুরক্ষিত, এন্ড-টু-এন্ড এনক্রিপ্ট করা স্টোরেজ সার্ভিস ব্যবহার করে আপনার মেসেজ ও মিডিয়ার ব্যাকআপ রাখুন। আপনি যখন একটি নতুন ফোন পাবেন বা Signal পুনরায় ইনস্টল করবেন তখন আর কোনো মেসেজ মিস করবেন না।</string>
     <!-- Backups feature label for e2e encryption -->
     <string name="MessageBackupsEducationScreen__end_to_end_encrypted">এন্ড-টু-এন্ড এনক্রিপ্ট করা</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->
@@ -8997,7 +9078,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">এটি আপনার ডিভাইসের পুনরুদ্ধার \'কি\'-এর মতোই।</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">এটি আপনার Signal নিরাপদ ব্যাকআপ পুনরুদ্ধার \'কি\'-এর মতো একই।</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">এই \'কি\'-টি নিম্নলিখিত কাজে ব্যবহার করা যাবে:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9312,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">সহায়তা কেন্দ্রে যোগাযোগ করুন</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">অন-ডিভাইস ব্যাকআপ চালু করবেন?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">অন-ডিভাইস ব্যাকআপ ব্যবহার করা চালিয়ে যেতে, আপনাকে এই অ্যাকাউন্টের জন্য সেগুলো সক্রিয় করতে হবে এবং আপনার নতুন পুনরুদ্ধার \'কি\' লিখে রাখতে হবে। আপনি সেটিংস &gt; ব্যাকআপ থেকে যেকোনো সময় এটি করতে পারেন।</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">ডিভাইসে ব্যাকআপ ব্যবহার চালিয়ে যেতে, আপনাকে এই অ্যাকাউন্টের জন্য সেগুলো সক্রিয় করতে হবে। আপনি সেটিংস &gt; ব্যাকআপ থেকে যেকোনো সময় এটি করতে পারবেন।</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">এখনই চালু করুন</string>
@@ -9802,13 +9883,43 @@
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
-    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__title">ব্যাকআপ পুনর্বহাল করা যায়নি</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">একটি ত্রুটি দেখা দিয়েছে এবং আপনার ব্যাকআপ পুনরুদ্ধার করা যাচ্ছে না। এর কারণ যা হতে পারে তা হলো, আপনার ব্যাকআপ পুনরুদ্ধার করার সময় আপনার ডিভাইসে ব্যাকআপ ফোল্ডারটি স্থানান্তর হয়েছিলো।</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">আবার চেষ্টা করতে, এই ডিভাইস থেকে Signal আনইনস্টল ও রি-ইনস্টল করুন এবং \'পুনর্বহাল অথবা ট্রান্সফার\' বিকল্পটি বেছে নিন।</string>
+
+    <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
+    <string name="VerificationCodeRequestedBottomSheet__title">একটি যাচাইকরণ কোড অনুরোধ করা হয়েছে</string>
+    <!-- First paragraph of the body of the verification code requested sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__body_1">আপনার যাচাইকরণ কোডটি কাউকে দেবেন না। Signal কখনোই এটি চেয়ে আপনাকে মেসেজ করবে না। যদি আপনি Signal-এর ছদ্মবেশধারী অন্য কারো কাছ থেকে কোনো মেসেজ পেয়ে থাকেন, তবে এটি প্রতারণা।</string>
+    <!-- Second paragraph of the body of the verification code requested sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__body_2">আপনি যদি নিজেই কোডটির জন্য অনুরোধ করে থাকেন, তাহলে এই মেসেজটি নিশ্চিন্তে উপেক্ষা করতে পারেন।</string>
+    <!-- Button on the verification code requested sheet that opens the safety tips screen -->
+    <string name="VerificationCodeRequestedBottomSheet__safety_tips">নিরাপত্তা সংক্রান্ত পরামর্শ</string>
+    <!-- Button on the verification code requested sheet that dismisses the sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__ok">ঠিক আছে</string>
+    <!-- Subtitle on the verification code requested sheet showing the time the code was requested followed by the relative day. %1$s is the time (e.g. "3:25 PM"), %2$s is the relative day (e.g. "Today", "Yesterday", "Jan 15") -->
+    <string name="VerificationCodeRequestedBottomSheet__time_with_day">%1$s %2$s</string>
+
+    <!-- Title of the safety tips screen within the verification code requested sheet -->
+    <string name="SafetyTipsBottomSheet__title">নিরাপত্তা সংক্রান্ত পরামর্শ</string>
+    <!-- Title of the first safety tip: don\'t respond to chats claiming to be Signal -->
+    <string name="SafetyTipsBottomSheet__tip_1_title">Signal থেকে আসা চ্যাটের উত্তর দেবেন না</string>
+    <!-- Body of the first safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_1_body">Signal কখনোই আপনার রেজিস্ট্রেশন কোড, পিন, বা পুনরুদ্ধার \'কি\'-এর জন্য আপনাকে মেসেজ দেবে না। Signal-এর প্রতিনিধি হওয়ার ভান করে এমন কোনো চ্যাটের উত্তর দিবেন না।</string>
+    <!-- Title of the second safety tip: keep your verification code safe -->
+    <string name="SafetyTipsBottomSheet__tip_2_title">আপনার যাচাইকরণ কোড নিরাপদে রাখুন</string>
+    <!-- Body of the second safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_2_body">আপনি যদি অনুরোধ না করা সত্ত্বেও কোনো যাচাইকরণ কোড পেয়ে থাকেন, তাহলে কেউ আপনার অ্যাকাউন্টে প্রবেশ করার চেষ্টা করে থাকতে পারেন। আপনার কোড শেয়ার করবেন না।</string>
+    <!-- Title of the third safety tip: enable registration lock -->
+    <string name="SafetyTipsBottomSheet__tip_3_title">অ্যাকাউন্ট সেটিংসে রেজিস্ট্রেশন লক চালু করুন</string>
+    <!-- Body of the third safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_3_body">Signal-এ নিবন্ধন করার সময় আপনার যাচাইকরণ কোডের পাশাপাশি Signal পিন চাওয়ার মাধ্যমেও আপনার অ্যাকাউন্ট সুরক্ষিত রাখুন।</string>
+    <!-- Button on the safety tips screen that opens account settings -->
+    <string name="SafetyTipsBottomSheet__open_account_settings">অ্যাকাউন্ট সেটিংস খুলুন</string>
 
     <!-- EOF -->
 </resources>

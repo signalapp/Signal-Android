@@ -61,6 +61,11 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
     val batchSize = 500
     val restoreTime = System.currentTimeMillis()
 
+    val orphanedCount = SignalDatabase.attachments.markRestorableAttachmentsWithoutMessageAsFailed()
+    if (orphanedCount > 0) {
+      Log.w(TAG, "$orphanedCount orphaned restorable attachments marked failed")
+    }
+
     do {
       val restoreThumbnailJobs: MutableList<RestoreAttachmentThumbnailJob> = mutableListOf()
       val restoreFullAttachmentJobs: MutableList<RestoreAttachmentJob> = mutableListOf()

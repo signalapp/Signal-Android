@@ -84,7 +84,7 @@ public class PniAccountInitializationMigrationJob extends MigrationJob {
       SignedPreKeyRecord signedPreKey   = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore);
       List<PreKeyRecord> oneTimePreKeys = PreKeyUtil.generateAndStoreOneTimeEcPreKeys(protocolStore, metadataStore);
 
-      NetworkResultUtil.toPreKeysLegacy(SignalNetwork.keys().setPreKeys(new PreKeyUpload(ServiceIdType.PNI, signedPreKey, oneTimePreKeys, null, null)));
+      NetworkResultUtil.toPreKeysLegacy(SignalNetwork.keys().setPreKeysSync(new PreKeyUpload(ServiceIdType.PNI, signedPreKey, oneTimePreKeys, null, null)));
       metadataStore.setActiveSignedPreKeyId(signedPreKey.getId());
       metadataStore.setSignedPreKeyRegistered(true);
     } else {

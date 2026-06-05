@@ -19,7 +19,9 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 
 private const val SEEK_DAMPING_RATIO = Spring.DampingRatioNoBouncy
@@ -76,9 +78,11 @@ fun ThreePaneScaffoldPaneScope.animateFloat(
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun ThreePaneScaffoldPaneScope.defaultListInitAnimationState(): AppScaffoldAnimationState {
+  val directionMultiplier = if (LocalLayoutDirection.current == LayoutDirection.Rtl) -1 else 1
+
   val offset = animateDp(
     targetWhenHiding = {
-      -AppScaffoldAnimationDefaults.InitAnimationOffset
+      -AppScaffoldAnimationDefaults.InitAnimationOffset * directionMultiplier
     },
     targetWhenShowing = {
       0.dp
@@ -100,6 +104,8 @@ fun ThreePaneScaffoldPaneScope.defaultListInitAnimationState(): AppScaffoldAnima
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun ThreePaneScaffoldPaneScope.defaultListSeekAnimationState(): AppScaffoldAnimationState {
+  val directionMultiplier = if (LocalLayoutDirection.current == LayoutDirection.Rtl) -1 else 1
+
   val scale = animateFloat(
     transitionSpec = {
       appScaffoldSeekSpring()
@@ -112,7 +118,7 @@ fun ThreePaneScaffoldPaneScope.defaultListSeekAnimationState(): AppScaffoldAnima
     transitionSpec = {
       appScaffoldSeekSpring()
     },
-    targetWhenHiding = { -(88.dp) },
+    targetWhenHiding = { -(88.dp) * directionMultiplier },
     targetWhenShowing = { 0.dp }
   )
 
@@ -160,9 +166,11 @@ fun ThreePaneScaffoldPaneScope.defaultListReleaseAnimationState(from: AppScaffol
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun ThreePaneScaffoldPaneScope.defaultDetailInitAnimationState(): AppScaffoldAnimationState {
+  val directionMultiplier = if (LocalLayoutDirection.current == LayoutDirection.Rtl) -1 else 1
+
   val offset = animateDp(
     targetWhenHiding = {
-      AppScaffoldAnimationDefaults.InitAnimationOffset
+      AppScaffoldAnimationDefaults.InitAnimationOffset * directionMultiplier
     },
     targetWhenShowing = {
       0.dp
@@ -184,6 +192,8 @@ fun ThreePaneScaffoldPaneScope.defaultDetailInitAnimationState(): AppScaffoldAni
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun ThreePaneScaffoldPaneScope.defaultDetailSeekAnimationState(): AppScaffoldAnimationState {
+  val directionMultiplier = if (LocalLayoutDirection.current == LayoutDirection.Rtl) -1 else 1
+
   val scale = animateFloat(
     transitionSpec = {
       appScaffoldSeekSpring()
@@ -197,7 +207,7 @@ fun ThreePaneScaffoldPaneScope.defaultDetailSeekAnimationState(): AppScaffoldAni
       appScaffoldSeekSpring()
     },
     targetWhenShowing = { 0.dp },
-    targetWhenHiding = { 88.dp }
+    targetWhenHiding = { 88.dp * directionMultiplier }
   )
 
   val roundedCorners = animateDp(

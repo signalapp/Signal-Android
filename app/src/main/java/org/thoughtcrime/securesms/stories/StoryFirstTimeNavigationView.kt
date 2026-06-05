@@ -18,8 +18,8 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import org.signal.blurhash.BlurHash
+import org.signal.core.util.getAnimationScale
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.visible
 
 class StoryFirstTimeNavigationView @JvmOverloads constructor(
@@ -119,7 +119,7 @@ class StoryFirstTimeNavigationView @JvmOverloads constructor(
   }
 
   private fun startLottieAnimations() {
-    if (ContextUtil.getAnimationScale(context) == 0f) {
+    if (context.getAnimationScale() == 0f) {
       return
     }
 

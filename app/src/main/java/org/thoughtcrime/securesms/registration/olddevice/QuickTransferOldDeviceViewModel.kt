@@ -8,8 +8,12 @@ package org.thoughtcrime.securesms.registration.olddevice
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
@@ -41,8 +45,11 @@ class QuickTransferOldDeviceViewModel(reRegisterUri: String) : ViewModel() {
   private val _backStack: MutableStateFlow<List<TransferAccountRoute>> = MutableStateFlow(listOf(TransferAccountRoute.Transfer))
   val backStack: StateFlow<List<TransferAccountRoute>> = _backStack
 
+  private val finishChannel = Channel<Unit>(capacity = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+  val finishRequests: Flow<Unit> = finishChannel.receiveAsFlow()
+
   fun goBack() {
-    _backStack.update { it.dropLast(1) }
+    popOrFinish()
   }
 
   fun onEvent(event: PrepareDeviceScreenEvents) {
@@ -51,7 +58,7 @@ class QuickTransferOldDeviceViewModel(reRegisterUri: String) : ViewModel() {
         store.update { it.copy(navigateToBackupCreation = true) }
       }
       PrepareDeviceScreenEvents.NavigateBack -> {
-        _backStack.update { it.dropLast(1) }
+        popOrFinish()
       }
       PrepareDeviceScreenEvents.SkipAndContinue -> {
         _backStack.update { listOf(TransferAccountRoute.Transfer) }
@@ -94,6 +101,14 @@ class QuickTransferOldDeviceViewModel(reRegisterUri: String) : ViewModel() {
 
   fun clearNavigateToBackupCreation() {
     store.update { it.copy(navigateToBackupCreation = false) }
+  }
+
+  private fun popOrFinish() {
+    if (_backStack.value.size > 1) {
+      _backStack.update { it.dropLast(1) }
+    } else {
+      finishChannel.trySend(Unit)
+    }
   }
 
   private fun transferAccount() {

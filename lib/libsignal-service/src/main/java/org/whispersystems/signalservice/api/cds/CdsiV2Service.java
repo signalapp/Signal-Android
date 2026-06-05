@@ -9,14 +9,14 @@ import org.signal.libsignal.net.CdsiLookupRequest;
 import org.signal.libsignal.net.CdsiLookupResponse;
 import org.signal.libsignal.net.Network;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.whispersystems.signalservice.api.NetworkResult;
+import org.signal.network.NetworkResult;
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.models.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidArgumentException;
 import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidTokenException;
 import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhaustedException;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 
 import java.io.IOException;
 import java.util.Collections;

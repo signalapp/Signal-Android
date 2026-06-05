@@ -9,6 +9,7 @@ import com.google.android.material.datepicker.CalendarConstraints.DateValidator
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.signal.core.util.LRUCache
+import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.SignalDatabase
 import java.time.Instant
@@ -36,7 +37,7 @@ private typealias MessageDateLookup = (Collection<Long>) -> Map<Long, Boolean>
 class JumpToDateValidator private constructor(
   private val threadId: Long,
   @IgnoredOnParcel private val messageExistanceLookup: MessageDateLookup = createDefaultLookup(threadId),
-  @IgnoredOnParcel private val executor: Executor = SignalExecutors.BOUNDED,
+  @IgnoredOnParcel private val executor: Executor,
   private val zoneId: ZoneId = ZoneId.systemDefault()
 ) : DateValidator {
 
@@ -51,7 +52,7 @@ class JumpToDateValidator private constructor(
       return JumpToDateValidator(
         threadId = threadId,
         messageExistanceLookup = createDefaultLookup(threadId),
-        executor = SignalExecutors.BOUNDED,
+        executor = SignalExecutors.newCachedSingleThreadExecutor("jump-to-date-validator", ThreadUtil.PRIORITY_BACKGROUND_THREAD),
         zoneId = ZoneId.systemDefault()
       ).also {
         it.performInitialPrefetch()

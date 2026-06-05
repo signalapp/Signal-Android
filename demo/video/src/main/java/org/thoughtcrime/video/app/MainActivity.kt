@@ -33,16 +33,25 @@ import androidx.navigation3.ui.NavDisplay
 import org.signal.core.ui.navigation.TransitionSpecs
 import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.video.app.batch.BatchTranscodeViewModel
+import org.thoughtcrime.video.app.batch.composables.BatchConfigScreen
+import org.thoughtcrime.video.app.batch.composables.BatchProfileConfigScreen
+import org.thoughtcrime.video.app.batch.composables.BatchTranscodingScreen
 import org.thoughtcrime.video.app.transcode.TranscodeTestViewModel
 import org.thoughtcrime.video.app.transcode.composables.ConfigureEncodingParameters
+import org.thoughtcrime.video.app.transcode.composables.HomeScreen
 import org.thoughtcrime.video.app.transcode.composables.TranscodingScreen
 import org.thoughtcrime.video.app.transcode.composables.VideoSelectionScreen
 import org.thoughtcrime.video.app.ui.theme.SignalTheme
 
 enum class Screen : NavKey {
+  Home,
   VideoSelection,
   Configuration,
-  Transcoding
+  Transcoding,
+  BatchConfig,
+  BatchProfileConfig,
+  BatchTranscoding
 }
 
 class MainActivity : ComponentActivity() {
@@ -68,8 +77,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun TranscodeApp() {
-  val backStack = rememberNavBackStack(Screen.VideoSelection)
+  val backStack = rememberNavBackStack(Screen.Home)
   val viewModel: TranscodeTestViewModel = viewModel()
+  val batchViewModel: BatchTranscodeViewModel = viewModel()
   val context = LocalContext.current
 
   val pickMedia = androidx.activity.compose.rememberLauncherForActivityResult(
@@ -87,6 +97,17 @@ private fun TranscodeApp() {
     popTransitionSpec = TransitionSpecs.HorizontalSlide.popTransitionSpec,
     predictivePopTransitionSpec = TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec,
     entryProvider = entryProvider {
+      addEntryProvider(
+        key = Screen.Home,
+        contentKey = Screen.Home,
+        metadata = emptyMap()
+      ) { _: Screen ->
+        HomeScreen(
+          onSingleTranscode = { backStack.add(Screen.VideoSelection) },
+          onBatchTranscode = { backStack.add(Screen.BatchConfig) }
+        )
+      }
+
       addEntryProvider(
         key = Screen.VideoSelection,
         contentKey = Screen.VideoSelection,
@@ -129,6 +150,54 @@ private fun TranscodeApp() {
           onReset = {
             viewModel.reset()
             backStack.remove(Screen.Transcoding)
+          }
+        )
+      }
+
+      addEntryProvider(
+        key = Screen.BatchConfig,
+        contentKey = Screen.BatchConfig,
+        metadata = emptyMap()
+      ) { _: Screen ->
+        BatchConfigScreen(
+          viewModel = batchViewModel,
+          onCreateProfile = { backStack.add(Screen.BatchProfileConfig) },
+          onStartBatch = {
+            batchViewModel.startBatch(context)
+            backStack.remove(Screen.BatchConfig)
+            backStack.add(Screen.BatchTranscoding)
+          }
+        )
+      }
+
+      addEntryProvider(
+        key = Screen.BatchProfileConfig,
+        contentKey = Screen.BatchProfileConfig,
+        metadata = emptyMap()
+      ) { _: Screen ->
+        BatchProfileConfigScreen(
+          onSaveProfile = { settings ->
+            batchViewModel.addProfile(settings)
+            backStack.remove(Screen.BatchProfileConfig)
+          },
+          modifier = Modifier
+            .padding(horizontal = 16.dp)
+            .verticalScroll(rememberScrollState())
+        )
+      }
+
+      addEntryProvider(
+        key = Screen.BatchTranscoding,
+        contentKey = Screen.BatchTranscoding,
+        metadata = emptyMap()
+      ) { _: Screen ->
+        val batchState by batchViewModel.batchState.collectAsStateWithLifecycle()
+        BatchTranscodingScreen(
+          state = batchState,
+          onCancel = { batchViewModel.cancelBatch() },
+          onDone = {
+            batchViewModel.resetBatchState()
+            backStack.remove(Screen.BatchTranscoding)
           }
         )
       }

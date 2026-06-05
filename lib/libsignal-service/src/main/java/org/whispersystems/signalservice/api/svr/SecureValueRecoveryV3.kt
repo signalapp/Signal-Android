@@ -11,20 +11,21 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import org.signal.core.models.MasterKey
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.Network
-import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
+import org.signal.network.NetworkResult
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
+import org.signal.network.util.JsonUtil
+import org.signal.network.websocket.WebSocketRequestMessage
+import org.signal.network.websocket.get
+import org.whispersystems.signalservice.api.fromWebSocketRequest
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.DeleteResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.PinChangeSession
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.SvrVersion
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
-import org.whispersystems.signalservice.internal.get
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.ByteArrayDeserializerBase64
 import org.whispersystems.signalservice.internal.push.ByteArraySerializerBase64NoPadding
-import org.whispersystems.signalservice.internal.util.JsonUtil
-import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import java.io.IOException
 
 /**

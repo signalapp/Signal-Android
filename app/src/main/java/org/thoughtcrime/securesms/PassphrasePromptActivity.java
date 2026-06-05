@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.animation.Animator;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
@@ -49,7 +48,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -389,13 +387,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       Log.i(TAG, "onAuthenticationSucceeded");
 
       lockScreenButton.setOnClickListener(null);
-      unlockView.addAnimatorListener(new AnimationCompleteListener() {
-        @Override
-        public void onAnimationEnd(Animator animation) {
-          handleAuthenticated();
-        }
-      });
-      unlockView.playAnimation();
+      handleAuthenticated();
     }
 
     @Override

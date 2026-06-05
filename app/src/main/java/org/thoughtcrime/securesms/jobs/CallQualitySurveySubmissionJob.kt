@@ -6,13 +6,13 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.signal.network.NetworkResult
 import org.signal.storageservice.protos.calls.quality.SubmitCallQualitySurveyRequest
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.CallQualitySurveySubmissionJobData
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
-import org.whispersystems.signalservice.api.NetworkResult
 import kotlin.jvm.optionals.getOrNull
 import kotlin.time.Duration.Companion.hours
 

@@ -32,14 +32,21 @@ class PostRegistrationEnterBackupKeyViewModel : ViewModel() {
     PostRegistrationEnterBackupKeyState()
   )
 
+  /** Raw user-typed text (illegal chars stripped, length-capped). Bound to the TextField so #/= stay visible. */
+  var enteredText by mutableStateOf("")
+    private set
+
+  /** Storage-normalized lowercase form of [enteredText], used for parseOrNull and submit. */
   var backupKey by mutableStateOf("")
     private set
 
   val state: StateFlow<PostRegistrationEnterBackupKeyState> = store
 
   fun updateBackupKey(key: String) {
-    val newKey = AccountEntropyPool.removeIllegalCharacters(key).take(AccountEntropyPool.LENGTH + 16).lowercase()
+    val newEnteredText = AccountEntropyPool.removeIllegalCharacters(key).take(AccountEntropyPool.LENGTH + 16)
+    val newKey = AccountEntropyPool.formatForStorage(newEnteredText).lowercase()
     val changed = newKey != backupKey
+    enteredText = newEnteredText
     backupKey = newKey
     store.update {
       val (isValid, updatedError) = AccountEntropyPoolVerification.verifyAEP(

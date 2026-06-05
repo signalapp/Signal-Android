@@ -15,6 +15,7 @@ import java.util.Queue;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -50,7 +51,7 @@ public final class Tracer {
   public static final class TrackId {
     public static final long DB_LOCK = -8675309;
 
-    private static final String DB_LOCK_NAME = "Database Lock";
+    public static final String DB_LOCK_NAME = "Database Lock";
   }
 
   private static final Tracer INSTANCE = new Tracer();
@@ -63,16 +64,26 @@ public final class Tracer {
   private final Map<Long, TracePacket> threadPackets;
   private final Queue<TracePacket>     eventPackets;
   private final AtomicInteger          eventCount;
+  private final List<EventListener>    eventListeners;
 
   private long lastSyncTime;
   private long maxBufferSize;
 
   private Tracer() {
-    this.clock         = SystemClock::elapsedRealtimeNanos;
-    this.threadPackets = new ConcurrentHashMap<>();
-    this.eventPackets  = new ConcurrentLinkedQueue<>();
-    this.eventCount    = new AtomicInteger(0);
-    this.maxBufferSize = 3_500;
+    this.clock          = SystemClock::elapsedRealtimeNanos;
+    this.threadPackets  = new ConcurrentHashMap<>();
+    this.eventPackets   = new ConcurrentLinkedQueue<>();
+    this.eventCount     = new AtomicInteger(0);
+    this.eventListeners = new CopyOnWriteArrayList<>();
+    this.maxBufferSize  = 3_500;
+  }
+
+  public void addEventListener(@NonNull EventListener listener) {
+    eventListeners.add(listener);
+  }
+
+  public void removeEventListener(@NonNull EventListener listener) {
+    eventListeners.remove(listener);
   }
 
   public static @NonNull Tracer getInstance() {
@@ -116,14 +127,36 @@ public final class Tracer {
     }
 
     addPacket(forMethodStart(methodName, time, trackId, values));
+
+    if (!eventListeners.isEmpty()) {
+      String trackName = (trackId == TrackId.DB_LOCK) ? TrackId.DB_LOCK_NAME : Thread.currentThread().getName();
+      for (EventListener listener : eventListeners) {
+        listener.onStart(methodName, trackId, trackName, time, values);
+      }
+    }
   }
 
   public void end(@NonNull String methodName) {
-    addPacket(forMethodEnd(methodName, clock.getTimeNanos(), Thread.currentThread().getId()));
+    long time     = clock.getTimeNanos();
+    long threadId = Thread.currentThread().getId();
+
+    addPacket(forMethodEnd(methodName, time, threadId));
+    notifyEnd(methodName, threadId, time);
   }
 
   public void end(@NonNull String methodName, long trackId) {
-    addPacket(forMethodEnd(methodName, clock.getTimeNanos(), trackId));
+    long time = clock.getTimeNanos();
+    addPacket(forMethodEnd(methodName, time, trackId));
+    notifyEnd(methodName, trackId, time);
+  }
+
+  private void notifyEnd(@NonNull String methodName, long trackId, long time) {
+    if (eventListeners.isEmpty()) {
+      return;
+    }
+    for (EventListener listener : eventListeners) {
+      listener.onEnd(methodName, trackId, time);
+    }
   }
 
   public @NonNull byte[] serialize() {
@@ -232,5 +265,15 @@ public final class Tracer {
 
   private interface Clock {
     long getTimeNanos();
+  }
+
+  /**
+   * Optional listener that observes raw start/end events as they flow through the tracer. Listeners
+   * are invoked synchronously on whatever thread fired the event, so implementations must be cheap
+   * and non-blocking. Note that nothing else is guaranteed about ordering across threads.
+   */
+  public interface EventListener {
+    void onStart(@NonNull String name, long trackId, @NonNull String trackName, long timestampNanos, @Nullable Map<String, String> values);
+    void onEnd(@NonNull String name, long trackId, long timestampNanos);
   }
 }

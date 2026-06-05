@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.util.fullWalCheckpoint
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -63,6 +64,9 @@ class OptimizeMessageSearchIndexJob private constructor(parameters: Parameters) 
     }
 
     val success = SignalDatabase.messageSearch.optimizeIndex(5.seconds.inWholeMilliseconds)
+    if (!SignalDatabase.writableDatabase.fullWalCheckpoint()) {
+      Log.w(TAG, "Failed to do a full WAL checkpoint after deletion.")
+    }
 
     if (!success) {
       throw RetryLaterException()

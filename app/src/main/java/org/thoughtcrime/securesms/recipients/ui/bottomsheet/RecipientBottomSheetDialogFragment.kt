@@ -20,16 +20,21 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
 import org.signal.core.util.logging.Log
+import org.signal.core.util.requireDrawable
+import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.view.ViewBadgeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
+import org.thoughtcrime.securesms.components.SignalProgressDialog
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference
 import org.thoughtcrime.securesms.conversation.v2.data.AvatarDownloadStateCache
@@ -42,7 +47,6 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet
-import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.visible
 
@@ -258,7 +262,7 @@ class RecipientBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
 
       val buttonStripModel = ButtonStripPreference.Model(
         state = buttonStripState,
-        background = DSLSettingsIcon.from(ContextUtil.requireDrawable(requireContext(), R.drawable.selectable_recipient_bottom_sheet_icon_button)),
+        background = DSLSettingsIcon.from(requireContext().requireDrawable(R.drawable.selectable_recipient_bottom_sheet_icon_button)),
         enabled = !viewModel.isDeprecatedOrUnregistered,
         onMessageClick = {
           callback?.onMessageClicked()
@@ -341,8 +345,19 @@ class RecipientBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
       ViewBadgeBottomSheetDialogFragment.show(getParentFragmentManager(), recipientId, null)
     }
 
-    blockButton.setOnClickListener { viewModel.onBlockClicked(requireActivity()) }
-    unblockButton.setOnClickListener { viewModel.onUnblockClicked(requireActivity()) }
+    blockButton.setOnClickListener {
+      val recipient = viewModel.recipient.value ?: return@setOnClickListener
+      BlockUnblockDialog.showBlockFor(requireContext(), recipient) {
+        runWithProgress { viewModel.onBlockClicked(recipient) }
+      }
+    }
+
+    unblockButton.setOnClickListener {
+      val recipient = viewModel.recipient.value ?: return@setOnClickListener
+      BlockUnblockDialog.showUnblockFor(requireContext(), recipient) {
+        runWithProgress { viewModel.onUnblockClicked(recipient) }
+      }
+    }
 
     makeGroupAdminButton.setOnClickListener { viewModel.onMakeGroupAdminClicked(requireActivity()) }
     removeAdminButton.setOnClickListener { viewModel.onRemoveGroupAdminClicked(requireActivity()) }
@@ -447,6 +462,30 @@ class RecipientBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
       else -> {
         memberLabelView.visible = false
         aboutView.visible = false
+      }
+    }
+  }
+
+  private fun runWithProgress(operation: () -> Unit) {
+    lifecycleScope.launch(Dispatchers.Main) {
+      val task = async(Dispatchers.Default) {
+        operation()
+      }
+
+      delay(250)
+
+      if (task.isActive) {
+        val dialog = SignalProgressDialog.show(
+          requireContext(),
+          indeterminate = true,
+          cancelable = false
+        )
+
+        try {
+          task.await()
+        } finally {
+          dialog.dismiss()
+        }
       }
     }
   }

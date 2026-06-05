@@ -21,7 +21,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.util.ParcelUtil;
+import org.signal.core.util.ParcelUtil;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.InvalidKeyException;
 

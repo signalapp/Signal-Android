@@ -5,6 +5,7 @@ import okio.ByteString
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfEmpty
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.applyAccountStorageSyncUpdates
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
@@ -138,8 +139,13 @@ class AccountRecordProcessor(
       usernameLink = remote.proto.usernameLink
       notificationProfileManualOverride = remote.proto.notificationProfileManualOverride
       backupTier = local.proto.backupTier ?: remote.proto.backupTier
+      avatarColor = if (SignalStore.account.isPrimaryDevice) local.proto.avatarColor else remote.proto.avatarColor
       automaticKeyVerificationDisabled = remote.proto.automaticKeyVerificationDisabled
       hasSeenAdminDeleteEducationDialog = remote.proto.hasSeenAdminDeleteEducationDialog
+      releaseNotesChatArchived = remote.proto.releaseNotesChatArchived ?: local.proto.releaseNotesChatArchived
+      releaseNotesChatMutedUntilTimestamp = remote.proto.releaseNotesChatMutedUntilTimestamp ?: local.proto.releaseNotesChatMutedUntilTimestamp
+      releaseNotesChatBlocked = remote.proto.releaseNotesChatBlocked ?: local.proto.releaseNotesChatBlocked
+      releaseNotesChatMarkedUnread = remote.proto.releaseNotesChatMarkedUnread ?: local.proto.releaseNotesChatMarkedUnread
 
       safeSetPayments(payments?.enabled == true, payments?.entropy?.toByteArray())
       safeSetSubscriber(donationSubscriberId, donationSubscriberCurrencyCode)

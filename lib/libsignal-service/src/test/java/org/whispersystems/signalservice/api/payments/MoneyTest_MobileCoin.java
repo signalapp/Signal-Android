@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.payments;
 
 import org.junit.Test;
-import org.whispersystems.signalservice.api.util.Uint64RangeException;
+import org.signal.core.util.Uint64RangeException;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

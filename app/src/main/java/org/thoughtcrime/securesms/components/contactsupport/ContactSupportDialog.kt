@@ -69,12 +69,14 @@ fun <Reason> SendSupportEmailEffect(
   filterRes: ContactSupportCallbacks.StringForReason<Reason>,
   hide: () -> Unit
 ) {
+  val subject = stringResource(subjectRes(contactSupportState.reason))
+  val helpDebugLog = stringResource(R.string.HelpFragment__debug_log)
+
   val context = LocalContext.current
   LaunchedEffect(contactSupportState.sendEmail) {
     if (contactSupportState.sendEmail) {
-      val subject = context.getString(subjectRes(contactSupportState.reason))
       val prefix = if (contactSupportState.debugLogUrl != null) {
-        "\n${context.getString(R.string.HelpFragment__debug_log)} ${contactSupportState.debugLogUrl}\n\n"
+        "\n$helpDebugLog ${contactSupportState.debugLogUrl}\n\n"
       } else {
         ""
       }

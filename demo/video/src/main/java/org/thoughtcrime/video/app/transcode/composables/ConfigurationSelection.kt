@@ -119,7 +119,7 @@ fun ConfigureEncodingParameters(
 }
 
 @Composable
-private fun PresetPicker(
+internal fun PresetPicker(
   selectedTranscodingPreset: TranscodingPreset,
   onPresetSelected: (TranscodingPreset) -> Unit,
   modifier: Modifier = Modifier
@@ -157,7 +157,7 @@ private fun PresetPicker(
 }
 
 @Composable
-private fun CustomSettings(
+internal fun CustomSettings(
   selectedResolution: VideoResolution,
   onResolutionSelected: (VideoResolution) -> Unit,
   useHevc: Boolean,

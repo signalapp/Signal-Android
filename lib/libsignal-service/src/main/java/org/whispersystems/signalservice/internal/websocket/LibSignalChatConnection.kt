@@ -25,16 +25,19 @@ import org.signal.libsignal.net.ConnectionInvalidatedException
 import org.signal.libsignal.net.DeviceDeregisteredException
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.net.UnauthenticatedChatConnection
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
+import org.signal.network.websocket.WebSocketRequestMessage
+import org.signal.network.websocket.WebSocketResponseMessage
+import org.signal.network.websocket.WebsocketResponse
 import org.whispersystems.signalservice.api.util.CredentialsProvider
 import org.whispersystems.signalservice.api.websocket.HealthMonitor
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
+import org.whispersystems.signalservice.internal.util.awaitRequest
 import org.whispersystems.signalservice.internal.util.whenComplete
 import java.io.IOException
 import java.net.SocketException
 import java.time.Instant
 import java.util.Optional
-import java.util.concurrent.CancellationException
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
 import java.util.concurrent.LinkedBlockingQueue
@@ -43,6 +46,7 @@ import java.util.concurrent.TimeoutException
 import java.util.concurrent.atomic.AtomicLong
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
+import kotlin.coroutines.cancellation.CancellationException
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.time.Duration
@@ -98,6 +102,8 @@ class LibSignalChatConnection(
   // chatConnectionFuture: Set only when state == CONNECTING
   private val CHAT_SERVICE_LOCK = ReentrantLock()
   private val stateChangedOrMessageReceivedCondition = CHAT_SERVICE_LOCK.newCondition()
+
+  @Volatile
   private var chatConnection: ChatConnection? = null
   private var chatConnectionFuture: CompletableFuture<out ChatConnection>? = null
 
@@ -264,6 +270,7 @@ class LibSignalChatConnection(
 
           pendingCallbacks.clear()
         }
+
         else -> {
           Log.i(TAG, "$name Dropped successful connection because we are now ${state.value}")
           disconnect()
@@ -292,9 +299,11 @@ class LibSignalChatConnection(
         is DeviceDeregisteredException -> {
           state.onNext(WebSocketConnectionState.AUTHENTICATION_FAILED)
         }
+
         is AppExpiredException -> {
           state.onNext(WebSocketConnectionState.REMOTE_DEPRECATED)
         }
+
         else -> {
           Log.w(TAG, "Unknown connection failure reason", throwable)
           state.onNext(WebSocketConnectionState.FAILED)
@@ -316,19 +325,17 @@ class LibSignalChatConnection(
   }
 
   override fun isDead(): Boolean {
-    CHAT_SERVICE_LOCK.withLock {
-      return when (state.value) {
-        WebSocketConnectionState.DISCONNECTED,
-        WebSocketConnectionState.DISCONNECTING,
-        WebSocketConnectionState.FAILED,
-        WebSocketConnectionState.AUTHENTICATION_FAILED,
-        WebSocketConnectionState.REMOTE_DEPRECATED -> true
+    return when (state.value) {
+      WebSocketConnectionState.DISCONNECTED,
+      WebSocketConnectionState.DISCONNECTING,
+      WebSocketConnectionState.FAILED,
+      WebSocketConnectionState.AUTHENTICATION_FAILED,
+      WebSocketConnectionState.REMOTE_DEPRECATED -> true
 
-        WebSocketConnectionState.CONNECTING,
-        WebSocketConnectionState.CONNECTED -> false
+      WebSocketConnectionState.CONNECTING,
+      WebSocketConnectionState.CONNECTED -> false
 
-        null -> throw IllegalStateException("LibSignalChatConnection.state can never be null")
-      }
+      null -> throw IllegalStateException("LibSignalChatConnection.state can never be null")
     }
   }
 
@@ -369,6 +376,11 @@ class LibSignalChatConnection(
     }
   }
 
+  override fun shutdown() {
+    disconnect()
+    listener.shutdown()
+  }
+
   override fun sendRequest(request: WebSocketRequestMessage, timeoutSeconds: Long): Single<WebsocketResponse> {
     CHAT_SERVICE_LOCK.withLock {
       if (isDead()) {
@@ -389,15 +401,42 @@ class LibSignalChatConnection(
           )
           single
         }
+
         WebSocketConnectionState.CONNECTED -> {
           sendRequestInternal(request, timeoutSeconds, single)
           single
         }
+
         else -> {
           throw IllegalStateException("LibSignalChatConnection.state was neither dead, CONNECTING, or CONNECTED.")
         }
       }.subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
     }
+  }
+
+  /**
+   * Coroutine-friendly version of [sendRequest] by mirroring [sendRequestInternal].
+   */
+  override suspend fun sendRequestSuspend(request: WebSocketRequestMessage, timeout: Duration): WebsocketResponse {
+    val (future, isUnidentified) = runWithChatConnection { connection ->
+      connection.send(request.toLibSignalRequest(timeout)) to (connection is UnauthenticatedChatConnection)
+    }
+
+    val response: ChatConnection.Response = try {
+      future.awaitRequest()
+    } catch (e: CancellationException) {
+      throw e
+    } catch (_: ConnectionInvalidatedException) {
+      throw NonSuccessfulResponseCodeException(4401)
+    } catch (e: Throwable) {
+      Log.w(TAG, "$name [sendRequestSuspend] Failure:", e)
+      throw SocketException("Failed to get response for request").apply { initCause(e) }
+    }
+
+    if (response.status in 400..599) {
+      healthMonitor.onMessageError(status = response.status, isIdentifiedWebSocket = !isUnidentified)
+    }
+    return response.toWebsocketResponse(isUnidentified = isUnidentified)
   }
 
   override fun sendKeepAlive() {
@@ -456,7 +495,7 @@ class LibSignalChatConnection(
           },
           onFailure = { throwable ->
             Log.w(TAG, "$name [sendKeepAlive] Failure:", throwable)
-            state.onNext(WebSocketConnectionState.DISCONNECTED)
+            disconnect()
           }
         )
     }
@@ -518,7 +557,8 @@ class LibSignalChatConnection(
           // This condition variable is created from CHAT_SERVICE_LOCK, and thus releases CHAT_SERVICE_LOCK
           //   while we await the condition variable.
           stateChangedOrMessageReceivedCondition.await(remainingTimeoutMillis, TimeUnit.MILLISECONDS)
-        } catch (_: InterruptedException) { }
+        } catch (_: InterruptedException) {
+        }
         val elapsedTimeMillis = System.currentTimeMillis() - startTime
         remainingTimeoutMillis = timeoutMillis - elapsedTimeMillis
       }
@@ -554,47 +594,54 @@ class LibSignalChatConnection(
   }
 
   @OptIn(InternalCoroutinesApi::class)
-  override suspend fun <T> runWithChatConnection(callback: (ChatConnection) -> T): T = suspendCancellableCoroutine { continuation ->
-    CHAT_SERVICE_LOCK.withLock {
-      when (state.value) {
-        WebSocketConnectionState.CONNECTED -> {
-          try {
-            val result = callback(chatConnection!!)
-            continuation.resume(result)
-          } catch (e: Exception) {
-            continuation.resumeWithException(e)
-          }
-        }
+  override suspend fun <T> runWithChatConnection(callback: (ChatConnection) -> T): T {
+    if (state.value == WebSocketConnectionState.CONNECTED) {
+      chatConnection?.let { return callback(it) }
+    }
 
-        WebSocketConnectionState.CONNECTING -> {
-          val action = PendingAction(
-            onConnectionSuccess = { connection ->
-              CHAT_SERVICE_LOCK.withLock {
-                try {
-                  val result = callback(connection)
-                  // NB: We use the experimental tryResume* methods here to avoid crashing if the continuation is
-                  // canceled before we finish the connection attempt, but the PendingAction cannot be removed from
-                  // pendingActions before we get to executing it.
-                  continuation.tryResume(result)?.let(continuation::completeResume)
-                } catch (e: Throwable) {
-                  continuation.tryResumeWithException(e)?.let(continuation::completeResume)
+    return suspendCancellableCoroutine { continuation ->
+      CHAT_SERVICE_LOCK.withLock {
+        when (state.value) {
+          WebSocketConnectionState.CONNECTED -> {
+            try {
+              val result = callback(chatConnection!!)
+              continuation.resume(result)
+            } catch (e: Exception) {
+              continuation.resumeWithException(e)
+            }
+          }
+
+          WebSocketConnectionState.CONNECTING -> {
+            val action = PendingAction(
+              onConnectionSuccess = { connection ->
+                CHAT_SERVICE_LOCK.withLock {
+                  try {
+                    val result = callback(connection)
+                    // NB: We use the experimental tryResume* methods here to avoid crashing if the continuation is
+                    // canceled before we finish the connection attempt, but the PendingAction cannot be removed from
+                    // pendingActions before we get to executing it.
+                    continuation.tryResume(result)?.let(continuation::completeResume)
+                  } catch (e: Throwable) {
+                    continuation.tryResumeWithException(e)?.let(continuation::completeResume)
+                  }
                 }
+              },
+              onFailure = { error ->
+                continuation.tryResumeWithException(error)?.let(continuation::completeResume)
               }
-            },
-            onFailure = { error ->
-              continuation.tryResumeWithException(error)?.let(continuation::completeResume)
-            }
-          )
-          pendingCallbacks.add(action)
+            )
+            pendingCallbacks.add(action)
 
-          continuation.invokeOnCancellation {
-            CHAT_SERVICE_LOCK.withLock {
-              pendingCallbacks.removeIf { it === action }
+            continuation.invokeOnCancellation {
+              CHAT_SERVICE_LOCK.withLock {
+                pendingCallbacks.removeIf { it === action }
+              }
             }
           }
-        }
-        else -> {
-          continuation.resumeWithException(IOException("WebSocket is not connected (state: ${state.value})"))
+
+          else -> {
+            continuation.resumeWithException(IOException("WebSocket is not connected (state: ${state.value})"))
+          }
         }
       }
     }
@@ -604,6 +651,10 @@ class LibSignalChatConnection(
 
   private inner class LibSignalChatListener : ChatConnectionListener {
     private val executor = Executors.newSingleThreadExecutor()
+
+    fun shutdown() {
+      executor.shutdown()
+    }
 
     override fun onIncomingMessage(chat: ChatConnection, envelope: ByteArray, serverDeliveryTimestamp: Long, sendAck: ChatConnectionListener.ServerMessageAck?) {
       // NB: The order here is intentional to ensure concurrency-safety, so that when a request is pulled off the queue, its sendAck is
@@ -665,6 +716,7 @@ class LibSignalChatConnection(
       if (alerts.isNotEmpty()) {
         Log.i(TAG, "$name Received ${alerts.size} alerts from the server")
       }
+      healthMonitor.onReceivedAlerts(alerts, isIdentifiedWebSocket = chat is AuthenticatedChatConnection)
     }
   }
 }

@@ -164,35 +164,24 @@ class LocalMetricsDatabase private constructor(
   }
 
   fun getMetrics(): List<EventMetrics> {
-    val db = readableDatabase
+    val events: Map<String, List<String>> = getUniqueEventNames()
 
-    db.beginTransaction()
-    try {
-      val events: Map<String, List<String>> = getUniqueEventNames()
-
-      val metrics: List<EventMetrics> = events.map { (eventName: String, splits: List<String>) ->
-        EventMetrics(
-          name = eventName,
-          count = getCount(eventName),
-          p50 = eventPercent(eventName, 50),
-          p90 = eventPercent(eventName, 90),
-          p99 = eventPercent(eventName, 99),
-          splits = splits.map { splitName ->
-            SplitMetrics(
-              name = splitName,
-              p50 = splitPercent(eventName, splitName, 50),
-              p90 = splitPercent(eventName, splitName, 90),
-              p99 = splitPercent(eventName, splitName, 99)
-            )
-          }
-        )
-      }
-
-      db.setTransactionSuccessful()
-
-      return metrics
-    } finally {
-      db.endTransaction()
+    return events.map { (eventName: String, splits: List<String>) ->
+      EventMetrics(
+        name = eventName,
+        count = getCount(eventName),
+        p50 = eventPercent(eventName, 50),
+        p90 = eventPercent(eventName, 90),
+        p99 = eventPercent(eventName, 99),
+        splits = splits.map { splitName ->
+          SplitMetrics(
+            name = splitName,
+            p50 = splitPercent(eventName, splitName, 50),
+            p90 = splitPercent(eventName, splitName, 90),
+            p99 = splitPercent(eventName, splitName, 99)
+          )
+        }
+      )
     }
   }
 

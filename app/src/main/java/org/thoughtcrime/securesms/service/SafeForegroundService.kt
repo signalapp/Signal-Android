@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.service
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.Service
 import android.content.Context
@@ -181,6 +182,7 @@ abstract class SafeForegroundService : Service() {
     super.onCreate()
   }
 
+  @SuppressLint("WrongConstant")
   override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
     checkNotNull(intent) { "Must have an intent!" }
 
@@ -188,8 +190,8 @@ abstract class SafeForegroundService : Service() {
 
     if (intent.action == ACTION_TIMEOUT) {
       Log.i(TAG, "Time limit for foreground services has been met. Skipping starting a foreground.")
-    } else if (Build.VERSION.SDK_INT >= 30 && serviceType != 0) {
-      startForeground(notificationId, getForegroundNotification(intent), serviceType)
+    } else if (Build.VERSION.SDK_INT >= 30 && serviceType(intent) != 0) {
+      startForeground(notificationId, getForegroundNotification(intent), serviceType(intent))
     } else {
       startForeground(notificationId, getForegroundNotification(intent))
     }
@@ -248,7 +250,7 @@ abstract class SafeForegroundService : Service() {
 
   /** Special service type to use when calling start service if needed */
   @RequiresApi(30)
-  open val serviceType: Int = 0
+  open fun serviceType(intent: Intent): Int = 0
 
   /** Notification to post as our foreground notification. */
   abstract fun getForegroundNotification(intent: Intent): Notification

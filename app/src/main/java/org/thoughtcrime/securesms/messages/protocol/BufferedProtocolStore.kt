@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.messages.protocol
 
 import org.signal.core.models.ServiceId
+import org.signal.core.models.ServiceId.PNI
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
@@ -13,8 +14,11 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
  */
 class BufferedProtocolStore private constructor(
   private val aciStore: Pair<ServiceId, BufferedSignalServiceAccountDataStore>,
-  private val pniStore: Pair<ServiceId, BufferedSignalServiceAccountDataStore>
+  private val pniStore: Pair<PNI, BufferedSignalServiceAccountDataStore>
 ) {
+
+  /** The PNI captured when this batch's store was created. Does not refresh if [SignalStore.account.pni] later changes mid-batch. */
+  val pni: PNI get() = pniStore.first
 
   fun get(serviceId: ServiceId): BufferedSignalServiceAccountDataStore {
     return when (serviceId) {

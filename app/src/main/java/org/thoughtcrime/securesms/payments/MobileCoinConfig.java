@@ -8,8 +8,7 @@ import androidx.annotation.RawRes;
 import com.mobilecoin.lib.ClientConfig;
 
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.payments.PaymentsApi;
+import org.signal.network.api.PaymentsApi;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 
 import java.io.IOException;

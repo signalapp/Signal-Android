@@ -1,17 +1,15 @@
 package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 
+import org.signal.core.util.ContextUtil;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyboard.KeyboardPage;
-import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.MediaKeyboardListener {

@@ -10,8 +10,10 @@ import org.signal.core.util.logging.logD
 import org.signal.core.util.logging.logI
 import org.signal.core.util.logging.logW
 import org.signal.core.util.toByteArray
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.ecc.ECPublicKey
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
 import org.thoughtcrime.securesms.backup.BackupFileIOError
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
@@ -27,7 +29,6 @@ import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.createAndUploa
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.registration.secondary.DeviceNameCipher
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.link.LinkedDeviceVerificationCodeResponse
 import org.whispersystems.signalservice.api.link.TransferArchiveError
 import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse
@@ -337,11 +338,11 @@ object LinkDeviceRepository {
     }
 
     Log.d(TAG, "[createAndUploadArchive] Fetching an upload form...")
-    val uploadForm = when (val result = NetworkResult.withRetry { SignalNetwork.attachments.getAttachmentV4UploadForm() }) {
-      is NetworkResult.Success -> result.result.logD(TAG, "[createAndUploadArchive] Successfully retrieved upload form.")
-      is NetworkResult.ApplicationError -> throw result.throwable
-      is NetworkResult.NetworkError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "[createAndUploadArchive] Network error when fetching form.", result.exception)
-      is NetworkResult.StatusCodeError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "[createAndUploadArchive] Status code error when fetching form.", result.exception)
+    val uploadForm = when (val result = SignalNetwork.attachments.getAttachmentV4UploadForm(tempBackupFile.length())) {
+      is RequestResult.Success -> result.result.logD(TAG, "[createAndUploadArchive] Successfully retrieved upload form.")
+      is RequestResult.ApplicationError -> throw result.cause
+      is RequestResult.RetryableNetworkError -> return LinkUploadArchiveResult.NetworkError(result.networkError).logW(TAG, "[createAndUploadArchive] Network error when fetching form.", result.networkError)
+      is RequestResult.NonSuccess -> return LinkUploadArchiveResult.BadRequest(result.error).logW(TAG, "[createAndUploadArchive] Upload too large when fetching form.", result.error)
     }
 
     if (cancellationSignal()) {

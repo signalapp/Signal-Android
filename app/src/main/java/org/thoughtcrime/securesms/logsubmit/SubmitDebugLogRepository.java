@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Stream;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.signal.core.util.StreamUtil;
@@ -38,7 +36,11 @@ import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -114,15 +116,15 @@ public class SubmitDebugLogRepository {
     this.executor = SignalExecutors.SERIAL;
   }
 
-  public void getPrefixLogLines(@NonNull Callback<List<LogLine>> callback) {
-    executor.execute(() -> callback.onResult(getPrefixLogLinesInternal()));
+  public void getPrefixLogLines(@NonNull Consumer<List<LogLine>> callback) {
+    executor.execute(() -> callback.accept(getPrefixLogLinesInternal()));
   }
 
-  public void buildAndSubmitLog(@NonNull Callback<Optional<String>> callback) {
+  public void buildAndSubmitLog(@NonNull Consumer<Optional<String>> callback) {
     SignalExecutors.UNBOUNDED.execute(() -> {
       Log.blockUntilAllWritesFinished();
       LogDatabase.getInstance(context).logs().trimToSize();
-      callback.onResult(submitLogInternal(System.currentTimeMillis(), getPrefixLogLinesInternal(), Tracer.getInstance().serialize()));
+      callback.accept(submitLogInternal(System.currentTimeMillis(), getPrefixLogLinesInternal(), Tracer.getInstance().serialize()));
     });
   }
 
@@ -133,11 +135,11 @@ public class SubmitDebugLogRepository {
     return submitLogInternal(untilTime, getPrefixLogLinesInternal(), Tracer.getInstance().serialize());
   }
 
-  public void submitLogFromReader(DebugLogsViewer.LogReader logReader, @Nullable byte[] trace, Callback<Optional<String>> callback) {
-    SignalExecutors.UNBOUNDED.execute(() -> callback.onResult(submitLogFromReaderInternal(logReader, trace)));
+  public void submitLogFromReader(DebugLogsViewer.LogReader logReader, @Nullable byte[] trace, Consumer<Optional<String>> callback) {
+    SignalExecutors.UNBOUNDED.execute(() -> callback.accept(submitLogFromReaderInternal(logReader, trace)));
   }
 
-  public void writeLogToDisk(@NonNull Uri uri, long untilTime, Callback<Boolean> callback) {
+  public void writeLogToDisk(@NonNull Uri uri, long untilTime, Consumer<Boolean> callback) {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try (ZipOutputStream outputStream = new ZipOutputStream(context.getContentResolver().openOutputStream(uri))) {
         StringBuilder prefixLines = linesToStringBuilder(getPrefixLogLinesInternal(), null);
@@ -152,7 +154,7 @@ public class SubmitDebugLogRepository {
           }
         } catch (IllegalStateException e) {
           Log.e(TAG, "Failed to read row!", e);
-          callback.onResult(false);
+          callback.accept(false);
           return;
         }
 
@@ -162,9 +164,9 @@ public class SubmitDebugLogRepository {
         outputStream.write(Tracer.getInstance().serialize());
         outputStream.closeEntry();
 
-        callback.onResult(true);
+        callback.accept(true);
       } catch (IOException e) {
-        callback.onResult(false);
+        callback.accept(false);
       }
     });
   }
@@ -317,7 +319,12 @@ public class SubmitDebugLogRepository {
 
   @WorkerThread
   private @NonNull String uploadContent(@NonNull String contentType, @NonNull RequestBody requestBody) throws IOException {
-    OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new StandardUserAgentInterceptor()).dns(SignalServiceNetworkAccess.DNS).build();
+    OkHttpClient client = new OkHttpClient.Builder()
+        .addInterceptor(new StandardUserAgentInterceptor())
+        .dns(SignalServiceNetworkAccess.DNS)
+        .readTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
+        .build();
 
     try (Response response = client.newCall(new Request.Builder().url(API_ENDPOINT).get().build()).execute()) {
       ResponseBody body = response.body();
@@ -364,20 +371,30 @@ public class SubmitDebugLogRepository {
   private @NonNull List<LogLine> getPrefixLogLinesInternal() {
     long startTime = System.currentTimeMillis();
 
-    int maxTitleLength = Stream.of(SECTIONS).reduce(0, (max, section) -> Math.max(max, section.getTitle().length()));
+    int maxTitleLength = SECTIONS.stream().reduce(0, (max, section) -> Math.max(max, section.getTitle().length()), Integer::sum);
+
+    List<Future<List<LogLine>>> futures = new ArrayList<>(SECTIONS.size());
+    for (LogSection section : SECTIONS) {
+      futures.add(SignalExecutors.BOUNDED.submit(() -> getLinesForSection(context, section, maxTitleLength)));
+    }
 
     List<LogLine> allLines = new ArrayList<>();
-
-    for (LogSection section : SECTIONS) {
-      List<LogLine> lines = getLinesForSection(context, section, maxTitleLength);
-
-      if (SECTIONS.indexOf(section) != SECTIONS.size() - 1) {
-        for (int i = 0; i < SECTION_SPACING; i++) {
-          lines.add(SimpleLogLine.EMPTY);
-        }
+    for (int i = 0; i < futures.size(); i++) {
+      List<LogLine> lines;
+      try {
+        lines = futures.get(i).get();
+      } catch (InterruptedException | ExecutionException e) {
+        Log.w(TAG, "Failed to read section " + SECTIONS.get(i).getTitle(), e);
+        lines = new ArrayList<>();
       }
 
       allLines.addAll(lines);
+
+      if (i != futures.size() - 1) {
+        for (int j = 0; j < SECTION_SPACING; j++) {
+          allLines.add(SimpleLogLine.EMPTY);
+        }
+      }
     }
 
     List<LogLine> withIds = new ArrayList<>(allLines.size());
@@ -403,8 +420,7 @@ public class SubmitDebugLogRepository {
 
       List<LogLine> lines = Stream.of(Pattern.compile("\\n").split(content))
                                   .map(s -> new SimpleLogLine(s, LogStyleParser.parseStyle(s), LogStyleParser.parsePlaceholderType(s)))
-                                  .map(line -> (LogLine) line)
-                                  .toList();
+                                  .map(line -> (LogLine) line).collect(Collectors.toList());
 
       out.addAll(lines);
     }
@@ -448,9 +464,5 @@ public class SubmitDebugLogRepository {
     }
 
     return stringBuilder;
-  }
-
-  public interface Callback<E> {
-    void onResult(E result);
   }
 }

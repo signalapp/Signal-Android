@@ -767,7 +767,8 @@ class PlaintextExportRepositoryTest {
         extraData = extraData,
         dateFormat = dateFormat,
         attachmentDateFormat = attachmentDateFormat,
-        pendingAttachments = pendingAttachments
+        pendingAttachments = pendingAttachments,
+        includeMedia = true
       )
     }
 

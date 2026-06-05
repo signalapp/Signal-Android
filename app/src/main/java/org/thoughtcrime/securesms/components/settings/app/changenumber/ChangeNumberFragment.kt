@@ -23,7 +23,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -34,7 +33,10 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import kotlin.time.Duration.Companion.milliseconds
 
 class ChangeNumberFragment : ComposeFragment() {
 
@@ -46,9 +48,24 @@ class ChangeNumberFragment : ComposeFragment() {
         navController.popBackStack()
       },
       onContinueClick = {
-        navController.safeNavigate(ChangeNumberFragmentDirections.actionChangePhoneNumberFragmentToEnterPhoneNumberChangeFragment())
+        val remainingWaitSeconds = remainingPostRegistrationWaitSeconds()
+        if (remainingWaitSeconds > 0) {
+          ChangeNumberPostRegistrationWaitSheet.show(parentFragmentManager, remainingWaitSeconds)
+        } else {
+          navController.safeNavigate(ChangeNumberFragmentDirections.actionChangePhoneNumberFragmentToEnterPhoneNumberChangeFragment())
+        }
       }
     )
+  }
+
+  private fun remainingPostRegistrationWaitSeconds(): Long {
+    val registeredAt = SignalStore.account.registeredAtTimestamp
+    if (registeredAt <= 0) {
+      return 0
+    }
+    val waitingPeriodSeconds = RemoteConfig.changeNumberPostRegistrationWaitingPeriodSeconds
+    val elapsedSeconds = (System.currentTimeMillis() - registeredAt).milliseconds.inWholeSeconds
+    return (waitingPeriodSeconds - elapsedSeconds).coerceAtLeast(0)
   }
 }
 
@@ -73,7 +90,7 @@ fun ChangeNumberScreen(
         .padding(horizontal = 32.dp)
     ) {
       Image(
-        painter = painterResource(id = R.drawable.change_number_hero_image),
+        painter = painterResource(id = R.drawable.change_number),
         contentDescription = null,
         modifier = Modifier
           .padding(top = 20.dp)
@@ -83,7 +100,6 @@ fun ChangeNumberScreen(
         text = stringResource(id = R.string.AccountSettingsFragment__change_phone_number),
         style = MaterialTheme.typography.headlineMedium,
         textAlign = TextAlign.Center,
-        fontWeight = FontWeight.Bold,
         modifier = Modifier.padding(top = 24.dp)
       )
 

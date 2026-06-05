@@ -16,12 +16,12 @@ import kotlinx.coroutines.withContext
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.StagedBackupKeyRotations
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.whispersystems.signalservice.api.NetworkResult
 
 class BackupKeyDisplayViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
 

@@ -1,6 +1,7 @@
 plugins {
   id("signal-library")
   id("kotlin-parcelize")
+  alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -8,6 +9,7 @@ android {
 
   buildFeatures {
     buildConfig = true
+    compose = true
   }
 
   defaultConfig {
@@ -17,6 +19,9 @@ android {
 
 dependencies {
   implementation(project(":core:util"))
+  implementation(project(":core:ui"))
+
+  implementation(platform(libs.androidx.compose.bom))
 
   implementation(libs.kotlin.reflect)
   implementation(libs.jackson.module.kotlin)

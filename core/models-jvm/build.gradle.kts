@@ -24,4 +24,7 @@ dependencies {
   implementation(libs.libsignal.client)
   implementation(libs.square.okio)
   implementation(project(":core:util-jvm"))
+
+  testImplementation(testLibs.junit.junit)
+  testImplementation(testLibs.assertk)
 }

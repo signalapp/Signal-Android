@@ -11,7 +11,7 @@ import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 
-class IdentityKeyPairParceler : Parceler<IdentityKeyPair> {
+object IdentityKeyPairParceler : Parceler<IdentityKeyPair> {
   override fun IdentityKeyPair.write(parcel: Parcel, flags: Int) {
     parcel.writeByteArray(publicKey.serialize())
     parcel.writeByteArray(privateKey.serialize())

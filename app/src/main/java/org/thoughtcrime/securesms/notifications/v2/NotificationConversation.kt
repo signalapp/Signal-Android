@@ -176,7 +176,7 @@ data class NotificationConversation(
   }
 
   fun getQuickReplyIntent(context: Context): PendingIntent? {
-    val intent: Intent = ConversationIntents.createPopUpBuilder(context, recipient.id, mostRecentNotification.thread.threadId)
+    val intent: Intent = ConversationIntents.createPopUpBuilder(context, recipient.id, mostRecentNotification.thread.threadId, recipient.wallpaper != null)
       .build()
       .makeUniqueToPreventMerging()
 

@@ -11,6 +11,7 @@ import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -29,7 +30,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration

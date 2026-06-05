@@ -5,7 +5,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.Emoji;
@@ -42,7 +42,7 @@ class ThisMessageEmojiPageModel implements EmojiPageModel {
 
   @Override
   public @NonNull List<Emoji> getDisplayEmoji() {
-    return Stream.of(getEmoji()).map(Emoji::new).toList();
+    return getEmoji().stream().map(Emoji::new).collect(Collectors.toList());
   }
 
   @Override

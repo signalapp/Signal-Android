@@ -5,11 +5,11 @@
 
 package org.thoughtcrime.securesms.video.postprocessing
 
+import org.signal.core.util.logging.Log
 import org.signal.core.util.readLength
 import org.signal.core.util.stream.LimitedInputStream
 import org.signal.libsignal.media.Mp4Sanitizer
 import org.signal.libsignal.media.SanitizedMetadata
-import org.thoughtcrime.securesms.video.exceptions.VideoPostProcessingException
 import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.io.OutputStream
@@ -30,7 +30,8 @@ class Mp4FaststartPostProcessor(private val inputStreamFactory: InputStreamFacto
       sanitizeMetadata(inputStream, inputLength)
     }
     if (metadata.sanitizedMetadata == null) {
-      throw VideoPostProcessingException("Sanitized metadata was null!")
+      Log.i(TAG, "File is already fast-started, returning original")
+      return SequenceInputStream(inputStreamFactory.create(), ByteArrayInputStream(ByteArray(0)))
     }
     val inputStream = inputStreamFactory.create()
     inputStream.skip(metadata.dataOffset)
@@ -53,7 +54,8 @@ class Mp4FaststartPostProcessor(private val inputStreamFactory: InputStreamFacto
       }
     }
     if (metadata.sanitizedMetadata == null) {
-      throw VideoPostProcessingException("Sanitized metadata was null!")
+      Log.i(TAG, "File is already fast-started, returning original")
+      return SequenceInputStream(inputStreamFactory.create(), ByteArrayInputStream(ByteArray(0)))
     }
     val inputStream = inputStreamFactory.create()
     inputStream.skip(metadata.dataOffset)

@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.internal.websocket;
 
 
-import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
+import org.signal.network.exceptions.MalformedResponseException;
 
 import java.util.function.Function;
 

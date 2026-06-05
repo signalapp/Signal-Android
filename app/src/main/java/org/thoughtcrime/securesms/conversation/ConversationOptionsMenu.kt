@@ -167,6 +167,14 @@ internal object ConversationOptionsMenu {
 
       if (recipient.isReleaseNotes) {
         hideMenuItem(menu, R.id.menu_add_shortcut)
+        menu.findItem(R.id.menu_mute_notifications)?.apply {
+          setIcon(R.drawable.symbol_bell_24)
+          setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+        }
+        menu.findItem(R.id.menu_unmute_notifications)?.apply {
+          setIcon(R.drawable.symbol_bell_slash_24)
+          setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+        }
       }
 
       if (!SignalStore.labs.individualChatPlaintextExport) {

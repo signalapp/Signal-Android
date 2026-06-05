@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Signal">
         <activity
-            android:name=".MainActivity"
+            android:name="org.signal.apng.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Signal">
@@ -26,12 +26,12 @@
         </activity>
 
         <activity
-            android:name=".DemoActivity"
+            android:name="org.signal.apng.DemoActivity"
             android:exported="false"
             android:theme="@style/Theme.Signal" />
 
         <activity
-            android:name=".PlayerActivity"
+            android:name="org.signal.apng.PlayerActivity"
             android:exported="false"
             android:theme="@style/Theme.Signal" />
     </application>

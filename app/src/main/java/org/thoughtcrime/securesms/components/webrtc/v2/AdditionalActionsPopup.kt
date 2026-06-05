@@ -46,6 +46,9 @@ data class AdditionalActionsState(
   val isShown: Boolean = false,
   val reactions: PersistentList<String> = persistentListOf(),
   val isSelfHandRaised: Boolean = false,
+  val isScreenSharing: Boolean = false,
+  val displayScreenShareToggle: Boolean = false,
+  val isGroupCall: Boolean = true,
   @Stable val listener: AdditionalActionsListener = AdditionalActionsListener.Empty
 )
 
@@ -53,11 +56,13 @@ interface AdditionalActionsListener {
   fun onReactClick(reaction: String)
   fun onReactWithAnyClick()
   fun onRaiseHandClick(raised: Boolean)
+  fun onScreenShareClick(sharing: Boolean)
 
   object Empty : AdditionalActionsListener {
     override fun onReactClick(reaction: String) = Unit
     override fun onReactWithAnyClick() = Unit
     override fun onRaiseHandClick(raised: Boolean) = Unit
+    override fun onScreenShareClick(sharing: Boolean) = Unit
   }
 }
 
@@ -81,17 +86,23 @@ private fun AdditionalActionsPopupContent(
   Column(
     verticalArrangement = spacedBy(12.dp),
     modifier = Modifier
-      .width(IntrinsicSize.Min)
+      .width(IntrinsicSize.Max)
       .padding(12.dp)
   ) {
-    CallReactionScrubber(
-      reactions = state.reactions,
-      listener = state.listener
-    )
+    if (state.isGroupCall) {
+      CallReactionScrubber(
+        reactions = state.reactions,
+        listener = state.listener
+      )
+    }
 
     CallScreenMenu(
+      isGroupCall = state.isGroupCall,
       onRaiseHandClick = state.listener::onRaiseHandClick,
-      isSelfHandRaised = state.isSelfHandRaised
+      isSelfHandRaised = state.isSelfHandRaised,
+      isScreenSharing = state.isScreenSharing,
+      displayScreenShareToggle = state.displayScreenShareToggle,
+      onScreenShareClick = state.listener::onScreenShareClick
     )
   }
 }
@@ -134,19 +145,33 @@ private fun CallReactionScrubber(
 
 @Composable
 private fun CallScreenMenu(
+  isGroupCall: Boolean,
   isSelfHandRaised: Boolean,
-  onRaiseHandClick: (Boolean) -> Unit
+  onRaiseHandClick: (Boolean) -> Unit,
+  isScreenSharing: Boolean = false,
+  displayScreenShareToggle: Boolean = false,
+  onScreenShareClick: (Boolean) -> Unit = {}
 ) {
   Column(
     modifier = Modifier
       .fillMaxWidth()
       .background(SignalTheme.colors.colorSurface2, RoundedCornerShape(18.dp))
   ) {
-    CallScreenMenuOption(
-      imageVector = ImageVector.vectorResource(R.drawable.symbol_raise_hand_24),
-      title = if (isSelfHandRaised) stringResource(R.string.CallOverflowPopupWindow__lower_hand) else stringResource(R.string.CallOverflowPopupWindow__raise_hand),
-      onClick = { onRaiseHandClick(!isSelfHandRaised) }
-    )
+    if (isGroupCall) {
+      CallScreenMenuOption(
+        imageVector = ImageVector.vectorResource(R.drawable.symbol_raise_hand_24),
+        title = if (isSelfHandRaised) stringResource(R.string.CallOverflowPopupWindow__lower_hand) else stringResource(R.string.CallOverflowPopupWindow__raise_hand),
+        onClick = { onRaiseHandClick(!isSelfHandRaised) }
+      )
+    }
+
+    if (displayScreenShareToggle) {
+      CallScreenMenuOption(
+        imageVector = ImageVector.vectorResource(R.drawable.symbol_screen_share_24),
+        title = if (isScreenSharing) stringResource(R.string.CallOverflowPopupWindow__stop_screen_share) else stringResource(R.string.CallOverflowPopupWindow__share_screen),
+        onClick = { onScreenShareClick(!isScreenSharing) }
+      )
+    }
   }
 }
 
@@ -208,6 +233,31 @@ private fun CallScreenAdditionalActionsPopupPreview() {
   Previews.Preview {
     AdditionalActionsPopupContent(
       state = AdditionalActionsState(
+        isShown = false,
+        reactions = persistentListOf(
+          "\u2764\ufe0f",
+          "\ud83d\udc4d",
+          "\ud83d\udc4e",
+          "\ud83d\ude02",
+          "\ud83d\ude2e",
+          "\ud83d\ude22"
+        ),
+        isSelfHandRaised = false,
+        listener = AdditionalActionsListener.Empty,
+        triggerAlignedPopupState = TriggerAlignedPopupState.rememberTriggerAlignedPopupState()
+      )
+    )
+  }
+}
+
+@NightPreview
+@Composable
+private fun CallScreenAdditionalActionsScreenSharingPreview() {
+  Previews.Preview {
+    AdditionalActionsPopupContent(
+      state = AdditionalActionsState(
+        isGroupCall = false,
+        displayScreenShareToggle = true,
         isShown = false,
         reactions = persistentListOf(
           "\u2764\ufe0f",

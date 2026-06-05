@@ -2,7 +2,6 @@ package org.signal.buildtools
 
 import mockwebserver3.MockResponse
 import mockwebserver3.MockWebServer
-import okhttp3.ExperimentalOkHttpApi
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -10,7 +9,6 @@ import org.junit.Before
 import org.junit.Test
 import java.io.File
 
-@OptIn(ExperimentalOkHttpApi::class)
 class SmartlingClientTest {
 
   private lateinit var server: MockWebServer

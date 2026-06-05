@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.QuoteView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="gone"
+    app:message_type="preview"
+    app:quote_colorPrimary="@color/signal_text_primary"
+    app:quote_colorSecondary="@color/signal_text_primary"
+    tools:visibility="visible" />

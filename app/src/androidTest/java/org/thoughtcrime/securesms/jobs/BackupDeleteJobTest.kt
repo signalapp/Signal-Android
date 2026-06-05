@@ -19,6 +19,8 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.network.NetworkResult
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -27,8 +29,6 @@ import org.thoughtcrime.securesms.jobs.protos.BackupDeleteJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 
 class BackupDeleteJobTest {
 

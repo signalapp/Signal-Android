@@ -64,6 +64,7 @@ private fun UpgradeLocalBackupCardComponent(onClick: () -> Unit) {
     Text(
       text = stringResource(R.string.OnDeviceBackupsSettingsScreen__update_to_a_new_recovery_key),
       style = MaterialTheme.typography.bodyMedium,
+      color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier.padding(end = 8.dp).weight(1f)
     )
 

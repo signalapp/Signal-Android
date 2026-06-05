@@ -103,6 +103,10 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
 
           is VerificationCodeRequestResult.ChallengeRequired -> {
             Log.i(TAG, "Unable to request sms code due to challenges required: ${castResult.challenges.joinToString { it.key }}")
+            if (castResult.challenges.isEmpty()) {
+              Log.w(TAG, "Challenge required but no challenges listed, showing error.")
+              showErrorDialog(R.string.RegistrationActivity_sms_provider_error)
+            }
           }
 
           is VerificationCodeRequestResult.RateLimited -> {

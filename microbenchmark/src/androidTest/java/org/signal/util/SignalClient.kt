@@ -75,7 +75,8 @@ class SignalClient {
    */
   fun initializeSession(to: SignalClient) {
     val address = SignalProtocolAddress(to.aci.toString(), 1)
-    SessionBuilder(store, address).process(to.createPreKeyBundle())
+    val localAddress = SignalProtocolAddress(aci.libSignalAci, 1)
+    SessionBuilder(store, address, localAddress).process(to.createPreKeyBundle())
   }
 
   fun initializedGroupSession(distributionId: DistributionId): SenderKeyDistributionMessage {

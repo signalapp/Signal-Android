@@ -1,0 +1,761 @@
+<html>
+  {{> partials/head title="Live Queries" }}
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <style type="text/css">
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      padding: 8px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    #toolbar {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      flex: 0 0 auto;
+    }
+
+    #toolbar label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    #zoom-slider {
+      width: 200px;
+    }
+
+    #span-stats {
+      flex-grow: 1;
+      text-align: right;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    #socket-status {
+      width: 16px;
+      height: 16px;
+      border-radius: 16px;
+      border: 1px solid black;
+    }
+
+    #socket-status.connected    { background-color: #5ca72b; }
+    #socket-status.connecting   { background-color: #d6cb37; }
+    #socket-status.disconnected { background-color: #cc0000; }
+
+    #timeline-wrapper {
+      position: relative;
+      flex: 1 1 auto;
+      min-height: 200px;
+    }
+
+    #timeline-container {
+      position: absolute;
+      inset: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      background-color: #1d1d1d;
+    }
+
+    #timeline-content {
+      position: relative;
+      width: 100%;
+    }
+
+    #timeline {
+      position: sticky;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      cursor: crosshair;
+    }
+
+    #tooltip {
+      position: absolute;
+      pointer-events: none;
+      background-color: rgba(0, 0, 0, 0.92);
+      color: #f0f0f0;
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      max-width: 600px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      display: none;
+      z-index: 6;
+      border: 1px solid #444;
+    }
+
+    #tooltip .tooltip-meta {
+      color: #8a8a8a;
+      margin-bottom: 4px;
+    }
+
+    #tooltip .tooltip-query {
+      color: #d6e6ff;
+    }
+
+    #details-panel {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 380px;
+      max-width: calc(100% - 16px);
+      max-height: calc(100% - 16px);
+      overflow-y: auto;
+      background-color: rgba(20, 20, 20, 0.96);
+      color: #f0f0f0;
+      border: 1px solid #555;
+      border-radius: 4px;
+      padding: 10px 12px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      z-index: 8;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+
+    #details-panel.visible {
+      display: block;
+    }
+
+    #details-panel .details-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    #details-panel .details-name {
+      font-weight: bold;
+      flex: 1;
+      word-break: break-word;
+      color: #ffffff;
+    }
+
+    #details-panel .details-close {
+      background: transparent;
+      border: 1px solid #666;
+      color: #ccc;
+      cursor: pointer;
+      width: 22px;
+      height: 22px;
+      padding: 0;
+      border-radius: 3px;
+      font-size: 14px;
+      line-height: 18px;
+      flex: 0 0 auto;
+    }
+
+    #details-panel .details-close:hover {
+      background: #333;
+    }
+
+    #details-panel .details-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 2px;
+      color: #d8d8d8;
+    }
+
+    #details-panel .details-row .details-key {
+      color: #8a8a8a;
+      flex: 0 0 70px;
+    }
+
+    #details-panel .details-row .details-value {
+      flex: 1;
+      word-break: break-word;
+    }
+
+    #details-panel .details-query {
+      margin-top: 8px;
+      padding: 8px;
+      background-color: #0f0f0f;
+      border-radius: 3px;
+      color: #d6e6ff;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 40vh;
+      overflow-y: auto;
+      border: 1px solid #2a2a2a;
+    }
+
+    #cursor-time {
+      position: absolute;
+      top: 2px;
+      pointer-events: none;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #ffe089;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: 3px;
+      transform: translateX(-50%);
+      display: none;
+      z-index: 5;
+      white-space: nowrap;
+    }
+  </style>
+
+  <body>
+    {{> partials/prefix isLive=true}}
+
+    <div id="toolbar">
+      <button id="follow-button">Follow</button>
+      <button id="clear-button">Clear</button>
+      <label>Window:
+        <input type="range" id="zoom-slider" min="500" max="60000" step="500" value="30000">
+        <span id="zoom-value">30s</span>
+      </label>
+      <div id="span-stats">0 spans</div>
+      <div id="socket-status"></div>
+    </div>
+
+    <div id="timeline-wrapper">
+      <div id="timeline-container">
+        <div id="timeline-content">
+          <canvas id="timeline"></canvas>
+        </div>
+      </div>
+      <div id="tooltip"></div>
+      <div id="cursor-time"></div>
+      <div id="details-panel">
+        <div class="details-header">
+          <div class="details-name" id="details-name"></div>
+          <button class="details-close" id="details-close" title="Close">×</button>
+        </div>
+        <div id="details-rows"></div>
+        <div class="details-query" id="details-query"></div>
+      </div>
+    </div>
+
+    {{> partials/suffix }}
+
+    <script>
+      const MAX_SPANS = 20000
+      const LANE_HEIGHT = 26
+      const LANE_PADDING_TOP = 22
+      const LANE_PADDING_BOTTOM = 8
+      const TRACK_LABEL_WIDTH = 140
+      const AXIS_HEIGHT = 18
+
+      const canvas = document.getElementById('timeline')
+      const ctx = canvas.getContext('2d')
+      const wrapper = document.getElementById('timeline-wrapper')
+      const container = document.getElementById('timeline-container')
+      const content = document.getElementById('timeline-content')
+      const tooltip = document.getElementById('tooltip')
+      const cursorTime = document.getElementById('cursor-time')
+      const detailsPanel = document.getElementById('details-panel')
+      const detailsName = document.getElementById('details-name')
+      const detailsRows = document.getElementById('details-rows')
+      const detailsQuery = document.getElementById('details-query')
+      const detailsClose = document.getElementById('details-close')
+      const followButton = document.getElementById('follow-button')
+      const clearButton = document.getElementById('clear-button')
+      const zoomSlider = document.getElementById('zoom-slider')
+      const zoomValue = document.getElementById('zoom-value')
+      const statusOrb = document.getElementById('socket-status')
+      const spanStats = document.getElementById('span-stats')
+
+      const DB_LOCK_TRACK_ID = -8675309
+
+      const completedSpans = []
+      const openSpansByTrack = new Map()
+      const trackLanes = new Map()
+      let nextLane = 0
+
+      function seedDefaultTracks() {
+        trackLanes.set(DB_LOCK_TRACK_ID, { name: 'Database Lock', lane: 0 })
+        nextLane = 1
+      }
+
+      let windowMs = parseInt(zoomSlider.value, 10)
+      let following = true
+      let latestEventMs = 0
+      let lastSyncWallMs = 0
+      let viewEndMs = 0
+      let dpr = window.devicePixelRatio || 1
+
+      let cursorX = null
+      let cursorY = null
+      let hitRects = []
+
+      function setStatus(name) { statusOrb.className = name }
+
+      function setFollowing(value) {
+        if (following === value) return
+        following = value
+        followButton.textContent = following ? 'Following' : 'Follow'
+        followButton.style.opacity = following ? '0.6' : '1'
+      }
+
+      function trackForId(trackId, trackName) {
+        let entry = trackLanes.get(trackId)
+        if (!entry) {
+          entry = { name: trackName, lane: nextLane++ }
+          trackLanes.set(trackId, entry)
+          updateContentHeight()
+        } else if (trackName && !entry.name) {
+          entry.name = trackName
+        }
+        return entry
+      }
+
+      function colorForSpan(span) {
+        if (span.name === 'LOCK') return '#c14a4a'
+        const q = (span.query || '').trim().toUpperCase()
+        if (q.startsWith('SELECT'))      return '#3a7bd5'
+        if (q.startsWith('INSERT'))      return '#5ca72b'
+        if (q.startsWith('UPDATE'))      return '#d6a437'
+        if (q.startsWith('DELETE'))      return '#c14a4a'
+        if (q.startsWith('REPLACE'))     return '#a06bd5'
+        if (q.startsWith('BEGIN') || q.startsWith('COMMIT') || q.startsWith('ROLLBACK')) return '#666'
+        if (q.startsWith('PRAGMA') || q.startsWith('CREATE') || q.startsWith('DROP') || q.startsWith('ALTER')) return '#888'
+        return '#3a7bd5'
+      }
+
+      function summaryForSpan(span) {
+        if (span.name === 'LOCK') {
+          return span.holder ? `LOCK held by ${span.holder}` : 'DB LOCK held'
+        }
+        return span.query || span.name
+      }
+
+      function onWebSocketMessage(event) {
+        const msg = JSON.parse(event.data)
+
+        if (msg.t > latestEventMs) {
+          latestEventMs = msg.t
+          lastSyncWallMs = Date.now()
+        }
+
+        if (msg.type === 'start') {
+          trackForId(msg.trackId, msg.trackName)
+          let stack = openSpansByTrack.get(msg.trackId)
+          if (!stack) { stack = []; openSpansByTrack.set(msg.trackId, stack) }
+          stack.push({
+            trackId: msg.trackId,
+            name: msg.name,
+            query: msg.query || null,
+            table: msg.table || null,
+            holder: msg.holder || null,
+            startMs: msg.t
+          })
+        } else if (msg.type === 'end') {
+          const stack = openSpansByTrack.get(msg.trackId)
+          if (!stack || stack.length === 0) return
+
+          let span = null
+          if (stack[stack.length - 1].name === msg.name) {
+            span = stack.pop()
+          } else {
+            const idx = stack.findIndex(s => s.name === msg.name)
+            if (idx >= 0) span = stack.splice(idx, 1)[0]
+            else          span = stack.pop()
+          }
+          if (!span) return
+
+          span.endMs = msg.t
+          completedSpans.push(span)
+          if (completedSpans.length > MAX_SPANS) completedSpans.shift()
+        }
+      }
+
+      function initWebSocket() {
+        setStatus('connecting')
+        const ws = new WebSocket(`ws://${window.location.host}/live/websocket`)
+        let keepAliveTimer = null
+
+        ws.onopen = () => {
+          setStatus('connected')
+          keepAliveTimer = setInterval(() => ws.send('keepalive'), 1000)
+        }
+
+        ws.onclose = () => {
+          setStatus('disconnected')
+          if (keepAliveTimer) { clearInterval(keepAliveTimer); keepAliveTimer = null }
+          setTimeout(initWebSocket, 1000)
+        }
+
+        ws.onmessage = onWebSocketMessage
+      }
+
+      function totalContentHeightPx() {
+        return LANE_PADDING_TOP + trackLanes.size * LANE_HEIGHT + LANE_PADDING_BOTTOM
+      }
+
+      function updateContentHeight() {
+        const total = totalContentHeightPx()
+        const visible = container.clientHeight
+        content.style.height = Math.max(total, visible) + 'px'
+      }
+
+      function resizeCanvas() {
+        dpr = window.devicePixelRatio || 1
+        const cw = container.clientWidth
+        const ch = container.clientHeight
+        canvas.width  = Math.floor(cw * dpr)
+        canvas.height = Math.floor(ch * dpr)
+        canvas.style.width  = cw + 'px'
+        canvas.style.height = ch + 'px'
+        updateContentHeight()
+      }
+
+      function effectiveNowMs() {
+        if (latestEventMs === 0) return 0
+        return latestEventMs + (Date.now() - lastSyncWallMs)
+      }
+
+      function pixelToTimeMs(x, plotX, msPerPx, viewStartMs) {
+        return viewStartMs + (x - plotX) * msPerPx
+      }
+
+      function render() {
+        const cssW = canvas.width / dpr
+        const cssH = canvas.height / dpr
+        const scrollY = container.scrollTop
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+        ctx.fillStyle = '#1d1d1d'
+        ctx.fillRect(0, 0, cssW, cssH)
+
+        if (following) viewEndMs = effectiveNowMs()
+        const viewStartMs = viewEndMs - windowMs
+        const plotX = TRACK_LABEL_WIDTH
+        const plotW = Math.max(10, cssW - plotX)
+        const msPerPx = windowMs / plotW
+
+        // Lane backgrounds (clipped below axis, scroll-aware)
+        ctx.save()
+        ctx.beginPath()
+        ctx.rect(0, AXIS_HEIGHT, cssW, cssH - AXIS_HEIGHT)
+        ctx.clip()
+
+        const sortedTracks = Array.from(trackLanes.entries()).sort((a, b) => a[1].lane - b[1].lane)
+        for (const [trackId, info] of sortedTracks) {
+          const y = LANE_PADDING_TOP + info.lane * LANE_HEIGHT - scrollY
+          if (y + LANE_HEIGHT < AXIS_HEIGHT) continue
+          if (y > cssH) break
+          ctx.fillStyle = info.lane % 2 === 0 ? '#222222' : '#262626'
+          ctx.fillRect(0, y, cssW, LANE_HEIGHT)
+          ctx.fillStyle = '#cccccc'
+          ctx.font = "11px 'JetBrains Mono', monospace"
+          ctx.textBaseline = 'top'
+          const label = info.name || ('track ' + trackId)
+          ctx.fillText(truncateLabel(label, TRACK_LABEL_WIDTH - 8), 4, y + 7)
+        }
+
+        // Spans
+        hitRects = []
+        const drawSpan = (span, end) => {
+          const info = trackLanes.get(span.trackId)
+          if (!info) return
+          const startX = plotX + (span.startMs - viewStartMs) / msPerPx
+          const endX   = plotX + (end       - viewStartMs) / msPerPx
+          if (endX < plotX || startX > cssW) return
+          const x = Math.max(plotX, startX)
+          const right = Math.min(cssW, endX)
+          const width = Math.max(1, right - x)
+          const y = LANE_PADDING_TOP + info.lane * LANE_HEIGHT - scrollY + 2
+          const rectH = LANE_HEIGHT - 4
+          if (y + rectH < AXIS_HEIGHT || y > cssH) return
+          ctx.fillStyle = colorForSpan(span)
+          ctx.fillRect(x, y, width, rectH)
+          if (width > 40) {
+            ctx.fillStyle = '#ffffff'
+            ctx.save()
+            ctx.beginPath()
+            ctx.rect(x, y, width, rectH)
+            ctx.clip()
+            ctx.fillText(truncateLabel(summaryForSpan(span), width - 6), x + 4, y + 4)
+            ctx.restore()
+          }
+          hitRects.push({ x, y, width, height: rectH, span: { ...span, endMs: end } })
+        }
+
+        for (const span of completedSpans) {
+          if (span.endMs < viewStartMs || span.startMs > viewEndMs) continue
+          drawSpan(span, span.endMs)
+        }
+
+        const nowMs = Math.max(viewEndMs, effectiveNowMs())
+        for (const stack of openSpansByTrack.values()) {
+          for (const span of stack) {
+            if (span.startMs > viewEndMs) continue
+            drawSpan(span, nowMs)
+          }
+        }
+
+        ctx.restore()  // end lane clip
+
+        // Axis (drawn on top, ignores scrollY)
+        ctx.fillStyle = '#1d1d1d'
+        ctx.fillRect(0, 0, cssW, AXIS_HEIGHT)
+        ctx.fillStyle = '#aaaaaa'
+        ctx.font = "10px 'JetBrains Mono', monospace"
+        ctx.textBaseline = 'top'
+        ctx.fillRect(plotX, AXIS_HEIGHT - 1, plotW, 1)
+        const tickStepMs = niceTickStep(windowMs / 8)
+        const firstTick = Math.ceil(viewStartMs / tickStepMs) * tickStepMs
+        for (let t = firstTick; t <= viewEndMs; t += tickStepMs) {
+          const x = plotX + (t - viewStartMs) / msPerPx
+          ctx.fillStyle = '#3a3a3a'
+          ctx.fillRect(x, AXIS_HEIGHT, 1, cssH - AXIS_HEIGHT)
+          ctx.fillStyle = '#888'
+          ctx.fillText(formatTickLabel(t - viewEndMs), x + 2, 2)
+        }
+
+        // Cursor crosshair
+        if (cursorX != null && cursorX >= plotX && cursorX <= cssW) {
+          ctx.fillStyle = 'rgba(255, 224, 137, 0.5)'
+          ctx.fillRect(cursorX, AXIS_HEIGHT, 1, cssH - AXIS_HEIGHT)
+
+          const tCursor = pixelToTimeMs(cursorX, plotX, msPerPx, viewStartMs)
+          const delta = tCursor - viewEndMs
+          cursorTime.style.display = 'block'
+          cursorTime.style.left = (cursorX) + 'px'
+          cursorTime.textContent = formatTickLabel(delta)
+        } else {
+          cursorTime.style.display = 'none'
+        }
+
+        spanStats.textContent = `${completedSpans.length} spans • ${trackLanes.size} tracks`
+        requestAnimationFrame(render)
+      }
+
+      function niceTickStep(rawMs) {
+        const candidates = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 30000, 60000]
+        for (const c of candidates) if (c >= rawMs) return c
+        return 60000
+      }
+
+      function formatTickLabel(deltaMs) {
+        if (Math.round(deltaMs) === 0) return 'now'
+        const sign = deltaMs < 0 ? '-' : '+'
+        const abs = Math.abs(deltaMs)
+        if (abs >= 1000) return `${sign}${(abs / 1000).toFixed(abs >= 10000 ? 0 : 1)}s`
+        return `${sign}${Math.round(abs)}ms`
+      }
+
+      function truncateLabel(text, maxPx) {
+        const charsApprox = Math.max(0, Math.floor(maxPx / 6.5))
+        if (text.length <= charsApprox) return text
+        if (charsApprox < 3) return text.substring(0, charsApprox)
+        return text.substring(0, charsApprox - 1) + '…'
+      }
+
+      function hitTest(x, y) {
+        for (let i = hitRects.length - 1; i >= 0; i--) {
+          const r = hitRects[i]
+          if (x >= r.x && x <= r.x + r.width && y >= r.y && y <= r.y + r.height) return r
+        }
+        return null
+      }
+
+      function onCanvasMouseMove(ev) {
+        const rect = canvas.getBoundingClientRect()
+        const x = ev.clientX - rect.left
+        const y = ev.clientY - rect.top
+        cursorX = x
+        cursorY = y
+
+        const hit = hitTest(x, y)
+        if (!hit) {
+          tooltip.style.display = 'none'
+          return
+        }
+
+        const span = hit.span
+        const duration = (span.endMs - span.startMs).toFixed(0)
+        const trackName = (trackLanes.get(span.trackId) || {}).name || ('track ' + span.trackId)
+        tooltip.style.display = 'block'
+        tooltip.innerHTML = ''
+        const isLock = span.name === 'LOCK'
+        const meta = document.createElement('div')
+        meta.className = 'tooltip-meta'
+        const metaParts = [trackName, span.name, `${duration}ms`]
+        if (span.table) metaParts.push(span.table)
+        if (isLock && span.holder) metaParts.push(`held by ${span.holder}`)
+        meta.textContent = metaParts.join(' • ')
+        tooltip.appendChild(meta)
+        const body = document.createElement('div')
+        body.className = 'tooltip-query'
+        body.textContent = isLock
+          ? (span.holder ? `Held by ${span.holder}` : '(no holder recorded)')
+          : (span.query || '(no query)')
+        tooltip.appendChild(body)
+
+        const tw = tooltip.offsetWidth
+        const th = tooltip.offsetHeight
+        const ww = wrapper.clientWidth
+        const wh = wrapper.clientHeight
+        let tx = x + 12
+        let ty = y + 12
+        if (tx + tw > ww) tx = x - tw - 12
+        if (ty + th > wh) ty = y - th - 12
+        tooltip.style.left = Math.max(0, tx) + 'px'
+        tooltip.style.top  = Math.max(0, ty) + 'px'
+      }
+
+      function onCanvasMouseLeave() {
+        cursorX = null
+        cursorY = null
+        tooltip.style.display = 'none'
+      }
+
+      function onCanvasClick(ev) {
+        const rect = canvas.getBoundingClientRect()
+        const x = ev.clientX - rect.left
+        const y = ev.clientY - rect.top
+
+        const hit = hitTest(x, y)
+        if (!hit) {
+          hideDetails()
+          return
+        }
+
+        setFollowing(false)
+        showDetails(hit.span)
+      }
+
+      function showDetails(span) {
+        const isLock = span.name === 'LOCK'
+        const trackName = (trackLanes.get(span.trackId) || {}).name || ('track ' + span.trackId)
+        const duration = (span.endMs - span.startMs).toFixed(0)
+
+        detailsName.textContent = isLock
+          ? (span.holder ? `LOCK held by ${span.holder}` : 'DB LOCK held')
+          : (span.query ? span.query.split('\n')[0].slice(0, 80) : span.name)
+
+        const rows = []
+        rows.push(['Track',    trackName])
+        rows.push(['Method',   span.name])
+        rows.push(['Duration', `${duration} ms`])
+        if (span.table)  rows.push(['Table',  span.table])
+        if (span.holder) rows.push(['Holder', span.holder])
+        rows.push(['Start',    `${span.startMs.toLocaleString()} ms`])
+        rows.push(['End',      `${span.endMs.toLocaleString()} ms`])
+
+        detailsRows.innerHTML = ''
+        for (const [k, v] of rows) {
+          const row = document.createElement('div')
+          row.className = 'details-row'
+          const keyEl = document.createElement('div')
+          keyEl.className = 'details-key'
+          keyEl.textContent = k
+          const valEl = document.createElement('div')
+          valEl.className = 'details-value'
+          valEl.textContent = v
+          row.appendChild(keyEl)
+          row.appendChild(valEl)
+          detailsRows.appendChild(row)
+        }
+
+        if (isLock) {
+          detailsQuery.style.display = 'none'
+        } else {
+          detailsQuery.style.display = 'block'
+          detailsQuery.textContent = span.query || '(no query)'
+        }
+
+        detailsPanel.classList.add('visible')
+      }
+
+      function hideDetails() {
+        detailsPanel.classList.remove('visible')
+      }
+
+      function onCanvasWheel(ev) {
+        if (ev.ctrlKey || ev.metaKey) {
+          ev.preventDefault()
+          const factor = ev.deltaY > 0 ? 1.2 : 1 / 1.2
+          windowMs = Math.max(500, Math.min(60000, Math.round(windowMs * factor)))
+          zoomSlider.value = windowMs
+          updateZoomLabel()
+          return
+        }
+
+        if (Math.abs(ev.deltaX) > Math.abs(ev.deltaY)) {
+          ev.preventDefault()
+          const cap = effectiveNowMs()
+          const base = following ? cap : viewEndMs
+          const proposed = base + ev.deltaX * (windowMs / 800)
+          if (proposed >= cap) {
+            viewEndMs = cap
+            setFollowing(true)
+          } else {
+            viewEndMs = proposed
+            setFollowing(false)
+          }
+        }
+        // else: let native vertical scroll happen
+      }
+
+      function updateZoomLabel() {
+        if (windowMs >= 1000) {
+          zoomValue.textContent = (windowMs / 1000).toFixed(windowMs >= 10000 ? 0 : 1) + 's'
+        } else {
+          zoomValue.textContent = windowMs + 'ms'
+        }
+      }
+
+      function main() {
+        seedDefaultTracks()
+        resizeCanvas()
+        window.addEventListener('resize', resizeCanvas)
+        canvas.addEventListener('mousemove', onCanvasMouseMove)
+        canvas.addEventListener('mouseleave', onCanvasMouseLeave)
+        canvas.addEventListener('click', onCanvasClick)
+        canvas.addEventListener('wheel', onCanvasWheel, { passive: false })
+        container.addEventListener('scroll', () => { /* render reads scrollTop each frame */ })
+
+        followButton.addEventListener('click', () => setFollowing(true))
+        clearButton.addEventListener('click', () => {
+          completedSpans.length = 0
+          openSpansByTrack.clear()
+          trackLanes.clear()
+          seedDefaultTracks()
+          hideDetails()
+          updateContentHeight()
+        })
+        zoomSlider.addEventListener('input', () => {
+          windowMs = parseInt(zoomSlider.value, 10)
+          updateZoomLabel()
+        })
+        detailsClose.addEventListener('click', hideDetails)
+        document.addEventListener('keydown', (ev) => {
+          if (ev.key === 'Escape') hideDetails()
+        })
+
+        setFollowing(true)
+        updateZoomLabel()
+        initWebSocket()
+        requestAnimationFrame(render)
+      }
+
+      main()
+    </script>
+  </body>
+</html>

@@ -71,7 +71,7 @@ public final class SafetyNumberChangeViewModel extends ViewModel {
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-      SafetyNumberChangeRepository repo = new SafetyNumberChangeRepository(AppDependencies.getApplication());
+      SafetyNumberChangeRepository repo = new SafetyNumberChangeRepository();
       return Objects.requireNonNull(modelClass.cast(new SafetyNumberChangeViewModel(recipientIds, messageId, messageType, repo)));
     }
   }

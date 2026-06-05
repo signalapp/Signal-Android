@@ -4,6 +4,6 @@
     android:shape="rectangle">
 
   <solid android:color="@color/wallpaper_bubble_color" />
-  <corners android:topLeftRadius="12dp"
-           android:topRightRadius="12dp"/>
+  <corners android:topLeftRadius="24dp"
+           android:topRightRadius="24dp"/>
 </shape>

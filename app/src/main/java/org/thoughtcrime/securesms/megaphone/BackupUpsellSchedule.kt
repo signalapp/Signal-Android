@@ -34,7 +34,7 @@ class BackupUpsellSchedule(
 
     val lastSeenAnyBackupUpsell: Long = records.entries
       .filter { it.key in BACKUP_UPSELL_EVENTS }
-      .mapNotNull { it.value.lastSeen.takeIf { t -> t > 0 } }
+      .mapNotNull { it.value.lastInteractionTime.takeIf { t -> t > 0 } }
       .maxOrNull() ?: 0L
 
     if (currentTime - lastSeenAnyBackupUpsell <= MIN_TIME_BETWEEN_BACKUP_UPSELLS) {

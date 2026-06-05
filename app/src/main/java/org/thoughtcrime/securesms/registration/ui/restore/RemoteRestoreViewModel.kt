@@ -17,6 +17,7 @@ import kotlinx.coroutines.withContext
 import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.RemoteRestoreResult
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.keyvalue.Completed
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.provisioning.RestoreMethod
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days

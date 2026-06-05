@@ -44,9 +44,6 @@ enum class MessageType {
   /** You unverified a user's identity/safety number, resetting it to the default state */
   IDENTITY_DEFAULT,
 
-  /** A manual session reset. This is no longer used and is only here for handling possible inbound/sync messages.  */
-  END_SESSION,
-
   /** A poll has ended **/
   POLL_TERMINATE,
 

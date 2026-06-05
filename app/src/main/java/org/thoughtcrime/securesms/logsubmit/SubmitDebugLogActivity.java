@@ -7,8 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.style.URLSpan;
-import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,11 +21,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ShareCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.text.util.LinkifyCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.util.Linkifier;
 import org.signal.core.util.ThreadUtil;
 import org.signal.debuglogsviewer.DebugLogsViewer;
 import org.thoughtcrime.securesms.BaseActivity;
@@ -36,6 +34,7 @@ import org.thoughtcrime.securesms.components.ConversationSearchBottomBar;
 import org.thoughtcrime.securesms.components.ProgressCard;
 import org.thoughtcrime.securesms.components.SearchView;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.Linkification;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.signal.core.ui.util.ThemeUtil;
@@ -355,6 +354,16 @@ public class SubmitDebugLogActivity extends BaseActivity {
   private void initViewModel() {
     viewModel.getMode().observe(this, this::presentMode);
     viewModel.getEvents().observe(this, this::presentEvents);
+    viewModel.getSlowPrefixWarning().observe(this, this::presentSlowPrefixWarning);
+  }
+
+  private void presentSlowPrefixWarning(@NonNull Long durationMillis) {
+    int durationSeconds = (int) Math.round(durationMillis / 1000.0);
+    new MaterialAlertDialogBuilder(this)
+        .setTitle(R.string.SubmitDebugLogActivity_slow_log_title)
+        .setMessage(getString(R.string.SubmitDebugLogActivity_slow_log_message, durationSeconds))
+        .setPositiveButton(android.R.string.ok, null)
+        .show();
   }
 
   private void subscribeToLogLines() {
@@ -449,15 +458,8 @@ public class SubmitDebugLogActivity extends BaseActivity {
     TextView          dialogView          = new TextView(builder.getContext());
     LongClickCopySpan longClickUrl        = new LongClickCopySpan(url);
 
-
-    LinkifyCompat.addLinks(spannableDialogText, Linkify.WEB_URLS);
-
-    URLSpan[] spans = spannableDialogText.getSpans(0, spannableDialogText.length(), URLSpan.class);
-    for (URLSpan span : spans) {
-      int start = spannableDialogText.getSpanStart(span);
-      int end   = spannableDialogText.getSpanEnd(span);
-
-      spannableDialogText.setSpan(longClickUrl, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    for (Linkifier.DetectedLink link : Linkification.findWebLinks(dialogText)) {
+      spannableDialogText.setSpan(longClickUrl, link.getStart(), link.getEnd(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 
     dialogView.setText(spannableDialogText);

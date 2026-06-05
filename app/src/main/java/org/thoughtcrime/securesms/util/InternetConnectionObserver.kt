@@ -9,6 +9,7 @@ import android.net.Network
 import android.os.Build
 import androidx.annotation.RequiresApi
 import io.reactivex.rxjava3.core.Observable
+import org.signal.core.util.ServiceUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 

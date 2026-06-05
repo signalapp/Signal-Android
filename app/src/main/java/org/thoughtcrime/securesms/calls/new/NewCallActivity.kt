@@ -25,7 +25,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
@@ -214,7 +213,8 @@ private fun UserMessagesHost(
   onDismiss: (UserMessage) -> Unit,
   snackbarHostState: SnackbarHostState
 ) {
-  val context = LocalContext.current
+  val youAreAlreadyInACall = stringResource(R.string.CommunicationActions__you_are_already_in_a_call)
+  val errorRetrievingContacts = stringResource(R.string.ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection)
 
   when (userMessage) {
     null -> {}
@@ -228,14 +228,14 @@ private fun UserMessagesHost(
 
     is UserMessage.UserAlreadyInAnotherCall -> LaunchedEffect(userMessage) {
       snackbarHostState.showSnackbar(
-        message = context.getString(R.string.CommunicationActions__you_are_already_in_a_call)
+        message = youAreAlreadyInACall
       )
       onDismiss(userMessage)
     }
 
     is UserMessage.ContactsRefreshFailed -> LaunchedEffect(userMessage) {
       snackbarHostState.showSnackbar(
-        message = context.getString(R.string.ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection)
+        message = errorRetrievingContacts
       )
       onDismiss(userMessage)
     }

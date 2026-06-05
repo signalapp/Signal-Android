@@ -3,8 +3,7 @@ package org.thoughtcrime.securesms.components.webrtc;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.signal.core.util.SetUtil;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -68,12 +67,12 @@ public final class CallParticipantListUpdate {
   public static @NonNull CallParticipantListUpdate computeDeltaUpdate(@NonNull List<CallParticipant> oldList,
                                                                       @NonNull List<CallParticipant> newList)
   {
-    Set<CallParticipantListUpdate.Wrapper> oldParticipants = Stream.of(oldList)
-                                                                  .filter(p -> p.getCallParticipantId().demuxId != CallParticipantId.DEFAULT_ID)
+    Set<CallParticipantListUpdate.Wrapper> oldParticipants = oldList.stream()
+                                                                    .filter(p -> p.getCallParticipantId().demuxId != CallParticipantId.DEFAULT_ID)
                                                                   .map(CallParticipantListUpdate::createWrapper)
                                                                   .collect(Collectors.toSet());
-    Set<CallParticipantListUpdate.Wrapper> newParticipants = Stream.of(newList)
-                                                                  .filter(p -> p.getCallParticipantId().demuxId != CallParticipantId.DEFAULT_ID)
+    Set<CallParticipantListUpdate.Wrapper> newParticipants = newList.stream()
+                                                                    .filter(p -> p.getCallParticipantId().demuxId != CallParticipantId.DEFAULT_ID)
                                                                   .map(CallParticipantListUpdate::createWrapper)
                                                                   .collect(Collectors.toSet());
     Set<CallParticipantListUpdate.Wrapper> added           = SetUtil.difference(newParticipants, oldParticipants);

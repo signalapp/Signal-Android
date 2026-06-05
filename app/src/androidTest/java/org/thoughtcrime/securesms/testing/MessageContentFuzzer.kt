@@ -41,11 +41,12 @@ object MessageContentFuzzer {
   /**
    * Create an [Envelope].
    */
-  fun envelope(timestamp: Long, serverGuid: UUID = UUID.randomUUID()): Envelope {
+  fun envelope(timestamp: Long, serverGuid: UUID = UUID.randomUUID(), updatedPniBinary: ByteString? = null): Envelope {
     return Envelope.Builder()
       .clientTimestamp(timestamp)
       .serverTimestamp(timestamp + 5)
       .serverGuidBinary(serverGuid.toByteArray().toByteString())
+      .also { if (updatedPniBinary != null) it.updatedPniBinary(updatedPniBinary) }
       .build()
   }
 

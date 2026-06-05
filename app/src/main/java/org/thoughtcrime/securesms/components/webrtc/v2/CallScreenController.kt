@@ -77,11 +77,13 @@ class CallScreenController private constructor(
     @Composable
     fun rememberCallScreenController(
       skipHiddenState: Boolean,
+      hasMultipleRemoteParticipants: Boolean,
       onControlsToggled: (Boolean) -> Unit,
       callControlsState: CallControlsState,
       callControlsListener: CallScreenControlsListener
     ): CallScreenController {
       val skip by rememberUpdatedState(skipHiddenState)
+      val hasMultipleRemoteParticipantsState = rememberUpdatedState(hasMultipleRemoteParticipants)
       val valueChangeOperation: (SheetValue) -> Boolean = remember {
         {
           !(it == SheetValue.Hidden && skip)
@@ -130,7 +132,7 @@ class CallScreenController private constructor(
 
       val callParticipantsVerticalPagerState = rememberPagerState(
         initialPage = 0,
-        pageCount = { 2 }
+        pageCount = { if (hasMultipleRemoteParticipantsState.value) 2 else 1 }
       )
 
       return remember(scaffoldState, callParticipantsVerticalPagerState, audioOutputPickerController) {

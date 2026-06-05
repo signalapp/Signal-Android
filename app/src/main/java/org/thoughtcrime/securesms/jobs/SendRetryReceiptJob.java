@@ -18,7 +18,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.signal.network.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -97,7 +98,7 @@ public final class SendRetryReceiptJob extends BaseJob {
 
   @Override
   protected boolean onShouldRetry(@NonNull Exception e) {
-    return e instanceof PushNetworkException;
+    return e instanceof PushNetworkException || e instanceof RateLimitException;
   }
 
   @Override

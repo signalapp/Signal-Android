@@ -1,9 +1,9 @@
 package org.whispersystems.signalservice.internal.websocket;
 
 
-import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
+import org.signal.network.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
-import org.whispersystems.signalservice.internal.util.JsonUtil;
+import org.signal.network.util.JsonUtil;
 
 import java.util.Objects;
 import java.util.function.Function;

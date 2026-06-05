@@ -25,7 +25,7 @@ data class CallScreenState(
   val isDisplayingAudioToggleSheet: Boolean = false,
   val displaySwitchCameraTooltip: Boolean = false,
   val displayVideoTooltip: Boolean = false,
-  val displaySwipeToSpeakerHint: Boolean = false,
+  val swipeHint: SwipeHintType = SwipeHintType.NONE,
   val displayWifiToCellularPopup: Boolean = false,
   val remoteMuteToastMessage: String? = null,
   val displayAdditionalActionsDialog: Boolean = false,
@@ -34,7 +34,14 @@ data class CallScreenState(
   val isParticipantUpdatePopupEnabled: Boolean = true,
   val isCallStateUpdatePopupEnabled: Boolean = false,
   val isWaitingToBeLetIn: Boolean = false,
-  val reactions: PersistentList<String> = persistentListOf()
+  val reactions: PersistentList<String> = persistentListOf(),
+  val isLocalScreenSharing: Boolean = false
 ) {
   fun isDisplayingControlMenu(): Boolean = isDisplayingAudioToggleSheet || displayAdditionalActionsDialog
+}
+
+enum class SwipeHintType {
+  NONE,
+  SPEAKER_VIEW,
+  SCREEN_SHARE
 }

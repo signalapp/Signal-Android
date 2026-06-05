@@ -29,13 +29,13 @@ import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.database.model.ThreadWithRecipient;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
+import org.signal.core.util.concurrent.SerialExecutor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,8 +82,8 @@ public class SearchRepository {
 
   @WorkerThread
   public @NonNull ThreadSearchResult queryThreadsSync(@NonNull String query, boolean unreadOnly) {
-    long               start  = System.currentTimeMillis();
-    List<ThreadRecord> result = queryConversations(query, unreadOnly);
+    long                      start  = System.currentTimeMillis();
+    List<ThreadWithRecipient> result = queryConversations(query, unreadOnly);
 
     Log.d(TAG, "[threads] Search took " + (System.currentTimeMillis() - start) + " ms");
 
@@ -121,7 +121,7 @@ public class SearchRepository {
     });
   }
 
-  private @NonNull List<ThreadRecord> queryConversations(@NonNull String query, boolean unreadOnly) {
+  private @NonNull List<ThreadWithRecipient> queryConversations(@NonNull String query, boolean unreadOnly) {
     if (Util.isEmpty(query)) {
       return Collections.emptyList();
     }
@@ -148,7 +148,7 @@ public class SearchRepository {
       }
     }
 
-    LinkedHashSet<ThreadRecord> output = new LinkedHashSet<>();
+    LinkedHashSet<ThreadWithRecipient> output = new LinkedHashSet<>();
 
     output.addAll(getMatchingThreads(contactIds, unreadOnly));
     output.addAll(getMatchingThreads(groupsByTitleIds, unreadOnly));
@@ -156,7 +156,7 @@ public class SearchRepository {
     return new ArrayList<>(output);
   }
 
-  private List<ThreadRecord> getMatchingThreads(@NonNull Collection<RecipientId> recipientIds, boolean unreadOnly) {
+  private List<ThreadWithRecipient> getMatchingThreads(@NonNull Collection<RecipientId> recipientIds, boolean unreadOnly) {
     try (Cursor cursor = threadTable.getFilteredConversationList(new ArrayList<>(recipientIds), unreadOnly)) {
       return readToList(cursor, new ThreadModelBuilder(threadTable));
     }
@@ -455,7 +455,7 @@ public class SearchRepository {
     return combined;
   }
 
-  private static class ThreadModelBuilder implements ModelBuilder<ThreadRecord> {
+  private static class ThreadModelBuilder implements ModelBuilder<ThreadWithRecipient> {
 
     private final ThreadTable threadTable;
 
@@ -464,7 +464,7 @@ public class SearchRepository {
     }
 
     @Override
-    public ThreadRecord build(@NonNull Cursor cursor) {
+    public ThreadWithRecipient build(@NonNull Cursor cursor) {
       return threadTable.readerFor(cursor).getCurrent();
     }
   }

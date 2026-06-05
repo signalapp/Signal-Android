@@ -31,7 +31,7 @@ fun Attachment.toAttachmentPointer(context: Context): AttachmentPointer? {
   }
 
   try {
-    val remoteId = SignalServiceAttachmentRemoteId.from(attachment.remoteLocation!!)
+    val remoteId = SignalServiceAttachmentRemoteId.from(attachment.remoteLocation!!, attachment.cdn.cdnNumber)
 
     var attachmentWidth = attachment.width
     var attachmentHeight = attachment.height

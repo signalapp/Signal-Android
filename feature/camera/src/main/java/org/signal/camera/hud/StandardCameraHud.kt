@@ -49,6 +49,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalViewConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -400,7 +401,7 @@ private fun CameraSwitchButton(
   modifier: Modifier = Modifier
 ) {
   val contentDescription = if (stringResources.switchCamera != 0) {
-    LocalContext.current.getString(stringResources.switchCamera)
+    stringResource(stringResources.switchCamera)
   } else {
     null
   }
@@ -428,8 +429,6 @@ private fun FlashToggleButton(
   stringResources: StringResources,
   modifier: Modifier = Modifier
 ) {
-  val context = LocalContext.current
-
   val icon = when (flashMode) {
     FlashMode.Off -> SignalIcons.FlashOff
     FlashMode.On -> SignalIcons.FlashOn
@@ -443,7 +442,7 @@ private fun FlashToggleButton(
   }
 
   val contentDescription = if (contentDescriptionRes != 0) {
-    context.getString(contentDescriptionRes)
+    stringResource(contentDescriptionRes)
   } else {
     null
   }
@@ -478,7 +477,7 @@ private fun MediaCountIndicator(
   modifier: Modifier = Modifier
 ) {
   val contentDescription = if (stringResources.send != 0) {
-    LocalContext.current.getString(stringResources.send)
+    stringResource(stringResources.send)
   } else {
     null
   }

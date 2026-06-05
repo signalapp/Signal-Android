@@ -118,8 +118,8 @@ class BackupUpsellScheduleTest {
     return BackupUpsellSchedule(records, *gaps)
   }
 
-  private fun record(event: Event, seenCount: Int = 1, lastSeen: Long = 0, firstVisible: Long = 0, finished: Boolean = false): MegaphoneRecord {
-    return MegaphoneRecord(event, seenCount, lastSeen, firstVisible, finished)
+  private fun record(event: Event, seenCount: Int = 1, lastSeen: Long = 0, firstVisible: Long = 0, lastVisible: Long = 0, finished: Boolean = false): MegaphoneRecord {
+    return MegaphoneRecord(event, seenCount, lastSeen, firstVisible, lastVisible, finished)
   }
 
   private fun emptyRecords(): Map<Event, MegaphoneRecord> {

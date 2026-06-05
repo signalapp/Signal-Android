@@ -282,3 +282,7 @@ message AdminDeleteJobData {
   repeated uint64 recipientIds = 2;
   uint32 initialRecipientCount = 3;
 }
+
+message IndividualSendJobV2Data {
+  uint64 messageId = 1;
+}

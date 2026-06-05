@@ -19,11 +19,11 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.MasterKey
+import org.signal.libsignal.net.RequestResult
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
-import org.signal.registration.RegistrationRoute
 import java.io.IOException
 import kotlin.time.Duration.Companion.seconds
 
@@ -70,18 +70,15 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
+      RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(mockk(relaxed = true))
+      RequestResult.Success(mockk(relaxed = true))
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(2)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
-    assertThat(emittedParentEvents[1])
-      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
-      .prop(RegistrationFlowEvent.NavigateToScreen::route)
-      .isInstanceOf<RegistrationRoute.FullyComplete>()
+    assertThat(emittedParentEvents[1]).isInstanceOf<RegistrationFlowEvent.RegistrationComplete>()
   }
 
   @Test
@@ -90,11 +87,11 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
+      RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(mockk(relaxed = true))
+      RequestResult.Success(mockk(relaxed = true))
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     coVerify { mockRepository.enqueueSvrResetGuessCountJob() }
   }
@@ -105,11 +102,11 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RestoreMasterKeyError.WrongPin(triesRemaining)
       )
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("wrong-pin"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("wrong-pin"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(0)
     assertThat(emittedStates.last().triesRemaining).isEqualTo(triesRemaining)
@@ -120,11 +117,11 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RestoreMasterKeyError.NoDataFound
       )
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(2)
     assertThat(emittedParentEvents[0]).isEqualTo(RegistrationFlowEvent.RecoveryPasswordInvalid)
@@ -136,9 +133,9 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.NetworkError(IOException("Network error"))
+      RequestResult.RetryableNetworkError(IOException("Network error"))
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(0)
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PinEntryState.OneTimeEvent.NetworkError)
@@ -149,9 +146,9 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.ApplicationError(RuntimeException("Unexpected"))
+      RequestResult.ApplicationError(RuntimeException("Unexpected"))
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(0)
     assertThat(emittedStates.last().oneTimeEvent).isEqualTo(PinEntryState.OneTimeEvent.UnknownError)
@@ -161,7 +158,7 @@ class PinEntryForSmsBypassViewModelTest {
   fun `PinEntered with missing e164 emits ResetState`() = runTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = null)
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(1)
     assertThat(emittedParentEvents[0]).isEqualTo(RegistrationFlowEvent.ResetState)
@@ -175,11 +172,11 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
+      RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.NetworkError(IOException("Network error"))
+      RequestResult.RetryableNetworkError(IOException("Network error"))
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(1)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
@@ -192,11 +189,11 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
+      RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.ApplicationError(RuntimeException("Unexpected"))
+      RequestResult.ApplicationError(RuntimeException("Unexpected"))
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(1)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
@@ -209,13 +206,13 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
+      RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RegisterAccountError.DeviceTransferPossible
       )
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(2)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
@@ -228,13 +225,13 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
+      RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RegisterAccountError.InvalidRequest("Bad request")
       )
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(3)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
@@ -249,13 +246,13 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
+      RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RegisterAccountError.RateLimited(retryAfter)
       )
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(1)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
@@ -272,23 +269,20 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
+      RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     // First call (without reglock) returns RegistrationLock error, second call (with reglock) succeeds
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), registrationLock = null, any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RegisterAccountError.RegistrationLock(registrationLockData)
       )
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), registrationLock = any<String>(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Success(mockk(relaxed = true))
+      RequestResult.Success(mockk(relaxed = true))
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(2)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
-    assertThat(emittedParentEvents[1])
-      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
-      .prop(RegistrationFlowEvent.NavigateToScreen::route)
-      .isInstanceOf<RegistrationRoute.FullyComplete>()
+    assertThat(emittedParentEvents[1]).isInstanceOf<RegistrationFlowEvent.RegistrationComplete>()
   }
 
   @Test
@@ -298,14 +292,14 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
+      RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     // Both calls (with and without reglock) return RegistrationLock error
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RegisterAccountError.RegistrationLock(registrationLockData)
       )
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     // First retry (without reglock) -> reglock error -> retry with reglock -> reglock error again -> RecoveryPasswordInvalid + NavigateBack
     assertThat(emittedParentEvents).hasSize(3)
@@ -320,13 +314,13 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
+      RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect("Wrong password")
       )
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(3)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
@@ -340,13 +334,13 @@ class PinEntryForSmsBypassViewModelTest {
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), any(), forRegistrationLock = false) } returns
-      NetworkController.RegistrationNetworkResult.Success(NetworkController.MasterKeyResponse(masterKey))
+      RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
-      NetworkController.RegistrationNetworkResult.Failure(
+      RequestResult.NonSuccess(
         NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified("Not found")
       )
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
     assertThat(emittedParentEvents).hasSize(2)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
@@ -381,7 +375,7 @@ class PinEntryForSmsBypassViewModelTest {
   fun `ToggleKeyboard toggles isAlphanumericKeyboard from false to true`() = runTest {
     val initialState = PinEntryState(isAlphanumericKeyboard = false)
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.ToggleKeyboard, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.ToggleKeyboard, parentEventEmitter, stateEmitter)
 
     assertThat(emittedStates.last().isAlphanumericKeyboard).isEqualTo(true)
   }
@@ -390,7 +384,7 @@ class PinEntryForSmsBypassViewModelTest {
   fun `ToggleKeyboard toggles isAlphanumericKeyboard from true to false`() = runTest {
     val initialState = PinEntryState(isAlphanumericKeyboard = true)
 
-    viewModel.applyEvent(initialState, PinEntryScreenEvents.ToggleKeyboard, stateEmitter, parentEventEmitter)
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.ToggleKeyboard, parentEventEmitter, stateEmitter)
 
     assertThat(emittedStates.last().isAlphanumericKeyboard).isEqualTo(false)
   }

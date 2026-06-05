@@ -1,6 +1,7 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
   id("com.android.test")
-  alias(libs.plugins.jetbrains.kotlin.android)
   alias(benchmarkLibs.plugins.baselineprofile)
 }
 
@@ -13,10 +14,6 @@ android {
   compileOptions {
     sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
     targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
-  }
-
-  kotlinOptions {
-    jvmTarget = libs.versions.kotlinJvmTarget.get()
   }
 
   defaultConfig {
@@ -52,6 +49,12 @@ android {
         }
       }
     }
+  }
+}
+
+kotlin {
+  compilerOptions {
+    jvmTarget = JvmTarget.fromTarget(libs.versions.kotlinJvmTarget.get())
   }
 }
 

@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.whispersystems.signalservice.api.kbs.PinValidityChecker;
-import org.whispersystems.signalservice.api.util.Preconditions;
+import org.signal.network.util.Preconditions;
 
 public final class CreateSvrPinViewModel extends ViewModel implements BaseSvrPinViewModel {
 

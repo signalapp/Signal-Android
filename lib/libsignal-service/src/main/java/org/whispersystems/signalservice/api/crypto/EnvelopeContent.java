@@ -153,7 +153,7 @@ public interface EnvelopeContent {
     }
 
     @Override
-    public OutgoingPushMessage processUnsealedSender(SignalSessionCipher sessionCipher, SignalProtocolAddress destination) {
+    public OutgoingPushMessage processUnsealedSender(SignalSessionCipher sessionCipher, SignalProtocolAddress destination) throws NoSessionException {
       String body                 = Base64.encodeWithPadding(plaintextContent.serialize());
       int    remoteRegistrationId = sessionCipher.getRemoteRegistrationId();
 

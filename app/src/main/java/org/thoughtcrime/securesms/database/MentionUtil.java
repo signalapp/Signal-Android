@@ -8,8 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Stream;
-import com.annimon.stream.function.Function;
+import java.util.function.Function;
 
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -117,13 +116,12 @@ public final class MentionUtil {
 
   public static @NonNull List<Mention> bodyRangeListToMentions(@Nullable BodyRangeList bodyRanges) {
     if (bodyRanges != null) {
-      return Stream.of(bodyRanges.ranges)
-                   .filter(bodyRange -> bodyRange.mentionUuid != null)
-                   .map(mention -> {
+      return bodyRanges.ranges.stream()
+                              .filter(bodyRange -> bodyRange.mentionUuid != null)
+                              .map(mention -> {
                      RecipientId id = Recipient.externalPush(ServiceId.parseOrThrow(mention.mentionUuid)).getId();
                      return new Mention(id, mention.start, mention.length);
-                   })
-                   .toList();
+                   }).collect(Collectors.toList());
     } else {
       return Collections.emptyList();
     }

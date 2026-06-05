@@ -7,12 +7,12 @@ import android.graphics.RectF;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.logging.Log;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Detects faces with the built in Android face detection.
@@ -50,7 +50,7 @@ final class AndroidFaceDetector implements FaceDetector {
       return Stream.of(faces)
                    .limit(foundFaces)
                    .map(AndroidFaceDetector::faceToFace)
-                   .toList();
+                   .collect(Collectors.toList());
     } finally {
       if (createBitmap) {
         bitmap.recycle();

@@ -17,14 +17,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chipRecycler">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <org.thoughtcrime.securesms.contacts.paged.ContactSearchView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:scrollbarThumbVertical="@drawable/contact_selection_scrollbar_thumb"
-            android:scrollbars="vertical"
-            tools:listitem="@layout/contact_search_item" />
+            android:layout_height="match_parent" />
 
         <TextView
             android:id="@android:id/empty"
@@ -36,36 +32,6 @@
             android:textSize="20sp" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <org.thoughtcrime.securesms.components.RecyclerViewFastScroller
-        android:id="@+id/fast_scroller"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="end"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipRecycler"
-        tools:visibility="visible" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/header_action"
-        style="@style/Widget.Signal.Button.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:ellipsize="end"
-        android:fontFamily="sans-serif-medium"
-        android:maxLines="1"
-        android:textColor="@color/signal_text_primary"
-        android:visibility="gone"
-        app:backgroundTint="@color/signal_colorSurface1"
-        app:iconTint="@color/signal_colorOnSurfaceVariant"
-        app:layout_constraintEnd_toEndOf="@id/swipe_refresh"
-        app:layout_constraintTop_toTopOf="@id/swipe_refresh"
-        tools:text="@string/ContactsCursorLoader_new_story"
-        tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chipRecycler"

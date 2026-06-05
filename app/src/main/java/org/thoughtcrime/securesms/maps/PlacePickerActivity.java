@@ -12,7 +12,6 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
@@ -29,6 +28,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 
@@ -72,6 +72,7 @@ public final class PlacePickerActivity extends AppCompatActivity {
   private Address                  currentAddress;
   private LatLng                   initialLocation;
   private LatLng                   currentLocation = new LatLng(0, 0);
+  private LatLng                   userLocation;
   private AddressLookup            addressLookup;
   private GoogleMap                googleMap;
 
@@ -102,7 +103,10 @@ public final class PlacePickerActivity extends AppCompatActivity {
         ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
     {
       new LocationRetriever(this, this, location -> {
-        setInitialLocation(new LatLng(location.getLatitude(), location.getLongitude()));
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        userLocation = latLng;
+        setInitialLocation(latLng);
+        drawUserLocationIfPossible();
       }, () -> {
         Log.w(TAG, "Failed to get location.");
         setInitialLocation(PRIME_MERIDIAN);
@@ -128,8 +132,6 @@ public final class PlacePickerActivity extends AppCompatActivity {
           Log.e(TAG, "Can't find style. Error: ", e);
         }
       }
-
-      enableMyLocationButtonIfHaveThePermission(googleMap);
 
       googleMap.setOnCameraMoveStartedListener(i -> {
         markerImage.animate()
@@ -169,6 +171,18 @@ public final class PlacePickerActivity extends AppCompatActivity {
     this.googleMap = googleMap;
 
     moveMapToInitialIfPossible();
+    drawUserLocationIfPossible();
+  }
+
+  private void drawUserLocationIfPossible() {
+    if (userLocation != null && googleMap != null) {
+      googleMap.addCircle(new CircleOptions()
+                              .center(userLocation)
+                              .radius(12)
+                              .strokeWidth(4f)
+                              .strokeColor(Color.WHITE)
+                              .fillColor(Color.parseColor("#4285F4")));
+    }
   }
 
   private void moveMapToInitialIfPossible() {
@@ -213,15 +227,6 @@ public final class PlacePickerActivity extends AppCompatActivity {
         Log.e(TAG, "Failed to generate snapshot", e);
       }
     });
-  }
-
-  private void enableMyLocationButtonIfHaveThePermission(GoogleMap googleMap) {
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
-        checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)   == PackageManager.PERMISSION_GRANTED ||
-        checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-    {
-      googleMap.setMyLocationEnabled(true);
-    }
   }
 
   private void lookupAddress(@Nullable LatLng target) {

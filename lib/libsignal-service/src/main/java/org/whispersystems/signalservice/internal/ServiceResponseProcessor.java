@@ -2,9 +2,9 @@ package org.whispersystems.signalservice.internal;
 
 
 import org.signal.libsignal.net.ChatServiceException;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
-import org.whispersystems.signalservice.api.util.Preconditions;
+import org.signal.network.util.Preconditions;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;

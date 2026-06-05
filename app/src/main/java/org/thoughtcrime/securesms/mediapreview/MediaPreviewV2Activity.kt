@@ -90,7 +90,7 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
     setContentView(R.layout.activity_mediapreview_v2)
 
     transitionImageView = findViewById(R.id.transition_image_view)
-    val cacheDrawable = MediaPreviewCache.drawable
+    val cacheDrawable = MediaPreviewCache.drawable?.let { RecycledBitmapGuardDrawable(it) }
     if (cacheDrawable != null && !args.skipSharedElementTransition) {
       val bounds = cacheDrawable.bounds
       val aspectRatio = bounds.width().toFloat() / bounds.height()

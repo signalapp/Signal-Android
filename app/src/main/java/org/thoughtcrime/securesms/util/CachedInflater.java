@@ -17,7 +17,7 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.Util;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
+import org.signal.core.util.concurrent.SerialExecutor;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -25,6 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executor;
+import org.signal.core.util.ConfigurationUtil;
 
 /**
  * A class that can be used to pre-cache layouts. Usage flow:

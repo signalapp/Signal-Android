@@ -5,9 +5,10 @@
 
 package org.signal.registration.sample.debug
 
+import org.signal.libsignal.net.BadRequestError
+import org.signal.libsignal.net.RequestResult
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.RegistrationLockResponse
-import org.signal.registration.NetworkController.RegistrationNetworkResult
 import org.signal.registration.NetworkController.SessionMetadata
 import org.signal.registration.NetworkController.SvrCredentials
 import org.signal.registration.NetworkController.ThirdPartyServiceErrorResponse
@@ -79,7 +80,7 @@ object DebugNetworkMockData {
 
   private fun discoverMethods(): List<MethodOverrideInfo> {
     return NetworkController::class.memberFunctions
-      .filter { it.returnType.isRegistrationNetworkResult() }
+      .filter { it.returnType.isRequestResult() }
       .map { function ->
         val methodName = function.name
         val (_, errorType) = extractResultTypes(function.returnType)
@@ -89,8 +90,8 @@ object DebugNetworkMockData {
       .sortedBy { it.methodName }
   }
 
-  private fun KType.isRegistrationNetworkResult(): Boolean {
-    return this.jvmErasure == RegistrationNetworkResult::class
+  private fun KType.isRequestResult(): Boolean {
+    return this.jvmErasure == RequestResult::class
   }
 
   private fun extractResultTypes(returnType: KType): Pair<KClass<*>?, KClass<*>?> {
@@ -118,12 +119,12 @@ object DebugNetworkMockData {
     // Always add NetworkError and ApplicationError
     options.add(
       ResultOption("network_error", "NetworkError") {
-        RegistrationNetworkResult.NetworkError(IOException("Mock network error"))
+        RequestResult.RetryableNetworkError(IOException("Mock network error"))
       }
     )
     options.add(
       ResultOption("application_error", "ApplicationError") {
-        RegistrationNetworkResult.ApplicationError(RuntimeException("Mock application error"))
+        RequestResult.ApplicationError(RuntimeException("Mock application error"))
       }
     )
 
@@ -137,7 +138,7 @@ object DebugNetworkMockData {
         val name = subclass.simpleName?.toSnakeCase() ?: return@mapNotNull null
         val displayName = subclass.simpleName ?: return@mapNotNull null
         ResultOption(name, displayName) {
-          RegistrationNetworkResult.Failure(instance)
+          RequestResult.NonSuccess(instance as BadRequestError)
         }
       } else {
         null

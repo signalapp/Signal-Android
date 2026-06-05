@@ -10,8 +10,8 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -58,7 +58,7 @@ public final class AddGroupDetailsViewModel extends ViewModel {
     sameGroups    = Transformations.switchMap(members, memberList -> {
       MutableLiveData<List<Recipient>> result = new MutableLiveData<>(Collections.emptyList());
       if (!memberList.isEmpty()) {
-        Set<RecipientId> memberIds = Stream.of(memberList)
+        Set<RecipientId> memberIds = memberList.stream()
                                           .map(member -> member.getMember().getId())
                                           .collect(Collectors.toSet());
         repository.getGroupsWithSameMembers(memberIds, result::postValue);
@@ -118,7 +118,7 @@ public final class AddGroupDetailsViewModel extends ViewModel {
 
   void create() {
     List<GroupMemberEntry.NewGroupCandidate> members           = Objects.requireNonNull(this.members.getValue());
-    Set<RecipientId>                         memberIds         = Stream.of(members).map(member -> member.getMember().getId()).collect(Collectors.toSet());
+    Set<RecipientId>                         memberIds         = members.stream().map(member -> member.getMember().getId()).collect(Collectors.toSet());
     byte[]                                   avatarBytes       = avatar.getValue();
     String                                   groupName         = name.getValue();
     Integer                                  disappearingTimer = disappearingMessagesTimer.getValue();
@@ -136,13 +136,13 @@ public final class AddGroupDetailsViewModel extends ViewModel {
   }
 
   private static @NonNull List<GroupMemberEntry.NewGroupCandidate> filterDeletedMembers(@NonNull List<GroupMemberEntry.NewGroupCandidate> members, @NonNull Set<RecipientId> deleted) {
-    return Stream.of(members)
-                 .filterNot(member -> deleted.contains(member.getMember().getId()))
-                 .toList();
+    return members.stream()
+                 .filter(member -> !deleted.contains(member.getMember().getId()))
+                 .collect(Collectors.toList());
   }
 
   private static boolean isAnyForcedSms(@NonNull List<GroupMemberEntry.NewGroupCandidate> members) {
-    return Stream.of(members)
+    return members.stream()
                  .anyMatch(member -> !member.getMember().isRegistered());
   }
 

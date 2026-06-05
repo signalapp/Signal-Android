@@ -36,6 +36,7 @@ import org.signal.core.ui.compose.CircularProgressWrapper
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.fonts.MonoTypeface
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.ui.restore.AccountEntropyPoolVerification
@@ -47,7 +48,7 @@ import org.thoughtcrime.securesms.registration.ui.shared.RegistrationScreen
 
 @Composable
 fun EnterLocalBackupKeyScreen(
-  backupKey: String,
+  enteredText: String,
   isRegistrationInProgress: Boolean,
   isBackupKeyValid: Boolean,
   aepValidationError: AccountEntropyPoolVerification.AEPValidationError?,
@@ -59,6 +60,8 @@ fun EnterLocalBackupKeyScreen(
   onRegistrationErrorDismiss: () -> Unit = {},
   onBackupKeyHelp: () -> Unit = {}
 ) {
+  TemporaryScreenshotSecurity.bind()
+
   val visualTransform = remember { BackupKeyVisualTransformation(chunkSize = 4) }
   val keyboardController = LocalSoftwareKeyboardController.current
   val focusRequester = remember { FocusRequester() }
@@ -92,7 +95,7 @@ fun EnterLocalBackupKeyScreen(
     }
   ) {
     TextField(
-      value = backupKey,
+      value = enteredText,
       onValueChange = { value ->
         onBackupKeyChanged(value)
         autoFillHelper.onValueChanged(value)
@@ -157,7 +160,7 @@ private fun ValidationErrorMessage(error: AccountEntropyPoolVerification.AEPVali
 private fun EnterLocalBackupKeyScreenPreview() {
   Previews.Preview {
     EnterLocalBackupKeyScreen(
-      backupKey = "",
+      enteredText = "",
       isRegistrationInProgress = false,
       isBackupKeyValid = false,
       aepValidationError = null,

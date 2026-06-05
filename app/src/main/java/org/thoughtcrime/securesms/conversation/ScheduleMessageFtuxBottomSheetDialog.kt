@@ -11,11 +11,11 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
+import org.signal.core.util.ServiceUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.ScheduleMessageFtuxBottomSheetBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
 
 class ScheduleMessageFtuxBottomSheetDialog : FixedRoundedCornerBottomSheetDialogFragment() {

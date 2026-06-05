@@ -22,10 +22,10 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.DoNotDisturbUtil;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.ringrtc.Camera;
+import org.thoughtcrime.securesms.ringrtc.OutgoingVideoSourceRouter;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
-import org.thoughtcrime.securesms.util.AppForegroundObserver;
+import org.signal.core.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
@@ -196,22 +196,22 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
       return currentState;
     }
 
-    Camera camera = currentState.getVideoState().requireCamera();
+    OutgoingVideoSourceRouter router = currentState.getVideoState().requireRouter();
 
-    if (enabled && !camera.isInitialized()) {
+    if (enabled && !router.isInitialized()) {
       Log.i(TAG, "handleSetIncomingRingingVanity(): initializing vanity camera");
       return WebRtcVideoUtil.initializeVanityCamera(currentState);
     } else if (enabled) {
       Log.i(TAG, "handleSetIncomingRingingVanity(): enabling vanity camera");
-      camera.setEnabled(true);
+      router.setEnabled(true);
     } else {
       Log.i(TAG, "handleSetIncomingRingingVanity(): disabling vanity camera");
-      camera.setEnabled(false);
+      router.setEnabled(false);
     }
 
     return currentState.builder()
                        .changeLocalDeviceState()
-                       .cameraState(camera.getCameraState())
+                       .cameraState(router.getCameraState())
                        .build();
   }
 
@@ -235,7 +235,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
 
     try {
       groupCall.setOutgoingAudioMuted(true);
-      groupCall.setOutgoingVideoMuted(true);
+      groupCall.setOutgoingVideoMuted(true, false);
       groupCall.setDataMode(NetworkUtil.getCallingDataMode(context, groupCall.getLocalDeviceState().getNetworkRoute().getLocalAdapterType()));
 
       Log.i(TAG, "Connecting to group call: " + currentState.getCallInfoState().getCallRecipient().getId());
@@ -259,8 +259,8 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
     webRtcInteractor.initializeAudioForCall(true);
 
     try {
-      groupCall.setOutgoingVideoSource(currentState.getVideoState().requireLocalSink(), currentState.getVideoState().requireCamera());
-      groupCall.setOutgoingVideoMuted(!answerWithVideo);
+      groupCall.setOutgoingVideoSource(currentState.getVideoState().requireLocalSink(), currentState.getVideoState().requireRouter());
+      groupCall.setOutgoingVideoMuted(!answerWithVideo, false);
       groupCall.setOutgoingAudioMuted(!currentState.getLocalDeviceState().isMicrophoneEnabled());
       groupCall.setDataMode(NetworkUtil.getCallingDataMode(context, groupCall.getLocalDeviceState().getNetworkRoute().getLocalAdapterType()));
 
@@ -270,11 +270,11 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
     }
 
     if (answerWithVideo) {
-      Camera camera = currentState.getVideoState().requireCamera();
-      camera.setEnabled(true);
+      OutgoingVideoSourceRouter router = currentState.getVideoState().requireRouter();
+      router.setEnabled(true);
       currentState = currentState.builder()
                                  .changeLocalDeviceState()
-                                 .cameraState(camera.getCameraState())
+                                 .cameraState(router.getCameraState())
                                  .build();
     }
 

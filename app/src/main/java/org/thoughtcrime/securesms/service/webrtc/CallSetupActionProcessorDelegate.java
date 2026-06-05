@@ -7,10 +7,10 @@ import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
-import org.thoughtcrime.securesms.ringrtc.Camera;
+import org.thoughtcrime.securesms.ringrtc.OutgoingVideoSourceRouter;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
-import org.thoughtcrime.securesms.util.AppForegroundObserver;
+import org.signal.core.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 
@@ -71,7 +71,7 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
     try {
       CallManager callManager = webRtcInteractor.getCallManager();
       callManager.setAudioEnable(currentState.getLocalDeviceState().isMicrophoneEnabled());
-      callManager.setVideoEnable(currentState.getLocalDeviceState().getCameraState().isEnabled());
+      callManager.setVideoEnable(currentState.getLocalDeviceState().getCameraState().isEnabled(), false);
     } catch (CallException e) {
       return callFailure(currentState, "Enabling audio/video failed: ", e);
     }
@@ -93,22 +93,22 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleSetEnableVideo(@NonNull WebRtcServiceState currentState, boolean enable) {
     Log.i(tag, "handleSetEnableVideo(): enable: " + enable);
 
-    Camera camera = currentState.getVideoState().requireCamera();
+    OutgoingVideoSourceRouter router = currentState.getVideoState().requireRouter();
 
-    if (camera.isInitialized()) {
-      camera.setEnabled(enable);
+    if (router.isInitialized()) {
+      router.setEnabled(enable);
     }
 
     currentState = currentState.builder()
                                .changeLocalDeviceState()
-                               .cameraState(camera.getCameraState())
+                               .cameraState(router.getCameraState())
                                .build();
 
     //noinspection SimplifiableBooleanExpression
-    if ((enable && camera.isInitialized()) || !enable) {
+    if ((enable && router.isInitialized()) || !enable) {
       try {
         CallManager callManager = webRtcInteractor.getCallManager();
-        callManager.setVideoEnable(enable);
+        callManager.setVideoEnable(enable, false);
       } catch (CallException e) {
         Log.w(tag, "Unable change video enabled state to " + enable, e);
       }

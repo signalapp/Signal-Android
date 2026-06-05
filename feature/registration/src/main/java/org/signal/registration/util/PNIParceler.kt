@@ -9,7 +9,7 @@ import android.os.Parcel
 import kotlinx.parcelize.Parceler
 import org.signal.core.models.ServiceId
 
-class PNIParceler : Parceler<ServiceId.PNI> {
+object PNIParceler : Parceler<ServiceId.PNI> {
   override fun ServiceId.PNI.write(parcel: Parcel, flags: Int) {
     parcel.writeByteArray(this.toByteArray())
   }

@@ -78,7 +78,7 @@ public class BlockedUsersFragment extends Fragment {
   }
 
   private void handleRecipientClicked(@NonNull Recipient recipient) {
-    BlockUnblockDialog.showUnblockFor(requireContext(), getViewLifecycleOwner().getLifecycle(), recipient, () -> {
+    BlockUnblockDialog.showUnblockFor(requireContext(), recipient, () -> {
       viewModel.unblock(recipient.getId());
     });
   }

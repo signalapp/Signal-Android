@@ -20,7 +20,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.MessageRequestResponseMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.signal.network.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;

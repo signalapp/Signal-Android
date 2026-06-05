@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
-import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
+import org.signal.core.util.concurrent.SerialExecutor;
 
 import java.util.Collection;
 import java.util.HashMap;

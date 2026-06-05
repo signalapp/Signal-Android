@@ -2,8 +2,6 @@ package org.thoughtcrime.securesms.payments.history;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.ComparatorCompat;
-
 import org.thoughtcrime.securesms.payments.Direction;
 import org.whispersystems.signalservice.api.payments.Money;
 
@@ -82,8 +80,7 @@ public final class TransactionReconstruction {
      * <p>
      * Then smaller first is just to show more important ones higher on a reversed list.
      */
-    public static final Comparator<Transaction> ORDER = ComparatorCompat.chain(RECEIVED_FIRST)
-                                                                        .thenComparing(ABSOLUTE_SIZE);
+    public static final Comparator<Transaction> ORDER = RECEIVED_FIRST.thenComparing(ABSOLUTE_SIZE);
 
     private final Money.MobileCoin value;
     private final Direction        direction;

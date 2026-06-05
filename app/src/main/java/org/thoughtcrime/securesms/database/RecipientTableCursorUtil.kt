@@ -10,6 +10,7 @@ import android.database.Cursor
 import com.google.protobuf.InvalidProtocolBufferException
 import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
+import org.signal.core.util.Bitmask
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalBlob
@@ -145,7 +146,6 @@ object RecipientTableCursorUtil {
       signalProfileAvatar = cursor.requireString(RecipientTable.PROFILE_AVATAR),
       profileAvatarFileDetails = AvatarHelper.getAvatarFileDetails(context, recipientId),
       profileSharing = cursor.requireBoolean(RecipientTable.PROFILE_SHARING),
-      lastProfileFetch = cursor.requireLong(RecipientTable.LAST_PROFILE_FETCH),
       notificationChannel = cursor.requireString(RecipientTable.NOTIFICATION_CHANNEL),
       sealedSenderAccessMode = RecipientTable.SealedSenderAccessMode.fromMode(cursor.requireInt(RecipientTable.SEALED_SENDER_MODE)),
       capabilities = readCapabilities(cursor),
@@ -175,7 +175,8 @@ object RecipientTableCursorUtil {
   fun readCapabilities(cursor: Cursor): RecipientRecord.Capabilities {
     val capabilities = cursor.requireLong(RecipientTable.CAPABILITIES)
     return RecipientRecord.Capabilities(
-      rawBits = capabilities
+      rawBits = capabilities,
+      usernameSyncMessages = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.USERNAME_SYNC_MESSAGES, RecipientTable.Capabilities.BIT_LENGTH).toInt())
     )
   }
 
@@ -210,7 +211,7 @@ object RecipientTableCursorUtil {
       identityKey = cursor.optionalString(RecipientTable.IDENTITY_KEY).map { Base64.decodeOrThrow(it) }.orElse(null),
       identityStatus = cursor.optionalInt(RecipientTable.IDENTITY_STATUS).map { VerifiedStatus.forState(it) }.orElse(VerifiedStatus.DEFAULT),
       isArchived = cursor.optionalBoolean(ThreadTable.ARCHIVED).orElse(false),
-      isForcedUnread = cursor.optionalInt(ThreadTable.READ).map { status: Int -> status == ThreadTable.ReadStatus.FORCED_UNREAD.serialize() }.orElse(false),
+      isForcedUnread = cursor.optionalInt(ThreadTable.READ).map { status: Int -> status == ThreadTable.ReadStatus.ForcedUnread.serialize() }.orElse(false),
       unregisteredTimestamp = cursor.optionalLong(RecipientTable.UNREGISTERED_TIMESTAMP).orElse(0),
       systemNickname = cursor.optionalString(RecipientTable.SYSTEM_NICKNAME).orElse(null),
       pniSignatureVerified = cursor.optionalBoolean(RecipientTable.PNI_SIGNATURE_VERIFIED).orElse(false)

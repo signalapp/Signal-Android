@@ -70,6 +70,9 @@ class WebRtcCallViewModel : ViewModel() {
   private val ephemeralState = MutableStateFlow<WebRtcEphemeralState?>(null)
   private val remoteMutesReported = MutableStateFlow(HashSet<CallParticipantId>())
 
+  private val _isLocalScreenSharing = MutableStateFlow(false)
+  val isLocalScreenSharing: StateFlow<Boolean> = _isLocalScreenSharing
+
   private val controlsWithFoldableState: Flow<WebRtcControls> = combine(foldableState, webRtcControls, this::updateControlsFoldableState)
   private val realWebRtcControls: StateFlow<WebRtcControls> = combine(isInPipMode, controlsWithFoldableState, this::getRealWebRtcControls)
     .stateIn(viewModelScope, SharingStarted.Eagerly, WebRtcControls.NONE)
@@ -100,6 +103,7 @@ class WebRtcCallViewModel : ViewModel() {
   private var callConnectedTime = -1L
   private var answerWithVideoAvailable = false
   private var previousParticipantList = Collections.emptyList<CallParticipant>()
+  private var hasSeededParticipantList = false
   private var switchOnFirstScreenShare = true
   private var showScreenShareTip = true
   private var hasShownAutoMuteToast = false
@@ -181,9 +185,10 @@ class WebRtcCallViewModel : ViewModel() {
       callParticipantsState,
       getWebRtcControls(),
       groupSize,
-      isAudioDeviceChangePending
-    ) { participantsState, controls, groupMemberCount, audioChangePending ->
-      CallControlsState.fromViewModelData(participantsState, controls, groupMemberCount, audioChangePending)
+      isAudioDeviceChangePending,
+      _isLocalScreenSharing
+    ) { participantsState, controls, groupMemberCount, audioChangePending, isLocalScreenSharing ->
+      CallControlsState.fromViewModelData(participantsState, controls, groupMemberCount, audioChangePending, isLocalScreenSharing)
     }
   }
 
@@ -263,7 +268,7 @@ class WebRtcCallViewModel : ViewModel() {
     ) {
       showScreenShareTip = false
       viewModelScope.launch {
-        events.emit(CallEvent.ShowSwipeToSpeakerHint)
+        events.emit(CallEvent.ShowSwipeToScreenShareHint)
       }
     }
 
@@ -319,6 +324,7 @@ class WebRtcCallViewModel : ViewModel() {
     val wasMicrophoneEnabled = internalMicrophoneEnabled.value
     internalMicrophoneEnabled.value = localParticipant.isMicrophoneEnabled
     isAudioDeviceChangePending.value = webRtcViewModel.isAudioDeviceChangePending
+    _isLocalScreenSharing.value = webRtcViewModel.isLocalScreenSharing
 
     if (internalMicrophoneEnabled.value) {
       remoteMutedBy.update { null }
@@ -347,12 +353,13 @@ class WebRtcCallViewModel : ViewModel() {
     }
 
     if (webRtcViewModel.groupState.isConnected) {
-      if (!containsPlaceholders(previousParticipantList)) {
+      if (!containsPlaceholders(previousParticipantList) && hasSeededParticipantList) {
         val update = CallParticipantListUpdate.computeDeltaUpdate(previousParticipantList, webRtcViewModel.remoteParticipants)
         viewModelScope.launch {
           callParticipantListUpdate.emit(update)
         }
       }
+      hasSeededParticipantList = true
 
       for (remote in webRtcViewModel.remoteParticipants) {
         if (remote.remotelyMutedBy == null) {

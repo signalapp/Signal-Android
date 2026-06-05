@@ -10,14 +10,14 @@ import androidx.annotation.Nullable;
 import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
 
-import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.PassphrasePromptActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicRegistrationTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
-public class CreateSvrPinActivity extends BaseActivity {
+public class CreateSvrPinActivity extends PassphraseRequiredActivity {
 
   public static final int REQUEST_NEW_PIN = 27698;
 
@@ -55,8 +55,8 @@ public class CreateSvrPinActivity extends BaseActivity {
   }
 
   @Override
-  public void onCreate(Bundle bundle) {
-    super.onCreate(bundle);
+  public void onCreate(Bundle bundle, boolean ready) {
+    super.onCreate(bundle, ready);
 
     if (KeyCachingService.isLocked(this)) {
       startActivity(getPromptPassphraseIntent());

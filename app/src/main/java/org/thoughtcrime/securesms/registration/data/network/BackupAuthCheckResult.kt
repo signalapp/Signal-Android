@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.registration.data.network
 
-import org.whispersystems.signalservice.api.NetworkResult
+import org.signal.network.NetworkResult
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.BackupV2AuthCheckResponse

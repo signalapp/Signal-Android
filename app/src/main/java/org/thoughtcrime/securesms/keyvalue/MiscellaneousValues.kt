@@ -32,6 +32,7 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val LAST_SERVER_TIME_OFFSET_UPDATE = "misc.last_server_time_offset_update"
     private const val NEEDS_USERNAME_RESTORE = "misc.needs_username_restore"
     private const val LAST_FORCED_PREKEY_REFRESH = "misc.last_forced_prekey_refresh"
+    private const val FORCE_PNI_SIGNED_PREKEY_ROTATION = "misc.force_pni_signed_prekey_rotation"
     private const val LAST_CDS_FOREGROUND_SYNC = "misc.last_cds_foreground_sync"
     private const val LINKED_DEVICE_LAST_ACTIVE_CHECK_TIME = "misc.linked_device.last_active_check_time"
     private const val LEAST_ACTIVE_LINKED_DEVICE = "misc.linked_device.least_active"
@@ -47,6 +48,12 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val HAS_KEY_TRANSPARENCY_FAILURE = "misc.has_key_transparency_failure"
     private const val HAS_SEEN_KEY_TRANSPARENCY_FAILURE = "misc.has_seen_key_transparency_failure"
     private const val CAMERA_FACING_FRONT = "misc.camera_facing_front"
+    private const val COMPLETED_COLLAPSED_EVENTS_MIGRATION = "misc.completed_collapsed_events_migration"
+    private const val CAPTCHA_LAST_VIEWED_AT = "misc.captcha_last_viewed_at"
+    private const val CALLING_ASSETS_VERSION = "misc.calling_assets_version"
+    private const val LAST_SYNC_MESSAGE_SEEN_TIME_MS = "misc.last_sync_message_seen_time"
+    private const val LAST_APPLIED_PNI_CHANGE_SERVER_TIMESTAMP = "misc.last_applied_pni_change_server_timestamp"
+    private const val LAST_MISSING_PLAY_SERVICES_FCM_VERIFICATION_TIME = "misc.last_missing_play_services_fcm_verification_time"
   }
 
   public override fun onFirstEverAppLaunch() {
@@ -70,6 +77,17 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
    * Get the last time we successfully completed a forced prekey refresh.
    */
   var lastForcedPreKeyRefresh by longValue(LAST_FORCED_PREKEY_REFRESH, 0)
+
+  /**
+   * Bypasses the timeout in [org.thoughtcrime.securesms.jobs.PreKeysSyncJob] since otherwise we can hit a race.
+   */
+  var forcePniSignedPreKeyRotation by booleanValue(FORCE_PNI_SIGNED_PREKEY_ROTATION, false)
+
+  /**
+   * Envelope serverTimestamp of the most recently applied PniChangeNumber sync. Used to reject
+   * stale replays — a sync with serverTimestamp <= this value is treated as a replay and ignored.
+   */
+  var lastAppliedPniChangeServerTimestamp by longValue(LAST_APPLIED_PNI_CHANGE_SERVER_TIMESTAMP, 0L)
 
   /**
    * The last time we completed a routine profile refresh.
@@ -101,6 +119,8 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
   val isChangeNumberLocked: Boolean by booleanValue(CHANGE_NUMBER_LOCK, false)
 
   var preferredMainActivityAnchorIndex: Int by integerValue(PREFERRED_MAIN_ACTIVITY_ANCHOR_INDEX, -1)
+
+  var lastSyncMessageSeenTimeMs: Long by longValue(LAST_SYNC_MESSAGE_SEEN_TIME_MS, 0L)
 
   fun lockChangeNumber() {
     putBoolean(CHANGE_NUMBER_LOCK, true)
@@ -315,4 +335,23 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
    * Whether or not the preferred camera direction is front-facing.
    */
   var isCameraFacingFront: Boolean by booleanValue(CAMERA_FACING_FRONT, true)
+
+  var completedCollapsedEventsMigration: Boolean by booleanValue(COMPLETED_COLLAPSED_EVENTS_MIGRATION, false)
+
+  /**
+   * The last time the user viewed the captcha/recaptcha proof activity.
+   */
+  var captchaLastViewedAt: Long by longValue(CAPTCHA_LAST_VIEWED_AT, 0)
+
+  /**
+   * The last successfully-downloaded calling assets version. Compared against
+   * [org.thoughtcrime.securesms.service.webrtc.CallingAssets.CURRENT_VERSION] to determine
+   * if new assets need to be fetched.
+   */
+  var callingAssetsVersion: Int by integerValue(CALLING_ASSETS_VERSION, 0)
+
+  /**
+   * The last time we tried to get an FCM token for a user reporting missing Play Services.
+   */
+  var lastMissingPlayServicesFcmVerificationTime: Long by longValue(LAST_MISSING_PLAY_SERVICES_FCM_VERIFICATION_TIME, 0)
 }

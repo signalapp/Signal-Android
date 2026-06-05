@@ -9,14 +9,14 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.signal.core.util.JsonUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -72,7 +72,7 @@ public class RecentEmojiPageModel implements EmojiPageModel {
   }
 
   @Override public List<Emoji> getDisplayEmoji() {
-    return Stream.of(getEmoji()).map(Emoji::new).toList();
+    return getEmoji().stream().map(Emoji::new).collect(Collectors.toList());
   }
 
   @Override public @Nullable Uri getSpriteUri() {

@@ -1,12 +1,14 @@
 package org.whispersystems.signalservice.internal.websocket;
 
+import org.signal.network.websocket.WebsocketResponse;
+
 
 
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.DeprecatedVersionException;
 import org.whispersystems.signalservice.api.push.exceptions.ExpectationFailedException;
-import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.MalformedResponseException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
@@ -20,7 +22,7 @@ import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.StaleDevices;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException;
-import org.whispersystems.signalservice.internal.util.JsonUtil;
+import org.signal.network.util.JsonUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.util.Collections;

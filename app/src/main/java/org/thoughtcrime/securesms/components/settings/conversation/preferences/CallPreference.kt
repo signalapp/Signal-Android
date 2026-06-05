@@ -7,11 +7,13 @@ import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.databinding.ConversationSettingsCallPreferenceItemBinding
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingViewHolder
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
+import org.thoughtcrime.securesms.util.visible
 
 /**
  * Renders a single call preference row when displaying call info.
@@ -41,6 +43,25 @@ object CallPreference {
       binding.callIcon.setImageResource(getCallIcon(model.call))
       binding.callType.text = getCallType(model.call)
       binding.callTime.text = getCallTime(model.record)
+      presentTimer(model.record)
+    }
+
+    private fun presentTimer(messageRecord: MessageRecord) {
+      if (messageRecord.expiresIn > 0) {
+        binding.callTimer.visible = true
+        binding.callTimer.setPercentComplete(0f)
+
+        if (messageRecord.expireStarted > 0) {
+          binding.callTimer.setExpirationTime(messageRecord.expireStarted, messageRecord.expiresIn)
+          binding.callTimer.startAnimation()
+
+          if (messageRecord.expireStarted + messageRecord.expiresIn <= System.currentTimeMillis()) {
+            AppDependencies.expiringMessageManager.checkSchedule()
+          }
+        }
+      } else {
+        binding.callTimer.visible = false
+      }
     }
 
     @DrawableRes
@@ -66,8 +87,8 @@ object CallPreference {
         MessageTypes.MISSED_VIDEO_CALL_TYPE -> getMissedCallString(true, call.event)
         MessageTypes.INCOMING_AUDIO_CALL_TYPE -> if (call.isDisplayedAsMissedCallInUi) getMissedCallString(false, call.event) else R.string.MessageRecord_incoming_voice_call
         MessageTypes.INCOMING_VIDEO_CALL_TYPE -> if (call.isDisplayedAsMissedCallInUi) getMissedCallString(true, call.event) else R.string.MessageRecord_incoming_video_call
-        MessageTypes.OUTGOING_AUDIO_CALL_TYPE -> R.string.MessageRecord_outgoing_voice_call
-        MessageTypes.OUTGOING_VIDEO_CALL_TYPE -> R.string.MessageRecord_outgoing_video_call
+        MessageTypes.OUTGOING_AUDIO_CALL_TYPE -> if (call.event == CallTable.Event.NOT_ACCEPTED) R.string.MessageRecord_unanswered_voice_call else R.string.MessageRecord_outgoing_voice_call
+        MessageTypes.OUTGOING_VIDEO_CALL_TYPE -> if (call.event == CallTable.Event.NOT_ACCEPTED) R.string.MessageRecord_unanswered_video_call else R.string.MessageRecord_outgoing_video_call
         MessageTypes.GROUP_CALL_TYPE -> when {
           call.isDisplayedAsMissedCallInUi -> if (call.event == CallTable.Event.MISSED_NOTIFICATION_PROFILE) R.string.CallPreference__missed_group_call_notification_profile else R.string.CallPreference__missed_group_call
           call.event == CallTable.Event.GENERIC_GROUP_CALL || call.event == CallTable.Event.JOINED -> R.string.CallPreference__group_call

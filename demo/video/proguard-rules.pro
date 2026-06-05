@@ -19,3 +19,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# SLF4J ships an optional StaticLoggerBinder that's only present when a binding is on the classpath.
+-dontwarn org.slf4j.impl.StaticLoggerBinder

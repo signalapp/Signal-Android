@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.update
 import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
+import org.signal.core.util.safeUnregisterReceiver
 import org.signal.core.util.throttleLatest
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.attachments.AttachmentId
@@ -30,8 +31,10 @@ import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.DiskSpaceNotLowConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
+import org.thoughtcrime.securesms.jobs.CheckRestoreMediaLeftJob
+import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
+import org.thoughtcrime.securesms.jobs.RestoreLocalAttachmentJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.safeUnregisterReceiver
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
@@ -157,6 +160,22 @@ object ArchiveRestoreProgress {
     update()
   }
 
+  /**
+   * Self-heal hook for restores that appear active (banner showing, media still remaining) but have no jobs left actually working on them.
+   */
+  fun checkForStalledRestore() {
+    SignalExecutors.BOUNDED.execute {
+      val stalled = SignalStore.backup.restoreState.isMediaRestoreOperation &&
+        SignalDatabase.attachments.getRemainingRestorableAttachmentSize() > 0L &&
+        AppDependencies.jobManager.areFactoriesEmpty(setOf(RestoreAttachmentJob.KEY, RestoreLocalAttachmentJob.KEY, CheckRestoreMediaLeftJob.KEY))
+
+      if (stalled) {
+        Log.w(TAG, "Detected a stalled media restore with no active jobs. Enqueueing a check job to recover.")
+        CheckRestoreMediaLeftJob.enqueueStalledRecoveryCheck()
+      }
+    }
+  }
+
   fun clearLocalRestoreDirectoryError() {
     SignalStore.backup.localRestoreDirectoryError = false
     update()
@@ -203,6 +222,7 @@ object ArchiveRestoreProgress {
           state.hasActivelyRestoredThisRun -> ArchiveRestoreProgressState.RestoreStatus.FINISHED
           else -> ArchiveRestoreProgressState.RestoreStatus.NONE
         }
+
         else -> {
           val availableBytes = SignalStore.backup.spaceAvailableOnDiskBytes
 

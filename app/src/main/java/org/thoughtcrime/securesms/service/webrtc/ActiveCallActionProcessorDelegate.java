@@ -86,7 +86,7 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
                                .build();
 
     if (currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_CONNECTED) {
-      boolean localVideoEnabled = currentState.getLocalDeviceState().getCameraState().isEnabled();
+      boolean localVideoEnabled = currentState.getLocalDeviceState().getCameraState().isEnabled() || currentState.getLocalDeviceState().isScreenSharing();
       webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, enable));
     }
 

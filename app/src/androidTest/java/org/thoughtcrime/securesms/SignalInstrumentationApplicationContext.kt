@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms
 
+import android.content.Context
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
@@ -11,6 +12,7 @@ import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDepende
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
 import org.thoughtcrime.securesms.logging.PersistentLogger
 import org.thoughtcrime.securesms.testing.InMemoryLogger
+import org.thoughtcrime.securesms.util.Environment
 
 /**
  * Application context for running instrumentation tests (aka androidTests).
@@ -18,6 +20,11 @@ import org.thoughtcrime.securesms.testing.InMemoryLogger
 class SignalInstrumentationApplicationContext : ApplicationContext() {
 
   val inMemoryLogger: InMemoryLogger = InMemoryLogger()
+
+  override fun attachBaseContext(base: Context?) {
+    Environment.IS_INSTRUMENTATION = true
+    super.attachBaseContext(base)
+  }
 
   override fun initializeAppDependencies() {
     val default = ApplicationDependencyProvider(this)

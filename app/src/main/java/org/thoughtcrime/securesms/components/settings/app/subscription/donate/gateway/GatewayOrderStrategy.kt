@@ -46,8 +46,7 @@ sealed interface GatewayOrderStrategy {
   }
 
   companion object {
-    fun getStrategy(): GatewayOrderStrategy {
-      val self = Recipient.self()
+    fun getStrategy(self: Recipient = Recipient.self()): GatewayOrderStrategy {
       val e164 = self.e164.orNull() ?: return Default
 
       return if (PhoneNumberUtil.getInstance().parse(e164, "").countryCode == 1) {

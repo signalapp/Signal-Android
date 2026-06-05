@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.api.push.exceptions;
 
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
+
 
 /**
  * Indicates that something about our request was wrong. Could be:

@@ -187,7 +187,7 @@ message CallMessage {
 
 message DataMessage {
   enum Flags {
-    END_SESSION = 1;
+    reserved /*END_SESSION*/ 1;
     EXPIRATION_TIMER_UPDATE = 2;
     PROFILE_KEY_UPDATE = 4;
     FORWARD = 8;
@@ -850,6 +850,8 @@ message SyncMessage {
     }
   }
 
+  message UsernameChange {}
+
   oneof content {
     Sent sent = 1;
     Contacts contacts = 2;
@@ -870,6 +872,7 @@ message SyncMessage {
     DeviceNameChange deviceNameChange = 23;
     AttachmentBackfillRequest attachmentBackfillRequest = 24;
     AttachmentBackfillResponse attachmentBackfillResponse = 25;
+    UsernameChange usernameChange = 26;
   }
 
   reserved /*groups*/ 3;

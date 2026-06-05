@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -27,6 +26,7 @@ import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
@@ -43,7 +43,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeDialogFragment
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
-import org.signal.core.ui.isSplitPane
+import org.signal.core.ui.rememberIsSplitPane
 import org.signal.core.util.BreakIteratorCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsViewModel
@@ -109,7 +109,7 @@ fun EditCallLinkNameScreen(
     onNavigationClick = {
       backPressedDispatcherOwner?.onBackPressedDispatcher?.onBackPressed()
     },
-    showNavigationIcon = !currentWindowAdaptiveInfo().windowSizeClass.isSplitPane()
+    showNavigationIcon = !LocalResources.current.rememberIsSplitPane()
   )
 }
 

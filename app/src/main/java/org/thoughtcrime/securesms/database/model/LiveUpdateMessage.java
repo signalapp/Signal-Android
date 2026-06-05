@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.thoughtcrime.securesms.fonts.SignalSymbols;
 import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
@@ -41,14 +41,13 @@ public final class LiveUpdateMessage {
       return LiveDataUtil.just(toSpannable(context, updateDescription, updateDescription.getStaticSpannable(), defaultTint, adjustPosition));
     }
 
-    List<LiveData<Recipient>> allMentionedRecipients = Stream.of(updateDescription.getMentioned())
-                                                             .map(uuid -> Recipient.resolved(RecipientId.from(uuid)).live().getLiveData())
-                                                             .toList();
+    List<LiveData<Recipient>> allMentionedRecipients = updateDescription.getMentioned().stream()
+                                                                        .map(uuid -> Recipient.live(RecipientId.from(uuid)).getLiveDataResolved()).collect(Collectors.toList());
 
     LiveData<?> mentionedRecipientChangeStream = allMentionedRecipients.isEmpty() ? LiveDataUtil.just(new Object())
                                                                                   : LiveDataUtil.merge(allMentionedRecipients);
 
-    return Transformations.map(mentionedRecipientChangeStream, event -> toSpannable(context, updateDescription, updateDescription.getSpannable(), defaultTint, adjustPosition));
+    return LiveDataUtil.mapAsync(mentionedRecipientChangeStream, event -> toSpannable(context, updateDescription, updateDescription.getSpannable(), defaultTint, adjustPosition));
   }
 
   /**

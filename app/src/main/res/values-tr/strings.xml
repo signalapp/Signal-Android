@@ -22,6 +22,7 @@
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
 
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
@@ -328,20 +329,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Gönder</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Son kişiler</string>
-    <string name="CameraContacts_signal_contacts">Signal kişileri</string>
-    <string name="CameraContacts_signal_groups">Signal grupları</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">En fazla %1$d sohbet ile paylaşabilirsin.</item>
-        <item quantity="other">En fazla %1$d sohbet ile paylaşabilirsin.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Signal alıcılarını seçin</string>
-    <string name="CameraContacts_no_signal_contacts">Hiç Signal kişiniz yok</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Kamera tuşunu yalnızca Signal kişilerine fotoğraf göndermek için kullanabilirsiniz. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Aradığınız kişiyi bulamadınız mı?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Signal\'e katılması için bir kişiyi davet edin</string>
     <string name="CameraContacts__menu_search">Ara</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -517,7 +504,7 @@
     <string name="ConversationActivity_unable_to_record_audio">Ses kaydedilemedi!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Bu gruba ileti gönderemezsiniz çünkü artık bu gruba üye değilsiniz.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">Mesaj gönderemezsin çünkü grup sonlandırıldı.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Yalnızca %1$s ileti gönderebilir</string>
     <string name="ConversationActivity_admins">yöneticiler</string>
     <string name="ConversationActivity_message_an_admin">Bir yöneticiye yazın</string>
@@ -714,10 +701,19 @@
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">%1$s kişisinden gelen bir mesaj isteğini kabul ettin. Bu bir hataysa, aşağıdan bir eylem seçebilirsin.</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">Dikkatle incele</string>
-    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s doğrulanmaz</string>
-    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
-    <string name="ConversationFragment_group_names_not_verified">%1$s doğrulanmaz</string>
+    <!-- Text shown in conversation header when in a message request state that the name is not verified -->
+    <string name="ConversationFragment_name_not_verified">Ad doğrulanmadı</string>
+    <!-- Label for official chat pill shown in the Note to Self conversation header -->
+    <string name="ConversationFragment_official_chat">Resmi sohbet</string>
+    <!-- Description shown in the Signal release notes conversation header -->
+    <string name="ConversationFragment_release_notes_description">Signal\'dan gelen tek resmi sohbet. Haberler ve sürüm notları ile güncel bilgilere eriş.</string>
+    <!-- Label shown in place of the input in the Signal release notes conversation -->
+    <string name="ConversationFragment_the_only_official_chat_from_signal">Signal\'dan gelen tek resmi sohbet</string>
+    <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
+    <plurals name="ConversationFragment_group_member_count">
+        <item quantity="one">%1$d Üye</item>
+        <item quantity="other">%1$d Üye</item>
+    </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">Profil adları</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
@@ -743,39 +739,57 @@
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Güvenlik İpuçları</string>
-    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Tanımadığın kişilerden gelen mesaj isteklerini kabul ederken dikkatli ol. Şunlara dikkat et:</string>
-    <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Bu isteği dikkatlice incele. Kişilerinden veya sohbet ettiğin kişilerden hiçbiri bu grupta değil. İşte dikkat etmen gereken birkaç şey:</string>
-    <!-- Button text to move to the previous tip-->
+    <!-- Button text to view more safety tips -->
+    <string name="SafetyTips_view_more">Daha fazlasını gör</string>
+    <!-- Content description for previous tip button -->
     <string name="SafetyTips_previous_tip">Önceki ipucu</string>
-    <!-- Button text to move to the next tip -->
+    <!-- Content description for next tip button -->
     <string name="SafetyTips_next_tip">Sonraki ipucu</string>
-    <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">Sahte isimler ve hesaplar</string>
-    <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal hiçbir zaman kayıt kodun veya PIN kodun için seninle iletişime geçmez. Başkalarını taklit eden isteklere karşı dikkatli ol. Profil adları, hesap sahibi tarafından seçilir ve doğrulanmaz.</string>
-    <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Kripto veya para dolandırıcılıkları</string>
-    <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">Tanımadığın biri kripto para (Bitcoin gibi) veya finansal bir fırsat hakkında mesaj gönderirse dikkatli ol; spam olması olasıdır.</string>
-    <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Belirsiz veya ilgisiz mesajlar</string>
-    <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spam gönderenler genelde seni cezbetmek için \"Merhaba\" gibi basit bir mesajla başlar. Yanıt verirsen, seninle daha fazla etkileşime geçebilirler.</string>
-    <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Bağlantı içeren mesajlar</string>
-    <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Tanımadığın kişilerden gelen ve web sitelerine bağlantılar içeren mesajlara dikkat et. Güvenmediğin kişilerin bağlantılarını asla ziyaret etme.</string>
-    <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Sahte işletmeler ve kurumlar</string>
-    <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Seninle iletişime geçen işletmelere veya devlet kurumlarına karşı dikkatli ol. Vergi daireleri, kuryeler ve daha fazlasını içeren mesajlar spam olabilir.</string>
+
+    <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
+    <string name="SafetyTips_summary_tip0_title">Signal\'dan gelen sohbetleri yanıtlama</string>
+    <!-- Summary tip 0 message -->
+    <string name="SafetyTips_summary_tip0_message">Signal hiçbir zaman kayıt kodun, PIN kodun veya kurtarma anahtarın için sana mesaj atmaz. Signal olduğunu iddia eden bir sohbeti hiçbir zaman yanıtlama.</string>
+    <!-- Summary tip 1 title: Review names and photos -->
+    <string name="SafetyTips_summary_tip1_title">Adları ve fotoğrafları incele</string>
+    <!-- Summary tip 1 message -->
+    <string name="SafetyTips_summary_tip1_message">\"Ad doğrulanmadı\" bildirimini ara. Herkes Signal\'da kendi profil adını ayarlar.</string>
+    <!-- Summary tip 2 title: Look out for scams -->
+    <string name="SafetyTips_summary_tip2_title">Dolandırıcılıklara dikkat et</string>
+    <!-- Summary tip 2 message -->
+    <string name="SafetyTips_summary_tip2_message">Yanıtlamanı sağlamaya çalışan belirsiz mesajlardan kaçın. Finansal ipuçları ve şüpheli web bağlantılarına karşı dikkatli ol.</string>
+
+    <!-- Detail tip 0 title -->
+    <string name="SafetyTips_detail_tip0_title">Signal\'dan gelen sohbetleri yanıtlama</string>
+    <!-- Detail tip 0 message -->
+    <string name="SafetyTips_detail_tip0_message">Signal hiçbir zaman kayıt kodun, PIN kodun veya kurtarma anahtarın için sana mesaj atmaz. Signal veya Signal Destek olduğunu iddia eden sohbetleri yanıtlama. Kötü niyetli kişiler hesabını ele geçirmek için sahte sohbetler başlatabilir.</string>
+    <!-- Detail tip 1 title -->
+    <string name="SafetyTips_detail_tip1_title">Adları ve fotoğrafları incele</string>
+    <!-- Detail tip 1 message -->
+    <string name="SafetyTips_detail_tip1_message">\"Ad doğrulanmadı\" bildirimini ara. Herkes Signal\'da kendi profil adını ve fotoğrafını ayarlar. Yeni bir isteğin kimden geldiğinden emin değilsen, isteği yok saymak daha güvenlidir.</string>
+    <!-- Detail tip 2 title -->
+    <string name="SafetyTips_detail_tip2_title">Belirsiz veya ilgisiz mesajlar</string>
+    <!-- Detail tip 2 message -->
+    <string name="SafetyTips_detail_tip2_message">Spam gönderenler genelde seni cezbetmek için \"Merhaba\" gibi basit bir mesajla başlar. Yanıt verirsen, seninle daha fazla etkileşime geçebilirler.</string>
+    <!-- Detail tip 3 title -->
+    <string name="SafetyTips_detail_tip3_title">Web bağlantılı mesajlar</string>
+    <!-- Detail tip 3 message -->
+    <string name="SafetyTips_detail_tip3_message">Tanımadığın kişilerden gelen ve web sitelerine bağlantılar içeren mesajlara karşı dikkatli ol. Güvenmediğin kişilerin bağlantılarını asla ziyaret etme.</string>
+    <!-- Detail tip 4 title -->
+    <string name="SafetyTips_detail_tip4_title">Kripto veya para dolandırıcılıkları</string>
+    <!-- Detail tip 4 message -->
+    <string name="SafetyTips_detail_tip4_message">Tanımadığın biri kripto para (Bitcoin gibi) veya finansal bir fırsat hakkında mesaj gönderirse dikkatli ol;—spam olması olasıdır.</string>
+    <!-- Detail tip 5 title -->
+    <string name="SafetyTips_detail_tip5_title">Sahte işletmeler</string>
+    <!-- Detail tip 5 message -->
+    <string name="SafetyTips_detail_tip5_message">Seninle iletişime geçen işletmelere veya devlet kurumlarına karşı dikkatli ol. Vergi daireleri, kuryeler ve daha fazlasını içeren mesajlar spam olabilir.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal\'deki %1$s, hesap sahipleri tarafından seçilir.</string>
-    <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profil adları doğrulanmaz</string>
+    <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal adları ve fotoğrafları doğrulayamaz</string>
+    <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal hiçbir zaman kayıt kodun, PIN kodun veya kurtarma anahtarın için seninle iletişime geçmez</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Başkalarını taklit eden hesaplara karşı dikkatli ol</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
@@ -1260,10 +1274,6 @@
     </plurals>
     <string name="PendingGroupJoinRequestsReminder_view">Görüntüle</string>
 
-    <!-- GcmRefreshJob -->
-    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kalıcı Signal haberleşme hatası!</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play Hizmetleri\'ne kaydolamadı. Signal iletileri ve aramaları devre dışı bırakıldı, lütfen Ayarlar &gt; Gelişmiş kısmından tekrar kaydolmayı deneyin.</string>
-
 
     <!-- GiphyActivity -->
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Tam çözünürlüklü GIF alınırken hata</string>
@@ -1683,7 +1693,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Bir ağ hatası ile karşılaşıldı.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Grup bağlantısı etkin değil</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Bu gruba katılınamadı.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Grup limitine ulaşıldı, gruba katılınamıyor</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1796,6 +1806,8 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Siliniyor</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">İletiler siliniyor…</string>
+    <!-- Format string showing current vs. total items being deleted, e.g. "12 of 207" -->
+    <string name="MediaOverviewActivity_Media_delete_progress_count">%1$d / %2$d</string>
     <string name="MediaOverviewActivity_Sort_by">Sıralama</string>
     <string name="MediaOverviewActivity_Newest">En yeni</string>
     <string name="MediaOverviewActivity_Oldest">En eski</string>
@@ -1832,6 +1844,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s kişisine gönderdikleriniz</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Bu medya henüz gönderilmedi.</string>
+    <string name="MediaOverviewActivity_jump_to_message">Mesaja git</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Daha sonra hatırlat</string>
@@ -1900,7 +1913,7 @@
     <string name="MessageRecord_you_updated_group">Grubu güncellediniz.</string>
     <string name="MessageRecord_the_group_was_updated">Grup güncellendi</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">Grup sonlandı.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s grubu sonlandırdı</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -1921,6 +1934,10 @@
     <string name="MessageRecord_declined_voice_call">Sesli arama reddedildi</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">Görüntülü arama reddedildi</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">Cevapsız sesli arama</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">Cevapsız görüntülü arama</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Bildirim profili açıkken cevapsız sesli arama</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2214,8 +2231,10 @@
     <string name="MessageRecord__payment_tombstone">Ödeme</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Spam olarak bildirildi</string>
-    <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">Mesaj isteğini kabul ettin</string>
+    <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
+    <string name="MessageRecord_you_accepted_s_message_request">%1$s kişisinin mesaj isteğini kabul ettin</string>
+    <!-- Update message shown in a group chat after accepting a group message request -->
+    <string name="MessageRecord_you_accepted_the_group_request">Grup isteğini kabul ettin</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">Bu kişiyi engelledin</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2239,7 +2258,7 @@
     <string name="MessageRequestBottomView_unblock">Engeli kaldır</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s adlı kişinin sana mesaj atmasına ve adını ve fotoğrafını görmesine izin veriyor musun? Bu kişiyi geçmişte kaldırmıştın.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s kişisinin sizinle yazışmasına ve adınızla fotoğrafınızı görmesine izin vermek istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Bu kişinin sana mesaj atmasına ve adınla fotoğrafının onunla paylaşılmasına izin verilsin mi? Sen kabul edene kadar mesajlarını gördüğünü bilmeyecekler.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s kişisinin seninle yazışmasına ve adınla fotoğrafını paylaşmasına izin vermek istiyor musun? Engelini kaldırana kadar hiçbir ileti almayacaksın.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2301,11 +2320,15 @@
         <item quantity="other">%1$d diğer</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Bildir…</string>
+    <string name="MessageRequestBottomView_report">Bildir</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">İstek kabul edilsin mi?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">İstekleri dikkatlice incele. Profil adları, hesap sahipleri tarafından seçilir ve doğrulanmaz.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">İstekleri dikkatlice incele. Profil adları, hesap sahibi tarafından seçilir ve doğrulanmaz.</string>
+    <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
+    <string name="MessageRequestBottomView_accept_request_body">Yalnızca güvendiğin insanların isteklerini kabul et. %1$s kayıt kodun, PIN kodun veya kurtarma anahtarın için sana mesaj atmaz.</string>
+    <!-- Bold substring used in accept request body: "Signal will never" -->
+    <string name="MessageRequestBottomView_signal_will_never">Signal hiçbir zaman</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">Gruba katılınsın mı?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -2661,6 +2684,10 @@
     <string name="CallOverflowPopupWindow__lower_hand">İndir</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">İptal</string>
+    <!-- A clickable button to share your screen in a call -->
+    <string name="CallOverflowPopupWindow__share_screen">Ekran paylaş</string>
+    <!-- A clickable button to stop sharing your screen in a call -->
+    <string name="CallOverflowPopupWindow__stop_screen_share">Paylaşmayı durdur</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Görüntüle</string>
 
@@ -2785,6 +2812,8 @@
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Ekran paylaşımını görmek için kaydırın</string>
+    <!-- Hint shown to teach the user they can swipe between the grid view and the active speaker view -->
+    <string name="CallToastPopupWindow__swipe_to_view_speaker">Konuşmacı görünümü için kaydır</string>
 
     <!-- ProxyBottomSheetFragment -->
     <string name="ProxyBottomSheetFragment_proxy_server">Vekil sunucu</string>
@@ -2832,8 +2861,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Bu numarayı kaydetmek için çok fazla girişimde bulundun. Lütfen %1$s içinde tekrar dene.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Hizmete bağlanılamadı. Lütfen ağ bağlantınızı kontrol edip tekrar deneyin.</string>
-    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">Signal, SMS sağlayıcısıyla ilgili sorunlar nedeniyle SMS kodu gönderemedi. Birkaç saat sonra tekrar dene.</string>
+    <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
+    <string name="RegistrationActivity_sms_provider_error">Numarana SMS gönderemiyoruz. Lütfen birkaç saat sonra tekrar dene.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Sana SMS yoluyla bir doğrulama kodu gönderemedik. Bunun yerine kodunu sesli aramayla almayı dene.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3066,6 +3095,10 @@
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
+    <!-- Title of dialog shown when debug log prefix generation is unusually slow -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_slow_log_title" translatable="false">Slow log generation</string> -->
+    <!-- Body of dialog shown when debug log prefix generation is unusually slow. %1$d is duration in seconds. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_slow_log_message" translatable="false">Generating the debug log header took %1$d seconds. We should figure out what\&apos;s slowing things down.</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3076,6 +3109,8 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Kayıt kilidi:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Grup güncellendi</string>
@@ -3637,7 +3672,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Ses eklentisi kaydını kilitle</string>
     <string name="conversation_activity__message_could_not_be_sent">İleti gönderilemedi. Bağlantınızı kontrol edip tekrar deneyiniz.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">Artık bu gruptan mesaj alıp gönderemezsin çünkü grup sonlandırıldı.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">Bu eylem kullanılamıyor çünkü grup sona erdi.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3690,28 +3725,28 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Bu kişiyi kaldırdın, ona tekrar mesaj göndermek kişiyi listene geri ekler.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Seçenekler</string>
+    <string name="ConversationUpdateItem_block_report">Engelle veya Bildir…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">Güncelle</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="one">%1$d group update</item>
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="one">%1$d grup güncellemesi</item>
+        <item quantity="other">%1$d grup güncellemesi</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="one">%1$d chat update</item>
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="one">%1$d sohbet güncellemesi</item>
+        <item quantity="other">%1$d sohbet güncellemesi</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="one">%1$d kaybolan mesaj zamanlayıcısı değişikliği · %2$s</item>
+        <item quantity="other">%1$d kaybolan mesaj zamanlayıcısı değişikliği · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="one">%1$d call event</item>
-        <item quantity="other">%1$d call events</item>
+        <item quantity="one">%1$d arama etkinliği</item>
+        <item quantity="other">%1$d arama etkinliği</item>
     </plurals>
 
     <!-- audio_view -->
@@ -3967,9 +4002,9 @@
     <!-- Bottom sheet body when encryption is auto-verified -->
     <string name="EncryptionVerifiedSheet__body_success">Telefon numarasıyla bağlandığın kişiler için Signal, anahtar şeffaflığı adı verilen bir süreç kullanarak bağlantının güvenli olup olmadığını otomatik olarak onaylayabilir. İlave güvenlik için önceki ekrandaki rakamları karşılaştırarak veya cihazındaki kodu tarayarak, uçtan uca şifrelemeyi manuel olarak doğrula.</string>
     <!-- Bottom sheet title when encryption is no longer auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Bu sohbet için otomatik doğrulama artık kullanılamıyor</string>
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Bu sohbet için otomatik doğrulama kullanılamıyor</string>
     <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
-    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal bu sohbet için şifrelemeyi artık otomatik olarak doğrulayamıyor. Bunun sebebi muhtemelen %1$s kişisinin telefon numarasını değiştirmiş olmasıdır. Önceki ekrandaki rakamları karşılaştırarak veya cihazındaki kodu tarayarak, uçtan uca şifrelemeyi manuel olarak doğrula.</string>
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal bu sohbet için şifrelemeyi otomatik olarak doğrulayamıyor. Bunun sebebi muhtemelen %1$s kişisinin telefon numarasını veya telefon numarası gizlilik ayarlarını değiştirmiş olmasıdır. Önceki ekrandaki numaraları karşılaştırarak veya karşı tarafın cihazındaki kodu tarayarak uçtan uca şifrelemeyi manuel olarak doğrula.</string>
     <!-- Bottom sheet title when encryption cannot be auto-verified -->
     <string name="EncryptionVerifiedSheet__title_unavailable">Bu sohbet için otomatik doğrulama kullanılamıyor</string>
     <!-- Bottom sheet body when encryption cannot be auto-verified -->
@@ -4323,7 +4358,7 @@
     <string name="preferences_data_and_storage__never">Asla</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Kablosuz ve mobil veri</string>
     <string name="preferences_data_and_storage__mobile_data_only">Yalnızca mobil veri</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Kötü ağ koşullarında daha az veri kullanmak arama kalitesini arttırabilir</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Kötü ağ koşullarında daha az veri kullanmak arama kalitesini arttırabilir.</string>
     <string name="preferences_notifications__in_chat_sounds">Sohbet içi sesler</string>
     <string name="preferences_notifications__show">Göster</string>
     <string name="preferences_notifications__ringtone">Zil sesi</string>
@@ -5678,6 +5713,33 @@
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">Tamam</string>
 
+    <!-- ChangeNumberPostRegistrationWaitSheet: title of the sheet shown when the user tries to change number too soon after registering -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__title">Numara değiştirilemiyor</string>
+    <!-- ChangeNumberPostRegistrationWaitSheet: explanation body shown above the wait-time line -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__body">Bu hesabı kısa süre önce oluşturduğun için telefon numarasını hemen değiştiremezsin. Kısa bir bekleme süresi hesabını korumana yardımcı olur.</string>
+    <!-- ChangeNumberPostRegistrationWaitSheet: remaining-wait line when wait is one hour or more, %1$d is the number of hours, rounded up -->
+    <plurals name="ChangeNumberPostRegistrationWaitSheet__try_again_in_hours">
+        <item quantity="one">%1$d saat sonra tekrar dene.</item>
+        <item quantity="other">%1$d saat sonra tekrar dene.</item>
+    </plurals>
+    <!-- ChangeNumberPostRegistrationWaitSheet: remaining-wait line when wait is under one hour, %1$d is the number of minutes, rounded up -->
+    <plurals name="ChangeNumberPostRegistrationWaitSheet__try_again_in_minutes">
+        <item quantity="one">%1$d dakika sonra tekrar dene.</item>
+        <item quantity="other">%1$d dakika sonra tekrar dene.</item>
+    </plurals>
+    <!-- ChangeNumberPostRegistrationWaitSheet: dismiss button -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__ok">TAMAM</string>
+    <!-- ChangeNumberEnterCodeFragment: rate-limit dialog message when retry-after is one hour or more, %1$d is hours rounded up -->
+    <plurals name="ChangeNumberEnterCodeFragment__too_many_attempts_try_again_in_hours">
+        <item quantity="one">Çok fazla deneme yaptın. Lütfen %1$d saat sonra tekrar dene.</item>
+        <item quantity="other">Çok fazla deneme yaptın. Lütfen %1$d saat sonra tekrar dene.</item>
+    </plurals>
+    <!-- ChangeNumberEnterCodeFragment: rate-limit dialog message when retry-after is under one hour, %1$d is minutes rounded up -->
+    <plurals name="ChangeNumberEnterCodeFragment__too_many_attempts_try_again_in_minutes">
+        <item quantity="one">Çok fazla deneme yaptın. Lütfen %1$d dakika sonra tekrar dene.</item>
+        <item quantity="other">Çok fazla deneme yaptın. Lütfen %1$d dakika sonra tekrar dene.</item>
+    </plurals>
+
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Numarayı Değiştir</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Eski numaranız</string>
@@ -5749,35 +5811,35 @@
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">Tüm sohbetlerinin makine tarafından okunabilir bir JSON kopyasını dışa aktar. Kaybolan mesajlar dışa aktarılmaz.</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Sohbet geçmişi dışa aktarımı açılamıyor</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
     <string name="ChatsSettingsFragment__authentication_failed">Kimlik doğrulama başarısız oldu.</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">Dışa aktarım iptal ediliyor…</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">Sohbet geçmişi dışa aktarılsın mı?</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">DİKKATLİ OL!</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">Bu dosyayı kimseyle PAYLAŞMA. Sohbet geçmişin cihazına kaydedilir ve cihazının izinlerine bağlı olarak diğer uygulamalar buna erişebilir. Medyayla dışa aktarım daha büyük bir dosya boyutuna sebep olacaktır.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">Medyayla dışa aktar</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">Medyasız dışa aktar</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">Klasör seç</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">Cihazının depolama alanında, sohbet geçmişinin depolanacağı bir klasör seç.</string>
     <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">Klasör seçin</string>
+    <string name="ChatExportDialogs__choose_folder_button">Klasör seç</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">Sohbet dışa aktarma tamamlandı</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">DİKKATLİ OL:</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">Sohbet dışa aktarma dosyanı nerede sakladığına dikkat et ve bunu kimseyle paylaşma. Cihazındaki diğer uygulamalar, bu uygulamaya cihaz izinlerine göre erişebilir.</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -5966,6 +6028,8 @@
     <string name="HelpSettingsFragment__support_center">Destek merkezi</string>
     <string name="HelpSettingsFragment__contact_us">Bizimle iletişime geçin</string>
     <string name="HelpSettingsFragment__version">Sürüm</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Panoya kopyalandı</string>
     <string name="HelpSettingsFragment__debug_log">Hata ayıklama günlüğü</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Lisanslar</string>
@@ -5980,11 +6044,19 @@
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Gönderilen içerik kalitesi</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Yüksek kalitede içerik göndermek daha fazla veri kullanacaktır.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Sesli mesajlar ve çıkartmalar (%1$s altı) her zaman otomatik olarak indirilir.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">Yüksek</string>
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Standart</string>
     <string name="DataAndStorageSettingsFragment__calls">Aramalar</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Arka planda bağlı kal</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Arka planda bağlı kalmak, pil tüketiminin artmasına neden olabilir. Çoğu cihaz için gerekli değildir. Bunu yalnızca bildirim sorunları yaşıyorsan etkinleştir.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Etkinleştir</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -6124,7 +6196,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">Grubu sonlandır</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">Bu grup sonlandırıldı.</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Sohbeti arşivle</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6476,9 +6548,9 @@
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Bağış onaylanamadı</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Aylık %1$s tutarındaki bağışın onaylanamadı. iDEAL ödemeni onaylamak için bankacılık uygulamanı kontrol et.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero">Aylık %1$s tutarındaki bağışın onaylanamadı. iDEAL | Wero ödemeni onaylamak için bankacılık uygulamanı kontrol et.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Tek seferlik %1$s bağışın onaylanamadı. iDEAL ödemeni onaylamak için bankacılık uygulamanı kontrol et.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero">Tek seferlik %1$s bağışın onaylanamadı. iDEAL | Wero ödemeni onaylamak için bankacılık uygulamanı kontrol et.</string>
 
     <string name="Boost__enter_custom_amount">Farklı Bir Miktar Gir</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -6607,7 +6679,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Bir bağlantı hatası nedeniyle bağışın gönderilemedi. Bağlantını kontrol edip tekrar dene.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">iDEAL bağışın işlenemedi. Başka bir ödeme yöntemi dene veya daha fazla bilgi için bankanla iletişime geç.</string>
+    <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">iDEAL | Wero bağışın işlenemedi. Başka bir ödeme yöntemi dene veya daha fazla bilgi için bankanla iletişime geç.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$s adına bağış</string>
@@ -6835,12 +6907,6 @@
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Aç</string>
 
-    <!-- Description shown for the Signal Release Notes channel -->
-    <string name="ReleaseNotes__signal_release_notes_and_news">Signal Yayın Notları &amp; Haberler</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">Bu, Signal\'in resmi ve tek sohbetidir.</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">Haberler ve sürüm notları ile güncel bilgilere eriş.</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">Bu, Signal\'in resmi ve tek sohbetidir</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
@@ -6941,7 +7007,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Bu hikaye senin ve hikayenin gönderildiği herkes için silinecek.</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">Sadece senden silinecektir çünkü grup sonlandırıldı.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Kaydedilemiyor</string>
 
@@ -7536,7 +7602,7 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Bağışın hâlâ işleniyor. Bağlantına bağlı olarak bu birkaç dakika sürebilir. Lütfen başka bir bağışta bulunmadan önce bu ödemenin tamamlanmasını bekle.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">iDEAL bağışın hâlâ işleniyor. Başka bir bağış yapmadan önce, ödemeni onaylamak için bankacılık uygulamanı kontrol et.</string>
+    <string name="DonateToSignalFragment__your_ideal_wero_payment_is_still_processing">iDEAL | Wero bağışın halen işleniyor. Başka bir bağış yapmadan önce, ödemeni onaylamak için bankacılık uygulamanı kontrol et.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Bağış miktarı çok yüksek</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -7566,11 +7632,13 @@
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Bir arkadaşın için bağış yap</string>
     <!-- Button label for paying with iDEAL -->
-    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+    <string name="GatewaySelectorBottomSheet__ideal_wero">iDEAL | Wero</string>
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Bağışı onaylamak için Signal\'den ayrılmak istiyor musun?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Onaylandıktan sonra, bağışının işlenmesini tamamlamak için Signal\'e dön.</string>
+    <!-- Dialog message shown when leaving Signal to complete a donation in an external app. Placeholder is the resolved app name (e.g. a banking app). -->
+    <string name="ExternalNavigationHelper__once_payment_confirmed_in_app">%1$s uygulamasına yönlendirileceksin. Onaylandıktan sonra, bağışının işlenmesini tamamlamak için Signal\'a dön.</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7632,7 +7700,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Bankanı seç</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">iDEAL ile bağışını onayla</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">iDEAL | Wero ile bağışını onayla</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Yinelenen bağışını ayarlamak için bankanın keseceği 0,01 €\'luk ücreti onaylamak üzere devam düğmesine dokun. Bu tutar otomatik olarak iade edilecek ve %1$s/ay bağışının hesabından çekilmesini sağlayacaktır.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7796,6 +7864,8 @@
     <string name="CallLogAdapter__incoming">Gelen</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">Giden</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">Cevaplanmadı</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Cevapsız</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -7880,6 +7950,8 @@
     <string name="CallLogFragment__get_started_by_calling_a_friend">Bir arkadaşını arayarak başla.</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">Oluşturduğun arama bağlantıları, artık bu bağlantılara sahip kişiler için çalışmayacaktır.</string>
+    <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">Artık bu grubun bir üyesi değilsin.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -8191,6 +8263,15 @@
     <string name="UseNewOnDeviceBackups__upgrade">Yükselt</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">Şimdi değil</string>
+
+    <!-- Title of a megaphone shown to prompt the user to open Signal on their primary device -->
+    <string name="InactivePrimary__title">Signal\'ı telefonunda aç</string>
+    <!-- Body of a megaphone shown to prompt the user to open Signal on their primary device -->
+    <string name="InactivePrimary__body">Hesabını aktif tutmak için, ana cihazında Signal\'ı aç.</string>
+    <!-- Button of a megaphone shown to prompt the user to open Signal on their primary device that will navigate to a support page -->
+    <string name="InactivePrimary__learn_more">Daha fazlasını öğren</string>
+    <!-- Button of a megaphone shown to prompt the user to open Signal on their primary device that will snooze the megaphone -->
+    <string name="InactivePrimary__got_it">Anladım</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
     <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Bir yedeklemeyi geri yüklemek için Signal\'ın yeni bir kopyasını yükle. Uygulamayı aç ve Yedeklemeyi geri yükle\'ye dokun, ardından bir yedekleme dosyası bul."</string>
@@ -8618,14 +8699,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">Grup sonlandırılıyor…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">Grup sonlandırılamadı. Bağlantını kontrol edip tekrar dene.</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Tekrar dene</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s Grubu Sonlandırdı</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Grup sonlandırıldı.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Artık bu gruptan mesaj alıp gönderemez veya arama yapıp alamazsın.</string>
 
@@ -8963,7 +9044,7 @@
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
-    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Signal\'in güvenli, uçtan uca şifreli depolama hizmetini kullanarak mesajlarını ve medyanı yedekle. Yeni bir telefon aldığında veya Signal\'i yeniden yüklediğinde asla mesaj kaybetme.</string>
+    <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Signal\'ın güvenli, uçtan uca şifreli depolama hizmetini kullanarak mesajlarını ve medyanı yedekle. Yeni bir telefon aldığında veya Signal\'ı yeniden yüklediğinde asla mesaj kaybetme.</string>
     <!-- Backups feature label for e2e encryption -->
     <string name="MessageBackupsEducationScreen__end_to_end_encrypted">Uçtan Uca Şifreli</string>
     <!-- Backups feature label for informing the user that this feature is completely optional -->
@@ -8997,7 +9078,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Bu, cihazda kurtarma anahtarınla aynıdır.</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">Bu, Signal Güvenli Yedeklemeler kurtarma anahtarınla aynıdır.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Bu tuşu şunun için kullan:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9312,11 +9393,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Destekle iletişime geç</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Cihazda yedeklemeler açılsın mı?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Cihazda yedeklemeleri kullanmaya devam etmek için bu hesap için özelliği etkinleştirmen ve yeni kurtarma anahtarını kaydetmen gerekir. Bu işlemi her zaman Ayarlar &gt; Yedeklemeler bölümünden gerçekleştirebilirsin.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Cihazda yedeklemeleri kullanmaya devam etmek istiyorsan, bu hesap için özelliği etkinleştirmen gerekir. Bu işlemi her zaman Ayarlar &gt; Yedeklemeler bölümünden gerçekleştirebilirsin.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Şimdi aç</string>
@@ -9802,13 +9883,43 @@
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
-    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__title">Yedekleme geri yüklenemiyor</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">Bir hata oluştu ve yedeklemen geri yüklenemiyor. Bunun sebebi geri yükleme yapılırken yedekleme klasörünün cihazına taşınması olabilir.</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Tekrar denemek için Signal\'ı bu cihazdan kaldırıp tekrar yükle ve \"Geri yükle veya aktar\"ı seç.</string>
+
+    <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
+    <string name="VerificationCodeRequestedBottomSheet__title">Bir doğrulama kodu istendi</string>
+    <!-- First paragraph of the body of the verification code requested sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__body_1">Doğrulama kodunu kimseye verme. Signal hiçbir zaman sana mesaj göndermez. Signal gibi davranan birinden mesaj almışsan, dolandırıcılık mesajıdır.</string>
+    <!-- Second paragraph of the body of the verification code requested sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__body_2">Kodu kendin istediysen, bu mesajı güvenle yok sayabilirsin.</string>
+    <!-- Button on the verification code requested sheet that opens the safety tips screen -->
+    <string name="VerificationCodeRequestedBottomSheet__safety_tips">Güvenlik ipuçları</string>
+    <!-- Button on the verification code requested sheet that dismisses the sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__ok">TAMAM</string>
+    <!-- Subtitle on the verification code requested sheet showing the time the code was requested followed by the relative day. %1$s is the time (e.g. "3:25 PM"), %2$s is the relative day (e.g. "Today", "Yesterday", "Jan 15") -->
+    <string name="VerificationCodeRequestedBottomSheet__time_with_day">%1$s %2$s</string>
+
+    <!-- Title of the safety tips screen within the verification code requested sheet -->
+    <string name="SafetyTipsBottomSheet__title">Güvenlik İpuçları</string>
+    <!-- Title of the first safety tip: don\'t respond to chats claiming to be Signal -->
+    <string name="SafetyTipsBottomSheet__tip_1_title">Signal\'dan gelen sohbetleri yanıtlama</string>
+    <!-- Body of the first safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_1_body">Signal hiçbir zaman kayıt kodun, PIN kodun veya kurtarma anahtarın için sana mesaj atmaz. Signal olduğunu iddia eden bir sohbeti hiçbir zaman yanıtlama.</string>
+    <!-- Title of the second safety tip: keep your verification code safe -->
+    <string name="SafetyTipsBottomSheet__tip_2_title">Doğrulama kodunu güvende tut</string>
+    <!-- Body of the second safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_2_body">İstemediğin bir doğrulama kodu aldıysan, birisi hesabına erişmeye çalışıyor olabilir. Kodunu paylaşma.</string>
+    <!-- Title of the third safety tip: enable registration lock -->
+    <string name="SafetyTipsBottomSheet__tip_3_title">Hesap ayarlarından kaydolma kilidini aç</string>
+    <!-- Body of the third safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_3_body">Signal\'da kaydolurken, doğrulama koduna ilaveten Signal PIN\'ini de isteyerek hesabını koru.</string>
+    <!-- Button on the safety tips screen that opens account settings -->
+    <string name="SafetyTipsBottomSheet__open_account_settings">Hesap ayarlarını aç</string>
 
     <!-- EOF -->
 </resources>

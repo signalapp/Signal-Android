@@ -10,11 +10,29 @@ import java.nio.charset.StandardCharsets
 
 object StringUtil {
   private val WHITESPACE: Set<Char> = setOf(
+    '\u00AD', // soft hyphen
+    '\u034F', // combining grapheme joiner
+    '\u061C', // arabic letter mark
+    '\u115F', // hangul choseong filler
+    '\u1160', // hangul jungseong filler
+    '\u17B4', // khmer vowel inherent aq
+    '\u17B5', // khmer vowel inherent aa
+    '\u180E', // mongolian vowel separator
+    '\u200B', // zero-width space
+    '\u200C', // zero-width non-joiner
+    '\u200D', // zero-width joiner
     '\u200E', // left-to-right mark
     '\u200F', // right-to-left mark
     '\u2007', // figure space
-    '\u200B', // zero-width space
-    '\u2800' // braille blank
+    '\u2060', // word joiner
+    '\u2061', // function application
+    '\u2062', // invisible times
+    '\u2063', // invisible separator
+    '\u2064', // invisible plus
+    '\u2800', // braille pattern blank
+    '\u3164', // hangul filler
+    '\uFEFF', // zero-width no-break space (BOM)
+    '\uFFA0' // halfwidth hangul filler
   )
 
   /**
@@ -133,10 +151,11 @@ object StringUtil {
 
   /**
    * @return True if the character is invisible or whitespace. Accounts for various unicode
-   * whitespace characters.
+   * whitespace characters including format characters, non-breaking spaces, and other
+   * invisible code points.
    */
   fun isVisuallyEmpty(c: Char): Boolean {
-    return Character.isWhitespace(c) || WHITESPACE.contains(c)
+    return Character.isWhitespace(c) || Character.isSpaceChar(c) || Character.getType(c) == Character.FORMAT.toInt() || WHITESPACE.contains(c)
   }
 
   /**

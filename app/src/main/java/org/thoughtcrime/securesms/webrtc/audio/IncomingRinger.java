@@ -17,7 +17,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.RingtoneUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.signal.core.util.ServiceUtil;
 
 import java.io.IOException;
 

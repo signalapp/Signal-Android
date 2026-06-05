@@ -123,7 +123,7 @@ fun DatabaseAttachment.createArchiveAttachmentPointer(useArchiveCdn: Boolean): S
         throw InvalidAttachmentException("empty content id")
       }
 
-      SignalServiceAttachmentRemoteId.from(remoteLocation) to cdn.cdnNumber
+      SignalServiceAttachmentRemoteId.from(remoteLocation, cdn.cdnNumber) to cdn.cdnNumber
     }
 
     val key = Base64.decode(remoteKey)

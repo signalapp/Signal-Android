@@ -49,7 +49,9 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.launch
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.permissions.Permissions
+import org.signal.core.util.Debouncer
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.ServiceUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.dp
 import org.signal.core.util.getParcelableCompat
@@ -92,12 +94,11 @@ import org.thoughtcrime.securesms.stories.viewer.reply.tabs.StoryViewsAndReplies
 import org.thoughtcrime.securesms.stories.viewer.views.StoryViewsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.LinkUtil
+import org.thoughtcrime.securesms.util.Linkification
 import org.thoughtcrime.securesms.util.LongClickCopySpan
 import org.thoughtcrime.securesms.util.LongClickMovementMethod
 import org.thoughtcrime.securesms.util.Projection
-import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
@@ -993,20 +994,16 @@ class StoryViewerPageFragment :
   }
 
   fun linkifyUrlLinks(spannable: Spannable) {
-    val hasLinks = LinkifyCompat.addLinks(spannable, CAPTION_LINK_PATTERN)
+    LinkifyCompat.addLinks(spannable, Linkify.EMAIL_ADDRESSES or Linkify.PHONE_NUMBERS)
+    Linkification.applyWebUrlSpans(spannable)
 
-    if (hasLinks) {
-      spannable.getSpans(0, spannable.length, URLSpan::class.java)
-        .filterNot { url -> LinkUtil.isLegalUrl(url.url) }
-        .forEach { spannable.removeSpan(it) }
-
-      val urlSpans = spannable.getSpans(0, spannable.length, URLSpan::class.java)
-
-      for (urlSpan in urlSpans) {
-        val start = spannable.getSpanStart(urlSpan)
-        val end = spannable.getSpanEnd(urlSpan)
-        val span = LongClickCopySpan(urlSpan.url)
-        spannable.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    spannable.getSpans(0, spannable.length, URLSpan::class.java).forEach { urlSpan ->
+      val url = urlSpan.url
+      val start = spannable.getSpanStart(urlSpan)
+      val end = spannable.getSpanEnd(urlSpan)
+      spannable.removeSpan(urlSpan)
+      if (LinkUtil.isLegalUrl(url)) {
+        spannable.setSpan(LongClickCopySpan(url), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
       }
     }
   }
@@ -1315,7 +1312,6 @@ class StoryViewerPageFragment :
     private val ONBOARDING_DURATION = TimeUnit.SECONDS.toMillis(10)
     private const val SMALL_CAPTION_TEXT_MAX_LENGTH = 280
     private const val SMALL_CAPTION_TEXT_MAX_LINES = 5
-    private const val CAPTION_LINK_PATTERN = Linkify.WEB_URLS or Linkify.EMAIL_ADDRESSES or Linkify.PHONE_NUMBERS
 
     private const val ARGS = "args"
 

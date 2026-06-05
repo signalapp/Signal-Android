@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.database
 
 import android.content.Context
 import android.database.Cursor
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.Util
 import org.signal.core.util.delete
 import org.signal.core.util.insertInto
@@ -81,6 +82,23 @@ class AttachmentMetadataTable(context: Context, databaseHelper: SignalDatabase) 
     writableDatabase
       .delete(TABLE_NAME)
       .where("$ID NOT IN (SELECT DISTINCT ${AttachmentTable.METADATA_ID} FROM ${AttachmentTable.TABLE_NAME})")
+      .run()
+  }
+
+  fun cleanupById(ids: Collection<Long>) {
+    if (ids.isEmpty()) {
+      return
+    }
+
+    val idClause = SqlUtil.buildSingleCollectionQuery(ID, ids)
+    val attachmentReferenceClause = SqlUtil.buildSingleCollectionQuery(AttachmentTable.METADATA_ID, ids)
+
+    writableDatabase
+      .delete(TABLE_NAME)
+      .where(
+        "${idClause.where} AND $ID NOT IN (SELECT ${AttachmentTable.METADATA_ID} FROM ${AttachmentTable.TABLE_NAME} WHERE ${attachmentReferenceClause.where})",
+        idClause.whereArgs + attachmentReferenceClause.whereArgs
+      )
       .run()
   }
 

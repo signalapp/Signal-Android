@@ -13,6 +13,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SettingsValues.Theme;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.signal.core.util.ConfigurationUtil;
 
 public class DynamicTheme {
 

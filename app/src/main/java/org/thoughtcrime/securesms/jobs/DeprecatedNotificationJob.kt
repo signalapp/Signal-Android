@@ -9,6 +9,7 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.net.Uri
 import androidx.core.app.NotificationCompat
+import org.signal.core.util.ServiceUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
-import org.thoughtcrime.securesms.util.ServiceUtil
 import kotlin.time.Duration.Companion.days
 
 /**

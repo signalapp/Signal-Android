@@ -8,7 +8,7 @@ package org.whispersystems.signalservice.api.push;
 
 import org.signal.core.models.ServiceId;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
-import org.whispersystems.signalservice.api.util.Preconditions;
+import org.signal.network.util.Preconditions;
 import org.signal.core.util.UuidUtil;
 
 import java.util.Objects;

@@ -12,16 +12,16 @@ import org.signal.libsignal.net.MultiRecipientSendAuthorization
 import org.signal.libsignal.net.MultiRecipientSendFailure
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.UnauthMessagesService
-import org.signal.libsignal.net.getOrError
-import org.whispersystems.signalservice.api.NetworkResult
+import org.signal.network.NetworkResult
+import org.signal.network.websocket.WebSocketRequestMessage
+import org.signal.network.websocket.WebsocketResponse
+import org.signal.network.websocket.post
+import org.signal.network.websocket.put
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
+import org.whispersystems.signalservice.api.fromWebSocketRequest
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
-import org.whispersystems.signalservice.internal.post
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList
 import org.whispersystems.signalservice.internal.push.SendMessageResponse
-import org.whispersystems.signalservice.internal.put
-import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
-import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
 
 /**
  * Collection of endpoints for operating on messages.
@@ -79,9 +79,9 @@ class MessageApi(
    */
   fun sendGroupMessage(body: ByteArray, auth: MultiRecipientSendAuthorization, timestamp: Long, online: Boolean, urgent: Boolean): RequestResult<MultiRecipientMessageResponse, MultiRecipientSendFailure> {
     return runBlocking {
-      unauthWebSocket.runCatchingWithUnauthChatConnection { chatConnection ->
+      unauthWebSocket.runCatchingWithChatConnection { chatConnection ->
         UnauthMessagesService(chatConnection).sendMultiRecipientMessage(body, timestamp, auth, online, urgent)
-      }.getOrError()
+      }
     }
   }
 

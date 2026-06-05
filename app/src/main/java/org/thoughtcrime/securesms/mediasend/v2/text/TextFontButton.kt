@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.mediasend.v2.text
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
+import org.signal.core.util.next
 import org.thoughtcrime.securesms.fonts.TextFont
-import org.thoughtcrime.securesms.util.next
 
 typealias OnTextFontChanged = (TextFont) -> Unit
 

@@ -5,7 +5,7 @@ import androidx.annotation.VisibleForTesting
 import org.thoughtcrime.securesms.contacts.HeaderAction
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.GroupRecord
-import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.database.model.ThreadWithRecipient
 import org.thoughtcrime.securesms.groups.GroupsInCommonSummary
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.search.MessageResult
@@ -49,8 +49,8 @@ sealed class ContactSearchData(val contactSearchKey: ContactSearchKey) {
    */
   data class Thread(
     val query: String,
-    val threadRecord: ThreadRecord
-  ) : ContactSearchData(ContactSearchKey.Thread(threadRecord.threadId))
+    val threadWithRecipient: ThreadWithRecipient
+  ) : ContactSearchData(ContactSearchKey.Thread(threadWithRecipient.threadId))
 
   /**
    * A row displaying a group which has members that match the given query.

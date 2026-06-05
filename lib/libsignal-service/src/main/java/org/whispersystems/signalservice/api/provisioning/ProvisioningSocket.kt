@@ -25,6 +25,9 @@ import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.network.websocket.WebSocketMessage
+import org.signal.network.websocket.WebSocketRequestMessage
+import org.signal.network.websocket.WebSocketResponseMessage
 import org.signal.registration.proto.RegistrationProvisionEnvelope
 import org.whispersystems.signalservice.api.buildOkHttpClient
 import org.whispersystems.signalservice.api.chooseUrl
@@ -32,9 +35,6 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 import org.whispersystems.signalservice.internal.crypto.SecondaryProvisioningCipher
 import org.whispersystems.signalservice.internal.push.ProvisionEnvelope
 import org.whispersystems.signalservice.internal.push.ProvisioningAddress
-import org.whispersystems.signalservice.internal.websocket.WebSocketMessage
-import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
-import org.whispersystems.signalservice.internal.websocket.WebSocketResponseMessage
 import java.io.Closeable
 import java.io.IOException
 import java.net.SocketTimeoutException
@@ -179,17 +179,19 @@ class ProvisioningSocket<T> private constructor(
     override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
       val message: WebSocketMessage = WebSocketMessage.ADAPTER.decode(bytes)
 
-      if (message.response != null && message.response.id == lastKeepAliveId) {
+      val response = message.response
+      if (response != null && response.id == lastKeepAliveId) {
         Log.d(TAG, "[$id] [onMessage] Keep alive received")
         return
       }
 
-      if (message.request == null) {
+      val request = message.request
+      if (request == null) {
         Log.w(TAG, "[$id] [onMessage] Received null request")
         return
       }
 
-      val success = webSocket.send(message.request.toResponse().encode().toByteString())
+      val success = webSocket.send(request.toResponse().encode().toByteString())
 
       if (!success) {
         Log.w(TAG, "[$id] [onMessage] Failed to send response")
@@ -199,10 +201,11 @@ class ProvisioningSocket<T> private constructor(
 
       Log.d(TAG, "[$id] [onMessage] Processing request")
 
-      if (message.request.verb == "PUT" && message.request.body != null) {
-        when (message.request.path) {
+      val body = request.body
+      if (request.verb == "PUT" && body != null) {
+        when (request.path) {
           "/v1/address" -> {
-            val address = ProvisioningAddress.ADAPTER.decode(message.request.body).address
+            val address = ProvisioningAddress.ADAPTER.decode(body).address
             if (address != null) {
               provisioningUrlDeferral.complete(generateProvisioningUrl(address))
             } else {
@@ -212,8 +215,8 @@ class ProvisioningSocket<T> private constructor(
 
           "/v1/message" -> {
             when (mode) {
-              Mode.REREG -> provisioningMessageDeferral.complete(cipher.decrypt(RegistrationProvisionEnvelope.ADAPTER.decode(message.request.body)) as SecondaryProvisioningCipher.ProvisioningDecryptResult<T>)
-              Mode.LINK -> provisioningMessageDeferral.complete(cipher.decrypt(ProvisionEnvelope.ADAPTER.decode(message.request.body)) as SecondaryProvisioningCipher.ProvisioningDecryptResult<T>)
+              Mode.REREG -> provisioningMessageDeferral.complete(cipher.decrypt(RegistrationProvisionEnvelope.ADAPTER.decode(body)) as SecondaryProvisioningCipher.ProvisioningDecryptResult<T>)
+              Mode.LINK -> provisioningMessageDeferral.complete(cipher.decrypt(ProvisionEnvelope.ADAPTER.decode(body)) as SecondaryProvisioningCipher.ProvisioningDecryptResult<T>)
             }
           }
 

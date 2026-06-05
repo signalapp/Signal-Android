@@ -8,7 +8,9 @@ package org.thoughtcrime.securesms.components.voice
 import android.content.Context
 import android.media.AudioManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Process
 import android.widget.Toast
 import androidx.annotation.MainThread
 import androidx.annotation.OptIn
@@ -94,6 +96,10 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
   private var latestUri = Uri.EMPTY
 
   override fun onConnect(session: MediaSession, controller: MediaSession.ControllerInfo): MediaSession.ConnectionResult {
+    if (Build.VERSION.SDK_INT >= 28 && controller.uid != Process.myUid()) {
+      Log.w(TAG, "Rejecting connection from external caller: ${controller.packageName}")
+      return MediaSession.ConnectionResult.reject()
+    }
     return MediaSession.ConnectionResult.accept(CUSTOM_COMMANDS, SUPPORTED_ACTIONS)
   }
 
@@ -207,6 +213,8 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
       player.setAudioAttributes(attributes, newStreamType == AudioManager.STREAM_MUSIC)
       if (newStreamType == AudioManager.STREAM_VOICE_CALL) {
         player.playWhenReady = true
+      } else {
+        Log.i(TAG, "Audio stream set to $newStreamType. Not playing when ready.")
       }
     }
     return Futures.immediateFuture(SessionResult(SessionResult.RESULT_SUCCESS))

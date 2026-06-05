@@ -2,25 +2,40 @@ package org.thoughtcrime.securesms.linkdevice
 
 import android.content.Context
 import android.widget.Toast
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import org.signal.camera.CameraCaptureMode
+import org.signal.camera.CameraScreen
+import org.signal.camera.CameraScreenEvents
+import org.signal.camera.CameraScreenState
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
-import org.signal.qr.QrScannerView
+import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.LinkDeviceResult
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig
-import org.thoughtcrime.securesms.qr.QrScanScreens
+import org.thoughtcrime.securesms.qr.QrCrosshair
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import java.util.concurrent.TimeUnit
 
 /**
  * A screen that allows you to scan a QR code to link a device
@@ -29,9 +44,9 @@ import java.util.concurrent.TimeUnit
 fun LinkDeviceQrScanScreen(
   hasPermission: Boolean,
   onRequestPermissions: () -> Unit,
-  showFrontCamera: Boolean?,
+  cameraState: CameraScreenState,
+  cameraEmitter: (CameraScreenEvents) -> Unit,
   qrCodeState: LinkDeviceSettingsState.QrCodeState,
-  onQrCodeScanned: (String) -> Unit,
   onQrCodeAccepted: () -> Unit,
   onQrCodeDismissed: () -> Unit,
   linkDeviceResult: LinkDeviceResult,
@@ -40,7 +55,6 @@ fun LinkDeviceQrScanScreen(
   navController: NavController?,
   modifier: Modifier = Modifier
 ) {
-  val lifecycleOwner = LocalLifecycleOwner.current
   val context = LocalContext.current
 
   when (qrCodeState) {
@@ -92,27 +106,54 @@ fun LinkDeviceQrScanScreen(
       modifier = Modifier
         .fillMaxWidth()
         .weight(1f, true)
+        .background(Color.Black)
     ) {
-      QrScanScreens.QrScanScreen(
-        factory = { factoryContext ->
-          val view = QrScannerView(factoryContext)
-          view.qrData
-            .throttleFirst(3000, TimeUnit.MILLISECONDS)
-            .subscribe { data ->
-              onQrCodeScanned(data)
-            }
-          view
-        },
-        update = { view: QrScannerView ->
-          view.start(lifecycleOwner = lifecycleOwner, forceLegacy = CameraXRemoteConfig.isBlocklisted())
-          if (showFrontCamera != null) {
-            view.toggleCamera()
+      if (hasPermission) {
+        CameraScreen(
+          state = cameraState,
+          emitter = cameraEmitter,
+          enableQrScanning = true,
+          captureMode = CameraCaptureMode.ImageOnly,
+          roundCorners = false,
+          fillViewport = true,
+          modifier = Modifier.fillMaxSize()
+        ) {
+          QrCrosshair(modifier = Modifier.fillMaxSize())
+
+          Text(
+            text = stringResource(R.string.AddLinkDeviceFragment__scan_the_qr_code),
+            style = MaterialTheme.typography.bodyMedium,
+            color = Color.White,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+              .align(Alignment.TopCenter)
+              .padding(top = 24.dp)
+              .background(color = Color.Black.copy(alpha = 0.5f), shape = CircleShape)
+              .padding(horizontal = 16.dp, vertical = 8.dp)
+          )
+        }
+      } else {
+        Column(
+          verticalArrangement = Arrangement.Center,
+          horizontalAlignment = Alignment.CenterHorizontally,
+          modifier = Modifier
+            .align(Alignment.Center)
+            .padding(48.dp)
+        ) {
+          Text(
+            text = stringResource(R.string.CameraXFragment_to_scan_qr_code_allow_camera),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyLarge,
+            color = Color.White
+          )
+          Buttons.MediumTonal(
+            colors = ButtonDefaults.filledTonalButtonColors(),
+            onClick = onRequestPermissions
+          ) {
+            Text(stringResource(R.string.CameraXFragment_allow_access))
           }
-        },
-        hasPermission = hasPermission,
-        onRequestPermissions = onRequestPermissions,
-        qrHeaderLabelString = stringResource(R.string.AddLinkDeviceFragment__scan_the_qr_code)
-      )
+        }
+      }
     }
   }
 }
@@ -120,4 +161,44 @@ fun LinkDeviceQrScanScreen(
 private fun makeToast(context: Context, messageId: Int, onLinkDeviceFailure: () -> Unit) {
   Toast.makeText(context, messageId, Toast.LENGTH_LONG).show()
   onLinkDeviceFailure()
+}
+
+@DayNightPreviews
+@Composable
+private fun LinkDeviceQrScanScreenPreview() {
+  Previews.Preview {
+    LinkDeviceQrScanScreen(
+      hasPermission = true,
+      onRequestPermissions = {},
+      cameraState = CameraScreenState(),
+      cameraEmitter = {},
+      qrCodeState = LinkDeviceSettingsState.QrCodeState.NONE,
+      onQrCodeAccepted = {},
+      onQrCodeDismissed = {},
+      linkDeviceResult = LinkDeviceResult.None,
+      onLinkDeviceSuccess = {},
+      onLinkDeviceFailure = {},
+      navController = null
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun LinkDeviceQrScanScreenNoPermissionPreview() {
+  Previews.Preview {
+    LinkDeviceQrScanScreen(
+      hasPermission = false,
+      onRequestPermissions = {},
+      cameraState = CameraScreenState(),
+      cameraEmitter = {},
+      qrCodeState = LinkDeviceSettingsState.QrCodeState.NONE,
+      onQrCodeAccepted = {},
+      onQrCodeDismissed = {},
+      linkDeviceResult = LinkDeviceResult.None,
+      onLinkDeviceSuccess = {},
+      onLinkDeviceFailure = {},
+      navController = null
+    )
+  }
 }

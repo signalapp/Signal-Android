@@ -1,8 +1,12 @@
 package org.whispersystems.signalservice.api.push.exceptions;
 
+import org.signal.network.exceptions.MalformedResponseException;
+
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.whispersystems.signalservice.internal.util.JsonUtil;
+import org.signal.network.util.JsonUtil;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 

@@ -16,6 +16,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.donations.InAppPaymentType
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.testing.InAppPaymentsRule
 import org.thoughtcrime.securesms.testing.RxTestSchedulerRule
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.actions.RecyclerViewScrollToBottomAction
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import java.math.BigDecimal

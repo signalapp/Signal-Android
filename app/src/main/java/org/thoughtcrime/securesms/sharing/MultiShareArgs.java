@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
 
 import org.signal.core.util.BreakIteratorCompat;
 import org.signal.core.util.logging.Log;
@@ -21,7 +20,7 @@ import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ParcelUtil;
+import org.signal.core.util.ParcelUtil;
 import org.signal.core.util.Util;
 
 import java.io.IOException;
@@ -248,7 +247,7 @@ public final class MultiShareArgs implements Parcelable {
 
   @Override
   public void writeToParcel(Parcel dest, int flags) {
-    dest.writeTypedList(Stream.of(contactSearchKeys).map(ContactSearchKey::requireRecipientSearchKey).toList());
+    dest.writeTypedList(contactSearchKeys.stream().map(ContactSearchKey::requireRecipientSearchKey).collect(Collectors.toList()));
     dest.writeTypedList(media);
     dest.writeString(draftText);
     dest.writeParcelable(stickerLocator, flags);

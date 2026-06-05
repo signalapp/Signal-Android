@@ -6,7 +6,7 @@ plugins {
 
 android {
   namespace = "org.signal.camera.demo"
-  compileSdkVersion = libs.versions.compileSdk.get()
+  compileSdkVersion(libs.versions.compileSdk.get())
 
   defaultConfig {
     applicationId = "org.signal.camera.demo"
@@ -31,10 +31,6 @@ android {
   compileOptions {
     sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
     targetCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())
-  }
-
-  kotlinOptions {
-    jvmTarget = libs.versions.kotlinJvmTarget.get()
   }
 
   buildFeatures {

@@ -6,7 +6,7 @@
 
 package org.whispersystems.signalservice.internal.push.exceptions;
 
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.internal.push.StaleDevices;
 
 public class StaleDevicesException extends NonSuccessfulResponseCodeException {

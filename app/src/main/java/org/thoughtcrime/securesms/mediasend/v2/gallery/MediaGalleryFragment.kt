@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
@@ -34,6 +35,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.visible
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Displays a collection of files and folders to the user to allow them to select
@@ -54,7 +56,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
   private val selectedAdapter = MappingAdapter()
   private val mediaGalleryGridItemTouchListener = MediaGalleryGridItemTouchListener()
 
-  private val viewStateLiveData = MutableLiveData(ViewState())
+  private lateinit var viewStateLiveData: MutableLiveData<ViewState>
 
   private val onBackPressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(false) {
     override fun handleOnBackPressed() {
@@ -63,6 +65,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    viewStateLiveData = MutableLiveData(ViewState(chatColor = ContextCompat.getColor(requireContext(), CoreUiR.color.signal_light_colorPrimary)))
     callbacks = requireListener()
     val binding = V2MediaGalleryFragmentBinding.bind(view)
 
@@ -197,6 +200,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     viewStateLiveData.observe(viewLifecycleOwner) { state ->
       binding.mediaGalleryBottomBarGroup.visible = state.selectedMedia.isNotEmpty()
       binding.mediaGalleryCountButton.setCount(state.selectedMedia.size)
+      state.chatColor?.let { binding.mediaGalleryCountButton.setChatColor(it) }
 
       val stopwatch = Stopwatch("mediaSubmit")
       selectedAdapter.submitList(state.selectedMedia.map { MediaGallerySelectedItem.Model(it) }) {
@@ -214,14 +218,16 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
 
     val galleryItemsWithSelection = LiveDataUtil.combineLatest(
       viewModel.state.map { it.items },
-      viewStateLiveData.map { it.selectedMedia }
-    ) { galleryItems, selectedMedia ->
+      viewStateLiveData.map { it.selectedMedia },
+      viewStateLiveData.map { it.chatColor }
+    ) { galleryItems, selectedMedia, chatColor ->
       galleryItems.map {
         if (it is MediaGallerySelectableItem.FileModel) {
           val selectedIndex = selectedMedia.indexOfFirst { selected -> selected.uri == it.media.uri }
           it.copy(
             isSelected = selectedIndex >= 0,
-            selectionOneBasedIndex = selectedIndex + 1
+            selectionOneBasedIndex = selectedIndex + 1,
+            chatColor = chatColor
           )
         } else {
           it
@@ -339,7 +345,8 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
   }
 
   data class ViewState(
-    val selectedMedia: List<Media> = listOf()
+    val selectedMedia: List<Media> = listOf(),
+    val chatColor: Int
   )
 
   interface Callbacks {

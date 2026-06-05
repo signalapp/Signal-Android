@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.ComponentActivity
+import org.signal.apng.demo.R
 
 class PlayerActivity : ComponentActivity() {
   lateinit var frameMetadata: TextView

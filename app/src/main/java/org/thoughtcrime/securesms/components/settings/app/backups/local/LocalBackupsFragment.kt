@@ -4,6 +4,7 @@
  */
 package org.thoughtcrime.securesms.components.settings.app.backups.local
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
@@ -176,6 +177,7 @@ class LocalBackupsFragment : ComposeFragment() {
   }
 }
 
+@SuppressLint("LocalContextGetResourceValueCall")
 @Composable
 private fun rememberChooseBackupLocationLauncher(backStack: NavBackStack<NavKey>): ActivityResultLauncher<Uri?> {
   val context = LocalContext.current

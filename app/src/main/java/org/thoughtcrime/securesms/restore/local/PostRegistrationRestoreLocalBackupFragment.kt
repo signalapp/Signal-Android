@@ -63,7 +63,7 @@ class PostRegistrationRestoreLocalBackupFragment : ComposeFragment() {
           callback = remember { Callbacks() },
           isRegistrationInProgress = false,
           enterBackupKeyState = enterBackupKeyState,
-          backupKey = enterBackupKeyViewModel.backupKey
+          enteredText = enterBackupKeyViewModel.enteredText
         )
       }
     }

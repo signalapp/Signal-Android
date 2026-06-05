@@ -503,7 +503,7 @@ fun Screen(
         text = "Copy Account Entropy Pool (AEP)",
         label = "Copies the Account Entropy Pool (AEP) to the clipboard, which is labeled as the \"Backup Key\" in the designs.",
         onClick = {
-          Util.copyToClipboard(context, SignalStore.account.accountEntropyPool.value)
+          Util.copyToClipboard(context, SignalStore.account.accountEntropyPool.displayValue)
           Toast.makeText(context, "Copied!", Toast.LENGTH_SHORT).show()
         }
       )

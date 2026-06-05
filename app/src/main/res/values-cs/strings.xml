@@ -22,6 +22,7 @@
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
 
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
@@ -332,22 +333,6 @@
     <!-- Accessibility label for the send button in media selection -->
     <string name="CameraXFragment_send">Odeslat</string>
 
-    <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">Nedávné kontakty</string>
-    <string name="CameraContacts_signal_contacts">Signal kontakty</string>
-    <string name="CameraContacts_signal_groups">Signal skupiny</string>
-    <!-- A warning shown in a toast when  -->
-    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Lze sdílet maximálně v %1$d chatu.</item>
-        <item quantity="few">Lze sdílet maximálně v %1$d chatech.</item>
-        <item quantity="many">Lze sdílet maximálně v %1$d chatů.</item>
-        <item quantity="other">Lze sdílet maximálně v %1$d chatech.</item>
-    </plurals>
-    <string name="CameraContacts_select_signal_recipients">Vyberte Signal příjemce</string>
-    <string name="CameraContacts_no_signal_contacts">Žádné Signal kontakty</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Tlačítko fotoaparátu můžete použit pouze pro odeslání fotografií kontaktům Signal. </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">Nemůžete najít, koho jste hledali?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Pozvěte kontakt do Signal</string>
     <string name="CameraContacts__menu_search">Hledat</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -527,7 +512,7 @@
     <string name="ConversationActivity_unable_to_record_audio">Nemohu nahrávat audio!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Do této skupiny nemůžete zasílat zprávy, jelikož už nejste jejím členem.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
-    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">You can\'t send messages because the group has ended.</string>
+    <string name="ConversationActivity_you_cant_send_messages_because_group_ended">Zprávy nelze odesílat, protože skupina byla ukončena.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Pouze %1$s může posílat zprávy.</string>
     <string name="ConversationActivity_admins">správci</string>
     <string name="ConversationActivity_message_an_admin">Poslat zprávu správci</string>
@@ -742,10 +727,21 @@
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">Přijali jste žádost o zaslání zprávy od uživatele %1$s. Pokud to bylo nedopatřením, můžete níže zvolit akci.</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">Pečlivě kontrolujte</string>
-    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s nejsou ověřovány</string>
-    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
-    <string name="ConversationFragment_group_names_not_verified">%1$s nejsou ověřovány</string>
+    <!-- Text shown in conversation header when in a message request state that the name is not verified -->
+    <string name="ConversationFragment_name_not_verified">Jméno není ověřeno</string>
+    <!-- Label for official chat pill shown in the Note to Self conversation header -->
+    <string name="ConversationFragment_official_chat">Oficiální chat</string>
+    <!-- Description shown in the Signal release notes conversation header -->
+    <string name="ConversationFragment_release_notes_description">Jediný oficiální chat od služby Signal. Sledujte novinky a poznámky k vydání.</string>
+    <!-- Label shown in place of the input in the Signal release notes conversation -->
+    <string name="ConversationFragment_the_only_official_chat_from_signal">Jediný oficiální chat od služby Signal</string>
+    <!-- Plural for group member count shown in conversation header. %1$d is the number of members -->
+    <plurals name="ConversationFragment_group_member_count">
+        <item quantity="one">%1$d člen</item>
+        <item quantity="few">%1$d členové</item>
+        <item quantity="many">%1$d členů</item>
+        <item quantity="other">%1$d členů</item>
+    </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">Jména profilů</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
@@ -771,39 +767,57 @@
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Bezpečnostní tipy</string>
-    <!-- Dialog subtitle when showign tips for a 1:1 conversation -->
-    <string name="SafetyTips_subtitle_individual">Buďte opatrní při přijímání žádostí o zaslání zprávy od lidí, které neznáte. Dávejte si pozor na následující:</string>
-    <!-- Dialog subtitle when showing tips for a group conversation -->
-    <string name="SafetyTips_subtitle_group">Pečlivě si tuto žádost prohlédněte. V této skupině není žádný z vašich kontaktů nebo lidí, se kterými si píšete. Tady je několik věcí, na které je třeba si dát pozor:</string>
-    <!-- Button text to move to the previous tip-->
+    <!-- Button text to view more safety tips -->
+    <string name="SafetyTips_view_more">Zobrazit více</string>
+    <!-- Content description for previous tip button -->
     <string name="SafetyTips_previous_tip">Předchozí tip</string>
-    <!-- Button text to move to the next tip -->
+    <!-- Content description for next tip button -->
     <string name="SafetyTips_next_tip">Další tip</string>
-    <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">Falešná jména a účty</string>
-    <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal po vás nikdy nebude chtít registrační kód nebo PIN. Dávejte si pozor na účty, které se vydávají za jiné. Jména profilů si vybírá majitel účtu a nejsou ověřována.</string>
-    <!-- Title of tip 1 -->
-    <string name="SafetyTips_tip1_title">Podvody s kryptoměnami nebo penězi</string>
-    <!-- Message of tip 1 -->
-    <string name="SafetyTips_tip1_message">Když vám někdo, koho neznáte, posílá zprávy o kryptoměnách (třeba bitcoinech) nebo o finanční příležitosti, mějte se na pozoru – nejspíš jde o spam.</string>
-    <!-- Title of tip 2 -->
-    <string name="SafetyTips_tip2_title">Neurčité nebo bezpředmětné zprávy</string>
-    <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Spamující často začínají obyčejnou zprávou, jako třeba „Dobrý den“, aby vás nalákali. Když odpovíte, mohou se rozepsat víc.</string>
-    <!-- Title of tip 3 -->
-    <string name="SafetyTips_tip3_title">Zprávy s odkazy</string>
-    <!-- Message of tip 3 -->
-    <string name="SafetyTips_tip3_message">Dávejte si pozor na zprávy od neznámých lidí, které obsahují odkazy na webové stránky. Nikdy nenavštěvujte odkazy od lidí, kterým nedůvěřujete.</string>
-    <!-- Title of tip 4 -->
-    <string name="SafetyTips_tip4_title">Falešné firmy a instituce</string>
-    <!-- Message of tip 4 -->
-    <string name="SafetyTips_tip4_message">Dávejte pozor na firmy nebo státní instituce, které vás kontaktují. Například zprávy od finančního úřadu nebo doručovacích služeb mohou být spam.</string>
+
+    <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
+    <string name="SafetyTips_summary_tip0_title">Neodpovídejte na chaty od služby Signal</string>
+    <!-- Summary tip 0 message -->
+    <string name="SafetyTips_summary_tip0_message">Signal od vás nikdy nebude ve zprávě vyžadovat registrační kód, PIN ani klíč pro obnovení. Nikdy neodpovídejte na chat, který se tváří jako Signal.</string>
+    <!-- Summary tip 1 title: Review names and photos -->
+    <string name="SafetyTips_summary_tip1_title">Kontrolujte jména a fotky</string>
+    <!-- Summary tip 1 message -->
+    <string name="SafetyTips_summary_tip1_message">Všímejte si upozornění „Jméno není ověřeno“. V aplikaci Signal si každý nastavuje vlastní profilové jméno.</string>
+    <!-- Summary tip 2 title: Look out for scams -->
+    <string name="SafetyTips_summary_tip2_title">Dávejte si pozor na podvody</string>
+    <!-- Summary tip 2 message -->
+    <string name="SafetyTips_summary_tip2_message">Vyhýbejte se neurčitým zprávám, které se vás snaží přimět k odpovědi. Mějte se na pozoru před finančními tipy a podezřelými webovými odkazy.</string>
+
+    <!-- Detail tip 0 title -->
+    <string name="SafetyTips_detail_tip0_title">Neodpovídejte na chaty od služby Signal</string>
+    <!-- Detail tip 0 message -->
+    <string name="SafetyTips_detail_tip0_message">Signal od vás nikdy nebude ve zprávě vyžadovat registrační kód, PIN ani klíč pro obnovení. Neodpovídejte na chaty, které se tváří jako Signal nebo podpora Signal. Útočníci vytvářejí falešné chaty ve snaze ovládnout váš účet.</string>
+    <!-- Detail tip 1 title -->
+    <string name="SafetyTips_detail_tip1_title">Kontrolujte jména a fotky</string>
+    <!-- Detail tip 1 message -->
+    <string name="SafetyTips_detail_tip1_message">Všímejte si upozornění „Jméno není ověřeno“. V aplikaci Signal si každý nastavuje vlastní profilové jméno a fotku. Pokud si nejste jisti, od koho nová žádost pochází, je bezpečnější ji ignorovat.</string>
+    <!-- Detail tip 2 title -->
+    <string name="SafetyTips_detail_tip2_title">Neurčité nebo bezpředmětné zprávy</string>
+    <!-- Detail tip 2 message -->
+    <string name="SafetyTips_detail_tip2_message">Spameři často začínají obyčejnou zprávou, jako třeba „Ahoj“, aby vás nalákali. Když odpovíte, mohou se vás snažit vtáhnout do konverzace.</string>
+    <!-- Detail tip 3 title -->
+    <string name="SafetyTips_detail_tip3_title">Zprávy s webovými odkazy</string>
+    <!-- Detail tip 3 message -->
+    <string name="SafetyTips_detail_tip3_message">Dávejte si pozor na zprávy od neznámých lidí, které obsahují odkazy na webové stránky. Nikdy neotevírejte odkazy od lidí, kterým nedůvěřujete.</string>
+    <!-- Detail tip 4 title -->
+    <string name="SafetyTips_detail_tip4_title">Podvody s kryptoměnami nebo penězi</string>
+    <!-- Detail tip 4 message -->
+    <string name="SafetyTips_detail_tip4_message">Když vám někdo neznámý posílá zprávy o kryptoměnách (třeba bitcoinech) nebo o finanční příležitosti, mějte se na pozoru – nejspíš jde o spam.</string>
+    <!-- Detail tip 5 title -->
+    <string name="SafetyTips_detail_tip5_title">Falešné firmy</string>
+    <!-- Detail tip 5 message -->
+    <string name="SafetyTips_detail_tip5_message">Dávejte si pozor na firmy nebo úřady, které vás kontaktují. Zprávy od finančních úřadů či kurýrů mohou být spam.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s v aplikaci Signal si vybírá majitel účtu.</string>
-    <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Jména profilů nejsou ověřována</string>
+    <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal nemůže ověřovat jména a fotky</string>
+    <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
+    <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal vás nikdy nebude kontaktovat ohledně registračního kódu, PIN nebo klíče pro obnovení</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Dávejte si pozor na účty, které se vydávají za jiné</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
@@ -1316,10 +1330,6 @@
     </plurals>
     <string name="PendingGroupJoinRequestsReminder_view">Zobrazit</string>
 
-    <!-- GcmRefreshJob -->
-    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trvalá chyba komunikace Signal!</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal se nemůže registrovat k službě Google Play. Zprávy a volání jsou proto zakázány: Prosím zkuste se znovu registrovat v menu Nastavení &gt; Rozšířené.</string>
-
 
     <!-- GiphyActivity -->
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Chyba při získávání GIF v plném rozlišení</string>
@@ -1779,7 +1789,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Došlo k chybě v síti.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tento odkaz skupiny není aktivní</string>
     <!-- Toast message shown when trying to join a group via link but the group has been ended -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">Unable to join this group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_has_been_ended">K této skupině se nelze připojit.</string>
     <!-- Toast message shown when trying to join a group by link but the group is full -->
     <string name="GroupJoinBottomSheetDialogFragment_group_limit_reached">Limit skupiny dosažen, ke skupině se nelze připojit</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1900,6 +1910,8 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Mazání</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Mazání zpráv…</string>
+    <!-- Format string showing current vs. total items being deleted, e.g. "12 of 207" -->
+    <string name="MediaOverviewActivity_Media_delete_progress_count">%1$d z %2$d</string>
     <string name="MediaOverviewActivity_Sort_by">Seřadit podle</string>
     <string name="MediaOverviewActivity_Newest">Nejnovější</string>
     <string name="MediaOverviewActivity_Oldest">Nejstarší</string>
@@ -1942,6 +1954,7 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">Odesláno vámi pro %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Toto médium se ještě neodeslalo.</string>
+    <string name="MediaOverviewActivity_jump_to_message">Přejít na zprávu</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Připomenout později</string>
@@ -2010,7 +2023,7 @@
     <string name="MessageRecord_you_updated_group">Upravili jste skupinu.</string>
     <string name="MessageRecord_the_group_was_updated">Skupina byla aktualizována.</string>
     <!-- Update message shown a group is terminated, but the person that terminated it is unknown. -->
-    <string name="MessageRecord_the_group_was_terminated">The group ended.</string>
+    <string name="MessageRecord_the_group_was_terminated">Skupina byla ukončena.</string>
     <!-- Update message shown when a group is terminated, placeholder is the name of the person that terminated the group. -->
     <string name="MessageRecord_s_terminated_the_group">%1$s ukončil(a) skupinu</string>
     <!-- Update message shown when a group is terminated by you -->
@@ -2031,6 +2044,10 @@
     <string name="MessageRecord_declined_voice_call">Odmítnutý hlasový hovor</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_declined_video_call">Odmítnutý videohovor</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_voice_call">Nepřijatý hlasový hovor</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and the remote party did not answer -->
+    <string name="MessageRecord_unanswered_video_call">Nepřijatý videohovor</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Zmeškaný hlasový hovor při zapnutém profilu oznámení</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2344,8 +2361,10 @@
     <string name="MessageRecord__payment_tombstone">Platba</string>
     <!-- Update message shown in chat after reporting it as spam -->
     <string name="MessageRecord_reported_as_spam">Nahlášeno jako spam</string>
-    <!-- Update message shown in chat after accept a message request -->
-    <string name="MessageRecord_you_accepted_the_message_request">Přijali jste žádost o zaslání zprávy</string>
+    <!-- Update message shown in chat after accept a message request, placeholder is the other person\'s display name -->
+    <string name="MessageRecord_you_accepted_s_message_request">Přijali jste žádost o zprávu od %1$s</string>
+    <!-- Update message shown in a group chat after accepting a group message request -->
+    <string name="MessageRecord_you_accepted_the_group_request">Přijali jste žádost od skupiny</string>
     <!-- Update message shown in chat after you block a person -->
     <string name="MessageRecord_you_blocked_this_person">Tuto osobu jste zablokovali</string>
     <!-- Update message shown in chat after you unblock a person -->
@@ -2369,7 +2388,7 @@
     <string name="MessageRequestBottomView_unblock">Odblokovat</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Chcete, aby vám %1$s mohl/a napsat a zobrazit si vaše jméno a fotografii? Tuto osobu jste v minulosti odebrali.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Dovolit %1$s zasílat vám zprávy a sdílet vaše jméno a fotografii? Nebudou vědět, že jste viděl jejich zprávy, dokud je nepřijmete.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete této osobě povolit posílat zprávy a sdílet s ní své jméno a fotku? Dokud žádost nepřijmete, odesílatel neuvidí, že jste si zprávu přečetli.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Nechat si od %1$s posílat zprávy a sdílet s nimi vaše jméno a fotografii? Dokud je neodblokujete, nebudete dostávat žádné zprávy.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2441,11 +2460,15 @@
         <item quantity="other">%1$d ostatních</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
-    <string name="MessageRequestBottomView_report">Nahlásit…</string>
+    <string name="MessageRequestBottomView_report">Nahlásit</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">Přijmout žádost?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Žádosti pečlivě kontrolujte. Jména profilů si vybírá majitel účtu a nejsou ověřována.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">Žádosti si pečlivě kontrolujte. Profilová jména si volí sami majitelé účtů a nejsou ověřována.</string>
+    <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
+    <string name="MessageRequestBottomView_accept_request_body">Přijímejte žádosti pouze od lidí, kterým důvěřujete. %1$s nebude ve zprávě vyžadovat registrační kód, PIN nebo klíč pro obnovení.</string>
+    <!-- Bold substring used in accept request body: "Signal will never" -->
+    <string name="MessageRequestBottomView_signal_will_never">Signal od vás nikdy</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">Připojit se ke skupině?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -2827,6 +2850,10 @@
     <string name="CallOverflowPopupWindow__lower_hand">Dát ruku dolů</string>
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">Zrušit</string>
+    <!-- A clickable button to share your screen in a call -->
+    <string name="CallOverflowPopupWindow__share_screen">Sdílejte obrazovku</string>
+    <!-- A clickable button to stop sharing your screen in a call -->
+    <string name="CallOverflowPopupWindow__stop_screen_share">Přestat sdílet</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">Zobrazit</string>
 
@@ -2971,6 +2998,8 @@
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Přejetím zobrazíte sdílení obrazovky</string>
+    <!-- Hint shown to teach the user they can swipe between the grid view and the active speaker view -->
+    <string name="CallToastPopupWindow__swipe_to_view_speaker">Přejetím prstem zobrazíte reproduktor</string>
 
     <!-- ProxyBottomSheetFragment -->
     <string name="ProxyBottomSheetFragment_proxy_server">Proxy server</string>
@@ -3018,8 +3047,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Učinili jste příliš mnoho pokusů o registraci tohoto čísla. Zkuste to prosím znovu za %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Nelze se připojit k službě. Prosím zkontrolujte připojení k internetu a poté to zkuste znovu.</string>
-    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">Aplikace Signal nemohla odeslat SMS kód, protože se vyskytl problém u poskytovatele SMS. Zkuste to znovu za několik hodin.</string>
+    <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
+    <string name="RegistrationActivity_sms_provider_error">Na vaše číslo se nepodařilo odeslat SMS. Zkuste to prosím znovu za několik hodin.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Nepodařilo se vám zaslat ověřovací kód prostřednictvím SMS. Zkuste místo toho kód získat prostřednictvím hlasového hovoru.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3262,6 +3291,10 @@
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
+    <!-- Title of dialog shown when debug log prefix generation is unusually slow -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_slow_log_title" translatable="false">Slow log generation</string> -->
+    <!-- Body of dialog shown when debug log prefix generation is unusually slow. %1$d is duration in seconds. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_slow_log_message" translatable="false">Generating the debug log header took %1$d seconds. We should figure out what\&apos;s slowing things down.</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3272,6 +3305,8 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Zámek registrace:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Skupina upravena</string>
@@ -3855,7 +3890,7 @@
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Zamknout nahrávání zvukové přílohy</string>
     <string name="conversation_activity__message_could_not_be_sent">Zprávu nebylo možné odeslat. Zkontrolujte své připojení a zkuste to znovu.</string>
     <!-- Dialog body shown when tapping a failed message in a terminated group -->
-    <string name="conversation_activity__send_failed_group_ended">You can no longer send and receive messages in this group because the group has ended.</string>
+    <string name="conversation_activity__send_failed_group_ended">V této skupině již nelze posílat a přijímat zprávy, protože byla ukončena.</string>
     <!-- Dialog body shown when tapping a group action button (e.g. invite friends) in a terminated group -->
     <string name="conversation_activity__group_action_not_allowed_group_ended">Tuto akci nelze provést, protože skupina byla ukončena.</string>
     <!-- Dialog body when a message failed to delete and retry is possible. -->
@@ -3908,36 +3943,36 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Tuto osobu jste odebrali. Když jí znovu napíšete, bude přidána zpět do vašeho seznamu.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">Možnosti</string>
+    <string name="ConversationUpdateItem_block_report">Blokovat nebo nahlásit…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">Aktualizovat</string>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__group_update">
-        <item quantity="one">%1$d group update</item>
-        <item quantity="few">%1$d group updates</item>
-        <item quantity="many">%1$d group updates</item>
-        <item quantity="other">%1$d group updates</item>
+        <item quantity="one">%1$d úprava ve skupině</item>
+        <item quantity="few">%1$d úpravy ve skupině</item>
+        <item quantity="many">%1$d úprav ve skupině</item>
+        <item quantity="other">%1$d úprav ve skupině</item>
     </plurals>
     <!-- Update item button text to show how many group updates there are. -->
     <plurals name="CollapsedEvent__chat_update">
-        <item quantity="one">%1$d chat update</item>
-        <item quantity="few">%1$d chat updates</item>
-        <item quantity="many">%1$d chat updates</item>
-        <item quantity="other">%1$d chat updates</item>
+        <item quantity="one">%1$d úprava chatu</item>
+        <item quantity="few">%1$d úpravy chatu</item>
+        <item quantity="many">%1$d úprav chatu</item>
+        <item quantity="other">%1$d úprav chatu</item>
     </plurals>
     <!-- Update item button text to show how many disappearing message timer changes are. %2$s is what the timer was ultimately set to.-->
     <plurals name="CollapsedEvent__disappearing_timer">
-        <item quantity="one">%1$d disappearing message timer change · %2$s</item>
-        <item quantity="few">%1$d disappearing message timer changes · %2$s</item>
-        <item quantity="many">%1$d disappearing message timer changes · %2$s</item>
-        <item quantity="other">%1$d disappearing message timer changes · %2$s</item>
+        <item quantity="one">%1$d změna časovače mizejících zpráv · %2$s</item>
+        <item quantity="few">%1$d změny časovače mizejících zpráv · %2$s</item>
+        <item quantity="many">%1$d změn časovače mizejících zpráv · %2$s</item>
+        <item quantity="other">%1$d změn časovače mizejících zpráv · %2$s</item>
     </plurals>
     <!-- Update item button text to show how many call events are. -->
     <plurals name="CollapsedEvent__call_event">
-        <item quantity="one">%1$d call event</item>
-        <item quantity="few">%1$d call events</item>
-        <item quantity="many">%1$d call events</item>
-        <item quantity="other">%1$d call events</item>
+        <item quantity="one">%1$d volání</item>
+        <item quantity="few">%1$d volání</item>
+        <item quantity="many">%1$d volání</item>
+        <item quantity="other">%1$d volání</item>
     </plurals>
 
     <!-- audio_view -->
@@ -4205,11 +4240,11 @@
     <!-- Bottom sheet title when encryption is auto-verified -->
     <string name="EncryptionVerifiedSheet__title_success">Šifrování pro tento chat bylo automaticky ověřeno</string>
     <!-- Bottom sheet body when encryption is auto-verified -->
-    <string name="EncryptionVerifiedSheet__body_success">U kontaktů, se kterými jste propojeni pomocí telefonního čísla, může aplikace Signal automaticky potvrdit, zda je připojení zabezpečené, pomocí procesu zvaného transparentnost klíče. Pro lepší zabezpečení ověřte koncové šifrování ručně porovnáním čísel na předchozí obrazovce nebo naskenováním kódu na zařízení účastníků.</string>
+    <string name="EncryptionVerifiedSheet__body_success">U lidí, se kterými jste propojeni pomocí telefonního čísla, může aplikace Signal automaticky potvrdit, zda je spojení bezpečné, pomocí procesu zvaného transparentnost klíče. Pro vyšší bezpečnost můžete koncové šifrování ověřit ručně porovnáním čísel na předchozí obrazovce nebo naskenováním kódu na zařízení daného člověka.</string>
     <!-- Bottom sheet title when encryption is no longer auto-verified -->
-    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Automatické ověřování již není pro tento chat k dispozici</string>
+    <string name="EncryptionVerifiedSheet__title_no_longer_unavailable">Automatické ověření není pro tento chat k dispozici</string>
     <!-- Bottom sheet body when encryption is no longer auto-verified. Placeholder is the name of the person. -->
-    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Aplikace Signal již nemůže automaticky ověřit šifrování tohoto chatu. Je to nejspíše proto, že %1$s změnil/a své telefonní číslo. Koncové šifrování můžete ověřit ručně porovnáním čísel na předchozí obrazovce nebo naskenováním kódu na jeho/jejím zařízení.</string>
+    <string name="EncryptionVerifiedSheet__body_no_longer_unavailable">Signal nemůže automaticky ověřit šifrování tohoto chatu. Může to být tím, že %1$s změnil/a své telefonní číslo nebo nastavení soukromí. Koncové šifrování můžete ověřit ručně porovnáním čísel na předchozí obrazovce nebo naskenováním kódu na zařízení daného člověka.</string>
     <!-- Bottom sheet title when encryption cannot be auto-verified -->
     <string name="EncryptionVerifiedSheet__title_unavailable">Automatické ověřování není pro tento chat k dispozici</string>
     <!-- Bottom sheet body when encryption cannot be auto-verified -->
@@ -4569,7 +4604,7 @@
     <string name="preferences_data_and_storage__never">Nikdy</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi a mobilní data</string>
     <string name="preferences_data_and_storage__mobile_data_only">Pouze mobilní data</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Úspora dat může vylepšit kvalitu hovoru při špatném signálu</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Menší spotřeba dat může zlepšit kvalitu hovorů při slabém připojení.</string>
     <string name="preferences_notifications__in_chat_sounds">Zvuky v chatu</string>
     <string name="preferences_notifications__show">Zobrazit</string>
     <string name="preferences_notifications__ringtone">Vyzvánění</string>
@@ -5903,7 +5938,7 @@
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Účet</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Časem se vás budeme ptál méně často.</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Časem se vás budeme ptát méně často.</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Vyžadovat Signal PIN pro opětovnou registraci vašeho telefonního čísla v aplikaci Signal.</string>
     <string name="AccountSettingsFragment__change_phone_number">Změnit telefonní číslo</string>
     <!-- Account setting that allows user to request and export their signal account data -->
@@ -5957,6 +5992,41 @@
     <string name="ChangeNumber__your_phone_number_has_changed_to_s">Vaše telefonní číslo bylo změněno na %1$s</string>
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">V pořádku</string>
+
+    <!-- ChangeNumberPostRegistrationWaitSheet: title of the sheet shown when the user tries to change number too soon after registering -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__title">Číslo nelze změnit</string>
+    <!-- ChangeNumberPostRegistrationWaitSheet: explanation body shown above the wait-time line -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__body">Protože jste tento účet zaregistrovali teprve nedávno, nemůžete teď telefonní číslo změnit. Krátká čekací doba pomáhá chránit váš účet.</string>
+    <!-- ChangeNumberPostRegistrationWaitSheet: remaining-wait line when wait is one hour or more, %1$d is the number of hours, rounded up -->
+    <plurals name="ChangeNumberPostRegistrationWaitSheet__try_again_in_hours">
+        <item quantity="one">Zkuste to znovu za %1$d hodinu.</item>
+        <item quantity="few">Zkuste to znovu za %1$d hodiny.</item>
+        <item quantity="many">Zkuste to znovu za %1$d hodiny.</item>
+        <item quantity="other">Zkuste to znovu za %1$d hodin.</item>
+    </plurals>
+    <!-- ChangeNumberPostRegistrationWaitSheet: remaining-wait line when wait is under one hour, %1$d is the number of minutes, rounded up -->
+    <plurals name="ChangeNumberPostRegistrationWaitSheet__try_again_in_minutes">
+        <item quantity="one">Zkuste to znovu za %1$d minutu.</item>
+        <item quantity="few">Zkuste to znovu za %1$d minuty.</item>
+        <item quantity="many">Zkuste to znovu za %1$d minuty.</item>
+        <item quantity="other">Zkuste to znovu za %1$d minut.</item>
+    </plurals>
+    <!-- ChangeNumberPostRegistrationWaitSheet: dismiss button -->
+    <string name="ChangeNumberPostRegistrationWaitSheet__ok">OK</string>
+    <!-- ChangeNumberEnterCodeFragment: rate-limit dialog message when retry-after is one hour or more, %1$d is hours rounded up -->
+    <plurals name="ChangeNumberEnterCodeFragment__too_many_attempts_try_again_in_hours">
+        <item quantity="one">Provedli jste příliš mnoho pokusů. Zkuste to prosím znovu za %1$d hodinu.</item>
+        <item quantity="few">Provedli jste příliš mnoho pokusů. Zkuste to prosím znovu za %1$d hodiny.</item>
+        <item quantity="many">Provedli jste příliš mnoho pokusů. Zkuste to prosím znovu za %1$d hodiny.</item>
+        <item quantity="other">Provedli jste příliš mnoho pokusů. Zkuste to prosím znovu za %1$d hodin.</item>
+    </plurals>
+    <!-- ChangeNumberEnterCodeFragment: rate-limit dialog message when retry-after is under one hour, %1$d is minutes rounded up -->
+    <plurals name="ChangeNumberEnterCodeFragment__too_many_attempts_try_again_in_minutes">
+        <item quantity="one">Provedli jste příliš mnoho pokusů. Zkuste to prosím znovu za %1$d minutu.</item>
+        <item quantity="few">Provedli jste příliš mnoho pokusů. Zkuste to prosím znovu za %1$d minuty.</item>
+        <item quantity="many">Provedli jste příliš mnoho pokusů. Zkuste to prosím znovu za %1$d minuty.</item>
+        <item quantity="other">Provedli jste příliš mnoho pokusů. Zkuste to prosím znovu za %1$d minut.</item>
+    </plurals>
 
     <!-- ChangeNumberEnterPhoneNumberFragment -->
     <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Změnit číslo</string>
@@ -6029,37 +6099,37 @@
     <!-- Row title for the option to export chat history as a plaintext archive -->
     <string name="ChatsSettingsFragment__export_chat_history">Exportovat historii chatů</string>
     <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">Umožňuje xportovat strojově čitelnou kopii všech vašich chatů ve formátu JSON. Mizející zprávy nebudou exportovány.</string>
+    <string name="ChatsSettingsFragment__export_chat_history_label">Exportovat strojově čitelnou kopii všech chatů ve formátu JSON. Mizející zprávy nebudou exportovány.</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Odemknout pro export historie chatů</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">Autentifikace neúspěšná</string>
+    <string name="ChatsSettingsFragment__authentication_failed">Ověření se nezdařilo</string>
 
     <!-- ChatExportDialogs -->
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">Rušení exportu…</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">Exportovat historii chatů?</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">BUĎTE OPATRNÍ!</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">Tento soubor s nikým NESDÍLEJTE. Historie chatů se uloží do vašeho zařízení a ostatní aplikace k ní mohou mít přístup podle vašich oprávnění. Při exportu včetně médií bude výsledný soubor mnohem větší.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">Exportovat včetně médií</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">Exportovat bez médií</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">Vybrat složku</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">Vyberte složku v úložišti vašeho zařízení, do které se uloží historie vašich chatů.</string>
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">Vybrat složku</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">Export chatů dokončen</string>
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">BUĎTE OPATRNÍ,</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">kam soubor s exportem chatů uložíte, a s nikým jej nesdílejte. Ostatní aplikace ve vašem zařízení k němu mohou mít přístup podle vašich oprávnění.</string>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
@@ -6256,6 +6326,8 @@
     <string name="HelpSettingsFragment__support_center">Centrum podpory</string>
     <string name="HelpSettingsFragment__contact_us">Kontaktujte nás</string>
     <string name="HelpSettingsFragment__version">Verze</string>
+    <!-- Displayed when copying help screen text to the clipboard -->
+    <string name="HelpSettingsFragment__copied_to_clipboard">Zkopírováno do schránky</string>
     <string name="HelpSettingsFragment__debug_log">Ladící log</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licence</string>
@@ -6270,11 +6342,19 @@
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Kvalita odeslaných médií</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Odesílání médií ve vysoké kvalitě spotřebovává více dat.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Hlasové zprávy a nálepky (do %1$s) se vždy stahují automaticky.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">Vysoká</string>
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Standard</string>
     <string name="DataAndStorageSettingsFragment__calls">Volání</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Ponechat připojení na pozadí</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Trvalé připojení na pozadí pravděpodobně povede ke zvýšené spotřebě baterie. U většiny zařízení to není nutné. Tuto možnost povolte pouze v případě, že máte problémy s doručováním oznámení.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Povolit</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -6418,7 +6498,7 @@
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">Ukončit skupinu</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
-    <string name="ConversationSettingsFragment__this_group_was_ended">This group has ended.</string>
+    <string name="ConversationSettingsFragment__this_group_was_ended">Tato skupina byla ukončena.</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Archivovat chat</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6786,9 +6866,9 @@
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Příspěvek nebylo možné potvrdit</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Váš příspěvek %1$s měsíčně nebylo možné potvrdit. Zkontrolujte svou bankovní aplikaci a potvrďte svou platbu iDEAL.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed_ideal_wero">Váš příspěvek ve výši %1$s měsíčně se nepodařilo potvrdit. Zkontrolujte svou bankovní aplikaci a potvrďte platbu přes iDEAL | Wero.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Váš jednorázový příspěvek %1$s se nepodařilo potvrdit. Zkontrolujte svou bankovní aplikaci a potvrďte svou platbu iDEAL.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed_ideal_wero">Váš jednorázový příspěvek %1$s se nepodařilo potvrdit. Zkontrolujte svou bankovní aplikaci a potvrďte platbu přes iDEAL | Wero.</string>
 
     <string name="Boost__enter_custom_amount">Zadat vlastní částku</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -6917,7 +6997,7 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Váš příspěvek nemohl být odeslán z důvodu chyby sítě. Zkontrolujte připojení k internetu a zkuste to znovu.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Váš příspěvek iDEAL se nepodařilo zpracovat. Zkuste jiný způsob platby nebo se obraťte na svou banku a požádejte o další informace.</string>
+    <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">Váš příspěvek přes iDEAL | Wero se nepodařilo zpracovat. Zkuste jinou platební metodu, nebo se obraťte na svou banku a požádejte o další informace.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Příspěvek jménem uživatele %1$s</string>
@@ -7145,12 +7225,6 @@
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Zapnout</string>
 
-    <!-- Description shown for the Signal Release Notes channel -->
-    <string name="ReleaseNotes__signal_release_notes_and_news">Poznámky k vydání &amp; novinky aplikace Signal</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">Toto je jediný oficiální chat od Signal.</string>
-    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">Sledujte novinky a poznámky k vydání.</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">Toto je jediný oficiální chat od Signal</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
@@ -7253,7 +7327,7 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Příběh bude odstraněn pro vás a  pro všechny, kdo ho obdrželi.</string>
     <!-- Message of dialog to confirm deletion of story in a terminated group -->
-    <string name="MyStories__delete_story_terminated_group">It will only be deleted for you because the group has ended.</string>
+    <string name="MyStories__delete_story_terminated_group">Odstraní se pouze u vás, protože skupina byla ukončena.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Nepodařilo se uložit</string>
 
@@ -7888,7 +7962,7 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Váš příspěvek se stále ještě zpracovává. V závislosti na vašem připojení to může trvat několik minut. S dalším příspěvkem prosím počkejte, dokud nebude tato platba dokončena.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
-    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Váš příspěvek iDEAL se stále zpracovává. Než se rozhodnete znovu přispět, zkontrolujte svou bankovní aplikaci, zda byla platba schválena.</string>
+    <string name="DonateToSignalFragment__your_ideal_wero_payment_is_still_processing">Váš příspěvek přes iDEAL | Wero se stále zpracovává. Než se rozhodnete znovu přispět, zkontrolujte svou bankovní aplikaci, zda byla platba schválena.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Částka příspěvku je příliš vysoká</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
@@ -7920,11 +7994,13 @@
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Přispět za přítele</string>
     <!-- Button label for paying with iDEAL -->
-    <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
+    <string name="GatewaySelectorBottomSheet__ideal_wero">iDEAL | Wero</string>
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Opustit Signal a potvrdit příspěvek?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Po potvrzení se vraťte do aplikace Signal a dokončete zpracování příspěvku.</string>
+    <!-- Dialog message shown when leaving Signal to complete a donation in an external app. Placeholder is the resolved app name (e.g. a banking app). -->
+    <string name="ExternalNavigationHelper__once_payment_confirmed_in_app">Budete přesměrováni do aplikace %1$s. Po potvrzení se vraťte do aplikace Signal a dokončete zpracování příspěvku.</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7986,7 +8062,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Vyberte svou banku</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">Potvrďte svůj příspěvek přes iDEAL</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">Potvrďte svůj příspěvek přes iDEAL | Wero</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Chcete-li nastavit svůj pravidelný příspěvek, klepněte na pokračovat a potvrďte poplatek 0,01 € u své banky. Ten vám bude automaticky vrácen a umožní, aby se z vašeho účtu odečítal příspěvek ve výši %1$s měsíčně.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -8152,6 +8228,8 @@
     <string name="CallLogAdapter__incoming">Příchozí</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">Odchozí</string>
+    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
+    <string name="CallLogAdapter__unanswered">Nepřijaté</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Zmeškané</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -8242,6 +8320,8 @@
     <string name="CallLogFragment__get_started_by_calling_a_friend">Začněte tím, že zavoláte příteli.</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">Vámi vytvořené odkazy na hovory již nebudou pro lidi, kteří je mají, fungovat.</string>
+    <!-- Dialog message shown when trying to start a group call but the user is no longer a member -->
+    <string name="CallLogFragment__cant_start_call_no_longer_a_member">Už nejste členem této skupiny.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -8557,6 +8637,15 @@
     <string name="UseNewOnDeviceBackups__upgrade">Aktualizovat</string>
     <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
     <string name="UseNewOnDeviceBackups__not_now">Nyní ne</string>
+
+    <!-- Title of a megaphone shown to prompt the user to open Signal on their primary device -->
+    <string name="InactivePrimary__title">Otevřete Signal ve svém telefonu</string>
+    <!-- Body of a megaphone shown to prompt the user to open Signal on their primary device -->
+    <string name="InactivePrimary__body">Aby váš účet zůstal aktivní, otevřete aplikaci Signal ve svém primárním zařízení.</string>
+    <!-- Button of a megaphone shown to prompt the user to open Signal on their primary device that will navigate to a support page -->
+    <string name="InactivePrimary__learn_more">Zjistit více</string>
+    <!-- Button of a megaphone shown to prompt the user to open Signal on their primary device that will snooze the megaphone -->
+    <string name="InactivePrimary__got_it">Rozumím</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
     <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Pro obnovení zálohy znovu nainstalujte aplikaci Signal. Spusťte aplikaci a klepněte na Obnovit zálohu a poté vyhledejte soubor se zálohou."</string>
@@ -8992,14 +9081,14 @@
     <!-- Progress message shown while ending a group -->
     <string name="EndGroupDialog__ending_group">Ukončování skupiny…</string>
     <!-- Message shown when ending a group fails -->
-    <string name="EndGroupDialog__ending_the_group_failed">Couldn\'t end the group. Check your connection and try again.</string>
+    <string name="EndGroupDialog__ending_the_group_failed">Skupinu se nepodařilo ukončit. Zkontrolujte připojení a zkuste to znovu.</string>
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Zkusit znovu</string>
 
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s ukončil(a) skupinu</string>
     <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
-    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">The group has ended.</string>
+    <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Skupina byla ukončena.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">V této skupině již nelze posílat a přijímat zprávy ani hovory.</string>
 
@@ -9383,7 +9472,7 @@
     <!-- Screen body shown when enabling Signal Secure Backups while on-device backups are already enabled (part 2, bolded). -->
     <string name="MessageBackupsKeyEducationScreen__remote_backup_with_local_enabled_description_bold">Jedná se o stejný klíč, jako je váš klíč pro obnovení v zařízení.</string>
     <!-- Screen body shown when enabling on-device backups while Signal Secure Backups are already enabled (part 2, bolded). -->
-    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">This is the same as your Signal Secure Backups recovery key.</string>
+    <string name="MessageBackupsKeyEducationScreen__local_backup_with_remote_enabled_description_bold">Jedná se o stejný klíč, jako je váš klíč pro obnovení zabezpečené zálohy Signal.</string>
     <!-- Label shown above a list of actions that the recovery key can be used for. -->
     <string name="MessageBackupsKeyEducationScreen__use_this_key_to">Tento klíč lze použít k:</string>
     <!-- Row label indicating that the recovery key can be used to restore an on-device backup. -->
@@ -9702,11 +9791,11 @@
     <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
     <string name="RestoreLocalBackupActivity__contact_support">Kontaktovat podporu</string>
 
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when the restored backup belongs to a different account -->
+    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Zapnout zálohování v zařízení?</string>
 
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when the restored backup belongs to a different account, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Chcete-li nadále používat zálohování v zařízení, musíte jej pro tento účet povolit a nahrát nový klíč pro obnovení. Můžete tak kdykoliv učinit v Nastavení &gt; Zálohování.</string>
+    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Chcete-li i nadále používat zálohování v zařízení, musíte jej pro tento účet povolit. Můžete tak kdykoliv učinit v Nastavení &gt; Zálohování.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Zapnout nyní</string>
@@ -10198,13 +10287,43 @@
   <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
-    <string name="CouldNotCompleteBackupRestoreSheet__title">Can\'t restore backup</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__title">Zálohu nelze obnovit</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining the likely cause -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_error">An error occurred and your backup can\'t be restored. This may be because the backup folder was moved on your device while your backup was restoring.</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_error">Došlo k chybě a zálohu nelze obnovit. Mohlo k tomu dojít proto, že se během obnovování zálohy změnilo umístění složky se zálohou ve vašem zařízení.</string>
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
-    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">To try again, uninstall and re-install Signal on this device, and choose \"Restore or transfer\".</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Můžete to zkusit znovu tak, že odinstalujete a znovu nainstalujete Signal v tomto zařízení a zvolíte Obnovit nebo přenést.</string>
+
+    <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
+    <string name="VerificationCodeRequestedBottomSheet__title">Byl vyžádán ověřovací kód</string>
+    <!-- First paragraph of the body of the verification code requested sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__body_1">Nikomu svůj ověřovací kód nesdělujte. Signal vás o něj nikdy nebude žádat. Pokud vám přišla zpráva od někoho, kdo předstírá, že je ze služby Signal, jedná se o podvod.</string>
+    <!-- Second paragraph of the body of the verification code requested sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__body_2">Tuto zprávu můžete bez obav ignorovat, pokud jste o kód požádali sami.</string>
+    <!-- Button on the verification code requested sheet that opens the safety tips screen -->
+    <string name="VerificationCodeRequestedBottomSheet__safety_tips">Bezpečnostní tipy</string>
+    <!-- Button on the verification code requested sheet that dismisses the sheet -->
+    <string name="VerificationCodeRequestedBottomSheet__ok">OK</string>
+    <!-- Subtitle on the verification code requested sheet showing the time the code was requested followed by the relative day. %1$s is the time (e.g. "3:25 PM"), %2$s is the relative day (e.g. "Today", "Yesterday", "Jan 15") -->
+    <string name="VerificationCodeRequestedBottomSheet__time_with_day">%1$s %2$s</string>
+
+    <!-- Title of the safety tips screen within the verification code requested sheet -->
+    <string name="SafetyTipsBottomSheet__title">Bezpečnostní tipy</string>
+    <!-- Title of the first safety tip: don\'t respond to chats claiming to be Signal -->
+    <string name="SafetyTipsBottomSheet__tip_1_title">Neodpovídejte na chaty od služby Signal</string>
+    <!-- Body of the first safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_1_body">Signal od vás nikdy nebude ve zprávě vyžadovat registrační kód, PIN ani klíč pro obnovení. Nikdy neodpovídejte na chat, který se tváří jako Signal.</string>
+    <!-- Title of the second safety tip: keep your verification code safe -->
+    <string name="SafetyTipsBottomSheet__tip_2_title">Uchovávejte svůj ověřovací kód v bezpečí</string>
+    <!-- Body of the second safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_2_body">Pokud vám přišel ověřovací kód, o který jste nežádali, může se někdo pokoušet získat přístup k vašemu účtu. Svůj kód nesdílejte.</string>
+    <!-- Title of the third safety tip: enable registration lock -->
+    <string name="SafetyTipsBottomSheet__tip_3_title">V nastavení účtu si zapněte zámek registrace</string>
+    <!-- Body of the third safety tip -->
+    <string name="SafetyTipsBottomSheet__tip_3_body">Chraňte svůj účet tím, že při přihlášení do aplikace Signal bude kromě ověřovacího kódu vyžadován i Signal PIN.</string>
+    <!-- Button on the safety tips screen that opens account settings -->
+    <string name="SafetyTipsBottomSheet__open_account_settings">Otevřít nastavení účtu</string>
 
     <!-- EOF -->
 </resources>

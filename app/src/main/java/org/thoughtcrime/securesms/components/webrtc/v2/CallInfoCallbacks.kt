@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
-import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavigator
 import org.thoughtcrime.securesms.components.webrtc.controls.CallInfoView
 import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoViewModel
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -82,7 +82,7 @@ class CallInfoCallbacks(
   }
 
   override fun onContactDetails(callParticipant: CallParticipant) {
-    activity.startActivity(ConversationSettingsActivity.forRecipient(activity, callParticipant.recipient.id))
+    ConversationSettingsNavigator.navigate(activity, callParticipant.recipient)
   }
 
   override fun onViewSafetyNumber(callParticipant: CallParticipant) {

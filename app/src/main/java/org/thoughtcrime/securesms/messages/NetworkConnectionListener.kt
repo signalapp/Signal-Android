@@ -16,9 +16,9 @@ import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.net.ProxyInfo
 import android.os.Build
+import org.signal.core.util.ServiceUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
-import org.thoughtcrime.securesms.util.ServiceUtil
 
 /**
  * Backcompat listener for determining when the network connection is lost.
@@ -44,7 +44,7 @@ class NetworkConnectionListener(private val context: Context, private val onNetw
     networkCapabilities: NetworkCapabilities,
     callbackType: String,
     lastLogs: MutableMap<Network, String>
-  ) {
+  ): Boolean {
     val currentLog = buildString {
       append(callbackType)
       append(" onCapabilitiesChanged($network, ")
@@ -56,7 +56,10 @@ class NetworkConnectionListener(private val context: Context, private val onNetw
     if (lastLogs[network] != currentLog) {
       Log.d(TAG, currentLog)
       lastLogs[network] = currentLog
+      return true
     }
+
+    return false
   }
 
   private val networkChangedCallback: ConnectivityManager.NetworkCallback = object : ConnectivityManager.NetworkCallback() {
@@ -92,7 +95,9 @@ class NetworkConnectionListener(private val context: Context, private val onNetw
 
     override fun onCapabilitiesChanged(network: Network, networkCapabilities: NetworkCapabilities) {
       super.onCapabilitiesChanged(network, networkCapabilities)
-      logCapabilitiesIfChanged(network, networkCapabilities, "ConnectivityManager.NetworkCallback", lastNetworkCapabilities)
+      if (logCapabilitiesIfChanged(network, networkCapabilities, "ConnectivityManager.NetworkCallback", lastNetworkCapabilities)) {
+        onNetworkLost { !networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) }
+      }
     }
   }
 

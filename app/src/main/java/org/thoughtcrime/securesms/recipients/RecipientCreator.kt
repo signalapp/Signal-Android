@@ -178,7 +178,6 @@ object RecipientCreator {
       profileAvatarFileDetails = record.profileAvatarFileDetails,
       isProfileSharing = record.profileSharing,
       hiddenState = record.hiddenState,
-      lastProfileFetchTime = record.lastProfileFetch,
       isSelf = isSelf,
       notificationChannelValue = record.notificationChannel,
       sealedSenderAccessModeValue = record.sealedSenderAccessMode,

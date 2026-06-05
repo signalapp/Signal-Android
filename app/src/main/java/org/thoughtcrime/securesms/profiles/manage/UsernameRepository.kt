@@ -16,17 +16,21 @@ import org.signal.libsignal.usernames.BaseUsernameException
 import org.signal.libsignal.usernames.Username
 import org.signal.libsignal.usernames.UsernameLinkInvalidEntropyDataLength
 import org.signal.libsignal.usernames.UsernameLinkInvalidLinkData
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkResetResult
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.MultiDeviceUsernameChangeSyncJob
 import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
+import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.confirmUsernameAndCreateNewLink
+import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.reserveUsername
+import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.updateUsernameDisplayForCurrentLink
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.util.UsernameUtil
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.util.Usernames
@@ -442,7 +446,11 @@ object UsernameRepository {
         SignalDatabase.recipients.setUsername(Recipient.self().id, updatedUsername.username)
         SignalStore.account.usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
         SignalStore.account.usernameSyncErrorCount = 0
+        SignalStore.misc.needsUsernameRestore = false
 
+        if (Recipient.self().usernameSyncMessagesCapability.isSupported) {
+          MultiDeviceUsernameChangeSyncJob.enqueueUsernameChangeSync()
+        }
         SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
         StorageSyncHelper.scheduleSyncForDataChange()
         Log.i(TAG, "[updateUsernameDisplayForCurrentLink] Successfully updated username.")
@@ -474,7 +482,11 @@ object UsernameRepository {
         SignalDatabase.recipients.setUsername(Recipient.self().id, username.username)
         SignalStore.account.usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
         SignalStore.account.usernameSyncErrorCount = 0
+        SignalStore.misc.needsUsernameRestore = false
 
+        if (Recipient.self().usernameSyncMessagesCapability.isSupported) {
+          MultiDeviceUsernameChangeSyncJob.enqueueUsernameChangeSync()
+        }
         SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
         StorageSyncHelper.scheduleSyncForDataChange()
         Log.i(TAG, "[confirmUsernameAndCreateNewLink] Successfully confirmed username.")
@@ -531,6 +543,11 @@ object UsernameRepository {
         SignalStore.account.usernameLink = null
         SignalStore.account.usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
         SignalStore.account.usernameSyncErrorCount = 0
+        SignalStore.misc.needsUsernameRestore = false
+
+        if (Recipient.self().usernameSyncMessagesCapability.isSupported) {
+          MultiDeviceUsernameChangeSyncJob.enqueueUsernameChangeSync()
+        }
         SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
         StorageSyncHelper.scheduleSyncForDataChange()
         Log.i(TAG, "[deleteUsername] Successfully deleted the username.")

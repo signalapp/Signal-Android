@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.service
 
+import android.app.ForegroundServiceStartNotAllowedException
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
@@ -118,6 +119,9 @@ class AttachmentProgressService : SafeForegroundService() {
     } catch (e: Exception) {
       if (Build.VERSION.SDK_INT >= 31 && e.message?.contains("Time limit", ignoreCase = true) == true) {
         Log.w(TAG, "Foreground service timed out, but not in onTimeout call", e)
+        stopDueToTimeout()
+      } else if (Build.VERSION.SDK_INT >= 31 && e is ForegroundServiceStartNotAllowedException) {
+        Log.w(TAG, "Unable to start foreground service", e)
         stopDueToTimeout()
       } else {
         throw e

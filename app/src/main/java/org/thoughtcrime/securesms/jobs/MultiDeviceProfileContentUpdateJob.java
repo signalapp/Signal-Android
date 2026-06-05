@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.signal.network.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 public class MultiDeviceProfileContentUpdateJob extends BaseJob {

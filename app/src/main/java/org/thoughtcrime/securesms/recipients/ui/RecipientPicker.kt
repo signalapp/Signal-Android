@@ -32,7 +32,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.fragment.compose.rememberFragmentState
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -295,22 +294,21 @@ private fun ContactSelectionListFragment.setUpCallbacks(
     }
   })
 
-  fragment.setOnItemLongClickListener { anchorView, contactSearchKey, recyclerView ->
+  fragment.setOnItemLongClickListener { anchorView, contactSearchKey, setIsDisplayingContextMenu ->
     if (callbacks.contextMenu != null) {
-      coroutineScope.launch { showItemContextMenu(anchorView, contactSearchKey, recyclerView, callbacks.contextMenu) }
+      coroutineScope.launch { showItemContextMenu(anchorView, contactSearchKey, setIsDisplayingContextMenu, callbacks.contextMenu) }
       true
     }
     return@setOnItemLongClickListener false
   }
 
   fragment.setOnRefreshListener { callbacks.refresh?.onRefresh() }
-  fragment.setScrollCallback { clearFocus() }
 }
 
 private suspend fun showItemContextMenu(
   anchorView: View,
   contactSearchKey: ContactSearchKey,
-  recyclerView: RecyclerView,
+  setIsDisplayingContextMenu: Consumer<Boolean>,
   callbacks: RecipientPickerCallbacks.ContextMenu
 ) {
   val context = anchorView.context
@@ -373,10 +371,10 @@ private suspend fun showItemContextMenu(
     .preferredHorizontalPosition(SignalContextMenu.HorizontalPosition.START)
     .offsetX(DimensionUnit.DP.toPixels(12f).toInt())
     .offsetY(DimensionUnit.DP.toPixels(12f).toInt())
-    .onDismiss { recyclerView.suppressLayout(false) }
+    .onDismiss { setIsDisplayingContextMenu.accept(false) }
     .show(actions)
 
-  recyclerView.suppressLayout(true)
+  setIsDisplayingContextMenu.accept(true)
 }
 
 @DayNightPreviews

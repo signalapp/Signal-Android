@@ -175,6 +175,10 @@ object ExportSkips {
     return log(sentTimestamp, "Invalid e164 in sessions switchover event. Exporting an empty event.")
   }
 
+  fun donationRequestNotInReleaseNotesChat(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Donation request not in Release Notes chat.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[SKIP][$sentTimestamp] $message"
   }

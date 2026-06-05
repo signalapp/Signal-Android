@@ -13,20 +13,24 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import org.signal.core.ui.navigation.ResultEventBus
 import org.signal.core.util.logging.Log
+import org.signal.registration.screens.EventDrivenViewModel
 import kotlin.reflect.KClass
 
 /**
  * ViewModel shared across the registration flow.
  * Manages state and logic for registration screens.
  */
-class RegistrationViewModel(private val repository: RegistrationRepository, savedStateHandle: SavedStateHandle) : ViewModel() {
+class RegistrationViewModel(private val repository: RegistrationRepository, savedStateHandle: SavedStateHandle) : EventDrivenViewModel<RegistrationFlowEvent>(TAG) {
 
   companion object {
     private val TAG = Log.tag(RegistrationViewModel::class)
@@ -34,6 +38,9 @@ class RegistrationViewModel(private val repository: RegistrationRepository, save
 
   private var _state: MutableStateFlow<RegistrationFlowState> = savedStateHandle.getMutableStateFlow("registration_state", initialValue = RegistrationFlowState())
   val state: StateFlow<RegistrationFlowState> = _state.asStateFlow()
+
+  private val finishChannel = Channel<Unit>(capacity = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+  val finishRequests: Flow<Unit> = finishChannel.receiveAsFlow()
 
   val resultBus = ResultEventBus()
 
@@ -53,16 +60,12 @@ class RegistrationViewModel(private val repository: RegistrationRepository, save
     }
   }
 
-  fun onEvent(event: RegistrationFlowEvent) {
-    Log.d(TAG, "[Event] $event")
+  override suspend fun processEvent(event: RegistrationFlowEvent) {
     _state.value = applyEvent(_state.value, event)
-
-    viewModelScope.launch(Dispatchers.IO) {
-      persistFlowState(event)
-    }
+    persistFlowState(event)
   }
 
-  fun applyEvent(state: RegistrationFlowState, event: RegistrationFlowEvent): RegistrationFlowState {
+  suspend fun applyEvent(state: RegistrationFlowState, event: RegistrationFlowEvent): RegistrationFlowState {
     return when (event) {
       is RegistrationFlowEvent.ResetState -> RegistrationFlowState(isRestoringNavigationState = false)
       is RegistrationFlowEvent.SessionUpdated -> state.copy(sessionMetadata = event.session)
@@ -70,8 +73,26 @@ class RegistrationViewModel(private val repository: RegistrationRepository, save
       is RegistrationFlowEvent.Registered -> state.copy(accountEntropyPool = event.accountEntropyPool)
       is RegistrationFlowEvent.MasterKeyRestoredFromSvr -> state.copy(temporaryMasterKey = event.masterKey)
       is RegistrationFlowEvent.NavigateToScreen -> applyNavigationToScreenEvent(state, event)
-      is RegistrationFlowEvent.NavigateBack -> state.copy(backStack = state.backStack.dropLast(1))
+      is RegistrationFlowEvent.NavigateBack -> {
+        if (state.backStack.size > 1) {
+          state.copy(backStack = state.backStack.dropLast(1))
+        } else {
+          finishChannel.trySend(Unit)
+          state
+        }
+      }
       is RegistrationFlowEvent.RecoveryPasswordInvalid -> state.copy(doNotAttemptRecoveryPassword = true)
+      is RegistrationFlowEvent.PendingRestoreOptionSelected -> state.copy(pendingRestoreOption = event.option)
+      is RegistrationFlowEvent.UserSuppliedAepSubmitted -> state.copy(unverifiedRestoredAep = event.aep)
+      is RegistrationFlowEvent.UserSuppliedAepVerified -> {
+        repository.saveVerifiedUserSuppliedAep(event.aep)
+        state.copy(accountEntropyPool = event.aep)
+      }
+      is RegistrationFlowEvent.RegistrationComplete -> {
+        repository.commitFinalRegistrationData()
+        val completeNavEvent = RegistrationFlowEvent.NavigateToScreen(RegistrationRoute.FullyComplete)
+        applyNavigationToScreenEvent(state, completeNavEvent)
+      }
     }
   }
 
@@ -143,6 +164,14 @@ class RegistrationViewModel(private val repository: RegistrationRepository, save
     }
   }
 
+  fun getRequiredLinkedDevicePermission(): String? {
+    return if (Build.VERSION.SDK_INT >= 33) {
+      Manifest.permission.POST_NOTIFICATIONS
+    } else {
+      null
+    }
+  }
+
   private suspend fun persistFlowState(event: RegistrationFlowEvent) {
     when (event) {
       is RegistrationFlowEvent.ResetState -> repository.clearFlowState()
@@ -156,7 +185,11 @@ class RegistrationViewModel(private val repository: RegistrationRepository, save
       is RegistrationFlowEvent.NavigateBack,
       is RegistrationFlowEvent.SessionUpdated,
       is RegistrationFlowEvent.E164Chosen,
-      is RegistrationFlowEvent.RecoveryPasswordInvalid -> repository.saveFlowState(_state.value)
+      is RegistrationFlowEvent.RecoveryPasswordInvalid,
+      is RegistrationFlowEvent.PendingRestoreOptionSelected,
+      is RegistrationFlowEvent.UserSuppliedAepSubmitted,
+      is RegistrationFlowEvent.UserSuppliedAepVerified -> repository.saveFlowState(_state.value)
+      is RegistrationFlowEvent.RegistrationComplete -> repository.clearFlowState()
 
       // No need to persist anything new, fields accounted for in proto already
       is RegistrationFlowEvent.Registered,

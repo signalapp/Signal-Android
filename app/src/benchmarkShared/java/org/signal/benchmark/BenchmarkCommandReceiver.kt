@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.websocket.BenchmarkWebSocketConnection
-import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
+import org.signal.network.websocket.WebSocketRequestMessage
 import kotlin.random.Random
 
 /**

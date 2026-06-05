@@ -9,8 +9,9 @@ import android.net.Uri
 import com.bumptech.glide.load.Key
 import java.security.MessageDigest
 
-data class DecryptableUri(val uri: Uri) : Key {
+data class DecryptableUri @JvmOverloads constructor(val uri: Uri, val thumbnailTimeUs: Long = 0) : Key {
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
     messageDigest.update(uri.toString().toByteArray())
+    messageDigest.update(thumbnailTimeUs.toString().toByteArray())
   }
 }

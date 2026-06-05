@@ -212,7 +212,7 @@ fun InternalConversationSettingsScreen(
         item {
           Rows.TextRow(
             text = "Clear sender key and archive sessions",
-            label = "Resets any sender key state and archives all sessions for group members, will force creating new sessions and re-distributing sender key material.",
+            label = "Resets any sender key state, archives all sessions, and removes identity keys for group members, will force creating new sessions and re-distributing sender key material.",
             onClick = {
               dialog = Dialog.CLEAR_SENDER_KEY_AND_ARCHIVE_SESSIONS
             }

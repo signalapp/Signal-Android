@@ -8,15 +8,19 @@ import org.signal.core.models.MasterKey
 import org.signal.core.util.Hex
 import org.signal.libsignal.protocol.logging.Log
 import org.signal.libsignal.svr2.PinHash
+import org.signal.network.NetworkResult
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
+import org.signal.network.util.JsonUtil
+import org.signal.network.websocket.WebSocketRequestMessage
+import org.signal.network.websocket.get
 import org.signal.svr2.proto.BackupRequest
 import org.signal.svr2.proto.DeleteRequest
 import org.signal.svr2.proto.ExposeRequest
 import org.signal.svr2.proto.Request
 import org.signal.svr2.proto.RestoreRequest
-import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException
+import org.whispersystems.signalservice.api.fromWebSocketRequest
 import org.whispersystems.signalservice.api.kbs.PinHashUtil
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.DeleteResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.InvalidRequestException
@@ -25,10 +29,7 @@ import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreRespo
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.SvrVersion
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
-import org.whispersystems.signalservice.internal.get
 import org.whispersystems.signalservice.internal.push.AuthCredentials
-import org.whispersystems.signalservice.internal.util.JsonUtil
-import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import java.io.IOException
 import kotlin.time.Duration.Companion.seconds
 import org.signal.svr2.proto.BackupResponse as ProtoBackupResponse

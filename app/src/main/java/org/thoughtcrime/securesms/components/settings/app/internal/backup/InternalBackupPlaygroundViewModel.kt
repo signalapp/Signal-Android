@@ -37,6 +37,8 @@ import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.roundedString
 import org.signal.core.util.stream.LimitedInputStream
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.signal.network.NetworkResult
+import org.signal.network.api.SvrBApi
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
@@ -57,8 +59,6 @@ import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.svr.SvrBApi
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream

@@ -7,6 +7,7 @@ import android.os.Vibrator;
 import android.provider.Settings;
 
 import androidx.annotation.NonNull;
+import org.signal.core.util.ServiceUtil;
 
 public final class VibrateUtil {
 

@@ -40,6 +40,7 @@ import org.signal.core.util.CursorUtil
 import org.signal.core.util.DiskUtil
 import org.signal.core.util.EventTimer
 import org.signal.core.util.PendingIntentFlags.cancelCurrent
+import org.signal.core.util.ServiceUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.LimitedWorker
@@ -66,6 +67,12 @@ import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.signal.network.ApplicationErrorAction
+import org.signal.network.NetworkResult
+import org.signal.network.StatusCodeErrorAction
+import org.signal.network.api.SvrBApi
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
+import org.signal.network.rest.toNetworkResult
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
@@ -141,12 +148,8 @@ import org.thoughtcrime.securesms.service.BackupMediaRestoreService
 import org.thoughtcrime.securesms.service.BackupProgressService
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.toMillis
-import org.whispersystems.signalservice.api.ApplicationErrorAction
-import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.StatusCodeErrorAction
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
 import org.whispersystems.signalservice.api.archive.ArchiveKeyRotationLimitResponse
 import org.whispersystems.signalservice.api.archive.ArchiveMediaRequest
@@ -160,8 +163,6 @@ import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
-import org.whispersystems.signalservice.api.svr.SvrBApi
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.AuthCredentials
@@ -424,6 +425,12 @@ object BackupRepository {
   }
 
   fun markOutOfRemoteStorageSpaceError() {
+    if (SignalStore.backup.isNotEnoughRemoteStorageSpace) {
+      return
+    }
+
+    SignalStore.backup.markNotEnoughRemoteStorageSpace()
+
     val context = AppDependencies.application
 
     val pendingIntent = PendingIntent.getActivity(context, 0, AppSettingsActivity.remoteBackups(context), cancelCurrent())
@@ -436,8 +443,6 @@ object BackupRepository {
       .build()
 
     ServiceUtil.getNotificationManager(context).notify(NotificationIds.OUT_OF_REMOTE_STORAGE, notification)
-
-    SignalStore.backup.markNotEnoughRemoteStorageSpace()
   }
 
   fun clearOutOfRemoteStorageSpaceError() {
@@ -1460,6 +1465,7 @@ object BackupRepository {
     }
 
     SignalDatabase.remappedRecords.clearCache()
+    SignalDatabase.remappedRecords.trimStaleMappings()
     AppDependencies.recipientCache.clear()
     AppDependencies.recipientCache.warmUp()
     SignalDatabase.threads.clearCache()
@@ -1624,19 +1630,6 @@ object BackupRepository {
       }
   }
 
-  fun getResumableMessagesBackupUploadSpec(backupFileSize: Long): NetworkResult<ResumableMessagesBackupUploadSpec> {
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        SignalNetwork.archive.getMessageBackupUploadForm(SignalStore.account.requireAci(), credential.messageBackupAccess, backupFileSize)
-          .also { Log.i(TAG, "UploadFormResult: ${it::class.simpleName}") }
-      }
-      .then { form ->
-        SignalNetwork.archive.getBackupResumableUploadUrl(form)
-          .also { Log.i(TAG, "ResumableUploadUrlResult: ${it::class.simpleName}") }
-          .map { ResumableMessagesBackupUploadSpec(attachmentUploadForm = form, resumableUri = it) }
-      }
-  }
-
   fun getMessageBackupUploadForm(backupFileSize: Long): NetworkResult<AttachmentUploadForm> {
     return initBackupAndFetchAuth()
       .then { credential ->
@@ -1686,10 +1679,10 @@ object BackupRepository {
    *
    * It's important to note that in order to get this to the archive cdn, you still need to use [copyAttachmentToArchive].
    */
-  fun getAttachmentUploadForm(): NetworkResult<AttachmentUploadForm> {
+  fun getAttachmentUploadForm(uploadLength: Long): NetworkResult<AttachmentUploadForm> {
     return initBackupAndFetchAuth()
       .then { credential ->
-        SignalNetwork.archive.getMediaUploadForm(SignalStore.account.requireAci(), credential.mediaBackupAccess)
+        SignalNetwork.archive.getMediaUploadForm(SignalStore.account.requireAci(), credential.mediaBackupAccess, uploadLength)
       }
   }
 
@@ -2090,7 +2083,7 @@ object BackupRepository {
   }
 
   /**
-   * See [org.whispersystems.signalservice.api.archive.ArchiveApi.getSvrBAuthorization].
+   * See [org.signal.network.api.ArchiveApi.getSvrBAuthorization].
    */
   fun getSvrBAuth(): NetworkResult<AuthCredentials> {
     return initBackupAndFetchAuth()

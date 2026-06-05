@@ -7,15 +7,20 @@ package org.signal.registration
 
 import android.app.backup.BackupManager
 import android.content.Context
+import android.net.Uri
+import com.google.i18n.phonenumbers.PhoneNumberUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import okio.ByteString.Companion.toByteString
+import org.signal.archive.LocalBackupRestoreProgress
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.util.Base64
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.kem.KEMKeyPair
@@ -30,7 +35,6 @@ import org.signal.registration.NetworkController.PreKeyCollection
 import org.signal.registration.NetworkController.ProvisioningEvent
 import org.signal.registration.NetworkController.RegisterAccountError
 import org.signal.registration.NetworkController.RegisterAccountResponse
-import org.signal.registration.NetworkController.RegistrationNetworkResult
 import org.signal.registration.NetworkController.RequestVerificationCodeError
 import org.signal.registration.NetworkController.RestoreMasterKeyError
 import org.signal.registration.NetworkController.SessionMetadata
@@ -38,6 +42,8 @@ import org.signal.registration.NetworkController.SvrCredentials
 import org.signal.registration.NetworkController.UpdateSessionError
 import org.signal.registration.proto.ProvisioningData
 import org.signal.registration.proto.SvrCredential
+import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
+import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreProgress
 import org.signal.registration.util.SensitiveLog
 import java.security.SecureRandom
 import java.util.Locale
@@ -45,9 +51,14 @@ import javax.crypto.Cipher
 import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
-class RegistrationRepository(val context: Context, val networkController: NetworkController, val storageController: StorageController) {
+class RegistrationRepository(val context: Context, val networkController: NetworkController, val storageController: StorageController, val isLinkAndSyncAvailable: Boolean) {
 
-  suspend fun createSession(e164: String): RegistrationNetworkResult<SessionMetadata, CreateSessionError> = withContext(Dispatchers.IO) {
+  companion object {
+    private val TAG = Log.tag(RegistrationRepository::class)
+    private val json = Json { ignoreUnknownKeys = true }
+  }
+
+  suspend fun createSession(e164: String): RequestResult<SessionMetadata, CreateSessionError> = withContext(Dispatchers.IO) {
     val fcmToken = networkController.getFcmToken()
     networkController.createSession(
       e164 = e164,
@@ -61,7 +72,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     sessionId: String,
     smsAutoRetrieveCodeSupported: Boolean,
     transport: NetworkController.VerificationCodeTransport
-  ): RegistrationNetworkResult<SessionMetadata, RequestVerificationCodeError> = withContext(Dispatchers.IO) {
+  ): RequestResult<SessionMetadata, RequestVerificationCodeError> = withContext(Dispatchers.IO) {
     networkController.requestVerificationCode(
       sessionId = sessionId,
       locale = Locale.getDefault(),
@@ -75,7 +86,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
   suspend fun submitCaptchaToken(
     sessionId: String,
     captchaToken: String
-  ): RegistrationNetworkResult<SessionMetadata, UpdateSessionError> = withContext(Dispatchers.IO) {
+  ): RequestResult<SessionMetadata, UpdateSessionError> = withContext(Dispatchers.IO) {
     networkController.updateSession(
       sessionId = sessionId,
       pushChallengeToken = null,
@@ -90,7 +101,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
   suspend fun submitPushChallengeToken(
     sessionId: String,
     pushChallengeToken: String
-  ): RegistrationNetworkResult<SessionMetadata, UpdateSessionError> = withContext(Dispatchers.IO) {
+  ): RequestResult<SessionMetadata, UpdateSessionError> = withContext(Dispatchers.IO) {
     networkController.updateSession(
       sessionId = sessionId,
       pushChallengeToken = pushChallengeToken,
@@ -101,21 +112,32 @@ class RegistrationRepository(val context: Context, val networkController: Networ
   suspend fun submitVerificationCode(
     sessionId: String,
     verificationCode: String
-  ): RegistrationNetworkResult<SessionMetadata, NetworkController.SubmitVerificationCodeError> = withContext(Dispatchers.IO) {
+  ): RequestResult<SessionMetadata, NetworkController.SubmitVerificationCodeError> = withContext(Dispatchers.IO) {
     networkController.submitVerificationCode(
       sessionId = sessionId,
       verificationCode = verificationCode
     )
   }
 
-  suspend fun getSvrCredentials(): RegistrationNetworkResult<SvrCredentials, NetworkController.GetSvrCredentialsError> = withContext(Dispatchers.IO) {
+  suspend fun getSvrCredentials(): RequestResult<SvrCredentials, NetworkController.GetSvrCredentialsError> = withContext(Dispatchers.IO) {
     networkController.getSvrCredentials().also {
-      if (it is RegistrationNetworkResult.Success) {
+      if (it is RequestResult.Success) {
         storageController.updateInProgressRegistrationData {
-          svrCredentials = svrCredentials + SvrCredential(username = it.data.username, password = it.data.password)
+          svrCredentials = svrCredentials + SvrCredential(username = it.result.username, password = it.result.password)
         }
         BackupManager(context).dataChanged()
       }
+    }
+  }
+
+  fun getDefaultRegionCode(): String {
+    val maybeRegionCode = Util.getNetworkCountryIso(context)
+    val maybeCountryCode = PhoneNumberUtil.getInstance().getCountryCodeForRegion(maybeRegionCode)
+    return if (maybeRegionCode != null && maybeCountryCode != 0) {
+      maybeRegionCode
+    } else {
+      Log.w(TAG, "Invalid region or country code. Defaulting to US.")
+      "US"
     }
   }
 
@@ -124,7 +146,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     data.svrCredentials.map { SvrCredentials(username = it.username, password = it.password) }
   }
 
-  suspend fun checkSvrCredentials(e164: String, credentials: List<SvrCredentials>): RegistrationNetworkResult<NetworkController.CheckSvrCredentialsResponse, NetworkController.CheckSvrCredentialsError> = withContext(Dispatchers.IO) {
+  suspend fun checkSvrCredentials(e164: String, credentials: List<SvrCredentials>): RequestResult<NetworkController.CheckSvrCredentialsResponse, NetworkController.CheckSvrCredentialsError> = withContext(Dispatchers.IO) {
     networkController.checkSvrCredentials(e164, credentials)
   }
 
@@ -133,16 +155,16 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     pin: String,
     isAlphanumeric: Boolean,
     forRegistrationLock: Boolean
-  ): RegistrationNetworkResult<MasterKeyResponse, RestoreMasterKeyError> = withContext(Dispatchers.IO) {
+  ): RequestResult<MasterKeyResponse, RestoreMasterKeyError> = withContext(Dispatchers.IO) {
     networkController.restoreMasterKeyFromSvr(
       svrCredentials = svrCredentials,
       pin = pin
     ).also {
-      if (it is RegistrationNetworkResult.Success) {
+      if (it is RequestResult.Success) {
         storageController.updateInProgressRegistrationData {
           this.pin = pin
           this.pinIsAlphanumeric = isAlphanumeric
-          this.temporaryMasterKey = it.data.masterKey.serialize().toByteString()
+          this.temporaryMasterKey = it.result.masterKey.serialize().toByteString()
           this.registrationLockEnabled = forRegistrationLock
           this.svrCredentials += SvrCredential(username = svrCredentials.username, password = svrCredentials.password)
         }
@@ -178,15 +200,16 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     recoveryPassword: String,
     registrationLock: String? = null,
     skipDeviceTransfer: Boolean = true,
-    preExistingRegistrationData: PreExistingRegistrationData? = null
-  ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
+    preExistingRegistrationData: PreExistingRegistrationData? = null,
+    existingAccountEntropyPool: AccountEntropyPool? = null
+  ): RequestResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
     registerAccount(
       e164 = e164,
       sessionId = null,
       recoveryPassword = recoveryPassword,
       registrationLock = registrationLock,
       skipDeviceTransfer = skipDeviceTransfer,
-      existingAccountEntropyPool = preExistingRegistrationData?.aep,
+      existingAccountEntropyPool = existingAccountEntropyPool ?: preExistingRegistrationData?.aep,
       existingAciIdentityKeyPair = preExistingRegistrationData?.aciIdentityKeyPair,
       existingPniIdentityKeyPair = preExistingRegistrationData?.pniIdentityKeyPair
     )
@@ -212,7 +235,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     sessionId: String,
     registrationLock: String? = null,
     skipDeviceTransfer: Boolean = true
-  ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
+  ): RequestResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
     registerAccount(e164, sessionId, recoveryPassword = null, registrationLock, skipDeviceTransfer)
   }
 
@@ -235,7 +258,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
    */
   suspend fun registerAccountWithProvisioningData(
     provisioningMessage: NetworkController.ProvisioningMessage
-  ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
+  ): RequestResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
     storageController.updateInProgressRegistrationData {
       provisioningData = ProvisioningData(
         restoreMethodToken = provisioningMessage.restoreMethodToken,
@@ -294,7 +317,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     existingAccountEntropyPool: AccountEntropyPool? = null,
     existingAciIdentityKeyPair: IdentityKeyPair? = null,
     existingPniIdentityKeyPair: IdentityKeyPair? = null
-  ): RegistrationNetworkResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
+  ): RequestResult<Pair<RegisterAccountResponse, KeyMaterial>, RegisterAccountError> = withContext(Dispatchers.IO) {
     check(sessionId != null || recoveryPassword != null) { "Either sessionId or recoveryPassword must be provided" }
     check(sessionId == null || recoveryPassword == null) { "Either sessionId or recoveryPassword must be provided, but not both" }
 
@@ -316,16 +339,21 @@ class RegistrationRepository(val context: Context, val networkController: Networ
       this.aciRegistrationId = keyMaterial.aciRegistrationId
       this.pniRegistrationId = keyMaterial.pniRegistrationId
       this.unidentifiedAccessKey = keyMaterial.unidentifiedAccessKey.toByteString()
+      this.profileKey = keyMaterial.profileKey.toByteString()
       this.servicePassword = keyMaterial.servicePassword
       this.accountEntropyPool = keyMaterial.accountEntropyPool.value
     }
 
     val fcmToken = networkController.getFcmToken()
 
+    storageController.updateInProgressRegistrationData {
+      this.fetchesMessages = fcmToken == null
+    }
+
     val newMasterKey = keyMaterial.accountEntropyPool.deriveMasterKey()
     val newRecoveryPassword = newMasterKey.deriveRegistrationRecoveryPassword()
 
-    SensitiveLog.d(TAG, "[registerAccount] Using master key [${org.signal.libsignal.protocol.util.Hex.toStringCondensed(newMasterKey.serialize())}] and RRP [$newRecoveryPassword]")
+    SensitiveLog.d(TAG, "[registerAccount] Using master key [${org.signal.core.util.Hex.toStringCondensed(newMasterKey.serialize())}] and RRP [$newRecoveryPassword]")
 
     val accountAttributes = AccountAttributes(
       signalingKey = null,
@@ -341,7 +369,8 @@ class RegistrationRepository(val context: Context, val networkController: Networ
         storage = true, // True initially -- can turn off later if users opt-out
         versionedExpirationTimer = true,
         attachmentBackfill = true,
-        spqr = true
+        spqr = true,
+        usernameChangeSyncMessage = false // TODO(michelle): Turn on once all clients support it
       ),
       name = null,
       pniRegistrationId = keyMaterial.pniRegistrationId,
@@ -372,32 +401,32 @@ class RegistrationRepository(val context: Context, val networkController: Networ
       skipDeviceTransfer = skipDeviceTransfer
     )
 
-    if (result is RegistrationNetworkResult.Success) {
+    if (result is RequestResult.Success) {
       storageController.updateInProgressRegistrationData {
-        this.e164 = result.data.e164
-        this.aci = result.data.aci
-        this.pni = result.data.pni
+        this.e164 = result.result.e164
+        this.aci = result.result.aci
+        this.pni = result.result.pni
         this.servicePassword = keyMaterial.servicePassword
         this.accountEntropyPool = keyMaterial.accountEntropyPool.value
       }
       storageController.commitRegistrationData()
     }
 
-    result.mapSuccess { it to keyMaterial }
+    result.map { it to keyMaterial }
   }
 
   suspend fun setNewlyCreatedPin(
     pin: String,
     isAlphanumeric: Boolean,
     masterKey: MasterKey
-  ): RegistrationNetworkResult<SvrCredentials?, NetworkController.BackupMasterKeyError> = withContext(Dispatchers.IO) {
+  ): RequestResult<SvrCredentials?, NetworkController.BackupMasterKeyError> = withContext(Dispatchers.IO) {
     val result = networkController.setPinAndMasterKeyOnSvr(pin, masterKey)
 
-    if (result is RegistrationNetworkResult.Success) {
+    if (result is RequestResult.Success) {
       storageController.updateInProgressRegistrationData {
         this.pin = pin
         this.pinIsAlphanumeric = isAlphanumeric
-        result.data?.let { credential ->
+        result.result?.let { credential ->
           this.svrCredentials += SvrCredential(username = credential.username, password = credential.password)
         }
       }
@@ -415,13 +444,14 @@ class RegistrationRepository(val context: Context, val networkController: Networ
    * Persists the current flow state as JSON in the in-progress registration data proto.
    */
   suspend fun saveFlowState(state: RegistrationFlowState) = withContext(Dispatchers.IO) {
+    Log.d(TAG, "[saveFlowState] Saving flow state: $state")
     try {
-      val json = flowStateJson.encodeToString(PersistedFlowState.serializer(), state.toPersistedFlowState())
+      val json = json.encodeToString(PersistedFlowState.serializer(), state.toPersistedFlowState())
       storageController.updateInProgressRegistrationData {
         flowStateJson = json
       }
     } catch (e: Exception) {
-      Log.w(TAG, "Failed to save flow state", e)
+      Log.w(TAG, "[saveFlowState] Failed to save flow state.", e)
     }
   }
 
@@ -436,7 +466,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
       val data = storageController.readInProgressRegistrationData()
       if (data.flowStateJson.isEmpty()) return@withContext null
 
-      val persisted = flowStateJson.decodeFromString(PersistedFlowState.serializer(), data.flowStateJson)
+      val persisted = json.decodeFromString(PersistedFlowState.serializer(), data.flowStateJson)
 
       val aep = data.accountEntropyPool.takeIf { it.isNotEmpty() }?.let { AccountEntropyPool(it) }
       val masterKey = data.temporaryMasterKey.takeIf { it.size > 0 }?.let { MasterKey(it.toByteArray()) }
@@ -472,7 +502,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
    */
   suspend fun validateSession(sessionId: String): SessionMetadata? = withContext(Dispatchers.IO) {
     when (val result = networkController.getSession(sessionId)) {
-      is RegistrationNetworkResult.Success -> result.data
+      is RequestResult.Success -> result.result
       else -> null
     }
   }
@@ -484,6 +514,42 @@ class RegistrationRepository(val context: Context, val networkController: Networ
   suspend fun isRegistered(): Boolean = withContext(Dispatchers.IO) {
     val data = storageController.readInProgressRegistrationData()
     data.aci.isNotEmpty() && data.pni.isNotEmpty()
+  }
+
+  fun restoreV1Backup(uri: Uri, passphrase: String): Flow<LocalBackupRestoreProgress> {
+    return storageController.restoreLocalBackupV1(uri, passphrase)
+  }
+
+  fun restoreV2Backup(rootUri: Uri, backupUri: Uri, aep: AccountEntropyPool): Flow<LocalBackupRestoreProgress> {
+    return storageController.restoreLocalBackupV2(rootUri, backupUri, aep)
+  }
+
+  suspend fun scanLocalBackupFolder(folderUri: Uri): List<LocalBackupInfo> = withContext(Dispatchers.IO) {
+    storageController.scanLocalBackupFolder(folderUri)
+  }
+
+  suspend fun getRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<NetworkController.GetBackupInfoResponse, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
+    networkController.getRemoteBackupInfo(aep)
+  }
+
+  suspend fun getBackupFileLastModified(aep: AccountEntropyPool, backupInfo: NetworkController.GetBackupInfoResponse): RequestResult<Long, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
+    networkController.getBackupFileLastModified(aep, backupInfo)
+  }
+
+  fun restoreRemoteBackup(aep: AccountEntropyPool): Flow<RemoteBackupRestoreProgress> {
+    return storageController.restoreRemoteBackup(aep)
+  }
+
+  suspend fun saveVerifiedUserSuppliedAep(aep: AccountEntropyPool): Unit = withContext(Dispatchers.IO) {
+    storageController.updateInProgressRegistrationData {
+      this.accountEntropyPool = aep.value
+    }
+  }
+
+  suspend fun commitFinalRegistrationData(): Unit = withContext(Dispatchers.IO) {
+    storageController.commitRegistrationData()
+    networkController.enqueueAccountAttributesSyncJob()
+    networkController.enqueueSvrGuessResetJob()
   }
 
   private fun generateKeyMaterial(
@@ -513,6 +579,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
       pniLastResortKyberPreKey = pniLastResortKyberPreKey,
       aciRegistrationId = generateRegistrationId(),
       pniRegistrationId = generateRegistrationId(),
+      profileKey = profileKey.serialize(),
       unidentifiedAccessKey = deriveUnidentifiedAccessKey(profileKey),
       servicePassword = generatePassword(),
       accountEntropyPool = accountEntropyPool
@@ -560,10 +627,5 @@ class RegistrationRepository(val context: Context, val networkController: Networ
 
     val ciphertext = cipher.doFinal(input)
     return ciphertext.copyOf(16)
-  }
-
-  companion object {
-    private val TAG = Log.tag(RegistrationRepository::class)
-    private val flowStateJson = Json { ignoreUnknownKeys = true }
   }
 }

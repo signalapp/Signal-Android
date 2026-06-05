@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.signal.core.util.StreamUtil;
 import org.thoughtcrime.securesms.registration.testdata.PinValidityVector;
 import org.whispersystems.signalservice.api.kbs.PinValidityChecker;
-import org.whispersystems.signalservice.internal.util.JsonUtil;
+import org.signal.network.util.JsonUtil;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -6,7 +6,7 @@
 package org.whispersystems.signalservice.internal.push.exceptions
 
 import com.fasterxml.jackson.annotation.JsonCreator
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure
 
 /**

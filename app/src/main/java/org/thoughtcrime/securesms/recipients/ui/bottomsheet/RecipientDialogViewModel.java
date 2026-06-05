@@ -18,11 +18,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.storageservice.storage.protos.groups.AccessControl;
 import org.thoughtcrime.securesms.BlockUnblockDialog;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity;
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavigator;
 import org.thoughtcrime.securesms.conversation.colors.ColorizerV2;
-import org.signal.storageservice.storage.protos.groups.AccessControl;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
@@ -132,7 +132,7 @@ final class RecipientDialogViewModel extends ViewModel {
 
   private void updateRecipientDetailsState(@NonNull Recipient recipient) {
     GroupId groupId   = recipientDialogRepository.getGroupId();
-    String  aboutText = recipient.isReleaseNotes() ? context.getString(R.string.ReleaseNotes__signal_release_notes_and_news) : recipient.getCombinedAboutAndEmoji();
+    String  aboutText = recipient.isReleaseNotes() ? null : recipient.getCombinedAboutAndEmoji();
 
     if (groupId != null && groupId.isV2() && recipient.isIndividual() && !recipient.isSelf()) {
       SignalExecutors.BOUNDED.execute(() -> {
@@ -221,21 +221,21 @@ final class RecipientDialogViewModel extends ViewModel {
     recipientDialogRepository.getRecipient(recipient -> CommunicationActions.startVideoCall(activity, recipient, onUserAlreadyInAnotherCall));
   }
 
-  void onBlockClicked(@NonNull FragmentActivity activity) {
-    recipientDialogRepository.getRecipient(recipient -> BlockUnblockDialog.showBlockFor(activity, activity.getLifecycle(), recipient, () -> RecipientUtil.blockNonGroup(context, recipient)));
+  void onBlockClicked(@NonNull Recipient recipient) {
+    RecipientUtil.blockNonGroup(context, recipient);
   }
 
-  void onUnblockClicked(@NonNull FragmentActivity activity) {
-    recipientDialogRepository.getRecipient(recipient -> BlockUnblockDialog.showUnblockFor(activity, activity.getLifecycle(), recipient, () -> RecipientUtil.unblock(recipient)));
+  void onUnblockClicked(@NonNull Recipient recipient) {
+    RecipientUtil.unblock(recipient);
   }
 
   void onViewSafetyNumberClicked(@NonNull Activity activity, @NonNull IdentityRecord identityRecord) {
     VerifyIdentityActivity.startOrShowExchangeMessagesDialog(activity, identityRecord);
   }
 
-  void onAvatarClicked(@NonNull Activity activity) {
+  void onAvatarClicked(@NonNull FragmentActivity activity) {
     if (storyViewState.getValue() == null || storyViewState.getValue() == StoryViewState.NONE) {
-      activity.startActivity(ConversationSettingsActivity.forRecipient(activity, recipientDialogRepository.getRecipientId()));
+      recipientDialogRepository.getRecipient(recipient -> ConversationSettingsNavigator.navigate(activity, recipient));
     } else {
       activity.startActivity(StoryViewerActivity.createIntent(
           activity,

@@ -17,7 +17,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.util.Debouncer;
+import org.signal.core.util.Debouncer;
 
 // TODO [nicholas]: move to v2 package and make package-private. convert to Kotlin
 public final class SignalStrengthPhoneStateListener extends PhoneStateListener

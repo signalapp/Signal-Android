@@ -17,7 +17,6 @@ import org.whispersystems.signalservice.internal.push.PreKeyResponse
 import org.whispersystems.signalservice.internal.push.PreKeyResponseItem
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataJson
-import org.whispersystems.signalservice.internal.push.SenderCertificate
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse
 import java.security.SecureRandom
@@ -26,8 +25,6 @@ import java.security.SecureRandom
  * Warehouse of reusable test data and mock configurations.
  */
 object MockProvider {
-
-  val senderCertificate = SenderCertificate().apply { certificate = ByteArray(0) }
 
   val lockedFailure = PushServiceSocket.RegistrationLockFailure().apply {
     svr1Credentials = AuthCredentials.create("username", "password")
@@ -75,8 +72,8 @@ object MockProvider {
     val device = PreKeyResponseItem().apply {
       this.deviceId = deviceId
       registrationId = KeyHelper.generateRegistrationId(false)
-      signedPreKey = SignedPreKeyEntity(signedPreKeyRecord.id, signedPreKeyRecord.keyPair.publicKey, signedPreKeyRecord.signature)
-      preKey = PreKeyEntity(oneTimePreKey.id, oneTimePreKey.keyPair.publicKey)
+      signedPreKey = SignedPreKeyEntity(signedPreKeyRecord.id.toLong(), signedPreKeyRecord.keyPair.publicKey, signedPreKeyRecord.signature)
+      preKey = PreKeyEntity(oneTimePreKey.id.toLong(), oneTimePreKey.keyPair.publicKey)
     }
 
     return PreKeyResponse().apply {

@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.internal.websocket;
 
+import org.signal.network.websocket.WebsocketResponse;
+
 
 import org.whispersystems.signalservice.internal.ServiceResponse;
 

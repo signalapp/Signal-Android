@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.internal.push;
 
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 
 public class DeviceLimitExceededException extends NonSuccessfulResponseCodeException {
 

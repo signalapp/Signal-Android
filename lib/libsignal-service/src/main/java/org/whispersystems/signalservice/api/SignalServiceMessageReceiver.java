@@ -6,6 +6,8 @@
 
 package org.whispersystems.signalservice.api;
 
+import org.signal.network.NetworkResult;
+
 import org.signal.core.util.StreamUtil;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;

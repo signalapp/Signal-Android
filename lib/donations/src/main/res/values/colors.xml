@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="donate_with_google_pay_background_color">#000000</color>
+    <color name="donate_with_google_pay_content_overlay">#7FFFFFFF</color>
 </resources>

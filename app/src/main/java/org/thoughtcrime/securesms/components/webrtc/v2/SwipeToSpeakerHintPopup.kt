@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -25,16 +26,23 @@ import kotlin.time.Duration.Companion.seconds
 import org.signal.core.ui.R as CoreUiR
 
 /**
- * Popup shown to hint the user that they can swipe to view screen share.
+ * Popup shown to hint the user that they should swipe between the grid view and
+ * the focused page for speaker/screen share when available.
  */
 @Composable
 fun SwipeToSpeakerHintPopup(
-  visible: Boolean,
+  hintType: SwipeHintType,
   onDismiss: () -> Unit,
   modifier: Modifier = Modifier
 ) {
+  val textResId = when (hintType) {
+    SwipeHintType.SCREEN_SHARE -> R.string.CallToastPopupWindow__swipe_to_view_screen_share
+    SwipeHintType.SPEAKER_VIEW,
+    SwipeHintType.NONE -> R.string.CallToastPopupWindow__swipe_to_view_speaker
+  }
+
   CallScreenPopup(
-    visible = visible,
+    visible = hintType != SwipeHintType.NONE,
     onDismiss = onDismiss,
     displayDuration = 3.seconds,
     modifier = modifier
@@ -51,7 +59,7 @@ fun SwipeToSpeakerHintPopup(
       )
 
       Text(
-        text = stringResource(R.string.CallToastPopupWindow__swipe_to_view_screen_share),
+        text = stringResource(textResId),
         color = colorResource(CoreUiR.color.signal_light_colorOnSecondaryContainer),
         modifier = Modifier.padding(start = 8.dp)
       )
@@ -63,9 +71,16 @@ fun SwipeToSpeakerHintPopup(
 @Composable
 private fun SwipeToSpeakerHintPopupPreview() {
   Previews.Preview {
-    SwipeToSpeakerHintPopup(
-      visible = true,
-      onDismiss = {}
-    )
+    Column {
+      SwipeToSpeakerHintPopup(
+        hintType = SwipeHintType.SPEAKER_VIEW,
+        onDismiss = {}
+      )
+
+      SwipeToSpeakerHintPopup(
+        hintType = SwipeHintType.SCREEN_SHARE,
+        onDismiss = {}
+      )
+    }
   }
 }

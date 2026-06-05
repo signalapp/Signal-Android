@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.payments;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.ComparatorCompat;
-
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.payments.Money;
@@ -20,9 +18,8 @@ import java.util.UUID;
 public interface Payment {
   Comparator<Payment> UNKNOWN_BLOCK_INDEX_FIRST            = (a, b) -> Boolean.compare(b.getBlockIndex() == 0, a.getBlockIndex() == 0);
   Comparator<Payment> ASCENDING_BLOCK_INDEX                = (a, b) -> Long.compare(a.getBlockIndex(), b.getBlockIndex());
-  Comparator<Payment> DESCENDING_BLOCK_INDEX               = ComparatorCompat.reversed(ASCENDING_BLOCK_INDEX);
-  Comparator<Payment> DESCENDING_BLOCK_INDEX_UNKNOWN_FIRST = ComparatorCompat.chain(UNKNOWN_BLOCK_INDEX_FIRST)
-                                                                             .thenComparing(DESCENDING_BLOCK_INDEX);
+  Comparator<Payment> DESCENDING_BLOCK_INDEX               = ASCENDING_BLOCK_INDEX.reversed();
+  Comparator<Payment> DESCENDING_BLOCK_INDEX_UNKNOWN_FIRST = UNKNOWN_BLOCK_INDEX_FIRST.thenComparing(DESCENDING_BLOCK_INDEX);
 
   @NonNull UUID getUuid();
 

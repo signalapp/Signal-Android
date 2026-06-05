@@ -7,6 +7,7 @@ import android.os.PowerManager;
 import android.provider.Settings;
 
 import androidx.annotation.NonNull;
+import org.signal.core.util.ServiceUtil;
 
 public class PowerManagerCompat {
 

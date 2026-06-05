@@ -138,7 +138,7 @@ class ConversationItemPreviewer {
   private fun attachment(): SignalServiceAttachmentPointer {
     return SignalServiceAttachmentPointer(
       Cdn.CDN_3.cdnNumber,
-      SignalServiceAttachmentRemoteId.from(""),
+      SignalServiceAttachmentRemoteId.from("", Cdn.CDN_3.cdnNumber),
       "image/webp",
       null,
       Optional.empty(),

@@ -31,6 +31,7 @@ class GroupRecord(
   groupMasterKeyBytes: ByteArray?,
   groupRevision: Int,
   decryptedGroupBytes: ByteArray?,
+  val verifiedNameHash: ByteArray? = null,
   val distributionId: DistributionId?,
   val lastForceUpdateTimestamp: Long,
   val groupSendEndorsementExpiration: Long

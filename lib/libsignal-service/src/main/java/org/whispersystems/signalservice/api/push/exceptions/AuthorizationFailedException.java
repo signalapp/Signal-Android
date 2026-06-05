@@ -6,6 +6,8 @@
 
 package org.whispersystems.signalservice.api.push.exceptions;
 
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
+
 public class AuthorizationFailedException extends NonSuccessfulResponseCodeException {
   public AuthorizationFailedException(int code, String s) {
     super(code, s);

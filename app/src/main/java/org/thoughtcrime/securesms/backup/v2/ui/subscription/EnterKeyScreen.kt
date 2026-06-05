@@ -43,6 +43,7 @@ import org.signal.core.models.AccountEntropyPool
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.fonts.MonoTypeface
 import org.thoughtcrime.securesms.registration.ui.restore.BackupKeyVisualTransformation
 import org.thoughtcrime.securesms.registration.ui.restore.attachBackupKeyAutoFillHelper
@@ -59,6 +60,8 @@ fun EnterKeyScreen(
   captionContent: @Composable () -> Unit,
   seeKeyButton: @Composable () -> Unit
 ) {
+  TemporaryScreenshotSecurity.bind()
+
   Column(
     verticalArrangement = Arrangement.SpaceBetween,
     modifier = Modifier
@@ -90,7 +93,8 @@ fun EnterKeyScreen(
 
       val updateEnteredBackupKey = { input: String ->
         enteredBackupKey = AccountEntropyPool.removeIllegalCharacters(input).uppercase()
-        isBackupKeyValid = enteredBackupKey == backupKey
+        val normalized = AccountEntropyPool.formatForStorage(enteredBackupKey)
+        isBackupKeyValid = normalized.equals(AccountEntropyPool.formatForStorage(backupKey), ignoreCase = true)
         showError = !isBackupKeyValid && enteredBackupKey.length >= backupKey.length
       }
 

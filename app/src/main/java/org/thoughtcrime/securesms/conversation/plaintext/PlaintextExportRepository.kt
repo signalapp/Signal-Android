@@ -6,13 +6,10 @@
 package org.thoughtcrime.securesms.conversation.plaintext
 
 import android.content.Context
-import android.net.Uri
 import android.webkit.MimeTypeMap
 import androidx.annotation.VisibleForTesting
-import androidx.documentfile.provider.DocumentFile
 import org.signal.core.util.EventTimer
 import org.signal.core.util.ParallelEventTimer
-import org.signal.core.util.androidx.DocumentFileUtil.outputStream
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -25,14 +22,19 @@ import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.MediaUtil
+import java.io.BufferedOutputStream
 import java.io.BufferedWriter
+import java.io.File
 import java.io.IOException
+import java.io.OutputStreamWriter
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.Callable
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Future
+import java.util.zip.ZipEntry
+import java.util.zip.ZipOutputStream
 
 /**
  * Exports a conversation thread as user-friendly plaintext with attachments.
@@ -45,8 +47,9 @@ object PlaintextExportRepository {
   fun export(
     context: Context,
     threadId: Long,
-    directoryUri: Uri,
+    outputFile: File,
     chatName: String,
+    includeMedia: Boolean,
     progressListener: ProgressListener,
     cancellationSignal: CancellationSignal
   ): Boolean {
@@ -54,45 +57,18 @@ object PlaintextExportRepository {
     val stats = getExportStats(threadId)
     eventTimer.emit("stats")
 
-    val root = DocumentFile.fromTreeUri(context, directoryUri) ?: run {
-      Log.w(TAG, "Could not open directory")
-      return false
-    }
-
     val sanitizedName = sanitizeFileName(chatName)
-    if (root.findFile(sanitizedName) != null) {
-      Log.w(TAG, "Export folder already exists: $sanitizedName")
-      return false
-    }
-
-    val chatDir = root.createDirectory(sanitizedName) ?: run {
-      Log.w(TAG, "Could not create chat directory")
-      return false
-    }
-
-    val mediaDir = chatDir.createDirectory("media") ?: run {
-      Log.w(TAG, "Could not create media directory")
-      return false
-    }
-
-    val chatFile = chatDir.createFile("text/plain", "chat.txt") ?: run {
-      Log.w(TAG, "Could not create chat.txt")
-      return false
-    }
-
     val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
     val attachmentDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
 
     val pendingAttachments = mutableListOf<PendingAttachment>()
     var messagesProcessed = 0
 
-    val outputStream = chatFile.outputStream(context) ?: run {
-      Log.w(TAG, "Could not open chat.txt for writing")
-      return false
-    }
-
     try {
-      outputStream.bufferedWriter().use { writer ->
+      ZipOutputStream(BufferedOutputStream(outputFile.outputStream())).use { zipOut ->
+        zipOut.putNextEntry(ZipEntry("$sanitizedName/chat.txt"))
+        val writer = BufferedWriter(OutputStreamWriter(zipOut, Charsets.UTF_8))
+
         writer.write("Chat export: $chatName")
         writer.newLine()
         writer.write("Exported on: ${dateFormat.format(Date())}")
@@ -103,7 +79,6 @@ object PlaintextExportRepository {
 
         val extraDataTimer = ParallelEventTimer()
 
-        // Messages
         MessageTable.mmsReaderFor(SignalDatabase.messages.getConversation(threadId, dateReceiveOrderBy = "ASC")).use { reader ->
           while (true) {
             if (cancellationSignal.isCancelled()) return false
@@ -117,51 +92,51 @@ object PlaintextExportRepository {
             for (message in batch) {
               if (cancellationSignal.isCancelled()) return false
 
-              writer.writeMessage(context, message, extraData, dateFormat, attachmentDateFormat, pendingAttachments)
+              writer.writeMessage(context, message, extraData, dateFormat, attachmentDateFormat, pendingAttachments, includeMedia)
               writer.newLine()
 
               messagesProcessed++
-              progressListener.onProgress(messagesProcessed, stats.messageCount, 0, stats.attachmentCount)
+              if (includeMedia) {
+                progressListener.onProgress(messagesProcessed, stats.messageCount, 0, stats.attachmentCount)
+              } else {
+                progressListener.onProgress(messagesProcessed, stats.messageCount, 0, 0)
+              }
             }
             eventTimer.emit("messages")
           }
         }
 
         Log.d(TAG, "[PlaintextExport] ${extraDataTimer.stop().summary}")
-      }
-    } catch (e: IOException) {
-      Log.w(TAG, "Error writing chat.txt", e)
-      return false
-    }
 
-    // Attachments — use createFile directly (like LocalArchiver's FilesFileSystem) to avoid
-    // the extra content resolver queries that newFile/findFile perform.
-    val totalAttachments = pendingAttachments.size
-    var attachmentsProcessed = 0
-    for (pending in pendingAttachments) {
-      if (cancellationSignal.isCancelled()) return false
+        writer.flush()
+        zipOut.closeEntry()
 
-      try {
-        val outputStream = mediaDir.createFile("application/octet-stream", pending.exportedName)?.let { it.outputStream(context) }
-        if (outputStream == null) {
-          Log.w(TAG, "Could not create attachment file: ${pending.exportedName}")
-          attachmentsProcessed++
-          progressListener.onProgress(stats.messageCount, stats.messageCount, attachmentsProcessed, totalAttachments)
-          continue
-        }
+        if (includeMedia) {
+          val totalAttachments = pendingAttachments.size
+          var attachmentsProcessed = 0
+          for (pending in pendingAttachments) {
+            if (cancellationSignal.isCancelled()) return false
 
-        outputStream.use { out ->
-          SignalDatabase.attachments.getAttachmentStream(pending.attachment.attachmentId, 0).use { input ->
-            input.copyTo(out)
+            try {
+              zipOut.putNextEntry(ZipEntry("$sanitizedName/media/${pending.exportedName}"))
+              SignalDatabase.attachments.getAttachmentStream(pending.attachment.attachmentId, 0).use { input ->
+                input.copyTo(zipOut)
+              }
+              zipOut.closeEntry()
+            } catch (e: Exception) {
+              Log.w(TAG, "Error exporting attachment: ${pending.exportedName}", e)
+            }
+
+            attachmentsProcessed++
+            progressListener.onProgress(stats.messageCount, stats.messageCount, attachmentsProcessed, totalAttachments)
+            eventTimer.emit("media")
           }
         }
-      } catch (e: Exception) {
-        Log.w(TAG, "Error exporting attachment: ${pending.exportedName}", e)
       }
-
-      attachmentsProcessed++
-      progressListener.onProgress(stats.messageCount, stats.messageCount, attachmentsProcessed, totalAttachments)
-      eventTimer.emit("media")
+    } catch (e: IOException) {
+      Log.w(TAG, "Error writing export zip", e)
+      outputFile.delete()
+      return false
     }
 
     Log.d(TAG, "[PlaintextExport] ${eventTimer.stop().summary}")
@@ -222,7 +197,8 @@ object PlaintextExportRepository {
     extraData: ExtraMessageData,
     dateFormat: SimpleDateFormat,
     attachmentDateFormat: SimpleDateFormat,
-    pendingAttachments: MutableList<PendingAttachment>
+    pendingAttachments: MutableList<PendingAttachment>,
+    includeMedia: Boolean
   ) {
     val timestamp = dateFormat.format(Date(message.dateSent))
 
@@ -262,7 +238,7 @@ object PlaintextExportRepository {
     }
 
     if (stickerAttachment != null) {
-      this.writeSticker(stickerAttachment, prefix, hasQuote, attachmentDateFormat, pendingAttachments)
+      this.writeSticker(stickerAttachment, prefix, hasQuote, attachmentDateFormat, pendingAttachments, includeMedia)
       return
     }
 
@@ -282,7 +258,7 @@ object PlaintextExportRepository {
     }
 
     val wrotePrefix = !body.isNullOrEmpty() || hasQuote
-    this.writeAttachments(mainAttachments, prefix, wrotePrefix, attachmentDateFormat, pendingAttachments)
+    this.writeAttachments(mainAttachments, prefix, wrotePrefix, attachmentDateFormat, pendingAttachments, includeMedia)
   }
 
   private fun BufferedWriter.writeUpdateMessage(context: Context, message: MmsMessageRecord, timestamp: String) {
@@ -323,15 +299,20 @@ object PlaintextExportRepository {
     prefix: String,
     hasQuote: Boolean,
     attachmentDateFormat: SimpleDateFormat,
-    pendingAttachments: MutableList<PendingAttachment>
+    pendingAttachments: MutableList<PendingAttachment>,
+    includeMedia: Boolean
   ) {
     val emoji = stickerAttachment.stickerLocator?.emoji ?: ""
-    val exportedName = buildAttachmentFileName(stickerAttachment, attachmentDateFormat)
-    pendingAttachments.add(PendingAttachment(stickerAttachment, exportedName))
     if (!hasQuote) {
       this.write(prefix)
     }
-    this.write("(Sticker) $emoji [See: media/$exportedName]")
+    if (includeMedia) {
+      val exportedName = buildAttachmentFileName(stickerAttachment, attachmentDateFormat)
+      pendingAttachments.add(PendingAttachment(stickerAttachment, exportedName))
+      this.write("(Sticker) $emoji [See: media/$exportedName]")
+    } else {
+      this.write("(Sticker) $emoji")
+    }
     this.newLine()
   }
 
@@ -340,23 +321,32 @@ object PlaintextExportRepository {
     prefix: String,
     wrotePrefix: Boolean,
     attachmentDateFormat: SimpleDateFormat,
-    pendingAttachments: MutableList<PendingAttachment>
+    pendingAttachments: MutableList<PendingAttachment>,
+    includeMedia: Boolean
   ) {
     for ((index, attachment) in attachments.withIndex()) {
-      val exportedName = buildAttachmentFileName(attachment, attachmentDateFormat)
-      pendingAttachments.add(PendingAttachment(attachment, exportedName))
-
       val label = getAttachmentLabel(attachment)
 
       if (!wrotePrefix && index == 0) {
         this.write(prefix)
       }
 
-      val caption = attachment.caption
-      if (caption != null) {
-        this.write("[$label: media/$exportedName] $caption")
+      if (includeMedia) {
+        val exportedName = buildAttachmentFileName(attachment, attachmentDateFormat)
+        pendingAttachments.add(PendingAttachment(attachment, exportedName))
+        val caption = attachment.caption
+        if (caption != null) {
+          this.write("[$label: media/$exportedName] $caption")
+        } else {
+          this.write("[$label: media/$exportedName]")
+        }
       } else {
-        this.write("[$label: media/$exportedName]")
+        val caption = attachment.caption
+        if (caption != null) {
+          this.write("[$label] $caption")
+        } else {
+          this.write("[$label]")
+        }
       }
       this.newLine()
     }

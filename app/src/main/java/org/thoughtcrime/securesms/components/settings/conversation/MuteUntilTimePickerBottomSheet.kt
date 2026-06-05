@@ -100,15 +100,16 @@ class MuteUntilTimePickerBottomSheet : ComposeBottomSheetDialogFragment() {
     }
 
     val zonedDateTime = remember { ZonedDateTime.now() }
-    val timezoneDisclaimer = remember {
-      val zoneOffsetFormatter = DateTimeFormatter.ofPattern("OOOO")
-      val zoneNameFormatter = DateTimeFormatter.ofPattern("zzzz")
-      context.getString(
-        R.string.MuteUntilTimePickerBottomSheet__timezone_disclaimer,
-        zoneOffsetFormatter.format(zonedDateTime),
-        zoneNameFormatter.format(zonedDateTime)
-      )
-    }
+    val zoneOffset = remember { DateTimeFormatter.ofPattern("OOOO").format(zonedDateTime) }
+    val zoneName = remember { DateTimeFormatter.ofPattern("zzzz").format(zonedDateTime) }
+    val timezoneDisclaimer = stringResource(
+      R.string.MuteUntilTimePickerBottomSheet__timezone_disclaimer,
+      zoneOffset,
+      zoneName
+    )
+
+    val selectDateTitle = stringResource(R.string.MuteUntilTimePickerBottomSheet__select_date_title)
+    val selectTimeTitle = stringResource(R.string.MuteUntilTimePickerBottomSheet__select_time_title)
 
     MuteUntilSheetContent(
       dateText = dateText,
@@ -117,7 +118,7 @@ class MuteUntilTimePickerBottomSheet : ComposeBottomSheetDialogFragment() {
       onDateClick = {
         val local = LocalDateTime.now().atMidnight().atUTC().toMillis()
         val datePicker = MaterialDatePicker.Builder.datePicker()
-          .setTitleText(context.getString(R.string.MuteUntilTimePickerBottomSheet__select_date_title))
+          .setTitleText(selectDateTitle)
           .setSelection(selectedDate)
           .setCalendarConstraints(CalendarConstraints.Builder().setStart(local).setValidator(DateValidatorPointForward.now()).build())
           .build()
@@ -138,7 +139,7 @@ class MuteUntilTimePickerBottomSheet : ComposeBottomSheetDialogFragment() {
           .setTimeFormat(timeFormat)
           .setHour(selectedHour)
           .setMinute(selectedMinute)
-          .setTitleText(context.getString(R.string.MuteUntilTimePickerBottomSheet__select_time_title))
+          .setTitleText(selectTimeTitle)
           .build()
 
         timePicker.addOnDismissListener {

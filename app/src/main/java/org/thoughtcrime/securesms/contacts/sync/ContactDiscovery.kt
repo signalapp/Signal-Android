@@ -303,14 +303,10 @@ object ContactDiscovery {
     }
 
     if (NotificationChannels.supported()) {
-      SignalDatabase.recipients.getRecipientsWithNotificationChannels().use { reader ->
-        var recipient: Recipient? = reader.getNext()
-
-        while (recipient != null) {
-          NotificationChannels.getInstance().updateContactChannelName(recipient)
-          recipient = reader.getNext()
-        }
-      }
+      SignalDatabase
+        .recipients
+        .getRecipientsWithNotificationChannels()
+        .forEach { NotificationChannels.getInstance().updateContactChannelName(Recipient.resolved(it.id)) }
     }
   }
 

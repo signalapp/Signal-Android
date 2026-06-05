@@ -146,7 +146,7 @@ object TestMessages {
   private fun imageAttachment(): SignalServiceAttachmentPointer {
     return SignalServiceAttachmentPointer(
       Cdn.S3.cdnNumber,
-      SignalServiceAttachmentRemoteId.from(""),
+      SignalServiceAttachmentRemoteId.from("", Cdn.S3.cdnNumber),
       "image/webp",
       null,
       Optional.empty(),
@@ -170,7 +170,7 @@ object TestMessages {
   private fun voiceAttachment(): SignalServiceAttachmentPointer {
     return SignalServiceAttachmentPointer(
       Cdn.S3.cdnNumber,
-      SignalServiceAttachmentRemoteId.from(""),
+      SignalServiceAttachmentRemoteId.from("", Cdn.S3.cdnNumber),
       "audio/aac",
       null,
       Optional.empty(),

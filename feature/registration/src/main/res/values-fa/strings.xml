@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedScreen__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حریم خصوصی را همراه داشته باشید.\nدر هر پیام خودتان باشید.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">سیگنال یک شرکت غیرانتفاعی است\nشرایط و سیاست حریم خصوصی</string>
@@ -42,6 +45,20 @@
     <string name="RegistrationActivity_select_a_country">یک کشور را انتخاب کنید</string>
     <string name="RegistrationActivity_phone_number_description">شماره تلفن</string>
     <string name="RegistrationActivity_next">بعدی</string>
+    <!-- Dialog title to confirm phone number -->
+    <string name="RegistrationActivity_is_the_phone_number">آیا شماره تلفن زیر درست است؟</string>
+    <!-- Dialog body to confirm phone number -->
+    <string name="RegistrationActivity_a_verification_code">کد تأییدی به این شماره ارسال خواهد شد. ممکن است شرکت مخابراتی هزینه‌هایی اعمال کند.</string>
+    <!-- Dialog button to edit the number entered -->
+    <string name="RegistrationActivity_edit_number">ویرایش شماره</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="RegistrationActivity_open_menu">باز کردن منو</string>
+    <!-- Menu option to use a proxy -->
+    <string name="RegistrationActivity_use_proxy">استفاده از پروکسی</string>
+    <!-- Menu option to link this as a device -->
+    <string name="RegistrationActivity_link_device">پیوند دستگاه</string>
+    <!-- Clickable text that opens a corresponding URL -->
+    <string name="RegistrationActivity_learn_more">اطلاعات بیشتر</string>
 
     <!-- CountryCodePickerScreen -->
     <!-- Title of the country code selection screen -->
@@ -76,8 +93,8 @@
     <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">تعداد تلاش‌ها بیش از حد زیاد است. بعد از %1$s دوباره امتحان کنید.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">خطایی غیرمنتظره رخ داد. لطفاً دوباره امتحان کنید.</string>
-    <!-- Snackbar shown when the SMS provider has an error -->
-    <string name="VerificationCodeScreen__sms_provider_error">مشکلی در ارسال کد تأیید شما پیش آمد. لطفاً دوباره امتحان کنید.</string>
+    <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__unable_to_send_sms">قادر به ارسال پیامک به شماره‌تان نیستیم. لطفاً چند ساعت بعد دوباره امتحان کنید.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">کد به روش انتخابی ارسال نشد. لطفاً گزینه دیگری را امتحان کنید.</string>
     <!-- Snackbar shown for registration errors -->
@@ -130,4 +147,255 @@
     <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_warning">اگر اکنون رد شوید، بعداً نمی‌توانید بازیابی کنید. اگر بعد از رد کردن بازیابی، پشتیبان‌گیری را دوباره فعال کنید، نسخه پشتیبان فعلی‌تان با تاریخچه پیام جدیدتان جایگزین خواهد شد.</string>
     <!-- Confirm button text for the skip restore dialog -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_confirm_button">رد کردن بازیابی</string>
+
+    <!-- LocalBackupRestoreScreen -->
+    <!-- Title for the local backup restore screen -->
+    <string name="LocalBackupRestoreScreen__restore_on_device_backup">بازیابی نسخه پشتیبان در دستگاه</string>
+    <!-- Description on the folder selection screen -->
+    <string name="LocalBackupRestoreScreen__select_folder_description">پیام‌های خود را از نسخه پشتیبانی که در دستگاه خود ذخیره کرده‌اید بازیابی کنید. اگر اکنون بازیابی نکنید، بعداً نمی‌توانید بازیابی کنید.</string>
+    <!-- Title for the choose backup folder card -->
+    <string name="LocalBackupRestoreScreen__choose_backup_folder">پوشه پشتیبان را انتخاب کنید</string>
+    <!-- Subtitle for the choose backup folder card -->
+    <string name="LocalBackupRestoreScreen__choose_folder_subtitle">در دستگاهتان پوشه‌ای را انتخاب کنید که نسخه پشتیبان در آن ذخیره شده است</string>
+    <!-- Text shown while scanning for backups -->
+    <string name="LocalBackupRestoreScreen__scanning_folder">در حال جستجوی نسخه‌های پشتیبان…</string>
+    <!-- Description shown when a backup is found -->
+    <string name="LocalBackupRestoreScreen__backup_found_description">پیام‌های خود را از پوشه پشتیبان که در دستگاهتان ذخیره کرده‌اید بازیابی کنید. اگر اکنون بازیابی نکنید، بعداً نمی‌توانید بازیابی کنید.</string>
+    <!-- Title for the latest backup card -->
+    <string name="LocalBackupRestoreScreen__your_latest_backup">آخرین نسخه پشتیبان شما:</string>
+    <!-- Restore backup button text -->
+    <string name="LocalBackupRestoreScreen__restore_backup">بازیابی پشتیبان</string>
+    <!-- Link to choose an earlier backup -->
+    <string name="LocalBackupRestoreScreen__choose_earlier_backup">نسخه پشتیبان قدیمی‌تری انتخاب کنید</string>
+    <!-- Title for the backup picker bottom sheet -->
+    <string name="LocalBackupRestoreScreen__choose_a_backup_to_restore">نسخه پشتیبانی برای بازیابی انتخاب کنید</string>
+    <!-- Warning text in the backup picker bottom sheet -->
+    <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">انتخاب نسخه پشتیبان قدیمی‌تر می‌تواند منجر به از دست رفتن پیام‌ها یا فایل‌های رسانه شود.</string>
+    <!-- Title when no backup is found -->
+    <string name="LocalBackupRestoreScreen__no_backup_found">نسخه پشتیبان پیدا نشد</string>
+    <!-- Description when no backup is found -->
+    <string name="LocalBackupRestoreScreen__no_backup_found_description">هیچ نسخه پشتیبانی در پوشه انتخابی پیدا نشد. لطفاً پوشه دیگری امتحان کنید.</string>
+    <!-- Button to try a different folder -->
+    <string name="LocalBackupRestoreScreen__try_different_folder">پوشه دیگری را امتحان کنید</string>
+    <!-- Title for V1 passphrase entry screen -->
+    <string name="LocalBackupRestoreScreen__enter_backup_passphrase">وارد کردن گذرواژهٔ پشتیبان</string>
+    <!-- Description for V1 passphrase entry screen -->
+    <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">عبارت عبور پشتیبان‌ محلی شما کد ۳۰ رقمی‌ای است که برای بازیابی حساب و داده‌هایتان الزامی است.</string>
+    <!-- Label for the recovery key text field -->
+    <string name="LocalBackupRestoreScreen__recovery_key">رمز بازیابی</string>
+    <!-- Error text when passphrase is too long -->
+    <string name="LocalBackupRestoreScreen__too_long">بیش‌از حد طولانی (%2$d/%1$d)</string>
+    <!-- Link for users who don\'t have their passphrase -->
+    <string name="LocalBackupRestoreScreen__no_passphrase">عبارت عبور ندارید؟</string>
+    <!-- Next button text -->
+    <string name="LocalBackupRestoreScreen__next">بعدی</string>
+    <!-- EnterAepScreen -->
+    <!-- Title for recovery key entry screen -->
+    <string name="EnterAepScreen__enter_your_recovery_key">رمز بازیابی‌تان را وارد کنید</string>
+    <!-- Description for recovery key entry screen -->
+    <string name="EnterAepScreen__your_recovery_key_is_a_64_character_code">رمز بازیابی شما یک کد ۶۴ نویسه‌ای است که برای بازیابی حساب و اطلاعاتتان الزامی است.</string>
+    <!-- Label for the recovery key text field -->
+    <string name="EnterAepScreen__recovery_key">رمز بازیابی</string>
+    <!-- Link for users who don\'t have their recovery key -->
+    <string name="EnterAepScreen__no_recovery_key">رمز بازیابی ندارید؟</string>
+    <!-- Error text when key is too long -->
+    <string name="EnterAepScreen__too_long">بیش‌از حد طولانی (%2$d/%1$d)</string>
+    <!-- Error text when key is invalid -->
+    <string name="EnterAepScreen__invalid_recovery_key">رمز بازیابی نامعتبر</string>
+    <!-- Error text when key is correct format but does not match account -->
+    <string name="EnterAepScreen__incorrect_recovery_key">رمز بازیابی نادرست</string>
+    <!-- Text shown while preparing the restore -->
+    <string name="LocalBackupRestoreScreen__preparing_restore">در حال آماده‌سازی بازیابی…</string>
+    <!-- Title shown while restore is in progress -->
+    <string name="LocalBackupRestoreScreen__restoring_backup">در حال بازیابی پشتیبان</string>
+    <!-- Description shown while restore is in progress -->
+    <string name="LocalBackupRestoreScreen__restoring_description">لطفاً صبر کنید تا پیام‌ها و داده‌هایتان بازیابی شود.</string>
+    <!-- Description shown when restore is complete -->
+    <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
+    <!-- Continue button text after restore is complete -->
+    <string name="LocalBackupRestoreScreen__continue_button">ادامه</string>
+    <!-- Title shown when restore fails -->
+    <string name="LocalBackupRestoreScreen__restore_failed">بازیابی ناموفق بود</string>
+    <!-- Description shown when restore fails with an unknown error -->
+    <string name="LocalBackupRestoreScreen__restore_failed_description">خطایی هنگام بازیابی نسخه پشتیبان شما رخ داد. لطفاً دوباره امتحان کنید.</string>
+    <!-- Button to retry restore after failure -->
+    <string name="LocalBackupRestoreScreen__try_again">دوباره امتحان کنید</string>
+    <!-- Button to link an existing Signal account to this device -->
+    <string name="WelcomeScreen__link_your_account">حسابتان را پیوند دهید</string>
+    <!-- Prompt shown to users who don\'t have a Signal account yet -->
+    <string name="WelcomeScreen__not_on_signal_yet">هنوز در سیگنال نیستید؟</string>
+    <!-- Button to create a new Signal account -->
+    <string name="WelcomeScreen__create_account">ایجاد حساب</string>
+
+    <!-- RemoteRestoreScreen -->
+    <!-- Title for the remote backup restore screen -->
+    <string name="RemoteRestoreScreen__restore_from_backup">بازیابی از پشتیبان</string>
+    <!-- Shown while fetching backup details from server -->
+    <string name="RemoteRestoreScreen__fetching_backup_details">در حال دریافت جزئیات نسخه پشتیبان…</string>
+    <!-- Button to start restoring the backup -->
+    <string name="RemoteRestoreScreen__restore_backup">بازیابی پشتیبان</string>
+    <!-- Subtitle showing when the last backup was made, with date and time placeholders -->
+    <string name="RemoteRestoreScreen__your_last_backup_was_made_on_s_at_s">آخرین پشتیبان‌گیری در %1$s در %2$s انجام شده است.</string>
+    <!-- Description telling the user their media will restore in the background -->
+    <string name="RemoteRestoreScreen__your_media_will_restore_in_the_background">رسانه شما در پس‍‌زمینه بازیابی خواهد شد. اگر انتخابتان این باشد که اکنون بازیابی نکنید، بعداً قادر به بازیابی نخواهید بود.</string>
+    <!-- Title for the backup not found dialog -->
+    <string name="RemoteRestoreScreen__backup_not_found">نسخه پشتیبان یافت نشد</string>
+    <!-- Body for the backup not found dialog -->
+    <string name="RemoteRestoreScreen__no_backup_was_found">نسخه پشتیبانی برای این حساب یافت نشد.</string>
+    <!-- Title for the restore failed dialog -->
+    <string name="RemoteRestoreScreen__cant_restore_backup">نسخه پشتیبان بازیابی نشد</string>
+    <!-- Body for the restore failed dialog -->
+    <string name="RemoteRestoreScreen__your_backup_cant_be_restored_right_now">نسخه پشتیبان شما اکنون قابل بازیابی نیست. لطفاً دوباره امتحان کنید.</string>
+    <!-- Button to try again -->
+    <string name="RemoteRestoreScreen__try_again">دوباره امتحان کنید</string>
+    <!-- Title for the network error dialog -->
+    <string name="RemoteRestoreScreen__couldnt_finish_restore">بازیابی انجام نشد</string>
+    <!-- Body for the network error dialog -->
+    <string name="RemoteRestoreScreen__error_connecting">هنگام اتصال به سرور، خطایی رخ داد. لطفاً اتصال خود را بررسی و دوباره امتحان کنید.</string>
+    <!-- Body for the general restore failure dialog -->
+    <string name="RemoteRestoreScreen__error_occurred">خطایی هنگام بازیابی نسخه پشتیبان شما رخ داد. لطفاً دوباره امتحان کنید.</string>
+    <!-- Title for the invalid backup version dialog -->
+    <string name="RemoteRestoreScreen__couldnt_restore_this_backup">این نسخه پشتیبان بازیابی نشد</string>
+    <!-- Body for the invalid backup version dialog -->
+    <string name="RemoteRestoreScreen__update_latest">این نسخه از سیگنال نمی‌تواند نسخه پشتیبان شما را بازیابی کند. به آخرین نسخه به‌روزرسانی کنید و دوباره امتحان کنید.</string>
+    <!-- Button to update Signal -->
+    <string name="RemoteRestoreScreen__update_signal">به‌روزرسانی سیگنال</string>
+    <!-- Button to dismiss update dialog -->
+    <string name="RemoteRestoreScreen__not_now">حالا نه</string>
+    <!-- Title for unrecoverable backup failure dialog -->
+    <string name="RemoteRestoreScreen__cant_restore_this_backup">نسخه پشتیبان بازیابی نشد</string>
+    <!-- Body for unrecoverable backup failure dialog prompting user to contact support -->
+    <string name="RemoteRestoreScreen__your_backup_is_not_recoverable">خطایی هنگام بازیابی نسخه پشتیبان شما رخ داد. نسخه پشتیبان شما قابل بازیابی نیست. لطفاً برای راهنمایی با پشتیبانی تماس بگیرید.</string>
+    <!-- Button to contact support -->
+    <string name="RemoteRestoreScreen__contact_support">ارتباط با پشتیبانی</string>
+    <!-- Shown while downloading the backup from the server -->
+    <string name="RemoteRestoreScreen__downloading_backup">در حال دانلود نسخه پشتیبان…</string>
+    <!-- Shown while restoring messages from the downloaded backup -->
+    <string name="RemoteRestoreScreen__restoring_messages">در حال بازیابی پیام‌ها…</string>
+    <!-- Shown while finalizing the restore -->
+    <string name="RemoteRestoreScreen__finishing_restore">در حال اتمام…</string>
+    <!-- Shown as a generic restoring message -->
+    <string name="RemoteRestoreScreen__restoring">در حال بازیابی…</string>
+    <!-- Byte progress text, e.g. "1.2 MB of 10 MB (12.34%)" -->
+    <string name="RemoteRestoreScreen__s_of_s_s">‏%1$s از %2$s (%3$s)</string>
+    <!-- Shown when attempting to open a URL in the web browser, but a browser app cannot be found. -->
+    <string name="LinkActions_error_no_browser_found">مرورگر اینترنت یافت نشد.</string>
+
+    <!-- Title for screen when your account is locked -->
+    <string name="AccountLockedScreen__account_locked">حساب کاربری قفل شد</string>
+    <!-- Description for screen when account is locked -->
+    <string name="AccountLockedScreen__your_account">حساب کاربری شما به منظور حفاظت از حریم خصوصی و امنیت شما قفل شده است. پس از %1$d روز عدم فعالیت در حساب کاربری‌تان، می‌توانید دوباره با این شماره تلفن و بدون نیاز به پین ثبت‌نام کنید. تمام محتوا پاک خواهد شد.</string>
+
+    <!-- Step 1 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_1">سیگنال را در دستگاه قدیمی‌تان باز کنید</string>
+    <!-- Step 2 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_2">روی نماد دوربین ضربه بزنید </string>
+    <!-- Step 3 to quick restore -->
+    <string name="QuickRestoreQRScreen__step_3">این کد را با دوربین اسکن کنید</string>
+    <!-- Loading dialog text when registering -->
+    <string name="QuickRestoreQRScreen__reregister">در حال ثبت‌نام…</string>
+    <!-- Error message text shown if registering fails -->
+    <string name="QuickRestoreQRScreen__error">خطایی هنگام ثبت‌نام رخ داد</string>
+    <!-- Title for quick restoring -->
+    <string name="QuickRestoreQRScreen__scan">این کد را با تلفن قدیمی خود اسکن کنید</string>
+    <!-- Confirmation dialog when qr code is successfully scanned -->
+    <string name="QuickRestoreQRScreen__scanned">کد QR اسکن شد</string>
+    <!-- Button text to retry scanning the QR code -->
+    <string name="QuickRestoreQRScreen__retry">تلاش مجدد</string>
+    <!-- Failure text when a code could not be generated -->
+    <string name="QuickRestoreQRScreen__failed">امکان تولید کد QR وجود ندارد</string>
+
+    <!-- Toast text hinting to submit a debug log with %d being how many more taps are left -->
+    <plurals name="RegistrationActivity_debug_log_hint">
+        <item quantity="one">شما %1$d قدم با ارسال گزارش عیب‌یابی فاصله دارید.</item>
+        <item quantity="other">شما%1$d قدم با ارسال گزارش عیب‌یابی فاصله دارید.</item>
+    </plurals>
+
+    <!-- PIN creation screen title. -->
+    <string name="PinCreationScreen__create_your_pin">پین خود را ایجاد کنید</string>
+    <!-- PIN creation screen title when confirming the new Signal PIN. -->
+    <string name="PinCreationScreen__confirm_your_pin">پین خود را تأیید کنید</string>
+    <!-- Describes how to confirm the new Signal PIN. -->
+    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <!-- Describes the purpose of creating a Signal PIN. -->
+    <string name="PinCreationScreen__pins_can_help">پین‌ها می‌توانند کمک کنند در صورت گم کردن تلفنتان بتوانید حسابتان را بازیابی کنید. </string>
+    <!-- Labels the button to learn more about Signal PINs. -->
+    <string name="PinCreationScreen__learn_more">اطلاعات بیشتر</string>
+    <!-- Labels the button to switch to the numeric PIN keyboard type. -->
+    <string name="PinCreationScreen__switch_to_numeric">تغییر به صفحه‌کلید عددی</string>
+    <!-- Labels the button to switch to the alphanumeric PIN keyboard type. -->
+    <string name="PinCreationScreen__switch_to_alphanumeric">تغییر به صفحه‌کلید حرفی‌عددی</string>
+    <!-- Labels the button to submit a new Signal PIN. -->
+    <string name="PinCreationScreen__next">بعدی</string>
+    <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
+    <string name="PinCreationScreen__pin_at_least_4_digits">رمز باید حداقل 4 رقم باشد</string>
+    <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
+    <string name="PinCreationScreen__pin_at_least_4_characters">رمز شما باید حداقل 4 حرف داشته باشد</string>
+    <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
+    <string name="PinCreationScreen__reenter_pin">وارد کردن دوباره پین</string>
+
+    <!-- PIN entry screen title when registration lock is active. -->
+    <string name="PinEntryScreen__registration_lock">قفل ثبت‌نام</string>
+    <!-- PIN entry screen title when restoring an account. -->
+    <string name="PinEntryScreen__enter_your_pin">پین خود را وارد کنید</string>
+    <!-- Describes the PIN that needs to be entered. -->
+    <string name="PinEntryScreen__enter_the_pin_you_created">پینی را وارد کنید که هنگام نصب اولیه سیگنال ایجاد کرده بودید</string>
+    <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
+    <plurals name="PinEntryScreen__incorrect_pin">
+        <item quantity="one">پین نادرست. %1$d تلاش دیگر باقی مانده است.</item>
+        <item quantity="other">پین نادرست. %1$d تلاش دیگر باقی مانده است.</item>
+    </plurals>
+    <!-- Labels the button to get help with PIN entry. -->
+    <string name="PinEntryScreen__need_help">به راهنمایی نیاز دارید؟</string>
+    <!-- Labels the button to switch between the numeric and alphanumeric keyboard. -->
+    <string name="PinEntryScreen__switch_keyboard">تغییر صفحه‌کلید</string>
+    <!-- Labels the button to skip PIN entry. -->
+    <string name="PinEntryScreen__skip">رد کردن</string>
+    <!-- Labels the button to submit the PIN. -->
+    <string name="PinEntryScreen__continue">ادامه</string>
+
+    <!-- Title for the screen asking the user to grant the notification permission -->
+    <string name="AllowNotificationsScreen__allow_notifications">اعلان‌ها مجاز شود</string>
+    <!-- Description for the screen asking the user to grant the notification permission -->
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <!-- Button label that dismisses the notification permission request without granting it -->
+    <string name="AllowNotificationsScreen__not_now">حالا نه</string>
+    <!-- Button label that proceeds with the notification permission request -->
+    <string name="AllowNotificationsScreen__next">بعدی</string>
+
+    <!-- Title shown while messages are syncing from the primary device -->
+    <string name="MessageSyncScreen__syncing_messages">در حال همگام‌سازی پیام‌ها</string>
+    <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
+    <string name="MessageSyncScreen__downloading_s_of_s">در حال دانلود ‎%1$s ‏از ‎%2$s</string>
+    <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
+    <string name="MessageSyncScreen__learn_more">اطلاعات بیشتر</string>
+    <!-- Button label that cancels the in-progress message sync -->
+    <string name="MessageSyncScreen__cancel">لغو</string>
+
+    <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
+    <string name="LinkAccountScreen__open_signal_on_your_phone">باز کردن سیگنال روی گوشی</string>
+    <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <!-- Button label opening help content for users who can\'t complete the link-account steps -->
+    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
+    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
+    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <!-- Error label shown in place of the QR code if it could not be generated -->
+    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
+    <string name="LinkAccountScreen__create_account">ایجاد حساب</string>
 </resources>

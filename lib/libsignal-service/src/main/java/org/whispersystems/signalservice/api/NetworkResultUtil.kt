@@ -5,8 +5,9 @@
 
 package org.whispersystems.signalservice.api
 
+import org.signal.network.NetworkResult
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException

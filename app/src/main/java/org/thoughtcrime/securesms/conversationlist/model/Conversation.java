@@ -2,13 +2,13 @@ package org.thoughtcrime.securesms.conversationlist.model;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.database.model.ThreadWithRecipient;
 
 public class Conversation {
-  private final ThreadRecord threadRecord;
-  private final Type         type;
+  private final ThreadWithRecipient threadRecord;
+  private final Type                type;
 
-  public Conversation(@NonNull ThreadRecord threadRecord) {
+  public Conversation(@NonNull ThreadWithRecipient threadRecord) {
     this.threadRecord = threadRecord;
     if (this.threadRecord.getThreadId() < 0) {
       type = Type.valueOf(this.threadRecord.getBody());
@@ -17,7 +17,7 @@ public class Conversation {
     }
   }
 
-  public @NonNull ThreadRecord getThreadRecord() {
+  public @NonNull ThreadWithRecipient getThreadRecord() {
     return threadRecord;
   }
 

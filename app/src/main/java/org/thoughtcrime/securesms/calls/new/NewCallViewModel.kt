@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.logging.Log
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.calls.new.NewCallUiState.CallType
 import org.thoughtcrime.securesms.calls.new.NewCallUiState.UserMessage
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientRepository
 import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
-import org.whispersystems.signalservice.api.NetworkResult
 
 class NewCallViewModel : ViewModel() {
   companion object {

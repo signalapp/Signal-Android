@@ -38,6 +38,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
@@ -87,7 +88,6 @@ import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.viewModel
-import java.util.Locale
 import kotlin.time.Duration
 
 /**
@@ -112,6 +112,8 @@ class RemoteRestoreActivity : BaseActivity() {
   private val contactSupportViewModel: ContactSupportViewModel<ContactSupportReason> by viewModels()
 
   private lateinit var wakeLock: RemoteRestoreWakeLock
+
+  private val eventBusSubscriber = EventBusSubscriber()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -235,12 +237,14 @@ class RemoteRestoreActivity : BaseActivity() {
       }
     }
 
-    EventBus.getDefault().registerForLifecycle(subscriber = this, lifecycleOwner = this)
+    EventBus.getDefault().registerForLifecycle(subscriber = eventBusSubscriber, lifecycleOwner = this)
   }
 
-  @Subscribe(threadMode = ThreadMode.MAIN)
-  fun onEvent(restoreEvent: RestoreV2Event) {
-    viewModel.updateRestoreProgress(restoreEvent)
+  private inner class EventBusSubscriber {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(restoreEvent: RestoreV2Event) {
+      viewModel.updateRestoreProgress(restoreEvent)
+    }
   }
 
   private fun showUnregisteredDialog() {
@@ -326,17 +330,18 @@ private fun BackupAvailableContent(
   onUpdateSignal: () -> Unit,
   onContactSupport: () -> Unit
 ) {
+  val locale = LocalLocale.current.platformLocale
   val subtitle = if (state.backupSize.bytes > 0) {
     stringResource(
       id = R.string.RemoteRestoreActivity__backup_created_at_with_size,
-      DateUtils.formatDateWithoutDayOfWeek(Locale.getDefault(), state.backupTime),
+      DateUtils.formatDateWithoutDayOfWeek(locale, state.backupTime),
       DateUtils.getOnlyTimeString(LocalContext.current, state.backupTime),
       state.backupSize.toUnitString()
     )
   } else {
     stringResource(
       id = R.string.RemoteRestoreActivity__backup_created_at,
-      DateUtils.formatDateWithoutDayOfWeek(Locale.getDefault(), state.backupTime),
+      DateUtils.formatDateWithoutDayOfWeek(locale, state.backupTime),
       DateUtils.getOnlyTimeString(LocalContext.current, state.backupTime)
     )
   }

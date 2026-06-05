@@ -35,13 +35,16 @@ public class FcmReceiveService extends FirebaseMessagingService {
                              remoteMessage.getOriginalPriority(),
                              NetworkUtil.getNetworkStatus(this)));
 
-    String registrationChallenge = remoteMessage.getData().get("challenge");
-    String rateLimitChallenge    = remoteMessage.getData().get("rateLimitChallenge");
+    String registrationChallenge   = remoteMessage.getData().get("challenge");
+    String rateLimitChallenge      = remoteMessage.getData().get("rateLimitChallenge");
+    String verificationCodeRequest = remoteMessage.getData().get("verificationCodeRequested");
 
     if (registrationChallenge != null) {
       handleRegistrationPushChallenge(registrationChallenge);
     } else if (rateLimitChallenge != null) {
       handleRateLimitPushChallenge(rateLimitChallenge);
+    } else if (verificationCodeRequest != null && SignalStore.account().isPrimaryDevice()) {
+      handleVerificationCodeRequested(verificationCodeRequest, remoteMessage.getSentTime());
     } else {
       handleReceivedNotification(AppDependencies.getApplication(), remoteMessage);
     }
@@ -101,5 +104,21 @@ public class FcmReceiveService extends FirebaseMessagingService {
   private static void handleRateLimitPushChallenge(@NonNull String challenge) {
     Log.d(TAG, "Got a rate limit push challenge.");
     AppDependencies.getJobManager().add(new SubmitRateLimitPushChallengeJob(challenge));
+  }
+
+  private static void handleVerificationCodeRequested(String verificationCodeRequestJson, long sentTime) {
+    Log.i(TAG, "Got a verification code requested push.");
+
+    VerificationCodeRequestedPush verificationRequestedPush = VerificationCodeRequestedPush.fromJson(verificationCodeRequestJson);
+
+    long requestedAt;
+    if (verificationRequestedPush != null && verificationRequestedPush.getTimestamp() != null) {
+      requestedAt = verificationRequestedPush.getTimestamp();
+    } else {
+      Log.w(TAG, "Unable to parse requested at timestamp from server, using sent time instead");
+      requestedAt = sentTime;
+    }
+
+    SignalStore.account().setVerificationCodeRequestedAtMs(requestedAt);
   }
 }

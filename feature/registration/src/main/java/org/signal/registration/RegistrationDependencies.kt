@@ -5,6 +5,7 @@
 
 package org.signal.registration
 
+import android.content.Context
 import org.signal.core.util.logging.Log
 import org.signal.registration.util.SensitiveLog
 
@@ -13,11 +14,14 @@ import org.signal.registration.util.SensitiveLog
  *
  * @param sensitiveLogger A logger for logging sensitive material. The intention is this would only be used in the demo app for testing + debugging, while
  *   the actual app would just pass null.
+ * @param debugLogCallback Callback to launch the debug log viewer. The actual app provides the real implementation.
  */
 class RegistrationDependencies(
   val networkController: NetworkController,
   val storageController: StorageController,
-  val sensitiveLogger: Log.Logger?
+  val isLinkAndSyncAvailable: Boolean,
+  val sensitiveLogger: Log.Logger?,
+  val debugLogCallback: ((Context) -> Unit)?
 ) {
   companion object {
     lateinit var dependencies: RegistrationDependencies

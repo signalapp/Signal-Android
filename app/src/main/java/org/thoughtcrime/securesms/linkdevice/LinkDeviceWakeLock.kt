@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.linkdevice
 
 import android.os.PowerManager
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -30,8 +31,10 @@ class LinkDeviceWakeLock(
         return
       }
 
-      wakeLock = WakeLockUtil.acquire(activity, PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TIMEOUT, "linkDevice")
+      wakeLock = WakeLockUtil.acquire(activity, PowerManager.PARTIAL_WAKE_LOCK, TIMEOUT, "linkDevice")
     }
+
+    activity.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
   }
 
   fun release() {
@@ -41,6 +44,8 @@ class LinkDeviceWakeLock(
         wakeLock = null
       }
     }
+
+    activity.window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
   }
 
   override fun onPause(owner: LifecycleOwner) {

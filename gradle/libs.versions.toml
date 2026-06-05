@@ -3,38 +3,37 @@
 
 [versions]
 # SDK & Build Versions
-buildTools = "35.0.0"
+buildTools = "36.0.0"
 compileSdk = "android-36"
 targetSdk = "35"
 minSdk = "23"
 ndk = "28.0.13004108"
 javaVersion = "17"
 kotlinJvmTarget = "17"
-gradle = "8.13.2"
+gradle = "9.1.1"
 kotlin = "2.2.20"
-android-gradle-plugin = "8.13.2"
+android-gradle-plugin = "9.1.1"
 
 # Other versions
-androidx-appcompat = "1.7.0"
-androidx-activity = "1.12.0"
-androidx-camera = "1.5.2"
-androidx-fragment = "1.8.5"
-androidx-lifecycle = "2.8.7"
+androidx-appcompat = "1.7.1"
+androidx-activity = "1.13.0"
+androidx-camera = "1.6.1"
+androidx-fragment = "1.8.9"
+androidx-lifecycle = "2.10.0"
 androidx-lifecycle-navigation3 = "2.10.0"
 androidx-media3 = "1.9.1"
-androidx-navigation = "2.8.5"
+androidx-navigation = "2.9.8"
 androidx-navigation3-core = "1.0.0"
-androidx-core-telecom = "1.0.1"
+androidx-core-telecom = "1.1.0-alpha04"
 androidx-window = "1.3.0"
 glide = "4.15.1"
-libsignal-client = "0.90.0"
+libsignal-client = "0.94.4"
 mp4parser = "1.9.39"
 accompanist = "0.28.0"
 nanohttpd = "2.3.1"
-navigation-safe-args-gradle-plugin = "2.8.5"
-protobuf-gradle-plugin = "0.9.0"
-ktlint = "14.0.1"
-ui-test-junit4 = "1.9.4"
+navigation-safe-args-gradle-plugin = "2.9.8"
+protobuf-gradle-plugin = "0.10.0"
+ktlint = "14.2.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
@@ -51,10 +50,10 @@ kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", vers
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 android-library = { module = "com.android.library:com.android.library.gradle.plugin", version.ref = "android-gradle-plugin" }
 android-application = { module = "com.android.application:com.android.application.gradle.plugin", version.ref = "android-gradle-plugin" }
-androidx-benchmark-gradle-plugin = "androidx.benchmark:benchmark-gradle-plugin:1.3.3"
+androidx-benchmark-gradle-plugin = "androidx.benchmark:benchmark-gradle-plugin:1.4.1"
 
 # Compose
-androidx-compose-bom = "androidx.compose:compose-bom:2025.11.01"
+androidx-compose-bom = "androidx.compose:compose-bom:2026.04.01"
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-material3-adaptive = { module = "androidx.compose.material3.adaptive:adaptive"}
 androidx-compose-material3-adaptive-layout = { module = "androidx.compose.material3.adaptive:adaptive-layout"}
@@ -65,23 +64,23 @@ androidx-compose-ui-tooling-core = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 androidx-compose-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
-androidx-compose-rxjava3 = "androidx.compose.runtime:runtime-rxjava3:1.9.2"
+androidx-compose-rxjava3 = "androidx.compose.runtime:runtime-rxjava3:1.11.0"
 
 # Accompanist
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
-accompanist-drawablepainter = "com.google.accompanist:accompanist-drawablepainter:0.36.0"
+accompanist-drawablepainter = "com.google.accompanist:accompanist-drawablepainter:0.37.3"
 
 # Desugaring
-android-tools-desugar = "com.android.tools:desugar_jdk_libs:2.1.3"
+android-tools-desugar = "com.android.tools:desugar_jdk_libs:2.1.5"
 
 # Kotlin
 kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlinx-coroutines-core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0"
-kotlinx-coroutines-core-jvm = "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0"
-kotlinx-coroutines-play-services = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0"
-kotlinx-coroutines-rx3 = "org.jetbrains.kotlinx:kotlinx-coroutines-rx3:1.9.0"
+kotlinx-coroutines-core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2"
+kotlinx-coroutines-core-jvm = "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.10.2"
+kotlinx-coroutines-play-services = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2"
+kotlinx-coroutines-rx3 = "org.jetbrains.kotlinx:kotlinx-coroutines-rx3:1.10.2"
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.9.0" }
 ktlint = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.ref = "ktlint" }
 ktlint-twitter-compose = "com.twitter.compose.rules:ktlint:0.0.26"
@@ -89,27 +88,27 @@ ktlint-twitter-compose = "com.twitter.compose.rules:ktlint:0.0.26"
 # Android X
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
-androidx-core-ktx = "androidx.core:core-ktx:1.15.0"
+androidx-core-ktx = "androidx.core:core-ktx:1.18.0"
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
 androidx-fragment-testing = { module = "androidx.fragment:fragment-testing", version.ref = "androidx-fragment" }
 androidx-fragment-compose = { module = "androidx.fragment:fragment-compose", version.ref = "androidx-fragment" }
-androidx-annotation = "androidx.annotation:annotation:1.9.1"
-androidx-constraintlayout = "androidx.constraintlayout:constraintlayout:2.2.0"
+androidx-annotation = "androidx.annotation:annotation:1.10.0"
+androidx-constraintlayout = "androidx.constraintlayout:constraintlayout:2.2.1"
 androidx-window-window = { module = "androidx.window:window", version.ref = "androidx-window" }
 androidx-window-java = { module = "androidx.window:window-java", version.ref = "androidx-window" }
 androidx-recyclerview = "androidx.recyclerview:recyclerview:1.4.0"
 androidx-legacy-support = "androidx.legacy:legacy-support-v13:1.0.0"
 androidx-legacy-preference = "androidx.legacy:legacy-preference-v14:1.0.0"
 androidx-preference = "androidx.preference:preference:1.2.1"
-androidx-gridlayout = "androidx.gridlayout:gridlayout:1.0.0"
-androidx-exifinterface = "androidx.exifinterface:exifinterface:1.3.7"
+androidx-gridlayout = "androidx.gridlayout:gridlayout:1.1.0"
+androidx-exifinterface = "androidx.exifinterface:exifinterface:1.4.2"
+androidx-media = "androidx.media:media:1.7.0"
 androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "androidx-media3" }
 androidx-media3-session = { module = "androidx.media3:media3-session", version.ref = "androidx-media3" }
 androidx-media3-ui = { module = "androidx.media3:media3-ui", version.ref = "androidx-media3" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
-androidx-navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "androidx-navigation" }
 androidx-navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigation-safe-args-gradle-plugin" }
 androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "androidx-navigation3-core" }
 androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "androidx-navigation3-core" }
@@ -130,79 +129,77 @@ androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", versi
 androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "androidx-camera" }
 androidx-camera-video = { module = "androidx.camera:camera-video", version.ref = "androidx-camera" }
 androidx-camera-compose = { module = "androidx.camera:camera-compose", version.ref = "androidx-camera" }
-androidx-concurrent-futures = "androidx.concurrent:concurrent-futures:1.2.0"
-androidx-autofill = "androidx.autofill:autofill:1.1.0"
+androidx-concurrent-futures = "androidx.concurrent:concurrent-futures:1.3.0"
+androidx-autofill = "androidx.autofill:autofill:1.3.0"
 androidx-biometric = "androidx.biometric:biometric:1.1.0"
 androidx-sharetarget = "androidx.sharetarget:sharetarget:1.2.0"
 androidx-sqlite = "androidx.sqlite:sqlite:2.6.2"
 androidx-sqlite-framework = "androidx.sqlite:sqlite-framework:2.6.2"
 androidx-profileinstaller = "androidx.profileinstaller:profileinstaller:1.4.1"
-androidx-asynclayoutinflater = "androidx.asynclayoutinflater:asynclayoutinflater:1.1.0-alpha01"
-androidx-asynclayoutinflater-appcompat = "androidx.asynclayoutinflater:asynclayoutinflater-appcompat:1.1.0-alpha01"
-androidx-emoji2 = "androidx.emoji2:emoji2:1.5.0"
+androidx-asynclayoutinflater = "androidx.asynclayoutinflater:asynclayoutinflater:1.1.0"
+androidx-asynclayoutinflater-appcompat = "androidx.asynclayoutinflater:asynclayoutinflater-appcompat:1.1.0"
+androidx-emoji2 = "androidx.emoji2:emoji2:1.6.0"
 androidx-core-telecom = { module = "androidx.core:core-telecom", version.ref = "androidx-core-telecom" }
 androidx-documentfile = "androidx.documentfile:documentfile:1.0.1"
-androidx-credentials = "androidx.credentials:credentials:1.5.0"
-androidx-credentials-compat = "androidx.credentials:credentials-play-services-auth:1.5.0"
-android-billing = "com.android.billingclient:billing-ktx:7.1.1"
+androidx-credentials = "androidx.credentials:credentials:1.6.0"
+androidx-credentials-compat = "androidx.credentials:credentials-play-services-auth:1.6.0"
+android-billing = "com.android.billingclient:billing-ktx:8.3.0"
 
 # Billing
 material-material = "com.google.android.material:material:1.12.0"
 
 # Google
-google-libphonenumber = "com.googlecode.libphonenumber:libphonenumber:8.13.50"
-google-play-services-base = "com.google.android.gms:play-services-base:18.5.0"
-google-play-services-maps = "com.google.android.gms:play-services-maps:19.0.0"
-google-play-services-auth = "com.google.android.gms:play-services-auth:21.3.0"
+google-libphonenumber = "com.googlecode.libphonenumber:libphonenumber:9.0.29"
+google-play-services-base = "com.google.android.gms:play-services-base:18.10.0"
+google-play-services-maps = "com.google.android.gms:play-services-maps:20.0.0"
+google-play-services-auth = "com.google.android.gms:play-services-auth:21.5.1"
 google-play-services-wallet = "com.google.android.gms:play-services-wallet:19.4.0"
-google-signin = "com.google.android.libraries.identity.googleid:googleid:1.1.1"
+google-signin = "com.google.android.libraries.identity.googleid:googleid:1.2.0"
 google-zxing-android-integration = "com.google.zxing:android-integration:3.3.0"
-google-zxing-core = "com.google.zxing:core:3.4.1"
+google-zxing-core = "com.google.zxing:core:3.5.4"
 google-ez-vcard = "com.googlecode.ez-vcard:ez-vcard:0.9.11"
 google-jsr305 = "com.google.code.findbugs:jsr305:3.0.2"
-google-guava-android = "com.google.guava:guava:33.3.1-android"
+google-guava-android = "com.google.guava:guava:33.6.0-android"
 google-flexbox = "com.google.android.flexbox:flexbox:3.0.0"
-com-google-devtools-ksp-gradle-plugin = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.2.20-2.0.2"
+com-google-devtools-ksp-gradle-plugin = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.3.2"
 
 # Firebase
-firebase-messaging = "com.google.firebase:firebase-messaging:24.1.0"
+firebase-messaging = "com.google.firebase:firebase-messaging:25.0.1"
 
 # 1st Party
 libsignal-client = { module = "org.signal:libsignal-client", version.ref = "libsignal-client" }
 libsignal-android = { module = "org.signal:libsignal-android", version.ref = "libsignal-client" }
 protobuf-gradle-plugin = { module = "com.google.protobuf:protobuf-gradle-plugin", version.ref = "protobuf-gradle-plugin" }
 signal-aesgcmprovider = "org.signal:aesgcmprovider:0.0.4"
-signal-ringrtc = "org.signal:ringrtc-android:2.67.0"
+signal-ringrtc = "org.signal:ringrtc-android:2.69.2"
 
 # Third Party
-signal-android-database-sqlcipher = "net.zetetic:sqlcipher-android:4.13.0"
+signal-android-database-sqlcipher = "net.zetetic:sqlcipher-android:4.16.0"
 greenrobot-eventbus = "org.greenrobot:eventbus:3.0.0"
 jackson-core = "com.fasterxml.jackson.core:jackson-databind:2.12.0"
 jackson-module-kotlin = "com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0"
-square-okhttp3 = "com.squareup.okhttp3:okhttp:5.0.0-alpha.16"
-square-okio = "com.squareup.okio:okio:3.12.0"
-square-leakcanary = "com.squareup.leakcanary:leakcanary-android:2.7"
-rxjava3-rxjava = "io.reactivex.rxjava3:rxjava:3.0.13"
-rxjava3-rxandroid = "io.reactivex.rxjava3:rxandroid:3.0.0"
+square-okhttp3 = "com.squareup.okhttp3:okhttp:5.3.2"
+square-okio = "com.squareup.okio:okio:3.17.0"
+square-leakcanary = "com.squareup.leakcanary:leakcanary-android:2.14"
+rxjava3-rxjava = "io.reactivex.rxjava3:rxjava:3.1.12"
+rxjava3-rxandroid = "io.reactivex.rxjava3:rxandroid:3.0.2"
 rxjava3-rxkotlin = "io.reactivex.rxjava3:rxkotlin:3.0.1"
-rxdogtag = "com.uber.rxdogtag2:rxdogtag:2.0.1"
+rxdogtag = "com.uber.rxdogtag2:rxdogtag:2.0.2"
 conscrypt-android = "org.conscrypt:conscrypt-android:2.5.3"
 mobilecoin = "com.mobilecoin:android-sdk:6.1.2"
 leolin-shortcutbadger = "me.leolin:ShortcutBadger:1.1.22"
-emilsjolander-stickylistheaders = "se.emilsjolander:stickylistheaders:2.7.0"
 glide-glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-ksp = { module = "com.github.bumptech.glide:ksp", version.ref = "glide" }
-roundedimageview = "com.makeramen:roundedimageview:2.1.0"
+roundedimageview = "com.makeramen:roundedimageview:2.3.0"
 materialish-progress = "com.pnikosis:materialish-progress:1.7"
 subsampling-scale-image-view = "com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0"
-android-tooltips = "com.tomergoldst.android:tooltips:1.0.6"
-stream = "com.annimon:stream:1.1.8"
-lottie = "com.airbnb.android:lottie:6.4.0"
-lottie-compose = "com.airbnb.android:lottie-compose:6.4.0"
-dnsjava = "dnsjava:dnsjava:2.1.9"
+lottie = "com.airbnb.android:lottie:6.7.1"
+lottie-compose = "com.airbnb.android:lottie-compose:6.7.1"
+dnsjava = "dnsjava:dnsjava:3.6.4"
 nanohttpd-webserver = { module = "org.nanohttpd:nanohttpd-webserver", version.ref = "nanohttpd" }
 nanohttpd-websocket = { module = "org.nanohttpd:nanohttpd-websocket", version.ref = "nanohttpd" }
-kotlinx-collections-immutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
+kotlinx-collections-immutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.4.0"
+arrow-core = "io.arrow-kt:arrow-core:2.2.2.1"
 
 # Can't use the newest version because it hits some weird NoClassDefFoundException
 jknack-handlebars = "com.github.jknack:handlebars:4.0.7"
@@ -211,7 +208,6 @@ jknack-handlebars = "com.github.jknack:handlebars:4.0.7"
 mp4parser-isoparser = { module = "org.mp4parser:isoparser", version.ref = "mp4parser" }
 mp4parser-streaming = { module = "org.mp4parser:streaming", version.ref = "mp4parser" }
 mp4parser-muxer = { module = "org.mp4parser:muxer", version.ref = "mp4parser" }
-androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "ui-test-junit4" }
 
 [bundles]
 media3 = ["androidx-media3-exoplayer", "androidx-media3-session", "androidx-media3-ui"]

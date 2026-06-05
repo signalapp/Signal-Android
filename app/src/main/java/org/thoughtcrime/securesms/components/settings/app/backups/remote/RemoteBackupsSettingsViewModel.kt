@@ -29,6 +29,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
 import org.signal.core.util.throttleLatest
 import org.signal.donations.InAppPaymentType
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
@@ -51,7 +52,6 @@ import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.NetworkResult
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds

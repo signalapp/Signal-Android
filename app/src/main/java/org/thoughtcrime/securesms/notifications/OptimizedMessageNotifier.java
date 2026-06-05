@@ -68,11 +68,6 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   }
 
   @Override
-  public void setLastDesktopActivityTimestamp(long timestamp) {
-    getNotifier().setLastDesktopActivityTimestamp(timestamp);
-  }
-
-  @Override
   public void notifyMessageDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId) {
     SignalDatabase.runPostSuccessfulTransaction(() -> {
       getNotifier().notifyMessageDeliveryFailed(context, recipient, conversationId);

@@ -59,7 +59,6 @@ data class RecipientRecord(
   val profileAvatarFileDetails: ProfileAvatarFileDetails,
   @get:JvmName("isProfileSharing")
   val profileSharing: Boolean,
-  val lastProfileFetch: Long,
   val notificationChannel: String?,
   val sealedSenderAccessMode: SealedSenderAccessMode,
   val capabilities: Capabilities,
@@ -122,12 +121,14 @@ data class RecipientRecord(
   )
 
   data class Capabilities(
-    val rawBits: Long
+    val rawBits: Long,
+    val usernameSyncMessages: Recipient.Capability
   ) {
     companion object {
       @JvmField
       val UNKNOWN = Capabilities(
-        rawBits = 0
+        rawBits = 0,
+        usernameSyncMessages = Recipient.Capability.UNKNOWN
       )
     }
   }

@@ -43,7 +43,7 @@ import org.thoughtcrime.securesms.payments.preferences.PaymentsHomeFragmentDirec
 import org.thoughtcrime.securesms.payments.preferences.RecipientHasNotEnabledPaymentsDialog;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.ui.BottomSheetUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.signal.core.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;

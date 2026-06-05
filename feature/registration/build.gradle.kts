@@ -14,6 +14,10 @@ android {
     buildConfig = true
   }
 
+  lint {
+    disable += "StopShip"
+  }
+
   testOptions {
     unitTests {
       isIncludeAndroidResources = true
@@ -32,13 +36,14 @@ wire {
 }
 
 dependencies {
-  implementation(libs.androidx.ui.test.junit4)
   lintChecks(project(":lintchecks"))
 
   // Project dependencies
+  api(project(":lib:archive"))
   implementation(project(":core:ui"))
   implementation(project(":core:util"))
   implementation(project(":core:models-jvm"))
+  implementation(project(":core:serialization"))
   implementation(libs.libsignal.android)
 
   // Compose BOM
@@ -80,6 +85,5 @@ dependencies {
   testImplementation(libs.androidx.compose.ui.test.junit4)
   androidTestImplementation(testLibs.androidx.test.ext.junit)
   androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-  implementation(libs.androidx.compose.ui.test.manifest)
   debugImplementation(libs.androidx.compose.ui.test.manifest)
 }

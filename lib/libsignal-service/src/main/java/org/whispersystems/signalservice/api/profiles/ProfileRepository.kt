@@ -6,6 +6,8 @@
 package org.whispersystems.signalservice.api.profiles
 
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -16,7 +18,7 @@ import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
-import org.whispersystems.signalservice.api.NetworkResult
+import org.signal.network.NetworkResult
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
 import kotlin.time.Duration
@@ -28,6 +30,11 @@ class ProfileRepository(private val profileApi: ProfileApi) {
 
   companion object {
     private val TAG = Log.tag(ProfileRepository::class)
+
+    private const val MAX_PARALLEL_FETCHES = 32
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private val fetchDispatcher = Dispatchers.IO.limitedParallelism(MAX_PARALLEL_FETCHES, "ProfileRepository")
   }
 
   /**
@@ -44,7 +51,7 @@ class ProfileRepository(private val profileApi: ProfileApi) {
     val mutex = Mutex()
 
     val tasks: List<Deferred<Any>> = requests.map { request ->
-      async {
+      async(fetchDispatcher) {
         val response: NetworkResult<SignalServiceProfileWithCredential> = if (request.serviceId is ServiceId.ACI && request.profileKey != null && request.fetchExpiringCredential) {
           profileApi
             .getVersionedProfileAndCredential(request.serviceId, request.profileKey, request.sealedSenderAccess)

@@ -16,6 +16,22 @@ import org.signal.core.util.orNull
 import org.signal.core.util.resettableLazy
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
+import org.signal.network.api.ArchiveApi
+import org.signal.network.api.AttachmentApi
+import org.signal.network.api.CallingApi
+import org.signal.network.api.CdsApi
+import org.signal.network.api.CertificateApi
+import org.signal.network.api.KeysApiV2
+import org.signal.network.api.LinkDeviceApi
+import org.signal.network.api.MessageApiV2
+import org.signal.network.api.PaymentsApi
+import org.signal.network.api.ProvisioningApi
+import org.signal.network.api.RateLimitChallengeApi
+import org.signal.network.api.RemoteConfigApi
+import org.signal.network.api.SvrBApi
+import org.signal.network.api.UsernameApi
+import org.signal.network.rest.SignalRestClient
+import org.signal.network.service.MessageService
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization
 import org.thoughtcrime.securesms.groups.GroupsV2AuthorizationMemoryValueCache
@@ -29,28 +45,16 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.account.AccountApi
-import org.whispersystems.signalservice.api.archive.ArchiveApi
-import org.whispersystems.signalservice.api.attachment.AttachmentApi
-import org.whispersystems.signalservice.api.calling.CallingApi
-import org.whispersystems.signalservice.api.cds.CdsApi
-import org.whispersystems.signalservice.api.certificate.CertificateApi
 import org.whispersystems.signalservice.api.donations.DonationsApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
-import org.whispersystems.signalservice.api.link.LinkDeviceApi
 import org.whispersystems.signalservice.api.message.MessageApi
-import org.whispersystems.signalservice.api.payments.PaymentsApi
 import org.whispersystems.signalservice.api.profiles.ProfileApi
-import org.whispersystems.signalservice.api.provisioning.ProvisioningApi
 import org.whispersystems.signalservice.api.push.TrustStore
-import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi
 import org.whispersystems.signalservice.api.registration.RegistrationApi
-import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigApi
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
-import org.whispersystems.signalservice.api.svr.SvrBApi
-import org.whispersystems.signalservice.api.username.UsernameApi
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory
 import org.whispersystems.signalservice.api.util.TlsProxySocketFactory
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
@@ -90,9 +94,15 @@ class NetworkDependenciesModule(
   val protocolStore: SignalServiceDataStoreImpl by _protocolStore
 
   private val _signalServiceMessageSender = resettableLazy {
-    provider.provideSignalServiceMessageSender(protocolStore, pushServiceSocket, attachmentApi, messageApi, keysApi)
+    provider.provideSignalServiceMessageSender(protocolStore, pushServiceSocket, messageApi, keysApi)
   }
   val signalServiceMessageSender: SignalServiceMessageSender by _signalServiceMessageSender
+
+  val messageApiV2: MessageApiV2 by lazy { MessageApiV2(authWebSocket, unauthWebSocket) }
+
+  val keysApiV2: KeysApiV2 by lazy { KeysApiV2(authWebSocket, unauthWebSocket) }
+
+  val messageService: MessageService by lazy { provider.provideMessageService(protocolStore, messageApiV2, keysApiV2) }
 
   val incomingMessageObserver: IncomingMessageObserver by lazy {
     provider.provideIncomingMessageObserver(authWebSocket, unauthWebSocket)
@@ -100,6 +110,10 @@ class NetworkDependenciesModule(
 
   val pushServiceSocket: PushServiceSocket by lazy {
     provider.providePushServiceSocket(signalServiceNetworkAccess.getConfiguration(), groupsV2Operations)
+  }
+
+  val signalRestClient: SignalRestClient by lazy {
+    provider.provideSignalRestClient(signalServiceNetworkAccess.getConfiguration())
   }
 
   val signalServiceAccountManager: SignalServiceAccountManager by lazy {
@@ -150,7 +164,7 @@ class NetworkDependenciesModule(
   }
 
   val archiveApi: ArchiveApi by lazy {
-    provider.provideArchiveApi(authWebSocket, unauthWebSocket, pushServiceSocket)
+    provider.provideArchiveApi(authWebSocket, unauthWebSocket, pushServiceSocket, signalServiceNetworkAccess.getConfiguration())
   }
 
   val keysApi: KeysApi by lazy {

@@ -19,16 +19,16 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 
 /**
- * Describes which content to display in the detail view.
+ * Describes which content to display in the detail pane.
  */
 @Serializable
 @Parcelize
-sealed class MainNavigationDetailLocation : Parcelable {
+sealed interface MainNavigationDetailLocation : Parcelable {
 
   class Saver(
     val earlyLocation: MainNavigationDetailLocation?
   ) : androidx.compose.runtime.saveable.Saver<MainNavigationDetailLocation, String> {
-    override fun SaverScope.save(value: MainNavigationDetailLocation): String? {
+    override fun SaverScope.save(value: MainNavigationDetailLocation): String {
       return Json.encodeToString(value)
     }
 
@@ -42,40 +42,55 @@ sealed class MainNavigationDetailLocation : Parcelable {
    * of a task stack (or on top of Empty)
    */
   @IgnoredOnParcel
-  open val isContentRoot: Boolean = false
+  val isContentRoot: Boolean
+    get() = false
 
   @Serializable
-  data object Empty : MainNavigationDetailLocation() {
+  data object Empty : MainNavigationDetailLocation {
     @Transient
     @IgnoredOnParcel
     override val isContentRoot: Boolean = true
   }
 
+  @Serializable
+  data class Conversation(val conversationArgs: ConversationArgs) : MainNavigationDetailLocation {
+    @Transient
+    @IgnoredOnParcel
+    override val isContentRoot: Boolean = true
+
+    @Transient
+    @IgnoredOnParcel
+    val controllerKey: Long = conversationArgs.threadId
+  }
+
+  @Serializable
+  data class CallLinkDetails(val callLinkRoomId: CallLinkRoomId) : MainNavigationDetailLocation {
+    @Transient
+    @IgnoredOnParcel
+    override val isContentRoot: Boolean = true
+
+    @Transient
+    @IgnoredOnParcel
+    val controllerKey: CallLogRow.Id = CallLogRow.Id.CallLink(callLinkRoomId)
+  }
+
+  /**
+   * Subscreens that can be displayed within the chats tab.
+   */
   @Parcelize
-  sealed class Chats : MainNavigationDetailLocation() {
+  sealed interface Chats : MainNavigationDetailLocation {
 
-    abstract val controllerKey: RecipientId
-
-    @Serializable
-    data class Conversation(val conversationArgs: ConversationArgs) : Chats() {
-      @Transient
-      @IgnoredOnParcel
-      override val isContentRoot: Boolean = true
-
-      @Transient
-      @IgnoredOnParcel
-      override val controllerKey: RecipientId = conversationArgs.recipientId
-    }
+    val controllerKey: RecipientId
 
     @Serializable
-    data class MessageDetails(val recipientId: RecipientId, val messageId: MessageId) : Chats() {
+    data class MessageDetails(val recipientId: RecipientId, val messageId: MessageId) : Chats {
       @Transient
       @IgnoredOnParcel
       override val controllerKey: RecipientId = recipientId
     }
 
     @Serializable
-    data class ConversationSettings(val recipientId: RecipientId) : Chats() {
+    data class ConversationSettings(val recipientId: RecipientId) : Chats {
       @Transient
       @IgnoredOnParcel
       override val controllerKey: RecipientId = recipientId
@@ -83,27 +98,14 @@ sealed class MainNavigationDetailLocation : Parcelable {
   }
 
   /**
-   * Content which can be displayed while the user is navigating the Calls tab.
+   * Subscreens that can be displayed within the calls tab.
    */
   @Parcelize
-  sealed class Calls : MainNavigationDetailLocation() {
-
-    abstract val controllerKey: CallLogRow.Id
+  sealed interface Calls : MainNavigationDetailLocation {
+    val controllerKey: CallLogRow.Id
 
     @Parcelize
-    sealed class CallLinks : Calls() {
-
-      @Serializable
-      data class CallLinkDetails(val callLinkRoomId: CallLinkRoomId) : CallLinks() {
-        @Transient
-        @IgnoredOnParcel
-        override val isContentRoot: Boolean = true
-
-        @Transient
-        @IgnoredOnParcel
-        override val controllerKey: CallLogRow.Id = CallLogRow.Id.CallLink(callLinkRoomId)
-      }
-
+    sealed class CallLinks : Calls {
       @Serializable
       data class EditCallLinkName(val callLinkRoomId: CallLinkRoomId) : CallLinks() {
         @Transient
@@ -114,5 +116,5 @@ sealed class MainNavigationDetailLocation : Parcelable {
   }
 
   @Parcelize
-  sealed class Stories : MainNavigationDetailLocation()
+  sealed class Stories : MainNavigationDetailLocation
 }

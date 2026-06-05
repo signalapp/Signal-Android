@@ -5,6 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.signal.core.util.Base64.decode
+import org.signal.core.util.ExpiringProfileCredentialUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.SignalExecutors
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.database.RecipientTable.Companion.maskCapabili
 import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberSharingState
 import org.thoughtcrime.securesms.database.RecipientTable.SealedSenderAccessMode
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -32,6 +34,7 @@ import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.forConversation
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientCreator
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -46,9 +49,9 @@ import org.whispersystems.signalservice.api.profiles.ProfileRepository.ProfileFe
 import org.whispersystems.signalservice.api.profiles.ProfileRepository.ProfileFetchResult
 import org.whispersystems.signalservice.api.profiles.ProfileRepository.SignalServiceProfileWithCredential
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
-import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 
 /**
@@ -90,32 +93,25 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
 
     val stopwatch = Stopwatch("RetrieveProfile")
 
-    val recipients = recipientIds.map { Recipient.live(it).refresh().resolve() }
+    val debounceThreshold = if (skipDebounce) null else System.currentTimeMillis().milliseconds - PROFILE_FETCH_DEBOUNCE_TIME
+    val recipientsToFetch = SignalDatabase
+      .recipients
+      .getRecordsForProfileFetch(recipientIds, debounceThreshold)
+      .map { RecipientCreator.forRecord(context, it) }
 
-    RecipientUtil.ensureUuidsAreAvailable(
-      context,
-      recipients.filter { it.registered != RecipientTable.RegisteredState.NOT_REGISTERED }
-    )
-
-    stopwatch.split("resolve-ensure")
-
-    val currentTime = System.currentTimeMillis()
-    val debounceThreshold = currentTime - PROFILE_FETCH_DEBOUNCE_TIME_MS
-    val recipientsToFetch = recipients.filter { recipient ->
-      recipient.hasServiceId && (skipDebounce || recipient.lastProfileFetchTime < debounceThreshold)
-    }
+    stopwatch.split("resolve")
 
     if (recipientsToFetch.isEmpty()) {
-      Log.i(TAG, "All ${recipients.size} recipients have been fetched recently (within ${PROFILE_FETCH_DEBOUNCE_TIME_MS}ms). Skipping network requests.")
+      Log.i(TAG, "All ${recipientIds.size} recipients have been fetched recently (within $PROFILE_FETCH_DEBOUNCE_TIME) or are not eligible. Skipping network requests.")
       return
     }
 
-    if (recipientsToFetch.size < recipients.size) {
-      Log.i(TAG, "Debouncing: Fetching ${recipientsToFetch.size} of ${recipients.size} recipients (${recipients.size - recipientsToFetch.size} were fetched recently)")
+    if (recipientsToFetch.size < recipientIds.size) {
+      Log.i(TAG, "Fetching ${recipientsToFetch.size} of ${recipientIds.size} recipients (${recipientIds.size - recipientsToFetch.size} were ineligible or fetched recently)")
     }
 
     val fetchingRecipientIds = recipientsToFetch.map { it.id }.toSet()
-    val recipientsById: Map<RecipientId, Recipient> = recipients.associateBy { it.id }
+    val recipientsById: Map<RecipientId, Recipient> = recipientsToFetch.associateBy { it.id }
 
     val requests: List<ProfileFetchRequest<RecipientId>> = recipientsToFetch
       .map { recipient ->
@@ -176,12 +172,6 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
         }
       }
     }
-    if (updatedProfiles.isNotEmpty()) {
-      StorageSyncHelper.scheduleSyncForDataChange()
-    }
-    if (avatarJobs.isNotEmpty()) {
-      AppDependencies.jobManager.addAll(avatarJobs)
-    }
     stopwatch.split("process")
 
     SignalDatabase.recipients.markProfilesFetched(successIds, System.currentTimeMillis())
@@ -193,9 +183,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     }
     if (response.unregistered.isNotEmpty()) {
       Log.i(TAG, "Marking ${response.unregistered.size} users as unregistered.")
-      for (recipientId in response.unregistered) {
-        SignalDatabase.recipients.markUnregistered(recipientId)
-      }
+      SignalDatabase.recipients.markUnregistered(response.unregistered)
     }
     stopwatch.split("registered-update")
 
@@ -214,8 +202,16 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
 
     val keyCount = response.successes.mapNotNull { recipientsById[it.id] }.mapNotNull { it.profileKey }.count()
 
-    Log.d(TAG, "Started with ${recipients.size} recipient(s). Of those, ${recipientsToFetch.size} were outside the cache period. Found ${response.successes.size} profile(s), and had keys for $keyCount of them. Will retry ${response.retryableFailures.size}.")
+    Log.d(TAG, "Started with ${recipientIds.size} recipient(s). Of those, ${recipientsToFetch.size} were outside the cache period. Found ${response.successes.size} profile(s), and had keys for $keyCount of them. Will retry ${response.retryableFailures.size}.")
     stopwatch.stop(TAG)
+
+    if (avatarJobs.isNotEmpty()) {
+      AppDependencies.jobManager.addAll(avatarJobs)
+    }
+
+    if (updatedProfiles.isNotEmpty()) {
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
 
     recipientIds.clear()
     recipientIds.addAll(response.retryableFailures)
@@ -353,8 +349,16 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       }
 
       val identityKey = IdentityKey(decode(identityKeyValue), 0)
-      if (!AppDependencies.protocolStore.aci().identities().getIdentityRecord(recipient.id).isPresent) {
+      val existingIdentityKey = AppDependencies.protocolStore.aci().identities().getIdentityRecord(recipient)
+        .map { (_, identityKey): IdentityRecord -> identityKey }
+        .orElse(null)
+
+      if (existingIdentityKey == null) {
         Log.w(TAG, "Still first use for ${recipient.id}")
+        return
+      }
+
+      if (existingIdentityKey == identityKey) {
         return
       }
 
@@ -544,7 +548,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     private const val KEY_SKIP_DEBOUNCE = "skip_debounce"
     private const val QUEUE_PREFIX = "RetrieveProfileJob_"
 
-    private val PROFILE_FETCH_DEBOUNCE_TIME_MS = 5.minutes.inWholeMilliseconds
+    private val PROFILE_FETCH_DEBOUNCE_TIME = 5.minutes
 
     /**
      * Submits the necessary job to refresh the profile of the requested recipient. Works for any

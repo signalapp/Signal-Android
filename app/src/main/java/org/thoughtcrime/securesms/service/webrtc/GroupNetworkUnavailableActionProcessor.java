@@ -3,8 +3,10 @@ package org.thoughtcrime.securesms.service.webrtc;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.ResultReceiver;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
@@ -35,6 +37,26 @@ public class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcesso
   {
     super(webRtcInteractor, TAG);
     this.actionProcessorFactory = actionProcessorFactory;
+  }
+
+  protected GroupNetworkUnavailableActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory,
+                                                   @NonNull WebRtcInteractor webRtcInteractor,
+                                                   @NonNull String tag)
+  {
+    super(webRtcInteractor, tag);
+    this.actionProcessorFactory = actionProcessorFactory;
+  }
+
+  protected @NonNull MultiPeerActionProcessorFactory getActionProcessorFactory() {
+    return actionProcessorFactory;
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleIsInCallQuery(@NonNull WebRtcServiceState currentState, @Nullable ResultReceiver resultReceiver) {
+    if (resultReceiver != null) {
+      resultReceiver.send(1, ActiveCallData.fromCallState(currentState).toBundle());
+    }
+    return currentState;
   }
 
   @Override

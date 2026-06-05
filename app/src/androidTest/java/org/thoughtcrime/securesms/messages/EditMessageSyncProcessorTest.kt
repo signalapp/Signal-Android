@@ -75,6 +75,14 @@ class EditMessageSyncProcessorTest {
             .timestamp(originalTimestamp)
             .expirationStartTimestamp(originalTimestamp)
             .message(content.dataMessage)
+            .unidentifiedStatus(
+              listOf(
+                SyncMessage.Sent.UnidentifiedDeliveryStatus.Builder()
+                  .destinationServiceIdBinary(toRecipient.requireServiceId().toByteString())
+                  .unidentified(true)
+                  .build()
+              )
+            )
             .build()
         ).build()
       ).build()
@@ -99,6 +107,14 @@ class EditMessageSyncProcessorTest {
                 .dataMessage(editedContent.dataMessage)
                 .targetSentTimestamp(originalTimestamp)
                 .build()
+            )
+            .unidentifiedStatus(
+              listOf(
+                SyncMessage.Sent.UnidentifiedDeliveryStatus.Builder()
+                  .destinationServiceIdBinary(toRecipient.requireServiceId().toByteString())
+                  .unidentified(true)
+                  .build()
+              )
             )
             .build()
         ).build()

@@ -11,21 +11,22 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 
 /**
- * Visual formatter for backup keys.
+ * Visual formatter for backup keys. Uppercases and groups characters with spaces without swapping
+ * display-equivalent characters.
  *
  * @param chunkSize character count per group
  */
 class BackupKeyVisualTransformation(private val chunkSize: Int) : VisualTransformation {
   override fun filter(text: AnnotatedString): TransformedText {
     var output = ""
-    for ((i, c) in text.withIndex()) {
+    for ((i, c) in text.text.withIndex()) {
       output += c
       if (i % chunkSize == chunkSize - 1) {
         output += " "
       }
     }
 
-    val transformed = output.trimEnd()
+    val transformed = output.trimEnd().uppercase()
 
     return TransformedText(
       text = AnnotatedString(transformed),

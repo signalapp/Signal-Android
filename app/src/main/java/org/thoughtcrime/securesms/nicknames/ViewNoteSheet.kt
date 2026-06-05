@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.nicknames
 
 import android.os.Bundle
+import android.text.SpannableString
 import android.text.util.Linkify
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.layout.Column
@@ -40,6 +41,7 @@ import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.Linkification
 import org.thoughtcrime.securesms.util.viewModel
 import org.signal.core.ui.R as CoreUiR
 
@@ -142,11 +144,7 @@ private fun ViewNoteBottomSheetContent(
       )
     )
 
-    val mask = if (LocalInspectionMode.current) {
-      Linkify.WEB_URLS
-    } else {
-      Linkify.WEB_URLS or Linkify.EMAIL_ADDRESSES or Linkify.PHONE_NUMBERS
-    }
+    val isInspection = LocalInspectionMode.current
 
     AndroidView(
       factory = { context ->
@@ -161,9 +159,12 @@ private fun ViewNoteBottomSheetContent(
         .fillMaxWidth()
         .padding(bottom = 48.dp)
     ) {
-      it.text = note
-
-      LinkifyCompat.addLinks(it, mask)
+      val spannable = SpannableString(note)
+      if (!isInspection) {
+        LinkifyCompat.addLinks(spannable, Linkify.EMAIL_ADDRESSES or Linkify.PHONE_NUMBERS)
+      }
+      Linkification.applyWebUrlSpans(spannable)
+      it.text = spannable
     }
   }
 }

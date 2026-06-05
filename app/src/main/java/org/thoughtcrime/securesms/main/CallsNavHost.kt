@@ -9,11 +9,13 @@ import androidx.activity.compose.LocalActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalResources
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
+import org.signal.core.ui.rememberIsSplitPane
 import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameScreen
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsScreen
@@ -21,26 +23,30 @@ import org.thoughtcrime.securesms.serialization.JsonSerializableNavType
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import kotlin.reflect.typeOf
 
+private val callLinkRoomIdType = typeOf<CallLinkRoomId>()
+
 fun NavGraphBuilder.callNavGraphBuilder(navHostController: NavHostController) {
   composable<MainNavigationDetailLocation.Empty> {
-    EmptyDetailScreen()
+    if (LocalResources.current.rememberIsSplitPane()) {
+      EmptyDetailScreen()
+    }
   }
 
-  composable<MainNavigationDetailLocation.Calls.CallLinks.CallLinkDetails>(
+  composable<MainNavigationDetailLocation.CallLinkDetails>(
     typeMap = mapOf(
-      typeOf<CallLinkRoomId>() to JsonSerializableNavType(CallLinkRoomId.serializer())
+      callLinkRoomIdType to JsonSerializableNavType(CallLinkRoomId.serializer())
     )
   ) {
     informNavigatorWeAreReady()
 
-    val route = it.toRoute<MainNavigationDetailLocation.Calls.CallLinks.CallLinkDetails>()
+    val route = it.toRoute<MainNavigationDetailLocation.CallLinkDetails>()
 
     CallLinkDetailsScreen(roomId = route.callLinkRoomId)
   }
 
   composable<MainNavigationDetailLocation.Calls.CallLinks.EditCallLinkName>(
     typeMap = mapOf(
-      typeOf<CallLinkRoomId>() to JsonSerializableNavType(CallLinkRoomId.serializer())
+      callLinkRoomIdType to JsonSerializableNavType(CallLinkRoomId.serializer())
     )
   ) {
     informNavigatorWeAreReady()

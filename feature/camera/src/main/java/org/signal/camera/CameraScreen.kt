@@ -35,6 +35,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
@@ -66,6 +67,8 @@ import androidx.camera.core.Preview as CameraPreview
  * @param modifier Modifier to apply to the camera container.
  * @param roundCorners Whether to apply rounded corners to the camera viewfinder. Defaults to true.
  * @param contentAlignment The alignment of the camera viewfinder within the available space. Defaults to center.
+ * @param fillViewport When true, the viewfinder fills all available space, cropping the camera frame
+ *    if necessary to avoid letterbox bars. Defaults to false (letterbox to a 9:16 / 16:9 aspect ratio).
  * @param content Composable content to overlay on top of the camera surface. The content is placed in a Box
  *    with the same size and position as the camera surface.
  */
@@ -78,6 +81,7 @@ fun CameraScreen(
   contentAlignment: Alignment = Alignment.Center,
   captureMode: CameraCaptureMode = CameraCaptureMode.ImageAndVideoSimultaneous,
   enableQrScanning: Boolean = false,
+  fillViewport: Boolean = false,
   content: @Composable BoxScope.() -> Unit = {}
 ) {
   val context = LocalContext.current
@@ -92,8 +96,10 @@ fun CameraScreen(
   val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
   val aspectRatio = if (isLandscape) 16f / 9f else 9f / 16f
 
-  // Bind camera and setup surface provider
-  LaunchedEffect(lifecycleOwner, state.lensFacing) {
+  // Bind camera and setup surface provider. Re-bind on orientation changes so the
+  // Preview's target rotation matches the new display rotation — otherwise the surface
+  // is set up for the previous orientation and the frame ends up rotated/stretched.
+  LaunchedEffect(lifecycleOwner, state.lensFacing, configuration.orientation) {
     val cameraProvider = ProcessCameraProvider.getInstance(context).get()
 
     val surfaceProvider = CameraPreview.SurfaceProvider { request ->
@@ -120,9 +126,14 @@ fun CameraScreen(
     val availableAspectRatio = maxWidth / maxHeight
     val matchHeightFirst = availableAspectRatio > aspectRatio
 
+    val viewfinderBoxModifier = if (fillViewport) {
+      Modifier.fillMaxSize()
+    } else {
+      Modifier.aspectRatio(aspectRatio, matchHeightConstraintsFirst = matchHeightFirst)
+    }
+
     Box(
-      modifier = Modifier
-        .aspectRatio(aspectRatio, matchHeightConstraintsFirst = matchHeightFirst)
+      modifier = viewfinderBoxModifier
     ) {
       val cornerShape = if (roundCorners) RoundedCornerShape(16.dp) else RoundedCornerShape(0.dp)
 
@@ -143,6 +154,7 @@ fun CameraScreen(
         CameraXViewfinder(
           surfaceRequest = currentSurfaceRequest,
           coordinateTransformer = coordinateTransformer,
+          contentScale = if (fillViewport) ContentScale.Crop else ContentScale.Fit,
           modifier = Modifier
             .fillMaxSize()
             .clip(cornerShape)

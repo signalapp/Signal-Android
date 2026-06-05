@@ -5,7 +5,12 @@
 
 package org.whispersystems.signalservice.internal.util
 
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.isActive
 import org.signal.libsignal.internal.CompletableFuture
+import org.signal.libsignal.internal.await
+import java.net.SocketException
+import kotlin.coroutines.cancellation.CancellationException
 
 /**
  * A Kotlin friendly adapter for [org.signal.libsignal.internal.CompletableFuture.whenComplete]
@@ -26,4 +31,16 @@ fun <T> CompletableFuture<T>.whenComplete(
       onSuccess(value)
     }
   }
+}
+
+/**
+ * Awaits a libsignal-net [CompletableFuture] with cancellation-provenance guarding.
+ */
+suspend fun <T> CompletableFuture<T>.awaitRequest(): T = try {
+  await()
+} catch (e: CancellationException) {
+  if (currentCoroutineContext().isActive) {
+    throw SocketException("Future cancelled by transport").apply { initCause(e) }
+  }
+  throw e
 }

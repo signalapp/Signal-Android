@@ -45,6 +45,7 @@ import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
 import org.signal.core.util.Hex
+import org.signal.core.util.JsonUtils
 import org.signal.core.util.ParallelEventTimer
 import org.signal.core.util.StringUtil
 import org.signal.core.util.UuidUtil
@@ -105,7 +106,6 @@ import org.thoughtcrime.securesms.payments.FailureReason
 import org.thoughtcrime.securesms.payments.State
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.mb
 import java.io.Closeable
@@ -241,6 +241,10 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isReleaseChannelDonationRequest(record.type) -> {
+          if (exportState.threadIdToRecipientId[builder.chatId] != exportState.releaseNoteRecipientId) {
+            Log.w(TAG, ExportSkips.donationRequestNotInReleaseNotesChat(builder.dateSent))
+            continue
+          }
           builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.RELEASE_CHANNEL_DONATION_REQUEST)
           transformTimer.emit("simple-update")
         }
@@ -318,7 +322,7 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isSessionSwitchoverType(record.type) -> {
-          builder.updateMessage = record.toRemoteSessionSwitchoverUpdate(record.dateSent) ?: continue
+          builder.updateMessage = record.toRemoteSessionSwitchoverUpdate(record.dateSent)?.takeIf { builder.authorIsAciContact(exportState) } ?: continue
           transformTimer.emit("sse")
         }
 

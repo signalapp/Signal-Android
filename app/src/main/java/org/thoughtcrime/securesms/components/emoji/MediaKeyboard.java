@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.components.emoji;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -15,6 +14,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import org.signal.core.util.ContextUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.InputAwareLayout.InputView;
@@ -29,12 +29,12 @@ public class MediaKeyboard extends FrameLayout implements InputView {
   private static final String EMOJI_SEARCH = "emoji_search_fragment";
 
   @Nullable private MediaKeyboardListener keyboardListener;
-            private boolean               isInitialised;
-            private int                   latestKeyboardHeight;
-            private State                 keyboardState;
-            private KeyboardPagerFragment keyboardPagerFragment;
-            private FragmentManager       fragmentManager;
-            private int                   mediaKeyboardTheme;
+  private boolean               isInitialised;
+  private int                   latestKeyboardHeight;
+  private State                 keyboardState;
+  private KeyboardPagerFragment keyboardPagerFragment;
+  private FragmentManager       fragmentManager;
+  private int                   mediaKeyboardTheme;
 
   public MediaKeyboard(Context context) {
     this(context, null);
@@ -175,7 +175,7 @@ public class MediaKeyboard extends FrameLayout implements InputView {
       LayoutInflater.from(getContext()).inflate(R.layout.media_keyboard, this, true);
 
       if (fragmentManager == null) {
-        FragmentActivity activity = resolveActivity(getContext());
+        FragmentActivity activity = ContextUtil.requireFragmentActivity(getContext());
         fragmentManager = activity.getSupportFragmentManager();
       }
 
@@ -188,25 +188,17 @@ public class MediaKeyboard extends FrameLayout implements InputView {
                      .replace(R.id.media_keyboard_fragment_container, keyboardPagerFragment, TAG)
                      .commitNowAllowingStateLoss();
 
-      keyboardState         = State.NORMAL;
-      latestKeyboardHeight  = -1;
-      isInitialised         = true;
-    }
-  }
-
-  private static FragmentActivity resolveActivity(@Nullable Context context) {
-    if (context instanceof FragmentActivity) {
-      return (FragmentActivity) context;
-    } else if (context instanceof ContextThemeWrapper) {
-      return resolveActivity(((ContextThemeWrapper) context).getBaseContext());
-    } else {
-      throw new IllegalStateException("Could not locate FragmentActivity");
+      keyboardState        = State.NORMAL;
+      latestKeyboardHeight = -1;
+      isInitialised        = true;
     }
   }
 
   public interface MediaKeyboardListener {
     void onShown();
+
     void onHidden();
+
     void onKeyboardChanged(@NonNull KeyboardPage page);
   }
 

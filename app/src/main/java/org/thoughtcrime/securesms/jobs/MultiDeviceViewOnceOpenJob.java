@@ -17,13 +17,13 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.signal.core.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMessage;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.signal.network.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;

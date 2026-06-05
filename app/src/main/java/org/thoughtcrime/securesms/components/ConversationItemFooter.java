@@ -254,7 +254,11 @@ public class ConversationItemFooter extends ConstraintLayout {
                                  }
                                });
 
-      dateView.setMaxWidth(ViewUtil.dpToPx(32));
+      ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) dateView.getLayoutParams();
+      params.startToEnd = R.id.footer_audio_playback_speed_toggle;
+      params.constrainedWidth = true;
+      params.horizontalBias = 1f;
+      dateView.setLayoutParams(params);
   }
 
   private void hidePlaybackSpeedToggle() {
@@ -276,7 +280,11 @@ public class ConversationItemFooter extends ConstraintLayout {
                                  }
                                });
 
-      dateView.setMaxWidth(Integer.MAX_VALUE);
+      ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) dateView.getLayoutParams();
+      params.startToEnd = ConstraintLayout.LayoutParams.UNSET;
+      params.constrainedWidth = false;
+      params.horizontalBias = 0.5f;
+      dateView.setLayoutParams(params);
   }
 
   private @NonNull Rect getPlaybackSpeedToggleTouchDelegateRect() {

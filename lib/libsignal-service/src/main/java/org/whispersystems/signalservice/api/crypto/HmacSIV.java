@@ -4,8 +4,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 import static org.signal.core.util.CryptoUtil.hmacSha256;
-import static org.whispersystems.util.ByteArrayUtil.concat;
-import static org.whispersystems.util.ByteArrayUtil.xor;
+import static org.signal.core.util.ByteArrayUtil.concat;
+import static org.signal.core.util.ByteArrayUtil.xor;
 import static java.util.Arrays.copyOfRange;
 
 /**

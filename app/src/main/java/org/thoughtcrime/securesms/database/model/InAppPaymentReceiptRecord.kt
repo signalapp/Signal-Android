@@ -29,11 +29,10 @@ data class InAppPaymentReceiptRecord(
     @JvmStatic
     fun createForSubscription(subscription: ActiveSubscription.Subscription): InAppPaymentReceiptRecord {
       val activeCurrency = Currency.getInstance(subscription.currency)
-      val activeAmount = subscription.amount.movePointLeft(activeCurrency.defaultFractionDigits)
 
       return InAppPaymentReceiptRecord(
         id = -1L,
-        amount = FiatMoney(activeAmount, activeCurrency),
+        amount = FiatMoney.fromSignalNetworkAmount(subscription.amount, activeCurrency),
         timestamp = System.currentTimeMillis(),
         subscriptionLevel = subscription.level,
         type = if (subscription.level == SubscriptionsConfiguration.BACKUPS_LEVEL) Type.RECURRING_BACKUP else Type.RECURRING_DONATION

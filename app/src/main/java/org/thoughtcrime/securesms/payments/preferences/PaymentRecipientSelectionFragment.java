@@ -26,13 +26,13 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
-import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil;
+import org.signal.core.util.ExpiringProfileCredentialUtil;
 
 import java.util.Optional;
 import java.util.function.Consumer;
 
 
-public class PaymentRecipientSelectionFragment extends LoggingFragment implements ContactSelectionListFragment.OnContactSelectedListener, ContactSelectionListFragment.ScrollCallback {
+public class PaymentRecipientSelectionFragment extends LoggingFragment implements ContactSelectionListFragment.OnContactSelectedListener {
 
   private Toolbar                      toolbar;
   private ContactFilterView            contactFilterView;
@@ -88,11 +88,6 @@ public class PaymentRecipientSelectionFragment extends LoggingFragment implement
 
   @Override
   public void onSelectionChanged() {
-  }
-
-  @Override
-  public void onBeginScroll() {
-    hideKeyboard();
   }
 
   private void hideKeyboard() {

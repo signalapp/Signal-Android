@@ -1,20 +1,17 @@
 package org.thoughtcrime.securesms.linkpreview;
 
 import android.annotation.SuppressLint;
-import android.text.SpannableString;
-import android.text.style.URLSpan;
-import android.text.util.Linkify;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
-import androidx.core.text.util.LinkifyCompat;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
+import org.signal.core.util.Linkifier;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LinkUtil;
+import org.thoughtcrime.securesms.util.Linkification;
 import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 
@@ -26,6 +23,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import okhttp3.HttpUrl;
 
@@ -53,17 +51,15 @@ public final class LinkPreviewUtil {
    * @return All URLs allowed as previews in the source text.
    */
   public static @NonNull Links findValidPreviewUrls(@NonNull String text) {
-    SpannableString spannable = new SpannableString(text);
-    boolean         found     = LinkifyCompat.addLinks(spannable, Linkify.WEB_URLS);
-
-    if (!found) {
+    List<Linkifier.DetectedLink> detected = Linkification.findWebLinks(text);
+    if (detected.isEmpty()) {
       return Links.EMPTY;
     }
 
-    return new Links(Stream.of(spannable.getSpans(0, spannable.length(), URLSpan.class))
-                           .map(span -> new Link(span.getURL(), spannable.getSpanStart(span)))
-                           .filter(link -> LinkUtil.isValidPreviewUrl(link.url))
-                           .toList());
+    return new Links(detected.stream()
+                             .map(d -> new Link(d.getUrl(), d.getStart()))
+                             .filter(link -> LinkUtil.isValidPreviewUrl(link.url))
+                             .collect(Collectors.toList()));
   }
 
   public static @NonNull OpenGraph parseOpenGraphFields(@Nullable String html) {
@@ -179,9 +175,9 @@ public final class LinkPreviewUtil {
 
     private Links(@NonNull List<Link> links) {
       this.links  = links;
-      this.urlSet = Stream.of(links)
-                          .map(link -> trimTrailingSlash(link.url))
-                          .collect(Collectors.toSet());
+      this.urlSet = links.stream()
+                         .map(link -> trimTrailingSlash(link.url))
+                         .collect(Collectors.toSet());
     }
 
     public Optional<Link> findFirst() {

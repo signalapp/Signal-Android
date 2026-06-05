@@ -21,9 +21,6 @@ interface MediaSendCallback : MediaEditScreenCallback, MediaSelectScreenCallback
   /** Called when the user edits video trim data. */
   fun onVideoEdited(uri: Uri, isEdited: Boolean) {}
 
-  /** Called when message text changes. */
-  fun onMessageChanged(text: CharSequence?) {}
-
   object Empty : MediaSendCallback, MediaEditScreenCallback by MediaEditScreenCallback.Empty, MediaSelectScreenCallback by MediaSelectScreenCallback.Empty {
     override fun setFocusedMedia(media: Media) = Unit
   }

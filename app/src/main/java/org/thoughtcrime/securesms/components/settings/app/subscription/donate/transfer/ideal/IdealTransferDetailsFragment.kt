@@ -153,7 +153,7 @@ class IdealTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDele
     if (state.inAppPayment!!.type.recurring) { // TODO [message-requests] -- handle backup
       val formattedMoney = FiatMoneyUtil.format(requireContext().resources, state.inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
       MaterialAlertDialogBuilder(requireContext())
-        .setTitle(getString(R.string.IdealTransferDetailsFragment__confirm_your_donation_with_ideal))
+        .setTitle(getString(R.string.IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero))
         .setMessage(getString(R.string.IdealTransferDetailsFragment__to_setup_your_recurring_donation, formattedMoney))
         .setPositiveButton(R.string.IdealTransferDetailsFragment__continue) { _, _ ->
           continueTransfer()
@@ -218,7 +218,7 @@ private fun IdealTransferDetailsContent(
   onDonateClick: () -> Unit
 ) {
   Scaffolds.Settings(
-    title = stringResource(id = R.string.GatewaySelectorBottomSheet__ideal),
+    title = stringResource(id = R.string.GatewaySelectorBottomSheet__ideal_wero),
     onNavigationClick = onNavigationClick,
     navigationIcon = SignalIcons.ArrowStart.imageVector
   ) {

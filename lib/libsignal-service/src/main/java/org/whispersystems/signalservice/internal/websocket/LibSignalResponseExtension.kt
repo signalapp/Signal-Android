@@ -6,6 +6,7 @@
 package org.whispersystems.signalservice.internal.websocket
 
 import org.signal.libsignal.net.ChatConnection.Response
+import org.signal.network.websocket.WebsocketResponse
 
 fun Response.toWebsocketResponse(isUnidentified: Boolean): WebsocketResponse {
   return WebsocketResponse(

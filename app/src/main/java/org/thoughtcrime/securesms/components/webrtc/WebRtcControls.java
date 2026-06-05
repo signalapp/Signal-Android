@@ -8,6 +8,8 @@ import androidx.annotation.Px;
 import androidx.annotation.StringRes;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 
 import java.util.Set;
@@ -164,7 +166,9 @@ public final class WebRtcControls {
   }
 
   public boolean displayOverflow() {
-    return isAtLeastOutgoing() && hasAtLeastOneRemote && isGroupCall() && groupCallState == GroupCallState.CONNECTED;
+    boolean connectedGroupCall = isGroupCall() && groupCallState == GroupCallState.CONNECTED && hasAtLeastOneRemote;
+    boolean connected1to1Call  = !isGroupCall() && callState == CallState.ONGOING && RemoteConfig.screenSharing();
+    return isAtLeastOutgoing() && (connectedGroupCall || connected1to1Call);
   }
 
   public boolean displayMuteAudio() {
@@ -280,7 +284,7 @@ public final class WebRtcControls {
     return callState.isAtLeast(CallState.OUTGOING);
   }
 
-  private boolean isGroupCall() {
+  public boolean isGroupCall() {
     return groupCallState != GroupCallState.NONE;
   }
 

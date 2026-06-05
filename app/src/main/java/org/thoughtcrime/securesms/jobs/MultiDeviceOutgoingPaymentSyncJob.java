@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.signalservice.api.messages.multidevice.OutgoingPaymentMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.signal.core.models.ServiceId;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.signal.network.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.util.Optional;

@@ -70,6 +70,7 @@ dependencies {
   // AndroidX
   implementation(libs.androidx.activity.compose)
   implementation(libs.androidx.core.ktx)
+  implementation(libs.androidx.documentfile)
   implementation(libs.androidx.sqlite)
   implementation(libs.androidx.sqlite.framework)
 

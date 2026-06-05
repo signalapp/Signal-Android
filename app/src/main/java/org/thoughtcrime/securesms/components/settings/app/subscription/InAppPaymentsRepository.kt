@@ -664,7 +664,7 @@ object InAppPaymentsRepository {
       timestamp = insertedAt.inWholeMilliseconds,
       error = null,
       pendingVerification = true,
-      checkedVerification = data.waitForAuth!!.checkedVerification
+      checkedVerification = data.waitForAuth?.checkedVerification ?: false
     )
   }
 

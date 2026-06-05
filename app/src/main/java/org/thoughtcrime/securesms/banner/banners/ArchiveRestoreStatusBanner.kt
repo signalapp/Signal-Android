@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.onStart
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState.RestoreStatus
@@ -25,6 +26,7 @@ class ArchiveRestoreStatusBanner(private val listener: RestoreProgressBannerList
   override val dataFlow: Flow<ArchiveRestoreProgressState> by lazy {
     ArchiveRestoreProgress
       .stateFlow
+      .onStart { ArchiveRestoreProgress.checkForStalledRestore() }
       .filter {
         it.restoreStatus != RestoreStatus.NONE && (it.restoreState.isMediaRestoreOperation || it.restoreStatus == RestoreStatus.FINISHED)
       }

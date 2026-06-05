@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentActivity;
 
-import com.annimon.stream.Stream;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
@@ -62,7 +61,7 @@ public final class LeaveGroupDialog {
 
       if (groupProperties != null && groupProperties.isAdmin(Recipient.self())) {
         List<Recipient> otherMemberRecipients = groupProperties.getMemberRecipients(GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
-        long            otherAdminsCount      = Stream.of(otherMemberRecipients).filter(groupProperties::isAdmin).count();
+        long            otherAdminsCount      = otherMemberRecipients.stream().filter(groupProperties::isAdmin).count();
 
         return otherAdminsCount == 0 && !otherMemberRecipients.isEmpty();
       }

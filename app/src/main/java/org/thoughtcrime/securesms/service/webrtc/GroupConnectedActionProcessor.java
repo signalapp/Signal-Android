@@ -1,12 +1,11 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
+import android.content.Intent;
 import android.os.ResultReceiver;
 import android.util.LongSparseArray;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
@@ -19,12 +18,14 @@ import org.thoughtcrime.securesms.events.GroupCallSpeechEvent;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.ringrtc.Camera;
+import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.ringrtc.OutgoingVideoSourceRouter;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
-import org.thoughtcrime.securesms.service.webrtc.state.CallInfoState;
+import org.thoughtcrime.securesms.service.webrtc.state.LocalDeviceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
+import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Process actions for when the call has at least once been connected and joined.
@@ -88,25 +90,108 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
   protected @NonNull WebRtcServiceState handleSetEnableVideo(@NonNull WebRtcServiceState currentState, boolean enable) {
     Log.i(tag, "handleSetEnableVideo():");
 
-    GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
-    Camera    camera    = currentState.getVideoState().requireCamera();
+    GroupCall                 groupCall = currentState.getCallInfoState().requireGroupCall();
+    OutgoingVideoSourceRouter router    = currentState.getVideoState().requireRouter();
 
     try {
-      groupCall.setOutgoingVideoMuted(!enable);
+      groupCall.setOutgoingVideoMuted(!enable, false);
     } catch (CallException e) {
       return groupCallFailure(currentState, "Unable set video muted", e);
     }
-    camera.setEnabled(enable);
+    router.setEnabled(enable);
 
     currentState = currentState.builder()
                                .changeLocalDeviceState()
-                               .cameraState(camera.getCameraState())
+                               .cameraState(router.getCameraState())
                                .build();
 
-    boolean localVideoEnabled  = currentState.getLocalDeviceState().getCameraState().isEnabled();
+    boolean localVideoEnabled  = currentState.getLocalDeviceState().getCameraState().isEnabled() || currentState.getLocalDeviceState().isScreenSharing();
     boolean remoteVideoEnabled = currentState.getCallInfoState().getRemoteCallParticipantsMap().values().stream().anyMatch(CallParticipant::isVideoEnabled);
     webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, remoteVideoEnabled));
 
+    WebRtcUtil.enableSpeakerPhoneIfNeeded(webRtcInteractor, currentState);
+
+    return currentState;
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleSetLocalScreenShare(@NonNull WebRtcServiceState currentState, boolean enable, @Nullable Intent mediaProjectionData) {
+    Log.i(tag, "handleSetLocalScreenShare(): enable: " + enable);
+
+    GroupCall                 groupCall = currentState.getCallInfoState().requireGroupCall();
+    OutgoingVideoSourceRouter router    = currentState.getVideoState().requireRouter();
+
+    RecipientId recipientId = currentState.getCallInfoState().getCallRecipient().getId();
+
+    if (enable && mediaProjectionData != null) {
+      Log.i(tag, "Updating service for media projection, then can screen share");
+      ActiveCallManager.ActiveCallForegroundService.update(context, CallNotificationBuilder.TYPE_ESTABLISHED, recipientId, true, true);
+
+      return currentState.builder()
+                         .changeLocalDeviceState()
+                         .setMediaProjectionIntent(mediaProjectionData)
+                         .build();
+    } else {
+      router.stopScreenShare();
+
+      boolean cameraWasEnabled = currentState.getLocalDeviceState().getCameraState().isEnabled();
+      ActiveCallManager.ActiveCallForegroundService.update(context, CallNotificationBuilder.TYPE_ESTABLISHED, recipientId, true, false);
+
+      try {
+        groupCall.setPresenting(false);
+        groupCall.setOutgoingVideoMuted(!cameraWasEnabled, false);
+      } catch (CallException e) {
+        return groupCallFailure(currentState, "Unable to restore video mute after screen share", e);
+      }
+
+      currentState = currentState.builder()
+                                 .changeLocalDeviceState()
+                                 .isScreenSharing(false)
+                                 .setMediaProjectionIntent(null)
+                                 .build();
+
+      boolean remoteVideoEnabled = currentState.getCallInfoState().getRemoteCallParticipantsMap().values().stream().anyMatch(CallParticipant::isVideoEnabled);
+      webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, cameraWasEnabled, remoteVideoEnabled));
+
+      return currentState;
+    }
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleScreenSharingServiceReady(@NonNull WebRtcServiceState currentState) {
+    Log.i(tag, "handleScreenSharingServiceReady()");
+
+    LocalDeviceState localDeviceState      = currentState.getLocalDeviceState();
+    Intent           mediaProjectionIntent = localDeviceState.getMediaProjectionIntent();
+
+    if (localDeviceState.isScreenSharing()) {
+      Log.w(tag, "handleScreenSharingServiceReady(): already screensharing!");
+      return currentState;
+    }
+
+    if (mediaProjectionIntent == null) {
+      Log.w(tag, "handleScreenSharingServiceReady(): Media intent is null, bailing");
+      return currentState;
+    }
+
+    GroupCall                 groupCall = currentState.getCallInfoState().requireGroupCall();
+    OutgoingVideoSourceRouter router    = currentState.getVideoState().requireRouter();
+
+    try {
+      groupCall.setOutgoingVideoMuted(false, true);
+      groupCall.setPresenting(true);
+    } catch (CallException e) {
+      return groupCallFailure(currentState, "Unable to unmute video for screen share", e);
+    }
+    router.startScreenShare(mediaProjectionIntent);
+
+    currentState = currentState.builder()
+                               .changeLocalDeviceState()
+                               .isScreenSharing(true)
+                               .build();
+
+    boolean remoteVideoEnabled = currentState.getCallInfoState().getRemoteCallParticipantsMap().values().stream().anyMatch(CallParticipant::isVideoEnabled);
+    webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, true, remoteVideoEnabled));
     WebRtcUtil.enableSpeakerPhoneIfNeeded(webRtcInteractor, currentState);
 
     return currentState;
@@ -253,10 +338,9 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     String eraId = WebRtcUtil.getGroupCallEraId(groupCall);
     webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), eraId, null, false, false);
 
-    List<UUID> members = Stream.of(currentState.getCallInfoState().getRemoteCallParticipants())
-                               .filter(p -> p.getRecipient().getHasServiceId())
-                               .map(p -> p.getRecipient().requireServiceId().getRawUuid())
-                               .toList();
+    List<UUID> members = currentState.getCallInfoState().getRemoteCallParticipants().stream()
+                                     .filter(p -> p.getRecipient().getHasServiceId())
+                                     .map(p -> p.getRecipient().requireServiceId().getRawUuid()).collect(Collectors.toList());
     webRtcInteractor.updateGroupCallUpdateMessage(currentState.getCallInfoState().getCallRecipient().getId(), eraId, members, false);
 
     currentState = currentState.builder()

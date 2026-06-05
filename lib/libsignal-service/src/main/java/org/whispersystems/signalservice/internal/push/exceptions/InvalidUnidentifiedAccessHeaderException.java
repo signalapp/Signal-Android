@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.internal.push.exceptions;
 
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 
 /**
  * Indicates that the unidentified authorization header provided to the multi_recipient endpoint

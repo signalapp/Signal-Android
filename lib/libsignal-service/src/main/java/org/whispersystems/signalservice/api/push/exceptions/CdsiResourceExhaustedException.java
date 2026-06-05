@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.api.push.exceptions;
 
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
+
 /**
  * A 4008 responses from CDSI indicating we've exhausted our quota.
  */

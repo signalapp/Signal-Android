@@ -5,7 +5,6 @@ import android.os.HandlerThread;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Stream;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
@@ -40,7 +39,7 @@ class InAppScheduler implements Scheduler {
 
   @Override
   public void schedule(long delay, @NonNull List<Constraint> constraints) {
-    if (delay > 0 && Stream.of(constraints).allMatch(Constraint::isMet)) {
+    if (delay > 0 && constraints.stream().allMatch(Constraint::isMet)) {
       Log.i(TAG, "Scheduling a retry in " + delay + " ms.");
       handler.postDelayed(() -> {
         Log.i(TAG, "Triggering a job retry.");

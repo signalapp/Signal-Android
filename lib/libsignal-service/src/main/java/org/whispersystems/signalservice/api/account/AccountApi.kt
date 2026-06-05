@@ -9,11 +9,14 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Base64.encodeUrlSafeWithoutPadding
 import org.signal.libsignal.usernames.BaseUsernameException
 import org.signal.libsignal.usernames.Username
-import org.whispersystems.signalservice.api.NetworkResult
+import org.signal.network.NetworkResult
+import org.signal.network.websocket.WebSocketRequestMessage
+import org.signal.network.websocket.delete
+import org.signal.network.websocket.get
+import org.signal.network.websocket.put
+import org.whispersystems.signalservice.api.fromWebSocketRequest
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
-import org.whispersystems.signalservice.internal.delete
-import org.whispersystems.signalservice.internal.get
 import org.whispersystems.signalservice.internal.push.ConfirmUsernameRequest
 import org.whispersystems.signalservice.internal.push.ConfirmUsernameResponse
 import org.whispersystems.signalservice.internal.push.GcmRegistrationId
@@ -24,8 +27,6 @@ import org.whispersystems.signalservice.internal.push.SetUsernameLinkRequestBody
 import org.whispersystems.signalservice.internal.push.SetUsernameLinkResponseBody
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse
-import org.whispersystems.signalservice.internal.put
-import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import java.security.SecureRandom
 import java.util.UUID
 

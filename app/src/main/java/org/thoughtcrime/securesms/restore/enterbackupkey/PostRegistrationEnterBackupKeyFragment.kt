@@ -65,7 +65,7 @@ class PostRegistrationEnterBackupKeyFragment : ComposeFragment() {
 
     EnterBackupKeyScreen(
       isDisplayedDuringManualRestore = false,
-      backupKey = viewModel.backupKey,
+      enteredText = viewModel.enteredText,
       isBackupKeyValid = state.backupKeyValid,
       inProgress = state.inProgress,
       chunkLength = 4,

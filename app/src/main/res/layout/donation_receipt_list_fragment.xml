@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             app:tabIndicatorColor="@color/signal_inverse_primary"
             app:tabIndicatorFullWidth="false"
+            app:tabMode="scrollable"
             app:tabSelectedTextColor="@color/signal_text_primary"
             app:tabTextAppearance="@style/TextAppearance.Signal.Body2"
             app:tabTextColor="@color/signal_text_secondary" />

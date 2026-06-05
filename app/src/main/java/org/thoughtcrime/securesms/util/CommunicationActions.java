@@ -23,6 +23,8 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.util.LinkActions;
+import org.signal.core.util.LinkActions.OpenUrlError;
 import org.signal.core.util.Util;
 import org.signal.core.util.concurrent.JvmRxExtensions;
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -55,9 +57,9 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents;
 
 import io.reactivex.rxjava3.core.Single;
+import kotlin.Unit;
 
 import java.io.IOException;
-import java.net.URI;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -231,15 +233,14 @@ public class CommunicationActions {
   }
 
   public static void openBrowserLink(@NonNull Context context, @NonNull String link) {
-    try {
-      Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
-      if (!(context instanceof Activity)) {
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    LinkActions.openUrl(context, link, error -> {
+      if (error instanceof OpenUrlError.NoBrowserFound) {
+        Toast.makeText(context, R.string.CommunicationActions_no_browser_found, Toast.LENGTH_SHORT).show();
+      } else {
+        throw new AssertionError("Unhandled OpenUrlError: " + error);
       }
-      context.startActivity(intent);
-    } catch (ActivityNotFoundException e) {
-      Toast.makeText(context, R.string.CommunicationActions_no_browser_found, Toast.LENGTH_SHORT).show();
-    }
+      return Unit.INSTANCE;
+    });
   }
 
   public static void openEmail(@NonNull Context context, @NonNull String address, @Nullable String subject, @Nullable String body) {
@@ -352,7 +353,7 @@ public class CommunicationActions {
    * Otherwise returns false, indicating it was not a quick restore link.
    */
   public static boolean handlePotentialQuickRestoreUrl(@NonNull FragmentActivity activity, @NonNull String potentialQuickRestoreUrl, @NonNull Runnable onContinue) {
-    URI uri = URI.create(potentialQuickRestoreUrl);
+    Uri uri = Uri.parse(potentialQuickRestoreUrl);
 
     if ("sgnl".equalsIgnoreCase(uri.getScheme()) && "rereg".equalsIgnoreCase(uri.getHost())) {
       new MaterialAlertDialogBuilder(activity)

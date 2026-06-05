@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.signal.core.models.ServiceId;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;

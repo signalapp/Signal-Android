@@ -118,6 +118,12 @@ public final class UriChatWallpaper implements ChatWallpaper, Parcelable {
     return false;
   }
 
+  @Override
+  public boolean isPrefetched() {
+    Bitmap cached = CACHE.get(uri);
+    return cached != null && !cached.isRecycled();
+  }
+
   public @NonNull Uri getUri() {
     return uri;
   }

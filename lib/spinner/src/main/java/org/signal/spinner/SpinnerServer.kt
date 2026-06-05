@@ -76,7 +76,9 @@ internal class SpinnerServer(
         session.method == Method.GET && session.uri == "/recent" -> getRecent(dbParam)
         session.method == Method.GET && session.uri == "/trace" -> getTrace()
         session.method == Method.GET && session.uri == "/logs" -> getLogs(dbParam)
-        isWebsocketRequested(session) && session.uri == "/logs/websocket" -> getLogWebSocket(session)
+        session.method == Method.GET && session.uri == "/live" -> getLive(dbParam)
+        isWebsocketRequested(session) && session.uri == "/logs/websocket" -> getWebSocketResponse(session)
+        isWebsocketRequested(session) && session.uri == "/live/websocket" -> getWebSocketResponse(session)
         else -> {
           val plugin = plugins[session.uri]
           if (plugin != null && session.method == Method.GET) {
@@ -93,7 +95,10 @@ internal class SpinnerServer(
   }
 
   override fun openWebSocket(handshake: IHTTPSession): WebSocket {
-    return SpinnerLogWebSocket(handshake)
+    return when (handshake.uri) {
+      "/live/websocket" -> SpinnerQueryWebSocket(handshake)
+      else -> SpinnerLogWebSocket(handshake)
+    }
   }
 
   fun onSql(dbName: String, sql: String) {
@@ -242,7 +247,20 @@ internal class SpinnerServer(
     )
   }
 
-  private fun getLogWebSocket(session: IHTTPSession): Response {
+  private fun getLive(dbName: String): Response {
+    return renderTemplate(
+      "live",
+      LivePageModel(
+        environment = environment,
+        deviceInfo = deviceInfo.resolve(),
+        database = dbName,
+        databases = databases.keys.toList(),
+        plugins = plugins.values.toList()
+      )
+    )
+  }
+
+  private fun getWebSocketResponse(session: IHTTPSession): Response {
     val headers = session.headers
     val webSocket = openWebSocket(session)
 
@@ -285,6 +303,9 @@ internal class SpinnerServer(
     when (val pluginResult = plugin.get(parameters)) {
       is PluginResult.JsonResult -> {
         return newFixedLengthResponse(Response.Status.OK, "application/json", pluginResult.json)
+      }
+      is PluginResult.TsvResult -> {
+        return newChunkedResponse(Response.Status.OK, "text/tab-separated-values", pluginResult.toInputStream())
       }
       is PluginResult.RawFileResult -> {
         return newFixedLengthResponse(Response.Status.OK, pluginResult.mimeType, pluginResult.data, pluginResult.length)
@@ -519,6 +540,14 @@ internal class SpinnerServer(
   ) : PrefixPageData
 
   data class LogsPageModel(
+    override val environment: String,
+    override val deviceInfo: Map<String, String>,
+    override val database: String,
+    override val databases: List<String>,
+    override val plugins: List<Plugin>
+  ) : PrefixPageData
+
+  data class LivePageModel(
     override val environment: String,
     override val deviceInfo: Map<String, String>,
     override val database: String,

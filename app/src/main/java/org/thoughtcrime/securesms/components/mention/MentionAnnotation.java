@@ -8,13 +8,14 @@ import android.text.Spanned;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * This wraps an Android standard {@link Annotation} so it can leverage the built in
@@ -51,13 +52,12 @@ public final class MentionAnnotation {
   public static @NonNull List<Mention> getMentionsFromAnnotations(@Nullable CharSequence text) {
     if (text instanceof Spanned) {
       Spanned spanned = (Spanned) text;
-      return Stream.of(getMentionAnnotations(spanned))
-                   .map(annotation -> {
+      return getMentionAnnotations(spanned).stream()
+                                           .map(annotation -> {
                      int spanStart  = spanned.getSpanStart(annotation);
                      int spanLength = spanned.getSpanEnd(annotation) - spanStart;
                      return new Mention(RecipientId.from(annotation.getValue()), spanStart, spanLength);
-                   })
-                   .toList();
+                   }).collect(Collectors.toList());
     }
     return Collections.emptyList();
   }
@@ -68,7 +68,6 @@ public final class MentionAnnotation {
 
   public static @NonNull List<Annotation> getMentionAnnotations(@NonNull Spanned spanned, int start, int end) {
     return Stream.of(spanned.getSpans(start, end, Annotation.class))
-                 .filter(MentionAnnotation::isMentionAnnotation)
-                 .toList();
+                 .filter(MentionAnnotation::isMentionAnnotation).collect(Collectors.toList());
   }
 }

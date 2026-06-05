@@ -10,7 +10,7 @@ import com.mobilecoin.lib.exceptions.AttestationException;
 import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.R;
 import org.whispersystems.signalservice.api.NetworkResultUtil;
-import org.whispersystems.signalservice.api.payments.PaymentsApi;
+import org.signal.network.api.PaymentsApi;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 
 import java.io.IOException;
