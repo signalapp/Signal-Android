@@ -1,5 +1,7 @@
 #! /usr/bin/env python3
 
+import difflib
+import subprocess
 import sys
 import re
 import logging
@@ -8,13 +10,9 @@ from zipfile import ZipFile
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from typing import Optional
-from collections import defaultdict
 
 from androguard.core import axml
 from loguru import logger
-
-from util import deep_compare, format_differences
-from tqdm import tqdm
 
 logging.getLogger("deepdiff").setLevel(logging.ERROR)
 
@@ -58,8 +56,9 @@ def compare(apk1, apk2) -> bool:
 
     entry_names = compare_entry_names(zip1, zip2)
     entry_contents = compare_entry_contents(zip1, zip2)
+    resources = compare_resources_arsc(apk1, apk2)
 
-    return entry_names and entry_contents
+    return entry_names and entry_contents and resources
 
 
 def compare_entry_names(zip1: ZipFile, zip2: ZipFile) -> bool:
@@ -142,8 +141,8 @@ def handle_special_cases(filename: str, bytes1: bytes, bytes2: bytes):
         print("Comparing AndroidManifest.xml...")
         return compare_android_xml(bytes1, bytes2)
     elif filename == "resources.arsc":
-        print("Comparing resources.arsc (may take a while)...")
-        return compare_resources_arsc(bytes1, bytes2)
+        # we will compare resources.arsc separately with aapt2, so we can ignore any differences here
+        return True
     elif re.match("res/xml/splits[0-9]+\\.xml", filename):
         print(f"Comparing {filename}...")
         return compare_split_xml(bytes1, bytes2)
@@ -187,118 +186,45 @@ def compare_split_xml(bytes1: bytes, bytes2: bytes) -> bool:
     return True
 
 
-def compare_resources_arsc(first_entry_bytes: bytes, second_entry_bytes: bytes) -> bool:
+def compare_resources_arsc(apk1: str, apk2: str) -> bool:
     """
     Compares two resources.arsc files.
-    Largely taken from https://github.com/TheTechZone/reproducible-tests/blob/d8c73772b87fbe337eb852e338238c95703d59d6/comparators/arsc_compare.py
     """
-    first_arsc = axml.ARSCParser(first_entry_bytes)
-    second_arsc = axml.ARSCParser(second_entry_bytes)
+    print("Comparing resources.arsc...")
 
-    all_package_names = sorted(set(first_arsc.packages.keys()) | set(second_arsc.packages.keys()))
-    total_diffs = defaultdict(list)
+    resources1 = dump_resources(apk1)
+    resources2 = dump_resources(apk2)
 
-    success = True
+    if resources1 == resources2:
+        return True
+    else:
+        print("resources.arsc files differ!")
+        diff = difflib.unified_diff(
+            resources1, 
+            resources2, 
+            fromfile=apk1, 
+            tofile=apk2, 
+            lineterm=''
+        )
+        for line in diff:
+            print(line)
+        return False
 
-    for package_name in all_package_names:
-        # Check if package exists in both files
-        if package_name not in first_arsc.packages:
-            print(f"Package only in source file: {package_name}")
-            success = False
-            continue
+def dump_resources(apk):
+    try:
+        with subprocess.Popen(
+            ['aapt2', 'dump', 'resources', apk],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        ) as process:
+            stdout, stderr = process.communicate()
+            if process.returncode != 0:
+                raise RuntimeError(f"aapt2 failed with error: {stderr.strip()}")
+    except FileNotFoundError:
+        raise RuntimeError("aapt2 is not installed or not in the PATH.")
 
-        if package_name not in second_arsc.packages:
-            print(f"Package only in target file: {package_name}")
-            success = False
-            continue
-
-        packages1 = first_arsc.packages[package_name]
-        packages2 = second_arsc.packages[package_name]
-
-        # Check package length
-        if len(packages1) != len(packages2):
-            print(f"Package length mismatch: {len(packages1)} vs {len(packages2)}")
-            success = False
-            continue
-
-        # Compare each package element
-        for i in tqdm(range(len(packages1))):
-            pkg1 = packages1[i]
-            pkg2 = packages2[i]
-
-            if type(pkg1) is not type(pkg2):
-                print(f"Element type mismatch at index {i}: {type(pkg1).__name__} vs {type(pkg2).__name__}")
-                success = False
-                continue
-
-            # Different comparison strategies based on type
-            if isinstance(pkg1, axml.ARSCResTablePackage):
-                diffs = deep_compare(pkg1, pkg2)
-                if diffs:
-                    print(f"Differences in ARSCResTablePackage at index {i}:")
-                    total_diffs["ARSCResTablePackage"].append((i, diffs))
-                    success = False
-
-            elif isinstance(pkg1, axml.StringBlock):
-                diffs = deep_compare(pkg1, pkg2)
-                if diffs:
-                    print(f"Differences in StringBlock at index {i}:")
-                    total_diffs["StringBlock"].append((i, diffs))
-                    success = False
-
-            elif isinstance(pkg1, axml.ARSCHeader):
-                diffs = deep_compare(pkg1, pkg2)
-                if diffs:
-                    print(f"Differences in ARSCHeader at index {i}:")
-                    total_diffs["ARSCHeader"].append((i, diffs))
-                    success = False
-
-            elif isinstance(pkg1, axml.ARSCResTypeSpec):
-                diffs = deep_compare(pkg1, pkg2)
-
-                if diffs and not all(path in ALLOWED_ARSC_DIFF_PATHS for path in diffs.keys()):
-                    print(f"Disallowed differences in ARSCResTypeSpec at index {i}:")
-                    print(format_differences(diffs))
-                    total_diffs["ARSCResTypeSpec"].append((i, diffs))
-                    success = False
-
-            elif isinstance(pkg1, axml.ARSCResTableEntry):
-                # Use string representation for comparison
-                if pkg1.__repr__() != pkg2.__repr__():
-                    print(f"Differences in ARSCResTableEntry at index {i}")
-                    print(f"Target: {pkg1.__repr__()}", 3)
-                    print(f"Source: {pkg2.__repr__()}", 3)
-                    total_diffs["ARSCResTableEntry"].append((i, {"representation": f"{pkg1.__repr__()} vs {pkg2.__repr__()}"}))
-                    success = False
-
-            elif isinstance(pkg1, list):
-                if pkg1 != pkg2:
-                    print(f"List difference at index {i}")
-                    total_diffs["list"].append((i, {"diff": "Lists differ"}))
-                    success = False
-
-            elif isinstance(pkg1, axml.ARSCResType):
-                diffs = deep_compare(pkg1, pkg2)
-                if diffs:
-                    print(f"Differences in ARSCResType at index {i}:")
-                    total_diffs["ARSCResType"].append((i, diffs))
-                    success = False
-            else:
-                # Other types
-                print(f"Unhandled type: {type(pkg1).__name__} at index {i}")
-                diffs = deep_compare(pkg1, pkg2)
-                if diffs:
-                    total_diffs[type(pkg1).__name__].append((i, diffs))
-                    success = False
-
-    for type_name, diffs in total_diffs.items():
-        if diffs:
-            print(f"  {type_name}: {len(diffs)}", 1)
-
-    if not success:
-        print("Files have differences beyond the allowed .res1 differences.")
-    return True
-
+    return stdout.strip().splitlines()
 
 def compare_xml(bytes1: bytes, bytes2: bytes) -> list[XmlDifference]:
     printer = axml.AXMLPrinter(bytes1)
