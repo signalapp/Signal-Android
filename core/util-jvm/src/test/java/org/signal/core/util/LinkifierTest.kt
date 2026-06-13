@@ -66,6 +66,7 @@ class LinkifierTest(private val case: Case) {
   companion object {
 
     private fun web(spanText: String, url: String = spanText) = Expected(spanText, url)
+    private fun geo(spanText: String) = Expected(spanText, url = spanText)
 
     @Parameterized.Parameters(name = "{0}")
     @JvmStatic
@@ -177,7 +178,40 @@ class LinkifierTest(private val case: Case) {
       Case("leading bidi override rejects url", "‬moc.diordna.com next", emptyList()),
       Case("trailing bidi override rejects url", "moc.diordna.com‭ next", emptyList()),
       Case("internal bidi override rejects both halves", "moc.diordna.com‮moc.diordna.com", emptyList()),
-      Case("zero-width space adjacent to url rejects it", "see signal.org​ next", emptyList())
+      Case("zero-width space adjacent to url rejects it", "see signal.org​ next", emptyList()),
+
+      // ----- geo URIs -----
+      Case("geo uri with basic coords", "geo:48.2010,16.3695", listOf(geo("geo:48.2010,16.3695"))),
+      Case("geo uri with altitude", "geo:48.2010,16.3695,123", listOf(geo("geo:48.2010,16.3695,123"))),
+      Case("geo uri with uncertainty param", "geo:48.2010,16.3695;u=40", listOf(geo("geo:48.2010,16.3695;u=40"))),
+      Case("geo uri with google query and label", "geo:0,0?q=37.786971,-122.399677(Treasure%20Island)", listOf(geo("geo:0,0?q=37.786971,-122.399677(Treasure%20Island)"))),
+      Case("geo uri with google search query", "geo:0,0?q=Eiffel+Tower", listOf(geo("geo:0,0?q=Eiffel+Tower"))),
+      Case("geo uri with negative coords", "geo:-33.86,151.21", listOf(geo("geo:-33.86,151.21"))),
+      Case("geo uri at origin", "geo:0,0", listOf(geo("geo:0,0"))),
+      Case("geo uri scheme is case insensitive", "GEO:48.2,16.3", listOf(geo("GEO:48.2,16.3"))),
+
+      // ----- geo URI in sentence context -----
+      Case("geo uri followed by sentence period", "Meet at geo:48.2,16.3.", listOf(geo("geo:48.2,16.3"))),
+      Case("geo uri followed by sentence comma", "From geo:48.2,16.3, walk north", listOf(geo("geo:48.2,16.3"))),
+      Case("geo uri inside parens is detected without them", "(geo:48.2,16.3)", listOf(geo("geo:48.2,16.3"))),
+      Case("balanced parens inside geo query are preserved", "place geo:0,0?q=37.78,-122.4(Treasure%20Island) end", listOf(geo("geo:0,0?q=37.78,-122.4(Treasure%20Island)"))),
+      Case("unmatched close paren after geo query is trimmed", "(see geo:0,0?q=foo)", listOf(geo("geo:0,0?q=foo"))),
+      Case("non-numeric altitude falls back to coord-only match", "geo:48,16,foo", listOf(geo("geo:48,16"))),
+
+      // ----- geo URI false-positive guards -----
+      Case("geo with lat over 90 is rejected", "geo:91.0,0", emptyList()),
+      Case("geo with lon over 180 is rejected", "geo:0,181.0", emptyList()),
+      Case("geo with lat below -90 is rejected", "geo:-91,0", emptyList()),
+      Case("geo with non-numeric coords is not matched", "geo:foo,bar", emptyList()),
+      Case("geo glued to a leading letter is rejected", "xgeo:48.2,16.3", emptyList()),
+      Case("geo missing lon is not matched", "geo:48.2", emptyList()),
+      Case("bare geo scheme is not matched", "geo:", emptyList()),
+      Case("whitespace between geo coords breaks the uri", "geo:48.2, 16.3", emptyList()),
+
+      // ----- geo + web mixed -----
+      Case("geo uri then web url ordered left-to-right", "see geo:48.2,16.3 and https://signal.org", listOf(geo("geo:48.2,16.3"), web("https://signal.org"))),
+      Case("web url then geo uri ordered left-to-right", "https://signal.org then geo:48.2,16.3", listOf(web("https://signal.org"), geo("geo:48.2,16.3"))),
+      Case("two geo uris in the same string", "from geo:48.2,16.3 to geo:51.5,-0.1", listOf(geo("geo:48.2,16.3"), geo("geo:51.5,-0.1")))
     ).map { arrayOf<Any>(it) }
   }
 }
