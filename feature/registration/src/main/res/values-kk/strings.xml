@@ -314,9 +314,9 @@
     <!-- PIN creation screen title. -->
     <string name="PinCreationScreen__create_your_pin">PIN код жасау</string>
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
-    <string name="PinCreationScreen__confirm_your_pin">Confirm your PIN</string>
+    <string name="PinCreationScreen__confirm_your_pin">PIN кодыңызды растаңыз</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">Жаңа ғана жасаған PIN кодыңызды қайта енгізіңіз</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">Телефоныңызды жоғалтып алсаңыз, PIN кодтары аккаунтыңызды қалпына келтіруге көмектеседі. </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -328,11 +328,11 @@
     <!-- Labels the button to submit a new Signal PIN. -->
     <string name="PinCreationScreen__next">Келесі</string>
     <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_digits">PIN must be at least 4 digits</string>
+    <string name="PinCreationScreen__pin_at_least_4_digits">PIN коды кемінде 4 цифрдан тұруы керек</string>
     <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_characters">PIN must be at least 4 characters</string>
+    <string name="PinCreationScreen__pin_at_least_4_characters">PIN коды кемінде 4 таңбадан тұруы керек</string>
     <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin">Re-enter PIN</string>
+    <string name="PinCreationScreen__reenter_pin">PIN кодын қайта енгізіңіз</string>
 
     <!-- PIN entry screen title when registration lock is active. -->
     <string name="PinEntryScreen__registration_lock">Тіркеуді құлыптау</string>
@@ -355,9 +355,9 @@
     <string name="PinEntryScreen__continue">Жалғастыру</string>
 
     <!-- Title for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__allow_notifications">Allow Notifications</string>
+    <string name="AllowNotificationsScreen__allow_notifications">Хабарландыруларға рұқсат ету</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal қолданбасы хабарландыру рұқсатын сұрайды. Бұл жаңа хабарлар келгенде құрылғыңызға ескертулерді көрсетуге мүмкіндік береді.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">Кейін</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -366,36 +366,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">Хабарлар синхрондалып жатыр</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">Оған бірнеше минут кетуі мүмкін…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">%1$s/%2$s жүктеп алынды</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Хабарлар мен чат туралы ақпарат тура шифрлау әдісімен, соның ішінде синхрондау процесімен қорғалған.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">Толық ақпарат</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">Бас тарту</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Аккаунтыңызды байланыстыру үшін осы кодты сканерлеңіз</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">Телефоныңызда Signal қолданбасын ашыңыз</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Signal параметрлерін ашу үшін профиль суретін түртіңіз</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">\"Байланыстырылған құрылғылар\" және \"Жаңа құрылғыны байланыстыру\" түймесін түртіңіз</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Камераны осы QR кодына бағыттаңыз</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">Осы қадамдарға қатысты көмек алыңыз</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">QR кодын ұлғайту</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">Сканерленді</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">Код жасалмады</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Екінші құрылғыда Signal қолданбасы орнатылмаған ба?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">Аккаунт жасау</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">Аккаунтыңызды тасымалдаңыз</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">Аккаунтыңызды тасымалдау үшін ескі Android құрылғыңыздағы Signal қолданбасын ашып, \"Аккаунтты тасымалдау\" түймесін таңдаңыз.</string>
+    <string name="DeviceTransferInstructions__continue">Жалғастыру</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">Ескі Android құрылғысына қосылуға дайындалуда…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">Оған біраз уақыт керек болуы мүмкін. Көп ұзамай дайын болып қалады.</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">Ескі құрылғыңыздың қосылғанын күтіп отырмыз…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">Екі құрылғыда да сандар сәйкес келетінін тексеріңіз</string>
+    <string name="DeviceTransferSetup__numbers_match">Иә, сандар сәйкес келеді</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">Сандар сәйкес келмейді</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">Ескі құрылғыңыздың растағанын күтіп отырмыз…</string>
+    <string name="DeviceTransferSetup__location_permission_required">Ескі құрылғыңызды анықтап, оған қосылу үшін Signal қолданбасына геолокация рұқсаты керек.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">Рұқсат беру</string>
+    <string name="DeviceTransferSetup__location_services_required">Ескі құрылғыңызды анықтап, оған қосылу үшін Signal қолданбасы геолокация қызметтерін пайдалануы керек.</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">Локация қызметтерін қосу</string>
+    <string name="DeviceTransferSetup__wifi_required">Ескі құрылғыңызды анықтап, оған қосылу үшін Signal қолданбасына Wi-Fi қосылып тұруы керек.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi қосу</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">Кешіріңіз, құрылғыңызда Wi-Fi Direct істемейтін сияқты.</string>
+    <string name="DeviceTransferSetup__restore_a_backup">Сақтық көшірмені қалпына келтіру</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">Ескі құрылғыңызға қосылып жатқанда, күтпеген қате пайда болды.</string>
+    <string name="DeviceTransferSetup__retry">Қайтадан байқап көру</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">Ескі құрылғыңызды анықтау мүмкін болмады</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• Геолокация рұқсаттары берілгеніне көз жеткізіңіз.\n• Wi-Fi қосылып тұрғанына және Wi-Fi Direct топтары есте сақталмағанына көз жеткізіңіз.\n• Екі құрылғыда да Wi-Fi-ды өшіріп, қайта қосып көріңіз.\n• Екі құрылғы да тасымалдау режимінде екеніне көз жеткізіңіз.</string>
+    <string name="DeviceTransferSetup__try_again">Қайталап көру</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">Сандар сәйкес келмейді</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">Құрылғыларыңыздағы сандар сәйкес келмесе, басқа құрылғыға қосылып кеткен болуыңыз мүмкін.</string>
+    <string name="DeviceTransferSetup__stop_transfer">Тасымалдауды тоқтату</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">Деректер тасымалдануда</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">%1$d хат қалды</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">Тасымалдау мүмкін емес</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">Signal-дың жаңа нұсқаларынан тасымалдау мүмкін емес.</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">Дерекқордағы шектеулерге байланысты кейбір деректер тасымалданбайды.</string>
+    <string name="DeviceTransferProgress__transfer_failed">Тасымалданбады. Қайталап көріңіз.</string>
+    <string name="DeviceTransferProgress__try_again">Қайталап көру</string>
+    <string name="DeviceTransferProgress__cancel">Бас тарту</string>
+    <string name="DeviceTransferProgress__stop_transfer">Тасымалдауды тоқтату керек пе?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">Тасымалдау прогресі жоғалады.</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">Тасымалдау аяқталды</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">Аккаунтыңыз қазір осы құрылғыда.</string>
+    <string name="DeviceTransferComplete__continue_registration">Жалғастыру</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">Профиль параметрлерін реттеу</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">Профиліңіз және оған енгізілген өзгерістер сіз хат жазған адамдарға, контактілерге және топтарға көрінетін болады.</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">Аты (міндетті)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">Тегі (міндетті емес)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">Келесі</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">Аватар орнату</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Мені нөмірім арқылы кім таба алады?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Телефон нөміріңізді білетін кез келген адам сіздің Signal қолданбасын пайдаланатыныңызды біле алады және сізбен чат аша алады.</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Сіз біреуге хат жазбайынша немесе біреумен ортақ чатыңыз болмайынша, сіздің Signal қолданбасын пайдаланатыныңызды ешкім көре алмайды.</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">Барлығы</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">Ешкім</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Сенімдісіз бе?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"Менің нөмірімді кім таба алады\" параметрін \"Ешкім\" деп орнатсаңыз, адамдардың сізді Signal қолданбасында табуы қиындай түседі.</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Бас тарту</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">Сақтау</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">Артқа</string>
 </resources>

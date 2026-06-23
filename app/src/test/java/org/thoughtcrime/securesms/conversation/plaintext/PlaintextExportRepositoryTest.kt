@@ -19,7 +19,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.signal.core.models.database.AttachmentId
 import org.thoughtcrime.securesms.conversation.plaintext.PlaintextExportRepository.PendingAttachment
 import org.thoughtcrime.securesms.database.FakeMessageRecords
 import org.thoughtcrime.securesms.database.MessageTypes

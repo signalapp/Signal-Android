@@ -143,6 +143,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentSaver
 import org.thoughtcrime.securesms.audio.AudioRecorder
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.BackupUpgradeAvailabilityChecker
+import org.thoughtcrime.securesms.backup.v2.ui.warning.guardAgainstRecoveryKeyPaste
 import org.thoughtcrime.securesms.badges.gifts.OpenableGift
 import org.thoughtcrime.securesms.badges.gifts.OpenableGiftItemDecoration
 import org.thoughtcrime.securesms.badges.gifts.viewgift.received.ViewReceivedGiftBottomSheet
@@ -1182,7 +1183,7 @@ class ConversationFragment :
       .doOnSuccess { state ->
         SignalLocalMetrics.ConversationOpen.onDataLoaded()
         conversationItemDecorations.selfRecipientId = Recipient.self().id
-        conversationItemDecorations.setFirstUnreadCount(state.meta.unreadCount)
+        conversationItemDecorations.setUnreadState(state.meta.unreadCount, state.meta.firstUnreadId)
         colorizer.onGroupMembershipChanged(state.meta.groupMemberAcis)
       }
       .observeOn(AndroidSchedulers.mainThread())
@@ -1311,6 +1312,7 @@ class ConversationFragment :
       addTextChangedListener(composeTextEventsListener)
       setStylingChangedListener(composeTextEventsListener)
       setOnClickListener(composeTextEventsListener)
+      guardAgainstRecoveryKeyPaste(this@ConversationFragment)
       filters += ByteLimitInputFilter(MessageUtil.MAX_TOTAL_BODY_SIZE_BYTES)
     }
 
@@ -1619,6 +1621,8 @@ class ConversationFragment :
     }
 
     composeText.setMessageSendType(MessageSendType.SignalMessageSendType)
+
+    invalidateOptionsMenu()
   }
 
   private fun applyReleaseNotesLayout() {
@@ -2981,7 +2985,7 @@ class ConversationFragment :
     ConversationDialogs.displayDeleteDialog(requireContext(), recipient) {
       messageRequestViewModel
         .onDelete()
-        .doAfterSuccess { activity?.finish() }
+        .doAfterSuccess { chatRouter.exitDetailLocation() }
         .subscribeWithShowProgress("delete message request")
     }
   }
@@ -3248,20 +3252,34 @@ class ConversationFragment :
       val toolbarOffset = rect.bottom
       binding.toolbar.viewTreeObserver.removeOnGlobalLayoutListener(this)
 
-      val offset = when {
-        meta.getStartPosition() == 0 -> 0
-        meta.shouldJumpToMessage() -> (binding.conversationItemRecycler.height - toolbarOffset) / 4
-        meta.shouldScrollToLastSeen() -> binding.conversationItemRecycler.height - toolbarOffset
-        else -> binding.conversationItemRecycler.height
-      }
+      val startPosition = meta.getStartPosition()
+      Log.d(TAG, "Scrolling to start position $startPosition")
 
-      Log.d(TAG, "Scrolling to start position ${meta.getStartPosition()}")
-      layoutManager.scrollToPositionWithOffset(meta.getStartPosition(), offset) {
-        animationsAllowed = true
-        markReadHelper.stopIgnoringViewReveals(MarkReadHelper.getLatestTimestamp(adapter, layoutManager).orNull())
-        if (meta.shouldJumpToMessage()) {
-          binding.conversationItemRecycler.post {
-            adapter.pulseAtPosition(meta.getStartPosition())
+      if (!meta.messageRequestData.isMessageRequestAccepted) {
+        // Always scroll to the top to show header in MR state
+        layoutManager.scrollToPositionTopAligned(meta.threadSize, toolbarOffset) {
+          animationsAllowed = true
+          markReadHelper.stopIgnoringViewReveals(MarkReadHelper.getLatestTimestamp(adapter, layoutManager).orNull())
+        }
+      } else if (meta.shouldScrollToFirstUnread()) {
+        // Land the divider just below the toolbar.
+        layoutManager.scrollToPositionTopAligned(startPosition, toolbarOffset) {
+          animationsAllowed = true
+          markReadHelper.stopIgnoringViewReveals(MarkReadHelper.getLatestTimestamp(adapter, layoutManager).orNull())
+        }
+      } else {
+        val offset = when {
+          startPosition == 0 -> 0
+          meta.shouldJumpToMessage() -> (binding.conversationItemRecycler.height - toolbarOffset) / 4
+          else -> binding.conversationItemRecycler.height
+        }
+        layoutManager.scrollToPositionWithOffset(startPosition, offset) {
+          animationsAllowed = true
+          markReadHelper.stopIgnoringViewReveals(MarkReadHelper.getLatestTimestamp(adapter, layoutManager).orNull())
+          if (meta.shouldJumpToMessage()) {
+            binding.conversationItemRecycler.post {
+              adapter.pulseAtPosition(startPosition)
+            }
           }
         }
       }

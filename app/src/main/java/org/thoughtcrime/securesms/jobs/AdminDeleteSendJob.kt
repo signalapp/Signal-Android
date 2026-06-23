@@ -3,9 +3,11 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.Log.tag
+import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.documents.NetworkFailure
 import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -20,7 +22,6 @@ import org.thoughtcrime.securesms.util.GroupUtil
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Companion.newBuilder
-import kotlin.jvm.optionals.getOrNull
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -45,13 +46,17 @@ class AdminDeleteSendJob private constructor(
         return null
       }
 
-      val conversationRecipient = SignalDatabase.threads.getRecipientForThreadId(message.threadId)
+      val conversationRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(message.threadId)
 
-      if (conversationRecipient == null) {
+      if (conversationRecipientId == null) {
         return null
       }
 
-      val recipientIds = filterRecipients.ifEmpty { conversationRecipient.participantIds }.map { it.toLong() }.toMutableList()
+      val conversationRecipient = SignalDatabase.recipients.getRecord(conversationRecipientId)
+      val groupId = conversationRecipient.groupId
+      val members = if (groupId != null) SignalDatabase.groups.getGroupMemberIds(groupId, GroupTable.MemberSet.FULL_MEMBERS_INCLUDING_SELF) else emptyList()
+
+      val recipientIds = filterRecipients.ifEmpty { members }.map { it.toLong() }.toMutableList()
 
       return AdminDeleteSendJob(
         messageId = messageId,
@@ -96,18 +101,21 @@ class AdminDeleteSendJob private constructor(
     val targetSentTimestamp = message.dateSent
     val targetAuthor = message.fromRecipient.requireServiceId()
 
-    val conversationRecipient = SignalDatabase.threads.getRecipientForThreadId(message.threadId)
-    if (conversationRecipient == null) {
+    val conversationRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(message.threadId)
+    if (conversationRecipientId == null) {
       Log.w(TAG, "We have a message, but couldn't find the thread!")
       return Result.failure()
     }
 
-    if (!conversationRecipient.isPushV2Group) {
+    val conversationRecipient = SignalDatabase.recipients.getRecord(conversationRecipientId)
+    val groupId = conversationRecipient.groupId
+
+    if (groupId == null || !groupId.isV2) {
       Log.w(TAG, "Cannot admin delete in a non V2 group.")
       return Result.failure()
     }
 
-    val groupRecord = SignalDatabase.groups.getGroup(conversationRecipient.requireGroupId())
+    val groupRecord = SignalDatabase.groups.getGroup(groupId)
     if (groupRecord.isPresent && groupRecord.get().isTerminated) {
       Log.w(TAG, "Cannot admin delete in a terminated group.")
       return Result.failure()
@@ -175,7 +183,7 @@ class AdminDeleteSendJob private constructor(
   }
 
   private fun deliver(
-    conversationRecipient: Recipient,
+    conversationRecipient: RecipientRecord,
     destinations: MutableList<Recipient>,
     targetAuthor: ServiceId,
     targetSentTimestamp: Long
@@ -184,7 +192,8 @@ class AdminDeleteSendJob private constructor(
       .withTimestamp(System.currentTimeMillis())
       .withAdminDelete(SignalServiceDataMessage.AdminDelete(targetAuthor, targetSentTimestamp))
 
-    GroupUtil.setDataMessageGroupContext(context, dataMessageBuilder, conversationRecipient.requireGroupId().requirePush())
+    val groupId = conversationRecipient.groupId!!
+    GroupUtil.setDataMessageGroupContext(context, dataMessageBuilder, groupId.requirePush())
 
     val nonSelfDestinations = destinations.filterNot { it.isSelf }
     val includeSelf = destinations.size != nonSelfDestinations.size
@@ -193,7 +202,7 @@ class AdminDeleteSendJob private constructor(
 
     val results = GroupSendUtil.sendResendableDataMessage(
       context,
-      conversationRecipient.groupId.map { it.requireV2() }.getOrNull(),
+      groupId.requireV2(),
       null,
       nonSelfDestinations,
       false,

@@ -29,7 +29,6 @@ import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.rememberNavBackStack
 import kotlinx.coroutines.launch
-import org.signal.core.models.media.Media
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
@@ -43,7 +42,7 @@ import org.signal.mediasend.goToSend
 @Composable
 fun MediaEditScreen(
   state: MediaSendState,
-  callback: MediaEditScreenCallback,
+  onEvent: (MediaEditScreenEvent) -> Unit,
   backStack: NavBackStack<NavKey>,
   videoEditorSlot: @Composable () -> Unit = {}
 ) {
@@ -112,7 +111,9 @@ fun MediaEditScreen(
         ThumbnailRow(
           selectedMedia = state.selectedMedia,
           pagerState = pagerState,
-          onFocusedMediaChange = callback::setFocusedMedia,
+          onFocusedMediaChange = {
+            onEvent(MediaEditScreenEvent.FocusedMediaChanged(it))
+          },
           onThumbnailClick = { index ->
             scope.launch {
               pagerState.animateScrollToPage(index)
@@ -141,7 +142,7 @@ fun MediaEditScreen(
       if (currentController?.isUserInEdit != true) {
         AddAMessageRow(
           message = state.message,
-          callback = callback,
+          onEvent = onEvent,
           onNextClick = { backStack.goToSend() },
           modifier = Modifier
             .widthIn(max = 624.dp)
@@ -177,7 +178,7 @@ private fun MediaEditScreenPreview() {
           selectedMedia.first().uri to EditorState.Image(EditorModel.create(0))
         )
       ),
-      callback = MediaEditScreenCallback.Empty,
+      onEvent = {},
       backStack = rememberNavBackStack(MediaSendNavKey.Edit),
       videoEditorSlot = {
         Box(
@@ -187,13 +188,5 @@ private fun MediaEditScreenPreview() {
         )
       }
     )
-  }
-}
-
-interface MediaEditScreenCallback : AddAMessageRowCallback {
-  fun setFocusedMedia(media: Media)
-
-  object Empty : MediaEditScreenCallback, AddAMessageRowCallback by AddAMessageRowCallback.Empty {
-    override fun setFocusedMedia(media: Media) = Unit
   }
 }

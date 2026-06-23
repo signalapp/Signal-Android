@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.database.model
 
-import org.signal.core.util.DatabaseId
+import org.signal.core.models.database.DatabaseId
 import org.signal.core.util.IntSerializer
 
 /**

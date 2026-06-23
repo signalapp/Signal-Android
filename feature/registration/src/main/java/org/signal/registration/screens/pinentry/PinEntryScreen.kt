@@ -23,7 +23,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -42,6 +41,7 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.AllDevicePreviews
@@ -157,7 +157,7 @@ private fun OnePaneLayout(
       ContinueButton(
         params = params,
         canSubmitPin = canSubmitPin,
-        showElevation = scrollState.canScrollForward,
+        isElevated = scrollState.canScrollForward,
         onContinue = { onEvent(PinEntryScreenEvents.PinEntered(pin)) }
       )
     }
@@ -175,7 +175,8 @@ private fun TwoPaneLayout(
   onEvent: (PinEntryScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val scrollState = rememberScrollState()
+  val firstPaneScrollState = rememberScrollState()
+  val secondPaneScrollState = rememberScrollState()
 
   TwoPaneRegistrationScaffold(
     modifier = modifier.fillMaxSize(),
@@ -185,6 +186,7 @@ private fun TwoPaneLayout(
         modifier = Modifier
           .weight(1f)
           .fillMaxHeight()
+          .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
         PinDescription(
@@ -201,7 +203,7 @@ private fun TwoPaneLayout(
       ) {
         Column(
           modifier = Modifier
-            .verticalScroll(scrollState)
+            .verticalScroll(secondPaneScrollState)
             .padding(paddingValues)
         ) {
           PinInputField(
@@ -232,7 +234,7 @@ private fun TwoPaneLayout(
       ContinueButton(
         params = params,
         canSubmitPin = canSubmitPin,
-        showElevation = scrollState.canScrollForward,
+        isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward,
         onContinue = { onEvent(PinEntryScreenEvents.PinEntered(pin)) }
       )
     }
@@ -255,18 +257,17 @@ private fun PinDescription(
       text = titleString,
       style = MaterialTheme.typography.headlineMedium,
       textAlign = TextAlign.Center,
-      modifier = Modifier.attachDebugLogHelper()
+      modifier = Modifier
+        .fillMaxWidth()
+        .attachDebugLogHelper()
     )
-
-    Spacer(modifier = Modifier.height(12.dp))
 
     Text(
       text = stringResource(R.string.PinEntryScreen__enter_the_pin_you_created),
-      style = MaterialTheme.typography.bodyLarge.copy(
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-        textAlign = TextAlign.Start
-      ),
-      color = MaterialTheme.colorScheme.onSurfaceVariant
+      style = MaterialTheme.typography.bodyLarge,
+      color = MaterialTheme.colorScheme.onSurfaceVariant,
+      textAlign = TextAlign.Start,
+      modifier = Modifier.padding(top = 16.dp)
     )
   }
 }
@@ -292,11 +293,12 @@ private fun PinInputField(
       textStyle = MaterialTheme.typography.bodyLarge.copy(textAlign = TextAlign.Center),
       singleLine = true,
       keyboardOptions = KeyboardOptions(
-        keyboardType = if (state.isAlphanumericKeyboard) KeyboardType.Password else KeyboardType.NumberPassword,
+        keyboardType = if (state.isAlphanumericKeyboard) KeyboardType.Text else KeyboardType.Number,
         imeAction = ImeAction.Done
       ),
       keyboardActions = KeyboardActions(onDone = { if (canSubmitPin) onSubmit() }),
-      isError = state.triesRemaining != null
+      isError = state.triesRemaining != null,
+      visualTransformation = PasswordVisualTransformation()
     )
 
     if (state.triesRemaining != null) {
@@ -359,13 +361,13 @@ private fun KeyboardToggleButton(
 private fun ContinueButton(
   params: RegistrationScaffold.Params,
   canSubmitPin: Boolean,
-  showElevation: Boolean,
+  isElevated: Boolean,
   onContinue: () -> Unit,
   modifier: Modifier = Modifier
 ) {
-  Surface(
-    modifier = modifier.fillMaxWidth(),
-    shadowElevation = if (showElevation) 8.dp else 0.dp
+  RegistrationScaffold.FooterSurface(
+    isElevated = isElevated,
+    modifier = modifier
   ) {
     Row(
       horizontalArrangement = Arrangement.End,

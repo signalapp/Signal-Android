@@ -8,7 +8,6 @@ import android.content.pm.ResolveInfo;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Process;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,7 +25,7 @@ import androidx.media3.session.MediaSessionService;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.signal.core.models.database.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.MessageTable;
@@ -115,10 +114,6 @@ public class VoiceNotePlaybackService extends MediaSessionService {
   @Nullable
   @Override
   public MediaSession onGetSession(@NonNull MediaSession.ControllerInfo controllerInfo) {
-    if (controllerInfo.getUid() != Process.myUid()) {
-      Log.w(TAG, "Denying session to external caller: " + controllerInfo.getPackageName());
-      return null;
-    }
     return mediaSession;
   }
 

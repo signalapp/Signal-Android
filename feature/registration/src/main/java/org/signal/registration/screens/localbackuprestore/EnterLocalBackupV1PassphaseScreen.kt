@@ -53,6 +53,7 @@ import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
+import org.signal.registration.screens.attachDebugLogHelper
 
 private const val PASSPHRASE_LENGTH = 30
 private const val CHUNK_SIZE = 5
@@ -130,6 +131,7 @@ private fun OnePaneLayout(
       FooterButtons(
         isValid = isValid,
         passphrase = passphrase,
+        isElevated = scrollState.canScrollForward,
         onSubmit = onSubmit,
         onCancel = onCancel
       )
@@ -148,7 +150,9 @@ private fun TwoPaneLayout(
   onCancel: () -> Unit,
   modifier: Modifier
 ) {
-  val scrollState = rememberScrollState()
+  val firstPaneScrollState = rememberScrollState()
+  val secondPaneScrollState = rememberScrollState()
+
   TwoPaneRegistrationScaffold(
     modifier = modifier.fillMaxSize(),
     params = params,
@@ -157,7 +161,7 @@ private fun TwoPaneLayout(
         modifier = Modifier
           .weight(1f)
           .fillMaxHeight()
-          .verticalScroll(scrollState)
+          .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
         Description()
@@ -168,7 +172,7 @@ private fun TwoPaneLayout(
         modifier = Modifier
           .weight(1f)
           .fillMaxHeight()
-          .verticalScroll(scrollState)
+          .verticalScroll(secondPaneScrollState)
           .padding(paddingValues)
       ) {
         PassphraseTextField(
@@ -184,6 +188,7 @@ private fun TwoPaneLayout(
       FooterButtons(
         isValid = isValid,
         passphrase = passphrase,
+        isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward,
         onSubmit = onSubmit,
         onCancel = onCancel
       )
@@ -196,16 +201,16 @@ private fun Description() {
   Text(
     text = stringResource(R.string.LocalBackupRestoreScreen__enter_backup_passphrase),
     style = MaterialTheme.typography.headlineMedium,
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier
+      .fillMaxWidth()
+      .attachDebugLogHelper()
   )
-
-  Spacer(modifier = Modifier.size(8.dp))
 
   Text(
     text = stringResource(R.string.LocalBackupRestoreScreen__enter_the_30_digit_passphrase),
-    style = MaterialTheme.typography.bodyMedium,
+    style = MaterialTheme.typography.bodyLarge,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier.padding(top = 16.dp)
   )
 }
 
@@ -274,30 +279,35 @@ private fun PassphraseTextField(
 private fun FooterButtons(
   isValid: Boolean,
   passphrase: String,
+  isElevated: Boolean,
   onSubmit: (String) -> Unit,
   onCancel: () -> Unit
 ) {
-  Row(
-    horizontalArrangement = Arrangement.SpaceBetween,
-    modifier = Modifier
-      .fillMaxWidth()
-      .padding(horizontal = 24.dp, vertical = 16.dp)
+  RegistrationScaffold.FooterSurface(
+    isElevated = isElevated
   ) {
-    TextButton(
-      modifier = Modifier.weight(weight = 1f, fill = false),
-      onClick = onCancel,
-      shape = RoundedCornerShape(0.dp)
+    Row(
+      horizontalArrangement = Arrangement.SpaceBetween,
+      modifier = Modifier
+        .fillMaxWidth()
+        .padding(horizontal = 24.dp, vertical = 16.dp)
     ) {
-      Text(text = stringResource(R.string.LocalBackupRestoreScreen__no_passphrase))
-    }
+      TextButton(
+        modifier = Modifier.weight(weight = 1f, fill = false),
+        onClick = onCancel,
+        shape = RoundedCornerShape(0.dp)
+      ) {
+        Text(text = stringResource(R.string.LocalBackupRestoreScreen__no_passphrase))
+      }
 
-    Spacer(modifier = Modifier.size(24.dp))
+      Spacer(modifier = Modifier.size(24.dp))
 
-    Buttons.LargeTonal(
-      enabled = isValid,
-      onClick = { onSubmit(passphrase) }
-    ) {
-      Text(text = stringResource(R.string.LocalBackupRestoreScreen__next))
+      Buttons.LargeTonal(
+        enabled = isValid,
+        onClick = { onSubmit(passphrase) }
+      ) {
+        Text(text = stringResource(R.string.LocalBackupRestoreScreen__next))
+      }
     }
   }
 }

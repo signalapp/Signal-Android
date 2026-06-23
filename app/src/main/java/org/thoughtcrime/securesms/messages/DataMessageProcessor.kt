@@ -330,6 +330,11 @@ object DataMessageProcessor {
       return null
     }
 
+    if (Recipient.resolved(threadRecipientId).isGroup) {
+      warn(envelope.clientTimestamp!!, "Expiration update targeting a group recipient without group context. Ignoring.")
+      return null
+    }
+
     if (SignalDatabase.recipients.getExpiresInSeconds(threadRecipientId) == expiresIn.inWholeSeconds) {
       log(envelope.clientTimestamp!!, "No change in message expiry for group. Ignoring.")
       return null
@@ -422,6 +427,14 @@ object DataMessageProcessor {
 
       try {
         val storyId = SignalDatabase.messages.getStoryId(authorRecipientId, sentTimestamp).id
+
+        val storyThreadRecipient: Recipient = SignalDatabase.threads.getRecipientForThreadId(SignalDatabase.messages.getMessageRecord(storyId).threadId)!!
+        val storyGroupRecord: GroupRecord? = SignalDatabase.groups.getGroup(storyThreadRecipient.id).orNull()
+        val storyGroupId: GroupId? = storyGroupRecord?.id?.takeIf { storyGroupRecord.isActive }
+        if (storyGroupId != groupId) {
+          warn(envelope.clientTimestamp!!, "Story reaction target does not belong to the same conversation as the incoming message. Dropping reaction.")
+          return null
+        }
 
         if (groupId != null) {
           parentStoryId = GroupReply(storyId)
@@ -742,6 +755,12 @@ object DataMessageProcessor {
         var threadRecipient: Recipient = SignalDatabase.threads.getRecipientForThreadId(story.threadId)!!
         val groupRecord: GroupRecord? = SignalDatabase.groups.getGroup(threadRecipient.id).orNull()
         val groupStory: Boolean = groupRecord?.isActive ?: false
+
+        val storyGroupId: GroupId? = groupRecord?.id?.takeIf { groupStory }
+        if (storyGroupId != groupId) {
+          warn(envelope.clientTimestamp!!, "Story reply target does not belong to the same conversation as the incoming message. Dropping reply.")
+          return null
+        }
 
         if (!groupStory) {
           threadRecipient = senderRecipient

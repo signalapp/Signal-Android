@@ -318,7 +318,7 @@
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
     <string name="PinCreationScreen__confirm_your_pin">Підтвердьте PIN-код</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">Введіть створений PIN-код ще раз</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">PIN-код потрібен для відновлення акаунту, якщо ви загубите телефон. </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -361,7 +361,7 @@
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">Дозвольте сповіщення</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal просить дозвіл на надсилання сповіщень. Так застосунок зможе показувати на вашому пристрої оповістки про нові повідомлення.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">Не зараз</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -370,36 +370,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">Синхронізація повідомлень</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">Синхронізація може тривати кілька хвилин…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">Завантаження: %1$s з %2$s</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Повідомлення й інформацію про чати, а також сам процес синхронізації захищено наскрізним шифруванням.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">Докладніше</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">Закрити</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Зіскануйте цей QR-код, щоб зв\'язати свій акаунт</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">Відкрийте Signal на телефоні</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Торкніться фото свого профілю, щоб відкрити налаштування Signal</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Виберіть «Зв\'язані пристрої» та «Зв\'язати новий пристрій»</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Наведіть камеру на цей QR-код</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">Мені потрібна допомога</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">Збільшити QR-код</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">Зіскановано</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">Не вдалося створити код</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Не маєте Signal на іншому пристрої?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">Створіть акаунт</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">Перенесення акаунту</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">Щоб перенести акаунт, відкрийте Signal на старому пристрої Android і виберіть «Перенесення акаунту».</string>
+    <string name="DeviceTransferInstructions__continue">Продовжити</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">Підготовка до з\'єднання з вашим старим пристроєм з ОС Android…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">Ще трохи. Скоро все буде готово.</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">Очікуйте з\'єднання зі старим пристроєм…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">Перевірте, чи збігаються коди на пристроях</string>
+    <string name="DeviceTransferSetup__numbers_match">Так, коди збігаються</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">Коди не збігаються</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">Очікуємо підтвердження зі старого пристрою…</string>
+    <string name="DeviceTransferSetup__location_permission_required">Signal потребує доступу до місцеположення, щоб виявити ваш старий пристрій і з\'єднатися з ним.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">Надати дозвіл</string>
+    <string name="DeviceTransferSetup__location_services_required">Необхідно ввімкнути геодані, щоб Signal зміг виявити ваш старий пристрій і з\'єднатися з ним.</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">Увімкнути геодані</string>
+    <string name="DeviceTransferSetup__wifi_required">Потрібно увімкнути Wi-Fi, щоб Signal міг виявити ваш старий пристрій і з\'єднатися з ним.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">Увімкнути Wi-Fi</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">Схоже, ваш пристрій не підтримує Wi-Fi Direct.</string>
+    <string name="DeviceTransferSetup__restore_a_backup">Відновити з резервної копії</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">Під час з\'єднання з вашим старим пристроєм сталася несподівана помилка.</string>
+    <string name="DeviceTransferSetup__retry">Перенести ще раз</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">Не вдалося знайти старий пристрій</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• Переконайтеся, що надано дозволи для визначення місцеположення.\n• Переконайтеся, що Wi-Fi ввімкнено і немає збережених груп Wi-Fi Direct.\n• Спробуйте вимкнути та ввімкнути Wi-Fi на обох пристроях.\n• Переконайтеся, що на обох пристроях здійснюється перенесення.</string>
+    <string name="DeviceTransferSetup__try_again">Повторити спробу</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">Коди не збігаються</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">Якщо коди на пристроях не збігаються, можливо, ви з\'єдналися не з тим пристроєм.</string>
+    <string name="DeviceTransferSetup__stop_transfer">Зупинити перенесення</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">Триває передача даних</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">Кількість повідомлень: уже %1$d</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">Неможливо перенести дані</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">Неможливо перенести дані з новішої версії Signal.</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">Деякі дані не вдалося перенести через обмеження бази даних.</string>
+    <string name="DeviceTransferProgress__transfer_failed">Не вдалося перенести акаунт. Будь ласка, спробуйте ще раз.</string>
+    <string name="DeviceTransferProgress__try_again">Повторити спробу</string>
+    <string name="DeviceTransferProgress__cancel">Закрити</string>
+    <string name="DeviceTransferProgress__stop_transfer">Зупинити перенесення?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">Перенесені на цю мить дані не буде збережено.</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">Перенесення завершено</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">Тепер ваш акаунт на цьому пристрої.</string>
+    <string name="DeviceTransferComplete__continue_registration">Продовжити</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">Налаштуйте профіль</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">Ваш профіль і зміни в ньому бачать ваші співрозмовники, контакти й групи.</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">Ім\'я (обов\'язково)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">Прізвище (необов\'язково)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">Далі</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">Установити зображення профілю</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Хто може знайти мене за номером?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Будь-яка людина, що має ваш номер телефону, бачитиме вас у Signal і зможе почати з вами чат.</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Крім людей, яким ви напишете самі й з якими ви вже маєте спільний чат, ніхто не побачить, що ви зареєстровані в Signal.</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">Усі</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">Ніхто</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Ви впевнені?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Якщо обрати варіант «Ніхто» для параметра «Хто може знайти мене за номером», людям буде складніше знайти вас у Signal.</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Скасувати</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">Зберегти</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">Назад</string>
 </resources>

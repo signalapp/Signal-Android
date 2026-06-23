@@ -429,7 +429,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     setGutterSizes(messageRecord, groupThread);
     setMessageShape(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, groupThread, hasWallpaper, isMessageRequestAccepted, allowedToPlayInline);
-    setBodyText(messageRecord, searchQuery, isMessageRequestAccepted);
+    setBodyText(messageRecord, searchQuery, isMessageRequestAccepted, hasWallpaper);
     setBubbleState(messageRecord, messageRecord.getFromRecipient(), hasWallpaper, colorizer);
     setInteractionState(conversationMessage, pulse);
     setStatusIcons(messageRecord, hasWallpaper);
@@ -941,14 +941,22 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       footer.setRevealDotColor(colorizer.getOutgoingFooterIconColor(context));
       footer.setOnlyShowSendingStatus(false, messageRecord);
     } else if (messageRecord.isRemoteDelete()) {
-      if (hasWallpaper) {
-        bodyBubble.getBackground().setColorFilter(ContextCompat.getColor(context, R.color.wallpaper_bubble_color), PorterDuff.Mode.SRC_IN);
+      if (messageRecord.isOutgoing() && hasWallpaper) {
+        bodyBubble.getBackground().setColorFilter(recipient.getChatColors().getChatBubbleColorFilter());
+        footer.setTextColor(colorizer.getOutgoingFooterTextColor(context));
+        footer.setIconColor(colorizer.getOutgoingFooterIconColor(context));
+        footer.setRevealDotColor(colorizer.getOutgoingFooterIconColor(context));
+      } else if (hasWallpaper) {
+        bodyBubble.getBackground().setColorFilter(getDefaultBubbleColor(true), PorterDuff.Mode.SRC_IN);
+        footer.setTextColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
+        footer.setIconColor(ContextCompat.getColor(context, org.signal.core.ui.R.color.signal_colorNeutralVariantInverse));
+        footer.setRevealDotColor(ContextCompat.getColor(context, org.signal.core.ui.R.color.signal_colorNeutralVariantInverse));
       } else {
         bodyBubble.getBackground().setColorFilter(ContextCompat.getColor(context, R.color.signal_background_primary), PorterDuff.Mode.MULTIPLY);
+        footer.setTextColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
         footer.setIconColor(ContextCompat.getColor(context, R.color.signal_icon_tint_secondary));
         footer.setRevealDotColor(ContextCompat.getColor(context, R.color.signal_icon_tint_secondary));
       }
-      footer.setTextColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
       footer.setOnlyShowSendingStatus(messageRecord.isRemoteDelete(), messageRecord);
     } else {
       bodyBubble.getBackground().setColorFilter(getDefaultBubbleColor(hasWallpaper), PorterDuff.Mode.SRC_IN);
@@ -1066,7 +1074,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
    * Whether interactions like swipe-to-reply and direct media opening should be suppressed.
    */
   private boolean isSuppressedInteractionMode() {
-    return isCondensedMode() || displayMode instanceof ConversationItemDisplayMode.Starred;
+    return isCondensedMode() || displayMode instanceof ConversationItemDisplayMode.Starred || displayMode == ConversationItemDisplayMode.Detailed.INSTANCE;
   }
 
   private boolean isStoryReaction(MessageRecord messageRecord) {
@@ -1143,25 +1151,41 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private void setBodyText(@NonNull MessageRecord messageRecord,
                            @Nullable String searchQuery,
-                           boolean messageRequestAccepted)
+                           boolean messageRequestAccepted,
+                           boolean hasWallpaper)
   {
-    bodyText.setClickable(false);
-    bodyText.setFocusable(false);
+    boolean isMessageDetails = displayMode == ConversationItemDisplayMode.Detailed.INSTANCE;
+
     bodyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().getMessageFontSize());
-    bodyText.setMovementMethod(LongClickMovementMethod.getInstance(getContext()));
+
+    bodyText.setTextIsSelectable(isMessageDetails);
+    if (isMessageDetails) {
+      bodyText.setOnTouchListener(null);
+      bodyText.setOnLongClickListener(null);
+      bodyText.setOnClickListener(null);
+    } else {
+      bodyText.setClickable(false);
+      bodyText.setFocusable(false);
+      bodyText.setOnTouchListener(doubleTapEditTouchListener);
+      bodyText.setOnLongClickListener(passthroughClickListener);
+      bodyText.setOnClickListener(passthroughClickListener);
+      bodyText.setMovementMethod(LongClickMovementMethod.getInstance(getContext()));
+    }
 
     bodyText.setOverflowText(null);
     bodyText.setMaxLength(-1);
 
     if (RemoteConfig.receiveAdminDelete() && conversationMessage.getDeletedByRecipient() != null) {
-      bodyText.setText(getDeletedMessageText(conversationMessage));
+      bodyText.setText(getDeletedMessageText(conversationMessage, hasWallpaper));
       bodyText.setVisibility(View.VISIBLE);
       bodyText.setOverflowText(null);
     } else if (messageRecord.isRemoteDelete()) {
       String          deletedMessage = context.getString(messageRecord.isOutgoing() ? R.string.ConversationItem_you_deleted_this_message : R.string.ConversationItem_this_message_was_deleted);
       SpannableString italics        = new SpannableString(deletedMessage);
       italics.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, deletedMessage.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-      italics.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, R.color.signal_text_primary)),
+      int textColor = messageRecord.isOutgoing() && hasWallpaper ? colorizer.getOutgoingDeleteTextColor(context)
+                                                                 : ContextCompat.getColor(context, R.color.signal_text_primary);
+      italics.setSpan(new ForegroundColorSpan(textColor),
                       0,
                       deletedMessage.length(),
                       Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -1220,40 +1244,44 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
-  private SpannableStringBuilder getDeletedMessageText(@NonNull ConversationMessage message) {
+  private SpannableStringBuilder getDeletedMessageText(@NonNull ConversationMessage message, boolean hasWallpaper) {
     boolean isAdminDelete = !message.getDeletedByRecipient().equals(message.getMessageRecord().getFromRecipient());
+    boolean useOutgoing   = message.getMessageRecord().isOutgoing() && hasWallpaper;
+    int     textColor     = useOutgoing ? colorizer.getOutgoingDeleteTextColor(context)
+                                        : ContextCompat.getColor(context, org.signal.core.ui.R.color.signal_colorOnSurfaceVariant);
+    int     nameColor     = useOutgoing ? colorizer.getOutgoingDeleteNameColor(context)
+                                        : colorizer.getIncomingGroupSenderColor(getContext(), message.getDeletedByRecipient());
     CharSequence body;
 
     if (message.getDeletedByRecipient().equals(Recipient.self())) {
-      body = formatDeletedText(context.getString(R.string.ConversationItem_you_deleted_this_message));
+      body = formatDeletedText(context.getString(R.string.ConversationItem_you_deleted_this_message), textColor);
     } else if (!isAdminDelete) {
-      body = formatDeletedText(context.getString(R.string.ConversationItem_s_deleted_this_message, message.getDeletedByRecipient().getShortDisplayName(context)));
+      body = formatDeletedText(context.getString(R.string.ConversationItem_s_deleted_this_message, message.getDeletedByRecipient().getShortDisplayName(context)), textColor);
     } else {
       String template = context.getString(R.string.ConversationItem_admin_s_deleted_this_message, SpanUtil.SPAN_PLACE_HOLDER);
       int    start    = template.indexOf(SpanUtil.SPAN_PLACE_HOLDER);
 
-      int             nameColor = colorizer.getIncomingGroupSenderColor(getContext(), message.getDeletedByRecipient());
-      SpannableString name      = new SpannableString(message.getDeletedByRecipient().getShortDisplayName(context));
+      SpannableString name = new SpannableString(message.getDeletedByRecipient().getShortDisplayName(context));
       name.setSpan(new ForegroundColorSpan(nameColor), 0, name.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       name.setSpan(new RecipientClickableSpan(conversationMessage.getDeletedByRecipient().getId()), 0, name.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       name.setSpan(new StyleSpan(Typeface.BOLD), 0, name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
       SpannableStringBuilder builder = new SpannableStringBuilder(template);
-      builder.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, org.signal.core.ui.R.color.signal_colorOnSurfaceVariant)), 0, builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      builder.setSpan(new ForegroundColorSpan(textColor), 0, builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       builder.replace(start, start + SpanUtil.SPAN_PLACE_HOLDER.length(), name);
 
       body = builder;
     }
 
     return new SpannableStringBuilder()
-              .append(SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.X_CIRCLE, org.signal.core.ui.R.color.signal_colorOnSurfaceVariant))
+              .append(SpanUtil.color(textColor, SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.X_CIRCLE, -1)))
               .append(" ")
               .append(body);
   }
 
-  private SpannableString formatDeletedText(String text) {
+  private SpannableString formatDeletedText(String text, int textColor) {
     SpannableString spannableString = new SpannableString(text);
-    spannableString.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, org.signal.core.ui.R.color.signal_colorOnSurfaceVariant)), 0, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    spannableString.setSpan(new ForegroundColorSpan(textColor), 0, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     return spannableString;
   }
 
@@ -2487,7 +2515,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     if ((messageRecord.isOutgoing() || !outgoingOnly) &&
         !hasNoBubble(messageRecord) &&
-        !messageRecord.isRemoteDelete() &&
+        (!messageRecord.isRemoteDelete() || (hasWallpaper && messageRecord.isOutgoing())) &&
         bodyBubbleCorners != null &&
         bodyBubble.getVisibility() == VISIBLE)
     {
@@ -2954,10 +2982,16 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     MediaIntentFactory.MediaPreviewArgs args = new MediaIntentFactory.MediaPreviewArgs(
         messageRecord.getThreadId(),
         messageRecord.getTimestamp(),
+        messageRecord.getId(),
+        messageRecord.getFromRecipient().getId(),
+        conversationRecipient.getId(),
+        messageRecord.isOutgoing(),
         mediaUri,
+        slide.getUri(),
         slide.getContentType(),
         slide.asAttachment().size,
         slide.getCaption().orElse(null),
+        conversationMessage.getDisplayBody(getContext()),
         false,
         false,
         false,

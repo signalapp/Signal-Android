@@ -12,11 +12,11 @@ import org.signal.archive.proto.AccountData
 import org.signal.archive.proto.ChatStyle
 import org.signal.archive.proto.Frame
 import org.signal.archive.stream.BackupFrameEmitter
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toByteArray
 import org.signal.libsignal.zkgroup.backups.BackupLevel
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier

@@ -53,6 +53,7 @@ import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.CallMessage
 import org.whispersystems.signalservice.internal.push.Content
+import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.GroupContextV2
 import org.whispersystems.signalservice.internal.push.TypingMessage
@@ -148,25 +149,16 @@ open class MessageContentProcessor(private val context: Context) {
     @Throws(BadGroupIdException::class)
     private fun shouldIgnore(content: Content, senderRecipient: Recipient, threadRecipient: Recipient): Boolean {
       if (content.dataMessage != null) {
-        val message = content.dataMessage!!
-        return if (threadRecipient.isGroup && threadRecipient.isBlocked) {
-          true
-        } else if (threadRecipient.isGroup) {
-          if (threadRecipient.isUnknownGroup) {
-            return senderRecipient.isBlocked
-          }
-
-          val isTextMessage = message.body != null
-          val isMediaMessage = message.isMediaMessage
-          val isExpireMessage = message.isExpirationUpdate
-          val isGv2Update = message.hasSignedGroupChange
-          val isContentMessage = !isGv2Update && !isExpireMessage && (isTextMessage || isMediaMessage)
-          val isGroupActive = threadRecipient.isActiveGroup
-
-          isContentMessage && !isGroupActive || senderRecipient.isBlocked && !isGv2Update
+        return shouldIgnoreDataMessage(content.dataMessage!!, senderRecipient, threadRecipient)
+      } else if (content.editMessage != null) {
+        val editDataMessage = content.editMessage!!.dataMessage
+        return if (editDataMessage != null) {
+          shouldIgnoreDataMessage(editDataMessage, senderRecipient, threadRecipient)
         } else {
           senderRecipient.isBlocked
         }
+      } else if (content.decryptionErrorMessage != null) {
+        return senderRecipient.isBlocked
       } else if (content.callMessage != null) {
         return senderRecipient.isBlocked
       } else if (content.typingMessage != null) {
@@ -192,6 +184,27 @@ open class MessageContentProcessor(private val context: Context) {
         }
       }
       return false
+    }
+
+    private fun shouldIgnoreDataMessage(message: DataMessage, senderRecipient: Recipient, threadRecipient: Recipient): Boolean {
+      return if (threadRecipient.isGroup && threadRecipient.isBlocked) {
+        true
+      } else if (threadRecipient.isGroup) {
+        if (threadRecipient.isUnknownGroup) {
+          return senderRecipient.isBlocked
+        }
+
+        val isTextMessage = message.body != null
+        val isMediaMessage = message.isMediaMessage
+        val isExpireMessage = message.isExpirationUpdate
+        val isGv2Update = message.hasSignedGroupChange
+        val isContentMessage = !isGv2Update && !isExpireMessage && (isTextMessage || isMediaMessage)
+        val isGroupActive = threadRecipient.isActiveGroup
+
+        isContentMessage && !isGroupActive || senderRecipient.isBlocked && !isGv2Update
+      } else {
+        senderRecipient.isBlocked
+      }
     }
 
     @Throws(BadGroupIdException::class)
@@ -264,6 +277,11 @@ open class MessageContentProcessor(private val context: Context) {
         if (content.dataMessage != null) {
           if (content.dataMessage!!.hasDisallowedAnnouncementOnlyContent) {
             Log.w(TAG, "Ignoring message from ${senderRecipient.id} because it has disallowed content, and they're not an admin in an announcement-only group.")
+            return Gv2PreProcessResult.IGNORE
+          }
+        } else if (content.editMessage?.dataMessage != null) {
+          if (content.editMessage!!.dataMessage!!.hasDisallowedAnnouncementOnlyContent) {
+            Log.w(TAG, "Ignoring edit message from ${senderRecipient.id} because it has disallowed content, and they're not an admin in an announcement-only group.")
             return Gv2PreProcessResult.IGNORE
           }
         } else if (content.typingMessage != null) {

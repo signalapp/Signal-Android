@@ -15,4 +15,9 @@ public interface SignalServiceAccountDataStore extends SignalProtocolStore,
    * @return True if the user has linked devices, otherwise false.
    */
   boolean isMultiDevice();
+
+  /**
+   * Update whether the user has linked devices.
+   */
+  void setMultiDevice(boolean isMultiDevice);
 }

@@ -25,7 +25,6 @@ public class SignalPinReminders {
   private static final long FOUR_WEEKS  = TimeUnit.DAYS.toMillis(28);
 
   private static final NavigableSet<Long> INTERVALS = new TreeSet<Long>() {{
-    add(ONE_DAY);
     add(THREE_DAYS);
     add(ONE_WEEK);
     add(TWO_WEEKS);

@@ -4,10 +4,10 @@
  */
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.InvalidAttachmentException
 import org.thoughtcrime.securesms.backup.v2.ArchiveDatabaseExecutor
 import org.thoughtcrime.securesms.backup.v2.BackupRepository

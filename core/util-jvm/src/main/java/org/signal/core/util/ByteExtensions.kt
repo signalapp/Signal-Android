@@ -66,34 +66,61 @@ class ByteSize(val bytes: Long) {
   val inTebiBytes: Float
     get() = inGibiBytes / 1024f
 
-  fun getLargestNonZeroValue(): Pair<Float, Size> {
+  fun getLargestNonZeroSize(): Size {
     return when {
-      inWholeTebiBytes > 0L -> inTebiBytes to Size.TEBIBYTE
-      inWholeGibiBytes > 0L -> inGibiBytes to Size.GIBIBYTE
-      inWholeMebiBytes > 0L -> inMebiBytes to Size.MEBIBYTE
-      inWholeKibiBytes > 0L -> inKibiBytes to Size.KIBIBYTE
-      else -> inWholeBytes.toFloat() to Size.BYTE
+      inWholeTebiBytes > 0L -> Size.TEBIBYTE
+      inWholeGibiBytes > 0L -> Size.GIBIBYTE
+      inWholeMebiBytes > 0L -> Size.MEBIBYTE
+      inWholeKibiBytes > 0L -> Size.KIBIBYTE
+      else -> Size.BYTE
+    }
+  }
+
+  /** The value of this size expressed in [size] (e.g. [Size.MEBIBYTE] -> a count of mebibytes). */
+  fun inUnit(size: Size): Float {
+    return when (size) {
+      Size.BYTE -> inWholeBytes.toFloat()
+      Size.KIBIBYTE -> inKibiBytes
+      Size.MEBIBYTE -> inMebiBytes
+      Size.GIBIBYTE -> inGibiBytes
+      Size.TEBIBYTE -> inTebiBytes
     }
   }
 
   @JvmOverloads
   fun toUnitString(maxPlaces: Int = 2, spaced: Boolean = true): String {
-    val (size, unit) = getLargestNonZeroValue()
+    return toUnitString(getLargestNonZeroSize(), maxPlaces, spaced)
+  }
 
-    val formatter = NumberFormat.getInstance().apply {
-      minimumFractionDigits = 0
-      maximumFractionDigits = when (unit) {
-        Size.BYTE,
-        Size.KIBIBYTE -> 0
+  /**
+   * Format as a specific unit.
+   *
+   * @param unit The unit to use when rendering
+   * @param maxPlaces Max number of digits to the right of the decimal
+   * @param padDecimals If true add zeros as necessary to match [maxPlaces]
+   * @param withUnit If true include the unit label in the text
+   */
+  @JvmOverloads
+  fun toUnitString(unit: Size, maxPlaces: Int = 2, spaced: Boolean = true, padDecimals: Boolean = false, withUnit: Boolean = true): String {
+    val size: Float = inUnit(unit)
 
-        Size.MEBIBYTE -> min(1, maxPlaces)
+    val places = when (unit) {
+      Size.BYTE,
+      Size.KIBIBYTE -> 0
 
-        Size.GIBIBYTE,
-        Size.TEBIBYTE -> min(2, maxPlaces)
-      }
+      Size.MEBIBYTE -> min(1, maxPlaces)
+
+      Size.GIBIBYTE,
+      Size.TEBIBYTE -> min(2, maxPlaces)
     }
 
-    return BidiUtil.forceLtr("${formatter.format(size)}${if (spaced) " " else ""}${unit.label}")
+    val formatter = NumberFormat.getInstance().apply {
+      minimumFractionDigits = if (padDecimals) places else 0
+      maximumFractionDigits = places
+    }
+
+    val suffix = if (withUnit) "${if (spaced) " " else ""}${unit.label}" else ""
+    return BidiUtil.forceLtr("${formatter.format(size)}$suffix")
   }
 
   operator fun compareTo(other: ByteSize): Int {

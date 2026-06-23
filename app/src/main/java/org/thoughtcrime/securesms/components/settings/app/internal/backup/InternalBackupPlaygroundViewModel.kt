@@ -27,6 +27,7 @@ import org.signal.archive.stream.EncryptedBackupReader
 import org.signal.archive.stream.EncryptedBackupReader.Companion.MAC_SIZE
 import org.signal.core.models.ServiceId
 import org.signal.core.models.backup.MessageBackupKey
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Hex
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.bytes
@@ -39,7 +40,6 @@ import org.signal.core.util.stream.LimitedInputStream
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.network.NetworkResult
 import org.signal.network.api.SvrBApi
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.LocalExportProgress

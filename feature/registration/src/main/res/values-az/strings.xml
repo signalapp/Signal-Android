@@ -314,9 +314,9 @@
     <!-- PIN creation screen title. -->
     <string name="PinCreationScreen__create_your_pin">PIN yaradın</string>
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
-    <string name="PinCreationScreen__confirm_your_pin">Confirm your PIN</string>
+    <string name="PinCreationScreen__confirm_your_pin">PIN-inizi təsdiqləyin</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">İndicə yaratdığınız PIN kodu yenidən daxil edin</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">Telefonunuzu itirdikdə PIN kodlar hesabınızın bərpasına kömək edə bilər. </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -328,11 +328,11 @@
     <!-- Labels the button to submit a new Signal PIN. -->
     <string name="PinCreationScreen__next">Növbəti</string>
     <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_digits">PIN must be at least 4 digits</string>
+    <string name="PinCreationScreen__pin_at_least_4_digits">PIN ən azı 4 rəqəmli olmalıdır</string>
     <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_characters">PIN must be at least 4 characters</string>
+    <string name="PinCreationScreen__pin_at_least_4_characters">PIN ən azı 4 simvoldan ibarət olmalıdır</string>
     <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin">Re-enter PIN</string>
+    <string name="PinCreationScreen__reenter_pin">PIN kodu yenidən daxil edin</string>
 
     <!-- PIN entry screen title when registration lock is active. -->
     <string name="PinEntryScreen__registration_lock">Qeydiyyat Kilidi</string>
@@ -355,9 +355,9 @@
     <string name="PinEntryScreen__continue">Davam et</string>
 
     <!-- Title for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__allow_notifications">Allow Notifications</string>
+    <string name="AllowNotificationsScreen__allow_notifications">Bildirişlərə icazə verin</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal bildiriş icazəsi sorğulamaq istərdi. Bu, yeni mesajlar gəldikdə, cihazın xəbərdarlıqları göstərməsinə imkan verir.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">İndi yox</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -366,36 +366,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">Mesajlar sinxronlaşdırılır</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">Bu, bir neçə dəqiqə çəkə bilər…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">%1$s/%2$s endirilir</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Mesajlar və çat məlumatı sinxronlaşdırma prosesi daxil, tam şifrələmə ilə qorunur.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">Daha ətraflı</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">Ləğv et</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Hesabınızı əlaqələndirmək üçün bu kodu skan edin</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">Signal-ı telefonunuzda açın</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Signal parametrlərini açmaq üçün profil şəklinizə toxunun</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">\"Əlaqələndirilmiş cihazlar\" və \"Yeni cihazı əlaqələndir\" seçiminə toxunun</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Kameranı bu QR kodunun üzərinə tutun</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">Bu addımlarla kömək alın</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">QR kodunu maksimum effektiv səviyyəyə çatdırın</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">Skan edildi</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">Kod yaradılmadı</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Digər cihazda Signal tətbiqi yoxdur?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">Hesab yaradın</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">Hesabınızı köçürün</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">Hesabınızı köçürmək üçün köhnə Android cihazınızda Signal tətbiqini açın və \"Hesabı köçür\" seçimini edin.</string>
+    <string name="DeviceTransferInstructions__continue">Davam et</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">Köhnə Android cihazınızla bağlantı qurmaq üçün hazırlanır…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">Bu bir qədər çəkə bilər. Tezliklə hazır olmalıdır.</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">Köhnə cihazınızın qoşulması gözlənilir…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">Hər iki cihazda nömrələrin uyğun gəldiyini təsdiqləyin</string>
+    <string name="DeviceTransferSetup__numbers_match">Bəli, nömrələr uyğundur</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">Nömrələr uyğunlaşmır</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">Köhnə cihazınızın təsdiqləməsi gözlənilir…</string>
+    <string name="DeviceTransferSetup__location_permission_required">Signal köhnə cihazınızı aşkar etmək və onunla bağlantı qurmaq üçün məkan parametrlərinə giriş icazəsi tələb edir.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">İcazə ver</string>
+    <string name="DeviceTransferSetup__location_services_required">Signal köhnə cihazınızı aşkarlamaq və onunla bağlantı qurmaq üçün məkan xidmətlərinin aktivləşdirilməsini tələb edir.</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">Yerləşmə xidmətlərini işə sal</string>
+    <string name="DeviceTransferSetup__wifi_required">Signal köhnə cihazınızı aşkarlamaq və onunla bağlantı qurmaq üçün Wi-Fi-a qoşulu olmağı tələb edir.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">\"Wi-Fi\"ı açın</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">Üzr istəyirik, görünür cihazınız Wi-Fi Direct-i dəstəkləmir.</string>
+    <string name="DeviceTransferSetup__restore_a_backup">Bunun əvəzinə ehtiyat nüsxəni bərpa edin</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">Köhnə cihazınızla bağlantı qurmağa cəhd edilərkən gözlənilməz xəta baş verdi.</string>
+    <string name="DeviceTransferSetup__retry">Yenidən sına</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">Köhnə cihazınızı aşkarlamaq mümkün olmadı</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• Məkan icazələrinin aktivləşdirildiyindən əmin olun.\n• Wi-Fi-ın yanılı olduğundan və heç bir Wi-Fi Direct qrupunun xatırlanmadığından əmin olun.\n• Hər iki cihazda \"Wi-Fi\"ı açıb-bağlamağa çalışın.\n• Hər iki cihazın da köçürmə rejimində olduğuna əmin olun.</string>
+    <string name="DeviceTransferSetup__try_again">Yenidən sına</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">Nömrələr uyğunlaşmır</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">Cihazlarınızdakı nömrələr uyğun gəlmirsə, ehtimal ki, səhv cihaza qoşulmusunuz.</string>
+    <string name="DeviceTransferSetup__stop_transfer">Köçürməni dayandır</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">Verilənlər köçürülür</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">İndiyə qədər %1$d mesaj</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">Köçürülə bilmir</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">Signal-ın daha yeni versiyasından köçürmək olmur.</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">Verilənlər bazasının məhdudiyyəti səbəbilə bəzi məlumatları köçürmək mümkün olmadı.</string>
+    <string name="DeviceTransferProgress__transfer_failed">Köçürmə baş tutmadı. Yenidən cəhd edin.</string>
+    <string name="DeviceTransferProgress__try_again">Yenidən cəhd edin</string>
+    <string name="DeviceTransferProgress__cancel">Ləğv et</string>
+    <string name="DeviceTransferProgress__stop_transfer">Köçürmə dayandırılsın?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">Bütün köçürmə irəliləyişi itəcək.</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">Köçürmə tamamlandı</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">Hesabınız artıq bu cihazdadır.</string>
+    <string name="DeviceTransferComplete__continue_registration">Davam et</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">Profilinizi quraşdırın</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">Mesajlaşdığınız şəxslər, kontaktlarınız və qruplarınız profiliniz və orada etdiyiniz dəyişiklikləri görə biləcək.</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">Ad (tələb olunur)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">Soyad (ixtiyari)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">Növbəti</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">Avatar tənzimlə</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Məni nömrəmlə kim tapa bilər?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Telefon nömrənizin olduğu istənilən şəxs Signal-da olduğunuz zaman sizi görə və çata başlaya bilər.</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Mesaj göndərənə və ya ortaq çata daxil olmayana qədər heç kim Signal-da olduğunuzu görə bilməyəcək.</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">Hər kəs</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">Heç kim</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Əminsiniz?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"Məni nömrəmlə kim tapa bilər\" funksiyasını \"Heç kim\" olaraq seçsəniz insanların sizi Signal-da tapması çətinləşəcək.</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Ləğv et</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">Saxla</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">Geri</string>
 </resources>

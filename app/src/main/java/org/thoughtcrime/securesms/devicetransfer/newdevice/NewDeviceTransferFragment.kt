@@ -8,6 +8,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.signal.devicetransfer.DeviceToDeviceTransferService
+import org.signal.devicetransfer.NewDeviceRestoreStatus
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.restore.RestoreActivity
@@ -62,17 +63,17 @@ class NewDeviceTransferFragment : DeviceTransferFragment() {
 
   private inner class ServerTaskListener {
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEventMainThread(event: NewDeviceServerTask.Status) {
+    fun onEventMainThread(event: NewDeviceRestoreStatus) {
       status.text = getString(R.string.DeviceTransfer__d_messages_so_far, event.messageCount)
 
       when (event.state) {
-        NewDeviceServerTask.Status.State.IN_PROGRESS,
-        NewDeviceServerTask.Status.State.TRANSFER_COMPLETE -> Unit
+        NewDeviceRestoreStatus.State.IN_PROGRESS,
+        NewDeviceRestoreStatus.State.TRANSFER_COMPLETE -> Unit
 
-        NewDeviceServerTask.Status.State.RESTORE_COMPLETE -> onRestoreComplete()
-        NewDeviceServerTask.Status.State.FAILURE_VERSION_DOWNGRADE -> abort(R.string.NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal)
-        NewDeviceServerTask.Status.State.FAILURE_FOREIGN_KEY -> abort(R.string.NewDeviceTransfer__failure_foreign_key)
-        NewDeviceServerTask.Status.State.FAILURE_UNKNOWN -> abort()
+        NewDeviceRestoreStatus.State.RESTORE_COMPLETE -> onRestoreComplete()
+        NewDeviceRestoreStatus.State.FAILURE_VERSION_DOWNGRADE -> abort(R.string.NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal)
+        NewDeviceRestoreStatus.State.FAILURE_FOREIGN_KEY -> abort(R.string.NewDeviceTransfer__failure_foreign_key)
+        NewDeviceRestoreStatus.State.FAILURE_UNKNOWN -> abort()
       }
     }
   }

@@ -7,11 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContract
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -25,6 +21,13 @@ import org.signal.core.ui.compose.theme.SignalTheme
  */
 class RegistrationActivity : ComponentActivity() {
 
+  companion object {
+    @JvmStatic
+    fun createIntent(context: Context): Intent {
+      return Intent(context, RegistrationActivity::class.java)
+    }
+  }
+
   private val repository: RegistrationRepository by lazy {
     RegistrationRepository(
       context = this.application,
@@ -36,41 +39,22 @@ class RegistrationActivity : ComponentActivity() {
 
   @OptIn(ExperimentalPermissionsApi::class)
   override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
     enableEdgeToEdge()
+    super.onCreate(savedInstanceState)
 
     setContent {
       SignalTheme(incognitoKeyboardEnabled = false) {
-        Surface {
-          Box(
-            modifier = Modifier
-              .fillMaxSize()
-              .windowInsetsPadding(WindowInsets.safeDrawing)
-          ) {
-            RegistrationNavHost(
-              registrationRepository = repository,
-              modifier = Modifier.fillMaxSize(),
-              onRegistrationComplete = {
-                setResult(RESULT_OK)
-                finish()
-              }
-            )
-          }
+        Surface(modifier = Modifier.fillMaxSize()) {
+          RegistrationNavHost(
+            registrationRepository = repository,
+            modifier = Modifier.fillMaxSize(),
+            onRegistrationComplete = {
+              setResult(RESULT_OK)
+              finish()
+            }
+          )
         }
       }
-    }
-  }
-
-  companion object {
-    /**
-     * Creates an intent to launch the RegistrationActivity.
-     *
-     * @param context The context used to create the intent.
-     * @return An intent that can be used to start the RegistrationActivity.
-     */
-    @JvmStatic
-    fun createIntent(context: Context): Intent {
-      return Intent(context, RegistrationActivity::class.java)
     }
   }
 

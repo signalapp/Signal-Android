@@ -197,6 +197,9 @@ fun NavGraphBuilder.chatNavGraphBuilder(
     }
 
     arguments?.let { args ->
+      val backPressedState = remember { FragmentBackPressedState() }
+      FragmentBackHandler(backPressedState)
+
       AndroidFragment(
         clazz = ConversationSettingsNavHostFragment::class.java,
         fragmentState = fragmentState,
@@ -206,7 +209,9 @@ fun NavGraphBuilder.chatNavGraphBuilder(
           .background(MaterialTheme.colorScheme.background)
           .statusBarsPadding()
           .navigationBarsPadding()
-      )
+      ) { fragment ->
+        backPressedState.attach(fragment)
+      }
     }
   }
 }

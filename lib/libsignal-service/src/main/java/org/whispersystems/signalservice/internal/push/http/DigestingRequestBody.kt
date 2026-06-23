@@ -4,9 +4,9 @@ import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okio.BufferedSink
+import org.signal.core.util.logging.Log
 import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice
-import org.signal.libsignal.protocol.logging.Log
 import org.whispersystems.signalservice.api.crypto.DigestingOutputStream
 import org.whispersystems.signalservice.api.crypto.SkippingOutputStream
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress

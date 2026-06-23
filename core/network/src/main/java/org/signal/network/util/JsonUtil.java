@@ -22,7 +22,7 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule;
 import org.signal.core.util.Base64;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.InvalidKeyException;
-import org.signal.libsignal.protocol.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.signal.core.models.MasterKey;
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;

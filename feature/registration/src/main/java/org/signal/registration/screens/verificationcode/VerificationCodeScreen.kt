@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -176,15 +177,15 @@ private fun OnePaneLayout(
   OnePaneRegistrationScaffold(
     modifier = Modifier
       .fillMaxSize()
-      .padding(innerPadding),
+      .padding(innerPadding)
+      .consumeWindowInsets(innerPadding),
     params = params,
     content = { paddingValues ->
       Column(
         modifier = Modifier
           .fillMaxSize()
           .verticalScroll(scrollState)
-          .padding(paddingValues),
-        horizontalAlignment = Alignment.CenterHorizontally
+          .padding(paddingValues)
       ) {
         Description(state, onEvent)
 
@@ -206,7 +207,7 @@ private fun OnePaneLayout(
     },
     footer = {
       RegistrationScaffold.FooterSurface(
-        isContentScrolledUnder = scrollState.canScrollForward
+        isElevated = scrollState.canScrollForward
       ) {
         Row(
           modifier = Modifier
@@ -231,17 +232,20 @@ private fun TwoPaneLayout(
   onEvent: (VerificationCodeScreenEvents) -> Unit,
   onDigitsChanged: (List<String>) -> Unit
 ) {
-  val scrollState = rememberScrollState()
+  val firstPaneScrollState = rememberScrollState()
+  val secondPaneScrollState = rememberScrollState()
+
   TwoPaneRegistrationScaffold(
     modifier = Modifier
       .fillMaxSize()
-      .padding(innerPadding),
+      .padding(innerPadding)
+      .consumeWindowInsets(innerPadding),
     params = params,
     firstPane = { paddingValues ->
       Column(
         modifier = Modifier
           .weight(1f)
-          .verticalScroll(scrollState)
+          .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
         Description(state, onEvent)
@@ -251,7 +255,7 @@ private fun TwoPaneLayout(
       Column(
         modifier = Modifier
           .weight(1f)
-          .verticalScroll(scrollState)
+          .verticalScroll(secondPaneScrollState)
           .padding(paddingValues)
       ) {
         CodeField(
@@ -270,7 +274,7 @@ private fun TwoPaneLayout(
     },
     footer = {
       RegistrationScaffold.FooterSurface(
-        isContentScrolledUnder = scrollState.canScrollForward
+        isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
       ) {
         Row(
           modifier = Modifier
@@ -448,13 +452,11 @@ private fun Description(state: VerificationCodeState, onEvent: (VerificationCode
       .attachDebugLogHelper()
   )
 
-  Spacer(modifier = Modifier.height(16.dp))
-
   Text(
     text = stringResource(R.string.VerificationCodeScreen__enter_the_code_we_sent_to_s, state.e164),
-    style = MaterialTheme.typography.bodyMedium,
+    style = MaterialTheme.typography.bodyLarge,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier.padding(top = 16.dp)
   )
 
   Spacer(modifier = Modifier.height(8.dp))

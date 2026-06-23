@@ -6,7 +6,7 @@ import org.signal.network.websocket.WebSocketMessage;
 import org.signal.network.websocket.WebsocketResponse;
 
 import org.jetbrains.annotations.NotNull;
-import org.signal.libsignal.protocol.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;

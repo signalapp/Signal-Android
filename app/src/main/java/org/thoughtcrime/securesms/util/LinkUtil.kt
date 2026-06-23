@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util
 
+import com.google.common.net.InetAddresses
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.thoughtcrime.securesms.stickers.StickerUrl
 import java.net.URI
@@ -43,7 +44,23 @@ object LinkUtil {
       return false
     }
 
-    return linkUrl.toHttpUrlOrNull()?.scheme == "https"
+    val httpUrl = linkUrl.toHttpUrlOrNull() ?: return false
+
+    if (httpUrl.scheme != "https") {
+      return false
+    }
+
+    val host = httpUrl.host
+
+    if (host.matches(INVALID_DOMAINS_REGEX)) {
+      return false
+    }
+
+    if (isPrivateOrLocalHost(host)) {
+      return false
+    }
+
+    return true
   }
 
   /**
@@ -103,6 +120,27 @@ object LinkUtil {
         false
       }
     }
+  }
+
+  private fun isPrivateOrLocalHost(host: String): Boolean {
+    if (!InetAddresses.isInetAddress(host)) {
+      return false
+    }
+
+    val address = InetAddresses.forString(host)
+
+    if (address.isAnyLocalAddress ||
+      address.isLoopbackAddress ||
+      address.isLinkLocalAddress ||
+      address.isSiteLocalAddress ||
+      address.isMulticastAddress
+    ) {
+      return true
+    }
+
+    // IPv6 unique local addresses (fc00::/7) are not covered by the standard helpers above.
+    val bytes = address.address
+    return bytes.size == 16 && (bytes[0].toInt() and 0xfe) == 0xfc
   }
 
   private data class LegalCharactersResult(val isLegal: Boolean, val domain: String? = null)

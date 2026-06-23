@@ -14,7 +14,7 @@ object AppCapabilities {
       versionedExpirationTimer = true,
       attachmentBackfill = true,
       spqr = true,
-      usernameChangeSyncMessage = false // TODO(michelle): Turn on once all clients support it and add a migration
+      usernameChangeSyncMessage = true
     )
   }
 }

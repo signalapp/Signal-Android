@@ -38,7 +38,7 @@ fun SignalTheme(
   content: @Composable () -> Unit
 ) {
   val colorScheme = when {
-    dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+    dynamicColor && Build.VERSION.SDK_INT >= 31 -> {
       val context = LocalContext.current
       if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
     }

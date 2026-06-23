@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.text.TextUtils
 import androidx.annotation.VisibleForTesting
 import androidx.sqlite.db.SupportSQLiteDatabase
+import org.signal.core.models.database.DatabaseId
 import org.signal.core.util.logging.Log
 import java.lang.Exception
 import java.util.LinkedList

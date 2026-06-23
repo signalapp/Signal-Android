@@ -5,8 +5,8 @@
 
 package org.signal.mediasend.edit
 
-import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
@@ -14,27 +14,43 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
-import org.signal.core.util.isNotNullOrBlank
+import org.signal.mediasend.R
+
+/**
+ * Because we need to be able to support stuff like mentions, styled text, and custom emoji, we need to allow
+ * the users of this feature to inject their own text-field.
+ */
+val LocalAddAMessageRowTextField = compositionLocalOf<@Composable (String, Modifier) -> Unit> {
+  { message, modifier ->
+    Text(
+      text = message,
+      style = MaterialTheme.typography.bodyLarge,
+      color = MaterialTheme.colorScheme.onSurfaceVariant,
+      modifier = modifier
+    )
+  }
+}
 
 @Composable
 fun AddAMessageRow(
   message: String?,
-  callback: AddAMessageRowCallback,
+  onEvent: (MediaEditScreenEvent) -> Unit,
   onNextClick: () -> Unit,
-  modifier: Modifier = Modifier,
-  onEmojiKeyboardClick: () -> Unit = {}
+  modifier: Modifier = Modifier
 ) {
   Row(
     horizontalArrangement = Arrangement.Center,
@@ -47,32 +63,23 @@ fun AddAMessageRow(
         .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(percent = 50))
         .weight(1f)
         .heightIn(min = 40.dp)
+        .clickable(onClickLabel = stringResource(R.string.AddAMessageRow__add_a_message), onClick = { onEvent(MediaEditScreenEvent.AddMessageClick()) }, role = Role.Button)
     ) {
       IconButtons.IconButton(
-        onClick = onEmojiKeyboardClick
+        onClick = { onEvent(MediaEditScreenEvent.AddMessageClick(startWithEmojiKeyboard = true)) }
       ) {
         Icon(
           painter = SignalIcons.Emoji.painter,
-          contentDescription = "Open emoji keyboard"
+          contentDescription = stringResource(R.string.AddAMessageRow__open_emoji_keyboard)
         )
       }
 
-      Crossfade(
-        targetState = message.isNotNullOrBlank(),
-        modifier = Modifier.weight(1f)
-      ) { isNotEmpty ->
-        if (isNotEmpty) {
-          BasicTextField(
-            value = message ?: "",
-            onValueChange = callback::onMessageChange
-          )
-        } else
-          Text(
-            text = "Message",
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-          )
-      }
+      LocalAddAMessageRowTextField.current(
+        message ?: stringResource(R.string.AddAMessageRow__message),
+        Modifier
+          .weight(1f)
+          .padding(end = 16.dp)
+      )
     }
 
     IconButtons.IconButton(
@@ -86,7 +93,7 @@ fun AddAMessageRow(
     ) {
       Icon(
         painter = SignalIcons.ArrowEnd.painter,
-        contentDescription = "Open emoji keyboard",
+        contentDescription = stringResource(R.string.AddAMessageRow__next),
         modifier = Modifier
           .size(40.dp)
           .padding(8.dp)
@@ -101,16 +108,8 @@ private fun AddAMessageRowPreview() {
   Previews.Preview {
     AddAMessageRow(
       message = null,
-      callback = AddAMessageRowCallback.Empty,
+      onEvent = {},
       onNextClick = {}
     )
-  }
-}
-
-interface AddAMessageRowCallback {
-  fun onMessageChange(message: String)
-
-  object Empty : AddAMessageRowCallback {
-    override fun onMessageChange(message: String) = Unit
   }
 }

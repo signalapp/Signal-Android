@@ -3,7 +3,6 @@ package org.signal.camera.demo.screens.main
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.ParcelFileDescriptor
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -14,6 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.camera.VideoCaptureResult
 import org.signal.camera.VideoOutput
+import org.signal.core.util.logging.Log
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale

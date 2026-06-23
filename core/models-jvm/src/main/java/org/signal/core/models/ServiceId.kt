@@ -8,9 +8,9 @@ package org.signal.core.models
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.UuidUtil
+import org.signal.core.util.logging.Log
 import org.signal.core.util.toByteArray
 import org.signal.libsignal.protocol.SignalProtocolAddress
-import org.signal.libsignal.protocol.logging.Log
 import java.util.UUID
 
 /**

@@ -9,7 +9,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.provider.ContactsContract;
 
 import com.bumptech.glide.load.data.StreamLocalUriFetcher;
@@ -31,7 +30,7 @@ class ContactPhotoLocalUriFetcher extends StreamLocalUriFetcher {
   protected InputStream loadResource(Uri uri, ContentResolver contentResolver)
       throws FileNotFoundException
   {
-    if (VERSION.SDK_INT >= VERSION_CODES.ICE_CREAM_SANDWICH) {
+    if (VERSION.SDK_INT >= 14) {
       return ContactsContract.Contacts.openContactPhotoInputStream(contentResolver, uri, true);
     } else {
       return ContactsContract.Contacts.openContactPhotoInputStream(contentResolver, uri);

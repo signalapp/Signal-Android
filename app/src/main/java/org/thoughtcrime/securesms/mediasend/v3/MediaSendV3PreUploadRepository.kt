@@ -7,11 +7,11 @@ package org.thoughtcrime.securesms.mediasend.v3
 
 import android.content.Context
 import androidx.annotation.WorkerThread
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.models.media.Media
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.preupload.PreUploadRepository
 import org.signal.mediasend.preupload.PreUploadResult
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mediasend.MediaUploadRepository

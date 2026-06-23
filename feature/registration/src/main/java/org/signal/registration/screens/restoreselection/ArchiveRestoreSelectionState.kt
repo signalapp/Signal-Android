@@ -9,7 +9,9 @@ import org.signal.registration.util.DebugLoggableModel
 
 data class ArchiveRestoreSelectionState(
   val restoreOptions: List<ArchiveRestoreOption> = emptyList(),
-  val showSkipWarningDialog: Boolean = false
+  val showSkipWarningDialog: Boolean = false,
+  /** Token that, if present, indicates that the user did a quick restore, and we should hit a network endpoint to indicate our restore selection.  */
+  val restoreMethodToken: String? = null
 ) : DebugLoggableModel() {
   val showSkipButton: Boolean get() = ArchiveRestoreOption.None !in restoreOptions
 }

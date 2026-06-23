@@ -307,8 +307,14 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
       return currentState;
     }
 
+    String eraId = WebRtcUtil.getGroupCallEraId(groupCall);
+
+    if (eraId == null) {
+      Log.i(tag, "handleGroupJoinedMembershipChanged(): eraId is null, waiting for peek update");
+      return currentState;
+    }
+
     boolean remoteUserRangTheCall = currentState.getCallSetupState(RemotePeer.GROUP_CALL_ID).getRingerRecipient() != Recipient.self();
-    String  eraId                 = WebRtcUtil.getGroupCallEraId(groupCall);
     webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), eraId, null, remoteUserRangTheCall, true);
 
     List<UUID> members = new ArrayList<>(peekInfo.getJoinedMembers());

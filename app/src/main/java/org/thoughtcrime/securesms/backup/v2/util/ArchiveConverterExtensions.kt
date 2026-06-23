@@ -11,6 +11,7 @@ import org.signal.archive.proto.FilePointer
 import org.signal.core.util.Base64
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNotNullOrBlank
+import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.orNull
 import org.signal.libsignal.usernames.BaseUsernameException
@@ -31,6 +32,8 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPoin
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import java.util.Optional
 import org.signal.archive.proto.AvatarColor as RemoteAvatarColor
+
+private const val TAG = "ArchiveConverter"
 
 /**
  * Converts a [FilePointer] to a local [Attachment] object for inserting into the database.
@@ -58,10 +61,16 @@ fun FilePointer?.toLocalAttachment(
 
   return when (attachmentType) {
     AttachmentType.ARCHIVE -> {
+      val cdnNumber = locatorInfo.transitCdnNumber ?: Cdn.CDN_0.cdnNumber
+      if (Cdn.fromCdnNumberOrNull(cdnNumber) == null) {
+        Log.w(TAG, "Encountered an archived attachment with an unsupported CDN number ($cdnNumber). Skipping attachment.")
+        return null
+      }
+
       ArchivedAttachment(
         contentType = contentType,
         size = locatorInfo.size.toLong(),
-        cdn = locatorInfo.transitCdnNumber ?: Cdn.CDN_0.cdnNumber,
+        cdn = cdnNumber,
         uploadTimestamp = locatorInfo.transitTierUploadTimestamp ?: 0,
         key = locatorInfo.key.toByteArray(),
         cdnKey = locatorInfo.transitCdnKey?.nullIfBlank(),

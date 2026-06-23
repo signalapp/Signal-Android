@@ -6,11 +6,11 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import java.util.concurrent.TimeUnit
 
@@ -45,8 +45,8 @@ internal class CallLinkPeekJob private constructor(
   )
 
   override fun onRun() {
-    val recipient = Recipient.resolved(callLinkRecipientId)
-    if (!recipient.isCallLink) {
+    val recipient = SignalDatabase.recipients.getRecord(callLinkRecipientId)
+    if (recipient.callLinkRoomId == null) {
       Log.w(TAG, "Recipient was not a call link. Ignoring.")
       return
     }

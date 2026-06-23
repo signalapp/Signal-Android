@@ -315,9 +315,9 @@
     <!-- PIN creation screen title. -->
     <string name="PinCreationScreen__create_your_pin">Izveido savu PIN</string>
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
-    <string name="PinCreationScreen__confirm_your_pin">Confirm your PIN</string>
+    <string name="PinCreationScreen__confirm_your_pin">Apstiprināt PIN</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">Ievadiet tikko izveidoto PIN vēlreiz</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">PIN tālruņa pazaudēšanas gadījumā var palīdzēt atjaunot kontu. </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -329,11 +329,11 @@
     <!-- Labels the button to submit a new Signal PIN. -->
     <string name="PinCreationScreen__next">Tālāk</string>
     <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_digits">PIN must be at least 4 digits</string>
+    <string name="PinCreationScreen__pin_at_least_4_digits">PIN jābūt vismaz 4 cipariem</string>
     <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_characters">PIN must be at least 4 characters</string>
+    <string name="PinCreationScreen__pin_at_least_4_characters">PIN jābūt vismaz 4 rakstzīmēm</string>
     <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin">Re-enter PIN</string>
+    <string name="PinCreationScreen__reenter_pin">Atkārtoti ievadiet PIN</string>
 
     <!-- PIN entry screen title when registration lock is active. -->
     <string name="PinEntryScreen__registration_lock">Reģistrācijas bloķēšana</string>
@@ -357,9 +357,9 @@
     <string name="PinEntryScreen__continue">Turpināt</string>
 
     <!-- Title for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__allow_notifications">Allow Notifications</string>
+    <string name="AllowNotificationsScreen__allow_notifications">Atļaut paziņojumus</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal ir nepieciešama paziņojumu atļauja. Tas ļauj ierīcei rādīt jaunu ziņu paziņojumus.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">Ne tagad</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -368,36 +368,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">Notiek ziņu sinhronizēšana</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">Process var ilgt dažas minūtes…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">Lejupielādē: %1$s no %2$s</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Ziņas un sarunu informāciju aizsargā pilnīga šifrēšana, tostarp sinhronizēšanas process.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">Uzzināt vairāk</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">Atcelt</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Skenējiet šo kodu, lai piesaistītu jūsu kontu</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">Atveriet Signal tālrunī</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Lai atvērtu Signal iestatījumus, pieskarieties sava profila fotoattēlam</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Pieskarieties \"Saistītās ierīces\" un tad \"Piesaistīt jaunu ierīci\"</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Pavērsiet kameru pret šo kvadrātkodu</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">Saņemt palīdzību šo darbību veikšanai</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">Palielināt kvadrātkodu</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">Noskenēts</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">Neizdevās ģenerēt kodu</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Signal nav pieejams citā ierīcē?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">Izveidot kontu</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">Pārsūtīt kontu</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">Lai pārsūtītu savu kontu, atveriet Signal savā vecajā Android ierīcē un atlasiet \"Pārsūtīt kontu\".</string>
+    <string name="DeviceTransferInstructions__continue">Turpināt</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">Gatavojas savienojuma izveidei ar veco Android ierīci…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">Tas var aizņemt kādu brīdi. Drīz būs galā.</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">Gaida savienojumu ar veco ierīci…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">Pārbaudiet, vai cipari abās ierīcēs sakrīt</string>
+    <string name="DeviceTransferSetup__numbers_match">Jā, cipari sakrīt</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">Numuri nesakrīt</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">Gaida vecās ierīces verifikāciju…</string>
+    <string name="DeviceTransferSetup__location_permission_required">Lietotnei Signal ir nepieciešama atrašanās vietas noteikšanas atļauja, lai atrastu veco ierīci un izveidotu ar to savienojumu.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">Piešķirt piekļuvi</string>
+    <string name="DeviceTransferSetup__location_services_required">Lietotnē Signal ir jābūt iespējotiem atrašanās vietas pakalpojumiem, lai atrastu veco ierīci un izveidotu ar to savienojumu.</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">Ieslēgt atrašanās vietas pakalpojumus</string>
+    <string name="DeviceTransferSetup__wifi_required">Lai Signal varētu atrast veco ierīci un izveidot ar to savienojumu, ir jābūt ieslēgtam Wi-Fi.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">Ieslēgt Wi-Fi</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">Atvainojiet, izskatās, ka jūsu ierīce neatbalsta Wi-Fi Direct.</string>
+    <string name="DeviceTransferSetup__restore_a_backup">Tā vietā atjaunojiet rezerves kopiju</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">Mēģinot izveidot savienojumu ar veco ierīci, radās kļūda.</string>
+    <string name="DeviceTransferSetup__retry">Mēģināt vēlreiz</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">Nevar atrast veco ierīci</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• Pārliecinieties, ka ir piešķirtas atrašanās vietas atļaujas.\n• Pārliecinieties, ka Wi-Fi ir ieslēgts un nav saglabātu Wi-Fi Direct grupu.\n• Mēģiniet abās ierīcēs izslēgt un atkal ieslēgt Wi-Fi.\n• Pārliecinieties, vai abas ierīces atrodas pārsūtīšanas režīmā.</string>
+    <string name="DeviceTransferSetup__try_again">Mēģiniet vēlreiz</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">Numuri nesakrīt</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">Ja abās ierīcēs norādītie cipari nesakrīt, iespējams, esat izveidojuši savienojumu ar nepareizo ierīci.</string>
+    <string name="DeviceTransferSetup__stop_transfer">Pārtraukt nosūtīšanu</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">Notiek datu pārsūtīšana</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">pagaidām %1$d ziņas</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">Nevar pārsūtīt</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">Nevar pārsūtīt no jaunākas Signal versijas.</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">Dažus datus nevarēja pārsūtīt datubāzes ierobežojumu dēļ.</string>
+    <string name="DeviceTransferProgress__transfer_failed">Pārsūtīšana neizdevās. Lūdzu, mēģiniet vēlreiz.</string>
+    <string name="DeviceTransferProgress__try_again">Mēģināt vēlreiz</string>
+    <string name="DeviceTransferProgress__cancel">Atcelt</string>
+    <string name="DeviceTransferProgress__stop_transfer">Vai pārtraukt nosūtīšanu?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">Viss paveiktais pārsūtīšanas darbības process tiks zaudēts.</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">Pārsūtīšana pabeigta</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">Jūsu konts tagad ir pieejams šajā ierīcē.</string>
+    <string name="DeviceTransferComplete__continue_registration">Turpināt</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">Iestatiet savu profilu</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">Jūsu profilu un tā izmaiņas redzēs lietotāji, kuriem nosūtīsiet ziņas, kā arī jūsu kontakti un grupas.</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">Vārds (obligāts)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">Uzvārds (nav obligāts)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">Tālāk</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">Iestatīt avataru</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Kas var mani atrast pēc numura?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Ikviens, kuram ir jūsu tālruņa numurs, redzēs, ka izmantojat Signal, un varēs uzsākt ar jums sarunas.</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Neviens neredzēs, ka izmantojat Signal, izņemot tos, kuriem nosūtīsiet ziņu vai ar kuriem jau esat sarunājušies iepriekš.</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">Ikviens</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">Neviens</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Vai tiešām turpināt?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Funkcijai \"Kas var mani atrast pēc numura\" iestatot \"Neviens\", cilvēkiem būs grūtāk jūs atrast Signal platformā.</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Atcelt</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">Saglabāt</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">Atpakaļ</string>
 </resources>

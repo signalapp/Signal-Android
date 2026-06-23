@@ -11,7 +11,6 @@ import org.signal.core.util.gibiBytes
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
-import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -684,16 +683,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /** Whether we log and surface notifications for slow database transactions/queries. */
-  @JvmStatic
-  @get:JvmName("slowDatabaseNotifications")
-  val slowDatabaseNotifications: Boolean by remoteBoolean(
-    key = "android.slowDatabaseNotifications",
-    defaultValue = false,
-    hotSwappable = true,
-    onChangeListener = { SQLiteDatabase.setSlowWriteLoggingEnabled(it.newValue.asBoolean(false)) }
-  )
-
   /** How often we allow an automatic session reset.  */
   @JvmStatic
   @get:JvmName("automaticSessionResetIntervalSeconds")
@@ -1199,7 +1188,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("useIndividualSendJobV2")
   val useIndividualSendJobV2: Boolean by remoteBoolean(
-    key = "android.useIndividualSendJobV2.3",
+    key = "android.useIndividualSendJobV2.4",
     defaultValue = false,
     hotSwappable = true
   )
@@ -1409,17 +1398,6 @@ object RemoteConfig {
   @get:JvmName("exactAlarm")
   val exactAlarm: Boolean by remoteBoolean(
     key = "android.exactAlarm",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
-  /**
-   * Whether to use our custom [org.signal.core.util.Linkifier] for web URL detection.
-   */
-  @JvmStatic
-  @get:JvmName("useNewLinkifier")
-  val useNewLinkifier: Boolean by remoteBoolean(
-    key = "android.useNewLinkifier",
     defaultValue = false,
     hotSwappable = true
   )

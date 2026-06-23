@@ -11,10 +11,10 @@ import android.text.Spanned
 import android.text.style.URLSpan
 import android.text.util.Linkify
 import androidx.core.text.util.LinkifyCompat
+import org.signal.core.util.addDetectedLinks
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan
 import org.thoughtcrime.securesms.util.LinkUtil
-import org.thoughtcrime.securesms.util.Linkification
 import org.thoughtcrime.securesms.util.UrlClickHandler
 import org.thoughtcrime.securesms.util.hasOnlyThumbnail
 
@@ -34,7 +34,7 @@ object V2ConversationItemUtils {
     }
 
     LinkifyCompat.addLinks(messageBody, Linkify.EMAIL_ADDRESSES or Linkify.PHONE_NUMBERS)
-    Linkification.applyWebUrlSpans(messageBody)
+    messageBody.addDetectedLinks()
 
     messageBody.getSpans(0, messageBody.length, URLSpan::class.java).forEach { urlSpan ->
       val url = urlSpan.url

@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.signal.core.util.DatabaseId;
+import org.signal.core.models.database.DatabaseId;
 
 import java.util.Objects;
 

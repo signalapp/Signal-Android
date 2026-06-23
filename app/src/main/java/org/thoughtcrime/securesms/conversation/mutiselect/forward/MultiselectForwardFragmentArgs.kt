@@ -6,6 +6,7 @@ import android.os.Parcelable
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.annotation.WorkerThread
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.signal.core.models.media.Media
 import org.signal.core.util.StreamUtil
@@ -42,6 +43,7 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
   @StringRes val title: Int = R.string.MultiselectForwardFragment__forward_to,
   val forceDisableAddMessage: Boolean = false,
   val forceSelectionOnly: Boolean = false,
+  val forceHideToolbar: Boolean = false,
   val selectSingleRecipient: Boolean = false,
   val sendButtonColors: ViewColorSet = ViewColorSet.PRIMARY,
   val storySendRequirements: Stories.MediaTransform.SendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND,
@@ -49,6 +51,9 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
   val isViewOnce: Boolean = false,
   val isWrappedInBottomSheet: Boolean = false
 ) : Parcelable {
+
+  @IgnoredOnParcel
+  val isToolbarVisible: Boolean = !forceHideToolbar && !isWrappedInBottomSheet
 
   fun withSendButtonTint(@ColorInt sendButtonTint: Int) = copy(sendButtonColors = ViewColorSet.forCustomColor(sendButtonTint))
 

@@ -23,6 +23,7 @@
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recovery_key_phishing_support_url" translatable="false">https://support.signal.org/hc/articles/9932566320410</string> -->
 
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
@@ -2408,7 +2409,7 @@
     <string name="MessageRequestProfileView_view">Показати</string>
     <string name="MessageRequestProfileView_member_of_one_group">Учасник «%1$s»</string>
     <string name="MessageRequestProfileView_member_of_two_groups">Учасник «%1$s» і «%2$s»</string>
-    <string name="MessageRequestProfileView_member_of_many_groups">Учасник «%1$s», «%2$s» і «%3$s»</string>
+    <string name="MessageRequestProfileView_member_of_many_groups">Учасник «%1$s», «%2$s» і %3$s</string>
     <plurals name="MessageRequestProfileView_members">
         <item quantity="one">%1$d учасник</item>
         <item quantity="few">%1$d учасники</item>
@@ -2431,10 +2432,10 @@
     </plurals>
     <!-- Describe the total number of groups, besides two groups, that you and a person have in common. Nested inside MessageRequestProfileView_member_of_many_groups -->
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
-        <item quantity="one">%1$d додаткова група</item>
-        <item quantity="few">%1$d додаткові групи</item>
-        <item quantity="many">%1$d додаткові групи</item>
-        <item quantity="other">%1$d додаткової групи</item>
+        <item quantity="one">ще %1$d групи</item>
+        <item quantity="few">ще %1$d груп</item>
+        <item quantity="many">ще %1$d груп</item>
+        <item quantity="other">ще %1$d групи</item>
     </plurals>
     <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
     <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
@@ -3594,6 +3595,8 @@
     <string name="NotificationChannel_calls">Виклики</string>
     <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">Помилки</string>
+    <!-- Notification channel name for internal-only app issue notifications. Only ever shown to internal users. -->
+    <string name="NotificationChannel_internal_issues">Internal Issues</string>
     <string name="NotificationChannel_backups">Резервні копії</string>
     <string name="NotificationChannel_locked_status">Статус блокування</string>
     <string name="NotificationChannel_app_updates">Оновлення застосунку</string>
@@ -3732,6 +3735,10 @@
     <string name="TransferControlView__processing">Опрацювання…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress_s_s">%1$s/%2$s</string>
+    <!-- Accessibility description for the button that starts downloading an attachment -->
+    <string name="TransferControlView__download">Завантажити</string>
+    <!-- Accessibility description for the button that starts uploading an attachment -->
+    <string name="TransferControlView__upload">Вивантажити</string>
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -4336,6 +4343,13 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Не вдалося вивантажити журнал налагодження</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Будь ласка, опишіть проблему якомога детальніше, це нам допоможе.</string>
+    <!-- Error shown under the "tell us what\'s going on" field when the entered description is shorter than the required minimum length. The placeholder is the minimum number of characters. -->
+    <plurals name="HelpFragment__must_be_at_least_n_characters">
+        <item quantity="one">Мінімальна довжина — %1$d символ</item>
+        <item quantity="few">Мінімальна довжина — %1$d символи</item>
+        <item quantity="many">Мінімальна довжина — %1$d символів</item>
+        <item quantity="other">Мінімальна довжина — %1$d символа</item>
+    </plurals>
     <string-array name="HelpFragment__categories_6">
         <item>Виберіть варіант</item>
         <item>Щось не працює</item>
@@ -10324,6 +10338,36 @@
     <string name="SafetyTipsBottomSheet__tip_3_body">Захистіть свій акаунт: зробіть введення PIN-коду Signal разом з кодом підтвердження обов\'язковим для здійснення реєстрації.</string>
     <!-- Button on the safety tips screen that opens account settings -->
     <string name="SafetyTipsBottomSheet__open_account_settings">До налаштувань акаунту</string>
+
+    <!-- Title of a warning sheet shown when the user copies or pastes their recovery key, urging them not to share it -->
+    <string name="RecoveryKeyWarningSheetContent__do_not_share_your_recovery_key">Нікому не повідомляйте свій ключ відновлення</string>
+    <!-- Bolded lead-in to the warning sheet body; combined with RecoveryKeyWarningSheetContent__for_your_recovery_key_never_respond to form a full sentence -->
+    <string name="RecoveryKeyWarningSheetContent__signal_will_never_message_you">Представники Signal ніколи</string>
+    <!-- Remainder of the warning sheet body following the bolded lead-in RecoveryKeyWarningSheetContent__signal_will_never_message_you -->
+    <string name="RecoveryKeyWarningSheetContent__for_your_recovery_key_never_respond">не питатимуть у вас ключ відновлення. Ніколи не відповідайте на повідомлення нібито від Signal. Зберігайте ключ відновлення в надійному місці й нікому його не повідомляйте.</string>
+    <!-- Button dismissing the recovery key warning sheet after the user has copied their key -->
+    <string name="RecoveryKeyWarningSheetContent__got_it">Зрозуміло</string>
+    <!-- Button opening a help article with more information about recovery key safety -->
+    <string name="RecoveryKeyWarningSheetContent__learn_more">Докладніше</string>
+    <!-- Inline link opening a help article with more information about recovery key safety -->
+    <string name="RecoveryKeyWarningSheetContent__learn_more_period">Докладніше.</string>
+    <!-- Button declining to paste/share the recovery key, dismissing the warning sheet -->
+    <string name="RecoveryKeyWarningSheetContent__do_not_share_key">Не ділитися ключем</string>
+    <!-- Button indicating the user wants to proceed with sharing/pasting the recovery key, which shows a final confirmation -->
+    <string name="RecoveryKeyWarningSheetContent__share_key">Поділитися ключем</string>
+
+    <!-- Title of the final confirmation dialog shown before pasting a recovery key -->
+    <string name="RecoveryKeyWarningDialog__do_not_share_recovery_key">Нікому не повідомляйте ключ відновлення</string>
+    <!-- First sentence of the final confirmation dialog body warning against sharing the recovery key -->
+    <string name="RecoveryKeyWarningDialog__do_not_share_your_recovery_key_with_anyone">Нікому не повідомляйте свій ключ відновлення. Маючи ключ відновлення, інша людина може вкрасти ваш акаунт.</string>
+    <!-- Bolded middle sentence of the final confirmation dialog body -->
+    <string name="RecoveryKeyWarningDialog__signal_will_never_message_you_for_your_recovery_key">Представники Signal ніколи не питатимуть у вас ключ відновлення.</string>
+    <!-- Final sentence of the final confirmation dialog body -->
+    <string name="RecoveryKeyWarningDialog__never_respond_to_a_chat">Ніколи не відповідайте на повідомлення нібито від Signal.</string>
+    <!-- Button confirming the user wants to paste the recovery key -->
+    <string name="RecoveryKeyWarningDialog__paste_key">Вставити ключ</string>
+    <!-- Button declining to paste the recovery key -->
+    <string name="RecoveryKeyWarningDialog__dont_share">Не надсилати</string>
 
     <!-- EOF -->
 </resources>

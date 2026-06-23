@@ -10,6 +10,7 @@ import org.junit.Test
 import org.signal.core.models.ServiceId
 import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
+import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.BodyRange
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
@@ -328,6 +329,7 @@ class EnvelopeContentValidatorTest {
         quote = DataMessage.Quote(
           id = 1000,
           authorAci = OTHER_ACI.toString(),
+          text = "hello",
           bodyRanges = listOf(
             BodyRange(start = 0, length = 1, mentionAci = OTHER_ACI.toString())
           )
@@ -337,6 +339,197 @@ class EnvelopeContentValidatorTest {
 
     val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
     assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure quote body range whose start plus length overflows is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        quote = DataMessage.Quote(
+          id = 1000,
+          authorAci = OTHER_ACI.toString(),
+          text = "hello",
+          bodyRanges = listOf(
+            BodyRange(start = 1, length = Int.MAX_VALUE, mentionAci = OTHER_ACI.toString())
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure quote body range extending past the end of the text is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        quote = DataMessage.Quote(
+          id = 1000,
+          authorAci = OTHER_ACI.toString(),
+          text = "hello",
+          bodyRanges = listOf(
+            BodyRange(start = 3, length = 10, style = BodyRange.Style.BOLD)
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure body range whose start plus length overflows is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        body = "hello",
+        bodyRanges = listOf(
+          BodyRange(start = 1, length = Int.MAX_VALUE, mentionAci = OTHER_ACI.toString())
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure body range extending past the end of the body is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        body = "hello",
+        bodyRanges = listOf(
+          BodyRange(start = 3, length = 10, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure body range extending past the end of the body is marked valid when a long text attachment is present`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        body = "hello",
+        bodyRanges = listOf(
+          BodyRange(start = 3, length = 10, style = BodyRange.Style.BOLD)
+        ),
+        attachments = listOf(
+          AttachmentPointer(cdnKey = "abc", contentType = "text/x-signal-plain")
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure body range with negative start is marked invalid even when a long text attachment is present`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        body = "hello",
+        bodyRanges = listOf(
+          BodyRange(start = -1, length = 10, style = BodyRange.Style.BOLD)
+        ),
+        attachments = listOf(
+          AttachmentPointer(cdnKey = "abc", contentType = "text/x-signal-plain")
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure body range that exactly covers the body is marked valid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        body = "hello",
+        bodyRanges = listOf(
+          BodyRange(start = 0, length = 5, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure style body range missing start is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        bodyRanges = listOf(
+          BodyRange(length = 1, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure style body range missing length is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        bodyRanges = listOf(
+          BodyRange(start = 0, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure style body range with both start and length is marked valid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        body = "hello",
+        bodyRanges = listOf(
+          BodyRange(start = 0, length = 1, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure quote style body range missing start is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        quote = DataMessage.Quote(
+          id = 1000,
+          authorAci = OTHER_ACI.toString(),
+          bodyRanges = listOf(
+            BodyRange(length = 1, style = BodyRange.Style.BOLD)
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
   }
 
   @Test

@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.jobs
 import android.text.TextUtils
 import okhttp3.internal.http2.StreamResetException
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Base64
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.SignalExecutors
@@ -20,7 +21,6 @@ import org.signal.network.api.AttachmentUploadResult
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository

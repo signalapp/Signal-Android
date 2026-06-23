@@ -13,7 +13,8 @@
     <activity
       android:name=".RegistrationActivity"
       android:exported="false"
-      android:theme="@android:style/Theme.Material.NoActionBar" />
+      android:theme="@android:style/Theme.Material.NoActionBar"
+      android:windowSoftInputMode="adjustResize" />
   </application>
 
 </manifest>

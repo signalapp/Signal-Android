@@ -1,17 +1,10 @@
 package org.thoughtcrime.securesms.util.cjkv;
 
-import android.app.Application;
-
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-@RunWith(RobolectricTestRunner.class)
-@Config(manifest = Config.NONE, application = Application.class)
 public class CJKVUtilTest {
 
   private static final String CJKV_CHARS    = "统码";

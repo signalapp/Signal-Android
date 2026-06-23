@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -69,7 +68,7 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
     initialize(attrs);
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+  @RequiresApi(api = 21)
   public SharedContactView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
     initialize(attrs);

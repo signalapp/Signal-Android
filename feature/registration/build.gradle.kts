@@ -4,6 +4,7 @@ plugins {
   id("com.squareup.wire")
   alias(libs.plugins.compose.compiler)
   alias(libs.plugins.kotlinx.serialization)
+  alias(testLibs.plugins.compose.screenshot)
 }
 
 android {
@@ -23,6 +24,8 @@ android {
       isIncludeAndroidResources = true
     }
   }
+
+  experimentalProperties["android.experimental.enableScreenshotTest"] = true
 }
 
 wire {
@@ -44,6 +47,7 @@ dependencies {
   implementation(project(":core:util"))
   implementation(project(":core:models-jvm"))
   implementation(project(":core:serialization"))
+  implementation(project(":lib:device-transfer"))
   implementation(libs.libsignal.android)
 
   // Compose BOM
@@ -86,4 +90,9 @@ dependencies {
   androidTestImplementation(testLibs.androidx.test.ext.junit)
   androidTestImplementation(libs.androidx.compose.ui.test.junit4)
   debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+  // Compose screenshot testing
+  screenshotTestImplementation(testLibs.compose.screenshot.validation.api)
+  screenshotTestImplementation(libs.androidx.compose.ui.tooling.core)
+  screenshotTestImplementation(libs.androidx.compose.ui.tooling.preview)
 }

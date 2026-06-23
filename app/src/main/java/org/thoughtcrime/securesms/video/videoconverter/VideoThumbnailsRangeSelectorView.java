@@ -1,3 +1,8 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.video.videoconverter;
 
 import android.content.Context;
@@ -17,9 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.RequiresApi;
 
-import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.util.DimensionUnit;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -27,12 +30,10 @@ import java.util.concurrent.TimeUnit;
 @RequiresApi(api = 23)
 public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView {
 
-  private static final String TAG = Log.tag(VideoThumbnailsRangeSelectorView.class);
-
   private static final long  MINIMUM_SELECTABLE_RANGE    = TimeUnit.MILLISECONDS.toMicros(500);
   private static final int   ANIMATION_DURATION_MS       = 100;
-  private static final float THUMB_RECT_CORNER_RADIUS    = ViewUtil.dpToPx(4);
-  private static final float ACTIVE_REGION_CORNER_RADIUS = ViewUtil.dpToPx(8);
+  private static final float THUMB_RECT_CORNER_RADIUS    = DimensionUnit.DP.toPixels(4);
+  private static final float ACTIVE_REGION_CORNER_RADIUS = DimensionUnit.DP.toPixels(8);
 
   private final Paint    paint                    = new Paint(Paint.ANTI_ALIAS_FLAG);
   private final Paint    paintGrey                = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -85,14 +86,14 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
 
   private void init(final @Nullable AttributeSet attrs) {
     if (attrs != null) {
-      TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.VideoThumbnailsRangeSelectorView, 0, 0);
+      TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, org.signal.mediasend.R.styleable.VideoThumbnailsRangeSelectorView, 0, 0);
       try {
-        thumbSizePixels          = typedArray.getDimensionPixelSize(R.styleable.VideoThumbnailsRangeSelectorView_thumbWidth, 1);
-        thumbColor               = typedArray.getColor(R.styleable.VideoThumbnailsRangeSelectorView_thumbColor, 0xffff0000);
-        thumbTouchRadius         = typedArray.getDimensionPixelSize(R.styleable.VideoThumbnailsRangeSelectorView_thumbTouchRadius, 50);
-        thumbHintTextSize        = typedArray.getDimensionPixelSize(R.styleable.VideoThumbnailsRangeSelectorView_thumbHintTextSize, 0);
-        thumbHintTextColor       = typedArray.getColor(R.styleable.VideoThumbnailsRangeSelectorView_thumbHintTextColor, 0xffff0000);
-        thumbHintBackgroundColor = typedArray.getColor(R.styleable.VideoThumbnailsRangeSelectorView_thumbHintBackgroundColor, 0xff00ff00);
+        thumbSizePixels          = typedArray.getDimensionPixelSize(org.signal.mediasend.R.styleable.VideoThumbnailsRangeSelectorView_thumbWidth, 1);
+        thumbColor               = typedArray.getColor(org.signal.mediasend.R.styleable.VideoThumbnailsRangeSelectorView_thumbColor, 0xffff0000);
+        thumbTouchRadius         = typedArray.getDimensionPixelSize(org.signal.mediasend.R.styleable.VideoThumbnailsRangeSelectorView_thumbTouchRadius, 50);
+        thumbHintTextSize        = typedArray.getDimensionPixelSize(org.signal.mediasend.R.styleable.VideoThumbnailsRangeSelectorView_thumbHintTextSize, 0);
+        thumbHintTextColor       = typedArray.getColor(org.signal.mediasend.R.styleable.VideoThumbnailsRangeSelectorView_thumbHintTextColor, 0xffff0000);
+        thumbHintBackgroundColor = typedArray.getColor(org.signal.mediasend.R.styleable.VideoThumbnailsRangeSelectorView_thumbHintBackgroundColor, 0xff00ff00);
       } finally {
         typedArray.recycle();
       }

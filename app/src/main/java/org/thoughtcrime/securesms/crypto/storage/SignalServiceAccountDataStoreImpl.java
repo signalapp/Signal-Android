@@ -59,6 +59,11 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
   }
 
   @Override
+  public void setMultiDevice(boolean isMultiDevice) {
+    SignalStore.account().setMultiDevice(isMultiDevice);
+  }
+
+  @Override
   public IdentityKeyPair getIdentityKeyPair() {
     return identityKeyStore.getIdentityKeyPair();
   }

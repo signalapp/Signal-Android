@@ -150,8 +150,8 @@ class PinEntryForSmsBypassViewModel(
 
     return when (val result = repository.registerAccountWithRecoveryPassword(e164, recoveryPassword, registrationLock, skipDeviceTransfer = true)) {
       is RequestResult.Success -> {
-        parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
         repository.enqueueSvrResetGuessCountJob()
+        repository.finishRegistrationOrCreateProfile(parentEventEmitter)
         state
       }
       is RequestResult.RetryableNetworkError -> {

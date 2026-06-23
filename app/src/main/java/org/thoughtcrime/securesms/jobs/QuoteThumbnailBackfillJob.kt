@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import android.net.Uri
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireLong
@@ -14,7 +15,6 @@ import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.update
 import org.signal.glide.decryptableuri.DecryptableUri
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.CONTENT_TYPE
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_FILE

@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.reactions
 
-import android.app.Application
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
@@ -16,13 +15,8 @@ import io.reactivex.rxjava3.schedulers.TestScheduler
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.database.model.MessageId
 
-@RunWith(RobolectricTestRunner::class)
-@Config(manifest = Config.NONE, application = Application::class)
 class ReactionsViewModelTest {
 
   private val testScheduler = TestScheduler()

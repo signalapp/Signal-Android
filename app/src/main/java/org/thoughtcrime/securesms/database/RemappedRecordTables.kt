@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.delete
+import org.signal.core.util.exists
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
@@ -78,9 +79,20 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
   }
 
   fun trimStaleMappings() {
+    val hasStaleRecipients = hasInvalidEntries(Recipients.TABLE_NAME, RecipientTable.TABLE_NAME)
+    val hasStaleThreads = hasInvalidEntries(Threads.TABLE_NAME, ThreadTable.TABLE_NAME)
+
+    if (!hasStaleRecipients && !hasStaleThreads) {
+      return
+    }
+
     writableDatabase.withinTransaction { db ->
-      trimInvalidRecipientEntries(db)
-      trimInvalidThreadEntries(db)
+      if (hasStaleRecipients) {
+        trimInvalidRecipientEntries(db)
+      }
+      if (hasStaleThreads) {
+        trimInvalidThreadEntries(db)
+      }
     }
   }
 
@@ -114,6 +126,13 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
 
   fun clearCache() {
     RemappedRecords.getInstance().resetCache()
+  }
+
+  private fun hasInvalidEntries(table: String, sourceTable: String): Boolean {
+    return readableDatabase
+      .exists(table)
+      .where("$OLD_ID IN (SELECT $ID FROM $sourceTable)")
+      .run()
   }
 
   private fun trimInvalidRecipientEntries(db: SQLiteDatabase) {

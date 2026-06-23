@@ -1,15 +1,12 @@
 package org.thoughtcrime.securesms.util
 
-import android.app.Application
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.ParameterizedRobolectricTestRunner
-import org.robolectric.annotation.Config
+import org.junit.runners.Parameterized
 
 @Suppress("ClassName")
-@RunWith(value = ParameterizedRobolectricTestRunner::class)
-@Config(manifest = Config.NONE, application = Application::class)
+@RunWith(value = Parameterized::class)
 class NameUtil_getAbbreviation(
   private val name: String,
   private val expected: String?
@@ -23,7 +20,7 @@ class NameUtil_getAbbreviation(
 
   companion object {
     @JvmStatic
-    @ParameterizedRobolectricTestRunner.Parameters(name = "{index}: getAbbreviation({0})={1}")
+    @Parameterized.Parameters(name = "{index}: getAbbreviation({0})={1}")
     fun params() = listOf(
       arrayOf("Gwen Stacy", "GS"),
       arrayOf("Gwen", "G"),

@@ -23,6 +23,7 @@
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recovery_key_phishing_support_url" translatable="false">https://support.signal.org/hc/articles/9932566320410</string> -->
 
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
@@ -2431,10 +2432,10 @@
     </plurals>
     <!-- Describe the total number of groups, besides two groups, that you and a person have in common. Nested inside MessageRequestProfileView_member_of_many_groups -->
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
-        <item quantity="one">ещё %1$d группы</item>
-        <item quantity="few">ещё %1$d групп</item>
-        <item quantity="many">ещё %1$d групп</item>
-        <item quantity="other">ещё %1$d групп</item>
+        <item quantity="one">ещё в %1$d группе</item>
+        <item quantity="few">ещё в %1$d группах</item>
+        <item quantity="many">ещё в %1$d группах</item>
+        <item quantity="other">ещё в %1$d группах</item>
     </plurals>
     <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
     <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
@@ -3594,6 +3595,8 @@
     <string name="NotificationChannel_calls">Звонки</string>
     <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">Сбои</string>
+    <!-- Notification channel name for internal-only app issue notifications. Only ever shown to internal users. -->
+    <string name="NotificationChannel_internal_issues">Internal Issues</string>
     <string name="NotificationChannel_backups">Резервные копии</string>
     <string name="NotificationChannel_locked_status">Статус блокировки</string>
     <string name="NotificationChannel_app_updates">Обновления приложения</string>
@@ -3732,6 +3735,10 @@
     <string name="TransferControlView__processing">Обработка…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress_s_s">%1$s/%2$s</string>
+    <!-- Accessibility description for the button that starts downloading an attachment -->
+    <string name="TransferControlView__download">Скачать</string>
+    <!-- Accessibility description for the button that starts uploading an attachment -->
+    <string name="TransferControlView__upload">Загрузить на сервер</string>
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -4336,6 +4343,13 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Не удалось отправить журналы</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Пожалуйста, пишите как можно подробнее, чтобы помочь нам понять проблему.</string>
+    <!-- Error shown under the "tell us what\'s going on" field when the entered description is shorter than the required minimum length. The placeholder is the minimum number of characters. -->
+    <plurals name="HelpFragment__must_be_at_least_n_characters">
+        <item quantity="one">Должен быть не короче %1$d символа</item>
+        <item quantity="few">Должен быть не короче %1$d символов</item>
+        <item quantity="many">Должен быть не короче %1$d символов</item>
+        <item quantity="other">Должен быть не короче %1$d символа</item>
+    </plurals>
     <string-array name="HelpFragment__categories_6">
         <item>Пожалуйста, выберите вариант</item>
         <item>Что-то не работает</item>
@@ -10324,6 +10338,36 @@
     <string name="SafetyTipsBottomSheet__tip_3_body">Защитите свою учётную запись, запрашивая при регистрации в Signal не только кода подтверждения, но и вашего PIN-кода Signal.</string>
     <!-- Button on the safety tips screen that opens account settings -->
     <string name="SafetyTipsBottomSheet__open_account_settings">Открыть настройки учётной записи</string>
+
+    <!-- Title of a warning sheet shown when the user copies or pastes their recovery key, urging them not to share it -->
+    <string name="RecoveryKeyWarningSheetContent__do_not_share_your_recovery_key">Не делитесь вашим ключом восстановления</string>
+    <!-- Bolded lead-in to the warning sheet body; combined with RecoveryKeyWarningSheetContent__for_your_recovery_key_never_respond to form a full sentence -->
+    <string name="RecoveryKeyWarningSheetContent__signal_will_never_message_you">Signal никогда не отправляет вам сообщения</string>
+    <!-- Remainder of the warning sheet body following the bolded lead-in RecoveryKeyWarningSheetContent__signal_will_never_message_you -->
+    <string name="RecoveryKeyWarningSheetContent__for_your_recovery_key_never_respond">для получения вашего ключа восстановления. Никогда не отвечайте на чаты, притворяющиеся Signal. Храните ключ восстановления в безопасном месте и никогда и никому его не сообщайте.</string>
+    <!-- Button dismissing the recovery key warning sheet after the user has copied their key -->
+    <string name="RecoveryKeyWarningSheetContent__got_it">Понятно</string>
+    <!-- Button opening a help article with more information about recovery key safety -->
+    <string name="RecoveryKeyWarningSheetContent__learn_more">Узнать больше</string>
+    <!-- Inline link opening a help article with more information about recovery key safety -->
+    <string name="RecoveryKeyWarningSheetContent__learn_more_period">Узнать больше.</string>
+    <!-- Button declining to paste/share the recovery key, dismissing the warning sheet -->
+    <string name="RecoveryKeyWarningSheetContent__do_not_share_key">Не делиться ключом</string>
+    <!-- Button indicating the user wants to proceed with sharing/pasting the recovery key, which shows a final confirmation -->
+    <string name="RecoveryKeyWarningSheetContent__share_key">Делиться ключом</string>
+
+    <!-- Title of the final confirmation dialog shown before pasting a recovery key -->
+    <string name="RecoveryKeyWarningDialog__do_not_share_recovery_key">Не делитесь ключом восстановления</string>
+    <!-- First sentence of the final confirmation dialog body warning against sharing the recovery key -->
+    <string name="RecoveryKeyWarningDialog__do_not_share_your_recovery_key_with_anyone">Ни с кем не делитесь вашим ключом восстановления. Это позволит им завладеть вашей учётной записью.</string>
+    <!-- Bolded middle sentence of the final confirmation dialog body -->
+    <string name="RecoveryKeyWarningDialog__signal_will_never_message_you_for_your_recovery_key">Signal никогда не посылает вам сообщения для получения вашего ключа восстановления.</string>
+    <!-- Final sentence of the final confirmation dialog body -->
+    <string name="RecoveryKeyWarningDialog__never_respond_to_a_chat">Никогда не отвечайте на чаты, притворяющиеся Signal.</string>
+    <!-- Button confirming the user wants to paste the recovery key -->
+    <string name="RecoveryKeyWarningDialog__paste_key">Вставить ключ</string>
+    <!-- Button declining to paste the recovery key -->
+    <string name="RecoveryKeyWarningDialog__dont_share">Не делиться</string>
 
     <!-- EOF -->
 </resources>

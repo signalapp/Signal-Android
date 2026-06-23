@@ -89,6 +89,7 @@ object CallInfoView {
           ParticipantsState(
             inCallLobby = state.callState == WebRtcViewModel.State.CALL_PRE_JOIN,
             ringGroup = state.ringGroup,
+            isGroupOrAdHocCall = state.groupCallState.isNotIdle,
             includeSelf = state.groupCallState === WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED || state.groupCallState === WebRtcViewModel.GroupCallState.IDLE,
             participantCount = if (state.participantCount.isPresent) state.participantCount.get().toInt() else 0,
             remoteParticipants = state.allRemoteParticipants.sortedBy { it.callParticipantId.recipientId },
@@ -345,6 +346,7 @@ private fun CallInfo(
       callParticipant = participant,
       isSelfAdmin = controlAndInfoState.isSelfAdmin(),
       isCallLink = controlAndInfoState.callLink != null,
+      canRemoteMute = participantsState.isGroupOrAdHocCall,
       onDismiss = { selectedParticipant = null },
       onMuteAudio = onMuteAudio,
       onRemoveFromCall = onRemoveFromCall,
@@ -702,6 +704,7 @@ private fun UnknownMembersRowPreview() {
 private data class ParticipantsState(
   val inCallLobby: Boolean = false,
   val ringGroup: Boolean = true,
+  val isGroupOrAdHocCall: Boolean = false,
   val includeSelf: Boolean = false,
   val participantCount: Int = 0,
   val remoteParticipants: List<CallParticipant> = emptyList(),

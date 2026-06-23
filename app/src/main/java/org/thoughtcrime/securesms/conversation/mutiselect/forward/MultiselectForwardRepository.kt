@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.sharing.MultiShareSender
 import org.thoughtcrime.securesms.stories.Stories
 import java.util.Optional
 
-class MultiselectForwardRepository {
+object MultiselectForwardRepository {
 
   class MultiselectForwardResultHandlers(
     val onAllMessageSentSuccessfully: () -> Unit,

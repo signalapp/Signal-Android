@@ -54,8 +54,9 @@ public final class ConversationUtil {
 
   private static final List<String> PARAMETERS_AUDIENCE = Collections.singletonList("Audience");
 
-  private ConversationUtil() {}
+  private static final int MAX_SHORTCUT_PERSON_COUNT = 10;
 
+  private ConversationUtil() {}
 
   /**
    * @return The stringified channel id for a given Recipient
@@ -183,7 +184,12 @@ public final class ConversationUtil {
       shortcuts.add(info);
     }
 
-    return ShortcutManagerCompat.setDynamicShortcuts(context, shortcuts);
+    try {
+      return ShortcutManagerCompat.setDynamicShortcuts(context, shortcuts);
+    } catch (IllegalArgumentException e) {
+      Log.w(TAG, "Failed to set dynamic shortcuts, likely because one was too large. Skipping update.", e);
+      return true;
+    }
   }
 
   /**
@@ -198,7 +204,12 @@ public final class ConversationUtil {
 
     ShortcutInfoCompat shortcutInfo = buildShortcutInfo(context, activityName, recipient, rank, direction);
 
-    return ShortcutManagerCompat.pushDynamicShortcut(context, shortcutInfo);
+    try {
+      return ShortcutManagerCompat.pushDynamicShortcut(context, shortcutInfo);
+    } catch (IllegalArgumentException e) {
+      Log.w(TAG, "Failed to push dynamic shortcut, likely because it was too large. Skipping update.", e);
+      return true;
+    }
   }
 
   /**
@@ -271,7 +282,7 @@ public final class ConversationUtil {
   private static @NonNull Person[] buildPersonsForGroup(@NonNull Context context, @NonNull GroupId groupId) {
     List<Recipient> members = SignalDatabase.groups().getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
-    return members.stream().map(member -> buildPersonWithoutIcon(context, member.resolve())).toArray(Person[]::new);
+    return members.stream().limit(MAX_SHORTCUT_PERSON_COUNT).map(member -> buildPersonWithoutIcon(context, member.resolve())).toArray(Person[]::new);
   }
 
   /**

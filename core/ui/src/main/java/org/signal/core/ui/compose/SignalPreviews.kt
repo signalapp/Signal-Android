@@ -90,20 +90,20 @@ annotation class FoldableNightPreviews
 @FoldableLandscapeNightPreview
 annotation class FoldablePreviews
 
-@Preview(name = "tablet portrait (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = "spec:width=840dp,height=1280dp,orientation=portrait")
+@Preview(name = "tablet portrait (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = "spec:width=800dp,height=1280dp,orientation=portrait")
 annotation class TabletPortraitDayPreview
 
-@Preview(name = "tablet landscape (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = "spec:width=1280dp,height=840dp,orientation=landscape")
+@Preview(name = "tablet landscape (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = "spec:width=1280dp,height=800dp,orientation=landscape")
 annotation class TabletLandscapeDayPreview
 
 @TabletPortraitDayPreview
 @TabletLandscapeDayPreview
 annotation class TabletDayPreviews
 
-@Preview(name = "tablet portrait (night)", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=840dp,height=1280dp,orientation=portrait")
+@Preview(name = "tablet portrait (night)", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=800dp,height=1280dp,orientation=portrait")
 annotation class TabletPortraitNightPreview
 
-@Preview(name = "tablet landscape (night)", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=1280dp,height=840dp,orientation=landscape")
+@Preview(name = "tablet landscape (night)", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=1280dp,height=800dp,orientation=landscape")
 annotation class TabletLandscapeNightPreview
 
 @TabletPortraitNightPreview
@@ -125,6 +125,9 @@ annotation class AllNightPreviews
 @FoldablePreviews
 @TabletPreviews
 annotation class AllDevicePreviews
+
+@Preview(name = "rtl", locale = "ar")
+annotation class RtlPreview
 
 @Preview(name = "large font", fontScale = 2f)
 annotation class LargeFontPreviews

@@ -2128,6 +2128,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
+  fun isProfileSharing(groupId: GroupId): Boolean {
+    return readableDatabase
+      .select(PROFILE_SHARING)
+      .from(TABLE_NAME)
+      .where("$GROUP_ID = ?", groupId.toString())
+      .run()
+      .readToSingleBoolean(defaultValue = false)
+  }
+
   fun setNotificationChannel(id: RecipientId, notificationChannel: String?) {
     val contentValues = ContentValues(1).apply {
       put(NOTIFICATION_CHANNEL, notificationChannel)
@@ -4078,7 +4087,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   /**
    * Does not trigger any recipient refreshes -- it is assumed the caller handles this.
    * Will *not* give storageIds to those that shouldn't get them (e.g. MMS groups, unregistered
-   * users).
+   * users) but will rotate ids if one already exists regardless of state.
    */
   fun rotateStorageId(recipientId: RecipientId, logFailure: Boolean = false) {
     val selfId = Recipient.self().id
@@ -4092,7 +4101,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(STORAGE_SERVICE_ID, Base64.encodeWithPadding(StorageSyncHelper.generateKey()))
     }
 
-    val query = "$ID = ? AND ($TYPE IN (?, ?, ?, ?) OR $REGISTERED = ? OR $ID = ?)"
+    val query = "$ID = ? AND ($TYPE IN (?, ?, ?, ?) OR $REGISTERED = ? OR $ID = ? OR $STORAGE_SERVICE_ID IS NOT NULL)"
     val args = SqlUtil.buildArgs(recipientId, RecipientType.GV1.id, RecipientType.GV2.id, RecipientType.DISTRIBUTION_LIST.id, RecipientType.CALL_LINK.id, RegisteredState.REGISTERED.id, selfId.toLong())
 
     writableDatabase.update(TABLE_NAME, values, query, args).also { updateCount ->

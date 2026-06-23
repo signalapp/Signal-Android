@@ -37,7 +37,9 @@ import org.signal.core.util.StringUtil
 import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.imageeditor.core.renderers.UriGlideRenderer
+import org.signal.mediasend.edit.MediaEditScreenEvent
 import org.signal.mediasend.preupload.PreUploadController
+import org.signal.mediasend.select.MediaSelectScreenEvent
 import java.util.Collections
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -52,7 +54,7 @@ class MediaSendViewModel(
   private val repository: MediaSendRepository,
   private val preUploadController: PreUploadController,
   isMeteredFlow: Flow<Boolean>
-) : ViewModel(), MediaSendCallback {
+) : ViewModel(), MediaSendEventHandler {
 
   private val args: MediaSendActivityContract.Args = savedStateHandle[KEY_ARGS]
     ?: throw IllegalStateException("MediaSendViewModel requires args in SavedStateHandle. Use Factory to create.")
@@ -148,7 +150,32 @@ class MediaSendViewModel(
     }
   }
 
-  override fun onFolderClick(mediaFolder: MediaFolder?) {
+  override fun onMediaSelectScreenEvent(mediaSelectScreenEvent: MediaSelectScreenEvent) {
+    when (mediaSelectScreenEvent) {
+      is MediaSelectScreenEvent.FolderClick -> onFolderClick(mediaSelectScreenEvent.mediaFolder)
+      is MediaSelectScreenEvent.MediaClick -> onMediaClick(mediaSelectScreenEvent.media)
+      is MediaSelectScreenEvent.SetFocusedMedia -> setFocusedMedia(mediaSelectScreenEvent.media)
+    }
+  }
+
+  override fun onMediaEditScreenEvent(mediaEditScreenEvent: MediaEditScreenEvent) {
+    when (mediaEditScreenEvent) {
+      is MediaEditScreenEvent.FocusedMediaChanged -> setFocusedMedia(mediaEditScreenEvent.media)
+      is MediaEditScreenEvent.AddMessageClick -> {
+        val snapshot: MediaSendState = state.value
+
+        sendHudCommand(
+          HudCommand.ShowAddAMessageDialog(
+            message = snapshot.message ?: "",
+            startWithEmojiKeyboard = mediaEditScreenEvent.startWithEmojiKeyboard,
+            isViewOnceAvailable = snapshot.selectedMedia.size == 1 && !snapshot.isStory && !ContentTypeUtil.isDocumentType(snapshot.focusedMedia?.contentType)
+          )
+        )
+      }
+    }
+  }
+
+  private fun onFolderClick(mediaFolder: MediaFolder?) {
     viewModelScope.launch {
       if (mediaFolder != null) {
         val media = repository.getMedia(mediaFolder.bucketId)
@@ -159,11 +186,17 @@ class MediaSendViewModel(
     }
   }
 
-  override fun onMediaClick(media: Media) {
+  private fun onMediaClick(media: Media) {
     if (media.uri in internalState.value.selectedMedia.map { it.uri }) {
       removeMedia(media)
     } else {
       addMedia(media)
+    }
+  }
+
+  private fun sendHudCommand(hudCommand: HudCommand) {
+    viewModelScope.launch {
+      hudCommandChannel.send(hudCommand)
     }
   }
 
@@ -399,7 +432,7 @@ class MediaSendViewModel(
   /**
    * Notifies the view-model that a video's trim/duration has been edited.
    */
-  override fun onVideoEdited(uri: Uri, isEdited: Boolean) {
+  private fun onVideoEdited(uri: Uri, isEdited: Boolean) {
     if (!isEdited) return
     if (!editedVideoUris.add(uri)) return
 
@@ -474,11 +507,11 @@ class MediaSendViewModel(
 
   //region Page/Focus Management
 
-  override fun setFocusedMedia(media: Media) {
+  private fun setFocusedMedia(media: Media) {
     updateState { copy(focusedMedia = media) }
   }
 
-  override fun onPageChanged(position: Int) {
+  private fun onPageChanged(position: Int) {
     val snapshot = state.value
     val focused = if (position >= snapshot.selectedMedia.size) null else snapshot.selectedMedia[position]
     updateState { copy(focusedMedia = focused) }
@@ -572,7 +605,7 @@ class MediaSendViewModel(
     updateState { copy(message = text) }
   }
 
-  override fun onMessageChange(message: String) {
+  private fun onMessageChange(message: String) {
     setMessage(message)
   }
 

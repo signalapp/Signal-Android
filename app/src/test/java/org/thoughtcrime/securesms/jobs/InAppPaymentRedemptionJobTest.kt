@@ -5,19 +5,13 @@
 
 package org.thoughtcrime.securesms.jobs
 
-import android.app.Application
 import assertk.assertThat
 import assertk.assertions.isTrue
 import io.mockk.every
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
 
-@RunWith(RobolectricTestRunner::class)
-@Config(manifest = Config.NONE, application = Application::class)
 class InAppPaymentRedemptionJobTest {
 
   @get:Rule

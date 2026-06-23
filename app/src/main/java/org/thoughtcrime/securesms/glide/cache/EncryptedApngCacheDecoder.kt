@@ -39,7 +39,7 @@ internal class EncryptedApngCacheDecoder(private val secret: ByteArray) : Encryp
 
   @Throws(IOException::class)
   override fun decode(source: File, width: Int, height: Int, options: Options): Resource<ApngDecoder>? {
-    val decoder = ApngDecoder.create { createEncryptedInputStream(secret, source) }
+    val decoder = ApngDecoder.create(contentLength = source.length()) { createEncryptedInputStream(secret, source) }
     return ApngResource(decoder)
   }
 }

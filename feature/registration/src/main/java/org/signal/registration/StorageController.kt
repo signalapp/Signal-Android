@@ -121,6 +121,54 @@ interface StorageController {
    * @return A list of [LocalBackupInfo] sorted by date descending (most recent first).
    */
   suspend fun scanLocalBackupFolder(folderUri: Uri): List<LocalBackupInfo>
+
+  /**
+   * Reads any profile data already on disk for the locally-registered account. May return data when
+   * the user is re-registering (the previous profile name/avatar are still on the device) or after a
+   * storage-service account record restore has populated them.
+   *
+   * Returned fields are individually populated — any subset may be empty/null. The caller decides
+   * what to do with partial data (typically: pre-seed the create-profile form, or skip the screen
+   * altogether if everything is already present).
+   */
+  suspend fun getStoredProfileData(): StoredProfileData
+}
+
+/**
+ * Snapshot of profile data already present on the device — used to pre-seed (or auto-skip) the
+ * create-profile screen during registration.
+ *
+ * [discoverableByPhoneNumber] is null when the device has no opinion yet (UNDECIDED on Android), in
+ * which case callers should default to discoverable.
+ */
+data class StoredProfileData(
+  val givenName: String = "",
+  val familyName: String = "",
+  val avatar: ByteArray? = null,
+  val discoverableByPhoneNumber: Boolean? = null
+) {
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (other !is StoredProfileData) return false
+    if (givenName != other.givenName) return false
+    if (familyName != other.familyName) return false
+    if (avatar != null) {
+      if (other.avatar == null) return false
+      if (!avatar.contentEquals(other.avatar)) return false
+    } else if (other.avatar != null) {
+      return false
+    }
+    if (discoverableByPhoneNumber != other.discoverableByPhoneNumber) return false
+    return true
+  }
+
+  override fun hashCode(): Int {
+    var result = givenName.hashCode()
+    result = 31 * result + familyName.hashCode()
+    result = 31 * result + (avatar?.contentHashCode() ?: 0)
+    result = 31 * result + (discoverableByPhoneNumber?.hashCode() ?: 0)
+    return result
+  }
 }
 
 /**

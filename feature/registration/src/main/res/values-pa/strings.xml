@@ -314,9 +314,9 @@
     <!-- PIN creation screen title. -->
     <string name="PinCreationScreen__create_your_pin">ਆਪਣਾ PIN ਬਣਾਓ</string>
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
-    <string name="PinCreationScreen__confirm_your_pin">Confirm your PIN</string>
+    <string name="PinCreationScreen__confirm_your_pin">ਆਪਣੇ PIN ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">ਤੁਹਾਡੇ ਵੱਲੋਂ ਹੁਣੇ ਬਣਾਇਆ ਗਿਆ PIN ਦੁਬਾਰਾ ਦਰਜ ਕਰੋ</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">ਜੇਕਰ ਤੁਹਾਡਾ ਫ਼ੋਨ ਗੁਆਚ ਜਾਂਦਾ ਹੈ ਤਾਂ PIN ਦੀ ਮਦਦ ਨਾਲ ਤੁਸੀਂ ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਰੀਸਟੋਰ ਕਰ ਸਕਦੇ ਹੋ। </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -328,11 +328,11 @@
     <!-- Labels the button to submit a new Signal PIN. -->
     <string name="PinCreationScreen__next">ਅੱਗੇ</string>
     <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_digits">PIN must be at least 4 digits</string>
+    <string name="PinCreationScreen__pin_at_least_4_digits">PIN ਵਿੱਚ ਘੱਟੋ-ਘੱਟ 4 ਅੰਕ ਹੋਣੇ ਲਾਜ਼ਮੀ ਹਨ</string>
     <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_characters">PIN must be at least 4 characters</string>
+    <string name="PinCreationScreen__pin_at_least_4_characters">PIN ਵਿੱਚ ਘੱਟੋ-ਘੱਟ 4 ਅੱਖਰ ਹੋਣੇ ਲਾਜ਼ਮੀ ਹਨ</string>
     <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin">Re-enter PIN</string>
+    <string name="PinCreationScreen__reenter_pin">PIN ਦੁਬਾਰਾ ਦਰਜ ਕਰੋ</string>
 
     <!-- PIN entry screen title when registration lock is active. -->
     <string name="PinEntryScreen__registration_lock">ਰਜਿਸਟਰੇਸ਼ਨ ਲੌਕ</string>
@@ -355,9 +355,9 @@
     <string name="PinEntryScreen__continue">ਜਾਰੀ ਰੱਖੋ</string>
 
     <!-- Title for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__allow_notifications">Allow Notifications</string>
+    <string name="AllowNotificationsScreen__allow_notifications">ਸੂਚਨਾਵਾਂ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal ਨੂੰ ਸੂਚਨਾ ਭੇਜਣ ਦੀ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ। ਇਸ ਨਾਲ ਤੁਹਾਡੇ ਡਿਵਾਈਸ \'ਤੇ ਨਵੇਂ ਸੁਨੇਹੇ ਆਉਣ \'ਤੇ ਸੂਚਨਾ ਦਿਖਾਉਣ ਦੀ ਸਹੂਲਤ ਮਿਲਦੀ ਹੈ।</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">ਹਾਲੇ ਨਹੀਂ</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -366,36 +366,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">ਸੁਨੇਹਿਆਂ ਨੂੰ ਸਿੰਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">ਇਸ ਵਿੱਚ ਕੁਝ ਮਿੰਟ ਲੱਗ ਸਕਦੇ ਹਨ…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">%2$s ਵਿੱਚੋਂ %1$s ਨੂੰ ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">ਸਿੰਕ ਕਰਨ ਦੀ ਪ੍ਰਕਿਰਿਆ ਸਮੇਤ, ਸੁਨੇਹੇ ਅਤੇ ਚੈਟ ਦੀ ਜਾਣਕਾਰੀ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਸ਼ਨ ਨਾਲ ਸੁਰੱਖਿਅਤ ਹੁੰਦੀ ਹੈ।</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">ਹੋਰ ਜਾਣੋ</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">ਰੱਦ ਕਰੋ</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਲਿੰਕ ਕਰਨ ਲਈ ਇਸ ਕੋਡ ਨੂੰ ਸਕੈਨ ਕਰੋ</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">ਆਪਣੇ ਫ਼ੋਨ ਉੱਤੇ Signal ਖੋਲ੍ਹੋ</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Signal ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹਣ ਲਈ ਆਪਣੀ ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ \'ਤੇ ਟੈਪ ਕਰੋ</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">\"ਲਿੰਕ ਕੀਤੇ ਡਿਵਾਈਸ\" ਅਤੇ \"ਨਵਾਂ ਡਿਵਾਈਸ ਲਿੰਕ ਕਰੋ\" ਉੱਤੇ ਟੈਪ ਕਰੋ</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">ਕੈਮਰੇ ਨੂੰ ਇਸ QR ਕੋਡ ਉੱਤੇ ਰੱਖੋ</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">ਇਹਨਾਂ ਕਦਮਾਂ ਨਾਲ ਮਦਦ ਪ੍ਰਾਪਤ ਕਰੋ</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">QR ਕੋਡ ਨੂੰ ਵੱਡਾ ਕਰੋ</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">ਸਕੈਨ ਕੀਤਾ ਗਿਆ</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">ਕੋਡ ਬਣਾਉਣ ਵਿੱਚ ਅਸਫਲ ਰਹੇ</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">ਕੀ ਤੁਹਾਡੇ ਕਿਸੇ ਹੋਰ ਡਿਵਾਈਸ \'ਤੇ Signal ਨਹੀਂ ਹੈ?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">ਖਾਤਾ ਬਣਾਓ</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">ਆਪਣਾ ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ ਕਰੋ</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">ਆਪਣਾ ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ ਕਰਨ ਲਈ, ਆਪਣੇ ਪੁਰਾਣੇ Android ਡਿਵਾਈਸ \'ਤੇ Signal ਖੋਲ੍ਹੋ ਅਤੇ ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ ਕਰੋ ਨੂੰ ਚੁਣੋ।</string>
+    <string name="DeviceTransferInstructions__continue">ਜਾਰੀ ਰੱਖੋ</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">ਪੁਰਾਣੇ Android ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਦੀ ਤਿਆਰੀ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">ਇਸ ਵਿੱਚ ਕੁਝ ਸਮਾਂ ਲੱਗ ਸਕਦਾ ਹੈ। ਇਹ ਛੇਤੀ ਹੀ ਤਿਆਰ ਹੋ ਜਾਵੇਗੀ।</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਦੀ ਉਡੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">ਤਸਦੀਕ ਕਰੋ ਕਿ ਨੰਬਰ ਦੋਵਾਂ ਡਿਵਾਈਸਾਂ \'ਤੇ ਮੇਲ ਖਾ ਰਹੇ ਹੋਣ</string>
+    <string name="DeviceTransferSetup__numbers_match">ਹਾਂ, ਨੰਬਰ ਮੇਲ ਖਾਂਦੇ ਹਨ</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">ਨੰਬਰ ਮੇਲ ਨਹੀਂ ਖਾ ਰਹੇ ਹਨ</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਡਿਵਾਈਸ ਨਾਲ ਤਸਦੀਕ ਕਰਨ ਦੀ ਉਡੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
+    <string name="DeviceTransferSetup__location_permission_required">ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਉਸ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਲਈ Signal ਨੂੰ ਟਿਕਾਣੇ ਸੰਬੰਧੀ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ।</string>
+    <string name="DeviceTransferSetup__grant_location_permission">ਇਜਾਜ਼ਤ ਦਿਓ</string>
+    <string name="DeviceTransferSetup__location_services_required">ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਉਸ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਲਈ Signal ਵਾਸਤੇ ਟਿਕਾਣਾ ਸੇਵਾਵਾਂ ਨੂੰ ਸਮਰੱਥ ਕਰਨ ਦੀ ਲੋੜ ਹੈ।</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">ਟਿਕਾਣਾ ਸੇਵਾਵਾਂ ਚਾਲੂ ਕਰੋ</string>
+    <string name="DeviceTransferSetup__wifi_required">ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਉਸ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਲਈ Signal ਨੂੰ Wi-Fi ਚਾਲੂ ਚਾਹੀਦਾ ਹੈ।</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi ਚਾਲੂ ਕਰੋ</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">ਮੁਆਫ ਕਰਨਾ, ਇੰਝ ਜਾਪਦਾ ਹੈ ਕਿ ਤੁਹਾਡਾ ਡਿਵਾਈਸ Wi-Fi Direct ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ ਹੈ।</string>
+    <string name="DeviceTransferSetup__restore_a_backup">ਇਸਦੀ ਬਜਾਏ ਬੈਕਅੱਪ ਰੀਸਟੋਰ ਕਰੋ</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਸਮੇਂ ਅਚਾਨਕ ਕੋਈ ਗੜਬੜ ਪੇਸ਼ ਆ ਗਈ ਸੀ।</string>
+    <string name="DeviceTransferSetup__retry">ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਡਿਵਾਈਸ ਨੂੰ ਲੱਭ ਨਹੀਂ ਸਕੇ</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• ਪੱਕਾ ਕਰੋ ਕਿ ਟਿਕਾਣੇ ਸੰਬੰਧੀ ਇਜਾਜ਼ਤਾਂ ਦਿੱਤੀਆਂ ਗਈਆਂ ਹਨ।\n• ਪੱਕਾ ਕਰੋ ਕਿ Wi-Fi ਚਾਲੂ ਹੈ ਅਤੇ ਕੋਈ ਵੀ Wi-Fi Direct ਗਰੁੱਪ ਯਾਦ ਨਹੀਂ ਰੱਖੇ ਗਏ ਹਨ।\n• Wi-Fi ਨੂੰ ਦੋਵੇਂ ਡਿਵਾਈਸਾਂ ਵਿੱਚ, ਬੰਦ ਅਤੇ ਚਾਲੂ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ।\n• ਪੱਕਾ ਕਰੋ ਕਿ ਦੋਵੇਂ ਡਿਵਾਈਸ ਟ੍ਰਾਂਸਫਰ ਮੋਡ ਵਿੱਚ ਹਨ।</string>
+    <string name="DeviceTransferSetup__try_again">ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">ਨੰਬਰ ਮੇਲ ਨਹੀਂ ਖਾ ਰਹੇ ਹਨ</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">ਜੇ ਤੁਹਾਡੇ ਡਿਵਾਈਸਾਂ ਉੱਤੇ ਦਿਖਾਈ ਦੇ ਰਹੇ ਨੰਬਰ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ ਹਨ, ਤਾਂ ਇਹ ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਗਲਤ ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਟ ਕਰ ਲਿਆ ਹੈ।</string>
+    <string name="DeviceTransferSetup__stop_transfer">ਟ੍ਰਾਂਸਫਰ ਨੂੰ ਰੋਕੋ</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">ਡਾਟਾ ਟ੍ਰਾਂਸਫਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">ਅਜੇ ਤੱਕ %1$d ਸੁਨੇਹੇ</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">ਟ੍ਰਾਂਸਫਰ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ ਰਹੇ</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">Signal ਦੇ ਨਵੇਂ ਵਰਜ਼ਨ ਤੋਂ ਟ੍ਰਾਂਸਫਰ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">ਡੇਟਾਬੇਸ ਦੀ ਸੀਮਾ ਦੇ ਕਾਰਨ ਕੁਝ ਡੇਟਾ ਟ੍ਰਾਂਸਫਰ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ।</string>
+    <string name="DeviceTransferProgress__transfer_failed">ਟ੍ਰਾਂਸਫਰ ਅਸਫਲ ਰਿਹਾ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+    <string name="DeviceTransferProgress__try_again">ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+    <string name="DeviceTransferProgress__cancel">ਰੱਦ ਕਰੋ</string>
+    <string name="DeviceTransferProgress__stop_transfer">ਟ੍ਰਾਂਸਫਰ ਨੂੰ ਰੋਕਣਾ ਹੈ?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">ਸਾਰੀ ਟ੍ਰਾਂਸਫਰ ਪ੍ਰਗਤੀ ਖਤਮ ਹੋ ਜਾਵੇਗੀ।</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">ਟ੍ਰਾਂਸਫਰ ਪੂਰਾ ਹੋਇਆ</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">ਤੁਹਾਡਾ ਖਾਤਾ ਹੁਣ ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਹੈ।</string>
+    <string name="DeviceTransferComplete__continue_registration">ਜਾਰੀ ਰੱਖੋ</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">ਆਪਣੀ ਪ੍ਰੋਫ਼ਾਈਲ ਸੈੱਟ ਅੱਪ ਕਰੋ</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਅਤੇ ਇਸ ਵਿੱਚ ਕੀਤੀਆਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਤੁਹਾਡੇ ਸੰਪਰਕ, ਗਰੁੱਪ ਅਤੇ ਉਹ ਲੋਕ ਦੇਖ ਸਕਣਗੇ ਜਿਹਨਾਂ ਨੂੰ ਤੁਸੀਂ ਸੁਨੇਹੇ ਭੇਜਦੇ ਹੋ।</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">ਨਾਂ ਦਾ ਪਹਿਲਾਂ ਹਿੱਸਾ (ਲਾਜ਼ਮੀ)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">ਨਾਂ ਦਾ ਆਖਰੀ ਹਿੱਸਾ (ਵਿਕਲਪਿਕ)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">ਅੱਗੇ</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">ਅਵਤਾਰ ਤਿਆਰ ਕਰੋ</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">ਮੈਨੂੰ ਮੇਰੇ ਨੰਬਰ ਨਾਲ ਕੌਣ ਲੱਭ ਸਕਦਾ ਹੈ?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">ਜਿਸ ਵਿਅਕਤੀ ਕੋਲ ਤੁਹਾਡਾ ਫ਼ੋਨ ਨੰਬਰ ਹੈ, ਉਹ ਤੁਹਾਨੂੰ Signal ਉੱਤੇ ਦੇਖ ਸਕਦਾ ਹੈ ਅਤੇ ਤੁਹਾਡੇ ਨਾਲ ਚੈਟ ਸ਼ੁਰੂ ਕਰ ਸਕਦਾ ਹੈ।</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">ਕੋਈ ਵੀ ਇਹ ਨਹੀਂ ਦੇਖ ਸਕੇਗਾ ਕਿ ਤੁਸੀਂ Signal \'ਤੇ ਹੋ ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਉਹਨਾਂ ਨੂੰ ਸੁਨੇਹਾ ਨਹੀਂ ਭੇਜਦੇ ਜਾਂ ਉਹਨਾਂ ਨਾਲ ਤੁਹਾਡੀ ਕੋਈ ਪੁਰਾਣੀ ਚੈਟ ਮੌਜੂਦਾ ਨਹੀਂ ਹੁੰਦੀ।</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">ਹਰ ਕੋਈ</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">ਕੋਈ ਵੀ ਨਹੀਂ</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">ਕੀ ਤੁਸੀਂ ਪੱਕਾ ਅਜਿਹਾ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"ਮੈਨੂੰ ਮੇਰੇ ਨੰਬਰ ਨਾਲ ਕੌਣ ਲੱਭ ਸਕਦਾ ਹੈ\" ਸੈਟਿੰਗ ਨੂੰ \"ਕੋਈ ਨਹੀਂ\" \'ਤੇ ਸੈੱਟ ਕਰਨ ਨਾਲ ਲੋਕਾਂ ਲਈ Signal ਉੱਤੇ ਤੁਹਾਨੂੰ ਲੱਭਣਾ ਔਖਾ ਹੋ ਜਾਵੇਗਾ।</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">ਰੱਦ ਕਰੋ</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">ਸੇਵ ਕਰੋ</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">ਪਿੱਛੇ ਜਾਓ</string>
 </resources>

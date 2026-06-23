@@ -8,7 +8,8 @@ package org.signal.registration.sample.screens.main
 data class MainScreenState(
   val existingRegistrationState: ExistingRegistrationState? = null,
   val registrationExpired: Boolean = false,
-  val pendingFlowState: PendingFlowState? = null
+  val pendingFlowState: PendingFlowState? = null,
+  val profileState: ProfileState? = null
 ) {
   data class PendingFlowState(
     val e164: String?,
@@ -27,5 +28,12 @@ data class MainScreenState(
     val registrationLockEnabled: Boolean,
     val pinsOptedOut: Boolean,
     val temporaryMasterKey: String?
+  )
+
+  data class ProfileState(
+    val givenName: String,
+    val familyName: String,
+    val avatarSizeBytes: Int?,
+    val discoverableByPhoneNumber: Boolean?
   )
 }

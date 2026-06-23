@@ -172,6 +172,11 @@ open class MessageService(
         raise(SendError.ContentTooLarge(size = contentSize, maxAllowed = maxContentSizeBytes))
       }
 
+      if (!protocolStore.isMultiDevice) {
+        Log.d(TAG, "We do not have any linked devices. Skipping sync message send.")
+        return@either SendSuccess(envelopeContent = envelopeContent, sentSealedSender = false, devices = emptyList())
+      }
+
       var encryptedReported = false
 
       // Certain errors self-resolve by mutating external state, like creating new sessions.
@@ -211,6 +216,12 @@ open class MessageService(
             when (val error = result.error) {
               is MismatchedDeviceException -> {
                 handleMismatched(error, sealedSenderAccess = null)
+                val sentOnlyToSelf = encryptedMessages.map { it.destinationDeviceId } == listOf(localDeviceId)
+                if (sentOnlyToSelf && error.entries.all { it.missingDevices.isEmpty() }) {
+                  Log.w(TAG, "Sent only to our own device and the server reports no other devices. Marking as no longer multi-device and skipping send.")
+                  protocolStore.setMultiDevice(false)
+                  return@either SendSuccess(envelopeContent = envelopeContent, sentSealedSender = false, devices = emptyList())
+                }
               }
               is RateLimitChallengeException -> {
                 raise(SendError.ChallengeRequired(error.token, error.options, error.retryLater?.toKotlinDuration()))
@@ -331,7 +342,7 @@ open class MessageService(
   }
 
   suspend fun Raise<SendError>.handleMismatched(error: MismatchedDeviceException, sealedSenderAccess: SealedSenderAccess?) {
-    Log.w(TAG, "Handling mismatched devices: ${error.entries}")
+    Log.w(TAG, "Handling mismatched devices: ${error.entries.contentToString()}")
 
     for (entry in error.entries) {
       for (staleDeviceId in entry.staleDevices) {

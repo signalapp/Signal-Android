@@ -37,6 +37,9 @@ sealed interface RegistrationFlowEvent : DebugLoggable {
   /** The user selected (or cleared) a restore option before entering their phone number. */
   data class PendingRestoreOptionSelected(val option: PendingRestoreOption?) : RegistrationFlowEvent
 
+  /** Provisioning data was received from the old device. Carries the token used to notify it of our restore-method choice. */
+  data class RestoreMethodTokenReceived(val token: String) : RegistrationFlowEvent
+
   /** An AEP was manually input by the user. It has not yet been verified against the server. */
   data class UserSuppliedAepSubmitted(val aep: AccountEntropyPool) : RegistrationFlowEvent
 

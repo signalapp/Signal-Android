@@ -35,7 +35,7 @@ import org.signal.libsignal.protocol.SessionCipher;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.UntrustedIdentityException;
 import org.signal.libsignal.protocol.groups.GroupCipher;
-import org.signal.libsignal.protocol.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.message.CiphertextMessage;
 import org.signal.libsignal.protocol.message.PlaintextContent;
 import org.signal.libsignal.protocol.message.PreKeySignalMessage;

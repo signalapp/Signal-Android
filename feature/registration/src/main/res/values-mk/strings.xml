@@ -314,9 +314,9 @@
     <!-- PIN creation screen title. -->
     <string name="PinCreationScreen__create_your_pin">Создајте го Вашиот PIN</string>
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
-    <string name="PinCreationScreen__confirm_your_pin">Confirm your PIN</string>
+    <string name="PinCreationScreen__confirm_your_pin">Потврдете го вашиот PIN</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">Одново внесете го PIN-от што го создадовте</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">Со помош на PIN-от ќе можете ја вратите вашата корисничка сметка ако го изгубите телефонот. </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -328,11 +328,11 @@
     <!-- Labels the button to submit a new Signal PIN. -->
     <string name="PinCreationScreen__next">Следно</string>
     <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_digits">PIN must be at least 4 digits</string>
+    <string name="PinCreationScreen__pin_at_least_4_digits">PIN-от мора да се состои од најмалку 4 бројки</string>
     <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_characters">PIN must be at least 4 characters</string>
+    <string name="PinCreationScreen__pin_at_least_4_characters">PIN-от мора да се состои од најмалку 4 знаци</string>
     <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin">Re-enter PIN</string>
+    <string name="PinCreationScreen__reenter_pin">Одново внесете го PIN-от</string>
 
     <!-- PIN entry screen title when registration lock is active. -->
     <string name="PinEntryScreen__registration_lock">Заклучување на регистрација</string>
@@ -355,9 +355,9 @@
     <string name="PinEntryScreen__continue">Продолжи</string>
 
     <!-- Title for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__allow_notifications">Allow Notifications</string>
+    <string name="AllowNotificationsScreen__allow_notifications">Дозволете известувања</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal сака да побара дозвола за известување. Ова овозможува вашиот уред да прикажува известувања кога пристигнуваат нови пораки.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">Не сега</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -366,36 +366,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">Пораките се синхронизираат</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">Ова може да потрае неколку минути…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">Се презема(ат) %1$s од %2$s</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Пораките и информациите за разговорите се заштитени со целосно шифрирање, вклучувајќи го и процесот на синхронизација.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">Дознајте повеќе</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">Откажи</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Скенирајте го овој код за да ја поврзете вашата корисничка сметка</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">Отворете Signal на вашиот телефон</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Допрете ја вашата профилна слика за да ги отворите поставувањата на Signal</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Допрете на „Поврзани уреди“ и „Поврзете нов уред“</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Поставете ја камерата врз овој QR-код</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">Добијте помош со овие чекори</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">Зголемете го QR-кодот</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">Скенирано</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">Не успеа да се генерира кодот</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Немате Signal на друг уред?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">Направете корисничка сметка</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">Префрлете ја вашата корисничка сметка</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">За да ја префрлите вашата корисничка сметка, отворете го Signal на вашиот стар Android уред и изберете Префрли корисничка сметка.</string>
+    <string name="DeviceTransferInstructions__continue">Продолжи</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">Се припрема за да се поврзам на стариот Android уред…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">Ова може да потрае малку. Треба да биде готово наскоро.</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">Чекаме поврзување од вашиот стар уред…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">Потврдете дека бројките се совпаѓаат на двата уреди</string>
+    <string name="DeviceTransferSetup__numbers_match">Да, бројките се совпаѓаат</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">Бројките не се совпаѓаат</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">Чекаме верификација од вашиот стар уред…</string>
+    <string name="DeviceTransferSetup__location_permission_required">На Signal му се потребни овозможени дозволи за локација за да го открие и да се поврзе со вашиот стар уред.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">Дозволете</string>
+    <string name="DeviceTransferSetup__location_services_required">На Signal му се потребни вклучени услуги за локација за да го открие и да се поврзе со вашиот стар уред.</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">Вклучи локациски сервиси</string>
+    <string name="DeviceTransferSetup__wifi_required">На Signal му е потребно вклучено Wi-Fi за да го открие и да се поврзе со вашиот стар уред.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">Вклучи Wi-Fi</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">Изгледа дека вашиот уред не поддржува Wi-Fi Direct.</string>
+    <string name="DeviceTransferSetup__restore_a_backup">Наместо ова, вратете резервна копија</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">Настана неочекувана грешка при обидот за пристап на вашиот стар уред.</string>
+    <string name="DeviceTransferSetup__retry">Обидете се повторно</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">Не можеме да го откриеме вашиот стар уред</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• Осигурајте се дека се овозможени дозволи за локација.\n• Осигурајте се дека имате вклучено Wi-Fi и дека нема зачувани Wi-Fi Direct групи.\n• Пробајте да исклучите и вклучите Wi-Fi и на двата уреда.\n• Осигурајте се дека и двата уреда се во режим на префрлување.</string>
+    <string name="DeviceTransferSetup__try_again">Обиди сѐ повторно</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">Бројките не се совпаѓаат</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">Ако броевите на вашите уреди не се совпаѓаат, можно е да сте се поврзале на погрешен уред.</string>
+    <string name="DeviceTransferSetup__stop_transfer">Сопри трансфер</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">Префрлување податоци</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">%1$d пораки до сега</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">Неуспешен трансфер</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">Не може да се пренесе од понова верзија на Signal.</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">Некои податоци не можеа да се пренесат поради ограничување на базата на податоци.</string>
+    <string name="DeviceTransferProgress__transfer_failed">Преносот не успеа. Ве молиме обидете се повторно.</string>
+    <string name="DeviceTransferProgress__try_again">Обидете се повторно</string>
+    <string name="DeviceTransferProgress__cancel">Откажи</string>
+    <string name="DeviceTransferProgress__stop_transfer">Да го сопрам трансферот?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">Целиот прогрес направен при трансферот ќе биде изгубен.</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">Трансферот е завршен</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">Вашата корисничка сметка сега е на овој уред.</string>
+    <string name="DeviceTransferComplete__continue_registration">Продолжи</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">Поставете го Вашиот профил</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">Вашиот профил и промените на профилот ќе бидат видливи за луѓето со кои се допишувате, вашите контакти и групи.</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">Име (задолжително)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">Презиме (опционално)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">Следно</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">Постави аватар</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Кој може да ме пронајде со мојот телефонски број?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Сите кои го имаат зачувано вашиот телефонски број ќе можат да ве видат на Signal и да започнат разговори со вас.</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Никој нема да може да види дека сте на Signal освен ако не им испратите порака или имате постоечки разговор со нив.</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">Сите</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">Никој</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Дали сте сигурни?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Ќе биде потешко да ве пронајдат на Signal доколку ја поставите опцијата „Кој може да ме пронајде со мојот телефонски број“ на „Никој“.</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Откажи</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">Зачувај</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">Назад</string>
 </resources>

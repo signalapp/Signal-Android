@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.messages
 
+import android.content.Context
 import android.os.PowerManager
 import androidx.annotation.AnyThread
 import androidx.annotation.WorkerThread
@@ -48,8 +49,6 @@ object WebSocketDrainer {
   fun blockUntilDrainedAndProcessed(requestedWebsocketDrainTimeoutMs: Long, keepAliveToken: String = KEEP_ALIVE_TOKEN): Boolean {
     Log.d(TAG, "blockUntilDrainedAndProcessed() requestedWebsocketDrainTimeout: $requestedWebsocketDrainTimeoutMs ms")
 
-    var websocketDrainTimeout = requestedWebsocketDrainTimeoutMs
-
     val context = AppDependencies.application
     val powerManager = ServiceUtil.getPowerManager(context)
 
@@ -60,15 +59,17 @@ object WebSocketDrainer {
       Log.w(TAG, "We may be operating in a constrained environment. Doze: $doze Network: $network.")
     }
 
-    if (!network) {
-      Log.w(TAG, "Network is unavailable. Reducing websocket timeout to $NO_NETWORK_WEBSOCKET_TIMEOUT ms")
-      websocketDrainTimeout = NO_NETWORK_WEBSOCKET_TIMEOUT
+    val initialTimeout = if (!network) {
+      Log.w(TAG, "Network is unavailable. Starting with reduced websocket timeout of $NO_NETWORK_WEBSOCKET_TIMEOUT ms.")
+      NO_NETWORK_WEBSOCKET_TIMEOUT
+    } else {
+      requestedWebsocketDrainTimeoutMs
     }
 
-    val wakeLock = WakeLockUtil.acquire(AppDependencies.application, PowerManager.PARTIAL_WAKE_LOCK, websocketDrainTimeout + QUEUE_TIMEOUT, WAKELOCK_TAG)
+    val wakeLock = WakeLockUtil.acquire(AppDependencies.application, PowerManager.PARTIAL_WAKE_LOCK, requestedWebsocketDrainTimeoutMs + QUEUE_TIMEOUT, WAKELOCK_TAG)
 
     return try {
-      drainAndProcess(websocketDrainTimeout, keepAliveToken)
+      drainAndProcess(context, initialTimeout, requestedWebsocketDrainTimeoutMs, keepAliveToken)
     } finally {
       WakeLockUtil.release(wakeLock, WAKELOCK_TAG)
     }
@@ -81,7 +82,7 @@ object WebSocketDrainer {
    * so that we know the queue has been drained.
    */
   @WorkerThread
-  private fun drainAndProcess(timeout: Long, keepAliveToken: String): Boolean {
+  private fun drainAndProcess(context: Context, initialTimeout: Long, fullTimeout: Long, keepAliveToken: String): Boolean {
     val stopwatch = Stopwatch("websocket-strategy")
 
     val jobManager = AppDependencies.jobManager
@@ -92,7 +93,7 @@ object WebSocketDrainer {
       queueListener
     )
 
-    val successfullyDrained = blockUntilWebsocketDrained(timeout, keepAliveToken)
+    val successfullyDrained = blockUntilWebsocketDrained(context, initialTimeout, fullTimeout, keepAliveToken)
     if (!successfullyDrained) {
       return false
     }
@@ -114,7 +115,7 @@ object WebSocketDrainer {
     return true
   }
 
-  private fun blockUntilWebsocketDrained(timeoutMs: Long, keepAliveToken: String): Boolean {
+  private fun blockUntilWebsocketDrained(context: Context, initialTimeoutMs: Long, fullTimeoutMs: Long, keepAliveToken: String): Boolean {
     try {
       val latch = CountDownLatch(1)
       var success = false
@@ -128,14 +129,27 @@ object WebSocketDrainer {
         }
       })
 
-      return try {
-        if (!latch.await(timeoutMs, TimeUnit.MILLISECONDS)) {
-          Log.w(TAG, "Hit timeout while waiting for decryptions to drain!")
+      try {
+        val startTime = System.currentTimeMillis()
+
+        if (latch.await(initialTimeoutMs, TimeUnit.MILLISECONDS)) {
+          return success
         }
-        success
+
+        // If the first latch times out, check if we can wait longer if network came back
+        if (initialTimeoutMs < fullTimeoutMs && NetworkUtil.isConnected(context)) {
+          val remaining = ((startTime + fullTimeoutMs) - System.currentTimeMillis()).coerceAtLeast(0)
+          Log.i(TAG, "Network returned, extending wait timeout for another $remaining ms.")
+          if (latch.await(remaining, TimeUnit.MILLISECONDS)) {
+            return success
+          }
+        }
+
+        Log.w(TAG, "Hit timeout while waiting for decryptions to drain!")
+        return success
       } catch (e: InterruptedException) {
         Log.w(TAG, "Interrupted!", e)
-        false
+        return false
       }
     } finally {
       AppDependencies.authWebSocket.removeKeepAliveToken(keepAliveToken)

@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.contactshare.ContactModelMapper
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.NoSuchMessageException
+import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.stickers
@@ -44,9 +45,7 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.forConversation
 import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.fromThreadAndReply
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.Recipient.Companion.resolved
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.self
-import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -362,25 +361,18 @@ abstract class PushSendJob protected constructor(parameters: Parameters) : BaseJ
       )
     }
 
-    val quoteAuthorRecipient = resolved(quoteAuthor)
+    val quoteAuthorRecord = SignalDatabase.recipients.getRecord(quoteAuthor)
+    val author: ServiceId? = if (quoteAuthorRecord.registered != RegisteredState.NOT_REGISTERED) {
+      quoteAuthorRecord.serviceId
+    } else {
+      quoteAuthorRecord.aci
+    }
 
-    if (quoteAuthorRecipient.isMaybeRegistered) {
-      return Optional.of(
+    return if (author != null) {
+      Optional.of(
         SignalServiceDataMessage.Quote(
           id = quoteId,
-          author = RecipientUtil.getOrFetchServiceId(context, quoteAuthorRecipient),
-          text = quoteBody,
-          attachments = quoteAttachments,
-          mentions = quoteMentions,
-          type = quoteType.dataMessageType,
-          bodyRanges = bodyRanges
-        )
-      )
-    } else if (quoteAuthorRecipient.hasServiceId) {
-      return Optional.of(
-        SignalServiceDataMessage.Quote(
-          id = quoteId,
-          author = quoteAuthorRecipient.requireAci(),
+          author = author,
           text = quoteBody,
           attachments = quoteAttachments,
           mentions = quoteMentions,
@@ -389,7 +381,7 @@ abstract class PushSendJob protected constructor(parameters: Parameters) : BaseJ
         )
       )
     } else {
-      return Optional.empty()
+      Optional.empty()
     }
   }
 

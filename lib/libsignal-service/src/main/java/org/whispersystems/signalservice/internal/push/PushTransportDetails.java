@@ -7,7 +7,7 @@
 package org.whispersystems.signalservice.internal.push;
 
 
-import org.signal.libsignal.protocol.logging.Log;
+import org.signal.core.util.logging.Log;
 
 public class PushTransportDetails {
 

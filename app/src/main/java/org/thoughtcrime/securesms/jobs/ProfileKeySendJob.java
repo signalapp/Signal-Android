@@ -5,7 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
@@ -81,22 +83,24 @@ public class ProfileKeySendJob extends BaseJob {
    */
   @WorkerThread
   public static @Nullable ProfileKeySendJob create(long threadId, boolean queueLimits) {
-    Recipient conversationRecipient = SignalDatabase.threads().getRecipientForThreadId(threadId);
+    RecipientId conversationRecipientId = SignalDatabase.threads().getRecipientIdForThreadId(threadId);
 
-    if (conversationRecipient == null) {
+    if (conversationRecipientId == null) {
       Log.w(TAG, "Thread no longer valid! Aborting.");
       return null;
     }
 
-    if (conversationRecipient.isPushV2Group()) {
+    RecipientRecord conversationRecipient = SignalDatabase.recipients().getRecord(conversationRecipientId);
+
+    if (conversationRecipient.getGroupId() != null && conversationRecipient.getGroupId().isV2()) {
       throw new AssertionError("Do not send profile keys directly for GV2");
     }
 
-    List<RecipientId> recipients = conversationRecipient.isGroup()
-                                   ? RecipientUtil.getEligibleForSending(Recipient.resolvedList(conversationRecipient.getParticipantIds()))
+    List<RecipientId> recipients = conversationRecipient.getGroupId() != null
+                                   ? RecipientUtil.getEligibleForSending(Recipient.resolvedList(SignalDatabase.groups().getGroupMemberIds(conversationRecipient.getGroupId(), GroupTable.MemberSet.FULL_MEMBERS_INCLUDING_SELF)))
                                                   .stream()
                                                   .map(Recipient::getId).collect(Collectors.toList())
-                                                                   : Stream.of(conversationRecipient.getId()).collect(Collectors.toList());
+                                   : Stream.of(conversationRecipient.getId()).collect(Collectors.toList());
 
     recipients.remove(Recipient.self().getId());
 
@@ -133,13 +137,9 @@ public class ProfileKeySendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    if (threadId > 0) {
-      Recipient conversationRecipient = SignalDatabase.threads().getRecipientForThreadId(threadId);
-
-      if (conversationRecipient == null) {
-        Log.w(TAG, "Thread no longer present");
-        return;
-      }
+    if (threadId > 0 && SignalDatabase.threads().getRecipientIdForThreadId(threadId) == null) {
+      Log.w(TAG, "Thread no longer present");
+      return;
     }
 
     List<Recipient> destinations = recipients.stream().map(Recipient::resolved).collect(Collectors.toList());

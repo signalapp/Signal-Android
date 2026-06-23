@@ -151,6 +151,11 @@ fun MainScreen(
 
       RegistrationInfo(state.existingRegistrationState)
 
+      if (state.profileState != null) {
+        Spacer(modifier = Modifier.height(16.dp))
+        ProfileInfo(state.profileState)
+      }
+
       Spacer(modifier = Modifier.height(24.dp))
 
       Button(
@@ -226,6 +231,43 @@ private fun RegistrationInfo(data: MainScreenState.ExistingRegistrationState) {
         RegistrationField(label = "PIN", value = data.pin ?: "(not set)")
         RegistrationField(label = "Registration Lock", value = if (data.registrationLockEnabled) "Enabled" else "Disabled")
       }
+    }
+  }
+}
+
+@Composable
+private fun ProfileInfo(profile: MainScreenState.ProfileState) {
+  Card(
+    modifier = Modifier.fillMaxWidth(),
+    colors = CardDefaults.cardColors(
+      containerColor = MaterialTheme.colorScheme.surfaceVariant
+    )
+  ) {
+    Column(
+      modifier = Modifier.padding(16.dp)
+    ) {
+      Text(
+        text = "Profile",
+        style = MaterialTheme.typography.titleMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+      )
+
+      HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+
+      RegistrationField(label = "Given Name", value = profile.givenName.ifEmpty { "(not set)" })
+      RegistrationField(label = "Family Name", value = profile.familyName.ifEmpty { "(not set)" })
+      RegistrationField(
+        label = "Avatar",
+        value = profile.avatarSizeBytes?.let { "$it bytes" } ?: "(not set)"
+      )
+      RegistrationField(
+        label = "Discoverable by Phone Number",
+        value = when (profile.discoverableByPhoneNumber) {
+          true -> "Yes"
+          false -> "No"
+          null -> "(undecided)"
+        }
+      )
     }
   }
 }
@@ -336,6 +378,12 @@ private fun MainScreenWithRegistrationPreview() {
           registrationLockEnabled = true,
           pinsOptedOut = false,
           temporaryMasterKey = null
+        ),
+        profileState = MainScreenState.ProfileState(
+          givenName = "Ada",
+          familyName = "Lovelace",
+          avatarSizeBytes = 12_345,
+          discoverableByPhoneNumber = true
         )
       ),
       onEvent = {}

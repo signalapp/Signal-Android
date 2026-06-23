@@ -25,6 +25,18 @@ object NetworkDebugState {
   }
 
   /**
+   * When true, `startNewDeviceTransferServer` skips Wi-Fi Direct and replays a scripted sequence
+   * of `TransferStatus` + `NewDeviceRestoreStatus` events on a timer so the whole flow can be
+   * exercised without a second device. Off by default.
+   */
+  private val _fakeDeviceTransfer = MutableStateFlow(false)
+  val fakeDeviceTransfer: StateFlow<Boolean> = _fakeDeviceTransfer.asStateFlow()
+
+  fun setFakeDeviceTransfer(fake: Boolean) {
+    _fakeDeviceTransfer.value = fake
+  }
+
+  /**
    * Map of method name to the selected option name (e.g., "createSession" -> "success")
    * A value of "unset" or absence means no override is active.
    */

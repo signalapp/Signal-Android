@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -119,12 +120,12 @@ public final class PushGroupSendJob extends PushSendJob {
                              boolean isScheduledSend)
   {
     try {
-      Recipient group = Recipient.resolved(destination);
-      if (!group.isPushGroup()) {
+      RecipientRecord group = SignalDatabase.recipients().getRecord(destination);
+      if (group.getGroupId() == null || !group.getGroupId().isPush()) {
         throw new AssertionError("Not a group!");
       }
 
-      if (group.isPushV1Group()) {
+      if (group.getGroupId().isV1()) {
         throw new MmsException("Cannot send to GV1 groups");
       }
 
@@ -145,7 +146,7 @@ public final class PushGroupSendJob extends PushSendJob {
         throw new MmsException("Cannot send a gift badge to a group!");
       }
 
-      if (!SignalDatabase.groups().isActive(group.requireGroupId()) && !isGv2UpdateMessage(message)) {
+      if (!SignalDatabase.groups().isActive(group.getGroupId()) && !isGv2UpdateMessage(message)) {
         throw new MmsException("Inactive group!");
       }
 

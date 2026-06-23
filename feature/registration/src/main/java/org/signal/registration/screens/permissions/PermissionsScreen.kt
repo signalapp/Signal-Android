@@ -113,7 +113,9 @@ private fun OnePaneLayout(
           Text(
             text = stringResource(id = R.string.GrantPermissionsFragment__allow_permissions),
             style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.fillMaxWidth().attachDebugLogHelper()
+            modifier = Modifier
+              .fillMaxWidth()
+              .attachDebugLogHelper()
           )
 
           Text(
@@ -131,7 +133,7 @@ private fun OnePaneLayout(
       PermissionButtons(
         onProceed = onProceed,
         permissionsState = permissionsState,
-        showElevation = scrollState.canScrollForward,
+        isElevated = scrollState.canScrollForward,
         modifier = Modifier.padding(params.footerPadding)
       )
     }
@@ -146,7 +148,8 @@ private fun TwoPaneLayout(
   permissionsState: MultiplePermissionsState,
   onProceed: () -> Unit
 ) {
-  val scrollState = rememberScrollState()
+  val firstPaneScrollState = rememberScrollState()
+  val secondPaneScrollState = rememberScrollState()
 
   TwoPaneRegistrationScaffold(
     modifier = modifier.fillMaxSize(),
@@ -156,12 +159,15 @@ private fun TwoPaneLayout(
         modifier = Modifier
           .weight(1f)
           .fillMaxHeight()
+          .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
         Text(
           text = stringResource(id = R.string.GrantPermissionsFragment__allow_permissions),
           style = MaterialTheme.typography.headlineMedium,
-          modifier = Modifier.fillMaxWidth().attachDebugLogHelper()
+          modifier = Modifier
+            .fillMaxWidth()
+            .attachDebugLogHelper()
         )
 
         Text(
@@ -177,7 +183,7 @@ private fun TwoPaneLayout(
         modifier = Modifier
           .weight(1f)
           .fillMaxHeight()
-          .verticalScroll(scrollState)
+          .verticalScroll(secondPaneScrollState)
           .padding(paddingValues)
       ) {
         PermissionList(permissions)
@@ -187,7 +193,7 @@ private fun TwoPaneLayout(
       PermissionButtons(
         onProceed = onProceed,
         permissionsState = permissionsState,
-        showElevation = scrollState.canScrollForward,
+        isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward,
         modifier = Modifier.padding(params.footerPadding)
       )
     }
@@ -271,12 +277,11 @@ private fun PermissionRow(
 private fun PermissionButtons(
   onProceed: () -> Unit,
   permissionsState: MultiplePermissionsState,
-  showElevation: Boolean,
+  isElevated: Boolean,
   modifier: Modifier = Modifier
 ) {
-  Surface(
-    modifier = Modifier.fillMaxWidth(),
-    shadowElevation = if (showElevation) 8.dp else 0.dp
+  RegistrationScaffold.FooterSurface(
+    isElevated = isElevated
   ) {
     Row(
       horizontalArrangement = Arrangement.End,

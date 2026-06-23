@@ -96,7 +96,7 @@ public final class Wallet {
     return SignalStore.payments().mobileCoinLatestBalance();
   }
 
-  @AnyThread
+  @WorkerThread
   public @NonNull MobileCoinLedgerWrapper getCachedLedger() {
     return SignalStore.payments().mobileCoinLatestFullLedger();
   }
@@ -313,6 +313,11 @@ public final class Wallet {
           break;
         case RECEIVED:
           final Amount amount = receipt.getAmountData(account);
+          if (!TokenId.MOB.equals(amount.getTokenId())) {
+            Log.w(TAG, "Received a non-MOB token receipt (tokenId: " + amount.getTokenId() + "). Treating as failed.");
+            txStatus = ReceivedTransactionStatus.failed();
+            break;
+          }
           txStatus = ReceivedTransactionStatus.complete(Money.picoMobileCoin(amount.getValue()), status.getBlockIndex().longValue());
           break;
         default:

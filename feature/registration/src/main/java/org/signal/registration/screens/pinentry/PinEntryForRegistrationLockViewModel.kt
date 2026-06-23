@@ -135,10 +135,9 @@ class PinEntryForRegistrationLockViewModel(
         Log.i(TAG, "[PinEntered] Successfully registered!")
         val (response, keyMaterial) = registerResult.result
         parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool))
-        // TODO storage service restore + profile screen
         when {
           response.reregistration -> parentEventEmitter.navigateTo(RegistrationRoute.ArchiveRestoreSelection.forPostRegister())
-          else -> parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
+          else -> repository.finishRegistrationOrCreateProfile(parentEventEmitter)
         }
         state
       }

@@ -61,6 +61,7 @@ class MainScreenViewModel(
   private fun loadRegistrationData() {
     viewModelScope.launch {
       val existingData = storageController.getPreExistingRegistrationData()
+      val storedProfile = if (existingData != null) storageController.getStoredProfileData() else null
       _state.value = _state.value.copy(
         existingRegistrationState = if (existingData != null) {
           MainScreenState.ExistingRegistrationState(
@@ -77,6 +78,14 @@ class MainScreenViewModel(
           )
         } else {
           null
+        },
+        profileState = storedProfile?.let {
+          MainScreenState.ProfileState(
+            givenName = it.givenName,
+            familyName = it.familyName,
+            avatarSizeBytes = it.avatar?.size,
+            discoverableByPhoneNumber = it.discoverableByPhoneNumber
+          )
         },
         pendingFlowState = loadPendingFlowState(),
         registrationExpired = false

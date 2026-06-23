@@ -15,6 +15,8 @@ import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.database.RecipientTable.SealedSenderAccessMode;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -57,10 +59,57 @@ public class SealedSenderAccessUtil {
   }
 
   @WorkerThread
+  public static @Nullable SealedSenderAccess getSealedSenderAccessFor(@NonNull RecipientRecord record) {
+    return getSealedSenderAccessFor(record, true);
+  }
+
+  @WorkerThread
+  public static @Nullable SealedSenderAccess getSealedSenderAccessFor(@NonNull RecipientRecord record, boolean log) {
+    return SealedSenderAccess.forIndividual(getAccessFor(record, log));
+  }
+
+  public static @Nullable SealedSenderAccess getSealedSenderAccessFor(@NonNull RecipientRecord record, @Nullable SealedSenderAccess.CreateGroupSendToken createGroupSendToken) {
+    return SealedSenderAccess.forIndividualWithGroupFallback(getAccessFor(record, true), getSealedSenderCertificate(), createGroupSendToken);
+  }
+
+  @WorkerThread
   private static @Nullable UnidentifiedAccess getAccessFor(@NonNull Recipient recipient, boolean log) {
     return getAccessFor(Collections.singletonList(recipient), false, log)
         .get(0)
         .orElse(null);
+  }
+
+  @WorkerThread
+  private static @Nullable UnidentifiedAccess getAccessFor(@NonNull RecipientRecord record, boolean log) {
+    byte[] ourUnidentifiedAccessCertificate = SignalStore.certificate().getUnidentifiedAccessCertificate(getUnidentifiedAccessCertificateType());
+
+    UnidentifiedAccess unidentifiedAccess = null;
+    if (ourUnidentifiedAccessCertificate != null) {
+      try {
+        unidentifiedAccess = getTargetUnidentifiedAccess(record.getProfileKey(), getEffectiveSealedSenderAccessMode(record), ourUnidentifiedAccessCertificate, false);
+      } catch (InvalidCertificateException e) {
+        Log.w(TAG, "Invalid unidentified access certificate!", e);
+      }
+    } else {
+      Log.w(TAG, "Missing our unidentified access certificate!");
+    }
+
+    if (log) {
+      Log.i(TAG, "Unidentified: " + (unidentifiedAccess != null ? 1 : 0) + ", Other: " + (unidentifiedAccess != null ? 0 : 1));
+    }
+
+    return unidentifiedAccess;
+  }
+
+  /**
+   * Mirrors {@link Recipient#getSealedSenderAccessMode()}: a recipient addressed only by PNI cannot receive sealed sender.
+   */
+  private static @NonNull SealedSenderAccessMode getEffectiveSealedSenderAccessMode(@NonNull RecipientRecord record) {
+    if (record.getAci() == null && record.getPni() != null) {
+      return SealedSenderAccessMode.DISABLED;
+    } else {
+      return record.getSealedSenderAccessMode();
+    }
   }
 
   @WorkerThread
@@ -88,7 +137,8 @@ public class SealedSenderAccessUtil {
       UnidentifiedAccess unidentifiedAccess = null;
       if (ourUnidentifiedAccessCertificate != null) {
         try {
-          unidentifiedAccess = getTargetUnidentifiedAccess(recipient, ourUnidentifiedAccessCertificate, isForStory);
+          Recipient resolved = recipient.resolve();
+          unidentifiedAccess = getTargetUnidentifiedAccess(resolved.getProfileKey(), resolved.getSealedSenderAccessMode(), ourUnidentifiedAccessCertificate, isForStory);
         } catch (InvalidCertificateException e) {
           Log.w(TAG, "Invalid unidentified access certificate!", e);
         }
@@ -135,12 +185,12 @@ public class SealedSenderAccessUtil {
                       .getUnidentifiedAccessCertificate(getUnidentifiedAccessCertificateType());
   }
 
-  private static @Nullable UnidentifiedAccess getTargetUnidentifiedAccess(@NonNull Recipient recipient, @NonNull byte[] certificate, boolean isForStory) throws InvalidCertificateException {
-    ProfileKey theirProfileKey = ProfileKeyUtil.profileKeyOrNull(recipient.resolve().getProfileKey());
+  private static @Nullable UnidentifiedAccess getTargetUnidentifiedAccess(@Nullable byte[] theirProfileKeyBytes, @NonNull SealedSenderAccessMode accessMode, @NonNull byte[] certificate, boolean isForStory) throws InvalidCertificateException {
+    ProfileKey theirProfileKey = ProfileKeyUtil.profileKeyOrNull(theirProfileKeyBytes);
 
     byte[] accessKey;
 
-    switch (recipient.resolve().getSealedSenderAccessMode()) {
+    switch (accessMode) {
       case UNKNOWN:
         if (theirProfileKey == null) {
           if (isForStory) {
@@ -166,7 +216,7 @@ public class SealedSenderAccessUtil {
         accessKey = UNRESTRICTED_KEY;
         break;
       default:
-        throw new AssertionError("Unknown mode: " + recipient.getSealedSenderAccessMode().getMode());
+        throw new AssertionError("Unknown mode: " + accessMode.getMode());
     }
 
     if (accessKey == null && isForStory) {

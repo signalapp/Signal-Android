@@ -13,7 +13,7 @@ import io.reactivex.rxjava3.schedulers.TestScheduler
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.signal.core.models.database.AttachmentId
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.FakeMessageRecords
 import org.thoughtcrime.securesms.database.SignalDatabase

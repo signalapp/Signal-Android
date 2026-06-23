@@ -146,6 +146,15 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
       }
     }
 
+  /**
+   * The locally-stored [AccountEntropyPool], or null if one has not yet been generated or restored.
+   * Unlike [accountEntropyPool], reading this never generates and persists a new AEP as a side effect.
+   */
+  val accountEntropyPoolOrNull: AccountEntropyPool?
+    get() = AEP_LOCK.withLock {
+      getString(KEY_ACCOUNT_ENTROPY_POOL, null)?.let { AccountEntropyPool(it) }
+    }
+
   fun rotateAccountEntropyPool(aep: AccountEntropyPool) {
     AEP_LOCK.withLock {
       Log.i(TAG, "Rotating Account Entropy Pool (AEP)...", Throwable(), true)

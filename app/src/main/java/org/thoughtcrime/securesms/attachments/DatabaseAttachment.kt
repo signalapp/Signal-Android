@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Parcel
 import androidx.core.os.ParcelCompat
 import org.signal.blurhash.BlurHash
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.models.media.TransformProperties
 import org.signal.core.util.ParcelUtil
 import org.thoughtcrime.securesms.audio.AudioHash

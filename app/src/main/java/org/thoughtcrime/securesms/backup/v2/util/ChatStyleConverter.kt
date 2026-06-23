@@ -7,8 +7,8 @@ package org.thoughtcrime.securesms.backup.v2.util
 
 import org.signal.archive.proto.ChatStyle
 import org.signal.archive.proto.FilePointer
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.BackupMode
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.conversation.colors.ChatColors

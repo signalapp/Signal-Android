@@ -143,6 +143,7 @@ class BackupSubscriptionCheckJobTest {
   @Test
   fun givenUserIsNotRegistered_whenIRun_thenIExpectSuccessAndEarlyExit() {
     mockkObject(SignalStore.account) {
+      every { SignalStore.account.e164 } returns "+15555550101"
       every { SignalStore.account.isRegistered } returns false
 
       val job = BackupSubscriptionCheckJob.create()
@@ -155,6 +156,7 @@ class BackupSubscriptionCheckJobTest {
   @Test
   fun givenIsLinkedDevice_whenIRun_thenIExpectSuccessAndEarlyExit() {
     mockkObject(SignalStore.account) {
+      every { SignalStore.account.e164 } returns "+15555550101"
       every { SignalStore.account.isLinkedDevice } returns true
 
       val job = BackupSubscriptionCheckJob.create()

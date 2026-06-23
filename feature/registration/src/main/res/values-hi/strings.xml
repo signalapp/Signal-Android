@@ -316,7 +316,7 @@
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
     <string name="PinCreationScreen__confirm_your_pin">अपने पिन की पुष्टि करें</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">आपने हाल ही में जो पिन बनाया है, उसे दोबारा डालें</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">अगर आपका फ़ोन खो जाता है, तो पिन से आपको अपना अकाउंट रीस्टोर करने में मदद मिलती है। </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -355,9 +355,9 @@
     <string name="PinEntryScreen__continue">जारी रखें</string>
 
     <!-- Title for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__allow_notifications">नोटिफ़िकेशन अनुमति दें</string>
+    <string name="AllowNotificationsScreen__allow_notifications">नोटिफ़िकेशन की अनुमति दें</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal को नोटिफ़िकेशन की अनुमति चाहिए। इससे नए मैसेज आने पर, आपको अपने डिवाइस में अलर्ट दिखाई देंगे।</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">अभी नहीं</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -366,36 +366,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">मैसेज सिंक हो रहे हैं</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">इसमें कुछ देर लग सकती है…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">%2$s में से %1$s डाउनलोड हो रहा है</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">मैसेज और चैट का डेटा एंड-टू-एंड एनक्रिप्शन से सुरक्षित है। इसमें सिंक करने की प्रक्रिया भी शामिल है।</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">और जानें</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">कैंसिल करें</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">अपना अकाउंट लिंक करने के लिए इस कोड को स्कैन करें</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">अपने फ़ोन पर Signal खोलें</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Signal सेटिंग खोलने के लिए अपनी प्रोफ़ाइल पिक्चर पर टैप करें</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">\'लिंक किए गए डिवाइस\' और \'नया डिवाइस लिंक करें\' पर टैप करें</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">कैमरे को इस QR कोड के ऊपर लाएं</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">मदद पाने के लिए इन चरणों का पालन करें</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">QR कोड को बड़ा करें</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">स्कैन हो गया</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">कोड जनरेट नहीं हो सका</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">क्या आपके किसी दूसरे डिवाइस पर Signal मौजूद नहीं है?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">अकाउंट बनाएं</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">अपना अकाउंट ट्रांसफ़र करें</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">अपना अकाउंट ट्रांसफ़र करने के लिए, अपने पुराने Android डिवाइस पर Signal खोलें और \'अकाउंट ट्रांसफ़र करें\' को चुनें।</string>
+    <string name="DeviceTransferInstructions__continue">जारी रखें</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">पुराने Android डिवाइस से कनेक्ट किया जा रहा है…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">इसमें थोड़ा समय लग सकता है। जल्द ही यह हो जाएगा।</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">आपके पुराने डिवाइस के कनेक्ट होने का इंतज़ार है…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">वेरिफ़ाई करें कि दोनों डिवाइस पर नंबर मेल खा रहे हैं</string>
+    <string name="DeviceTransferSetup__numbers_match">हां, नंबर मेल खा रहे हैं</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">नंबर मेल नहीं खाते</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">आपके पुराने डिवाइस के वेरिफ़ाई होने का इंतज़ार है…</string>
+    <string name="DeviceTransferSetup__location_permission_required">आपके पुराने डिवाइस को खोजने और उससे कनेक्ट करने के लिए, Signal को \'लोकेशन\' का ऐक्सेस चाहिए।</string>
+    <string name="DeviceTransferSetup__grant_location_permission">अनुमति दें</string>
+    <string name="DeviceTransferSetup__location_services_required">अपनी लोकेशन सर्विस चालू रखें, ताकि Signal आपके पुराने डिवाइस को खोज सके और उससे कनेक्ट कर सके।</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">लोकेशन सर्विस चालू करें</string>
+    <string name="DeviceTransferSetup__wifi_required">आपके पुराने डिवाइस को खोजने और उससे कनेक्ट करने के लिए Signal को वाई-फ़ाई चालू करने की ज़रूरत है।</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">वाई-फ़ाई चालू करें</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">माफ़ करें, लेकिन ऐसा लगता है कि आपके डिवाइस पर Wi-Fi Direct काम नहीं करता है।</string>
+    <string name="DeviceTransferSetup__restore_a_backup">इसके बजाय, बैकअप रीस्टोर करें</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">आपके पुराने डिवाइस से कनेक्ट करते समय कोई गड़बड़ी हुई।</string>
+    <string name="DeviceTransferSetup__retry">दोबारा कोशिश करें</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">आपका पुराना डिवाइस नहीं मिल रहा है</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• पक्का करें कि आपने लोकेशन से जुड़ी अनुमतियां दे रखी हैं।\n• पक्का करें कि वाई-फ़ाई चालू है और कोई भी Wi-Fi Direct ग्रुप सेव किया हुआ नहीं है।\n• दोनों डिवाइस पर वाई-फ़ाई को चालू और बंद करके देखें।\n• पक्का करें कि दोनों डिवाइस ट्रांसफ़र मोड में हों।</string>
+    <string name="DeviceTransferSetup__try_again">दोबारा कोशिश करें</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">नंबर मेल नहीं खाते</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">अगर आपके दोनों डिवाइस पर नंबर मेल नहीं खाते, तो हो सकता है कि आपने गलत डिवाइस से कनेक्ट किया हो।</string>
+    <string name="DeviceTransferSetup__stop_transfer">ट्रांसफ़र रोकें</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">डेटा ट्रांसफ़र हो रहा है</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">अब तक %1$d मेसेज</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">ट्रांसफ़र नहीं हो रहा</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">Signal के नए वर्ज़न से ट्रांसफ़र नहीं किया जा सकता।</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">डेटाबेस की कुछ शर्तों की वजह से कुछ डेटा ट्रांसफ़र नहीं हो पाया।</string>
+    <string name="DeviceTransferProgress__transfer_failed">ट्रांसफ़र नहीं हो सका। कृपया फिर से कोशिश करें।</string>
+    <string name="DeviceTransferProgress__try_again">फिर से कोशिश करें</string>
+    <string name="DeviceTransferProgress__cancel">कैंसिल करें</string>
+    <string name="DeviceTransferProgress__stop_transfer">ट्रांसफ़र रोकें?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">अब तक हुआ पूरा ट्रांसफ़र मिट जाएगा।</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">ट्रांसफ़र पूरा हुआ</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">आपका अकाउंट अब इस डिवाइस पर है।</string>
+    <string name="DeviceTransferComplete__continue_registration">जारी रखें</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">अपनी प्रोफ़ाइल सेट करें</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">आपकी प्रोफ़ाइल और उसमें किए गए बदलाव आपके कॉन्टैक्ट, ग्रुप, और उन लोगों को दिखेंगे जिन्हें आपने मैसेज किया है।</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">नाम (ज़रूरी है)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">सरनेम (ज़रूरी नहीं है)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">अगला</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">अवतार सेट करें</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">मुझे नंबर से कौन ढूंढ सकता है?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">जिस भी व्यक्ति के पास आपका फ़ोन नंबर है, वह आपको Signal पर देख सकता है और चैट कर सकता है।</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">अगर आपने किसी को मैसेज नहीं भेजा है या फिर किसी के साथ आपने पहले चैट नहीं की है, तो कोई नहीं जान पाएगा कि आप Signal पर हैं।</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">सभी</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">कोई नहीं</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">क्या आपको वाकई ऐसा करना है?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"मुझे नंबर से कौन ढूंढ सकता है\" को \"कोई नहीं\" पर सेट करने पर किसी के लिए भी Signal पर आपको ढूंढना मुश्किल हो जाएगा।</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">कैंसिल करें</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">सेव करें</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">पीछे जाएं</string>
 </resources>

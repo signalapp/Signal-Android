@@ -248,9 +248,9 @@ class StoryGroupReplyFragment :
     markReadHelper?.onViewsRevealed(adapterItem.replyBody.sentAtMillis)
   }
 
-  private fun getConfiguration(pageData: List<ReplyBody>): DSLConfiguration {
+  private fun getConfiguration(pageData: List<ReplyBody?>): DSLConfiguration {
     return configure {
-      pageData.forEach {
+      pageData.filterNotNull().forEach {
         when (it) {
           is ReplyBody.Text -> {
             customPref(

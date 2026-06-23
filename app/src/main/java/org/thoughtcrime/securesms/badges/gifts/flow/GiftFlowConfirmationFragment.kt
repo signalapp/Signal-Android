@@ -306,7 +306,5 @@ class GiftFlowConfirmationFragment :
 
   override fun navigateToDonationPending(inAppPayment: InAppPaymentTable.InAppPayment) = error("Not supported for gifts")
 
-  override fun exitCheckoutFlow() {
-    requireActivity().finishAfterTransition()
-  }
+  override fun exitCheckoutFlow() = Unit
 }

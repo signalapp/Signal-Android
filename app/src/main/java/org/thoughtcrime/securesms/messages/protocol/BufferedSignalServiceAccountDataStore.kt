@@ -201,6 +201,10 @@ class BufferedSignalServiceAccountDataStore(selfServiceId: ServiceId) : SignalSe
     error("Should not happen during the intended usage pattern of this class")
   }
 
+  override fun setMultiDevice(isMultiDevice: Boolean) {
+    error("Should not happen during the intended usage pattern of this class")
+  }
+
   fun flushToDisk(persistentStore: SignalServiceAccountDataStore) {
     SignalDatabase.writableDatabase.withinTransaction {
       identityStore.flushToDisk(persistentStore)

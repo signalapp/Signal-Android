@@ -70,6 +70,12 @@ object InAppPaymentsRepository {
   private const val JOB_PREFIX = "InAppPayments__"
   private val TAG = Log.tag(InAppPaymentsRepository::class.java)
 
+  /**
+   * Upper bound on how long we'll wait for the donations configuration before surfacing a retryable
+   * failure rather than leaving the user on an indefinite loading spinner (e.g. on a slow VPN).
+   */
+  const val DONATIONS_CONFIGURATION_TIMEOUT_SECONDS = 30L
+
   private val backupExpirationTimeout = 30.days
   private val backupExpirationDeletion = 60.days
 

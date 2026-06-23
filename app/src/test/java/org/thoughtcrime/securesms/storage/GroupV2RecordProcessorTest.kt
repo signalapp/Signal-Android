@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.storage
 
-import android.app.Application
 import io.mockk.every
 import io.mockk.mockk
 import okio.ByteString
@@ -11,9 +10,6 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
 import org.signal.core.util.Hex.fromStringCondensed
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.database.GroupTable
@@ -25,8 +21,6 @@ import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record
 import java.util.Random
 
-@RunWith(RobolectricTestRunner::class)
-@Config(application = Application::class)
 class GroupV2RecordProcessorTest {
 
   companion object {

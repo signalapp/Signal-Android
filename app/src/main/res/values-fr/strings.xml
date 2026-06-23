@@ -23,6 +23,7 @@
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recovery_key_phishing_support_url" translatable="false">https://support.signal.org/hc/articles/9932566320410</string> -->
 
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
@@ -749,7 +750,7 @@
     <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
     <string name="SafetyTips_summary_tip0_title">Ne répondez à aucun message de Signal</string>
     <!-- Summary tip 0 message -->
-    <string name="SafetyTips_summary_tip0_message">Signal ne vous demande jamais de communiquer votre PIN, code d\'inscription ni clé de récupération. Ne répondez jamais à une personne se faisant passer pour Signal.</string>
+    <string name="SafetyTips_summary_tip0_message">Signal ne vous demande jamais de communiquer ni votre code PIN, ni votre code d\'inscription, ni votre clé de récupération. Ne répondez jamais à des messages semblant provenir de Signal.</string>
     <!-- Summary tip 1 title: Review names and photos -->
     <string name="SafetyTips_summary_tip1_title">Vérifiez le nom et la photo</string>
     <!-- Summary tip 1 message -->
@@ -762,7 +763,7 @@
     <!-- Detail tip 0 title -->
     <string name="SafetyTips_detail_tip0_title">Ne répondez à aucun message de Signal</string>
     <!-- Detail tip 0 message -->
-    <string name="SafetyTips_detail_tip0_message">Signal ne vous demande jamais de communiquer votre PIN, code d\'inscription ni clé de récupération. Ne répondez jamais à une personne se faisant passer pour Signal ou pour un membre de l\'équipe d\'assistance. Des escrocs peuvent créer de fausses identités pour s\'emparer de votre compte.</string>
+    <string name="SafetyTips_detail_tip0_message">Signal ne vous demande jamais de communiquer ni votre code PIN, ni votre code d\'inscription, ni votre clé de récupération. Ne répondez jamais à des messages semblant provenir de Signal ou de l\'équipe d\'assistance de Signal. Des escrocs peuvent créer de fausses identités pour s\'emparer de votre compte.</string>
     <!-- Detail tip 1 title -->
     <string name="SafetyTips_detail_tip1_title">Vérifiez le nom et la photo</string>
     <!-- Detail tip 1 message -->
@@ -947,7 +948,7 @@
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
-    <string name="CreateBackupBottomSheet__you_are_all_set">À vos marques… Prêts ? Lancez votre sauvegarde.</string>
+    <string name="CreateBackupBottomSheet__you_are_all_set">À vos marques… Prêts ? Sauvegardez.</string>
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">Selon la taille de la sauvegarde, l\'opération peut prendre un certain temps. Vous pouvez continuer d\'utiliser votre téléphone pendant que nous sauvegardons vos données.</string>
     <!-- Bottom sheet free message -->
@@ -3392,6 +3393,8 @@
     <string name="NotificationChannel_calls">Appels</string>
     <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">Échecs</string>
+    <!-- Notification channel name for internal-only app issue notifications. Only ever shown to internal users. -->
+    <string name="NotificationChannel_internal_issues">Internal Issues</string>
     <string name="NotificationChannel_backups">Sauvegardes</string>
     <string name="NotificationChannel_locked_status">État de verrouillage</string>
     <string name="NotificationChannel_app_updates">Mises à jour de l\'application</string>
@@ -3520,6 +3523,10 @@
     <string name="TransferControlView__processing">Compression…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress_s_s">%1$s/%2$s</string>
+    <!-- Accessibility description for the button that starts downloading an attachment -->
+    <string name="TransferControlView__download">Télécharger</string>
+    <!-- Accessibility description for the button that starts uploading an attachment -->
+    <string name="TransferControlView__upload">Importer</string>
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -4096,6 +4103,11 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Impossible d’importer les journaux.</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Pour nous aider à comprendre le problème, décrivez-nous précisément ce qui se passe.</string>
+    <!-- Error shown under the "tell us what\'s going on" field when the entered description is shorter than the required minimum length. The placeholder is the minimum number of characters. -->
+    <plurals name="HelpFragment__must_be_at_least_n_characters">
+        <item quantity="one">Saisissez au moins %1$d caractère</item>
+        <item quantity="other">Saisissez au moins %1$d caractères</item>
+    </plurals>
     <string-array name="HelpFragment__categories_6">
         <item>Choisissez une option</item>
         <item>Quelque chose ne fonctionne pas</item>
@@ -8245,11 +8257,11 @@
     <string name="BackupUpsellBottomSheet__no_thanks">Non merci</string>
 
     <!-- Title of the backup setup complete bottom sheet -->
-    <string name="BackupSetupCompleteBottomSheet__title">À vos marques… Prêts ? Lancez votre sauvegarde.</string>
+    <string name="BackupSetupCompleteBottomSheet__title">À vos marques… Prêts ? Sauvegardez.</string>
     <!-- Body of the backup setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__body">Cela peut prendre un certain temps. Vous pouvez continuer d\'utiliser Signal pendant que nous sauvegardons vos données.</string>
     <!-- Label for the optimize storage toggle -->
-    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimiser l\'espace de stockage</string>
+    <string name="BackupSetupCompleteBottomSheet__optimize_storage">Optimiser le stockage Signal</string>
     <!-- Subtitle for the optimize storage toggle -->
     <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">Les médias les plus anciens sont déplacés vers la sauvegarde et supprimés de votre appareil, mais vous pouvez les télécharger depuis votre sauvegarde à tout moment.</string>
     <!-- Primary button on the setup complete bottom sheet -->
@@ -9909,7 +9921,7 @@
     <!-- Title of the first safety tip: don\'t respond to chats claiming to be Signal -->
     <string name="SafetyTipsBottomSheet__tip_1_title">Ne répondez à aucun message de Signal</string>
     <!-- Body of the first safety tip -->
-    <string name="SafetyTipsBottomSheet__tip_1_body">Signal ne vous demande jamais de communiquer ni votre code PIN, ni votre code d\'inscription, ni votre clé de récupération. Ne répondez jamais à une personne se faisant passer pour Signal.</string>
+    <string name="SafetyTipsBottomSheet__tip_1_body">Signal ne vous demande jamais de communiquer ni votre code PIN, ni votre code d\'inscription, ni votre clé de récupération. Ne répondez jamais à des messages semblant provenir de Signal.</string>
     <!-- Title of the second safety tip: keep your verification code safe -->
     <string name="SafetyTipsBottomSheet__tip_2_title">Protégez votre code de vérification</string>
     <!-- Body of the second safety tip -->
@@ -9920,6 +9932,36 @@
     <string name="SafetyTipsBottomSheet__tip_3_body">Pour mieux protéger votre compte, en plus du code de vérification, exigez la saisie du code PIN Signal lors de l\'inscription à Signal.</string>
     <!-- Button on the safety tips screen that opens account settings -->
     <string name="SafetyTipsBottomSheet__open_account_settings">Accéder aux paramètres du compte</string>
+
+    <!-- Title of a warning sheet shown when the user copies or pastes their recovery key, urging them not to share it -->
+    <string name="RecoveryKeyWarningSheetContent__do_not_share_your_recovery_key">Ne partagez pas votre clé de récupération</string>
+    <!-- Bolded lead-in to the warning sheet body; combined with RecoveryKeyWarningSheetContent__for_your_recovery_key_never_respond to form a full sentence -->
+    <string name="RecoveryKeyWarningSheetContent__signal_will_never_message_you">Signal ne vous écrira jamais </string>
+    <!-- Remainder of the warning sheet body following the bolded lead-in RecoveryKeyWarningSheetContent__signal_will_never_message_you -->
+    <string name="RecoveryKeyWarningSheetContent__for_your_recovery_key_never_respond">pour vous la demander. Ne répondez jamais à des messages semblant provenir de Signal. Conservez votre clé en lieu sûr et ne la communiquez à personne.</string>
+    <!-- Button dismissing the recovery key warning sheet after the user has copied their key -->
+    <string name="RecoveryKeyWarningSheetContent__got_it">J\'ai compris</string>
+    <!-- Button opening a help article with more information about recovery key safety -->
+    <string name="RecoveryKeyWarningSheetContent__learn_more">En savoir plus</string>
+    <!-- Inline link opening a help article with more information about recovery key safety -->
+    <string name="RecoveryKeyWarningSheetContent__learn_more_period">En savoir plus.</string>
+    <!-- Button declining to paste/share the recovery key, dismissing the warning sheet -->
+    <string name="RecoveryKeyWarningSheetContent__do_not_share_key">Ne pas partager la clé</string>
+    <!-- Button indicating the user wants to proceed with sharing/pasting the recovery key, which shows a final confirmation -->
+    <string name="RecoveryKeyWarningSheetContent__share_key">Partager la clé</string>
+
+    <!-- Title of the final confirmation dialog shown before pasting a recovery key -->
+    <string name="RecoveryKeyWarningDialog__do_not_share_recovery_key">Ne partagez pas votre clé de récupération</string>
+    <!-- First sentence of the final confirmation dialog body warning against sharing the recovery key -->
+    <string name="RecoveryKeyWarningDialog__do_not_share_your_recovery_key_with_anyone">Ne communiquez votre clé de récupération à personne. Quiconque dispose de votre clé peut s\'emparer de votre compte.</string>
+    <!-- Bolded middle sentence of the final confirmation dialog body -->
+    <string name="RecoveryKeyWarningDialog__signal_will_never_message_you_for_your_recovery_key">Signal ne vous écrira jamais pour vous la demander.</string>
+    <!-- Final sentence of the final confirmation dialog body -->
+    <string name="RecoveryKeyWarningDialog__never_respond_to_a_chat">Ne répondez jamais à des messages semblant provenir de Signal.</string>
+    <!-- Button confirming the user wants to paste the recovery key -->
+    <string name="RecoveryKeyWarningDialog__paste_key">Coller la clé</string>
+    <!-- Button declining to paste the recovery key -->
+    <string name="RecoveryKeyWarningDialog__dont_share">Ne pas partager la clé</string>
 
     <!-- EOF -->
 </resources>

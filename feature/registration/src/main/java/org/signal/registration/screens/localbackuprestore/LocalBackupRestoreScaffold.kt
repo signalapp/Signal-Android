@@ -44,6 +44,7 @@ internal fun LocalBackupRestoreLayout(
   when (val params = RegistrationScaffold.rememberLayoutParams()) {
     is RegistrationScaffold.Params.OnePane -> {
       val scrollState = rememberScrollState()
+
       OnePaneRegistrationScaffold(
         modifier = modifier.fillMaxSize(),
         params = params,
@@ -63,13 +64,13 @@ internal fun LocalBackupRestoreLayout(
         },
         footer = {
           RegistrationScaffold.FooterSurface(
-            isContentScrolledUnder = scrollState.canScrollForward
+            isElevated = scrollState.canScrollForward
           ) {
             if (primaryButton != null || secondaryButton != null) {
               Column(
                 modifier = Modifier
                   .fillMaxWidth()
-                  .padding(horizontal = 24.dp, vertical = 16.dp),
+                  .padding(params.footerPadding),
                 horizontalAlignment = Alignment.CenterHorizontally
               ) {
                 primaryButton?.invoke(Modifier.fillMaxWidth())
@@ -87,6 +88,7 @@ internal fun LocalBackupRestoreLayout(
     is RegistrationScaffold.Params.TwoPane -> {
       val firstPaneScrollState = rememberScrollState()
       val secondPaneScrollState = rememberScrollState()
+
       TwoPaneRegistrationScaffold(
         modifier = modifier
           .fillMaxSize()
@@ -117,13 +119,13 @@ internal fun LocalBackupRestoreLayout(
         },
         footer = {
           RegistrationScaffold.FooterSurface(
-            isContentScrolledUnder = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
+            isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
           ) {
             if (primaryButton != null || secondaryButton != null) {
               Row(
                 modifier = Modifier
                   .fillMaxWidth()
-                  .padding(horizontal = 24.dp, vertical = 16.dp),
+                  .padding(params.footerPadding),
                 horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically
               ) {
@@ -151,13 +153,11 @@ internal fun Description(headline: String, body: String) {
       .attachDebugLogHelper()
   )
 
-  Spacer(modifier = Modifier.height(8.dp))
-
   Text(
     text = body,
-    style = MaterialTheme.typography.bodyMedium,
+    style = MaterialTheme.typography.bodyLarge,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier.padding(top = 16.dp)
   )
 }
 

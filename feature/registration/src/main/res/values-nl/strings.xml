@@ -225,7 +225,7 @@
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
     <string name="WelcomeScreen__not_on_signal_yet">Nog niet op Signal?</string>
     <!-- Button to create a new Signal account -->
-    <string name="WelcomeScreen__create_account">Account aanmaken</string>
+    <string name="WelcomeScreen__create_account">Maak een account aan</string>
 
     <!-- RemoteRestoreScreen -->
     <!-- Title for the remote backup restore screen -->
@@ -316,7 +316,7 @@
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
     <string name="PinCreationScreen__confirm_your_pin">Bevestig je pincode</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">Voer de zojuist aangemaakte pincode opnieuw in</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">Pincodes kunnen je helpen je account te herstellen als je je telefoon bent kwijtgeraakt. </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -357,7 +357,7 @@
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">Meldingen toestaan</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal wil graag de machtiging voor meldingen vragen. Hiermee kunnen meldingen voor nieuwe berichten op je apparaat worden weergegeven.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">Niet nu</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -366,36 +366,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">Berichten synchroniseren</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">Dit kan enkele minuten duren…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">%1$s van %2$s aan het downloaden</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Berichten en chatgegevens worden beschermd door end-to-end-versleuteling, ook tijdens het synchronisatieproces.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">Meer lezen</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">Annuleren</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan deze code om je account te koppelen</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">Open Signal op je telefoon</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tik op je profielfoto om Signal-instellingen te openen</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tip op ‘Gekoppelde apparaten’ en ‘Nieuw apparaat koppelen’</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Richt de camera op deze QR-code</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">Hulp bij deze stappen</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">QR-code vergroten</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">Gescand</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">Code genereren is mislukt</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Heb je Signal niet op een ander apparaat?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
-    <string name="LinkAccountScreen__create_account">Account aanmaken</string>
+    <string name="LinkAccountScreen__create_account">Maak een account aan</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">Je account overzetten</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">Om je account over te zetten, open Signal op je oude Android-apparaat en selecteer ‘Account overzetten’.</string>
+    <string name="DeviceTransferInstructions__continue">Doorgaan</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">Voorbereiden op verbinding maken met je oude Android-apparaat…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">Een moment. Dit duurt niet lang.</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">Wachten tot je oude apparaat verbinding maakt…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">Controleer of de nummers op beide apparaten overeenkomen</string>
+    <string name="DeviceTransferSetup__numbers_match">Ja, de nummers komen overeen</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">De nummers komen niet overeen</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">Wachten op verificatie van je oude apparaat…</string>
+    <string name="DeviceTransferSetup__location_permission_required">Om je oude apparaat te kunnen detecteren en om er verbinding mee te maken, heeft Signal toegang tot je locatie nodig.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">Toestemming geven</string>
+    <string name="DeviceTransferSetup__location_services_required">Om je oude apparaat te kunnen detecteren en om er verbinding mee te maken, heeft Signal ingeschakelde locatiebepaling nodig.</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">Locatiegegevens inschakelen</string>
+    <string name="DeviceTransferSetup__wifi_required">Signal heeft een actieve wifi-verbinding nodig om je oude apparaat te vinden en er verbinding mee te maken.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">Schakel je wifi in</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">Sorry, het lijkt erop dat je apparaat Wi-Fi Direct niet ondersteunt.</string>
+    <string name="DeviceTransferSetup__restore_a_backup">In plaats daarvan een back-up herstellen</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">Er is een onverwachte fout opgetreden bij het verbinding maken met je oude apparaat.</string>
+    <string name="DeviceTransferSetup__retry">Opnieuw proberen</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">Kan je oude apparaat niet detecteren</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• Zorg ervoor dat toegang tot je locatie is ingeschakeld.\n• Zorg ervoor dat wifi is ingeschakeld en dat er geen Wi-Fi Direct-groepen zijn opgeslagen.\n• Schakel wifi uit en weer in op beide apparaten.\n• Zorg ervoor dat Signal op beide apparaten in de modus ‘Account overzetten’ staat.</string>
+    <string name="DeviceTransferSetup__try_again">Opnieuw proberen</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">De nummers komen niet overeen</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">Als de nummers op je apparaten niet overeenkomen dan is het mogelijk dat je bent verbonden met het verkeerde apparaat.</string>
+    <string name="DeviceTransferSetup__stop_transfer">Overzetten annuleren</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">Gegevens aan het overzetten</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">%1$d berichten tot nu toe</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">Kan gegevens niet overzetten</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">Kan geen gegevens overzetten vanuit een nieuwere versie van Signal.</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">Sommige gegevens konden niet worden overgezet vanwege een beperking in de database.</string>
+    <string name="DeviceTransferProgress__transfer_failed">Overzetten is mislukt. Probeer het opnieuw.</string>
+    <string name="DeviceTransferProgress__try_again">Opnieuw proberen</string>
+    <string name="DeviceTransferProgress__cancel">Annuleren</string>
+    <string name="DeviceTransferProgress__stop_transfer">Overzetten annuleren?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">Alle voortgang van het overzetten zal verloren gaan.</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">Overzetten voltooid</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">Je account is nu actief op dit apparaat.</string>
+    <string name="DeviceTransferComplete__continue_registration">Doorgaan</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">Stel je profiel in</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">Je profiel en wijzigingen die je maakt zijn zichtbaar voor mensen die je een bericht stuurt, contacten en groepen.</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">Voornaam (vereist)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">Achternaam (optioneel)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">Volgende</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">Profielfoto instellen</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Wie kan mij via mijn nummer vinden?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Iedereen die je telefoonnummer heeft, kan zien dat je een Signal-gebruiker bent en kan een chat met je beginnen.</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Niemand kan zien dat je een Signal-gebruiker bent, tenzij je hen een bericht stuurt of een bestaande chat met iemand hebt.</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">Iedereen</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">Niemand</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Weet je het zeker?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Als je ‘Wie kan mij via mijn nummer vinden’ instelt op ‘Niemand’, wordt het moeilijker voor mensen om je te vinden op Signal.</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Annuleren</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">Opslaan</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">Terug</string>
 </resources>

@@ -318,7 +318,7 @@
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
     <string name="PinCreationScreen__confirm_your_pin">אישור ה–PIN שלך</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">יש להזין שוב את ה–PIN שעכשיו יצרת</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">קודי PIN יכולים לעזור לך לשחזר את החשבון שלך אם איבדת את הטלפון. </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -361,7 +361,7 @@
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">הפעלת התראות</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal רוצה לבקש הרשאת התראות. זה מאפשר למכשיר שלך להציג התראות כשמגיעות הודעות חדשות.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">לא עכשיו</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -370,36 +370,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">מסנכרנים הודעות</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">זה עשוי לקחת כמה דקות…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">בהורדה: %1$s מתוך %2$s</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">הודעות ופרטי צ׳אט מוגנים באמצעות הצפנה מקצה לקצה, כולל תהליך הסנכרון.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">למידע נוסף</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">ביטול</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">יש לסרוק את הקוד הזה כדי לקשר את החשבון שלך</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">פתח את Signal בטלפון שלך</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">ללחוץ על תמונת הפרופיל כדי לפתוח את הגדרות Signal</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">ללחוץ על ״מכשירים מקושרים״ ו״קישור מכשיר חדש״</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">למקם את המצלמה מול קוד ה–QR הזה</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">לקבלת עזרה לגבי השלבים האלה</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">הגדלת קוד QR</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">נסרק</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">יצירת קוד נכשלה</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">אין לך את Signal במכשיר אחר?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">יצירת חשבון</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">העברת החשבון שלך</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">כדי להעביר את החשבון שלך, יש לפתוח את Signal במכשיר Android הישן שלך ולבחור ״העברת חשבון״.</string>
+    <string name="DeviceTransferInstructions__continue">המשך</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">מתכונן להתחבר אל מכשיר Android ישן…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">זה עשוי לקחת רגע. תכף מוכנים.</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">בהמתנה לחיבור המכשיר הישן שלך…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">יש לוודא שהמספרים תואמים בשני המכשירים</string>
+    <string name="DeviceTransferSetup__numbers_match">כן, המספרים תואמים</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">המספרים אינם תואמים</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">בהמתנה לאימות במכשיר הישן שלך…</string>
+    <string name="DeviceTransferSetup__location_permission_required">Signal צריכה גישה לשירותי מיקום כדי למצוא את המכשיר הישן שלך ולהתחבר אליו.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">מתן הרשאת גישה</string>
+    <string name="DeviceTransferSetup__location_services_required">Signal צריכה גישה לשירותי מיקום כדי למצוא את המכשיר הישן שלך ולהתחבר אליו.</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">הפעל שירותי מיקום</string>
+    <string name="DeviceTransferSetup__wifi_required">צריך להפעיל Wi–Fi כדי לאפשר ל–Signal למצוא את המכשיר הישן שלך ולהתחבר אליו.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">הפעל Wi-Fi</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">מצטערים, נראה שהמכשיר שלך לא תומך ב–Wi-Fi Direct.</string>
+    <string name="DeviceTransferSetup__restore_a_backup">לשחזר גיבוי במקום</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">שגיאה לא צפויה אירעה בזמן ניסיון להתחבר למכשיר הישן שלך.</string>
+    <string name="DeviceTransferSetup__retry">נסה שוב</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">לא הצלחנו למצוא את המכשיר הישן שלך</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• יש לוודא שנתת הרשאת גישה למיקום.\n• יש לוודא שהפעלת את ה–Wi–Fi ושאף קבוצת Wi-Fi Direct איננה זכורה.\n• אפשר לנסות לכבות ולהפעיל את ה–Wi–Fi בשני המכשירים.\n• חשוב לוודא ששני המכשירים במצב העברה.</string>
+    <string name="DeviceTransferSetup__try_again">נסה שוב</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">המספרים אינם תואמים</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">אם המספרים במכשיר שלך לא תואמים, ייתכן שהתחברת למכשיר לא נכון.</string>
+    <string name="DeviceTransferSetup__stop_transfer">הפסק העברה</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">מעביר נתונים</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">%1$d הודעות עד כה</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">לא היה ניתן להעביר</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">לא ניתן להעביר מגרסה חדשה יותר של Signal.</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">יש נתונים שלא ניתן היה להעביר עקב מגבלת מסד נתונים.</string>
+    <string name="DeviceTransferProgress__transfer_failed">ההעברה נכשלה. נא לנסות שוב.</string>
+    <string name="DeviceTransferProgress__try_again">ניסיון חוזר</string>
+    <string name="DeviceTransferProgress__cancel">ביטול</string>
+    <string name="DeviceTransferProgress__stop_transfer">להפסיק העברה?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">כל תהליך ההעברה יאבד.</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">העברה הושלמה</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">החשבון שלך מופעל כעת במכשיר הזה.</string>
+    <string name="DeviceTransferComplete__continue_registration">המשך</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">הגדר את הפרופיל שלך</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">הפרופיל שלך והשינויים בו יהיו גלויים לאנשים שיקבלו ממך הודעות, ולאנשי הקשר והקבוצות שלך.</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">שם פרטי (דרוש)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">שם משפחה (רשותי)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">הבא</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">הגדר יצגן</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">מי יכול למצוא אותי לפי המספר שלי?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">כל מי שיש להם את מספר הטלפון שלך יראו אותך ב–Signal ויוכלו להתחיל איתך צ׳אט.</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">אנשים לא יוכלו לראות אותך ב–Signal אלא אם שלחת להם הודעה או שיש לך צ\'אט קיים איתם.</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">כולם</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">אף אחד</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">להמשיך?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">להגדיר את ״מי יכול למצוא אותי לפי המספר שלי״ כ״אף אחד״ יקשה על אנשים למצוא אותך ב–Signal.</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">ביטול</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">שמירה</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">הקודם</string>
 </resources>

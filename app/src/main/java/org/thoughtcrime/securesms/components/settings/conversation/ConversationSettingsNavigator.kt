@@ -20,7 +20,7 @@ object ConversationSettingsNavigator {
     recipient: Recipient
   ) {
     if (activity is MainNavigationChatDetailRouter) {
-      activity.goToChatDetail(MainNavigationDetailLocation.Chats.ConversationSettings(recipient.id))
+      activity.goToChatDetail(MainNavigationDetailLocation.Chats.ConversationSettings(recipient.id, isContentRoot = true))
       return
     }
 

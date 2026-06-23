@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.signalservice.api.messages.multidevice.OutgoingPaymentMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.signal.core.models.ServiceId;
@@ -94,7 +93,7 @@ public final class MultiDeviceOutgoingPaymentSyncJob extends BaseJob {
 
     Optional<ServiceId> uuid;
     if (!defrag && payment.getPayee().hasRecipientId()) {
-      uuid = Optional.of(RecipientUtil.getOrFetchServiceId(context, Recipient.resolved(payment.getPayee().requireRecipientId())));
+      uuid = Optional.ofNullable(SignalDatabase.recipients().getRecord(payment.getPayee().requireRecipientId()).getServiceId());
     } else {
       uuid = Optional.empty();
     }

@@ -8,10 +8,10 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireLong
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -85,14 +85,17 @@ class MediaPreviewRepository {
           }
         }
 
-        val messageIds = mediaRecords.mapNotNull { it.attachment?.mmsId }.toSet()
-        val messages: Map<Long, SpannableString> = SignalDatabase.messages.getMessages(messageIds).toList().withAttachments()
-          .map { it as MmsMessageRecord }
-          .associate { it.id to it.resolveBody(context).getDisplayBody(context) }
-
-        Result(if (mediaRecords.isNotEmpty()) itemPosition.coerceIn(mediaRecords.indices) else itemPosition, mediaRecords, messages)
+        Result(if (mediaRecords.isNotEmpty()) itemPosition.coerceIn(mediaRecords.indices) else itemPosition, mediaRecords)
       }
     }.subscribeOn(Schedulers.io()).toFlowable()
+  }
+
+  fun resolveMessageBodies(context: Context, messageIds: Set<Long>): Single<Map<Long, SpannableString>> {
+    return Single.fromCallable {
+      SignalDatabase.messages.getMessages(messageIds).toList().withAttachments()
+        .filterIsInstance<MmsMessageRecord>()
+        .associate { it.id to it.resolveBody(context).getDisplayBody(context) }
+    }.subscribeOn(Schedulers.io())
   }
 
   fun localDelete(attachment: DatabaseAttachment): Completable {
@@ -132,5 +135,5 @@ class MediaPreviewRepository {
       .observeOn(AndroidSchedulers.mainThread())
   }
 
-  data class Result(val initialPosition: Int, val records: List<MediaTable.MediaRecord>, val messageBodies: Map<Long, SpannableString>)
+  data class Result(val initialPosition: Int, val records: List<MediaTable.MediaRecord>)
 }

@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.components.ConversationSearchBottomBar;
 import org.thoughtcrime.securesms.components.ProgressCard;
 import org.thoughtcrime.securesms.components.SearchView;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.Linkification;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.signal.core.ui.util.ThemeUtil;
@@ -458,7 +457,7 @@ public class SubmitDebugLogActivity extends BaseActivity {
     TextView          dialogView          = new TextView(builder.getContext());
     LongClickCopySpan longClickUrl        = new LongClickCopySpan(url);
 
-    for (Linkifier.DetectedLink link : Linkification.findWebLinks(dialogText)) {
+    for (Linkifier.DetectedLink link : Linkifier.findLinks(dialogText)) {
       spannableDialogText.setSpan(longClickUrl, link.getStart(), link.getEnd(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 

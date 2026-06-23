@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import org.signal.core.models.ServiceId
+import org.signal.core.ui.util.ThemeUtil
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -55,6 +56,24 @@ interface Colorizer {
       ContextCompat.getColor(context, CoreUiR.color.signal_colorNeutralVariantInverse)
     } else {
       ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurfaceVariant)
+    }
+  }
+
+  @ColorInt
+  fun getOutgoingDeleteTextColor(context: Context): Int {
+    return if (ThemeUtil.isDarkTheme(context)) {
+      ContextCompat.getColor(context, CoreUiR.color.signal_colorNeutralVariantInverse)
+    } else {
+      ContextCompat.getColor(context, CoreUiR.color.signal_colorNeutralVariant)
+    }
+  }
+
+  @ColorInt
+  fun getOutgoingDeleteNameColor(context: Context): Int {
+    return if (ThemeUtil.isDarkTheme(context)) {
+      ContextCompat.getColor(context, CoreUiR.color.signal_colorNeutralInverse)
+    } else {
+      ContextCompat.getColor(context, CoreUiR.color.signal_colorNeutral)
     }
   }
 

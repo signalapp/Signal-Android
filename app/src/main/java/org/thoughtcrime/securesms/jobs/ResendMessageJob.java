@@ -8,9 +8,11 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
+import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListRecord;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -18,7 +20,6 @@ import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -136,14 +137,14 @@ public class ResendMessageJob extends BaseJob {
     Log.i(TAG, "[" + sentTimestamp + " ] Resending message to " + recipientId + " (urgent: " + urgent + ", contentHint: " + contentHint.name() + ", groupId: " + groupId + ", distributionId: " + distributionId + ")");
 
     SignalServiceMessageSender messageSender = AppDependencies.getSignalServiceMessageSender();
-    Recipient                  recipient     = Recipient.resolved(recipientId);
+    RecipientRecord            recipient     = SignalDatabase.recipients().getRecord(recipientId);
 
-    if (recipient.isUnregistered()) {
+    if (recipient.getRegistered() == RegisteredState.NOT_REGISTERED) {
       Log.w(TAG, recipient.getId() + " is unregistered!");
       return;
     }
 
-    SignalServiceAddress                    address              = RecipientUtil.toSignalServiceAddress(context, recipient);
+    SignalServiceAddress                    address              = RecipientUtil.toSignalServiceAddress(recipient);
     Content                                 contentToSend        = content;
     SealedSenderAccess.CreateGroupSendToken createGroupSendToken = null;
 
@@ -189,9 +190,9 @@ public class ResendMessageJob extends BaseJob {
     } catch (IllegalStateException e) {
       Log.w(TAG, "Failed to resend content. Archiving session and trying again.", e);
       AppDependencies.getProtocolStore().aci().sessions().archiveSessions(recipientId, SignalServiceAddress.DEFAULT_DEVICE_ID);
-      AppDependencies.getProtocolStore().aci().sessions().archiveSiblingSessions(recipient.requireServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID));
+      AppDependencies.getProtocolStore().aci().sessions().archiveSiblingSessions(recipient.getServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID));
       AppDependencies.getProtocolStore().pni().sessions().archiveSessions(recipientId, SignalServiceAddress.DEFAULT_DEVICE_ID);
-      AppDependencies.getProtocolStore().pni().sessions().archiveSiblingSessions(recipient.requireServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID));
+      AppDependencies.getProtocolStore().pni().sessions().archiveSiblingSessions(recipient.getServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID));
       SignalDatabase.senderKeyShared().deleteAllFor(recipientId);
 
       result = messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.ofNullable(groupId).map(GroupId::getDecodedId), urgent);
@@ -201,7 +202,7 @@ public class ResendMessageJob extends BaseJob {
       List<SignalProtocolAddress> addresses = result.getSuccess()
                                                     .getDevices()
                                                     .stream()
-                                                    .map(device -> recipient.requireServiceId().toProtocolAddress(device))
+                                                    .map(device -> recipient.getServiceId().toProtocolAddress(device))
                                                     .collect(Collectors.toList());
 
       AppDependencies.getProtocolStore().aci().markSenderKeySharedWith(distributionId, addresses);

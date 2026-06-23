@@ -72,6 +72,12 @@ class ContactChipViewModel : ViewModel() {
     }
   }
 
+  fun isSelf(selectedContact: SelectedContact): Single<Boolean> {
+    return Single.fromCallable { Recipient.self().id == selectedContact.getOrCreateRecipientId() }
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
   private fun getOrCreateRecipientId(selectedContact: SelectedContact): Single<RecipientId> {
     return Single.fromCallable {
       selectedContact.getOrCreateRecipientId()

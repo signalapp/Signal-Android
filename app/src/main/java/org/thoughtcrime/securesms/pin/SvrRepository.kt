@@ -377,6 +377,9 @@ object SvrRepository {
 
       AppDependencies.megaphoneRepository.markFinished(Megaphones.Event.PINS_FOR_ALL)
 
+      // Clear any backed up SVR auth credentials
+      BackupManager(AppDependencies.application).dataChanged()
+
       bestEffortRefreshAttributes()
       bestEffortForcePushStorage()
     }

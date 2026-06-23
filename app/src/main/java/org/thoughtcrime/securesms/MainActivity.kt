@@ -561,6 +561,7 @@ class MainActivity :
 
         val scope = rememberCoroutineScope()
         BackHandler(paneExpansionState.currentAnchor == detailOnlyAnchor) {
+          mainNavigationViewModel.goTo(MainNavigationDetailLocation.Empty)
           scope.launch {
             paneExpansionState.animateTo(listOnlyAnchor)
           }
@@ -1052,11 +1053,26 @@ class MainActivity :
 
   private fun handleConversationIntent(intent: Intent) {
     if (ConversationIntents.isConversationIntent(intent)) {
+      if (!isTrustedConversationIntent(intent)) {
+        Log.w(TAG, "Received a conversation intent through an exported entry point. Ignoring its extras.")
+        intent.action = null
+        setIntent(intent)
+        return
+      }
+
       mainNavigationViewModel.goTo(MainNavigationListLocation.CHATS)
       mainNavigationViewModel.goTo(MainNavigationDetailLocation.Conversation(ConversationIntents.readArgsFromBundle(intent.extras!!)))
       intent.action = null
       setIntent(intent)
     }
+  }
+
+  /**
+   * While MainActivity isn't exporting, we have launcher aliases that are, so we verify that someone isn't launching us through those befre
+   * respecting various intent attributes.
+   */
+  private fun isTrustedConversationIntent(intent: Intent): Boolean {
+    return intent.component?.className == MainActivity::class.java.name
   }
 
   private fun handleGroupLinkInIntent(intent: Intent) {

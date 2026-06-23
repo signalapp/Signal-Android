@@ -6,4 +6,12 @@
   <string name="MediaSendDialogs__youll_lose_any_changes">이 사진에 적용한 모든 변경 내용이 손실됩니다.</string>
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">삭제하기</string>
+  <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
+  <string name="AddAMessageRow__add_a_message">메시지 추가</string>
+  <!-- Accessibility description for the button that opens the emoji keyboard. -->
+  <string name="AddAMessageRow__open_emoji_keyboard">Open emoji keyboard</string>
+  <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
+  <string name="AddAMessageRow__message">메시지</string>
+  <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
+  <string name="AddAMessageRow__next">다음</string>
 </resources>

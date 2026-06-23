@@ -314,12 +314,18 @@ object StorageSyncHelper {
     }
 
     if (update.new.proto.usernameLink != null) {
-      SignalStore.account.usernameLink = UsernameLinkComponents(
-        update.new.proto.usernameLink!!.entropy.toByteArray(),
-        UuidUtil.parseOrThrow(update.new.proto.usernameLink!!.serverId.toByteArray())
-      )
+      val remoteServerId = UuidUtil.parseOrNull(update.new.proto.usernameLink!!.serverId.toByteArray())
 
-      SignalStore.misc.usernameQrCodeColorScheme = StorageSyncModels.remoteToLocalUsernameColor(update.new.proto.usernameLink!!.color)
+      if (remoteServerId != null) {
+        SignalStore.account.usernameLink = UsernameLinkComponents(
+          update.new.proto.usernameLink!!.entropy.toByteArray(),
+          remoteServerId
+        )
+
+        SignalStore.misc.usernameQrCodeColorScheme = StorageSyncModels.remoteToLocalUsernameColor(update.new.proto.usernameLink!!.color)
+      } else {
+        Log.w(TAG, "Remote username link had a malformed serverId. Ignoring the username link.")
+      }
     }
 
     SignalStore.releaseChannel.releaseChannelRecipientId?.let { releaseChannelId ->

@@ -109,7 +109,7 @@ class LocalBackupRestoreViewModel(
     startRestore(backup, state.selectedFolderUri, credential, aep)
   }
 
-  private fun onRestoreComplete(state: LocalBackupRestoreState) {
+  private suspend fun onRestoreComplete(state: LocalBackupRestoreState) {
     if (state.aep != null) {
       parentEventEmitter(RegistrationFlowEvent.UserSuppliedAepVerified(state.aep))
     }
@@ -118,7 +118,7 @@ class LocalBackupRestoreViewModel(
       resultBus.sendResult(resultKey, LocalBackupRestoreResult.Success(state.aep))
       parentEventEmitter.navigateBack()
     } else {
-      parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
+      repository.finishRegistrationOrCreateProfile(parentEventEmitter)
     }
   }
 

@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.crypto;
 
 
-import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 import android.util.Base64;
@@ -110,13 +109,13 @@ public final class KeyStoreHelper {
     return result.get();
   }
 
-  @RequiresApi(Build.VERSION_CODES.M)
+  @RequiresApi(23)
   private static SecretKey getOrCreateKeyStoreEntry() {
     if (hasKeyStoreEntry()) return getKeyStoreEntry();
     else                    return createKeyStoreEntry();
   }
 
-  @RequiresApi(Build.VERSION_CODES.M)
+  @RequiresApi(23)
   private static SecretKey createKeyStoreEntry() {
     try {
       KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, ANDROID_KEY_STORE);
@@ -133,7 +132,7 @@ public final class KeyStoreHelper {
     }
   }
 
-  @RequiresApi(Build.VERSION_CODES.M)
+  @RequiresApi(23)
   private static SecretKey getKeyStoreEntry() {
     KeyStore keyStore = getKeyStore();
 
@@ -171,7 +170,7 @@ public final class KeyStoreHelper {
     }
   }
 
-  @RequiresApi(Build.VERSION_CODES.M)
+  @RequiresApi(23)
   private static boolean hasKeyStoreEntry() {
     try {
       KeyStore ks = KeyStore.getInstance(ANDROID_KEY_STORE);

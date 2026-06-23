@@ -5,12 +5,14 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
+import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -61,19 +63,19 @@ public class NullMessageSendJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    Recipient recipient = Recipient.resolved(recipientId);
+    RecipientRecord recipient = SignalDatabase.recipients().getRecord(recipientId);
 
-    if (recipient.isGroup()) {
+    if (recipient.getGroupId() != null) {
       Log.w(TAG, "Groups are not supported!");
       return;
     }
 
-    if (recipient.isUnregistered()) {
+    if (recipient.getRegistered() == RegisteredState.NOT_REGISTERED) {
       Log.w(TAG, recipient.getId() + " not registered!");
     }
 
     SignalServiceMessageSender messageSender = AppDependencies.getSignalServiceMessageSender();
-    SignalServiceAddress       address       = RecipientUtil.toSignalServiceAddress(context, recipient);
+    SignalServiceAddress       address       = RecipientUtil.toSignalServiceAddress(recipient);
 
     try {
       messageSender.sendNullMessage(address, SealedSenderAccessUtil.getSealedSenderAccessFor(recipient));

@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.providers.BlobProvider
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import java.util.concurrent.CountDownLatch
@@ -52,14 +51,20 @@ class CreateReleaseChannelJob private constructor(parameters: Parameters) : Base
 
     if (SignalStore.releaseChannel.releaseChannelRecipientId != null) {
       val existingId = SignalStore.releaseChannel.releaseChannelRecipientId!!
-      val recipient = Recipient.resolved(existingId)
+      val recipient = SignalDatabase.recipients.getRecord(existingId)
 
-      if (recipient.hasServiceId || recipient.hasE164 || recipient.isGroup || recipient.isDistributionList || recipient.isCallLink) {
-        Log.w(TAG, "Release channel recipient $existingId is not a valid release channel recipient (hasServiceId: ${recipient.hasServiceId}, hasE164: ${recipient.hasE164}, isGroup: ${recipient.isGroup}, isDistributionList: ${recipient.isDistributionList}, isCallLink: ${recipient.isCallLink}). Clearing and recreating.")
+      val hasServiceId = recipient.serviceId != null
+      val hasE164 = recipient.e164 != null
+      val isGroup = recipient.groupId != null
+      val isDistributionList = recipient.distributionListId != null
+      val isCallLink = recipient.callLinkRoomId != null
+
+      if (hasServiceId || hasE164 || isGroup || isDistributionList || isCallLink) {
+        Log.w(TAG, "Release channel recipient $existingId is not a valid release channel recipient (hasServiceId: $hasServiceId, hasE164: $hasE164, isGroup: $isGroup, isDistributionList: $isDistributionList, isCallLink: $isCallLink). Clearing and recreating.")
         SignalStore.releaseChannel.clearReleaseChannelRecipientId()
       } else {
         Log.i(TAG, "Already created Release Channel recipient $existingId")
-        if (recipient.profileAvatar.isNullOrEmpty() || !SignalStore.releaseChannel.hasUpdatedAvatar) {
+        if (recipient.signalProfileAvatar.isNullOrEmpty() || !SignalStore.releaseChannel.hasUpdatedAvatar) {
           SignalStore.releaseChannel.hasUpdatedAvatar = true
           setAvatar(recipient.id)
         }

@@ -1,1 +1,2 @@
 *.ai binary
+**/src/screenshotTest*/reference/**/*.png filter=lfs diff=lfs merge=lfs -text

@@ -24,11 +24,13 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -41,6 +43,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -57,6 +60,7 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.IconButtons.IconButton
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Scaffolds
 import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
@@ -64,6 +68,7 @@ import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryState.OneTimeEvent
 import org.signal.registration.test.TestTags
+import org.signal.core.ui.R as CoreR
 
 /**
  * Phone number entry screen
@@ -120,51 +125,7 @@ fun PhoneNumberScreen(
   }
 }
 
-@Composable
-fun TopbarMenu() {
-  Row(
-    modifier = Modifier.fillMaxWidth(),
-    horizontalArrangement = Arrangement.End
-  ) {
-    Box {
-      val menuController = remember { DropdownMenus.MenuController() }
-      IconButton(
-        onClick = { menuController.show() }
-      ) {
-        Icon(
-          imageVector = ImageVector.vectorResource(org.signal.core.ui.R.drawable.symbol_more_vertical_24),
-          contentDescription = stringResource(R.string.RegistrationActivity_open_menu)
-        )
-      }
-
-      DropdownMenus.Menu(
-        controller = menuController,
-        offsetX = 24.dp,
-        offsetY = 0.dp
-      ) {
-        DropdownMenus.Item(
-          text = {
-            Text(text = stringResource(R.string.RegistrationActivity_use_proxy))
-          },
-          onClick = {
-            // TODO: Implement use proxy
-            menuController.hide()
-          }
-        )
-        DropdownMenus.Item(
-          text = {
-            Text(text = stringResource(R.string.RegistrationActivity_link_device))
-          },
-          onClick = {
-            // TODO: Implement link device
-            menuController.hide()
-          }
-        )
-      }
-    }
-  }
-}
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OnePaneLayout(
   params: RegistrationScaffold.Params.OnePane,
@@ -175,16 +136,16 @@ private fun OnePaneLayout(
   val selectedCountryEmoji = state.countryEmoji
 
   val scrollState = rememberScrollState()
+  val topBarScrollBehavior = RegistrationScaffold.rememberTopBarScrollBehavior()
 
   OnePaneRegistrationScaffold(
     params = params,
-    topBar = {
-      TopbarMenu()
-    },
+    topBar = { TopAppBar(scrollBehavior = topBarScrollBehavior) },
     content = { paddingValues ->
       Column(
         modifier = Modifier
           .fillMaxSize()
+          .nestedScroll(topBarScrollBehavior.nestedScrollConnection)
           .verticalScroll(scrollState)
           .padding(paddingValues)
       ) {
@@ -216,7 +177,7 @@ private fun OnePaneLayout(
     },
     footer = {
       RegistrationScaffold.FooterSurface(
-        isContentScrolledUnder = scrollState.canScrollForward
+        isElevated = scrollState.canScrollForward
       ) {
         NextButton(state, onEvent)
       }
@@ -224,6 +185,7 @@ private fun OnePaneLayout(
   )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TwoPaneLayout(
   params: RegistrationScaffold.Params.TwoPane,
@@ -233,18 +195,19 @@ private fun TwoPaneLayout(
   val selectedCountry = state.countryName
   val selectedCountryEmoji = state.countryEmoji
 
-  val scrollState = rememberScrollState()
+  val firstPaneScrollState = rememberScrollState()
+  val secondPaneScrollState = rememberScrollState()
+  val topBarScrollBehavior = RegistrationScaffold.rememberTopBarScrollBehavior()
 
   TwoPaneRegistrationScaffold(
     params = params,
-    topBar = {
-      TopbarMenu()
-    },
+    topBar = { TopAppBar(scrollBehavior = topBarScrollBehavior) },
     firstPane = { paddingValues ->
       Column(
         modifier = Modifier
           .weight(1f)
-          .verticalScroll(scrollState)
+          .nestedScroll(topBarScrollBehavior.nestedScrollConnection)
+          .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
         Description()
@@ -254,7 +217,8 @@ private fun TwoPaneLayout(
       Column(
         modifier = Modifier
           .weight(1f)
-          .verticalScroll(scrollState)
+          .nestedScroll(topBarScrollBehavior.nestedScrollConnection)
+          .verticalScroll(secondPaneScrollState)
           .padding(paddingValues)
       ) {
         CountryPicker(
@@ -281,9 +245,57 @@ private fun TwoPaneLayout(
     },
     footer = {
       RegistrationScaffold.FooterSurface(
-        isContentScrolledUnder = scrollState.canScrollForward
+        isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
       ) {
         NextButton(state, onEvent)
+      }
+    }
+  )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopAppBar(
+  scrollBehavior: TopAppBarScrollBehavior
+) {
+  Scaffolds.DefaultTopAppBar(
+    title = "",
+    titleContent = { _, _ -> },
+    onNavigationClick = { },
+    navigationIcon = null,
+    scrollBehavior = scrollBehavior,
+    actions = {
+      val menuController = remember { DropdownMenus.MenuController() }
+
+      IconButton(
+        onClick = { menuController.show() },
+        modifier = Modifier.padding(horizontal = 8.dp)
+      ) {
+        Icon(
+          imageVector = ImageVector.vectorResource(CoreR.drawable.symbol_more_vertical_24),
+          contentDescription = stringResource(R.string.RegistrationActivity_open_menu)
+        )
+      }
+
+      DropdownMenus.Menu(
+        controller = menuController,
+        offsetX = 24.dp,
+        offsetY = 0.dp
+      ) {
+        DropdownMenus.Item(
+          text = { Text(text = stringResource(R.string.RegistrationActivity_use_proxy)) },
+          onClick = {
+            TODO("Handle use proxy")
+            menuController.hide()
+          }
+        )
+        DropdownMenus.Item(
+          text = { Text(text = stringResource(R.string.RegistrationActivity_link_device)) },
+          onClick = {
+            TODO("Handle link device")
+            menuController.hide()
+          }
+        )
       }
     }
   )
@@ -299,13 +311,11 @@ private fun Description() {
       .attachDebugLogHelper()
   )
 
-  Spacer(modifier = Modifier.height(16.dp))
-
   Text(
     text = stringResource(R.string.RegistrationActivity_you_will_receive_a_verification_code),
     style = MaterialTheme.typography.bodyLarge,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier.padding(top = 16.dp)
   )
 }
 

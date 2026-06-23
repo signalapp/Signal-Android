@@ -83,6 +83,7 @@ public final class UpdateDescription {
                                  stringFactory,
                                  null,
                                  glyph,
+                                 true,
                                  0,
                                  0);
   }

@@ -46,6 +46,7 @@ class RegistrationApplication : Application() {
     Log.initialize(AndroidLogger)
 
     RegistrationPreferences.init(this)
+    createDeviceTransferNotificationChannel()
 
     val trustStore = SampleTrustStore()
     val configuration = createServiceConfiguration(trustStore)
@@ -74,6 +75,16 @@ class RegistrationApplication : Application() {
         override fun provideForceSplitPane(): Boolean = false
       }
     )
+  }
+
+  private fun createDeviceTransferNotificationChannel() {
+    val manager = getSystemService(android.app.NotificationManager::class.java) ?: return
+    val channel = android.app.NotificationChannel(
+      DemoNetworkController.DEVICE_TRANSFER_NOTIFICATION_CHANNEL_ID,
+      "Device transfer",
+      android.app.NotificationManager.IMPORTANCE_LOW
+    )
+    manager.createNotificationChannel(channel)
   }
 
   private fun createPushServiceSocket(configuration: SignalServiceConfiguration): PushServiceSocket {

@@ -156,9 +156,12 @@
 
     <dimen name="wave_form_bar_width">2dp</dimen>
 
+    <dimen name="conversation_update_margin">12dp</dimen>
+    <dimen name="conversation_update_margin_wallpaper">8dp</dimen>
+    <dimen name="conversation_update_margin_compact">8dp</dimen>
+    <dimen name="conversation_update_margin_compact_wallpaper">4dp</dimen>
     <dimen name="conversation_update_vertical_margin">4dp</dimen>
-    <dimen name="conversation_update_vertical_padding">20dp</dimen>
-    <dimen name="conversation_update_vertical_padding_collapsed">4dp</dimen>
+    <dimen name="conversation_update_vertical_margin_action">12dp</dimen>
 
     <dimen name="transfer_top_padding">64dp</dimen>
     <dimen name="transfer_split_top_padding">32dp</dimen>

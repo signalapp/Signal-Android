@@ -12,9 +12,9 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.sqlite.db.SupportSQLiteQuery;
 
 import net.zetetic.database.sqlcipher.SQLiteStatement;
-import net.zetetic.database.sqlcipher.SQLiteQueryBuilder;
 import net.zetetic.database.sqlcipher.SQLiteTransactionListener;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
 
@@ -27,7 +27,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 /**
  * This is a wrapper around {@link net.zetetic.database.sqlcipher.SQLiteDatabase}. There's difficulties
@@ -37,12 +36,6 @@ import java.util.concurrent.TimeUnit;
 public class SQLiteDatabase implements SupportSQLiteDatabase {
 
   private static final String TAG = Log.tag(SQLiteDatabase.class);
-
-  private static final long SLOW_WRITE_LOCK_WAIT_MS = TimeUnit.SECONDS.toMillis(3);
-  private static final long SLOW_TRANSACTION_HOLD_MS = 750;
-  private static final long SLOW_DIRECT_WRITE_MS = 250;
-  private static final long SLOW_DIRECT_DELETE_MS = TimeUnit.SECONDS.toMillis(1);
-  private static final long SLOW_QUERY_MS = TimeUnit.SECONDS.toMillis(1);
 
   public static final int CONFLICT_ROLLBACK = 1;
   public static final int CONFLICT_ABORT    = 2;
@@ -59,8 +52,6 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
   private final net.zetetic.database.sqlcipher.SQLiteDatabase wrapped;
   private final Tracer                                        tracer;
 
-  private static volatile boolean slowWriteLoggingEnabled = false;
-
   private static final ThreadLocal<Long>          TRANSACTION_HOLD_START_NS = new ThreadLocal<>();
   private static final ThreadLocal<Set<Runnable>> PENDING_POST_SUCCESSFUL_TRANSACTION_TASKS;
   private static final ThreadLocal<Set<Runnable>> POST_SUCCESSFUL_TRANSACTION_TASKS;
@@ -70,10 +61,6 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
     POST_SUCCESSFUL_TRANSACTION_TASKS         = new ThreadLocal<>();
 
     PENDING_POST_SUCCESSFUL_TRANSACTION_TASKS.set(new LinkedHashSet<>());
-  }
-
-  public static void setSlowWriteLoggingEnabled(boolean enabled) {
-    slowWriteLoggingEnabled = enabled;
   }
 
   public SQLiteDatabase(net.zetetic.database.sqlcipher.SQLiteDatabase wrapped) {
@@ -96,19 +83,15 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
   }
 
   private void traceSql(String methodName, String query, boolean locked, Runnable returnable) {
-    traceSql(methodName, query, locked, null, null, returnable);
-  }
-
-  private void traceSql(String methodName, String query, boolean locked, String queryPlanSql, Object[] queryPlanArgs, Runnable returnable) {
     if (locked) {
       traceLockStart();
     }
 
     tracer.start(methodName, KEY_QUERY, query);
-    long startNs = slowWriteLoggingEnabled && locked ? System.nanoTime() : 0L;
+    long startNs = locked ? System.nanoTime() : 0L;
     returnable.run();
-    if (slowWriteLoggingEnabled && locked) {
-      warnIfSlowDirectWrite(methodName, null, query, queryPlanSql, queryPlanArgs, startNs);
+    if (locked) {
+      warnIfSlowDirectWrite(methodName, null, query, startNs);
     }
     tracer.end(methodName);
 
@@ -122,10 +105,6 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
   }
 
   private <E> E traceSql(String methodName, String table, String query, boolean locked, Returnable<E> returnable) {
-    return traceSql(methodName, table, query, locked, null, null, returnable);
-  }
-
-  private <E> E traceSql(String methodName, String table, String query, boolean locked, String queryPlanSql, Object[] queryPlanArgs, Returnable<E> returnable) {
     if (locked) {
       traceLockStart();
     }
@@ -139,18 +118,16 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
     }
 
     tracer.start(methodName, params);
-    long startNs = slowWriteLoggingEnabled ? System.nanoTime() : 0L;
+    long startNs = System.nanoTime();
     E result = returnable.run();
     if (result instanceof Cursor) {
       // Triggers filling the window (which is about to be done anyway), but lets us capture that time inside the trace
       ((Cursor) result).getCount();
     }
-    if (slowWriteLoggingEnabled) {
-      if (locked) {
-        warnIfSlowDirectWrite(methodName, table, query, queryPlanSql, queryPlanArgs, startNs);
-      } else {
-        warnIfSlowQuery(methodName, table, query, queryPlanSql, queryPlanArgs, startNs);
-      }
+    if (locked) {
+      warnIfSlowDirectWrite(methodName, table, query, startNs);
+    } else {
+      warnIfSlowQuery(methodName, table, query, startNs);
     }
     tracer.end(methodName);
 
@@ -274,13 +251,13 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
   @Override
   public Cursor query(SupportSQLiteQuery query) {
     DatabaseMonitor.onSql(query.getSql(), null);
-    return traceSql("query(SupportSQLiteQuery)", null, query.getSql(), false, query.getSql(), null, () -> wrapped.query(query));
+    return traceSql("query(SupportSQLiteQuery)", null, query.getSql(), false, () -> wrapped.query(query));
   }
 
   @Override
   public Cursor query(SupportSQLiteQuery query, CancellationSignal cancellationSignal) {
     DatabaseMonitor.onSql(query.getSql(), null);
-    return traceSql("query(SupportSQLiteQuery, CancellationSignal)", null, query.getSql(), false, query.getSql(), null, () -> wrapped.query(query, cancellationSignal));
+    return traceSql("query(SupportSQLiteQuery, CancellationSignal)", null, query.getSql(), false, () -> wrapped.query(query, cancellationSignal));
   }
 
   @Override
@@ -330,7 +307,7 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
       trace("beginTransaction()", wrapped::beginTransaction);
     } else {
       trace("beginTransaction()", () -> {
-        long waitStartNs = slowWriteLoggingEnabled ? System.nanoTime() : 0L;
+        long waitStartNs = System.nanoTime();
         wrapped.beginTransactionWithListener(new SQLiteTransactionListener() {
           @Override
           public void onBegin() { }
@@ -349,29 +326,28 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
             getPendingPostSuccessfulTransactionTasks().clear();
           }
         });
-        if (slowWriteLoggingEnabled) {
-          long waitMs = (System.nanoTime() - waitStartNs) / 1_000_000L;
-          if (waitMs >= SLOW_WRITE_LOCK_WAIT_MS) {
-            Log.w(TAG, "Slow write-lock acquire: waited " + waitMs + "ms to BEGIN", new Throwable());
-          }
-          TRANSACTION_HOLD_START_NS.set(System.nanoTime());
+        long waitMs = (System.nanoTime() - waitStartNs) / 1_000_000L;
+        if (waitMs >= IssueReporter.SLOW_LOCK_LOW_PRIORITY_MS) {
+          Throwable throwable = new Throwable();
+          Log.w(TAG, "Slow write-lock acquire: waited " + waitMs + "ms to BEGIN", throwable);
+          IssueReporter.noteSlowDatabaseLockAcquire(waitMs, throwable);
         }
+        TRANSACTION_HOLD_START_NS.set(System.nanoTime());
       });
     }
   }
 
   public void endTransaction() {
-    Long holdStartNs = slowWriteLoggingEnabled ? TRANSACTION_HOLD_START_NS.get() : null;
+    Long holdStartNs = TRANSACTION_HOLD_START_NS.get();
     trace("endTransaction()", wrapped::endTransaction);
     traceLockEnd();
     if (holdStartNs != null && !wrapped.inTransaction()) {
       TRANSACTION_HOLD_START_NS.remove();
-      if (slowWriteLoggingEnabled) {
-        long holdMs = (System.nanoTime() - holdStartNs) / 1_000_000L;
-        if (holdMs >= SLOW_TRANSACTION_HOLD_MS) {
-          Log.w(TAG, "Slow transaction: held write lock for " + holdMs + "ms", new Throwable());
-          SlowTransactionInternalNotifier.onSlowEvent();
-        }
+      long holdMs = (System.nanoTime() - holdStartNs) / 1_000_000L;
+      if (holdMs >= IssueReporter.SLOW_WRITE_LOW_PRIORITY_MS) {
+        Throwable throwable = new Throwable();
+        Log.w(TAG, "Slow transaction: held write lock for " + holdMs + "ms", throwable);
+        IssueReporter.noteSlowDatabaseWrite("transaction hold", holdMs, throwable);
       }
     }
     Set<Runnable> tasks = getPostSuccessfulTransactionTasks();
@@ -387,42 +363,42 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
 
   public Cursor query(boolean distinct, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
     DatabaseMonitor.onQuery(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
-    return traceSql("query(9)", table, selection, false, buildQueryPlanSql(distinct, table, columns, selection, groupBy, having, orderBy, limit), selectionArgs, () -> wrapped.query(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit));
+    return traceSql("query(9)", table, selection, false, () -> wrapped.query(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit));
   }
 
   public Cursor queryWithFactory(net.zetetic.database.sqlcipher.SQLiteDatabase.CursorFactory cursorFactory, boolean distinct, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
     DatabaseMonitor.onQuery(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
-    return traceSql("queryWithFactory()", table, selection, false, buildQueryPlanSql(distinct, table, columns, selection, groupBy, having, orderBy, limit), selectionArgs, () -> wrapped.queryWithFactory(cursorFactory, distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit));
+    return traceSql("queryWithFactory()", table, selection, false, () -> wrapped.queryWithFactory(cursorFactory, distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit));
   }
 
   public Cursor query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy) {
     DatabaseMonitor.onQuery(false, table, columns, selection, selectionArgs, groupBy, having, orderBy, null);
-    return traceSql("query(7)", table, selection, false, buildQueryPlanSql(false, table, columns, selection, groupBy, having, orderBy, null), selectionArgs, () -> wrapped.query(table, columns, selection, selectionArgs, groupBy, having, orderBy));
+    return traceSql("query(7)", table, selection, false, () -> wrapped.query(table, columns, selection, selectionArgs, groupBy, having, orderBy));
   }
 
   public Cursor query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
     DatabaseMonitor.onQuery(false, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
-    return traceSql("query(8)", table, selection, false, buildQueryPlanSql(false, table, columns, selection, groupBy, having, orderBy, limit), selectionArgs, () -> wrapped.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit));
+    return traceSql("query(8)", table, selection, false, () -> wrapped.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit));
   }
 
   public Cursor rawQuery(String sql, String[] selectionArgs) {
     DatabaseMonitor.onSql(sql, selectionArgs);
-    return traceSql("rawQuery(2a)", null, sql, false, sql, selectionArgs, () -> wrapped.rawQuery(sql, selectionArgs));
+    return traceSql("rawQuery(2a)", null, sql, false, () -> wrapped.rawQuery(sql, selectionArgs));
   }
 
   public Cursor rawQuery(String sql, Object... args) {
     DatabaseMonitor.onSql(sql, args);
-    return traceSql("rawQuery(2b)", null, sql, false, sql, args, () -> wrapped.rawQuery(sql, args));
+    return traceSql("rawQuery(2b)", null, sql, false, () -> wrapped.rawQuery(sql, args));
   }
 
   public Cursor rawQueryWithFactory(net.zetetic.database.sqlcipher.SQLiteDatabase.CursorFactory cursorFactory, String sql, String[] selectionArgs, String editTable) {
     DatabaseMonitor.onSql(sql, selectionArgs);
-    return traceSql("rawQueryWithFactory()", null, sql, false, sql, selectionArgs, () -> wrapped.rawQueryWithFactory(cursorFactory, sql, selectionArgs, editTable));
+    return traceSql("rawQueryWithFactory()", null, sql, false, () -> wrapped.rawQueryWithFactory(cursorFactory, sql, selectionArgs, editTable));
   }
 
   public Cursor rawQuery(String sql, String[] selectionArgs, int initialRead, int maxRead) {
     DatabaseMonitor.onSql(sql, selectionArgs);
-    return traceSql("rawQuery(4)", null, sql, false, sql, selectionArgs, () -> rawQuery(sql, selectionArgs, initialRead, maxRead));
+    return traceSql("rawQuery(4)", null, sql, false, () -> wrapped.rawQuery(sql, selectionArgs, initialRead, maxRead));
   }
 
   public long insert(String table, String nullColumnHack, ContentValues values) {
@@ -447,17 +423,17 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
 
   public int delete(String table, String whereClause, String[] whereArgs) {
     DatabaseMonitor.onDelete(table, whereClause, whereArgs);
-    return traceSql("delete()", table, whereClause, true, buildDeletePlanSql(table, whereClause), whereArgs, () -> wrapped.delete(table, whereClause, whereArgs));
+    return traceSql("delete()", table, whereClause, true, () -> wrapped.delete(table, whereClause, whereArgs));
   }
 
   public int update(String table, ContentValues values, String whereClause, String[] whereArgs) {
     DatabaseMonitor.onUpdate(table, values, whereClause, whereArgs);
-    return traceSql("update()", table, whereClause, true, buildUpdatePlanSql(table, values, whereClause, CONFLICT_NONE), buildUpdatePlanArgs(values, whereArgs), () -> wrapped.update(table, values, whereClause, whereArgs));
+    return traceSql("update()", table, whereClause, true, () -> wrapped.update(table, values, whereClause, whereArgs));
   }
 
   public int updateWithOnConflict(String table, ContentValues values, String whereClause, String[] whereArgs, int conflictAlgorithm) {
     DatabaseMonitor.onUpdate(table, values, whereClause, whereArgs);
-    return traceSql("updateWithOnConflict()", table, whereClause, true, buildUpdatePlanSql(table, values, whereClause, conflictAlgorithm), buildUpdatePlanArgs(values, whereArgs), () -> wrapped.updateWithOnConflict(table, values, whereClause, whereArgs, conflictAlgorithm));
+    return traceSql("updateWithOnConflict()", table, whereClause, true, () -> wrapped.updateWithOnConflict(table, values, whereClause, whereArgs, conflictAlgorithm));
   }
 
   public void execSQL(String sql) throws SQLException {
@@ -576,146 +552,27 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
     wrapped.setLocale(locale);
   }
 
-  private static String buildQueryPlanSql(boolean distinct, String table, String[] columns, String selection, String groupBy, String having, String orderBy, String limit) {
-    try {
-      return SQLiteQueryBuilder.buildQueryString(distinct, table, columns, selection, groupBy, having, orderBy, limit);
-    } catch (Throwable t) {
-      return null;
-    }
-  }
-
-  private static String buildDeletePlanSql(String table, String whereClause) {
-    try {
-      StringBuilder sql = new StringBuilder(120);
-      sql.append("DELETE FROM ").append(table);
-      if (whereClause != null && whereClause.length() > 0) {
-        sql.append(" WHERE ").append(whereClause);
-      }
-      return sql.toString();
-    } catch (Throwable t) {
-      return null;
-    }
-  }
-
-  private static String buildUpdatePlanSql(String table, ContentValues values, String whereClause, int conflictAlgorithm) {
-    try {
-      StringBuilder sql = new StringBuilder(120);
-      sql.append("UPDATE").append(getConflictClause(conflictAlgorithm)).append(" ").append(table).append(" SET ");
-
-      boolean needsSeparator = false;
-      for (Map.Entry<String, Object> entry : values.valueSet()) {
-        if (needsSeparator) {
-          sql.append(",");
-        }
-        sql.append(entry.getKey()).append("=?");
-        needsSeparator = true;
-      }
-
-      if (whereClause != null && whereClause.length() > 0) {
-        sql.append(" WHERE ").append(whereClause);
-      }
-
-      return sql.toString();
-    } catch (Throwable t) {
-      return null;
-    }
-  }
-
-  private static Object[] buildUpdatePlanArgs(ContentValues values, String[] whereArgs) {
-    try {
-      int      valuesSize = values.size();
-      int      whereSize  = whereArgs != null ? whereArgs.length : 0;
-      Object[] bindArgs   = new Object[valuesSize + whereSize];
-      int      index      = 0;
-
-      for (Map.Entry<String, Object> entry : values.valueSet()) {
-        bindArgs[index++] = entry.getValue();
-      }
-
-      if (whereArgs != null) {
-        for (String whereArg : whereArgs) {
-          bindArgs[index++] = whereArg;
-        }
-      }
-
-      return bindArgs;
-    } catch (Throwable t) {
-      return null;
-    }
-  }
-
-  private static String getConflictClause(int conflictAlgorithm) {
-    switch (conflictAlgorithm) {
-      case CONFLICT_ROLLBACK:
-        return " OR ROLLBACK";
-      case CONFLICT_ABORT:
-        return " OR ABORT";
-      case CONFLICT_FAIL:
-        return " OR FAIL";
-      case CONFLICT_IGNORE:
-        return " OR IGNORE";
-      case CONFLICT_REPLACE:
-        return " OR REPLACE";
-      case CONFLICT_NONE:
-      default:
-        return "";
-    }
-  }
-
-  private void warnIfSlowDirectWrite(String methodName, String table, String query, String queryPlanSql, Object[] queryPlanArgs, long startNs) {
-    if (!slowWriteLoggingEnabled || wrapped.inTransaction()) {
+  private void warnIfSlowDirectWrite(String methodName, String table, String query, long startNs) {
+    if (wrapped.inTransaction()) {
       return;
     }
 
     long elapsedMs = (System.nanoTime() - startNs) / 1_000_000L;
 
-    long threshold = "delete()".equals(methodName) ? SLOW_DIRECT_DELETE_MS : SLOW_DIRECT_WRITE_MS;
-
-    if (elapsedMs >= threshold) {
-      Log.w(TAG, "Slow direct write: " + methodName + " on " + table + " took " + elapsedMs + "ms (query=" + query + ")", new Throwable());
-      logQueryPlan(methodName, queryPlanSql, queryPlanArgs);
+    if (elapsedMs >= IssueReporter.SLOW_WRITE_LOW_PRIORITY_MS) {
+      Throwable throwable = new Throwable();
+      Log.w(TAG, "Slow direct write: " + methodName + " on " + table + " took " + elapsedMs + "ms (query=" + query + ")", throwable);
+      IssueReporter.noteSlowDatabaseWrite(query, elapsedMs, throwable);
     }
   }
 
-  private void warnIfSlowQuery(String methodName, String table, String query, String queryPlanSql, Object[] queryPlanArgs, long startNs) {
-    if (!slowWriteLoggingEnabled) {
-      return;
-    }
-
+  private void warnIfSlowQuery(String methodName, String table, String query, long startNs) {
     long elapsedMs = (System.nanoTime() - startNs) / 1_000_000L;
 
-    if (elapsedMs >= SLOW_QUERY_MS) {
-      Log.w(TAG, "Slow query: " + methodName + " on " + table + " took " + elapsedMs + "ms (query=" + query + ")", new Throwable());
-      logQueryPlan(methodName, queryPlanSql, queryPlanArgs);
-      SlowTransactionInternalNotifier.onSlowEvent();
-    }
-  }
-
-  private void logQueryPlan(String methodName, String queryPlanSql, Object[] queryPlanArgs) {
-    if (queryPlanSql == null) {
-      return;
-    }
-
-    try (Cursor cursor = queryPlanArgs != null ? wrapped.rawQuery("EXPLAIN QUERY PLAN " + queryPlanSql, queryPlanArgs)
-                                               : wrapped.rawQuery("EXPLAIN QUERY PLAN " + queryPlanSql, (String[]) null))
-    {
-      StringBuilder plan = new StringBuilder();
-      while (cursor.moveToNext()) {
-        if (plan.length() > 0) {
-          plan.append('\n');
-        }
-        plan.append(cursor.getInt(0))
-            .append('|')
-            .append(cursor.getInt(1))
-            .append('|')
-            .append(cursor.getInt(2))
-            .append('|')
-            .append(cursor.getString(3));
-      }
-
-      Log.w(TAG, "Slow query plan: " + methodName + " (query=" + queryPlanSql + ")\n" + plan);
-    } catch (Throwable t) {
-      Log.w(TAG, "Failed to log slow query plan: " + methodName + " (query=" + queryPlanSql + ")", t);
+    if (elapsedMs >= IssueReporter.SLOW_READ_LOW_PRIORITY_MS) {
+      Throwable throwable = new Throwable();
+      Log.w(TAG, "Slow query: " + methodName + " on " + table + " took " + elapsedMs + "ms (query=" + query + ")", throwable);
+      IssueReporter.noteSlowDatabaseRead(query, elapsedMs, throwable);
     }
   }
 

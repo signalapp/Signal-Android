@@ -12,11 +12,15 @@ import assertk.assertions.isFalse
 import assertk.assertions.isInstanceOf
 import assertk.assertions.isTrue
 import assertk.assertions.prop
+import io.mockk.mockk
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 import org.signal.registration.PendingRestoreOption
 import org.signal.registration.RegistrationFlowEvent
+import org.signal.registration.RegistrationFlowState
+import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
 
 class ArchiveRestoreSelectionViewModelTest {
@@ -45,6 +49,8 @@ class ArchiveRestoreSelectionViewModelTest {
     return ArchiveRestoreSelectionViewModel(
       restoreOptions = restoreOptions,
       isPreRegistration = isPreRegistration,
+      repository = mockk<RegistrationRepository>(relaxed = true),
+      parentState = MutableStateFlow(RegistrationFlowState()),
       parentEventEmitter = parentEventEmitter
     )
   }
@@ -132,7 +138,7 @@ class ArchiveRestoreSelectionViewModelTest {
   }
 
   @Test
-  fun `DeviceTransfer is not implemented and emits no events`() = runTest {
+  fun `DeviceTransfer navigates to DeviceTransferInstructions`() = runTest {
     val viewModel = createViewModel(isPreRegistration = false)
     val initialState = ArchiveRestoreSelectionState()
 
@@ -142,7 +148,11 @@ class ArchiveRestoreSelectionViewModelTest {
       stateEmitter
     )
 
-    assertThat(emittedParentEvents).hasSize(0)
+    assertThat(emittedParentEvents).hasSize(1)
+    assertThat(emittedParentEvents.first())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isEqualTo(RegistrationRoute.DeviceTransferInstructions)
   }
 
   @Test

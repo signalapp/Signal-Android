@@ -10,6 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.signal.core.util.ListUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
+import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -20,7 +23,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.signal.core.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -117,9 +119,9 @@ public class MultiDeviceViewedUpdateJob extends BaseJob {
     List<ViewedMessage> viewedMessages = new LinkedList<>();
 
     for (SerializableSyncMessageId messageId : messageIds) {
-      Recipient recipient = Recipient.resolved(RecipientId.from(messageId.recipientId));
-      if (!recipient.isGroup() && recipient.isMaybeRegistered()) {
-        viewedMessages.add(new ViewedMessage(RecipientUtil.getOrFetchServiceId(context, recipient), messageId.timestamp));
+      RecipientRecord recipient = SignalDatabase.recipients().getRecord(RecipientId.from(messageId.recipientId));
+      if (recipient.getGroupId() == null && recipient.getRegistered() != RegisteredState.NOT_REGISTERED && recipient.getServiceId() != null) {
+        viewedMessages.add(new ViewedMessage(recipient.getServiceId(), messageId.timestamp));
       }
     }
 

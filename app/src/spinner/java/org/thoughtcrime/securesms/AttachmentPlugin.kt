@@ -6,9 +6,9 @@
 package org.thoughtcrime.securesms
 
 import okio.IOException
+import org.signal.core.models.database.AttachmentId
 import org.signal.spinner.Plugin
 import org.signal.spinner.PluginResult
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 

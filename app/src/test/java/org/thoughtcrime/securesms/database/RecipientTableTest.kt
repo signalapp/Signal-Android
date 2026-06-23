@@ -9,6 +9,7 @@ import android.app.Application
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -180,6 +181,27 @@ class RecipientTableTest {
     assertEquals(mainId, byAci)
     assertEquals(byE164, byPni)
     assertNotEquals(byAci, byE164)
+  }
+
+  @Test
+  fun givenAnAlreadySyncedRecipient_whenIMarkItUnregistered_thenItsStorageIdRotatesSoTheChangePublishes() {
+    // GIVEN a registered contact that already has a storage service id
+    val mainId = SignalDatabase.recipients.getAndPossiblyMerge(ACI_A, PNI_A, E164_A)
+    SignalDatabase.recipients.markRegistered(mainId, ACI_A)
+
+    val originalStorageId: ByteArray? = SignalDatabase.recipients.getRecord(mainId).storageId
+    assertNotNull("Precondition: an already-synced contact should have a storage id", originalStorageId)
+
+    // WHEN it is marked unregistered
+    SignalDatabase.recipients.markUnregistered(mainId)
+
+    // THEN its storage id must rotate
+    val updatedStorageId: ByteArray? = SignalDatabase.recipients.getRecord(mainId).storageId
+    assertNotNull("Storage id should still be set after unregistering an already-synced contact", updatedStorageId)
+    assertFalse(
+      "Storage id should rotate when an already-synced contact is unregistered, so the change publishes to storage service",
+      originalStorageId!!.contentEquals(updatedStorageId!!)
+    )
   }
 
   companion object {

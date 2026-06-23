@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.api.services;
 
-import org.signal.libsignal.protocol.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse;

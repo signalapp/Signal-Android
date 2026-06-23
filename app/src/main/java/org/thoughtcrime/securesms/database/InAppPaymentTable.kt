@@ -14,7 +14,7 @@ import androidx.core.content.contentValuesOf
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.TypeParceler
-import org.signal.core.util.DatabaseId
+import org.signal.core.models.database.DatabaseId
 import org.signal.core.util.DatabaseSerializer
 import org.signal.core.util.Serializer
 import org.signal.core.util.delete

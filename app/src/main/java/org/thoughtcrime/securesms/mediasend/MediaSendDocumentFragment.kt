@@ -1,22 +1,18 @@
 package org.thoughtcrime.securesms.mediasend
 
-import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
-import android.provider.OpenableColumns
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import org.signal.core.models.media.Media
 import org.signal.core.util.bytes
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.mms.PartAuthority
-import org.thoughtcrime.securesms.util.MediaUtil
-import java.io.IOException
-import java.util.Optional
+import org.thoughtcrime.securesms.mediasend.MediaSendDocumentViewModel.DocumentInfo
 import org.signal.core.ui.R as CoreUiR
 
 /**
@@ -43,6 +39,10 @@ class MediaSendDocumentFragment : Fragment(R.layout.mediasend_document_fragment)
   private lateinit var uri: Uri
   private lateinit var media: Media
 
+  private val viewModel: MediaSendDocumentViewModel by viewModels {
+    MediaSendDocumentViewModel.Factory(media)
+  }
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
@@ -52,24 +52,28 @@ class MediaSendDocumentFragment : Fragment(R.layout.mediasend_document_fragment)
 
     this.media = requireNotNull(requireArguments().getParcelableCompat(KEY_MEDIA, Media::class.java))
 
-    val fileInfo: Pair<String?, Long>? = getFileInfo()
-    if (fileInfo != null) {
-      media.fileName = fileInfo.first
-      name.text = fileInfo.first ?: getString(R.string.DocumentView_unnamed_file)
-      size.text = fileInfo.second.bytes.toUnitString()
+    viewModel.documentInfo.observe(viewLifecycleOwner) { documentInfoOptional ->
+      val documentInfo: DocumentInfo? = documentInfoOptional.orElse(null)
+      if (documentInfo != null) {
+        media.fileName = documentInfo.fileName
 
-      val extensionText: String = MediaUtil.getFileType(requireContext(), Optional.ofNullable(fileInfo.first), media.uri).orElse("")
-      if (extensionText.length <= 3) {
-        extension.text = extensionText
-        extension.setTextAppearance(requireContext(), CoreUiR.style.Signal_Text_BodySmall)
-      } else if (extensionText.length == 4) {
-        extension.text = extensionText
-        extension.setTextAppearance(requireContext(), CoreUiR.style.Signal_Text_Caption)
+        name.text = documentInfo.fileName ?: getString(R.string.DocumentView_unnamed_file)
+        size.text = documentInfo.fileSize.bytes.toUnitString()
+
+        if (documentInfo.extension.length <= 3) {
+          extension.text = documentInfo.extension
+          extension.setTextAppearance(requireContext(), CoreUiR.style.Signal_Text_BodySmall)
+        } else if (documentInfo.extension.length == 4) {
+          extension.text = documentInfo.extension
+          extension.setTextAppearance(requireContext(), CoreUiR.style.Signal_Text_Caption)
+        }
+      } else {
+        Toast.makeText(requireContext(), R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment, Toast.LENGTH_SHORT).show()
+        requireActivity().finishAfterTransition()
       }
-    } else {
-      Toast.makeText(requireContext(), R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment, Toast.LENGTH_SHORT).show()
-      requireActivity().finishAfterTransition()
     }
+
+    viewModel.loadDocumentInfo()
   }
 
   override fun getUri(): Uri {
@@ -85,57 +89,4 @@ class MediaSendDocumentFragment : Fragment(R.layout.mediasend_document_fragment)
   override fun restoreState(state: Any) = Unit
 
   override fun notifyHidden() = Unit
-
-  private fun getFileInfo(): Pair<String?, Long>? {
-    val fileInfo: Pair<String?, Long>
-    try {
-      if (PartAuthority.isLocalUri(uri)) {
-        fileInfo = getManuallyCalculatedFileInfo(uri)
-      } else {
-        val result = getContentResolverFileInfo(uri)
-        fileInfo = if ((result == null)) getManuallyCalculatedFileInfo(uri) else result
-      }
-    } catch (e: IOException) {
-      Log.w(TAG, e)
-      return null
-    }
-
-    return fileInfo
-  }
-
-  @Throws(IOException::class)
-  private fun getManuallyCalculatedFileInfo(uri: Uri): Pair<String?, Long> {
-    var fileName: String? = null
-    var fileSize: Long? = null
-
-    if (PartAuthority.isLocalUri(uri)) {
-      fileSize = PartAuthority.getAttachmentSize(requireContext(), uri)
-      fileName = PartAuthority.getAttachmentFileName(requireContext(), uri)
-    }
-    if (fileSize == null) {
-      fileSize = MediaUtil.getMediaSize(context, uri)
-    }
-
-    return Pair(fileName, fileSize)
-  }
-
-  private fun getContentResolverFileInfo(uri: Uri): Pair<String, Long>? {
-    var cursor: Cursor? = null
-
-    try {
-      cursor = requireContext().contentResolver.query(uri, null, null, null, null)
-
-      if (cursor != null && cursor.moveToFirst()) {
-        val fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME))
-        val fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE))
-        media.fileName = fileName
-
-        return Pair(fileName, fileSize)
-      }
-    } finally {
-      cursor?.close()
-    }
-
-    return null
-  }
 }

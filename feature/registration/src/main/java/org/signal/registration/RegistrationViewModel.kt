@@ -83,6 +83,7 @@ class RegistrationViewModel(private val repository: RegistrationRepository, save
       }
       is RegistrationFlowEvent.RecoveryPasswordInvalid -> state.copy(doNotAttemptRecoveryPassword = true)
       is RegistrationFlowEvent.PendingRestoreOptionSelected -> state.copy(pendingRestoreOption = event.option)
+      is RegistrationFlowEvent.RestoreMethodTokenReceived -> state.copy(restoreMethodToken = event.token)
       is RegistrationFlowEvent.UserSuppliedAepSubmitted -> state.copy(unverifiedRestoredAep = event.aep)
       is RegistrationFlowEvent.UserSuppliedAepVerified -> {
         repository.saveVerifiedUserSuppliedAep(event.aep)
@@ -187,6 +188,7 @@ class RegistrationViewModel(private val repository: RegistrationRepository, save
       is RegistrationFlowEvent.E164Chosen,
       is RegistrationFlowEvent.RecoveryPasswordInvalid,
       is RegistrationFlowEvent.PendingRestoreOptionSelected,
+      is RegistrationFlowEvent.RestoreMethodTokenReceived,
       is RegistrationFlowEvent.UserSuppliedAepSubmitted,
       is RegistrationFlowEvent.UserSuppliedAepVerified -> repository.saveFlowState(_state.value)
       is RegistrationFlowEvent.RegistrationComplete -> repository.clearFlowState()

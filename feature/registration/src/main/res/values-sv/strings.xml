@@ -316,7 +316,7 @@
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
     <string name="PinCreationScreen__confirm_your_pin">Bekräfta din pinkod</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">Ange den pinkod du just skapat igen</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">Pinkoder kan hjälpa dig att återställa ditt konto om du tappar bort din telefon. </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -357,7 +357,7 @@
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">Tillåt aviseringar</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal vill begära behörighet att skicka aviseringar. Det gör att enheten kan visa aviseringar när nya meddelanden kommer in.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">Inte nu</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -366,36 +366,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">Synkronisera meddelanden</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">Detta kan ta några minuter …</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">Laddar ned %1$s av %2$s</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Meddelanden och chattinformation skyddas av totalstreckskryptering, inklusive synkroniseringsprocessen.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">Läs mer</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">Avbryt</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Skanna den här koden för att länka ditt konto</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">Öppna Signal på din telefon</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tryck på din profilbild för att öppna Signal-inställningar</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tryck på \"Länkade enheter\" och \"Länka ny enhet\"</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Rikta kameran mot den här QR-koden</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">Få hjälp med dessa steg</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">Maximera QR-kod</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">Skannad</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">Det gick inte att generera kod</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Har du inte Signal på en annan enhet?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">Skapa konto</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">Överför ditt konto</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">För att överföra ditt konto öppnar du Signal på din gamla Android-enhet och väljer Överför konto.</string>
+    <string name="DeviceTransferInstructions__continue">Fortsätt</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">Förbereder för anslutning till gammal Android-enhet…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">Det kan ta en stund. Borde vara klart snart.</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">Väntar på att din gamla enhet ska ansluta …</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">Verifiera att siffrorna matchar på båda enheterna</string>
+    <string name="DeviceTransferSetup__numbers_match">Ja, siffrorna matchar</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">Siffrorna matchar inte</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">Väntar på att din gamla enhet ska verifiera …</string>
+    <string name="DeviceTransferSetup__location_permission_required">Signal behöver platsbehörighet för att hitta och ansluta till din gamla enhet.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">Bevilja behörighet</string>
+    <string name="DeviceTransferSetup__location_services_required">Signal behöver platstjänster aktiverade för att upptäcka och ansluta till din gamla enhet.</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">Aktivera platstjänster</string>
+    <string name="DeviceTransferSetup__wifi_required">Signal behöver wifi påslaget för att hitta och ansluta till din gamla enhet.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">Aktivera Wi-Fi</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">Det verkar som att din enhet inte har stöd för Wi-Fi Direct.</string>
+    <string name="DeviceTransferSetup__restore_a_backup">Återställ en säkerhetskopia istället</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">Ett oväntat fel uppstod när du försökte ansluta till din gamla enhet.</string>
+    <string name="DeviceTransferSetup__retry">Försök igen</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">Det gick inte att upptäcka din gamla enhet</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• Se till att alla platsbehörigheter är beviljade.\n• Se till att wifi är påslaget och att inga Wi-Fi Direct-grupper är ihågkomna.\n• Försök med att inaktivera och aktivera wifi på båda enheterna.• Se till att båda enheterna är i överföringsläge.</string>
+    <string name="DeviceTransferSetup__try_again">Försök igen</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">Siffrorna matchar inte</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">Om numren på dina enheter inte stämmer överens kan det hända att du har anslutit till fel enhet.</string>
+    <string name="DeviceTransferSetup__stop_transfer">Stoppa överföringen</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">Överför data</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">%1$d meddelanden än så länge</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">Det gick inte att överföra</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">Det går inte att överföra från en nyare version av Signal.</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">Vissa data kunde inte överföras på grund av en databasbegränsning.</string>
+    <string name="DeviceTransferProgress__transfer_failed">Överföringen misslyckades. Försök igen.</string>
+    <string name="DeviceTransferProgress__try_again">Försök igen</string>
+    <string name="DeviceTransferProgress__cancel">Avbryt</string>
+    <string name="DeviceTransferProgress__stop_transfer">Stoppa överföringen?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">Alla överföringsförlopp kommer att gå förlorade.</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">Överföringen slutförd</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">Ditt konto finns nu på den här enheten.</string>
+    <string name="DeviceTransferComplete__continue_registration">Fortsätt</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">Ställ in din profil</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">Din profil och ändringar till den kommer att vara synliga för personer som du skickar ett meddelande till, samt till dina kontakter och grupper.</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">Förnamn (obligatoriskt)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">Efternamn (valfritt)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">Nästa</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">Ställ in avatar</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Vem kan hitta mig med nummer?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Alla som har ditt telefonnummer ser att du är på Signal och kan börja chatta med dig.</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Ingen kommer att kunna se att du är på Signal om du inte skickar ett meddelande eller har en befintlig chatt med dem.</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">Alla</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">Ingen</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Är du säker?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Om du ställer in \"Vem kan hitta mig med nummer\" till \"Ingen\" blir det svårare för andra att hitta dig på Signal.</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Avbryt</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">Spara</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">Tillbaka</string>
 </resources>

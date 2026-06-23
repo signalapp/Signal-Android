@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.crash
 
-import android.app.Application
 import assertk.assertThat
 import assertk.assertions.containsExactly
 import assertk.assertions.isEmpty
@@ -9,23 +8,13 @@ import io.mockk.mockkObject
 import io.mockk.unmockkAll
 import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
 import org.signal.core.models.ServiceId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.UUID
 
-@RunWith(RobolectricTestRunner::class)
-@Config(manifest = Config.NONE, application = Application::class)
 class CrashConfigTest {
-  @get:Rule
-  val appDependencies = MockAppDependenciesRule()
-
   @Before
   fun setup() {
     mockkObject(RemoteConfig)

@@ -14,7 +14,7 @@ import androidx.core.provider.DocumentsContractCompat;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.signal.core.models.database.AttachmentId;
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
 import org.signal.core.models.media.TransformProperties;
 import org.thoughtcrime.securesms.database.SignalDatabase;

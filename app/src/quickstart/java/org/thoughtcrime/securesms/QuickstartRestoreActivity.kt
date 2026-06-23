@@ -125,7 +125,7 @@ class QuickstartRestoreActivity : BaseActivity() {
   }
 
   private fun hasStorageAccess(): Boolean {
-    return Build.VERSION.SDK_INT < Build.VERSION_CODES.R || Environment.isExternalStorageManager()
+    return Build.VERSION.SDK_INT < 30 || Environment.isExternalStorageManager()
   }
 
   private fun startRestore() {

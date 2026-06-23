@@ -42,7 +42,7 @@ import org.signal.archive.proto.GroupChangeChatUpdate;
 import org.signal.archive.proto.GroupCreationUpdate;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
-import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
+import org.thoughtcrime.securesms.components.transfercontrols.TransferControls;
 import org.thoughtcrime.securesms.database.CollapsedState;
 import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -963,7 +963,7 @@ public abstract class MessageRecord extends DisplayRecord {
       if (slides.isEmpty()) {
         return false;
       }
-      return TransferControlView.getTransferState(slides) == expectedTransferState;
+      return TransferControls.getTransferState(slides) == expectedTransferState;
     }
     return false;
   }

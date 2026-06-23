@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.BidiUtil;
 import org.signal.core.util.StringUtil;
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -143,24 +144,27 @@ class EditProfileViewModel extends ViewModel {
       return;
     }
 
-    byte[] oldAvatar      = originalAvatar.getValue();
-    byte[] newAvatar      = internalAvatar.getValue();
-    String oldDisplayName = isGroup() ? originalDisplayName.getValue() : null;
-    String oldDescription = isGroup() ? originalDescription : null;
+    byte[]  oldAvatar      = originalAvatar.getValue();
+    byte[]  newAvatar      = internalAvatar.getValue();
+    String  oldDisplayName = isGroup() ? originalDisplayName.getValue() : null;
+    String  oldDescription = isGroup() ? originalDescription : null;
+    boolean isGroup        = isGroup();
 
-    if (!isGroup() && SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.UNDECIDED) {
-      Log.i(TAG, "Phone number discoverability mode is still UNDECIDED. Setting to DISCOVERABLE.");
-      SignalStore.phoneNumberPrivacy().setPhoneNumberDiscoverabilityMode(PhoneNumberDiscoverabilityMode.DISCOVERABLE);
-    }
+    SignalExecutors.BOUNDED.execute(() -> {
+      if (!isGroup && SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.UNDECIDED) {
+        Log.i(TAG, "Phone number discoverability mode is still UNDECIDED. Setting to DISCOVERABLE.");
+        SignalStore.phoneNumberPrivacy().setPhoneNumberDiscoverabilityMode(PhoneNumberDiscoverabilityMode.DISCOVERABLE);
+      }
 
-    repository.uploadProfile(profileName,
-                             displayName,
-                             !Objects.equals(BidiUtil.stripBidiProtection(oldDisplayName), displayName),
-                             description,
-                             !Objects.equals(BidiUtil.stripBidiProtection(oldDescription), description),
-                             newAvatar,
-                             !Arrays.equals(oldAvatar, newAvatar),
-                             uploadResult::postValue);
+      repository.uploadProfile(profileName,
+                               displayName,
+                               !Objects.equals(BidiUtil.stripBidiProtection(oldDisplayName), displayName),
+                               description,
+                               !Objects.equals(BidiUtil.stripBidiProtection(oldDescription), description),
+                               newAvatar,
+                               !Arrays.equals(oldAvatar, newAvatar),
+                               uploadResult::postValue);
+    });
   }
 
   static class Factory implements ViewModelProvider.Factory {

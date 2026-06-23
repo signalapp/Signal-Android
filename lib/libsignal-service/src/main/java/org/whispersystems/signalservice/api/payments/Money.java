@@ -208,10 +208,10 @@ public abstract class Money {
     }
 
     /**
-     * The value expressed in Mobile coin.
+     * The value expressed in Mobile coin as a plain decimal string (never scientific notation).
      */
     public String getAmountDecimalString() {
-      return amountDecimal.toString();
+      return amountDecimal.toPlainString();
     }
 
     public boolean greaterThan(MobileCoin other) {

@@ -10,6 +10,7 @@ import assertk.assertions.hasSize
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNull
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -62,7 +63,7 @@ class PinCreationViewModelTest {
   // ==================== PinSubmitted Success Tests ====================
 
   @Test
-  fun `PinSubmitted with valid AEP and successful SVR backup emits RegistrationComplete`() = runTest(testDispatcher) {
+  fun `PinSubmitted with valid AEP and successful SVR backup hands off to finishRegistrationOrCreateProfile`() = runTest(testDispatcher) {
     val aep = AccountEntropyPool.generate()
     val initialState = PinCreationState(accountEntropyPool = aep)
 
@@ -71,8 +72,7 @@ class PinCreationViewModelTest {
 
     viewModel.applyEvent(initialState, PinCreationScreenEvents.PinSubmitted("123456"))
 
-    assertThat(emittedParentEvents).hasSize(1)
-    assertThat(emittedParentEvents.first()).isEqualTo(RegistrationFlowEvent.RegistrationComplete)
+    coVerify { mockRepository.finishRegistrationOrCreateProfile(parentEventEmitter, any()) }
   }
 
   // ==================== PinSubmitted Missing AEP Test ====================

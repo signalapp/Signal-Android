@@ -103,6 +103,7 @@ public class SubmitDebugLogRepository {
     }
     add(new LogSectionDatabaseSchema());
     add(new LogSectionRemappedRecords());
+    add(new LogSectionDatabaseIssues());
     add(new LogSectionAnr());
     add(new LogSectionLogcat());
     add(new LogSectionLoggerHeader());

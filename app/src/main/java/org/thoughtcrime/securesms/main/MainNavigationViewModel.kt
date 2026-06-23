@@ -382,13 +382,5 @@ class MainNavigationViewModel(
       }
       return result
     }
-
-    override suspend fun seekBack(backNavigationBehavior: BackNavigationBehavior, fraction: Float) {
-      super.seekBack(backNavigationBehavior, fraction)
-
-      if (fraction == 0f) {
-        lockPaneToSecondary = true
-      }
-    }
   }
 }

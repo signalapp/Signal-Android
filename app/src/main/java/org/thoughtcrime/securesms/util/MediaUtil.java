@@ -29,7 +29,7 @@ import com.bumptech.glide.load.resource.gif.GifDrawable;
 import org.signal.core.util.ContentTypeUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.signal.core.models.database.AttachmentId;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.mms.AudioSlide;

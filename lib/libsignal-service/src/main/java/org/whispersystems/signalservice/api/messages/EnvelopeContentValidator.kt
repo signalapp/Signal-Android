@@ -10,6 +10,7 @@ import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
+import org.whispersystems.signalservice.internal.push.BodyRange
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.EditMessage
@@ -34,6 +35,7 @@ object EnvelopeContentValidator {
   private const val MAX_POLL_CHARACTER_LENGTH = 100
   private const val MIN_POLL_OPTIONS = 2
   private const val MAX_POLL_OPTIONS = 10
+  private const val LONG_TEXT_CONTENT_TYPE = "text/x-signal-plain"
 
   fun validate(envelope: Envelope, content: Content, localAci: ACI, ciphertextMessageType: Int): Result {
     if (envelope.type == Envelope.Type.PLAINTEXT_CONTENT || ciphertextMessageType == CiphertextMessage.PLAINTEXT_CONTENT_TYPE) {
@@ -96,6 +98,14 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Invalid ACI on quote body range!")
     }
 
+    if (dataMessage.quote != null && dataMessage.quote.bodyRanges.any { it.isStyleRangeMissingOffsets() }) {
+      return Result.Invalid("[DataMessage] Style body range on quote is missing a start or length!")
+    }
+
+    if (dataMessage.quote != null && dataMessage.quote.bodyRanges.hasInvalidBounds(dataMessage.quote.text)) {
+      return Result.Invalid("[DataMessage] Quote body range with out-of-bounds start/length!")
+    }
+
     if (dataMessage.contact.any { it.avatar != null && it.avatar.avatar.isPresentAndInvalid() }) {
       return Result.Invalid("[DataMessage] Invalid AttachmentPointer on DataMessage.contactList.avatar!")
     }
@@ -106,6 +116,14 @@ object EnvelopeContentValidator {
 
     if (dataMessage.bodyRanges.any { Util.anyNotNull(it.mentionAci, it.mentionAciBinary) && ACI.parseOrNull(it.mentionAci, it.mentionAciBinary).isNullOrInvalidServiceId() }) {
       return Result.Invalid("[DataMessage] Invalid ACI on body range!")
+    }
+
+    if (dataMessage.bodyRanges.any { it.isStyleRangeMissingOffsets() }) {
+      return Result.Invalid("[DataMessage] Style body range is missing a start or length!")
+    }
+
+    if (dataMessage.bodyRanges.hasInvalidBounds(dataMessage.body, allowOutOfBounds = dataMessage.hasLongTextAttachment())) {
+      return Result.Invalid("[DataMessage] Body range with out-of-bounds start/length!")
     }
 
     if (dataMessage.sticker != null && dataMessage.sticker.data_.isNullOrInvalid()) {
@@ -354,6 +372,14 @@ object EnvelopeContentValidator {
       return Result.Invalid("[EditMessage] Invalid UUID on body range!")
     }
 
+    if (dataMessage.bodyRanges.any { it.isStyleRangeMissingOffsets() }) {
+      return Result.Invalid("[EditMessage] Style body range is missing a start or length!")
+    }
+
+    if (dataMessage.bodyRanges.hasInvalidBounds(dataMessage.body, allowOutOfBounds = dataMessage.hasLongTextAttachment())) {
+      return Result.Invalid("[EditMessage] Body range with out-of-bounds start/length!")
+    }
+
     if (dataMessage.attachments.any { it.isNullOrInvalid() }) {
       return Result.Invalid("[EditMessage] Invalid attachments!")
     }
@@ -363,6 +389,25 @@ object EnvelopeContentValidator {
     }
 
     return Result.Valid
+  }
+
+  private fun List<BodyRange>.hasInvalidBounds(body: String?, allowOutOfBounds: Boolean = false): Boolean {
+    val bodyLength: Long = (body?.length ?: 0).toLong()
+
+    return this.any { range ->
+      val start: Long = (range.start ?: 0).toLong()
+      val length: Long = (range.length ?: 0).toLong()
+
+      start < 0 || length < 0 || (!allowOutOfBounds && start + length > bodyLength)
+    }
+  }
+
+  private fun DataMessage.hasLongTextAttachment(): Boolean {
+    return this.attachments.any { it.contentType == LONG_TEXT_CONTENT_TYPE }
+  }
+
+  private fun BodyRange.isStyleRangeMissingOffsets(): Boolean {
+    return this.style != null && (this.start == null || this.length == null)
   }
 
   private fun AttachmentPointer?.isNullOrInvalid(): Boolean {

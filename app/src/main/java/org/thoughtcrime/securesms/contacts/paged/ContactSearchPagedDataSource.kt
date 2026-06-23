@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.database.model.ThreadWithRecipient
 import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.search.MessageResult
 import org.thoughtcrime.securesms.search.MessageSearchResult
 import org.thoughtcrime.securesms.search.SearchRepository
@@ -240,13 +239,33 @@ class ContactSearchPagedDataSource(
     return 0
   }
 
-  private fun getNonGroupHeaderLetterMap(section: ContactSearchConfiguration.Section.Individuals, query: String?): Map<RecipientId, String> {
-    return contactSearchPagedDataSourceRepository.querySignalContactLetterHeaders(
-      query = query,
-      includeSelfMode = section.includeSelfMode,
-      includePush = true,
-      includeSms = false
-    )
+  /**
+   * Returns the letter header to display above the recipient at the cursor's current row, or null if
+   * none should be shown. A header is shown only when this row begins a new letter group, determined by
+   * comparing its letter to the immediately preceding row in display order. Peeking that single adjacent
+   * row means a letter group split across pages still yields exactly one header, anchored to the first
+   * row of the group, without re-scanning the whole contact set.
+   *
+   * The cursor is restored to its original position before returning so iteration is unaffected.
+   */
+  private fun getHeaderLetterForCurrentRow(cursor: Cursor): String? {
+    val position = cursor.position
+    val currentLetter = letterForCurrentRow(cursor) ?: return null
+
+    if (position <= 0) {
+      return currentLetter
+    }
+
+    cursor.moveToPosition(position - 1)
+    val previousLetter = letterForCurrentRow(cursor)
+    cursor.moveToPosition(position)
+
+    return if (previousLetter != currentLetter) currentLetter else null
+  }
+
+  private fun letterForCurrentRow(cursor: Cursor): String? {
+    val sortName = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.SORT_NAME_COLUMN))
+    return sortName?.takeIf { it.isNotEmpty() }?.first()?.uppercaseChar()?.toString()
   }
 
   private fun getStoriesSearchIterator(query: String?): ContactSearchIterator<Cursor> {
@@ -379,12 +398,6 @@ class ContactSearchPagedDataSource(
   }
 
   private fun getNonGroupContactsData(section: ContactSearchConfiguration.Section.Individuals, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData> {
-    val headerMap: Map<RecipientId, String> = if (section.includeLetterHeaders) {
-      getNonGroupHeaderLetterMap(section, query)
-    } else {
-      emptyMap()
-    }
-
     return getNonGroupSearchIterator(section, query).use { records ->
       readContactData(
         records = records,
@@ -394,7 +407,8 @@ class ContactSearchPagedDataSource(
         endIndex = endIndex,
         recordMapper = {
           val recipient = contactSearchPagedDataSourceRepository.getRecipientFromSearchCursor(it)
-          ContactSearchData.KnownRecipient(section.sectionKey, recipient, headerLetter = headerMap[recipient.id])
+          val headerLetter = if (section.includeLetterHeaders) getHeaderLetterForCurrentRow(it) else null
+          ContactSearchData.KnownRecipient(section.sectionKey, recipient, headerLetter = headerLetter)
         }
       )
     }

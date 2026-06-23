@@ -25,12 +25,12 @@ open class DSLSettingsActivity : PassphraseRequiredActivity() {
     setContentView(R.layout.dsl_settings_activity)
 
     if (savedInstanceState == null) {
-      val navGraphId = intent.getIntExtra(ARG_NAV_GRAPH, -1)
+      val navGraphId = resolveNavGraphId()
       if (navGraphId == -1) {
         throw IllegalStateException("No navgraph id was passed to activity")
       }
 
-      val fragment: NavHostFragment = NavHostFragment.create(navGraphId, intent.getBundleExtra(ARG_START_BUNDLE))
+      val fragment: NavHostFragment = NavHostFragment.create(navGraphId, resolveStartBundle())
 
       supportFragmentManager.beginTransaction()
         .replace(R.id.nav_host_fragment, fragment)
@@ -63,6 +63,10 @@ open class DSLSettingsActivity : PassphraseRequiredActivity() {
   }
 
   protected open fun onWillFinish() {}
+
+  protected open fun resolveNavGraphId(): Int = intent.getIntExtra(ARG_NAV_GRAPH, -1)
+
+  protected open fun resolveStartBundle(): Bundle? = intent.getBundleExtra(ARG_START_BUNDLE)
 
   companion object {
     const val ARG_NAV_GRAPH = "nav_graph"

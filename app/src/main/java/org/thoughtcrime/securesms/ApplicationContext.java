@@ -278,7 +278,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
       checkFreeDiskSpace();
       MemoryTracker.start();
       BackupSubscriptionCheckJob.enqueueIfAble();
-      CheckKeyTransparencyJob.enqueueIfNecessary(true);
+      CheckKeyTransparencyJob.enqueueIfNecessary(true, false);
       AppDependencies.getAuthWebSocket().registerKeepAliveToken(SignalWebSocket.FOREGROUND_KEEPALIVE);
       AppDependencies.getUnauthWebSocket().registerKeepAliveToken(SignalWebSocket.FOREGROUND_KEEPALIVE);
 
@@ -512,8 +512,6 @@ public class ApplicationContext extends Application implements AppForegroundObse
     if (RemoteConfig.internalUser()) {
       Tracer.getInstance().setMaxBufferSize(35_000);
     }
-
-    SQLiteDatabase.setSlowWriteLoggingEnabled(RemoteConfig.slowDatabaseNotifications());
   }
 
   private void initializePeriodicTasks() {

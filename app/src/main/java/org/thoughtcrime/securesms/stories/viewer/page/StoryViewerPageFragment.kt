@@ -52,6 +52,7 @@ import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.Debouncer
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.ServiceUtil
+import org.signal.core.util.addDetectedLinks
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.dp
 import org.signal.core.util.getParcelableCompat
@@ -95,7 +96,6 @@ import org.thoughtcrime.securesms.stories.viewer.views.StoryViewsBottomSheetDial
 import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.LinkUtil
-import org.thoughtcrime.securesms.util.Linkification
 import org.thoughtcrime.securesms.util.LongClickCopySpan
 import org.thoughtcrime.securesms.util.LongClickMovementMethod
 import org.thoughtcrime.securesms.util.Projection
@@ -995,7 +995,7 @@ class StoryViewerPageFragment :
 
   fun linkifyUrlLinks(spannable: Spannable) {
     LinkifyCompat.addLinks(spannable, Linkify.EMAIL_ADDRESSES or Linkify.PHONE_NUMBERS)
-    Linkification.applyWebUrlSpans(spannable)
+    spannable.addDetectedLinks()
 
     spannable.getSpans(0, spannable.length, URLSpan::class.java).forEach { urlSpan ->
       val url = urlSpan.url

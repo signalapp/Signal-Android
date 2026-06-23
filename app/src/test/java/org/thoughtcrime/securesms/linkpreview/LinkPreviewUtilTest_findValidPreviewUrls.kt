@@ -1,33 +1,16 @@
 package org.thoughtcrime.securesms.linkpreview
 
 import android.app.Application
-import io.mockk.every
-import io.mockk.mockkStatic
-import io.mockk.unmockkStatic
-import org.junit.After
 import org.junit.Assert
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 @Suppress("ClassName")
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class LinkPreviewUtilTest_findValidPreviewUrls {
-
-  @Before
-  fun setup() {
-    mockkStatic(RemoteConfig::class)
-    every { RemoteConfig.useNewLinkifier } returns true
-  }
-
-  @After
-  fun tearDown() {
-    unmockkStatic(RemoteConfig::class)
-  }
 
   @Test
   fun no_links() {

@@ -65,7 +65,7 @@ class PinEntryForSmsBypassViewModelTest {
   // ==================== PinEntered - Restore Master Key Tests ====================
 
   @Test
-  fun `PinEntered with correct PIN restores master key and registers successfully`() = runTest {
+  fun `PinEntered with correct PIN restores master key and hands off to finishRegistrationOrCreateProfile`() = runTest {
     val masterKey = mockk<MasterKey>(relaxed = true)
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
@@ -76,9 +76,9 @@ class PinEntryForSmsBypassViewModelTest {
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
-    assertThat(emittedParentEvents).hasSize(2)
+    assertThat(emittedParentEvents).hasSize(1)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
-    assertThat(emittedParentEvents[1]).isInstanceOf<RegistrationFlowEvent.RegistrationComplete>()
+    coVerify { mockRepository.finishRegistrationOrCreateProfile(parentEventEmitter, any()) }
   }
 
   @Test
@@ -280,9 +280,9 @@ class PinEntryForSmsBypassViewModelTest {
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
-    assertThat(emittedParentEvents).hasSize(2)
+    assertThat(emittedParentEvents).hasSize(1)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
-    assertThat(emittedParentEvents[1]).isInstanceOf<RegistrationFlowEvent.RegistrationComplete>()
+    coVerify { mockRepository.finishRegistrationOrCreateProfile(parentEventEmitter, any()) }
   }
 
   @Test

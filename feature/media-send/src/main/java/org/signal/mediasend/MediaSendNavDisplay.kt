@@ -33,7 +33,7 @@ import org.signal.mediasend.select.MediaSelectScreen
 fun MediaSendNavDisplay(
   stateFlow: StateFlow<MediaSendState>,
   backStack: NavBackStack<NavKey>,
-  callback: MediaSendCallback,
+  eventHandler: MediaSendEventHandler,
   modifier: Modifier = Modifier,
   cameraSlot: @Composable () -> Unit = {},
   textStoryEditorSlot: @Composable () -> Unit = {},
@@ -58,7 +58,7 @@ fun MediaSendNavDisplay(
         MediaSelectScreen(
           state = state,
           backStack = backStack,
-          callback = callback
+          onEvent = eventHandler::onMediaSelectScreenEvent
         )
       }
 
@@ -68,7 +68,7 @@ fun MediaSendNavDisplay(
           state = state,
           backStack = backStack,
           videoEditorSlot = videoEditorSlot,
-          callback = callback
+          onEvent = eventHandler::onMediaEditScreenEvent
         )
       }
 
@@ -90,7 +90,7 @@ private fun MediaSendNavDisplayPreview() {
       MediaSendNavDisplay(
         stateFlow = MutableStateFlow(MediaSendState(isCameraFirst = true)),
         backStack = rememberNavBackStack(MediaSendNavKey.Edit),
-        callback = MediaSendCallback.Empty,
+        eventHandler = MediaSendEventHandler.Empty,
         cameraSlot = { BoxWithText("Camera Slot") },
         textStoryEditorSlot = { BoxWithText("Text Story Editor Slot") },
         videoEditorSlot = { BoxWithText("Video Editor Slot") },

@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.model.MessageRecord

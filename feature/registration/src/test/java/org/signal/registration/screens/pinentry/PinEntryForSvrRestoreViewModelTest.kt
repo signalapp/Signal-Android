@@ -11,6 +11,7 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isInstanceOf
 import assertk.assertions.prop
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.runTest
@@ -57,7 +58,7 @@ class PinEntryForSvrRestoreViewModelTest {
   // ==================== PinEntered Success Tests ====================
 
   @Test
-  fun `PinEntered with correct PIN restores master key and navigates to FullyComplete`() = runTest {
+  fun `PinEntered with correct PIN restores master key and hands off to finishRegistrationOrCreateProfile`() = runTest {
     val masterKey = mockk<MasterKey>(relaxed = true)
     val svrCredentials = NetworkController.SvrCredentials(
       username = "test-username",
@@ -72,9 +73,9 @@ class PinEntryForSvrRestoreViewModelTest {
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
 
-    assertThat(emittedParentEvents).hasSize(2)
+    assertThat(emittedParentEvents).hasSize(1)
     assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.MasterKeyRestoredFromSvr>()
-    assertThat(emittedParentEvents[1]).isInstanceOf<RegistrationFlowEvent.RegistrationComplete>()
+    coVerify { mockRepository.finishRegistrationOrCreateProfile(parentEventEmitter, any()) }
   }
 
   // ==================== GetSvrCredentials Error Tests ====================

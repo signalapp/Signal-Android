@@ -14,6 +14,8 @@ import org.signal.spinner.SpinnerLogger
 import java.util.UUID
 import kotlin.random.Random
 
+private const val TAG = "MyTag"
+
 class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -39,18 +41,18 @@ class MainActivity : AppCompatActivity() {
       override fun run() {
         while (true) {
           when (Random.nextInt(0, 5)) {
-            0 -> Log.v("MyTag", "Message: ${System.currentTimeMillis()}")
-            1 -> Log.d("MyTag", "Message: ${System.currentTimeMillis()}")
-            2 -> Log.i("MyTag", "Message: ${System.currentTimeMillis()}")
-            3 -> Log.w("MyTag", "Message: ${System.currentTimeMillis()}")
-            4 -> Log.e("MyTag", "Message: ${System.currentTimeMillis()}")
+            0 -> Log.v(TAG, "Message: ${System.currentTimeMillis()}")
+            1 -> Log.d(TAG, "Message: ${System.currentTimeMillis()}")
+            2 -> Log.i(TAG, "Message: ${System.currentTimeMillis()}")
+            3 -> Log.w(TAG, "Message: ${System.currentTimeMillis()}")
+            4 -> Log.e(TAG, "Message: ${System.currentTimeMillis()}")
           }
           ThreadUtil.sleep(Random.nextLong(0, 200))
         }
       }
     }.start()
 
-    findViewById<Button>(R.id.log_throwable_button).setOnClickListener { Log.e("MyTag", "Message: ${System.currentTimeMillis()}", Throwable()) }
+    findViewById<Button>(R.id.log_throwable_button).setOnClickListener { Log.e(TAG, "Message: ${System.currentTimeMillis()}", Throwable()) }
   }
 
   private fun insertMockData(db: SQLiteDatabase) {

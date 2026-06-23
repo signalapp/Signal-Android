@@ -11,7 +11,11 @@ import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -33,6 +37,7 @@ import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
+import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.util.MockPermissionsState
 import org.signal.registration.test.TestTags
 
@@ -56,47 +61,60 @@ fun AllowNotificationsScreen(
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 private fun OnePane(params: RegistrationScaffold.Params.OnePane, permissionState: PermissionState, onProceed: () -> Unit) {
+  val scrollState = rememberScrollState()
+
   OnePaneRegistrationScaffold(
     params = params,
+    content = { paddingValues ->
+      Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+          .verticalScroll(scrollState)
+          .padding(paddingValues)
+      ) {
+        FirstPaneContent()
+        SecondPaneContent()
+      }
+    },
     footer = {
       FooterContent(
+        params = params,
         permissionState = permissionState,
+        isElevated = scrollState.canScrollForward,
         onProceed = onProceed
       )
     }
-  ) {
-    Column(
-      horizontalAlignment = Alignment.CenterHorizontally,
-      modifier = Modifier.padding(it)
-    ) {
-      FirstPaneContent()
-      SecondPaneContent()
-    }
-  }
+  )
 }
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 private fun TwoPane(params: RegistrationScaffold.Params.TwoPane, permissionState: PermissionState, onProceed: () -> Unit) {
+  val firstPaneScrollState = rememberScrollState()
+
   TwoPaneRegistrationScaffold(
     params = params,
-    firstPane = {
+    firstPane = { paddingValues ->
       FirstPaneContent(
         modifier = Modifier
-          .padding(it)
           .weight(1f)
+          .fillMaxHeight()
+          .verticalScroll(firstPaneScrollState)
+          .padding(paddingValues)
       )
     },
-    secondPane = {
+    secondPane = { paddingValues ->
       SecondPaneContent(
         modifier = Modifier
-          .padding(it)
           .weight(1f)
+          .padding(paddingValues)
       )
     },
     footer = {
       FooterContent(
+        params = params,
         permissionState = permissionState,
+        isElevated = firstPaneScrollState.canScrollForward,
         onProceed = onProceed
       )
     }
@@ -110,13 +128,17 @@ private fun FirstPaneContent(
   Column(modifier = modifier) {
     Text(
       text = stringResource(R.string.AllowNotificationsScreen__allow_notifications),
-      style = MaterialTheme.typography.headlineLarge,
-      modifier = Modifier.padding(bottom = 12.dp)
+      style = MaterialTheme.typography.headlineMedium,
+      modifier = Modifier
+        .fillMaxWidth()
+        .attachDebugLogHelper()
     )
 
     Text(
       text = stringResource(R.string.AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission),
-      style = MaterialTheme.typography.titleMedium
+      style = MaterialTheme.typography.bodyLarge,
+      color = MaterialTheme.colorScheme.onSurfaceVariant,
+      modifier = Modifier.padding(top = 16.dp)
     )
   }
 }
@@ -136,33 +158,39 @@ private fun SecondPaneContent(
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 private fun FooterContent(
+  params: RegistrationScaffold.Params,
   permissionState: PermissionState,
+  isElevated: Boolean,
   onProceed: () -> Unit
 ) {
-  Row(
-    horizontalArrangement = spacedBy(56.dp),
-    modifier = Modifier.padding(56.dp)
+  RegistrationScaffold.FooterSurface(
+    isElevated = isElevated
   ) {
-    Spacer(modifier = Modifier.weight(1f))
-
-    TextButton(
-      onClick = onProceed,
-      modifier = Modifier.testTag(TestTags.ALLOW_NOTIFICATIONS_NOT_NOW_BUTTON)
+    Row(
+      horizontalArrangement = spacedBy(56.dp),
+      modifier = Modifier.padding(params.footerPadding)
     ) {
-      Text(text = stringResource(R.string.AllowNotificationsScreen__not_now))
-    }
+      Spacer(modifier = Modifier.weight(1f))
 
-    Buttons.LargeTonal(
-      onClick = {
-        if (permissionState.status.isGranted) {
-          onProceed()
-        } else {
-          permissionState.launchPermissionRequest()
-        }
-      },
-      modifier = Modifier.testTag(TestTags.ALLOW_NOTIFICATIONS_NEXT_BUTTON)
-    ) {
-      Text(text = stringResource(R.string.AllowNotificationsScreen__next))
+      TextButton(
+        onClick = onProceed,
+        modifier = Modifier.testTag(TestTags.ALLOW_NOTIFICATIONS_NOT_NOW_BUTTON)
+      ) {
+        Text(text = stringResource(R.string.AllowNotificationsScreen__not_now))
+      }
+
+      Buttons.LargeTonal(
+        onClick = {
+          if (permissionState.status.isGranted) {
+            onProceed()
+          } else {
+            permissionState.launchPermissionRequest()
+          }
+        },
+        modifier = Modifier.testTag(TestTags.ALLOW_NOTIFICATIONS_NEXT_BUTTON)
+      ) {
+        Text(text = stringResource(R.string.AllowNotificationsScreen__next))
+      }
     }
   }
 }

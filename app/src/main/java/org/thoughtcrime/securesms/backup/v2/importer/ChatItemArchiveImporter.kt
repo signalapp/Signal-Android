@@ -60,7 +60,6 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailureSet
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.database.model.databaseprotos.CryptoValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
@@ -85,7 +84,7 @@ import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.MessageUtil
 import org.whispersystems.signalservice.api.payments.Money
 import org.whispersystems.signalservice.internal.push.DataMessage
-import java.math.BigInteger
+import java.math.BigDecimal
 import java.sql.SQLException
 import java.util.Optional
 import java.util.UUID
@@ -1064,8 +1063,8 @@ class ChatItemArchiveImporter(
 
   private fun ContentValues.addPaymentTombstoneNoMetadata(paymentNotification: PaymentNotification) {
     put(MessageTable.TYPE, getAsLong(MessageTable.TYPE) or MessageTypes.SPECIAL_TYPE_PAYMENTS_TOMBSTONE)
-    val amount = tryParseCryptoValue(paymentNotification.amountMob)
-    val fee = tryParseCryptoValue(paymentNotification.feeMob)
+    val amount = paymentNotification.amountMob?.tryParseMoney()?.let { CryptoValueUtil.moneyToCryptoValue(it) }
+    val fee = paymentNotification.feeMob?.tryParseMoney()?.let { CryptoValueUtil.moneyToCryptoValue(it) }
     put(
       MessageTable.MESSAGE_EXTRAS,
       MessageExtras(
@@ -1119,24 +1118,13 @@ class ChatItemArchiveImporter(
       return null
     }
 
-    val amountCryptoValue = tryParseCryptoValue(this)
-    return if (amountCryptoValue != null) {
-      CryptoValueUtil.cryptoValueToMoney(amountCryptoValue)
-    } else {
+    return try {
+      Money.mobileCoin(BigDecimal(this))
+    } catch (e: NumberFormatException) {
+      null
+    } catch (e: ArithmeticException) {
       null
     }
-  }
-
-  private fun tryParseCryptoValue(bigIntegerString: String?): CryptoValue? {
-    if (bigIntegerString == null) {
-      return null
-    }
-    val amount = try {
-      BigInteger(bigIntegerString).toString()
-    } catch (e: NumberFormatException) {
-      return null
-    }
-    return CryptoValue(mobileCoinValue = CryptoValue.MobileCoinValue(picoMobileCoin = amount))
   }
 
   private fun ContentValues.addQuote(quote: Quote) {

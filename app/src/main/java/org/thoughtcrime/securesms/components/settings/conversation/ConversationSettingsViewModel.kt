@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.components.settings.conversation.preferences.C
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.LegacyGroupPreference
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.RecipientTable
+import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
@@ -79,10 +80,6 @@ sealed class ConversationSettingsViewModel(
       } ?: emptyList()
     }
 
-    store.update(repository.getCallEvents(callMessageIds).toObservable()) { callRecords, state ->
-      state.copy(calls = callRecords.map { (call, messageRecord) -> CallPreference.Model(call, messageRecord) })
-    }
-
     store.update(sharedMedia) { mediaRecords, state ->
       if (!cleared) {
         state.copy(
@@ -99,6 +96,17 @@ sealed class ConversationSettingsViewModel(
 
   fun refreshSharedMedia() {
     sharedMediaUpdateTrigger.postValue(Unit)
+  }
+
+  fun observeConversationForCallUpdates(threadId: Long) {
+    disposable += RxDatabaseObserver.conversation(threadId)
+      .toObservable()
+      .switchMapSingle { repository.getCallEvents(callMessageIds) }
+      .subscribe { callRecords ->
+        store.update { state ->
+          state.copy(calls = callRecords.map { (call, messageRecord) -> CallPreference.Model(call, messageRecord) })
+        }
+      }
   }
 
   fun onReportSpam(): Maybe<Unit> {
@@ -218,6 +226,7 @@ sealed class ConversationSettingsViewModel(
         store.update { state ->
           state.copy(threadId = threadId)
         }
+        observeConversationForCallUpdates(threadId)
       }
 
       if (recipientId != Recipient.self().id) {
@@ -344,6 +353,7 @@ sealed class ConversationSettingsViewModel(
         store.update { state ->
           state.copy(threadId = threadId)
         }
+        observeConversationForCallUpdates(threadId)
       }
 
       store.update(liveGroup.selfCanEditGroupAttributes()) { selfCanEditGroupAttributes, state ->

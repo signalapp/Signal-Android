@@ -350,7 +350,14 @@ final class DeviceTransferClient implements Handler.Callback {
 
     @Override
     public void onServiceDiscovered(@NonNull WifiP2pDevice serviceDevice, @NonNull String extraInfo) {
-      handler.sendMessage(handler.obtainMessage(CONNECT_TO_SERVICE, Integer.parseInt(extraInfo), 0, serviceDevice.deviceAddress));
+      int port;
+      try {
+        port = Integer.parseInt(extraInfo);
+      } catch (NumberFormatException e) {
+        Log.w(TAG, "Ignoring service with malformed extra info.");
+        return;
+      }
+      handler.sendMessage(handler.obtainMessage(CONNECT_TO_SERVICE, port, 0, serviceDevice.deviceAddress));
     }
 
     @Override

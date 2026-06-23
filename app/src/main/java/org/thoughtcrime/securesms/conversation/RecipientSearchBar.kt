@@ -23,6 +23,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -50,7 +51,8 @@ fun RecipientSearchBar(
   onQueryChange: (String) -> Unit,
   onSearch: (String) -> Unit,
   modifier: Modifier = Modifier,
-  enabledKeyboardTypes: List<KeyboardType> = listOf(KeyboardType.Text, KeyboardType.Phone)
+  enabledKeyboardTypes: List<KeyboardType> = listOf(KeyboardType.Text, KeyboardType.Phone),
+  onFocusChanged: (Boolean) -> Unit = {}
 ) {
   val state = rememberSearchBarState()
   var keyboardType by remember(enabledKeyboardTypes) { mutableStateOf(enabledKeyboardTypes.first()) }
@@ -67,6 +69,7 @@ fun RecipientSearchBar(
       TextField(
         value = query,
         onValueChange = onQueryChange,
+        modifier = Modifier.onFocusChanged { onFocusChanged(it.isFocused) },
         placeholder = { Text(hint) },
         singleLine = true,
         textStyle = TextStyle(textDirection = TextDirection.ContentOrLtr),

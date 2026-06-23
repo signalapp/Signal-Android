@@ -314,9 +314,9 @@
     <!-- PIN creation screen title. -->
     <string name="PinCreationScreen__create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
-    <string name="PinCreationScreen__confirm_your_pin">Confirm your PIN</string>
+    <string name="PinCreationScreen__confirm_your_pin">உங்கள் பின்னை உறுதிப்படுத்துக</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">நீங்கள் தற்போது உருவாக்கிய பின்னை மீண்டும் உள்ளிடுக</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">நீங்கள் உங்கள் பேசியைத் தொலைத்துவிட்டால் உங்கள் கணக்கை மீட்டெடுக்க பின்கள் உதவும். </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -328,11 +328,11 @@
     <!-- Labels the button to submit a new Signal PIN. -->
     <string name="PinCreationScreen__next">அடுத்தது</string>
     <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_digits">PIN must be at least 4 digits</string>
+    <string name="PinCreationScreen__pin_at_least_4_digits">பின் குறைந்தது 4 இலக்கங்களில் இருக்க வேண்டும்</string>
     <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_characters">PIN must be at least 4 characters</string>
+    <string name="PinCreationScreen__pin_at_least_4_characters">பின் குறைந்தது 4 எழுத்துக்களில் இருக்க வேண்டும்</string>
     <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin">Re-enter PIN</string>
+    <string name="PinCreationScreen__reenter_pin">பின்னை மீண்டும் உள்ளிடுக</string>
 
     <!-- PIN entry screen title when registration lock is active. -->
     <string name="PinEntryScreen__registration_lock">பதிவு பூட்டு</string>
@@ -355,9 +355,9 @@
     <string name="PinEntryScreen__continue">தொடர்</string>
 
     <!-- Title for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__allow_notifications">Allow Notifications</string>
+    <string name="AllowNotificationsScreen__allow_notifications">அறிவிப்புகளுக்கான அனுமதி</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">சிக்னல் அறிவிப்பு அனுமதியைக் கோர விரும்புகிறது. புதிய செய்திகள் வரும்போது அறிவிப்புகளைக் காட்ட இது உங்கள் சாதனத்தை அனுமதிக்கிறது.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">இப்போது வேண்டாம்</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -366,36 +366,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">மெசேஜ்களை ஒத்திசைக்கிறது</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">இதற்குச் சில நிமிடங்கள் எடுக்கலாம்…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">%2$s இல் %1$s ஐப் பதிவிறக்குகிறது</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">ஒத்திசைவுச் செயல்முறை உட்பட, செய்திகள் மற்றும் சாட் தகவல் ஆகியவை எண்டு-டு-எண்டு குறியாக்கத்தால் பாதுகாக்கப்படுகின்றன.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">மேலும் அறிக</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">ரத்துசெய்</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">உங்கள் கணக்கை இணைக்க இந்தக் குறியீட்டை ஸ்கேன் செய்யுங்கள்</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">உங்கள் மொபைலில் சிக்னல்-ஐத் திறக்கவும்</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">சிக்னல் அமைப்புகளைத் திறக்க உங்கள் சுயவிவரப் படத்தைத் தட்டுங்கள்</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">\"இணைக்கப்பட்ட சாதனங்கள்\" மற்றும் \"புதிய சாதனத்தை இணை\" என்பதைத் தட்டுங்கள்</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">இந்த QR குறியீட்டின் மேல் கேமராவை வைக்கவும்</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">இந்தப் படிகளில் உதவி பெறவும்</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">QR குறியீட்டைப் பெரிதாக்குக</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">ஸ்கேன் செய்யப்பட்டது</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">குறியீட்டை உருவாக்க முடியவில்லை</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">மற்றொரு சாதனத்தில் சிக்னல் செயலி இல்லையா?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">கணக்கை உருவாக்கவும்</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">உங்கள் கணக்கை மாற்றுங்கள்</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">உங்கள் கணக்கை மாற்ற, பழைய Android சாதனத்தில் சிக்னல் செயலியைத் திறந்து, கணக்கை இடமாற்றுக என்பதைத் தேர்ந்தெடுக்கவும்.</string>
+    <string name="DeviceTransferInstructions__continue">தொடர்</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">பழைய Android சாதனத்துடன் இணைக்கத் தயாராகிறது…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">இதற்குச் சிறிது நேரம் ஆகலாம். விரைவில் தயாராகிவிடும்.</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">இணைக்க, உங்கள் பழைய சாதனத்திற்காகக் காத்திருக்கிறது…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">இரு சாதனங்களிலும் எண்கள் பொருந்துகின்றனவா என்பதைச் சரிபார்க்கவும்</string>
+    <string name="DeviceTransferSetup__numbers_match">ஆம், எண்கள் பொருந்துகின்றன</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">எண்கள் பொருந்தவில்லை</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">சரிபார்க்க, உங்கள் பழைய சாதனத்திற்காகக் காத்திருக்கிறது…</string>
+    <string name="DeviceTransferSetup__location_permission_required">உங்களின் பழைய சாதனத்தைக் கண்டறிந்து அதனுடன் இணைக்க, சிக்னலுக்கு இருப்பிட அனுமதி தேவை.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">அனுமதியை வழங்குக</string>
+    <string name="DeviceTransferSetup__location_services_required">உங்களின் பழைய சாதனத்தைக் கண்டறிந்து அதனுடன் இணைக்க, சிக்னலுக்கு இருப்பிடச் சேவைகள் இயக்கப்பட்டிருக்க வேண்டும்.</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">இயக்கவும் இருப்பிட சேவை</string>
+    <string name="DeviceTransferSetup__wifi_required">உங்களின் பழைய சாதனத்தைக் கண்டறிந்து அதனுடன் இணைக்க, சிக்னல் செயலிக்கு Wi-Fi ஆன் செய்யப்பட்டிருக்க வேண்டும்.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">இயக்கவும் வைஃபை</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">மன்னிக்கவும், உங்கள் சாதனம் Wi-Fi Direct-ஐ ஆதரிக்கவில்லை எனத் தெரிகிறது.</string>
+    <string name="DeviceTransferSetup__restore_a_backup">அதற்குப் பதிலாக காப்புப்பிரதியை மீட்டமைக்கவும்</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">உங்களின் பழைய சாதனத்துடன் இணைக்க முயலும்போது எதிர்பாராத பிழை ஏற்பட்டது.</string>
+    <string name="DeviceTransferSetup__retry">மீண்டும் முயற்சி செய்</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">உங்கள் பழைய சாதனத்தைக் கண்டறிய முடியவில்லை</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• இருப்பிட அனுமதிகள் வழங்கப்பட்டுள்ளதா என்பதை உறுதிப்படுத்தவும்.\n• Wi-Fi ஆன் செய்யப்பட்டிருப்பதையும், Wi-Fi Direct குழுக்கள் எதுவும் நினைவில் வைக்கப்படவில்லை என்பதையும் உறுதிப்படுத்தவும்.\n• இரு சாதனங்களிலும் Wi-Fi-ஐ ஆஃப் செய்துவிட்டு, மீண்டும் ஆன் செய்ய முயற்சிக்கவும்.\n• இரண்டு சாதனங்களும் இடமாற்றப் பயன்முறையில் உள்ளனவா என்பதை உறுதிப்படுத்தவும்.</string>
+    <string name="DeviceTransferSetup__try_again">மீண்டும் முயற்சிக்கவும்</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">எண்கள் பொருந்தவில்லை</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">உங்கள் சாதனங்களில் உள்ள எண்கள் பொருந்தவில்லை எனில், நீங்கள் தவறான சாதனத்துடன் இணைத்திருக்க வாய்ப்புள்ளது.</string>
+    <string name="DeviceTransferSetup__stop_transfer">நிறுத்து பரிமாற்றம்</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">இடமாற்றம் தகவல்கள்</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">இதுவரை 1%1$d செய்திகள்</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">முடியவில்லை பரிமாற்றம்</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">சிக்னலின் புதிய பதிப்பிலிருந்து இடமாற்ற முடியாது.</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">தரவுத்தளக் கட்டுப்பாடு காரணமாகச் சில தரவுகளை இடமாற்ற முடியவில்லை.</string>
+    <string name="DeviceTransferProgress__transfer_failed">இடமாற்ற முடியவில்லை. மீண்டும் முயலுங்கள்.</string>
+    <string name="DeviceTransferProgress__try_again">மீண்டும் முயற்சிக்கவும்</string>
+    <string name="DeviceTransferProgress__cancel">ரத்துசெய்</string>
+    <string name="DeviceTransferProgress__stop_transfer">நிறுத்து பரிமாற்றம்?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">அனைத்தும் பரிமாற்றம் முன்னேற்றம் இழக்கப்படும்.</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">இடமாற்றம் முழுமை</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">உங்கள் கணக்கு இப்போது இந்தச் சாதனத்தில் உள்ளது.</string>
+    <string name="DeviceTransferComplete__continue_registration">தொடர்</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">உங்கள் சுயவிவரத்தை அமைக்கவும்</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">உங்கள் ப்ரொஃபைல் மற்றும் அதில் செய்த மாற்றங்கள் நீங்கள் செய்தி அனுப்புபவர்களுக்கு, தொடர்புகளுக்கு மற்றும் குழுக்களுக்குத் தெரிய வரும்.</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">முதல் பெயர் (தேவை)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">குடும்பப் பெயர் (விரும்பினால்)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">அடுத்தது</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">சின்னம் அமைக்கவும்</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">எண் மூலம் என்னை யார் கண்டுபிடிக்க முடியும்?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">உங்கள் தொலைபேசி எண்ணை வைத்திருக்கும் எவரும் நீங்கள் சிக்னலை பயன்படுத்திக் கொண்டிருப்பதை அறிவார்கள், மேலும் உங்களுடன் அவர்கள் சாட் செய்யத் தொடங்கலாம்.</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">நீங்கள் அவர்களுக்கு மெசேஜ் அனுப்பாத வரை அல்லது அவர்களுடன் ஏற்கனவே சாட் செய்யாத வரை, நீங்கள் சிக்னலை பயன்படுத்திக் கொண்டிருப்பதை யாராலும் பார்க்க முடியாது.</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">எல்லோரும்</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">ஒருவருமில்லை</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">நீங்கள் உறுதியாக உள்ளீர்களா?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"ஃபோன் எண் மூலம் என்னை யார் கண்டுப்பிடிக்க முடியும்\" என்பதை \"யாரும் இல்லை\" என அமைப்பது உங்களை சிக்னலில் கண்டறிவதை மற்றவர்களுக்கு கடினமாக்கும்.</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">ரத்துசெய்</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">சேமி</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">மீண்டும்</string>
 </resources>

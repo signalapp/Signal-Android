@@ -10,6 +10,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
+import org.signal.devicetransfer.NewDeviceRestoreStatus;
 import org.signal.devicetransfer.ServerTask;
 import org.thoughtcrime.securesms.AppInitialization;
 import org.thoughtcrime.securesms.backup.BackupEvent;
@@ -29,7 +30,10 @@ import java.io.InputStream;
  * Performs the restore with the backup data coming in over the input stream. Used in
  * conjunction with {@link org.signal.devicetransfer.DeviceToDeviceTransferService}.
  */
-final class NewDeviceServerTask implements ServerTask {
+public final class NewDeviceServerTask implements ServerTask {
+
+  public NewDeviceServerTask() {}
+
 
   private static final String TAG = Log.tag(NewDeviceServerTask.class);
 
@@ -62,13 +66,13 @@ final class NewDeviceServerTask implements ServerTask {
       Log.i(TAG, "Backup restore complete.");
     } catch (FullBackupImporter.DatabaseDowngradeException e) {
       Log.w(TAG, "Failed due to the backup being from a newer version of Signal.", e);
-      EventBus.getDefault().post(new Status(0, Status.State.FAILURE_VERSION_DOWNGRADE));
+      EventBus.getDefault().post(new NewDeviceRestoreStatus(0, NewDeviceRestoreStatus.State.FAILURE_VERSION_DOWNGRADE));
     } catch (FullBackupImporter.ForeignKeyViolationException e) {
       Log.w(TAG, "Failed due to foreign key constraint violations.", e);
-      EventBus.getDefault().post(new Status(0, Status.State.FAILURE_FOREIGN_KEY));
+      EventBus.getDefault().post(new NewDeviceRestoreStatus(0, NewDeviceRestoreStatus.State.FAILURE_FOREIGN_KEY));
     } catch (IOException e) {
       Log.w(TAG, e);
-      EventBus.getDefault().post(new Status(0, Status.State.FAILURE_UNKNOWN));
+      EventBus.getDefault().post(new NewDeviceRestoreStatus(0, NewDeviceRestoreStatus.State.FAILURE_UNKNOWN));
     } finally {
       EventBus.getDefault().unregister(this);
       DataRestoreConstraint.setRestoringData(false);
@@ -77,42 +81,16 @@ final class NewDeviceServerTask implements ServerTask {
     long end = System.currentTimeMillis();
     Log.i(TAG, "Receive took: " + (end - start));
 
-    EventBus.getDefault().post(new Status(0, Status.State.RESTORE_COMPLETE));
+    EventBus.getDefault().post(new NewDeviceRestoreStatus(0, NewDeviceRestoreStatus.State.RESTORE_COMPLETE));
   }
 
   @Subscribe(threadMode = ThreadMode.POSTING)
   public void onEvent(BackupEvent event) {
     if (event.getType() == BackupEvent.Type.PROGRESS) {
-      EventBus.getDefault().post(new Status(event.getCount(), Status.State.IN_PROGRESS));
+      EventBus.getDefault().post(new NewDeviceRestoreStatus(event.getCount(), NewDeviceRestoreStatus.State.IN_PROGRESS));
     } else if (event.getType() == BackupEvent.Type.FINISHED) {
-      EventBus.getDefault().post(new Status(event.getCount(), Status.State.TRANSFER_COMPLETE));
+      EventBus.getDefault().post(new NewDeviceRestoreStatus(event.getCount(), NewDeviceRestoreStatus.State.TRANSFER_COMPLETE));
     }
   }
 
-  public static final class Status {
-    private final long  messageCount;
-    private final State state;
-
-    public Status(long messageCount, State state) {
-      this.messageCount = messageCount;
-      this.state        = state;
-    }
-
-    public long getMessageCount() {
-      return messageCount;
-    }
-
-    public @NonNull State getState() {
-      return state;
-    }
-
-    public enum State {
-      IN_PROGRESS,
-      TRANSFER_COMPLETE,
-      RESTORE_COMPLETE,
-      FAILURE_VERSION_DOWNGRADE,
-      FAILURE_FOREIGN_KEY,
-      FAILURE_UNKNOWN
-    }
-  }
 }

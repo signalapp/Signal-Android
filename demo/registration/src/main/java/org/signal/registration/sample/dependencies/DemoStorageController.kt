@@ -28,6 +28,7 @@ import org.signal.registration.NetworkController
 import org.signal.registration.NewRegistrationData
 import org.signal.registration.PreExistingRegistrationData
 import org.signal.registration.StorageController
+import org.signal.registration.StoredProfileData
 import org.signal.registration.proto.ProvisioningData
 import org.signal.registration.proto.RegistrationData
 import org.signal.registration.sample.storage.RegistrationDatabase
@@ -55,6 +56,15 @@ class DemoStorageController(private val context: Context) : StorageController {
 
   override suspend fun getPreExistingRegistrationData(): PreExistingRegistrationData? = withContext(Dispatchers.IO) {
     RegistrationPreferences.getPreExistingRegistrationData()
+  }
+
+  override suspend fun getStoredProfileData(): StoredProfileData = withContext(Dispatchers.IO) {
+    StoredProfileData(
+      givenName = RegistrationPreferences.profileGivenName,
+      familyName = RegistrationPreferences.profileFamilyName,
+      avatar = RegistrationPreferences.profileAvatar,
+      discoverableByPhoneNumber = RegistrationPreferences.profileDiscoverableByPhoneNumber
+    )
   }
 
   override suspend fun clearAllData() = withContext(Dispatchers.IO) {

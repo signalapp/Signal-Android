@@ -164,6 +164,10 @@ private fun NetworkDebugDialog(
 
         SkipPushChallengeToggle()
 
+        Spacer(modifier = Modifier.height(12.dp))
+
+        FakeDeviceTransferToggle()
+
         HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
 
         LazyColumn(
@@ -227,6 +231,37 @@ private fun SkipPushChallengeToggle() {
     Switch(
       checked = skipPushChallenge,
       onCheckedChange = { NetworkDebugState.setSkipPushChallenge(it) }
+    )
+  }
+}
+
+@Composable
+private fun FakeDeviceTransferToggle() {
+  val fakeDeviceTransfer by NetworkDebugState.fakeDeviceTransfer.collectAsState()
+
+  Row(
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(horizontal = 4.dp),
+    verticalAlignment = Alignment.CenterVertically,
+    horizontalArrangement = Arrangement.SpaceBetween
+  ) {
+    Column(modifier = Modifier.weight(1f)) {
+      Text(
+        text = "Fake device transfer",
+        style = MaterialTheme.typography.bodyMedium,
+        fontWeight = FontWeight.Medium
+      )
+      Text(
+        text = "Scripts the transfer events so you don't need a second device",
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+      )
+    }
+
+    Switch(
+      checked = fakeDeviceTransfer,
+      onCheckedChange = { NetworkDebugState.setFakeDeviceTransfer(it) }
     )
   }
 }

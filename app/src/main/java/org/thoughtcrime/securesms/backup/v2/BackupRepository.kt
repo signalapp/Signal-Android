@@ -34,6 +34,7 @@ import org.signal.core.models.backup.BackupId
 import org.signal.core.models.backup.MediaName
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.backup.MessageBackupKey
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Base64
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.CursorUtil
@@ -72,9 +73,7 @@ import org.signal.network.NetworkResult
 import org.signal.network.StatusCodeErrorAction
 import org.signal.network.api.SvrBApi
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException
-import org.signal.network.rest.toNetworkResult
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress

@@ -50,8 +50,10 @@ public class ConversationRepository {
   public @NonNull ConversationData getConversationData(long threadId, @NonNull Recipient conversationRecipient, int jumpToPosition) {
     ThreadTable.ConversationMetadata    metadata                       = SignalDatabase.threads().getConversationMetadata(threadId);
     int                                 threadSize                     = SignalDatabase.messages().getMessageCountForThread(threadId);
-    long                                lastSeen                       = metadata.getLastSeen();
-    int                                 lastSeenPosition               = 0;
+    MessageTable.OldestUnread           oldestUnread                   = metadata.getUnreadCount() > 0 ? SignalDatabase.messages().getOldestUnread(threadId) : null;
+    long                                firstUnreadId                  = oldestUnread != null ? oldestUnread.getId() : -1;
+    long                                firstUnreadDateReceived        = oldestUnread != null ? oldestUnread.getDateReceived() : 0;
+    int                                 firstUnreadPosition            = 0;
     long                                lastScrolled                   = metadata.getLastScrolled();
     int                                 lastScrolledPosition           = 0;
     boolean                             isMessageRequestAccepted       = RecipientUtil.isMessageRequestAccepted(threadId);
@@ -59,15 +61,14 @@ public class ConversationRepository {
     ConversationData.MessageRequestData messageRequestData             = new ConversationData.MessageRequestData(isMessageRequestAccepted, isConversationHidden);
     boolean                             showUniversalExpireTimerUpdate = false;
 
-    if (lastSeen > 0) {
-      lastSeenPosition = SignalDatabase.messages().getMessagePositionByDateReceivedTimestamp(threadId, lastSeen, false);
+    if (firstUnreadDateReceived > 0) {
+      firstUnreadPosition = SignalDatabase.messages().getMessagePositionByDateReceivedTimestamp(threadId, firstUnreadDateReceived, false);
     }
 
-    if (lastSeenPosition <= 0) {
-      lastSeen = 0;
-    }
+    // A position of 0 means the oldest unread message is the newest message in the thread (e.g. a single unread). That
+    // is a valid divider anchor, so we keep firstUnreadId; it just means we don't scroll up to reach it.
 
-    if (lastSeen == 0 && lastScrolled > 0) {
+    if (firstUnreadDateReceived == 0 && lastScrolled > 0) {
       lastScrolledPosition = SignalDatabase.messages().getMessagePositionByDateReceivedTimestamp(threadId, lastScrolled, true);
     }
 
@@ -108,7 +109,7 @@ public class ConversationRepository {
       showUniversalExpireTimerUpdate = true;
     }
 
-    return new ConversationData(conversationRecipient, threadId, lastSeen, lastSeenPosition, lastScrolledPosition, jumpToPosition, threadSize, messageRequestData, showUniversalExpireTimerUpdate, metadata.getUnreadCount(), groupMemberAcis);
+    return new ConversationData(conversationRecipient, threadId, firstUnreadId, firstUnreadPosition, lastScrolledPosition, jumpToPosition, threadSize, messageRequestData, showUniversalExpireTimerUpdate, metadata.getUnreadCount(), groupMemberAcis);
   }
 
   public void markGiftBadgeRevealed(long messageId) {

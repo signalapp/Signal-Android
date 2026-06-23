@@ -96,6 +96,8 @@ class QuickRestoreQrViewModel(
   }
 
   private suspend fun handleProvisioningMessage(message: NetworkController.ProvisioningMessage) {
+    parentEventEmitter(RegistrationFlowEvent.RestoreMethodTokenReceived(message.restoreMethodToken))
+
     if (message.platform == NetworkController.ProvisioningMessage.Platform.IOS && message.tier == null) {
       // iOS without a backup tier cannot do a quick restore — navigate to the choose-restore screen
       parentEventEmitter.navigateTo(RegistrationRoute.ArchiveRestoreSelection.forManualRestore())

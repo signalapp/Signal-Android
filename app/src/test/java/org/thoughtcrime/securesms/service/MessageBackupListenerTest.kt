@@ -5,22 +5,19 @@
 
 package org.thoughtcrime.securesms.service
 
-import android.app.Application
-import androidx.test.core.app.ApplicationProvider
+import android.content.Context
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isGreaterThan
 import assertk.assertions.isLessThan
 import io.mockk.every
 import io.mockk.just
+import io.mockk.mockk
 import io.mockk.runs
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testutil.MockRandom
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
@@ -33,12 +30,12 @@ import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 
-@RunWith(RobolectricTestRunner::class)
-@Config(manifest = Config.NONE, application = Application::class)
 class MessageBackupListenerTest {
 
   @get:Rule
   val rule = MockSignalStoreRule()
+
+  private val context = mockk<Context>(relaxed = true)
 
   @Test
   fun testGetNextScheduledExecutionTime() {
@@ -46,22 +43,22 @@ class MessageBackupListenerTest {
 
     var nextTime = System.currentTimeMillis() + 1.days.inWholeMilliseconds
     every { SignalStore.backup.nextBackupTime } returns nextTime
-    assertThat(listener.getNextScheduledExecutionTime(ApplicationProvider.getApplicationContext())).isEqualTo(nextTime)
+    assertThat(listener.getNextScheduledExecutionTime(context)).isEqualTo(nextTime)
 
     nextTime = System.currentTimeMillis() + 2.days.inWholeMilliseconds
     every { SignalStore.backup.nextBackupTime } returns nextTime
-    assertThat(listener.getNextScheduledExecutionTime(ApplicationProvider.getApplicationContext())).isEqualTo(nextTime)
+    assertThat(listener.getNextScheduledExecutionTime(context)).isEqualTo(nextTime)
 
     nextTime = System.currentTimeMillis() + 8.hours.inWholeMilliseconds
     every { SignalStore.backup.nextBackupTime } returns nextTime
-    assertThat(listener.getNextScheduledExecutionTime(ApplicationProvider.getApplicationContext())).isEqualTo(nextTime)
+    assertThat(listener.getNextScheduledExecutionTime(context)).isEqualTo(nextTime)
 
     nextTime = System.currentTimeMillis() + 7.days.inWholeMilliseconds
     every { SignalStore.backup.nextBackupTime } returns nextTime
     every { SignalStore.settings.signalBackupHour } returns 2
     every { SignalStore.settings.signalBackupMinute } returns 0
     every { SignalStore.backup.nextBackupTime = any() } just runs
-    val adjustedTime = listener.getNextScheduledExecutionTime(ApplicationProvider.getApplicationContext())
+    val adjustedTime = listener.getNextScheduledExecutionTime(context)
     assertThat(adjustedTime).isGreaterThan(System.currentTimeMillis())
     assertThat(adjustedTime).isLessThan(System.currentTimeMillis() + 2.days.inWholeMilliseconds)
   }

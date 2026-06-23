@@ -25,7 +25,7 @@ class ApngInputStreamFactoryResourceDecoder : ResourceDecoder<InputStreamFactory
 
   @Throws(IOException::class)
   override fun decode(source: InputStreamFactory, width: Int, height: Int, options: Options): Resource<ApngDecoder>? {
-    val decoder = ApngDecoder.create { source.create() }
+    val decoder = ApngDecoder.create(contentLength = source.length()) { source.create() }
     return ApngResource(decoder)
   }
 }

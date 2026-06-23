@@ -48,6 +48,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
@@ -59,11 +60,15 @@ import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.Util
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.v2.ui.warning.ClipStage
+import org.thoughtcrime.securesms.backup.v2.ui.warning.RecoveryKeyWarningSheetContent
+import org.thoughtcrime.securesms.backup.v2.ui.warning.RecoveryKeyWarningSheetEvent
 import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyCredentialManagerHandler
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
 import org.thoughtcrime.securesms.fonts.MonoTypeface
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.storage.AndroidCredentialRepository
 import org.thoughtcrime.securesms.util.storage.CredentialManagerError
 import org.thoughtcrime.securesms.util.storage.CredentialManagerResult
@@ -120,6 +125,7 @@ fun MessageBackupsKeyRecordScreen(
  * Screen displaying the backup key allowing the user to write it down
  * or copy it.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MessageBackupsKeyRecordScreen(
   backupKey: String,
@@ -143,6 +149,38 @@ fun MessageBackupsKeyRecordScreen(
 
   if (mode is MessageBackupsKeyRecordMode.Next) {
     RecordScreenBackHandler()
+  }
+
+  var displayRecoveryKeyCopyWarning by remember { mutableStateOf(false) }
+  if (displayRecoveryKeyCopyWarning) {
+    val context = LocalContext.current
+    val url = stringResource(R.string.recovery_key_phishing_support_url)
+    val events: (RecoveryKeyWarningSheetEvent) -> Unit = {
+      when (it) {
+        RecoveryKeyWarningSheetEvent.GotItClick -> {
+          onCopyToClipboardClick(backupKeyString)
+          displayRecoveryKeyCopyWarning = false
+        }
+        RecoveryKeyWarningSheetEvent.LearnMoreClick -> {
+          CommunicationActions.openBrowserLink(context, url)
+          displayRecoveryKeyCopyWarning = false
+        }
+
+        RecoveryKeyWarningSheetEvent.DoNotShareClick -> error("Not supported")
+        RecoveryKeyWarningSheetEvent.ShareKeyClick -> error("Not supported")
+      }
+    }
+
+    ModalBottomSheet(
+      onDismissRequest = { displayRecoveryKeyCopyWarning = false },
+      dragHandle = { BottomSheets.Handle() },
+      sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    ) {
+      RecoveryKeyWarningSheetContent(
+        clipStage = ClipStage.COPY,
+        events = events
+      )
+    }
   }
 
   Scaffolds.Settings(
@@ -227,7 +265,13 @@ fun MessageBackupsKeyRecordScreen(
 
           item {
             Buttons.Small(
-              onClick = { onCopyToClipboardClick(backupKeyString) }
+              onClick = {
+                if (mode is MessageBackupsKeyRecordMode.CreateNewKey) {
+                  displayRecoveryKeyCopyWarning = true
+                } else {
+                  onCopyToClipboardClick(backupKeyString)
+                }
+              }
             ) {
               Text(
                 text = stringResource(R.string.MessageBackupsKeyRecordScreen__copy_to_clipboard)

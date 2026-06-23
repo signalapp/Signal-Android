@@ -20,8 +20,9 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
+import kotlin.random.Random
 import kotlin.time.Duration.Companion.days
-import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 
 /**
@@ -39,14 +40,18 @@ class CheckKeyTransparencyJob private constructor(
     private val TIME_BETWEEN_CHECK = 7.days
 
     @JvmStatic
-    fun enqueueIfNecessary(addDelay: Boolean) {
+    fun enqueueIfNecessary(addDelay: Boolean, force: Boolean = false) {
       if (!canRunJob()) {
         return
       }
 
-      val nextCheckIn = SignalStore.misc.lastKeyTransparencyTime.milliseconds + TIME_BETWEEN_CHECK
+      if (SignalStore.misc.nextKeyTransparencyTime == 0L) {
+        val nextTime = System.currentTimeMillis() + getRandomDelay(maxHours = 168)
+        Log.i(TAG, "Initializing next key transparency time to $nextTime")
+        SignalStore.misc.nextKeyTransparencyTime = nextTime
+      }
 
-      if (nextCheckIn.inWholeMilliseconds < System.currentTimeMillis()) {
+      if (force || System.currentTimeMillis() > SignalStore.misc.nextKeyTransparencyTime) {
         AppDependencies.jobManager.add(
           CheckKeyTransparencyJob(
             showFailure = false,
@@ -82,7 +87,10 @@ class CheckKeyTransparencyJob private constructor(
     }
 
     private fun canRunJob(): Boolean {
-      return if (!SignalStore.account.isRegistered) {
+      return if (!RemoteConfig.internalUser) {
+        Log.i(TAG, "Remote config is not on. Exiting.")
+        false
+      } else if (!SignalStore.account.isRegistered) {
         Log.i(TAG, "Account not registered. Exiting.")
         false
       } else if (TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)) {
@@ -101,6 +109,14 @@ class CheckKeyTransparencyJob private constructor(
         true
       }
     }
+
+    /**
+     * Generates a random delay between 0 - maxHours in milliseconds
+     */
+    private fun getRandomDelay(maxHours: Int): Long {
+      val delay = Random.nextInt(0, maxHours)
+      return delay.hours.inWholeMilliseconds
+    }
   }
 
   override suspend fun doRun(): Result {
@@ -108,7 +124,7 @@ class CheckKeyTransparencyJob private constructor(
       return Result.failure()
     }
 
-    SignalStore.misc.lastKeyTransparencyTime = System.currentTimeMillis()
+    SignalStore.misc.nextKeyTransparencyTime = System.currentTimeMillis() + TIME_BETWEEN_CHECK.inWholeMilliseconds + getRandomDelay(maxHours = 8)
 
     val recipient = SignalDatabase.recipients.getRecord(Recipient.self().id)
 
@@ -122,7 +138,7 @@ class CheckKeyTransparencyJob private constructor(
       keyTransparencyStore = KeyTransparencyStore
     )
 
-    Log.i(TAG, "Key transparency complete, result: $result. Included username in check: ${Recipient.self().usernameSyncMessagesCapability.isSupported}")
+    Log.i(TAG, "Key transparency complete, result: $result. Included username in check: ${Recipient.self().usernameSyncMessagesCapability.isSupported}, next check time: ${SignalStore.misc.nextKeyTransparencyTime}")
     return when (result) {
       is RequestResult.Success -> {
         SignalStore.misc.hasKeyTransparencyFailure = false

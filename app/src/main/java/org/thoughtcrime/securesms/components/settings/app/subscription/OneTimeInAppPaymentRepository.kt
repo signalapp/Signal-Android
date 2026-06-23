@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import java.util.Currency
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 /**
  * Shared one-time payment methods that apply to both Stripe and PayPal payments.
@@ -77,6 +78,7 @@ object OneTimeInAppPaymentRepository {
   fun getBoosts(): Single<Map<Currency, List<Boost>>> {
     return Single.fromCallable { AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault()) }
       .subscribeOn(Schedulers.io())
+      .timeout(InAppPaymentsRepository.DONATIONS_CONFIGURATION_TIMEOUT_SECONDS, TimeUnit.SECONDS)
       .flatMap { it.flattenResult() }
       .map { config ->
         config.getBoostAmounts().mapValues { (_, value) ->
@@ -97,6 +99,7 @@ object OneTimeInAppPaymentRepository {
           .getDonationsConfiguration(Locale.getDefault())
       }
       .subscribeOn(Schedulers.io())
+      .timeout(InAppPaymentsRepository.DONATIONS_CONFIGURATION_TIMEOUT_SECONDS, TimeUnit.SECONDS)
       .flatMap { it.flattenResult() }
       .map { it.getBoostBadges().first() }
   }
@@ -107,8 +110,9 @@ object OneTimeInAppPaymentRepository {
    */
   fun getMinimumDonationAmounts(): Single<Map<Currency, FiatMoney>> {
     return Single.fromCallable { AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault()) }
-      .flatMap { it.flattenResult() }
       .subscribeOn(Schedulers.io())
+      .timeout(InAppPaymentsRepository.DONATIONS_CONFIGURATION_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+      .flatMap { it.flattenResult() }
       .map { it.getMinimumDonationAmounts() }
   }
 

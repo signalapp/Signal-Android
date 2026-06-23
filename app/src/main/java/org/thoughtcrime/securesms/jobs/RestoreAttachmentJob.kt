@@ -13,6 +13,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.isNotNullOrBlank
@@ -22,7 +23,6 @@ import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.signal.network.exceptions.PushNetworkException
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.InvalidAttachmentException
 import org.thoughtcrime.securesms.backup.v2.ArchiveDatabaseExecutor

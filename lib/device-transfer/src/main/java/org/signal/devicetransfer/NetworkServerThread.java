@@ -64,12 +64,17 @@ final class NetworkServerThread extends Thread {
       handler.sendMessage(handler.obtainMessage(NETWORK_SERVER_STARTED, serverSocket.getLocalPort(), 0));
       while (shouldKeepRunning() && !serverSocket.isClosed()) {
         Log.i(TAG, "Waiting for client socket accept...");
+
+        boolean transferStarted = false;
+
         try {
           clientSocket = serverSocket.accept();
 
           if (!isRunning) {
             break;
           }
+
+          resetVerification();
 
           InputStream  inputStream        = clientSocket.getInputStream();
           OutputStream outputStream       = clientSocket.getOutputStream();
@@ -93,16 +98,20 @@ final class NetworkServerThread extends Thread {
             throw new DeviceTransferAuthentication.DeviceTransferAuthenticationException(e);
           }
 
+          transferStarted = true;
           handler.sendEmptyMessage(NETWORK_CLIENT_CONNECTED);
           serverTask.run(context, inputStream);
 
           outputStream.write(0x53);
           outputStream.flush();
         } catch (IOException e) {
-          if (isRunning) {
-            Log.i(TAG, "Error connecting with client or server socket closed.", e);
-          } else {
+          if (!isRunning) {
             Log.i(TAG, "Server shutting down...");
+          } else if (transferStarted) {
+            Log.w(TAG, "Lost connection after the transfer started, aborting instead of accepting another client.", e);
+            isRunning = false;
+          } else {
+            Log.i(TAG, "Error connecting with client or server socket closed.", e);
           }
         } finally {
           StreamUtil.close(clientSocket);
@@ -120,6 +129,12 @@ final class NetworkServerThread extends Thread {
     Log.i(TAG, "Server exiting");
     isRunning = false;
     handler.sendEmptyMessage(NETWORK_SERVER_STOPPED);
+  }
+
+  private void resetVerification() {
+    synchronized (verificationLock) {
+      isVerified = null;
+    }
   }
 
   private void awaitAuthenticationCodeVerification() throws DeviceTransferAuthentication.DeviceTransferAuthenticationException {

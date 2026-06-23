@@ -5,12 +5,12 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.network.NetworkResult
 import org.signal.network.api.AttachmentUploadResult
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.ArchiveDatabaseExecutor

@@ -21,6 +21,7 @@ import com.bumptech.glide.RequestManager;
 import org.signal.core.ui.view.Stub;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
+import org.thoughtcrime.securesms.components.transfercontrols.TransferControls;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
@@ -263,7 +264,7 @@ public class AlbumThumbnailView extends FrameLayout {
   }
 
   private void showSlides(@NonNull RequestManager requestManager, @NonNull List<Slide> slides) {
-    boolean showControls = TransferControlView.containsPlayableSlides(slides);
+    boolean showControls = TransferControls.containsPlayableSlides(slides);
     setSlide(requestManager, slides.get(0), R.id.album_cell_1, showControls);
     setSlide(requestManager, slides.get(1), R.id.album_cell_2, showControls);
 

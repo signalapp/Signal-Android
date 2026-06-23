@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.concurrent.safeBlockingGet
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.audio.AudioWaveForms
 import org.thoughtcrime.securesms.database.SignalDatabase

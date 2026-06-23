@@ -1,19 +1,33 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.card
 
-import android.app.Application
+import android.text.TextUtils
+import io.mockk.every
+import io.mockk.mockkStatic
+import io.mockk.unmockkStatic
+import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.ParameterizedRobolectricTestRunner
-import org.robolectric.annotation.Config
+import org.junit.runners.Parameterized
 
-@RunWith(ParameterizedRobolectricTestRunner::class)
-@Config(application = Application::class)
+@RunWith(Parameterized::class)
 class CreditCardNumberValidatorTest(
   private val creditCardNumber: String,
   private val creditCardNumberFieldFocused: Boolean,
   private val validity: CreditCardNumberValidator.Validity
 ) {
+
+  @Before
+  fun setUp() {
+    mockkStatic(TextUtils::class)
+    every { TextUtils.isDigitsOnly(any()) } answers { firstArg<CharSequence>().all { it.isDigit() } }
+  }
+
+  @After
+  fun tearDown() {
+    unmockkStatic(TextUtils::class)
+  }
 
   @Test
   fun getValidity() {
@@ -22,7 +36,7 @@ class CreditCardNumberValidatorTest(
 
   companion object {
     @JvmStatic
-    @ParameterizedRobolectricTestRunner.Parameters(name = "{index}: getValidity(..) = {0}, {1}, {2}")
+    @Parameterized.Parameters(name = "{index}: getValidity(..) = {0}, {1}, {2}")
     fun data(): Iterable<Array<Any>> = arrayListOf(
       arrayOf("", false, CreditCardNumberValidator.Validity.POTENTIALLY_VALID),
       arrayOf("4", false, CreditCardNumberValidator.Validity.POTENTIALLY_VALID),

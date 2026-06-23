@@ -16,6 +16,7 @@ import org.signal.archive.stream.EncryptedBackupReader
 import org.signal.core.models.backup.BackupId
 import org.signal.core.models.backup.MediaName
 import org.signal.core.models.backup.MessageBackupKey
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.Util
@@ -23,7 +24,6 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.readFully
 import org.signal.core.util.toJson
 import org.signal.libsignal.crypto.Aes256Ctr32
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.AttachmentTable

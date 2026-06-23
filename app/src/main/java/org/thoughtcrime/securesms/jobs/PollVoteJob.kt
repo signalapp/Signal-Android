@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
@@ -45,14 +46,17 @@ class PollVoteJob(
         return null
       }
 
-      val conversationRecipient = SignalDatabase.threads.getRecipientForThreadId(message.threadId)
-      if (conversationRecipient == null) {
+      val conversationRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(message.threadId)
+      if (conversationRecipientId == null) {
         Log.w(TAG, "We have a message, but couldn't find the thread!")
         return null
       }
 
-      val recipients = if (conversationRecipient.isGroup) {
-        conversationRecipient.participantIds.filter { it != Recipient.self().id }.map { it.toLong() }
+      val conversationRecipient = SignalDatabase.recipients.getRecord(conversationRecipientId)
+      val groupId = conversationRecipient.groupId
+
+      val recipients = if (groupId != null) {
+        SignalDatabase.groups.getGroupMemberIds(groupId, GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF).map { it.toLong() }
       } else {
         listOf(conversationRecipient.id.toLong())
       }
@@ -95,13 +99,16 @@ class PollVoteJob(
       return Result.failure()
     }
 
-    val conversationRecipient = SignalDatabase.threads.getRecipientForThreadId(message.threadId)
-    if (conversationRecipient == null) {
+    val conversationRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(message.threadId)
+    if (conversationRecipientId == null) {
       Log.w(TAG, "We have a message, but couldn't find the thread!")
       return Result.failure()
     }
 
-    if (conversationRecipient.isPushV2Group && !SignalDatabase.groups.isActive(conversationRecipient.requireGroupId())) {
+    val conversationRecipient = SignalDatabase.recipients.getRecord(conversationRecipientId)
+    val groupId = conversationRecipient.groupId
+
+    if (groupId != null && groupId.isV2 && !SignalDatabase.groups.isActive(groupId)) {
       Log.w(TAG, "Cannot send poll vote to terminated or inactive group.")
       return Result.failure()
     }
@@ -138,7 +145,7 @@ class PollVoteJob(
     return Result.success()
   }
 
-  private fun deliver(conversationRecipient: Recipient, destinations: List<Recipient>, targetAuthor: Recipient, targetSentTimestamp: Long, poll: PollRecord): List<Recipient> {
+  private fun deliver(conversationRecipient: RecipientRecord, destinations: List<Recipient>, targetAuthor: Recipient, targetSentTimestamp: Long, poll: PollRecord): List<Recipient> {
     val votes = SignalDatabase.polls.getVotes(poll.id, poll.allowMultipleVotes, voteCount)
 
     val dataMessageBuilder = newBuilder()
@@ -152,8 +159,9 @@ class PollVoteJob(
         )
       )
 
-    if (conversationRecipient.isPushV2Group) {
-      GroupUtil.setDataMessageGroupContext(context, dataMessageBuilder, conversationRecipient.requireGroupId().requirePush())
+    val groupId = conversationRecipient.groupId
+    if (groupId != null && groupId.isV2) {
+      GroupUtil.setDataMessageGroupContext(context, dataMessageBuilder, groupId.requirePush())
     }
 
     val dataMessage = dataMessageBuilder.build()
@@ -161,7 +169,7 @@ class PollVoteJob(
 
     val results = GroupSendUtil.sendResendableDataMessage(
       context,
-      conversationRecipient.groupId.map { obj: GroupId -> obj.requireV2() }.orElse(null),
+      groupId?.requireV2(),
       null,
       nonSelfDestinations,
       false,
@@ -174,7 +182,7 @@ class PollVoteJob(
       null
     )
 
-    if (conversationRecipient.isSelf) {
+    if (conversationRecipient.id == Recipient.self().id) {
       results.add(AppDependencies.signalServiceMessageSender.sendSyncMessage(dataMessage))
     }
 

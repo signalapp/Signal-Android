@@ -23,6 +23,7 @@
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recovery_key_phishing_support_url" translatable="false">https://support.signal.org/hc/articles/9932566320410</string> -->
 
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
@@ -3392,6 +3393,8 @@
     <string name="NotificationChannel_calls">કૉલ્સ</string>
     <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">નિષ્ફળતા</string>
+    <!-- Notification channel name for internal-only app issue notifications. Only ever shown to internal users. -->
+    <string name="NotificationChannel_internal_issues">Internal Issues</string>
     <string name="NotificationChannel_backups">બેકઅપ્સ</string>
     <string name="NotificationChannel_locked_status">લૉક સ્ટેટસ</string>
     <string name="NotificationChannel_app_updates">એપ્લિકેશન અપડેટ્સ</string>
@@ -3520,6 +3523,10 @@
     <string name="TransferControlView__processing">પ્રક્રિયા કરી રહ્યા છીએ…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
     <string name="TransferControlView__download_progress_s_s">%1$s/%2$s</string>
+    <!-- Accessibility description for the button that starts downloading an attachment -->
+    <string name="TransferControlView__download">ડાઉનલોડ કરો</string>
+    <!-- Accessibility description for the button that starts uploading an attachment -->
+    <string name="TransferControlView__upload">અપલોડ કરો</string>
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -4096,6 +4103,11 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">લૉગ્સ અપલોડ કરી શક્યાં નથી.</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">કૃપા કરીને સમસ્યાને સમજવામાં અમારી સહાય માટે શક્ય તેટલું વર્ણનાત્મક બનો.</string>
+    <!-- Error shown under the "tell us what\'s going on" field when the entered description is shorter than the required minimum length. The placeholder is the minimum number of characters. -->
+    <plurals name="HelpFragment__must_be_at_least_n_characters">
+        <item quantity="one">ઓછામાં ઓછા %1$d અક્ષરની હોવી જોઈએ</item>
+        <item quantity="other">ઓછામાં ઓછા %1$d અક્ષરની હોવી જોઈએ</item>
+    </plurals>
     <string-array name="HelpFragment__categories_6">
         <item>કૃપા કરીને એક વિકલ્પ પસંદ કરો</item>
         <item>કંઈક કામ નથી કરી રહ્યું</item>
@@ -9920,6 +9932,36 @@
     <string name="SafetyTipsBottomSheet__tip_3_body">Signal સાથે રજીસ્ટર કરાવતી વખતે તમારા વેરિફિકેશન કોડ ઉપરાંત, તમારા Signal પિનને જરૂરી બનાવીને તમારા એકાઉન્ટને સુરક્ષિત કરો.</string>
     <!-- Button on the safety tips screen that opens account settings -->
     <string name="SafetyTipsBottomSheet__open_account_settings">એકાઉન્ટ સેટિંગ્સ ખોલો</string>
+
+    <!-- Title of a warning sheet shown when the user copies or pastes their recovery key, urging them not to share it -->
+    <string name="RecoveryKeyWarningSheetContent__do_not_share_your_recovery_key">તમારી રિકવરી કી શેર કરશો નહીં</string>
+    <!-- Bolded lead-in to the warning sheet body; combined with RecoveryKeyWarningSheetContent__for_your_recovery_key_never_respond to form a full sentence -->
+    <string name="RecoveryKeyWarningSheetContent__signal_will_never_message_you">Signal ક્યારેય તમને</string>
+    <!-- Remainder of the warning sheet body following the bolded lead-in RecoveryKeyWarningSheetContent__signal_will_never_message_you -->
+    <string name="RecoveryKeyWarningSheetContent__for_your_recovery_key_never_respond">તમારી રિકવરી કી માટે મેસેજ નહીં કરે. Signal હોવાનો દાવો કરતી કોઈ ચેટનો ક્યારેય જવાબ આપશે નહીં તમારી રિકવરી કીને કોઈ સલામત જગ્યાએ સ્ટોર કરો અને તેને કોઈની સાથે શેર કરશે નહીં.</string>
+    <!-- Button dismissing the recovery key warning sheet after the user has copied their key -->
+    <string name="RecoveryKeyWarningSheetContent__got_it">સમજાઈ ગયું</string>
+    <!-- Button opening a help article with more information about recovery key safety -->
+    <string name="RecoveryKeyWarningSheetContent__learn_more">વધુ જાણો</string>
+    <!-- Inline link opening a help article with more information about recovery key safety -->
+    <string name="RecoveryKeyWarningSheetContent__learn_more_period">વધુ શીખો.</string>
+    <!-- Button declining to paste/share the recovery key, dismissing the warning sheet -->
+    <string name="RecoveryKeyWarningSheetContent__do_not_share_key">કી શેર કરશો નહીં</string>
+    <!-- Button indicating the user wants to proceed with sharing/pasting the recovery key, which shows a final confirmation -->
+    <string name="RecoveryKeyWarningSheetContent__share_key">કી શેર કરો</string>
+
+    <!-- Title of the final confirmation dialog shown before pasting a recovery key -->
+    <string name="RecoveryKeyWarningDialog__do_not_share_recovery_key">રિકવરી કી શેર કરશો નહીં</string>
+    <!-- First sentence of the final confirmation dialog body warning against sharing the recovery key -->
+    <string name="RecoveryKeyWarningDialog__do_not_share_your_recovery_key_with_anyone">તમારી રિકવરી કી કોઈની સાથે શેર કરશો નહીં. આ તેમને તમારા એકાઉન્ટ પર કાબૂ મેળવવા દે છે.</string>
+    <!-- Bolded middle sentence of the final confirmation dialog body -->
+    <string name="RecoveryKeyWarningDialog__signal_will_never_message_you_for_your_recovery_key">Signal તમારી રિકવરી કી માટે તમને ક્યારેય મેસેજ કરશે નહીં.</string>
+    <!-- Final sentence of the final confirmation dialog body -->
+    <string name="RecoveryKeyWarningDialog__never_respond_to_a_chat">Signal હોવાનો દાવો કરતી કોઈ ચેટનો ક્યારેય જવાબ આપશો નહીં</string>
+    <!-- Button confirming the user wants to paste the recovery key -->
+    <string name="RecoveryKeyWarningDialog__paste_key">કી પેસ્ટ કરો</string>
+    <!-- Button declining to paste the recovery key -->
+    <string name="RecoveryKeyWarningDialog__dont_share">શેર ન કરશો</string>
 
     <!-- EOF -->
 </resources>

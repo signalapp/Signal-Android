@@ -826,7 +826,7 @@ class CameraScreenViewModel : ViewModel() {
   private fun vibrate(context: Context) {
     val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
     vibrator?.let {
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      if (Build.VERSION.SDK_INT >= 26) {
         it.vibrate(VibrationEffect.createOneShot(50, 75))
       } else {
         @Suppress("DEPRECATION")

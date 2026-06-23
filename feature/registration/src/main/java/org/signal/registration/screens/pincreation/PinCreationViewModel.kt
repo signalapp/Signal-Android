@@ -90,8 +90,7 @@ class PinCreationViewModel(
     return when (val result = repository.setNewlyCreatedPin(pin, state.isAlphanumericKeyboard, masterKey)) {
       is RequestResult.Success -> {
         Log.i(TAG, "[PinSubmitted] Successfully backed up master key to SVR.")
-        // TODO profile creation
-        parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
+        repository.finishRegistrationOrCreateProfile(parentEventEmitter)
         state
       }
 

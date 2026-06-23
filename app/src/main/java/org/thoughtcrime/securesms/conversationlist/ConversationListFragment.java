@@ -331,7 +331,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
         new ConversationListSearchAdapter.ChatFilterRepository(),
         new SearchRepository(requireContext().getString(R.string.note_to_self)),
         new ContactSearchPagedDataSourceRepository(requireContext()),
-        Collections.emptySet()
+        Collections.emptySet(),
+        true
     )).get(ContactSearchViewModel.class);
 
     searchAdapter = new ConversationListSearchAdapter(
@@ -431,7 +432,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     maybeScheduleRefreshProfileJob();
     ConversationListFragmentExtensionsKt.listenToEventBusWhileResumed(this, mainNavigationViewModel.getDetailLocation());
 
-    String query = contactSearchViewModel.getQuery();
+    String query = contactSearchViewModel.getQuery().getValue();
     if (query != null) {
       onSearchQueryUpdated(query);
     }

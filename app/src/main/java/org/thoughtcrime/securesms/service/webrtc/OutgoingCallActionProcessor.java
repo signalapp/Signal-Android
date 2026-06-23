@@ -91,7 +91,8 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
                                               remotePeer.getId(),
                                       isVideoCall ? CallTable.Type.VIDEO_CALL : CallTable.Type.AUDIO_CALL,
                                               CallTable.Direction.OUTGOING,
-                                              CallTable.Event.ONGOING);
+                                              CallTable.Event.ONGOING,
+                                              false);
 
     EglBaseWrapper.replaceHolder(EglBaseWrapper.OUTGOING_PLACEHOLDER, remotePeer.getCallId().longValue());
 

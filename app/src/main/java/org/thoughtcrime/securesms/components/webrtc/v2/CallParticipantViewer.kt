@@ -471,6 +471,7 @@ private fun VideoRenderer(
           }
 
           setMirror(mirror)
+          applyScreenShareAwareScaling(participant.isScreenSharing)
         }
 
         renderer = textureRenderer
@@ -491,6 +492,7 @@ private fun VideoRenderer(
         }
 
         textureRenderer.setMirror(mirror)
+        textureRenderer.applyScreenShareAwareScaling(participant.isScreenSharing)
       }
     },
     onRelease = {
@@ -498,6 +500,18 @@ private fun VideoRenderer(
     },
     modifier = modifier
   )
+}
+
+/**
+ * Screen-shared content is fit inside the view ([RendererCommon.ScalingType.SCALE_ASPECT_FIT]) so nothing is cropped,
+ * while camera video fills the view, falling back to balanced scaling when the video orientation does not match the view.
+ */
+private fun TextureViewRenderer.applyScreenShareAwareScaling(isScreenSharing: Boolean) {
+  if (isScreenSharing) {
+    setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT)
+  } else {
+    setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL, RendererCommon.ScalingType.SCALE_ASPECT_BALANCED)
+  }
 }
 
 @Composable

@@ -46,10 +46,16 @@ data class RegistrationFlowState(
   /** The AEP obtained via manual entry for local/remote backup restore. May or may not be valid for the current phone number. */
   val unverifiedRestoredAep: AccountEntropyPool? = null,
 
+  /**
+   * If non-null, identifies the old device's quick-restore listener. Set when we receive a [NetworkController.ProvisioningMessage]
+   * from the old device, then used to notify the old device of the user's restore-method selection so its UX can update.
+   */
+  val restoreMethodToken: String? = null,
+
   /** If true, the ViewModel is still deciding whether to restore a previous flow or start fresh. */
   val isRestoringNavigationState: Boolean = true
 ) : Parcelable, DebugLoggableModel() {
   override fun toSafeString(): String {
-    return "RegistrationFlowState(backStack=${backStack.joinToString()}, sessionMetadata=${sessionMetadata.let { "present" }}, sessionE164=$sessionE164, accountEntropyPool=${accountEntropyPool?.displayValue?.censor()}, temporaryMasterKey=${temporaryMasterKey?.toString()?.censor()}, preExistingRegistrationData=${preExistingRegistrationData?.let { "present" }}, doNotAttemptRecoveryPassword=$doNotAttemptRecoveryPassword, pendingRestoreOption=$pendingRestoreOption, unverifiedRestoredAep=${unverifiedRestoredAep?.displayValue?.censor()}, isRestoringNavigation=$isRestoringNavigationState)"
+    return "RegistrationFlowState(backStack=${backStack.joinToString()}, sessionMetadata=${sessionMetadata.let { "present" }}, sessionE164=$sessionE164, accountEntropyPool=${accountEntropyPool?.displayValue?.censor()}, temporaryMasterKey=${temporaryMasterKey?.toString()?.censor()}, preExistingRegistrationData=${preExistingRegistrationData?.let { "present" }}, doNotAttemptRecoveryPassword=$doNotAttemptRecoveryPassword, pendingRestoreOption=$pendingRestoreOption, unverifiedRestoredAep=${unverifiedRestoredAep?.displayValue?.censor()}, restoreMethodToken=${restoreMethodToken?.censor()}, isRestoringNavigation=$isRestoringNavigationState)"
   }
 }

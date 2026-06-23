@@ -228,7 +228,7 @@ object SystemContactsRepository {
       while (cursor.moveToNext()) {
         val rawContactId = cursor.requireLong(BaseColumns._ID)
 
-        Log.i(TAG, "Deleting raw contact: ${cursor.requireString(FIELD_DISPLAY_PHONE)}, $rawContactId")
+        Log.i(TAG, "Deleting raw contact: $rawContactId")
         context.contentResolver.delete(currentContactsUri, "${ContactsContract.RawContacts._ID} = ?", SqlUtil.buildArgs(rawContactId))
       }
     }

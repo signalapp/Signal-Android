@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider
 import org.whispersystems.signalservice.internal.websocket.OkHttpWebSocketConnection
@@ -34,8 +35,9 @@ class CheckServiceReachabilityJob private constructor(params: Parameters) : Base
     @JvmStatic
     fun enqueueIfNecessary() {
       val isCensored = AppDependencies.signalServiceNetworkAccess.isCensored()
+      val context = AppDependencies.application
       val timeSinceLastCheck = System.currentTimeMillis() - SignalStore.misc.lastCensorshipServiceReachabilityCheckTime
-      if (SignalStore.account.isRegistered && isCensored && timeSinceLastCheck > TimeUnit.DAYS.toMillis(1)) {
+      if (SignalStore.account.isRegistered && !TextSecurePreferences.isUnauthorizedReceived(context) && isCensored && timeSinceLastCheck > TimeUnit.DAYS.toMillis(1)) {
         AppDependencies.jobManager.add(CheckServiceReachabilityJob())
       }
     }
@@ -52,6 +54,12 @@ class CheckServiceReachabilityJob private constructor(params: Parameters) : Base
   override fun onRun() {
     if (!SignalStore.account.isRegistered) {
       Log.w(TAG, "Not registered, skipping.")
+      SignalStore.misc.lastCensorshipServiceReachabilityCheckTime = System.currentTimeMillis()
+      return
+    }
+
+    if (TextSecurePreferences.isUnauthorizedReceived(context)) {
+      Log.w(TAG, "Unauthorized received, skipping.")
       SignalStore.misc.lastCensorshipServiceReachabilityCheckTime = System.currentTimeMillis()
       return
     }

@@ -35,6 +35,7 @@ public class ContactRepository {
 
   public static final String ID_COLUMN           = "id";
   public static final String NAME_COLUMN         = "name";
+  public static final String SORT_NAME_COLUMN    = "sort_name";
          static final String NUMBER_COLUMN       = "number";
          static final String NUMBER_TYPE_COLUMN  = "number_type";
          static final String LABEL_COLUMN        = "label";
@@ -54,6 +55,11 @@ public class ContactRepository {
 
       return Util.getFirstNonEmpty(system, profile);
     }));
+
+    // The key the results are actually ordered by (nickname/system/profile/username, lowercased). Letter
+    // headers must derive from this rather than NAME_COLUMN, which omits nickname/username and can begin
+    // with a different letter than the row's sort position.
+    add(new Pair<>(SORT_NAME_COLUMN, cursor -> CursorUtil.requireString(cursor, RecipientTable.SORT_NAME)));
 
     add(new Pair<>(NUMBER_COLUMN, cursor -> {
       String phone = CursorUtil.requireString(cursor, RecipientTable.E164);

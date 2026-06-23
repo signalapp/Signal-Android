@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
@@ -43,19 +44,8 @@ public class RecipientUtil {
   private static final String TAG = Log.tag(RecipientUtil.class);
 
   /**
-   * This method will do it's best to get a {@link ServiceId} for the provided recipient. This includes performing
-   * a possible network request if no ServiceId is available. If the request to get a ServiceId fails or the user is
-   * not registered, an IOException is thrown.
-   */
-  @WorkerThread
-  public static @NonNull ServiceId getOrFetchServiceId(@NonNull Context context, @NonNull Recipient recipient) throws IOException {
-    return toSignalServiceAddress(context, recipient).getServiceId();
-  }
-
-  /**
-   * This method will do it's best to craft a fully-populated {@link SignalServiceAddress} based on
-   * the provided recipient. This includes performing a possible network request if no UUID is
-   * available. If the request to get a UUID fails or the user is not registered, an IOException is thrown.
+   * Crafts a fully-populated {@link SignalServiceAddress} based on the provided recipient. If the recipient
+   * has no serviceId then they are not a valid send target and a {@link NotFoundException} is thrown.
    */
   @WorkerThread
   public static @NonNull SignalServiceAddress toSignalServiceAddress(@NonNull Context context, @NonNull Recipient recipient)
@@ -63,22 +53,26 @@ public class RecipientUtil {
   {
     recipient = recipient.resolve();
 
-    if (!recipient.getServiceId().isPresent() && !recipient.getE164().isPresent()) {
-      throw new AssertionError(recipient.getId() + " - No UUID or phone number!");
-    }
-
-    if (!recipient.getServiceId().isPresent()) {
-      Log.i(TAG, recipient.getId() + " is missing a UUID...");
-      RegisteredState state = ContactDiscovery.refresh(context, recipient, false);
-
-      recipient = Recipient.resolved(recipient.getId());
-      Log.i(TAG, "Successfully performed a UUID fetch for " + recipient.getId() + ". Registered: " + state);
-    }
-
     if (recipient.getHasServiceId()) {
-      return new SignalServiceAddress(recipient.requireServiceId(), Optional.ofNullable(recipient.resolve().getE164().orElse(null)));
+      return new SignalServiceAddress(recipient.requireServiceId(), recipient.getE164());
     } else {
       throw new NotFoundException(recipient.getId() + " is not registered!");
+    }
+  }
+
+  /**
+   * Crafts a fully-populated {@link SignalServiceAddress} based on the provided record. If the record has
+   * no serviceId then they are not a valid send target and a {@link NotFoundException} is thrown.
+   */
+  public static @NonNull SignalServiceAddress toSignalServiceAddress(@NonNull RecipientRecord record)
+      throws IOException
+  {
+    ServiceId serviceId = record.getServiceId();
+
+    if (serviceId != null) {
+      return new SignalServiceAddress(serviceId, Optional.ofNullable(record.getE164()));
+    } else {
+      throw new NotFoundException(record.getId() + " is not registered!");
     }
   }
 

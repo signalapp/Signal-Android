@@ -37,7 +37,7 @@ class SignalProgressDialog private constructor(
 
   var progress: Int
     get() = progressBar.progress
-    set(value) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+    set(value) = if (Build.VERSION.SDK_INT >= 24) {
       progressBar.setProgress(value, true)
     } else {
       progressBar.setProgress(value)

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue
 import org.signal.archive.proto.BackupDebugInfo
 import org.signal.ringrtc.CallManager.DataMode
 import org.thoughtcrime.securesms.BuildConfig
+import org.thoughtcrime.securesms.database.model.IssuePriority
 import org.thoughtcrime.securesms.util.Environment.Calling.defaultSfuUrl
 import org.thoughtcrime.securesms.util.RemoteConfig
 
@@ -37,6 +38,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val IMPORTED_BACKUP_DEBUG_INFO: String = "internal.imported_backup_debug_info"
     const val USE_NEW_MEDIA_ACTIVITY: String = "internal.use_new_media_activity"
     const val ANR_DETECTION_CRASH: String = "internal.anr_detection_crash"
+    const val ISSUE_NOTIFICATION_PRIORITY: String = "internal.issue_notification_priority"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -176,6 +178,14 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   var useConversationItemV2Media by booleanValue(CONVERSATION_ITEM_V2_MEDIA, false).defaultForExternalUsers()
 
   var forceSsre2Capability by booleanValue("internal.force_ssre2_capability", false).defaultForExternalUsers()
+
+  /**
+   * The minimum [IssuePriority] that an issue recorded by [org.thoughtcrime.securesms.database.IssueReporter] must have
+   * in order to raise a user notification.
+   */
+  var issueNotificationPriority: IssuePriority
+    get() = IssuePriority.fromValue(getInteger(ISSUE_NOTIFICATION_PRIORITY, IssuePriority.HIGH.value))
+    set(value) = putInteger(ISSUE_NOTIFICATION_PRIORITY, value.value)
 
   var showArchiveStateHint by booleanValue(SHOW_ARCHIVE_STATE_HINT, false).defaultForExternalUsers()
 

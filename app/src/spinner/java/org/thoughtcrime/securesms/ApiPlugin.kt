@@ -39,6 +39,16 @@ class ApiPlugin : Plugin {
   companion object {
     private val TAG = Log.tag(ApiPlugin::class.java)
     const val PATH = "/api"
+
+    /** Incoming [MessageType]s that [createMessage] can insert. Others need extra context (group/payment/etc.) we don't supply. */
+    private val SUPPORTED_INCOMING_TYPES = listOf(
+      MessageType.NORMAL,
+      MessageType.IDENTITY_UPDATE,
+      MessageType.IDENTITY_VERIFIED,
+      MessageType.IDENTITY_DEFAULT,
+      MessageType.CONTACT_JOINED,
+      MessageType.EXPIRATION_UPDATE
+    )
   }
 
   override val name: String = "APIs"
@@ -93,7 +103,9 @@ class ApiPlugin : Plugin {
         Param("fromRecipientId", "1"),
         Param("toRecipientId", "1"),
         Param("body", "Hello"),
-        Param("outgoing", "false")
+        Param("outgoing", "false"),
+        Param("type", "NORMAL", placeholder = "NORMAL|IDENTITY_UPDATE|IDENTITY_VERIFIED|IDENTITY_DEFAULT|CONTACT_JOINED|EXPIRATION_UPDATE"),
+        Param("timestamp", "", placeholder = "blank = now (epoch millis)")
       )
     )
   )
@@ -492,28 +504,54 @@ class ApiPlugin : Plugin {
       ?: return PluginResult.ErrorResult(message = "Missing or invalid 'toRecipientId' parameter")
     val body = parameters["body"]?.firstOrNull() ?: ""
     val outgoing = parameters.boolOrDefault("outgoing", false)
+    val timestamp = parameters["timestamp"]?.firstOrNull()?.takeIf { it.isNotBlank() }?.toLongOrNull() ?: System.currentTimeMillis()
+
+    val typeParam = parameters["type"]?.firstOrNull()?.takeIf { it.isNotBlank() }
+    val messageType = if (typeParam != null) {
+      MessageType.entries.find { it.name.equals(typeParam, ignoreCase = true) }
+        ?: return PluginResult.ErrorResult(message = "Unknown message type '$typeParam'. Supported: ${SUPPORTED_INCOMING_TYPES.joinToString { it.name }}")
+    } else {
+      MessageType.NORMAL
+    }
 
     return try {
-      val now = System.currentTimeMillis()
       if (outgoing) {
+        if (messageType != MessageType.NORMAL) {
+          return PluginResult.ErrorResult(message = "'type' is only supported for incoming messages; outgoing messages are always NORMAL text")
+        }
         val threadRecipient = Recipient.resolved(RecipientId.from(toRecipientId))
         val outgoingMessage = OutgoingMessage.text(
           threadRecipient = threadRecipient,
           body = body,
           expiresIn = 0,
-          sentTimeMillis = now
+          sentTimeMillis = timestamp
         )
         val result = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId)
         CreateMessageResponse(result.messageId).toJsonResult()
       } else {
-        val incomingMessage = IncomingMessage(
-          type = MessageType.NORMAL,
-          from = RecipientId.from(fromRecipientId),
-          sentTimeMillis = now,
-          serverTimeMillis = now,
-          receivedTimeMillis = now,
-          body = body
-        )
+        val from = RecipientId.from(fromRecipientId)
+        val incomingMessage = when (messageType) {
+          MessageType.NORMAL -> IncomingMessage(
+            type = MessageType.NORMAL,
+            from = from,
+            sentTimeMillis = timestamp,
+            serverTimeMillis = timestamp,
+            receivedTimeMillis = timestamp,
+            body = body
+          )
+          MessageType.IDENTITY_UPDATE -> IncomingMessage.identityUpdate(from, timestamp, null)
+          MessageType.IDENTITY_VERIFIED -> IncomingMessage.identityVerified(from, timestamp, null)
+          MessageType.IDENTITY_DEFAULT -> IncomingMessage.identityDefault(from, timestamp, null)
+          MessageType.CONTACT_JOINED -> IncomingMessage.contactJoined(from, timestamp)
+          MessageType.EXPIRATION_UPDATE -> IncomingMessage(
+            type = MessageType.EXPIRATION_UPDATE,
+            from = from,
+            sentTimeMillis = timestamp,
+            serverTimeMillis = timestamp,
+            receivedTimeMillis = timestamp
+          )
+          else -> return PluginResult.ErrorResult(message = "Message type '${messageType.name}' is not supported for insertion via the API. Supported: ${SUPPORTED_INCOMING_TYPES.joinToString { it.name }}")
+        }
         val inserted = SignalDatabase.messages.insertMessageInbox(incomingMessage, candidateThreadId = threadId)
         if (inserted.isPresent) {
           CreateMessageResponse(inserted.get().messageId).toJsonResult()

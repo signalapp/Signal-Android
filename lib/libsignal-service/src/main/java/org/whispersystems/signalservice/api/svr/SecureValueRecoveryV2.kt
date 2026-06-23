@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.MasterKey
 import org.signal.core.util.Hex
-import org.signal.libsignal.protocol.logging.Log
+import org.signal.core.util.logging.Log
 import org.signal.libsignal.svr2.PinHash
 import org.signal.network.NetworkResult
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException

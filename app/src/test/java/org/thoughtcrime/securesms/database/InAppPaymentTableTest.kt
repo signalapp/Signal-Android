@@ -37,6 +37,27 @@ class InAppPaymentTableTest {
     SignalDatabase.inAppPayments.writableDatabase.deleteAll(InAppPaymentTable.TABLE_NAME)
   }
 
+  @Test
+  fun givenACreatedInAppPayment_whenIUpdateToPending_thenIExpectPendingPayment() {
+    val inAppPaymentId = SignalDatabase.inAppPayments.insert(
+      type = InAppPaymentType.ONE_TIME_DONATION,
+      state = InAppPaymentTable.State.CREATED,
+      subscriberId = null,
+      endOfPeriod = null,
+      inAppPaymentData = InAppPaymentData()
+    )
+
+    val paymentBeforeUpdate = SignalDatabase.inAppPayments.getById(inAppPaymentId)
+    assertThat(paymentBeforeUpdate?.state).isEqualTo(InAppPaymentTable.State.CREATED)
+
+    SignalDatabase.inAppPayments.update(
+      inAppPayment = paymentBeforeUpdate!!.copy(state = InAppPaymentTable.State.PENDING)
+    )
+
+    val paymentAfterUpdate = SignalDatabase.inAppPayments.getById(inAppPaymentId)
+    assertThat(paymentAfterUpdate?.state).isEqualTo(InAppPaymentTable.State.PENDING)
+  }
+
   // region consumeDonationPaymentsToNotifyUser
 
   @Test

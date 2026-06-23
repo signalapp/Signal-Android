@@ -145,6 +145,7 @@ include(":demo:apng")
 
 // Testing/Lint modules
 include(":lintchecks")
+include(":fast-lint")
 include(":benchmark")
 include(":baseline-profile")
 include(":microbenchmark")

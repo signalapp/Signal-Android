@@ -45,7 +45,7 @@ class TlsProxySocketFactory(
       }
     }
 
-    return ProxySocket(system.createSocket(proxyHost, proxyPort))
+    return ProxySocket(system.createSocket(proxyHost, proxyPort).enableHostnameVerification())
   }
 
   @Throws(IOException::class, UnknownHostException::class)
@@ -58,25 +58,33 @@ class TlsProxySocketFactory(
       }
     }
 
-    return ProxySocket(system.createSocket(proxyHost, proxyPort, localHost, localPort))
+    return ProxySocket(system.createSocket(proxyHost, proxyPort, localHost, localPort).enableHostnameVerification())
   }
 
   @Throws(IOException::class)
   override fun createSocket(host: InetAddress, port: Int): Socket {
-    return ProxySocket(system.createSocket(proxyHost, proxyPort))
+    return ProxySocket(system.createSocket(proxyHost, proxyPort).enableHostnameVerification())
   }
 
   @Throws(IOException::class)
   override fun createSocket(address: InetAddress, port: Int, localAddress: InetAddress, localPort: Int): Socket {
-    return ProxySocket(system.createSocket(proxyHost, proxyPort, localAddress, localPort))
+    return ProxySocket(system.createSocket(proxyHost, proxyPort, localAddress, localPort).enableHostnameVerification())
   }
 
   @Throws(IOException::class)
   override fun createSocket(): Socket {
-    val socket = system.createSocket(proxyHost, proxyPort) as SSLSocket
+    val socket = system.createSocket(proxyHost, proxyPort).enableHostnameVerification()
     socket.startHandshake()
 
     return ProxySocket(socket)
+  }
+
+  private fun Socket.enableHostnameVerification(): SSLSocket {
+    val sslSocket = this as SSLSocket
+    sslSocket.sslParameters = sslSocket.sslParameters.apply {
+      endpointIdentificationAlgorithm = "HTTPS"
+    }
+    return sslSocket
   }
 
   private class ProxySocket(private val delegate: Socket) : Socket() {

@@ -7,8 +7,8 @@ import okhttp3.WebSocketListener
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Hex
+import org.signal.core.util.logging.Log
 import org.signal.libsignal.attest.AttestationDataException
-import org.signal.libsignal.protocol.logging.Log
 import org.signal.libsignal.sgxsession.SgxCommunicationFailureException
 import org.signal.libsignal.svr2.Svr2Client
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException

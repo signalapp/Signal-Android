@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.components.registration;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Animation;
@@ -49,7 +48,7 @@ public class VerificationPinKeyboard extends FrameLayout {
     initialize();
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+  @RequiresApi(api = 21)
   public VerificationPinKeyboard(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
     initialize();

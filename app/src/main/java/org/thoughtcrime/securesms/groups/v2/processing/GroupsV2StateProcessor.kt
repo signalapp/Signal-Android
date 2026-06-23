@@ -713,6 +713,11 @@ class GroupsV2StateProcessor private constructor(
         return
       }
 
+      if (SignalDatabase.recipients.isProfileSharing(groupId)) {
+        Log.i(TAG, "Profile sharing already enabled for $groupId. Leaving as-is.")
+        return
+      }
+
       val selfAsMember = DecryptedGroupUtil.findMemberByAci(newLocalState.members, aci).orNull()
       val selfAsPending = DecryptedGroupUtil.findPendingByServiceId(newLocalState.pendingMembers, aci).orNull()
 

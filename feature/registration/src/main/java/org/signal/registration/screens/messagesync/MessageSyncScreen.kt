@@ -10,9 +10,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -45,6 +48,7 @@ import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
+import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.test.TestTags
 
 /**
@@ -68,40 +72,63 @@ fun MessageSyncScreen(
 
 @Composable
 private fun OnePane(params: RegistrationScaffold.Params.OnePane, state: MessageSyncScreenState, onEvent: (MessageSyncScreenEvent) -> Unit) {
+  val scrollState = rememberScrollState()
+
   OnePaneRegistrationScaffold(
     params = params,
-    footer = { FooterContent(params = params, onEvent = onEvent) }
-  ) {
-    Column(
-      horizontalAlignment = Alignment.CenterHorizontally,
-      modifier = Modifier.padding(it)
-    ) {
-      FirstPaneContent(state)
-      SecondPaneContent()
+    content = { paddingValues ->
+      Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+          .verticalScroll(scrollState)
+          .padding(paddingValues)
+      ) {
+        FirstPaneContent(state)
+        SecondPaneContent()
+      }
+    },
+    footer = {
+      FooterContent(
+        params = params,
+        isElevated = scrollState.canScrollForward,
+        onEvent = onEvent
+      )
     }
-  }
+  )
 }
 
 @Composable
 private fun TwoPane(params: RegistrationScaffold.Params.TwoPane, state: MessageSyncScreenState, onEvent: (MessageSyncScreenEvent) -> Unit) {
+  val firstPaneScrollState = rememberScrollState()
+  val secondPaneScrollState = rememberScrollState()
+
   TwoPaneRegistrationScaffold(
     params = params,
-    firstPane = {
+    firstPane = { paddingValues ->
       FirstPaneContent(
         state = state,
         modifier = Modifier
-          .padding(it)
           .weight(1f)
+          .fillMaxHeight()
+          .verticalScroll(firstPaneScrollState)
+          .padding(paddingValues)
       )
     },
-    secondPane = {
+    secondPane = { paddingValues ->
       SecondPaneContent(
         modifier = Modifier
-          .padding(it)
           .weight(1f)
+          .verticalScroll(secondPaneScrollState)
+          .padding(paddingValues)
       )
     },
-    footer = { FooterContent(params = params, onEvent = onEvent) }
+    footer = {
+      FooterContent(
+        params = params,
+        isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward,
+        onEvent = onEvent
+      )
+    }
   )
 }
 
@@ -113,15 +140,17 @@ private fun FirstPaneContent(
   Column(modifier = modifier) {
     Text(
       text = stringResource(R.string.MessageSyncScreen__syncing_messages),
-      style = MaterialTheme.typography.headlineLarge,
-      modifier = Modifier.padding(bottom = 12.dp)
+      style = MaterialTheme.typography.headlineMedium,
+      modifier = Modifier
+        .fillMaxWidth()
+        .attachDebugLogHelper()
     )
 
     Text(
       text = stringResource(R.string.MessageSyncScreen__this_may_take_a_few_minutes),
-      style = MaterialTheme.typography.titleMedium,
+      style = MaterialTheme.typography.bodyLarge,
       color = MaterialTheme.colorScheme.onSurfaceVariant,
-      modifier = Modifier.padding(bottom = 47.dp)
+      modifier = Modifier.padding(top = 16.dp)
     )
 
     LinearProgressIndicator(
@@ -135,7 +164,7 @@ private fun FirstPaneContent(
       drawStopIndicator = {},
       gapSize = 0.dp,
       modifier = Modifier
-        .padding(bottom = 16.dp)
+        .padding(top = 48.dp, bottom = 16.dp)
         .widthIn(max = 415.dp)
         .fillMaxWidth()
     )
@@ -167,32 +196,41 @@ private fun SecondPaneContent(
 @Composable
 private fun FooterContent(
   params: RegistrationScaffold.Params,
+  isElevated: Boolean,
   onEvent: (MessageSyncScreenEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
   val breakpoint = rememberWindowBreakpoint()
 
-  when (breakpoint) {
-    is WindowBreakpoint.Small -> StackedFooter(params, modifier, onEvent)
-    is WindowBreakpoint.Medium -> StackedFooter(params, modifier, onEvent)
-    is WindowBreakpoint.Large -> InlineFooter(modifier, onEvent)
+  RegistrationScaffold.FooterSurface(
+    isElevated = isElevated
+  ) {
+    when (breakpoint) {
+      is WindowBreakpoint.Small, is WindowBreakpoint.Medium -> StackedFooter(params, modifier, onEvent)
+      is WindowBreakpoint.Large -> InlineFooter(params, modifier, onEvent)
+    }
   }
 }
 
 @Composable
-private fun StackedFooter(params: RegistrationScaffold.Params, modifier: Modifier, onEvent: (MessageSyncScreenEvent) -> Unit) {
-  Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+private fun StackedFooter(
+  params: RegistrationScaffold.Params,
+  modifier: Modifier,
+  onEvent: (MessageSyncScreenEvent) -> Unit
+) {
+  Column(
+    modifier = modifier
+      .padding(params.footerPadding)
+      .fillMaxWidth(),
+    horizontalAlignment = Alignment.CenterHorizontally
+  ) {
     Notice(
       onEvent = onEvent,
-      modifier = Modifier
-        .padding(horizontal = 58.dp)
-        .padding(bottom = 16.dp)
+      modifier = Modifier.padding(bottom = 16.dp)
     )
     Cancel(
       onEvent = onEvent,
       modifier = Modifier
-        .padding(horizontal = 56.dp)
-        .padding(bottom = 36.dp)
         .widthIn(max = params.maxButtonWidth)
         .fillMaxWidth()
     )
@@ -200,31 +238,47 @@ private fun StackedFooter(params: RegistrationScaffold.Params, modifier: Modifie
 }
 
 @Composable
-private fun InlineFooter(modifier: Modifier, onEvent: (MessageSyncScreenEvent) -> Unit) {
-  Box(modifier = modifier) {
-    Notice(
-      onEvent = onEvent,
-      modifier = Modifier
-        .padding(horizontal = 58.dp, vertical = 36.dp)
-    )
-    Cancel(
-      onEvent = onEvent,
-      modifier = Modifier
-        .padding(horizontal = 56.dp, vertical = 36.dp)
-        .align(Alignment.CenterEnd)
-    )
+private fun InlineFooter(
+  params: RegistrationScaffold.Params,
+  modifier: Modifier,
+  onEvent: (MessageSyncScreenEvent) -> Unit
+) {
+  Row(
+    modifier = modifier
+      .padding(params.footerPadding)
+      .fillMaxWidth(),
+    verticalAlignment = Alignment.CenterVertically
+  ) {
+    Spacer(modifier = Modifier.weight(1f))
+    Notice(onEvent = onEvent)
+
+    Box(
+      modifier = Modifier.weight(1f),
+      contentAlignment = Alignment.CenterEnd
+    ) {
+      Cancel(
+        onEvent = onEvent,
+        modifier = Modifier
+          .widthIn(max = params.maxButtonWidth)
+          .padding(start = 16.dp)
+      )
+    }
   }
 }
 
 @Composable
-private fun Notice(modifier: Modifier, onEvent: (MessageSyncScreenEvent) -> Unit) {
+private fun Notice(
+  modifier: Modifier = Modifier,
+  onEvent: (MessageSyncScreenEvent) -> Unit
+) {
   Row(modifier = modifier) {
-    Spacer(modifier = Modifier.weight(1f))
-
     Icon(
       imageVector = SignalIcons.Lock.imageVector,
       contentDescription = null,
-      tint = MaterialTheme.colorScheme.onSurfaceVariant
+      tint = MaterialTheme.colorScheme.onSurfaceVariant,
+      modifier = Modifier
+        .padding(end = 2.dp)
+        .align(Alignment.CenterVertically)
     )
 
     Text(
@@ -253,10 +307,11 @@ private fun Notice(modifier: Modifier, onEvent: (MessageSyncScreenEvent) -> Unit
       textAlign = TextAlign.Center,
       style = MaterialTheme.typography.bodyMedium,
       color = MaterialTheme.colorScheme.onSurfaceVariant,
-      modifier = Modifier.testTag(TestTags.MESSAGE_SYNC_LEARN_MORE_LINK).widthIn(max = 405.dp)
+      modifier = Modifier
+        .testTag(TestTags.MESSAGE_SYNC_LEARN_MORE_LINK)
+        .widthIn(max = 405.dp)
+        .align(Alignment.CenterVertically)
     )
-
-    Spacer(modifier = Modifier.weight(1f))
   }
 }
 

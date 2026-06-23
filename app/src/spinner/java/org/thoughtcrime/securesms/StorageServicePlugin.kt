@@ -1,11 +1,14 @@
 package org.thoughtcrime.securesms
 
 import org.signal.core.util.Base64
+import org.signal.core.util.nullIfBlank
 import org.signal.network.service.StorageServiceService
 import org.signal.spinner.Plugin
 import org.signal.spinner.PluginResult
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
+import org.whispersystems.signalservice.api.storage.signalAci
+import org.whispersystems.signalservice.api.storage.signalPni
 
 class StorageServicePlugin : Plugin {
   override val name: String = "Storage"
@@ -36,25 +39,30 @@ class StorageServicePlugin : Plugin {
         row += record.proto.account.toString().prettyPrintProto()
       } else if (record.proto.contact != null) {
         row += "Contact"
-        row += record.proto.toString()
+        val contact = record.proto.contact!!
+        val readable = contact.copy(
+          aci = contact.aci.nullIfBlank() ?: contact.signalAci?.toString()?.let { "**$it**" } ?: contact.aci,
+          pni = contact.pni.nullIfBlank() ?: contact.signalPni?.toString()?.let { "**$it**" } ?: contact.pni
+        )
+        row += readable.toString().prettyPrintProto()
       } else if (record.proto.groupV1 != null) {
         row += "GV1"
-        row += record.proto.toString()
+        row += record.proto.groupV1.toString().prettyPrintProto()
       } else if (record.proto.groupV2 != null) {
         row += "GV2"
-        row += record.proto.toString()
+        row += record.proto.groupV2.toString().prettyPrintProto()
       } else if (record.proto.storyDistributionList != null) {
         row += "Distribution List"
-        row += record.proto.toString()
+        row += record.proto.storyDistributionList.toString().prettyPrintProto()
       } else if (record.proto.callLink != null) {
         row += "Call Link"
-        row += record.proto.callLink.toString()
+        row += record.proto.callLink.toString().prettyPrintProto()
       } else if (record.proto.chatFolder != null) {
         row += "Chat Folder"
-        row += record.proto.chatFolder.toString()
+        row += record.proto.chatFolder.toString().prettyPrintProto()
       } else if (record.proto.notificationProfile != null) {
         row += "Notification Profile"
-        row += record.proto.notificationProfile.toString()
+        row += record.proto.notificationProfile.toString().prettyPrintProto()
       } else {
         row += "Unknown"
         row += ""

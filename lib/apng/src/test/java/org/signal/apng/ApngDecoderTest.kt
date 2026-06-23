@@ -12,6 +12,9 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.IOException
 import java.io.InputStream
 
 @RunWith(RobolectricTestRunner::class)
@@ -382,6 +385,63 @@ class ApngDecoderTest {
     result.frames.forEachIndexed { i, _ -> assertNotNull(result.decoder.decodeFrame(i)) }
   }
 
+  // -- Malicious / malformed input --
+
+  @Test(expected = IOException::class)
+  fun `create rejects chunk with oversized declared length instead of allocating`() {
+    val malicious = ByteArrayOutputStream().apply {
+      write(byteArrayOf(0x89.toByte(), 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A)) // PNG magic
+      write(byteArrayOf(0x7F, 0xFF.toByte(), 0xFF.toByte(), 0xFF.toByte())) // declared chunk length = 0x7FFFFFFF
+      write("IHDR".toByteArray(Charsets.US_ASCII))
+    }.toByteArray()
+
+    ApngDecoder.create { ByteArrayInputStream(malicious) }
+  }
+
+  @Test(expected = IOException::class)
+  fun `create rejects chunk longer than the known content length even when under the absolute ceiling`() {
+    val malicious = ByteArrayOutputStream().apply {
+      write(byteArrayOf(0x89.toByte(), 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A)) // PNG magic
+      write(byteArrayOf(0x00, 0x0F, 0x42, 0x40)) // declared chunk length = 1,000,000
+      write("IHDR".toByteArray(Charsets.US_ASCII))
+    }.toByteArray()
+
+    ApngDecoder.create(contentLength = 1024) { ByteArrayInputStream(malicious) }
+  }
+
+  // -- Bounds checking --
+
+  @Test(expected = IOException::class)
+  fun `create rejects APNG with oversized IHDR canvas dimensions`() {
+    ApngDecoder.create { ByteArrayInputStream(apngWithIhdrDimensions(0x7FFFFFFF, 0x7FFFFFFF)) }
+  }
+
+  @Test(expected = IOException::class)
+  fun `create rejects IHDR with a declared length other than 13`() {
+    val malicious = ByteArrayOutputStream().apply {
+      write(byteArrayOf(0x89.toByte(), 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A)) // PNG magic
+      write(byteArrayOf(0x00, 0x00, 0x00, 0x09)) // declared IHDR length = 9 (should be 13)
+      write("IHDR".toByteArray(Charsets.US_ASCII))
+      write(ByteArray(9))
+      write(byteArrayOf(0x00, 0x00, 0x00, 0x00)) // CRC
+    }.toByteArray()
+
+    ApngDecoder.create { ByteArrayInputStream(malicious) }
+  }
+
+  @Test(expected = IOException::class)
+  fun `create rejects acTL that is too short`() {
+    val malicious = ByteArrayOutputStream().apply {
+      write(apngWithIhdrDimensions(1, 1)) // PNG magic + valid 1x1 IHDR
+      write(byteArrayOf(0x00, 0x00, 0x00, 0x04)) // declared acTL length = 4 (should be 8)
+      write("acTL".toByteArray(Charsets.US_ASCII))
+      write(ByteArray(4))
+      write(byteArrayOf(0x00, 0x00, 0x00, 0x00)) // CRC
+    }.toByteArray()
+
+    ApngDecoder.create { ByteArrayInputStream(malicious) }
+  }
+
   // -- Helpers --
 
   private fun open(filename: String): InputStream {
@@ -392,6 +452,33 @@ class ApngDecoderTest {
   private fun decode(filename: String): DecodeResult {
     val decoder = ApngDecoder.create { open(filename) }
     return DecodeResult(decoder, decoder.metadata, decoder.frames)
+  }
+
+  /**
+   * Builds the leading bytes of an APNG (PNG magic + a single IHDR chunk) with the given canvas dimensions.
+   * Enough for the decoder to read and validate the IHDR before anything else.
+   */
+  private fun apngWithIhdrDimensions(width: Int, height: Int): ByteArray {
+    val ihdrData = ByteArray(13).apply {
+      this[0] = (width ushr 24).toByte()
+      this[1] = (width ushr 16).toByte()
+      this[2] = (width ushr 8).toByte()
+      this[3] = width.toByte()
+      this[4] = (height ushr 24).toByte()
+      this[5] = (height ushr 16).toByte()
+      this[6] = (height ushr 8).toByte()
+      this[7] = height.toByte()
+      this[8] = 8 // bitDepth
+      this[9] = 6 // colorType
+    }
+
+    return ByteArrayOutputStream().apply {
+      write(byteArrayOf(0x89.toByte(), 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A)) // PNG magic
+      write(byteArrayOf(0x00, 0x00, 0x00, 0x0D)) // IHDR length = 13
+      write("IHDR".toByteArray(Charsets.US_ASCII))
+      write(ihdrData)
+      write(byteArrayOf(0x00, 0x00, 0x00, 0x00)) // CRC (not validated by the decoder)
+    }.toByteArray()
   }
 
   private val ApngDecoder.Frame.delayMs: Long

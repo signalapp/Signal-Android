@@ -38,7 +38,6 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -51,6 +50,7 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Previews
 import org.signal.registration.R
+import org.signal.registration.fonts.MonoTypeface
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
@@ -78,6 +78,7 @@ private fun OnePaneLayout(
   modifier: Modifier = Modifier
 ) {
   val scrollState = rememberScrollState()
+
   OnePaneRegistrationScaffold(
     modifier = modifier.fillMaxSize(),
     params = params,
@@ -96,7 +97,7 @@ private fun OnePaneLayout(
     },
     footer = {
       RegistrationScaffold.FooterSurface(
-        isContentScrolledUnder = scrollState.canScrollForward
+        isElevated = scrollState.canScrollForward
       ) {
         Row(
           modifier = Modifier
@@ -129,7 +130,9 @@ private fun TwoPaneLayout(
   onEvent: (EnterAepEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val scrollState = rememberScrollState()
+  val firstPaneScrollState = rememberScrollState()
+  val secondPaneScrollState = rememberScrollState()
+
   TwoPaneRegistrationScaffold(
     modifier = modifier.fillMaxSize(),
     params = params,
@@ -138,7 +141,7 @@ private fun TwoPaneLayout(
         modifier = Modifier
           .weight(1f)
           .fillMaxHeight()
-          .verticalScroll(scrollState)
+          .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
         Description()
@@ -149,7 +152,7 @@ private fun TwoPaneLayout(
         modifier = Modifier
           .weight(1f)
           .fillMaxHeight()
-          .verticalScroll(scrollState)
+          .verticalScroll(secondPaneScrollState)
           .padding(paddingValues)
       ) {
         RecoveryKeyTextField(state, onEvent)
@@ -157,7 +160,7 @@ private fun TwoPaneLayout(
     },
     footer = {
       RegistrationScaffold.FooterSurface(
-        isContentScrolledUnder = scrollState.canScrollForward
+        isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
       ) {
         Row(
           horizontalArrangement = Arrangement.End,
@@ -184,13 +187,13 @@ private fun Description() {
       .attachDebugLogHelper()
   )
 
-  Spacer(modifier = Modifier.size(8.dp))
-
   Text(
     text = stringResource(R.string.EnterAepScreen__your_recovery_key_is_a_64_character_code),
-    style = MaterialTheme.typography.bodyMedium,
+    style = MaterialTheme.typography.bodyLarge,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(top = 16.dp)
   )
 }
 
@@ -210,7 +213,7 @@ private fun RecoveryKeyTextField(state: EnterAepState, onEvent: (EnterAepEvents)
     },
     label = { Text(stringResource(R.string.EnterAepScreen__recovery_key)) },
     textStyle = MaterialTheme.typography.bodyLarge.copy(
-      fontFamily = FontFamily.Monospace,
+      fontFamily = MonoTypeface.fontFamily(),
       lineHeight = 36.sp
     ),
     colors = TextFieldDefaults.colors(

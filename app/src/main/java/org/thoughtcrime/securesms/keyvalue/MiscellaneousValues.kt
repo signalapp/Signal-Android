@@ -45,6 +45,7 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val STARTED_QUOTE_THUMBNAIL_MIGRATION = "misc.started_quote_thumbnail_migration"
     private const val PREFERRED_MAIN_ACTIVITY_ANCHOR_INDEX = "misc.preferred_main_activity_anchor_index"
     private const val LAST_KEY_TRANSPARENCY_TIME = "misc.last_key_transparency_time"
+    private const val NEXT_KEY_TRANSPARENCY_TIME = "misc.next_key_transparency_time"
     private const val HAS_KEY_TRANSPARENCY_FAILURE = "misc.has_key_transparency_failure"
     private const val HAS_SEEN_KEY_TRANSPARENCY_FAILURE = "misc.has_seen_key_transparency_failure"
     private const val CAMERA_FACING_FRONT = "misc.camera_facing_front"
@@ -320,6 +321,11 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
    * The last time we ran key transparency against ourself
    */
   var lastKeyTransparencyTime: Long by longValue(LAST_KEY_TRANSPARENCY_TIME, 0)
+
+  /**
+   * The next time we should run key transparency self check
+   */
+  var nextKeyTransparencyTime: Long by longValue(NEXT_KEY_TRANSPARENCY_TIME, 0)
 
   /**
    * Whether you are unable to run key transparency on yourself

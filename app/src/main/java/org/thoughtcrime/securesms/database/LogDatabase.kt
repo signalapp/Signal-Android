@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database
 import android.annotation.SuppressLint
 import android.app.Application
 import android.database.Cursor
+import androidx.sqlite.db.SupportSQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.SqlUtil
@@ -18,7 +19,9 @@ import org.signal.core.util.readToList
 import org.signal.core.util.readToSingleInt
 import org.signal.core.util.readToSingleLong
 import org.signal.core.util.requireBoolean
+import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
+import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.select
@@ -27,6 +30,8 @@ import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.crash.CrashConfig
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
+import org.thoughtcrime.securesms.database.model.IssueEntry
+import org.thoughtcrime.securesms.database.model.IssuePriority
 import org.thoughtcrime.securesms.database.model.LogEntry
 import java.io.Closeable
 import kotlin.math.abs
@@ -60,7 +65,7 @@ class LogDatabase private constructor(
   companion object {
     private val TAG = Log.tag(LogDatabase::class.java)
 
-    private const val DATABASE_VERSION = 4
+    private const val DATABASE_VERSION = 5
     private const val DATABASE_NAME = "signal-logs.db"
 
     @SuppressLint("StaticFieldLeak") // We hold an Application context, not a view context
@@ -90,15 +95,20 @@ class LogDatabase private constructor(
   @get:JvmName("anrs")
   val anrs: AnrTable by lazy { AnrTable(this) }
 
+  @get:JvmName("issues")
+  val issues: IssueTable by lazy { IssueTable({ readableDatabase }, { writableDatabase }) }
+
   override fun onCreate(db: SQLiteDatabase) {
     Log.i(TAG, "onCreate()")
 
     db.execSQL(LogTable.CREATE_TABLE)
     db.execSQL(CrashTable.CREATE_TABLE)
     db.execSQL(AnrTable.CREATE_TABLE)
+    db.execSQL(IssueTable.CREATE_TABLE)
 
     LogTable.CREATE_INDEXES.forEach { db.execSQL(it) }
     CrashTable.CREATE_INDEXES.forEach { db.execSQL(it) }
+    IssueTable.CREATE_INDEXES.forEach { db.execSQL(it) }
   }
 
   override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -119,6 +129,12 @@ class LogDatabase private constructor(
 
     if (oldVersion < 4) {
       db.execSQL("CREATE TABLE anr (_id INTEGER PRIMARY KEY, created_at INTEGER NOT NULL, thread_dump TEXT NOT NULL)")
+    }
+
+    if (oldVersion < 5) {
+      db.execSQL("CREATE TABLE issue (_id INTEGER PRIMARY KEY, created_at INTEGER NOT NULL, app_version TEXT NOT NULL, name TEXT NOT NULL, description TEXT NOT NULL, stack_trace TEXT, priority INTEGER NOT NULL, duration INTEGER)")
+      db.execSQL("CREATE INDEX issue_created_at ON issue (created_at)")
+      db.execSQL("CREATE INDEX issue_name ON issue (name)")
     }
   }
 
@@ -524,6 +540,157 @@ class LogDatabase private constructor(
     data class AnrRecord(
       val createdAt: Long,
       val threadDump: String
+    )
+  }
+
+  class IssueTable(
+    private val readableDatabaseProvider: () -> SupportSQLiteDatabase,
+    private val writableDatabaseProvider: () -> SupportSQLiteDatabase
+  ) {
+    companion object {
+      const val TABLE_NAME = "issue"
+      const val ID = "_id"
+      const val CREATED_AT = "created_at"
+      const val APP_VERSION = "app_version"
+      const val NAME = "name"
+      const val DESCRIPTION = "description"
+      const val STACK_TRACE = "stack_trace"
+      const val PRIORITY = "priority"
+      const val DURATION = "duration"
+
+      const val CREATE_TABLE = """
+        CREATE TABLE $TABLE_NAME (
+          $ID INTEGER PRIMARY KEY,
+          $CREATED_AT INTEGER NOT NULL,
+          $APP_VERSION TEXT NOT NULL,
+          $NAME TEXT NOT NULL,
+          $DESCRIPTION TEXT NOT NULL,
+          $STACK_TRACE TEXT,
+          $PRIORITY INTEGER NOT NULL,
+          $DURATION INTEGER
+        )
+      """
+
+      val CREATE_INDEXES = arrayOf(
+        "CREATE INDEX issue_created_at ON $TABLE_NAME ($CREATED_AT)",
+        "CREATE INDEX issue_name ON $TABLE_NAME ($NAME)"
+      )
+
+      private val MAX_LIFESPAN = 30.days.inWholeMilliseconds
+      private const val MAX_ROWS = 500
+    }
+
+    private val readableDatabase: SupportSQLiteDatabase get() = readableDatabaseProvider()
+    private val writableDatabase: SupportSQLiteDatabase get() = writableDatabaseProvider()
+
+    fun insert(issues: Sequence<IssueEntry>, currentTime: Long) {
+      writableDatabase.withinTransaction { db ->
+        issues.forEach { issue ->
+          db.insertInto(TABLE_NAME)
+            .values(
+              CREATED_AT to issue.createdAt,
+              APP_VERSION to issue.version,
+              NAME to issue.name,
+              DESCRIPTION to issue.description,
+              STACK_TRACE to issue.stackTrace,
+              PRIORITY to issue.priority.value,
+              DURATION to issue.duration
+            )
+            .run()
+        }
+
+        trimToSize(db, currentTime)
+      }
+    }
+
+    fun getRecent(limit: Int = MAX_ROWS): List<IssueRecord> {
+      return readableDatabase
+        .select()
+        .from(TABLE_NAME)
+        .orderBy("$CREATED_AT DESC")
+        .limit(limit)
+        .run()
+        .readToList { cursor ->
+          IssueRecord(
+            id = cursor.requireLong(ID),
+            createdAt = cursor.requireLong(CREATED_AT),
+            version = cursor.requireNonNullString(APP_VERSION),
+            name = cursor.requireNonNullString(NAME),
+            description = cursor.requireNonNullString(DESCRIPTION),
+            stackTrace = cursor.requireString(STACK_TRACE),
+            priority = IssuePriority.fromValue(cursor.requireInt(PRIORITY)),
+            duration = cursor.requireLongOrNull(DURATION)
+          )
+        }
+    }
+
+    fun getSummary(): List<IssueSummary> {
+      return readableDatabase
+        .select(NAME, "COUNT(*) AS count", "MAX($PRIORITY) AS max_priority", "MIN($CREATED_AT) AS first_seen", "MAX($CREATED_AT) AS last_seen", "CAST(AVG($DURATION) AS INTEGER) AS avg_duration")
+        .from(TABLE_NAME)
+        .where("1 = 1")
+        .groupBy(NAME)
+        .run()
+        .readToList { cursor ->
+          val name = cursor.requireNonNullString(NAME)
+          IssueSummary(
+            name = name,
+            count = cursor.requireInt("count"),
+            maxPriority = IssuePriority.fromValue(cursor.requireInt("max_priority")),
+            firstSeen = cursor.requireLong("first_seen"),
+            lastSeen = cursor.requireLong("last_seen"),
+            lastVersion = getLatestVersion(name),
+            averageDuration = cursor.requireLongOrNull("avg_duration")
+          )
+        }
+        .sortedByDescending { it.count }
+    }
+
+    fun clear() {
+      writableDatabase.deleteAll(TABLE_NAME)
+    }
+
+    private fun getLatestVersion(name: String): String {
+      return readableDatabase
+        .select(APP_VERSION)
+        .from(TABLE_NAME)
+        .where("$NAME = ?", name)
+        .orderBy("$CREATED_AT DESC")
+        .limit(1)
+        .run()
+        .readToList { it.requireNonNullString(APP_VERSION) }
+        .firstOrNull() ?: ""
+    }
+
+    private fun trimToSize(db: SupportSQLiteDatabase, currentTime: Long) {
+      db.delete(TABLE_NAME)
+        .where("$CREATED_AT < ${currentTime - MAX_LIFESPAN}")
+        .run()
+
+      db.delete(TABLE_NAME)
+        .where("$ID NOT IN (SELECT $ID FROM $TABLE_NAME ORDER BY $CREATED_AT DESC LIMIT $MAX_ROWS)")
+        .run()
+    }
+
+    data class IssueRecord(
+      val id: Long,
+      val createdAt: Long,
+      val version: String,
+      val name: String,
+      val description: String,
+      val stackTrace: String?,
+      val priority: IssuePriority,
+      val duration: Long?
+    )
+
+    data class IssueSummary(
+      val name: String,
+      val count: Int,
+      val maxPriority: IssuePriority,
+      val firstSeen: Long,
+      val lastSeen: Long,
+      val lastVersion: String,
+      val averageDuration: Long?
     )
   }
 }

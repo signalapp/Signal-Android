@@ -2,7 +2,7 @@ package org.whispersystems.signalservice.api.groupsv2;
 
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
-import org.signal.libsignal.protocol.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.signal.storageservice.storage.protos.groups.AccessControl;
 import org.signal.storageservice.storage.protos.groups.Member;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedApproveMember;

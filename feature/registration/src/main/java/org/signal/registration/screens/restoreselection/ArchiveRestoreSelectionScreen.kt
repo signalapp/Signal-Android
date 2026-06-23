@@ -98,7 +98,7 @@ private fun OnePaneLayout(
     },
     footer = {
       RegistrationScaffold.FooterSurface(
-        isContentScrolledUnder = scrollState.canScrollForward
+        isElevated = scrollState.canScrollForward
       ) {
         if (state.showSkipButton) {
           Row(
@@ -122,7 +122,9 @@ private fun TwoPaneLayout(
   onEvent: (ArchiveRestoreSelectionScreenEvents) -> Unit,
   modifier: Modifier
 ) {
-  val scrollState = rememberScrollState()
+  val firstPaneScrollState = rememberScrollState()
+  val secondPaneScrollState = rememberScrollState()
+
   TwoPaneRegistrationScaffold(
     modifier = modifier
       .fillMaxSize()
@@ -132,7 +134,7 @@ private fun TwoPaneLayout(
       Column(
         modifier = Modifier
           .weight(1f)
-          .verticalScroll(scrollState)
+          .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
         Description()
@@ -142,7 +144,7 @@ private fun TwoPaneLayout(
       Column(
         modifier = Modifier
           .weight(1f)
-          .verticalScroll(scrollState)
+          .verticalScroll(secondPaneScrollState)
           .padding(paddingValues)
       ) {
         RestoreOptions(state, onEvent)
@@ -150,7 +152,7 @@ private fun TwoPaneLayout(
     },
     footer = {
       RegistrationScaffold.FooterSurface(
-        isContentScrolledUnder = scrollState.canScrollForward
+        isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
       ) {
         if (state.showSkipButton) {
           Row(
@@ -177,13 +179,11 @@ private fun Description() {
       .attachDebugLogHelper()
   )
 
-  Spacer(modifier = Modifier.height(8.dp))
-
   Text(
     text = stringResource(R.string.ArchiveRestoreSelectionScreen__subheading),
-    style = MaterialTheme.typography.bodyMedium,
+    style = MaterialTheme.typography.bodyLarge,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier.padding(top = 16.dp)
   )
 }
 

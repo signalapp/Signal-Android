@@ -204,7 +204,7 @@ private fun getMediaTimestamp(context: Context, uri: Uri): Long? {
  * For older versions, we need READ_EXTERNAL_STORAGE.
  */
 fun hasMediaPermissions(context: Context): Boolean {
-  return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+  return if (Build.VERSION.SDK_INT >= 33) {
     // Android 13+
     context.checkSelfPermission(Manifest.permission.READ_MEDIA_IMAGES) ==
       PackageManager.PERMISSION_GRANTED ||
@@ -221,7 +221,7 @@ fun hasMediaPermissions(context: Context): Boolean {
  * Returns the list of permissions needed to read media files based on the Android version.
  */
 fun getMediaPermissions(): Array<String> {
-  return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+  return if (Build.VERSION.SDK_INT >= 33) {
     arrayOf(
       Manifest.permission.READ_MEDIA_IMAGES,
       Manifest.permission.READ_MEDIA_VIDEO

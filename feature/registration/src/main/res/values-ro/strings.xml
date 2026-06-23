@@ -317,7 +317,7 @@
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
     <string name="PinCreationScreen__confirm_your_pin">Confirmă PIN-ul</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">Re-introdu PIN-ul pe care tocmai l-ai creat</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">PIN-urile te pot ajuta să îți restaurezi contul dacă îți pierzi telefonul. </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -359,7 +359,7 @@
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">Permite notificările</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal ar vrea să ceară permisiunea pentru notificări. Asta permite dispozitivului să afișeze alerte când sosesc noile mesaje.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">Nu acum</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -368,36 +368,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">Se sincronizează mesajele</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">Această operațiune poate dura câteva minute…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">Se descarcă %1$s din %2$s</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Mesajele și informațiile legate de conversații sunt protejate prin criptare end-to-end, inclusiv prin procesul de sincronizare.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">Află mai multe</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">Anulează</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scanează acest cod pentru a-ți conecta contul</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">Deschide Signal pe telefonul tău</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Atinge imaginea de profil ca să deschizi Setări Signal</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Atinge Dispozitive asociate și Asociază un nou dispozitiv</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Poziționează camera peste acest cod qr</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">Cere ajutor pentru acești pași</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">Maximizează Codul QR</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">Scanat</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">Nu s-a putut genera codul</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Nu ai Signal pe alt dispozitiv?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">Creează cont</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">Transferă-ți contul</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">Ca să-ți transferi contul, deschide Signal pe vechiul dispozitiv Android și selectează Transferă contul.</string>
+    <string name="DeviceTransferInstructions__continue">Continuare</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">Se pregătește conectarea la un dispozitiv Android vechi…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">Este posibil să dureze un pic. Ar trebui să fie gata în curând.</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">Se așteaptă conectarea vechiului dispozitiv…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">Verifică și asigură-te că se potrivesc numerele pe ambele dispozitive</string>
+    <string name="DeviceTransferSetup__numbers_match">Da, numerele se potrivesc</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">Numerele nu se potrivesc</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">Se așteaptă verificarea vechiului dispozitiv…</string>
+    <string name="DeviceTransferSetup__location_permission_required">Signal are nevoie de permisiunea de localizare pentru a descoperi și a se conecta la vechiul dispozitiv.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">Acordă permisiune</string>
+    <string name="DeviceTransferSetup__location_services_required">Signal are nevoie de servicii de localizare activate pentru a descoperi și a se conecta cu vechiul dispozitiv Android.</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">Activare servicii de localizare</string>
+    <string name="DeviceTransferSetup__wifi_required">Signal are nevoie ca Wi-Fi-ul să fie activat ca să descopere și să se conecteze cu vechiul dispozitiv.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">Activare Wi-Fi</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">Ne pare rău, pare că dispozitivul tău nu acceptă Wi-Fi Direct.</string>
+    <string name="DeviceTransferSetup__restore_a_backup">Restaurează un backup</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">A apărut o eroare neașteptată în timpul încercării de a se conecta la vechiul dispozitiv.</string>
+    <string name="DeviceTransferSetup__retry">Încearcă din nou</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">Nu ți-am putut descoperi vechiul dispozitiv</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• Asigură-te că sunt acordate permisiunile de locație.\n• Asigură-te că Wi-Fi-ul este activat și că nu sunt memorate niciun grup Wi-Fi Direct.\n• Încercă să dezactivezi și să activezi Wi-Fi pe ambele dispozitive.\n• Asigură-te că ambele dispozitive sunt în modul de transfer.</string>
+    <string name="DeviceTransferSetup__try_again">Încercă din nou</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">Numerele nu se potrivesc</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">Dacă numerele de pe dispozitivele tale nu se potrivesc, e posibil să te fi conectat la dispozitivul greșit.</string>
+    <string name="DeviceTransferSetup__stop_transfer">Oprire transfer</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">Se transmit datele</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">%1$d mesaje până acum</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">Nu se poate transfera</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">Nu se poate transfera dintr-o versiune mai nouă de Signal.</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">Anumite date nu au putut fi transferate din cauza constrângerilor bazei de date.</string>
+    <string name="DeviceTransferProgress__transfer_failed">Transferul a eșuat. Încearcă din nou.</string>
+    <string name="DeviceTransferProgress__try_again">Încearcă din nou</string>
+    <string name="DeviceTransferProgress__cancel">Anulează</string>
+    <string name="DeviceTransferProgress__stop_transfer">Oprești transferul?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">Tot progresul transferului se va pierde.</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">Transfer finalizat</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">Contul tău este acum pe acest dispozitiv.</string>
+    <string name="DeviceTransferComplete__continue_registration">Continuare</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">Configurează-ți profilul</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">Profilul și schimbările tale vor fi vizibile pentru persoanele cărora le dai mesaj, pentru contacte și grupuri.</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">Prenume (obligatoriu)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">Nume (opțional)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">Următorul</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">Setează avatar</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Cine îmi poate găsi numărul?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Oricine are numărul tău de telefon va vedea că ești pe Signal și poate începe conversații cu tine.</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Nimeni nu va putea să vadă că eșți pe Signal decât dacă îi trimiți un mesaj sau dacă ai o conversație existentă cu acesta.</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">Toată lumea</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">Nimeni</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Ești sigur/ă?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Dacă setezi \"Cine mă poate găsi după număr\" la \"Nimeni\", oamenii te vor găsi mai greu pe Signal.</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Anulează</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">Salvează</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">Înapoi</string>
 </resources>

@@ -15,7 +15,6 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.text.buildSpannedString
-import com.google.android.material.appbar.MaterialToolbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.models.media.Media
@@ -35,7 +34,6 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
-import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFullScreenDialogFragment
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity.Companion.share
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareDialogs
@@ -44,9 +42,7 @@ import org.thoughtcrime.securesms.sharing.MultiShareSender.MultiShareSendResultC
 import org.thoughtcrime.securesms.sharing.interstitial.ShareInterstitialActivity
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
-import org.thoughtcrime.securesms.util.visible
 import java.util.concurrent.TimeUnit
-import org.signal.core.ui.R as CoreUiR
 
 class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.Callback {
 
@@ -86,7 +82,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    setContentView(R.layout.share_activity_v2)
+    setContentView(R.layout.multiselect_forward_activity)
 
     val isIntentValid = getUnresolvedShareData().either(
       onSuccess = {
@@ -108,16 +104,6 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
       if (it.resultCode == Activity.RESULT_OK) {
         finish()
       }
-    }
-
-    val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
-
-    if (intent?.getBooleanExtra(EXTRA_NAVIGATION, false) == true) {
-      toolbar.setTitle(getTitleFromExtras())
-      toolbar.setNavigationIcon(CoreUiR.drawable.symbol_arrow_start_24)
-      toolbar.setNavigationOnClickListener { finish() }
-    } else {
-      toolbar.visible = false
     }
 
     lifecycleDisposable.bindTo(this)
@@ -177,6 +163,8 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
 
   override fun exitFlow() = Unit
 
+  override fun navigateUp() = finish()
+
   override fun onSearchInputFocused() = Unit
 
   override fun setResult(bundle: Bundle) {
@@ -193,7 +181,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
     viewModel.onContactSelectionConfirmed(contactSearchKeys)
   }
 
-  override fun getContainer(): ViewGroup = findViewById(R.id.container)
+  override fun getContainer(): ViewGroup = findViewById(R.id.fragment_container_wrapper)
 
   override fun getDialogBackgroundColor(): Int = ContextCompat.getColor(this, R.color.signal_background_primary)
 
@@ -255,7 +243,9 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
   }
 
   private fun ensureFragment(resolvedShareData: ResolvedShareData) {
-    if (!supportFragmentManager.isStateSaved && supportFragmentManager.fragments.none { it is MultiselectForwardFullScreenDialogFragment }) {
+    val hasToolbar = intent?.getBooleanExtra(EXTRA_NAVIGATION, false) == true
+
+    if (!supportFragmentManager.isStateSaved && supportFragmentManager.fragments.none { it is MultiselectForwardFragment }) {
       supportFragmentManager.beginTransaction()
         .replace(
           R.id.fragment_container,
@@ -264,7 +254,8 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
               multiShareArgs = listOf(resolvedShareData.toMultiShareArgs()),
               title = getTitleFromExtras(),
               forceDisableAddMessage = true,
-              forceSelectionOnly = true
+              forceSelectionOnly = true,
+              forceHideToolbar = !hasToolbar
             )
           )
         ).commitNow()

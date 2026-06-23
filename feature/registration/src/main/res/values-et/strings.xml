@@ -314,9 +314,9 @@
     <!-- PIN creation screen title. -->
     <string name="PinCreationScreen__create_your_pin">Loo enda PIN-kood</string>
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
-    <string name="PinCreationScreen__confirm_your_pin">Confirm your PIN</string>
+    <string name="PinCreationScreen__confirm_your_pin">Kinnita enda PIN-kood</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">Sisesta just loodud PIN-kood uuesti</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">PIN-kood võimaldab sul konto taastada, kui sa oma telefoni ära kaotad. </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -328,11 +328,11 @@
     <!-- Labels the button to submit a new Signal PIN. -->
     <string name="PinCreationScreen__next">Edasi</string>
     <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_digits">PIN must be at least 4 digits</string>
+    <string name="PinCreationScreen__pin_at_least_4_digits">PIN-kood peab olema vähemalt 4 numbrit pikk</string>
     <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_characters">PIN must be at least 4 characters</string>
+    <string name="PinCreationScreen__pin_at_least_4_characters">PIN-kood peab olema vähemalt 4 tähemärki pikk</string>
     <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin">Re-enter PIN</string>
+    <string name="PinCreationScreen__reenter_pin">Sisesta PIN-kood uuesti</string>
 
     <!-- PIN entry screen title when registration lock is active. -->
     <string name="PinEntryScreen__registration_lock">Registreerimislukk</string>
@@ -342,8 +342,8 @@
     <string name="PinEntryScreen__enter_the_pin_you_created">Sisesta PIN-kood, mille sa Signalit esmakordselt paigaldades lõid</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
-        <item quantity="one">Lubamatu PIN-kood. %1$d katse jäänud.</item>
-        <item quantity="other">Lubamatu PIN-kood. %1$d katse jäänud.</item>
+        <item quantity="one">Vale PIN-kood. %1$d katse jäänud.</item>
+        <item quantity="other">Vale PIN-kood. %1$d katset jäänud.</item>
     </plurals>
     <!-- Labels the button to get help with PIN entry. -->
     <string name="PinEntryScreen__need_help">Kas vajad abi?</string>
@@ -355,9 +355,9 @@
     <string name="PinEntryScreen__continue">Jätka</string>
 
     <!-- Title for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__allow_notifications">Allow Notifications</string>
+    <string name="AllowNotificationsScreen__allow_notifications">Luba teavitused</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal soovib luba teavituste saatmiseks. Nii saab su seade sind teavitada, kui uued sõnumid saabuvad.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">Mitte praegu</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -366,36 +366,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">Sõnumite sünkroniseerimine</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">Selleks võib kuluda mõni minut …</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">Allalaadimine: %1$s kogumahust %2$s</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Sõnumid ja vestluste info on kaitstud kõigis seadmetes otspunktkrüpteeringuga, sh sünkroniseerimisprotsess.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">Rohkem teavet</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">Loobu</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Skanni see kood oma konto linkimiseks</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">Ava Signal enda telefonis</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Toksa oma profiilipilti ja ava Signali sätted</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Vali Lingitud seadmete alt Lingi uus seade</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Skanni kaameraga see QR-kood</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">Palu nende sammude teostamiseks abi</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">Suurenda QR-koodi</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">Skannitud</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">Koodi ei saanud luua</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Kas sul ei ole teises seadmes Signalit?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">Loo konto</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">Konto edastamine</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">Oma konto edastamiseks ava oma vanas Android-seadmes Signal ja vali Konto edastamine.</string>
+    <string name="DeviceTransferInstructions__continue">Jätka</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">Valmistun ühenduma vana Android-seadmega…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">Selleks võib kuluda mõni hetk. Varsti saab valmis.</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">Ootan vana seadme ühendumist …</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">Kontrolli, et mõlemas seadmes kuvatavad numbrid ühtiksid</string>
+    <string name="DeviceTransferSetup__numbers_match">Jah, numbrid ühtivad</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">Numbrid ei ole samad</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">Ootan vana seadme kinnitamist …</string>
+    <string name="DeviceTransferSetup__location_permission_required">Signal vajab sinu vana seadme leidmiseks ja sellega ühendamiseks juurdepääsu asukohainfole.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">Anna luba</string>
+    <string name="DeviceTransferSetup__location_services_required">Signal vajab sinu vana seadme leidmiseks ja sellega ühendumiseks ligipääsu asukohainfole.</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">Lülita sisse asukohateenused</string>
+    <string name="DeviceTransferSetup__wifi_required">Signalil on vaja su vana seadme leidmiseks ja sellega ühenduse loomiseks Wi-Fi ühendust.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">Lülita Wi-Fi sisse</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">Kahjuks tundub, et su seade ei toeta Wi-Fi Directi.</string>
+    <string name="DeviceTransferSetup__restore_a_backup">Taasta selle asemel varukoopia</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">Sinu vana seadmega ühenduse loomisel tekkis ootamatu tõrge.</string>
+    <string name="DeviceTransferSetup__retry">Proovi uuesti</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">Sinu vana seadet ei õnnestunud leida</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• Veendu, et asukohainfo jagamine on lubatud.\n• Veendu, et Wi-Fi on sisse lülitatud ja ühtegi Wi-Fi Directi rühma ei ole salvestatud.\n• Proovi mõlemas seadmes Wi-Fi välja ja uuesti sisse lülitada.\n• Veendu, et mõlemas seadmes oleks valitud edastuse režiim.</string>
+    <string name="DeviceTransferSetup__try_again">Proovi uuesti</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">Numbrid ei ole samad</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">Kui su seadmetel kuvatavad numbrid ei ühti, on võimalik, et ühendasid vale seadme.</string>
+    <string name="DeviceTransferSetup__stop_transfer">Peata edastamine</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">Andmete ülekandmine</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">Siiani leidsime %1$d sõnumit</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">Ülekandmine ei ole võimalik</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">Ülekandmine uuematest Signali versioonidest ei ole võimalik.</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">Andmebaasi piirangute tõttu ei õnnestunud osasid andmeid edastada.</string>
+    <string name="DeviceTransferProgress__transfer_failed">Edastus ebaõnnestus. Palun proovi uuesti.</string>
+    <string name="DeviceTransferProgress__try_again">Proovi uuesti</string>
+    <string name="DeviceTransferProgress__cancel">Loobu</string>
+    <string name="DeviceTransferProgress__stop_transfer">Kas peatada ülekanne?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">Seni edastatu läheb kaotsi.</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">Edastamine lõpetatud</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">Sinu konto on nüüd selles seadmes.</string>
+    <string name="DeviceTransferComplete__continue_registration">Jätka</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">Seadista oma profiil</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">Sinu profiil ja selle muudatused on nähtavad nendele, kellega sõnumeid oled vahetanud, kontaktidele ja gruppidele.</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">Eesnimi (kohustuslik)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">Perekonnanimi (valikuline)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">Edasi</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">Määra profiilipildiks</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Kes mind numbri järgi leida saavad?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Kõik, kellel on sinu telefoninumber, näevad, et sa kasutad Signalit ja saavad sinuga vestlust alustada.</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Mitte keegi ei näe, et sa oled Signalis, kui sa neile sõnumit ei saada või sul nendega juba vestlust pooleli ei ole.</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">Igaüks</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">Mitte keegi</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Kas oled kindel?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Kui teed „Kes mind numbri järgi leida saavad“ alt valiku „Mitte keegi“, on inimestel sind raskem Signalis leida.</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">Loobu</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">Salvesta</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">Tagasi</string>
 </resources>

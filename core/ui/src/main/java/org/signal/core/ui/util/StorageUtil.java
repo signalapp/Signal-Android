@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 
 import org.signal.core.ui.CoreUiDependencies;
 import org.signal.core.ui.R;
+import org.signal.core.util.BidiUtil;
 import org.signal.core.util.NoExternalStorageException;
 import org.signal.core.util.permissions.PermissionCompat;
 import org.signal.core.ui.permissions.Permissions;
@@ -179,11 +180,6 @@ public class StorageUtil {
   }
 
   public static @Nullable String getCleanFileName(@Nullable String fileName) {
-    if (fileName == null) return null;
-
-    fileName = fileName.replace('\u202D', '\uFFFD');
-    fileName = fileName.replace('\u202E', '\uFFFD');
-
-    return fileName;
+    return BidiUtil.replaceBidiCharacters(fileName);
   }
 }

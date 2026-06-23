@@ -22,7 +22,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -41,6 +40,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
@@ -58,7 +58,6 @@ import org.signal.registration.screens.attachDebugLogHelper
  * PIN creation screen for the registration flow.
  * Allows users to create a new PIN for their account.
  */
-@Suppress("AssignedValueIsNeverRead")
 @Composable
 fun PinCreationScreen(
   state: PinCreationState,
@@ -152,7 +151,7 @@ private fun OnePaneLayout(
       NextButton(
         params = params,
         canSubmitPin = canSubmitPin,
-        showElevation = scrollState.canScrollForward,
+        isElevated = scrollState.canScrollForward,
         onNext = { onEvent(PinCreationScreenEvents.PinSubmitted(pin)) }
       )
     }
@@ -170,7 +169,8 @@ private fun TwoPaneLayout(
   onEvent: (PinCreationScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val scrollState = rememberScrollState()
+  val firstPaneScrollState = rememberScrollState()
+  val secondPaneScrollState = rememberScrollState()
 
   TwoPaneRegistrationScaffold(
     modifier = modifier.fillMaxSize(),
@@ -180,6 +180,7 @@ private fun TwoPaneLayout(
         modifier = Modifier
           .weight(1f)
           .fillMaxHeight()
+          .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
         PinDescription(
@@ -193,7 +194,7 @@ private fun TwoPaneLayout(
         modifier = Modifier
           .weight(1f)
           .fillMaxHeight()
-          .verticalScroll(scrollState)
+          .verticalScroll(secondPaneScrollState)
           .padding(paddingValues)
       ) {
         PinInputField(
@@ -219,7 +220,7 @@ private fun TwoPaneLayout(
       NextButton(
         params = params,
         canSubmitPin = canSubmitPin,
-        showElevation = scrollState.canScrollForward,
+        isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward,
         onNext = { onEvent(PinCreationScreenEvents.PinSubmitted(pin)) }
       )
     }
@@ -239,22 +240,17 @@ private fun PinDescription(
         else -> stringResource(R.string.PinCreationScreen__create_your_pin)
       },
       style = MaterialTheme.typography.headlineMedium,
-      textAlign = TextAlign.Start,
       modifier = Modifier
         .fillMaxWidth()
         .attachDebugLogHelper()
     )
 
-    Spacer(modifier = Modifier.height(16.dp))
-
     if (isConfirmEnabled) {
       Text(
         text = stringResource(R.string.PinCreationScreen__reenter_pin_description),
-        style = MaterialTheme.typography.bodyLarge.copy(
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
-          textAlign = TextAlign.Start
-        ),
-        modifier = Modifier.fillMaxWidth()
+        style = MaterialTheme.typography.bodyLarge,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.padding(top = 16.dp)
       )
     } else {
       val descriptionText = buildAnnotatedString {
@@ -274,11 +270,10 @@ private fun PinDescription(
 
       ClickableText(
         text = descriptionText,
-        style = MaterialTheme.typography.bodyLarge.copy(
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
-          textAlign = TextAlign.Start
-        ),
-        modifier = Modifier.fillMaxWidth(),
+        style = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onSurfaceVariant),
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(top = 16.dp),
         onClick = { offset ->
           descriptionText.getStringAnnotations(tag = "LEARN_MORE", start = offset, end = offset)
             .firstOrNull()
@@ -306,10 +301,11 @@ private fun PinInputField(
     textStyle = MaterialTheme.typography.bodyLarge.copy(textAlign = TextAlign.Center),
     singleLine = true,
     keyboardOptions = KeyboardOptions(
-      keyboardType = if (state.isAlphanumericKeyboard) KeyboardType.Password else KeyboardType.NumberPassword,
+      keyboardType = if (state.isAlphanumericKeyboard) KeyboardType.Text else KeyboardType.Number,
       imeAction = ImeAction.Done
     ),
-    keyboardActions = KeyboardActions(onDone = { if (canSubmitPin) onSubmit() })
+    keyboardActions = KeyboardActions(onDone = { if (canSubmitPin) onSubmit() }),
+    visualTransformation = PasswordVisualTransformation()
   )
 }
 
@@ -360,13 +356,13 @@ private fun KeyboardToggleButton(
 private fun NextButton(
   params: RegistrationScaffold.Params,
   canSubmitPin: Boolean,
-  showElevation: Boolean,
+  isElevated: Boolean,
   onNext: () -> Unit,
   modifier: Modifier = Modifier
 ) {
-  Surface(
-    modifier = modifier.fillMaxWidth(),
-    shadowElevation = if (showElevation) 8.dp else 0.dp
+  RegistrationScaffold.FooterSurface(
+    isElevated = isElevated,
+    modifier = modifier
   ) {
     Row(
       horizontalArrangement = Arrangement.End,

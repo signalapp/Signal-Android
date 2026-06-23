@@ -6,4 +6,12 @@
   <string name="MediaSendDialogs__youll_lose_any_changes">Jy sal veranderinge aan hierdie foto verloor.</string>
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">Wys af</string>
+  <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
+  <string name="AddAMessageRow__add_a_message">Voeg ’n boodskap toe</string>
+  <!-- Accessibility description for the button that opens the emoji keyboard. -->
+  <string name="AddAMessageRow__open_emoji_keyboard">Open emoji keyboard</string>
+  <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
+  <string name="AddAMessageRow__message">Boodskap</string>
+  <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
+  <string name="AddAMessageRow__next">Volgende</string>
 </resources>

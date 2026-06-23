@@ -46,6 +46,7 @@ fun ParticipantActionsSheet(
   callParticipant: CallParticipant,
   isSelfAdmin: Boolean,
   isCallLink: Boolean,
+  canRemoteMute: Boolean,
   onDismiss: () -> Unit,
   onMuteAudio: (CallParticipant) -> Unit,
   onRemoveFromCall: (CallParticipant) -> Unit,
@@ -71,6 +72,7 @@ fun ParticipantActionsSheet(
       callParticipant = callParticipant,
       isSelfAdmin = isSelfAdmin,
       isCallLink = isCallLink,
+      canRemoteMute = canRemoteMute,
       onDismiss = onDismiss,
       onMuteAudio = onMuteAudio,
       onRemoveFromCall = onRemoveFromCall,
@@ -87,6 +89,7 @@ private fun ParticipantActionsSheetContent(
   callParticipant: CallParticipant,
   isSelfAdmin: Boolean,
   isCallLink: Boolean,
+  canRemoteMute: Boolean,
   onDismiss: () -> Unit,
   onMuteAudio: (CallParticipant) -> Unit,
   onRemoveFromCall: (CallParticipant) -> Unit,
@@ -96,32 +99,32 @@ private fun ParticipantActionsSheetContent(
 ) {
   ParticipantHeader(recipient = recipient)
 
-  val hasAdminActions = isSelfAdmin && (callParticipant.isMicrophoneEnabled || isCallLink)
-
-  if (hasAdminActions) {
+  if (canRemoteMute && callParticipant.isMicrophoneEnabled) {
     Dividers.Default()
 
-    if (callParticipant.isMicrophoneEnabled) {
-      Rows.TextRow(
-        text = stringResource(id = R.string.CallParticipantSheet__mute_audio),
-        icon = painterResource(id = R.drawable.symbol_mic_slash_24),
-        onClick = {
-          onMuteAudio(callParticipant)
-          onDismiss()
-        }
-      )
+    Rows.TextRow(
+      text = stringResource(id = R.string.CallParticipantSheet__mute_audio),
+      icon = painterResource(id = R.drawable.symbol_mic_slash_24),
+      onClick = {
+        onMuteAudio(callParticipant)
+        onDismiss()
+      }
+    )
+  }
+
+  if (isSelfAdmin && isCallLink) {
+    if (!(canRemoteMute && callParticipant.isMicrophoneEnabled)) {
+      Dividers.Default()
     }
 
-    if (isCallLink) {
-      Rows.TextRow(
-        text = stringResource(id = R.string.CallParticipantSheet__remove_from_call),
-        icon = painterResource(id = R.drawable.symbol_minus_circle_24),
-        onClick = {
-          onRemoveFromCall(callParticipant)
-          onDismiss()
-        }
-      )
-    }
+    Rows.TextRow(
+      text = stringResource(id = R.string.CallParticipantSheet__remove_from_call),
+      icon = painterResource(id = R.drawable.symbol_minus_circle_24),
+      onClick = {
+        onRemoveFromCall(callParticipant)
+        onDismiss()
+      }
+    )
   }
 
   Dividers.Default()
@@ -207,6 +210,7 @@ private fun ParticipantActionsSheetAdminPreview() {
       ),
       isSelfAdmin = true,
       isCallLink = true,
+      canRemoteMute = true,
       onDismiss = {},
       onMuteAudio = {},
       onRemoveFromCall = {},
@@ -228,6 +232,7 @@ private fun ParticipantActionsSheetNonAdminPreview() {
       ),
       isSelfAdmin = false,
       isCallLink = false,
+      canRemoteMute = true,
       onDismiss = {},
       onMuteAudio = {},
       onRemoveFromCall = {},

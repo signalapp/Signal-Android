@@ -15,10 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.text.util.LinkifyCompat;
 
+import org.signal.core.util.LinkifierSpannableExtensionsKt;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.util.LinkUtil;
-import org.thoughtcrime.securesms.util.Linkification;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 
 public final class GroupDescriptionUtil {
@@ -38,7 +38,7 @@ public final class GroupDescriptionUtil {
 
     if (linkify) {
       LinkifyCompat.addLinks(descriptionSpannable, Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS);
-      Linkification.applyWebUrlSpans(descriptionSpannable);
+      LinkifierSpannableExtensionsKt.addDetectedLinks(descriptionSpannable);
 
       for (URLSpan urlSpan : descriptionSpannable.getSpans(0, descriptionSpannable.length(), URLSpan.class)) {
         String url   = urlSpan.getURL();

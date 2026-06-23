@@ -2,19 +2,16 @@
 
 package org.signal.core.util
 
-import android.app.Application
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.ParameterizedRobolectricTestRunner
-import org.robolectric.ParameterizedRobolectricTestRunner.Parameter
-import org.robolectric.ParameterizedRobolectricTestRunner.Parameters
-import org.robolectric.annotation.Config
+import org.junit.runners.Parameterized
+import org.junit.runners.Parameterized.Parameter
+import org.junit.runners.Parameterized.Parameters
 import java.lang.Boolean as JavaBoolean
 
 @Suppress("ClassName")
-@RunWith(value = ParameterizedRobolectricTestRunner::class)
-@Config(manifest = Config.NONE, application = Application::class)
+@RunWith(value = Parameterized::class)
 class StringUtilTest_endsWith {
 
   @Parameter(0)

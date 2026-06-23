@@ -256,12 +256,64 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      clickPref(
+        title = DSLSettingsText.from("App Issues"),
+        summary = DSLSettingsText.from("View recorded app issues, like slow reads and writes."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalIssuesFragment())
+        }
+      )
+
       switchPref(
         title = DSLSettingsText.from("Disable internal user flag"),
         summary = DSLSettingsText.from("Experience life as a non-internal user. Force-stop the app to be an internal user again."),
         isChecked = state.disableInternalUser,
         onClick = {
           viewModel.setDisableInternalUser(!state.disableInternalUser)
+        }
+      )
+
+      dividerPref()
+
+      sectionHeaderPref(DSLSettingsText.from("Playgrounds"))
+
+      clickPref(
+        title = DSLSettingsText.from("SQLite Playground"),
+        summary = DSLSettingsText.from("Run raw SQLite queries."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSqlitePlaygroundFragment())
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Backup Playground"),
+        summary = DSLSettingsText.from("Test backup import/export."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalBackupPlaygroundFragment())
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Storage Service Playground"),
+        summary = DSLSettingsText.from("Test and view storage service stuff."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalStorageServicePlaygroundFragment())
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("SVR Playground"),
+        summary = DSLSettingsText.from("Quickly test various SVR options and error conditions."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSvrPlaygroundFragment())
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Data Seeding Playground"),
+        summary = DSLSettingsText.from("Seed conversations with media files from a folder."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToDataSeedingPlaygroundFragment())
         }
       )
 
@@ -310,50 +362,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         onClick = {
           SignalStore.misc.completedCollapsedEventsMigration = false
           AppDependencies.jobManager.add(BackfillCollapsedMessageJob())
-        }
-      )
-
-      dividerPref()
-
-      sectionHeaderPref(DSLSettingsText.from("Playgrounds"))
-
-      clickPref(
-        title = DSLSettingsText.from("SQLite Playground"),
-        summary = DSLSettingsText.from("Run raw SQLite queries."),
-        onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSqlitePlaygroundFragment())
-        }
-      )
-
-      clickPref(
-        title = DSLSettingsText.from("Backup Playground"),
-        summary = DSLSettingsText.from("Test backup import/export."),
-        onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalBackupPlaygroundFragment())
-        }
-      )
-
-      clickPref(
-        title = DSLSettingsText.from("Storage Service Playground"),
-        summary = DSLSettingsText.from("Test and view storage service stuff."),
-        onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalStorageServicePlaygroundFragment())
-        }
-      )
-
-      clickPref(
-        title = DSLSettingsText.from("SVR Playground"),
-        summary = DSLSettingsText.from("Quickly test various SVR options and error conditions."),
-        onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSvrPlaygroundFragment())
-        }
-      )
-
-      clickPref(
-        title = DSLSettingsText.from("Data Seeding Playground"),
-        summary = DSLSettingsText.from("Seed conversations with media files from a folder."),
-        onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToDataSeedingPlaygroundFragment())
         }
       )
 
@@ -438,8 +446,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Run self-check key transparency"),
         summary = DSLSettingsText.from("Automatically enqueues a job to run KT against yourself without waiting for the elapsed time."),
         onClick = {
-          SignalStore.misc.lastKeyTransparencyTime = 0
-          CheckKeyTransparencyJob.enqueueIfNecessary(addDelay = false)
+          CheckKeyTransparencyJob.enqueueIfNecessary(addDelay = false, force = true)
         }
       )
 

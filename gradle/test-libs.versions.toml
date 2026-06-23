@@ -6,8 +6,13 @@ androidx-test = "1.5.0"
 androidx-test-ext-junit = "1.1.5"
 robolectric = "4.15.1"
 espresso = "3.4.0"
+compose-screenshot = "0.0.1-alpha15"
+
+[plugins]
+compose-screenshot = { id = "com.android.compose.screenshot", version.ref = "compose-screenshot" }
 
 [libraries]
+compose-screenshot-validation-api = { module = "com.android.tools.screenshot:screenshot-validation-api", version.ref = "compose-screenshot" }
 junit-junit = "junit:junit:4.13.2"
 androidx-test-core = { module = "androidx.test:core", version.ref = "androidx-test" }
 androidx-test-core-ktx = { module = "androidx.test:core-ktx", version.ref = "androidx-test" }

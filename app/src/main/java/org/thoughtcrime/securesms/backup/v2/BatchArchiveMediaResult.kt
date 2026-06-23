@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
-import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.signal.core.models.database.AttachmentId
 import org.whispersystems.signalservice.api.archive.BatchArchiveMediaResponse
 
 /**

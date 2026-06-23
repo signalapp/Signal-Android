@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.stories.viewer
 
-import android.app.Application
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import io.reactivex.rxjava3.schedulers.TestScheduler
@@ -11,14 +11,9 @@ import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 
-@RunWith(RobolectricTestRunner::class)
-@Config(manifest = Config.NONE, application = Application::class)
 class StoryViewerViewModelTest {
   private val testScheduler = TestScheduler()
   private val repository = mockk<StoryViewerRepository>()
@@ -27,6 +22,8 @@ class StoryViewerViewModelTest {
   fun setUp() {
     RxJavaPlugins.setInitComputationSchedulerHandler { testScheduler }
     RxJavaPlugins.setComputationSchedulerHandler { testScheduler }
+    RxAndroidPlugins.setInitMainThreadSchedulerHandler { testScheduler }
+    RxAndroidPlugins.setMainThreadSchedulerHandler { testScheduler }
 
     every { repository.getFirstStory(any(), any()) } returns Single.just(mockk())
   }
@@ -34,6 +31,7 @@ class StoryViewerViewModelTest {
   @After
   fun tearDown() {
     RxJavaPlugins.reset()
+    RxAndroidPlugins.reset()
   }
 
   @Test

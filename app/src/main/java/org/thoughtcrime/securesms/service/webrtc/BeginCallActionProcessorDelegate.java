@@ -60,7 +60,8 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
                                                 remotePeer.getId(),
                                                 isVideoOffer ? CallTable.Type.VIDEO_CALL : CallTable.Type.AUDIO_CALL,
                                                 CallTable.Direction.OUTGOING,
-                                                CallTable.Event.ONGOING);
+                                                CallTable.Event.ONGOING,
+                                                false);
 
       webRtcInteractor.insertMissedCall(remotePeer, System.currentTimeMillis(), isVideoOffer, CallTable.Event.NOT_ACCEPTED);
       webRtcInteractor.postStateUpdate(currentState);

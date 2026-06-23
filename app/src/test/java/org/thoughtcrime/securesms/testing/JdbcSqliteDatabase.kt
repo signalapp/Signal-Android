@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.testing
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.MatrixCursor
+import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteTransactionListener
 import android.os.CancellationSignal
 import android.util.Pair
@@ -15,9 +16,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteProgram
 import androidx.sqlite.db.SupportSQLiteQuery
 import androidx.sqlite.db.SupportSQLiteStatement
+import org.sqlite.SQLiteException
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.PreparedStatement
+import java.sql.SQLException
 import java.sql.Types
 import java.util.Locale
 
@@ -130,7 +133,7 @@ class JdbcSqliteDatabase private constructor(private val connection: Connection)
     // sqlite-jdbc throws if you call executeQuery() on a non-SELECT statement.
     // Some callers (e.g. migrations) pass UPDATE/INSERT through rawQuery, so we
     // use execute() and check whether there's a result set.
-    val hasResultSet = stmt.execute()
+    val hasResultSet = translatingConstraintExceptions { stmt.execute() }
     if (!hasResultSet) {
       stmt.close()
       return MatrixCursor(emptyArray())
@@ -158,14 +161,14 @@ class JdbcSqliteDatabase private constructor(private val connection: Connection)
     val keys = values.keySet().toList()
     if (keys.isEmpty()) {
       val sql = "INSERT${CONFLICT_VALUES[conflictAlgorithm]} INTO $table DEFAULT VALUES"
-      connection.createStatement().use { it.executeUpdate(sql) }
+      translatingConstraintExceptions { connection.createStatement().use { it.executeUpdate(sql) } }
     } else {
       val columns = keys.joinToString(", ")
       val placeholders = keys.joinToString(", ") { "?" }
       val sql = "INSERT${CONFLICT_VALUES[conflictAlgorithm]} INTO $table ($columns) VALUES ($placeholders)"
       val stmt = connection.prepareStatement(sql)
       keys.forEachIndexed { index, key -> bindArg(stmt, index + 1, values.get(key)) }
-      stmt.executeUpdate()
+      translatingConstraintExceptions { stmt.executeUpdate() }
       stmt.close()
     }
     return connection.createStatement().use { s ->
@@ -188,7 +191,7 @@ class JdbcSqliteDatabase private constructor(private val connection: Connection)
     var paramIndex = 1
     keys.forEach { key -> bindArg(stmt, paramIndex++, values.get(key)) }
     whereArgs?.forEach { arg -> bindArg(stmt, paramIndex++, arg) }
-    val count = stmt.executeUpdate()
+    val count = translatingConstraintExceptions { stmt.executeUpdate() }
     stmt.close()
     return count
   }
@@ -202,7 +205,7 @@ class JdbcSqliteDatabase private constructor(private val connection: Connection)
     }
     val stmt = connection.prepareStatement(sql)
     whereArgs?.forEachIndexed { index, arg -> bindArg(stmt, index + 1, arg) }
-    val count = stmt.executeUpdate()
+    val count = translatingConstraintExceptions { stmt.executeUpdate() }
     stmt.close()
     return count
   }
@@ -212,13 +215,13 @@ class JdbcSqliteDatabase private constructor(private val connection: Connection)
   // region ExecSQL
 
   override fun execSQL(sql: String) {
-    connection.createStatement().use { it.execute(sql) }
+    translatingConstraintExceptions { connection.createStatement().use { it.execute(sql) } }
   }
 
   override fun execSQL(sql: String, bindArgs: Array<out Any?>) {
     val stmt = connection.prepareStatement(sql)
     bindArgs(stmt, bindArgs)
-    stmt.execute()
+    translatingConstraintExceptions { stmt.execute() }
     stmt.close()
   }
 
@@ -371,15 +374,15 @@ class JdbcSqliteStatement(
 ) : SupportSQLiteStatement {
 
   override fun execute() {
-    statement.execute()
+    translatingConstraintExceptions { statement.execute() }
   }
 
   override fun executeUpdateDelete(): Int {
-    return statement.executeUpdate()
+    return translatingConstraintExceptions { statement.executeUpdate() }
   }
 
   override fun executeInsert(): Long {
-    statement.executeUpdate()
+    translatingConstraintExceptions { statement.executeUpdate() }
     return connection.createStatement().use { s ->
       s.executeQuery("SELECT last_insert_rowid()").use { rs ->
         if (rs.next()) rs.getLong(1) else -1L
@@ -423,5 +426,23 @@ class JdbcSqliteStatement(
 
   override fun close() {
     statement.close()
+  }
+}
+
+/** Primary SQLite result code for a constraint violation (extended codes share the low byte). */
+private const val SQLITE_CONSTRAINT_PRIMARY_CODE = 19
+
+/**
+ * Runs [block], translating sqlite-jdbc constraint violations into the
+ * [SQLiteConstraintException] that production code catches when running on a real device.
+ */
+private inline fun <T> translatingConstraintExceptions(block: () -> T): T {
+  try {
+    return block()
+  } catch (e: SQLException) {
+    if (e is SQLiteException && (e.resultCode.code and 0xFF) == SQLITE_CONSTRAINT_PRIMARY_CODE) {
+      throw SQLiteConstraintException(e.message)
+    }
+    throw e
   }
 }

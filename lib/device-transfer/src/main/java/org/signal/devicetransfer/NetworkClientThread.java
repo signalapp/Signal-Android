@@ -69,6 +69,10 @@ final class NetworkClientThread extends Thread {
     while (shouldKeepRunning()) {
       Log.i(TAG, "Attempting to connect to server... tries: " + validClientAttemptsRemaining);
 
+      resetVerification();
+
+      boolean transferStarted = false;
+
       try {
         SelfSignedIdentity.ApprovingTrustManager trustManager = new SelfSignedIdentity.ApprovingTrustManager();
         client = (SSLSocket) SelfSignedIdentity.getApprovingSocketFactory(trustManager).createSocket();
@@ -105,6 +109,7 @@ final class NetworkClientThread extends Thread {
             throw new DeviceTransferAuthentication.DeviceTransferAuthenticationException(e);
           }
 
+          transferStarted = true;
           handler.sendEmptyMessage(NETWORK_CLIENT_CONNECTED);
           clientTask.run(context, outputStream);
           outputStream.flush();
@@ -119,9 +124,14 @@ final class NetworkClientThread extends Thread {
           success   = true;
           isRunning = false;
         } catch (IOException e) {
-          Log.w(TAG, "Error connecting to server", e);
-          validClientAttemptsRemaining--;
-          isRunning = validClientAttemptsRemaining > 0;
+          if (transferStarted) {
+            Log.w(TAG, "Lost connection after the transfer started, aborting instead of retrying.", e);
+            isRunning = false;
+          } else {
+            Log.w(TAG, "Error connecting to server", e);
+            validClientAttemptsRemaining--;
+            isRunning = validClientAttemptsRemaining > 0;
+          }
         }
       } catch (Exception e) {
         Log.w(TAG, e);
@@ -141,6 +151,12 @@ final class NetworkClientThread extends Thread {
 
     Log.i(TAG, "Client exiting");
     handler.sendEmptyMessage(NETWORK_CLIENT_STOPPED);
+  }
+
+  private void resetVerification() {
+    synchronized (verificationLock) {
+      isVerified = null;
+    }
   }
 
   private void awaitAuthenticationCodeVerification() throws DeviceTransferAuthentication.DeviceTransferAuthenticationException {

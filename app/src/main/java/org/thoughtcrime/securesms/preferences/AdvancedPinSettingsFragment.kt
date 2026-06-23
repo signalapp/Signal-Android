@@ -59,7 +59,7 @@ class AdvancedPinSettingsFragment : ComposeFragment() {
       repeatOnLifecycle(Lifecycle.State.RESUMED) {
         viewModel.event.collectLatest {
           when (it) {
-            AdvancedPinSettingsViewModel.Event.SHOW_BACKUPS_DISABLED_OPT_OUT_DIALOG -> PinOptOutDialog.show(requireContext(), true) {
+            AdvancedPinSettingsViewModel.Event.SHOW_BACKUPS_DISABLED_OPT_OUT_DIALOG -> PinOptOutDialog.show(requireContext(), viewLifecycleOwner, true) {
               viewModel.onPinOptOutSuccess()
               displayOptOutSnackbar()
             }

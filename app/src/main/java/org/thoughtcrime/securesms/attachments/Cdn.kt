@@ -41,12 +41,16 @@ enum class Cdn(private val value: Int) {
     }
 
     fun fromCdnNumber(cdnNumber: Int): Cdn {
+      return fromCdnNumberOrNull(cdnNumber) ?: throw UnsupportedOperationException("Invalid CDN number: $cdnNumber")
+    }
+
+    fun fromCdnNumberOrNull(cdnNumber: Int): Cdn? {
       return when (cdnNumber) {
         -1 -> S3
         0 -> CDN_0
         2 -> CDN_2
         3 -> CDN_3
-        else -> throw UnsupportedOperationException("Invalid CDN number: $cdnNumber")
+        else -> null
       }
     }
   }

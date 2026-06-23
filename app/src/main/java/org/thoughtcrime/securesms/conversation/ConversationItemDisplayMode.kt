@@ -17,7 +17,7 @@ sealed class ConversationItemDisplayMode(val messageMode: MessageMode = MessageM
   object Starred : ConversationItemDisplayMode()
 
   fun displayWallpaper(): Boolean {
-    return this == Standard || this == Detailed
+    return this == Standard
   }
 
   enum class MessageMode {

@@ -315,7 +315,7 @@
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
     <string name="PinCreationScreen__confirm_your_pin">PIN 확인</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">방금 생성한 PIN을 다시 입력하세요.</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">PIN을 설정해 두면 휴대폰을 분실했을 때 계정을 복구할 수 있습니다. </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -355,7 +355,7 @@
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">알림 허용</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal에서 알림 사용 권한을 요청합니다. 이 권한을 허용하면 새 메시지를 수신할 때 기기에서 알림을 표시할 수 있습니다.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">나중에</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -364,36 +364,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">메시지를 동기화하는 중</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">몇 분 정도 소요될 수 있습니다.</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">%1$s/%2$s 다운로드 중</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">동기화 프로세스를 비롯하여 메시지와 대화 정보는 종단간 암호화로 보호됩니다.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">자세히 알아보기</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">취소</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">이 코드를 스캔하여 계정을 연결하세요</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
-    <string name="LinkAccountScreen__open_signal_on_your_phone">휴대전화에서 Signal을 열어주세요</string>
+    <string name="LinkAccountScreen__open_signal_on_your_phone">휴대전화에서 Signal을 엽니다.</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">프로필 사진을 탭하여 Signal 설정을 엽니다.</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">\'연결된 기기\'와 \'새 기기 연결\'을 차례로 탭합니다.</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">카메라로 이 QR 코드를 스캔합니다.</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">도움이 필요하신가요?</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">QR 코드 크게 보기</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">스캔 완료</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">코드 생성 실패</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">다른 기기에 Signal이 설치되어 있지 않나요?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">여기서 계정을 생성하세요</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">계정 이전</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">계정을 이전하려면 이전 Android 기기에서 Signal 앱을 열고 \'계정 이전\'을 선택하세요.</string>
+    <string name="DeviceTransferInstructions__continue">계속</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">이전 Android 장치에 연결 준비 중…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">곧 준비가 완료됩니다. 잠시만 기다려주세요.</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">이전 기기의 연결을 기다리는 중…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">두 기기의 숫자가 일치하는지 확인하세요.</string>
+    <string name="DeviceTransferSetup__numbers_match">네, 숫자가 일치합니다</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">숫자가 일치하지 않습니다</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">이전 기기의 인증을 기다리는 중…</string>
+    <string name="DeviceTransferSetup__location_permission_required">이전 기기를 검색하고 연결하려면 Signal에 위치 권한이 필요합니다.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">권한 허용</string>
+    <string name="DeviceTransferSetup__location_services_required">Signal이 이전 Android 기기를 검색하고 연결하려면 위치 서비스를 활성화해야 합니다.</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">위치 서비스 켜기</string>
+    <string name="DeviceTransferSetup__wifi_required">Signal이 이전 기기를 검색하고 연결하려면 Wi-Fi를 켜야 합니다.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi 켜기</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">죄송하지만, 현재 기기에서는 Wi-Fi Direct 기능을 지원하지 않습니다.</string>
+    <string name="DeviceTransferSetup__restore_a_backup">대신 백업 데이터를 복원하세요.</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">이전 Android 기기에 연결하는 동안 예기치 않은 오류가 발생했습니다.</string>
+    <string name="DeviceTransferSetup__retry">재시도</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">이전 기기를 검색할 수 없습니다</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• 위치 권한이 허용되어 있는지 확인해 주세요.\n• Wi-Fi가 켜져 있는지, 저장된 Wi-Fi Direct 그룹이 모두 삭제되었는지 확인해 주세요.\n• 두 기기 모두에서 Wi-Fi를 껐다가 켜 보세요.\n• 두 기기를 모두 계정 이전 모드로 전환해 주세요.</string>
+    <string name="DeviceTransferSetup__try_again">다시 시도해 주세요.</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">숫자가 일치하지 않음</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">기기의 숫자가 일치하지 않는다면 다른 기기에 연결되었을 수 있습니다.</string>
+    <string name="DeviceTransferSetup__stop_transfer">이전 중단</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">데이터 이전 중</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">현재 메시지 %1$d개 처리됨</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">이전할 수 없음</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">현재 버전보다 최신 버전의 Signal에서는 데이터를 이전할 수 없습니다.</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">데이터베이스 제약 조건으로 인해 일부 데이터가 이전되지 못했습니다.</string>
+    <string name="DeviceTransferProgress__transfer_failed">데이터 이전에 실패했습니다. 다시 시도해 주세요.</string>
+    <string name="DeviceTransferProgress__try_again">다시 시도해 주세요</string>
+    <string name="DeviceTransferProgress__cancel">취소</string>
+    <string name="DeviceTransferProgress__stop_transfer">이전을 중지하시겠습니까?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">지금 중단하면 모든 진행 사항이 사라집니다.</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">이전 완료</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">이제 이 기기에서 계정을 사용할 수 있습니다.</string>
+    <string name="DeviceTransferComplete__continue_registration">계속</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">프로필을 설정하세요</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">프로필과 프로필 변경 사항은 메시지를 주고받는 상대와 연락처, 그룹에 표시됩니다.</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">이름(필수)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">성(선택 사항)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">다음</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">아바타 설정</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">전화번호로 나를 찾을 수 있는 사람은 누구인가요?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">내 전화번호가 있는 사람은 내가 Signal을 사용 중임을 알 수 있으며, 나와 대화를 시작할 수 있습니다.</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">내가 메시지를 보내는 사용자 또는 기존 대화 기록이 있는 사용자를 제외하고는 아무도 Signal에서 나를 볼 수 없습니다.</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">모두</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">없음</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">계속할까요?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\'내 전화번호를 볼 수 있는 사람\'을 \'없음\'으로 설정하면 Signal에서 다른 사람이 나를 찾기가 어려워집니다.</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">취소</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">저장</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">뒤로</string>
 </resources>

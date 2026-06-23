@@ -28,6 +28,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import org.signal.core.models.ServiceId
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.JsonUtils
@@ -67,12 +68,12 @@ import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.IdentityKey
 import org.thoughtcrime.securesms.attachments.Attachment
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment.DisplayOrderComparator
 import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.MessageStyler
+import org.thoughtcrime.securesms.database.CallTable.Event
 import org.thoughtcrime.securesms.database.EarlyDeliveryReceiptCache.Receipt
 import org.thoughtcrime.securesms.database.MentionUtil.UpdatedBodyAndMentions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.attachments
@@ -320,6 +321,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     private const val INDEX_STARRED = "message_starred_index"
     private const val INDEX_NOTIFICATION_STATE = "message_notification_state_index"
     private const val INDEX_RATE_LIMITED = "message_rate_limited_index"
+    private const val INDEX_SCHEDULED_NON_STORY = "message_scheduled_non_story_index"
+    private const val INDEX_MESSAGE_PINNED_UNTIL = "message_pinned_until_index"
 
     @JvmField
     val CREATE_INDEXS = arrayOf(
@@ -346,7 +349,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       // Partial index for marking messages read in a thread (see setMessagesReadSince). Only contains unread/unseen rows.
       "CREATE INDEX IF NOT EXISTS $INDEX_THREAD_DATE_RECEIVED_UNREAD ON $TABLE_NAME ($THREAD_ID, $DATE_RECEIVED) WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND ($READ = 0 OR $REACTIONS_UNREAD = 1 OR $VOTES_UNREAD = 1)",
       "CREATE INDEX IF NOT EXISTS message_votes_unread_index ON $TABLE_NAME ($VOTES_UNREAD)",
-      "CREATE INDEX IF NOT EXISTS message_pinned_until_index ON $TABLE_NAME ($PINNED_UNTIL)",
+      "CREATE INDEX IF NOT EXISTS $INDEX_MESSAGE_PINNED_UNTIL ON $TABLE_NAME ($PINNED_UNTIL)",
       "CREATE INDEX IF NOT EXISTS message_pinned_at_index ON $TABLE_NAME ($PINNED_AT)",
       "CREATE INDEX IF NOT EXISTS message_deleted_by_index ON $TABLE_NAME ($DELETED_BY)",
       "CREATE INDEX IF NOT EXISTS $INDEX_ARCHIVED_STORY ON $TABLE_NAME ($STORY_ARCHIVED, $STORY_TYPE, $DATE_SENT) WHERE $STORY_TYPE > 0 AND $STORY_ARCHIVED > 0",
@@ -356,7 +359,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       "CREATE INDEX IF NOT EXISTS $INDEX_NOTIFICATION_STATE ON $TABLE_NAME ($DATE_RECEIVED) WHERE $NOTIFIED = 0 AND $STORY_TYPE = 0 AND $LATEST_REVISION_ID IS NULL",
       "CREATE INDEX IF NOT EXISTS message_expire_started_index ON $TABLE_NAME ($EXPIRE_STARTED) WHERE $EXPIRE_STARTED > 0",
       "CREATE INDEX IF NOT EXISTS message_view_once_index ON $TABLE_NAME ($VIEW_ONCE) WHERE $VIEW_ONCE > 0",
-      "CREATE INDEX IF NOT EXISTS $INDEX_RATE_LIMITED ON $TABLE_NAME ($ID) WHERE ($TYPE & ${MessageTypes.MESSAGE_RATE_LIMITED_BIT}) != 0"
+      "CREATE INDEX IF NOT EXISTS $INDEX_RATE_LIMITED ON $TABLE_NAME ($ID) WHERE ($TYPE & ${MessageTypes.MESSAGE_RATE_LIMITED_BIT}) != 0",
+      "CREATE INDEX IF NOT EXISTS $INDEX_SCHEDULED_NON_STORY ON $TABLE_NAME ($SCHEDULED_DATE) WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE != -1"
     )
 
     private val MMS_PROJECTION_BASE = arrayOf(
@@ -905,7 +909,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return results
   }
 
-  fun insertOneToOneCallLog(recipientId: RecipientId, type: Long, timestamp: Long, outgoing: Boolean): InsertResult {
+  fun insertOneToOneCallLog(recipientId: RecipientId, type: Long, timestamp: Long, outgoing: Boolean, fromSync: Boolean = false): InsertResult {
     val recipient = Recipient.resolved(recipientId)
     val threadIdResult = threads.getOrCreateThreadIdResultFor(recipient.id, recipient.isGroup)
     val threadId = threadIdResult.threadId
@@ -933,6 +937,13 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     notifyConversationListeners(threadId)
     TrimThreadJob.enqueueAsync(threadId)
+
+    // If inserting an outgoing call from a sync message, automatically start timer
+    if (expiresIn != 0L && outgoing && fromSync) {
+      Log.i(TAG, "Starting expiration timer after inserting a call from a sync message.")
+      markExpireStarted(messageId, timestamp)
+      AppDependencies.expiringMessageManager.scheduleDeletion(messageId, true, timestamp, expiresIn)
+    }
 
     return InsertResult(
       messageId = messageId,
@@ -983,6 +994,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   ): MessageId {
     val recipient = Recipient.resolved(groupRecipientId)
     val threadId = threads.getOrCreateThreadIdFor(recipient)
+    val expiresIn = if (RemoteConfig.disappearMore) recipient.expiresInSeconds.seconds.inWholeMilliseconds else 0
     val messageId: MessageId = writableDatabase.withinTransaction { db ->
       val self = Recipient.self()
       val markRead = joinedUuids.contains(self.requireServiceId().rawUuid) || self.id == sender
@@ -1002,11 +1014,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         TO_RECIPIENT_ID to groupRecipientId.serialize(),
         DATE_RECEIVED to timestamp,
         DATE_SENT to timestamp,
-        READ to if (markRead) 1 else 0,
-        NOTIFIED to if (markRead) 1 else 0,
+        READ to 1,
+        NOTIFIED to 1,
         BODY to Base64.encodeWithPadding(updateDetails),
         TYPE to MessageTypes.GROUP_CALL_TYPE,
-        THREAD_ID to threadId
+        THREAD_ID to threadId,
+        EXPIRES_IN to expiresIn
       )
 
       val messageId = MessageId(db.insert(TABLE_NAME, null, values))
@@ -1014,9 +1027,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val isActiveCall = joinedUuids.isNotEmpty() || isIncomingGroupCallRingingOnLocalDevice
       if (!isActiveCall) {
         maybeCollapseMessage(db = db, messageId = messageId.id, threadId = threadId, dateReceived = timestamp, messageExtras = null, messageType = MessageTypes.GROUP_CALL_TYPE)
+        if (markRead && expiresIn != 0L) {
+          Log.d(TAG, "[insertGroupCall] Starting expiration timer for group call.")
+          val now = System.currentTimeMillis()
+          markExpireStarted(messageId.id, now)
+          AppDependencies.expiringMessageManager.scheduleDeletion(messageId.id, true, now, expiresIn)
+        }
       }
 
-      threads.incrementUnread(threadId, 1, 0)
       threads.update(threadId, true)
 
       messageId
@@ -1092,8 +1110,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     eraId: String,
     joinedUuids: Collection<UUID>,
     isCallFull: Boolean,
-    isRingingOnLocalDevice: Boolean
+    event: Event
   ): MessageId {
+    val isRingingOnLocalDevice = event == Event.RINGING
     writableDatabase.withinTransaction { db ->
       val message = try {
         getMessageRecord(messageId = messageId)
@@ -1111,7 +1130,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         BODY to body
       )
 
-      if (sameEraId && (containsSelf || updateDetail.localUserJoined)) {
+      val localJoined = sameEraId && (containsSelf || updateDetail.localUserJoined)
+      if (localJoined) {
         contentValues.put(READ, 1)
         contentValues.put(NOTIFIED, 1)
       }
@@ -1119,8 +1139,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val query = buildTrueUpdateQuery(ID_WHERE, buildArgs(messageId), contentValues)
       val updated = db.update(TABLE_NAME, contentValues, query.where, query.whereArgs) > 0
 
-      if (inCallUuids.isEmpty() && message.collapsedState == CollapsedState.NONE) {
-        maybeCollapseMessage(db = db, messageId = messageId, threadId = message.threadId, dateReceived = message.dateReceived, messageExtras = message.messageExtras, messageType = message.type)
+      if (inCallUuids.isEmpty()) {
+        val acknowledgedCall = localJoined || event == Event.DECLINED
+        finalizeEndedGroupCallMessage(db, message, acknowledgedCall, logPrefix = "[updateGroupCall]")
       }
 
       if (updated) {
@@ -1172,14 +1193,29 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         val query = buildTrueUpdateQuery(ID_WHERE, buildArgs(record.id), contentValues)
         val updated = db.update(TABLE_NAME, contentValues, query.where, query.whereArgs) > 0
 
-        if (inCallUuids.isEmpty() && record.collapsedState == CollapsedState.NONE) {
-          maybeCollapseMessage(db = db, messageId = record.id, threadId = record.threadId, dateReceived = record.dateReceived, messageExtras = record.messageExtras, messageType = record.type)
+        if (inCallUuids.isEmpty()) {
+          val acknowledgedCall = sameEraId && (containsSelf || groupCallUpdateDetails.localUserJoined)
+          finalizeEndedGroupCallMessage(db, record, acknowledgedCall, logPrefix = "[updatePreviousGroupCall]")
         }
 
         if (updated) {
           notifyConversationListeners(threadId)
         }
       }
+    }
+  }
+
+  fun finalizeEndedGroupCallMessage(db: SQLiteDatabase, message: MessageRecord, acknowledgedCall: Boolean, logPrefix: String) {
+    if (message.collapsedState == CollapsedState.NONE) {
+      maybeCollapseMessage(db = db, messageId = message.id, threadId = message.threadId, dateReceived = message.dateReceived, messageExtras = message.messageExtras, messageType = message.type)
+    }
+
+    val unstartedExpiration = message.expireStarted == 0L && message.expiresIn != 0L
+    if (unstartedExpiration && acknowledgedCall) {
+      Log.d(TAG, "$logPrefix Starting expiration after call has ended.")
+      val now = System.currentTimeMillis()
+      markExpireStarted(message.id, now)
+      AppDependencies.expiringMessageManager.scheduleDeletion(message.id, message.isMms, now, message.expiresIn)
     }
   }
 
@@ -1554,7 +1590,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     writableDatabase.withinTransaction { db ->
       db.select(FROM_RECIPIENT_ID)
-        .from(TABLE_NAME)
+        .from("$TABLE_NAME INDEXED BY $INDEX_DATE_SENT_FROM_TO_THREAD")
         .where("$IS_STORY_CLAUSE AND $DATE_SENT IN ($timestamps) AND NOT ($outgoingTypeClause) AND $VIEWED_COLUMN > 0")
         .run()
         .readToList { cursor -> RecipientId.from(cursor.requireLong(FROM_RECIPIENT_ID)) }
@@ -2151,7 +2187,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       where = "$THREAD_ID = ? AND $PINNED_UNTIL > 0",
       arguments = buildArgs(threadId),
       reverse = true,
-      orderBy = if (orderByPinned) "$PINNED_AT ASC" else ""
+      orderBy = if (orderByPinned) "$PINNED_AT ASC" else "",
+      index = INDEX_MESSAGE_PINNED_UNTIL
     )
 
     return mmsReaderFor(cursor).use { reader ->
@@ -2666,6 +2703,30 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         Pair(
           RecipientId.from(cursor.requireLong(FROM_RECIPIENT_ID)),
           cursor.requireLong(DATE_RECEIVED)
+        )
+      }
+  }
+
+  /**
+   * The oldest unread message as displayed in the thread (latest revision, not collapsed, not pinned), or null if there
+   * are none. Anchors the unread divider ([OldestUnread.id]) and its scroll position ([OldestUnread.dateReceived]); this
+   * is a separate query from the unread count and is not expected to select an identical row set.
+   */
+  fun getOldestUnread(threadId: Long): OldestUnread? {
+    val pinnedMessageClause = "($TYPE & ${MessageTypes.SPECIAL_TYPES_MASK}) != ${MessageTypes.SPECIAL_TYPE_PINNED_MESSAGE}"
+    // The redundant "($READ = 0 OR $REACTIONS_UNREAD = 1 OR $VOTES_UNREAD = 1)" term lets the planner use the partial
+    // index to satisfy ORDER BY $DATE_RECEIVED without a sort (same trick as setMessagesReadSince).
+    return readableDatabase
+      .select(ID, DATE_RECEIVED)
+      .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_DATE_RECEIVED_UNREAD")
+      .where("$THREAD_ID = ? AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND ($READ = 0 OR $REACTIONS_UNREAD = 1 OR $VOTES_UNREAD = 1) AND $READ = 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL AND $COLLAPSED_STATE != ${CollapsedState.COLLAPSED.id} AND $pinnedMessageClause", threadId)
+      .orderBy("$DATE_RECEIVED ASC")
+      .limit(1)
+      .run()
+      .readToSingleObject { cursor ->
+        OldestUnread(
+          id = cursor.requireLong(ID),
+          dateReceived = cursor.requireLong(DATE_RECEIVED)
         )
       }
   }
@@ -5488,6 +5549,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       return emptySet()
     }
 
+    // Only allow updating receipts for a group message if the sender is actually a member (stories are excluded because a single story timestamp can map to multiple messages)
+    if (!receiptData.forIndividualChat && receiptData.storyType == StoryType.NONE && !groupReceipts.hasReceipt(receiptData.messageId, receiptAuthor)) {
+      return emptySet()
+    }
+
     if (!receiptData.marked) {
       // We set the receipt_timestamp to the max of the two values because that single column represents the timestamp of the last receipt of any type.
       // That means we want to update it for each new receipt type, but we never want the time to go backwards.
@@ -5698,8 +5764,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun getScheduledMessagesBefore(time: Long): List<MessageRecord> {
     val cursor = readableDatabase
       .select(*MMS_PROJECTION)
-      .from(TABLE_NAME)
-      .where("$STORY_TYPE = ? AND $PARENT_STORY_ID <= ? AND $SCHEDULED_DATE != ? AND $SCHEDULED_DATE <= ?", 0, 0, -1, time)
+      .from("$TABLE_NAME INDEXED BY $INDEX_SCHEDULED_NON_STORY")
+      .where("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE != -1 AND $SCHEDULED_DATE <= ?", time)
       .orderBy("$SCHEDULED_DATE ASC, $ID ASC")
       .run()
 
@@ -5711,8 +5777,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun getOldestScheduledSendTimestamp(): MessageRecord? {
     val cursor = readableDatabase
       .select(*MMS_PROJECTION)
-      .from(TABLE_NAME)
-      .where("$STORY_TYPE = ? AND $PARENT_STORY_ID <= ? AND $SCHEDULED_DATE != ?", 0, 0, -1)
+      .from("$TABLE_NAME INDEXED BY $INDEX_SCHEDULED_NON_STORY")
+      .where("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE != -1")
       .orderBy("$SCHEDULED_DATE ASC, $ID ASC")
       .limit(1)
       .run()
@@ -6555,6 +6621,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val dateSent: Long,
     val fromRecipientId: Long,
     val threadId: Long
+  )
+
+  data class OldestUnread(
+    val id: Long,
+    val dateReceived: Long
   )
 
   data class Duplicate(

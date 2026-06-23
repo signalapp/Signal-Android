@@ -8,6 +8,7 @@ import androidx.annotation.MainThread
 import okio.Source
 import okio.buffer
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
@@ -17,7 +18,6 @@ import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.signal.network.exceptions.PushNetworkException
 import org.thoughtcrime.securesms.attachments.Attachment
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.InvalidAttachmentException
@@ -235,7 +235,14 @@ class AttachmentDownloadJob private constructor(
     SignalDatabase.attachments.setTransferState(messageId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_STARTED)
 
     when (attachment.cdn) {
-      Cdn.S3 -> retrieveAttachmentForReleaseChannel(messageId, attachmentId, attachment)
+      Cdn.S3 -> {
+        if (!isReleaseChannelMessage(messageId)) {
+          Log.w(TAG, "Refusing to download an S3 attachment for a message that is not from the release channel.")
+          markPermanentlyFailed(messageId, attachmentId)
+          return
+        }
+        retrieveAttachmentForReleaseChannel(messageId, attachmentId, attachment)
+      }
       else -> retrieveAttachment(messageId, attachmentId, attachment)
     }
 
@@ -465,6 +472,12 @@ class AttachmentDownloadJob private constructor(
       Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
       markFailed(messageId, attachmentId)
     }
+  }
+
+  private fun isReleaseChannelMessage(messageId: Long): Boolean {
+    val releaseChannelRecipientId = SignalStore.releaseChannel.releaseChannelRecipientId ?: return false
+    val messageRecord = SignalDatabase.messages.getMessageRecordOrNull(messageId) ?: return false
+    return messageRecord.fromRecipient.id == releaseChannelRecipientId
   }
 
   private fun markFailed(messageId: Long, attachmentId: AttachmentId) {

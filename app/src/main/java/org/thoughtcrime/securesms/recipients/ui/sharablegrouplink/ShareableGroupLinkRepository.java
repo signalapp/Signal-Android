@@ -41,19 +41,20 @@ final class ShareableGroupLinkRepository {
   }
 
   void toggleGroupLinkEnabled(@NonNull AsynchronousCallback.WorkerThread<Void, GroupChangeFailureReason> callback) {
-    setGroupLinkEnabledState(toggleGroupLinkState(true, false), callback);
+    setGroupLinkEnabledState(true, false, callback);
   }
 
   void toggleGroupLinkApprovalRequired(@NonNull AsynchronousCallback.WorkerThread<Void, GroupChangeFailureReason> callback) {
-    setGroupLinkEnabledState(toggleGroupLinkState(false, true), callback);
+    setGroupLinkEnabledState(false, true, callback);
   }
 
-  private void setGroupLinkEnabledState(@NonNull GroupManager.GroupLinkState state,
+  private void setGroupLinkEnabledState(boolean toggleEnabled,
+                                        boolean toggleApprovalNeeded,
                                         @NonNull AsynchronousCallback.WorkerThread<Void, GroupChangeFailureReason> callback)
   {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
-        GroupManager.setGroupLinkEnabledState(context, groupId, state);
+        GroupManager.setGroupLinkEnabledState(context, groupId, toggleGroupLinkState(toggleEnabled, toggleApprovalNeeded));
         callback.onComplete(null);
       } catch (GroupNotAMemberException | GroupChangeFailedException | GroupInsufficientRightsException | IOException | GroupChangeBusyException e) {
         callback.onError(GroupChangeFailureReason.fromException(e));

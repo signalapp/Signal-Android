@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContract
-import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -28,14 +27,6 @@ open class MultiselectForwardActivity : FragmentWrapperActivity(), MultiselectFo
   private val args: MultiselectForwardFragmentArgs get() = intent.getParcelableExtraCompat(ARGS, MultiselectForwardFragmentArgs::class.java)!!
 
   override val contentViewId: Int = R.layout.multiselect_forward_activity
-
-  override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    super.onCreate(savedInstanceState, ready)
-
-    val toolbar: Toolbar = findViewById(R.id.toolbar)
-    toolbar.setTitle(args.title)
-    toolbar.setNavigationOnClickListener { exitFlow() }
-  }
 
   override fun getFragment(): Fragment {
     return MultiselectForwardFragment.create(args)

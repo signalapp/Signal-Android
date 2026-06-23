@@ -26,6 +26,11 @@ interface InputStreamFactory {
 
   fun create(): InputStream
   fun createRecyclable(byteArrayPool: ArrayPool): InputStream = RecyclableBufferedInputStream(create(), byteArrayPool)
+
+  /**
+   * An upper bound on the number of bytes [create] will yield, if cheaply knowable, else null.
+   */
+  fun length(): Long? = null
 }
 
 /**
@@ -46,4 +51,6 @@ class FileInputStreamFactory(
       throw e
     }
   }
+
+  override fun length(): Long? = file.length().takeIf { it > 0 }
 }

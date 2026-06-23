@@ -69,6 +69,7 @@ import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
+import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.quickrestore.QrState
 import org.signal.registration.test.TestTags
 
@@ -113,25 +114,33 @@ private fun OnePane(
   state: LinkAccountScreenState,
   onEvent: (LinkAccountScreenEvent) -> Unit
 ) {
+  val scrollState = rememberScrollState()
+
   OnePaneRegistrationScaffold(
     params = params,
-    footer = { OnePaneFooterContent(onEvent = onEvent) }
-  ) {
-    val scroller = rememberScrollState()
-    Column(
-      horizontalAlignment = Alignment.CenterHorizontally,
-      verticalArrangement = spacedBy(64.dp),
-      modifier = Modifier
-        .padding(it)
-        .verticalScroll(scroller)
-    ) {
-      Title()
+    content = { paddingValues ->
+      Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = spacedBy(64.dp),
+        modifier = Modifier
+          .verticalScroll(scrollState)
+          .padding(paddingValues)
+      ) {
+        Title()
 
-      QrCodeContent(state = state, onEvent = onEvent)
+        QrCodeContent(state = state, onEvent = onEvent)
 
-      Steps(verticalArrangement = spacedBy(32.dp), onEvent)
+        Steps(verticalArrangement = spacedBy(32.dp), onEvent)
+      }
+    },
+    footer = {
+      OnePaneFooterContent(
+        params = params,
+        isElevated = scrollState.canScrollForward,
+        onEvent = onEvent
+      )
     }
-  }
+  )
 }
 
 @Composable
@@ -142,24 +151,30 @@ private fun TwoPane(
 ) {
   TwoPaneRegistrationScaffold(
     params = params,
-    firstPane = {
+    firstPane = { paddingValues ->
       FirstPaneContent(
         onEvent = onEvent,
         modifier = Modifier
-          .padding(it)
+          .padding(paddingValues)
           .weight(1f)
       )
     },
-    secondPane = {
+    secondPane = { paddingValues ->
       QrCodeContent(
         state = state,
         onEvent = onEvent,
         modifier = Modifier
           .weight(1f)
-          .padding(it)
+          .padding(paddingValues)
       )
     },
-    footer = { TwoPaneFooterContent(onEvent = onEvent) }
+    footer = {
+      TwoPaneFooterContent(
+        params = params,
+        isElevated = false,
+        onEvent = onEvent
+      )
+    }
   )
 }
 
@@ -182,7 +197,10 @@ private fun FirstPaneContent(
 private fun Title() {
   Text(
     text = stringResource(R.string.LinkAccountScreen__scan_this_code_to_link_your_account),
-    style = MaterialTheme.typography.headlineLarge
+    style = MaterialTheme.typography.headlineMedium,
+    modifier = Modifier
+      .fillMaxWidth()
+      .attachDebugLogHelper()
   )
 }
 
@@ -453,37 +471,49 @@ fun getQrCodeSize(isInOverlay: Boolean): Dp {
 
 @Composable
 private fun OnePaneFooterContent(
+  params: RegistrationScaffold.Params.OnePane,
+  isElevated: Boolean,
   onEvent: (LinkAccountScreenEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  Column(
-    horizontalAlignment = Alignment.CenterHorizontally,
-    modifier = modifier
-      .padding(start = 36.dp, end = 36.dp, bottom = 16.dp)
-      .fillMaxWidth()
+  RegistrationScaffold.FooterSurface(
+    isElevated = isElevated
   ) {
-    Row {
-      DontHaveSignal()
+    Column(
+      horizontalAlignment = Alignment.CenterHorizontally,
+      modifier = modifier
+        .fillMaxWidth()
+        .padding(params.footerPadding)
+    ) {
+      Row {
+        DontHaveSignal()
+      }
+      CreateAccount(onEvent)
     }
-    CreateAccount(onEvent)
   }
 }
 
 @Composable
 private fun TwoPaneFooterContent(
+  params: RegistrationScaffold.Params.TwoPane,
+  isElevated: Boolean,
   onEvent: (LinkAccountScreenEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  Row(
-    horizontalArrangement = spacedBy(8.dp),
-    modifier = modifier.padding(36.dp)
+  RegistrationScaffold.FooterSurface(
+    isElevated = isElevated
   ) {
-    Spacer(modifier = Modifier.weight(1f))
+    Row(
+      horizontalArrangement = spacedBy(8.dp),
+      modifier = modifier.padding(params.footerPadding)
+    ) {
+      Spacer(modifier = Modifier.weight(1f))
 
-    DontHaveSignal()
-    CreateAccount(onEvent)
+      DontHaveSignal()
+      CreateAccount(onEvent)
 
-    Spacer(modifier = Modifier.weight(1f))
+      Spacer(modifier = Modifier.weight(1f))
+    }
   }
 }
 

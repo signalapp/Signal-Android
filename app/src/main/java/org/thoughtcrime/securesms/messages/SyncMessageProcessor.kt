@@ -1469,7 +1469,7 @@ object SyncMessageProcessor {
     } else if (event == CallTable.Event.DELETE) {
       SignalDatabase.calls.insertDeletedCallFromSyncEvent(callId, recipientId, type, direction, timestamp)
     } else {
-      SignalDatabase.calls.insertOneToOneCall(callId, timestamp, recipientId, type, direction, event)
+      SignalDatabase.calls.insertOneToOneCall(callId, timestamp, recipientId, type, direction, event, fromSync = true)
     }
   }
 

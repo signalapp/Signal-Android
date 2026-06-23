@@ -314,9 +314,9 @@
     <!-- PIN creation screen title. -->
     <string name="PinCreationScreen__create_your_pin">შექმენი შენი პინ-კოდი</string>
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
-    <string name="PinCreationScreen__confirm_your_pin">Confirm your PIN</string>
+    <string name="PinCreationScreen__confirm_your_pin">დაადასტურე შენი პინ-კოდი</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">თავიდან ჩაწერე პინ-კოდი, რომელიც ახლახან შექმენი</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">პინ-კოდს შეუძლია შენი ანგარიშის აღდგენაში დაგეხმაროს, თუ მობილურს დაკარგავ. </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -328,11 +328,11 @@
     <!-- Labels the button to submit a new Signal PIN. -->
     <string name="PinCreationScreen__next">შემდეგი</string>
     <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_digits">PIN must be at least 4 digits</string>
+    <string name="PinCreationScreen__pin_at_least_4_digits">პინ-კოდი მინიმუმ 4 ციფრისგან უნდა შედგებოდეს</string>
     <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_characters">PIN must be at least 4 characters</string>
+    <string name="PinCreationScreen__pin_at_least_4_characters">პინ-კოდი მინიმუმ 4 სიმბოლოსგან უნდა შედგებოდეს</string>
     <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin">Re-enter PIN</string>
+    <string name="PinCreationScreen__reenter_pin">თავიდან შეიყვანე პინ-კოდი</string>
 
     <!-- PIN entry screen title when registration lock is active. -->
     <string name="PinEntryScreen__registration_lock">რეგისტრაციის დაბლოკვა</string>
@@ -355,9 +355,9 @@
     <string name="PinEntryScreen__continue">გაგრძელება</string>
 
     <!-- Title for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__allow_notifications">Allow Notifications</string>
+    <string name="AllowNotificationsScreen__allow_notifications">დაშვებული შეტყობინებები</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal-ს შეტყობინებების ნებართვის მოთხოვნა სურს. ეს შენს მოწყობილობას საშუალებას აძლევს გაგაფრთხილოს, როცა ახალ წერილებს მიიღებ.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">ახლა არა</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -366,36 +366,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">მიმდინარეობს წერილების სინქრონიზება</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">შეიძლება, ამას რამდენიმე წუთი დასჭირდეს…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">მიმდინარეობს %2$s-დან %1$s-ის ჩამოტვირთვა</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">შეტყობინებები და ჩატის ინფორმაცია, სინქრონიზაციის პროცესის ჩათვლით, ბოლომდეა დაშიფრული.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">გაიგე მეტი</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">გაუქმება</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">დაასკანირე ეს კოდი, რომ შენი ანგარიში მიაბა</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">გახსენი Signal-ი შენს ტელეფონში</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Signal-ის პარამეტრებში შესასვლელად შენი პროფილის სურათს დააჭირე</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">აირჩიე \"მიბმული მოწყობილობები\" და \"ახალი მოწყობილობის მიბმა\"</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">გაასწორე კამერა ამ QR კოდზე</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">მიიღე დახმარება ამ ნაბიჯებით</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">QR კოდის გადიდება</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">დასკანირებული</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">კოდის გენერირება ვერ მოხერხდა</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">არ გაქვს Signal სხვა მოწყობილობაზე?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">შექმენი ანგარიში</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">გადაიტანე შენი ანგარიში</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">შენი ანგარიშის გადმოსატანად, შედი Signal-ზე შენს ძველ Android მოწყობილობაზე და აირჩიე ანგარიშის გადატანა.</string>
+    <string name="DeviceTransferInstructions__continue">გაგრძელება</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">ვემზადებით ძველ Android მოწყობილობასთან დასაკავშირებლად…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">შეიძლება ამას რამდენიმე წუთი დასჭირდეს. მალე მზად უნდა იყოს.</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">ველოდებით შენს ძველ მოწყობილობას, რომ დავაკავშიროთ…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">დაადასტურე, რომ ნომრები ორივე მოწყობილობაზე ემთხვევა</string>
+    <string name="DeviceTransferSetup__numbers_match">დიახ, ნომრები ემთხვევა</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">ნომრები არ ემთხვევა</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">ველოდებით შენს ძველ მოწყობილობას, რომ დავადასტუროთ…</string>
+    <string name="DeviceTransferSetup__location_permission_required">შენი ძველი მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად, Signal-ს მდებარეობაზე წვდომის ნებართვა სჭირდება.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">ნებართვის მიცემა</string>
+    <string name="DeviceTransferSetup__location_services_required">Signal-ს შენი ძველი მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად მდებარეობის სერვისების ჩართვა სჭირდება.</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">ადგილმდებარეობის სერვისების ჩართა</string>
+    <string name="DeviceTransferSetup__wifi_required">შენი ძველი მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად, Signal-ს WI-Fi-ის ჩართვა სჭირდება.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi-ს ჩართვა</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">ვწუხვართ, როგორც ჩანს შენს მოწყობილობას Wi-Fi Direct-ის მხარდაჭერა არ აქვს.</string>
+    <string name="DeviceTransferSetup__restore_a_backup">აღადგინე სათადარიგო ასლები</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">შენს ძველ Android მოწყობილობასთან დაკავშირების მცდელობისას მოხდა მოულოდნელი შეცდომა.</string>
+    <string name="DeviceTransferSetup__retry">თავიდან ცდა</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">შენი ძველი მოწყობილობის მოძებნა ვერ მოხერხდა</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• დარწმუნდი, რომ მდებარეობაზე წვდომა ნებადართულია.\n• დარწმუნდი, რომ Wi-Fi ჩართულია და Wi-Fi Direct-ის არც ერთი ჯგუფი დამახსოვრებული არაა.\n• სცადე Wi-Fi-ის გამორთვა და ჩართვა ორივე მოწყობილობაზე.\n• დარწმუნდი, რომ ორივე მოწყობილობა გადატანის რეჟიმშია.</string>
+    <string name="DeviceTransferSetup__try_again">სცადეთ ახლიდან</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">ნომრები არ ემთხვევა</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">თუ შენს მოწყობილობებზე ნომრები არ ემთხვევა, შესაძლოა არასწორ მოწყობილობას დაუკავშირდი.</string>
+    <string name="DeviceTransferSetup__stop_transfer">გადატანის გაჩერება</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">მონაცემთა გადატანა</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">ჯერ-ჯერობით %1$d შეტყობინება</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">გადატანა შეუძლებელია</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">Signal-ის უფრო ახალი ვერსიიდან გადატანა შეუძლებელია.</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">მონაცემთა ნაწილის გადატანა მონაცემთა ბაზის შეზღუდვის გამო ვერ მოხერხდა.</string>
+    <string name="DeviceTransferProgress__transfer_failed">გადატანა ვერ მოხერხდა. გთხოვთ, თავიდან სცადო.</string>
+    <string name="DeviceTransferProgress__try_again">ახლიდან სცადე</string>
+    <string name="DeviceTransferProgress__cancel">გაუქმება</string>
+    <string name="DeviceTransferProgress__stop_transfer">შევაჩეროთ გადატანა?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">გადატანის მთლიანი პროგრესი დაიკარგება.</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">გადატანა დასრულებულია</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">ახლა შენი ანგარიში ამ მოწყობილობაზეა.</string>
+    <string name="DeviceTransferComplete__continue_registration">გაგრძელება</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">შექმენი შენი პროფილი</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">შენს პროფილსა და მასში შეტანილ ცვლილებებს დაინახავენ შენი კონტაქტები, ჯგუფები და ის ადამიანები, ვისთანაც მიმოწერა გაქვს.</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">სახელი (სავალდებულო)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">გვარი (არასავალდებულო)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">შემდეგი</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">ავატარის დაყენება</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">ვის შეუძლია ნომრით მიპოვოს?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">ნებისმიერს, ვისაც შენი მობილურის ნომერი აქვს, დაინახავს, რომ Signal-ზე ხარ და შენთან ჩატის წამოწყებას შეძლებს.</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">ვერავინ დაინახავს, რომ Signal-ზე ხარ, სანამ არ მისწერ ან თუ არსებული ჩატი არ გექნებათ.</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">ყველა</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">არავინ</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">დარწმუნებული ხარ?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">თუ „ვინ მიპოვის ნომრით“ პარამეტრს „არავინ“-ზე დააყენებ, სხვებს შენი Signal-ზე პოვნა გაურთულდებათ.</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">გაუქმება</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">შენახვა</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">უკან</string>
 </resources>

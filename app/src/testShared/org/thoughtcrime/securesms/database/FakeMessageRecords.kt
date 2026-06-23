@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import org.signal.blurhash.BlurHash
 import org.signal.core.models.media.TransformProperties
-import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.signal.core.models.database.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.audio.AudioHash

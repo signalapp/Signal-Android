@@ -296,7 +296,7 @@ class JobController {
 
   @WorkerThread
   synchronized void onRetry(@NonNull Job job, long backoffInterval) {
-    if (backoffInterval <= 0) {
+    if (backoffInterval < 0) {
       throw new IllegalArgumentException("Invalid backoff interval! " + backoffInterval);
     }
 

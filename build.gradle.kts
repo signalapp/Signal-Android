@@ -73,7 +73,13 @@ tasks.register("buildQa") {
 
 tasks.register("qa") {
   group = "Verification"
-  description = "Quality Assurance. Run before pushing."
+  description = "Quality Assurance. Run before release."
+  dependsOn("clean")
+}
+
+tasks.register("ci") {
+  group = "Verification"
+  description = "Faster version of qa that's intended to be run on PRs. Uses a :fast-lint instead of full lint."
   dependsOn("clean")
 }
 
@@ -106,6 +112,27 @@ gradle.projectsEvaluated {
       testTask?.let { dependsOn(it) }
 
       subproject.tasks.findByName("lintDebug")?.let { dependsOn(it) }
+      subproject.tasks.findByName("validateDebugScreenshotTest")?.let { dependsOn(it) }
+    }
+  }
+
+  tasks.named("ci") {
+    dependsOn("ktlintCheck")
+    dependsOn("buildQa")
+    dependsOn("checkStopship")
+
+    dependsOn(appTestTask)
+    appCompileInstrumentationTask?.let { dependsOn(it) }
+
+    dependsOn(":fast-lint:fastLint")
+
+    subprojects.forEach { subproject ->
+      subproject.tasks.findByName("ktlintCheck")?.let { dependsOn(it) }
+    }
+
+    subprojects.filter { it.name != "Signal-Android" }.forEach { subproject ->
+      val testTask = subproject.tasks.findByName("testDebugUnitTest") ?: subproject.tasks.findByName("test")
+      testTask?.let { dependsOn(it) }
     }
   }
 

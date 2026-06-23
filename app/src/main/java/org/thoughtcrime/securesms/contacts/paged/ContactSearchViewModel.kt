@@ -64,11 +64,13 @@ class ContactSearchViewModel(
   val arbitraryRepository: ArbitraryRepository?,
   private val searchRepository: SearchRepository,
   private val contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository,
-  val fixedContacts: Set<ContactSearchKey> = emptySet()
+  val fixedContacts: Set<ContactSearchKey> = emptySet(),
+  private val debounceSearch: Boolean = false
 ) : ViewModel() {
 
   companion object {
     private const val QUERY = "query"
+    private const val SEARCH_DEBOUNCE_MILLIS = 300L
   }
 
   private val safetyNumberRepository: SafetyNumberRepository by lazy { SafetyNumberRepository() }
@@ -94,9 +96,12 @@ class ContactSearchViewModel(
   val isDisplayingContextMenu: StateFlow<Boolean> = internalDisplayingContextMenu
   val scrollRequests: SharedFlow<ScrollRequest> = internalScrollRequests
 
+  val query: StateFlow<String?> = rawQuery
+
   init {
     viewModelScope.launch {
-      rawQuery.drop(1).debounce(300).collect { query ->
+      val querySource = if (debounceSearch) rawQuery.drop(1).debounce(SEARCH_DEBOUNCE_MILLIS) else rawQuery.drop(1)
+      querySource.collect { query ->
         savedStateHandle[QUERY] = query
         internalConfigurationState.update { it.copy(query = query) }
       }
@@ -146,18 +151,18 @@ class ContactSearchViewModel(
   }
 
   suspend fun setConfiguration(contactSearchConfiguration: ContactSearchConfiguration) {
-    val pagedDataSource = ContactSearchPagedDataSource(
-      contactSearchConfiguration,
-      arbitraryRepository = arbitraryRepository,
-      searchRepository = searchRepository,
-      contactSearchPagedDataSourceRepository = contactSearchPagedDataSourceRepository
-    )
-    val size = withContext(Dispatchers.IO) { pagedDataSource.size() }
+    val (pagedDataSource, size) = withContext(Dispatchers.IO) {
+      val source = ContactSearchPagedDataSource(
+        contactSearchConfiguration,
+        arbitraryRepository = arbitraryRepository,
+        searchRepository = searchRepository,
+        contactSearchPagedDataSourceRepository = contactSearchPagedDataSourceRepository
+      )
+      source to source.size()
+    }
     internalTotalCount.value = size
-    pagedData.value = PagedData.createForStateFlow(pagedDataSource, pagingConfig)
+    pagedData.value = PagedData.createForStateFlow(pagedDataSource, pagingConfig, data.value)
   }
-
-  fun getQuery(): String? = rawQuery.value
 
   fun setQuery(query: String?) {
     rawQuery.value = query
@@ -265,7 +270,8 @@ class ContactSearchViewModel(
     private val arbitraryRepository: ArbitraryRepository?,
     private val searchRepository: SearchRepository,
     private val contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository,
-    private val fixedContacts: Set<ContactSearchKey> = emptySet()
+    private val fixedContacts: Set<ContactSearchKey> = emptySet(),
+    private val debounceSearch: Boolean = false
   ) : AbstractSavedStateViewModelFactory() {
     override fun <T : ViewModel> create(key: String, modelClass: Class<T>, handle: SavedStateHandle): T {
       return modelClass.cast(
@@ -278,7 +284,8 @@ class ContactSearchViewModel(
           arbitraryRepository = arbitraryRepository,
           searchRepository = searchRepository,
           contactSearchPagedDataSourceRepository = contactSearchPagedDataSourceRepository,
-          fixedContacts = fixedContacts
+          fixedContacts = fixedContacts,
+          debounceSearch = debounceSearch
         )
       ) as T
     }

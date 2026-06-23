@@ -116,7 +116,7 @@ class PinEntryForSvrRestoreViewModel(
         Log.i(TAG, "[PinEntered] Successfully restored master key from SVR.")
         repository.enqueueSvrResetGuessCountJob()
         parentEventEmitter(RegistrationFlowEvent.MasterKeyRestoredFromSvr(result.result.masterKey))
-        parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
+        repository.finishRegistrationOrCreateProfile(parentEventEmitter)
         state
       }
       is RequestResult.NonSuccess -> {

@@ -10,6 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.signal.core.util.ListUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
+import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -20,7 +23,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.signal.core.util.JsonUtils;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -117,9 +119,9 @@ public class MultiDeviceReadUpdateJob extends BaseJob {
     List<ReadMessage> readMessages = new LinkedList<>();
 
     for (SerializableSyncMessageId messageId : messageIds) {
-      Recipient recipient = Recipient.resolved(RecipientId.from(messageId.recipientId));
-      if (!recipient.isGroup() && !recipient.isDistributionList() && recipient.isMaybeRegistered() && (recipient.getHasServiceId() || recipient.getHasE164())) {
-        ServiceId senderAci = RecipientUtil.getOrFetchServiceId(context, recipient);
+      RecipientRecord recipient = SignalDatabase.recipients().getRecord(RecipientId.from(messageId.recipientId));
+      if (recipient.getGroupId() == null && recipient.getDistributionListId() == null && recipient.getRegistered() != RegisteredState.NOT_REGISTERED && (recipient.getServiceId() != null || recipient.getE164() != null)) {
+        ServiceId senderAci = recipient.getServiceId();
         if (senderAci instanceof ServiceId.ACI) {
           readMessages.add(new ReadMessage((ServiceId.ACI) senderAci, messageId.timestamp));
         } else {

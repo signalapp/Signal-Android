@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
@@ -19,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputConnectionWrapper;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -26,6 +28,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.util.ServiceUtil;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -68,6 +71,7 @@ public class ComposeText extends EmojiEditText {
   @Nullable private CursorPositionChangedListener cursorPositionChangedListener;
   @Nullable private InlineQueryChangedListener    inlineQueryChangedListener;
   @Nullable private StylingChangedListener        stylingChangedListener;
+  @Nullable private OnPasteListener               onPasteListener;
 
   public ComposeText(Context context) {
     super(context);
@@ -213,6 +217,41 @@ public class ComposeText extends EmojiEditText {
     stylingChangedListener = listener;
   }
 
+  public void setOnPasteListener(@Nullable OnPasteListener listener) {
+    onPasteListener = listener;
+  }
+
+  /**
+   * Inserts the given text at the current selection (replacing any selected text), as if pasted.
+   * This goes directly through the underlying {@link Editable}, so it does not pass through the
+   * {@link OnPasteListener}. Used to complete a paste the listener previously intercepted, replaying
+   * the exact text that was intercepted rather than re-reading the clipboard — the intercepted text
+   * may have come from an IME suggestion (e.g. the keyboard's clipboard chip) that is not the
+   * current clipboard contents.
+   */
+  public void insertText(@NonNull CharSequence text) {
+    Editable editable = getText();
+    if (editable == null) {
+      return;
+    }
+
+    int selectionStart = getSelectionStart();
+    int selectionEnd   = getSelectionEnd();
+
+    int start;
+    int end;
+    if (selectionStart < 0 || selectionEnd < 0) {
+      start = editable.length();
+      end   = editable.length();
+    } else {
+      start = Math.min(selectionStart, selectionEnd);
+      end   = Math.max(selectionStart, selectionEnd);
+    }
+
+    editable.replace(start, end, text);
+    setSelection(start + text.length());
+  }
+
   private boolean isLandscape() {
     return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
   }
@@ -242,7 +281,19 @@ public class ComposeText extends EmojiEditText {
       editorInfo.imeOptions &= ~EditorInfo.IME_FLAG_NO_ENTER_ACTION;
     }
 
-    return inputConnection;
+    if (inputConnection == null) {
+      return null;
+    }
+
+    return new InputConnectionWrapper(inputConnection, true) {
+      @Override
+      public boolean commitText(CharSequence text, int newCursorPosition) {
+        if (onPasteListener != null && text != null && onPasteListener.onPaste(text)) {
+          return true;
+        }
+        return super.commitText(text, newCursorPosition);
+      }
+    };
   }
 
   public boolean hasMentions() {
@@ -479,6 +530,20 @@ public class ComposeText extends EmojiEditText {
     return true;
   }
 
+  @Override
+  public boolean onTextContextMenuItem(int id) {
+    if ((id == android.R.id.paste || id == android.R.id.pasteAsPlainText) && onPasteListener != null) {
+      ClipData     clipData  = ServiceUtil.getClipboardManager(getContext()).getPrimaryClip();
+      CharSequence pasteText = clipData != null && clipData.getItemCount() > 0 ? clipData.getItemAt(0).coerceToText(getContext()) : null;
+
+      if (onPasteListener.onPaste(pasteText)) {
+        return true;
+      }
+    }
+
+    return super.onTextContextMenuItem(id);
+  }
+
   /**
    * Return true if we think the user may be inputting a time.
    */
@@ -575,5 +640,16 @@ public class ComposeText extends EmojiEditText {
 
   public interface StylingChangedListener {
     void onStylingChanged();
+  }
+
+  public interface OnPasteListener {
+    /**
+     * Invoked before a paste is applied to the field, giving an observer the chance to intercept it.
+     *
+     * @param pasteText the text currently on the clipboard, or {@code null} if it could not be read
+     * @return true to consume the paste (the listener will handle it, e.g. by prompting the user),
+     *         or false to let the paste proceed normally
+     */
+    boolean onPaste(@Nullable CharSequence pasteText);
   }
 }

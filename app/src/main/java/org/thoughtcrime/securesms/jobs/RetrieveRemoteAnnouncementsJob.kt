@@ -181,7 +181,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
   private fun updateReleaseNotes(announcements: List<ReleaseNote>) {
     val values = SignalStore.releaseChannel
 
-    if (Recipient.resolved(values.releaseChannelRecipientId!!).isBlocked) {
+    if (SignalDatabase.recipients.getRecord(values.releaseChannelRecipientId!!).isBlocked) {
       Log.i(TAG, "Release channel is blocked, do not bother with updates")
       values.highestVersionNoteReceived = announcements.mapNotNull { it.androidMinVersion?.toIntOrNull() }.maxOrNull() ?: values.highestVersionNoteReceived
       return

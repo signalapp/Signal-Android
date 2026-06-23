@@ -45,7 +45,6 @@ object JumboEmoji {
   private var currentVersion: Int = -1
 
   @JvmStatic
-  @MainThread
   fun updateCurrentVersion(context: Context) {
     SignalExecutors.BOUNDED.execute {
       val version: EmojiFiles.Version = EmojiFiles.Version.readVersion(context, true) ?: return@execute

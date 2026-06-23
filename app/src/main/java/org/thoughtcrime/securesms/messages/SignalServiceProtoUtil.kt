@@ -67,7 +67,8 @@ object SignalServiceProtoUtil {
         quote != null ||
         preview.isNotEmpty() ||
         bodyRanges.isNotEmpty() ||
-        sticker != null
+        sticker != null ||
+        pollCreate != null
     }
 
   val DataMessage.isExpirationUpdate: Boolean

@@ -37,7 +37,7 @@ class LongMessageRepository {
     Optional<MmsMessageRecord> record = getMmsMessage(mmsDatabase, messageId);
     if (record.isPresent()) {
       final ConversationMessage resolvedMessage = LongMessageResolveerKt.resolveBody(record.get(), context);
-      return  Optional.of(new LongMessage(resolvedMessage));
+      return  Optional.of(new LongMessage(resolvedMessage, context));
     } else {
       return Optional.empty();
     }

@@ -24,6 +24,11 @@ class ConversationLayoutManager(context: Context) : LinearLayoutManager(context,
 
   private var afterScroll: (() -> Unit)? = null
 
+  // Backing state for scrollToPositionTopAligned; alignTopCorrected guards the one-shot corrective re-scroll.
+  private var alignTopPosition: Int = RecyclerView.NO_POSITION
+  private var alignTopInset: Int = 0
+  private var alignTopCorrected: Boolean = false
+
   override fun supportsPredictiveItemAnimations(): Boolean {
     return false
   }
@@ -34,7 +39,21 @@ class ConversationLayoutManager(context: Context) : LinearLayoutManager(context,
    */
   fun scrollToPositionWithOffset(position: Int, offset: Int, afterScroll: () -> Unit) {
     this.afterScroll = afterScroll
+    alignTopPosition = RecyclerView.NO_POSITION
     super.scrollToPositionWithOffset(position, offset)
+  }
+
+  /**
+   * Scroll so [position]'s decorated top (including any top decoration, e.g. the unread divider) lands [topInset] px
+   * below the top of the recycler. [afterScroll] fires once the alignment settles.
+   */
+  fun scrollToPositionTopAligned(position: Int, topInset: Int, afterScroll: () -> Unit) {
+    this.afterScroll = afterScroll
+    alignTopPosition = position
+    alignTopInset = topInset
+    alignTopCorrected = false
+    // Rough first pass: the exact offset needs the item's height, which isn't known until it's laid out (see onLayoutCompleted).
+    super.scrollToPositionWithOffset(position, height - topInset)
   }
 
   /**
@@ -64,10 +83,26 @@ class ConversationLayoutManager(context: Context) : LinearLayoutManager(context,
       } else {
         scrollToPosition(pendingScrollPosition)
       }
-    } else {
-      afterScroll?.invoke()
-      afterScroll = null
+      return
     }
+
+    // The target is now laid out, so its height is known. Correct the offset once so the decorated top sits at the
+    // requested inset, then let the next layout settle before notifying via afterScroll.
+    if (alignTopPosition != RecyclerView.NO_POSITION && !alignTopCorrected) {
+      val target = findViewByPosition(alignTopPosition)
+      if (target != null) {
+        alignTopCorrected = true
+        if (getDecoratedTop(target) != alignTopInset) {
+          val correctedOffset = (height - paddingBottom) - alignTopInset - getDecoratedMeasuredHeight(target)
+          super.scrollToPositionWithOffset(alignTopPosition, correctedOffset)
+          return
+        }
+      }
+    }
+
+    afterScroll?.invoke()
+    afterScroll = null
+    alignTopPosition = RecyclerView.NO_POSITION
   }
 
   companion object {

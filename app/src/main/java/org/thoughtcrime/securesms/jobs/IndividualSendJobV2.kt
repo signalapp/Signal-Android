@@ -195,7 +195,7 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
     Log.i(TAG, "${logPrefix(message.sentTimeMillis)} Sending message. Recipient: ${message.threadRecipient.id}, Thread: $threadId, Attachments: ${buildAttachmentString(message.attachments)}, Editing: ${originalEditedMessage?.dateSent ?: "N/A"}")
     SignalLocalMetrics.IndividualMessageSend.onDeliveryStarted(messageId, message.sentTimeMillis)
 
-    return sendMessage(recipient, dataMessage, originalEditedMessage?.timestamp).fold(
+    return sendMessage(recipient, dataMessage, originalEditedMessage?.dateSent).fold(
       ifRight = { success ->
         val content = success.envelopeContent.content.get()
 

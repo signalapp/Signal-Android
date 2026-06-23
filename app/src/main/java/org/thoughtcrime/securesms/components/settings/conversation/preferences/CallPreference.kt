@@ -47,7 +47,7 @@ object CallPreference {
     }
 
     private fun presentTimer(messageRecord: MessageRecord) {
-      if (messageRecord.expiresIn > 0) {
+      if (messageRecord.expiresIn > 0 && messageRecord.expireStarted > 0) {
         binding.callTimer.visible = true
         binding.callTimer.setPercentComplete(0f)
 

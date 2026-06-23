@@ -431,7 +431,7 @@ class CallTableTest {
 
     val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
-    assertEquals(CallTable.Event.GENERIC_GROUP_CALL, call?.event)
+    assertEquals(CallTable.Event.MISSED, call?.event)
     assertEquals(1L, call?.timestamp)
   }
 

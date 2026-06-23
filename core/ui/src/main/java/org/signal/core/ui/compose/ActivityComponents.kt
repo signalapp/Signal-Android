@@ -25,7 +25,7 @@ import androidx.core.util.Consumer
  */
 @Composable
 fun rememberIsInPipMode(): Boolean {
-  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+  if (Build.VERSION.SDK_INT >= 26) {
     val activity = LocalActivity.current as AppCompatActivity
     var pipMode: Boolean by remember { mutableStateOf(activity.isInPictureInPictureMode) }
     DisposableEffect(activity) {

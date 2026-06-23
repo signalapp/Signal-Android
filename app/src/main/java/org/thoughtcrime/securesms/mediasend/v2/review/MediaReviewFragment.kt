@@ -125,6 +125,15 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
     disposables.bindTo(viewLifecycleOwner)
 
+    parentFragmentManager.setFragmentResultListener(AddMessageDialogFragment.REQUEST_KEY, viewLifecycleOwner) { _, bundle ->
+      if (bundle.getBoolean(AddMessageDialogFragment.RESULT_INCREMENT_VIEW_ONCE_STATE)) {
+        sharedViewModel.setMessage(null)
+        sharedViewModel.incrementViewOnceState()
+      } else {
+        sharedViewModel.setMessage(bundle.getCharSequence(AddMessageDialogFragment.RESULT_MESSAGE, null))
+      }
+    }
+
     callback = requireListener()
 
     drawToolButton = view.findViewById(R.id.draw_tool)
@@ -300,11 +309,27 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     }
 
     emojiButton.setOnClickListener {
-      AddMessageDialogFragment.show(parentFragmentManager, sharedViewModel.state.value?.message, true)
+      sharedViewModel.state.value?.let { state ->
+        AddMessageDialogFragment.show(
+          parentFragmentManager,
+          state.message,
+          true,
+          state.selectedMedia.size == 1 && !state.isStory && !MediaUtil.isDocumentType(state.focusedMedia?.contentType),
+          sharedViewModel.destination.getRecipientSearchKey()?.recipientId
+        )
+      }
     }
 
     addMessageButton.setOnClickListener {
-      AddMessageDialogFragment.show(parentFragmentManager, sharedViewModel.state.value?.message, false)
+      sharedViewModel.state.value?.let { state ->
+        AddMessageDialogFragment.show(
+          parentFragmentManager,
+          state.message,
+          false,
+          state.selectedMedia.size == 1 && !state.isStory && !MediaUtil.isDocumentType(state.focusedMedia?.contentType),
+          sharedViewModel.destination.getRecipientSearchKey()?.recipientId
+        )
+      }
     }
 
     if (sharedViewModel.isReply) {

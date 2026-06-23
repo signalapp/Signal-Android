@@ -6,4 +6,12 @@
   <string name="MediaSendDialogs__youll_lose_any_changes">ഈ ഫോട്ടോയിൽ നിങ്ങൾ വരുത്തിയ മാറ്റങ്ങളെല്ലാം നഷ്‌ടമാകും.</string>
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">ഉപേക്ഷിക്കുക</string>
+  <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
+  <string name="AddAMessageRow__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
+  <!-- Accessibility description for the button that opens the emoji keyboard. -->
+  <string name="AddAMessageRow__open_emoji_keyboard">Open emoji keyboard</string>
+  <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
+  <string name="AddAMessageRow__message">സന്ദേശം</string>
+  <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
+  <string name="AddAMessageRow__next">അടുത്തത്</string>
 </resources>

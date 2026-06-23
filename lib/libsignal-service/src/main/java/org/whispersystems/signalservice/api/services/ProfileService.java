@@ -2,7 +2,7 @@ package org.whispersystems.signalservice.api.services;
 
 import org.signal.core.util.Hex;
 import org.signal.libsignal.protocol.IdentityKey;
-import org.signal.libsignal.protocol.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;

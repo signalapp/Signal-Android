@@ -8,13 +8,15 @@ import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
+import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -82,14 +84,14 @@ public final class SendRetryReceiptJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    Recipient recipient = Recipient.resolved(recipientId);
+    RecipientRecord recipient = SignalDatabase.recipients().getRecord(recipientId);
 
-    if (recipient.isUnregistered()) {
+    if (recipient.getRegistered() == RegisteredState.NOT_REGISTERED) {
       Log.w(TAG, recipient.getId() + " not registered!");
       return;
     }
 
-    SignalServiceAddress address = RecipientUtil.toSignalServiceAddress(context, recipient);
+    SignalServiceAddress address = RecipientUtil.toSignalServiceAddress(recipient);
     Optional<byte[]>     group   = groupId.map(GroupId::getDecodedId);
 
     Log.i(TAG, "Sending retry receipt for " + errorMessage.getTimestamp() + " to " + recipientId + ", device: " + errorMessage.getDeviceId());

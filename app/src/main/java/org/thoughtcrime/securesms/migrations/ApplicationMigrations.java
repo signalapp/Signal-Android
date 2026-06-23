@@ -205,9 +205,10 @@ public class ApplicationMigrations {
     static final int SVR2_ENCLAVE_UPDATE_6         = 161;
     static final int NOTIFICATION_INDEX_MIGRATION  = 162;
     static final int NOTIFICATION_STATE_CLEANUP    = 163;
+    static final int KT_USERNAME_CAPABILITY        = 164;
   }
 
-  public static final int CURRENT_VERSION = 163;
+  public static final int CURRENT_VERSION = 164;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -948,6 +949,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.NOTIFICATION_STATE_CLEANUP) {
       jobs.put(Version.NOTIFICATION_STATE_CLEANUP, new BackfillNotifiedStateMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.KT_USERNAME_CAPABILITY) {
+      jobs.put(Version.KT_USERNAME_CAPABILITY, new KeyTransparencyUsernameMigrationJob());
     }
 
     return jobs;

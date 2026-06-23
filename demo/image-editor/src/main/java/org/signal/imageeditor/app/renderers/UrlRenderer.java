@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.RectF;
 import android.os.Parcel;
-import android.util.Log;
+import org.signal.core.util.logging.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

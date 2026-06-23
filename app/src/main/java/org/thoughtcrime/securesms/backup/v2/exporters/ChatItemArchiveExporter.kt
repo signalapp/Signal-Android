@@ -42,6 +42,7 @@ import org.signal.archive.proto.Text
 import org.signal.archive.proto.ThreadMergeChatUpdate
 import org.signal.archive.proto.ViewOnceMessage
 import org.signal.core.models.ServiceId
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
 import org.signal.core.util.Hex
@@ -68,7 +69,6 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireString
 import org.signal.core.util.toByteArray
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupMode
 import org.thoughtcrime.securesms.backup.v2.ExportOddities
@@ -435,7 +435,7 @@ class ChatItemArchiveExporter(
 
         else -> {
           val attachments = extraData.attachmentsById[record.id]
-          val sticker = attachments?.firstOrNull { dbAttachment -> dbAttachment.isSticker }
+          val sticker = attachments?.firstOrNull { dbAttachment -> dbAttachment.isSticker && !dbAttachment.quote }
 
           if (sticker?.stickerLocator != null) {
             builder.stickerMessage = sticker.toRemoteStickerMessage(sentTimestamp = record.dateSent, reactions = extraData.reactionsById[id], exportState = exportState)
@@ -852,8 +852,8 @@ private fun BackupMessageRecord.toRemotePaymentNotificationUpdate(db: SignalData
     PaymentNotification()
   } else {
     PaymentNotification(
-      amountMob = payment.amount.serializeAmountString(),
-      feeMob = payment.fee.serializeAmountString(),
+      amountMob = payment.amount.requireMobileCoin().amountDecimalString,
+      feeMob = payment.fee.requireMobileCoin().amountDecimalString,
       note = payment.note.takeUnless { it.isEmpty() },
       transactionDetails = payment.toRemoteTransactionDetails()
     )

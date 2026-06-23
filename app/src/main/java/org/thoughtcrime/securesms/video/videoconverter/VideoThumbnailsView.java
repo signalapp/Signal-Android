@@ -16,9 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.media.DecryptableUriMediaInput;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.video.interfaces.MediaInput;
 
 import java.io.IOException;
@@ -31,7 +31,7 @@ import java.util.List;
 abstract public class VideoThumbnailsView extends View {
 
   private static final String TAG           = Log.tag(VideoThumbnailsView.class);
-  private static final int    CORNER_RADIUS = ViewUtil.dpToPx(8);
+  private static final int    CORNER_RADIUS = (int) DimensionUnit.DP.toPixels(8);
 
   protected Uri currentUri;
 

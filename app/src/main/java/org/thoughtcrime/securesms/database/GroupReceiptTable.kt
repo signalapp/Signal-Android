@@ -7,6 +7,7 @@ import androidx.core.content.contentValuesOf
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
 import org.signal.core.util.deleteAll
+import org.signal.core.util.exists
 import org.signal.core.util.forEach
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
@@ -125,6 +126,13 @@ class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : Da
           .run()
       }
     }
+  }
+
+  fun hasReceipt(mmsId: Long, recipientId: RecipientId): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$MMS_ID = ? AND $RECIPIENT_ID = ?", mmsId, recipientId)
+      .run()
   }
 
   fun getGroupReceiptInfo(mmsId: Long): List<GroupReceiptInfo> {

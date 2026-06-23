@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.mms
 
 import android.content.ContentUris
 import android.net.Uri
-import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.signal.core.models.database.AttachmentId
 
 /**
  * Parses the given [Uri] into either an [AttachmentId] or a [Long]

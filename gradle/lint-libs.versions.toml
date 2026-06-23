@@ -2,9 +2,14 @@
 # ./gradlew --write-verification-metadata sha256 qa --rerun-tasks
 
 [versions]
-lint = "32.1.1"
+lint = "32.2.1"
 
 [libraries]
 lint-api = { module = "com.android.tools.lint:lint-api", version.ref = "lint" }
 lint-checks = { module = "com.android.tools.lint:lint-checks", version.ref = "lint" }
 lint-tests = { module = "com.android.tools.lint:lint-tests", version.ref = "lint" }
+
+# Parser front-ends used by the fast custom linter (:fast-lint). Same release as lint, so they
+# share the "lint" version and are already covered by dependency verification.
+intellij-core = { module = "com.android.tools.external.com-intellij:intellij-core", version.ref = "lint" }
+kotlin-compiler = { module = "com.android.tools.external.com-intellij:kotlin-compiler", version.ref = "lint" }

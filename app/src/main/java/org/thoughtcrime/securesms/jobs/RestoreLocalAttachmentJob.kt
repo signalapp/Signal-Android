@@ -6,13 +6,13 @@ package org.thoughtcrime.securesms.jobs
 
 import android.net.Uri
 import org.signal.core.models.backup.MediaName
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Base64
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.androidx.DocumentFileInfo
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidMacException
 import org.signal.libsignal.protocol.InvalidMessageException
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
 import org.thoughtcrime.securesms.database.AttachmentTable

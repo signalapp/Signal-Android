@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.backup.v2.database
 
+import org.signal.core.models.database.AttachmentId
 import org.thoughtcrime.securesms.attachments.Attachment
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.database.AttachmentTable
 
 fun AttachmentTable.restoreWallpaperAttachment(attachment: Attachment): AttachmentId? {

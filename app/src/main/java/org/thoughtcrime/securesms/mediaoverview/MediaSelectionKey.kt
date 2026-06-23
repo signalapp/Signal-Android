@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.mediaoverview
 
-import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.signal.core.models.database.AttachmentId
 import org.thoughtcrime.securesms.database.MediaTable.MediaRecord
 
 sealed class MediaSelectionKey {

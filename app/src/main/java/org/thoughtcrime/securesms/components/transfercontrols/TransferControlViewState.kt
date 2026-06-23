@@ -21,5 +21,6 @@ data class TransferControlViewState(
   val networkProgress: Map<Attachment, TransferControlView.Progress> = HashMap(),
   val compressionProgress: Map<Attachment, TransferControlView.Progress> = HashMap(),
   val playableWhileDownloading: Boolean = false,
-  val isUpload: Boolean = false
+  val isUpload: Boolean = false,
+  val awaitingPrimaryResponse: Boolean = false
 )

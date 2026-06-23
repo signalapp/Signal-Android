@@ -39,6 +39,7 @@ import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.math.BigDecimal
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.milliseconds
 
 /**
@@ -109,6 +110,7 @@ object RecurringInAppPaymentRepository {
     return Single
       .fromCallable { donationsService.getDonationsConfiguration(Locale.getDefault()) }
       .subscribeOn(Schedulers.io())
+      .timeout(InAppPaymentsRepository.DONATIONS_CONFIGURATION_TIMEOUT_SECONDS, TimeUnit.SECONDS)
       .flatMap { it.flattenResult() }
       .map { config ->
         config.getSubscriptionLevels().map { (level, levelConfig) ->

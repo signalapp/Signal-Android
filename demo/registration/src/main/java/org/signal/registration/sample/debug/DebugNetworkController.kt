@@ -26,10 +26,14 @@ import org.signal.registration.NetworkController.ProvisioningEvent
 import org.signal.registration.NetworkController.RegisterAccountError
 import org.signal.registration.NetworkController.RegisterAccountResponse
 import org.signal.registration.NetworkController.RequestVerificationCodeError
+import org.signal.registration.NetworkController.RestoreAccountRecordError
 import org.signal.registration.NetworkController.RestoreMasterKeyError
+import org.signal.registration.NetworkController.RestoreMethod
 import org.signal.registration.NetworkController.SessionMetadata
 import org.signal.registration.NetworkController.SetAccountAttributesError
+import org.signal.registration.NetworkController.SetProfileError
 import org.signal.registration.NetworkController.SetRegistrationLockError
+import org.signal.registration.NetworkController.SetRestoreMethodError
 import org.signal.registration.NetworkController.SubmitVerificationCodeError
 import org.signal.registration.NetworkController.SvrCredentials
 import org.signal.registration.NetworkController.UpdateSessionError
@@ -168,9 +172,9 @@ class DebugNetworkController(
     return delegate.setPinAndMasterKeyOnSvr(pin, masterKey)
   }
 
-  override suspend fun enqueueSvrGuessResetJob() {
+  override suspend fun enqueueSvrGuessResetJobIfPossible(): Boolean {
     // No override support for simple value methods
-    delegate.enqueueSvrGuessResetJob()
+    return delegate.enqueueSvrGuessResetJobIfPossible()
   }
 
   override suspend fun enableRegistrationLock(): RequestResult<Unit, SetRegistrationLockError> {
@@ -201,6 +205,35 @@ class DebugNetworkController(
     delegate.enqueueAccountAttributesSyncJob()
   }
 
+  override suspend fun setProfile(
+    givenName: String,
+    familyName: String,
+    avatar: ByteArray?,
+    discoverableByPhoneNumber: Boolean
+  ): RequestResult<Unit, SetProfileError> {
+    NetworkDebugState.getOverride<RequestResult<Unit, SetProfileError>>("setProfile")?.let {
+      Log.d(TAG, "[setProfile] Returning debug override")
+      return it
+    }
+    return delegate.setProfile(givenName, familyName, avatar, discoverableByPhoneNumber)
+  }
+
+  override suspend fun restoreAccountRecord(timeout: kotlin.time.Duration): RequestResult<Unit, RestoreAccountRecordError> {
+    NetworkDebugState.getOverride<RequestResult<Unit, RestoreAccountRecordError>>("restoreAccountRecord")?.let {
+      Log.d(TAG, "[restoreAccountRecord] Returning debug override")
+      return it
+    }
+    return delegate.restoreAccountRecord(timeout)
+  }
+
+  override suspend fun setRestoreMethod(token: String, method: RestoreMethod): RequestResult<Unit, SetRestoreMethodError> {
+    NetworkDebugState.getOverride<RequestResult<Unit, SetRestoreMethodError>>("setRestoreMethod")?.let {
+      Log.d(TAG, "[setRestoreMethod] Returning debug override")
+      return it
+    }
+    return delegate.setRestoreMethod(token, method)
+  }
+
   override suspend fun getSvrCredentials(): RequestResult<SvrCredentials, GetSvrCredentialsError> {
     NetworkDebugState.getOverride<RequestResult<SvrCredentials, GetSvrCredentialsError>>("getSvrCredentials")?.let {
       Log.d(TAG, "[getSvrCredentials] Returning debug override")
@@ -211,6 +244,15 @@ class DebugNetworkController(
 
   override fun startProvisioning(): Flow<ProvisioningEvent> {
     return delegate.startProvisioning()
+  }
+
+  override fun startNewDeviceTransferServer(context: android.content.Context, aep: org.signal.core.models.AccountEntropyPool) {
+    if (NetworkDebugState.fakeDeviceTransfer.value) {
+      Log.d(TAG, "[startNewDeviceTransferServer] Fake device transfer enabled (debug override)")
+      org.signal.registration.sample.dependencies.FakeDeviceTransferRunner.start()
+    } else {
+      delegate.startNewDeviceTransferServer(context, aep)
+    }
   }
 
   override suspend fun checkSvrCredentials(

@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import org.signal.core.util.Linkifier;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LinkUtil;
-import org.thoughtcrime.securesms.util.Linkification;
 import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 
@@ -51,7 +50,7 @@ public final class LinkPreviewUtil {
    * @return All URLs allowed as previews in the source text.
    */
   public static @NonNull Links findValidPreviewUrls(@NonNull String text) {
-    List<Linkifier.DetectedLink> detected = Linkification.findWebLinks(text);
+    List<Linkifier.DetectedLink> detected = Linkifier.findLinks(text);
     if (detected.isEmpty()) {
       return Links.EMPTY;
     }

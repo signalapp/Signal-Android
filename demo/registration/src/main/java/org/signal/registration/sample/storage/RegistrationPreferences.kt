@@ -53,6 +53,10 @@ object RegistrationPreferences {
   private const val KEY_OTHER_DEVICE_PLATFORM = "other_device_platform"
   private const val KEY_FETCHES_MESSAGES = "fetches_messages"
   private const val KEY_BACKUP_VERSION = "backup_version"
+  private const val KEY_PROFILE_GIVEN_NAME = "profile_given_name"
+  private const val KEY_PROFILE_FAMILY_NAME = "profile_family_name"
+  private const val KEY_PROFILE_AVATAR = "profile_avatar"
+  private const val KEY_PROFILE_DISCOVERABLE = "profile_discoverable"
 
   fun init(context: Application) {
     this.context = context
@@ -131,6 +135,24 @@ object RegistrationPreferences {
   var fetchesMessages: Boolean
     get() = prefs.getBoolean(KEY_FETCHES_MESSAGES, true)
     set(value) = prefs.edit { putBoolean(KEY_FETCHES_MESSAGES, value) }
+
+  var profileGivenName: String
+    get() = prefs.getString(KEY_PROFILE_GIVEN_NAME, "") ?: ""
+    set(value) = prefs.edit { putString(KEY_PROFILE_GIVEN_NAME, value) }
+
+  var profileFamilyName: String
+    get() = prefs.getString(KEY_PROFILE_FAMILY_NAME, "") ?: ""
+    set(value) = prefs.edit { putString(KEY_PROFILE_FAMILY_NAME, value) }
+
+  var profileAvatar: ByteArray?
+    get() = prefs.getString(KEY_PROFILE_AVATAR, null)?.let { Base64.decode(it) }
+    set(value) = prefs.edit { putString(KEY_PROFILE_AVATAR, value?.let { Base64.encodeWithPadding(it) }) }
+
+  var profileDiscoverableByPhoneNumber: Boolean?
+    get() = if (prefs.contains(KEY_PROFILE_DISCOVERABLE)) prefs.getBoolean(KEY_PROFILE_DISCOVERABLE, false) else null
+    set(value) = prefs.edit {
+      if (value == null) remove(KEY_PROFILE_DISCOVERABLE) else putBoolean(KEY_PROFILE_DISCOVERABLE, value)
+    }
 
   var restoredSvr2Credentials: List<NetworkController.SvrCredentials>
     get() = prefs.getStringSet(KEY_SVR2_CREDENTIALS, emptySet())?.mapNotNull { parseCredential(it) } ?: emptyList()

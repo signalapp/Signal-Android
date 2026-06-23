@@ -6,6 +6,12 @@
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.CAMERA" />
 
+  <!-- Device transfer (Wi-Fi Direct). ACCESS_FINE_LOCATION is required on API < 33; NEARBY_WIFI_DEVICES on API 33+. -->
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" android:maxSdkVersion="32" />
+  <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" android:usesPermissionFlags="neverForLocation" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
   <application
     android:name=".RegistrationApplication"
     android:backupAgent=".absbackup.RegistrationBackupAgent"
@@ -22,7 +28,8 @@
 
     <activity
       android:name=".MainActivity"
-      android:exported="true">
+      android:exported="true"
+      android:windowSoftInputMode="adjustResize">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

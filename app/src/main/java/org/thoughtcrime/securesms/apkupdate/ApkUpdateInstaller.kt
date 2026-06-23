@@ -61,21 +61,36 @@ object ApkUpdateInstaller {
       return
     }
 
-    if (!isMatchingDigest(context, downloadId, digest)) {
-      Log.w(TAG, "DownloadId matches, but digest does not! Bad download or inconsistent state. Failing and clearing state.")
-      SignalStore.apkUpdate.clearDownloadAttributes()
-      ApkUpdateNotifications.showInstallFailed(context, ApkUpdateNotifications.FailureReason.UNKNOWN)
-      return
-    }
-
     if (!userInitiated && !shouldAutoUpdate()) {
+      if (!isMatchingDigest(context, downloadId, digest)) {
+        Log.w(TAG, "DownloadId matches, but digest does not! Bad download or inconsistent state. Failing and clearing state.")
+        SignalStore.apkUpdate.clearDownloadAttributes()
+        ApkUpdateNotifications.showInstallFailed(context, ApkUpdateNotifications.FailureReason.UNKNOWN)
+        return
+      }
+
       Log.w(TAG, "Not user-initiated and not eligible for auto-update. Prompting. (API=${Build.VERSION.SDK_INT}, Foreground=${AppForegroundObserver.isForegrounded()}, AutoUpdate=${SignalStore.apkUpdate.autoUpdate})")
       ApkUpdateNotifications.showInstallPrompt(context, downloadId)
       return
     }
 
     try {
-      installApk(context, downloadId, userInitiated)
+      context
+        .getDownloadManager()
+        .openDownloadedFile(downloadId)
+        .use { parcelFileDescriptor ->
+          val stream = FileInputStream(parcelFileDescriptor.fileDescriptor)
+
+          if (!MessageDigest.isEqual(FileUtils.getFileDigest(stream), digest)) {
+            Log.w(TAG, "DownloadId matches, but digest does not! Bad download or inconsistent state. Failing and clearing state.")
+            SignalStore.apkUpdate.clearDownloadAttributes()
+            ApkUpdateNotifications.showInstallFailed(context, ApkUpdateNotifications.FailureReason.UNKNOWN)
+            return
+          }
+
+          stream.channel.position(0)
+          installApk(context, downloadId, stream, userInitiated)
+        }
     } catch (e: IOException) {
       Log.w(TAG, "Hit IOException when trying to install APK!", e)
       SignalStore.apkUpdate.clearDownloadAttributes()
@@ -88,17 +103,13 @@ object ApkUpdateInstaller {
   }
 
   @Throws(IOException::class, SecurityException::class)
-  private fun installApk(context: Context, downloadId: Long, userInitiated: Boolean) {
-    val apkInputStream: InputStream? = getDownloadedApkInputStream(context, downloadId)
-    if (apkInputStream == null) {
-      Log.w(TAG, "Could not open download APK input stream!")
-      return
-    }
-
+  private fun installApk(context: Context, downloadId: Long, apkInputStream: InputStream, userInitiated: Boolean) {
     Log.d(TAG, "Beginning APK install...")
     val packageInstaller: PackageInstaller = context.packageManager.packageInstaller
 
     val sessionParams = PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL).apply {
+      // Reject the session if the APK's declared package name doesn't match ours.
+      setAppPackageName(context.packageName)
       // At this point, we always want to set this if possible, since we've already prompted the user with our own notification when necessary.
       // This lets us skip the system-generated notification.
       if (Build.VERSION.SDK_INT >= 31) {
@@ -131,15 +142,6 @@ object ApkUpdateInstaller {
 
     Log.d(TAG, "Committing session...")
     session.commit(installerPendingIntent.intentSender)
-  }
-
-  private fun getDownloadedApkInputStream(context: Context, downloadId: Long): InputStream? {
-    return try {
-      FileInputStream(context.getDownloadManager().openDownloadedFile(downloadId).fileDescriptor)
-    } catch (e: IOException) {
-      Log.w(TAG, e)
-      null
-    }
   }
 
   private fun isDownloadSuccessful(context: Context, downloadId: Long): Boolean {

@@ -6,8 +6,11 @@ import androidx.annotation.WorkerThread;
 
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
@@ -54,14 +57,13 @@ public class GroupCallUpdateSendJob extends BaseJob {
 
   @WorkerThread
   public static @NonNull GroupCallUpdateSendJob create(@NonNull RecipientId recipientId, @Nullable String eraId) {
-    Recipient conversationRecipient = Recipient.resolved(recipientId);
+    RecipientRecord conversationRecipient = SignalDatabase.recipients().getRecord(recipientId);
 
-    if (!conversationRecipient.isPushV2Group()) {
+    if (conversationRecipient.getGroupId() == null || !conversationRecipient.getGroupId().isV2()) {
       throw new AssertionError("We have a recipient, but it's not a V2 Group");
     }
 
-    List<RecipientId> recipientIds = RecipientUtil.getEligibleForSending(Recipient.resolvedList(conversationRecipient.getParticipantIds())).stream()
-                                                  .filter(recipient -> !recipient.isSelf())
+    List<RecipientId> recipientIds = RecipientUtil.getEligibleForSending(Recipient.resolvedList(SignalDatabase.groups().getGroupMemberIds(conversationRecipient.getGroupId(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF))).stream()
                                                   .map(Recipient::getId).collect(Collectors.toList());
 
     return new GroupCallUpdateSendJob(recipientId,
@@ -114,19 +116,19 @@ public class GroupCallUpdateSendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    Recipient conversationRecipient = Recipient.resolved(recipientId);
+    RecipientRecord conversationRecipient = SignalDatabase.recipients().getRecord(recipientId);
 
-    if (!conversationRecipient.isPushV2Group()) {
+    if (conversationRecipient.getGroupId() == null || !conversationRecipient.getGroupId().isV2()) {
       throw new AssertionError("We have a recipient, but it's not a V2 Group");
     }
 
-    if (!SignalDatabase.groups().isActive(conversationRecipient.requireGroupId())) {
+    if (!SignalDatabase.groups().isActive(conversationRecipient.getGroupId())) {
       Log.w(TAG, "Not sending group call update to terminated or inactive group.");
       return;
     }
 
     List<Recipient> destinations = recipients.stream().map(Recipient::resolved).collect(Collectors.toList());
-    List<Recipient> completions  = deliver(conversationRecipient, destinations);
+    List<Recipient> completions  = deliver(conversationRecipient.getGroupId(), destinations);
 
     for (Recipient completion : completions) {
       recipients.remove(completion.getId());
@@ -166,20 +168,20 @@ public class GroupCallUpdateSendJob extends BaseJob {
     Log.w(TAG, "Failed to send the group update to all recipients!");
   }
 
-  private @NonNull List<Recipient> deliver(@NonNull Recipient conversationRecipient, @NonNull List<Recipient> destinations)
+  private @NonNull List<Recipient> deliver(@NonNull GroupId groupId, @NonNull List<Recipient> destinations)
       throws IOException, UntrustedIdentityException
   {
     SignalServiceDataMessage.Builder dataMessageBuilder = SignalServiceDataMessage.newBuilder()
                                                                                   .withTimestamp(System.currentTimeMillis())
                                                                                   .withGroupCallUpdate(new SignalServiceDataMessage.GroupCallUpdate(eraId));
 
-    GroupUtil.setDataMessageGroupContext(context, dataMessageBuilder, conversationRecipient.requireGroupId().requirePush());
+    GroupUtil.setDataMessageGroupContext(context, dataMessageBuilder, groupId.requirePush());
 
     SignalServiceDataMessage dataMessage         = dataMessageBuilder.build();
     List<Recipient>          nonSelfDestinations = destinations.stream().filter(r -> !r.isSelf()).collect(Collectors.toList());
     boolean                  includesSelf        = nonSelfDestinations.size() != destinations.size();
     List<SendMessageResult>  results             = GroupSendUtil.sendUnresendableDataMessage(context,
-                                                                                             conversationRecipient.requireGroupId().requireV2(),
+                                                                                             groupId.requireV2(),
                                                                                              nonSelfDestinations,
                                                                                              false,
                                                                                              ContentHint.DEFAULT,

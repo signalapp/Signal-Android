@@ -13,7 +13,7 @@ import com.squareup.wire.Message;
 import org.signal.core.util.Base64;
 import org.signal.core.util.Hex;
 import org.signal.libsignal.protocol.InvalidKeyException;
-import org.signal.libsignal.protocol.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.signal.storageservice.storage.protos.groups.AvatarUploadAttributes;
 import org.signal.storageservice.storage.protos.groups.ExternalGroupCredential;
 import org.signal.storageservice.storage.protos.groups.Group;

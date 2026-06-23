@@ -24,7 +24,9 @@ public final class DeviceTransferSetupViewModel extends ViewModel {
 
   public DeviceTransferSetupViewModel() {
     this.store               = new Store<>(new DeviceSetupState());
-    this.distinctStepChanges = LiveDataUtil.distinctUntilChanged(this.store.getStateLiveData(), (current, next) -> current.getCurrentSetupStep() == next.getCurrentSetupStep());
+    this.distinctStepChanges = LiveDataUtil.distinctUntilChanged(this.store.getStateLiveData(),
+                                                                 (current, next) -> current.getCurrentSetupStep() == next.getCurrentSetupStep() &&
+                                                                                    current.getAuthenticationCode() == next.getAuthenticationCode());
   }
 
   public @NonNull LiveData<DeviceSetupState> getState() {

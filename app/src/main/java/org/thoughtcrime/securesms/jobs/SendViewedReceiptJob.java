@@ -10,8 +10,10 @@ import org.signal.core.util.ListUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
+import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -176,9 +178,9 @@ public class SendViewedReceiptJob extends BaseJob {
       return;
     }
 
-    Recipient recipient = Recipient.resolved(recipientId);
+    RecipientRecord recipient = SignalDatabase.recipients().getRecord(recipientId);
 
-    if (recipient.isSelf()) {
+    if (recipient.getId().equals(Recipient.self().getId())) {
       Log.i(TAG, "Not sending view receipt to self.");
       return;
     }
@@ -188,23 +190,23 @@ public class SendViewedReceiptJob extends BaseJob {
       return;
     }
 
-    if (recipient.isGroup()) {
+    if (recipient.getGroupId() != null) {
       Log.w(TAG, "Refusing to send receipts to group");
       return;
     }
 
-    if (recipient.isUnregistered()) {
+    if (recipient.getRegistered() == RegisteredState.NOT_REGISTERED) {
       Log.w(TAG, recipient.getId() + " not registered!");
       return;
     }
 
-    if (recipient.isReleaseNotes()) {
+    if (recipient.getId().equals(SignalStore.releaseChannel().getReleaseChannelRecipientId())) {
       Log.w(TAG, "Refusing to send receipts to release channel");
       return;
     }
 
     SignalServiceMessageSender messageSender = AppDependencies.getSignalServiceMessageSender();
-    SignalServiceAddress       remoteAddress = RecipientUtil.toSignalServiceAddress(context, recipient);
+    SignalServiceAddress       remoteAddress = RecipientUtil.toSignalServiceAddress(recipient);
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.VIEWED,
                                                                                  messageSentTimestamps,
                                                                                  timestamp);
@@ -213,7 +215,7 @@ public class SendViewedReceiptJob extends BaseJob {
                                                                                                                 SealedSenderAccessUtil.getSealedSenderAccessFor(recipient,
                                                                                                                                                                 () -> SignalDatabase.groups().getGroupSendFullToken(threadId, recipientId)),
                                                                                                                 receiptMessage,
-                                                                                                                recipient.getNeedsPniSignature()));
+                                                                                                                recipient.needsPniSignature()));
 
     if (result != null && Util.hasItems(foundMessageIds)) {
       SignalDatabase.messageLog().insertIfPossible(recipientId, timestamp, result, ContentHint.IMPLICIT, foundMessageIds, false);

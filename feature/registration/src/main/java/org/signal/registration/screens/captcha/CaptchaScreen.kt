@@ -11,10 +11,13 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -48,6 +51,7 @@ fun CaptchaScreen(
   Column(
     modifier = modifier
       .fillMaxSize()
+      .windowInsetsPadding(WindowInsets.safeDrawing)
   ) {
     Box(
       modifier = Modifier
@@ -107,6 +111,7 @@ fun CaptchaScreen(
             CircularProgressIndicator(modifier = Modifier.size(48.dp))
           }
         }
+
         CaptchaLoadState.Error -> {
           Box(
             modifier = Modifier.fillMaxSize(),

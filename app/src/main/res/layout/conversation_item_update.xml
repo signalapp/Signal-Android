@@ -15,14 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/conversation_update_vertical_margin"
-        android:layout_marginBottom="@dimen/conversation_update_vertical_margin"
         android:orientation="vertical"
-        android:gravity="center"
-        android:paddingTop="@dimen/conversation_update_vertical_padding"
-        android:paddingBottom="@dimen/conversation_update_vertical_padding"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+        android:gravity="center">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/conversation_update_collapsed"
@@ -32,31 +26,43 @@
             android:paddingVertical="6dp"
             android:textSize="13sp"
             android:background="@drawable/rounded_rectangle_38"
-            android:paddingHorizontal="16dp"
+            android:paddingHorizontal="12dp"
             android:textColor="@color/signal_colorOnSurfaceVariant"
             android:textAllCaps="false"
             style="?android:attr/borderlessButtonStyle"
             android:backgroundTint="@color/signal_colorSurface1"
             tools:text="12 group updates" />
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-            android:id="@+id/conversation_update_body"
-            style="@style/Signal.Text.BodySmall"
+        <LinearLayout
+            android:id="@+id/conversation_update_body_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/conversation_item_update_text_color"
-            tools:text="Gwen Stacy set the disappearing message timer to 1 hour" />
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="12dp"
+            android:gravity="center" >
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/conversation_update_action"
-            style="@style/Widget.Signal.Button.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:visibility="gone"
-            tools:text="Learn more"
-            tools:visibility="visible" />
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                android:id="@+id/conversation_update_body"
+                style="@style/Signal.Text.BodySmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textColor="@color/conversation_item_update_text_color"
+                tools:text="Gwen Stacy set the disappearing message timer to 1 hour" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/conversation_update_action"
+                style="@style/Widget.Signal.Button.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                tools:text="Learn more"
+                tools:visibility="visible" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

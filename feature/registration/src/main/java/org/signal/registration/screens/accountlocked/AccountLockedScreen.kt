@@ -78,13 +78,15 @@ private fun OnePaneLayout(
         horizontalAlignment = Alignment.CenterHorizontally
       ) {
         Title()
-        Spacer(modifier = Modifier.height(12.dp))
-        Description(state)
+        Description(
+          state = state,
+          modifier = Modifier.padding(top = 16.dp)
+        )
       }
     },
     footer = {
       RegistrationScaffold.FooterSurface(
-        isContentScrolledUnder = scrollState.canScrollForward
+        isElevated = scrollState.canScrollForward
       ) {
         Column(
           modifier = modifier
@@ -146,7 +148,7 @@ private fun TwoPaneLayout(
     },
     footer = {
       RegistrationScaffold.FooterSurface(
-        isContentScrolledUnder = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
+        isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
       ) {
         Row(
           modifier = modifier
@@ -177,12 +179,15 @@ private fun Title() {
 }
 
 @Composable
-private fun Description(state: AccountLockedState) {
+private fun Description(
+  state: AccountLockedState,
+  modifier: Modifier = Modifier
+) {
   Text(
     text = stringResource(R.string.AccountLockedScreen__your_account, state.daysRemaining),
     style = MaterialTheme.typography.bodyLarge,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
-    modifier = Modifier.fillMaxWidth()
+    modifier = modifier
   )
 }
 

@@ -30,7 +30,7 @@ jobs:
         java-version: 17
 
     - name: Set up Gradle
-      uses: gradle/actions/setup-gradle@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6
+      uses: gradle/actions/setup-gradle@3f131e8634966bd73d06cc69884922b02e6faf92 # v6
       # gh api repos/gradle/actions/commits/v6 --jq '.sha'
       with:
         # PR-only workflow: always read from the cache, never write.
@@ -42,7 +42,7 @@ jobs:
       run: echo "y" | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --install "ndk;${{ env.NDK_VERSION }}"
 
     - name: Validate Gradle Wrapper
-      uses: gradle/actions/wrapper-validation@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6
+      uses: gradle/actions/wrapper-validation@3f131e8634966bd73d06cc69884922b02e6faf92 # v6
       # gh api repos/gradle/actions/commits/v6 --jq '.sha'
 
     - name: Cache base apk

@@ -11,7 +11,7 @@ import org.signal.core.util.Conversions;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.kdf.HKDF;
 import org.signal.libsignal.protocol.util.ByteUtil;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.signal.core.models.database.AttachmentId;
 import org.thoughtcrime.securesms.backup.proto.Attachment;
 import org.thoughtcrime.securesms.backup.proto.Avatar;
 import org.thoughtcrime.securesms.backup.proto.BackupFrame;

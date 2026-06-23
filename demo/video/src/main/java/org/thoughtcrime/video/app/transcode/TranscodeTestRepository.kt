@@ -145,7 +145,7 @@ class TranscodeTestRepository {
   }
 
   private fun saveToDownloads(context: Context, sourceFile: File, filename: String): Uri {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+    if (Build.VERSION.SDK_INT >= 29) {
       return saveToDownloadsMediaStore(context, filename) { outputStream ->
         sourceFile.inputStream().use { it.copyTo(outputStream) }
       }
@@ -159,7 +159,7 @@ class TranscodeTestRepository {
     val processor = Mp4FaststartPostProcessor(inputStreamFactory)
     val sourceLength = sourceFile.length()
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+    if (Build.VERSION.SDK_INT >= 29) {
       return saveToDownloadsMediaStore(context, filename) { outputStream ->
         processor.processWithMdatLength(sourceLength, mdatSize).use { it.copyTo(outputStream) }
       }
@@ -173,7 +173,7 @@ class TranscodeTestRepository {
     }
   }
 
-  @RequiresApi(Build.VERSION_CODES.Q)
+  @RequiresApi(29)
   private fun saveToDownloadsMediaStore(context: Context, filename: String, writeContent: (java.io.OutputStream) -> Unit): Uri {
     val contentValues = ContentValues().apply {
       put(MediaStore.Downloads.DISPLAY_NAME, filename)

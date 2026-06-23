@@ -200,7 +200,7 @@ public abstract class BaseSvrPinFragment<ViewModel extends BaseSvrPinViewModel> 
   }
 
   private void onPinSkipped() {
-    PinOptOutDialog.show(requireContext(), false, () -> {
+    PinOptOutDialog.show(requireContext(), getViewLifecycleOwner(), false, () -> {
       RegistrationUtil.maybeMarkRegistrationComplete();
       closeNavGraphBranch();
     });

@@ -7,6 +7,7 @@ import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageTable.ReportSpamData;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -21,7 +22,6 @@ import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedExcept
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -95,11 +95,11 @@ public class ReportSpamJob extends BaseJob {
     int count = 0;
 
     for (ReportSpamData data : reportSpamData) {
-      RecipientId         recipientId = data.getRecipientId();
-      Recipient           recipient   = Recipient.resolved(recipientId);
-      Optional<ServiceId> serviceId   = recipient.getServiceId();
+      RecipientId     recipientId = data.getRecipientId();
+      RecipientRecord recipient   = SignalDatabase.recipients().getRecord(recipientId);
+      ServiceId       serviceId   = recipient.getServiceId();
 
-      if (serviceId.isPresent() && !serviceId.get().isUnknown()) {
+      if (serviceId != null && !serviceId.isUnknown()) {
         String reportingTokenEncoded = null;
 
         byte[] reportingTokenBytes = SignalDatabase.recipients().getReportingToken(recipientId);
@@ -107,7 +107,7 @@ public class ReportSpamJob extends BaseJob {
           reportingTokenEncoded = Base64.encodeWithPadding(reportingTokenBytes);
         }
 
-        NetworkResultUtil.toBasicLegacy(SignalNetwork.message().reportSpam(serviceId.get(), data.getServerGuid(), reportingTokenEncoded));
+        NetworkResultUtil.toBasicLegacy(SignalNetwork.message().reportSpam(serviceId, data.getServerGuid(), reportingTokenEncoded));
         count++;
       } else {
         Log.w(TAG, "Unable to report spam without an ACI for " + recipientId);

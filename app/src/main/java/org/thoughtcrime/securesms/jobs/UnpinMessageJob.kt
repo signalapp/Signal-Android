@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupAccessControl
-import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
@@ -46,16 +47,19 @@ class UnpinMessageJob(
         return null
       }
 
-      val conversationRecipient = SignalDatabase.threads.getRecipientForThreadId(message.threadId)
-      if (conversationRecipient == null) {
+      val conversationRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(message.threadId)
+      if (conversationRecipientId == null) {
         Log.w(TAG, "We have a message, but couldn't find the thread!")
         return null
       }
 
+      val conversationRecipient = SignalDatabase.recipients.getRecord(conversationRecipientId)
+      val groupId = conversationRecipient.groupId
+
       val recipients = if (initialRecipientIds.isNotEmpty()) {
         initialRecipientIds.map { it.toLong() }
-      } else if (conversationRecipient.isGroup) {
-        conversationRecipient.participantIds.filter { it != Recipient.self().id }.map { it.toLong() }
+      } else if (groupId != null) {
+        SignalDatabase.groups.getGroupMemberIds(groupId, GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF).map { it.toLong() }
       } else {
         listOf(conversationRecipient.id.toLong())
       }
@@ -95,11 +99,13 @@ class UnpinMessageJob(
       return Result.failure()
     }
 
-    val conversationRecipient = SignalDatabase.threads.getRecipientForThreadId(message.threadId)
-    if (conversationRecipient == null) {
+    val conversationRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(message.threadId)
+    if (conversationRecipientId == null) {
       Log.w(TAG, "We have a message, but couldn't find the thread!")
       return Result.failure()
     }
+
+    val conversationRecipient = SignalDatabase.recipients.getRecord(conversationRecipientId)
 
     val targetAuthor = message.fromRecipient
     if (targetAuthor == null || !targetAuthor.hasServiceId) {
@@ -107,7 +113,8 @@ class UnpinMessageJob(
       return Result.failure()
     }
 
-    if (conversationRecipient.isPushV2Group) {
+    val groupId = conversationRecipient.groupId
+    if (groupId != null && groupId.isV2) {
       val groupRecord = SignalDatabase.groups.getGroup(conversationRecipient.id)
       if (groupRecord.isPresent && groupRecord.get().isTerminated) {
         Log.w(TAG, "Cannot send unpin messages to terminated group.")
@@ -139,7 +146,7 @@ class UnpinMessageJob(
     return Result.success()
   }
 
-  private fun deliver(conversationRecipient: Recipient, destinations: List<Recipient>, threadId: Long, targetAuthor: Recipient, targetSentTimestamp: Long): List<Recipient> {
+  private fun deliver(conversationRecipient: RecipientRecord, destinations: List<Recipient>, threadId: Long, targetAuthor: Recipient, targetSentTimestamp: Long): List<Recipient> {
     val dataMessageBuilder = newBuilder()
       .withTimestamp(System.currentTimeMillis())
       .withUnpinnedMessage(
@@ -149,8 +156,9 @@ class UnpinMessageJob(
         )
       )
 
-    if (conversationRecipient.isGroup) {
-      GroupUtil.setDataMessageGroupContext(context, dataMessageBuilder, conversationRecipient.requireGroupId().requirePush())
+    val groupId = conversationRecipient.groupId
+    if (groupId != null) {
+      GroupUtil.setDataMessageGroupContext(context, dataMessageBuilder, groupId.requirePush())
     }
 
     val dataMessage = dataMessageBuilder.build()
@@ -160,7 +168,7 @@ class UnpinMessageJob(
 
     val results = GroupSendUtil.sendResendableDataMessage(
       context,
-      conversationRecipient.groupId.map { obj: GroupId -> obj.requireV2() }.orElse(null),
+      groupId?.requireV2(),
       null,
       nonSelfRecipients,
       false,

@@ -52,7 +52,27 @@ class LinkUtilTest_isValidPreviewUrl(private val input: String, private val outp
         arrayOf("https://cool.invalid.com", true),
         arrayOf("https://cool.localhost.signal.org", true),
         arrayOf("https://cool.test.blarg.gov", true),
-        arrayOf("https://github.com/signalapp/Signal-Android/compare/v6.23.2...v6.23.3", true)
+        arrayOf("https://github.com/signalapp/Signal-Android/compare/v6.23.2...v6.23.3", true),
+        arrayOf("https://x@localhost/", false),
+        arrayOf("https://x@localhost", false),
+        arrayOf("https://user:pass@localhost/", false),
+        arrayOf("https://user@foo.google.com/", true),
+        arrayOf("https://127.0.0.1", false),
+        arrayOf("https://127.0.0.1/some/path", false),
+        arrayOf("https://127.1.2.3", false),
+        arrayOf("https://[::1]/", false),
+        arrayOf("https://x@127.0.0.1/", false),
+        arrayOf("https://0.0.0.0", false),
+        arrayOf("https://10.0.0.1", false),
+        arrayOf("https://172.16.0.1", false),
+        arrayOf("https://192.168.1.1", false),
+        arrayOf("https://169.254.1.1", false),
+        arrayOf("https://169.254.169.254", false),
+        arrayOf("https://[fe80::1]/", false),
+        arrayOf("https://[fc00::1]/", false),
+        arrayOf("https://[fd12:3456:789a::1]/", false),
+        arrayOf("https://8.8.8.8", true),
+        arrayOf("https://[2001:4860:4860::8888]/", true)
       )
     }
   }

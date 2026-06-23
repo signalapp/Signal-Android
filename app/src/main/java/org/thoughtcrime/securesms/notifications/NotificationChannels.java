@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.signal.core.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
@@ -80,6 +81,7 @@ public class NotificationChannels {
   public final String APP_ALERTS                       = "app_alerts";
   public final String ADDITIONAL_MESSAGE_NOTIFICATIONS = "additional_message_notifications";
   public final String NEW_LINKED_DEVICE                = "new_linked_device";
+  public final String INTERNAL_ISSUES                  = "internal_issues";
 
   private static volatile NotificationChannels instance;
 
@@ -660,6 +662,11 @@ public class NotificationChannels {
       notificationManager.createNotificationChannel(appUpdates);
     } else {
       notificationManager.deleteNotificationChannel(APP_UPDATES);
+    }
+
+    if (RemoteConfig.internalUser()) {
+      NotificationChannel internalIssues = new NotificationChannel(INTERNAL_ISSUES, context.getString(R.string.NotificationChannel_internal_issues), NotificationManager.IMPORTANCE_HIGH);
+      notificationManager.createNotificationChannel(internalIssues);
     }
   }
 

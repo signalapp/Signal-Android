@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.longmessage;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -14,16 +15,19 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 class LongMessage {
 
   private final ConversationMessage conversationMessage;
+  private final CharSequence        fullBody;
 
-  LongMessage(@NonNull ConversationMessage conversationMessage) {
+  @WorkerThread
+  LongMessage(@NonNull ConversationMessage conversationMessage, @NonNull Context context) {
     this.conversationMessage = conversationMessage;
+    this.fullBody            = conversationMessage.getDisplayBody(context);
   }
 
   @NonNull MessageRecord getMessageRecord() {
     return conversationMessage.getMessageRecord();
   }
 
-  @NonNull CharSequence getFullBody(@NonNull Context context) {
-    return conversationMessage.getDisplayBody(context);
+  @NonNull CharSequence getFullBody() {
+    return fullBody;
   }
 }

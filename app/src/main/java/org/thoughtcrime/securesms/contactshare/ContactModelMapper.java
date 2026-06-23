@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.Cdn;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -118,10 +119,16 @@ public class ContactModelMapper {
     if (contact.avatar != null && contact.avatar.avatar != null) {
       try {
         SignalServiceAttachmentPointer attachmentPointer = AttachmentPointerUtil.createSignalAttachmentPointer(contact.avatar.avatar);
-        Attachment                     attachment        = PointerAttachment.forPointer(Optional.of(attachmentPointer.asPointer())).get();
-        boolean                        isProfile         = Boolean.TRUE.equals(contact.avatar.isProfile);
+        Optional<Attachment>           attachment        = PointerAttachment.forPointer(Optional.of(attachmentPointer.asPointer()));
 
-        avatar = new Avatar(null, attachment, isProfile);
+        if (!attachment.isPresent()) {
+          Log.w(TAG, "Unable to create avatar attachment for contact. Ignoring avatar.");
+        } else if (attachment.get().cdn == Cdn.S3) {
+          Log.w(TAG, "Ignoring contact avatar that resolves to the internal release-channel CDN.");
+        } else {
+          boolean isProfile = Boolean.TRUE.equals(contact.avatar.isProfile);
+          avatar = new Avatar(null, attachment.get(), isProfile);
+        }
       } catch (InvalidMessageStructureException e) {
         Log.w(TAG, "Unable to create avatar for contact", e);
       }

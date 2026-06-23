@@ -314,9 +314,9 @@
     <!-- PIN creation screen title. -->
     <string name="PinCreationScreen__create_your_pin">നിങ്ങളുടെ PIN സൃഷ്ടിക്കുക</string>
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
-    <string name="PinCreationScreen__confirm_your_pin">Confirm your PIN</string>
+    <string name="PinCreationScreen__confirm_your_pin">നിങ്ങളുടെ PIN സ്ഥിരീകരിക്കുക</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">നിങ്ങൾ സൃഷ്ടിച്ച PIN വീണ്ടും നൽകുക</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">നിങ്ങളുടെ ഫോൺ നഷ്ടപ്പെടുകയാണെങ്കിൽ അക്കൗണ്ട് വീണ്ടെടുക്കാൻ PIN സഹായിക്കും. </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -328,11 +328,11 @@
     <!-- Labels the button to submit a new Signal PIN. -->
     <string name="PinCreationScreen__next">അടുത്തത്</string>
     <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_digits">PIN must be at least 4 digits</string>
+    <string name="PinCreationScreen__pin_at_least_4_digits">PIN കുറഞ്ഞത് 4 അക്കങ്ങളെങ്കിലും ആയിരിക്കണം</string>
     <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_characters">PIN must be at least 4 characters</string>
+    <string name="PinCreationScreen__pin_at_least_4_characters">PIN കുറഞ്ഞത് 4 പ്രതീകങ്ങളെങ്കിലും ആയിരിക്കണം</string>
     <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin">Re-enter PIN</string>
+    <string name="PinCreationScreen__reenter_pin">PIN വീണ്ടും നൽകുക</string>
 
     <!-- PIN entry screen title when registration lock is active. -->
     <string name="PinEntryScreen__registration_lock">രജിസ്ട്രേഷൻ ലോക്ക്</string>
@@ -355,9 +355,9 @@
     <string name="PinEntryScreen__continue">തുടരുക</string>
 
     <!-- Title for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__allow_notifications">Allow Notifications</string>
+    <string name="AllowNotificationsScreen__allow_notifications">അറിയിപ്പുകൾ അനുവദിക്കുക</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">അറിയിപ്പ് അനുമതികൾ അഭ്യർത്ഥിക്കാൻ Signal ആഗ്രഹിക്കുന്നു. പുതിയ സന്ദേശങ്ങൾ വരുമ്പോൾ അലേർട്ടുകൾ കാണിക്കാൻ ഇത് നിങ്ങളുടെ ഉപകരണത്തെ അനുവദിക്കുന്നു.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">ഇപ്പോൾ വേണ്ട</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -366,36 +366,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">സന്ദേശങ്ങൾ സമന്വയിപ്പിക്കുന്നു</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">ഇതിന് കുറച്ച് മിനിറ്റുകൾ എടുത്തേക്കാം…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">%2$s-ൽ %1$s ഡൗൺലോഡ് ചെയ്യുന്നു</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">സമന്വയ പ്രക്രിയ ഉൾപ്പെടെ, സന്ദേശങ്ങളും ചാറ്റ് വിവരങ്ങളും എൻഡ്-ടു-എൻഡ് എൻക്രിപ്ഷൻ വഴി പരിരക്ഷിച്ചിരിക്കുന്നു.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">കൂടുതലറിയുക</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">റദ്ദാക്കുക</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">നിങ്ങളുടെ അക്കൗണ്ട് ലിങ്ക് ചെയ്യാൻ ഈ കോഡ് സ്കാൻ ചെയ്യുക</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">നിങ്ങളുടെ ഫോണിൽ Signal തുറക്കുക</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Signal ക്രമീകരണം തുറക്കാൻ നിങ്ങളുടെ പ്രൊഫൈൽ ചിത്രത്തിൽ ടാപ്പ് ചെയ്യുക</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">\"ലിങ്ക് ചെയ്‌ത ഉപകരണങ്ങൾ\", \"പുതിയ ഉപകരണം ലിങ്ക് ചെയ്യുക\" എന്നിവയിൽ ടാപ്പ് ചെയ്യുക</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">ഈ QR കോഡിന് മുകളിലായി ക്യാമറ വയ്ക്കുക</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">ഈ ഘട്ടങ്ങൾക്കായി സഹായം നേടുക</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">QR കോഡ് വലുതാക്കുക</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">സ്കാൻ ചെയ്തു</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">കോഡ് സൃഷ്ടിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">മറ്റൊരു ഉപകരണത്തിൽ Signal ലഭ്യമല്ലേ?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">അക്കൗണ്ട് സൃഷ്ടിക്കുക</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">നിങ്ങളുടെ അക്കൗണ്ട് കൈമാറുക</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">നിങ്ങളുടെ അക്കൗണ്ട് കൈമാറാൻ, നിങ്ങളുടെ പഴയ Android ഉപകരണത്തിൽ Signal തുറന്ന് \'അക്കൗണ്ട് കൈമാറുക\' തിരഞ്ഞെടുക്കുക.</string>
+    <string name="DeviceTransferInstructions__continue">തുടരുക</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">പഴയ Android ഉപകരണവുമായി ബന്ധിപ്പിക്കാൻ തയ്യാറെടുക്കുന്നു…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">ഇതിന് അല്പം സമയമെടുത്തേക്കാം. ഉടൻ തന്നെ തയ്യാറാകും.</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">നിങ്ങളുടെ പഴയ ഉപകരണം കണക്ട് ആകുന്നതിനായി കാത്തിരിക്കുന്നു…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">രണ്ട് ഉപകരണങ്ങളിലും നമ്പറുകൾ പൊരുത്തപ്പെടുന്നുണ്ടെന്ന് പരിശോധിച്ചുറപ്പിക്കുക</string>
+    <string name="DeviceTransferSetup__numbers_match">അതെ, നമ്പറുകൾ പൊരുത്തപ്പെടുന്നുണ്ട്</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">അക്കങ്ങൾ പൊരുത്തപ്പെടുന്നില്ല</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">നിങ്ങളുടെ പഴയ ഉപകരണം പരിശോധിച്ചുറപ്പിക്കുന്നതിനായി കാത്തിരിക്കുന്നു…</string>
+    <string name="DeviceTransferSetup__location_permission_required">നിങ്ങളുടെ പഴയ ഉപകരണം കണ്ടെത്താനും അതുമായി കണക്റ്റ് ചെയ്യാനും Signal-ന് ലൊക്കേഷൻ അനുമതി ആവശ്യമാണ്.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">അനുമതി നൽകുക</string>
+    <string name="DeviceTransferSetup__location_services_required">നിങ്ങളുടെ പഴയ ഉപകരണം കണ്ടെത്താനും അതുമായി കണക്റ്റ് ചെയ്യാനും Signal-ന് ലൊക്കേഷൻ സേവനങ്ങൾ പ്രവർത്തനക്ഷമമാക്കേണ്ടതുണ്ട്.</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">ലൊക്കേഷൻ സേവനങ്ങൾ ഓണാക്കുക</string>
+    <string name="DeviceTransferSetup__wifi_required">നിങ്ങളുടെ പഴയ ഉപകരണം കണ്ടെത്താനും അതുമായി കണക്റ്റ് ചെയ്യാനും Signal-ന് Wi-Fi ഓണാക്കേണ്ടതുണ്ട്.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi ഓണാക്കുക</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">ക്ഷമിക്കണം, നിങ്ങളുടെ ഉപകരണം Wi-Fi Direct പിന്തുണയ്ക്കുന്നില്ലെന്ന് തോന്നുന്നു.</string>
+    <string name="DeviceTransferSetup__restore_a_backup">പകരം ഒരു ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുക</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">നിങ്ങളുടെ പഴയ ഉപകരണവുമായി കണക്റ്റ് ചെയ്യാൻ ശ്രമിക്കുമ്പോൾ അപ്രതീക്ഷിത പിശക് സംഭവിച്ചു.</string>
+    <string name="DeviceTransferSetup__retry">വീണ്ടും ശ്രമിക്കുക</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">നിങ്ങളുടെ പഴയ ഉപകരണം കണ്ടെത്താൻ കഴിഞ്ഞില്ല</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• ലൊക്കേഷൻ അനുമതികൾ നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക.\n• Wi-Fi ഓണാക്കിയിട്ടുണ്ടെന്നും Wi-Fi Direct ഗ്രൂപ്പുകളൊന്നും സംരക്ഷിച്ചിട്ടില്ലെന്നും ഉറപ്പാക്കുക.\n• രണ്ട് ഉപകരണങ്ങളിലും Wi-Fi ഓഫ് ചെയ്യാനും ഓണാക്കാനും ശ്രമിക്കുക.\n• രണ്ട് ഉപകരണങ്ങളും ട്രാൻസ്ഫർ മോഡിലാണെന്ന് ഉറപ്പാക്കുക.</string>
+    <string name="DeviceTransferSetup__try_again">വീണ്ടും ശ്രമിക്കുക</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">അക്കങ്ങൾ പൊരുത്തപ്പെടുന്നില്ല</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">നിങ്ങളുടെ ഉപകരണങ്ങളിലെ അക്കങ്ങൾ പൊരുത്തപ്പെടുന്നില്ലെങ്കിൽ, നിങ്ങൾ തെറ്റായ ഉപകരണത്തിലേക്കായിരിക്കാം കണക്ട് ചെയ്തത്.</string>
+    <string name="DeviceTransferSetup__stop_transfer">കൈമാറ്റം നിർത്തുക</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">ഡാറ്റ കൈമാറുന്നു</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">%1$d സന്ദേശങ്ങൾ ഇതുവരെ</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">കൈമാറാൻ കഴിഞ്ഞില്ല</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">Signal-ന്റെ പുതിയ പതിപ്പിൽ നിന്ന് കൈമാറാൻ കഴിയില്ല.</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">ഡാറ്റാബേസ് പരിമിതി കാരണം ചില ഡാറ്റ കൈമാറാൻ കഴിഞ്ഞില്ല.</string>
+    <string name="DeviceTransferProgress__transfer_failed">കൈമാറൽ പരാജയപ്പെട്ടു. വീണ്ടും ശ്രമിക്കുക.</string>
+    <string name="DeviceTransferProgress__try_again">വീണ്ടും ശ്രമിക്കുക</string>
+    <string name="DeviceTransferProgress__cancel">റദ്ദാക്കുക</string>
+    <string name="DeviceTransferProgress__stop_transfer">കൈമാറ്റം നിർത്തണോ?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">എല്ലാ കൈമാറ്റ പുരോഗതിയും നഷ്‌ടപ്പെടും.</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">കൈമാറ്റം പൂർത്തിയായി</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">നിങ്ങളുടെ അക്കൗണ്ട് ഇപ്പോൾ ഈ ഉപകരണത്തിലാണ്.</string>
+    <string name="DeviceTransferComplete__continue_registration">തുടരുക</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">നിങ്ങളുടെ പ്രൊഫൈൽ സജ്ജമാക്കുക</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">നിങ്ങളുടെ പ്രൊഫൈലും അതിലെ മാറ്റങ്ങളും നിങ്ങൾ സന്ദേശമയയ്ക്കുന്ന ആളുകൾക്കും കോൺടാക്റ്റുകൾക്കും ഗ്രൂപ്പുകൾക്കും ദൃശ്യമാകും.</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">പേരിൻ്റെ ആദ്യ ഭാഗം (ആവശ്യമാണ്)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">പേരിൻ്റെ അവസാന ഭാഗം (നിർബന്ധമല്ല)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">അടുത്തത്</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">അവതാർ സജ്ജമാക്കുക</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">നമ്പർ ഉപയോഗിച്ച് എന്നെ കണ്ടെത്താൻ കഴിയുന്നത് ആർക്കൊക്കെ?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">നിങ്ങളുടെ ഫോൺ നമ്പറുള്ള ആർക്കും നിങ്ങൾ Signal-ൽ ഉണ്ടെന്ന് കാണാനും നിങ്ങളുമായി ചാറ്റുകൾ ആരംഭിക്കാനും കഴിയും.</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">നിങ്ങൾ സന്ദേശമയയ്‌ക്കുകയോ മുമ്പ് ചാറ്റ് ചെയ്തിട്ടുണ്ടെങ്കിലോ മാത്രമേ നിങ്ങൾ Signal-ൽ ഉണ്ടെന്ന് കാണാനാകൂ.</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">എല്ലാവരും</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">ആർക്കുമില്ല</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">ഉറപ്പാണോ?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"നമ്പർ പ്രകാരം ആർക്കൊക്കെ എന്നെ കണ്ടെത്താനാകും\" എന്നത് \"ആർക്കുമില്ല\" എന്ന് ക്രമീകരിക്കുന്നത് ആളുകൾക്ക് നിങ്ങളെ Signal-ൽ കണ്ടെത്തുന്നത് ബുദ്ധിമുട്ടാക്കും.</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">റദ്ദാക്കുക</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">സംരക്ഷിക്കൂ</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">തിരികെ പോകുക</string>
 </resources>

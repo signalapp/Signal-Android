@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -21,7 +22,7 @@ public final class PinOptOutDialog {
    * @param rotateAep If true, this will rotate the AEP as part of the process of opting out. Only do this if the user has not enabled backups! If the user
    *    has backups enabled, you should guide them through rotating the AEP first, and then call this with [rotateAep] = false.
    */
-  public static void show(@NonNull Context context, boolean rotateAep, @NonNull Runnable onSuccess) {
+  public static void show(@NonNull Context context, @NonNull LifecycleOwner lifecycleOwner, boolean rotateAep, @NonNull Runnable onSuccess) {
     Log.i(TAG, "show()");
     AlertDialog dialog = new MaterialAlertDialogBuilder(context)
                                         .setTitle(R.string.PinOptOutDialog_warning)
@@ -32,7 +33,7 @@ public final class PinOptOutDialog {
                                           d.dismiss();
                                           AlertDialog progress = SimpleProgressDialog.show(context);
 
-                                          SimpleTask.run(() -> {
+                                          SimpleTask.run(lifecycleOwner.getLifecycle(), () -> {
                                             SvrRepository.optOutOfPin(rotateAep);
                                             return null;
                                           }, success -> {

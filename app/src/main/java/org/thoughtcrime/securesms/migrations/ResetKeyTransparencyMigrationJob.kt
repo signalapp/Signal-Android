@@ -22,7 +22,7 @@ internal class ResetKeyTransparencyMigrationJob private constructor(parameters: 
 
   override fun performMigration() {
     SignalStore.account.distinguishedHead = null
-    SignalStore.misc.lastKeyTransparencyTime = 0
+    SignalStore.misc.nextKeyTransparencyTime = 0
     SignalDatabase.recipients.clearAllKeyTransparencyData()
     CheckKeyTransparencyJob.enqueueIfNecessary(addDelay = false)
   }

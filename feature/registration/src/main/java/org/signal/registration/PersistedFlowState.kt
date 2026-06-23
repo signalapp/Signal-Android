@@ -23,7 +23,8 @@ data class PersistedFlowState(
   val sessionE164: String?,
   val doNotAttemptRecoveryPassword: Boolean,
   val pendingRestoreOption: PendingRestoreOption? = null,
-  val restoredAepValue: String? = null
+  val restoredAepValue: String? = null,
+  val restoreMethodToken: String? = null
 )
 
 /**
@@ -36,7 +37,8 @@ fun RegistrationFlowState.toPersistedFlowState(): PersistedFlowState {
     sessionE164 = sessionE164,
     doNotAttemptRecoveryPassword = doNotAttemptRecoveryPassword,
     pendingRestoreOption = pendingRestoreOption,
-    restoredAepValue = unverifiedRestoredAep?.value
+    restoredAepValue = unverifiedRestoredAep?.value,
+    restoreMethodToken = restoreMethodToken
   )
 }
 
@@ -61,6 +63,7 @@ fun PersistedFlowState.toRegistrationFlowState(
     preExistingRegistrationData = preExistingRegistrationData,
     doNotAttemptRecoveryPassword = doNotAttemptRecoveryPassword,
     pendingRestoreOption = pendingRestoreOption,
-    unverifiedRestoredAep = restoredAepValue?.let { AccountEntropyPool(it) }
+    unverifiedRestoredAep = restoredAepValue?.let { AccountEntropyPool(it) },
+    restoreMethodToken = restoreMethodToken
   )
 }

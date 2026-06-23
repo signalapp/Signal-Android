@@ -23,9 +23,11 @@ import org.greenrobot.eventbus.ThreadMode
 import org.signal.archive.LocalBackupRestoreProgress
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
+import org.signal.core.util.StreamUtil
 import org.signal.core.util.logging.Log
 import org.signal.registration.PreExistingRegistrationData
 import org.signal.registration.StorageController
+import org.signal.registration.StoredProfileData
 import org.signal.registration.proto.RegistrationData
 import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
 import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreProgress
@@ -41,6 +43,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistrationMetadata
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.SvrRepository
+import org.thoughtcrime.securesms.profiles.AvatarHelper
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import java.io.File
 import java.io.IOException
@@ -89,6 +93,39 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
   override suspend fun clearAllData() = withContext(Dispatchers.IO) {
     File(context.cacheDir, TEMP_PROTO_FILENAME).takeIf { it.exists() }?.delete()
     Unit
+  }
+
+  override suspend fun getStoredProfileData(): StoredProfileData = withContext(Dispatchers.IO) {
+    if (!SignalStore.account.isRegistered) {
+      return@withContext StoredProfileData()
+    }
+
+    val self = Recipient.self()
+    val profileName = self.profileName
+
+    val avatar: ByteArray? = if (AvatarHelper.hasAvatar(context, self.id)) {
+      try {
+        AvatarHelper.getAvatar(context, self.id)?.use { StreamUtil.readFully(it) }
+      } catch (e: IOException) {
+        Log.w(TAG, "[getStoredProfileData] Failed to read self avatar.", e)
+        null
+      }
+    } else {
+      null
+    }
+
+    val discoverable: Boolean? = when (SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode) {
+      org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE -> true
+      org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE -> false
+      org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.UNDECIDED -> null
+    }
+
+    StoredProfileData(
+      givenName = profileName.givenName,
+      familyName = profileName.familyName,
+      avatar = avatar,
+      discoverableByPhoneNumber = discoverable
+    )
   }
 
   override suspend fun readInProgressRegistrationData(): RegistrationData = withContext(Dispatchers.IO) {

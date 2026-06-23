@@ -7,6 +7,7 @@ import androidx.core.content.contentValuesOf
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteQueryBuilder
 import androidx.sqlite.db.SupportSQLiteStatement
+import org.signal.core.models.database.DatabaseId
 import org.signal.core.util.SqlUtil.ForeignKeyViolation
 import org.signal.core.util.logging.Log
 import kotlin.time.Duration

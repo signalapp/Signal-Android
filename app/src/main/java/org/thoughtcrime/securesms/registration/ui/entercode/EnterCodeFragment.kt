@@ -375,6 +375,10 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
   }
 
   private fun popBackStack() {
+    if (!isAdded) {
+      Log.w(TAG, "Fragment is no longer attached, ignoring popBackStack request.")
+      return
+    }
     sharedViewModel.setRegistrationCheckpoint(RegistrationCheckpoint.PUSH_NETWORK_AUDITED)
     NavHostFragment.findNavController(this).popBackStack()
     sharedViewModel.setInProgress(false)

@@ -288,15 +288,17 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
       return emptyList()
     }
 
-    val inputValues = objects.joinToString(separator = ", ") { "('${it.mediaId}', ${it.cdn})" }
+    val placeholders = objects.joinToString(separator = ", ") { "(?, ?)" }
+    val args: Array<Any> = objects.flatMap { listOf(it.mediaId, it.cdn) }.toTypedArray()
     return readableDatabase.rawQuery(
       """
-      WITH input_pairs($MEDIA_ID, $CDN) AS (VALUES $inputValues)
+      WITH input_pairs($MEDIA_ID, $CDN) AS (VALUES $placeholders)
       SELECT a.$PLAINTEXT_HASH, a.$REMOTE_KEY, b.$CDN
       FROM $TABLE_NAME a
       JOIN input_pairs b ON a.$MEDIA_ID = b.$MEDIA_ID
       WHERE a.$CDN != b.$CDN AND a.$IS_THUMBNAIL = 0 AND $SNAPSHOT_VERSION = $MAX_VERSION
-      """
+      """,
+      *args
     ).readToList { cursor ->
       CdnMismatchResult(
         plaintextHash = cursor.requireNonNullBlob(PLAINTEXT_HASH),

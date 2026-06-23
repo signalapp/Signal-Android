@@ -903,6 +903,9 @@
         <action
             android:id="@+id/action_internalSettingsFragment_to_dataSeedingPlaygroundFragment"
             app:destination="@id/dataSeedingPlaygroundFragment" />
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_internalIssuesFragment"
+            app:destination="@id/internalIssuesFragment" />
     </fragment>
 
     <fragment
@@ -969,6 +972,11 @@
         android:id="@+id/dataSeedingPlaygroundFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.internal.dataseeding.DataSeedingPlaygroundFragment"
         android:label="data_seeding_playground_fragment" />
+
+    <fragment
+        android:id="@+id/internalIssuesFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.issues.InternalIssuesFragment"
+        android:label="internal_issues_fragment" />
 
     <!-- endregion -->
 

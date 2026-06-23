@@ -45,6 +45,7 @@ import org.signal.core.ui.compose.Texts
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.rememberStatusBarColorNestedScrollModifier
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.viewModel
 
 /**
@@ -298,29 +299,31 @@ private fun AdvancedPrivacySettingsScreen(
         )
       }
 
-      item {
-        Dividers.Default()
-      }
-
-      item {
-        val label = buildAnnotatedString {
-          append(stringResource(R.string.preferences_automatic_key_verification_body))
-          append(" ")
-          withLink(
-            LinkAnnotation.Clickable("learn-more", linkInteractionListener = {
-              callbacks.onAutomaticVerificationLearnMoreClick()
-            })
-          ) {
-            append(stringResource(R.string.LearnMoreTextView_learn_more))
-          }
+      if (RemoteConfig.internalUser) {
+        item {
+          Dividers.Default()
         }
 
-        Rows.ToggleRow(
-          checked = state.allowAutomaticKeyVerification,
-          text = AnnotatedString(stringResource(R.string.preferences_automatic_key_verification)),
-          label = label,
-          onCheckChanged = callbacks::onAllowAutomaticVerificationChanged
-        )
+        item {
+          val label = buildAnnotatedString {
+            append(stringResource(R.string.preferences_automatic_key_verification_body))
+            append(" ")
+            withLink(
+              LinkAnnotation.Clickable("learn-more", linkInteractionListener = {
+                callbacks.onAutomaticVerificationLearnMoreClick()
+              })
+            ) {
+              append(stringResource(R.string.LearnMoreTextView_learn_more))
+            }
+          }
+
+          Rows.ToggleRow(
+            checked = state.allowAutomaticKeyVerification,
+            text = AnnotatedString(stringResource(R.string.preferences_automatic_key_verification)),
+            label = label,
+            onCheckChanged = callbacks::onAllowAutomaticVerificationChanged
+          )
+        }
       }
     }
   }

@@ -32,6 +32,8 @@ public class StickerPackDownloadJob extends BaseJob {
 
   private static final String TAG = Log.tag(StickerPackDownloadJob.class);
 
+  private static final int MAX_STICKERS_PER_PACK = 1024;
+
   private static final String KEY_PACK_ID        = "pack_key";
   private static final String KEY_PACK_KEY       = "pack_id";
   private static final String KEY_REFERENCE_PACK = "reference_pack";
@@ -125,11 +127,17 @@ public class StickerPackDownloadJob extends BaseJob {
       return;
     }
 
+    List<StickerInfo> stickers = manifest.getStickers();
+    if (stickers.size() > MAX_STICKERS_PER_PACK) {
+      Log.w(TAG, "Pack manifest contains " + stickers.size() + " stickers, which exceeds the cap of " + MAX_STICKERS_PER_PACK + ". Truncating.");
+      stickers = stickers.subList(0, MAX_STICKERS_PER_PACK);
+    }
+
     if (!isReferencePack && stickerDatabase.isPackAvailableAsReference(packId)) {
       stickerDatabase.markPackAsInstalled(packId, notify);
     }
 
-    StickerInfo      cover = manifest.getCover().orElse(manifest.getStickers().get(0));
+    StickerInfo      cover = manifest.getCover().orElse(stickers.get(0));
     JobManager.Chain chain = jobManager.startChain(new StickerDownloadJob(new IncomingSticker(packId,
                                                                                               packKey,
                                                                                               manifest.getTitle().orElse(""),
@@ -144,9 +152,9 @@ public class StickerPackDownloadJob extends BaseJob {
 
 
     if (!isReferencePack) {
-      List<Job> jobs = new ArrayList<>(manifest.getStickers().size());
+      List<Job> jobs = new ArrayList<>(stickers.size());
 
-      for (StickerInfo stickerInfo : manifest.getStickers()) {
+      for (StickerInfo stickerInfo : stickers) {
         jobs.add(new StickerDownloadJob(new IncomingSticker(packId,
                                                             packKey,
                                                             manifest.getTitle().orElse(""),

@@ -48,7 +48,7 @@ class SystemEmojiDrawable(emoji: CharSequence) : Drawable() {
   companion object {
     private val textPaint: TextPaint = TextPaint()
 
-    private fun getStaticLayout(emoji: CharSequence): StaticLayout = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    private fun getStaticLayout(emoji: CharSequence): StaticLayout = if (Build.VERSION.SDK_INT >= 23) {
       StaticLayout.Builder.obtain(emoji, 0, emoji.length, textPaint, Int.MAX_VALUE).build()
     } else {
       @Suppress("DEPRECATION")

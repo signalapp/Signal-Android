@@ -299,6 +299,54 @@ class MessageServiceTest {
   }
 
   @Test
+  fun `sync send to self with no other devices stops instead of looping`() = runTest {
+    val service = newService()
+    every { protocolStore.isMultiDevice } returns true
+    every { protocolStore.getSubDeviceSessions(localAci.toString()) } returns emptyList()
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 1, 100, validSerializedSignalMessageBase64())
+
+    coEvery { messageApi.sendSyncMessage(any(), any(), any()) } returns
+      RequestResult.NonSuccess(mismatchedException(extra = intArrayOf(1), account = localAci))
+
+    val result = service.sendSyncMessage(timestamp, envelopeContent, urgent = true, onEncrypted = null)
+
+    val success = (result as Either.Right).value
+    assertThat(success.devices).isEqualTo(emptyList<Int>())
+    verify { protocolStore.archiveSession(SignalProtocolAddress(localAci.libSignalServiceId, 1)) }
+    verify(exactly = 1) { protocolStore.setMultiDevice(false) }
+    coVerify(exactly = 1) { messageApi.sendSyncMessage(any(), any(), any()) }
+  }
+
+  @Test
+  fun `sync send that reached a real linked device is not treated as no other devices`() = runTest {
+    val service = newService()
+    every { protocolStore.isMultiDevice } returns true
+    every { protocolStore.getSubDeviceSessions(localAci.toString()) } returns listOf(2)
+    every { cipher.encrypt(any(), any(), any()) } returns OutgoingPushMessage(1, 2, 100, validSerializedSignalMessageBase64())
+
+    coEvery { messageApi.sendSyncMessage(any(), any(), any()) } returns
+      RequestResult.NonSuccess(mismatchedException(extra = intArrayOf(2), account = localAci))
+
+    val result = service.sendSyncMessage(timestamp, envelopeContent, urgent = true, onEncrypted = null)
+
+    assertThat(result).isInstanceOf(Either.Left::class)
+    verify(exactly = 0) { protocolStore.setMultiDevice(any()) }
+    coVerify(atLeast = 2) { messageApi.sendSyncMessage(any(), any(), any()) }
+  }
+
+  @Test
+  fun `sync send is skipped entirely when not multi-device`() = runTest {
+    val service = newService()
+    every { protocolStore.isMultiDevice } returns false
+
+    val result = service.sendSyncMessage(timestamp, envelopeContent, urgent = true, onEncrypted = null)
+
+    val success = (result as Either.Right).value
+    assertThat(success.devices).isEqualTo(emptyList<Int>())
+    coVerify(exactly = 0) { messageApi.sendSyncMessage(any(), any(), any()) }
+  }
+
+  @Test
   fun `ServiceIdNotFoundException maps to NotRegistered`() = runTest {
     val service = newService()
     every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
@@ -449,10 +497,11 @@ class MessageServiceTest {
   private fun mismatchedException(
     missing: IntArray = intArrayOf(),
     extra: IntArray = intArrayOf(),
-    stale: IntArray = intArrayOf()
+    stale: IntArray = intArrayOf(),
+    account: ServiceId = recipientAci
   ): MismatchedDeviceException {
     val entry = MismatchedDeviceException.Entry(
-      account = recipientAci.libSignalServiceId,
+      account = account.libSignalServiceId,
       missingDevices = missing,
       extraDevices = extra,
       staleDevices = stale

@@ -19,16 +19,22 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.core.util.Base64
+import org.signal.core.util.Util
 import org.signal.network.NetworkResult
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException
+import org.thoughtcrime.securesms.attachments.Cdn
+import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobs.protos.BackupDeleteJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.util.RemoteConfig
+import java.util.UUID
 
 class BackupDeleteJobTest {
 
@@ -155,10 +161,7 @@ class BackupDeleteJobTest {
 
   @Test
   fun givenMediaOffloaded_whenIRun_thenIExpectAwaitingMediaDownload() {
-    mockkObject(SignalDatabase)
-    every { SignalDatabase.attachments.getRemainingRestorableAttachmentSize() } returns 1
-    every { SignalDatabase.attachments.getOptimizedMediaAttachmentSize() } returns 1
-    every { SignalDatabase.attachments.clearAllArchiveData() } returns Unit
+    insertOffloadedAttachment()
 
     SignalStore.backup.deletionState = DeletionState.CLEAR_LOCAL_STATE
 
@@ -251,5 +254,40 @@ class BackupDeleteJobTest {
     val result = job.run()
 
     assertThat(result.isRetry).isTrue()
+  }
+
+  private fun insertOffloadedAttachment(size: Long = 100) {
+    SignalDatabase.attachments.insertAttachmentsForMessage(
+      mmsId = 1,
+      attachments = listOf(
+        PointerAttachment(
+          contentType = "image/jpeg",
+          transferState = AttachmentTable.TRANSFER_RESTORE_OFFLOADED,
+          size = size,
+          fileName = null,
+          cdn = Cdn.CDN_3,
+          location = "somelocation",
+          key = Base64.encodeWithPadding(Util.getSecretBytes(64)),
+          iv = null,
+          digest = Util.getSecretBytes(64),
+          incrementalDigest = null,
+          incrementalMacChunkSize = 0,
+          fastPreflightId = null,
+          voiceNote = false,
+          borderless = false,
+          videoGif = false,
+          width = 100,
+          height = 100,
+          uploadTimestamp = System.currentTimeMillis(),
+          caption = null,
+          stickerLocator = null,
+          blurHash = null,
+          uuid = UUID.randomUUID(),
+          quote = false,
+          quoteTargetContentType = null
+        )
+      ),
+      quoteAttachment = emptyList()
+    )
   }
 }

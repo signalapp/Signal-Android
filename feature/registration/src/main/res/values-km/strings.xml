@@ -313,9 +313,9 @@
     <!-- PIN creation screen title. -->
     <string name="PinCreationScreen__create_your_pin">បង្កើតលេខកូដសម្ងាត់របស់អ្នក</string>
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
-    <string name="PinCreationScreen__confirm_your_pin">Confirm your PIN</string>
+    <string name="PinCreationScreen__confirm_your_pin">បញ្ជាក់លេខកូដសម្ងាត់របស់អ្នក</string>
     <!-- Describes how to confirm the new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin_description">Re-enter the PIN you just created</string>
+    <string name="PinCreationScreen__reenter_pin_description">បញ្ចូលឡើងវិញនូវលេខកូដសម្ងាត់ដែលអ្នកទើបតែបង្កើត</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
     <string name="PinCreationScreen__pins_can_help">លេខកូដសម្ងាត់អាចជួយអ្នកស្ដារគណនីរបស់អ្នកមកវិញ ប្រសិនបើអ្នកបាត់ទូរសព្ទ។ </string>
     <!-- Labels the button to learn more about Signal PINs. -->
@@ -327,11 +327,11 @@
     <!-- Labels the button to submit a new Signal PIN. -->
     <string name="PinCreationScreen__next">បន្ទាប់</string>
     <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_digits">PIN must be at least 4 digits</string>
+    <string name="PinCreationScreen__pin_at_least_4_digits">លេខកូដសម្ងាត់ត្រូវតែមានយ៉ាងហោចណាស់ 4 ខ្ទង់</string>
     <!-- Hint shown below the create PIN field when alphanumeric keyboard is active. -->
-    <string name="PinCreationScreen__pin_at_least_4_characters">PIN must be at least 4 characters</string>
+    <string name="PinCreationScreen__pin_at_least_4_characters">លេខកូដសម្ងាត់ត្រូវតែមានយ៉ាងហោចណាស់ 4 តួអក្សរ</string>
     <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
-    <string name="PinCreationScreen__reenter_pin">Re-enter PIN</string>
+    <string name="PinCreationScreen__reenter_pin">បញ្ចូលលេខកូដសម្ងាត់ឡើងវិញ</string>
 
     <!-- PIN entry screen title when registration lock is active. -->
     <string name="PinEntryScreen__registration_lock">ការចាក់សោការចុះឈ្មោះ</string>
@@ -341,7 +341,7 @@
     <string name="PinEntryScreen__enter_the_pin_you_created">បញ្ចូលលេខកូដសម្ងាត់ដែលអ្នកបានបង្កើតនៅពេលអ្នកដំឡើង Signal ដំបូង</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
-        <item quantity="other">លេខកូដ PIN មិនត្រឹមត្រូវ។ ការព្យាយាមនៅសល់ %1$d ។</item>
+        <item quantity="other">លេខកូដសម្ងាត់មិនត្រឹមត្រូវ។ អាចព្យាយាមបាន %1$d ដងទៀត។</item>
     </plurals>
     <!-- Labels the button to get help with PIN entry. -->
     <string name="PinEntryScreen__need_help">ត្រូវការជំនួយ?</string>
@@ -353,9 +353,9 @@
     <string name="PinEntryScreen__continue">បន្ត</string>
 
     <!-- Title for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__allow_notifications">Allow Notifications</string>
+    <string name="AllowNotificationsScreen__allow_notifications">អនុញ្ញាតការជូនដំណឹង</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal would like to request the notification permission. This allows your device to display alerts when new messages arrive.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal ចង់ស្នើសុំការអនុញ្ញាតផ្តល់ការជូនដំណឹង។ ការធ្វើបែបនេះអនុញ្ញាតឱ្យឧបករណ៍របស់អ្នកបង្ហាញការជូនដំណឹងនៅពេលដែលសារថ្មីមកដល់។</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">ឥឡូវកុំទាន់</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -364,36 +364,119 @@
     <!-- Title shown while messages are syncing from the primary device -->
     <string name="MessageSyncScreen__syncing_messages">ធ្វើសមកាលកម្មសារ</string>
     <!-- Subtitle shown while messages are syncing from the primary device, indicating it may take a while -->
-    <string name="MessageSyncScreen__this_may_take_a_few_minutes">This may take a few minutes…</string>
+    <string name="MessageSyncScreen__this_may_take_a_few_minutes">វាអាចនឹងចំណាយពេលពីរបីនាទី…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">កំពុងទាញយក %1$s លើ %2$s</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
-    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Messages and chat info are protected by end-to-end encryption, including the syncing process.</string>
+    <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">សារ និងព័ត៌មានជជែកត្រូវបានការពារដោយការអ៊ីនគ្រីបទាំងសងខាង រាប់បញ្ចូលទាំងដំណើរការធ្វើសមកាលកម្មផងដែរ។</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">បោះបង់</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Scan this code to link your account</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">ស្គែនកូដនេះដើម្បីភ្ជាប់គណនីរបស់អ្នក</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">បើក Signal នៅលើទូរសព្ទរបស់អ្នក</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
-    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tap your profile picture to open Signal Settings</string>
+    <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">ចុចលើរូបភាពប្រូហ្វាល់របស់អ្នកដើម្បីបើកការកំណត់ Signal</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tap \"Linked devices\" and \"Link new device\"</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">ចុចលើ \"ឧបករណ៍ដែលបានភ្ជាប់\" និង \"ភ្ជាប់ឧបករណ៍ថ្មី\"</string>
     <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Position the camera over this qr code</string>
+    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">ដាក់កាមេរ៉ាពីលើកូដ QR នេះ</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
-    <string name="LinkAccountScreen__get_help_with_these_steps">Get help with these steps</string>
+    <string name="LinkAccountScreen__get_help_with_these_steps">ទទួលបានជំនួយតាមជំហានទាំងនេះ</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
-    <string name="LinkAccountScreen__maximize_qr_code">Maximize QR Code</string>
+    <string name="LinkAccountScreen__maximize_qr_code">បង្កើនប្រសិទ្ធភាពកូដ QR</string>
     <!-- Label shown in place of the QR code after the primary device has successfully scanned it -->
-    <string name="LinkAccountScreen__scanned">Scanned</string>
+    <string name="LinkAccountScreen__scanned">ស្គែនរួច</string>
     <!-- Error label shown in place of the QR code if it could not be generated -->
-    <string name="LinkAccountScreen__failed_to_generate_code">Failed to generate code</string>
+    <string name="LinkAccountScreen__failed_to_generate_code">មិនអាចបង្កើតកូដបានទេ</string>
     <!-- Footer prompt asking the user if they have another device with Signal. Precedes a separate "Create account" link. -->
-    <string name="LinkAccountScreen__dont_have_signal_on_another_device">Don\'t have Signal on another device?</string>
+    <string name="LinkAccountScreen__dont_have_signal_on_another_device">មិនមាន Signal នៅលើឧបករណ៍ផ្សេងទៀតទេ?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">បង្កើតគណនី</string>
+
+    <!-- Device transfer: Instructions screen -->
+    <string name="DeviceTransferInstructions__transfer_your_account">ផ្ទេរគណនីរបស់អ្នក</string>
+    <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">ដើម្បីផ្ទេរគណនីរបស់អ្នក សូមបើក Signal នៅលើឧបករណ៍ Android ចាស់របស់អ្នក ហើយជ្រើសរើសផ្ទេរគណនី។</string>
+    <string name="DeviceTransferInstructions__continue">បន្ត</string>
+
+    <!-- Device transfer: Setup screen -->
+    <string name="DeviceTransferSetup__preparing_to_connect">កំពុងរៀបចំភ្ជាប់ជាមួយឧបករណ៍ Android ចាស់…</string>
+    <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">វាអាចចំណាយពេលមួយភ្លែត។ គួរតែរួចរាល់ឆាប់ៗនេះ។</string>
+    <string name="DeviceTransferSetup__waiting_for_old_device">កំពុងរង់ចាំឧបករណ៍ចាស់របស់អ្នកភ្ជាប់…</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">ផ្ទៀងផ្ទាត់ថាលេខត្រូវគ្នានៅលើឧបករណ៍ទាំងពីរ</string>
+    <string name="DeviceTransferSetup__numbers_match">មែនហើយ លេខត្រូវគ្នា</string>
+    <string name="DeviceTransferSetup__numbers_do_not_match">លេខមិនត្រូវគ្នា</string>
+    <string name="DeviceTransferSetup__waiting_for_other_to_verify">កំពុងរង់ចាំឧបករណ៍ចាស់របស់អ្នកដើម្បីផ្ទៀងផ្ទាត់…</string>
+    <string name="DeviceTransferSetup__location_permission_required">Signal ត្រូវការការអនុញ្ញាតទីតាំង ដើម្បីស្វែងរក និងភ្ជាប់ជាមួយឧបករណ៍ចាស់របស់អ្នក។</string>
+    <string name="DeviceTransferSetup__grant_location_permission">ផ្តល់ការអនុញ្ញាត</string>
+    <string name="DeviceTransferSetup__location_services_required">Signal ត្រូវការឱ្យបើកសេវាកម្មទីតាំង ដើម្បីស្វែងរក និងភ្ជាប់ជាមួយឧបករណ៍ចាស់របស់អ្នក។</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">បើកសេវាកម្មទីតាំង</string>
+    <string name="DeviceTransferSetup__wifi_required">Signal ត្រូវការឱ្យបើក Wi-Fi ដើម្បីស្វែងរក និងភ្ជាប់ជាមួយឧបករណ៍ចាស់របស់អ្នក។</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">បើក Wi-Fi</string>
+    <string name="DeviceTransferSetup__wifi_direct_unavailable">សូមអភ័យទោស ហាក់ដូចជាឧបករណ៍របស់អ្នកប្រើមិនបានជាមួយ Wi-Fi Direct ទេ។</string>
+    <string name="DeviceTransferSetup__restore_a_backup">ស្តារការបម្រុងទុកជំនួសវិញ</string>
+    <string name="DeviceTransferSetup__unexpected_error_connecting">បញ្ហាមិនបានរំពឹងទុកមួយកើតឡើង ពេលកំពុងព្យាយាមភ្ជាប់ជាមួយឧបករណ៍ចាស់របស់អ្នក។</string>
+    <string name="DeviceTransferSetup__retry">ព្យាយាមម្តងទៀត</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">មិនអាចរកឃើញឧបករណ៍ចាស់របស់អ្នកបានទេ</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• ត្រូវប្រាកដថាមានការអនុញ្ញាតទីតាំង។\n• ត្រូវប្រាកដថាបានបើក Wi-Fi ហើយមិនមានក្រុម Wi-Fi Direct ណាមួយត្រូវបានចងចាំទេ។\n• សាកល្បងបិទ និងបើក Wi-Fi នៅលើឧបករណ៍ទាំងពីរ។\n• ត្រូវប្រាកដថាឧបករណ៍ទាំងពីរស្ថិតនៅក្នុងមុខងារផ្ទេរ។</string>
+    <string name="DeviceTransferSetup__try_again">ព្យាយាមម្តងទៀត</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">លេខមិនត្រូវគ្នា</string>
+    <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">ប្រសិនបើលេខនៅលើឧបករណ៍របស់អ្នកមិនត្រូវគ្នាទេ វាអាចមកពីអ្នកបានភ្ជាប់ខុសឧបករណ៍។</string>
+    <string name="DeviceTransferSetup__stop_transfer">ឈប់ផ្ទេរ</string>
+
+    <!-- Device transfer: Progress screen -->
+    <string name="DeviceTransferProgress__transferring_data">កំពុងផ្ទេរទិន្នន័យ</string>
+    <string name="DeviceTransferProgress__d_messages_so_far">មកដល់ពេលនេះ បាន %1$d សារ</string>
+    <string name="DeviceTransferProgress__unable_to_transfer">មិនអាចផ្ទេរបាន</string>
+    <string name="DeviceTransferProgress__cannot_transfer_from_newer_signal">មិនអាចផ្ទេរចេញពី Signal កំណែថ្មីជាងនេះបានទេ។</string>
+    <string name="DeviceTransferProgress__failure_foreign_key">ទិន្នន័យមួយចំនួនមិនអាចផ្ទេរបានទេដោយសារតែការរឹតបន្តឹងមូលដ្ឋានទិន្នន័យ។</string>
+    <string name="DeviceTransferProgress__transfer_failed">ការផ្ទេរមិនបានជោគជ័យទេ។ សូមព្យាយាមម្តងទៀត។</string>
+    <string name="DeviceTransferProgress__try_again">ព្យាយាមម្តងទៀត</string>
+    <string name="DeviceTransferProgress__cancel">បោះបង់</string>
+    <string name="DeviceTransferProgress__stop_transfer">ឈប់ផ្ទេរ?</string>
+    <string name="DeviceTransferProgress__all_transfer_progress_will_be_lost">វឌ្ឍនភាពនៃការផ្ទេរទាំងអស់នឹងត្រូវបាត់បង់។</string>
+
+    <!-- Device transfer: Complete screen -->
+    <string name="DeviceTransferComplete__transfer_complete">ការផ្ទេរបានបញ្ចប់</string>
+    <string name="DeviceTransferComplete__your_account_is_now_on_this_device">គណនីរបស់អ្នកឥឡូវនេះស្ថិតនៅលើឧបករណ៍នេះ។</string>
+    <string name="DeviceTransferComplete__continue_registration">បន្ត</string>
+
+    <!-- Create profile screen -->
+    <!-- Title displayed at the top of the create-profile screen during registration. -->
+    <string name="CreateProfileScreen__set_up_your_profile">រៀបចំប្រូហ្វាល់របស់អ្នក</string>
+    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
+    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">ប្រូហ្វាល់ និងការផ្លាស់ប្តូរចំពោះប្រូហ្វាល់របស់អ្នកនឹងមើលឃើញដោយមនុស្សដែលអ្នកផ្ញើសារ ទំនាក់ទំនង និងក្រុមនានា។</string>
+    <!-- Label/hint for the first-name field, indicating it is required. -->
+    <string name="CreateProfileScreen__first_name_required">នាមខ្លួន (ចាំបាច់)</string>
+    <!-- Label/hint for the last-name field, indicating it is optional. -->
+    <string name="CreateProfileScreen__last_name_optional">ត្រកូល (មិនតម្រូវ)</string>
+    <!-- Action button text to advance from create-profile screen. -->
+    <string name="CreateProfileScreen__next">បន្ទាប់</string>
+    <!-- Content description for the avatar selection control. -->
+    <string name="CreateProfileScreen__set_avatar_description">កំណត់រូបតំណាង</string>
+
+    <!-- Phone number discoverability picker -->
+    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">តើនរណាខ្លះអាចរកខ្ញុំបានតាមលេខទូរសព្ទ?</string>
+    <!-- Description shown on the picker when "Everyone" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">នរណាក៏ដោយដែលមានលេខទូរសព្ទរបស់អ្នកនឹងមើលឃើញអ្នកនៅលើ Signal ហើយអាចចាប់ផ្តើមជជែកជាមួយអ្នកបាន។</string>
+    <!-- Description shown on the picker when "Nobody" is selected. -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">គ្មាននរណាម្នាក់អាចមើលឃើញអ្នកនៅលើ Signal ទេ លើកលែងតែអ្នកផ្ញើសារទៅពួកគេ ឬមានការជជែកដែលមានស្រាប់ជាមួយពួកគេ។</string>
+    <!-- Radio option label for "Everyone can find me by number". -->
+    <string name="PhoneNumberPrivacy_everyone">អ្នករាល់គ្នា</string>
+    <!-- Radio option label for "Nobody can find me by number". -->
+    <string name="PhoneNumberPrivacy_nobody">គ្មាននរណាម្នាក់</string>
+    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">តើអ្នកប្រាកដឬទេ?</string>
+    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">ការកំណត់ \"នរណាខ្លះអាចរកខ្ញុំបានតាមលេខទូរសព្ទ\" ទៅជា \"គ្មាននរណាម្នាក់\" នឹងធ្វើឱ្យអ្នកផ្សេងកាន់តែពិបាកស្វែងរកអ្នកនៅលើ Signal។</string>
+    <!-- Cancel button on the "Nobody" confirmation dialog. -->
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">បោះបង់</string>
+    <!-- Save button on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__save">រក្សាទុក</string>
+    <!-- Content description for the back arrow on the discoverability picker. -->
+    <string name="PhoneNumberDiscoverabilityScreen__back">ត្រឡប់ក្រោយ</string>
 </resources>

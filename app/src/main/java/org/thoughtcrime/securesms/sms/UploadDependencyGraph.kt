@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.sms
 
 import androidx.annotation.WorkerThread
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.models.media.TransformProperties
 import org.thoughtcrime.securesms.attachments.Attachment
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.jobmanager.Job

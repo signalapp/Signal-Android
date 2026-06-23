@@ -34,6 +34,7 @@ Before you begin, ensure you have the following installed:
 - `uv`
 - `adb` ([link](https://developer.android.com/tools/adb))
 - `bundletool` ([link](https://github.com/google/bundletool/releases))
+- `aapt2` (included with the Android SDK Build Tools, [link](https://developer.android.com/tools/aapt2))
 
 You will also need to have Developer Options and USB Debugging enabled on your Android device. You can find instructions to do so [here](https://developer.android.com/studio/debug/dev-options). After the prerequisites are installed and the dev options are enabled, you can connect your Android device to your computer and run the `adb devices` command in your terminal. If everything has been set up correctly, your Android device will show up in the list.
 

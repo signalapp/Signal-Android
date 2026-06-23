@@ -58,6 +58,10 @@ open class AppScaffoldNavigator<T> @RememberInComposition constructor(private va
   }
 
   override suspend fun seekBack(backNavigationBehavior: BackNavigationBehavior, fraction: Float) {
+    if (fraction == 0f && state == NavigationState.SEEK) {
+      state = NavigationState.ENTER
+    }
+
     if (fraction > 0f && state != NavigationState.SEEK) {
       state = NavigationState.SEEK
     }

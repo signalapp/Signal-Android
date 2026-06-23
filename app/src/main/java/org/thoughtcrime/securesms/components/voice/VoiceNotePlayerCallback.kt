@@ -8,9 +8,7 @@ package org.thoughtcrime.securesms.components.voice
 import android.content.Context
 import android.media.AudioManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.os.Process
 import android.widget.Toast
 import androidx.annotation.MainThread
 import androidx.annotation.OptIn
@@ -96,11 +94,12 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
   private var latestUri = Uri.EMPTY
 
   override fun onConnect(session: MediaSession, controller: MediaSession.ControllerInfo): MediaSession.ConnectionResult {
-    if (Build.VERSION.SDK_INT >= 28 && controller.uid != Process.myUid()) {
-      Log.w(TAG, "Rejecting connection from external caller: ${controller.packageName}")
-      return MediaSession.ConnectionResult.reject()
+    return if (controller.isTrusted) {
+      MediaSession.ConnectionResult.accept(CUSTOM_COMMANDS, SUPPORTED_ACTIONS)
+    } else {
+      Log.w(TAG, "Rejecting connection from non-trusted caller: ${controller.packageName}")
+      MediaSession.ConnectionResult.reject()
     }
-    return MediaSession.ConnectionResult.accept(CUSTOM_COMMANDS, SUPPORTED_ACTIONS)
   }
 
   override fun onPostConnect(session: MediaSession, controller: MediaSession.ControllerInfo) {

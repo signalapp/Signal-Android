@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.messages
 
 import android.app.Application
+import android.app.Notification
 import android.app.Service
 import android.content.Context
 import android.content.Intent
@@ -26,12 +27,9 @@ import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
-import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil
-import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil.startWhenCapable
 import org.thoughtcrime.securesms.jobs.PushProcessMessageErrorJob
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
-import org.thoughtcrime.securesms.jobs.UnableToStartException
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
 import org.thoughtcrime.securesms.messages.MessageDecryptor.FollowUpOperation
@@ -39,6 +37,7 @@ import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess.Companion.toApplicableSystemHttpProxy
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.SafeForegroundService
 import org.thoughtcrime.securesms.util.AlarmSleepTimer
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
@@ -99,7 +98,7 @@ class IncomingMessageObserver(
      */
     @JvmStatic
     fun stopForegroundService(context: Context) {
-      context.stopService(Intent(context, ForegroundService::class.java))
+      SafeForegroundService.stop(context, ForegroundService::class.java)
     }
   }
 
@@ -155,17 +154,11 @@ class IncomingMessageObserver(
 
     MessageRetrievalThread().start()
 
-    if (!SignalStore.account.fcmEnabled || SignalStore.settings.forceWebsocketMode.isEnabled) {
-      try {
-        ForegroundServiceUtil.start(context, Intent(context, ForegroundService::class.java))
-      } catch (e: UnableToStartException) {
-        Log.w(TAG, "Unable to start foreground service for websocket. Deferring to background to try with blocking")
-        SignalExecutors.UNBOUNDED.execute {
-          try {
-            startWhenCapable(context, Intent(context, ForegroundService::class.java))
-          } catch (e: UnableToStartException) {
-            Log.w(TAG, "Unable to start foreground service for websocket!", e)
-          }
+    val registered = SignalStore.account.isRegistered && !TextSecurePreferences.isUnauthorizedReceived(context)
+    if (registered && (!SignalStore.account.fcmEnabled || SignalStore.settings.forceWebsocketMode.isEnabled)) {
+      SignalExecutors.UNBOUNDED.execute {
+        if (!SafeForegroundService.start(context, ForegroundService::class.java)) {
+          Log.w(TAG, "Unable to start foreground service for websocket!")
         }
       }
     }
@@ -258,7 +251,7 @@ class IncomingMessageObserver(
     val lastInteractionString = if (appVisibleSnapshot) "N/A" else timeIdle.toString() + " ms (" + (if (timeIdle < maxBackgroundTime) "within limit" else "over limit") + ")"
     val conclusion = registered &&
       !unauthorizedReceived &&
-      (appVisibleSnapshot || timeIdle < maxBackgroundTime || !fcmEnabled) &&
+      (appVisibleSnapshot || timeIdle < maxBackgroundTime || !fcmEnabled || forceWebsocket) &&
       hasNetwork
 
     val needsConnectionString = if (conclusion) "Needs Connection" else "Does Not Need Connection"
@@ -267,11 +260,12 @@ class IncomingMessageObserver(
       TAG,
       "[$needsConnectionString] Network: $hasNetwork, Foreground: $appVisibleSnapshot, Time Since Last Interaction: $lastInteractionString, FCM: $fcmEnabled, WS Open or Keep-alives: $websocketAlreadyOpen, Registered: $registered, Unauthorized: $unauthorizedReceived, Proxy: $hasProxy, Force websocket: $forceWebsocket"
     )
+
     return conclusion
   }
 
   private fun isConnectionAvailable(): Boolean {
-    return SignalStore.account.isRegistered && (authWebSocket.stateSnapshot == WebSocketConnectionState.CONNECTED || (authWebSocket.shouldSendKeepAlives() && NetworkConstraint.isMet(context)))
+    return !TextSecurePreferences.isUnauthorizedReceived(context) && SignalStore.account.isRegistered && (authWebSocket.stateSnapshot == WebSocketConnectionState.CONNECTED || (authWebSocket.shouldSendKeepAlives() && NetworkConstraint.isMet(context)))
   }
 
   private fun waitForConnectionNecessary() {
@@ -659,33 +653,21 @@ class IncomingMessageObserver(
     }
   }
 
-  class ForegroundService : Service() {
-    override fun onBind(intent: Intent?): IBinder? {
-      return null
-    }
+  /**
+   * Keeps the process alive for websocket users.
+   */
+  class ForegroundService : SafeForegroundService() {
+    override val tag: String = TAG
+    override val notificationId: Int = FOREGROUND_ID
 
-    override fun onCreate() {
-      postForegroundNotification()
-    }
-
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-      super.onStartCommand(intent, flags, startId)
-
-      postForegroundNotification()
-
-      return START_STICKY
-    }
-
-    private fun postForegroundNotification() {
-      val notification = NotificationCompat.Builder(applicationContext, NotificationChannels.getInstance().BACKGROUND)
+    override fun getForegroundNotification(intent: Intent): Notification {
+      return NotificationCompat.Builder(applicationContext, NotificationChannels.getInstance().BACKGROUND)
         .setContentTitle(applicationContext.getString(R.string.MessageRetrievalService_signal))
         .setContentText(applicationContext.getString(R.string.MessageRetrievalService_background_connection_enabled))
         .setPriority(NotificationCompat.PRIORITY_MIN)
         .setWhen(0)
         .setSmallIcon(R.drawable.ic_signal_background_connection)
         .build()
-
-      startForeground(FOREGROUND_ID, notification)
     }
   }
 

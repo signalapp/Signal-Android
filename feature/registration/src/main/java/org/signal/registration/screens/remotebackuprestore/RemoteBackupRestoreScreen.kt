@@ -123,7 +123,7 @@ private fun OnePaneLayout(
     },
     footer = {
       RegistrationScaffold.FooterSurface(
-        isContentScrolledUnder = scrollState.canScrollForward
+        isElevated = scrollState.canScrollForward
       ) {
         Column(
           modifier = Modifier
@@ -179,7 +179,7 @@ private fun TwoPaneLayout(
     },
     footer = {
       RegistrationScaffold.FooterSurface(
-        isContentScrolledUnder = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
+        isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
       ) {
         Row(
           modifier = Modifier
@@ -201,7 +201,10 @@ private fun BackupInfoContent(
   state: RemoteBackupRestoreState
 ) {
   BackupInfoHeading()
-  BackupInfoDetails(state = state)
+  BackupInfoDetails(
+    state = state,
+    modifier = Modifier.padding(top = 16.dp)
+  )
 }
 
 @Composable
@@ -229,36 +232,37 @@ private fun BackupInfoHeading() {
 }
 
 @Composable
-private fun BackupInfoDetails(state: RemoteBackupRestoreState) {
-  if (state.backupTime > 0) {
-    Spacer(modifier = Modifier.height(12.dp))
+private fun BackupInfoDetails(state: RemoteBackupRestoreState, modifier: Modifier = Modifier) {
+  Column(
+    verticalArrangement = Arrangement.spacedBy(16.dp),
+    modifier = modifier
+  ) {
+    if (state.backupTime > 0) {
+      val context = LocalContext.current
+      val (dateStr, timeStr) = remember(context, state.backupTime) {
+        val date = Date(state.backupTime)
+        val dateFormatted = DateFormat.getMediumDateFormat(context).format(date)
+        val timeFormatted = DateFormat.getTimeFormat(context).format(date)
+        dateFormatted to timeFormatted
+      }
 
-    val context = LocalContext.current
-    val (dateStr, timeStr) = remember(context, state.backupTime) {
-      val date = Date(state.backupTime)
-      val dateFormatted = DateFormat.getMediumDateFormat(context).format(date)
-      val timeFormatted = DateFormat.getTimeFormat(context).format(date)
-      dateFormatted to timeFormatted
+      Text(
+        text = stringResource(R.string.RemoteRestoreScreen__your_last_backup_was_made_on_s_at_s, dateStr, timeStr),
+        style = MaterialTheme.typography.bodyLarge,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.fillMaxWidth()
+      )
     }
 
     Text(
-      text = stringResource(R.string.RemoteRestoreScreen__your_last_backup_was_made_on_s_at_s, dateStr, timeStr),
+      text = stringResource(R.string.RemoteRestoreScreen__your_media_will_restore_in_the_background),
       style = MaterialTheme.typography.bodyLarge,
       color = MaterialTheme.colorScheme.onSurfaceVariant,
       textAlign = TextAlign.Center,
       modifier = Modifier.fillMaxWidth()
     )
   }
-
-  Spacer(modifier = Modifier.height(16.dp))
-
-  Text(
-    text = stringResource(R.string.RemoteRestoreScreen__your_media_will_restore_in_the_background),
-    style = MaterialTheme.typography.bodyLarge,
-    color = MaterialTheme.colorScheme.onSurfaceVariant,
-    textAlign = TextAlign.Center,
-    modifier = Modifier.fillMaxWidth()
-  )
 }
 
 @Composable

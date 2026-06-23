@@ -5,9 +5,5 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "androguard",
-    "tqdm>=4.67.1",
+    "androguard>=4.1.4",
 ]
-
-[tool.uv.sources]
-androguard = { git = "https://github.com/androguard/androguard", rev = "943932d35c08b8ee5102ace398882858d3bd7567" }

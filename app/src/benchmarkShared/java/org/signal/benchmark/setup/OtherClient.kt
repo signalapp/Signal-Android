@@ -241,5 +241,6 @@ class OtherClient(val serviceId: ServiceId, val e164: String, val identityKeyPai
     override fun deleteAllStaleOneTimeKyberPreKeys(threshold: Long, minCount: Int) = throw UnsupportedOperationException()
     override fun loadLastResortKyberPreKeys(): List<KyberPreKeyRecord> = throw UnsupportedOperationException()
     override fun isMultiDevice(): Boolean = throw UnsupportedOperationException()
+    override fun setMultiDevice(isMultiDevice: Boolean) = throw UnsupportedOperationException()
   }
 }

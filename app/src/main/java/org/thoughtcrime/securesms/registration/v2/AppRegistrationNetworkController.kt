@@ -37,10 +37,13 @@ import org.signal.registration.NetworkController.RegisterAccountError
 import org.signal.registration.NetworkController.RegisterAccountResponse
 import org.signal.registration.NetworkController.RegistrationLockResponse
 import org.signal.registration.NetworkController.RequestVerificationCodeError
+import org.signal.registration.NetworkController.RestoreAccountRecordError
 import org.signal.registration.NetworkController.RestoreMasterKeyError
 import org.signal.registration.NetworkController.SessionMetadata
 import org.signal.registration.NetworkController.SetAccountAttributesError
+import org.signal.registration.NetworkController.SetProfileError
 import org.signal.registration.NetworkController.SetRegistrationLockError
+import org.signal.registration.NetworkController.SetRestoreMethodError
 import org.signal.registration.NetworkController.SubmitVerificationCodeError
 import org.signal.registration.NetworkController.SvrCredentials
 import org.signal.registration.NetworkController.ThirdPartyServiceErrorResponse
@@ -48,15 +51,24 @@ import org.signal.registration.NetworkController.UpdateSessionError
 import org.signal.registration.NetworkController.VerificationCodeTransport
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.BuildConfig
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.gcm.FcmUtil
+import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob
+import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob
+import org.thoughtcrime.securesms.jobs.ProfileUploadJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.ResetSvrGuessCountJob
+import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.pin.SvrWrongPinException
+import org.thoughtcrime.securesms.profiles.AvatarHelper
+import org.thoughtcrime.securesms.profiles.ProfileName
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.fcm.PushChallengeRequest
+import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.archive.ArchiveServiceAccess
@@ -72,6 +84,7 @@ import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import org.whispersystems.signalservice.api.account.AccountAttributes as ServiceAccountAttributes
 import org.whispersystems.signalservice.api.account.PreKeyCollection as ServicePreKeyCollection
+import org.whispersystems.signalservice.api.provisioning.RestoreMethod as ServiceRestoreMethod
 
 /**
  * Implementation of [NetworkController] that bridges to the app's existing network infrastructure.
@@ -443,8 +456,13 @@ class AppRegistrationNetworkController(
     }
   }
 
-  override suspend fun enqueueSvrGuessResetJob() {
+  override suspend fun enqueueSvrGuessResetJobIfPossible(): Boolean {
+    if (SignalStore.svr.pin == null) {
+      return false
+    }
+
     AppDependencies.jobManager.add(ResetSvrGuessCountJob())
+    return true
   }
 
   override suspend fun enableRegistrationLock(): RequestResult<Unit, SetRegistrationLockError> = withContext(Dispatchers.IO) {
@@ -595,6 +613,80 @@ class AppRegistrationNetworkController(
     AppDependencies.jobManager.add(RefreshAttributesJob())
   }
 
+  override suspend fun setProfile(
+    givenName: String,
+    familyName: String,
+    avatar: ByteArray?,
+    discoverableByPhoneNumber: Boolean
+  ): RequestResult<Unit, SetProfileError> = withContext(Dispatchers.IO) {
+    if (!SignalStore.account.isRegistered) {
+      Log.w(TAG, "[setProfile] Not registered.")
+      return@withContext RequestResult.NonSuccess(SetProfileError.NotRegistered)
+    }
+
+    val profileName = ProfileName.fromParts(givenName, familyName)
+    SignalDatabase.recipients.setProfileName(Recipient.self().id, profileName)
+
+    if (avatar != null) {
+      try {
+        AvatarHelper.setAvatar(context, Recipient.self().id, java.io.ByteArrayInputStream(avatar))
+      } catch (e: IOException) {
+        Log.w(TAG, "[setProfile] Failed to write avatar.", e)
+        return@withContext RequestResult.NonSuccess(SetProfileError.IOError(e))
+      }
+      SignalStore.misc.hasEverHadAnAvatar = true
+    }
+
+    SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = if (discoverableByPhoneNumber) {
+      org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE
+    } else {
+      org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
+    }
+
+    AppDependencies.jobManager
+      .startChain(ProfileUploadJob())
+      .then(listOf(MultiDeviceProfileKeyUpdateJob(), MultiDeviceProfileContentUpdateJob()))
+      .enqueue()
+
+    RegistrationUtil.maybeMarkRegistrationComplete()
+
+    RequestResult.Success(Unit)
+  }
+
+  override suspend fun restoreAccountRecord(
+    timeout: Duration
+  ): RequestResult<Unit, RestoreAccountRecordError> = withContext(Dispatchers.IO) {
+    Log.i(TAG, "[restoreAccountRecord] Enqueuing StorageAccountRestoreJob (timeout=${timeout.inWholeSeconds}s).")
+    val state = AppDependencies.jobManager.runSynchronously(StorageAccountRestoreJob(), timeout.inWholeMilliseconds)
+    if (state.isPresent) {
+      Log.i(TAG, "[restoreAccountRecord] Completed within timeout: ${state.get()}")
+      RequestResult.Success(Unit)
+    } else {
+      Log.w(TAG, "[restoreAccountRecord] Timed out. Job continues in background.")
+      RequestResult.NonSuccess(RestoreAccountRecordError.Timeout)
+    }
+  }
+
+  override suspend fun setRestoreMethod(token: String, method: NetworkController.RestoreMethod): RequestResult<Unit, SetRestoreMethodError> = withContext(Dispatchers.IO) {
+    val serviceMethod = when (method) {
+      NetworkController.RestoreMethod.REMOTE_BACKUP -> ServiceRestoreMethod.REMOTE_BACKUP
+      NetworkController.RestoreMethod.LOCAL_BACKUP -> ServiceRestoreMethod.LOCAL_BACKUP
+      NetworkController.RestoreMethod.DEVICE_TRANSFER -> ServiceRestoreMethod.DEVICE_TRANSFER
+      NetworkController.RestoreMethod.DECLINE -> ServiceRestoreMethod.DECLINE
+    }
+    when (val result = AppDependencies.registrationApi.setRestoreMethod(token, serviceMethod)) {
+      is NetworkResult.Success -> RequestResult.Success(Unit)
+      is NetworkResult.StatusCodeError -> {
+        when (result.code) {
+          429 -> RequestResult.NonSuccess(SetRestoreMethodError.RateLimited(0.seconds))
+          else -> RequestResult.NonSuccess(SetRestoreMethodError.InvalidRequest("HTTP ${result.code}"))
+        }
+      }
+      is NetworkResult.NetworkError -> RequestResult.RetryableNetworkError(result.exception)
+      is NetworkResult.ApplicationError -> RequestResult.ApplicationError(result.throwable)
+    }
+  }
+
   override suspend fun getBackupFileLastModified(
     aep: AccountEntropyPool,
     backupInfo: NetworkController.GetBackupInfoResponse
@@ -625,6 +717,26 @@ class AppRegistrationNetworkController(
     } catch (e: Exception) {
       RequestResult.ApplicationError(e)
     }
+  }
+
+  override fun startNewDeviceTransferServer(context: Context, aep: AccountEntropyPool) {
+    val pendingIntent = android.app.PendingIntent.getActivity(
+      context,
+      0,
+      org.thoughtcrime.securesms.MainActivity.clearTop(context),
+      org.signal.core.util.PendingIntentFlags.mutable()
+    )
+    val notificationData = org.signal.devicetransfer.DeviceToDeviceTransferService.TransferNotificationData(
+      org.thoughtcrime.securesms.notifications.NotificationIds.DEVICE_TRANSFER,
+      org.thoughtcrime.securesms.notifications.NotificationChannels.getInstance().BACKUPS,
+      org.thoughtcrime.securesms.R.drawable.ic_signal_backup
+    )
+    org.signal.devicetransfer.DeviceToDeviceTransferService.startServer(
+      context,
+      org.thoughtcrime.securesms.devicetransfer.newdevice.NewDeviceServerTask(),
+      notificationData,
+      pendingIntent
+    )
   }
 
   override fun startProvisioning(): Flow<ProvisioningEvent> = callbackFlow {

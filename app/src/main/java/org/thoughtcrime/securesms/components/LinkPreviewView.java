@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,9 +40,6 @@ import okhttp3.HttpUrl;
  * The view shown in the compose box or conversation that represents the state of the link preview.
  */
 public class LinkPreviewView extends FrameLayout {
-
-  private static final String STATE_ROOT = "linkPreviewView.state.root";
-  private static final String STATE_STATE = "linkPreviewView.state.state";
 
   private static final int TYPE_CONVERSATION = 0;
   private static final int TYPE_COMPOSE      = 1;
@@ -112,30 +107,6 @@ public class LinkPreviewView extends FrameLayout {
     }
 
     setWillNotDraw(false);
-  }
-
-  @Override
-  protected @NonNull Parcelable onSaveInstanceState() {
-    Parcelable root   = super.onSaveInstanceState();
-    Bundle     bundle = new Bundle();
-
-    bundle.putParcelable(STATE_ROOT, root);
-    bundle.putParcelable(STATE_STATE, thumbnailState);
-
-    return bundle;
-  }
-
-  @Override
-  protected void onRestoreInstanceState(Parcelable state) {
-    if (state instanceof Bundle) {
-      Parcelable root = ((Bundle) state).getParcelable(STATE_ROOT);
-      thumbnailState = ((Bundle) state).getParcelable(STATE_STATE);
-
-      thumbnailState.applyState(thumbnail);
-      super.onRestoreInstanceState(root);
-    } else {
-      super.onRestoreInstanceState(state);
-    }
   }
 
   @Override
@@ -251,7 +222,7 @@ public class LinkPreviewView extends FrameLayout {
       thumbnailState.applyState(thumbnail);
     } else {
       cornerMask.setRadii(topStart, topEnd, 0, 0);
-      thumbnailState.copy(
+      thumbnailState = thumbnailState.copy(
           topStart,
           defaultRadius,
           defaultRadius,

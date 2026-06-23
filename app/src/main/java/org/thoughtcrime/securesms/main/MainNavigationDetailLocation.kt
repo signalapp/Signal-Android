@@ -90,7 +90,10 @@ sealed interface MainNavigationDetailLocation : Parcelable {
     }
 
     @Serializable
-    data class ConversationSettings(val recipientId: RecipientId) : Chats {
+    data class ConversationSettings(
+      val recipientId: RecipientId,
+      override val isContentRoot: Boolean = false
+    ) : Chats {
       @Transient
       @IgnoredOnParcel
       override val controllerKey: RecipientId = recipientId

@@ -53,12 +53,14 @@ dependencies {
 
   // Registration library
   implementation(project(":feature:registration"))
+  implementation(project(":lib:device-transfer"))
 
   // Core dependencies
   implementation(project(":core:ui"))
   implementation(project(":core:util"))
   implementation(project(":core:models-jvm"))
   implementation(project(":lib:libsignal-service"))
+  implementation(project(":lib:network"))
   implementation(project(":lib:qr"))
 
   // libsignal-protocol for PreKeyCollection types

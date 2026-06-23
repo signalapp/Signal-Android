@@ -12,7 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
+import org.signal.core.util.logging.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -70,7 +70,7 @@ public final class MainActivity extends AppCompatActivity {
     imageEditorView.setTypefaceProvider(typefaceProvider);
 
     imageEditorView.setUndoRedoStackListener((undoAvailable, redoAvailable) -> {
-      Log.d("ALAN", String.format("Undo/Redo available: %s, %s", undoAvailable ? "Y" : "N", redoAvailable ? "Y" : "N"));
+      Log.d(TAG, String.format("Undo/Redo available: %s, %s", undoAvailable ? "Y" : "N", redoAvailable ? "Y" : "N"));
       if (menu == null) return;
       MenuItem undo = menu.findItem(R.id.action_undo);
       MenuItem redo = menu.findItem(R.id.action_redo);
@@ -81,12 +81,12 @@ public final class MainActivity extends AppCompatActivity {
     EditorModel model = null;
     if (savedInstanceState != null) {
       model = savedInstanceState.getParcelable("MODEL");
-      Log.d("ALAN", "Restoring instance " + (model != null ? model.hashCode() : 0));
+      Log.d(TAG, "Restoring instance " + (model != null ? model.hashCode() : 0));
     }
 
     if (model == null) {
       model = initialModel();
-      Log.d("ALAN", "New instance created " + model.hashCode());
+      Log.d(TAG, "New instance created " + model.hashCode());
     }
 
     imageEditorView.setModel(model);
@@ -94,17 +94,17 @@ public final class MainActivity extends AppCompatActivity {
     imageEditorView.setTapListener(new ImageEditorView.TapListener() {
       @Override
       public void onEntityDown(@Nullable EditorElement editorElement) {
-        Log.d("ALAN", "Entity down " + editorElement);
+        Log.d(TAG, "Entity down " + editorElement);
       }
 
       @Override
       public void onEntitySingleTap(@Nullable EditorElement editorElement) {
-        Log.d("ALAN", "Entity single tapped " + editorElement);
+        Log.d(TAG, "Entity single tapped " + editorElement);
       }
 
       @Override
       public void onEntityDoubleTap(@NonNull EditorElement editorElement) {
-        Log.d("ALAN", "Entity double tapped " + editorElement);
+        Log.d(TAG, "Entity double tapped " + editorElement);
         if (editorElement.getRenderer() instanceof MultiLineTextRenderer) {
           imageEditorView.startTextEditing(editorElement);
         } else {

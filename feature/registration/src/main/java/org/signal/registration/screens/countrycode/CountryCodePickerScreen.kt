@@ -9,6 +9,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -28,6 +29,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -41,6 +43,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.SpanStyle
@@ -56,6 +59,7 @@ import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.IconButtons.IconButton
 import org.signal.core.ui.compose.LargeFontPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
@@ -85,58 +89,53 @@ private fun OnePaneLayout(
   state: CountryCodeState,
   onEvent: (CountryCodePickerScreenEvents) -> Unit
 ) {
+  val topBarScrollBehavior = RegistrationScaffold.rememberTopBarScrollBehavior()
+
   OnePaneRegistrationScaffold(
     modifier = Modifier.fillMaxSize(),
     params = layoutParams,
     topBar = {
-      Row(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
+      TopAppBar(
+        scrollBehavior = topBarScrollBehavior,
+        onCloseClick = { onEvent(CountryCodePickerScreenEvents.Dismissed) }
+      )
+    },
+    content = { paddingValues ->
+      Column(
+        modifier = Modifier
+          .fillMaxSize()
+          .nestedScroll(topBarScrollBehavior.nestedScrollConnection)
       ) {
-        IconButton(
-          onClick = { onEvent(CountryCodePickerScreenEvents.Dismissed) }
-        ) {
-          Icon(
-            imageVector = SignalIcons.X.imageVector,
-            contentDescription = stringResource(R.string.CountryCodeSelectScreen__close)
-          )
-        }
-        Text(
-          stringResource(R.string.CountryCodeSelectScreen__your_country),
-          style = MaterialTheme.typography.titleLarge,
-          modifier = Modifier.attachDebugLogHelper()
+        CountryList(
+          showTitle = true,
+          state = state,
+          onEvent = onEvent,
+          contentPadding = paddingValues,
+          modifier = Modifier.weight(1f)
         )
       }
     }
-  ) {
-    CountryList(state, onEvent)
-  }
+  )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TwoPaneLayout(
   params: RegistrationScaffold.Params.TwoPane,
   state: CountryCodeState,
   onEvent: (CountryCodePickerScreenEvents) -> Unit
 ) {
+  val topBarScrollBehavior = RegistrationScaffold.rememberTopBarScrollBehavior()
+
   TwoPaneRegistrationScaffold(
     modifier = Modifier.fillMaxSize(),
-    topBar = {
-      Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-      ) {
-        IconButton(
-          onClick = { onEvent(CountryCodePickerScreenEvents.Dismissed) }
-        ) {
-          Icon(
-            imageVector = SignalIcons.X.imageVector,
-            contentDescription = stringResource(R.string.CountryCodeSelectScreen__close)
-          )
-        }
-      }
-    },
     params = params,
+    topBar = {
+      TopAppBar(
+        scrollBehavior = topBarScrollBehavior,
+        onCloseClick = { onEvent(CountryCodePickerScreenEvents.Dismissed) }
+      )
+    },
     firstPane = { paddingValues ->
       Column(
         modifier = Modifier
@@ -146,7 +145,7 @@ private fun TwoPaneLayout(
       ) {
         Text(
           stringResource(R.string.CountryCodeSelectScreen__your_country),
-          style = MaterialTheme.typography.titleLarge,
+          style = MaterialTheme.typography.headlineMedium,
           modifier = Modifier.attachDebugLogHelper()
         )
       }
@@ -158,21 +157,62 @@ private fun TwoPaneLayout(
           .fillMaxHeight()
           .padding(paddingValues)
       ) {
-        CountryList(state, onEvent)
+        CountryList(
+          showTitle = false,
+          state = state,
+          onEvent = onEvent
+        )
       }
     }
   )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun CountryList(state: CountryCodeState, onEvent: (CountryCodePickerScreenEvents) -> Unit) {
+fun TopAppBar(
+  scrollBehavior: TopAppBarScrollBehavior,
+  onCloseClick: () -> Unit
+) {
+  Scaffolds.DefaultTopAppBar(
+    title = "",
+    titleContent = { _, _ -> },
+    onNavigationClick = onCloseClick,
+    navigationIcon = SignalIcons.X.imageVector,
+    navigationContentDescription = stringResource(R.string.CountryCodeSelectScreen__close),
+    scrollBehavior = scrollBehavior
+  )
+}
+
+@Composable
+private fun CountryList(
+  state: CountryCodeState,
+  onEvent: (CountryCodePickerScreenEvents) -> Unit,
+  modifier: Modifier = Modifier,
+  contentPadding: PaddingValues = PaddingValues(),
+  showTitle: Boolean
+) {
   val listState = rememberLazyListState()
   val coroutineScope = rememberCoroutineScope()
 
   LazyColumn(
+    modifier = modifier,
     state = listState,
+    contentPadding = contentPadding,
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
+    item {
+      if (showTitle) {
+        Text(
+          text = stringResource(R.string.CountryCodeSelectScreen__your_country),
+          style = MaterialTheme.typography.headlineMedium,
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 28.dp)
+            .attachDebugLogHelper()
+        )
+      }
+    }
+
     stickyHeader {
       SearchBar(
         text = state.query,
@@ -351,8 +391,6 @@ private fun SearchBar(
     shape = RoundedCornerShape(32.dp),
     modifier = modifier
       .background(MaterialTheme.colorScheme.background)
-      .padding(bottom = 18.dp)
-      .padding(horizontal = 16.dp)
       .fillMaxWidth()
       .defaultMinSize(minHeight = 54.dp)
       .focusRequester(focusRequester),

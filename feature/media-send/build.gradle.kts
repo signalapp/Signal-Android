@@ -34,6 +34,7 @@ dependencies {
   implementation(project(":core:models"))
   implementation(project(":lib:image-editor"))
   implementation(project(":lib:glide"))
+  implementation(project(":lib:video"))
 
   // Compose BOM
   platform(libs.androidx.compose.bom).let { composeBom ->
