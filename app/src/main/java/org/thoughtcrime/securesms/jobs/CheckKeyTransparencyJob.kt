@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberD
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import kotlin.random.Random
@@ -87,10 +86,7 @@ class CheckKeyTransparencyJob private constructor(
     }
 
     private fun canRunJob(): Boolean {
-      return if (!RemoteConfig.internalUser) {
-        Log.i(TAG, "Remote config is not on. Exiting.")
-        false
-      } else if (!SignalStore.account.isRegistered) {
+      return if (!SignalStore.account.isRegistered) {
         Log.i(TAG, "Account not registered. Exiting.")
         false
       } else if (TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)) {
