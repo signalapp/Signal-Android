@@ -244,6 +244,7 @@ data class Boost(
 
     val pattern: Pattern = "($digitsGroup)*([$separator]){0,$separatorCount}($digitsGroup){0,${currency.defaultFractionDigits}}".toPattern()
     val symbolPattern: Regex = """\s*${Regex.escape(symbol)}\s*""".toRegex()
+    private val maximumCustomDonationIntegralDigits = 10
     val leadingZeroesPattern: Regex = """^($zeros)*""".toRegex()
 
     override fun filter(
@@ -256,6 +257,12 @@ data class Boost(
     ): CharSequence? {
       val result = dest.subSequence(0, dstart).toString() + source.toString() + dest.subSequence(dend, dest.length)
       val resultWithoutCurrencyPrefix = BidiUtil.stripBidiIndicator(result.removePrefix(symbol).removeSuffix(symbol).trim())
+
+      val integralPart = resultWithoutCurrencyPrefix.substringBefore(separator)
+
+      if (integralPart.count { it.isDigit() } > maximumCustomDonationIntegralDigits) {
+        return dest.subSequence(dstart, dend)
+      }
 
       if (resultWithoutCurrencyPrefix.length == 1 && !resultWithoutCurrencyPrefix.isDigitsOnly() && resultWithoutCurrencyPrefix != separator.toString()) {
         return dest.subSequence(dstart, dend)
