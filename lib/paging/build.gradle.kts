@@ -1,5 +1,5 @@
 plugins {
-  id("signal-library")
+  alias(conventionPlugins.plugins.signal.library)
 }
 
 android {

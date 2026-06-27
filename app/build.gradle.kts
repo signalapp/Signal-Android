@@ -18,11 +18,12 @@ plugins {
   alias(libs.plugins.kotlinx.serialization)
   alias(testLibs.plugins.compose.screenshot)
   alias(benchmarkLibs.plugins.baselineprofile)
+  alias(conventionPlugins.plugins.signal.build.task.conventions)
   id("androidx.navigation.safeargs")
   id("kotlin-parcelize")
   id("com.squareup.wire")
-  id("translations")
-  id("licenses")
+  alias(conventionPlugins.plugins.translations)
+  alias(conventionPlugins.plugins.licenses)
 }
 
 val staticIps = Properties().apply { file("static-ips.properties").reader().use { load(it) } }

@@ -9,6 +9,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
   id("java-library")
   id("org.jetbrains.kotlin.jvm")
+  alias(conventionPlugins.plugins.signal.build.task.conventions)
   id("idea")
   id("org.jlleitschuh.gradle.ktlint")
   alias(libs.plugins.kotlinx.serialization)

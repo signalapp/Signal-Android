@@ -1,6 +1,7 @@
 plugins {
   id("java-library")
   id("org.jetbrains.kotlin.jvm")
+  alias(conventionPlugins.plugins.signal.build.task.conventions)
 }
 
 java {

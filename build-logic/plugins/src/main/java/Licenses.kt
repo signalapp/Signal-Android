@@ -6,7 +6,7 @@
 /**
  * A collections of licenses used by third-party dependencies.
  */
-object Licenses {
+internal object Licenses {
 
   /**
    * Maps a license URL to a concrete [LicenseData] that standardizes the naming.

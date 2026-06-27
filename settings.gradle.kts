@@ -71,6 +71,9 @@ dependencyResolutionManagement {
     create("benchmarkLibs") {
       from(files("gradle/benchmark-libs.versions.toml"))
     }
+    create("conventionPlugins") {
+      from(files("gradle/convention-plugins.versions.toml"))
+    }
     create("testLibs") {
       from(files("gradle/test-libs.versions.toml"))
     }

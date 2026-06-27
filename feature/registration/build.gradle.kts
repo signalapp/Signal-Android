@@ -1,5 +1,5 @@
 plugins {
-  id("signal-library")
+  alias(conventionPlugins.plugins.signal.library)
   id("kotlin-parcelize")
   id("com.squareup.wire")
   alias(libs.plugins.compose.compiler)

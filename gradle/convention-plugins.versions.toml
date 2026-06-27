@@ -1,0 +1,8 @@
+[plugins]
+dependency-verification = { id = "dependency-verification" }
+ktlint = { id = "ktlint" }
+licenses = { id = "licenses" }
+signal-build-task-conventions = { id = "signal-build-task-conventions" }
+signal-library = { id = "signal-library" }
+signal-sample-app = { id = "signal-sample-app" }
+translations = { id = "translations" }

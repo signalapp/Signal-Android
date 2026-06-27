@@ -12,7 +12,7 @@ plugins {
   alias(libs.plugins.compose.compiler) apply false
   alias(libs.plugins.ktlint)
   alias(benchmarkLibs.plugins.baselineprofile) apply false
-  id("dependency-verification")
+  alias(conventionPlugins.plugins.dependency.verification)
 }
 
 buildscript {
@@ -46,20 +46,6 @@ buildscript {
 
 tasks.withType<Wrapper> {
   distributionType = Wrapper.DistributionType.ALL
-}
-
-subprojects {
-  if (JavaVersion.current().isJava8Compatible) {
-    allprojects {
-      tasks.withType<Javadoc> {
-        (options as StandardJavadocDocletOptions).addStringOption("Xdoclint:none", "-quiet")
-      }
-    }
-  }
-
-  tasks.withType<Test>().configureEach {
-    maxParallelForks = (Runtime.getRuntime().availableProcessors() / 4).coerceAtLeast(1)
-  }
 }
 
 tasks.register("buildQa") {
