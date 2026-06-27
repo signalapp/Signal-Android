@@ -15,7 +15,7 @@ import org.gradle.api.tasks.TaskAction
  * configuration time as a file collection, so the task action only has to realize them, which downloads
  * anything missing. Used by the dependency-verification plugin to populate dependency verification metadata.
  */
-abstract class ResolveConfigurationsTask : DefaultTask() {
+internal abstract class ResolveConfigurationsTask : DefaultTask() {
   @get:InputFiles
   @get:PathSensitive(PathSensitivity.NONE)
   abstract val artifactFiles: ConfigurableFileCollection

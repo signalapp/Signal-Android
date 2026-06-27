@@ -5,8 +5,9 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
   id("com.android.library")
+  alias(conventionPlugins.plugins.signal.build.task.conventions)
   id("androidx.benchmark")
-  id("ktlint")
+  alias(conventionPlugins.plugins.ktlint)
 }
 
 android {

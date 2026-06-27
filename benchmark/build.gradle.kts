@@ -9,6 +9,7 @@ val benchmarkLibs = the<org.gradle.accessors.dm.LibrariesForBenchmarkLibs>()
 
 plugins {
     id("com.android.test")
+    alias(conventionPlugins.plugins.signal.build.task.conventions)
 }
 
 android {

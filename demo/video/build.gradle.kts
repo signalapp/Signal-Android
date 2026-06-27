@@ -6,7 +6,7 @@
 import java.util.Properties
 
 plugins {
-  id("signal-sample-app")
+  alias(conventionPlugins.plugins.signal.sample.app)
   alias(libs.plugins.compose.compiler)
 }
 

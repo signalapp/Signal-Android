@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
   id("com.android.test")
+  alias(conventionPlugins.plugins.signal.build.task.conventions)
   alias(benchmarkLibs.plugins.baselineprofile)
 }
 

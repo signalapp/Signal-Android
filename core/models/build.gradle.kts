@@ -4,7 +4,7 @@
  */
 
 plugins {
-  id("signal-library")
+  alias(conventionPlugins.plugins.signal.library)
   id("kotlin-parcelize")
   alias(libs.plugins.kotlinx.serialization)
 }

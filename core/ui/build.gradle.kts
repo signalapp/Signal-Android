@@ -1,5 +1,5 @@
 plugins {
-  id("signal-library")
+  alias(conventionPlugins.plugins.signal.library)
   alias(libs.plugins.compose.compiler)
   alias(libs.plugins.kotlinx.serialization)
 }

@@ -30,6 +30,39 @@ dependencies {
   implementation(files(testLibs.javaClass.superclass.protectionDomain.codeSource.location))
 }
 
+gradlePlugin {
+  plugins {
+    create("dependencyVerification") {
+      id = "dependency-verification"
+      implementationClass = "DependencyVerificationPlugin"
+    }
+    create("ktlint") {
+      id = "ktlint"
+      implementationClass = "KtlintPlugin"
+    }
+    create("licenses") {
+      id = "licenses"
+      implementationClass = "LicensesPlugin"
+    }
+    create("signalBuildTaskConventions") {
+      id = "signal-build-task-conventions"
+      implementationClass = "SignalBuildTaskConventionsPlugin"
+    }
+    create("signalLibrary") {
+      id = "signal-library"
+      implementationClass = "SignalLibraryPlugin"
+    }
+    create("signalSampleApp") {
+      id = "signal-sample-app"
+      implementationClass = "SignalSampleAppPlugin"
+    }
+    create("translations") {
+      id = "translations"
+      implementationClass = "TranslationsPlugin"
+    }
+  }
+}
+
 ktlint {
   filter {
     exclude { element ->
