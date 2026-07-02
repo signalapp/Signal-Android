@@ -28,11 +28,12 @@ object Linkifier {
   private val CLOSING_BRACKETS = mapOf(')' to '(', ']' to '[', '}' to '{')
 
   /**
-   * Characters we treat as definitely-not-part-of-a-URL when extending past the host. Commas are
-   * allowed inside a URL, but not when they are acting as a separator before another obvious URL.
+   * Characters we treat as definitely-not-part-of-a-URL when extending past the host. Commas and
+   * semicolons are allowed inside a URL, but not when they are acting as a separator before another
+   * obvious URL.
    */
   private const val URL_CHAR =
-    "(?:[^\\s\\u0085\\u00A0\\u1680\\u2000-\\u200D\\u2028\\u2029\\u202A-\\u202F\\u205F\\u2066-\\u2069\\u3000\\uFEFF<>\"'`,;|\\\\]|,(?!https?://|www\\.))"
+    "(?:[^\\s\\u0085\\u00A0\\u1680\\u2000-\\u200D\\u2028\\u2029\\u202A-\\u202F\\u205F\\u2066-\\u2069\\u3000\\uFEFF<>\"'`,;|\\\\]|[,;](?!https?://|www\\.))"
 
   /**
    * A single domain label: letter/digit, optional letter/digit/hyphen body. Used for intermediate
