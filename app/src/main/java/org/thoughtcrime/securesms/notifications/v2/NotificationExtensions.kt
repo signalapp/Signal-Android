@@ -49,8 +49,8 @@ fun Recipient.getContactDrawable(context: Context): Drawable? {
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .transform(MultiTransformation(listOf(CircleCrop())))
         .submit(
-          context.resources.getDimensionPixelSize(android.R.dimen.notification_large_icon_width),
-          context.resources.getDimensionPixelSize(android.R.dimen.notification_large_icon_height)
+          context.resources.getDimensionPixelSize(R.dimen.contact_photo_target_size),
+          context.resources.getDimensionPixelSize(R.dimen.contact_photo_target_size)
         )
         .get(IMAGE_LOAD_TIMEOUT_SECONDS, TimeUnit.SECONDS)
     } catch (e: InterruptedException) {
