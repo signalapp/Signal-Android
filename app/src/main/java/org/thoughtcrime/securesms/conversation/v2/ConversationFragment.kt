@@ -367,6 +367,7 @@ import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.UriUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.atMidnight
 import org.thoughtcrime.securesms.util.atUTC
@@ -757,7 +758,11 @@ class ConversationFragment :
         }
         val uri = clip.getItemAt(0).uri
         if (uri != null) {
-          mediaListener.onMediaSelected(uri, mimeType)
+          if (UriUtil.isValidExternalUri(requireContext(), uri)) {
+            mediaListener.onMediaSelected(uri, mimeType)
+          } else {
+            Log.w(TAG, "Ignoring received content with a non-external URI.")
+          }
         }
       }
 
