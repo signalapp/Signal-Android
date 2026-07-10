@@ -51,7 +51,8 @@ class EmojiUtilTest_isEmoji(private val input: String?, private val output: Bool
         arrayOf("\uD83D\uDC68\uD83C\uDFFB\u200D\uD83D\uDC69\uD83C\uDFFB\u200D\uD83D\uDC67\uD83C\uDFFB\u200D\uD83D\uDC66\uD83C\uDFFB", true), // Family - Man: Light Skin Tone, Woman: Light Skin Tone, Girl: Light Skin Tone, Boy: Light Skin Tone (NOTE: Not widely supported, good stretch test)
         arrayOf("\uD83D\uDE0Dhi", false), // Smiling face with heart-shaped eyes, text afterwards
         arrayOf("\uD83D\uDE0D ", false), // Smiling face with heart-shaped eyes, space afterwards
-        arrayOf("\uD83D\uDE0D\uD83D\uDE0D", false) // Smiling face with heart-shaped eyes, twice
+        arrayOf("\uD83D\uDE0D\uD83D\uDE0D", false), // Smiling face with heart-shaped eyes, twice
+        arrayOf("\uFE0F".repeat(64) + "\u0301", false) // Long run of combining marks ending in an invalid mark to test perf
       )
     }
   }
