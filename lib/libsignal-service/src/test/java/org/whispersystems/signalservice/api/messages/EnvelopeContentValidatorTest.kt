@@ -15,7 +15,9 @@ import org.whispersystems.signalservice.internal.push.BodyRange
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.Envelope
+import org.whispersystems.signalservice.internal.push.StoryMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
+import org.whispersystems.signalservice.internal.push.TextAttachment
 
 class EnvelopeContentValidatorTest {
 
@@ -577,6 +579,81 @@ class EnvelopeContentValidatorTest {
     )
 
     val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure story body range with negative length is marked invalid`() {
+    val content = Content(
+      storyMessage = StoryMessage(
+        textAttachment = TextAttachment(text = "abc"),
+        bodyRanges = listOf(
+          BodyRange(start = 2, length = -3, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure story body range with negative start is marked invalid`() {
+    val content = Content(
+      storyMessage = StoryMessage(
+        textAttachment = TextAttachment(text = "abc"),
+        bodyRanges = listOf(
+          BodyRange(start = -1, length = 1, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure story body range extending past the end of the text is marked invalid`() {
+    val content = Content(
+      storyMessage = StoryMessage(
+        textAttachment = TextAttachment(text = "abc"),
+        bodyRanges = listOf(
+          BodyRange(start = 2, length = 10, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure story style body range missing length is marked invalid`() {
+    val content = Content(
+      storyMessage = StoryMessage(
+        textAttachment = TextAttachment(text = "abc"),
+        bodyRanges = listOf(
+          BodyRange(start = 0, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure story body range that exactly covers the text is marked valid`() {
+    val content = Content(
+      storyMessage = StoryMessage(
+        textAttachment = TextAttachment(text = "abc"),
+        bodyRanges = listOf(
+          BodyRange(start = 0, length = 3, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
     assert(result is EnvelopeContentValidator.Result.Valid)
   }
 }

@@ -343,6 +343,14 @@ object EnvelopeContentValidator {
       validateGroupContextV2(storyMessage.group, "[StoryMessage]")?.let { return it }
     }
 
+    if (storyMessage.bodyRanges.any { it.isStyleRangeMissingOffsets() }) {
+      return Result.Invalid("[StoryMessage] Style body range is missing a start or length!")
+    }
+
+    if (storyMessage.bodyRanges.hasInvalidBounds(storyMessage.textAttachment?.text)) {
+      return Result.Invalid("[StoryMessage] Body range with out-of-bounds start/length!")
+    }
+
     return Result.Valid
   }
 
