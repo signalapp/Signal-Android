@@ -104,11 +104,23 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
     }
 
     /**
-     * Returns true if [dir] appears to be a SignalBackups directory based on its name and
-     * expected internal structure (presence of the "files" subdirectory).
+     * Returns true if [dir] appears to be a SignalBackups directory based on its expected internal
+     * structure. We can't rely on the directory being named [MAIN_DIRECTORY_NAME], since users may
+     * rename it or restore it into a differently-named folder (e.g. when transferring a backup
+     * between devices). A directory is therefore considered a backups directory if it either matches
+     * the expected name or directly contains the archive contents (a "files" subdirectory alongside
+     * at least one snapshot directory).
      */
     private fun looksLikeSignalBackupsDirectory(dir: DocumentFile): Boolean {
-      return dir.name == MAIN_DIRECTORY_NAME && dir.findFile("files") != null
+      if (dir.findFile("files") == null) {
+        return false
+      }
+
+      if (dir.name == MAIN_DIRECTORY_NAME) {
+        return true
+      }
+
+      return dir.listFiles().any { it.isDirectory && it.name?.startsWith(BACKUP_DIRECTORY_PREFIX) == true }
     }
 
     /**
