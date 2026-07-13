@@ -107,10 +107,14 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
       transitionImageView.setImageDrawable(cacheDrawable)
       cacheDrawable.callback = originalCallback
 
+      var hasMediaBeenReady = false
       lifecycleDisposable += viewModel.state.map {
         it.isInSharedAnimation to it.loadState
       }.distinctUntilChanged().subscribe { (isInSharedAnimation, loadState) ->
-        if (!isInSharedAnimation && loadState == MediaPreviewV2State.LoadState.MEDIA_READY) {
+        if (loadState == MediaPreviewV2State.LoadState.MEDIA_READY) {
+          hasMediaBeenReady = true
+        }
+        if (!isInSharedAnimation && hasMediaBeenReady) {
           transitionImageView.clearAnimation()
           transitionImageView.animate()
             .setInterpolator(PathInterpolatorCompat.create(0.17f, 0.17f, 0f, 1f))
