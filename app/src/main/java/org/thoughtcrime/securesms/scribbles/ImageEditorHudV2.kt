@@ -186,6 +186,10 @@ class ImageEditorHudV2 @JvmOverloads constructor(
     widthSeekBar.thumb = HSVColorSlider.createThumbDrawable(Color.WHITE)
     widthSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
       override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+        if (!DRAW_WIDTH_BOUNDARIES.containsKey(currentMode)) {
+          return
+        }
+
         listener?.onBrushWidthChange()
         brushPreview.setThickness(getActiveBrushWidth())
 
