@@ -67,7 +67,7 @@ object EnvelopeContentValidator {
       content.typingMessage != null -> validateTypingMessage(envelope, content.typingMessage)
       content.decryptionErrorMessage != null -> validateDecryptionErrorMessage(content.decryptionErrorMessage.toByteArray())
       content.storyMessage != null -> validateStoryMessage(content.storyMessage)
-      content.editMessage != null -> validateEditMessage(content.editMessage)
+      content.editMessage != null -> validateEditMessage(envelope, content.editMessage)
       content.pniSignatureMessage != null -> Result.Valid
       content.senderKeyDistributionMessage != null -> Result.Valid
       else -> Result.Invalid("Content is empty!")
@@ -247,7 +247,7 @@ object EnvelopeContentValidator {
       } else if (syncMessage.sent.storyMessageRecipients.isNotEmpty()) {
         Result.Valid
       } else if (syncMessage.sent.editMessage != null) {
-        validateEditMessage(syncMessage.sent.editMessage)
+        validateEditMessage(envelope, syncMessage.sent.editMessage)
       } else {
         Result.Invalid("[SyncMessage] Empty SyncMessage.sent!")
       }
@@ -354,7 +354,7 @@ object EnvelopeContentValidator {
     return Result.Valid
   }
 
-  private fun validateEditMessage(editMessage: EditMessage): Result {
+  private fun validateEditMessage(envelope: Envelope, editMessage: EditMessage): Result {
     if (editMessage.dataMessage == null) {
       return Result.Invalid("[EditMessage] No data message present")
     }
@@ -364,6 +364,14 @@ object EnvelopeContentValidator {
     }
 
     val dataMessage: DataMessage = editMessage.dataMessage
+
+    if (dataMessage.timestamp == null) {
+      return Result.Invalid("[EditMessage] Missing timestamp!")
+    }
+
+    if (dataMessage.timestamp != envelope.clientTimestamp) {
+      return Result.Invalid("[EditMessage] Timestamps don't match! envelope: ${envelope.clientTimestamp}, content: ${dataMessage.timestamp}")
+    }
 
     if (dataMessage.requiredProtocolVersion != null && dataMessage.requiredProtocolVersion > DataMessage.ProtocolVersion.CURRENT.value) {
       return Result.UnsupportedDataMessage(

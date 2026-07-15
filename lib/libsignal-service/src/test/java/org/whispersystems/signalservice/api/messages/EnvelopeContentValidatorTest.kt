@@ -14,6 +14,7 @@ import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.BodyRange
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
+import org.whispersystems.signalservice.internal.push.EditMessage
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.StoryMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
@@ -650,6 +651,45 @@ class EnvelopeContentValidatorTest {
         bodyRanges = listOf(
           BodyRange(start = 0, length = 3, style = BodyRange.Style.BOLD)
         )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure edit message with mismatched nested timestamp is marked invalid`() {
+    val content = Content(
+      editMessage = EditMessage(
+        targetSentTimestamp = 1000,
+        dataMessage = DataMessage(timestamp = 5678)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure edit message with missing nested timestamp is marked invalid`() {
+    val content = Content(
+      editMessage = EditMessage(
+        targetSentTimestamp = 1000,
+        dataMessage = DataMessage()
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure edit message with nested timestamp matching the envelope is marked valid`() {
+    val content = Content(
+      editMessage = EditMessage(
+        targetSentTimestamp = 1000,
+        dataMessage = DataMessage(timestamp = 1234)
       )
     )
 
