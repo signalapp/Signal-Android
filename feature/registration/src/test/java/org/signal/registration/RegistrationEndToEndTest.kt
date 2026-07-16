@@ -24,6 +24,7 @@ import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextClearance
@@ -142,6 +143,88 @@ class RegistrationEndToEndTest {
     assert(networkController.accountAttributesSyncJobEnqueued) { "Expected the account attributes sync job to be enqueued" }
 
     assert(storageController.restoreDecision == RestoreDecision.NEW_ACCOUNT) { "Expected NEW_ACCOUNT restore decision but was ${storageController.restoreDecision}" }
+  }
+
+  @Test
+  fun `entering the verification code as a new pin warns the user and blocks it until a different pin is chosen`() {
+    val warning = ApplicationProvider.getApplicationContext<Application>().getString(R.string.PinCreationScreen__reentered_verification_code)
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    submitPhoneNumber()
+    submitVerificationCode(VERIFICATION_CODE)
+
+    // On the PIN creation screen, re-entering the verification code as the new PIN is rejected with a warning
+    waitForTag(TestTags.PIN_CREATION_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.PIN_CREATION_INPUT).performTextInput(VERIFICATION_CODE)
+    composeTestRule.onNodeWithTag(TestTags.PIN_CREATION_NEXT_BUTTON).performClick()
+
+    waitForText(warning)
+    assert(composeTestRule.onAllNodesWithTag(TestTags.PIN_CREATION_CONFIRM_INPUT).fetchSemanticsNodes().isEmpty()) {
+      "Expected to stay on the PIN creation step rather than advancing to confirmation"
+    }
+    assert(networkController.lastSetPinRequest == null) { "Should not have backed up the verification code as a PIN" }
+
+    // Choosing a different PIN is accepted and completes registration
+    composeTestRule.onNodeWithTag(TestTags.PIN_CREATION_INPUT).performTextClearance()
+    createPin(PIN)
+
+    waitFor("registration to complete") { registrationComplete }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+    assert(committed!!.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
+    assert(networkController.lastSetPinRequest?.pin == PIN) { "Expected pin $PIN on SVR but was ${networkController.lastSetPinRequest?.pin}" }
+  }
+
+  @Test
+  fun `entering the verification code as an existing pin warns the user before the correct pin restores the account`() {
+    val warning = ApplicationProvider.getApplicationContext<Application>().getString(R.string.PinEntryScreen__reentered_verification_code)
+    val masterKey = MasterKey(ByteArray(32) { it.toByte() })
+
+    // The account already has SVR data, so after verification the user is asked to enter their existing PIN
+    networkController.onRegisterAccount = { request ->
+      RequestResult.Success(networkController.registerAccountResponse(request.e164, storageCapable = true))
+    }
+    networkController.onGetSvrCredentials = {
+      RequestResult.Success(SvrCredentials(username = "svr-user", password = "svr-pass"))
+    }
+    networkController.onRestoreMasterKeyFromSvr = { request ->
+      if (request.pin == PIN) {
+        RequestResult.Success(MasterKeyResponse(masterKey))
+      } else {
+        RequestResult.NonSuccess(RestoreMasterKeyError.WrongPin(triesRemaining = 3))
+      }
+    }
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    submitPhoneNumber()
+    submitVerificationCode(VERIFICATION_CODE)
+
+    // On the PIN entry screen, entering the verification code as the PIN is a wrong PIN and warns the user
+    waitForTag(TestTags.PIN_ENTRY_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.PIN_ENTRY_INPUT).performTextInput(VERIFICATION_CODE)
+    composeTestRule.onNodeWithTag(TestTags.PIN_ENTRY_CONTINUE_BUTTON).performClick()
+
+    waitForText(warning)
+    assert(!registrationComplete) { "Registration should not complete with the verification code as the PIN" }
+
+    // Entering the correct PIN restores the account and completes registration
+    composeTestRule.onNodeWithTag(TestTags.PIN_ENTRY_INPUT).performTextClearance()
+    composeTestRule.onNodeWithTag(TestTags.PIN_ENTRY_INPUT).performTextInput(PIN)
+    composeTestRule.onNodeWithTag(TestTags.PIN_ENTRY_CONTINUE_BUTTON).performClick()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    assert(networkController.lastRestoreMasterKeyRequest?.pin == PIN) { "Expected master key restore with pin $PIN but was ${networkController.lastRestoreMasterKeyRequest}" }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+    assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
+    assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
   }
 
   @Test
@@ -1296,6 +1379,12 @@ class RegistrationEndToEndTest {
       aciIdentityKeyPair = IdentityKeyPair.generate(),
       pniIdentityKeyPair = IdentityKeyPair.generate()
     )
+  }
+
+  private fun waitForText(text: String) {
+    waitFor("node with text $text") {
+      composeTestRule.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty()
+    }
   }
 
   private fun createMockPermissionsState(): MockMultiplePermissionsState {

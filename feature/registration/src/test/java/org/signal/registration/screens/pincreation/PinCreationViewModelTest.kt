@@ -125,6 +125,29 @@ class PinCreationViewModelTest {
     assertThat(states.last().pinMismatch).isFalse()
   }
 
+  @Test
+  fun `first PinSubmitted matching the verification code warns and does not advance`() = runTest(testDispatcher) {
+    val states = collectStates()
+    val initialState = PinCreationState(accountEntropyPool = AccountEntropyPool.generate(), submittedVerificationCode = "123456")
+
+    viewModel.applyEvent(initialState, PinCreationScreenEvents.PinSubmitted("123456"))
+
+    assertThat(emittedParentEvents).hasSize(0)
+    assertThat(states.last().isConfirmEnabled).isFalse()
+    assertThat(states.last().pinMatchesVerificationCode).isTrue()
+  }
+
+  @Test
+  fun `first PinSubmitted not matching the verification code advances to confirm`() = runTest(testDispatcher) {
+    val states = collectStates()
+    val initialState = PinCreationState(accountEntropyPool = AccountEntropyPool.generate(), submittedVerificationCode = "123456")
+
+    viewModel.applyEvent(initialState, PinCreationScreenEvents.PinSubmitted("987654"))
+
+    assertThat(states.last().isConfirmEnabled).isTrue()
+    assertThat(states.last().pinMatchesVerificationCode).isFalse()
+  }
+
   // ==================== PinSubmitted Success Tests ====================
 
   @Test

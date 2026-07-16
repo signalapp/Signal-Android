@@ -53,6 +53,10 @@ class PinEntryForSvrRestoreViewModel(
     _state
       .onEach { Log.d(TAG, "[State] $it") }
       .launchIn(viewModelScope)
+
+    parentState
+      .onEach { onEvent(PinEntryScreenEvents.ParentStateChanged(it)) }
+      .launchIn(viewModelScope)
   }
 
   override suspend fun processEvent(event: PinEntryScreenEvents) {
@@ -90,8 +94,14 @@ class PinEntryForSvrRestoreViewModel(
       is PinEntryScreenEvents.UnknownErrorDialogDismissed -> {
         stateEmitter(PinEntryScreenEventHandler.applyEvent(state, event))
       }
-      is PinEntryScreenEvents.ParentStateChanged -> Unit
+      is PinEntryScreenEvents.ParentStateChanged -> {
+        stateEmitter(applyParentState(state, event.parentState))
+      }
     }
+  }
+
+  private fun applyParentState(state: PinEntryState, parentState: RegistrationFlowState): PinEntryState {
+    return state.copy(submittedVerificationCode = parentState.submittedVerificationCode)
   }
 
   private suspend fun applyPinEntered(
@@ -141,7 +151,7 @@ class PinEntryForSvrRestoreViewModel(
         when (val error = result.error) {
           is NetworkController.RestoreMasterKeyError.WrongPin -> {
             Log.w(TAG, "[PinEntered] Wrong PIN. Tries remaining: ${error.triesRemaining}")
-            state.copy(loading = false, triesRemaining = error.triesRemaining)
+            state.copy(loading = false, triesRemaining = error.triesRemaining, enteredVerificationCode = event.pin == state.submittedVerificationCode)
           }
           is NetworkController.RestoreMasterKeyError.NoDataFound -> {
             Log.w(TAG, "[PinEntered] No SVR data found. Prompting user to create a new PIN.")

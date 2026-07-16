@@ -33,6 +33,11 @@ sealed interface RegistrationFlowEvent {
   /** The e164 associated with this registration attempt has been updated.  */
   data class E164Chosen(val e164: String) : RegistrationFlowEvent
 
+  /** The user's phone number was successfully verified with the given code. Retained so later PIN screens can warn if the user re-enters it as their PIN. */
+  data class VerificationCodeAccepted(val code: String) : RegistrationFlowEvent {
+    override fun toString(): String = "VerificationCodeAccepted(code=${code.censor()})"
+  }
+
   /**
    * A verification code was requested for [e164] — either fulfilled or rejected as rate-limited. Records the epoch-millis
    * times at which the server will allow the next SMS and call requests, since the response reports both regardless of

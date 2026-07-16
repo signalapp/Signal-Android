@@ -386,18 +386,21 @@ private fun PinInputField(
         imeAction = ImeAction.Done
       ),
       keyboardActions = KeyboardActions(onDone = { if (canSubmitPin) onSubmit() }),
-      isError = state.triesRemaining != null,
+      isError = state.triesRemaining != null || state.enteredVerificationCode,
       visualTransformation = PinVisualTransformation
     )
 
-    if (state.triesRemaining != null) {
-      Spacer(modifier = Modifier.height(8.dp))
+    Spacer(modifier = Modifier.height(8.dp))
+    if (state.enteredVerificationCode) {
+      PinInputLabel(
+        text = stringResource(R.string.PinEntryScreen__reentered_verification_code),
+        isError = true
+      )
+    } else if (state.triesRemaining != null) {
       PinInputLabel(
         text = pluralStringResource(R.plurals.PinEntryScreen__incorrect_pin, state.triesRemaining, state.triesRemaining),
         isError = true
       )
-    } else {
-      Spacer(modifier = Modifier.height(8.dp))
     }
 
     Spacer(modifier = Modifier.height(16.dp))

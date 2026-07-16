@@ -58,6 +58,10 @@ class PinEntryForRegistrationLockViewModel(
     _state
       .onEach { Log.d(TAG, "[State] $it") }
       .launchIn(viewModelScope)
+
+    parentState
+      .onEach { onEvent(PinEntryScreenEvents.ParentStateChanged(it)) }
+      .launchIn(viewModelScope)
   }
 
   override suspend fun processEvent(event: PinEntryScreenEvents) {
@@ -76,8 +80,10 @@ class PinEntryForRegistrationLockViewModel(
         throw NotImplementedError("Skip is not a valid action during registration lock PIN entry")
       }
       is PinEntryScreenEvents.CreateNewPin,
-      is PinEntryScreenEvents.ContactSupport,
-      is PinEntryScreenEvents.ParentStateChanged -> Unit
+      is PinEntryScreenEvents.ContactSupport -> Unit
+      is PinEntryScreenEvents.ParentStateChanged -> {
+        stateEmitter(applyParentState(state, event.parentState))
+      }
       is PinEntryScreenEvents.ToggleKeyboard,
       is PinEntryScreenEvents.NetworkErrorDialogDismissed,
       is PinEntryScreenEvents.RateLimitedDialogDismissed,
@@ -85,6 +91,10 @@ class PinEntryForRegistrationLockViewModel(
         stateEmitter(PinEntryScreenEventHandler.applyEvent(state, event))
       }
     }
+  }
+
+  private fun applyParentState(state: PinEntryState, parentState: RegistrationFlowState): PinEntryState {
+    return state.copy(submittedVerificationCode = parentState.submittedVerificationCode)
   }
 
   private suspend fun applyPinEntered(state: PinEntryState, event: PinEntryScreenEvents.PinEntered, parentEventEmitter: (RegistrationFlowEvent) -> Unit): PinEntryState {
@@ -106,7 +116,7 @@ class PinEntryForRegistrationLockViewModel(
               parentEventEmitter.navigateTo(RegistrationRoute.AccountLocked(timeRemainingMs = timeRemaining))
               state
             } else {
-              state.copy(loading = false, triesRemaining = error.triesRemaining)
+              state.copy(loading = false, triesRemaining = error.triesRemaining, enteredVerificationCode = event.pin == state.submittedVerificationCode)
             }
           }
           is NetworkController.RestoreMasterKeyError.NoDataFound -> {

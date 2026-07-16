@@ -64,9 +64,14 @@ class PinCreationViewModel(
       }
       is PinCreationScreenEvents.PinSubmitted -> {
         when {
+          !state.isConfirmEnabled && event.pin == state.submittedVerificationCode -> {
+            Log.w(TAG, "[PinSubmitted] User entered their verification code as their PIN. Prompting them to choose a different PIN.")
+            _state.value = state.copy(pinMatchesVerificationCode = true, pinMismatch = false)
+          }
+
           !state.isConfirmEnabled -> {
             Log.d(TAG, "[PinSubmitted] First PIN entered. Asking the user to confirm it.")
-            _state.value = state.copy(firstPin = event.pin, isConfirmEnabled = true, pinMismatch = false)
+            _state.value = state.copy(firstPin = event.pin, isConfirmEnabled = true, pinMismatch = false, pinMatchesVerificationCode = false)
           }
 
           event.pin != state.firstPin -> {
@@ -117,7 +122,7 @@ class PinCreationViewModel(
   }
 
   private fun applyParentState(state: PinCreationState, parentState: RegistrationFlowState): PinCreationState {
-    return state.copy(accountEntropyPool = parentState.accountEntropyPool)
+    return state.copy(accountEntropyPool = parentState.accountEntropyPool, submittedVerificationCode = parentState.submittedVerificationCode)
   }
 
   private suspend fun applyPinSubmitted(state: PinCreationState, pin: String): PinCreationState {

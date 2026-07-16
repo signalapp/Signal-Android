@@ -8,6 +8,7 @@ package org.signal.registration.screens.pinentry
 import assertk.assertThat
 import assertk.assertions.hasSize
 import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
 import assertk.assertions.isInstanceOf
 import assertk.assertions.isTrue
 import assertk.assertions.prop
@@ -168,6 +169,55 @@ class PinEntryForSvrRestoreViewModelTest {
     assertThat(emittedParentEvents).hasSize(0)
     assertThat(emittedStates.last().triesRemaining).isEqualTo(triesRemaining)
     assertThat(emittedStates.last().loading).isEqualTo(false)
+  }
+
+  @Test
+  fun `ParentStateChanged copies submittedVerificationCode from parent`() = runTest {
+    val parentFlowState = RegistrationFlowState(submittedVerificationCode = "123456")
+
+    viewModel.applyEvent(PinEntryState(), PinEntryScreenEvents.ParentStateChanged(parentFlowState), parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates.last().submittedVerificationCode).isEqualTo("123456")
+  }
+
+  @Test
+  fun `PinEntered with wrong PIN matching the verification code flags enteredVerificationCode`() = runTest {
+    val svrCredentials = NetworkController.SvrCredentials(
+      username = "test-username",
+      password = "test-password"
+    )
+    val initialState = PinEntryState(mode = PinEntryState.Mode.SvrRestore, submittedVerificationCode = "123456")
+
+    coEvery { mockRepository.getSvrCredentials() } returns
+      RequestResult.Success(svrCredentials)
+    coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), forRegistrationLock = false) } returns
+      RequestResult.NonSuccess(
+        NetworkController.RestoreMasterKeyError.WrongPin(3)
+      )
+
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates.last().enteredVerificationCode).isTrue()
+  }
+
+  @Test
+  fun `PinEntered with wrong PIN not matching the verification code does not flag enteredVerificationCode`() = runTest {
+    val svrCredentials = NetworkController.SvrCredentials(
+      username = "test-username",
+      password = "test-password"
+    )
+    val initialState = PinEntryState(mode = PinEntryState.Mode.SvrRestore, submittedVerificationCode = "123456")
+
+    coEvery { mockRepository.getSvrCredentials() } returns
+      RequestResult.Success(svrCredentials)
+    coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), forRegistrationLock = false) } returns
+      RequestResult.NonSuccess(
+        NetworkController.RestoreMasterKeyError.WrongPin(3)
+      )
+
+    viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("987654"), parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates.last().enteredVerificationCode).isFalse()
   }
 
   @Test

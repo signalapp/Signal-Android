@@ -96,7 +96,7 @@ class PinEntryForSmsBypassViewModel(
   }
 
   private fun applyParentState(state: PinEntryState, parentState: RegistrationFlowState): PinEntryState {
-    return state.copy(e164 = parentState.sessionE164)
+    return state.copy(e164 = parentState.sessionE164, submittedVerificationCode = parentState.submittedVerificationCode)
   }
 
   private suspend fun applyPinEntered(
@@ -122,7 +122,7 @@ class PinEntryForSmsBypassViewModel(
         when (val error = result.error) {
           is NetworkController.RestoreMasterKeyError.WrongPin -> {
             Log.w(TAG, "[PinEntered] Wrong PIN. Tries remaining: ${error.triesRemaining}")
-            state.copy(loading = false, triesRemaining = error.triesRemaining)
+            state.copy(loading = false, triesRemaining = error.triesRemaining, enteredVerificationCode = event.pin == state.submittedVerificationCode)
           }
           is NetworkController.RestoreMasterKeyError.NoDataFound -> {
             Log.w(TAG, "[PinEntered] No SVR data found for sms-bypass credential. Marking RRP as invalid and navigating back.")

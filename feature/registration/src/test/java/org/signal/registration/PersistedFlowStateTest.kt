@@ -175,6 +175,7 @@ class PersistedFlowStateTest {
       backStack = listOf(RegistrationRoute.Welcome, RegistrationRoute.PinCreate),
       sessionMetadata = session,
       sessionE164 = "+15551234567",
+      submittedVerificationCode = "123456",
       accountEntropyPool = AccountEntropyPool.generate(),
       storageCapable = true,
       temporaryMasterKey = MasterKey(ByteArray(32)),
@@ -188,6 +189,7 @@ class PersistedFlowStateTest {
     assertThat(persisted.backStack).isEqualTo(flowState.backStack)
     assertThat(persisted.sessionMetadata).isEqualTo(session)
     assertThat(persisted.sessionE164).isEqualTo("+15551234567")
+    assertThat(persisted.submittedVerificationCode).isEqualTo("123456")
     assertThat(persisted.doNotAttemptRecoveryPassword).isEqualTo(true)
     assertThat(persisted.storageCapable).isEqualTo(true)
     assertThat(persisted.smsVerificationCodeRequest).isEqualTo(VerificationCodeRequest("+15551234567", 12_345L))
@@ -210,6 +212,7 @@ class PersistedFlowStateTest {
       backStack = listOf(RegistrationRoute.Welcome, RegistrationRoute.PinCreate),
       sessionMetadata = session,
       sessionE164 = "+15551234567",
+      submittedVerificationCode = "123456",
       doNotAttemptRecoveryPassword = true,
       storageCapable = true,
       smsVerificationCodeRequest = VerificationCodeRequest("+15551234567", 12_345L),
@@ -228,6 +231,7 @@ class PersistedFlowStateTest {
     assertThat(flowState.backStack).isEqualTo(persisted.backStack)
     assertThat(flowState.sessionMetadata).isEqualTo(session)
     assertThat(flowState.sessionE164).isEqualTo("+15551234567")
+    assertThat(flowState.submittedVerificationCode).isEqualTo("123456")
     assertThat(flowState.accountEntropyPool).isEqualTo(aep)
     assertThat(flowState.temporaryMasterKey).isEqualTo(masterKey)
     assertThat(flowState.preExistingRegistrationData).isNull()

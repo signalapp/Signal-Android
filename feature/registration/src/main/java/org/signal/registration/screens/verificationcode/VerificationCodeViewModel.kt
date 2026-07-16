@@ -356,6 +356,8 @@ class VerificationCodeViewModel(
       return state.copy(snackbars = state.snackbars.copy(incorrectVerificationCode = true), incorrectCodeAttempts = newAttempts, digits = VerificationCodeState.emptyDigits(), focusedDigitIndex = 0)
     }
 
+    parentEventEmitter(RegistrationFlowEvent.VerificationCodeAccepted(code))
+
     // Attempt to register
     val registerResult = repository.registerAccountWithSession(e164 = state.e164, sessionId = sessionMetadata.id, skipDeviceTransfer = true)
 

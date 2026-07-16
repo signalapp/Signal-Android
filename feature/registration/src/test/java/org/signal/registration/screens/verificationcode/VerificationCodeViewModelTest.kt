@@ -550,9 +550,13 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
-    assertThat(emittedEvents).hasSize(2)
-    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.Registered>()
-    assertThat(emittedEvents[1])
+    assertThat(emittedEvents).hasSize(3)
+    assertThat(emittedEvents[0])
+      .isInstanceOf<RegistrationFlowEvent.VerificationCodeAccepted>()
+      .prop(RegistrationFlowEvent.VerificationCodeAccepted::code)
+      .isEqualTo("123456")
+    assertThat(emittedEvents[1]).isInstanceOf<RegistrationFlowEvent.Registered>()
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.PinCreate>()
@@ -576,7 +580,7 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
-    assertThat(emittedEvents[1])
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.ArchiveRestoreSelection>()
@@ -602,7 +606,7 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
-    assertThat(emittedEvents[1])
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.PinEntryForSvrRestore>()
@@ -695,9 +699,10 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
-    assertThat(emittedEvents).hasSize(2)
-    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.Registered>()
-    assertThat(emittedEvents[1])
+    assertThat(emittedEvents).hasSize(3)
+    assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.VerificationCodeAccepted>()
+    assertThat(emittedEvents[1]).isInstanceOf<RegistrationFlowEvent.Registered>()
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.PinCreate>()
