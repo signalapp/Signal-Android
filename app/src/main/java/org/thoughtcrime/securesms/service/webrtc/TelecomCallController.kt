@@ -7,6 +7,7 @@ import android.telecom.DisconnectCause
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.telecom.CallAttributesCompat
+import androidx.core.telecom.CallControlResult
 import androidx.core.telecom.CallEndpointCompat
 import androidx.core.telecom.CallsManager
 import kotlinx.coroutines.channels.Channel
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder
+import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCommand
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 
 sealed class TelecomCommand {
@@ -179,8 +181,17 @@ class TelecomCallController(
         for (command in commandChannel) {
           when (command) {
             is TelecomCommand.Activate -> {
-              val result = setActive()
-              Log.i(TAG, "setActive result: $result")
+              val result = if (isOutgoing) {
+                setActive()
+              } else {
+                val callType = if (isVideoCall) CallAttributesCompat.CALL_TYPE_VIDEO_CALL else CallAttributesCompat.CALL_TYPE_AUDIO_CALL
+                answer(callType)
+              }
+              Log.i(TAG, "activate result: $result")
+              if (result is CallControlResult.Success) {
+                ActiveCallManager.sendAudioManagerCommand(context, AudioManagerCommand.Start())
+                Log.i(TAG, "AudioManagerCommand.Start fired for callId=$callId recipientId=$recipientId")
+              }
               needToResetAudioRoute = false
             }
             is TelecomCommand.Disconnect -> {
