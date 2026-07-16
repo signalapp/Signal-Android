@@ -11,9 +11,11 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parceler
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.WriteWith
+import org.signal.camera.CameraDependencies
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 import org.signal.mediasend.edit.video.VideoTrimData
+import kotlin.time.Duration
 
 /**
  * The collective state of the media send flow.
@@ -119,7 +121,13 @@ data class MediaSendState(
   /**
    * The media content for a given selected [MediaFolder]
    */
-  val selectedMediaFolderItems: @WriteWith<TransientMediaListParceler> List<Media> = emptyList()
+  val selectedMediaFolderItems: @WriteWith<TransientMediaListParceler> List<Media> = emptyList(),
+
+  val mediaConstraints: @WriteWith<TransientMediaConstraintsParceler> MediaConstraints = MediaSendDependencies.mediaSendRepository.getMediaConstraints(),
+
+  val storiesEnabled: Boolean = CameraDependencies.isStoriesFeatureEnabled(),
+
+  val storyMaxVideoDuration: Duration = MediaSendDependencies.mediaSendRepository.storyMaxVideoDuration
 ) : Parcelable {
 
   fun getOrCreateVideoTrimData(uri: Uri): VideoTrimData {
@@ -143,6 +151,11 @@ data class MediaSendState(
   private object TransientMediaListParceler : Parceler<List<Media>> {
     override fun create(parcel: Parcel): List<Media> = emptyList()
     override fun List<Media>.write(parcel: Parcel, flags: Int) = Unit
+  }
+
+  private object TransientMediaConstraintsParceler : Parceler<MediaConstraints> {
+    override fun create(parcel: Parcel): MediaConstraints = MediaSendDependencies.mediaSendRepository.getMediaConstraints()
+    override fun MediaConstraints.write(parcel: Parcel, flags: Int) = Unit
   }
 
   enum class ViewOnceToggleState(val code: Int) {

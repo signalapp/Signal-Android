@@ -190,7 +190,7 @@ class MediaSelectionViewModel(
                 selectedMedia = filterResult.filteredMedia,
                 focusedMedia = it.focusedMedia ?: filterResult.filteredMedia.first(),
                 editorStateMap = it.editorStateMap + initializedVideoEditorStates,
-                cameraFirstCapture = updatedCameraFirstCapture ?: it.cameraFirstCapture
+                cameraFirstCapture = if (filterResult.filteredMedia.size > 1) null else updatedCameraFirstCapture ?: it.cameraFirstCapture
               )
             }
 
@@ -257,11 +257,11 @@ class MediaSelectionViewModel(
     return store.state.selectedMedia.isEmpty()
   }
 
-  fun removeMedia(media: Media) {
-    removeMedia(setOf(media))
+  fun removeMedia(media: Media, suppressEmptyError: Boolean = store.state.suppressEmptyError) {
+    removeMedia(setOf(media), suppressEmptyError)
   }
 
-  fun removeMedia(media: Set<Media>) {
+  fun removeMedia(media: Set<Media>, suppressEmptyError: Boolean = store.state.suppressEmptyError) {
     val snapshot = store.state
     val newMediaList = snapshot.selectedMedia - media
     val newFocus = when {
@@ -304,7 +304,7 @@ class MediaSelectionViewModel(
     val cameraFirstCapture: Media? = store.state.cameraFirstCapture
     if (cameraFirstCapture != null) {
       setSuppressEmptyError(true)
-      removeMedia(cameraFirstCapture)
+      removeMedia(cameraFirstCapture, suppressEmptyError = true)
     }
   }
 

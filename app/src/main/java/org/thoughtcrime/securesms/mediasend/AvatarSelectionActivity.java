@@ -128,8 +128,8 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
   }
 
   @Override
-  public void onCameraCountButtonClicked() {
-    throw new UnsupportedOperationException("Cannot select more than one photo");
+  public void onCameraCloseClicked() {
+    finish();
   }
 
   @Override

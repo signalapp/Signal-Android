@@ -230,12 +230,15 @@ class MediaSendViewModel(
       MediaCaptureScreenEvent.ShowCamera -> backStack.goToCamera()
       MediaCaptureScreenEvent.ShowTextStory -> backStack.goToTextStory()
       is MediaCaptureScreenEvent.Camera -> onCameraXScreenEvent(mediaCaptureScreenEvent.event)
+      MediaCaptureScreenEvent.NextClicked -> backStack.goToEdit()
+      MediaCaptureScreenEvent.CycleTextStoryBackgroundColor -> Unit // TODO [media-send]
+      MediaCaptureScreenEvent.AddLinkToTextStory -> Unit // TODO [media-send]
     }
   }
 
   private fun onCameraXScreenEvent(event: CameraXScreenEvent) {
     when (event) {
-      CameraXScreenEvent.CameraCountButtonClicked -> backStack.goToEdit()
+      CameraXScreenEvent.CameraCloseClicked -> sendHudCommand(HudCommand.CloseScreen)
       CameraXScreenEvent.GalleryClicked -> backStack.goToFolders()
       is CameraXScreenEvent.ImageCaptured -> handleImageCaptured(event)
       is CameraXScreenEvent.VideoCaptured -> handleVideoCaptured(event)

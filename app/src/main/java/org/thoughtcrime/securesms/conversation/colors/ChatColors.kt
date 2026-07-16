@@ -5,18 +5,31 @@ import android.graphics.ColorFilter
 import android.graphics.Path
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
+import android.graphics.Shader
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.annotation.ColorInt
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.LinearGradientShader
+import androidx.compose.ui.graphics.ShaderBrush
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.TileMode
 import com.google.common.base.Objects
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.thoughtcrime.securesms.components.RotatableGradientDrawable
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import org.thoughtcrime.securesms.util.customizeOnDraw
+import kotlin.math.abs
+import kotlin.math.cos
+import kotlin.math.max
 import kotlin.math.min
+import kotlin.math.sin
+import androidx.compose.ui.graphics.Color as ComposeColor
 
 /**
  * ChatColors represent how to render the avatar and bubbles in a given context.
@@ -51,6 +64,21 @@ class ChatColors(
         else -> {
           ColorDrawable(asSingleColor())
         }
+      }
+    }
+
+  /**
+   * Returns the [Brush] to render the linear gradient, or a solid-color brush if this ChatColors is a single color.
+   */
+  val chatBubbleBrush: Brush
+    get() {
+      return when {
+        linearGradient != null -> ChatBubbleGradientBrush(
+          degrees = linearGradient.degrees,
+          colors = linearGradient.colors.map { ComposeColor(it) },
+          colorStops = linearGradient.positions.toList()
+        )
+        else -> SolidColor(ComposeColor(asSingleColor()))
       }
     }
 
@@ -267,5 +295,46 @@ class ChatColors(
       result = 31 * result + positions.contentHashCode()
       return result
     }
+  }
+}
+
+/**
+ * [ShaderBrush] equivalent of [RotatableGradientDrawable], matching its geometry so the two render identically.
+ */
+private class ChatBubbleGradientBrush(
+  private val degrees: Float,
+  private val colors: List<ComposeColor>,
+  private val colorStops: List<Float>
+) : ShaderBrush() {
+  override fun createShader(size: Size): Shader {
+    val radians = Math.toRadians(degrees + DEGREE_OFFSET)
+    val cos = cos(radians)
+    val sin = sin(radians)
+
+    val halfWidth = size.width / 2.0
+    val halfHeight = size.height / 2.0
+
+    // Half-extents of the axis-aligned bounds of the rotated box, matching RotatableGradientDrawable.fillRect.
+    val fillHalfWidth = max(halfWidth, halfWidth * abs(cos) + halfHeight * abs(sin))
+    val fillHalfHeight = max(halfHeight, halfWidth * abs(sin) + halfHeight * abs(cos))
+
+    val center = Offset(size.width / 2f, size.height / 2f)
+    val axis = Offset(
+      x = (fillHalfWidth * cos - fillHalfHeight * sin).toFloat(),
+      y = (fillHalfWidth * sin + fillHalfHeight * cos).toFloat()
+    )
+
+    return LinearGradientShader(
+      from = center - axis,
+      to = center + axis,
+      colors = colors,
+      colorStops = colorStops,
+      tileMode = TileMode.Clamp
+    )
+  }
+
+  companion object {
+    /** Mirrors [RotatableGradientDrawable]'s offset that puts 0f at the bottom of the surface. */
+    private const val DEGREE_OFFSET = 225.0
   }
 }

@@ -22,10 +22,17 @@
   <string name="MediaSelectScreen__gallery">Gallery</string>
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
   <string name="MediaSelectScreen__next">Next</string>
+
   <!-- Label for the button that switches the capture screen to the camera. -->
   <string name="MediaCaptureScreen__camera">Camera</string>
   <!-- Label for the button that switches the capture screen to the text story editor. -->
-  <string name="MediaCaptureScreen__text_story">Text Story</string>
+  <string name="MediaCaptureScreen__text">Text</string>
+    <!-- Label for the pill that displays the media count -->
+    <plurals name="MediaCaptureScreen_n_items">
+        <item quantity="one">%1$d item</item>
+        <item quantity="other">%1$d items</item>
+    </plurals>
+
   <!-- Video editor play button content description -->
   <string name="VideoEditorHud_play_video_description">Play video</string>
 

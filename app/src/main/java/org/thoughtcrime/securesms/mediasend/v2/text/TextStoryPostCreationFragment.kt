@@ -1,14 +1,21 @@
 package org.thoughtcrime.securesms.mediasend.v2.text
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.drawToBitmap
 import androidx.core.view.postDelayed
 import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.createSavedStateHandle
@@ -18,9 +25,18 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.camera.CameraDisplay
+import org.signal.core.ui.WindowBreakpoint
+import org.signal.core.ui.compose.horizontalGutters
+import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.getWindowBreakpoint
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.dp
+import org.signal.mediasend.capture.MediaCaptureScreenEvent
+import org.signal.mediasend.capture.TextStoryHorizontalBar
+import org.signal.mediasend.capture.TextStoryVerticalBar
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
+import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.databinding.StoriesTextPostCreationFragmentBinding
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -63,10 +79,18 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
 
   private val lifecycleDisposable = LifecycleDisposable()
 
+  private var textStoryBackground: ChatColors? by mutableStateOf(null)
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
     _binding = StoriesTextPostCreationFragmentBinding.bind(view)
+
+    ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
+      val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+      v.updatePadding(left = systemBars.left, top = systemBars.top, right = systemBars.right, bottom = systemBars.bottom)
+      insets
+    }
 
     binding.storyTextPost.enableCreationMode()
 
@@ -82,7 +106,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
     }
 
     lifecycleDisposable += viewModel.state.subscribeBy { state ->
-      binding.backgroundSelector.background = state.backgroundColor.chatBubbleMask
+      textStoryBackground = state.backgroundColor
       binding.storyTextPost.bindFromCreationState(state)
 
       if (state.linkPreviewUri != null) {
@@ -107,14 +131,6 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
       binding.storyTextPost.hidePostContent()
       binding.storyTextPost.isEnabled = false
       TextStoryPostTextEntryFragment().show(childFragmentManager, null)
-    }
-
-    binding.backgroundProtection.setOnClickListener {
-      viewModel.cycleBackgroundColor()
-    }
-
-    binding.addLinkProtection.setOnClickListener {
-      TextStoryPostLinkEntryFragment().show(childFragmentManager, null)
     }
 
     binding.storyTextPost.setLinkPreviewCloseListener {
@@ -172,12 +188,12 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
     }
 
     initializeScenePositioning()
+    initializeTextStoryBar()
   }
 
   override fun onResume() {
     super.onResume()
     binding.storyTextPost.enableCreationMode()
-    requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
   }
 
   override fun onDestroy() {
@@ -200,13 +216,9 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
     }
 
     binding.send.updateLayoutParams<ConstraintLayout.LayoutParams> {
-      bottomMargin = cameraDisplay.getToggleBottomMargin()
-    }
-
-    listOf(binding.backgroundProtection, binding.addLinkProtection).forEach {
-      it.updateLayoutParams<ConstraintLayout.LayoutParams> {
-        bottomMargin += cameraDisplay.getCameraCaptureMarginBottom(resources)
-      }
+      bottomMargin = cameraDisplay.getNextPaddingBottom().dp
+      rightMargin = cameraDisplay.getNextPaddingEnd().dp
+      leftMargin = cameraDisplay.getNextPaddingEnd().dp
     }
 
     if (cameraDisplay.getCameraViewportGravity() == CameraDisplay.CameraViewportGravity.CENTER) {
@@ -218,6 +230,57 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
       binding.storyTextPostCard.updateLayoutParams<ConstraintLayout.LayoutParams> {
         bottomMargin = cameraDisplay.getCameraViewportMarginBottom()
       }
+    }
+  }
+
+  private fun initializeTextStoryBar() {
+    val cameraDisplay = CameraDisplay.getDisplay(requireActivity())
+    val isSmallScreen = resources.getWindowBreakpoint() is WindowBreakpoint.Small
+
+    val composeView = ComposeView(requireContext()).apply {
+      layoutParams = ConstraintLayout.LayoutParams(
+        ConstraintLayout.LayoutParams.WRAP_CONTENT,
+        ConstraintLayout.LayoutParams.WRAP_CONTENT
+      ).apply {
+        if (isSmallScreen) {
+          startToStart = ConstraintLayout.LayoutParams.PARENT_ID
+          endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
+          bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
+          bottomMargin = cameraDisplay.getCameraCaptureMarginBottom(resources) + 6.dp
+        } else {
+          topToTop = ConstraintLayout.LayoutParams.PARENT_ID
+          bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
+          endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
+        }
+      }
+
+      setContent {
+        SignalTheme {
+          val background = textStoryBackground ?: return@SignalTheme
+          if (isSmallScreen) {
+            TextStoryHorizontalBar(
+              background = background.chatBubbleBrush,
+              onEvent = ::onTextStoryBarEvent
+            )
+          } else {
+            TextStoryVerticalBar(
+              background = background.chatBubbleBrush,
+              onEvent = ::onTextStoryBarEvent,
+              modifier = Modifier.horizontalGutters()
+            )
+          }
+        }
+      }
+    }
+
+    binding.scene.addView(composeView)
+  }
+
+  private fun onTextStoryBarEvent(event: MediaCaptureScreenEvent) {
+    when (event) {
+      MediaCaptureScreenEvent.CycleTextStoryBackgroundColor -> viewModel.cycleBackgroundColor()
+      MediaCaptureScreenEvent.AddLinkToTextStory -> TextStoryPostLinkEntryFragment().show(childFragmentManager, null)
+      else -> Unit
     }
   }
 

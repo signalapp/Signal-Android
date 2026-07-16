@@ -1,30 +1,32 @@
 package org.thoughtcrime.securesms.mediasend.v2
 
-import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.KeyEvent
-import android.widget.FrameLayout
-import android.widget.TextView
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.content.ContextCompat
-import androidx.core.view.updateLayoutParams
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.transition.AutoTransition
-import androidx.transition.TransitionManager
-import com.google.android.material.animation.ArgbEvaluatorCompat
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import org.signal.camera.CameraDisplay
 import org.signal.core.models.media.Media
+import org.signal.core.ui.WindowBreakpoint
+import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.getWindowBreakpoint
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.Debouncer
 import org.signal.core.util.OVERRIDE_TRANSITION_CLOSE_COMPAT
@@ -33,6 +35,9 @@ import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.signal.core.util.overrideActivityTransitionCompat
+import org.signal.mediasend.MediaSendNavKey
+import org.signal.mediasend.capture.MediaCaptureBottomBar
+import org.signal.mediasend.capture.MediaCaptureScreenEvent
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
@@ -50,12 +55,7 @@ import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendReposi
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.FullscreenHelper
-import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.thoughtcrime.securesms.util.visible
-import kotlin.getValue
-import org.signal.core.ui.R as CoreUiR
 
 class MediaSelectionActivity :
   PassphraseRequiredActivity(),
@@ -64,10 +64,9 @@ class MediaSelectionActivity :
   EmojiEventListener,
   EmojiSearchFragment.Callback {
 
-  private var animateInShadowLayerValueAnimator: ValueAnimator? = null
-  private var animateInTextColorValueAnimator: ValueAnimator? = null
-  private var animateOutShadowLayerValueAnimator: ValueAnimator? = null
-  private var animateOutTextColorValueAnimator: ValueAnimator? = null
+  private var selectedCaptureScreen: MediaSendNavKey.Capture by mutableStateOf(MediaSendNavKey.Capture.Camera)
+
+  private var isOnCaptureScreen: Boolean by mutableStateOf(false)
 
   lateinit var viewModel: MediaSelectionViewModel
 
@@ -101,6 +100,8 @@ class MediaSelectionActivity :
   }
 
   override fun onPreCreate() {
+    enableEdgeToEdge()
+
     val sendType: MessageSendType = requireNotNull(intent.getParcelableExtraCompat(MESSAGE_SEND_TYPE, MessageSendType::class.java))
     val initialMedia: List<Media> = intent.getParcelableArrayListExtraCompat(MEDIA, Media::class.java) ?: listOf()
     val message: CharSequence? = if (shareToTextStory) null else draftText
@@ -114,41 +115,49 @@ class MediaSelectionActivity :
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     setContentView(R.layout.media_selection_activity)
 
-    FullscreenHelper.showSystemUI(window)
-    WindowUtil.setNavigationBarColor(this, 0x01000000)
-    WindowUtil.setStatusBarColor(window, Color.TRANSPARENT)
-
-    val textStoryToggle: ConstraintLayout = findViewById(R.id.switch_widget)
-    val cameraDisplay = CameraDisplay.getDisplay(this)
-
-    textStoryToggle.updateLayoutParams<FrameLayout.LayoutParams> {
-      bottomMargin = cameraDisplay.getToggleBottomMargin()
+    if (resources.getWindowBreakpoint() !is WindowBreakpoint.Small) {
+      requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     }
 
-    val cameraSelectedConstraintSet = ConstraintSet().apply {
-      clone(textStoryToggle)
-    }
-    val textSelectedConstraintSet = ConstraintSet().apply {
-      clone(this@MediaSelectionActivity, R.layout.media_selection_activity_text_selected_constraints)
-    }
+    val toggleBar: ComposeView = findViewById(R.id.toggle_bar)
+    toggleBar.setContent {
+      val state by viewModel.state.observeAsState()
 
-    val textSwitch: TextView = findViewById(R.id.text_switch)
-    val cameraSwitch: TextView = findViewById(R.id.camera_switch)
+      val canDisplayStorySwitch = remember(state?.selectedMedia) {
+        state?.selectedMedia?.let { canDisplayStorySwitch(it) } ?: false
+      }
 
-    textSwitch.setOnClickListener {
-      viewModel.sendCommand(HudCommand.GoToText)
-    }
+      val canDisplayMediaPreview = remember(state?.selectedMedia) {
+        state?.selectedMedia?.let { canDisplayMediaPreview(it) } ?: false
+      }
 
-    cameraSwitch.setOnClickListener {
-      debouncer.publish { viewModel.sendCommand(HudCommand.GoToCapture) }
+      SignalTheme {
+        if (isOnCaptureScreen) {
+          MediaCaptureBottomBar(
+            canDisplayToggleSwitch = canDisplayStorySwitch,
+            canDisplayMediaBar = canDisplayMediaPreview,
+            selectedCaptureScreen = selectedCaptureScreen,
+            selectedMedia = state?.selectedMedia ?: emptyList(),
+            onEvent = { event ->
+              when (event) {
+                MediaCaptureScreenEvent.ShowCamera -> debouncer.publish { viewModel.sendCommand(HudCommand.GoToCapture) }
+                MediaCaptureScreenEvent.ShowTextStory -> viewModel.sendCommand(HudCommand.GoToText)
+                MediaCaptureScreenEvent.NextClicked -> viewModel.sendCommand(HudCommand.GoToReview)
+                is MediaCaptureScreenEvent.Camera -> Unit
+                MediaCaptureScreenEvent.CycleTextStoryBackgroundColor -> Unit
+                MediaCaptureScreenEvent.AddLinkToTextStory -> Unit
+              }
+            },
+            modifier = Modifier.navigationBarsPadding()
+          )
+        }
+      }
     }
 
     if (savedInstanceState == null) {
       if (shareToTextStory) {
         initializeTextStory()
       }
-
-      cameraSwitch.isSelected = true
 
       val navHostFragment = NavHostFragment.create(R.navigation.media)
 
@@ -166,22 +175,38 @@ class MediaSelectionActivity :
     (supportFragmentManager.findFragmentByTag(NAV_HOST_TAG) as NavHostFragment).navController.addOnDestinationChangedListener { _, d, _ ->
       when (d.id) {
         R.id.mediaCaptureFragment -> {
-          textStoryToggle.visible = canDisplayStorySwitch()
-
-          animateTextStyling(cameraSwitch, textSwitch, 200)
-          TransitionManager.beginDelayedTransition(textStoryToggle, AutoTransition().setDuration(200))
-          cameraSelectedConstraintSet.applyTo(textStoryToggle)
+          selectedCaptureScreen = MediaSendNavKey.Capture.Camera
+          isOnCaptureScreen = true
+          requestedOrientation = if (resources.getWindowBreakpoint() is WindowBreakpoint.Small) {
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+          } else {
+            ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+          }
         }
 
         R.id.textStoryPostCreationFragment -> {
-          textStoryToggle.visible = canDisplayStorySwitch()
-
-          animateTextStyling(textSwitch, cameraSwitch, 200)
-          TransitionManager.beginDelayedTransition(textStoryToggle, AutoTransition().setDuration(200))
-          textSelectedConstraintSet.applyTo(textStoryToggle)
+          selectedCaptureScreen = MediaSendNavKey.Capture.TextStory
+          isOnCaptureScreen = true
+          requestedOrientation = if (resources.getWindowBreakpoint() is WindowBreakpoint.Small) {
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+          } else {
+            ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+          }
         }
 
-        else -> textStoryToggle.visible = false
+        else -> {
+          isOnCaptureScreen = false
+          requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        }
+      }
+
+      // Hard-cut rotation while capturing (like Pixel Camera) instead of the system's smooth rotate.
+      window.attributes = window.attributes.apply {
+        rotationAnimation = if (isOnCaptureScreen) {
+          WindowManager.LayoutParams.ROTATION_ANIMATION_JUMPCUT
+        } else {
+          WindowManager.LayoutParams.ROTATION_ANIMATION_ROTATE
+        }
       }
     }
 
@@ -214,39 +239,6 @@ class MediaSelectionActivity :
     viewModel.clearMediaErrors()
   }
 
-  private fun animateTextStyling(selectedSwitch: TextView, unselectedSwitch: TextView, duration: Long) {
-    val offTextColor = ContextCompat.getColor(this, CoreUiR.color.signal_colorOnSurface)
-    val onTextColor = ContextCompat.getColor(this, CoreUiR.color.signal_colorSecondaryContainer)
-
-    animateInShadowLayerValueAnimator?.cancel()
-    animateInTextColorValueAnimator?.cancel()
-    animateOutShadowLayerValueAnimator?.cancel()
-    animateOutTextColorValueAnimator?.cancel()
-
-    animateInShadowLayerValueAnimator = ValueAnimator.ofFloat(selectedSwitch.shadowRadius, 0f).apply {
-      this.duration = duration
-      addUpdateListener { selectedSwitch.setShadowLayer(it.animatedValue as Float, 0f, 0f, Color.BLACK) }
-      start()
-    }
-    animateInTextColorValueAnimator = ValueAnimator.ofObject(ArgbEvaluatorCompat(), selectedSwitch.currentTextColor, onTextColor).apply {
-      setEvaluator(ArgbEvaluatorCompat.getInstance())
-      this.duration = duration
-      addUpdateListener { selectedSwitch.setTextColor(it.animatedValue as Int) }
-      start()
-    }
-    animateOutShadowLayerValueAnimator = ValueAnimator.ofFloat(unselectedSwitch.shadowRadius, 3f).apply {
-      this.duration = duration
-      addUpdateListener { unselectedSwitch.setShadowLayer(it.animatedValue as Float, 0f, 0f, Color.BLACK) }
-      start()
-    }
-    animateOutTextColorValueAnimator = ValueAnimator.ofObject(ArgbEvaluatorCompat(), unselectedSwitch.currentTextColor, offTextColor).apply {
-      setEvaluator(ArgbEvaluatorCompat.getInstance())
-      this.duration = duration
-      addUpdateListener { unselectedSwitch.setTextColor(it.animatedValue as Int) }
-      start()
-    }
-  }
-
   private fun initializeTextStory() {
     val message = draftText?.toString() ?: return
     val firstLink = LinkPreviewUtil.findValidPreviewUrls(message).findFirst()
@@ -266,10 +258,17 @@ class MediaSelectionActivity :
     }
   }
 
-  private fun canDisplayStorySwitch(): Boolean {
+  private fun canDisplayMediaPreview(selectedMedia: List<Media>): Boolean {
     return Stories.isFeatureEnabled() &&
       isCameraFirst() &&
-      !viewModel.hasSelectedMedia() &&
+      selectedMedia.isNotEmpty() &&
+      (destination == MediaSelectionDestination.ChooseAfterMediaSelection || destination is MediaSelectionDestination.SingleStory)
+  }
+
+  private fun canDisplayStorySwitch(selectedMedia: List<Media>): Boolean {
+    return Stories.isFeatureEnabled() &&
+      isCameraFirst() &&
+      selectedMedia.isEmpty() &&
       (destination == MediaSelectionDestination.ChooseAfterMediaSelection || destination is MediaSelectionDestination.SingleStory)
   }
 

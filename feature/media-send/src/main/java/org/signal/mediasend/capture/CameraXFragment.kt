@@ -7,8 +7,8 @@ package org.signal.mediasend.capture
 
 import android.Manifest
 import android.content.Context
-import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
@@ -16,7 +16,6 @@ import android.os.ParcelFileDescriptor
 import android.system.Os
 import android.system.OsConstants
 import android.widget.Toast
-import androidx.activity.compose.LocalActivity
 import androidx.camera.core.CameraSelector
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -30,6 +29,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,13 +44,17 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.delay
@@ -69,11 +73,15 @@ import org.signal.camera.hud.GalleryThumbnailButton
 import org.signal.camera.hud.StandardCameraHud
 import org.signal.camera.hud.StandardCameraHudEvents
 import org.signal.camera.hud.StringResources
+import org.signal.camera.rememberDeviceRotation
 import org.signal.core.ui.BottomSheetUtil
+import org.signal.core.ui.WindowBreakpoint
+import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.permissions.PermissionDeniedBottomSheet
 import org.signal.core.ui.permissions.Permissions
+import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.core.util.MemoryFileDescriptor
 import org.signal.core.util.logging.Log
 import org.signal.mediasend.CameraFragment
@@ -155,16 +163,6 @@ class CameraXFragment : ComposeFragment(), CameraFragment {
       hasCameraPermission = { hasCameraPermission() },
       onRequestMicPermission = { requestMicPermission() }
     )
-  }
-
-  override fun onResume() {
-    super.onResume()
-    requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-  }
-
-  override fun onDestroyView() {
-    super.onDestroyView()
-    requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
   }
 
   override fun onRequestPermissionsResult(
@@ -289,7 +287,7 @@ private fun CameraFragment.Controller.onCameraXScreenEvent(event: CameraXScreenE
     is CameraXScreenEvent.QrCodeFound -> onQrCodeFound(event.data)
     CameraXScreenEvent.VideoCaptureError -> onVideoCaptureError()
     CameraXScreenEvent.GalleryClicked -> onGalleryClicked()
-    CameraXScreenEvent.CameraCountButtonClicked -> onCameraCountButtonClicked()
+    CameraXScreenEvent.CameraCloseClicked -> onCameraCloseClicked()
   }
 }
 
@@ -359,14 +357,27 @@ fun CameraXScreen(
   storiesEnabled: Boolean = CameraDependencies.isStoriesFeatureEnabled()
 ) {
   val context = LocalContext.current
-  val activity = LocalActivity.current
 
-  val captureMode = remember { resolveCaptureMode(context, state.isVideoEnabled) }
-  val cameraDisplay = remember { CameraDisplay.getDisplay(activity!!) }
+  val captureMode = if (LocalInspectionMode.current) {
+    CameraCaptureMode.ImageAndVideoSimultaneous
+  } else {
+    remember { resolveCaptureMode(context, state.isVideoEnabled) }
+  }
+
   val videoFileDescriptor = remember { VideoFileDescriptor(context) }
 
   val cameraViewModel: CameraScreenViewModel = viewModel()
   val cameraState by cameraViewModel.state
+
+  // Single rotation source; the view model decides card/preview/icon behavior from it.
+  val breakpoint = rememberWindowBreakpoint()
+  val isSmallScreen = breakpoint is WindowBreakpoint.Small
+  val deviceRotation = rememberDeviceRotation()
+  LaunchedEffect(deviceRotation, isSmallScreen) {
+    cameraViewModel.onEvent(CameraScreenEvents.SetDeviceRotation(deviceRotation, isSmallScreen))
+  }
+
+  val cameraDisplay = CameraDisplay.rememberCameraDisplay(cameraState.isLandscape)
   var hasPermission by remember { mutableStateOf(hasCameraPermission()) }
 
   DisposableEffect(Unit) {
@@ -413,7 +424,7 @@ fun CameraXScreen(
     }
   }
 
-  val resources = LocalContext.current.resources
+  val resources = LocalResources.current
 
   val hudBottomMargin = with(LocalDensity.current) {
     cameraDisplay.getCameraCaptureMarginBottom(resources, storiesEnabled).toDp()
@@ -431,14 +442,22 @@ fun CameraXScreen(
     0.dp
   }
 
+  val pad = if (!isSmallScreen) {
+    Modifier.systemBarsPadding()
+  } else {
+    Modifier
+  }
+
   BoxWithConstraints(
-    modifier = Modifier.fillMaxSize()
+    modifier = Modifier
+      .fillMaxSize()
+      .then(pad)
   ) {
     // We have to do a bunch of match to figure out how to place the camera buttons because
     // the logic relies on positining things from the edge of the screen, which doesn't jive
     // with how the composables are arranged. When this screen is re-written, we should simplify
     // this whole setup. For now, I'm just doing my best to match current behavior.
-    val cameraAspectRatio = 9f / 16f
+    val cameraAspectRatio = if (cameraDisplay.isLandscape()) 16f / 9f else 9f / 16f
     val availableHeight = maxHeight - viewportBottomMargin
     val availableAspectRatio = maxWidth / availableHeight
     val matchHeightFirst = availableAspectRatio > cameraAspectRatio
@@ -457,6 +476,41 @@ fun CameraXScreen(
     val totalBottomOffset = viewportBottomMargin + bottomGapFromAlignment
     val hudBottomPaddingInsideViewport = maxOf(0.dp, hudBottomMargin - totalBottomOffset)
 
+    val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
+    val isPortraitPhone = breakpoint is WindowBreakpoint.Small && isPortrait
+
+    val controls: @Composable () -> Unit = {
+      AnimatedVisibility(
+        visible = state.controlsVisible,
+        enter = fadeIn(animationSpec = tween(durationMillis = 150)),
+        exit = fadeOut(animationSpec = tween(durationMillis = 150))
+      ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+          StandardCameraHud(
+            state = cameraState,
+            modifier = Modifier.padding(bottom = if (isPortraitPhone) hudBottomPaddingInsideViewport else 0.dp),
+            maxRecordingDurationMs = maxVideoDurationSeconds * 1000L,
+            hasAudioPermission = { context.checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED },
+            emitter = { event ->
+              handleHudEvent(
+                event = event,
+                context = context,
+                cameraViewModel = cameraViewModel,
+                onEvent = onEvent,
+                isVideoEnabled = captureMode != CameraCaptureMode.ImageOnly,
+                onRequestMicPermission = onRequestMicPermission,
+                createVideoFileDescriptor = { videoFileDescriptor.create() }
+              )
+            },
+            stringResources = StringResources(
+              photoCaptureFailed = R.string.CameraXFragment_photo_capture_failed,
+              photoProcessingFailed = R.string.CameraXFragment_photo_processing_failed
+            )
+          )
+        }
+      }
+    }
+
     if (hasPermission) {
       CameraScreen(
         state = cameraState,
@@ -465,38 +519,16 @@ fun CameraXScreen(
         contentAlignment = cameraAlignment,
         captureMode = captureMode,
         enableQrScanning = state.isQrScanEnabled,
+        landscape = cameraState.isLandscape,
         modifier = Modifier.padding(bottom = viewportBottomMargin)
       ) {
-        AnimatedVisibility(
-          visible = state.controlsVisible,
-          enter = fadeIn(animationSpec = tween(durationMillis = 150)),
-          exit = fadeOut(animationSpec = tween(durationMillis = 150))
-        ) {
-          Box(modifier = Modifier.fillMaxSize()) {
-            StandardCameraHud(
-              state = cameraState,
-              modifier = Modifier.padding(bottom = hudBottomPaddingInsideViewport),
-              maxRecordingDurationMs = maxVideoDurationSeconds * 1000L,
-              mediaSelectionCount = state.selectedMediaCount,
-              hasAudioPermission = { context.checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED },
-              emitter = { event ->
-                handleHudEvent(
-                  event = event,
-                  context = context,
-                  cameraViewModel = cameraViewModel,
-                  onEvent = onEvent,
-                  isVideoEnabled = captureMode != CameraCaptureMode.ImageOnly,
-                  onRequestMicPermission = onRequestMicPermission,
-                  createVideoFileDescriptor = { videoFileDescriptor.create() }
-                )
-              },
-              stringResources = StringResources(
-                photoCaptureFailed = R.string.CameraXFragment_photo_capture_failed,
-                photoProcessingFailed = R.string.CameraXFragment_photo_processing_failed
-              )
-            )
-          }
+        if (isPortraitPhone) {
+          controls()
         }
+      }
+
+      if (!isPortraitPhone) {
+        controls()
       }
     } else {
       PermissionMissingContent(
@@ -549,7 +581,7 @@ private fun PermissionMissingContent(
     Box(
       modifier = Modifier
         .align(Alignment.BottomEnd)
-        .padding(bottom = galleryButtonBottomPadding, end = 40.dp)
+        .padding(bottom = max(galleryButtonBottomPadding, 16.dp), end = 40.dp)
     ) {
       GalleryThumbnailButton(onClick = onGalleryClicked)
     }
@@ -604,8 +636,8 @@ private fun handleHudEvent(
       onEvent(CameraXScreenEvent.GalleryClicked)
     }
 
-    is StandardCameraHudEvents.MediaSelectionClick -> {
-      onEvent(CameraXScreenEvent.CameraCountButtonClicked)
+    is StandardCameraHudEvents.CloseClick -> {
+      onEvent(CameraXScreenEvent.CameraCloseClicked)
     }
 
     is StandardCameraHudEvents.ToggleFlash -> {
@@ -661,14 +693,9 @@ private fun handleVideoCaptured(result: VideoCaptureResult, onEvent: (CameraXScr
   }
 }
 
-@Preview(
-  name = "20:9 Display",
-  showBackground = true,
-  widthDp = 360,
-  heightDp = 800
-)
+@AllNightPreviews
 @Composable
-private fun CameraXScreenPreview_20_9() {
+private fun CameraXScreenPreview() {
   Previews.Preview {
     CameraXScreen(
       state = CameraXScreenState(),
@@ -732,27 +759,6 @@ private fun CameraXScreenPreview_18_9() {
 )
 @Composable
 private fun CameraXScreenPreview_16_9() {
-  Previews.Preview {
-    CameraXScreen(
-      state = CameraXScreenState(),
-      onEvent = {},
-      maxVideoDurationSeconds = 0,
-      onCheckPermissions = {},
-      hasCameraPermission = { true },
-      onRequestMicPermission = { },
-      storiesEnabled = true
-    )
-  }
-}
-
-@Preview(
-  name = "6:5 Display (Tablet)",
-  showBackground = true,
-  widthDp = 480,
-  heightDp = 576
-)
-@Composable
-private fun CameraXScreenPreview_6_5() {
   Previews.Preview {
     CameraXScreen(
       state = CameraXScreenState(),

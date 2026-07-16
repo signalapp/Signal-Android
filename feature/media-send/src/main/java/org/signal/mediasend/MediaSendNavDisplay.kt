@@ -61,7 +61,7 @@ internal fun MediaSendNavDisplay(
           val state by stateFlow.collectAsStateWithLifecycle()
 
           MediaCaptureScreen(
-            backStack = backStack,
+            selectedCaptureScreen = key,
             state = state,
             onEvent = eventHandler::onMediaCaptureScreenEvent,
             textStoryEditorSlot = textStoryEditorSlot

@@ -38,4 +38,5 @@ sealed interface HudCommand {
   data class GoToConversation(val recipientId: MediaRecipientId) : HudCommand
   data object GoToLinkedDevices : HudCommand
   data class GoToQuickTransfer(val qrData: String) : HudCommand
+  data object CloseScreen : HudCommand
 }

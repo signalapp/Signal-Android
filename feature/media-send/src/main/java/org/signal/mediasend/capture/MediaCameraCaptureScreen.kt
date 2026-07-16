@@ -7,8 +7,10 @@ package org.signal.mediasend.capture
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import org.signal.mediasend.MediaSendDependencies
+import androidx.compose.ui.tooling.preview.Preview
+import org.signal.core.ui.compose.Previews
 import org.signal.mediasend.MediaSendState
+import org.signal.mediasend.rememberPreviewState
 
 /**
  * Allows the user to capture images and video from the hardware camera to utilize in the media send flow.
@@ -29,12 +31,24 @@ fun MediaCameraCaptureScreen(
     onEvent = { event -> onEvent(MediaCaptureScreenEvent.Camera(event)) },
     maxVideoDurationSeconds = remember(state.isStory) {
       getMaxVideoDurationInSeconds(
-        mediaConstraints = MediaSendDependencies.mediaSendRepository.getMediaConstraints(),
-        maxVideoDuration = if (state.isStory) MediaSendDependencies.mediaSendRepository.storyMaxVideoDuration.inWholeSeconds.toInt() else -1
+        mediaConstraints = state.mediaConstraints,
+        maxVideoDuration = if (state.isStory) state.storyMaxVideoDuration.inWholeSeconds.toInt() else -1
       )
     },
-    onCheckPermissions = {},
-    onRequestMicPermission = {},
-    hasCameraPermission = { true }
+    onCheckPermissions = {}, // TODO [media-send]
+    onRequestMicPermission = {}, // TODO [media-send]
+    hasCameraPermission = { true }, // TODO [media-send]
+    storiesEnabled = state.storiesEnabled
   )
+}
+
+@Preview
+@Composable
+private fun MediaCameraCaptureScreenPreview() {
+  Previews.Preview {
+    MediaCameraCaptureScreen(
+      state = rememberPreviewState(),
+      onEvent = {}
+    )
+  }
 }

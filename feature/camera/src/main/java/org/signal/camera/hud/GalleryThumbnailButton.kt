@@ -13,7 +13,6 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
@@ -29,10 +28,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.signal.camera.R
+import org.signal.core.ui.compose.NightPreview
+import org.signal.core.ui.compose.Previews
 import org.signal.glide.compose.GlideImage
 import org.signal.glide.compose.GlideImageScaleType
 
@@ -60,28 +63,35 @@ fun GalleryThumbnailButton(
     modifier = modifier
       .size(52.dp)
       .clip(CircleShape)
-      .border(2.dp, Color.White, CircleShape)
-      .background(Color.Black.copy(alpha = 0.3f), CircleShape)
+      .background(colorResource(R.color.CameraHud_control_background), CircleShape)
       .clickable(onClick = onClick),
     contentAlignment = Alignment.Center
   ) {
     if (thumbnailUri != null) {
       GlideImage(
         model = thumbnailUri,
-        imageSize = DpSize(52.dp, 52.dp),
+        imageSize = DpSize(44.dp, 44.dp),
         scaleType = GlideImageScaleType.CENTER_CROP,
         modifier = Modifier
-          .size(52.dp)
+          .size(44.dp)
           .clip(CircleShape)
       )
     } else {
       // Fallback to a simple icon if no media found
       Box(
         modifier = Modifier
-          .size(52.dp)
+          .size(44.dp)
           .background(Color.Gray.copy(alpha = 0.5f), CircleShape)
       )
     }
+  }
+}
+
+@NightPreview
+@Composable
+private fun GalleryButtonPreview() {
+  Previews.Preview {
+    GalleryThumbnailButton(onClick = {})
   }
 }
 
@@ -101,6 +111,7 @@ private suspend fun getLatestMediaUri(context: Context): Uri? = withContext(Disp
         val videoTime = getMediaTimestamp(context, videoUri) ?: 0L
         if (imageTime >= videoTime) imageUri else videoUri
       }
+
       imageUri != null -> imageUri
       videoUri != null -> videoUri
       else -> null

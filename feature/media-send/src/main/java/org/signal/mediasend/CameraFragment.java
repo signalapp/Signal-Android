@@ -20,7 +20,7 @@ public interface CameraFragment {
     void onVideoCaptured(@NonNull FileDescriptor fd);
     void onVideoCaptureError();
     void onGalleryClicked();
-    void onCameraCountButtonClicked();
+    void onCameraCloseClicked();
     void onQrCodeFound(@NonNull String data);
     @NonNull MediaConstraints getMediaConstraints();
     int getMaxVideoDuration();

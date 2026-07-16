@@ -24,9 +24,9 @@ sealed interface StandardCameraHudEvents {
   data object GalleryClick : StandardCameraHudEvents
 
   /**
-   * Emitted when the media selection indicator is clicked to advance to the next screen.
+   * Emitted when the x is clicked to navigate to the previous screen.
    */
-  data object MediaSelectionClick : StandardCameraHudEvents
+  data object CloseClick : StandardCameraHudEvents
 
   /**
    * Emitted when the flash toggle button is clicked.

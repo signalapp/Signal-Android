@@ -24,59 +24,12 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/background_protection"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="6dp"
-        android:padding="2dp"
-        android:src="@drawable/circle_tintable"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/story_text_post_card"
-        app:tint="@color/transparent_black_40" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/background_selector"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:src="@drawable/story_text_background_button_overlay"
-        app:layout_constraintBottom_toBottomOf="@id/background_protection"
-        app:layout_constraintEnd_toEndOf="@id/background_protection"
-        app:layout_constraintStart_toStartOf="@id/background_protection"
-        app:layout_constraintTop_toTopOf="@id/background_protection"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
-        tools:background="@color/signal_alert_primary" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/add_link_protection"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="6dp"
-        android:padding="2dp"
-        android:src="@drawable/circle_tintable"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/background_protection"
-        app:tint="@color/transparent_black_40" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/add_link"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="@id/add_link_protection"
-        app:layout_constraintEnd_toEndOf="@id/add_link_protection"
-        app:layout_constraintStart_toStartOf="@id/add_link_protection"
-        app:layout_constraintTop_toTopOf="@id/add_link_protection"
-        app:srcCompat="@drawable/ic_link_24"
-        app:tint="@color/core_white" />
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/send"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="@dimen/gutter"
+        android:layout_marginBottom="16dp"
         android:background="@color/signal_colorOnSecondaryContainer"
         android:padding="4dp"
         android:scaleType="centerInside"

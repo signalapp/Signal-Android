@@ -94,6 +94,11 @@ class MediaSendV3Activity : PassphraseRequiredActivity() {
                 startActivity(QuickTransferOldDeviceActivity.intent(this, it.qrData))
                 finish()
               }
+
+              is HudCommand.CloseScreen -> {
+                // TODO [media-send] warning dialog
+                finish()
+              }
             }
           }
         )

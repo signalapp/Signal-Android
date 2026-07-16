@@ -114,6 +114,8 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
     lifecycleDisposable += sharedViewModel.hudCommands.subscribe { command ->
       if (command == HudCommand.GoToText) {
         findNavController().safeNavigate(R.id.action_mediaCaptureFragment_to_textStoryPostCreationFragment)
+      } else if (command == HudCommand.GoToReview) {
+        navigator.goToReview(findNavController())
       }
     }
 
@@ -160,11 +162,9 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
     }
   }
 
-  override fun onCameraCountButtonClicked() {
-    val controller = findNavController()
-    captureChildFragment.fadeOutControls {
-      navigator.goToReview(controller)
-    }
+  override fun onCameraCloseClicked() {
+    // TODO [media-send] - Alex R to supply dialog.
+    requireActivity().finish()
   }
 
   override fun onQrCodeFound(data: String) {
