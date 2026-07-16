@@ -22,7 +22,7 @@ class InternalMessageDetailsViewModel(val messageId: Long) : ViewModel() {
   val state: State<ViewState?> = _state
 
   init {
-    viewModelScope.launch(Dispatchers.IO) {
+    viewModelScope.launch(Dispatchers.Default) {
       val messageRecord = SignalDatabase.messages.getMessageRecord(messageId)
       val attachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId)
 

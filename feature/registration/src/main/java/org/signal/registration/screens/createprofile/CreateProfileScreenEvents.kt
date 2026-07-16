@@ -5,13 +5,15 @@
 
 package org.signal.registration.screens.createprofile
 
-import org.signal.registration.util.DebugLoggableModel
-
-sealed class CreateProfileScreenEvents : DebugLoggableModel() {
-  data class GivenNameChanged(val value: String) : CreateProfileScreenEvents()
-  data class FamilyNameChanged(val value: String) : CreateProfileScreenEvents()
+sealed class CreateProfileScreenEvents {
+  data class GivenNameChanged(val value: String) : CreateProfileScreenEvents() {
+    override fun toString(): String = "GivenNameChanged(value=${value.length} chars)"
+  }
+  data class FamilyNameChanged(val value: String) : CreateProfileScreenEvents() {
+    override fun toString(): String = "FamilyNameChanged(value=${value.length} chars)"
+  }
   data class AvatarSelected(val bytes: ByteArray) : CreateProfileScreenEvents() {
-    override fun toSafeString(): String = "AvatarSelected(${bytes.size} bytes)"
+    override fun toString(): String = "AvatarSelected(${bytes.size} bytes)"
     override fun equals(other: Any?): Boolean {
       if (this === other) return true
       if (other !is AvatarSelected) return false
@@ -23,5 +25,5 @@ sealed class CreateProfileScreenEvents : DebugLoggableModel() {
   data object WhoCanFindMeClicked : CreateProfileScreenEvents()
   data class DiscoverabilityChanged(val discoverable: Boolean) : CreateProfileScreenEvents()
   data object NextClicked : CreateProfileScreenEvents()
-  data object ConsumeOneTimeEvent : CreateProfileScreenEvents()
+  data object UploadFailedDialogDismissed : CreateProfileScreenEvents()
 }

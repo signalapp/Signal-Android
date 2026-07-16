@@ -26,6 +26,7 @@ import org.signal.core.util.toJson
 import org.signal.libsignal.crypto.Aes256Ctr32
 import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.ImportResult
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -269,13 +270,18 @@ object LocalArchiver {
 
       val mainStreamLength = snapshotFileSystem.mainLength() ?: return ArchiveResult.failure(RestoreFailure.MainStream)
 
-      BackupRepository.importLocal(
+      val importResult = BackupRepository.importLocal(
         mainStreamFactory = { snapshotFileSystem.mainInputStream()!! },
         mainStreamLength = mainStreamLength,
         selfData = selfData,
         backupId = backupId,
         messageBackupKey = messageBackupKey
       )
+
+      if (importResult is ImportResult.Failure) {
+        Log.w(TAG, "Local backup import failed")
+        return RestoreResult.failure(RestoreFailure.ImportFailed)
+      }
     } finally {
       metadataStream?.close()
     }
@@ -350,6 +356,7 @@ object LocalArchiver {
     data object MainStream : RestoreFailure
     data object Cancelled : RestoreFailure
     data object BackupIdMissing : RestoreFailure
+    data object ImportFailed : RestoreFailure
     data class VersionMismatch(val backupVersion: Int, val supportedVersion: Int) : RestoreFailure
   }
 

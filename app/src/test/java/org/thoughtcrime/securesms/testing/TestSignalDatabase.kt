@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.testing
 import android.app.Application
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteOpenHelper
-import org.thoughtcrime.securesms.crypto.AttachmentSecret
+import org.signal.core.util.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.database.SignalDatabase
 import java.security.SecureRandom

@@ -4,9 +4,12 @@
  */
 package org.thoughtcrime.securesms.video
 
+import org.thoughtcrime.securesms.video.TranscodingConfig.QualityTier
+import org.thoughtcrime.securesms.video.TranscodingConfig.getQualityTier
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter.VideoCodec
 import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * A data class to hold various video transcoding parameters, such as bitrate.
@@ -15,8 +18,15 @@ class TranscodingQuality private constructor(@VideoCodec val codec: String, val 
   companion object {
 
     @JvmStatic
-    fun createFromPreset(preset: TranscodingPreset, durationMs: Long): TranscodingQuality {
-      return TranscodingQuality(preset.videoCodec, preset.videoShortEdge, preset.videoBitRate, preset.audioBitRate, durationMs)
+    fun createFromQualityTiers(transcodingConfig: List<QualityTier>, durationMs: Long): TranscodingQuality {
+      val config = getQualityTier(transcodingConfig, durationMs.milliseconds)
+      return TranscodingQuality(
+        codec = MediaConverter.VIDEO_CODEC_H264,
+        outputResolution = config.resolution,
+        targetVideoBitRate = (config.videoBitrateMbps * VideoConstants.MB).toInt(),
+        targetAudioBitRate = config.audioBitrateKbps * VideoConstants.KB,
+        durationMs = durationMs
+      )
     }
 
     @JvmStatic
@@ -35,20 +45,5 @@ class TranscodingQuality private constructor(@VideoCodec val codec: String, val 
 
   override fun toString(): String {
     return "Quality{codec=$codec, targetVideoBitRate=$targetVideoBitRate, targetAudioBitRate=$targetAudioBitRate, duration=$durationMs, filesize=$byteCountEstimate}"
-  }
-}
-
-enum class TranscodingPreset(@VideoCodec val videoCodec: String, val videoShortEdge: Int, val videoBitRate: Int, val audioBitRate: Int) {
-  LEVEL_1(MediaConverter.VIDEO_CODEC_H264, VideoConstants.VIDEO_SHORT_EDGE_SD, VideoConstants.VIDEO_BITRATE_L1, VideoConstants.AUDIO_BITRATE),
-  LEVEL_2(MediaConverter.VIDEO_CODEC_H264, VideoConstants.VIDEO_SHORT_EDGE_HD, VideoConstants.VIDEO_BITRATE_L2, VideoConstants.AUDIO_BITRATE),
-  LEVEL_3(MediaConverter.VIDEO_CODEC_H264, VideoConstants.VIDEO_SHORT_EDGE_HD, VideoConstants.VIDEO_BITRATE_L3, VideoConstants.AUDIO_BITRATE),
-
-  /** Experimetnal H265 level */
-  LEVEL_3_H265(MediaConverter.VIDEO_CODEC_H265, VideoConstants.VIDEO_SHORT_EDGE_HD, VideoConstants.VIDEO_BITRATE_L3, VideoConstants.AUDIO_BITRATE);
-
-  fun calculateMaxVideoUploadDurationInSeconds(upperFileSizeLimit: Long): Int {
-    val upperFileSizeLimitWithMargin = (upperFileSizeLimit / 1.1).toLong()
-    val totalBitRate = videoBitRate + audioBitRate
-    return Math.toIntExact((upperFileSizeLimitWithMargin * 8) / totalBitRate)
   }
 }

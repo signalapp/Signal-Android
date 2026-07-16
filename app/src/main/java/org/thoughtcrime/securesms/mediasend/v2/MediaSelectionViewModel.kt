@@ -21,18 +21,21 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.models.media.Media
 import org.signal.core.util.Util
+import org.signal.core.util.contentproviders.BlobProvider
 import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
+import org.signal.mediasend.MediaConstraints
+import org.signal.mediasend.SentMediaQuality
+import org.signal.mediasend.edit.video.VideoTrimData
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.MessageStyler
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
-import org.thoughtcrime.securesms.mediasend.v2.videos.VideoTrimData
-import org.thoughtcrime.securesms.mms.MediaConstraints
-import org.thoughtcrime.securesms.mms.SentMediaQuality
-import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.mms.PushMediaConstraints
+import org.thoughtcrime.securesms.mms.TranscodingConfigProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.stories.Stories
@@ -40,6 +43,7 @@ import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Collections
 import kotlin.math.max
+import kotlin.time.Duration.Companion.microseconds
 import kotlin.time.Duration.Companion.milliseconds
 
 /**
@@ -164,11 +168,11 @@ class MediaSelectionViewModel(
         .subscribe { filterResult ->
           if (filterResult.filteredMedia.isNotEmpty()) {
             store.update {
-              val maxDuration = it.calculateMaxVideoDurationUs(getMediaConstraints().getVideoMaxSize())
               val initializedVideoEditorStates = filterResult.filteredMedia.filterNot { media -> it.editorStateMap.containsKey(media.uri) }
                 .filter { media -> MediaUtil.isNonGifVideo(media) }
                 .associate { video: Media ->
                   val duration = video.duration.milliseconds.inWholeMicroseconds
+                  val maxDuration = it.calculateMaxVideoDurationUs(getMediaConstraints().getEditorVideoMaxSize(), video.duration.milliseconds)
                   if (duration < maxDuration) {
                     video.uri to VideoTrimData(false, duration, 0, duration)
                   } else {
@@ -320,7 +324,7 @@ class MediaSelectionViewModel(
   }
 
   fun getMediaConstraints(): MediaConstraints {
-    return MediaConstraints.getPushMediaConstraints()
+    return PushMediaConstraints(null)
   }
 
   fun setSentMediaQuality(sentMediaQuality: SentMediaQuality) {
@@ -328,7 +332,7 @@ class MediaSelectionViewModel(
       return
     }
 
-    store.update { it.copy(quality = sentMediaQuality, isPreUploadEnabled = false) }
+    store.update { it.copy(quality = sentMediaQuality, isPreUploadEnabled = false, transcodingConfigs = TranscodingConfigProvider.getConfigsForMediaQuality(sentMediaQuality)) }
     repository.uploadRepository.cancelAllUploads()
 
     store.state.selectedMedia.forEach { mediaItem ->
@@ -358,7 +362,7 @@ class MediaSelectionViewModel(
       val durationEdited = clampedStartTime > 0 || endTimeUs < totalDurationUs
       val isEntireDuration = startTimeUs == 0L && endTimeUs == totalDurationUs
       val endMoved = !isEntireDuration && data.endTimeUs != endTimeUs
-      val maxVideoDurationUs: Long = it.calculateMaxVideoDurationUs(getMediaConstraints().getVideoMaxSize())
+      val maxVideoDurationUs: Long = it.calculateMaxVideoDurationUs(getMediaConstraints().getEditorVideoMaxSize(), (endTimeUs - clampedStartTime).microseconds)
       val preserveStartTime = unedited || !endMoved
       val videoTrimData = VideoTrimData(durationEdited, totalDurationUs, clampedStartTime, endTimeUs)
       val updatedData = clampToMaxClipDuration(videoTrimData, maxVideoDurationUs, preserveStartTime)
@@ -471,7 +475,7 @@ class MediaSelectionViewModel(
       editorStates.forEach { it.writeToParcel(parcel, 0) }
       val serializedEditorState: ByteArray = parcel.marshall()
       parcel.recycle()
-      val blobUri = BlobProvider.getInstance().forData(serializedEditorState).createForSingleUseInMemory()
+      val blobUri = AppDependencies.blobs.forData(serializedEditorState).createForSingleUseInMemory()
       outState.putParcelable(STATE_EDITORS, blobUri)
     }
   }
@@ -495,7 +499,7 @@ class MediaSelectionViewModel(
     val cameraFirstCapture: Media? = savedInstanceState.getParcelableCompat(STATE_CAMERA_FIRST_CAPTURE, Media::class.java)
     val editorCount: Int = savedInstanceState.getInt(STATE_EDITOR_COUNT, 0)
     val blobUri: Uri? = savedInstanceState.getParcelableCompat(STATE_EDITORS, Uri::class.java)
-    val blobProvider: BlobProvider = BlobProvider.getInstance()
+    val blobProvider: BlobProvider = AppDependencies.blobs
     val editorStates: List<Bundle> = if (editorCount > 0 && blobUri != null && blobProvider.hasStream(context, blobUri)) {
       val accumulator: MutableList<Bundle> = mutableListOf()
       val blob: ByteArray = ByteStreams.toByteArray(blobProvider.getStream(context, blobUri))

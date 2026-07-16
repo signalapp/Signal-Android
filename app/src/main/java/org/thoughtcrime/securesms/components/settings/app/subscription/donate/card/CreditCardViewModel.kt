@@ -38,7 +38,7 @@ class CreditCardViewModel(
     val calendar = Calendar.getInstance()
 
     viewModelScope.launch {
-      val inAppPayment = withContext(Dispatchers.IO) {
+      val inAppPayment = withContext(Dispatchers.Default) {
         SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
       }
 

@@ -286,3 +286,7 @@ message AdminDeleteJobData {
 message IndividualSendJobV2Data {
   uint64 messageId = 1;
 }
+
+message MultiDeviceAttachmentBackfillRequestJobData {
+  uint64 messageId = 1;
+}

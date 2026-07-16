@@ -5,16 +5,19 @@
 
 package org.signal.mediasend
 
+import org.signal.mediasend.capture.MediaCaptureScreenEvent
 import org.signal.mediasend.edit.MediaEditScreenEvent
 import org.signal.mediasend.select.MediaSelectScreenEvent
 
 interface MediaSendEventHandler {
   fun onMediaSelectScreenEvent(mediaSelectScreenEvent: MediaSelectScreenEvent)
   fun onMediaEditScreenEvent(mediaEditScreenEvent: MediaEditScreenEvent)
+  fun onMediaCaptureScreenEvent(mediaCaptureScreenEvent: MediaCaptureScreenEvent)
 
   object Empty : MediaSendEventHandler {
     override fun onMediaSelectScreenEvent(mediaSelectScreenEvent: MediaSelectScreenEvent) = Unit
     override fun onMediaEditScreenEvent(mediaEditScreenEvent: MediaEditScreenEvent) = Unit
+    override fun onMediaCaptureScreenEvent(mediaCaptureScreenEvent: MediaCaptureScreenEvent) = Unit
   }
 }
 
@@ -31,4 +34,8 @@ sealed interface HudCommand {
     val startWithEmojiKeyboard: Boolean,
     val isViewOnceAvailable: Boolean
   ) : HudCommand
+
+  data class GoToConversation(val recipientId: MediaRecipientId) : HudCommand
+  data object GoToLinkedDevices : HudCommand
+  data class GoToQuickTransfer(val qrData: String) : HudCommand
 }

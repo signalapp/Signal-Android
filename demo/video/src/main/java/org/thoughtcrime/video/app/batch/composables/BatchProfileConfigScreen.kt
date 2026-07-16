@@ -26,29 +26,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import org.thoughtcrime.securesms.video.TranscodingPreset
-import org.thoughtcrime.securesms.video.videoconverter.utils.DeviceCapabilities
+import org.thoughtcrime.video.app.transcode.TranscodeQuality
 import org.thoughtcrime.video.app.transcode.TranscodeSettings
-import org.thoughtcrime.video.app.transcode.calculateAudioKiloBitrateFromPreset
-import org.thoughtcrime.video.app.transcode.calculateVideoMegaBitrateFromPreset
+import org.thoughtcrime.video.app.transcode.calculateAudioKiloBitrateFromQuality
+import org.thoughtcrime.video.app.transcode.calculateVideoMegaBitrateFromQuality
 import org.thoughtcrime.video.app.transcode.composables.CustomSettings
-import org.thoughtcrime.video.app.transcode.composables.PresetPicker
-import org.thoughtcrime.video.app.transcode.convertPresetToVideoResolution
+import org.thoughtcrime.video.app.transcode.composables.QualityPicker
+import org.thoughtcrime.video.app.transcode.convertQualityToVideoResolution
 import org.thoughtcrime.video.app.ui.composables.LabeledButton
 import kotlin.math.roundToInt
 
 @Composable
 fun BatchProfileConfigScreen(
   onSaveProfile: (TranscodeSettings) -> Unit,
-  hevcCapable: Boolean = DeviceCapabilities.canEncodeHevc(),
   modifier: Modifier = Modifier
 ) {
   var useAutoTranscodingSettings by remember { mutableStateOf(true) }
-  var transcodingPreset by remember { mutableStateOf(TranscodingPreset.LEVEL_2) }
-  var videoResolution by remember { mutableStateOf(convertPresetToVideoResolution(TranscodingPreset.LEVEL_2)) }
-  var videoMegaBitrate by remember { mutableFloatStateOf(calculateVideoMegaBitrateFromPreset(TranscodingPreset.LEVEL_2)) }
-  var audioKiloBitrate by remember { mutableIntStateOf(calculateAudioKiloBitrateFromPreset(TranscodingPreset.LEVEL_2)) }
-  var useHevc by remember { mutableStateOf(false) }
+  var transcodeQuality by remember { mutableStateOf(TranscodeQuality.STANDARD) }
+  var videoResolution by remember { mutableStateOf(convertQualityToVideoResolution(TranscodeQuality.STANDARD)) }
+  var videoMegaBitrate by remember { mutableFloatStateOf(calculateVideoMegaBitrateFromQuality(TranscodeQuality.STANDARD)) }
+  var audioKiloBitrate by remember { mutableIntStateOf(calculateAudioKiloBitrateFromQuality(TranscodeQuality.STANDARD)) }
   var enableFastStart by remember { mutableStateOf(true) }
   var enableAudioRemux by remember { mutableStateOf(true) }
 
@@ -75,13 +72,13 @@ fun BatchProfileConfigScreen(
     }
 
     if (useAutoTranscodingSettings) {
-      PresetPicker(
-        selectedTranscodingPreset = transcodingPreset,
-        onPresetSelected = {
-          transcodingPreset = it
-          videoResolution = convertPresetToVideoResolution(it)
-          videoMegaBitrate = calculateVideoMegaBitrateFromPreset(it)
-          audioKiloBitrate = calculateAudioKiloBitrateFromPreset(it)
+      QualityPicker(
+        selectedTranscodeQuality = transcodeQuality,
+        onQualitySelected = {
+          transcodeQuality = it
+          videoResolution = convertQualityToVideoResolution(it)
+          videoMegaBitrate = calculateVideoMegaBitrateFromQuality(it)
+          audioKiloBitrate = calculateAudioKiloBitrateFromQuality(it)
         },
         modifier = Modifier.padding(vertical = 16.dp)
       )
@@ -89,8 +86,6 @@ fun BatchProfileConfigScreen(
       CustomSettings(
         selectedResolution = videoResolution,
         onResolutionSelected = { videoResolution = it },
-        useHevc = useHevc,
-        onUseHevcSettingChanged = { useHevc = it },
         fastStartChecked = enableFastStart,
         onFastStartSettingCheckChanged = { enableFastStart = it },
         audioRemuxChecked = enableAudioRemux,
@@ -99,7 +94,6 @@ fun BatchProfileConfigScreen(
         updateVideoSliderPosition = { videoMegaBitrate = it },
         audioSliderPosition = audioKiloBitrate,
         updateAudioSliderPosition = { audioKiloBitrate = it.roundToInt() },
-        hevcCapable = hevcCapable,
         modifier = Modifier.padding(vertical = 16.dp)
       )
     }
@@ -109,12 +103,10 @@ fun BatchProfileConfigScreen(
       onClick = {
         onSaveProfile(
           TranscodeSettings(
-            isPreset = useAutoTranscodingSettings,
-            presetName = if (useAutoTranscodingSettings) transcodingPreset.name else null,
+            quality = if (useAutoTranscodingSettings) transcodeQuality else null,
             videoResolution = videoResolution,
             videoMegaBitrate = videoMegaBitrate,
             audioKiloBitrate = audioKiloBitrate,
-            useHevc = useHevc,
             enableFastStart = enableFastStart,
             enableAudioRemux = enableAudioRemux
           )
@@ -134,5 +126,5 @@ private fun BatchProfileConfigScreenPresetPreview() {
 @Preview(showBackground = true)
 @Composable
 private fun BatchProfileConfigScreenCustomPreview() {
-  BatchProfileConfigScreen(onSaveProfile = {}, hevcCapable = true)
+  BatchProfileConfigScreen(onSaveProfile = {})
 }

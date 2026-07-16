@@ -103,6 +103,15 @@ class CheckRestoreMediaLeftJob private constructor(parameters: Parameters) : Job
       SignalStore.backup.deletionState = DeletionState.MEDIA_DOWNLOAD_FINISHED
     }
 
+    if (SignalStore.backup.localRestoreReconcilePending) {
+      if (SignalStore.backup.backsUpMedia) {
+        Log.i(TAG, "Local restore complete. Reconciling restored media against the archive CDN before uploading. (Flag cleared by the reconciliation job.)")
+        ArchiveAttachmentReconciliationJob.enqueueReconcileFirstForLocalRestore()
+      } else {
+        SignalStore.backup.localRestoreReconcilePending = false
+      }
+    }
+
     if (!SignalStore.backup.backsUpMedia) {
       SignalDatabase.attachments.markQuotesThatNeedReconstruction()
       AppDependencies.jobManager.add(QuoteThumbnailReconstructionJob())

@@ -43,8 +43,7 @@ data class ChangeNumberState(
 )
 
 sealed interface ChangeNumberOutcome {
-  data object RecoveryPasswordWorked : ChangeNumberOutcome
-  data object VerificationCodeWorked : ChangeNumberOutcome
+  data object Succeeded : ChangeNumberOutcome
   class ChangeNumberRequestOutcome(val result: VerificationCodeRequestResult) : ChangeNumberOutcome
 }
 

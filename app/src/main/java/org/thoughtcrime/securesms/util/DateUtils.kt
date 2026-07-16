@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.util.DateUtils.getBriefRelativeTimeSpanString
 import java.text.DateFormatSymbols
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.time.format.TextStyle
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -292,8 +293,10 @@ object DateUtils : android.text.format.DateUtils() {
       } else {
         context.getString(R.string.DateUtils_today)
       }
-    } else {
+    } else if (isTomorrow(timestamp)) {
       context.getString(R.string.DateUtils_tomorrow)
+    } else {
+      localDateTime.dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault())
     }
     val time = localDateTime.toLocalTime().formatHours(context)
     return context.getString(R.string.DateUtils_schedule_at, dayModifier, time)
@@ -381,6 +384,10 @@ object DateUtils : android.text.format.DateUtils() {
 
   private fun isYesterday(time: Long): Boolean {
     return isToday(time + TimeUnit.DAYS.toMillis(1))
+  }
+
+  private fun isTomorrow(time: Long): Boolean {
+    return isToday(time - TimeUnit.DAYS.toMillis(1))
   }
 
   private fun getHour(context: Context, timestamp: Long): Int {

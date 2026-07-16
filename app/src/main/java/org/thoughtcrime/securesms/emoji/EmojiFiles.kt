@@ -12,10 +12,11 @@ import okio.HashingSink
 import okio.blackholeSink
 import okio.buffer
 import okio.source
+import org.signal.core.util.crypto.AttachmentSecretProvider
+import org.signal.core.util.crypto.ModernDecryptingPartInputStream
+import org.signal.core.util.crypto.ModernEncryptingPartOutputStream
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
-import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
-import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
+import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore
 import org.thoughtcrime.securesms.mms.PartAuthority
 import java.io.File
 import java.io.IOException
@@ -60,12 +61,12 @@ private fun Context.getJumboFile(versionUuid: UUID): File = File(File(getEmojiDi
 private fun getFilesUri(name: String, format: String): Uri = PartAuthority.getEmojiUri(name)
 
 private fun getOutputStream(context: Context, outputFile: File): OutputStream {
-  val attachmentSecret = AttachmentSecretProvider.getInstance(context).orCreateAttachmentSecret
+  val attachmentSecret = AttachmentSecretProvider.getInstance(context, AppAttachmentSecretStore).orCreateAttachmentSecret
   return ModernEncryptingPartOutputStream.createFor(attachmentSecret, outputFile, true).second
 }
 
 private fun getInputStream(context: Context, inputFile: File): InputStream {
-  val attachmentSecret = AttachmentSecretProvider.getInstance(context).orCreateAttachmentSecret
+  val attachmentSecret = AttachmentSecretProvider.getInstance(context, AppAttachmentSecretStore).orCreateAttachmentSecret
   return ModernDecryptingPartInputStream.createFor(attachmentSecret, inputFile, 0)
 }
 

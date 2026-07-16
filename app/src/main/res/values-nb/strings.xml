@@ -273,62 +273,6 @@
     <!-- Unknown people row info dialog action to close the dialog -->
     <string name="CallInfoView__got_it">Skjønner</string>
 
-    <!-- CameraFragment -->
-    <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Det er ikke mulig å ta opp video på enheten din</string>
-
-    <!-- CameraXFragment -->
-    <string name="CameraXFragment_tap_for_photo_hold_for_video">Trykk for foto, hold for video</string>
-    <!-- Accessibility content description to describe the capture button when taking an image/video -->
-    <string name="CameraXFragment_capture_description">Ta bilde</string>
-    <string name="CameraXFragment_change_camera_description">Bytt kamera</string>
-    <string name="CameraXFragment_open_gallery_description">Åpne galleri</string>
-    <!-- Button text asking for access to camera permissions -->
-    <string name="CameraXFragment_allow_access">Tillat Tilgang</string>
-    <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="CameraXFragment_allow_access_camera_microphone">Gi tilgang til kameraet og mikrofonen</string>
-    <!-- Dialog title asking users for camera permission -->
-    <string name="CameraXFragment_allow_access_camera">Gi tilgang til kameraet</string>
-    <!-- Dialog title asking users for microphone permission -->
-    <string name="CameraXFragment_allow_access_microphone">Gi tilgang til mikrofonen</string>
-    <!-- Text explaining why Signal needs camera access in order to take photos -->
-    <string name="CameraXFragment_to_capture_photos_allow_camera">Gi Signal tilgang til kameraet for å ta bilder.</string>
-    <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
-    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">Du må gi Signal «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
-    <!-- Text explaining why Signal needs camera and microphone access in order to take photos and videos -->
-    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">Gi Signal tilgang til kameraet og mikrofonen for å ta bilder og spille inn videoer.</string>
-    <!-- Text explaining why Signal needs microphone access to take videos -->
-    <string name="CameraXFragment_to_capture_videos_with_sound">Gi Signal tilgang til mikrofonen for å spille inn videoer med lyd.</string>
-    <!-- Text explaining why Signal needs camera access to scan QR codes -->
-    <string name="CameraXFragment_to_scan_qr_code_allow_camera">Gi Signal tilgang til kameraet for å skanne QR-koder.</string>
-    <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
-    <string name="CameraXFragment_signal_needs_camera_access_capture_photos">Du må gi Signal tilgang til kameraet for å ta bilder</string>
-    <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
-    <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">Du må gi Signal tilgang til kameraet for å skanne QR-koder</string>
-    <!-- Toast dialog explaining why Signal needs microphone permissions -->
-    <string name="CameraXFragment_signal_needs_microphone_access_video">Du må gi Signal tilgang til mikrofonen for å spille inn videoer</string>
-    <!-- Dialog description that explains the steps needed to give camera permission -->
-    <string name="CameraXFragment_to_capture_photos">Slik tar du bilder i Signal:</string>
-    <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
-    <string name="CameraXFragment_to_capture_photos_videos">Slik tar du bilder og spiller inn videoer i Signal:</string>
-    <!-- Dialog description that explains the steps needed to give microphone permission -->
-    <string name="CameraXFragment_to_capture_videos">Slik spiller du inn videoer med lyd:</string>
-    <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
-    <string name="CameraXFragment_to_scan_qr_codes">Slik skanner du QR-koder:</string>
-    <!-- Error message shown when we try to take a photo, but fail -->
-    <string name="CameraXFragment_photo_capture_failed">Kunne ikke ta bildet. Prøv igjen.</string>
-    <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
-    <string name="CameraXFragment_photo_processing_failed">Kunne ikke behandle bildet. Prøv igjen.</string>
-    <!-- Accessibility label for the switch camera button -->
-    <string name="CameraXFragment_switch_camera">Bytt kamera</string>
-    <!-- Accessibility label for flash button when flash is off -->
-    <string name="CameraXFragment_flash_off">Blits av</string>
-    <!-- Accessibility label for flash button when flash is on -->
-    <string name="CameraXFragment_flash_on">Blits på</string>
-    <!-- Accessibility label for flash button when flash is set to auto -->
-    <string name="CameraXFragment_flash_auto">Automatisk blits</string>
-    <!-- Accessibility label for the send button in media selection -->
-    <string name="CameraXFragment_send">Send</string>
 
     <string name="CameraContacts__menu_search">Søk</string>
 
@@ -530,7 +474,6 @@
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal krever tillatelse fra systemet for å kunne ta bilder eller filme, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Du må gi Signal «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
     <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Aktiver mikrofonens tillatelse til å ta opp videoer med lyd.</string>
-    <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal trenger mikrofontillatelser for å spille inn videoer, men de har blitt nektet. Vennligst fortsett til appinnstillingene, velg \"Tillatelser\" og aktiver \"Mikrofon\" og \"Kamera\".</string>
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal trenger mikrofontillatelser for å spille inn videoer.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
@@ -672,6 +615,8 @@
     <string name="ConversationFragment__update_build">Oppdater Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">Registrer deg for Signal på nytt</string>
+    <!-- Action shown in the conversation input area to allow a user to re-link this device as it is no longer linked -->
+    <string name="ConversationFragment__relink_signal">Koble til på nytt</string>
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
     <string name="ConversationFragment__content_description_back_button">Gå tilbake.</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
@@ -721,6 +666,12 @@
     <string name="ConversationFragment_group_names">Gruppenavn</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Bildet kunne ikke lastes ned. Prøv på nytt.</string>
+    <!-- Title of the dialog shown when re-requesting an expired attachment from your primary device fails -->
+    <string name="ConversationFragment_attachment_backfill_failed_title">Kunne ikke laste ned mediefilene</string>
+    <!-- Body of the dialog shown when your phone didn\'t respond to a request to re-send an expired attachment -->
+    <string name="ConversationFragment_attachment_backfill_timeout">Kontroller internettforbindelsen på mobilen din og denne enheten. Åpne Signal på telefonen, og prøv å laste ned filen på nytt.</string>
+    <!-- Body of the dialog shown when your phone no longer has the attachment you tried to download -->
+    <string name="ConversationFragment_attachment_backfill_not_found">Denne mediefilen er ikke lenger tilgjengelig på telefonen din og kan derfor ikke lastes ned.</string>
     <!-- Dialog for how to long to keep a messaged pinned for -->
     <string name="ConversationFragment__keep_pinned">Hvor lenge skal den være festet?</string>
     <!-- Dialog option to keep message pin for 24 hours -->
@@ -1021,7 +972,6 @@
     <string name="CustomDefaultPreference_none">Ingen</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Å ta bilder krever tilgang til kameraet.</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Å se bildegalleriet krever tilgang til lagringsområdene.</string>
 
     <!-- DateUtils -->
@@ -1502,6 +1452,12 @@
     <string name="AddGroupDetailsFragment__remove">Fjern</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Vil du fjerne %1$s fra denne gruppen?</string>
+    <!-- Title of the dialog shown when tapping an existing group while creating a new group, confirming the user wants to leave and discard their in-progress group -->
+    <string name="AddGroupDetailsFragment__discard_group">Vil du forkaste gruppen?</string>
+    <!-- Body of the dialog shown when tapping an existing group while creating a new group. Placeholder is the name of the group being navigated to. -->
+    <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">Hvis du går tilbake til gruppen «%1$s», forkastes endringene dine.</string>
+    <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
+    <string name="AddGroupDetailsFragment__discard">Forkast</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Du har valgt en kontakt som ikke støtter Signal-grupper, så denne gruppen er MMS. Egendefinerte navn og bilder i MMS-gruppen vises kun for deg.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -2931,6 +2887,8 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">Ingen resultater funnet for \'%1$s\'</string>
+    <!-- Text shown when no search results are found.   -->
+    <string name="SearchFragment_no_results_empty">Fant ingen resultater</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -3394,7 +3352,7 @@
     <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">Feil</string>
     <!-- Notification channel name for internal-only app issue notifications. Only ever shown to internal users. -->
-    <string name="NotificationChannel_internal_issues">Internal Issues</string>
+    <string name="NotificationChannel_internal_issues">Interne problemer</string>
     <string name="NotificationChannel_backups">Sikkerhetskopiering</string>
     <string name="NotificationChannel_locked_status">Lås status</string>
     <string name="NotificationChannel_app_updates">Oppdateringer</string>
@@ -3460,11 +3418,11 @@
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_media">Mediefilen(e) kan ikke lagres</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__media_offloaded_message">Denne mediefilen har blitt avlastet fra enheten din fordi «Optimaliser lagring på enheten» er slått på. Du kan laste ned én mediefil om gangen, eller slå av «Optimaliser lagring på enheten» for å laste ned alle filene på én gang.</string>
+    <string name="AttachmentSaver__media_offloaded_message">Denne mediefilen har blitt avlastet fra enheten din fordi «Optimal lagring på Signal» er slått på. Du kan laste ned én mediefil om gangen, eller slå av «Optimal lagring på Signal» for å laste ned alle filene på én gang.</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_all_items">Enkelte elementer kan ikke lagres</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">Enkelte av filene du har valgt, har blitt avlastet fra enheten din fordi «Optimaliser lagring på enheten» er slått på. Du kan lagre én mediefil om gangen, eller slå av «Optimaliser lagring på enheten» for å lagre alle filene på én gang.</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">Enkelte av filene du har valgt, har blitt avlastet fra enheten din fordi «Optimal lagring på Signal» er slått på. Du kan lagre én mediefil om gangen, eller slå av «Optimal lagring på Signal» for å lagre alle filene på én gang.</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
     <string name="AttachmentSaver__view_storage_settings">Åpne lagringsinnstillingene</string>
 
@@ -3533,6 +3491,10 @@
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Denne enheten er ikke lenger registrert. Dette skyldes sannsynligvis at du registrerte telefonnummeret ditt på Signal med en annen enhet.</string>
     <!-- Action in reminder banner that will take user to re-register -->
     <string name="UnauthorizedReminder_reregister_action">Registrer enheten på nytt</string>
+    <!-- Message shown in a reminder banner when this linked device is no longer linked to a primary device -->
+    <string name="UnauthorizedReminder_this_device_is_no_longer_linked_relink_to_continue_messaging">Denne enheten er ikke lenger tilkoblet. Koble telefonen til Signal igjen for å fortsette å sende meldinger.</string>
+    <!-- Action in reminder banner that will take the user to re-link this device -->
+    <string name="UnauthorizedReminder_relink_action">Koble til enheten på nytt</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">Du har blitt logget av Signal på denne enheten.</string>
@@ -5145,6 +5107,32 @@
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Kunne ikke slette data</string>
 
+    <!-- LinkedDeviceAccountSettingsFragment -->
+    <!-- Title of an informational card shown on the account settings screen of a linked device -->
+    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">This is a linked device</string>
+    <!-- Body of an informational card explaining that account settings must be managed from the primary device -->
+    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">To manage your account settings, open Signal on your primary device.</string>
+    <!-- Title of a settings row that deletes all Signal data from this linked device -->
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Delete app data</string>
+    <!-- Subtitle of the delete app data row explaining what it does -->
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">This will remove all data from the Signal app on this device.</string>
+    <!-- Title of the confirmation dialog shown when deleting app data from a linked device -->
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">Delete app data?</string>
+    <!-- Message of the confirmation dialog explaining that only this device\'s data is deleted, not the account -->
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">This will delete all data and messages from the Signal app on this device. Your Signal account and data on your primary device or other linked devices will not be deleted. The app will close after this process is complete.</string>
+
+    <!-- LinkedDeviceAccountLearnMoreBottomSheet -->
+    <!-- Emphasized lead-in phrase shown in bold at the start of the learn more sheet body. Must appear verbatim within LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access. -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Linked Devices</string>
+    <!-- Body text of the linked devices learn more sheet. The leading \"Linked Devices\" is shown in bold. -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Linked Devices let you access your Signal account and messages securely on any of your additional devices.</string>
+    <!-- Bullet point describing what devices can be linked -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">You can link a desktop, tablet or additional phone</string>
+    <!-- Bullet point describing that the primary device manages linked devices -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Your primary device manages what\'s linked, you can link up to 5 devices.</string>
+    <!-- Bullet point describing that some settings are only available on the primary device -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Some account settings are managed on your primary device only, including account settings and backups.</string>
+
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Overfør eller gjenopprett konto</string>
     <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Hvis du tidligere har registrert en Signal-konto kan du overføre eller gjenopprette kontoen og meldinger</string>
@@ -6058,10 +6046,6 @@
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Å sende høykvalitetsmedier vil bruke mer data.</string>
     <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
     <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Talemeldinger og klistremerker (under %1$s) lastes alltid ned automatisk.</string>
-    <!-- Setting option that can be selected to default media to be sent as high quality by default -->
-    <string name="DataAndStorageSettingsFragment__high">Høy</string>
-    <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
-    <string name="DataAndStorageSettingsFragment__standard">Standard</string>
     <string name="DataAndStorageSettingsFragment__calls">Samtaler</string>
     <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
     <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Hold deg pålogget i bakgrunnen</string>
@@ -8287,6 +8271,12 @@
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
     <string name="OnDeviceBackupsScreen__to_restore_a_backup">"For å gjenopprette en sikkerhetskopi må du installere en ny kopi av Signal. Åpne appen, trykk på «Gjenopprett sikkerhetskopi», og finn mappen med sikkerhetskopien."</string>
+    <!-- Body of a dialog shown when turning on on-device backups while "Optimize Signal storage" is enabled, warning that optimized media won\'t be included -->
+    <string name="OnDeviceBackupsScreen__you_have_optimize_signal_storage_on">Du har slått på «Optimal lagring på Signal». Hvis du ønsker å inkludere alle mediefilene i den lokale sikkerhetskopien, må du slå av dette.</string>
+    <!-- Dialog action that takes the user to the "Optimize Signal storage" setting -->
+    <string name="OnDeviceBackupsScreen__view_setting">Gå til innstillinger</string>
+    <!-- Dialog action to proceed with turning on on-device backups without turning off "Optimize Signal storage" -->
+    <string name="OnDeviceBackupsScreen__continue_without_turning_off">Fortsett uten å slå av</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Bekreft sikkerhetskoden din</string>
@@ -8663,13 +8653,19 @@
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_description">Når dette er slått på, slettes også meldinger fra de tilkoblede enhetene dine.</string>
     <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Lagring på enheten</string>
+    <string name="ManageStorageSettingsFragment__on_device_storage">Lagring på Signal</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimaliser lagring på enheten</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimal lagring på Signal</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Ubrukte mediefiler fjernes, men kan lastes ned fra sikkerhetskopien når som helst.</string>
     <!-- Dialog message for paid tier pending dialog -->
     <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Optimalisering av lagring kan kun brukes med betalingsabonnement på sikkerhetskopiering av Signal. Abonnementet ditt er ikke aktivert ennå. Prøv igjen senere.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Mediefilene fjernes fra den lokale sikkerhetskopien din</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Du kan slå på «Optimal lagring på Signal» for å avlaste de gamle mediefilene på enheten din. Du kan laste dem ned igjen når du ønsker. Dette sletter også gamle mediefiler fra den lokale sikkerhetskopien.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">Slå på</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8752,6 +8748,8 @@
     <string name="BackupsSettingsFragment__subscription_canceled">Abonnementet er sagt opp</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatisk sikkerhetskopiering med Signals trygge, ende-til-ende-krypterte lagringstjeneste.</string>
+    <!-- Subtitle shown on a linked device when backups are off, directing the user to set them up on their phone -->
+    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Automatic backups with Signal\'s secure end-to-end encrypted storage service. Get started on your phone.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Fant ingen abonnementer på denne enheten."</string>
     <!-- Action button label to set up backups -->
@@ -8769,7 +8767,7 @@
     <!-- Displayed as a label when remote backups are off -->
     <string name="RemoteBackupsSettingsFragment__off">Av</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
-    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Autentisering kreves</string>
+    <string name="RemoteBackupsSettingsFragment__authentication_required">Autentisering kreves</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Betalingshistorikk</string>
     <!-- Section header for backup information -->
@@ -8855,6 +8853,16 @@
     <string name="RemoteBackupsSettingsFragment__s_at_s">%1$s kl. %2$s</string>
     <!-- Subtext describing when a backup has never taken place. -->
     <string name="RemoteBackupsSettingsFragment__never">Aldri</string>
+    <!-- Subtext on a linked device describing when the primary device last backed up. Placeholder is the formatted date and time. -->
+    <string name="RemoteBackupsSettingsFragment__your_phone_s">Your phone · %1$s</string>
+    <!-- Message shown on a linked device with a free backup plan explaining that the subscription is managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">You can manage or upgrade your Signal Secure Backups subscription on your primary device.</string>
+    <!-- Message shown on a linked device with a paid backup plan explaining that the subscription is managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">You can manage or cancel your Signal Secure Backups subscription on your primary device.</string>
+    <!-- Message shown on a linked device with a canceled backup subscription explaining that the subscription is managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">You can manage or renew your Signal Secure Backups subscription on your primary device.</string>
+    <!-- Message shown on a linked device when backups are off or the subscription was not found, explaining that backups are managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">You can manage or upgrade Signal Secure Backups on your primary device.</string>
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">Sikkerhetskopier nå</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
@@ -9146,19 +9154,37 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">Last ned mediefiler</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Du må slå av «Optimaliser lagring» og vente til mediefilene er lastet ned, før du kan lage en ny sikkerhetskode. Du kan lage den nye koden når nedlastingen er fullført.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Du må slå av «Optimal lagring på Signal» og vente til mediefilene er lastet ned, før du kan opprette en ny sikkerhetskode. Du kan opprette den nye koden når nedlastingen er fullført.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Slå av og last ned</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Lag en ny sikkerhetskode</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Du trenger bare å lage en ny kode dersom uvedkommende har fått tilgang til koden din. Du må laste opp sikkerhetskopien og mediefilene dine på nytt. Hvis du bruker «optimaliser lagring», må du laste ned de avlastede mediefilene først.</string>
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Du trenger bare å opprette en ny kode dersom uvedkommende har fått tilgang til koden din. Du må laste opp sikkerhetskopien og mediefilene dine på nytt. Hvis du bruker «Optimal lagring på Signal», må du laste ned de avlastede mediefilene først.</string>
     <!-- Dialog title shown when user attempts to exit backup setup before completion -->
     <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Vil du avslutte konfigureringen?</string>
     <!-- Dialog body warning user that backup setup is incomplete -->
     <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Du har ikke konfigurert sikkerhetskopiering ennå, og ingen sikkerhetskopier har blitt opprettet. Du kan aktivere sikkerhetskopiering via innstillingene.</string>
     <!-- Dialog confirmation button to exit backup setup -->
     <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Avslutt konfigurering</string>
+    <!-- Screen title when saving your recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__save_your_recovery_key">Lagre sikkerhetskoden din</string>
+    <!-- Screen subtitle for the recovery key screen -->
+    <string name="MessageBackupsKeyRecordScreen__your_recovery_key">Sikkerhetskoden din består av 64 tegn og kan brukes til å gjenopprette sikkerhetskopiene dine. Hvis du glemmer koden, kan du ikke gjenopprette kontoen din.</string>
+    <!-- Hint text to see the full recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__see_full_key">Se hele koden</string>
+    <!-- Bottom sheet caption to confirm your recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_that_your_recovery">Sjekk om sikkerhetskoden er skrevet inn riktig. Du blir bedt om å skrive inn det lagrede passordet ditt i neste trinn.</string>
+    <!-- Button to confirm the recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_recovery">Bekreft sikkerhetskoden</string>
+    <!-- Toast shown when the key is confirmed -->
+    <string name="MessageBackupsKeyRecordScreen__recover_key_confirmed">Sikkerhetskoden er bekreftet</string>
+    <!-- Dialog title shown when the recovery key fails to confirm -->
+    <string name="MessageBackupsKeyRecordScreen__recover_key_error">Feil ved bekreftelse av sikkerhetskoden</string>
+    <!-- Dialog body shown when the recovery key fails to confirm -->
+    <string name="MessageBackupsKeyRecordScreen__recover_key_error_body">Sikkerhetskoden din kunne ikke bekreftes. Sørg for at du har lagret den i passordverktøyet ditt, eller lagre den manuelt.</string>
+    <!-- Button option to save the key manually -->
+    <string name="MessageBackupsKeyRecordScreen__save_key_manually">Lagre koden manuelt</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -9891,8 +9917,28 @@
     <!-- Body for screen shown to let the user know that displaying their member label will take priority over their about text. -->
     <string name="MemberLabelsAboutOverride__body">I denne gruppen vises medlemsmerket ved siden av profilbildet ditt.</string>
 
-    <!-- Label for internal-only section showing groups with same members -->
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
+    <!-- Header for the section shown when creating a group that lists existing groups with the exact same members. Includes the number of such groups. -->
+    <plurals name="AddGroupDetailsFragment__d_groups_with_same_members">
+        <item quantity="one">%1$d gruppe med de samme medlemmene</item>
+        <item quantity="other">%1$d grupper med de samme medlemmene</item>
+    </plurals>
+
+    <!-- Header for a section showing all group member -->
+    <string name="MemberSearchFragment__search_members">Søk etter medlemmer</string>
+    <!-- Header for a section showing all group members who are contacts -->
+    <string name="MemberSearchFragment__search_contacts">Søk etter kontakter</string>
+    <!-- Header for a section showing all group member who are admins -->
+    <string name="MemberSearchFragment__search_admins">Søk etter administratorer</string>
+    <!-- Dialog title to filter search by -->
+    <string name="MemberSearchFragment__filter">Filtrer etter</string>
+    <!-- Dialog option for all group members -->
+    <string name="MemberSearchFragment__filter_all_members">Alle medlemmer</string>
+    <!-- Dialog option for group admins -->
+    <string name="MemberSearchFragment__filter_admins">Administratorer</string>
+    <!-- Dialog option for your contacts -->
+    <string name="MemberSearchFragment__filter_contacts">Kontakter</string>
+    <!-- Button to invite members via a group link -->
+    <string name="MemberSearchFragment__invite_via">Inviter via gruppelenke</string>
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
     <string name="CouldNotCompleteBackupRestoreSheet__title">Gjenoppretting er ikke mulig</string>
@@ -9944,7 +9990,7 @@
     <!-- Button opening a help article with more information about recovery key safety -->
     <string name="RecoveryKeyWarningSheetContent__learn_more">Les mer</string>
     <!-- Inline link opening a help article with more information about recovery key safety -->
-    <string name="RecoveryKeyWarningSheetContent__learn_more_period">Lær mer.</string>
+    <string name="RecoveryKeyWarningSheetContent__learn_more_period">Les mer.</string>
     <!-- Button declining to paste/share the recovery key, dismissing the warning sheet -->
     <string name="RecoveryKeyWarningSheetContent__do_not_share_key">Ikke del koden</string>
     <!-- Button indicating the user wants to proceed with sharing/pasting the recovery key, which shows a final confirmation -->

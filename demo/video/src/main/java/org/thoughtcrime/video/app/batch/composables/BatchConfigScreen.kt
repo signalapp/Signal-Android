@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.thoughtcrime.video.app.batch.BatchTranscodeViewModel
+import org.thoughtcrime.video.app.transcode.TranscodeQuality
 import org.thoughtcrime.video.app.transcode.TranscodeSettings
 import org.thoughtcrime.video.app.transcode.VideoResolution
 import org.thoughtcrime.video.app.ui.composables.LabeledButton
@@ -101,11 +102,11 @@ fun BatchConfigScreen(
         modifier = Modifier.fillMaxWidth()
       ) {
         Column(modifier = Modifier.weight(1f)) {
-          if (profile.isPreset) {
-            Text("Preset: ${profile.presetName}", style = MaterialTheme.typography.bodyMedium)
+          if (profile.quality != null) {
+            Text("Quality: ${profile.quality.name}", style = MaterialTheme.typography.bodyMedium)
           } else {
             Text(
-              "${profile.videoResolution.shortEdge}p / ${if (profile.useHevc) "H.265" else "H.264"} / ${"%.1f".format(profile.videoMegaBitrate)} Mbps",
+              "${profile.videoResolution.shortEdge}p / ${"%.1f".format(profile.videoMegaBitrate)} Mbps",
               style = MaterialTheme.typography.bodyMedium
             )
           }
@@ -154,24 +155,20 @@ private fun BatchConfigScreenWithProfilesPreview() {
   val vm: BatchTranscodeViewModel = viewModel()
   vm.addProfile(
     TranscodeSettings(
-      isPreset = true,
-      presetName = "LEVEL_2",
+      quality = TranscodeQuality.STANDARD,
       videoResolution = VideoResolution.SD,
       videoMegaBitrate = 1.25f,
       audioKiloBitrate = 128,
-      useHevc = false,
       enableFastStart = true,
       enableAudioRemux = true
     )
   )
   vm.addProfile(
     TranscodeSettings(
-      isPreset = false,
-      presetName = null,
+      quality = null,
       videoResolution = VideoResolution.HD,
       videoMegaBitrate = 2.5f,
       audioKiloBitrate = 192,
-      useHevc = true,
       enableFastStart = true,
       enableAudioRemux = false
     )

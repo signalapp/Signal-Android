@@ -22,23 +22,22 @@ import com.airbnb.lottie.SimpleColorFilter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import org.signal.core.ui.compose.SignalIcons;
+import org.signal.core.models.media.Media;
+import org.signal.core.ui.logging.LoggingFragment;
 import org.signal.core.util.EditTextUtil;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
-import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.Avatars;
 import org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment;
 import org.thoughtcrime.securesms.databinding.CreateProfileFragmentBinding;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.profiles.edit.pnp.WhoCanFindMeByPhoneNumberFragment;
 import org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment;
-import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -47,7 +46,6 @@ import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
 
 import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.EXCLUDE_SYSTEM;
 import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.GROUP_ID;
@@ -119,7 +117,7 @@ public class CreateProfileFragment extends LoggingFragment {
   private void handleMediaFromResult(@NonNull Media media) {
     SimpleTask.run(() -> {
       try {
-        InputStream stream = BlobProvider.getInstance().getStream(requireContext(), media.getUri());
+        InputStream stream = AppDependencies.getBlobs().getStream(requireContext(), media.getUri());
 
         return StreamUtil.readFully(stream);
       } catch (IOException ioException) {

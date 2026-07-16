@@ -12,16 +12,17 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.Stopwatch;
+import org.signal.core.util.androidx.DocumentFileUtil;
+import org.signal.core.util.androidx.DocumentFileUtil.OperationResult;
+import org.signal.core.util.crypto.AttachmentSecretProvider;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupEvent;
 import org.thoughtcrime.securesms.backup.BackupFileIOError;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.backup.BackupVerifier;
-import org.signal.core.util.androidx.DocumentFileUtil;
-import org.signal.core.util.androidx.DocumentFileUtil.OperationResult;
 import org.thoughtcrime.securesms.backup.FullBackupExporter;
-import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
+import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -130,7 +131,7 @@ public final class LocalBackupJobApi29 extends BaseJob {
       try {
         Stopwatch   stopwatch     = new Stopwatch("backup-export");
         BackupEvent finishedEvent = FullBackupExporter.export(context,
-                                                              AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
+                                                              AttachmentSecretProvider.getInstance(context, AppAttachmentSecretStore.INSTANCE).getOrCreateAttachmentSecret(),
                                                               SignalDatabase.getBackupDatabase(),
                                                               temporaryFile,
                                                               backupPassword,

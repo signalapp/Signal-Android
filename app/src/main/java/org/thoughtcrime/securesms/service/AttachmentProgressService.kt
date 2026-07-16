@@ -168,7 +168,7 @@ class AttachmentProgressService : SafeForegroundService() {
   }
 
   class Controller(private val context: Context, title: String) : AutoCloseable {
-    private val coroutineScope = CoroutineScope(Dispatchers.IO)
+    private val coroutineScope = CoroutineScope(Dispatchers.Default)
     private val progressFlow = MutableSharedFlow<Float>(replay = 0, extraBufferCapacity = 1)
 
     init {

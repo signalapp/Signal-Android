@@ -27,6 +27,9 @@ interface BackupKeyCredentialManagerHandler {
   /** Called when the user confirms they want to save the backup key to the password manager. */
   fun onBackupKeySaveConfirmed() = updateBackupKeySaveState(BackupKeySaveState.AwaitingCredentialManager(isRetry = false))
 
+  /** Called to clear the key save state. */
+  fun onBackupKeySaveStateCleared() = updateBackupKeySaveState(null)
+
   /** Handles the password manager save operation response. */
   fun onBackupKeySaveCompleted(result: CredentialManagerResult) {
     when (result) {

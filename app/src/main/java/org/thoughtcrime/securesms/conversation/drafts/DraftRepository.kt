@@ -40,7 +40,6 @@ import org.thoughtcrime.securesms.mms.QuoteId
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideFactory
 import org.thoughtcrime.securesms.mms.StickerSlide
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor
@@ -161,7 +160,7 @@ class DraftRepository(
   fun deleteVoiceNoteDraftData(draft: DraftTable.Draft?) {
     if (draft != null) {
       SignalExecutors.BOUNDED.execute {
-        BlobProvider.getInstance().delete(context, Uri.parse(draft.value).buildUpon().clearQuery().build())
+        AppDependencies.blobs.delete(context, Uri.parse(draft.value).buildUpon().clearQuery().build())
       }
     }
   }

@@ -93,9 +93,9 @@ private fun TranscodeApp() {
 
   NavDisplay(
     backStack = backStack,
-    transitionSpec = TransitionSpecs.HorizontalSlide.transitionSpec,
-    popTransitionSpec = TransitionSpecs.HorizontalSlide.popTransitionSpec,
-    predictivePopTransitionSpec = TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec,
+    transitionSpec = { TransitionSpecs.HorizontalSlide.transitionSpec },
+    popTransitionSpec = { TransitionSpecs.HorizontalSlide.popTransitionSpec },
+    predictivePopTransitionSpec = { TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec },
     entryProvider = entryProvider {
       addEntryProvider(
         key = Screen.Home,

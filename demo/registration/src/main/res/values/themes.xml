@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--
+    Material3 (a Theme.AppCompat descendant) so View-based Material components such as
+    MaterialAlertDialogBuilder work. The Compose UI supplies its own theme via SignalTheme.
+  -->
+  <style name="Theme.RegistrationSample" parent="Theme.Material3.DayNight.NoActionBar" />
+</resources>

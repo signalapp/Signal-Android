@@ -6,6 +6,7 @@
 package org.whispersystems.signalservice.api.crypto
 
 import org.signal.core.util.stream.NullOutputStream
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import java.io.InputStream
 
 object AttachmentCipherStreamUtil {
@@ -25,6 +26,11 @@ object AttachmentCipherStreamUtil {
   @JvmStatic
   fun getPlaintextLength(ciphertextLength: Long): Long {
     return ((ciphertextLength - 16 - 32) / 16 - 1) * 16
+  }
+
+  @JvmStatic
+  fun getMaxPlaintextSizeForCiphertext(ciphertextMax: Long): Long {
+    return PaddingInputStream.getMaxUnpaddedSize(getPlaintextLength(ciphertextMax))
   }
 
   /**

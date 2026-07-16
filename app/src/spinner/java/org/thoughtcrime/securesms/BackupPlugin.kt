@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -56,7 +55,7 @@ class BackupPlugin : Plugin {
 
   private fun getSelectedRemoteBackup(): String {
     Log.d(TAG, "Downloading file...")
-    val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
+    val tempBackupFile = AppDependencies.blobs.forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
 
     when (val result = BackupRepository.downloadBackupFile(tempBackupFile)) {
       is NetworkResult.Success -> Log.i(TAG, "Download successful")

@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
+import org.thoughtcrime.video.app.transcode.TranscodeQuality
 import org.thoughtcrime.video.app.transcode.TranscodeSettings
 import org.thoughtcrime.video.app.transcode.TranscodingState
 import org.thoughtcrime.video.app.transcode.VideoResolution
@@ -104,15 +105,14 @@ fun TranscodingScreen(
 
         Text("Transcode Settings", style = MaterialTheme.typography.titleMedium)
         Spacer(modifier = Modifier.height(4.dp))
-        if (state.settings.isPreset) {
-          StatsText("Mode: Preset (${state.settings.presetName})")
+        if (state.settings.quality != null) {
+          StatsText("Mode: ${state.settings.quality.name}")
         } else {
           StatsText("Mode: Custom")
         }
         StatsText("Resolution: ${state.settings.videoResolution.name} (${state.settings.videoResolution.shortEdge}p)")
         StatsText("Video bitrate: ${"%.2f".format(state.settings.videoMegaBitrate)} Mbps")
         StatsText("Audio bitrate: ${state.settings.audioKiloBitrate} kbps")
-        StatsText("Codec: ${if (state.settings.useHevc) "HEVC (H.265)" else "AVC (H.264)"}")
         StatsText("Fast start: ${if (state.settings.enableFastStart) "Yes" else "No"}")
         StatsText("Audio remux: ${if (state.settings.enableAudioRemux) "Yes" else "No"}")
         Spacer(modifier = Modifier.height(12.dp))
@@ -197,12 +197,10 @@ private fun TranscodingScreenCompletedPreview() {
       originalSize = 52_428_800L,
       outputSize = 12_582_912L,
       settings = TranscodeSettings(
-        isPreset = true,
-        presetName = "LEVEL_2",
+        quality = TranscodeQuality.STANDARD,
         videoResolution = VideoResolution.SD,
         videoMegaBitrate = 2.0f,
         audioKiloBitrate = 192,
-        useHevc = false,
         enableFastStart = true,
         enableAudioRemux = true
       )

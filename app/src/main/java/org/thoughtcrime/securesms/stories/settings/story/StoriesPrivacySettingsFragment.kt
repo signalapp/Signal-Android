@@ -61,12 +61,6 @@ class StoriesPrivacySettingsFragment :
 
     val (top, middle, bottom) = adapter.adapters
 
-    findNavController().addOnDestinationChangedListener { _, destination, _ ->
-      if (destination.id == R.id.storiesPrivacySettingsFragment) {
-        viewModel.pagingController.onDataInvalidated()
-      }
-    }
-
     @Suppress("UNCHECKED_CAST")
     ContactSearchModels.registerStoryItems(
       mappingAdapter = middle as PagingMappingAdapter<ContactSearchKey>,
@@ -103,6 +97,11 @@ class StoriesPrivacySettingsFragment :
       middle.submitList(getMiddleConfiguration(state).toMappingModelList())
       (bottom as MappingAdapter).submitList(getBottomConfiguration(state).toMappingModelList())
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    viewModel.pagingController.onDataInvalidated()
   }
 
   private fun getTopConfiguration(state: StoriesPrivacySettingsState): DSLConfiguration {

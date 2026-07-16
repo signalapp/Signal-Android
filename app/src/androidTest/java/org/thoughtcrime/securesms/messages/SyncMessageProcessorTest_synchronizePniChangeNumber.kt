@@ -236,8 +236,9 @@ class SyncMessageProcessorTest_synchronizePniChangeNumber {
   }
 
   @Test
-  fun skipsRedeliveryWhenPniAlreadyMatches() {
-    sendPniChangeNumber()
+  fun skipsRedeliveryWithSameServerTimestamp() {
+    val timestamp = messageHelper.nextStartTime()
+    sendPniChangeNumber(timestamp = timestamp)
     val afterFirstApply = captureOriginalState()
 
     val otherIdentity = IdentityKeyPair.generate()
@@ -247,10 +248,39 @@ class SyncMessageProcessorTest_synchronizePniChangeNumber {
       identityKeyPair = otherIdentity.serialize().toByteString(),
       signedPreKey = otherSignedPreKey.serialize().toByteString(),
       e164 = "+15555550100",
-      timestamp = messageHelper.nextStartTime() + 1000
+      timestamp = timestamp
     )
 
     assertOriginalStatePreserved(afterFirstApply)
+  }
+
+  @Test
+  fun reappliesWhenServerTimestampIsNewer() {
+    sendPniChangeNumber()
+
+    val secondPniUuid = UUID.randomUUID()
+    val secondPni = ServiceId.PNI.from(secondPniUuid)
+    val secondPniBytes = UuidUtil.toByteArray(secondPniUuid).toByteString()
+    val secondIdentity = IdentityKeyPair.generate()
+    val secondSignedPreKey = PreKeyUtil.generateSignedPreKey(9999, secondIdentity.privateKey)
+    val secondE164 = "+15555550100"
+    val secondRegistrationId = 7777
+
+    sendPniChangeNumber(
+      identityKeyPair = secondIdentity.serialize().toByteString(),
+      signedPreKey = secondSignedPreKey.serialize().toByteString(),
+      lastResortKyberPreKey = null,
+      registrationId = secondRegistrationId,
+      e164 = secondE164,
+      envelopePniBinary = secondPniBytes,
+      timestamp = messageHelper.nextStartTime() + 1000
+    )
+
+    assertThat(SignalStore.account.e164).isEqualTo(secondE164)
+    assertThat(SignalStore.account.pni).isEqualTo(secondPni)
+    assertThat(SignalStore.account.pniRegistrationId).isEqualTo(secondRegistrationId)
+    assertThat(SignalStore.account.pniIdentityKey.publicKey.serialize().toByteString())
+      .isEqualTo(secondIdentity.publicKey.serialize().toByteString())
   }
 
   @Test

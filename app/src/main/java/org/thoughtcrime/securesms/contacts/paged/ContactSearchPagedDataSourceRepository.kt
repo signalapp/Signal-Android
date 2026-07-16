@@ -6,6 +6,7 @@ import androidx.annotation.WorkerThread
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.signal.core.util.CursorUtil
+import org.signal.core.util.LRUCache
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.ContactRepository
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.GroupRecord
+import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupsInCommonRepository
 import org.thoughtcrime.securesms.groups.GroupsInCommonSummary
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -28,11 +30,13 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  * having to deal with database access.
  */
 open class ContactSearchPagedDataSourceRepository(
-  context: Context
+  context: Context,
+  selfTitle: String = context.getString(R.string.note_to_self)
 ) {
 
-  private val contactRepository = ContactRepository(context.getString(R.string.note_to_self))
+  private val contactRepository = ContactRepository(selfTitle)
   private val context = context.applicationContext
+  private val groupRecordCache = LRUCache<GroupId, GroupRecord?>(100)
 
   open fun getLatestStorySends(activeStoryCutoffDuration: Long): List<StorySend> {
     return SignalStore.story
@@ -43,8 +47,8 @@ open class ContactSearchPagedDataSourceRepository(
     return contactRepository.querySignalContacts(contactsSearchQuery)
   }
 
-  open fun queryGroupMemberContacts(query: String?): Cursor? {
-    return contactRepository.queryGroupMemberContacts(query ?: "")
+  open fun queryGroupMemberContacts(section: ContactSearchConfiguration.Section.GroupMembers, query: String?): Cursor? {
+    return contactRepository.queryGroupMemberContacts(query ?: "", section.groupId)
   }
 
   open fun getGroupSearchIterator(
@@ -141,5 +145,16 @@ open class ContactSearchPagedDataSourceRepository(
 
     val myStory = context.getString(R.string.Recipient_my_story)
     return myStory.contains(query, ignoreCase = true)
+  }
+
+  open fun getGroupRecord(groupId: GroupId): GroupRecord? {
+    if (!groupRecordCache.containsKey(groupId)) {
+      groupRecordCache[groupId] = SignalDatabase.groups.getGroup(groupId).orElse(null)
+    }
+    return groupRecordCache[groupId]
+  }
+
+  open fun clearGroupRecordCache() {
+    groupRecordCache.clear()
   }
 }

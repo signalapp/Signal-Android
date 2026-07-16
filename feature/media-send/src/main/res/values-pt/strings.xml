@@ -9,9 +9,99 @@
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">Adicionar uma mensagem</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
-  <string name="AddAMessageRow__open_emoji_keyboard">Open emoji keyboard</string>
+  <string name="AddAMessageRow__open_emoji_keyboard">Abrir teclado de emojis</string>
   <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
   <string name="AddAMessageRow__message">Mensagem</string>
   <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
   <string name="AddAMessageRow__next">Seguinte</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">Elevada</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">Standard</string>
+  <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
+  <string name="MediaSelectScreen__gallery">Galeria</string>
+  <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
+  <string name="MediaSelectScreen__next">Seguinte</string>
+  <!-- Label for the button that switches the capture screen to the camera. -->
+  <string name="MediaCaptureScreen__camera">Câmara</string>
+  <!-- Label for the button that switches the capture screen to the text story editor. -->
+  <string name="MediaCaptureScreen__text_story">História de texto</string>
+  <!-- Video editor play button content description -->
+  <string name="VideoEditorHud_play_video_description">Reproduzir vídeo</string>
+
+  <!-- CameraFragment -->
+  <!-- Toasted when user device does not support video recording -->
+  <string name="CameraFragment__video_recording_is_not_supported_on_your_device">A gravação de vídeo não é suportada no seu dispositivo</string>
+
+  <!-- CameraXFragment -->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Toque para fotografia, mantenha premido para vídeo</string>
+  <!-- Accessibility content description to describe the capture button when taking an image/video -->
+  <string name="CameraXFragment_capture_description">Capturar</string>
+  <string name="CameraXFragment_change_camera_description">Alterar câmara</string>
+  <string name="CameraXFragment_open_gallery_description">Abrir galeria</string>
+  <!-- Button text asking for access to camera permissions -->
+  <string name="CameraXFragment_allow_access">Permitir o acesso</string>
+  <!-- Dialog title asking users for camera and microphone permission -->
+  <string name="CameraXFragment_allow_access_camera_microphone">Permita o acesso à sua câmara e microfone</string>
+  <!-- Dialog title asking users for camera permission -->
+  <string name="CameraXFragment_allow_access_camera">Permita o acesso à câmara</string>
+  <!-- Dialog title asking users for microphone permission -->
+  <string name="CameraXFragment_allow_access_microphone">Permitir acesso ao seu microfone</string>
+  <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
+  <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">Para tirar fotografias e filmar vídeos, dê permissões ao Signal para acesso à câmara.</string>
+  <!-- Text explaining why Signal needs camera and microphone access in order to take photos and videos -->
+  <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">Para tirar fotografias e filmar vídeos, permita o acesso do Signal à câmara e microfone.</string>
+  <!-- Text explaining why Signal needs microphone access to take videos -->
+  <string name="CameraXFragment_to_capture_videos_with_sound">Para gravar vídeos com som, permita o acesso do Signal ao seu microfone.</string>
+  <!-- Text explaining why Signal needs camera access to scan QR codes -->
+  <string name="CameraXFragment_to_scan_qr_code_allow_camera">Para ler um código QR, permita o acesso do Signal à câmara.</string>
+  <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
+  <string name="CameraXFragment_signal_needs_camera_access_capture_photos">O Signal necessita de acesso à câmara para tirar fotos</string>
+  <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
+  <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">O Signal necessita de acesso à câmara para ler códigos QR</string>
+  <!-- Toast dialog explaining why Signal needs microphone permissions -->
+  <string name="CameraXFragment_signal_needs_microphone_access_video">O Signal necessita de acesso ao microfone para gravar vídeos</string>
+  <!-- Dialog description that explains the steps needed to give camera permission -->
+  <string name="CameraXFragment_to_capture_photos">Para tirar fotos no Signal</string>
+  <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
+  <string name="CameraXFragment_to_capture_photos_videos">Para tirar fotos e gravar vídeos no Signal:</string>
+  <!-- Dialog description that explains the steps needed to give microphone permission -->
+  <string name="CameraXFragment_to_capture_videos">Para gravar vídeos com som:</string>
+  <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
+  <string name="CameraXFragment_to_scan_qr_codes">Para ler códigos QR:</string>
+  <!-- Error message shown when we try to take a photo, but fail -->
+  <string name="CameraXFragment_photo_capture_failed">Falha ao capturar fotografia. Tente novamente.</string>
+  <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
+  <string name="CameraXFragment_photo_processing_failed">Falha ao processar fotografia. Tente novamente.</string>
+  <!-- Accessibility label for the switch camera button -->
+  <string name="CameraXFragment_switch_camera">Alternar câmara</string>
+  <!-- Accessibility label for flash button when flash is off -->
+  <string name="CameraXFragment_flash_off">Flash desligado</string>
+  <!-- Accessibility label for flash button when flash is on -->
+  <string name="CameraXFragment_flash_on">Flash ligado</string>
+  <!-- Accessibility label for flash button when flash is set to auto -->
+  <string name="CameraXFragment_flash_auto">Flash automático</string>
+  <!-- Accessibility label for the send button in media selection -->
+  <string name="CameraXFragment_send">Enviar</string>
+  <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
+  <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">O Sinal necessita de permissões de microfone para poder gravar vídeos. mas elas foram negadas. Por favor, avance até às definições das aplicações,. selecione o Signal e nas \"Permissões\", ative o \"Microfone\" e a \"Câmara\"</string>
+
+  <!-- Displayed when there is an error capturing video -->
+  <string name="MediaSendViewModel__error_recording_video">Erro ao gravar vídeo</string>
+  <!-- Displayed when there is an error capturing image -->
+  <string name="MediaSendViewModel__error_taking_photo">Erro ao tirar foto</string>
+
+  <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+  <string name="UsernameScannedDialog__username_dialog_title">Encontrou %1$s</string>
+  <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+  <string name="UsernameScannedDialog__username_dialog_body">Inicie um chat com \"%1$s\"</string>
+  <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+  <string name="UsernameScannedDialog__username_dialog_go_to_chat_button">Ir para o chat</string>
+
+  <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+  <string name="LinkedDeviceScannedDialog__device_link_dialog_title">Associar dispositivo?</string>
+  <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+  <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">Parece que está a tentar associar um dispositivo Signal. Toque em continuar e depois em \"Associe um novo dispositivo\" e leia novamente o código QR.</string>
+  <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+  <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">Continuar</string>
 </resources>

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
@@ -20,6 +21,7 @@ import org.thoughtcrime.securesms.BindableConversationListItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -53,11 +55,11 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   private final OnConversationClickListener                         onConversationClickListener;
   private final ClearFilterViewHolder.OnClearFilterClickListener    onClearFilterClicked;
   private final EmptyFolderViewHolder.OnFolderSettingsClickListener onFolderSettingsClicked;
-  private final Set<Long>                                           typingSet                     = new HashSet<>();
+  private final Set<Long> typingSet = new HashSet<>();
 
-  private       ConversationSet                                     selectedConversations         = new ConversationSet();
-  private       long                                                activeThreadId                = 0;
-  private       PagingController                                    pagingController;
+  private           ConversationSet  selectedConversations = new ConversationSet();
+  private @Nullable RecipientId      activeRecipientId     = null;
+  private           PagingController pagingController;
 
   protected ConversationListAdapter(@NonNull LifecycleOwner lifecycleOwner,
                                     @NonNull RequestManager requestManager,
@@ -154,7 +156,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
             case TYPING_INDICATOR -> vh.getConversationListItem().updateTypingIndicator(typingSet);
             case SELECTION -> vh.getConversationListItem().setSelectedConversations(selectedConversations);
             case TIMESTAMP -> vh.getConversationListItem().updateTimestamp();
-            case ACTIVE -> vh.getConversationListItem().setActiveThreadId(activeThreadId);
+            case ACTIVE -> vh.getConversationListItem().setActiveRecipientId(activeRecipientId);
           }
         }
       }
@@ -173,7 +175,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
                                             Locale.getDefault(),
                                             typingSet,
                                             selectedConversations,
-                                            activeThreadId);
+                                            activeRecipientId);
     } else if (holder.getItemViewType() == TYPE_HEADER) {
       HeaderViewHolder casted       = (HeaderViewHolder) holder;
       Conversation     conversation = Objects.requireNonNull(getItem(position));
@@ -232,8 +234,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     notifyItemRangeChanged(0, getItemCount(), Payload.SELECTION);
   }
 
-  void setActiveThreadId(long activeThreadId) {
-    this.activeThreadId = activeThreadId;
+  void setActiveRecipientId(@Nullable RecipientId activeRecipientId) {
+    this.activeRecipientId = activeRecipientId;
     notifyItemRangeChanged(0, getItemCount(), Payload.ACTIVE);
   }
 

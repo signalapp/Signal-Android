@@ -56,7 +56,7 @@ class AddToGroupsViewModel(
 
   private fun confirmAddToGroup(groupRecipientId: RecipientId) {
     viewModelScope.launch {
-      withContext(Dispatchers.IO) {
+      withContext(Dispatchers.Default) {
         if (!existingGroupMemberships.contains(groupRecipientId)) {
           internalUiState.update {
             it.copy(

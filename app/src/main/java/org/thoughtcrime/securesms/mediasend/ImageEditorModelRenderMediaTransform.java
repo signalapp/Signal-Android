@@ -13,8 +13,9 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.core.models.media.Media;
 import org.signal.imageeditor.core.model.EditorModel;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.fonts.FontTypefaceProvider;
-import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.signal.core.util.contentproviders.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.ByteArrayOutputStream;
@@ -45,10 +46,10 @@ public final class ImageEditorModelRenderMediaTransform implements MediaTransfor
     try {
       bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
 
-      Uri uri = BlobProvider.getInstance()
-                            .forData(outputStream.toByteArray())
-                            .withMimeType(MediaUtil.IMAGE_JPEG)
-                            .createForSingleSessionOnDisk(context);
+      Uri uri = AppDependencies.getBlobs()
+                               .forData(outputStream.toByteArray())
+                               .withMimeType(MediaUtil.IMAGE_JPEG)
+                               .createForSingleSessionOnDisk(context);
 
       return new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), outputStream.size(), 0, false, false, media.getBucketId(), media.getCaption(), null, null);
     } catch (IOException e) {

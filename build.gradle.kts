@@ -12,6 +12,7 @@ plugins {
   alias(libs.plugins.compose.compiler) apply false
   alias(libs.plugins.ktlint)
   alias(benchmarkLibs.plugins.baselineprofile) apply false
+  id("dependency-verification")
 }
 
 buildscript {
@@ -83,6 +84,25 @@ tasks.register("ci") {
   dependsOn("clean")
 }
 
+tasks.register("validateScreenshots") {
+  group = "Verification"
+  description = "Validates Compose screenshot tests. Intended to run only on CI, not local builds."
+}
+
+tasks.register("qaRemote") {
+  group = "Verification"
+  description = "Full qa plus screenshot validation. Intended to run on CI, not local builds."
+  dependsOn("qa")
+  dependsOn("validateScreenshots")
+}
+
+tasks.register("ciRemote") {
+  group = "Verification"
+  description = "Faster PR verification (ci) plus screenshot validation. Intended to run on CI, not local builds."
+  dependsOn("ci")
+  dependsOn("validateScreenshots")
+}
+
 // Wire up QA dependencies after all projects are evaluated
 gradle.projectsEvaluated {
   val appTestTask = tasks.findByPath(":Signal-Android:testPlayProdDebugUnitTest")!!
@@ -112,6 +132,11 @@ gradle.projectsEvaluated {
       testTask?.let { dependsOn(it) }
 
       subproject.tasks.findByName("lintDebug")?.let { dependsOn(it) }
+    }
+  }
+
+  tasks.named("validateScreenshots") {
+    subprojects.filter { it.name != "Signal-Android" }.forEach { subproject ->
       subproject.tasks.findByName("validateDebugScreenshotTest")?.let { dependsOn(it) }
     }
   }

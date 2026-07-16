@@ -251,24 +251,39 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
   )
 
   private fun consumePaymentsToNotifyUser(where: String, args: Array<Any>): List<InAppPayment> {
-    val hasUnnotified = readableDatabase.exists(TABLE_NAME)
-      .where(where, *args)
-      .run()
-    if (!hasUnnotified) return emptyList()
-
     return writableDatabase.withinTransaction { db ->
-      val payments = db.select()
+      val notifiable = db.select()
         .from(TABLE_NAME)
         .where(where, *args)
         .run()
         .readToList(mapper = { InAppPayment.deserialize(it) })
+        .filter { it.isInUserNotifiableState() }
 
-      db.update(TABLE_NAME).values(NOTIFIED to 1)
-        .where(where, *args)
-        .run()
+      for (payment in notifiable) {
+        db.update(TABLE_NAME).values(NOTIFIED to 1)
+          .where(ID_WHERE, payment.id)
+          .run()
+      }
 
-      payments
+      notifiable
     }
+  }
+
+  /**
+   * A payment is only worth notifying the user about once it has reached a state we have something to
+   * display for. That is either:
+   *
+   *  - [State.END]: the pipeline is complete (success when there's no error, a terminal failure or
+   *    cancellation when there is), or
+   *  - [State.PENDING] with an error: the long-running "your payment is processing" case. Per
+   *    [validateInAppPayment] a PENDING payment may only carry the keep-alive error.
+   *
+   * Payments still moving through the pipeline (CREATED, TRANSACTING, REQUIRES_ACTION,
+   * REQUIRED_ACTION_COMPLETED, WAITING_FOR_AUTHORIZATION, or PENDING without an error) have nothing to
+   * show yet and must not be consumed/marked notified, or the eventual terminal sheet would be suppressed.
+   */
+  private fun InAppPayment.isInUserNotifiableState(): Boolean {
+    return state == State.END || (state == State.PENDING && data.error != null)
   }
 
   fun getById(id: InAppPaymentId): InAppPayment? {

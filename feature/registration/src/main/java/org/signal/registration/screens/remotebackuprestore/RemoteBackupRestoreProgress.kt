@@ -5,6 +5,8 @@
 
 package org.signal.registration.screens.remotebackuprestore
 
+import org.signal.libsignal.zkgroup.profiles.ProfileKey
+
 /**
  * Progress events emitted during a remote backup restore operation.
  * Each value directly maps to a UI state for the progress dialog.
@@ -19,8 +21,17 @@ sealed interface RemoteBackupRestoreProgress {
   /** Finalizing the restore (post-import cleanup). */
   data object Finalizing : RemoteBackupRestoreProgress
 
-  /** Restore completed successfully. */
-  data object Complete : RemoteBackupRestoreProgress
+  /**
+   * Restore completed successfully.
+   * Provides registration-relevant data that was restored so that it isn't accidentally overridden.
+   *
+   * If any of the args are null, we will assume that they were unavailable in the backup, and will defer to
+   * values generated during registration.
+   */
+  data class Complete(
+    val restoredSvrPin: String?,
+    val restoredProfileKey: ProfileKey?
+  ) : RemoteBackupRestoreProgress
 
   /** Restore failed due to a network error (e.g. connection lost during download). */
   data class NetworkError(val cause: Throwable? = null) : RemoteBackupRestoreProgress

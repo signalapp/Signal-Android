@@ -2,7 +2,10 @@
 
 import com.android.build.api.artifact.ArtifactTransformationRequest
 import com.android.build.api.artifact.SingleArtifact
+import com.android.build.api.variant.HasAndroidTest
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.process.ExecOperations
+import org.gradle.work.DisableCachingByDefault
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import java.time.Instant
@@ -10,12 +13,14 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.Properties
+import javax.inject.Inject
 
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.ktlint)
   alias(libs.plugins.compose.compiler)
   alias(libs.plugins.kotlinx.serialization)
+  alias(testLibs.plugins.compose.screenshot)
   alias(benchmarkLibs.plugins.baselineprofile)
   id("androidx.navigation.safeargs")
   id("kotlin-parcelize")
@@ -27,8 +32,8 @@ plugins {
 val staticIps = Properties().apply { file("static-ips.properties").reader().use { load(it) } }
 staticIps.stringPropertyNames().forEach { rootProject.extra[it] = staticIps.getProperty(it) }
 
-val canonicalVersionCode = 1709
-val canonicalVersionName = "8.16.1"
+val canonicalVersionCode = 1720
+val canonicalVersionName = "8.20.0"
 val currentHotfixVersion = 0
 val maxHotfixVersions = 100
 
@@ -127,8 +132,26 @@ ktlint {
   version.set("1.5.0")
 }
 
+// ktlint only scans convention source dirs, so the shared dirs added to the compile tasks are
+// otherwise skipped. Add them to the base test/androidTest ktlint tasks so ktlintCheck/format cover them.
+tasks.withType(org.jlleitschuh.gradle.ktlint.tasks.BaseKtLintCheckTask::class.java).configureEach {
+  if (name.endsWith("OverTestSourceSet") || name.endsWith("OverAndroidTestSourceSet")) {
+    source("$projectDir/src/testShared")
+  }
+  if (name.endsWith("OverAndroidTestSourceSet")) {
+    source("$projectDir/src/benchmarkShared/java")
+  }
+}
+
+screenshotTests {
+  // Fraction of differing pixels tolerated before a screenshot test fails (0.0001 = 0.01%).
+  imageDifferenceThreshold = 0.0001f
+}
+
 android {
   namespace = "org.thoughtcrime.securesms"
+
+  experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
   buildToolsVersion = libs.versions.buildTools.get()
   compileSdkVersion(libs.versions.compileSdk.get())
@@ -590,6 +613,43 @@ androidComponents {
     }
     variant.sources.assets?.addGeneratedSourceDirectory(taskProvider) { it.outputDir }
   }
+
+  onVariants(selector().withName("playProdDebug")) { variant ->
+    val androidTest = (variant as? HasAndroidTest)?.androidTest ?: return@onVariants
+
+    tasks.register<FirebaseTestLabTask>("firebaseTestLab") {
+      group = "Verification"
+      description = "Runs the ${variant.name} instrumentation tests on Firebase Test Lab via the gcloud CLI. Run a single class with -Pftl.class=<fqcn>[#method]; override other defaults with -Pftl.* properties."
+
+      appApkDirectory.set(variant.artifacts.get(SingleArtifact.APK))
+      testApkDirectory.set(androidTest.artifacts.get(SingleArtifact.APK))
+
+      val deviceOverride = project.providers.gradleProperty("ftl.devices").orNull
+      devices.set(
+        deviceOverride?.split(";")?.map { it.trim() }?.filter { it.isNotEmpty() }
+          ?: listOf("model=Pixel2.arm,version=31,locale=en,orientation=portrait")
+      )
+
+      useOrchestrator.set(true)
+      environmentVariables.set(mapOf("clearPackageData" to "true"))
+      testTimeout.set(project.providers.gradleProperty("ftl.timeout").getOrElse("30m"))
+      numFlakyTestAttempts.set(project.providers.gradleProperty("ftl.numFlakyTestAttempts").map { it.toInt() }.getOrElse(1))
+      gcloudProject.set(project.providers.gradleProperty("ftl.project"))
+      resultsBucket.set(project.providers.gradleProperty("ftl.resultsBucket"))
+      resultsDir.set(project.providers.gradleProperty("ftl.resultsDir"))
+
+      val testClass = project.providers.gradleProperty("ftl.class").orNull?.takeIf { it.isNotBlank() }
+      testTargets.set(
+        if (testClass != null) "class $testClass" else project.providers.gradleProperty("ftl.testTargets").orNull
+      )
+      gcloudExecutable.set(project.providers.gradleProperty("ftl.gcloud").getOrElse("gcloud"))
+      extraArgs.set(
+        project.providers.gradleProperty("ftl.extraArgs").orNull
+          ?.split(" ")?.map { it.trim() }?.filter { it.isNotEmpty() }
+          ?: emptyList()
+      )
+    }
+  }
 }
 
 baselineProfile {
@@ -662,6 +722,7 @@ dependencies {
   implementation(libs.androidx.navigation.compose)
   implementation(libs.androidx.navigation3.runtime)
   implementation(libs.androidx.navigation3.ui)
+  implementation(libs.androidx.lifecycle.viewmodel.navigation3)
   implementation(libs.androidx.lifecycle.viewmodel.ktx)
   implementation(libs.androidx.lifecycle.livedata.ktx)
   implementation(libs.androidx.lifecycle.process)
@@ -712,6 +773,11 @@ dependencies {
   }
   implementation(libs.lottie)
   implementation(libs.lottie.compose)
+
+  // Compose screenshot testing
+  screenshotTestImplementation(testLibs.compose.screenshot.validation.api)
+  screenshotTestImplementation(libs.androidx.compose.ui.tooling.core)
+  screenshotTestImplementation(libs.androidx.compose.ui.tooling.preview)
   implementation(libs.signal.android.database.sqlcipher)
   implementation(libs.androidx.sqlite)
   testImplementation(libs.androidx.sqlite.framework)
@@ -776,8 +842,18 @@ dependencies {
 
   androidTestImplementation(platform(libs.androidx.compose.bom))
   androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+  androidTestImplementation(libs.androidx.compose.ui.test.manifest)
   androidTestImplementation(testLibs.androidx.test.ext.junit)
   androidTestImplementation(testLibs.espresso.core)
+  androidTestImplementation(testLibs.espresso.contrib) {
+    // espresso-contrib transitively pulls the full checkerframework jar (only its annotations are needed),
+    // whose MANIFEST.MF collides with other test dependencies during androidTest resource merging.
+    exclude(group = "org.checkerframework", module = "checker")
+    // accessibility-test-framework drags in an ancient com.google.protobuf:protobuf-lite:3.0.1 whose
+    // GeneratedMessageLite wins the merged dex and lacks registerDefaultInstance(Class, GeneratedMessageLite),
+    // crashing tests at runtime. We only use RecyclerViewActions from contrib, not the accessibility checks.
+    exclude(group = "com.google.android.apps.common.testing.accessibility.framework")
+  }
   androidTestImplementation(testLibs.androidx.test.core)
   androidTestImplementation(testLibs.androidx.test.core.ktx)
   androidTestImplementation(testLibs.androidx.test.ext.junit.ktx)
@@ -958,6 +1034,110 @@ abstract class CopyBenchmarkBackupTask : DefaultTask() {
     val backupFile = inputFile.get().asFile
     logger.lifecycle("Using benchmark backup: ${backupFile.absolutePath} (${backupFile.length() / 1024}KB)")
     backupFile.copyTo(dest.resolve("backup.binproto"), overwrite = true)
+  }
+}
+
+/**
+ * Runs an instrumentation test suite on Firebase Test Lab by shelling out to `gcloud firebase test android run`.
+ *
+ * The `gcloud` CLI must be installed and authenticated (`gcloud auth login` and a configured project, or an
+ * activated service account) before invoking this task.
+ */
+@DisableCachingByDefault(because = "Executes tests on remote devices; results must never be served from the build cache")
+abstract class FirebaseTestLabTask
+@Inject
+constructor(
+  private val execOperations: ExecOperations
+) : DefaultTask() {
+  @get:InputFiles
+  @get:PathSensitive(PathSensitivity.RELATIVE)
+  abstract val appApkDirectory: DirectoryProperty
+
+  @get:InputFiles
+  @get:PathSensitive(PathSensitivity.RELATIVE)
+  abstract val testApkDirectory: DirectoryProperty
+
+  @get:Input
+  abstract val devices: ListProperty<String>
+
+  @get:Input
+  abstract val useOrchestrator: Property<Boolean>
+
+  @get:Input
+  abstract val environmentVariables: MapProperty<String, String>
+
+  @get:Input
+  abstract val testTimeout: Property<String>
+
+  @get:Input
+  abstract val numFlakyTestAttempts: Property<Int>
+
+  @get:Input
+  @get:Optional
+  abstract val gcloudProject: Property<String>
+
+  @get:Input
+  @get:Optional
+  abstract val resultsBucket: Property<String>
+
+  @get:Input
+  @get:Optional
+  abstract val resultsDir: Property<String>
+
+  @get:Input
+  @get:Optional
+  abstract val testTargets: Property<String>
+
+  @get:Input
+  abstract val gcloudExecutable: Property<String>
+
+  @get:Input
+  abstract val extraArgs: ListProperty<String>
+
+  @TaskAction
+  fun run() {
+    val appApk = findApk(appApkDirectory.get().asFile, "app")
+    val testApk = findApk(testApkDirectory.get().asFile, "instrumentation test")
+
+    val arguments = mutableListOf(
+      gcloudExecutable.get(),
+      "firebase", "test", "android", "run",
+      "--type", "instrumentation",
+      "--app", appApk.absolutePath,
+      "--test", testApk.absolutePath,
+      "--timeout", testTimeout.get(),
+      "--num-flaky-test-attempts", numFlakyTestAttempts.get().toString()
+    )
+
+    devices.get().forEach { device ->
+      arguments += listOf("--device", device)
+    }
+
+    if (useOrchestrator.get()) {
+      arguments += "--use-orchestrator"
+    }
+
+    val environment = environmentVariables.get()
+    if (environment.isNotEmpty()) {
+      arguments += "--environment-variables"
+      arguments += environment.entries.joinToString(",") { "${it.key}=${it.value}" }
+    }
+
+    gcloudProject.orNull?.takeIf { it.isNotBlank() }?.let { arguments += listOf("--project", it) }
+    resultsBucket.orNull?.takeIf { it.isNotBlank() }?.let { arguments += listOf("--results-bucket", it) }
+    resultsDir.orNull?.takeIf { it.isNotBlank() }?.let { arguments += listOf("--results-dir", it) }
+    testTargets.orNull?.takeIf { it.isNotBlank() }?.let { arguments += listOf("--test-targets", it) }
+    arguments += extraArgs.get()
+
+    logger.lifecycle("Running Firebase Test Lab:\n  ${arguments.joinToString(" ")}")
+    execOperations.exec {
+      commandLine(arguments)
+    }
+  }
+
+  private fun findApk(directory: File, label: String): File {
+    return directory.walkTopDown().firstOrNull { it.isFile && it.extension == "apk" }
+      ?: throw GradleException("No $label APK found under ${directory.absolutePath}. Was the assemble task run?")
   }
 }
 

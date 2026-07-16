@@ -10,9 +10,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.ringrtc.CallId
 import org.signal.ringrtc.CallManager
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.testing.Flag
+import org.thoughtcrime.securesms.testing.RemoteConfigForTest
 import org.thoughtcrime.securesms.testing.SignalActivityRule
+import org.thoughtcrime.securesms.testing.TestRemoteConfigFlag
 
+@RemoteConfigForTest(flags = [Flag(TestRemoteConfigFlag.DISAPPEAR_MORE, "true")])
 @RunWith(AndroidJUnit4::class)
 class CallTableTest {
 
@@ -977,6 +982,80 @@ class CallTableTest {
 //    assertEquals(0, allCallEvents.size)
   }
 
+  @Test
+  fun givenAMissedOneToOneCall_whenIMarkAllCallEventsRead_thenTimerShouldStart() {
+    val callId = 1L
+    val peer = harness.others[0]
+    insertExpiringThread(peer)
+
+    SignalDatabase.calls.insertOneToOneCall(callId, System.currentTimeMillis(), peer, CallTable.Type.AUDIO_CALL, CallTable.Direction.INCOMING, CallTable.Event.MISSED)
+
+    val readAt = System.currentTimeMillis()
+    SignalDatabase.calls.markAllCallEventsRead(readAt = readAt)
+
+    val call = SignalDatabase.calls.getCallById(callId, peer)
+    assertEquals(readAt, SignalDatabase.messages.getMessageRecord(call!!.messageId!!).expireStarted)
+  }
+
+  @Test
+  fun givenAMissedNotificationProfileOneToOneCall_whenIMarkAllCallEventsRead_thenTimerShouldStart() {
+    val callId = 1L
+    val peer = harness.others[0]
+    insertExpiringThread(peer)
+
+    SignalDatabase.calls.insertOneToOneCall(callId, System.currentTimeMillis(), peer, CallTable.Type.AUDIO_CALL, CallTable.Direction.INCOMING, CallTable.Event.MISSED_NOTIFICATION_PROFILE)
+
+    val readAt = System.currentTimeMillis()
+    SignalDatabase.calls.markAllCallEventsRead(readAt = readAt)
+
+    val call = SignalDatabase.calls.getCallById(callId, peer)
+    assertEquals(readAt, SignalDatabase.messages.getMessageRecord(call!!.messageId!!).expireStarted)
+  }
+
+  @Test
+  fun givenAMissedGroupCall_whenIMarkAllCallEventsRead_thenTimerShouldStart() {
+    val callId = 1L
+    SignalDatabase.recipients.setExpireMessagesForGroup(groupRecipientId, 60)
+
+    SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(callId, groupRecipientId, harness.others[1], System.currentTimeMillis(), CallManager.RingUpdate.EXPIRED_REQUEST)
+
+    val readAt = System.currentTimeMillis()
+    SignalDatabase.calls.markAllCallEventsRead(readAt = readAt)
+
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
+    assertEquals(readAt, SignalDatabase.messages.getMessageRecord(call!!.messageId!!).expireStarted)
+  }
+
+  @Test
+  fun givenAMissedNotificationProfileGroupCall_whenIMarkAllCallEventsRead_thenTimerShouldStart() {
+    val callId = 1L
+    val ringerAci = Recipient.resolved(harness.others[1]).requireAci()
+
+    SignalDatabase.recipients.setExpireMessagesForGroup(groupRecipientId, 60)
+
+    SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(callId, groupRecipientId, ringerAci, System.currentTimeMillis(), CallManager.RingUpdate.EXPIRED_REQUEST, true)
+
+    val readAt = System.currentTimeMillis()
+    SignalDatabase.calls.markAllCallEventsRead(readAt = readAt)
+
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
+    assertEquals(readAt, SignalDatabase.messages.getMessageRecord(call!!.messageId!!).expireStarted)
+  }
+
+  @Test
+  fun givenAnOutgoingOneToOneCallFromSync_whenInserted_thenTimerIsStarted() {
+    val callId = 1L
+    val peer = harness.others[0]
+    val timestamp = System.currentTimeMillis()
+
+    insertExpiringThread(peer)
+    SignalDatabase.calls.insertOneToOneCall(callId, timestamp, peer, CallTable.Type.AUDIO_CALL, CallTable.Direction.OUTGOING, CallTable.Event.OUTGOING_RING, true)
+
+    val call = SignalDatabase.calls.getCallById(callId, peer)
+    val message = SignalDatabase.messages.getMessageRecord(call!!.messageId!!)
+    assertNotEquals(0L, message.expireStarted)
+  }
+
   private fun insertTwoCallEvents() {
     SignalDatabase.calls.insertAcceptedGroupCall(
       1,
@@ -991,5 +1070,11 @@ class CallTableTest {
       CallTable.Direction.OUTGOING,
       2000
     )
+  }
+
+  private fun insertExpiringThread(recipientId: RecipientId) {
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
+    MmsHelper.insert(recipient = Recipient.resolved(recipientId), expiresIn = 30_000L, threadId = threadId)
+    SignalDatabase.threads.update(threadId, false)
   }
 }

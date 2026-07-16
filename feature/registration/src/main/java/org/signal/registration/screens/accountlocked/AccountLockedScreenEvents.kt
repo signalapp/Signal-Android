@@ -5,9 +5,7 @@
 
 package org.signal.registration.screens.accountlocked
 
-import org.signal.registration.util.DebugLoggableModel
-
-sealed class AccountLockedScreenEvents : DebugLoggableModel() {
+sealed class AccountLockedScreenEvents {
   data object Next : AccountLockedScreenEvents()
   data object LearnMore : AccountLockedScreenEvents()
 }

@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.mediasend.v2.capture
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -16,9 +15,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
-import org.thoughtcrime.securesms.util.rx.RxStore
 import java.io.FileDescriptor
-import java.util.Optional
 import java.util.concurrent.TimeUnit
 
 class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : ViewModel() {
@@ -27,8 +24,6 @@ class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : Vi
     private val TAG = Log.tag(MediaCaptureViewModel::class.java)
   }
 
-  private val store: RxStore<MediaCaptureState> = RxStore(MediaCaptureState())
-
   private val internalEvents: Subject<MediaCaptureEvent> = PublishSubject.create()
   private val qrData: Subject<String> = PublishSubject.create()
 
@@ -36,12 +31,6 @@ class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : Vi
   val disposables = CompositeDisposable()
 
   init {
-    repository.getMostRecentItem { media ->
-      store.update { state ->
-        state.copy(mostRecentMedia = media)
-      }
-    }
-
     disposables += qrData
       .throttleFirst(5, TimeUnit.SECONDS)
       .filter { UsernameRepository.isValidLink(it) }
@@ -84,7 +73,6 @@ class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : Vi
   }
 
   override fun onCleared() {
-    store.dispose()
     disposables.dispose()
   }
 
@@ -94,10 +82,6 @@ class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : Vi
 
   fun onVideoCaptured(fd: FileDescriptor) {
     repository.renderVideoToMedia(fd, this::onMediaRendered, this::onMediaRenderFailed)
-  }
-
-  fun getMostRecentMedia(): Flowable<Optional<Media>> {
-    return store.stateFlowable.map { Optional.ofNullable(it.mostRecentMedia) }
   }
 
   fun onQrCodeFound(data: String) {

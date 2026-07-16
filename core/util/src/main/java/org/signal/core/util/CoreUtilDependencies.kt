@@ -23,6 +23,7 @@ object CoreUtilDependencies {
     _buildInfo = buildInfo
   }
 
+  @JvmStatic
   val application: Application
     get() = _application
 

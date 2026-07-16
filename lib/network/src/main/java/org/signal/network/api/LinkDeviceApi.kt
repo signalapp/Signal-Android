@@ -66,10 +66,11 @@ class LinkDeviceApi(
    *
    * - 200: Success
    */
-  fun removeDevice(deviceId: Int): NetworkResult<Unit> {
+  suspend fun removeDevice(deviceId: Int): NetworkResult<Unit> {
     val request = WebSocketRequestMessage.delete("/v1/devices/$deviceId")
-    return NetworkResult
-      .fromWebSocketRequest(authWebSocket, request)
+    return NetworkResult.fromWebSocketSuspend(NetworkResult.DefaultWebSocketConverter(Unit::class)) {
+      authWebSocket.requestSuspend(request)
+    }
   }
 
   /**

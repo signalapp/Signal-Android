@@ -19,8 +19,8 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.JsonUtils
 import org.signal.network.NetworkResult
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import java.io.IOException
 
@@ -82,7 +82,7 @@ class ExportAccountDataTest {
       .subscribe { txtReport ->
         assertEquals(txtReport.mimeType, "text/plain")
         assertThrows(JsonParseException::class.java) {
-          JsonUtils.getMapper().readTree(BlobProvider.getInstance().getMemoryBlob(txtReport.uri) as ByteArray)
+          JsonUtils.getMapper().readTree(AppDependencies.blobs.getMemoryBlob(txtReport.uri) as ByteArray)
         }
       }
     scheduler.triggerActions()
@@ -91,7 +91,7 @@ class ExportAccountDataTest {
       .observeOn(scheduler)
       .subscribe { jsonReport ->
         assertEquals(jsonReport.mimeType, "application/json")
-        val json = JsonUtils.getMapper().readTree(BlobProvider.getInstance().getMemoryBlob(jsonReport.uri) as ByteArray)
+        val json = JsonUtils.getMapper().readTree(AppDependencies.blobs.getMemoryBlob(jsonReport.uri) as ByteArray)
         assertFalse(json.has("text"))
         assertTrue(json.has("data"))
         assertTrue(json.has("reportId"))

@@ -7,11 +7,101 @@
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">ਖਾਰਜ ਕਰੋ</string>
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
-  <string name="AddAMessageRow__add_a_message">ਸੁਨੇਹਾ ਜੋੜੋ</string>
+  <string name="AddAMessageRow__add_a_message">ਸੁਨੇਹਾ ਸ਼ਾਮਲ ਕਰੋ</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
-  <string name="AddAMessageRow__open_emoji_keyboard">Open emoji keyboard</string>
+  <string name="AddAMessageRow__open_emoji_keyboard">ਈਮੋਜੀ ਕੀਬੋਰਡ ਖੋਲ੍ਹੋ</string>
   <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
   <string name="AddAMessageRow__message">ਸੁਨੇਹਾ</string>
   <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
   <string name="AddAMessageRow__next">ਅੱਗੇ</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">ਹਾਈ</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">ਸਟੈਂਡਰਡ</string>
+  <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
+  <string name="MediaSelectScreen__gallery">ਗੈਲਰੀ</string>
+  <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
+  <string name="MediaSelectScreen__next">ਅੱਗੇ</string>
+  <!-- Label for the button that switches the capture screen to the camera. -->
+  <string name="MediaCaptureScreen__camera">ਕੈਮਰਾ</string>
+  <!-- Label for the button that switches the capture screen to the text story editor. -->
+  <string name="MediaCaptureScreen__text_story">ਲਿਖਤੀ ਸਟੋਰੀ</string>
+  <!-- Video editor play button content description -->
+  <string name="VideoEditorHud_play_video_description">ਵੀਡੀਓ ਚਲਾਓ</string>
+
+  <!-- CameraFragment -->
+  <!-- Toasted when user device does not support video recording -->
+  <string name="CameraFragment__video_recording_is_not_supported_on_your_device">ਤੁਹਾਡੇ ਡਿਵਾਈਸ ਵਿੱਚ ਵੀਡੀਓ ਰਿਕਾਰਡਿੰਗ ਕੰਮ ਨਹੀਂ ਕਰਦੀ ਹੈ</string>
+
+  <!-- CameraXFragment -->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">ਫ਼ੋਟੋ ਖਿੱਚਣ ਲਈ ਟੈਪ ਕਰੋ, ਵੀਡੀਓ ਬਣਾਉਣ ਲਈ ਦਬਾ ਕੇ ਰੱਖੋ</string>
+  <!-- Accessibility content description to describe the capture button when taking an image/video -->
+  <string name="CameraXFragment_capture_description">ਤਸਵੀਰ ਖਿੱਚੋ</string>
+  <string name="CameraXFragment_change_camera_description">ਕੈਮਰਾ ਬਦਲੋ</string>
+  <string name="CameraXFragment_open_gallery_description">ਗੈਲਰੀ ਖੋਲ੍ਹੋ</string>
+  <!-- Button text asking for access to camera permissions -->
+  <string name="CameraXFragment_allow_access">ਪਹੁੰਚ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ</string>
+  <!-- Dialog title asking users for camera and microphone permission -->
+  <string name="CameraXFragment_allow_access_camera_microphone">ਆਪਣੇ ਕੈਮਰੇ ਅਤੇ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਤੱਕ ਪਹੁੰਚ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ</string>
+  <!-- Dialog title asking users for camera permission -->
+  <string name="CameraXFragment_allow_access_camera">ਆਪਣੇ ਕੈਮਰੇ ਤੱਕ ਪਹੁੰਚ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ</string>
+  <!-- Dialog title asking users for microphone permission -->
+  <string name="CameraXFragment_allow_access_microphone">ਆਪਣੇ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਤੱਕ ਪਹੁੰਚ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ</string>
+  <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
+  <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">ਫ਼ੋਟੋਆਂ ਖਿੱਚਣ ਅਤੇ ਵੀਡੀਓ ਬਣਾਉਣ ਲਈ, Signal ਨੂੰ ਕੈਮਰੇ ਤੱਕ ਪਹੁੰਚ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ।</string>
+  <!-- Text explaining why Signal needs camera and microphone access in order to take photos and videos -->
+  <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">ਫ਼ੋਟੋਆਂ ਅਤੇ ਵੀਡੀਓ ਲੈਣ ਲਈ, Signal ਨੂੰ ਕੈਮਰੇ ਅਤੇ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਤੱਕ ਪਹੁੰਚ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ।</string>
+  <!-- Text explaining why Signal needs microphone access to take videos -->
+  <string name="CameraXFragment_to_capture_videos_with_sound">ਆਵਾਜ਼ ਸਮੇਤ ਵੀਡੀਓ ਬਣਾਉਣ ਲਈ, Signal ਨੂੰ ਆਪਣੇ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਤੱਕ ਪਹੁੰਚ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ।</string>
+  <!-- Text explaining why Signal needs camera access to scan QR codes -->
+  <string name="CameraXFragment_to_scan_qr_code_allow_camera">QR ਕੋਡ ਸਕੈਨ ਕਰਨ ਲਈ, Signal ਨੂੰ ਕੈਮਰੇ ਤੱਕ ਪਹੁੰਚ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ।</string>
+  <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
+  <string name="CameraXFragment_signal_needs_camera_access_capture_photos">ਫ਼ੋਟੋਆਂ ਖਿੱਚਣ ਲਈ Signal ਨੂੰ ਕੈਮਰੇ ਤੱਕ ਪਹੁੰਚ ਚਾਹੀਦੀ ਹੈ।</string>
+  <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
+  <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">QR ਕੋਡ ਸਕੈਨ ਕਰਨ ਲਈ Signal ਨੂੰ ਕੈਮਰੇ ਤੱਕ ਪਹੁੰਚ ਚਾਹੀਦੀ ਹੈ</string>
+  <!-- Toast dialog explaining why Signal needs microphone permissions -->
+  <string name="CameraXFragment_signal_needs_microphone_access_video">ਵੀਡੀਓ ਬਣਾਉਣ ਲਈ Signal ਨੂੰ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਤੱਕ ਪਹੁੰਚ ਚਾਹੀਦੀ ਹੈ</string>
+  <!-- Dialog description that explains the steps needed to give camera permission -->
+  <string name="CameraXFragment_to_capture_photos">Signal ਵਿੱਚ ਫ਼ੋਟੋਆਂ ਖਿੱਚਣ ਲਈ:</string>
+  <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
+  <string name="CameraXFragment_to_capture_photos_videos">Signal ਵਿੱਚ ਫ਼ੋਟੋਆਂ ਖਿੱਚਣ ਅਤੇ ਵੀਡੀਓ ਬਣਾਉਣ ਲਈ:</string>
+  <!-- Dialog description that explains the steps needed to give microphone permission -->
+  <string name="CameraXFragment_to_capture_videos">ਆਵਾਜ਼ ਸਮੇਤ ਵੀਡੀਓ ਬਣਾਉਣ ਲਈ:</string>
+  <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
+  <string name="CameraXFragment_to_scan_qr_codes">QR ਕੋਡ ਸਕੈਨ ਕਰਨ ਲਈ:</string>
+  <!-- Error message shown when we try to take a photo, but fail -->
+  <string name="CameraXFragment_photo_capture_failed">ਫ਼ੋਟੋ ਕੈਪਚਰ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+  <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
+  <string name="CameraXFragment_photo_processing_failed">ਫ਼ੋਟੋ ਉੱਤੇ ਕਾਰਵਾਈ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+  <!-- Accessibility label for the switch camera button -->
+  <string name="CameraXFragment_switch_camera">ਕੈਮਰਾ ਬਦਲੋ</string>
+  <!-- Accessibility label for flash button when flash is off -->
+  <string name="CameraXFragment_flash_off">ਫਲੈਸ਼ ਬੰਦ</string>
+  <!-- Accessibility label for flash button when flash is on -->
+  <string name="CameraXFragment_flash_on">ਫਲੈਸ਼ ਚਾਲੂ</string>
+  <!-- Accessibility label for flash button when flash is set to auto -->
+  <string name="CameraXFragment_flash_auto">ਫਲੈਸ਼ ਆਟੋ</string>
+  <!-- Accessibility label for the send button in media selection -->
+  <string name="CameraXFragment_send">ਭੇਜੋ</string>
+  <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
+  <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">ਵੀਡੀਓ ਨੂੰ ਰਿਕਾਰਡ ਕਰਨ ਲਈ Signal ਨੂੰ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਸੰਬੰਧੀ ਇਜਾਜ਼ਤਾਂ ਦੀ ਲੋੜ ਹੈ, ਪਰ ਇਹਨਾਂ ਇਜਾਜ਼ਤਾਂ ਲਈ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਜਾਓ, \"ਇਜਾਜ਼ਤਾਂ\" ਨੂੰ ਚੁਣੋ, ਅਤੇ \"ਮਾਈਕ੍ਰੋਫ਼ੋਨ\" ਅਤੇ \"ਕੈਮਰਾ\" ਨੂੰ ਸਮਰੱਥ ਕਰੋ।</string>
+
+  <!-- Displayed when there is an error capturing video -->
+  <string name="MediaSendViewModel__error_recording_video">ਵੀਡੀਓ ਰਿਕਾਰਡ ਕਰਨ ਦੌਰਾਨ ਕੋਈ ਗੜਬੜ ਹੋਈ</string>
+  <!-- Displayed when there is an error capturing image -->
+  <string name="MediaSendViewModel__error_taking_photo">ਫ਼ੋਟੋ ਖਿੱਚਣ ਦੌਰਾਨ ਕੋਈ ਗੜਬੜ ਹੋਈ</string>
+
+  <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+  <string name="UsernameScannedDialog__username_dialog_title">%1$s ਲੱਭਿਆ</string>
+  <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+  <string name="UsernameScannedDialog__username_dialog_body">\"%1$s\" ਨਾਲ ਚੈਟ ਸ਼ੁਰੂ ਕਰੋ</string>
+  <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+  <string name="UsernameScannedDialog__username_dialog_go_to_chat_button">ਚੈਟ \'ਤੇ ਜਾਓ</string>
+
+  <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+  <string name="LinkedDeviceScannedDialog__device_link_dialog_title">ਕੀ ਡਿਵਾਈਸ ਨੂੰ ਲਿੰਕ ਕਰਨਾ ਹੈ?</string>
+  <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+  <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">ਇੰਝ ਲੱਗਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਇੱਕ Signal ਡਿਵਾਈਸ ਨੂੰ ਲਿੰਕ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰ ਰਹੇ ਹੋ। ਜਾਰੀ ਰੱਖੋ \'ਤੇ ਟੈਪ ਕਰੋ ਅਤੇ ਫਿਰ \"ਨਵਾਂ ਡਿਵਾਈਸ ਲਿੰਕ ਕਰੋ\" ਉੱਤੇ ਟੈਪ ਕਰੋ ਅਤੇ QR ਕੋਡ ਨੂੰ ਦੁਬਾਰਾ ਸਕੈਨ ਕਰੋ।</string>
+  <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+  <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">ਜਾਰੀ ਰੱਖੋ</string>
 </resources>

@@ -97,7 +97,7 @@ class NicknameViewModel(
     viewModelScope.launch {
       internalState.value = state.value.copy(formState = NicknameState.FormState.SAVING)
 
-      withContext(Dispatchers.IO) {
+      withContext(Dispatchers.Default) {
         SignalDatabase.recipients.setNicknameAndNote(
           recipientId,
           ProfileName.EMPTY,
@@ -115,7 +115,7 @@ class NicknameViewModel(
       val stateSnapshot = state.value.copy(formState = NicknameState.FormState.SAVING)
       internalState.value = stateSnapshot
 
-      withContext(Dispatchers.IO) {
+      withContext(Dispatchers.Default) {
         SignalDatabase.recipients.setNicknameAndNote(
           recipientId,
           ProfileName.fromParts(stateSnapshot.firstName, stateSnapshot.lastName),

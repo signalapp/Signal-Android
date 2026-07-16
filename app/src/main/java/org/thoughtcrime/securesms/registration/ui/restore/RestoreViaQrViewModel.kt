@@ -122,7 +122,7 @@ class RestoreViaQrViewModel : ViewModel() {
     }
 
     return ProvisioningSocket.start<RegistrationProvisionMessage>(
-      mode = ProvisioningSocket.Mode.REREG,
+      mode = ProvisioningSocket.Mode.Rereg,
       identityKeyPair = IdentityKeyPair.generate(),
       configuration = AppDependencies.signalServiceNetworkAccess.getConfiguration(),
       handler = { id, t ->

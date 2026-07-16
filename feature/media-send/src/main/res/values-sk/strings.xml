@@ -9,9 +9,99 @@
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">Pridajte správu</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
-  <string name="AddAMessageRow__open_emoji_keyboard">Open emoji keyboard</string>
+  <string name="AddAMessageRow__open_emoji_keyboard">Otvoriť klávesnicu s emoji</string>
   <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
   <string name="AddAMessageRow__message">Správa</string>
   <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
   <string name="AddAMessageRow__next">Ďalej</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">Vysoká</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">Štandardná</string>
+  <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
+  <string name="MediaSelectScreen__gallery">Galéria</string>
+  <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
+  <string name="MediaSelectScreen__next">Ďalej</string>
+  <!-- Label for the button that switches the capture screen to the camera. -->
+  <string name="MediaCaptureScreen__camera">Fotoaparát</string>
+  <!-- Label for the button that switches the capture screen to the text story editor. -->
+  <string name="MediaCaptureScreen__text_story">Textový príbeh</string>
+  <!-- Video editor play button content description -->
+  <string name="VideoEditorHud_play_video_description">Prehrať video</string>
+
+  <!-- CameraFragment -->
+  <!-- Toasted when user device does not support video recording -->
+  <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Nahrávanie videa nie je na vašom zariadení podporované</string>
+
+  <!-- CameraXFragment -->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Pre fotografiu ťuknite, pre video podržte</string>
+  <!-- Accessibility content description to describe the capture button when taking an image/video -->
+  <string name="CameraXFragment_capture_description">Zachytiť</string>
+  <string name="CameraXFragment_change_camera_description">Zmeniť fotoaparát</string>
+  <string name="CameraXFragment_open_gallery_description">Otvoriť galériu</string>
+  <!-- Button text asking for access to camera permissions -->
+  <string name="CameraXFragment_allow_access">Povoliť prístup</string>
+  <!-- Dialog title asking users for camera and microphone permission -->
+  <string name="CameraXFragment_allow_access_camera_microphone">Povoľte prístup k fotoaparátu a mikrofónu</string>
+  <!-- Dialog title asking users for camera permission -->
+  <string name="CameraXFragment_allow_access_camera">Povoľte prístup k fotoaparátu</string>
+  <!-- Dialog title asking users for microphone permission -->
+  <string name="CameraXFragment_allow_access_microphone">Povoľte prístup k mikrofónu</string>
+  <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
+  <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">Pre fotenie a nahrávanie videa potrebuje Signal prístup k fotoaparátu.</string>
+  <!-- Text explaining why Signal needs camera and microphone access in order to take photos and videos -->
+  <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">Ak chcete fotiť a nahrávať videá, povoľte Signalu prístup k fotoaparátu a mikrofónu.</string>
+  <!-- Text explaining why Signal needs microphone access to take videos -->
+  <string name="CameraXFragment_to_capture_videos_with_sound">Ak chcete nahrávať videá so zvukom, povoľte Signalu prístup k mikrofónu.</string>
+  <!-- Text explaining why Signal needs camera access to scan QR codes -->
+  <string name="CameraXFragment_to_scan_qr_code_allow_camera">Ak chcete naskenovať QR kód, povoľte Signalu prístup k fotoaparátu.</string>
+  <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
+  <string name="CameraXFragment_signal_needs_camera_access_capture_photos">Signal potrebuje na snímanie fotografií prístup k fotoaparátu</string>
+  <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
+  <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">Signal potrebuje na skenovanie QR kódov prístup k fotoaparátu</string>
+  <!-- Toast dialog explaining why Signal needs microphone permissions -->
+  <string name="CameraXFragment_signal_needs_microphone_access_video">Signál potrebuje na nahratie videa prístup k mikrofónu</string>
+  <!-- Dialog description that explains the steps needed to give camera permission -->
+  <string name="CameraXFragment_to_capture_photos">Ak chcete fotiť v aplikácii Signal:</string>
+  <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
+  <string name="CameraXFragment_to_capture_photos_videos">Ak chcete fotiť a nahrávať videá v aplikácii Signal:</string>
+  <!-- Dialog description that explains the steps needed to give microphone permission -->
+  <string name="CameraXFragment_to_capture_videos">Ak chcete nahrávať videá so zvukom:</string>
+  <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
+  <string name="CameraXFragment_to_scan_qr_codes">Ak chcete skenovať QR kódy:</string>
+  <!-- Error message shown when we try to take a photo, but fail -->
+  <string name="CameraXFragment_photo_capture_failed">Nepodarilo sa zachytiť fotografiu. Skúste to znova.</string>
+  <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
+  <string name="CameraXFragment_photo_processing_failed">Nepodarilo sa spracovať fotografiu. Skúste to znova.</string>
+  <!-- Accessibility label for the switch camera button -->
+  <string name="CameraXFragment_switch_camera">Prepnúť kameru</string>
+  <!-- Accessibility label for flash button when flash is off -->
+  <string name="CameraXFragment_flash_off">Vypnutý blesk</string>
+  <!-- Accessibility label for flash button when flash is on -->
+  <string name="CameraXFragment_flash_on">Zapnutý blesk</string>
+  <!-- Accessibility label for flash button when flash is set to auto -->
+  <string name="CameraXFragment_flash_auto">Automatický blesk</string>
+  <!-- Accessibility label for the send button in media selection -->
+  <string name="CameraXFragment_send">Poslať</string>
+  <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
+  <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">Signal potrebuje pre nahrávanie videí prístup k mikrofónu, no ten bol zamietnutý. Pokračujte, prosím, do nastavení aplikácie, vyberte „Povolenia“ a povoľte „Mikrofón“ a „Fotoaparát“.</string>
+
+  <!-- Displayed when there is an error capturing video -->
+  <string name="MediaSendViewModel__error_recording_video">Chyba pri nahrávaní videa</string>
+  <!-- Displayed when there is an error capturing image -->
+  <string name="MediaSendViewModel__error_taking_photo">Chyba pri fotení</string>
+
+  <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+  <string name="UsernameScannedDialog__username_dialog_title">Používateľ %1$s bol nájdený</string>
+  <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+  <string name="UsernameScannedDialog__username_dialog_body">Začať čet s používateľom „%1$s“</string>
+  <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+  <string name="UsernameScannedDialog__username_dialog_go_to_chat_button">Prejsť na čet</string>
+
+  <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+  <string name="LinkedDeviceScannedDialog__device_link_dialog_title">Prepojiť zariadenie?</string>
+  <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+  <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">Zdá sa, že sa pokúšate prepojiť zariadenie Signal. Ťuknite na Pokračovať, potom na „Prepojiť nové zariadenie“ a znova naskenujte QR kód.</string>
+  <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+  <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">Pokračovať</string>
 </resources>

@@ -28,7 +28,6 @@ data class InternalSettingsState(
   val pnpInitialized: Boolean,
   val useConversationItemV2ForMedia: Boolean,
   val hasPendingOneTimeDonation: Boolean,
-  val hevcEncoding: Boolean,
   val forceSplitPane: Boolean,
   val forceSinglePane: Boolean,
   val useNewMediaActivity: Boolean,

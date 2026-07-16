@@ -202,7 +202,7 @@ class MediaSendActivityContract(private val clazz: Class<out Activity>) : Activi
     val videoTrim: Boolean = false,
     val videoTrimStartTimeUs: Long = 0,
     val videoTrimEndTimeUs: Long = 0,
-    val sentMediaQuality: Int = 0,
+    val sentMediaQuality: SentMediaQuality = SentMediaQuality.STANDARD,
     val mp4FastStart: Boolean = false
   ) : Parcelable
 

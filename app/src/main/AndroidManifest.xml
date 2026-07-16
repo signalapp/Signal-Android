@@ -438,12 +438,7 @@
             android:theme="@style/Theme.Signal.DayNight.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
 
-        <activity
-            android:name=".calls.links.details.CallLinkDetailsActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:exported="false"
-            android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+
 
         <activity
             android:name=".calls.new.NewCallActivity"
@@ -526,6 +521,13 @@
                 <category android:name="android.intent.category.NOTIFICATION_PREFERENCES" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".preferences.EditProxyActivity"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:exported="false"
+            android:theme="@style/Signal.DayNight.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".stories.my.MyStoriesActivity"

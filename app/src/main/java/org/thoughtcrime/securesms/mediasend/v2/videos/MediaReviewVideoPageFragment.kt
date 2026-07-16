@@ -5,9 +5,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.launch
 import org.signal.core.util.getParcelableCompat
+import org.signal.mediasend.edit.video.VideoEditorFragment
+import org.signal.mediasend.edit.video.VideoEditorViewModel
+import org.signal.mediasend.edit.video.VideoThumbnailsRangeSelectorView
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 
@@ -17,39 +23,51 @@ private const val VIDEO_EDITOR_TAG = "video.editor.fragment"
  * Page fragment which displays a single editable video (non-gif) to the user. Has an embedded MediaSendVideoFragment
  * and adds some extra support for saving and restoring state, as well as saving a video to disk.
  */
-class MediaReviewVideoPageFragment : Fragment(R.layout.fragment_container), VideoEditorFragment.Controller {
+class MediaReviewVideoPageFragment : Fragment(R.layout.fragment_container) {
 
   private val sharedViewModel: MediaSelectionViewModel by viewModels(ownerProducer = { requireActivity() })
+  private val videoEditorViewModel: VideoEditorViewModel by viewModels(ownerProducer = { requireActivity() })
 
   private lateinit var videoEditorFragment: VideoEditorFragment
+  private lateinit var videoTimeLine: VideoThumbnailsRangeSelectorView
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    videoTimeLine = requireActivity().findViewById(R.id.video_timeline)
+
     videoEditorFragment = ensureVideoEditorFragment()
-  }
 
-  override fun onViewStateRestored(savedInstanceState: Bundle?) {
-    super.onViewStateRestored(savedInstanceState)
-    restoreVideoEditorState()
-  }
+    videoTimeLine.registerPlayerDragListener(object : VideoThumbnailsRangeSelectorView.PositionDragListener {
+      override fun onPositionDrag(position: Long) {
+        focusedUri()?.let { videoEditorViewModel.sendCommand(it, VideoEditorViewModel.Command.PositionDrag(position)) }
+      }
 
-  override fun onPlayerReady() {
-    sharedViewModel.sendCommand(HudCommand.ResumeEntryTransition)
-  }
+      override fun onEndPositionDrag(position: Long) {
+        focusedUri()?.let { videoEditorViewModel.sendCommand(it, VideoEditorViewModel.Command.EndPositionDrag(position)) }
+      }
+    })
 
-  override fun onPlayerError() {
-    sharedViewModel.sendCommand(HudCommand.ResumeEntryTransition)
-  }
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        videoEditorViewModel.events(requireUri()).collect { event ->
+          when (event) {
+            VideoEditorViewModel.Event.PlayerReady, VideoEditorViewModel.Event.PlayerError -> sharedViewModel.sendCommand(HudCommand.ResumeEntryTransition)
+            is VideoEditorViewModel.Event.TouchEventsNeeded -> sharedViewModel.setTouchEnabled(!event.needed)
+            is VideoEditorViewModel.Event.ActualPositionChanged -> videoTimeLine.setActualPosition(event.positionUs)
+          }
+        }
+      }
+    }
 
-  override fun onTouchEventsNeeded(needed: Boolean) {
-    sharedViewModel.setTouchEnabled(!needed)
-  }
-  private fun restoreVideoEditorState() {
-    val data = sharedViewModel.getEditorState(requireUri()) as? VideoTrimData
-
-    if (data != null) {
-      videoEditorFragment.restoreState(data)
+    sharedViewModel.state.observe(viewLifecycleOwner) { incomingState ->
+      videoEditorFragment.onStateUpdate(
+        incomingState.focusedMedia?.uri,
+        incomingState.isTouchEnabled,
+        incomingState::getOrCreateVideoTrimData
+      )
     }
   }
+
+  private fun focusedUri(): Uri? = sharedViewModel.state.value?.focusedMedia?.uri
 
   private fun ensureVideoEditorFragment(): VideoEditorFragment {
     val fragmentInManager: VideoEditorFragment? = childFragmentManager.findFragmentByTag(VIDEO_EDITOR_TAG) as? VideoEditorFragment

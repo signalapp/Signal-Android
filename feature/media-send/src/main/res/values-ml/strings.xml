@@ -9,9 +9,99 @@
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
-  <string name="AddAMessageRow__open_emoji_keyboard">Open emoji keyboard</string>
+  <string name="AddAMessageRow__open_emoji_keyboard">ഇമോജി കീബോർഡ് തുറക്കുക</string>
   <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
   <string name="AddAMessageRow__message">സന്ദേശം</string>
   <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
   <string name="AddAMessageRow__next">അടുത്തത്</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">ഉയർന്നത്</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">സ്റ്റാൻഡേർഡ്</string>
+  <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
+  <string name="MediaSelectScreen__gallery">ഗാലറി</string>
+  <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
+  <string name="MediaSelectScreen__next">അടുത്തത്</string>
+  <!-- Label for the button that switches the capture screen to the camera. -->
+  <string name="MediaCaptureScreen__camera">ക്യാമറ</string>
+  <!-- Label for the button that switches the capture screen to the text story editor. -->
+  <string name="MediaCaptureScreen__text_story">ടെക്സ്റ്റ് സ്റ്റോറി</string>
+  <!-- Video editor play button content description -->
+  <string name="VideoEditorHud_play_video_description">വീഡിയോ പ്ലേ ചെയ്യുക</string>
+
+  <!-- CameraFragment -->
+  <!-- Toasted when user device does not support video recording -->
+  <string name="CameraFragment__video_recording_is_not_supported_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ വീഡിയോ റെക്കോർഡിംഗ് പിന്തുണയില്ല</string>
+
+  <!-- CameraXFragment -->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">ഫോട്ടോയ്‌ക്കായി അമർത്തുക, വീഡിയോയ്‌ക്കായി പിടിക്കുക</string>
+  <!-- Accessibility content description to describe the capture button when taking an image/video -->
+  <string name="CameraXFragment_capture_description">ക്യാപ്‌ചർ ചെയ്യുക</string>
+  <string name="CameraXFragment_change_camera_description">ക്യാമറ മാറ്റുക</string>
+  <string name="CameraXFragment_open_gallery_description">ഗാലറി തുറക്കുക</string>
+  <!-- Button text asking for access to camera permissions -->
+  <string name="CameraXFragment_allow_access">ആക്സസ് അനുവദിക്കുക</string>
+  <!-- Dialog title asking users for camera and microphone permission -->
+  <string name="CameraXFragment_allow_access_camera_microphone">നിങ്ങളുടെ ക്യാമറയിലേക്കും മൈക്രോഫോണിലേക്കും ആക്‌സസ് അനുവദിക്കുക</string>
+  <!-- Dialog title asking users for camera permission -->
+  <string name="CameraXFragment_allow_access_camera">നിങ്ങളുടെ ക്യാമറയിലേക്ക് ആക്സസ് അനുവദിക്കുക</string>
+  <!-- Dialog title asking users for microphone permission -->
+  <string name="CameraXFragment_allow_access_microphone">നിങ്ങളുടെ മൈക്രോഫോണിലേക്ക് ആക്‌സസ് അനുവദിക്കുക</string>
+  <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
+  <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">ഫോട്ടോകളും വീഡിയോയും എടുക്കാൻ ക്യാമറയിലേക്ക് Signal-ന് ആക്സസ് അനുവദിക്കുക.</string>
+  <!-- Text explaining why Signal needs camera and microphone access in order to take photos and videos -->
+  <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">ഫോട്ടോകളും വീഡിയോയും എടുക്കാൻ, ക്യാമറയിലേക്കും മൈക്രോഫോണിലേക്കും Signal-ന് ആക്‌സസ് അനുവദിക്കുക.</string>
+  <!-- Text explaining why Signal needs microphone access to take videos -->
+  <string name="CameraXFragment_to_capture_videos_with_sound">ശബ്ദത്തോടെ വീഡിയോകൾ എടുക്കാൻ, നിങ്ങളുടെ മൈക്രോഫോണിലേക്ക് Signal-ന് ആക്‌സസ് അനുവദിക്കുക.</string>
+  <!-- Text explaining why Signal needs camera access to scan QR codes -->
+  <string name="CameraXFragment_to_scan_qr_code_allow_camera">ഒരു QR കോഡ് സ്കാൻ ചെയ്യാൻ, ക്യാമറയിലേക്ക് Signal-ന് ആക്സസ് അനുവദിക്കുക.</string>
+  <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
+  <string name="CameraXFragment_signal_needs_camera_access_capture_photos">ഫോട്ടോകൾ എടുക്കാൻ Signal-ന് ക്യാമറ ആക്സസ് ആവശ്യമാണ്</string>
+  <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
+  <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">QR കോഡുകൾ സ്കാൻ ചെയ്യാൻ Signal-ന് ക്യാമറ ആക്സസ് ആവശ്യമാണ്</string>
+  <!-- Toast dialog explaining why Signal needs microphone permissions -->
+  <string name="CameraXFragment_signal_needs_microphone_access_video">വീഡിയോ എടുക്കാൻ Signal-ന് മൈക്രോഫോൺ ആക്‌സസ് ആവശ്യമാണ്</string>
+  <!-- Dialog description that explains the steps needed to give camera permission -->
+  <string name="CameraXFragment_to_capture_photos">Signal-ൽ ഫോട്ടോകൾ എടുക്കാൻ:</string>
+  <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
+  <string name="CameraXFragment_to_capture_photos_videos">Signal-ൽ ഫോട്ടോകളും വീഡിയോകളും എടുക്കാൻ:</string>
+  <!-- Dialog description that explains the steps needed to give microphone permission -->
+  <string name="CameraXFragment_to_capture_videos">ശബ്ദത്തോടെ വീഡിയോകൾ എടുക്കാൻ:</string>
+  <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
+  <string name="CameraXFragment_to_scan_qr_codes">QR കോഡുകൾ സ്കാൻ ചെയ്യാൻ:</string>
+  <!-- Error message shown when we try to take a photo, but fail -->
+  <string name="CameraXFragment_photo_capture_failed">ഫോട്ടോ എടുക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക.</string>
+  <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
+  <string name="CameraXFragment_photo_processing_failed">ഫോട്ടോ പ്രോസസ്സ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു. വീണ്ടും ശ്രമിക്കുക.</string>
+  <!-- Accessibility label for the switch camera button -->
+  <string name="CameraXFragment_switch_camera">ക്യാമറ മാറുക</string>
+  <!-- Accessibility label for flash button when flash is off -->
+  <string name="CameraXFragment_flash_off">ഫ്ലാഷ് ഓഫാണ്</string>
+  <!-- Accessibility label for flash button when flash is on -->
+  <string name="CameraXFragment_flash_on">ഫ്ലാഷ് ഓണാണ്</string>
+  <!-- Accessibility label for flash button when flash is set to auto -->
+  <string name="CameraXFragment_flash_auto">ഫ്ലാഷ് ഓട്ടോ</string>
+  <!-- Accessibility label for the send button in media selection -->
+  <string name="CameraXFragment_send">അയയ്‌ക്കുക</string>
+  <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
+  <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">വീഡിയോകൾ റെക്കോർഡുചെയ്യാൻ Signal-ന് മൈക്രോഫോൺ അനുമതി ആവശ്യമാണ്, പക്ഷേ അവ നിരസിക്കപ്പെട്ടു. ആപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"മൈക്രോഫോൺ\", \"ക്യാമറ\" എന്നിവ പ്രവർത്തനക്ഷമമാക്കുക.</string>
+
+  <!-- Displayed when there is an error capturing video -->
+  <string name="MediaSendViewModel__error_recording_video">വീഡിയോ റെക്കോർഡ് ചെയ്യുന്നതിൽ പിശക്</string>
+  <!-- Displayed when there is an error capturing image -->
+  <string name="MediaSendViewModel__error_taking_photo">ഫോട്ടോ എടുക്കുന്നതിൽ പിശക്</string>
+
+  <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+  <string name="UsernameScannedDialog__username_dialog_title">%1$s എന്നയാളെ കണ്ടെത്തി</string>
+  <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+  <string name="UsernameScannedDialog__username_dialog_body">\"%1$s\" എന്നയാളുമായി ഒരു ചാറ്റ് ആരംഭിക്കുക</string>
+  <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+  <string name="UsernameScannedDialog__username_dialog_go_to_chat_button">ചാറ്റിലേക്ക് പോകുക</string>
+
+  <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+  <string name="LinkedDeviceScannedDialog__device_link_dialog_title">ഉപകരണം ലിങ്ക് ചെയ്യണോ?</string>
+  <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+  <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">നിങ്ങൾ ഒരു Signal ഉപകരണം ലിങ്ക് ചെയ്യാൻ ശ്രമിക്കുന്നതായി തോന്നുന്നു. തുടരുക ടാപ്പ് ചെയ്യുക, തുടർന്ന് \"ഒരു പുതിയ ഉപകരണം ലിങ്ക് ചെയ്യുക\" ടാപ്പ് ചെയ്യുക, തുടർന്ന് QR കോഡ് വീണ്ടും സ്കാൻ ചെയ്യുക.</string>
+  <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+  <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">തുടരുക</string>
 </resources>

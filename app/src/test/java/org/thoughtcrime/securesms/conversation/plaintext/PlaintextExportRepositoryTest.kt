@@ -723,6 +723,70 @@ class PlaintextExportRepositoryTest {
     assertEquals("My Chat Group 2024", PlaintextExportRepository.sanitizeFileName("My Chat Group 2024"))
   }
 
+  @Test
+  fun `sanitizeFileName rejects dot-only names to prevent path traversal`() {
+    assertEquals("chat", PlaintextExportRepository.sanitizeFileName("."))
+    assertEquals("chat", PlaintextExportRepository.sanitizeFileName(".."))
+    assertEquals("chat", PlaintextExportRepository.sanitizeFileName("..."))
+    assertEquals("chat", PlaintextExportRepository.sanitizeFileName("  ..  "))
+  }
+
+  @Test
+  fun `sanitizeFileName rejects long dot-only names`() {
+    assertEquals("chat", PlaintextExportRepository.sanitizeFileName(".".repeat(200)))
+  }
+
+  @Test
+  fun `sanitizeFileName rejects dot-only names surrounded by mixed whitespace`() {
+    assertEquals("chat", PlaintextExportRepository.sanitizeFileName("\t..\n"))
+    assertEquals("chat", PlaintextExportRepository.sanitizeFileName("\n.\n"))
+  }
+
+  @Test
+  fun `sanitizeFileName preserves dots combined with replaced reserved characters`() {
+    assertEquals(".._", PlaintextExportRepository.sanitizeFileName("../"))
+    assertEquals(".._..", PlaintextExportRepository.sanitizeFileName("..\\.."))
+  }
+
+  @Test
+  fun `sanitizeFileName falls back when name reduces to dots after emoji removal`() {
+    assertEquals("chat", PlaintextExportRepository.sanitizeFileName("..🎉"))
+    assertEquals("chat", PlaintextExportRepository.sanitizeFileName("🎉.🎉"))
+  }
+
+  @Test
+  fun `sanitizeFileName falls back for empty result`() {
+    assertEquals("chat", PlaintextExportRepository.sanitizeFileName(""))
+    assertEquals("chat", PlaintextExportRepository.sanitizeFileName("   "))
+  }
+
+  @Test
+  fun `sanitizeFileName preserves names that merely contain dots`() {
+    assertEquals("..hidden", PlaintextExportRepository.sanitizeFileName("..hidden"))
+    assertEquals("my.chat.group", PlaintextExportRepository.sanitizeFileName("my.chat.group"))
+  }
+
+  @Test
+  fun `sanitizeFileName strips emoji and collapses surrounding whitespace`() {
+    assertEquals("Team Chat", PlaintextExportRepository.sanitizeFileName("Team 🎉 Chat"))
+    assertEquals("Party", PlaintextExportRepository.sanitizeFileName("🎉Party🎉"))
+    assertEquals("Family", PlaintextExportRepository.sanitizeFileName("Family👨‍👩‍👧‍👦"))
+    assertEquals("flags", PlaintextExportRepository.sanitizeFileName("flags🇺🇸🇬🇧"))
+    assertEquals("heart", PlaintextExportRepository.sanitizeFileName("heart❤️"))
+  }
+
+  @Test
+  fun `sanitizeFileName falls back when name is only emoji`() {
+    assertEquals("chat", PlaintextExportRepository.sanitizeFileName("🎉🎊🥳"))
+  }
+
+  @Test
+  fun `sanitizeFileName preserves non-emoji unicode scripts`() {
+    assertEquals("Привет", PlaintextExportRepository.sanitizeFileName("Привет"))
+    assertEquals("日本語のチャット", PlaintextExportRepository.sanitizeFileName("日本語のチャット"))
+    assertEquals("مجموعة", PlaintextExportRepository.sanitizeFileName("مجموعة"))
+  }
+
   // ==================== getSenderName tests ====================
 
   @Test

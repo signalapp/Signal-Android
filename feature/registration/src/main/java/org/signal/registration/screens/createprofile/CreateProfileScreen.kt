@@ -30,7 +30,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,6 +37,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -47,11 +47,13 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.registration.R
 import org.signal.registration.screens.RegistrationScaffold
+import org.signal.registration.test.TestTags
 
 /**
  * Profile creation screen for the registration flow. Captures the user's given name, family name,
@@ -82,10 +84,12 @@ fun CreateProfileScreen(
     pickAvatarLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
   }
 
-  LaunchedEffect(state.oneTimeEvent) {
-    if (state.oneTimeEvent != null) {
-      onEvent(CreateProfileScreenEvents.ConsumeOneTimeEvent)
-    }
+  if (state.showUploadFailedDialog) {
+    Dialogs.SimpleMessageDialog(
+      message = stringResource(R.string.VerificationCodeScreen__an_unexpected_error_occurred),
+      dismiss = stringResource(android.R.string.ok),
+      onDismiss = { onEvent(CreateProfileScreenEvents.UploadFailedDialogDismissed) }
+    )
   }
 
   if (state.isLoading) {
@@ -110,7 +114,9 @@ private fun CompactLayout(
   modifier: Modifier = Modifier
 ) {
   RegistrationScaffold(
-    modifier = modifier.fillMaxSize(),
+    modifier = modifier
+      .fillMaxSize()
+      .testTag(TestTags.CREATE_PROFILE_SCREEN),
     content = {
       Column(
         modifier = Modifier
@@ -153,7 +159,9 @@ private fun CompactLayout(
             capitalization = KeyboardCapitalization.Words,
             imeAction = ImeAction.Next
           ),
-          modifier = Modifier.fillMaxWidth()
+          modifier = Modifier
+            .fillMaxWidth()
+            .testTag(TestTags.CREATE_PROFILE_GIVEN_NAME_FIELD)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -168,7 +176,9 @@ private fun CompactLayout(
             capitalization = KeyboardCapitalization.Words,
             imeAction = ImeAction.Done
           ),
-          modifier = Modifier.fillMaxWidth()
+          modifier = Modifier
+            .fillMaxWidth()
+            .testTag(TestTags.CREATE_PROFILE_FAMILY_NAME_FIELD)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -193,6 +203,7 @@ private fun CompactLayout(
           modifier = Modifier
             .fillMaxWidth()
             .widthIn(max = 320.dp)
+            .testTag(TestTags.CREATE_PROFILE_NEXT_BUTTON)
         ) {
           if (state.isSubmitting) {
             CircularProgressIndicator(
@@ -241,7 +252,8 @@ private fun WhoCanFindMeRow(
     modifier = Modifier
       .fillMaxWidth()
       .clickable(enabled = enabled, onClick = onClick)
-      .padding(vertical = 12.dp),
+      .padding(vertical = 12.dp)
+      .testTag(TestTags.CREATE_PROFILE_WHO_CAN_FIND_ME_ROW),
     verticalAlignment = Alignment.CenterVertically
   ) {
     Icon(

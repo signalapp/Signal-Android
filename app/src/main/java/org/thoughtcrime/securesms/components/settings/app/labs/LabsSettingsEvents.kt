@@ -9,8 +9,8 @@ sealed interface LabsSettingsEvents {
   data class ToggleIndividualChatPlaintextExport(val enabled: Boolean) : LabsSettingsEvents
   data class ToggleStoryArchive(val enabled: Boolean) : LabsSettingsEvents
   data class ToggleIncognito(val enabled: Boolean) : LabsSettingsEvents
-  data class ToggleGroupSuggestionsForMembers(val enabled: Boolean) : LabsSettingsEvents
   data class ToggleBetterSearch(val enabled: Boolean) : LabsSettingsEvents
-  data class ToggleAutoLowerHand(val enabled: Boolean) : LabsSettingsEvents
   data class ToggleStarredMessages(val enabled: Boolean) : LabsSettingsEvents
+  data class ToggleStickerReplies(val enabled: Boolean) : LabsSettingsEvents
+  data class ToggleMuteBreakthroughNotifications(val enabled: Boolean) : LabsSettingsEvents
 }

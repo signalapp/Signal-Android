@@ -9,9 +9,99 @@
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">Додај порака</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
-  <string name="AddAMessageRow__open_emoji_keyboard">Open emoji keyboard</string>
+  <string name="AddAMessageRow__open_emoji_keyboard">Отворете тастатура со емотикони</string>
   <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
   <string name="AddAMessageRow__message">Порака</string>
   <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
   <string name="AddAMessageRow__next">Следно</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">Висок</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">Стандарден</string>
+  <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
+  <string name="MediaSelectScreen__gallery">Галерија</string>
+  <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
+  <string name="MediaSelectScreen__next">Следно</string>
+  <!-- Label for the button that switches the capture screen to the camera. -->
+  <string name="MediaCaptureScreen__camera">Камера</string>
+  <!-- Label for the button that switches the capture screen to the text story editor. -->
+  <string name="MediaCaptureScreen__text_story">Текстуална приказна</string>
+  <!-- Video editor play button content description -->
+  <string name="VideoEditorHud_play_video_description">Пушти видео</string>
+
+  <!-- CameraFragment -->
+  <!-- Toasted when user device does not support video recording -->
+  <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Вашиот уред не поддржува снимање видеа</string>
+
+  <!-- CameraXFragment -->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Допрете за фотографија, држете за видео</string>
+  <!-- Accessibility content description to describe the capture button when taking an image/video -->
+  <string name="CameraXFragment_capture_description">Сними</string>
+  <string name="CameraXFragment_change_camera_description">Смени камера</string>
+  <string name="CameraXFragment_open_gallery_description">Отвори галерија</string>
+  <!-- Button text asking for access to camera permissions -->
+  <string name="CameraXFragment_allow_access">Дозволи пристап</string>
+  <!-- Dialog title asking users for camera and microphone permission -->
+  <string name="CameraXFragment_allow_access_camera_microphone">Дозволете пристап до камерата и микрофонот</string>
+  <!-- Dialog title asking users for camera permission -->
+  <string name="CameraXFragment_allow_access_camera">Дозволете пристап до камерата</string>
+  <!-- Dialog title asking users for microphone permission -->
+  <string name="CameraXFragment_allow_access_microphone">Дозволи пристап до микрофонот</string>
+  <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
+  <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">За да снимате фотографии и видеа, дозволете му на Signal пристап до камерата.</string>
+  <!-- Text explaining why Signal needs camera and microphone access in order to take photos and videos -->
+  <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">За да снимате фотографии и видеа, дозволете му на Signal пристап до камерата и микрофонот.</string>
+  <!-- Text explaining why Signal needs microphone access to take videos -->
+  <string name="CameraXFragment_to_capture_videos_with_sound">За да снимате видеа со звук, дозволете му на Signal пристап до вашиот микрофон.</string>
+  <!-- Text explaining why Signal needs camera access to scan QR codes -->
+  <string name="CameraXFragment_to_scan_qr_code_allow_camera">За да скенирате QR код, дозволете му на Signal пристап до камерата.</string>
+  <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
+  <string name="CameraXFragment_signal_needs_camera_access_capture_photos">На Signal му треба пристап до вашата камера за да слика</string>
+  <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
+  <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">На Signal му треба пристап до камерата за да скенира QR кодови</string>
+  <!-- Toast dialog explaining why Signal needs microphone permissions -->
+  <string name="CameraXFragment_signal_needs_microphone_access_video">На Signal му треба пристап до вашиот микрофон за да снима видео</string>
+  <!-- Dialog description that explains the steps needed to give camera permission -->
+  <string name="CameraXFragment_to_capture_photos">За да сликате со Signal:</string>
+  <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
+  <string name="CameraXFragment_to_capture_photos_videos">За да снимате фотографии и видеа преку Signal:</string>
+  <!-- Dialog description that explains the steps needed to give microphone permission -->
+  <string name="CameraXFragment_to_capture_videos">За да снимате видеа со звук:</string>
+  <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
+  <string name="CameraXFragment_to_scan_qr_codes">За да скенирате QR кодови:</string>
+  <!-- Error message shown when we try to take a photo, but fail -->
+  <string name="CameraXFragment_photo_capture_failed">Не успеавме да направиме фотографија. Ве молиме обидете се повторно.</string>
+  <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
+  <string name="CameraXFragment_photo_processing_failed">Не успеавме да ја процесираме фотографијата. Ве молиме обидете се повторно.</string>
+  <!-- Accessibility label for the switch camera button -->
+  <string name="CameraXFragment_switch_camera">Променете ја камерата</string>
+  <!-- Accessibility label for flash button when flash is off -->
+  <string name="CameraXFragment_flash_off">Исклучен блиц</string>
+  <!-- Accessibility label for flash button when flash is on -->
+  <string name="CameraXFragment_flash_on">Вклучен блиц</string>
+  <!-- Accessibility label for flash button when flash is set to auto -->
+  <string name="CameraXFragment_flash_auto">Автоматски блиц</string>
+  <!-- Accessibility label for the send button in media selection -->
+  <string name="CameraXFragment_send">Испрати</string>
+  <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
+  <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">Signal има потреба од дозвола до микрофонот за да може да снима видеа. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувањата, изберете „Дозволи“ и вклучете „Микрофон“ и „Камера“.</string>
+
+  <!-- Displayed when there is an error capturing video -->
+  <string name="MediaSendViewModel__error_recording_video">Грешка при снимањето на видеото</string>
+  <!-- Displayed when there is an error capturing image -->
+  <string name="MediaSendViewModel__error_taking_photo">Грешка при фотографирањето</string>
+
+  <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+  <string name="UsernameScannedDialog__username_dialog_title">Пронајден е корисникот %1$s</string>
+  <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+  <string name="UsernameScannedDialog__username_dialog_body">Започнете разговор со „%1$s“</string>
+  <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+  <string name="UsernameScannedDialog__username_dialog_go_to_chat_button">Оди до разговорот</string>
+
+  <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+  <string name="LinkedDeviceScannedDialog__device_link_dialog_title">Сакате да се поврзе уредот?</string>
+  <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+  <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">Изгледа дека сакате да поврзете Signal уред. Допрете на „Продолжи“, па допрете на „Поврзете нов уред“ и скенирајте го QR кодот повторно.</string>
+  <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+  <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">Продолжи</string>
 </resources>

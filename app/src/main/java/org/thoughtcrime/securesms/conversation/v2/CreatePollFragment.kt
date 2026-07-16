@@ -66,7 +66,6 @@ import org.signal.core.ui.compose.list.reorderableList
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.polls.Poll
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -78,7 +77,7 @@ class CreatePollFragment : ComposeDialogFragment() {
   companion object {
     private val TAG = Log.tag(CreatePollFragment::class)
 
-    val MAX_QUESTION_CHARACTER_LENGTH = if (RemoteConfig.pollsV2) 200 else 100
+    const val MAX_QUESTION_CHARACTER_LENGTH = 200
     const val MAX_CHARACTER_LENGTH = 100
     const val MAX_OPTIONS = 10
     const val MIN_OPTIONS = 2

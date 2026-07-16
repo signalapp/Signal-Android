@@ -9,10 +9,10 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.CursorUtil;
-import org.signal.core.util.StringUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversation.MessageStyler;
@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.SignalTrace;
 import org.signal.core.util.Util;
 import org.signal.core.util.concurrent.SerialExecutor;
 
@@ -45,6 +46,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -58,6 +60,8 @@ import static org.thoughtcrime.securesms.database.SearchTable.SNIPPET_WRAP;
 public class SearchRepository {
 
   private static final String TAG = Log.tag(SearchRepository.class);
+
+  private static final int MAX_SNIPPET_SIZE = 100;
 
   private final Context           context;
   private final String            noteToSelfTitle;
@@ -82,26 +86,36 @@ public class SearchRepository {
 
   @WorkerThread
   public @NonNull ThreadSearchResult queryThreadsSync(@NonNull String query, boolean unreadOnly) {
-    long                      start  = System.currentTimeMillis();
-    List<ThreadWithRecipient> result = queryConversations(query, unreadOnly);
+    SignalTrace.beginSection("ConversationListSearch-Threads");
+    try {
+      long                      start  = System.currentTimeMillis();
+      List<ThreadWithRecipient> result = queryConversations(query, unreadOnly);
 
-    Log.d(TAG, "[threads] Search took " + (System.currentTimeMillis() - start) + " ms");
+      Log.d(TAG, "[threads] Search took " + (System.currentTimeMillis() - start) + " ms");
 
-    return new ThreadSearchResult(result, query);
+      return new ThreadSearchResult(result, query);
+    } finally {
+      SignalTrace.endSection();
+    }
   }
 
   @WorkerThread
   public @NonNull MessageSearchResult queryMessagesSync(@NonNull String query, @NonNull SearchFilter filter) {
-    long start = System.currentTimeMillis();
+    SignalTrace.beginSection("ConversationListSearch-Messages");
+    try {
+      long start = System.currentTimeMillis();
 
-    List<MessageResult> messages         = queryMessages(query, filter);
-    List<MessageResult> mentionMessages  = queryMentions(convertMentionsQueryToTokens(query));
-    List<MessageResult> filteredMentions = filterMentionResults(mentionMessages, filter);
-    List<MessageResult> combined         = mergeMessagesAndMentions(messages, filteredMentions);
+      List<MessageResult> messages         = queryMessages(query, filter);
+      List<MessageResult> mentionMessages  = queryMentions(convertMentionsQueryToTokens(query));
+      List<MessageResult> filteredMentions = filterMentionResults(mentionMessages, filter);
+      List<MessageResult> combined         = mergeMessagesAndMentions(messages, filteredMentions);
 
-    Log.d(TAG, "[messages] Search took " + (System.currentTimeMillis() - start) + " ms");
+      Log.d(TAG, "[messages] Search took " + (System.currentTimeMillis() - start) + " ms");
 
-    return new MessageSearchResult(combined, query);
+      return new MessageSearchResult(combined, query);
+    } finally {
+      SignalTrace.endSection();
+    }
   }
 
   public void query(@NonNull String query, long threadId, @NonNull Callback<List<MessageResult>> callback) {
@@ -172,6 +186,12 @@ public class SearchRepository {
       results = readToList(cursor, new MessageModelBuilder());
     }
 
+    if (results.isEmpty()) {
+      return results;
+    }
+
+    List<String> snippetQueries = tokenizeQuery(query);
+
     List<Long> messageIds = new LinkedList<>();
     for (MessageResult result : results) {
       if (result.isMms()) {
@@ -179,121 +199,65 @@ public class SearchRepository {
       }
     }
 
-    if (messageIds.isEmpty()) {
-      return results;
-    }
-
-    Map<Long, BodyRangeList> bodyRanges = SignalDatabase.messages().getBodyRangesForMessages(messageIds);
-    Map<Long, List<Mention>> mentions   = SignalDatabase.mentions().getMentionsForMessages(messageIds);
-
-    if (bodyRanges.isEmpty() && mentions.isEmpty()) {
-      return results;
-    }
+    Map<Long, BodyRangeList> bodyRanges = messageIds.isEmpty() ? Collections.emptyMap() : SignalDatabase.messages().getBodyRangesForMessages(messageIds);
+    Map<Long, List<Mention>> mentions   = messageIds.isEmpty() ? Collections.emptyMap() : SignalDatabase.mentions().getMentionsForMessages(messageIds);
 
     List<MessageResult> updatedResults = new ArrayList<>(results.size());
     for (MessageResult result : results) {
-      if (bodyRanges.containsKey(result.getMessageId()) || mentions.containsKey(result.getMessageId())) {
-        CharSequence         body               = result.getBody();
-        CharSequence         bodySnippet        = result.getBodySnippet();
-        CharSequence         updatedBody        = body;
-        List<BodyAdjustment> bodyAdjustments    = Collections.emptyList();
-        CharSequence         updatedSnippet     = bodySnippet;
-        List<BodyAdjustment> snippetAdjustments = Collections.emptyList();
-        List<Mention>        messageMentions    = mentions.get(result.getMessageId());
-        BodyRangeList        ranges             = bodyRanges.get(result.getMessageId());
+      CharSequence         updatedBody     = result.getBody();
+      List<BodyAdjustment> bodyAdjustments = Collections.emptyList();
+      List<Mention>        messageMentions = mentions.get(result.getMessageId());
+      BodyRangeList        ranges          = bodyRanges.get(result.getMessageId());
 
-        if (messageMentions != null) {
-          MentionUtil.UpdatedBodyAndMentions bodyMentionUpdate = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, body, messageMentions);
-          updatedBody     = Objects.requireNonNull(bodyMentionUpdate.getBody());
-          bodyAdjustments = bodyMentionUpdate.getBodyAdjustments();
-
-          MentionUtil.UpdatedBodyAndMentions snippetMentionUpdate = updateSnippetWithDisplayNames(body, bodySnippet, messageMentions);
-          updatedSnippet     = Objects.requireNonNull(snippetMentionUpdate.getBody());
-          snippetAdjustments = snippetMentionUpdate.getBodyAdjustments();
-        }
-
-        if (ranges != null) {
-          updatedBody = SpannableString.valueOf(updatedBody);
-          MessageStyler.style(result.getReceivedTimestampMs(), BodyRangeUtil.adjustBodyRanges(ranges, bodyAdjustments), (Spannable) updatedBody);
-
-          updatedSnippet = SpannableString.valueOf(updatedSnippet);
-          updateSnippetWithStyles(result.getReceivedTimestampMs(), updatedBody, (SpannableString) updatedSnippet, BodyRangeUtil.adjustBodyRanges(ranges, snippetAdjustments));
-        }
-
-        updatedResults.add(new MessageResult(result.getConversationRecipient(), result.getMessageRecipient(), updatedBody, updatedSnippet, result.getThreadId(), result.getMessageId(), result.getReceivedTimestampMs(), result.isMms()));
-      } else {
-        updatedResults.add(result);
+      if (messageMentions != null) {
+        MentionUtil.UpdatedBodyAndMentions bodyMentionUpdate = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, updatedBody, messageMentions);
+        updatedBody     = Objects.requireNonNull(bodyMentionUpdate.getBody());
+        bodyAdjustments = bodyMentionUpdate.getBodyAdjustments();
       }
+
+      if (ranges != null) {
+        updatedBody = SpannableString.valueOf(updatedBody);
+        MessageStyler.style(result.getReceivedTimestampMs(), BodyRangeUtil.adjustBodyRanges(ranges, bodyAdjustments), (Spannable) updatedBody);
+      }
+
+      CharSequence updatedSnippet = makeSnippet(snippetQueries, updatedBody);
+
+      updatedResults.add(new MessageResult(result.getConversationRecipient(), result.getMessageRecipient(), updatedBody, updatedSnippet, result.getThreadId(), result.getMessageId(), result.getReceivedTimestampMs(), result.isMms()));
     }
 
     return updatedResults;
   }
 
-  private @NonNull MentionUtil.UpdatedBodyAndMentions updateSnippetWithDisplayNames(@NonNull CharSequence body, @NonNull CharSequence bodySnippet, @NonNull List<Mention> mentions) {
-    CharSequence cleanSnippet = bodySnippet;
-    int          startOffset  = 0;
-
-    if (StringUtil.startsWith(cleanSnippet, SNIPPET_WRAP)) {
-      cleanSnippet = cleanSnippet.subSequence(SNIPPET_WRAP.length(), cleanSnippet.length());
-      startOffset  = SNIPPET_WRAP.length();
-    }
-
-    if (StringUtil.endsWith(cleanSnippet, SNIPPET_WRAP)) {
-      cleanSnippet = cleanSnippet.subSequence(0, cleanSnippet.length() - SNIPPET_WRAP.length());
-    }
-
-    int startIndex = TextUtils.indexOf(body, cleanSnippet);
-
-    if (startIndex != -1) {
-      List<Mention> adjustMentions = new ArrayList<>(mentions.size());
-      for (Mention mention : mentions) {
-        int adjustedStart = mention.getStart() - startIndex + startOffset;
-        if (adjustedStart >= 0 && adjustedStart + mention.getLength() <= cleanSnippet.length()) {
-          adjustMentions.add(new Mention(mention.getRecipientId(), adjustedStart, mention.getLength()));
-        }
-      }
-
-      return MentionUtil.updateBodyAndMentionsWithDisplayNames(context, bodySnippet, adjustMentions);
-    } else {
-      return MentionUtil.updateBodyAndMentionsWithDisplayNames(context, bodySnippet, Collections.emptyList());
-    }
-  }
-
-  private void updateSnippetWithStyles(long id, @NonNull CharSequence body, @NonNull SpannableString bodySnippet, @NonNull BodyRangeList bodyRanges) {
-    CharSequence cleanSnippet = bodySnippet;
-    int          startOffset  = 0;
-
-    if (StringUtil.startsWith(cleanSnippet, SNIPPET_WRAP)) {
-      cleanSnippet = cleanSnippet.subSequence(SNIPPET_WRAP.length(), cleanSnippet.length());
-      startOffset  = SNIPPET_WRAP.length();
-    }
-
-    if (StringUtil.endsWith(cleanSnippet, SNIPPET_WRAP)) {
-      cleanSnippet = cleanSnippet.subSequence(0, cleanSnippet.length() - SNIPPET_WRAP.length());
-    }
-
-    int startIndex = TextUtils.indexOf(body, cleanSnippet);
-
-    if (startIndex != -1) {
-      List<BodyRangeList.BodyRange> newRanges = new ArrayList<>(bodyRanges.ranges.size());
-      for (BodyRangeList.BodyRange range : bodyRanges.ranges) {
-        int adjustedStart = range.start - startIndex + startOffset;
-        if (adjustedStart >= 0 && adjustedStart + range.length <= bodySnippet.length()) {
-          newRanges.add(range.newBuilder().start(adjustedStart).build());
-        }
-      }
-
-      BodyRangeList.Builder builder = new BodyRangeList.Builder();
-      builder.ranges(newRanges);
-
-      MessageStyler.style(id, builder.build(), bodySnippet);
-    }
-  }
-
   private @NonNull List<MessageResult> queryMessages(@NonNull String query, long threadId) {
+    List<MessageResult> results;
     try (Cursor cursor = searchDatabase.queryMessages(query, threadId)) {
-      return readToList(cursor, new MessageModelBuilder());
+      results = readToList(cursor, new MessageModelBuilder());
     }
+
+    if (results.isEmpty()) {
+      return results;
+    }
+
+    List<String>        snippetQueries = tokenizeQuery(query);
+    List<MessageResult> updatedResults = new ArrayList<>(results.size());
+    for (MessageResult result : results) {
+      CharSequence snippet = makeSnippet(snippetQueries, result.getBody());
+      updatedResults.add(new MessageResult(result.getConversationRecipient(), result.getMessageRecipient(), result.getBody(), snippet, result.getThreadId(), result.getMessageId(), result.getReceivedTimestampMs(), result.isMms()));
+    }
+
+    return updatedResults;
+  }
+
+  @VisibleForTesting
+  static @NonNull List<String> tokenizeQuery(@NonNull String query) {
+    List<String> tokens = new ArrayList<>();
+    for (String part : query.split("\\s+")) {
+      String trimmed = part.trim();
+      if (!trimmed.isEmpty()) {
+        tokens.add(trimmed);
+      }
+    }
+    return tokens;
   }
 
   private @NonNull List<MessageResult> queryMentions(@NonNull List<String> cleanQueries) {
@@ -360,14 +324,15 @@ public class SearchRepository {
     return results;
   }
 
-  private @NonNull CharSequence makeSnippet(@NonNull List<String> queries, @NonNull CharSequence styledBody) {
+  @VisibleForTesting
+  static @NonNull CharSequence makeSnippet(@NonNull List<String> queries, @NonNull CharSequence styledBody) {
     if (styledBody.length() < 50) {
       return styledBody;
     }
 
-    String lowerBody  = styledBody.toString().toLowerCase();
+    String lowerBody  = styledBody.toString().toLowerCase(Locale.ROOT);
     for (String query : queries) {
-      int foundIndex = lowerBody.indexOf(query.toLowerCase());
+      int foundIndex = lowerBody.indexOf(query.toLowerCase(Locale.ROOT));
       if (foundIndex != -1) {
         int snippetStart = Math.max(0, Math.max(TextUtils.lastIndexOf(styledBody,' ', foundIndex - 5) + 1, foundIndex - 15));
         int lastSpace    = TextUtils.indexOf(styledBody, ' ', foundIndex + 30);
@@ -379,7 +344,15 @@ public class SearchRepository {
       }
     }
 
-    return styledBody;
+    if (styledBody.length() <= MAX_SNIPPET_SIZE) {
+      return styledBody;
+    }
+
+    int lastSpace = TextUtils.lastIndexOf(styledBody, ' ', MAX_SNIPPET_SIZE);
+    int snippetEnd = lastSpace > 0 ? lastSpace : MAX_SNIPPET_SIZE;
+
+    return new SpannableStringBuilder().append(styledBody.subSequence(0, snippetEnd))
+                                       .append(SNIPPET_WRAP);
   }
 
   private @NonNull <T> List<T> readToList(@Nullable Cursor cursor, @NonNull ModelBuilder<T> builder) {
@@ -478,7 +451,6 @@ public class SearchRepository {
       Recipient   conversationRecipient   = Recipient.resolved(conversationRecipientId);
       Recipient   messageRecipient        = Recipient.resolved(messageRecipientId);
       String      body                    = CursorUtil.requireString(cursor, SearchTable.BODY);
-      String      bodySnippet             = CursorUtil.requireString(cursor, SearchTable.SNIPPET);
       long        receivedMs              = CursorUtil.requireLong(cursor, MessageTable.DATE_RECEIVED);
       long        threadId                = CursorUtil.requireLong(cursor, MessageTable.THREAD_ID);
       int         messageId               = CursorUtil.requireInt(cursor, SearchTable.MESSAGE_ID);
@@ -488,11 +460,7 @@ public class SearchRepository {
         body = "";
       }
 
-      if (bodySnippet == null) {
-        bodySnippet = "";
-      }
-
-      return new MessageResult(conversationRecipient, messageRecipient, body, bodySnippet, threadId, messageId, receivedMs, isMms);
+      return new MessageResult(conversationRecipient, messageRecipient, body, body, threadId, messageId, receivedMs, isMms);
     }
   }
 

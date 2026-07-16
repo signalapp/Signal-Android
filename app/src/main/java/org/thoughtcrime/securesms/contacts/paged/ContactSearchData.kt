@@ -33,7 +33,10 @@ sealed class ContactSearchData(val contactSearchKey: ContactSearchKey) {
     val recipient: Recipient,
     val shortSummary: Boolean = false,
     val headerLetter: String? = null,
-    val groupsInCommon: GroupsInCommonSummary = GroupsInCommonSummary(listOf())
+    val groupsInCommon: GroupsInCommonSummary = GroupsInCommonSummary(listOf()),
+    val showSelfAsYou: Boolean = false,
+    val showAdminLabel: Boolean = false,
+    val query: String? = null
   ) : ContactSearchData(ContactSearchKey.RecipientSearchKey(recipient.id, false))
 
   /**

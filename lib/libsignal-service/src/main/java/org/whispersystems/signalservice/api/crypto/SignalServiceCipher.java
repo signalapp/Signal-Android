@@ -6,6 +6,10 @@
 
 package org.whispersystems.signalservice.api.crypto;
 
+import org.signal.core.models.ServiceId;
+import org.signal.core.models.ServiceId.ACI;
+import org.signal.core.util.UuidUtil;
+import org.signal.core.util.logging.Log;
 import org.signal.libsignal.metadata.InvalidMetadataMessageException;
 import org.signal.libsignal.metadata.InvalidMetadataVersionException;
 import org.signal.libsignal.metadata.ProtocolDuplicateMessageException;
@@ -27,7 +31,6 @@ import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.InvalidKeyIdException;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.InvalidRegistrationIdException;
-import org.signal.libsignal.protocol.InvalidSessionException;
 import org.signal.libsignal.protocol.InvalidVersionException;
 import org.signal.libsignal.protocol.LegacyMessageException;
 import org.signal.libsignal.protocol.NoSessionException;
@@ -35,7 +38,6 @@ import org.signal.libsignal.protocol.SessionCipher;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.UntrustedIdentityException;
 import org.signal.libsignal.protocol.groups.GroupCipher;
-import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.message.CiphertextMessage;
 import org.signal.libsignal.protocol.message.PlaintextContent;
 import org.signal.libsignal.protocol.message.PreKeySignalMessage;
@@ -46,10 +48,7 @@ import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.messages.SignalServiceMetadata;
 import org.whispersystems.signalservice.api.push.DistributionId;
-import org.signal.core.models.ServiceId;
-import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.signal.core.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.Content;
 import org.whispersystems.signalservice.internal.push.Envelope;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage;
@@ -115,21 +114,17 @@ public class SignalServiceCipher {
   public OutgoingPushMessage encrypt(SignalProtocolAddress destination,
                                      @Nullable SealedSenderAccess sealedSenderAccess,
                                      EnvelopeContent content)
-      throws UntrustedIdentityException, InvalidKeyException
+      throws UntrustedIdentityException, InvalidKeyException, NoSessionException
   {
-    try {
-      SignalProtocolAddress localProtocolAddress = new SignalProtocolAddress(localAddress.getIdentifier(), localDeviceId);
-      SignalSessionCipher   sessionCipher        = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, localProtocolAddress, destination));
-      if (sealedSenderAccess != null) {
-        SignalSealedSessionCipher sealedSessionCipher = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getServiceId().getRawUuid(), localAddress.getNumber()
-                                                                                                                                                                                                      .orElse(null), localDeviceId));
+    SignalProtocolAddress localProtocolAddress = new SignalProtocolAddress(localAddress.getIdentifier(), localDeviceId);
+    SignalSessionCipher   sessionCipher        = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, localProtocolAddress, destination));
+    if (sealedSenderAccess != null) {
+      SignalSealedSessionCipher sealedSessionCipher = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getServiceId().getRawUuid(), localAddress.getNumber()
+                                                                                                                                                                                                    .orElse(null), localDeviceId));
 
-        return content.processSealedSender(sessionCipher, sealedSessionCipher, destination, sealedSenderAccess.getSenderCertificate());
-      } else {
-        return content.processUnsealedSender(sessionCipher, destination);
-      }
-    } catch (NoSessionException e) {
-      throw new InvalidSessionException("Session not found: " + destination);
+      return content.processSealedSender(sessionCipher, sealedSessionCipher, destination, sealedSenderAccess.getSenderCertificate());
+    } else {
+      return content.processUnsealedSender(sessionCipher, destination);
     }
   }
 

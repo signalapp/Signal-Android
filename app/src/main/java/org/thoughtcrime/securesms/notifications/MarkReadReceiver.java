@@ -110,7 +110,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
                                                                                           .collect(Collectors.toList()));
 
     for (RecipientId peer : peers) {
-      CallTable.Call lastCallInThread = SignalDatabase.calls().markAllCallEventsWithPeerBeforeTimestampRead(peer, timestamp);
+      CallTable.Call lastCallInThread = SignalDatabase.calls().markAllCallEventsWithPeerBeforeTimestampRead(peer, timestamp, System.currentTimeMillis());
       if (lastCallInThread != null) {
         AppDependencies.getJobManager().add(CallLogEventSendJob.forMarkedAsReadInConversation(lastCallInThread));
       }

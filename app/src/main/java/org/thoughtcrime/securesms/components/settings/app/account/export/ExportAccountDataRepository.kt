@@ -7,8 +7,8 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.JsonUtils
 import org.signal.network.NetworkResult
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.providers.BlobProvider
 
 class ExportAccountDataRepository {
 
@@ -44,7 +44,7 @@ class ExportAccountDataRepository {
       tree["text"].asText()
     }
 
-    val uri = BlobProvider.getInstance()
+    val uri = AppDependencies.blobs
       .forData(dataStr.encodeToByteArray())
       .withMimeType(mimeType)
       .withFileName(fileName)

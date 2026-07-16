@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.NoSessionException;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
@@ -188,7 +189,7 @@ public class ProfileKeySendJob extends BaseJob {
 
   }
 
-  private List<Recipient> deliver(@NonNull List<Recipient> destinations) throws IOException, UntrustedIdentityException {
+  private List<Recipient> deliver(@NonNull List<Recipient> destinations) throws IOException, UntrustedIdentityException, NoSessionException {
     SignalServiceDataMessage.Builder dataMessage = SignalServiceDataMessage.newBuilder()
                                                                            .asProfileKeyUpdate(true)
                                                                            .withTimestamp(System.currentTimeMillis())

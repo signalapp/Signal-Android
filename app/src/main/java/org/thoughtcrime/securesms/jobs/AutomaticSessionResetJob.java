@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.NoSessionException;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState;
@@ -144,6 +145,8 @@ public class AutomaticSessionResetJob extends BaseJob {
       messageSender.sendNullMessage(address, SealedSenderAccessUtil.getSealedSenderAccessFor(recipient));
     } catch (UntrustedIdentityException e) {
       Log.w(TAG, "Unable to send null message.");
+    } catch (NoSessionException e) {
+      Log.w(TAG, "Unable to send null message; no session to send over.", e);
     }
   }
 

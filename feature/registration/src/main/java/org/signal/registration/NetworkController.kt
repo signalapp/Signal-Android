@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import okio.ByteString
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.util.serialization.ByteArrayToBase64Serializer
@@ -217,6 +218,16 @@ interface NetworkController {
   suspend fun getBackupFileLastModified(aep: AccountEntropyPool, backupInfo: GetBackupInfoResponse): RequestResult<Long, GetBackupInfoError>
 
   /**
+   * Verifies that [aep] is the correct backup key for the current account by checking it against the remote backup.
+   * Used to detect an incorrect backup passphrase before attempting a full restore, so the user can be given the
+   * chance to re-enter it.
+   *
+   * A [VerifyBackupKeyError.IncorrectKey] result means the key failed zk verification (i.e. it does not match the
+   * account's backup).
+   */
+  suspend fun verifyBackupKeyAssociatedWithAccount(aep: AccountEntropyPool): RequestResult<Unit, VerifyBackupKeyError>
+
+  /**
    * Starts a provisioning session for QR-based quick restore.
    *
    * The returned flow emits [ProvisioningEvent]s:
@@ -228,6 +239,70 @@ interface NetworkController {
    * Cancel the collecting coroutine to stop provisioning.
    */
   fun startProvisioning(): Flow<ProvisioningEvent>
+
+  /**
+   * Starts a provisioning session for QR-based device linking (registering this device as a secondary
+   * device on a pre-existing account).
+   *
+   * The returned flow emits [LinkDeviceProvisioningEvent]s:
+   * - [LinkDeviceProvisioningEvent.QrCodeReady] whenever a new QR code URL is available (e.g. due to socket rotation).
+   * - [LinkDeviceProvisioningEvent.MessageReceived] when the primary device scans the QR code and sends provisioning data.
+   * - [LinkDeviceProvisioningEvent.Error] if the provisioning session encounters an unrecoverable error.
+   *
+   * The flow manages socket lifecycle (rotation, keep-alive) internally. Cancel the collecting coroutine to stop provisioning.
+   *
+   * @param allowLinkAndSync Whether we allow data sync during linking. Normally allowed, but disabled for re-links.
+   */
+  fun startLinkDeviceProvisioning(allowLinkAndSync: Boolean): Flow<LinkDeviceProvisioningEvent>
+
+  /**
+   * Performs the network call to register this device as a linked (secondary) device on a pre-existing
+   * account (`PUT /v1/devices/link`), authenticated via basic auth with [e164] and [password].
+   *
+   * This only performs the network request and returns the assigned device id. The caller is responsible
+   * for committing the account locally (via [StorageController.commitRegistrationData]) and performing the
+   * post-registration housekeeping (via [onLinkedDeviceRegistered]) and any restores.
+   */
+  suspend fun registerAsLinkedDevice(
+    e164: String,
+    password: String,
+    provisioningCode: String,
+    deviceAttributes: DeviceAttributes,
+    aciPreKeys: PreKeyCollection,
+    pniPreKeys: PreKeyCollection,
+    fcmToken: String?
+  ): RequestResult<LinkDeviceResponse, RegisterAsLinkedDeviceError>
+
+  /**
+   * Performs the network-side post-registration work for a freshly linked device, after the account has been
+   * committed locally via [StorageController.commitRegistrationData]: refreshes remote config and requests the
+   * initial sync messages from the primary.
+   *
+   * Intentionally does *not* include the link-and-sync backup restore (see [StorageController.restoreLinkAndSyncBackup])
+   * or the storage-service restore (see [restoreLinkedDeviceFromStorageService]); the registration module
+   * sequences those separately so progress can be surfaced and timing controlled. Local-state finalization (e.g.
+   * the read-receipts preference) is applied as part of [StorageController.commitRegistrationData].
+   */
+  suspend fun onLinkedDeviceRegistered()
+
+  /**
+   * Waits for the primary device to make a decision on a link-and-sync transfer (a long-poll that may be
+   * retried internally up to ~1 hour).
+   *
+   * Intended to be called while showing a spinner before navigating to the message-sync screen.
+   */
+  suspend fun awaitLinkAndSyncArchive(): LinkAndSyncWaitResult
+
+  /**
+   * Restores account data from the storage service after this device has been linked as a secondary device.
+   *
+   * The registration module decides *when* to call this: immediately after [registerAsLinkedDevice] when there
+   * is no link-and-sync backup, or only after the link-and-sync backup has been applied when there is one.
+   *
+   * Implementations should be best-effort and may no-op when there is nothing to restore (e.g. when the primary
+   * did not share an account entropy pool).
+   */
+  suspend fun restoreLinkedDeviceFromStorageService()
 
   /**
    * Starts `DeviceToDeviceTransferService` in server mode on the new device. The concrete
@@ -282,19 +357,6 @@ interface NetworkController {
     avatar: ByteArray?,
     discoverableByPhoneNumber: Boolean
   ): RequestResult<Unit, SetProfileError>
-
-//  /**
-//   * Registers a device as a linked device on a pre-existing account.
-//   *
-//   * `PUT /v1/devices/link`
-//   *
-//   * - 403: Incorrect account verification
-//   * - 409: Device missing required account capability
-//   * - 411: Account reached max number of linked devices
-//   * - 422: Request is invalid
-//   * - 429: Rate limited
-//   */
-//  suspend fun registerAsSecondaryDevice(verificationCode: String, attributes: AccountAttributes, aciPreKeys: PreKeyCollection, pniPreKeys: PreKeyCollection, fcmToken: String?)
 
   sealed class CreateSessionError : BadRequestError {
     data class InvalidRequest(val message: String) : CreateSessionError()
@@ -395,6 +457,16 @@ interface NetworkController {
     data class RateLimited(val retryAfter: Duration) : GetBackupInfoError()
   }
 
+  sealed class VerifyBackupKeyError : BadRequestError {
+    /** The entered key failed zk verification -- it is not the correct backup key for this account. */
+    data object IncorrectKey : VerifyBackupKeyError()
+
+    /** The key verified, but no backup exists for this account. */
+    data object NoBackup : VerifyBackupKeyError()
+
+    data class RateLimited(val retryAfter: Duration?) : VerifyBackupKeyError()
+  }
+
   data class MasterKeyResponse(
     val masterKey: MasterKey
   )
@@ -424,7 +496,6 @@ interface NetworkController {
     val unrestrictedUnidentifiedAccess: Boolean,
     val discoverableByPhoneNumber: Boolean,
     val capabilities: Capabilities?,
-    val name: String?,
     val pniRegistrationId: Int,
     val recoveryPassword: String?
   ) {
@@ -438,6 +509,15 @@ interface NetworkController {
       val usernameChangeSyncMessage: Boolean
     )
   }
+
+  @Serializable
+  class DeviceAttributes(
+    val fetchesMessages: Boolean,
+    val registrationId: Int,
+    val pniRegistrationId: Int,
+    val name: String?,
+    val capabilities: AccountAttributes.Capabilities?
+  )
 
   @Serializable
   @Parcelize
@@ -589,4 +669,66 @@ interface NetworkController {
     /** The provisioning session encountered an error. */
     data class Error(val cause: Throwable?) : ProvisioningEvent
   }
+
+  /**
+   * Data received from the primary device during QR-based device linking.
+   *
+   * The ACI/PNI are resolved to their canonical string form by the implementation. Identity keys are
+   * provided by the primary so this device shares the account's identity.
+   */
+  class LinkDeviceProvisioningMessage(
+    val e164: String,
+    val provisioningCode: String,
+    val aci: String,
+    val pni: String,
+    val aciIdentityKeyPair: IdentityKeyPair,
+    val pniIdentityKeyPair: IdentityKeyPair,
+    val profileKey: ByteArray,
+    val ephemeralBackupKey: ByteString?,
+    val accountEntropyPool: String?,
+    val mediaRootBackupKey: ByteString?,
+    val readReceipts: Boolean?
+  )
+
+  /**
+   * Events emitted during a device-linking provisioning session.
+   */
+  sealed interface LinkDeviceProvisioningEvent {
+    /** A new QR code URL is available for display. */
+    data class QrCodeReady(val url: String) : LinkDeviceProvisioningEvent
+
+    /** The primary device has scanned the QR code and sent provisioning data. */
+    data class MessageReceived(val message: LinkDeviceProvisioningMessage) : LinkDeviceProvisioningEvent
+
+    /** The provisioning session encountered an error. */
+    data class Error(val cause: Throwable?) : LinkDeviceProvisioningEvent
+  }
+
+  /** Minimal view of the `PUT /v1/devices/link` success body; we only need the assigned device id. */
+  @Serializable
+  data class LinkDeviceResponse(
+    val deviceId: Int
+  )
+
+  sealed interface RegisterAsLinkedDeviceError : BadRequestError {
+    data object IncorrectVerification : RegisterAsLinkedDeviceError
+    data object MissingCapability : RegisterAsLinkedDeviceError
+    data object MaxLinkedDevices : RegisterAsLinkedDeviceError
+    data class InvalidRequest(val message: String? = null) : RegisterAsLinkedDeviceError
+    data class RateLimited(val retryAfter: Duration?) : RegisterAsLinkedDeviceError
+  }
+}
+
+/**
+ * Result of waiting for the primary's link-and-sync transfer archive.
+ */
+sealed interface LinkAndSyncWaitResult {
+  /** The primary made a backup available at the given CDN location; proceed to download + apply it. */
+  data class ArchiveAvailable(val cdn: Int, val key: String) : LinkAndSyncWaitResult
+
+  /** The primary declined to sync, or never delivered an archive in time. */
+  data object ContinueWithoutBackup : LinkAndSyncWaitResult
+
+  /** The primary asked this device to re-link. Registration should be reset. */
+  data object RelinkRequired : LinkAndSyncWaitResult
 }

@@ -35,7 +35,8 @@ data class RemoteBackupsSettingsState(
   val backupCreationError: BackupValues.BackupCreationError? = null,
   val lastMessageCutoffTime: Long = 0,
   val freeTierMediaRetentionDays: Int = -1,
-  val isGooglePlayServicesAvailable: Boolean = false
+  val isGooglePlayServicesAvailable: Boolean = false,
+  val isLinkedDevice: Boolean = false
 ) {
 
   data class BackupMediaDetails(

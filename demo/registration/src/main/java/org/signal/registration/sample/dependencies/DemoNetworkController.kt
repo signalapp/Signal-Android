@@ -37,14 +37,19 @@ import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.zkgroup.GenericServerPublicParams
+import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialRequestContext
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialResponse
+import org.signal.network.NetworkResult
+import org.signal.network.api.LinkDeviceApi
 import org.signal.network.service.StorageServiceService
+import org.signal.registration.LinkAndSyncWaitResult
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.AccountAttributes
 import org.signal.registration.NetworkController.CheckSvrCredentialsRequest
 import org.signal.registration.NetworkController.CheckSvrCredentialsResponse
 import org.signal.registration.NetworkController.CreateSessionError
+import org.signal.registration.NetworkController.DeviceAttributes
 import org.signal.registration.NetworkController.GetSessionStatusError
 import org.signal.registration.NetworkController.PreKeyCollection
 import org.signal.registration.NetworkController.ProvisioningEvent
@@ -63,7 +68,9 @@ import org.signal.registration.sample.MainActivity
 import org.signal.registration.sample.fcm.FcmUtil
 import org.signal.registration.sample.fcm.PushChallengeReceiver
 import org.signal.registration.sample.storage.RegistrationPreferences
+import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.provisioning.ProvisioningSocket
+import org.whispersystems.signalservice.api.registration.RegistrationApi
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreResponse
@@ -74,17 +81,21 @@ import org.whispersystems.signalservice.api.websocket.WebSocketFactory
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.crypto.SecondaryProvisioningCipher
 import org.whispersystems.signalservice.internal.push.AuthCredentials
+import org.whispersystems.signalservice.internal.push.ProvisionMessage
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider
 import org.whispersystems.signalservice.internal.websocket.LibSignalChatConnection
+import java.io.Closeable
 import java.io.IOException
 import java.time.Instant
 import java.util.Locale
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import org.whispersystems.signalservice.api.account.AccountAttributes as ServiceAccountAttributes
+import org.whispersystems.signalservice.api.account.DeviceAttributes as ServiceDeviceAttributes
 import org.whispersystems.signalservice.api.account.PreKeyCollection as ServicePreKeyCollection
 
 class DemoNetworkController(
@@ -98,6 +109,7 @@ class DemoNetworkController(
     private val TAG = Log.tag(DemoNetworkController::class)
     const val DEVICE_TRANSFER_NOTIFICATION_CHANNEL_ID = "device_transfer"
     private const val DEVICE_TRANSFER_NOTIFICATION_ID = 4321
+    private const val USER_AGENT = "Signal-Android-Registration-Sample"
   }
 
   private val json = Json { ignoreUnknownKeys = true }
@@ -424,12 +436,231 @@ class DemoNetworkController(
     )
   }
 
+  override fun startLinkDeviceProvisioning(allowLinkAndSync: Boolean): Flow<NetworkController.LinkDeviceProvisioningEvent> = callbackFlow {
+    val socketHandles = mutableListOf<Closeable>()
+
+    fun startSocket() {
+      val handle = ProvisioningSocket.start<ProvisionMessage>(
+        mode = ProvisioningSocket.Mode.Link(linkAndSyncCapable = allowLinkAndSync),
+        identityKeyPair = IdentityKeyPair.generate(),
+        configuration = serviceConfiguration,
+        handler = { id, t ->
+          Log.w(TAG, "[startLinkDeviceProvisioning] Socket [$id] failed", t)
+          trySend(NetworkController.LinkDeviceProvisioningEvent.Error(t))
+        }
+      ) { socket ->
+        val url = socket.getProvisioningUrl()
+        trySend(NetworkController.LinkDeviceProvisioningEvent.QrCodeReady(url))
+
+        val result = socket.getProvisioningMessageDecryptResult()
+
+        if (result is SecondaryProvisioningCipher.ProvisioningDecryptResult.Success) {
+          val msg = result.message
+          val aci = msg.aciBinary?.let { ServiceId.ACI.parseOrThrow(it) } ?: ServiceId.ACI.parseOrThrow(msg.aci)
+          val pni = msg.pniBinary?.let { ServiceId.PNI.parseOrThrow(it) } ?: ServiceId.PNI.parseOrThrow(msg.pni)
+
+          trySend(
+            NetworkController.LinkDeviceProvisioningEvent.MessageReceived(
+              NetworkController.LinkDeviceProvisioningMessage(
+                e164 = msg.number!!,
+                provisioningCode = msg.provisioningCode!!,
+                aci = aci.toString(),
+                pni = pni.toString(),
+                aciIdentityKeyPair = IdentityKeyPair(IdentityKey(msg.aciIdentityKeyPublic!!.toByteArray()), ECPrivateKey(msg.aciIdentityKeyPrivate!!.toByteArray())),
+                pniIdentityKeyPair = IdentityKeyPair(IdentityKey(msg.pniIdentityKeyPublic!!.toByteArray()), ECPrivateKey(msg.pniIdentityKeyPrivate!!.toByteArray())),
+                profileKey = msg.profileKey!!.toByteArray(),
+                ephemeralBackupKey = msg.ephemeralBackupKey,
+                accountEntropyPool = msg.accountEntropyPool,
+                mediaRootBackupKey = msg.mediaRootBackupKey,
+                readReceipts = msg.readReceipts
+              )
+            )
+          )
+          channel.close()
+        } else {
+          Log.w(TAG, "[startLinkDeviceProvisioning] Failed to decrypt provisioning message")
+          trySend(NetworkController.LinkDeviceProvisioningEvent.Error(IOException("Failed to decrypt provisioning message")))
+        }
+      }
+
+      synchronized(socketHandles) {
+        socketHandles += handle
+        if (socketHandles.size > 2) {
+          socketHandles.removeAt(0).close()
+        }
+      }
+    }
+
+    startSocket()
+
+    val rotationJob = launch {
+      var count = 0
+      while (count < 5 && isActive) {
+        delay(ProvisioningSocket.LIFESPAN / 2)
+        if (isActive) {
+          startSocket()
+          count++
+          Log.d(TAG, "[startLinkDeviceProvisioning] Rotated socket, count: $count")
+        }
+      }
+    }
+
+    awaitClose {
+      rotationJob.cancel()
+      synchronized(socketHandles) {
+        socketHandles.forEach { it.close() }
+        socketHandles.clear()
+      }
+    }
+  }
+
+  override suspend fun registerAsLinkedDevice(
+    e164: String,
+    password: String,
+    provisioningCode: String,
+    deviceAttributes: DeviceAttributes,
+    aciPreKeys: PreKeyCollection,
+    pniPreKeys: PreKeyCollection,
+    fcmToken: String?
+  ): RequestResult<NetworkController.LinkDeviceResponse, NetworkController.RegisterAsLinkedDeviceError> = withContext(Dispatchers.IO) {
+    try {
+      // The link endpoint authenticates via basic auth (e164:password) since this device has no ACI yet.
+      val credentialsProvider = StaticCredentialsProvider(null, null, e164, 1, password)
+      val linkSocket = PushServiceSocket(serviceConfiguration, credentialsProvider, USER_AGENT, true)
+
+      val result = RegistrationApi(linkSocket).registerAsSecondaryDevice(
+        provisioningCode,
+        deviceAttributes.toServiceDeviceAttributes(),
+        aciPreKeys.toServicePreKeyCollection(),
+        pniPreKeys.toServicePreKeyCollection(),
+        fcmToken
+      )
+
+      when (result) {
+        is NetworkResult.Success -> {
+          Log.i(TAG, "[registerAsLinkedDevice] Linked successfully (deviceId=${result.result.deviceId}).")
+          RequestResult.Success(NetworkController.LinkDeviceResponse(deviceId = result.result.deviceId.toInt()))
+        }
+        is NetworkResult.ApplicationError -> RequestResult.ApplicationError(result.throwable)
+        is NetworkResult.NetworkError<*> -> RequestResult.RetryableNetworkError(result.exception)
+        is NetworkResult.StatusCodeError -> {
+          Log.w(TAG, "[registerAsLinkedDevice] Status code error: ${result.code}")
+          val error = when (result.code) {
+            403 -> NetworkController.RegisterAsLinkedDeviceError.IncorrectVerification
+            409 -> NetworkController.RegisterAsLinkedDeviceError.MissingCapability
+            411 -> NetworkController.RegisterAsLinkedDeviceError.MaxLinkedDevices
+            422 -> NetworkController.RegisterAsLinkedDeviceError.InvalidRequest(result.exception.message)
+            429 -> NetworkController.RegisterAsLinkedDeviceError.RateLimited(result.retryAfter())
+            else -> return@withContext RequestResult.ApplicationError(result.exception)
+          }
+          RequestResult.NonSuccess(error)
+        }
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "[registerAsLinkedDevice] Failed to register as linked device.", e)
+      RequestResult.ApplicationError(e)
+    }
+  }
+
+  override suspend fun onLinkedDeviceRegistered() {
+    // The demo stops before importing the backup proto / setting up app state, so there is no real
+    // post-registration housekeeping to do here. The account data is persisted via commitRegistrationData().
+    Log.i(TAG, "[onLinkedDeviceRegistered] No-op in demo.")
+  }
+
+  override suspend fun restoreLinkedDeviceFromStorageService() {
+    // The demo can do a real storage-service restore -- reuse the same account-record restore the
+    // normal flow uses. It no-ops gracefully if credentials/master key aren't available.
+    Log.i(TAG, "[restoreLinkedDeviceFromStorageService] Restoring account record from storage service...")
+    when (val result = restoreAccountRecord(timeout = 30.seconds)) {
+      is RequestResult.Success -> Log.i(TAG, "[restoreLinkedDeviceFromStorageService] Storage service restore complete.")
+      else -> Log.w(TAG, "[restoreLinkedDeviceFromStorageService] Storage service restore did not complete: $result")
+    }
+  }
+
+  override suspend fun awaitLinkAndSyncArchive(): LinkAndSyncWaitResult = withContext(Dispatchers.IO) {
+    val response = awaitTransferArchive()
+    val result = when {
+      response == null -> LinkAndSyncWaitResult.ContinueWithoutBackup
+      response.error == TransferArchiveResponse.ERROR_RELINK_REQUESTED -> LinkAndSyncWaitResult.RelinkRequired
+      response.error == TransferArchiveResponse.ERROR_CONTINUE_WITHOUT_UPLOAD -> LinkAndSyncWaitResult.ContinueWithoutBackup
+      response.hasArchive -> LinkAndSyncWaitResult.ArchiveAvailable(cdn = response.cdn!!, key = response.key!!)
+      else -> LinkAndSyncWaitResult.ContinueWithoutBackup
+    }
+    Log.i(TAG, "[awaitLinkAndSyncArchive] Result: $result")
+    result
+  }
+
+  /**
+   * Connects an authenticated websocket as the linked device and long-polls (retrying up to ~1 hour, mirroring
+   * Desktop) for the primary to make a transfer archive available. Returns the primary's response (which may carry
+   * a [TransferArchiveResponse.error] instead of an archive), or null if the primary never responded in time.
+   */
+  private suspend fun awaitTransferArchive(): TransferArchiveResponse? {
+    val aci = RegistrationPreferences.aci
+    val pni = RegistrationPreferences.pni
+    val e164 = RegistrationPreferences.e164
+    val password = RegistrationPreferences.servicePassword
+    val deviceId = RegistrationPreferences.linkedDeviceId
+
+    if (aci == null || e164 == null || password == null || deviceId <= 0) {
+      Log.w(TAG, "[awaitTransferArchive] Missing linked-device credentials.")
+      return null
+    }
+
+    val network = Network(Network.Environment.STAGING, USER_AGENT, emptyMap(), Network.BuildVariant.PRODUCTION)
+    val credentialsProvider = StaticCredentialsProvider(aci, pni, e164, deviceId, password)
+    val healthMonitor = object : HealthMonitor {
+      override fun onKeepAliveResponse(sentTimestamp: Long, isIdentifiedWebSocket: Boolean) {}
+      override fun onMessageError(status: Int, isIdentifiedWebSocket: Boolean) {}
+      override fun onReceivedAlerts(alerts: Array<out String>, isIdentifiedWebSocket: Boolean) {}
+    }
+    val libSignalConnection = LibSignalChatConnection(
+      name = "LinkAndSync",
+      network = network,
+      credentialsProvider = credentialsProvider,
+      receiveStories = false,
+      healthMonitor = healthMonitor
+    )
+    val authWebSocket = SignalWebSocket.AuthenticatedWebSocket(
+      connectionFactory = { libSignalConnection },
+      canConnect = { true },
+      sleepTimer = { millis -> Thread.sleep(millis) },
+      disconnectTimeoutMs = 60.seconds.inWholeMilliseconds
+    )
+
+    return try {
+      authWebSocket.connect()
+      val deadline = System.currentTimeMillis() + 1.hours.inWholeMilliseconds
+      var archive: TransferArchiveResponse? = null
+      while (archive == null && System.currentTimeMillis() < deadline) {
+        Log.i(TAG, "[awaitTransferArchive] Waiting for primary to provide a transfer archive...")
+        when (val result = LinkDeviceApi(authWebSocket).waitForPrimaryDevice(timeout = 30.seconds)) {
+          is NetworkResult.Success -> archive = result.result
+          else -> Log.d(TAG, "[awaitTransferArchive] No archive yet; continuing to wait.")
+        }
+      }
+      archive
+    } finally {
+      authWebSocket.disconnect()
+    }
+  }
+
+  /** The device id for authenticated calls: the linked-device id if this is a secondary device, else 1 (primary). */
+  private fun currentDeviceId(): Int = RegistrationPreferences.linkedDeviceId.takeIf { it > 0 } ?: 1
+
+  /** Basic-auth username for authenticated REST calls. A secondary device must authenticate as "<aci>.<deviceId>". */
+  private fun authUsername(aci: ServiceId.ACI): String {
+    val deviceId = currentDeviceId()
+    return if (deviceId != 1) "$aci.$deviceId" else aci.toString()
+  }
+
   override fun startProvisioning(): Flow<ProvisioningEvent> = callbackFlow {
-    val socketHandles = mutableListOf<java.io.Closeable>()
+    val socketHandles = mutableListOf<Closeable>()
 
     fun startSocket() {
       val handle = ProvisioningSocket.start<RegistrationProvisionMessage>(
-        mode = ProvisioningSocket.Mode.REREG,
+        mode = ProvisioningSocket.Mode.Rereg,
         identityKeyPair = IdentityKeyPair.generate(),
         configuration = serviceConfiguration,
         handler = { id, t ->
@@ -577,7 +808,7 @@ class DemoNetworkController(
       }
 
       val network = Network(Network.Environment.STAGING, "Signal-Android-Registration-Sample", emptyMap(), Network.BuildVariant.PRODUCTION)
-      val credentialsProvider = StaticCredentialsProvider(aci, pni, e164, 1, password)
+      val credentialsProvider = StaticCredentialsProvider(aci, pni, e164, currentDeviceId(), password)
       val healthMonitor = object : HealthMonitor {
         override fun onKeepAliveResponse(sentTimestamp: Long, isIdentifiedWebSocket: Boolean) {}
         override fun onMessageError(status: Int, isIdentifiedWebSocket: Boolean) {}
@@ -679,7 +910,7 @@ class DemoNetworkController(
     val registrationLockToken = masterKey.deriveRegistrationLock()
 
     try {
-      val credentials = okhttp3.Credentials.basic(aci.toString(), password)
+      val credentials = okhttp3.Credentials.basic(authUsername(aci), password)
       val baseUrl = serviceConfiguration.signalServiceUrls[0].url
       val requestBody = """{"registrationLock":"$registrationLockToken"}"""
         .toRequestBody("application/json".toMediaType())
@@ -726,7 +957,7 @@ class DemoNetworkController(
     }
 
     try {
-      val credentials = okhttp3.Credentials.basic(aci.toString(), password)
+      val credentials = okhttp3.Credentials.basic(authUsername(aci), password)
       val baseUrl = serviceConfiguration.signalServiceUrls[0].url
 
       val request = okhttp3.Request.Builder()
@@ -770,7 +1001,7 @@ class DemoNetworkController(
     }
 
     try {
-      val credentials = okhttp3.Credentials.basic(aci.toString(), password)
+      val credentials = okhttp3.Credentials.basic(authUsername(aci), password)
       val baseUrl = serviceConfiguration.signalServiceUrls[0].url
       val requestBody = json.encodeToString(AccountAttributes.serializer(), attributes)
         .toRequestBody("application/json".toMediaType())
@@ -817,7 +1048,7 @@ class DemoNetworkController(
     }
 
     try {
-      val credentials = okhttp3.Credentials.basic(aci.toString(), password)
+      val credentials = okhttp3.Credentials.basic(authUsername(aci), password)
       val baseUrl = serviceConfiguration.signalServiceUrls[0].url
 
       val request = okhttp3.Request.Builder()
@@ -935,7 +1166,7 @@ class DemoNetworkController(
     val storageKey = masterKey.deriveStorageServiceKey()
 
     val network = Network(Network.Environment.STAGING, "Signal-Android-Registration-Sample", emptyMap(), Network.BuildVariant.PRODUCTION)
-    val credentialsProvider = StaticCredentialsProvider(aci, pni, e164, 1, password)
+    val credentialsProvider = StaticCredentialsProvider(aci, pni, e164, currentDeviceId(), password)
     val healthMonitor = object : HealthMonitor {
       override fun onKeepAliveResponse(sentTimestamp: Long, isIdentifiedWebSocket: Boolean) {}
       override fun onMessageError(status: Int, isIdentifiedWebSocket: Boolean) {}
@@ -1075,7 +1306,6 @@ class DemoNetworkController(
         spqr = true,
         usernameChangeSyncMessage = true
       ),
-      name = null,
       pniRegistrationId = RegistrationPreferences.pniRegistrationId,
       recoveryPassword = recoveryPassword
     )
@@ -1197,6 +1427,25 @@ class DemoNetworkController(
     )
   }
 
+  override suspend fun verifyBackupKeyAssociatedWithAccount(aep: AccountEntropyPool): RequestResult<Unit, NetworkController.VerifyBackupKeyError> = withContext(Dispatchers.IO) {
+    when (val result = getRemoteBackupInfo(aep)) {
+      is RequestResult.Success -> RequestResult.Success(Unit)
+      is RequestResult.NonSuccess -> when (val error = result.error) {
+        is NetworkController.GetBackupInfoError.NoBackup -> RequestResult.NonSuccess(NetworkController.VerifyBackupKeyError.NoBackup)
+        is NetworkController.GetBackupInfoError.RateLimited -> RequestResult.NonSuccess(NetworkController.VerifyBackupKeyError.RateLimited(error.retryAfter))
+        else -> RequestResult.NonSuccess(NetworkController.VerifyBackupKeyError.IncorrectKey)
+      }
+      is RequestResult.RetryableNetworkError -> RequestResult.RetryableNetworkError(result.networkError)
+      is RequestResult.ApplicationError -> {
+        if (result.cause is VerificationFailedException) {
+          RequestResult.NonSuccess(NetworkController.VerifyBackupKeyError.IncorrectKey)
+        } else {
+          RequestResult.ApplicationError(result.cause)
+        }
+      }
+    }
+  }
+
   override suspend fun getBackupFileLastModified(
     aep: AccountEntropyPool,
     backupInfo: NetworkController.GetBackupInfoResponse
@@ -1307,7 +1556,7 @@ class DemoNetworkController(
       unrestrictedUnidentifiedAccess,
       capabilities?.toServiceCapabilities(),
       discoverableByPhoneNumber,
-      name,
+      null,
       pniRegistrationId,
       recoveryPassword
     )
@@ -1320,6 +1569,16 @@ class DemoNetworkController(
       attachmentBackfill,
       spqr,
       usernameChangeSyncMessage
+    )
+  }
+
+  private fun DeviceAttributes.toServiceDeviceAttributes(): ServiceDeviceAttributes {
+    return ServiceDeviceAttributes(
+      fetchesMessages = fetchesMessages,
+      registrationId = registrationId,
+      pniRegistrationId = pniRegistrationId,
+      name = name,
+      capabilities = capabilities?.toServiceCapabilities()
     )
   }
 

@@ -86,7 +86,6 @@ import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewRecipient
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
@@ -681,7 +680,7 @@ class ConversationRepository(
         val thumbnailUri = thumbnailSlide.uri ?: return@fromCallable null
 
         val inputStream = PartAuthority.getAttachmentStream(applicationContext, thumbnailUri)
-        val tempUri = BlobProvider.getInstance().forData(inputStream, thumbnailSlide.fileSize)
+        val tempUri = AppDependencies.blobs.forData(inputStream, thumbnailSlide.fileSize)
           .withMimeType(thumbnailSlide.contentType)
           .createForSingleSessionOnDisk(applicationContext)
 
@@ -826,9 +825,9 @@ class ConversationRepository(
     SignalExecutors.BOUNDED_IO.execute {
       slides
         .mapNotNull(Slide::getUri)
-        .filter(BlobProvider::isAuthority)
+        .filter { AppDependencies.blobs.isAuthority(it) }
         .forEach {
-          BlobProvider.getInstance().delete(applicationContext, it)
+          AppDependencies.blobs.delete(applicationContext, it)
         }
     }
   }

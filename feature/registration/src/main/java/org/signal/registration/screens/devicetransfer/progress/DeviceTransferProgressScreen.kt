@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -30,6 +31,7 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.registration.R
 import org.signal.registration.screens.RegistrationScaffold
+import org.signal.registration.test.TestTags
 
 @Composable
 fun DeviceTransferProgressScreen(
@@ -55,7 +57,9 @@ fun DeviceTransferProgressScreen(
   }
 
   RegistrationScaffold(
-    modifier = modifier.fillMaxSize(),
+    modifier = modifier
+      .fillMaxSize()
+      .testTag(TestTags.DEVICE_TRANSFER_PROGRESS_SCREEN),
     content = {
       Column(
         modifier = Modifier
@@ -127,7 +131,9 @@ fun DeviceTransferProgressScreen(
           if (state.status == DeviceTransferProgressState.Status.FAILED) {
             Buttons.LargeTonal(
               onClick = { onEvent(DeviceTransferProgressScreenEvents.TryAgainClicked) },
-              modifier = Modifier.fillMaxWidth()
+              modifier = Modifier
+                .fillMaxWidth()
+                .testTag(TestTags.DEVICE_TRANSFER_PROGRESS_TRY_AGAIN_BUTTON)
             ) {
               Text(stringResource(R.string.DeviceTransferProgress__try_again))
             }
@@ -136,7 +142,9 @@ fun DeviceTransferProgressScreen(
 
           Buttons.LargeTonal(
             onClick = { onEvent(DeviceTransferProgressScreenEvents.CancelClicked) },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+              .fillMaxWidth()
+              .testTag(TestTags.DEVICE_TRANSFER_PROGRESS_CANCEL_BUTTON)
           ) {
             Text(stringResource(R.string.DeviceTransferProgress__cancel))
           }

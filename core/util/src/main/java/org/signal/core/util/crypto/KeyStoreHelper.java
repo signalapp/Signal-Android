@@ -1,0 +1,246 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.core.util.crypto;
+
+
+import android.security.keystore.KeyGenParameterSpec;
+import android.security.keystore.KeyProperties;
+import android.util.Base64;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import org.signal.core.util.logging.Log;
+import org.signal.core.util.JsonUtils;
+
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.UnrecoverableEntryException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicReference;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.GCMParameterSpec;
+
+public final class KeyStoreHelper {
+
+  private static final String   ANDROID_KEY_STORE = "AndroidKeyStore";
+  private static final String   KEY_ALIAS         = "SignalSecret";
+  private static final Executor executor          = Executors.newSingleThreadExecutor();
+
+  public static SealedData seal(@NonNull byte[] input) {
+    CountDownLatch              latch  = new CountDownLatch(1);
+    AtomicReference<SealedData> result = new AtomicReference<>();
+
+    executor.execute(() -> {
+      try {
+        SecretKey secretKey = getOrCreateKeyStoreEntry();
+
+        Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+
+        byte[] iv   = cipher.getIV();
+        byte[] data = cipher.doFinal(input);
+
+        result.set(new SealedData(iv, data));
+      } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+        throw new AssertionError(e);
+      } finally {
+        latch.countDown();
+      }
+    });
+
+    try {
+      latch.await();
+    } catch (InterruptedException e) {
+      throw new AssertionError(e);
+    }
+
+    return result.get();
+  }
+
+  public static byte[] unseal(@NonNull SealedData sealedData) {
+    CountDownLatch          latch  = new CountDownLatch(1);
+    AtomicReference<byte[]> result = new AtomicReference<>();
+
+    executor.execute(() -> {
+      try {
+        SecretKey secretKey = getKeyStoreEntry();
+
+        Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+        cipher.init(Cipher.DECRYPT_MODE, secretKey, new GCMParameterSpec(128, sealedData.iv));
+
+        result.set(cipher.doFinal(sealedData.data));
+      } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
+        throw new AssertionError(e);
+      } finally {
+        latch.countDown();
+      }
+    });
+
+    try {
+      latch.await();
+    } catch (InterruptedException e) {
+      throw new AssertionError(e);
+    }
+
+    return result.get();
+  }
+
+  @RequiresApi(23)
+  private static SecretKey getOrCreateKeyStoreEntry() {
+    if (hasKeyStoreEntry()) return getKeyStoreEntry();
+    else                    return createKeyStoreEntry();
+  }
+
+  @RequiresApi(23)
+  private static SecretKey createKeyStoreEntry() {
+    try {
+      KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, ANDROID_KEY_STORE);
+      KeyGenParameterSpec keyGenParameterSpec = new KeyGenParameterSpec.Builder(KEY_ALIAS, KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
+          .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+          .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+          .build();
+
+      keyGenerator.init(keyGenParameterSpec);
+
+      return keyGenerator.generateKey();
+    } catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidAlgorithmParameterException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  @RequiresApi(23)
+  private static SecretKey getKeyStoreEntry() {
+    KeyStore keyStore = getKeyStore();
+
+    try {
+      // Attempt 1
+      return getSecretKey(keyStore);
+    } catch (UnrecoverableKeyException e) {
+      try {
+        // Attempt 2
+        return getSecretKey(keyStore);
+      } catch (UnrecoverableKeyException e2) {
+        throw new AssertionError(e2);
+      }
+    }
+  }
+
+  private static SecretKey getSecretKey(KeyStore keyStore) throws UnrecoverableKeyException {
+    try {
+      KeyStore.SecretKeyEntry entry = (KeyStore.SecretKeyEntry) keyStore.getEntry(KEY_ALIAS, null);
+      return entry.getSecretKey();
+    } catch (UnrecoverableKeyException e) {
+      throw e;
+    } catch (KeyStoreException | NoSuchAlgorithmException | UnrecoverableEntryException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  private static KeyStore getKeyStore() {
+    try {
+      KeyStore keyStore = KeyStore.getInstance(ANDROID_KEY_STORE);
+      keyStore.load(null);
+      return keyStore;
+    } catch (KeyStoreException | CertificateException | IOException | NoSuchAlgorithmException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  @RequiresApi(23)
+  private static boolean hasKeyStoreEntry() {
+    try {
+      KeyStore ks = KeyStore.getInstance(ANDROID_KEY_STORE);
+      ks.load(null);
+
+      return ks.containsAlias(KEY_ALIAS) && ks.entryInstanceOf(KEY_ALIAS, KeyStore.SecretKeyEntry.class);
+    } catch (KeyStoreException | IOException | NoSuchAlgorithmException | CertificateException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public static class SealedData {
+
+    @SuppressWarnings("unused")
+    private static final String TAG = Log.tag(SealedData.class);
+
+    @JsonProperty
+    @JsonSerialize(using = ByteArraySerializer.class)
+    @JsonDeserialize(using = ByteArrayDeserializer.class)
+    private byte[] iv;
+
+    @JsonProperty
+    @JsonSerialize(using = ByteArraySerializer.class)
+    @JsonDeserialize(using = ByteArrayDeserializer.class)
+    private byte[] data;
+
+    SealedData(@NonNull byte[] iv, @NonNull byte[] data) {
+      this.iv   = iv;
+      this.data = data;
+    }
+
+    @SuppressWarnings("unused")
+    public SealedData() {}
+
+    public String serialize() {
+      try {
+        return JsonUtils.toJson(this);
+      } catch (IOException e) {
+        throw new AssertionError(e);
+      }
+    }
+
+    public static SealedData fromString(@NonNull String value) {
+      try {
+        return JsonUtils.fromJson(value, SealedData.class);
+      } catch (IOException e) {
+        throw new AssertionError(e);
+      }
+    }
+
+    private static class ByteArraySerializer extends JsonSerializer<byte[]> {
+      @Override
+      public void serialize(byte[] value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+        gen.writeString(Base64.encodeToString(value, Base64.NO_WRAP | Base64.NO_PADDING));
+      }
+    }
+
+    private static class ByteArrayDeserializer extends JsonDeserializer<byte[]> {
+
+      @Override
+      public byte[] deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        return Base64.decode(p.getValueAsString(), Base64.NO_WRAP | Base64.NO_PADDING);
+      }
+    }
+
+  }
+
+}

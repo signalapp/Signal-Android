@@ -40,7 +40,7 @@ class MonthlyDonationCanceledViewModel(
 
   private fun initializeFromInAppPaymentId(inAppPaymentId: InAppPaymentTable.InAppPaymentId) {
     viewModelScope.launch {
-      val inAppPayment = withContext(Dispatchers.IO) {
+      val inAppPayment = withContext(Dispatchers.Default) {
         SignalDatabase.inAppPayments.getById(inAppPaymentId)
       }
 

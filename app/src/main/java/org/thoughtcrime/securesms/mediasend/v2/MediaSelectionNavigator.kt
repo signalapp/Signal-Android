@@ -1,12 +1,7 @@
 package org.thoughtcrime.securesms.mediasend.v2
 
-import android.Manifest
-import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
-import org.signal.core.ui.permissions.Permissions
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class MediaSelectionNavigator(
@@ -31,24 +26,5 @@ class MediaSelectionNavigator(
 
   fun isPreviousScreenMediaReview(navController: NavController): Boolean {
     return navController.previousBackStackEntry?.destination?.id == R.id.mediaReviewFragment
-  }
-
-  companion object {
-    fun Fragment.requestPermissionsForCamera(
-      onGranted: () -> Unit
-    ) {
-      if (CameraXRemoteConfig.isSupported()) {
-        onGranted()
-      } else {
-        Permissions.with(this)
-          .request(Manifest.permission.CAMERA)
-          .ifNecessary()
-          .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), R.drawable.ic_camera_24)
-          .withPermanentDenialDialog(getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos_videos, getParentFragmentManager())
-          .onAllGranted(onGranted)
-          .onAnyDenied { Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show() }
-          .execute()
-      }
-    }
   }
 }

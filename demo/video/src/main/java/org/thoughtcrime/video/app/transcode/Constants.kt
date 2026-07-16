@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.video.app.transcode
 
-import org.thoughtcrime.securesms.video.TranscodingPreset
-import org.thoughtcrime.securesms.video.TranscodingQuality
+import org.thoughtcrime.securesms.video.TranscodingConfig.QualityTier
+import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
 
 /**
  * A dumping ground for constants that should be referenced across the sample app.
@@ -15,9 +15,6 @@ import org.thoughtcrime.securesms.video.TranscodingQuality
 internal const val MIN_VIDEO_MEGABITRATE = 0.5f
 internal const val MAX_VIDEO_MEGABITRATE = 4f
 internal val OPTIONS_AUDIO_KILOBITRATES = listOf(64, 96, 128, 160, 192)
-
-private const val MEGABIT = 1_000_000
-private const val KILOBIT = 1_000
 
 enum class VideoResolution(val longEdge: Int, val shortEdge: Int) {
   SD(854, 480),
@@ -31,17 +28,15 @@ enum class VideoResolution(val longEdge: Int, val shortEdge: Int) {
   }
 }
 
-internal fun calculateVideoMegaBitrateFromPreset(preset: TranscodingPreset): Float {
-  val quality = TranscodingQuality.createFromPreset(preset, -1)
-  return quality.targetVideoBitRate.toFloat() / MEGABIT
+enum class TranscodeQuality(val qualityTier: QualityTier) {
+  STANDARD(VideoConstants.DEFAULT_LVL1_STANDARD),
+  HIGH(VideoConstants.DEFAULT_HIGH)
 }
 
-internal fun calculateAudioKiloBitrateFromPreset(preset: TranscodingPreset): Int {
-  val quality = TranscodingQuality.createFromPreset(preset, -1)
-  return quality.targetAudioBitRate / KILOBIT
-}
+internal fun calculateVideoMegaBitrateFromQuality(quality: TranscodeQuality): Float = quality.qualityTier.videoBitrateMbps
 
-internal fun convertPresetToVideoResolution(preset: TranscodingPreset) = when (preset) {
-  TranscodingPreset.LEVEL_3, TranscodingPreset.LEVEL_3_H265 -> VideoResolution.HD
-  else -> VideoResolution.SD
+internal fun calculateAudioKiloBitrateFromQuality(quality: TranscodeQuality): Int = quality.qualityTier.audioBitrateKbps
+
+internal fun convertQualityToVideoResolution(quality: TranscodeQuality): VideoResolution {
+  return VideoResolution.entries.firstOrNull { it.shortEdge == quality.qualityTier.resolution } ?: VideoResolution.SD
 }

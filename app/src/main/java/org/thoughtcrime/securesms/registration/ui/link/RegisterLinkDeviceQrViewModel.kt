@@ -87,7 +87,7 @@ class RegisterLinkDeviceQrViewModel : ViewModel() {
     }
 
     return ProvisioningSocket.start<ProvisionMessage>(
-      mode = ProvisioningSocket.Mode.LINK,
+      mode = ProvisioningSocket.Mode.Link(linkAndSyncCapable = true),
       identityKeyPair = IdentityKeyPair.generate(),
       configuration = AppDependencies.signalServiceNetworkAccess.getConfiguration(),
       handler = { id, t ->

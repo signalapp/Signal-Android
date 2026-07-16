@@ -56,7 +56,7 @@ class PinnedMessagesViewModel(
   }
 
   fun unpinMessage() {
-    viewModelScope.launch(Dispatchers.IO) {
+    viewModelScope.launch(Dispatchers.Default) {
       repository.getPinnedMessageRecords(threadId).map {
         val unpinJob = UnpinMessageJob.create(messageId = it.id)
         if (unpinJob != null) {

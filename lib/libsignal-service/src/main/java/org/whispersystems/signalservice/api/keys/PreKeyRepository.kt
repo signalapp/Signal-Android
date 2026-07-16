@@ -32,6 +32,7 @@ class PreKeyRepository(
   private val keysApi: KeysApi,
   private val aciStore: SignalServiceAccountDataStore,
   private val localProtocolAddress: SignalProtocolAddress,
+  private val sessionLock: SignalSessionLock,
   private val batchHelper: BatchHelper
 ) {
 
@@ -134,18 +135,20 @@ class PreKeyRepository(
         val recipient = result.recipient
         var aborted = false
 
-        for (preKey in result.bundles) {
-          val preKeyAddress = SignalProtocolAddress(recipient.identifier, preKey.deviceId)
-          try {
-            SessionBuilder(aciStore, preKeyAddress, localProtocolAddress).process(preKey)
-          } catch (_: UntrustedIdentityException) {
-            Log.i(TAG, "[eagerPrefetch] Untrusted identity for recipient")
-            aborted = true
-            break
-          } catch (_: InvalidKeyException) {
-            Log.i(TAG, "[eagerPrefetch] Invalid pre-key")
-            aborted = true
-            break
+        sessionLock.acquire().use {
+          for (preKey in result.bundles) {
+            val preKeyAddress = SignalProtocolAddress(recipient.identifier, preKey.deviceId)
+            try {
+              SessionBuilder(aciStore, preKeyAddress, localProtocolAddress).process(preKey)
+            } catch (_: UntrustedIdentityException) {
+              Log.i(TAG, "[eagerPrefetch] Untrusted identity for recipient")
+              aborted = true
+              break
+            } catch (_: InvalidKeyException) {
+              Log.i(TAG, "[eagerPrefetch] Invalid pre-key")
+              aborted = true
+              break
+            }
           }
         }
 

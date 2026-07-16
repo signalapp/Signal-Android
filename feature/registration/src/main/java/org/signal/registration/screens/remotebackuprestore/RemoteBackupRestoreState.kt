@@ -6,8 +6,7 @@
 package org.signal.registration.screens.remotebackuprestore
 
 import org.signal.core.models.AccountEntropyPool
-import org.signal.registration.util.DebugLoggable
-import org.signal.registration.util.DebugLoggableModel
+import org.signal.core.util.censor
 
 data class RemoteBackupRestoreState(
   val aep: AccountEntropyPool,
@@ -17,7 +16,9 @@ data class RemoteBackupRestoreState(
   val restoreState: RestoreState = RestoreState.None,
   val restoreProgress: RestoreProgress? = null,
   val loadAttempts: Int = 0
-) : DebugLoggableModel() {
+) {
+
+  override fun toString(): String = "RemoteBackupRestoreState(aep=${aep.displayValue.censor()}, loadState=$loadState, backupTime=$backupTime, backupSize=$backupSize, restoreState=$restoreState, restoreProgress=$restoreProgress, loadAttempts=$loadAttempts)"
 
   enum class LoadState {
     Loading,
@@ -26,13 +27,19 @@ data class RemoteBackupRestoreState(
     Failure
   }
 
-  sealed interface RestoreState : DebugLoggable {
+  sealed interface RestoreState {
     data object None : RestoreState
+
     data object InProgress : RestoreState
+
     data object Restored : RestoreState
+
     data object NetworkFailure : RestoreState
+
     data object InvalidBackupVersion : RestoreState
+
     data object PermanentSvrBFailure : RestoreState
+
     data object Failed : RestoreState
   }
 
@@ -40,7 +47,7 @@ data class RemoteBackupRestoreState(
     val phase: Phase,
     val bytesCompleted: Long,
     val totalBytes: Long
-  ) : DebugLoggableModel() {
+  ) {
     val progress: Float
       get() = if (totalBytes > 0) bytesCompleted.toFloat() / totalBytes.toFloat() else 0f
 

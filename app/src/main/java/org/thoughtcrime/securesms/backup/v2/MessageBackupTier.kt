@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2
 
 import org.signal.core.util.LongSerializer
+import org.signal.libsignal.zkgroup.backups.BackupLevel
 
 /**
  * Serializable enum value for what we think a user's current backup tier is.
@@ -18,6 +19,13 @@ enum class MessageBackupTier(val value: Int) {
   FREE(0),
   PAID(1);
 
+  fun toBackupLevel(): Long {
+    return when (this) {
+      FREE -> BackupLevel.FREE.value.toLong()
+      PAID -> BackupLevel.PAID.value.toLong()
+    }
+  }
+
   companion object Serializer : LongSerializer<MessageBackupTier?> {
     override fun serialize(data: MessageBackupTier?): Long {
       return data?.value?.toLong() ?: -1
@@ -25,6 +33,14 @@ enum class MessageBackupTier(val value: Int) {
 
     override fun deserialize(data: Long): MessageBackupTier? {
       return entries.firstOrNull { it.value == data.toInt() }
+    }
+
+    fun fromBackupLevel(backupLevel: Long?): MessageBackupTier? {
+      return when (backupLevel) {
+        BackupLevel.FREE.value.toLong() -> FREE
+        BackupLevel.PAID.value.toLong() -> PAID
+        else -> null
+      }
     }
   }
 }

@@ -5,10 +5,7 @@
 
 package org.signal.registration.screens.devicetransfer.instructions
 
-import org.signal.registration.util.DebugLoggableModel
-
-sealed class DeviceTransferInstructionsScreenEvents : DebugLoggableModel() {
+sealed class DeviceTransferInstructionsScreenEvents {
   data object ContinueClicked : DeviceTransferInstructionsScreenEvents()
   data object BackClicked : DeviceTransferInstructionsScreenEvents()
-  data object ConsumeOneTimeEvent : DeviceTransferInstructionsScreenEvents()
 }

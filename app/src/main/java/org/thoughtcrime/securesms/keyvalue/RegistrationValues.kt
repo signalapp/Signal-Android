@@ -23,6 +23,7 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
     private const val RESTORE_BACKUP_MEDIA_SIZE = "registration.restore_backup_media_size"
     private const val IS_OTHER_DEVICE_ANDROID = "registration.is_other_device_android"
     private const val RESTORING_ON_NEW_DEVICE = "registration.restoring_on_new_device"
+    private const val IN_PROGRESS_DATA_BLOB_URI = "registration.in_progress_data_blob_uri"
 
     @VisibleForTesting
     const val RESTORE_DECISION_STATE = "registration.restore_decision_state.2"
@@ -80,6 +81,9 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
 
   var sessionId: String? by stringValue(SESSION_ID, null)
   var sessionE164: String? by stringValue(SESSION_E164, null)
+
+  /** URI of the encrypted [org.signal.core.util.contentproviders.BlobProvider] blob holding the in-progress registration data, if any. */
+  var inProgressRegistrationDataBlobUri: String? by stringValue(IN_PROGRESS_DATA_BLOB_URI, null)
 
   var isOtherDeviceAndroid: Boolean by booleanValue(IS_OTHER_DEVICE_ANDROID, false)
   var restoreMethodToken: String? by stringValue(RESTORE_METHOD_TOKEN, null)

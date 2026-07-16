@@ -23,12 +23,10 @@ sealed class TranscodingState {
 }
 
 data class TranscodeSettings(
-  val isPreset: Boolean,
-  val presetName: String?,
+  val quality: TranscodeQuality?,
   val videoResolution: VideoResolution,
   val videoMegaBitrate: Float,
   val audioKiloBitrate: Int,
-  val useHevc: Boolean,
   val enableFastStart: Boolean,
   val enableAudioRemux: Boolean
 )

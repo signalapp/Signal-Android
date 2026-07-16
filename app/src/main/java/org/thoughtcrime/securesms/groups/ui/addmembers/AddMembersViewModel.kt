@@ -50,7 +50,7 @@ class AddMembersViewModel(
 
   suspend fun shouldAllowSelection(selection: RecipientSelection): Boolean {
     val recipientHasE164 = selection is RecipientSelection.HasId &&
-      withContext(Dispatchers.IO) { Recipient.resolved(selection.id) }.hasE164
+      withContext(Dispatchers.Default) { Recipient.resolved(selection.id) }.hasE164
 
     return when {
       groupId.isV1 && !recipientHasE164 -> {
@@ -101,7 +101,7 @@ class AddMembersViewModel(
       val confirmAddMessage = if (uiState.value.newSelections.size == 1) {
         UserMessage.ConfirmAddMember(
           group = group,
-          recipient = withContext(Dispatchers.IO) {
+          recipient = withContext(Dispatchers.Default) {
             Recipient.resolved(uiState.value.newSelections.single().orCreateRecipientId)
           }
         )

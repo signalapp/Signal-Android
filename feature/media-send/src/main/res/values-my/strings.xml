@@ -9,9 +9,99 @@
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">မက်ဆေ့ချ် ပေါင်းထည့်ရန်</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
-  <string name="AddAMessageRow__open_emoji_keyboard">Open emoji keyboard</string>
+  <string name="AddAMessageRow__open_emoji_keyboard">အီမိုဂျီကီးဘုတ်ကို ဖွင့်ရန်</string>
   <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
   <string name="AddAMessageRow__message">မက်ဆေ့ချ်</string>
   <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
   <string name="AddAMessageRow__next">ဆက်သွားမည်</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">မြင့်သော</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">အသင့်အတင့်</string>
+  <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
+  <string name="MediaSelectScreen__gallery">ဓါတ်ပုံပြခန်း</string>
+  <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
+  <string name="MediaSelectScreen__next">ဆက်သွားမည်</string>
+  <!-- Label for the button that switches the capture screen to the camera. -->
+  <string name="MediaCaptureScreen__camera">ကင်မရာ</string>
+  <!-- Label for the button that switches the capture screen to the text story editor. -->
+  <string name="MediaCaptureScreen__text_story">စာသား စတိုရီ</string>
+  <!-- Video editor play button content description -->
+  <string name="VideoEditorHud_play_video_description">ဗီဒီယိုဖွင့်ပါ</string>
+
+  <!-- CameraFragment -->
+  <!-- Toasted when user device does not support video recording -->
+  <string name="CameraFragment__video_recording_is_not_supported_on_your_device">သင့်စက်တွင် ဗီဒီယိုရိုက်ကူးခြင်းကို မပံ့ပိုးပေးပါ</string>
+
+  <!-- CameraXFragment -->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">ဓါတ်ပုံအတွက် နှိပ်ပါ။ ဗီဒီယိုအတွက် ဖိထားပါ</string>
+  <!-- Accessibility content description to describe the capture button when taking an image/video -->
+  <string name="CameraXFragment_capture_description">ရိုက်ကူးရန်</string>
+  <string name="CameraXFragment_change_camera_description">ကင်မရာပြောင်းရန်</string>
+  <string name="CameraXFragment_open_gallery_description">ပုံပြခန်းကို ဖွင့်ပါ</string>
+  <!-- Button text asking for access to camera permissions -->
+  <string name="CameraXFragment_allow_access">ဝင်ရောက် သုံးစွဲခွင့်ပြုရန်</string>
+  <!-- Dialog title asking users for camera and microphone permission -->
+  <string name="CameraXFragment_allow_access_camera_microphone">သင့်ကင်မရာနှင့် မိုက်ခရိုဖုန်း အသုံးပြုခွင့်ပေးပါ</string>
+  <!-- Dialog title asking users for camera permission -->
+  <string name="CameraXFragment_allow_access_camera">သင့်ကင်မရာ အသုံးပြုခွင့်ပေးပါ</string>
+  <!-- Dialog title asking users for microphone permission -->
+  <string name="CameraXFragment_allow_access_microphone">သင့်မိုက်ခရိုဖုန်း အသုံးပြုခွင့်ပေးပါ</string>
+  <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
+  <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">ဓါတ်ပုံနှင့် ဗီဒီယိုရိုက်နိုင်ရန် Signal ကို ကင်မရာအသုံးပြုခွင့် ပေးပါ။</string>
+  <!-- Text explaining why Signal needs camera and microphone access in order to take photos and videos -->
+  <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">ဓာတ်ပုံနှင့် ဗီဒီယိုရိုက်ကူးရန် Signal ကို ကင်မရာနှင့် မိုက်ခရိုဖုန်း အသုံးပြုခွင့်ပေးပါ။</string>
+  <!-- Text explaining why Signal needs microphone access to take videos -->
+  <string name="CameraXFragment_to_capture_videos_with_sound">ဗီဒီယိုကို အသံဖြင့်ရိုက်ကူးရန် Signal ကို မိုက်ခရိုဖုန်း အသုံးပြုခွင့်ပေးပါ။</string>
+  <!-- Text explaining why Signal needs camera access to scan QR codes -->
+  <string name="CameraXFragment_to_scan_qr_code_allow_camera">QR ကုဒ်ကို စကင်န်ဖတ်ရန် Signal ကို ကင်မရာ အသုံးပြုခွင့်ပေးပါ။</string>
+  <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
+  <string name="CameraXFragment_signal_needs_camera_access_capture_photos">ဓာတ်ပုံရိုက်ကူးရန် Signal သည် ကင်မရာအသုံးပြုခွင့် လိုအပ်ပါသည်</string>
+  <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
+  <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">QR ကုဒ်များကို စကင်န်ဖတ်ရန် Signal သည် ကင်မရာအသုံးပြုခွင့် လိုအပ်ပါသည်</string>
+  <!-- Toast dialog explaining why Signal needs microphone permissions -->
+  <string name="CameraXFragment_signal_needs_microphone_access_video">ဗီဒီယိုရိုက်ကူးရန်အတွက် Signal သည် မိုက်ခရိုဖုန်းအသုံးပြုခွင့် လိုအပ်ပါသည်</string>
+  <!-- Dialog description that explains the steps needed to give camera permission -->
+  <string name="CameraXFragment_to_capture_photos">Signal တွင် ဓာတ်ပုံများ ရိုက်ကူးရန်-</string>
+  <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
+  <string name="CameraXFragment_to_capture_photos_videos">Signal တွင် ဓာတ်ပုံနှင့် ဗီဒီယိုများ ရိုက်ကူးရန်-</string>
+  <!-- Dialog description that explains the steps needed to give microphone permission -->
+  <string name="CameraXFragment_to_capture_videos">ဗီဒီယိုကိုအသံဖြင့် ရိုက်ကူးရန်-</string>
+  <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
+  <string name="CameraXFragment_to_scan_qr_codes">QR ကုဒ်များကို စကင်န်ဖတ်ရန်-</string>
+  <!-- Error message shown when we try to take a photo, but fail -->
+  <string name="CameraXFragment_photo_capture_failed">ဓာတ်ပုံရိုက်ခြင်း မအောင်မြင်ပါ။ ထပ်ကြိုးစားကြည့်ပါ။</string>
+  <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
+  <string name="CameraXFragment_photo_processing_failed">ဓာတ်ပုံကို စီမံဆောင်ရွက်ခြင်း မအောင်မြင်ပါ။ ထပ်ကြိုးစားကြည့်ပါ။</string>
+  <!-- Accessibility label for the switch camera button -->
+  <string name="CameraXFragment_switch_camera">ကင်မရာကို ပြောင်းရန်</string>
+  <!-- Accessibility label for flash button when flash is off -->
+  <string name="CameraXFragment_flash_off">ဖလက်ရှ်ပိတ်ရန်</string>
+  <!-- Accessibility label for flash button when flash is on -->
+  <string name="CameraXFragment_flash_on">ဖလက်ရှ်ဖွင့်ရန်</string>
+  <!-- Accessibility label for flash button when flash is set to auto -->
+  <string name="CameraXFragment_flash_auto">အော်တို ဖလက်ရှ်</string>
+  <!-- Accessibility label for the send button in media selection -->
+  <string name="CameraXFragment_send">ပို့ပါ</string>
+  <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
+  <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">ဗီဒီယိုရိုက်ကူးရန် မိုက်ခရိုဖုန်း ခွင့်ပြုချက်များ လိုအပ်ပြီး ယင်းတို့ကို ငြင်းဆိုခြင်း ခံထားရပါသည်။ အက်ပလီကေးရှင်း ဆက်တင်သို့ သွား၍ \"ခွင့်ပြုချက်များ\" ကို ရွေးချယ်ကာ \"မိုက်ခရိုဖုန်း\" နှင့် \"ကင်မရာ\" ကို ဖွင့်ပါ။</string>
+
+  <!-- Displayed when there is an error capturing video -->
+  <string name="MediaSendViewModel__error_recording_video">ဗီဒီယို ရိုက်ကူးနေစဉ် ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့သည်</string>
+  <!-- Displayed when there is an error capturing image -->
+  <string name="MediaSendViewModel__error_taking_photo">ဓာတ်ပုံရိုက်နေစဉ် ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့သည်</string>
+
+  <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
+  <string name="UsernameScannedDialog__username_dialog_title">%1$s ကို တွေ့ရှိသည်</string>
+  <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
+  <string name="UsernameScannedDialog__username_dialog_body">\"%1$s\" နှင့် ချက်(တ်) စတင်မည်</string>
+  <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
+  <string name="UsernameScannedDialog__username_dialog_go_to_chat_button">ချက်(တ်)သို့ သွားရန်</string>
+
+  <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+  <string name="LinkedDeviceScannedDialog__device_link_dialog_title">စက်ကို ချိတ်ဆက်မည်လား။</string>
+  <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
+  <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">သင်သည် Signal စက်တစ်လုံးကို ချိတ်ဆက်ရန် ကြိုးစားနေပုံရပါသည်။ ဆက်လုပ်ရန်ကို နှိပ်ကာ \"စက်အသစ်တစ်ခုကို ချိတ်ဆက်ပါ\" ကိုနှိပ်ပြီး QR ကုဒ်ကို ထပ်မံစကင်န်ဖတ်ပါ။</string>
+  <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
+  <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">ဆက်လုပ်ရန်</string>
 </resources>

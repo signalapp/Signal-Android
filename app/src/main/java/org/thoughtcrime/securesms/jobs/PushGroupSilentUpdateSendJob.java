@@ -10,6 +10,7 @@ import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -178,7 +179,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
   }
 
   private @NonNull List<Recipient> deliver(@NonNull List<Recipient> destinations, @NonNull GroupId.V2 groupId)
-      throws IOException, UntrustedIdentityException
+      throws IOException, UntrustedIdentityException, NoSessionException
   {
     SignalServiceGroupV2     group            = SignalServiceGroupV2.fromProtobuf(groupContextV2);
     SignalServiceDataMessage groupDataMessage = SignalServiceDataMessage.newBuilder()

@@ -23,7 +23,7 @@ class ConversationSettingsNavHostFragment : NavHostFragment(), FragmentBackPress
 
   companion object {
     suspend fun createArgs(recipientId: RecipientId): Bundle {
-      val recipient = withContext(Dispatchers.IO) { Recipient.resolved(recipientId) }
+      val recipient = withContext(Dispatchers.Default) { Recipient.resolved(recipientId) }
 
       val args = if (recipient.isGroup) {
         ConversationSettingsFragmentArgs.Builder(null, recipient.requireGroupId(), null)

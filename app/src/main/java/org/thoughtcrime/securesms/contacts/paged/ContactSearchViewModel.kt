@@ -91,10 +91,14 @@ class ContactSearchViewModel(
   private val internalFastScrollerEnabled = MutableStateFlow(false)
   private val internalDisplayingContextMenu = MutableStateFlow(false)
   private val internalScrollRequests = MutableSharedFlow<ScrollRequest>(extraBufferCapacity = 1)
+  private val internalSearchInProgress = MutableStateFlow(false)
 
   val fastScrollerEnabled: StateFlow<Boolean> = internalFastScrollerEnabled
   val isDisplayingContextMenu: StateFlow<Boolean> = internalDisplayingContextMenu
   val scrollRequests: SharedFlow<ScrollRequest> = internalScrollRequests
+
+  /** True while a [setConfiguration] call is fetching results off the main thread. Suitable for driving a loading indicator. */
+  val searchInProgress: StateFlow<Boolean> = internalSearchInProgress
 
   val query: StateFlow<String?> = rawQuery
 
@@ -151,17 +155,22 @@ class ContactSearchViewModel(
   }
 
   suspend fun setConfiguration(contactSearchConfiguration: ContactSearchConfiguration) {
-    val (pagedDataSource, size) = withContext(Dispatchers.IO) {
-      val source = ContactSearchPagedDataSource(
-        contactSearchConfiguration,
-        arbitraryRepository = arbitraryRepository,
-        searchRepository = searchRepository,
-        contactSearchPagedDataSourceRepository = contactSearchPagedDataSourceRepository
-      )
-      source to source.size()
+    internalSearchInProgress.value = true
+    try {
+      val (pagedDataSource, size) = withContext(Dispatchers.Default) {
+        val source = ContactSearchPagedDataSource(
+          contactSearchConfiguration,
+          arbitraryRepository = arbitraryRepository,
+          searchRepository = searchRepository,
+          contactSearchPagedDataSourceRepository = contactSearchPagedDataSourceRepository
+        )
+        source to source.size()
+      }
+      internalTotalCount.value = size
+      pagedData.value = PagedData.createForStateFlow(pagedDataSource, pagingConfig, data.value)
+    } finally {
+      internalSearchInProgress.value = false
     }
-    internalTotalCount.value = size
-    pagedData.value = PagedData.createForStateFlow(pagedDataSource, pagingConfig, data.value)
   }
 
   fun setQuery(query: String?) {
@@ -260,6 +269,11 @@ class ContactSearchViewModel(
     controller.value?.onDataInvalidated()
   }
 
+  fun refreshGroupData() {
+    contactSearchPagedDataSourceRepository.clearGroupRecordCache()
+    refresh()
+  }
+
   data class ScrollRequest(val position: Int)
 
   class Factory(
@@ -309,6 +323,22 @@ fun ContactSearchViewModel.bindAdapterToLifecycle(
       launch { mappingModels.collect { adapter.submitList(it) } }
       launch { controller.collect { it?.let { c -> adapter.setPagingController(c) } } }
       launch { configurationState.collect { setConfiguration(mapStateToConfiguration(it)) } }
+    }
+  }
+}
+
+/**
+ * Observes [ContactSearchViewModel.searchInProgress] scoped to the given [LifecycleOwner], invoking
+ * [onSearchInProgressChanged] on the main thread whenever the loading state changes. Designed for Java
+ * callers that want to drive a loading indicator.
+ */
+fun ContactSearchViewModel.bindSearchInProgressToLifecycle(
+  lifecycleOwner: LifecycleOwner,
+  onSearchInProgressChanged: (Boolean) -> Unit
+) {
+  lifecycleOwner.lifecycleScope.launch {
+    lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+      searchInProgress.collect { onSearchInProgressChanged(it) }
     }
   }
 }

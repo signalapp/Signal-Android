@@ -137,13 +137,21 @@ class DSLConfiguration {
     children.add(preference)
   }
 
-  fun sectionHeaderPref(title: DSLSettingsText) {
-    val preference = SectionHeaderPreference(title)
+  fun sectionHeaderPref(
+    title: DSLSettingsText,
+    iconEnd: DSLSettingsIcon? = null,
+    onClick: (() -> Unit)? = null
+  ) {
+    val preference = SectionHeaderPreference(title, iconEnd, onClick)
     children.add(preference)
   }
 
-  fun sectionHeaderPref(title: Int) {
-    val preference = SectionHeaderPreference(DSLSettingsText.from(title))
+  fun sectionHeaderPref(
+    title: Int,
+    iconEnd: DSLSettingsIcon? = null,
+    onClick: (() -> Unit)? = null
+  ) {
+    val preference = SectionHeaderPreference(DSLSettingsText.from(title), iconEnd, onClick)
     children.add(preference)
   }
 
@@ -365,4 +373,12 @@ class ExternalLinkPreference(
   @StringRes val linkId: Int
 ) : PreferenceModel<ExternalLinkPreference>()
 
-class SectionHeaderPreference(override val title: DSLSettingsText) : PreferenceModel<SectionHeaderPreference>()
+class SectionHeaderPreference(
+  override val title: DSLSettingsText,
+  override val iconEnd: DSLSettingsIcon? = null,
+  val onClick: (() -> Unit)? = null
+) : PreferenceModel<SectionHeaderPreference>() {
+  override fun areContentsTheSame(newItem: SectionHeaderPreference): Boolean {
+    return super.areContentsTheSame(newItem) && onClick == null && newItem.onClick == null
+  }
+}

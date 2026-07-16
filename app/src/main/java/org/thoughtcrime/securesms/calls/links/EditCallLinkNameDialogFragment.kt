@@ -89,7 +89,8 @@ class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
 
 @Composable
 fun EditCallLinkNameScreen(
-  roomId: CallLinkRoomId
+  roomId: CallLinkRoomId,
+  initialName: String
 ) {
   val viewModel: CallLinkDetailsViewModel = viewModel {
     CallLinkDetailsViewModel(roomId)
@@ -99,7 +100,7 @@ fun EditCallLinkNameScreen(
   val lifecycleScope = LocalLifecycleOwner.current.lifecycleScope
 
   EditCallLinkNameScreen(
-    initialNameValue = viewModel.nameSnapshot,
+    initialNameValue = initialName,
     onSaveClick = {
       lifecycleScope.launch {
         viewModel.setName(it)

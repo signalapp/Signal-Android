@@ -183,8 +183,8 @@ object StorageSyncHelper {
 
       backupTier = when {
         SignalStore.account.isLinkedDevice -> null
-        SignalStore.backup.areBackupsEnabled && SignalStore.backup.backupTier != null -> getBackupLevelValue(SignalStore.backup.backupTier!!)
-        SignalStore.backup.backupTierInternalOverride != null -> getBackupLevelValue(SignalStore.backup.backupTierInternalOverride!!)
+        SignalStore.backup.areBackupsEnabled && SignalStore.backup.backupTier != null -> SignalStore.backup.backupTier!!.toBackupLevel()
+        SignalStore.backup.backupTierInternalOverride != null -> SignalStore.backup.backupTierInternalOverride!!.toBackupLevel()
         else -> null
       }
 
@@ -211,14 +211,6 @@ object StorageSyncHelper {
     }
 
     return accountRecord.toSignalAccountRecord(StorageId.forAccount(storageId)).toSignalStorageRecord()
-  }
-
-  // TODO: Currently we don't have access to the private values of the BackupLevel. Update when it becomes available.
-  private fun getBackupLevelValue(tier: MessageBackupTier): Long {
-    return when (tier) {
-      MessageBackupTier.FREE -> 200
-      MessageBackupTier.PAID -> 201
-    }
   }
 
   private fun getNotificationProfileManualOverride(): AccountRecord.NotificationProfileManualOverride? {
@@ -294,6 +286,13 @@ object StorageSyncHelper {
     val remoteBackupsSubscriber = StorageSyncModels.remoteToLocalBackupSubscriber(update.new.proto.backupSubscriberData)
     if (remoteBackupsSubscriber != null) {
       setSubscriber(remoteBackupsSubscriber)
+    }
+
+    if (SignalStore.account.isLinkedDevice) {
+      val remoteBackupTier = MessageBackupTier.fromBackupLevel(update.new.proto.backupTier)
+      if (remoteBackupTier != SignalStore.backup.backupTier) {
+        SignalStore.backup.backupTier = remoteBackupTier
+      }
     }
 
     if (update.new.proto.subscriptionManuallyCancelled && !update.old.proto.subscriptionManuallyCancelled) {

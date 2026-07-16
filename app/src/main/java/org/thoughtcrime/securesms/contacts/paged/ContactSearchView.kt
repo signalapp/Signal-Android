@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.contacts.paged
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
@@ -158,7 +159,7 @@ class ContactSearchView : AbstractComposeView {
         longClickCallbacks = currentLongClickCallbacks ?: rememberDefaultContactSearchItemLongClickCallbacks(),
         storyContextMenuCallbacks = currentStoryContextMenuCallbacks ?: rememberDefaultContactSearchItemStoryContextMenuCallbacks(vm),
         callButtonClickCallbacks = currentCallButtonClickCallbacks ?: rememberDefaultContactSearchItemCallButtonClickCallbacks(),
-        modifier = Modifier.nestedScroll(rememberNestedScrollInteropConnection())
+        modifier = Modifier.nestedScroll(rememberNestedScrollInteropConnection()).fillMaxSize()
       )
     }
   }

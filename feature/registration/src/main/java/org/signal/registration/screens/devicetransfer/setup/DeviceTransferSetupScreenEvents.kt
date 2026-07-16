@@ -5,9 +5,7 @@
 
 package org.signal.registration.screens.devicetransfer.setup
 
-import org.signal.registration.util.DebugLoggableModel
-
-sealed class DeviceTransferSetupScreenEvents : DebugLoggableModel() {
+sealed class DeviceTransferSetupScreenEvents {
   /** Kick off the full check-and-start sequence. Emitted once on initial composition and on retries. */
   data object CheckPermissions : DeviceTransferSetupScreenEvents()
 
@@ -40,5 +38,15 @@ sealed class DeviceTransferSetupScreenEvents : DebugLoggableModel() {
   /** Back / close. Stops the service and pops the nav stack. */
   data object BackClicked : DeviceTransferSetupScreenEvents()
 
-  data object ConsumeOneTimeEvent : DeviceTransferSetupScreenEvents()
+  /** The screen has launched the pending location permission request. */
+  data object RequestLocationPermissionHandled : DeviceTransferSetupScreenEvents()
+
+  /** The screen has launched the pending open-location-settings action. */
+  data object OpenLocationSettingsHandled : DeviceTransferSetupScreenEvents()
+
+  /** The screen has launched the pending open-wifi-settings action. */
+  data object OpenWifiSettingsHandled : DeviceTransferSetupScreenEvents()
+
+  /** The screen has launched the pending open-app-settings action. */
+  data object OpenAppSettingsHandled : DeviceTransferSetupScreenEvents()
 }

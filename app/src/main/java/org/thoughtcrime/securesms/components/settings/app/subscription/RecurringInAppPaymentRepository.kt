@@ -174,7 +174,7 @@ object RecurringInAppPaymentRepository {
       InAppPaymentsRepository.getSubscriber(subscriberType)?.subscriberId ?: SubscriberId.generate()
     }
 
-    donationsService.putSubscription(subscriberId).resultOrThrow
+    donationsService.createSubscriber(subscriberId).resultOrThrow
 
     Log.d(TAG, "Successfully set SubscriberId exists on Signal service.", true)
 

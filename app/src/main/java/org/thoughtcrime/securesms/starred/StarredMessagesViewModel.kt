@@ -45,11 +45,11 @@ class StarredMessagesViewModel(
         }
       }
       .distinctUntilChanged()
-      .flowOn(Dispatchers.IO)
+      .flowOn(Dispatchers.Default)
   }
 
   suspend fun unstarMessage(messageId: Long) {
-    withContext(Dispatchers.IO) {
+    withContext(Dispatchers.Default) {
       SignalDatabase.messages.setStarred(messageId, false)
     }
   }

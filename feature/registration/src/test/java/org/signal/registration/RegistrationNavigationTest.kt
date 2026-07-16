@@ -107,6 +107,31 @@ class RegistrationNavigationTest {
   }
 
   @Test
+  fun `clicking Get Started skips Permissions when all are already granted`() {
+    // Given
+    val context = ApplicationProvider.getApplicationContext<Application>()
+    Shadows.shadowOf(context).grantPermissions(*RegistrationPermissions.getRequiredPermissions(context).toTypedArray())
+    val permissionsState = createMockPermissionsState()
+
+    composeTestRule.setContent {
+      SignalTheme {
+        RegistrationNavHost(
+          registrationRepository = mockRepository,
+          registrationViewModel = viewModel,
+          permissionsState = permissionsState
+        )
+      }
+    }
+
+    // When
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_GET_STARTED_BUTTON).performClick()
+    Shadows.shadowOf(Looper.getMainLooper()).idle()
+
+    // Then - the Permissions screen is skipped and PhoneNumber is displayed
+    composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_SCREEN).assertIsDisplayed()
+  }
+
+  @Test
   fun `clicking Next on Permissions when they are all granted navigates to PhoneNumber`() {
     // Given
     val permissionsState = createMockPermissionsState(allPermissionsGranted = true)
@@ -393,7 +418,7 @@ class RegistrationNavigationTest {
   private fun createMockPermissionsState(allPermissionsGranted: Boolean = false): MockMultiplePermissionsState {
     return MockMultiplePermissionsState(
       allPermissionsGranted = allPermissionsGranted,
-      permissions = viewModel.getRequiredPermissions().map { MockPermissionsState(it) }
+      permissions = RegistrationPermissions.getRequiredPermissions(isModernBackupDirectorySelectionRequired = false).map { MockPermissionsState(it) }
     )
   }
 }

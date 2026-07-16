@@ -8,13 +8,16 @@ package org.signal.core.models.media
 import android.net.Uri
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
+import org.signal.core.models.UriSerializer
 
 /**
  * Represents a folder that's shown in a media selector, containing [Media] items.
  */
 @Parcelize
+@Serializable
 data class MediaFolder(
-  val thumbnailUri: Uri,
+  @Serializable(with = UriSerializer::class) val thumbnailUri: Uri,
   val title: String,
   val itemCount: Int,
   val bucketId: String,

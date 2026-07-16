@@ -99,6 +99,20 @@ public final class DeviceProperties {
   }
 
   /**
+   * Returns the remaining battery charge in microampere-hours (µAh), or -1 if unavailable. Unlike
+   * the battery level percentage, this has fine granularity and is well-suited to measuring drain
+   * between two points in time.
+   */
+  public static int getBatteryChargeCounter(@NonNull Context context) {
+    BatteryManager batteryManager = (BatteryManager) context.getSystemService(Context.BATTERY_SERVICE);
+    if (batteryManager != null) {
+      int value = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CHARGE_COUNTER);
+      return value > 0 ? value : -1;
+    }
+    return -1;
+  }
+
+  /**
    * Returns whether the device is currently charging.
    */
   public static boolean isCharging(@NonNull Context context) {

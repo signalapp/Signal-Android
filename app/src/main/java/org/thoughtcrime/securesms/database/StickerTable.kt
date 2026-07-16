@@ -5,6 +5,9 @@ import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.StreamUtil
+import org.signal.core.util.crypto.AttachmentSecret
+import org.signal.core.util.crypto.ModernDecryptingPartInputStream
+import org.signal.core.util.crypto.ModernEncryptingPartOutputStream
 import org.signal.core.util.delete
 import org.signal.core.util.exists
 import org.signal.core.util.forEach
@@ -25,9 +28,6 @@ import org.signal.core.util.toInt
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.glide.decryptableuri.DecryptableUri
-import org.thoughtcrime.securesms.crypto.AttachmentSecret
-import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
-import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
 import org.thoughtcrime.securesms.database.model.IncomingSticker
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackRecord

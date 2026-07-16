@@ -118,15 +118,6 @@ private fun LabsSettingsContent(
 
       item {
         Rows.ToggleRow(
-          checked = state.groupSuggestionsForMembers,
-          text = "Group Suggestions for Members",
-          label = "When creating a group, show existing groups that have the exact same members.",
-          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleGroupSuggestionsForMembers(it)) }
-        )
-      }
-
-      item {
-        Rows.ToggleRow(
           checked = state.betterSearch,
           text = "Better Search",
           label = "Filter search results by date range and author. Adds a filter button to the search toolbar.",
@@ -136,19 +127,28 @@ private fun LabsSettingsContent(
 
       item {
         Rows.ToggleRow(
-          checked = state.autoLowerHand,
-          text = "Auto Lower Hand Suggestion",
-          label = "Show a prompt to lower your raised hand when you are speaking in a group call.",
-          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleAutoLowerHand(it)) }
+          checked = state.starredMessages,
+          text = "Starred Messages",
+          label = "Enables starring messages for later reference. Adds star/unstar to the long-press menu and a starred messages screen accessible from conversation settings and the main menu.",
+          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleStarredMessages(it)) }
         )
       }
 
       item {
         Rows.ToggleRow(
-          checked = state.starredMessages,
-          text = "Starred Messages",
-          label = "Enables starring messages for later reference. Adds star/unstar to the long-press menu and a starred messages screen accessible from conversation settings and the main menu.",
-          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleStarredMessages(it)) }
+          checked = state.stickerReplies,
+          text = "Sticker Replies",
+          label = "Keep a pending quote when sending a sticker so the sticker is sent as a reply. Normally the quote is dropped when you send a sticker.",
+          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleStickerReplies(it)) }
+        )
+      }
+
+      item {
+        Rows.ToggleRow(
+          checked = state.muteBreakthroughNotifications,
+          text = "Improved Notification Management",
+          label = "Adds per-conversation controls to let calls and replies break through mute. New options in the sounds & notifications settings for a chat.",
+          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleMuteBreakthroughNotifications(it)) }
         )
       }
     }

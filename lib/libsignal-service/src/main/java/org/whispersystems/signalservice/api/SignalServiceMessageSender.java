@@ -5,13 +5,14 @@
  */
 package org.whispersystems.signalservice.api;
 
-import org.signal.network.NetworkResult;
-
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.PNI;
 import org.signal.core.util.Base64;
 import org.signal.core.util.ProtoUtil;
+import org.signal.core.util.Uint64RangeException;
+import org.signal.core.util.Uint64Util;
 import org.signal.core.util.UuidUtil;
+import org.signal.core.util.logging.Log;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.net.MismatchedDeviceException;
 import org.signal.libsignal.net.MultiRecipientMessageResponse;
@@ -24,17 +25,21 @@ import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.InvalidRegistrationIdException;
+import org.signal.libsignal.protocol.InvalidSessionException;
 import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.SessionBuilder;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.groups.GroupSessionBuilder;
-import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage;
 import org.signal.libsignal.protocol.message.PlaintextContent;
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
 import org.signal.libsignal.protocol.state.PreKeyBundle;
 import org.signal.libsignal.protocol.state.SessionRecord;
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken;
+import org.signal.network.NetworkResult;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
+import org.signal.network.exceptions.PushNetworkException;
+import org.signal.network.util.Preconditions;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent;
@@ -84,9 +89,7 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
-import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
-import org.signal.network.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.RetryNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
@@ -94,9 +97,6 @@ import org.whispersystems.signalservice.api.push.exceptions.UnknownGroupSendExce
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.util.AttachmentPointerUtil;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
-import org.signal.network.util.Preconditions;
-import org.signal.core.util.Uint64RangeException;
-import org.signal.core.util.Uint64Util;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
@@ -234,7 +234,7 @@ public class SignalServiceMessageSender {
                                        @Nullable SealedSenderAccess sealedSenderAccess,
                                        SignalServiceReceiptMessage message,
                                        boolean includePniSignature)
-      throws IOException, UntrustedIdentityException
+      throws IOException, UntrustedIdentityException, NoSessionException
   {
     Log.d(TAG, "[" + message.getWhen() + "] Sending a receipt.");
 
@@ -258,7 +258,7 @@ public class SignalServiceMessageSender {
                                @Nullable SealedSenderAccess sealedSenderAccess,
                                Optional<byte[]> groupId,
                                DecryptionErrorMessage errorMessage)
-      throws IOException, UntrustedIdentityException
+      throws IOException, UntrustedIdentityException, NoSessionException
 
   {
     long timestamp = System.currentTimeMillis();
@@ -312,7 +312,7 @@ public class SignalServiceMessageSender {
                                    long timestamp,
                                    boolean isRecipientUpdate,
                                    Set<SignalServiceStoryMessageRecipient> manifest)
-      throws IOException, UntrustedIdentityException
+      throws IOException, UntrustedIdentityException, NoSessionException
   {
     Log.d(TAG, "[" + timestamp + "] Sending a story sync message.");
 
@@ -368,7 +368,7 @@ public class SignalServiceMessageSender {
   public void sendCallMessage(SignalServiceAddress recipient,
                               @Nullable SealedSenderAccess sealedSenderAccess,
                               SignalServiceCallMessage message)
-      throws IOException, UntrustedIdentityException
+      throws IOException, UntrustedIdentityException, NoSessionException
   {
     long timestamp = System.currentTimeMillis();
     Log.d(TAG, "[" + timestamp + "] Sending a call message (single recipient).");
@@ -429,7 +429,7 @@ public class SignalServiceMessageSender {
                                            IndividualSendEvents sendEvents,
                                            boolean urgent,
                                            boolean includePniSignature)
-      throws UntrustedIdentityException, IOException
+      throws UntrustedIdentityException, IOException, NoSessionException
   {
     Log.d(TAG, "[" + message.getTimestamp() + "] Sending a data message.");
 
@@ -448,7 +448,7 @@ public class SignalServiceMessageSender {
                                            IndividualSendEvents sendEvents,
                                            boolean urgent,
                                            long targetSentTimestamp)
-      throws UntrustedIdentityException, IOException
+      throws UntrustedIdentityException, IOException, NoSessionException
   {
     Log.d(TAG, "[" + message.getTimestamp() + "] Sending an edit message for " + targetSentTimestamp + ".");
 
@@ -468,7 +468,7 @@ public class SignalServiceMessageSender {
                                         boolean urgent,
                                         boolean includePniSignature,
                                         Content content)
-      throws UntrustedIdentityException, IOException
+      throws UntrustedIdentityException, IOException, NoSessionException
   {
     if (includePniSignature) {
       Log.d(TAG, "[" + message.getTimestamp() + "] Including PNI signature.");
@@ -537,7 +537,7 @@ public class SignalServiceMessageSender {
                                          ContentHint contentHint,
                                          Optional<byte[]> groupId,
                                          boolean urgent)
-      throws UntrustedIdentityException, IOException
+      throws UntrustedIdentityException, IOException, NoSessionException
   {
     Log.d(TAG, "[" + timestamp + "] Resending content.");
 
@@ -613,7 +613,7 @@ public class SignalServiceMessageSender {
                                                  PartialSendCompleteListener partialListener,
                                                  CancelationSignal cancelationSignal,
                                                  boolean urgent)
-      throws IOException, UntrustedIdentityException
+      throws IOException, UntrustedIdentityException, NoSessionException
   {
     Log.d(TAG, "[" + message.getTimestamp() + "] Sending a data message to " + recipients.size() + " recipients.");
 
@@ -665,7 +665,7 @@ public class SignalServiceMessageSender {
                                                  CancelationSignal cancelationSignal,
                                                  boolean urgent,
                                                  long targetSentTimestamp)
-      throws IOException, UntrustedIdentityException
+      throws IOException, UntrustedIdentityException, NoSessionException
   {
     Log.d(TAG, "[" + message.getTimestamp() + "] Sending a edit message to " + recipients.size() + " recipients.");
 
@@ -702,21 +702,21 @@ public class SignalServiceMessageSender {
   }
 
   public SendMessageResult sendSyncMessage(SignalServiceDataMessage dataMessage)
-      throws IOException, UntrustedIdentityException
+      throws IOException, UntrustedIdentityException, NoSessionException
   {
     Log.d(TAG, "[" + dataMessage.getTimestamp() + "] Sending self-sync message.");
     return sendSyncMessage(createSelfSendSyncMessage(dataMessage));
   }
 
   public SendMessageResult sendSelfSyncEditMessage(SignalServiceEditMessage editMessage)
-      throws IOException, UntrustedIdentityException
+      throws IOException, UntrustedIdentityException, NoSessionException
   {
     Log.d(TAG, "[" + editMessage.getDataMessage().getTimestamp() + "] Sending self-sync edit message for " + editMessage.getTargetSentTimestamp() + ".");
     return sendSyncMessage(createSelfSendSyncEditMessage(editMessage));
   }
 
   public SendMessageResult sendSyncMessage(SignalServiceSyncMessage message)
-      throws IOException, UntrustedIdentityException
+      throws IOException, UntrustedIdentityException, NoSessionException
   {
     Content content;
     boolean urgent = false;
@@ -766,6 +766,9 @@ public class SignalServiceMessageSender {
       content = createDeviceNameChangeContent(message.getDeviceNameChange().get());
     } else if (message.getAttachmentBackfillResponse().isPresent()) {
       content = createAttachmentBackfillResponseContent(message.getAttachmentBackfillResponse().get());
+    } else if (message.getAttachmentBackfillRequest().isPresent()) {
+      content = createAttachmentBackfillRequestContent(message.getAttachmentBackfillRequest().get());
+      urgent = true;
     } else {
       throw new IOException("Unsupported sync message!");
     }
@@ -776,7 +779,7 @@ public class SignalServiceMessageSender {
   }
 
   public @Nonnull SendMessageResult sendSyncMessage(Content content, boolean urgent, Optional<Long> sent)
-      throws IOException, UntrustedIdentityException
+      throws IOException, UntrustedIdentityException, NoSessionException
   {
     long timestamp = sent.orElseGet(System::currentTimeMillis);
 
@@ -794,7 +797,7 @@ public class SignalServiceMessageSender {
    * @return Encrypted {@link OutgoingPushMessage} to be included in the change number request sent to the server
    */
   public @Nonnull OutgoingPushMessage getEncryptedSyncPniInitializeDeviceMessage(int deviceId, @Nonnull SyncMessage.PniChangeNumber pniChangeNumber)
-      throws UntrustedIdentityException, IOException, InvalidKeyException
+      throws UntrustedIdentityException, IOException, InvalidKeyException, NoSessionException
   {
     SyncMessage.Builder syncMessage     = createSyncMessageBuilder().pniChangeNumber(pniChangeNumber);
     Content.Builder     content         = new Content.Builder().syncMessage(syncMessage.build());
@@ -853,7 +856,7 @@ public class SignalServiceMessageSender {
   }
 
   private SendMessageResult sendVerifiedSyncMessage(VerifiedMessage message)
-      throws IOException, UntrustedIdentityException
+      throws IOException, UntrustedIdentityException, NoSessionException
   {
     byte[] nullMessageBody = new DataMessage.Builder()
                                             .body(Base64.encodeWithPadding(Util.getRandomLengthSecretBytes(140)))
@@ -883,7 +886,7 @@ public class SignalServiceMessageSender {
   }
 
   public SendMessageResult sendNullMessage(SignalServiceAddress address, @Nullable SealedSenderAccess sealedSenderAccess)
-      throws UntrustedIdentityException, IOException
+      throws UntrustedIdentityException, IOException, NoSessionException
   {
     byte[] nullMessageBody = new DataMessage.Builder()
                                             .body(Base64.encodeWithPadding(Util.getRandomLengthSecretBytes(140)))
@@ -1783,6 +1786,13 @@ public class SignalServiceMessageSender {
     return container.syncMessage(builder.build()).build();
   }
 
+  private Content createAttachmentBackfillRequestContent(SyncMessage.AttachmentBackfillRequest proto) {
+    Content.Builder     container = new Content.Builder();
+    SyncMessage.Builder builder   = createSyncMessageBuilder().attachmentBackfillRequest(proto);
+
+    return container.syncMessage(builder.build()).build();
+  }
+
   private SyncMessage.Builder createSyncMessageBuilder() {
     byte[]       padding = Util.getRandomLengthSecretBytes(512);
 
@@ -1958,11 +1968,13 @@ public class SignalServiceMessageSender {
                                         SendEvents sendEvents,
                                         boolean urgent,
                                         boolean story)
-      throws UntrustedIdentityException, IOException
+      throws UntrustedIdentityException, IOException, NoSessionException
   {
     enforceMaxEnvelopeContentSize(content);
 
-    long startTime = System.currentTimeMillis();
+    long    startTime             = System.currentTimeMillis();
+    boolean retriedInvalidSession = false;
+    boolean retriedNoSession      = false;
 
     for (int i = 0; i < RETRY_COUNT; i++) {
       if (cancelationSignal != null && cancelationSignal.isCanceled()) {
@@ -2079,6 +2091,24 @@ public class SignalServiceMessageSender {
       } catch (StaleDevicesException ste) {
         Log.w(TAG, "[sendMessage][" + timestamp + "] Handling stale devices. (" + ste.getMessage() + ")");
         handleStaleDevices(recipient, ste.getStaleDevices());
+      } catch (InvalidSessionException ise) {
+        if (retriedInvalidSession) {
+          Log.w(TAG, "[sendMessage][" + timestamp + "] Session still invalid after retry. Archiving sessions to force a rebuild.", ise);
+          List<Integer> devices = new ArrayList<>(aciStore.getSubDeviceSessions(recipient.getIdentifier()));
+          devices.add(SignalServiceAddress.DEFAULT_DEVICE_ID);
+          archiveSessions(recipient, devices);
+        } else {
+          Log.w(TAG, "[sendMessage][" + timestamp + "] Session was invalidated mid-send. Retrying.", ise);
+          retriedInvalidSession = true;
+        }
+      } catch (NoSessionException nse) {
+        if (retriedNoSession) {
+          Log.w(TAG, "[sendMessage][" + timestamp + "] Still no session after retry. Rethrowing.", nse);
+          throw nse;
+        }
+
+        Log.w(TAG, "[sendMessage][" + timestamp + "] No session mid-send. Retrying.", nse);
+        retriedNoSession = true;
       }
     }
 
@@ -2817,7 +2847,7 @@ public class SignalServiceMessageSender {
                                                        boolean                      online,
                                                        boolean                      urgent,
                                                        boolean                      story)
-      throws IOException, InvalidKeyException, UntrustedIdentityException
+      throws IOException, InvalidKeyException, UntrustedIdentityException, NoSessionException
   {
     List<OutgoingPushMessage> messages   = new LinkedList<>();
     List<Integer>             subDevices = aciStore.getSubDeviceSessions(recipient.getIdentifier());
@@ -2848,7 +2878,7 @@ public class SignalServiceMessageSender {
                                                  int                          deviceId,
                                                  EnvelopeContent              plaintext,
                                                  boolean                      story)
-      throws IOException, InvalidKeyException, UntrustedIdentityException
+      throws IOException, InvalidKeyException, UntrustedIdentityException, NoSessionException
   {
     SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(recipient.getIdentifier(), deviceId);
     SignalServiceCipher   cipher                = new SignalServiceCipher(localAddress, localDeviceId, aciStore, sessionLock, null);

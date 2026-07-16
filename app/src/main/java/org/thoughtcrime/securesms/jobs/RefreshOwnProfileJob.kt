@@ -86,7 +86,7 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       return
     }
 
-    if ((SignalStore.svr.hasPin() || SignalStore.account.restoredAccountEntropyPool) && !SignalStore.svr.hasOptedOut() && SignalStore.storageService.lastSyncTime == 0L) {
+    if ((SignalStore.svr.hasPin() || SignalStore.account.restoredAccountEntropyPool || SignalStore.account.restoredAccountEntropyPoolFromPrimary) && !SignalStore.svr.hasOptedOut() && SignalStore.storageService.lastSyncTime == 0L) {
       Log.i(TAG, "Registered with PIN or AEP but haven't completed storage sync yet.")
       return
     }

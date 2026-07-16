@@ -7,6 +7,7 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.MegaphoneDatabase
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import java.util.concurrent.Executor
 import kotlin.time.Duration.Companion.days
 
@@ -59,7 +60,7 @@ class MegaphoneRepository(private val context: Application) {
   @AnyThread
   fun getNextMegaphone(callback: Callback<Megaphone?>) {
     executor.execute {
-      if (enabled) {
+      if (enabled && SignalStore.account.isRegistered) {
         init()
 
         val currentTime = System.currentTimeMillis()

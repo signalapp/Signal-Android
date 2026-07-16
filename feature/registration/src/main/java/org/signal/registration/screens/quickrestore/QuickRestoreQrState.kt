@@ -6,21 +6,18 @@
 package org.signal.registration.screens.quickrestore
 
 import org.signal.core.ui.compose.QrCodeData
-import org.signal.registration.util.DebugLoggableModel
 
 data class QuickRestoreQrState(
   val qrState: QrState = QrState.Loading,
   val isRegistering: Boolean = false,
   val showRegistrationError: Boolean = false,
   val errorMessage: String? = null
-) : DebugLoggableModel()
+)
 
-sealed class QrState : DebugLoggableModel() {
+sealed class QrState {
   data object Loading : QrState()
   data class Loaded(val qrCodeData: QrCodeData) : QrState() {
-    override fun toSafeString(): String {
-      return "Loaded(qrCodeData=***)"
-    }
+    override fun toString(): String = "Loaded(qrCodeData=***)"
   }
   data object Scanned : QrState()
   data object Failed : QrState()

@@ -5,8 +5,6 @@
 
 package org.signal.registration.screens.countrycode
 
-import org.signal.registration.util.DebugLoggableModel
-
 /**
  * State managed by [CountryCodePickerViewModel]. Includes country list and allows for searching
  */
@@ -16,4 +14,4 @@ data class CountryCodeState(
   val commonCountryList: List<Country> = emptyList(),
   val filteredList: List<Country> = emptyList(),
   val startingIndex: Int = 0
-) : DebugLoggableModel()
+)

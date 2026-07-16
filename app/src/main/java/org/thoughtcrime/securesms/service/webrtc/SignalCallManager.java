@@ -13,16 +13,19 @@ import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.models.ServiceId.ACI;
+import org.signal.core.util.AppForegroundObserver;
 import org.signal.core.util.Util;
 import org.signal.core.util.concurrent.KeyedSerialMonoLifoExecutor;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.zkgroup.GenericServerPublicParams;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.calllinks.CallLinkAuthCredentialPresentation;
 import org.signal.libsignal.zkgroup.calllinks.CallLinkSecretParams;
 import org.signal.libsignal.zkgroup.groups.GroupIdentifier;
+import org.signal.network.NetworkResult;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallLinkRootKey;
@@ -68,7 +71,6 @@ import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
 import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkManager;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
-import org.signal.core.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.rx.RxStore;
@@ -76,7 +78,6 @@ import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
-import org.signal.network.NetworkResult;
 import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -902,6 +903,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       } catch (IOException e) {
         Log.i(TAG, "onSendCallMessage onFailure: ", e);
         process((s, p) -> p.handleGroupMessageSentError(s, Collections.singletonList(recipient.getId()), NETWORK_FAILURE));
+      } catch (NoSessionException e) {
+        Log.w(TAG, "onSendCallMessage onFailure: missing or corrupt session. Archiving sessions so the next send rebuilds.", e);
+        archiveSessions(recipient.getId());
+        process((s, p) -> p.handleGroupMessageSentError(s, Collections.singletonList(recipient.getId()), NETWORK_FAILURE));
       }
     });
   }
@@ -947,7 +952,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
           RetrieveProfileJob.enqueue(identifyFailureRecipientIds, true);
         }
-      } catch (UntrustedIdentityException | IOException | InvalidInputException e) {
+      } catch (UntrustedIdentityException | IOException | InvalidInputException | NoSessionException e) {
         Log.w(TAG, "onSendCallMessageToGroup failed", e);
       }
     });
@@ -1323,8 +1328,21 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                                                         remotePeer.getCallId(),
                                                                                         e instanceof UnregisteredUserException ? NO_SUCH_USER : NETWORK_FAILURE,
                                                                                         Optional.empty()));
+      } catch (NoSessionException e) {
+        Log.w(TAG, "sendCallMessage: missing or corrupt session. Archiving sessions so the next send rebuilds.", e);
+        archiveSessions(recipient.getId());
+        processSendMessageFailureWithChangeDetection(remotePeer,
+                                                     (s, p) -> p.handleMessageSentError(s,
+                                                                                        remotePeer.getCallId(),
+                                                                                        NETWORK_FAILURE,
+                                                                                        Optional.empty()));
       }
     });
+  }
+
+  private void archiveSessions(@NonNull RecipientId recipientId) {
+    AppDependencies.getProtocolStore().aci().sessions().archiveSessions(recipientId);
+    AppDependencies.getProtocolStore().pni().sessions().archiveSessions(recipientId);
   }
 
   public void sendAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing, boolean isVideoCall) {
@@ -1337,7 +1355,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         try {
           SyncMessage.CallEvent callEvent = CallEventSyncMessageUtil.createAcceptedSyncMessage(remotePeer, System.currentTimeMillis(), isOutgoing, isVideoCall);
           AppDependencies.getSignalServiceMessageSender().sendSyncMessage(SignalServiceSyncMessage.forCallEvent(callEvent));
-        } catch (IOException | UntrustedIdentityException e) {
+        } catch (IOException | UntrustedIdentityException | NoSessionException e) {
           Log.w(TAG, "Unable to send call event sync message for " + remotePeer.getCallId().longValue(), e);
         }
       });
@@ -1354,7 +1372,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         try {
           SyncMessage.CallEvent callEvent = CallEventSyncMessageUtil.createNotAcceptedSyncMessage(remotePeer, System.currentTimeMillis(), isOutgoing, isVideoCall);
           AppDependencies.getSignalServiceMessageSender().sendSyncMessage(SignalServiceSyncMessage.forCallEvent(callEvent));
-        } catch (IOException | UntrustedIdentityException e) {
+        } catch (IOException | UntrustedIdentityException | NoSessionException e) {
           Log.w(TAG, "Unable to send call event sync message for " + remotePeer.getCallId().longValue(), e);
         }
       });
@@ -1367,7 +1385,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         try {
           SyncMessage.CallEvent callEvent = CallEventSyncMessageUtil.createNotAcceptedSyncMessage(remotePeer, System.currentTimeMillis(), isOutgoing, true);
           AppDependencies.getSignalServiceMessageSender().sendSyncMessage(SignalServiceSyncMessage.forCallEvent(callEvent));
-        } catch (IOException | UntrustedIdentityException e) {
+        } catch (IOException | UntrustedIdentityException | NoSessionException e) {
           Log.w(TAG, "Unable to send call event sync message for " + remotePeer.getCallId().longValue(), e);
         }
       });

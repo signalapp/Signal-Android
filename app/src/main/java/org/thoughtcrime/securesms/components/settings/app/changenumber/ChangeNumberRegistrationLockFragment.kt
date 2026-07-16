@@ -113,7 +113,7 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
   }
 
   private fun onStateUpdate(state: ChangeNumberState) {
-    if (state.changeNumberOutcome == ChangeNumberOutcome.VerificationCodeWorked) {
+    if (state.changeNumberOutcome == ChangeNumberOutcome.Succeeded) {
       handleSuccessfulPinEntry(state.enteredPin)
     }
 

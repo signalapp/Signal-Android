@@ -38,6 +38,7 @@ import androidx.annotation.RequiresApi;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.contentproviders.BaseContentProvider;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.signal.core.models.database.AttachmentId;
@@ -46,7 +47,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.MemoryFileUtil;
+import org.signal.core.util.MemoryFileUtil;
 import org.signal.core.util.Util;
 
 import java.io.FileNotFoundException;

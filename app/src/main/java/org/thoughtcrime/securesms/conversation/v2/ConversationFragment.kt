@@ -282,6 +282,7 @@ import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBotto
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestionsDialog
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.invites.InviteActions
+import org.thoughtcrime.securesms.jobs.AttachmentBackfill
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerFragment
@@ -311,7 +312,7 @@ import org.thoughtcrime.securesms.mms.AudioSlide
 import org.thoughtcrime.securesms.mms.DocumentSlide
 import org.thoughtcrime.securesms.mms.GifSlide
 import org.thoughtcrime.securesms.mms.ImageSlide
-import org.thoughtcrime.securesms.mms.MediaConstraints
+import org.thoughtcrime.securesms.mms.PushMediaConstraints
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
@@ -326,7 +327,6 @@ import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewCardDialogFragment
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment
 import org.thoughtcrime.securesms.ratelimit.RecaptchaRequiredEvent
 import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment
@@ -1014,7 +1014,7 @@ class ConversationFragment :
   override fun onGifSelectSuccess(blobUri: Uri, width: Int, height: Int) {
     setMedia(
       uri = blobUri,
-      mediaType = SlideFactory.MediaType.from(BlobProvider.getMimeType(blobUri))!!,
+      mediaType = SlideFactory.MediaType.from(AppDependencies.blobs.getMimeType(blobUri))!!,
       width = width,
       height = height,
       videoGif = true
@@ -1257,7 +1257,7 @@ class ConversationFragment :
 
     viewLifecycleOwner.lifecycle.addObserver(LastScrolledPositionUpdater(adapter, layoutManager, viewModel))
 
-    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Default) {
       var wasTerminated: Boolean? = null
       viewModel
         .groupRecordFlow
@@ -1413,6 +1413,16 @@ class ConversationFragment :
                 viewModel.onAvatarDownloadFailed()
               }
             }
+          }
+        }
+      }
+    }
+
+    lifecycleScope.launch {
+      lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        AttachmentBackfill.failures.collect { failure ->
+          if (failure.threadId == args.threadId) {
+            showAttachmentBackfillFailureDialog(failure.reason)
           }
         }
       }
@@ -2179,7 +2189,7 @@ class ConversationFragment :
         inputPanel.clickOnComposeInput()
       }
 
-      is ShareOrDraftData.SetLocation -> attachmentManager.setLocation(data.location, MediaConstraints.getPushMediaConstraints())
+      is ShareOrDraftData.SetLocation -> attachmentManager.setLocation(data.location, PushMediaConstraints(null))
 
       is ShareOrDraftData.SetEditMessage -> {
         composeText.setDraftText(data.draftText)
@@ -2489,7 +2499,17 @@ class ConversationFragment :
         ?: MediaUtil.IMAGE_WEBP
     )
 
-    sendMessageWithoutComposeInput(slide = slide, clearCompose = clearCompose)
+    val quote = if (SignalStore.labs.stickerReplies) {
+      inputPanel.quote.orNull()
+    } else {
+      null
+    }
+
+    sendMessageWithoutComposeInput(slide = slide, quote = quote, clearCompose = clearCompose)
+
+    if (quote != null) {
+      inputPanel.clearQuote()
+    }
 
     viewModel.updateStickerLastUsedTime(stickerRecord, System.currentTimeMillis().milliseconds)
   }
@@ -3112,6 +3132,19 @@ class ConversationFragment :
       .setPositiveButton(android.R.string.ok, null)
 
     dialogBuilder.show()
+  }
+
+  private fun showAttachmentBackfillFailureDialog(reason: AttachmentBackfill.FailureReason) {
+    val messageRes = when (reason) {
+      AttachmentBackfill.FailureReason.TIMEOUT -> R.string.ConversationFragment_attachment_backfill_timeout
+      AttachmentBackfill.FailureReason.NOT_FOUND -> R.string.ConversationFragment_attachment_backfill_not_found
+    }
+
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.ConversationFragment_attachment_backfill_failed_title)
+      .setMessage(messageRes)
+      .setPositiveButton(android.R.string.ok, null)
+      .show()
   }
 
   private fun handleDisplayDetails(conversationMessage: ConversationMessage) {
@@ -4738,6 +4771,10 @@ class ConversationFragment :
 
     override fun onReRegisterClicked() {
       startActivity(RegistrationActivity.newIntentForReRegistration(requireContext()))
+    }
+
+    override fun onReLinkDeviceClicked() {
+      startActivity(RegistrationActivity.newIntentForReLinkDevice(requireContext()))
     }
 
     override fun onCancelGroupRequestClicked() {

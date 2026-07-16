@@ -41,7 +41,7 @@ class DataSeedingPlaygroundViewModel(application: Application) : AndroidViewMode
   val state: StateFlow<DataSeedingPlaygroundState> = _state.asStateFlow()
 
   fun loadThreads() {
-    viewModelScope.launch(Dispatchers.IO) {
+    viewModelScope.launch(Dispatchers.Default) {
       try {
         val threads = mutableListOf<ThreadWithRecipient>()
         val cursor: Cursor = SignalDatabase.threads.getRecentConversationList(

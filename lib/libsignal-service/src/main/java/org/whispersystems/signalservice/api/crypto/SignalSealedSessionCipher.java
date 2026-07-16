@@ -20,12 +20,10 @@ import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.UntrustedIdentityException;
 import org.signal.libsignal.protocol.state.SessionRecord;
-import org.signal.libsignal.protocol.state.SignalProtocolStore;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -59,7 +57,13 @@ public class SignalSealedSessionCipher {
         throw new NoSessionException("No session for some recipients");
       }
 
-      return cipher.multiRecipientEncrypt(recipients, recipientSessions, content);
+      try {
+        return cipher.multiRecipientEncrypt(recipients, recipientSessions, content);
+      } catch (IllegalStateException e) {
+        NoSessionException nse = new NoSessionException(e.getMessage());
+        nse.initCause(e);
+        throw nse;
+      }
     }
   }
 
@@ -69,13 +73,13 @@ public class SignalSealedSessionCipher {
     }
   }
 
-  public int getSessionVersion(SignalProtocolAddress remoteAddress) {
+  public int getSessionVersion(SignalProtocolAddress remoteAddress) throws NoSessionException {
     try (SignalSessionLock.Lock unused = lock.acquire()) {
       return cipher.getSessionVersion(remoteAddress);
     }
   }
 
-  public int getRemoteRegistrationId(SignalProtocolAddress remoteAddress) {
+  public int getRemoteRegistrationId(SignalProtocolAddress remoteAddress) throws NoSessionException {
     try (SignalSessionLock.Lock unused = lock.acquire()) {
       return cipher.getRemoteRegistrationId(remoteAddress);
     }

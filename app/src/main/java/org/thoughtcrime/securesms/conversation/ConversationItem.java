@@ -725,6 +725,17 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
     }
 
+    if (hasSticker(messageRecord) && hasQuote(messageRecord) && stickerStub.resolved()) {
+      int stickerWidth = stickerStub.get().getMeasuredWidth();
+      if (stickerWidth > 0 && bodyBubble.getMeasuredWidth() > stickerWidth) {
+        bodyBubble.getLayoutParams().width = stickerWidth;
+        updatingFooter                     = false;
+        lastFooterDecisionLineWidth        = -1;
+        lastFooterWasCollapsed             = false;
+        needsMeasure                       = true;
+      }
+    }
+
     if (needsMeasure) {
       if (measureCalls < MAX_MEASURE_CALLS) {
         measureCalls++;
@@ -1102,7 +1113,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean hasNoBubble(MessageRecord messageRecord) {
-    return MessageRecordUtil.hasNoBubble(messageRecord, context);
+    return MessageRecordUtil.hasNoBubble(messageRecord, context) && !(hasSticker(messageRecord) && hasQuote(messageRecord));
   }
 
   private boolean hasOnlyThumbnail(MessageRecord messageRecord) {
@@ -1470,7 +1481,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       footer.setVisibility(VISIBLE);
     } else if ((hasSticker(messageRecord) && isCaptionlessMms(messageRecord)) || isBorderless(messageRecord)) {
-      bodyBubble.setBackgroundColor(Color.TRANSPARENT);
+      if (hasNoBubble(messageRecord)) {
+        bodyBubble.setBackgroundColor(Color.TRANSPARENT);
+      }
 
       stickerStub.get().setVisibility(View.VISIBLE);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.require().setVisibility(View.GONE);

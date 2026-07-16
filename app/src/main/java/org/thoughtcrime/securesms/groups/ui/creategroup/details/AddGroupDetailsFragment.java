@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.groups.ui.creategroup.details;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
@@ -48,7 +49,7 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity;
-import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.signal.core.util.bitmaps.BitmapUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -155,27 +156,35 @@ public class AddGroupDetailsFragment extends LoggingFragment {
     });
 
     View      sameGroupsSection   = view.findViewById(R.id.same_groups_section);
+    TextView  sameGroupsHeader    = view.findViewById(R.id.same_groups_header);
     ChipGroup sameGroupsChipGroup = view.findViewById(R.id.same_groups_chip_group);
 
-    if (SignalStore.labs().getGroupSuggestionsForMembers()) {
-      viewModel.getSameGroups().observe(getViewLifecycleOwner(), groups -> {
-        sameGroupsChipGroup.removeAllViews();
-        if (groups.isEmpty()) {
-          sameGroupsSection.setVisibility(View.GONE);
-        } else {
-          sameGroupsSection.setVisibility(View.VISIBLE);
-          RequestManager requestManager = Glide.with(this);
-          for (Recipient group : groups) {
-            ContactChip chip = new ContactChip(requireContext());
-            chip.setText(group.getDisplayName(requireContext()));
-            chip.setAvatar(requestManager, group, null);
-            chip.setCloseIconVisible(false);
-            chip.setOnClickListener(v -> navigateToConversation(group.getId()));
-            sameGroupsChipGroup.addView(chip);
-          }
+    viewModel.getSameGroups().observe(getViewLifecycleOwner(), groups -> {
+      sameGroupsChipGroup.removeAllViews();
+      if (groups.isEmpty()) {
+        sameGroupsSection.setVisibility(View.GONE);
+      } else {
+        sameGroupsSection.setVisibility(View.VISIBLE);
+        sameGroupsHeader.setText(getResources().getQuantityString(R.plurals.AddGroupDetailsFragment__d_groups_with_same_members, groups.size(), groups.size()));
+
+        RequestManager requestManager = Glide.with(this);
+        ColorStateList chevronTint    = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), org.signal.core.ui.R.color.signal_colorOnSurface));
+        for (Recipient group : groups) {
+          ContactChip chip = new ContactChip(requireContext());
+          chip.setText(group.getDisplayName(requireContext()));
+          chip.setAvatar(requestManager, group, null);
+          chip.setCloseIcon(ContextCompat.getDrawable(requireContext(), R.drawable.symbol_chevron_right_compact_bold_16));
+          chip.setCloseIconSize(ViewUtil.dpToPx(14));
+          chip.setCloseIconEndPadding(0);
+          chip.setCloseIconStartPadding(0);
+          chip.setCloseIconTint(chevronTint);
+          chip.setCloseIconVisible(true);
+          chip.setOnClickListener(v -> confirmNavigateToConversation(group));
+          chip.setOnCloseIconClickListener(v -> confirmNavigateToConversation(group));
+          sameGroupsChipGroup.addView(chip);
         }
-      });
-    }
+      }
+    });
 
     name.requestFocus();
 
@@ -291,6 +300,19 @@ public class AddGroupDetailsFragment extends LoggingFragment {
   private void setCreateEnabled(boolean isEnabled) {
     create.setClickable(isEnabled);
     create.setEnabled(isEnabled);
+  }
+
+  private void confirmNavigateToConversation(@NonNull Recipient group) {
+    new MaterialAlertDialogBuilder(requireContext())
+        .setTitle(R.string.AddGroupDetailsFragment__discard_group)
+        .setMessage(getString(R.string.AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved, group.getDisplayName(requireContext())))
+        .setCancelable(true)
+        .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel())
+        .setPositiveButton(R.string.AddGroupDetailsFragment__discard, (dialog, which) -> {
+          dialog.dismiss();
+          navigateToConversation(group.getId());
+        })
+        .show();
   }
 
   private void navigateToConversation(@NonNull RecipientId groupRecipientId) {

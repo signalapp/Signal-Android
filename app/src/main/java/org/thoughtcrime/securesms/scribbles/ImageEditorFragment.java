@@ -31,7 +31,10 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.ui.permissions.Permissions;
 import org.signal.core.util.FontUtil;
+import org.signal.core.util.ParcelUtil;
+import org.signal.core.util.ThrottledDebouncer;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
@@ -46,6 +49,8 @@ import org.signal.imageeditor.core.renderers.BezierDrawingRenderer;
 import org.signal.imageeditor.core.renderers.FaceBlurRenderer;
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer;
 import org.signal.imageeditor.core.renderers.UriGlideRenderer;
+import org.signal.mediasend.MediaConstraints;
+import org.signal.mediasend.SentMediaQuality;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.ResizeAnimation;
 import org.thoughtcrime.securesms.attachments.AttachmentSaver;
@@ -54,20 +59,14 @@ import org.thoughtcrime.securesms.fonts.FontTypefaceProvider;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.MediaSendPageFragment;
 import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
-import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.PushMediaConstraints;
-import org.thoughtcrime.securesms.mms.SentMediaQuality;
-import org.signal.core.ui.permissions.Permissions;
-import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.scribbles.stickers.AnalogClockStickerRenderer;
 import org.thoughtcrime.securesms.scribbles.stickers.DigitalClockStickerRenderer;
 import org.thoughtcrime.securesms.scribbles.stickers.FeatureSticker;
 import org.thoughtcrime.securesms.scribbles.stickers.TappableRenderer;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.signal.core.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.signal.core.util.ThrottledDebouncer;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
@@ -76,10 +75,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import kotlin.Pair;
-
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlin.Pair;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -217,8 +215,8 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
     MediaConstraints mediaConstraints = new PushMediaConstraints(SentMediaQuality.HIGH);
 
-    imageMaxWidth  = mediaConstraints.getImageMaxWidth(requireContext());
-    imageMaxHeight = mediaConstraints.getImageMaxHeight(requireContext());
+    imageMaxWidth  = mediaConstraints.getImageMaxWidth();
+    imageMaxHeight = mediaConstraints.getImageMaxHeight();
   }
 
   @Nullable
@@ -813,10 +811,10 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     image.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
     image.recycle();
 
-    return BlobProvider.getInstance()
-                       .forData(outputStream.toByteArray())
-                       .withMimeType(MediaUtil.IMAGE_JPEG)
-                       .createForSingleUseInMemory();
+    return AppDependencies.getBlobs()
+                          .forData(outputStream.toByteArray())
+                          .withMimeType(MediaUtil.IMAGE_JPEG)
+                          .createForSingleUseInMemory();
   }
 
   @WorkerThread
@@ -827,10 +825,10 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     image.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
     image.recycle();
 
-    return BlobProvider.getInstance()
-                       .forData(outputStream.toByteArray())
-                       .withMimeType(MediaUtil.IMAGE_JPEG)
-                       .createForSingleSessionInMemory();
+    return AppDependencies.getBlobs()
+                          .forData(outputStream.toByteArray())
+                          .withMimeType(MediaUtil.IMAGE_JPEG)
+                          .createForSingleSessionInMemory();
   }
 
   private void onDrawingChanged(boolean stillTouching, boolean isUserEdit) {

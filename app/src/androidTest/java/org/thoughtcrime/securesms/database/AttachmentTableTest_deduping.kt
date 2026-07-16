@@ -19,14 +19,14 @@ import org.signal.core.util.Util
 import org.signal.core.util.readFully
 import org.signal.core.util.stream.LimitedInputStream
 import org.signal.core.util.update
+import org.signal.mediasend.SentMediaQuality
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.MediaStream
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
-import org.thoughtcrime.securesms.mms.SentMediaQuality
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
@@ -671,7 +671,7 @@ class AttachmentTableTest_deduping {
     }
 
     fun insertWithData(data: ByteArray, transformProperties: TransformProperties = TransformProperties.empty()): AttachmentId {
-      val uri = BlobProvider.getInstance().forData(data).createForSingleSessionInMemory()
+      val uri = AppDependencies.blobs.forData(data).createForSingleSessionInMemory()
 
       val attachment = UriAttachmentBuilder.build(
         id = Random.nextLong(),

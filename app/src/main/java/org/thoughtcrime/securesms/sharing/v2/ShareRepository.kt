@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.models.media.Media
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.UriUtil
@@ -49,7 +49,7 @@ class ShareRepository(context: Context) {
     } ?: return ResolvedShareData.Failure
 
     val blobUri: Uri = try {
-      BlobProvider.getInstance()
+      AppDependencies.blobs
         .forData(stream, size)
         .withMimeType(mimeType)
         .withFileName(name)
@@ -94,7 +94,7 @@ class ShareRepository(context: Context) {
         val dimens: Pair<Int, Int> = MediaUtil.getDimensions(appContext, mimeType, uri)
         val duration = 0L
         val blobUri = try {
-          BlobProvider.getInstance()
+          AppDependencies.blobs
             .forData(stream, size)
             .withMimeType(mimeType)
             .createForSingleSessionOnDisk(appContext)

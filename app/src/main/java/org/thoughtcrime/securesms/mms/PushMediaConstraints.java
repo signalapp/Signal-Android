@@ -7,50 +7,53 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.Util;
+import org.signal.mediasend.MediaConstraints;
+import org.signal.mediasend.SentMediaQuality;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig;
 import org.thoughtcrime.securesms.util.RemoteConfig;
-import org.thoughtcrime.securesms.video.TranscodingPreset;
-import org.thoughtcrime.securesms.video.videoconverter.utils.DeviceCapabilities;
+import org.thoughtcrime.securesms.video.TranscodingConfig;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
-import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class PushMediaConstraints extends MediaConstraints {
 
   private static final int KB = 1024;
   private static final int MB = 1024 * KB;
 
-  private final MediaConfig currentConfig;
+  private final MediaConfig      currentConfig;
+  private final SentMediaQuality sentMediaQuality;
 
   public PushMediaConstraints(@Nullable SentMediaQuality sentMediaQuality) {
-    currentConfig = getCurrentConfig(AppDependencies.getApplication(), sentMediaQuality);
+    this.currentConfig    = getCurrentConfig(AppDependencies.getApplication(), sentMediaQuality);
+    this.sentMediaQuality = sentMediaQuality;
   }
 
   @Override
-  public int getImageMaxWidth(Context context) {
+  public int getImageMaxWidth() {
     return currentConfig.imageSizeTargets[0];
   }
 
   @Override
-  public int getImageMaxHeight(Context context) {
-    return getImageMaxWidth(context);
+  public int getImageMaxHeight() {
+    return getImageMaxWidth();
   }
 
   @Override
-  public int getImageMaxSize(Context context) {
+  public int getImageMaxSize() {
     return (int) Math.min(currentConfig.maxImageFileSize, getMaxAttachmentSize());
   }
 
   @Override
-  public int[] getImageDimensionTargets(Context context) {
+  public int[] getImageDimensionTargets() {
     return currentConfig.imageSizeTargets;
   }
 
   @Override
-  public long getGifMaxSize(Context context) {
+  public long getGifMaxSize() {
     return Math.min(25 * MB, getMaxAttachmentSize());
   }
 
@@ -60,37 +63,41 @@ public class PushMediaConstraints extends MediaConstraints {
   }
 
   @Override
-  public long getUncompressedVideoMaxSize(Context context) {
+  public long getUncompressedVideoMaxSize() {
     return isVideoTranscodeAvailable() ? RemoteConfig.maxSourceTranscodeVideoSizeBytes()
                                        : getVideoMaxSize();
   }
 
   @Override
-  public long getCompressedVideoMaxSize(Context context) {
-    long maxCipherTextSize = RemoteConfig.videoTranscodeTargetSizeBytes();
-    long maxPaddedSize     = AttachmentCipherStreamUtil.getPlaintextLength(maxCipherTextSize);
+  public long getCompressedVideoMaxSize() {
+    long maxCompressedSize = AttachmentCipherStreamUtil.getMaxPlaintextSizeForCiphertext(RemoteConfig.videoTranscodeTargetSizeBytes());
 
-    return Math.min(PaddingInputStream.getMaxUnpaddedSize(maxPaddedSize), getMaxAttachmentSize());
+    return Math.min(maxCompressedSize, getMaxAttachmentSize());
   }
 
   @Override
-  public long getAudioMaxSize(Context context) {
+  public long getAudioMaxSize() {
     return getMaxAttachmentSize();
   }
 
   @Override
-  public long getDocumentMaxSize(Context context) {
+  public long getDocumentMaxSize() {
     return getMaxAttachmentSize();
   }
 
   @Override
-  public int getImageCompressionQualitySetting(@NonNull Context context) {
+  public long getMaxAttachmentSize() {
+    return AttachmentUploadJob.getMaxPlaintextSize();
+  }
+
+  @Override
+  public int getImageCompressionQualitySetting() {
     return currentConfig.qualitySetting;
   }
 
   @Override
-  public TranscodingPreset getVideoTranscodingSettings() {
-    return currentConfig.videoPreset;
+  public List<TranscodingConfig.QualityTier> getVideoTranscodingSettings() {
+   return sentMediaQuality == SentMediaQuality.HIGH ? currentConfig.videoConfigs.getHigh() : currentConfig.videoConfigs.getStandard();
   }
 
   private static @NonNull MediaConfig getCurrentConfig(@NonNull Context context, @Nullable SentMediaQuality sentMediaQuality) {
@@ -99,44 +106,37 @@ public class PushMediaConstraints extends MediaConstraints {
     }
 
     if (sentMediaQuality == SentMediaQuality.HIGH) {
-      if (DeviceCapabilities.canEncodeHevc() && (RemoteConfig.useHevcEncoder() || SignalStore.internal().getHevcEncoding())) {
-        return MediaConfig.LEVEL_3_H265;
-      } else {
-        return MediaConfig.LEVEL_3;
-      }
+      return MediaConfig.LEVEL_3;
     }
     return LocaleRemoteConfig.getMediaQualityLevel().orElse(MediaConfig.getDefault(context));
   }
 
   public enum MediaConfig {
-    LEVEL_1_LOW_MEMORY(true, 1, MB, new int[] { 768, 512 }, 70, TranscodingPreset.LEVEL_1),
+    LEVEL_1_LOW_MEMORY(true, 1, MB, new int[] { 768, 512 }, 70),
 
-    LEVEL_1(false, 1, MB, new int[] { 1600, 1024, 768, 512 }, 70, TranscodingPreset.LEVEL_1),
-    LEVEL_2(false, 2, (int) (1.5 * MB), new int[] { 2048, 1600, 1024, 768, 512 }, 75, TranscodingPreset.LEVEL_2),
-    LEVEL_3(false, 3, (int) (3 * MB), new int[] { 4096, 3072, 2048, 1600, 1024, 768, 512 }, 75, TranscodingPreset.LEVEL_3),
-    /** Experimental H265 level */
-    LEVEL_3_H265(false, 4, 3 * MB, new int[] { 4096, 3072, 2048, 1600, 1024, 768, 512 }, 75, TranscodingPreset.LEVEL_3_H265);
+    LEVEL_1(false, 1, MB, new int[] { 1600, 1024, 768, 512 }, 70),
+    LEVEL_2(false, 2, (int) (1.5 * MB), new int[] { 2048, 1600, 1024, 768, 512 }, 75),
+    LEVEL_3(false, 3, (int) (3 * MB), new int[] { 4096, 3072, 2048, 1600, 1024, 768, 512 }, 75);
 
-    private final boolean           isLowMemory;
-    private final int               level;
-    private final int               maxImageFileSize;
-    private final int[]             imageSizeTargets;
-    private final int               qualitySetting;
-    private final TranscodingPreset videoPreset;
+    private final boolean                           isLowMemory;
+    private final int                               level;
+    private final int                               maxImageFileSize;
+    private final int[]                             imageSizeTargets;
+    private final int                               qualitySetting;
+    private final TranscodingConfig.TranscodeConfig videoConfigs;
 
     MediaConfig(boolean isLowMemory,
                 int level,
                 int maxImageFileSize,
                 @NonNull int[] imageSizeTargets,
-                @IntRange(from = 0, to = 100) int qualitySetting,
-                TranscodingPreset videoPreset)
+                @IntRange(from = 0, to = 100) int qualitySetting)
     {
       this.isLowMemory      = isLowMemory;
       this.level            = level;
       this.maxImageFileSize = maxImageFileSize;
       this.imageSizeTargets = imageSizeTargets;
       this.qualitySetting   = qualitySetting;
-      this.videoPreset      = videoPreset;
+      this.videoConfigs     = TranscodingConfigProvider.getAllConfigs();
     }
 
     public int getMaxImageFileSize() {
@@ -149,10 +149,6 @@ public class PushMediaConstraints extends MediaConstraints {
 
     public int getImageQualitySetting() {
       return qualitySetting;
-    }
-
-    public TranscodingPreset getVideoPreset() {
-      return videoPreset;
     }
 
     public static @Nullable MediaConfig forLevel(int level) {

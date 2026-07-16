@@ -15,11 +15,13 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.ParcelFileDescriptor
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.contentproviders.BaseContentProvider
+import org.signal.core.util.crypto.AttachmentSecretProvider
 import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
+import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader
@@ -73,7 +75,7 @@ class AvatarProvider : BaseContentProvider() {
     SignalDatabase.init(
       application,
       DatabaseSecretProvider.getOrCreateDatabaseSecret(application),
-      AttachmentSecretProvider.getInstance(application).getOrCreateAttachmentSecret()
+      AttachmentSecretProvider.getInstance(application, AppAttachmentSecretStore).getOrCreateAttachmentSecret()
     )
 
     SignalStore.init(application)

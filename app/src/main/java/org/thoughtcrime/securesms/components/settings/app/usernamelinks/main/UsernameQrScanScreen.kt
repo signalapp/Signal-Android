@@ -36,6 +36,7 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.qr.QrCrosshair
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.signal.mediasend.R as MediaSendR
 
 /**
  * A screen that allows you to scan a QR code to start a chat.
@@ -116,7 +117,7 @@ fun UsernameQrScanScreen(
             .padding(48.dp)
         ) {
           Text(
-            text = stringResource(R.string.CameraXFragment_to_scan_qr_code_allow_camera),
+            text = stringResource(MediaSendR.string.CameraXFragment_to_scan_qr_code_allow_camera),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.bodyLarge,
             color = Color.White
@@ -125,7 +126,7 @@ fun UsernameQrScanScreen(
             colors = ButtonDefaults.filledTonalButtonColors(),
             onClick = onOpenCameraClicked
           ) {
-            Text(stringResource(R.string.CameraXFragment_allow_access))
+            Text(stringResource(MediaSendR.string.CameraXFragment_allow_access))
           }
         }
       }

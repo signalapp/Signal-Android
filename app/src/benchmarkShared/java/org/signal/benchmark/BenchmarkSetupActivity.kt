@@ -32,6 +32,14 @@ class BenchmarkSetupActivity : BaseActivity() {
 
   companion object {
     private val TAG = Log.tag(BenchmarkSetupActivity::class)
+
+    const val SEARCH_KEYWORD = "lighthouse"
+
+    private val SEARCH_VOCABULARY = listOf(
+      "hello", "world", "signal", "android", "kotlin", "database", "benchmark", "conversation",
+      "morning", "evening", "weekend", "project", "meeting", "dinner", "coffee", "garden",
+      "mountain", "river", "forest", "harbor", "market", "library", "concert", "holiday"
+    )
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +59,7 @@ class BenchmarkSetupActivity : BaseActivity() {
       when (intent.extras!!.getString("setup-type")) {
         "cold-start" -> setupColdStart()
         "conversation-open" -> setupConversationOpen()
+        "conversation-list-search" -> setupConversationListSearch()
         "message-send" -> setupMessageSend()
         "group-message-send" -> setupGroupMessageSend()
         "group-delivery-receipt" -> setupGroupReceipt(includeMsl = true)
@@ -95,6 +104,39 @@ class BenchmarkSetupActivity : BaseActivity() {
 
       SignalDatabase.threads.update(SignalDatabase.threads.getOrCreateThreadIdFor(recipient = recipient), true)
     }
+  }
+
+  private fun setupConversationListSearch() {
+    TestUsers.setupSelf()
+
+    val recipientCount = 50
+    val messagesPerRecipient = 2000
+    val totalMessages = recipientCount * messagesPerRecipient
+    val generator = TestMessages.TimestampGenerator(System.currentTimeMillis() - (totalMessages * 2000L) - 60_000L)
+
+    TestUsers.setupTestRecipients(recipientCount).forEachIndexed { recipientIndex, recipientId ->
+      val recipient: Recipient = Recipient.resolved(recipientId)
+
+      for (i in 0 until messagesPerRecipient) {
+        val body = searchableMessageBody(recipientIndex, i)
+        if (i % 2 == 0) {
+          TestMessages.insertIncomingTextMessage(other = recipient, body = body, timestamp = generator.nextTimestamp())
+        } else {
+          TestMessages.insertOutgoingTextMessage(other = recipient, body = body, timestamp = generator.nextTimestamp())
+        }
+      }
+
+      SignalDatabase.messages.setAllMessagesRead()
+      SignalDatabase.threads.update(SignalDatabase.threads.getOrCreateThreadIdFor(recipient = recipient), true)
+    }
+  }
+
+  private fun searchableMessageBody(recipientIndex: Int, messageIndex: Int): String {
+    val words = SEARCH_VOCABULARY
+    val w1 = words[(recipientIndex + messageIndex) % words.size]
+    val w2 = words[(recipientIndex * 7 + messageIndex * 3) % words.size]
+    val w3 = words[(recipientIndex * 13 + messageIndex * 5) % words.size]
+    return "$w1 $w2 $SEARCH_KEYWORD $w3 message $messageIndex"
   }
 
   private fun setupMessageSend() {

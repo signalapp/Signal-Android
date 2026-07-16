@@ -5,9 +5,9 @@
 
 package org.signal.registration.screens.messagesync
 
-import org.signal.registration.util.DebugLoggableModel
-
-sealed class MessageSyncScreenEvent : DebugLoggableModel() {
+sealed class MessageSyncScreenEvent {
   data object LearnMoreClick : MessageSyncScreenEvent()
   data object CancelClick : MessageSyncScreenEvent()
+  data object RetryClick : MessageSyncScreenEvent()
+  data object ContinueWithoutMessagesClick : MessageSyncScreenEvent()
 }

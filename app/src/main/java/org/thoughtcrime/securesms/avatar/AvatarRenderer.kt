@@ -11,9 +11,9 @@ import androidx.appcompat.content.res.AppCompatResources
 import com.airbnb.lottie.SimpleColorFilter
 import org.signal.core.models.media.Media
 import org.signal.core.util.concurrent.SignalExecutors
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.profiles.AvatarHelper
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -80,7 +80,7 @@ object AvatarRenderer {
 
   private fun renderPhoto(context: Context, avatar: Avatar.Photo, onAvatarRendered: (Media) -> Unit) {
     SignalExecutors.BOUNDED.execute {
-      val blob = BlobProvider.getInstance()
+      val blob = AppDependencies.blobs
         .forData(AvatarPickerStorage.read(context, PartAuthority.getAvatarPickerFilename(avatar.uri)), avatar.size)
         .createForSingleSessionOnDisk(context)
 
@@ -124,7 +124,7 @@ object AvatarRenderer {
 
       val bytes = outStream.toByteArray()
       val inStream = ByteArrayInputStream(bytes)
-      val uri = BlobProvider.getInstance().forData(inStream, bytes.size.toLong()).createForSingleSessionOnDisk(context)
+      val uri = AppDependencies.blobs.forData(inStream, bytes.size.toLong()).createForSingleSessionOnDisk(context)
 
       onAvatarRendered(createMedia(uri, bytes.size.toLong()))
     }

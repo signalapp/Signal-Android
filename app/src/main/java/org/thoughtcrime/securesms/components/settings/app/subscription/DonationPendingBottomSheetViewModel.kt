@@ -25,7 +25,7 @@ class DonationPendingBottomSheetViewModel(
 
   init {
     viewModelScope.launch {
-      val inAppPayment = withContext(SignalDispatchers.IO) {
+      val inAppPayment = withContext(SignalDispatchers.Default) {
         SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
       }
 

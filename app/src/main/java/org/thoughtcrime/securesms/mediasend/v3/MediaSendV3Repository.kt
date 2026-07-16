@@ -5,7 +5,9 @@
 
 package org.thoughtcrime.securesms.mediasend.v3
 
+import android.content.Context
 import android.net.Uri
+import android.os.Build
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -15,34 +17,41 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
+import org.signal.core.util.asListContains
 import org.signal.core.util.logging.Log
 import org.signal.mediasend.EditorState
+import org.signal.mediasend.MediaConstraints
 import org.signal.mediasend.MediaFilterError
 import org.signal.mediasend.MediaFilterResult
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendRepository
 import org.signal.mediasend.SendRequest
 import org.signal.mediasend.SendResult
+import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.StorySendRequirements
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.MediaRepository
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionRepository
 import org.thoughtcrime.securesms.mediasend.v2.MediaValidator
-import org.thoughtcrime.securesms.mediasend.v2.videos.VideoTrimData
-import org.thoughtcrime.securesms.mms.MediaConstraints
-import org.thoughtcrime.securesms.mms.SentMediaQuality
-import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.mms.PartAuthority
+import org.thoughtcrime.securesms.mms.PushMediaConstraints
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.video.TranscodingConfig
+import java.io.InputStream
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -54,6 +63,12 @@ object MediaSendV3Repository : MediaSendRepository {
   private val appContext = AppDependencies.application
   private val legacyRepository = MediaSelectionRepository(appContext)
   private val mediaRepository = MediaRepository()
+
+  override var isCameraFacingFront: Boolean
+    get() = SignalStore.misc.isCameraFacingFront
+    set(value) {
+      SignalStore.misc.isCameraFacingFront = value
+    }
 
   override suspend fun getFolders(): List<MediaFolder> = suspendCancellableCoroutine { continuation ->
     mediaRepository.getFolders(appContext) { folders ->
@@ -73,8 +88,8 @@ object MediaSendV3Repository : MediaSendRepository {
     isStory: Boolean
   ): MediaFilterResult = withContext(Dispatchers.IO) {
     val populated = MediaRepository().getPopulatedMedia(appContext, media)
-    val constraints = MediaConstraints.getPushMediaConstraints()
-    val result = MediaValidator.filterMedia(appContext, populated, constraints, maxSelection, isStory)
+    val constraints = PushMediaConstraints(null)
+    val result = MediaValidator.filterMedia(populated, constraints, maxSelection, isStory)
 
     val error = mapFilterError(result.filterError, populated, constraints, maxSelection, isStory)
     MediaFilterResult(result.filteredMedia, error)
@@ -83,8 +98,8 @@ object MediaSendV3Repository : MediaSendRepository {
   override suspend fun deleteBlobs(media: List<Media>) {
     media
       .map(Media::uri)
-      .filter(BlobProvider::isAuthority)
-      .forEach { BlobProvider.getInstance().delete(appContext, it) }
+      .filter { AppDependencies.blobs.isAuthority(it) }
+      .forEach { AppDependencies.blobs.delete(appContext, it) }
   }
 
   override suspend fun send(request: SendRequest): SendResult = withContext(Dispatchers.IO) {
@@ -94,13 +109,12 @@ object MediaSendV3Repository : MediaSendRepository {
     }
 
     val legacyEditorStateMap = mapLegacyEditorState(request.editorStateMap)
-    val quality = SentMediaQuality.fromCode(request.quality)
 
     return@withContext try {
       legacyRepository.send(
         selectedMedia = request.selectedMedia,
         stateMap = legacyEditorStateMap,
-        quality = quality,
+        quality = request.quality,
         message = request.message,
         isViewOnce = request.isViewOnce,
         singleContact = null,
@@ -116,13 +130,13 @@ object MediaSendV3Repository : MediaSendRepository {
     }
   }
 
-  override fun getMaxVideoDurationUs(quality: Int, maxFileSizeBytes: Long): Long {
-    val preset = MediaConstraints.getPushMediaConstraints(SentMediaQuality.fromCode(quality)).videoTranscodingSettings
-    return preset.calculateMaxVideoUploadDurationInSeconds(maxFileSizeBytes).seconds.inWholeMicroseconds
+  override fun getMaxVideoDurationUs(quality: SentMediaQuality, maxFileSizeBytes: Long, duration: Duration): Long {
+    val config = PushMediaConstraints(quality).videoTranscodingSettings
+    return TranscodingConfig.calculateMaxVideoUploadDurationInSeconds(config, duration, maxFileSizeBytes).seconds.inWholeMicroseconds
   }
 
   override fun getVideoMaxSizeBytes(): Long {
-    return MediaConstraints.getPushMediaConstraints().videoMaxSize
+    return PushMediaConstraints(null).getEditorVideoMaxSize()
   }
 
   override fun isVideoTranscodeAvailable(): Boolean {
@@ -137,7 +151,7 @@ object MediaSendV3Repository : MediaSendRepository {
     }
   }
 
-  override suspend fun checkUntrustedIdentities(contactIds: Set<Long>, since: Long): List<Long> = withContext(Dispatchers.IO) {
+  override suspend fun checkUntrustedIdentities(contactIds: Set<Long>, since: Long): List<Long> = withContext(Dispatchers.Default) {
     if (contactIds.isEmpty()) return@withContext emptyList<Long>()
 
     val recipients: List<Recipient> = contactIds
@@ -176,6 +190,20 @@ object MediaSendV3Repository : MediaSendRepository {
       .distinctUntilChanged()
   }
 
+  override fun getAttachmentStream(context: Context, uri: Uri): InputStream {
+    return PartAuthority.getAttachmentStream(context, uri)
+  }
+
+  override fun isMixedModeAvailable(): Boolean {
+    return !RemoteConfig.cameraXMixedModelBlocklist.asListContains(Build.MODEL)
+  }
+
+  override fun getMediaConstraints(): MediaConstraints {
+    return PushMediaConstraints(null)
+  }
+
+  override var storyMaxVideoDuration: Duration = Stories.MAX_VIDEO_DURATION_MILLIS.milliseconds
+
   private fun resolveSendType(sendType: Int): MessageSendType {
     return when (sendType) {
       else -> MessageSendType.SignalMessageSendType
@@ -195,12 +223,7 @@ object MediaSendV3Repository : MediaSendRepository {
     return editorStateMap.mapNotNull { (uri, state) ->
       val legacyState: Any = when (state) {
         is EditorState.Image -> ImageEditorFragment.Data().apply { writeModel(state.model) }
-        is EditorState.VideoTrim -> VideoTrimData(
-          isDurationEdited = state.isDurationEdited,
-          totalInputDurationUs = state.totalInputDurationUs,
-          startTimeUs = state.startTimeUs,
-          endTimeUs = state.endTimeUs
-        )
+        is EditorState.VideoTrim -> state.videoTrimData
       }
       uri to legacyState
     }.toMap()
@@ -248,10 +271,10 @@ object MediaSendV3Repository : MediaSendRepository {
       val size = item.size
 
       val isTooLarge = when {
-        MediaUtil.isGif(contentType) -> size > constraints.getGifMaxSize(appContext)
-        MediaUtil.isVideoType(contentType) -> size > constraints.getUncompressedVideoMaxSize(appContext)
-        MediaUtil.isImageType(contentType) -> size > constraints.getImageMaxSize(appContext)
-        MediaUtil.isDocumentType(contentType) -> size > constraints.getDocumentMaxSize(appContext)
+        MediaUtil.isGif(contentType) -> size > constraints.getGifMaxSize()
+        MediaUtil.isVideoType(contentType) -> size > constraints.getUncompressedVideoMaxSize()
+        MediaUtil.isImageType(contentType) -> size > constraints.getImageMaxSize()
+        MediaUtil.isDocumentType(contentType) -> size > constraints.getDocumentMaxSize()
         else -> true
       }
 

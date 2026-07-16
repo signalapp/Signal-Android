@@ -5,13 +5,17 @@
 
 package org.whispersystems.signalservice.api.donations
 
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
 import org.signal.core.util.Base64
 import org.signal.core.util.urlEncode
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
 import org.signal.network.NetworkResult
 import org.signal.network.exceptions.MalformedResponseException
+import org.signal.network.rest.RestStatusCodeError
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.delete
 import org.signal.network.websocket.get
@@ -75,7 +79,8 @@ class DonationsApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSo
   }
 
   /**
-   * Creates a subscriber record on the signal server.
+   * Refreshes an existing subscriber's access time (keep-alive). Does not attach a donation permit; use
+   * [createSubscriber] when creating a new subscriber.
    *
    * PUT /v1/subscription/[subscriberId]
    * - 200: Success
@@ -83,6 +88,18 @@ class DonationsApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSo
    */
   fun putSubscription(subscriberId: SubscriberId): NetworkResult<Unit> {
     val request = WebSocketRequestMessage.put("/v1/subscription/${subscriberId.serialize()}", body = "")
+    return NetworkResult.fromWebSocketRequest(unauthWebSocket, request)
+  }
+
+  /**
+   * Creates a subscriber record on the signal server, attaching a required single-use donation permit.
+   *
+   * PUT /v1/subscription/[subscriberId]
+   * - 200: Success
+   * - 403, 404: Invalid or malformed [subscriberId]
+   */
+  fun createSubscriber(subscriberId: SubscriberId, donationPermit: String): NetworkResult<Unit> {
+    val request = WebSocketRequestMessage.put("/v1/subscription/${subscriberId.serialize()}", body = "", headers = donationPermitHeaders(donationPermit))
     return NetworkResult.fromWebSocketRequest(unauthWebSocket, request)
   }
 
@@ -114,9 +131,9 @@ class DonationsApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSo
    * @param amount Price, in the minimum currency unit (e.g. cents or yen)
    * @param currencyCode The currency code for the amount
    */
-  fun createStripeOneTimePaymentIntent(currencyCode: String, paymentMethod: String, amount: Long, level: Long): NetworkResult<StripeClientSecret> {
+  fun createStripeOneTimePaymentIntent(currencyCode: String, paymentMethod: String, amount: Long, level: Long, donationPermit: String): NetworkResult<StripeClientSecret> {
     val body = StripeOneTimePaymentIntentPayload(amount, currencyCode, level, paymentMethod)
-    val request = WebSocketRequestMessage.post("/v1/subscription/boost/create", body)
+    val request = WebSocketRequestMessage.post("/v1/subscription/boost/create", body, donationPermitHeaders(donationPermit))
     return NetworkResult.fromWebSocketRequest(unauthWebSocket, request, StripeClientSecret::class)
   }
 
@@ -126,8 +143,8 @@ class DonationsApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSo
    *
    * @param type One of CARD or SEPA_DEBIT
    */
-  fun createStripeSubscriptionPaymentMethod(subscriberId: SubscriberId, type: String): NetworkResult<StripeClientSecret> {
-    val request = WebSocketRequestMessage.post("/v1/subscription/${subscriberId.serialize()}/create_payment_method?type=${type.urlEncode()}", "")
+  fun createStripeSubscriptionPaymentMethod(subscriberId: SubscriberId, type: String, donationPermit: String): NetworkResult<StripeClientSecret> {
+    val request = WebSocketRequestMessage.post("/v1/subscription/${subscriberId.serialize()}/create_payment_method?type=${type.urlEncode()}", "", donationPermitHeaders(donationPermit))
     return NetworkResult.fromWebSocketRequest(unauthWebSocket, request, StripeClientSecret::class)
   }
 
@@ -319,7 +336,39 @@ class DonationsApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSo
     return NetworkResult.fromWebSocketRequest(authWebSocket, request)
   }
 
+  /**
+   * Exchanges a blinded donation-permit request for the issuing server's response, returning the serialized
+   * libsignal `DonationPermitResponse` bytes.
+   *
+   * POST /v1/donation/permit
+   * - 200: Success
+   * - 429: Rate limited by the per-account request frequency limit.
+   */
+  fun createDonationPermits(permitRequest: ByteArray): RequestResult<ByteArray, RestStatusCodeError> {
+    val request = WebSocketRequestMessage.post("/v1/donation/permit", DonationPermitRequestBody(permitRequest))
+    return authWebSocket.fromWebSocketRequest(request, DonationPermitResponseJson::class)
+      .map { it.permitResponse }
+  }
+
   private fun Locale.toAcceptLanguageHeaders(): Map<String, String> {
     return mapOf("Accept-Language" to "${this.language}${if (this.country.isNotEmpty()) "-${this.country}" else ""}")
   }
+
+  /** The base64 donation permit as the `Donation-Permit` header. */
+  private fun donationPermitHeaders(donationPermit: String): Map<String, String> {
+    return mapOf("Donation-Permit" to donationPermit)
+  }
+}
+
+/** Request body for `POST /v1/donation/permit`: the base64-encoded, serialized libsignal `DonationPermitRequest`. */
+private class DonationPermitRequestBody(permitRequest: ByteArray) {
+  @JsonProperty("permitRequest")
+  val permitRequest: String = Base64.encodeWithPadding(permitRequest)
+}
+
+/** Response body for `POST /v1/donation/permit`: the base64-encoded, serialized libsignal `DonationPermitResponse`. */
+private class DonationPermitResponseJson @JsonCreator constructor(
+  @JsonProperty("permitResponse") encoded: String
+) {
+  val permitResponse: ByteArray = Base64.decode(encoded)
 }

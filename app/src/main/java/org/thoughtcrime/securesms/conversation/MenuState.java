@@ -253,6 +253,7 @@ public final class MenuState {
                              hasText &&
                              !multiSelectRecord.getConversationMessage().getOriginalMessage().isFailed() &&
                              !hasPoll &&
+                             !MessageRecordUtil.hasUndownloadedTextSlide(multiSelectRecord.getConversationMessage().getOriginalMessage()) &&
                              MessageConstraintsUtil.isValidEditMessageSend(multiSelectRecord.getConversationMessage().getOriginalMessage(), System.currentTimeMillis()));
     }
 

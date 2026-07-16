@@ -16,9 +16,9 @@ import org.thoughtcrime.securesms.avatar.AvatarRenderer
 import org.thoughtcrime.securesms.avatar.Avatars
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.AvatarHelper
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.NameUtil
 import org.whispersystems.signalservice.api.util.StreamDetails
@@ -36,7 +36,7 @@ class AvatarPickerRepository(context: Context) {
       try {
         val bytes = StreamUtil.readFully(details.stream)
         Avatar.Photo(
-          BlobProvider.getInstance().forData(bytes).createForSingleSessionInMemory(),
+          AppDependencies.blobs.forData(bytes).createForSingleSessionInMemory(),
           details.length,
           Avatar.DatabaseId.DoNotPersist
         )
@@ -56,7 +56,7 @@ class AvatarPickerRepository(context: Context) {
       try {
         val bytes = AvatarHelper.getAvatarBytes(applicationContext, recipient.id)
         Avatar.Photo(
-          BlobProvider.getInstance().forData(bytes).createForSingleSessionInMemory(),
+          AppDependencies.blobs.forData(bytes).createForSingleSessionInMemory(),
           AvatarHelper.getAvatarLength(applicationContext, recipient.id),
           Avatar.DatabaseId.DoNotPersist
         )

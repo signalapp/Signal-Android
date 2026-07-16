@@ -138,7 +138,7 @@ public interface EnvelopeContent {
                                                    SignalSealedSessionCipher sealedSessionCipher,
                                                    SignalProtocolAddress destination,
                                                    SenderCertificate senderCertificate)
-        throws UntrustedIdentityException, InvalidKeyException
+        throws UntrustedIdentityException, InvalidKeyException, NoSessionException
     {
       UnidentifiedSenderMessageContent messageContent = new UnidentifiedSenderMessageContent(plaintextContent,
                                                                                              senderCertificate,

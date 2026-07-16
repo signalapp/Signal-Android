@@ -18,10 +18,10 @@ import org.thoughtcrime.securesms.database.UriAttachmentBuilder
 import org.thoughtcrime.securesms.database.model.GroupsV2UpdateMessageConverter
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ThreadUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.OutgoingMessage
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.GroupTestingUtils
@@ -120,7 +120,7 @@ class MessageHelper(private val harness: SignalActivityRule, var startTime: Long
   }
 
   fun outgoingAttachment(data: ByteArray, uuid: UUID? = UUID.randomUUID()): Attachment {
-    val uri: Uri = BlobProvider.getInstance().forData(data).createForSingleSessionInMemory()
+    val uri: Uri = AppDependencies.blobs.forData(data).createForSingleSessionInMemory()
 
     val attachment: UriAttachment = UriAttachmentBuilder.build(
       id = Random.nextLong(),

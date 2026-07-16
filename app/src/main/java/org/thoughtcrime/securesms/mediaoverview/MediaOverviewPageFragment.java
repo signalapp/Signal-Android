@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
+import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -324,14 +325,21 @@ public final class MediaOverviewPageFragment extends LoggingFragment
       return;
     }
 
-    if (mediaRecord.getAttachment() == null || mediaRecord.getAttachment().getDisplayUri() == null) {
+    DatabaseAttachment attachment = mediaRecord.getAttachment();
+
+    if (attachment == null) {
       return;
     }
 
-    DatabaseAttachment attachment = mediaRecord.getAttachment();
+    if (attachment.getDisplayUri() == null) {
+      if (attachment.transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED) {
+        AttachmentDownloadJob.downloadAttachmentIfNeeded(attachment);
+      }
+      return;
+    }
 
     if (MediaUtil.isVideo(attachment) || MediaUtil.isImage(attachment)) {
-      if (mediaRecord.getAttachment().transferState != AttachmentTable.TRANSFER_PROGRESS_DONE && mediaRecord.getAttachment().transferState != AttachmentTable.TRANSFER_RESTORE_OFFLOADED) {
+      if (attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE && attachment.transferState != AttachmentTable.TRANSFER_RESTORE_OFFLOADED) {
         Toast.makeText(context, R.string.MediaOverviewActivity_this_media_is_not_sent_yet, Toast.LENGTH_LONG).show();
         return;
       }

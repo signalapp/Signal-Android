@@ -12,6 +12,7 @@ import org.signal.archive.proto.Frame
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.backup.BackupId
 import org.signal.core.models.backup.MessageBackupKey
+import org.signal.core.util.logging.Log
 import org.signal.core.util.readFully
 import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.readVarInt32
@@ -49,8 +50,20 @@ class EncryptedBackupReader private constructor(
   private val countingStream: CountingInputStream
 
   companion object {
+    private val TAG = Log.tag(EncryptedBackupReader::class.java)
+
     const val MAC_SIZE = 32
     private const val MAX_FORWARD_SECRECY_METADATA_SIZE = 16 * 1024
+
+    /**
+     * The largest frame we're willing to allocate a buffer for. Anything larger likely indicates file corruption.
+     */
+    private const val MAX_FRAME_LENGTH = 25 * 1024 * 1024
+
+    /**
+     * The number of times we'll retry a read after an [IOException] before giving up.
+     */
+    private const val MAX_READ_RETRIES = 3
 
     /**
      * Estimated upperbound need to read backup secrecy metadata from the start of a file.
@@ -220,6 +233,9 @@ class EncryptedBackupReader private constructor(
   private fun readHeader(): BackupInfo? {
     try {
       val length = stream.readVarInt32().takeIf { it >= 0 } ?: return null
+      if (length > MAX_FRAME_LENGTH) {
+        throw IOException("Header length exceeds maximum allowed size: $length")
+      }
       val headerBytes: ByteArray = stream.readNBytesOrThrow(length)
 
       return BackupInfo.ADAPTER.decode(headerBytes)
@@ -229,15 +245,23 @@ class EncryptedBackupReader private constructor(
   }
 
   private fun read(): Frame? {
-    try {
-      val length = stream.readVarInt32().also { if (it < 0) return null }
-      val frameBytes: ByteArray = stream.readNBytesOrThrow(length)
-      return Frame.ADAPTER.decode(frameBytes)
-    } catch (e: EOFException) {
-      return null
-    } catch (e: IOException) {
-      return read()
+    var attempts = 0
+    while (attempts < MAX_READ_RETRIES) {
+      try {
+        val length = stream.readVarInt32().takeIf { it >= 0 } ?: return null
+        if (length > MAX_FRAME_LENGTH) {
+          throw IOException("Frame length exceeds maximum allowed size: $length")
+        }
+        val frameBytes: ByteArray = stream.readNBytesOrThrow(length)
+        return Frame.ADAPTER.decode(frameBytes)
+      } catch (e: EOFException) {
+        return null
+      } catch (e: IOException) {
+        Log.w(TAG, "Error while reading frame.", e)
+        attempts++
+      }
     }
+    throw IOException("Exhausted all attempts to read frame.")
   }
 
   override fun close() {

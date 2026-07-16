@@ -74,7 +74,8 @@ class MainScreenViewModel(
             pinsOptedOut = RegistrationPreferences.pinsOptedOut,
             temporaryMasterKey = RegistrationPreferences.temporaryMasterKey?.let {
               Base64.encodeWithPadding(it.serialize())
-            }
+            },
+            restoreDecision = RegistrationPreferences.restoreDecision?.name
           )
         } else {
           null
@@ -88,6 +89,16 @@ class MainScreenViewModel(
           )
         },
         pendingFlowState = loadPendingFlowState(),
+        linkedDeviceState = if (RegistrationPreferences.linkedDeviceId > 0) {
+          MainScreenState.LinkedDeviceState(
+            deviceId = RegistrationPreferences.linkedDeviceId,
+            linkAndSyncOffered = RegistrationPreferences.ephemeralBackupKey != null,
+            linkAndSyncFrameCount = RegistrationPreferences.linkAndSyncFrameCount,
+            linkAndSyncDownloadedBytes = RegistrationPreferences.linkAndSyncDownloadedBytes
+          )
+        } else {
+          null
+        },
         registrationExpired = false
       )
 

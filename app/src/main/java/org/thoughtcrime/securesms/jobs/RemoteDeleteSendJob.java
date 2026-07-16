@@ -7,6 +7,7 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.Util;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.NoSessionException;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -228,7 +229,7 @@ public class RemoteDeleteSendJob extends BaseJob {
                                                          long targetSentTimestamp,
                                                          boolean isForStory,
                                                          @Nullable DistributionListId distributionListId)
-      throws IOException, UntrustedIdentityException
+      throws IOException, UntrustedIdentityException, NoSessionException
   {
     SignalServiceDataMessage.Builder dataMessageBuilder = SignalServiceDataMessage.newBuilder()
                                                                                   .withTimestamp(System.currentTimeMillis())

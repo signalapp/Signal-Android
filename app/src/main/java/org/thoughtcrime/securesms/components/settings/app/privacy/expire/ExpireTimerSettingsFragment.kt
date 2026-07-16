@@ -67,7 +67,9 @@ class ExpireTimerSettingsFragment : ComposeFragment() {
           if (state.isGroupCreate) {
             requireActivity().setResult(Activity.RESULT_OK, Intent().putExtra(FOR_RESULT_VALUE, saveState.result))
           }
-          requireActivity().onNavigateUp()
+          if (!NavHostFragment.findNavController(this).popBackStack()) {
+            requireActivity().onNavigateUp()
+          }
         }
 
         is ProcessState.Failure -> {

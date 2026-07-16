@@ -31,7 +31,7 @@ class PollVotesViewModel(pollId: Long) : ViewModel() {
   }
 
   private fun loadPollInfo(pollId: Long) {
-    viewModelScope.launch(SignalDispatchers.IO) {
+    viewModelScope.launch(SignalDispatchers.Default) {
       val poll = SignalDatabase.polls.getPollFromId(pollId)!!
       val mostVotes = poll.pollOptions.maxByOrNull { option -> option.voters.size }?.voters?.size
       _state.update {

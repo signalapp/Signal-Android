@@ -7,9 +7,11 @@ package org.whispersystems.signalservice.api.account
 
 import org.signal.core.util.Base64
 import org.signal.core.util.Base64.encodeUrlSafeWithoutPadding
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.usernames.BaseUsernameException
 import org.signal.libsignal.usernames.Username
 import org.signal.network.NetworkResult
+import org.signal.network.rest.RestStatusCodeError
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.delete
 import org.signal.network.websocket.get
@@ -75,6 +77,17 @@ class AccountApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSock
   fun setAccountAttributes(accountAttributes: AccountAttributes): NetworkResult<Unit> {
     val request = WebSocketRequestMessage.put("/v1/accounts/attributes", accountAttributes)
     return NetworkResult.fromWebSocketRequest(authWebSocket, request)
+  }
+
+  /**
+   * Update the capabilities of the calling device.
+   *
+   * PUT /v1/devices/capabilities
+   * - 200: Success
+   */
+  fun setCapabilities(capabilities: AccountAttributes.Capabilities): RequestResult<Unit, RestStatusCodeError> {
+    val request = WebSocketRequestMessage.put("/v1/devices/capabilities", capabilities)
+    return authWebSocket.fromWebSocketRequest(request, Unit::class)
   }
 
   /**

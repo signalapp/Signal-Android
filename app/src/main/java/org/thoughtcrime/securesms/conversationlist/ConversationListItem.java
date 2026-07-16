@@ -50,7 +50,9 @@ import com.makeramen.roundedimageview.RoundedDrawable;
 import org.signal.core.util.ContextUtil;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.StringUtil;
+import org.signal.core.util.Util;
 import org.signal.core.util.logging.Log;
+import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.BindableConversationListItem;
 import org.thoughtcrime.securesms.OverlayTransformation;
 import org.thoughtcrime.securesms.R;
@@ -74,7 +76,6 @@ import org.thoughtcrime.securesms.database.model.ThreadWithRecipient;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
 import org.thoughtcrime.securesms.glide.targets.GlideLiveDataTarget;
-import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -85,7 +86,6 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
 import org.thoughtcrime.securesms.util.SpanUtil;
-import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.List;
@@ -214,9 +214,9 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
                    @NonNull Locale locale,
                    @NonNull Set<Long> typingThreads,
                    @NonNull ConversationSet selectedConversations,
-                   long activeThreadId)
+                   @Nullable RecipientId activeRecipientId)
   {
-    bindThread(lifecycleOwner, thread, glideRequests, locale, typingThreads, selectedConversations, null, false, true, activeThreadId);
+    bindThread(lifecycleOwner, thread, glideRequests, locale, typingThreads, selectedConversations, null, false, true, activeRecipientId);
   }
 
   public void bindThread(@NonNull LifecycleOwner lifecycleOwner,
@@ -228,7 +228,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
                          @Nullable String highlightSubstring,
                          boolean appendSystemContactIcon,
                          boolean showPinned,
-                         long activeThreadId)
+                         @Nullable RecipientId activeRecipientId)
   {
     this.threadId           = thread.getThreadId();
     this.requestManager     = requestManager;
@@ -285,7 +285,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       this.archivedView.setVisibility(View.GONE);
     }
 
-    setActiveThreadId(activeThreadId);
+    setActiveRecipientId(activeRecipientId);
     setStatusIcons(thread);
     setSelectedConversations(selectedConversations);
     setBadgeFromRecipient(recipient.get());
@@ -336,7 +336,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     alertView.setNone();
 
     setSelectedConversations(new ConversationSet());
-    setActiveThreadId(0);
+    setActiveRecipientId(null);
     setBadgeFromRecipient(recipient.get());
     contactPhotoImage.setAvatar(requestManager, recipient.get(), !batchMode, false);
   }
@@ -376,7 +376,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     alertView.setNone();
 
     setSelectedConversations(new ConversationSet());
-    setActiveThreadId(0);
+    setActiveRecipientId(null);
     setBadgeFromRecipient(recipient.get());
     contactPhotoImage.setAvatar(requestManager, recipient.get(), !batchMode);
   }
@@ -397,7 +397,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     if (this.recipient != null) {
       observeRecipient(null, null);
       setSelectedConversations(new ConversationSet());
-      setActiveThreadId(0);
+      setActiveRecipientId(null);
       contactPhotoImage.setAvatar(requestManager, null, !batchMode);
     }
 
@@ -407,8 +407,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
   }
 
   @Override
-  public void setActiveThreadId(long activeThreadId) {
-    setActivated(activeThreadId > 0 && this.threadId == activeThreadId);
+  public void setActiveRecipientId(@Nullable RecipientId activeRecipientId) {
+    setActivated(activeRecipientId != null && this.recipient != null && this.recipient.getId().equals(activeRecipientId));
   }
 
   @Override

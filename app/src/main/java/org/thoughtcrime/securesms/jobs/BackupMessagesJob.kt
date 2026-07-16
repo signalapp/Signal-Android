@@ -48,7 +48,6 @@ import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -418,7 +417,10 @@ class BackupMessagesJob private constructor(
       return Result.failure()
     }
 
-    if (SignalStore.backup.backsUpMedia && SignalDatabase.attachments.doAnyAttachmentsNeedArchiveUpload()) {
+    if (SignalStore.backup.localRestoreReconcilePending) {
+      Log.i(TAG, "A local restore reconciliation is pending. Holding off on the attachment backfill until reconciliation has marked already-archived media as finished.", true)
+      ArchiveUploadProgress.onMessageBackupFinishedEarly()
+    } else if (SignalStore.backup.backsUpMedia && SignalDatabase.attachments.doAnyAttachmentsNeedArchiveUpload()) {
       Log.i(TAG, "Enqueuing attachment backfill job.", true)
       AppDependencies.jobManager.add(ArchiveAttachmentBackfillJob())
     } else {
@@ -463,9 +465,9 @@ class BackupMessagesJob private constructor(
       }
     }
 
-    BlobProvider.getInstance().clearTemporaryBackupsDirectory(AppDependencies.application)
+    AppDependencies.blobs.clearTemporaryBackupsDirectory(AppDependencies.application)
 
-    val tempBackupFile = BlobProvider.getInstance().forTemporaryBackup(AppDependencies.application)
+    val tempBackupFile = AppDependencies.blobs.forTemporaryBackup(AppDependencies.application)
 
     val outputStream = FileOutputStream(tempBackupFile)
     val backupKey = SignalStore.backup.messageBackupKey

@@ -15,9 +15,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.util.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
-import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.database.RecipientDatabaseTestUtils.createRecipient
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.ChatColorsValues
@@ -42,7 +42,7 @@ class Recipient_getChatColorsTest {
     every { AppDependencies.application } returns ApplicationProvider.getApplicationContext()
 
     mockkStatic(AttachmentSecretProvider::class)
-    every { AttachmentSecretProvider.getInstance(any()) } throws RuntimeException("Whoa, nelly!")
+    every { AttachmentSecretProvider.getInstance(any(), any()) } throws RuntimeException("Whoa, nelly!")
 
     wallpaperValues = mockk()
     chatColorsValues = mockk()

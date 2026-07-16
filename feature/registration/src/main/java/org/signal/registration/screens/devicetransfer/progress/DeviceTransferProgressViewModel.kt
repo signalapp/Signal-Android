@@ -17,17 +17,19 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.devicetransfer.DeviceToDeviceTransferService
 import org.signal.devicetransfer.NewDeviceRestoreStatus
 import org.signal.devicetransfer.TransferStatus
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationRoute
-import org.signal.registration.screens.EventDrivenViewModel
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 
@@ -60,6 +62,10 @@ class DeviceTransferProgressViewModel(
   val showCancelDialog: StateFlow<Boolean> = _showCancelDialog
 
   init {
+    _state
+      .onEach { Log.d(TAG, "[State] $it") }
+      .launchIn(viewModelScope)
+
     viewModelScope.launch {
       progressEvents.collect { handleProgressEvent(it) }
     }
@@ -91,9 +97,6 @@ class DeviceTransferProgressViewModel(
       DeviceTransferProgressScreenEvents.TryAgainClicked -> {
         stopService()
         parentEventEmitter.navigateTo(RegistrationRoute.DeviceTransferInstructions)
-      }
-      DeviceTransferProgressScreenEvents.ConsumeOneTimeEvent -> {
-        stateEmitter(state.copy(oneTimeEvent = null))
       }
     }
   }

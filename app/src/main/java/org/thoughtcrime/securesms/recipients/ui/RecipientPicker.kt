@@ -312,7 +312,7 @@ private suspend fun showItemContextMenu(
   callbacks: RecipientPickerCallbacks.ContextMenu
 ) {
   val context = anchorView.context
-  val recipient = withContext(Dispatchers.IO) {
+  val recipient = withContext(Dispatchers.Default) {
     Recipient.resolved(contactSearchKey.requireRecipientSearchKey().recipientId)
   }
 

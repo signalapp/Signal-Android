@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.mediasend.R as MediaSendR
 
 /**
  * Fragment to assist user in verifying recipient identity utilizing keys.
@@ -106,8 +107,8 @@ class VerifyIdentityFragment : Fragment(R.layout.fragment_container), ScanListen
     Permissions.with(this)
       .request(Manifest.permission.CAMERA)
       .ifNecessary()
-      .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_scan_qr_code_allow_camera), R.drawable.ic_camera_24)
-      .withPermanentDenialDialog(getString(R.string.VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_scan_qr_codes, getParentFragmentManager())
+      .withRationaleDialog(getString(MediaSendR.string.CameraXFragment_allow_access_camera), getString(MediaSendR.string.CameraXFragment_to_scan_qr_code_allow_camera), R.drawable.ic_camera_24)
+      .withPermanentDenialDialog(getString(R.string.VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied), null, MediaSendR.string.CameraXFragment_allow_access_camera, MediaSendR.string.CameraXFragment_to_scan_qr_codes, getParentFragmentManager())
       .onAllGranted {
         childFragmentManager.beginTransaction()
           .setCustomAnimations(R.anim.slide_from_top, R.anim.slide_to_bottom, R.anim.slide_from_bottom, R.anim.slide_to_top)
@@ -115,7 +116,7 @@ class VerifyIdentityFragment : Fragment(R.layout.fragment_container), ScanListen
           .addToBackStack(null)
           .commitAllowingStateLoss()
       }
-      .onAnyDenied { Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_scan_qr_code, Toast.LENGTH_LONG).show() }
+      .onAnyDenied { Toast.makeText(requireContext(), MediaSendR.string.CameraXFragment_signal_needs_camera_access_scan_qr_code, Toast.LENGTH_LONG).show() }
       .execute()
   }
 

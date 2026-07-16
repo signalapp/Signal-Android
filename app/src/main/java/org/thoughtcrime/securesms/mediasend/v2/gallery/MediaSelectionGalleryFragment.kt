@@ -14,7 +14,6 @@ import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator.Companion.requestPermissionsForCamera
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaSelectionItemTouchHelper
 import org.signal.core.ui.R as CoreUiR
@@ -126,9 +125,7 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
 
   override fun onNavigateToCamera() {
     val controller = findNavController()
-    requestPermissionsForCamera {
-      navigator.goToCamera(controller)
-    }
+    navigator.goToCamera(controller)
   }
 
   override fun onSubmit() {

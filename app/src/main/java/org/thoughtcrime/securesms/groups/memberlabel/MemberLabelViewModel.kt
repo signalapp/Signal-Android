@@ -50,7 +50,7 @@ class MemberLabelViewModel(
   }
 
   private fun loadInitialState() {
-    viewModelScope.launch(SignalDispatchers.IO) {
+    viewModelScope.launch(SignalDispatchers.Default) {
       val recipient = memberLabelRepo.getRecipient(recipientId)
       val memberLabel = memberLabelRepo.getLabel(groupId, recipient)
       originalLabelEmoji = memberLabel?.emoji.orEmpty()

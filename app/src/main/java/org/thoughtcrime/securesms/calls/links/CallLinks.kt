@@ -110,6 +110,9 @@ object CallLinks {
     } catch (_: UnsupportedEncodingException) {
       Log.w(TAG, "Invalid url: $url")
       return null
+    } catch (_: IllegalArgumentException) {
+      Log.w(TAG, "Invalid url: $url")
+      return null
     }
 
     val key = fragmentQuery[ROOT_KEY]

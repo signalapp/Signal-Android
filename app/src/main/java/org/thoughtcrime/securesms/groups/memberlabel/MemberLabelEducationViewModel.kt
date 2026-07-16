@@ -30,7 +30,7 @@ class MemberLabelEducationViewModel(
   val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 
   init {
-    viewModelScope.launch(SignalDispatchers.IO) {
+    viewModelScope.launch(SignalDispatchers.Default) {
       val self = Recipient.self()
       val selfMemberLabel = repository.getLabel(groupId, self.id)
       val selfCanSetLabel = repository.canSetLabel(groupId, self)

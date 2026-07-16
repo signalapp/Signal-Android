@@ -39,7 +39,7 @@ class PayPalCompleteOrderBottomSheet : DSLSettingsBottomSheetFragment() {
     PayPalCompleteOrderPaymentItem.register(adapter)
 
     lifecycleScope.launch {
-      val inAppPayment = withContext(SignalDispatchers.IO) {
+      val inAppPayment = withContext(SignalDispatchers.Default) {
         SignalDatabase.inAppPayments.getById(args.inAppPaymentId)!!
       }
 

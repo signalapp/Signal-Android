@@ -81,9 +81,7 @@ class AttachmentUploadJob private constructor(
     @JvmStatic
     val maxPlaintextSize: Long
       get() {
-        val maxCipherTextSize = RemoteConfig.maxAttachmentSizeBytes
-        val maxPaddedSize = AttachmentCipherStreamUtil.getPlaintextLength(maxCipherTextSize)
-        return PaddingInputStream.getMaxUnpaddedSize(maxPaddedSize)
+        return AttachmentCipherStreamUtil.getMaxPlaintextSizeForCiphertext(RemoteConfig.maxAttachmentSizeBytes)
       }
 
     @JvmStatic

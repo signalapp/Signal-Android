@@ -185,7 +185,6 @@ class PinSettingsViewModel(
           spqr = true,
           usernameChangeSyncMessage = true
         ),
-        name = null,
         pniRegistrationId = RegistrationPreferences.pniRegistrationId,
         recoveryPassword = recoveryPassword
       )

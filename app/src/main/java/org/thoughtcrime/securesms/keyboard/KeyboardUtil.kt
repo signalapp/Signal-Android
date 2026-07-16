@@ -7,10 +7,8 @@ package org.thoughtcrime.securesms.keyboard
 
 import android.net.Uri
 import androidx.annotation.WorkerThread
-import androidx.core.util.component1
-import androidx.core.util.component2
+import org.signal.core.util.bitmaps.BitmapUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.util.BitmapUtil
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.TimeoutException
 

@@ -111,6 +111,20 @@ sealed interface WindowBreakpoint {
   ) : WindowBreakpoint
 }
 
+enum class FormFactor {
+  PHONE,
+  FOLDABLE,
+  TABLET
+}
+
+/** A best-effort guess at a device's [FormFactor] most likely associated with this [WindowBreakpoint]. */
+val WindowBreakpoint.assumedFormFactor: FormFactor
+  get() = when (this) {
+    is WindowBreakpoint.Small -> FormFactor.PHONE
+    is WindowBreakpoint.Medium -> FormFactor.FOLDABLE
+    is WindowBreakpoint.Large -> FormFactor.TABLET
+  }
+
 @Composable
 fun Resources.rememberIsSplitPane(
   forceSplitPane: Boolean = CoreUiDependencies.forceSplitPane

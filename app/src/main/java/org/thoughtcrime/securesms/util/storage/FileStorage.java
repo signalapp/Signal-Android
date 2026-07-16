@@ -6,10 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.StreamUtil;
-import org.thoughtcrime.securesms.crypto.AttachmentSecret;
-import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
-import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
-import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
+import org.signal.core.util.crypto.AttachmentSecret;
+import org.signal.core.util.crypto.AttachmentSecretProvider;
+import org.signal.core.util.crypto.ModernDecryptingPartInputStream;
+import org.signal.core.util.crypto.ModernEncryptingPartOutputStream;
+import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;
 
 import java.io.File;
 import java.io.IOException;
@@ -93,12 +94,12 @@ public final class FileStorage {
   }
 
   private static @NonNull OutputStream getOutputStream(@NonNull Context context, File outputFile) throws IOException {
-    AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
+    AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context, AppAttachmentSecretStore.INSTANCE).getOrCreateAttachmentSecret();
     return ModernEncryptingPartOutputStream.createFor(attachmentSecret, outputFile, true).getSecond();
   }
 
   private static @NonNull InputStream getInputStream(@NonNull Context context, File inputFile) throws IOException {
-    AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
+    AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context, AppAttachmentSecretStore.INSTANCE).getOrCreateAttachmentSecret();
     return ModernDecryptingPartInputStream.createFor(attachmentSecret, inputFile, 0);
   }
 }

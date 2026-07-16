@@ -10,16 +10,22 @@ import androidx.annotation.WorkerThread;
 import androidx.media3.common.MimeTypes;
 
 import org.greenrobot.eventbus.EventBus;
+import org.signal.core.models.database.AttachmentId;
+import org.signal.core.models.media.TransformProperties;
+import org.signal.core.util.MemoryFileDescriptor.MemoryFileException;
+import org.signal.core.util.bitmaps.BitmapDecodingException;
+import org.signal.core.util.crypto.AttachmentSecret;
+import org.signal.core.util.crypto.AttachmentSecretProvider;
+import org.signal.core.util.crypto.ModernDecryptingPartInputStream;
+import org.signal.core.util.crypto.ModernEncryptingPartOutputStream;
 import org.signal.core.util.logging.Log;
+import org.signal.glide.decryptableuri.DecryptableUri;
+import org.signal.mediasend.MediaConstraints;
+import org.signal.mediasend.SentMediaQuality;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.signal.core.models.database.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.AttachmentSecret;
-import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
-import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
-import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
-import org.signal.core.models.media.TransformProperties;
+import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
@@ -27,17 +33,13 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
-import org.signal.glide.decryptableuri.DecryptableUri;
-import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.SentMediaQuality;
+import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.service.AttachmentProgressService;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.signal.core.util.MemoryFileDescriptor.MemoryFileException;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.video.StreamingTranscoder;
 import org.thoughtcrime.securesms.video.TranscoderOptions;
@@ -163,7 +165,7 @@ public final class AttachmentCompressionJob extends BaseJob {
       return;
     }
 
-    MediaConstraints mediaConstraints = MediaConstraints.getPushMediaConstraints(SentMediaQuality.fromCode(transformProperties.sentMediaQuality));
+    MediaConstraints mediaConstraints = new PushMediaConstraints(SentMediaQuality.fromCode(transformProperties.sentMediaQuality));
 
     compress(database, mediaConstraints, databaseAttachment);
   }
@@ -196,16 +198,16 @@ public final class AttachmentCompressionJob extends BaseJob {
       } else if (MediaUtil.isVideo(attachment)) {
         Log.i(TAG, "Compressing video.");
         attachment = transcodeVideoIfNeededToDatabase(context, attachmentDatabase, attachment, constraints, EventBus.getDefault(), this::isCanceled);
-        if (!constraints.isSatisfied(context, attachment)) {
+        if (!isConstraintsSatisfied(context, attachment, constraints)) {
           throw new UndeliverableMessageException("Size constraints could not be met on video!");
         }
-      } else if (constraints.canResize(attachment)) {
+      } else if (constraints.canResize(attachment.contentType)) {
         Log.i(TAG, "Compressing image.");
         try (MediaStream converted = compressImage(context, attachment, constraints)) {
           attachmentDatabase.updateAttachmentData(attachment, converted);
         }
         attachmentDatabase.markAttachmentAsTransformed(attachmentId, false);
-      } else if (constraints.isSatisfied(context, attachment)) {
+      } else if (isConstraintsSatisfied(context, attachment, constraints)) {
         Log.i(TAG, "Not compressing.");
         attachmentDatabase.markAttachmentAsTransformed(attachmentId, false);
       } else {
@@ -258,11 +260,11 @@ public final class AttachmentCompressionJob extends BaseJob {
           }
         }
 
-        StreamingTranscoder transcoder = new StreamingTranscoder(dataSource, options, constraints.getVideoTranscodingSettings(), constraints.getCompressedVideoMaxSize(context), RemoteConfig.allowAudioRemuxing());
+        StreamingTranscoder transcoder = new StreamingTranscoder(dataSource, options, constraints.getVideoTranscodingSettings(), constraints.getCompressedVideoMaxSize(), RemoteConfig.allowAudioRemuxing());
 
         if (transcoder.isTranscodeRequired()) {
           Log.i(TAG, "Compressing with streaming muxer");
-          AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
+          AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context, AppAttachmentSecretStore.INSTANCE).getOrCreateAttachmentSecret();
 
           File file = AttachmentTable.newDataFile(context);
           file.deleteOnExit();
@@ -376,6 +378,17 @@ public final class AttachmentCompressionJob extends BaseJob {
     return attachment;
   }
 
+  private static boolean isConstraintsSatisfied(@NonNull Context context,
+                                                @NonNull Attachment attachment,
+                                                @NonNull MediaConstraints mediaConstraints)
+  {
+    if (attachment.getUri() == null || attachment.contentType == null) {
+      return false;
+    }
+
+    return mediaConstraints.isSatisfied(context, attachment.getUri(), attachment.contentType, attachment.size);
+  }
+
   /**
    * Compresses the images. Given that we compress every image, this has the fun side effect of
    * stripping all EXIF data.
@@ -395,13 +408,13 @@ public final class AttachmentCompressionJob extends BaseJob {
     ImageCompressionUtil.Result result = null;
 
     try {
-      for (int size : mediaConstraints.getImageDimensionTargets(context)) {
+      for (int size : mediaConstraints.getImageDimensionTargets()) {
         result = ImageCompressionUtil.compressWithinConstraints(context,
                                                                 attachment.contentType,
                                                                 new DecryptableUri(uri),
                                                                 size,
-                                                                mediaConstraints.getImageMaxSize(context),
-                                                                mediaConstraints.getImageCompressionQualitySetting(context));
+                                                                mediaConstraints.getImageMaxSize(),
+                                                                mediaConstraints.getImageCompressionQualitySetting());
         if (result != null) {
           break;
         }

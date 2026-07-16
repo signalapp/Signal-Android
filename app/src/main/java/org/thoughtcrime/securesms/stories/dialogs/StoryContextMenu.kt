@@ -17,6 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.signal.core.util.Base64
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.bitmaps.BitmapUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -27,13 +28,12 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
-import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.landing.StoriesLandingItem
 import org.thoughtcrime.securesms.stories.viewer.page.StoryPost
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageState
-import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
@@ -88,7 +88,7 @@ object StoryContextMenu {
       bitmap.recycle()
 
       SaveAttachmentUtil.SaveAttachment(
-        uri = BlobProvider.getInstance().forData(jpeg.readBytes()).createForSingleUseInMemory(),
+        uri = AppDependencies.blobs.forData(jpeg.readBytes()).createForSingleUseInMemory(),
         contentType = MediaUtil.IMAGE_JPEG,
         date = messageRecord.dateSent,
         fileName = null

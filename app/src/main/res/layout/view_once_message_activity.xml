@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:scaleType="fitCenter" />
 
-    <org.thoughtcrime.securesms.video.VideoPlayer
+    <org.signal.video.VideoPlayer
         android:id="@+id/view_once_video"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

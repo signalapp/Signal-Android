@@ -160,6 +160,7 @@ class CountryCodePickerViewModelTest {
     advanceUntilIdle()
 
     viewModel.onEvent(CountryCodePickerScreenEvents.Search("United"))
+    advanceUntilIdle()
 
     val state = viewModel.state.value
     assertThat(state.query).isEqualTo("United")
@@ -173,6 +174,7 @@ class CountryCodePickerViewModelTest {
     advanceUntilIdle()
 
     viewModel.onEvent(CountryCodePickerScreenEvents.Search("49"))
+    advanceUntilIdle()
 
     val state = viewModel.state.value
     assertThat(state.filteredList).isNotEmpty()
@@ -185,6 +187,7 @@ class CountryCodePickerViewModelTest {
     advanceUntilIdle()
 
     viewModel.onEvent(CountryCodePickerScreenEvents.Search("+49"))
+    advanceUntilIdle()
 
     val state = viewModel.state.value
     assertThat(state.filteredList).isNotEmpty()
@@ -197,6 +200,7 @@ class CountryCodePickerViewModelTest {
     advanceUntilIdle()
 
     viewModel.onEvent(CountryCodePickerScreenEvents.Search("germany"))
+    advanceUntilIdle()
 
     val state = viewModel.state.value
     assertThat(state.filteredList).isNotEmpty()
@@ -209,6 +213,7 @@ class CountryCodePickerViewModelTest {
     advanceUntilIdle()
 
     viewModel.onEvent(CountryCodePickerScreenEvents.Search("usa"))
+    advanceUntilIdle()
 
     val state = viewModel.state.value
     assertThat(state.filteredList).isNotEmpty()
@@ -222,10 +227,12 @@ class CountryCodePickerViewModelTest {
 
     // First, search for something
     viewModel.onEvent(CountryCodePickerScreenEvents.Search("United"))
+    advanceUntilIdle()
     assertThat(viewModel.state.value.filteredList).isNotEmpty()
 
     // Then clear it
     viewModel.onEvent(CountryCodePickerScreenEvents.Search(""))
+    advanceUntilIdle()
 
     val state = viewModel.state.value
     assertThat(state.query).isEqualTo("")
@@ -238,6 +245,7 @@ class CountryCodePickerViewModelTest {
     advanceUntilIdle()
 
     viewModel.onEvent(CountryCodePickerScreenEvents.Search("xyznonexistent"))
+    advanceUntilIdle()
 
     val state = viewModel.state.value
     assertThat(state.filteredList).isEqualTo(emptyList())
@@ -252,6 +260,7 @@ class CountryCodePickerViewModelTest {
 
     val country = Country("\uD83C\uDDFA\uD83C\uDDF8", "United States", 1, "US")
     viewModel.onEvent(CountryCodePickerScreenEvents.CountrySelected(country))
+    advanceUntilIdle()
 
     val result = resultBus.channelMap[resultKey]?.tryReceive()?.getOrNull()
     assertThat(result).isEqualTo(country)
@@ -266,6 +275,7 @@ class CountryCodePickerViewModelTest {
     advanceUntilIdle()
 
     viewModel.onEvent(CountryCodePickerScreenEvents.Dismissed)
+    advanceUntilIdle()
 
     val result = resultBus.channelMap[resultKey]?.tryReceive()?.getOrNull()
     assertThat(result).isNull()
@@ -279,6 +289,7 @@ class CountryCodePickerViewModelTest {
     advanceUntilIdle()
 
     viewModel.onEvent(CountryCodePickerScreenEvents.Dismissed)
+    advanceUntilIdle()
 
     assertThat(emittedEvents).hasSize(1)
     assertThat(emittedEvents.first()).isEqualTo(RegistrationFlowEvent.NavigateBack)

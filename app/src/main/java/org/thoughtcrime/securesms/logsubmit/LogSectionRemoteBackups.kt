@@ -43,6 +43,7 @@ class LogSectionRemoteBackups : LogSection {
     output.append("Optimize storage                    : ${SignalStore.backup.optimizeStorage}\n")
     output.append("Detected subscription state mismatch: ${SignalStore.backup.subscriptionStateMismatchDetected}\n")
     output.append("Last verified key time              : ${SignalStore.backup.lastVerifyKeyTime}\n")
+    output.append("Local restore reconcile pending     : ${SignalStore.backup.localRestoreReconcilePending}\n")
     output.append("Restore state                       : ${ArchiveRestoreProgress.state}\n")
     output.append("\n -- Subscription State\n")
 

@@ -5,7 +5,9 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse;
 import org.signal.network.NetworkResult;
+import org.signal.network.rest.RequestResultExtensionsKt;
 import org.whispersystems.signalservice.api.NetworkResultUtil;
+import org.whispersystems.signalservice.api.donations.DonationPermitProvider;
 import org.whispersystems.signalservice.api.donations.DonationsApi;
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
@@ -41,7 +43,8 @@ public class DonationsService {
 
   private static final String TAG = DonationsService.class.getSimpleName();
 
-  private final DonationsApi donationsApi;
+  private final DonationsApi           donationsApi;
+  private final DonationPermitProvider donationPermitProvider;
 
   private final AtomicReference<CacheEntry<SubscriptionsConfiguration>> donationsConfigurationCache = new AtomicReference<>(null);
   private final AtomicReference<CacheEntry<BankMandate>>                sepaBankMandateCache        = new AtomicReference<>(null);
@@ -58,8 +61,9 @@ public class DonationsService {
     }
   }
 
-  public DonationsService(@NonNull DonationsApi donationsApi) {
-    this.donationsApi = donationsApi;
+  public DonationsService(@NonNull DonationsApi donationsApi, @NonNull DonationPermitProvider donationPermitProvider) {
+    this.donationsApi           = donationsApi;
+    this.donationPermitProvider = donationPermitProvider;
   }
 
   /**
@@ -100,7 +104,11 @@ public class DonationsService {
    * @return A ServiceResponse containing a DonationIntentResult with details given to us by the payment gateway.
    */
   public ServiceResponse<StripeClientSecret> createDonationIntentWithAmount(String amount, String currencyCode, long level, String paymentMethod) {
-    return wrapInServiceResponse(() -> new Pair<>(NetworkResultUtil.successOrThrow(donationsApi.createStripeOneTimePaymentIntent(currencyCode, paymentMethod, Long.parseLong(amount), level)), 200));
+    return wrapInServiceResponse(() -> {
+      String donationPermit = RequestResultExtensionsKt.successOrThrow(donationPermitProvider.getDonationPermit());
+      StripeClientSecret clientSecret = NetworkResultUtil.successOrThrow(donationsApi.createStripeOneTimePaymentIntent(currencyCode, paymentMethod, Long.parseLong(amount), level, donationPermit));
+      return new Pair<>(clientSecret, 200);
+    });
   }
 
   /**
@@ -214,9 +222,7 @@ public class DonationsService {
   }
 
   /**
-   * Creates a subscriber record on the signal server and stripe. Can be called idempotently as-is. After receiving 200 from this endpoint,
-   * clients should save subscriberId locally and to storage service for the account. If you get a 403 from this endpoint and you did not
-   * use an account authenticated connection, then the subscriberId has been corrupted in some way.
+   * Refreshes an existing subscriber's access time (keep-alive). Does not attach a donation permit; use {@link #createSubscriber} for a new subscriber.
    * <p>
    * Clients MUST periodically hit this endpoint to update the access time on the subscription record. Recommend trying to call it approximately
    * every 3 days. Not accessing this endpoint for an extended period of time will result in the subscription being canceled.
@@ -226,6 +232,21 @@ public class DonationsService {
   public ServiceResponse<EmptyResponse> putSubscription(SubscriberId subscriberId) {
     return wrapInServiceResponse(() -> {
       NetworkResultUtil.successOrThrow(donationsApi.putSubscription(subscriberId));
+      return new Pair<>(EmptyResponse.INSTANCE, 200);
+    });
+  }
+
+  /**
+   * Creates a subscriber record on the signal server and stripe, attaching a single-use donation permit. Only use when the subscriber does not
+   * yet exist. After receiving 200 from this endpoint, clients should save subscriberId locally and to storage service for the account. If you
+   * get a 403 from this endpoint and you did not use an account authenticated connection, then the subscriberId has been corrupted in some way.
+   *
+   * @param subscriberId The subscriber ID for the newly-created subscriber
+   */
+  public ServiceResponse<EmptyResponse> createSubscriber(SubscriberId subscriberId) {
+    return wrapInServiceResponse(() -> {
+      String donationPermit = RequestResultExtensionsKt.successOrThrow(donationPermitProvider.getDonationPermit());
+      NetworkResultUtil.successOrThrow(donationsApi.createSubscriber(subscriberId, donationPermit));
       return new Pair<>(EmptyResponse.INSTANCE, 200);
     });
   }
@@ -263,7 +284,8 @@ public class DonationsService {
    */
   public ServiceResponse<StripeClientSecret> createStripeSubscriptionPaymentMethod(SubscriberId subscriberId, String type) {
     return wrapInServiceResponse(() -> {
-      StripeClientSecret clientSecret = NetworkResultUtil.successOrThrow(donationsApi.createStripeSubscriptionPaymentMethod(subscriberId, type));
+      String donationPermit = RequestResultExtensionsKt.successOrThrow(donationPermitProvider.getDonationPermit());
+      StripeClientSecret clientSecret = NetworkResultUtil.successOrThrow(donationsApi.createStripeSubscriptionPaymentMethod(subscriberId, type, donationPermit));
       return new Pair<>(clientSecret, 200);
     });
   }

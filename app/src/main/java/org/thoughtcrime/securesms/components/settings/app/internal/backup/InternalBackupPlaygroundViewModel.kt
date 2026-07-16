@@ -57,7 +57,6 @@ import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.io.FileOutputStream
 import java.io.IOException
@@ -136,7 +135,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
   fun validateBackup() {
     _state.value = _state.value.copy(statusMessage = "Exporting to a temporary file...")
-    val tempFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
+    val tempFile = AppDependencies.blobs.forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
 
     disposables += Single
       .fromCallable {
@@ -207,7 +206,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
     SignalExecutors.BOUNDED_IO.execute {
       Log.d(TAG, "Downloading file...")
-      val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
+      val tempBackupFile = AppDependencies.blobs.forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
 
       when (val result = BackupRepository.downloadBackupFile(tempBackupFile)) {
         is NetworkResult.Success -> Log.i(TAG, "Download successful")
@@ -337,7 +336,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
     viewModelScope.launch {
       when (val result = BackupRepository.restoreRemoteBackup()) {
-        RemoteRestoreResult.Success -> {
+        is RemoteRestoreResult.Success -> {
           _state.value = _state.value.copy(statusMessage = "Import complete!")
           ThreadUtil.runOnMain { afterDbRestoreCallback() }
         }
@@ -353,7 +352,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   }
 
   fun loadStats() {
-    viewModelScope.launch(Dispatchers.IO) {
+    viewModelScope.launch(Dispatchers.Default) {
       launch {
         var stats = SignalDatabase.attachments.debugGetAttachmentStats()
 
@@ -399,7 +398,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     return@withContext false
   }
 
-  suspend fun clearLocalMediaBackupState() = withContext(Dispatchers.IO) {
+  suspend fun clearLocalMediaBackupState() = withContext(Dispatchers.Default) {
     SignalDatabase.attachments.clearAllArchiveData()
   }
 

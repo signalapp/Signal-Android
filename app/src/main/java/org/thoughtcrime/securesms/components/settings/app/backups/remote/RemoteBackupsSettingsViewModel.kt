@@ -79,7 +79,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       internalUser = RemoteConfig.internalUser,
       includeDebuglog = SignalStore.internal.includeDebuglogInBackup.takeIf { RemoteConfig.internalUser },
       backupCreationError = SignalStore.backup.backupCreationError,
-      lastMessageCutoffTime = SignalStore.backup.lastUsedMessageCutoffTime
+      lastMessageCutoffTime = SignalStore.backup.lastUsedMessageCutoffTime,
+      isLinkedDevice = SignalStore.account.isLinkedDevice
     )
   )
 
@@ -92,6 +93,14 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   private var forQuickRestore = false
 
   init {
+    if (state.value.isLinkedDevice) {
+      initLinkedDevice()
+    } else {
+      initPrimaryDevice()
+    }
+  }
+
+  private fun initPrimaryDevice() {
     ArchiveUploadProgress.triggerUpdate()
 
     viewModelScope.launch(Dispatchers.IO) {
@@ -143,7 +152,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         }
     }
 
-    viewModelScope.launch(Dispatchers.IO) {
+    viewModelScope.launch(Dispatchers.Default) {
       var optimizedRemainingBytes = 0L
       while (isActive) {
         if (ArchiveRestoreProgress.state.let { it.restoreState.isMediaRestoreOperation || it.restoreStatus == RestoreStatus.FINISHED }) {
@@ -194,8 +203,31 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       }
     }
 
-    viewModelScope.launch(Dispatchers.IO) {
+    viewModelScope.launch(Dispatchers.Default) {
       BackupRepository.maybeFixAnyDanglingUploadProgress()
+    }
+  }
+
+  /**
+   * Render remote backups as read-only and refresh the last-backup time from the CDN.
+   */
+  private fun initLinkedDevice() {
+    viewModelScope.launch(Dispatchers.IO) {
+      BackupStateObserver(viewModelScope, useDatabaseFallbackOnNetworkError = true).backupState.collect { backupState ->
+        _state.update {
+          it.copy(backupState = backupState)
+        }
+      }
+    }
+
+    viewModelScope.launch(Dispatchers.Default) {
+      SignalStore.backup.lastBackupTimeFlow.collect { lastBackupTime ->
+        _state.update { it.copy(lastBackupTimestamp = lastBackupTime) }
+      }
+    }
+
+    viewModelScope.launch(Dispatchers.IO) {
+      BackupRepository.refreshBackupFileTimestamp()
     }
   }
 
@@ -259,6 +291,10 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   fun refresh() {
+    if (state.value.isLinkedDevice) {
+      return
+    }
+
     viewModelScope.launch(Dispatchers.IO) {
       val id = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)?.id
 

@@ -327,15 +327,17 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     }
   }
 
-  /** Set an identity key pair for the PNI identity via change number. */
-  fun setPniIdentityKeyAfterChangeNumber(key: IdentityKeyPair) {
+  fun setNumberAndPniIdentity(e164: String, pni: PNI, pniRegistrationId: Int, pniIdentityKeyPair: IdentityKeyPair) {
     synchronized(this) {
-      Log.i(TAG, "Setting a new PNI identity key pair.")
+      Log.i(TAG, "Setting the E164, PNI, PNI registration ID, and PNI identity key pair.")
 
       store
         .beginWrite()
-        .putBlob(KEY_PNI_IDENTITY_PUBLIC_KEY, key.publicKey.serialize())
-        .putBlob(KEY_PNI_IDENTITY_PRIVATE_KEY, key.privateKey.serialize())
+        .putString(KEY_E164, e164)
+        .putString(KEY_PNI, pni.toString())
+        .putInteger(KEY_PNI_REGISTRATION_ID, pniRegistrationId)
+        .putBlob(KEY_PNI_IDENTITY_PUBLIC_KEY, pniIdentityKeyPair.publicKey.serialize())
+        .putBlob(KEY_PNI_IDENTITY_PRIVATE_KEY, pniIdentityKeyPair.privateKey.serialize())
         .commit()
     }
   }
@@ -461,6 +463,10 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
     if (previous && !registered) {
       clearLocalCredentials()
+    }
+
+    if ((previous && !registered) || isAciChanged) {
+      AppDependencies.donationPermitsRepository.clearPermits()
     }
 
     if (registered && (!previous || isAciChanged)) {

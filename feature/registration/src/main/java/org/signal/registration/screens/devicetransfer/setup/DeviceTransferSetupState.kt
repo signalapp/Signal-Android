@@ -5,35 +5,29 @@
 
 package org.signal.registration.screens.devicetransfer.setup
 
-import org.signal.registration.util.DebugLoggable
-import org.signal.registration.util.DebugLoggableModel
-
 data class DeviceTransferSetupState(
   val step: SetupStep = SetupStep.INITIAL,
   val authenticationCode: Int? = null,
   val takingTooLong: Boolean = false,
   val showVerifyRejectDialog: Boolean = false,
   val showErrorDialog: Boolean = false,
-  val oneTimeEvent: OneTimeEvent? = null
-) : DebugLoggableModel() {
+  val pendingActions: PendingActions = PendingActions()
+) {
 
-  sealed interface OneTimeEvent : DebugLoggable {
+  override fun toString(): String = "DeviceTransferSetupState(step=$step, authenticationCode=${authenticationCode?.let { "present" }}, takingTooLong=$takingTooLong, showVerifyRejectDialog=$showVerifyRejectDialog, showErrorDialog=$showErrorDialog, pendingActions=$pendingActions)"
+
+  /** One-shot actions the screen should launch. The screen clears these once launched. */
+  data class PendingActions(
     /** The screen should launch a runtime permission request. */
-    data object RequestLocationPermission : OneTimeEvent
+    val requestLocationPermission: Boolean = false,
 
     /** The screen should launch the system Location settings. */
-    data object OpenLocationSettings : OneTimeEvent
+    val openLocationSettings: Boolean = false,
 
     /** The screen should launch the system Wi-Fi settings. */
-    data object OpenWifiSettings : OneTimeEvent
+    val openWifiSettings: Boolean = false,
 
     /** The screen should launch this app's system settings (for permanent-denial recovery). */
-    data object OpenAppSettings : OneTimeEvent
-
-    /** Both devices verified successfully; navigate to the Progress screen. */
-    data object NavigateToProgress : OneTimeEvent
-
-    /** Unrecoverable setup path (e.g. Wi-Fi Direct unavailable); navigate back. */
-    data object NavigateAway : OneTimeEvent
-  }
+    val openAppSettings: Boolean = false
+  )
 }

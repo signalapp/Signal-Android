@@ -473,10 +473,6 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
   protected @NonNull WebRtcServiceState handleGroupCallSpeechEvent(@NonNull WebRtcServiceState currentState, @NonNull GroupCall.SpeechEvent speechEvent) {
     Log.i(tag, "handleGroupCallSpeechEvent :: " + speechEvent.name());
 
-    if (!SignalStore.labs().getAutoLowerHand()) {
-      return currentState;
-    }
-
     return currentState.builder()
                        .changeCallInfoState()
                        .setGroupCallSpeechEvent(new GroupCallSpeechEvent(speechEvent))

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:saveEnabled="false"
     android:visibility="gone"
     app:message_type="preview"
     app:quote_colorPrimary="@color/signal_text_primary"

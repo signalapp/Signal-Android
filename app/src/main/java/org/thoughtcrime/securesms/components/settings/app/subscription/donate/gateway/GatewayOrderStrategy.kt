@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway
 
+import androidx.annotation.VisibleForTesting
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
@@ -45,6 +46,10 @@ sealed interface GatewayOrderStrategy {
     )
   }
 
+  private data class Fixed(
+    override val orderedGateways: Set<InAppPaymentData.PaymentMethodType>
+  ) : GatewayOrderStrategy
+
   companion object {
     fun getStrategy(self: Recipient = Recipient.self()): GatewayOrderStrategy {
       val e164 = self.e164.orNull() ?: return Default
@@ -56,6 +61,11 @@ sealed interface GatewayOrderStrategy {
       } else {
         Default
       }
+    }
+
+    @VisibleForTesting
+    fun forTesting(vararg orderedGateways: InAppPaymentData.PaymentMethodType): GatewayOrderStrategy {
+      return Fixed(linkedSetOf(*orderedGateways))
     }
   }
 }

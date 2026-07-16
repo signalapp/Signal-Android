@@ -20,10 +20,9 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.incrementalmac.InvalidMacException;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
-import org.thoughtcrime.securesms.mms.PartUriParser;
-import org.thoughtcrime.securesms.mms.VideoSlide;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.video.VideoPlayer;
+import org.signal.video.VideoPlayer;
 
 import java.util.concurrent.TimeUnit;
 
@@ -71,7 +70,8 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
     }));
 
     videoView.setWindow(requireActivity().getWindow());
-    videoView.setVideoSource(new VideoSlide(getContext(), uri, size, false), autoPlay, TAG);
+    videoView.setExoPlayerPool(AppDependencies.getExoPlayerPool());
+    videoView.setVideoSource(uri, autoPlay, TAG);
     videoView.setPlayerPositionDiscontinuityCallback((v, r) -> {
       if (events.getVideoControlsDelegate() != null) {
         events.getVideoControlsDelegate().onPlayerPositionDiscontinuity(r);

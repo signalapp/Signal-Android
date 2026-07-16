@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.banner
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 
 /**
  * This class represents a banner across the top of the screen.
@@ -27,6 +28,12 @@ abstract class Banner<Model> {
    * This flow will only be subscribed to if the banner is [enabled].
    */
   abstract val dataFlow: Flow<Model>
+
+  /**
+   * Emits whenever this banner's [enabled] state may have changed.
+   */
+  open val stateUpdates: Flow<Unit>
+    get() = emptyFlow()
 
   /**
    * Composable function to display the content emitted from [dataFlow].

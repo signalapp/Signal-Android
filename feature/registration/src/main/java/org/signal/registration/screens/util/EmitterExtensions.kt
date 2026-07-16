@@ -11,8 +11,8 @@ import org.signal.registration.RegistrationRoute
 /**
  * Convenience function to emit a navigation event to a parentEmitter.
  */
-fun ((RegistrationFlowEvent) -> Unit).navigateTo(route: RegistrationRoute) {
-  this(RegistrationFlowEvent.NavigateToScreen(route))
+fun ((RegistrationFlowEvent) -> Unit).navigateTo(route: RegistrationRoute, popCurrent: Boolean = false) {
+  this(RegistrationFlowEvent.NavigateToScreen(route, popCurrent))
 }
 
 /**

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
@@ -78,6 +79,12 @@ class ArchiveUploadStatusBanner(private val listener: UploadProgressBannerListen
       }
   }
 
+  override val stateUpdates: Flow<Unit>
+    get() = ArchiveUploadProgress.progress
+      .map { enabled }
+      .distinctUntilChanged()
+      .map { }
+
   @Composable
   override fun DisplayBanner(model: ArchiveUploadStatusBannerViewState, contentPadding: PaddingValues) {
     ArchiveUploadStatusBannerView(
@@ -92,7 +99,7 @@ class ArchiveUploadStatusBanner(private val listener: UploadProgressBannerListen
           }
           ArchiveUploadStatusBannerViewEvents.HideClicked -> {
             SignalStore.backup.uploadBannerVisible = false
-            listener.onHidden()
+            ArchiveUploadProgress.triggerUpdate()
           }
         }
       }
@@ -105,6 +112,5 @@ class ArchiveUploadStatusBanner(private val listener: UploadProgressBannerListen
   interface UploadProgressBannerListener {
     fun onBannerClick()
     fun onCancelClicked()
-    fun onHidden()
   }
 }

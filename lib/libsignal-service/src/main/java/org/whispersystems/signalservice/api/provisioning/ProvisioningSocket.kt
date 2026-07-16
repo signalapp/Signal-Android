@@ -215,8 +215,8 @@ class ProvisioningSocket<T> private constructor(
 
           "/v1/message" -> {
             when (mode) {
-              Mode.REREG -> provisioningMessageDeferral.complete(cipher.decrypt(RegistrationProvisionEnvelope.ADAPTER.decode(body)) as SecondaryProvisioningCipher.ProvisioningDecryptResult<T>)
-              Mode.LINK -> provisioningMessageDeferral.complete(cipher.decrypt(ProvisionEnvelope.ADAPTER.decode(body)) as SecondaryProvisioningCipher.ProvisioningDecryptResult<T>)
+              is Mode.Rereg -> provisioningMessageDeferral.complete(cipher.decrypt(RegistrationProvisionEnvelope.ADAPTER.decode(body)) as SecondaryProvisioningCipher.ProvisioningDecryptResult<T>)
+              is Mode.Link -> provisioningMessageDeferral.complete(cipher.decrypt(ProvisionEnvelope.ADAPTER.decode(body)) as SecondaryProvisioningCipher.ProvisioningDecryptResult<T>)
             }
           }
 
@@ -291,9 +291,9 @@ class ProvisioningSocket<T> private constructor(
     }
   }
 
-  enum class Mode(val host: String, val params: String) {
-    REREG("rereg", ""),
-    LINK("linkdevice", "&capabilities=backup5")
+  sealed class Mode(val host: String, val params: String) {
+    data object Rereg : Mode("rereg", "")
+    data class Link(val linkAndSyncCapable: Boolean) : Mode("linkdevice", if (linkAndSyncCapable) "&capabilities=backup5" else "")
   }
 
   fun interface ProvisioningSocketExceptionHandler {

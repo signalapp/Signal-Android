@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 data class LocalBackupsSettingsState(
   val backupsEnabled: Boolean = false,
   val canTurnOn: Boolean = true,
+  val optimizeStorageEnabled: Boolean = false,
   val lastBackupLabel: String? = null,
   val folderDisplayName: String? = null,
   val scheduleTimeLabel: String? = null,

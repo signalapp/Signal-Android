@@ -118,7 +118,7 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
         QuickRegistrationRepository.setRestoreMethodForOldDevice(RestoreMethod.REMOTE_BACKUP)
 
         when (val result = BackupRepository.restoreRemoteBackup()) {
-          RemoteRestoreResult.Success -> {
+          is RemoteRestoreResult.Success -> {
             Log.i(TAG, "Restore successful", true)
             SignalStore.registration.restoreDecisionState = RestoreDecisionState.Completed
 

@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarBundler
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 
 class PhotoEditorFragment : Fragment(R.layout.avatar_photo_editor_fragment), ImageEditorFragment.Controller {
@@ -39,15 +39,15 @@ class PhotoEditorFragment : Fragment(R.layout.avatar_photo_editor_fragment), Ima
 
     SignalExecutors.BOUNDED.execute {
       val editedImageUri = imageEditorFragment.renderToSingleUseBlob()
-      val size = BlobProvider.getFileSize(editedImageUri) ?: 0
-      val inputStream = BlobProvider.getInstance().getStream(applicationContext, editedImageUri)
+      val size = AppDependencies.blobs.getFileSize(editedImageUri) ?: 0
+      val inputStream = AppDependencies.blobs.getStream(applicationContext, editedImageUri)
       val onDiskUri = AvatarPickerStorage.save(applicationContext, inputStream)
       val photo = AvatarBundler.extractPhoto(args.photoAvatar)
       val database = SignalDatabase.avatarPicker
       val newPhoto = photo.copy(uri = onDiskUri, size = size)
 
       database.update(newPhoto)
-      BlobProvider.getInstance().delete(requireContext(), photo.uri)
+      AppDependencies.blobs.delete(requireContext(), photo.uri)
 
       ThreadUtil.runOnMain {
         setFragmentResult(REQUEST_KEY_EDIT, AvatarBundler.bundlePhoto(newPhoto))

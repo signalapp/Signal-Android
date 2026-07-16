@@ -44,6 +44,12 @@
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Zgjidh shtetin</string>
     <string name="RegistrationActivity_phone_number_description">Numër telefoni</string>
+    <!-- Error shown beneath the phone number field when the entered number is not valid -->
+    <string name="RegistrationActivity_not_a_valid_phone_number">Not a valid phone number</string>
+    <!-- Dialog title shown when the entered phone number is rejected as invalid -->
+    <string name="RegistrationActivity_invalid_phone_number">Invalid phone number</string>
+    <!-- Dialog body shown when the entered phone number is rejected as invalid -->
+    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">The number you entered doesn\'t appear to be valid. Please check the country code and phone number and try again.</string>
     <string name="RegistrationActivity_next">Tjetër</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">A është i saktë numri i telefonit më poshtë?</string>
@@ -91,6 +97,8 @@
     <string name="VerificationCodeScreen__network_error">Nuk mund të lidhet. Të lutem, kontrollo lidhjen e internetit dhe riprovo.</string>
     <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
     <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">Ke bërë shumë tentativa. Provo përsëri në %1$s.</string>
+    <!-- Snackbar shown when rate limited without a specific retry duration -->
+    <string name="VerificationCodeScreen__too_many_attempts">Ke bërë shumë tentativa. Të lutem, provo sërish më vonë.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">Ka ndodhur një gabim i papritur. Të lutem, provo sërish.</string>
     <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
@@ -101,6 +109,20 @@
     <string name="VerificationCodeScreen__registration_error">Regjistrimi dështoi. Të lutem, provo sërish.</string>
     <!-- Button text for having trouble with verification -->
     <string name="VerificationCodeScreen__having_trouble">Po has probleme?</string>
+    <!-- Title of the bottom sheet shown when the user is having trouble entering their verification code -->
+    <string name="VerificationCodeScreen__support_bottom_sheet_title">Ke probleme me regjistrimin?</string>
+    <!-- Bulleted list of suggestions shown in the having trouble bottom sheet -->
+    <string name="VerificationCodeScreen__support_bottom_sheet_body_suggestions">• Sigurohu që telefoni yt të ketë sinjal celular për të marrë SMS ose thirrje \n • Konfirmo se mund të marrësh telefonata në numër\n • Kontrollo nëse ke vendosur saktë numrin tënd të telefonit.</string>
+    <!-- A call to action for a user having trouble entering the verification code to seek further help. The first placeholder is VerificationCodeScreen__support_bottom_sheet_cta_troubleshooting_steps_substring, the second is VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring -->
+    <string name="VerificationCodeScreen__support_bottom_sheet_body_call_to_action">Për më shumë informacion, ndiq %1$s ose %2$s</string>
+    <!-- Clickable substring linking to troubleshooting steps within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
+    <string name="VerificationCodeScreen__support_bottom_sheet_cta_troubleshooting_steps_substring">me këto hapa për zgjidhjen e problemeve</string>
+    <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
+    <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">Kontaktoni asistencën</string>
+    <!-- Email subject used when contacting support from the verification code screen -->
+  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_subject" translatable="false">Signal Registration - Verification Code for Android</string> -->
+    <!-- URL opened for troubleshooting steps from the verification code screen -->
+  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__support_center_url" translatable="false">https://support.signal.org/</string> -->
 
     <!-- RestoreWelcomeBottomSheet -->
     <!-- Row title for restore/transfer using a previous registered phone/device -->
@@ -139,8 +161,6 @@
     <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">Nga telefoni i vjetër</string>
     <!-- Subtitle for the device transfer option card -->
     <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">Transfero drejtpërdrejt nga Android yt i vjetër</string>
-    <!-- Skip button text -->
-    <string name="ArchiveRestoreSelectionScreen__skip">Kapërce</string>
     <!-- Title for the skip restore confirmation dialog -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">Të kapërcehet rikthimi?</string>
     <!-- Warning body text for the skip restore confirmation dialog -->
@@ -183,6 +203,8 @@
     <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Frazëkalimi lokal i kopjeruajtjeve është një kod 30-shifror që kërkohet për të rikthyer llogarinë dhe të dhënat.</string>
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">Kodi i rikthimit</string>
+    <!-- Label for the backup passphrase text field -->
+    <string name="LocalBackupRestoreScreen__passphrase">Passphrase</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">Shumë e gjatë (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
@@ -204,6 +226,14 @@
     <string name="EnterAepScreen__invalid_recovery_key">Kodi i pavlefshëm rikthimi</string>
     <!-- Error text when key is correct format but does not match account -->
     <string name="EnterAepScreen__incorrect_recovery_key">Kodi i rikthimit është i pasaktë</string>
+    <!-- Button that prompts the device password manager to fill in the recovery key -->
+    <string name="EnterAepScreen__fill_from_password_manager">Plotëso nga menaxheri i fjalëkalimeve</string>
+    <!-- Title of the dialog warning that the backup being restored was created with a different account -->
+    <string name="EnterAepScreen__restore_to_new_account">Restore to new account?</string>
+    <!-- Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
+    <string name="EnterAepScreen__restore_to_new_account_body">The backup you are restoring was created using a different Signal account. You can restore this backup to a new account, but you will no longer be a member of any groups that were restored.</string>
+    <!-- Confirm button label for the restore to new account dialog -->
+    <string name="EnterAepScreen__restore">Restore</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">Po përgatitet rikthimi…</string>
     <!-- Title shown while restore is in progress -->
@@ -220,6 +250,12 @@
     <string name="LocalBackupRestoreScreen__restore_failed_description">Ndodhi një gabim gjatë rikthimit të kopjeruajtjes. Të lutem, provo sërish.</string>
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">Provo sërish</string>
+    <!-- Title shown when the entered passphrase cannot decrypt the selected backup -->
+    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Incorrect passphrase</string>
+    <!-- Title shown when the entered recovery key cannot decrypt the selected backup -->
+    <string name="LocalBackupRestoreScreen__incorrect_recovery_key">Incorrect recovery key</string>
+    <!-- Description shown when the entered passphrase or recovery key cannot decrypt the selected backup -->
+    <string name="LocalBackupRestoreScreen__incorrect_credential_description">The credential you entered doesn\'t match this backup. Please check it and try again.</string>
     <!-- Button to link an existing Signal account to this device -->
     <string name="WelcomeScreen__link_your_account">Lidh llogarinë</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
@@ -268,6 +304,8 @@
     <string name="RemoteRestoreScreen__your_backup_is_not_recoverable">Ndodhi një gabim gjatë rikthimit të kopjeruajtjes. Kopjeruajtja nuk rikuperohet. Të lutem, kontakto ndihmën për mbështetje.</string>
     <!-- Button to contact support -->
     <string name="RemoteRestoreScreen__contact_support">Kontakto ndihmën</string>
+    <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. Also used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_subject" translatable="false">Signal Android Backup restore permanent failure</string> -->
     <!-- Shown while downloading the backup from the server -->
     <string name="RemoteRestoreScreen__downloading_backup">Kopjeruajtja po shkarkohet…</string>
     <!-- Shown while restoring messages from the downloaded backup -->
@@ -333,6 +371,24 @@
     <string name="PinCreationScreen__pin_at_least_4_characters">PIN-i duhet të jetë të paktën 4 karaktere</string>
     <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
     <string name="PinCreationScreen__reenter_pin">Rifut PIN-in</string>
+    <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
+    <string name="PinCreationScreen__pins_dont_match">PIN-et s\\’përputhen. Riprovoni.</string>
+    <!-- Overflow menu item that opens a help article about Signal PINs. -->
+    <string name="PinCreationScreen__learn_more_about_pins">Mësoni më tepër rreth PIN-ësh</string>
+    <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
+    <string name="PinCreationScreen__warning">Paralajmërim</string>
+    <!-- Warning shown in the dialog confirming that the user wants to disable their Signal PIN. -->
+    <string name="PinCreationScreen__disable_pin_warning">Nëse çaktivizoni kodin PIN, do t\'i humbni të gjitha të dhënat kur të regjistroni sërish Signal, veç nëse bëni manualisht kopje rezervë dhe rivendosje. Nuk mund të aktivizoni Çelësin e Regjistrimit kur kodi PIN është i çaktivizuar.</string>
+    <!-- Overflow menu item and dialog button that disables the Signal PIN. -->
+    <string name="PinCreationScreen__disable_pin">Çaktivizoje PIN-in</string>
+    <!-- Labels the button that cancels disabling the Signal PIN. -->
+    <string name="PinCreationScreen__cancel">Anulo</string>
+    <!-- Dialog message shown when the PIN could not be created because of a problem reaching the service. -->
+    <string name="PinCreationScreen__service_error">Ndodhi një problem gjatë lidhjes me shërbimin.</string>
+    <!-- Dialog message shown when the PIN could not be created because of a network error. -->
+    <string name="PinCreationScreen__network_error">U has një gabim rrjeti.</string>
+    <!-- Dialog message shown when the PIN could not be created because of a network error, and the user may retry after a delay. Placeholder is the wait duration. -->
+    <string name="PinCreationScreen__network_error_try_again_in_s">Ndodhi një gabim në rrjet. Mund të provosh sërish pas %1$s.</string>
 
     <!-- PIN entry screen title when registration lock is active. -->
     <string name="PinEntryScreen__registration_lock">Kyçje Regjistrimi</string>
@@ -353,6 +409,20 @@
     <string name="PinEntryScreen__skip">Kapërce</string>
     <!-- Labels the button to submit the PIN. -->
     <string name="PinEntryScreen__continue">Vazhdo</string>
+    <!-- Title of the dialog shown when the user taps skip on the PIN entry screen. -->
+    <string name="PinEntryScreen__skip_pin_entry">Të anashkalohet dhënie PIN-i?</string>
+    <!-- Body of the dialog shown when the user taps skip on the PIN entry screen, explaining the consequences of creating a new PIN. -->
+    <string name="PinEntryScreen__skip_pin_entry_message">Nëse nuk e mban mend PIN-in, mund të krijosh një të ri. Mund ta regjistrosh dhe ta përdorësh llogarinë, por do të humbasësh disa parametra të ruajtura, si p.sh. informacionet e profilit.</string>
+    <!-- Labels the button in the skip dialog that takes the user to create a new PIN. -->
+    <string name="PinEntryScreen__create_new_pin">Krijoni PIN të Ri</string>
+    <!-- Labels the button in the skip dialog that dismisses it. -->
+    <string name="PinEntryScreen__cancel">Anulo</string>
+    <!-- Body of the dialog shown when no data could be found to restore from the user\'s PIN, prompting them to create a new PIN. -->
+    <string name="PinEntryScreen__no_data_could_be_found">Nuk u gjetën të dhëna për të rikthyer llogarinë. Krijo PIN të ri.</string>
+    <!-- Labels the button in the no-data-to-restore dialog that lets the user contact support. -->
+    <string name="PinEntryScreen__contact_support">Kontakto ndihmën</string>
+    <!-- Subject line of the support email composed when the user contacts support about PIN entry. Also used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_subject" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
 
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">Lejo njoftimet</string>
@@ -369,12 +439,24 @@
     <string name="MessageSyncScreen__this_may_take_a_few_minutes">Kjo mund të zgjasë disa minuta…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">Po shkarkohet %1$s nga %2$s</string>
+    <!-- Progress label shown under the sync progress bar before the download size is known -->
+    <string name="MessageSyncScreen__preparing">Duke u përgatitur…</string>
+    <!-- Progress label shown under the sync progress bar while messages are being imported and the rest of the account is restored, after the download finishes -->
+    <string name="MessageSyncScreen__finishing">Duke përfunduar…</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
     <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Mesazhet dhe informacionet e bisedës mbrohen nga kodimi skaji në skaj, duke përfshirë procesin e sinkronizimit.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">Mëso më shumë</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">Anulo</string>
+    <!-- Title of the dialog shown when restoring messages from the other device fails -->
+    <string name="MessageSyncScreen__couldnt_restore_messages">Nuk mund të rikthehen mesazhet</string>
+    <!-- Body of the dialog shown when restoring messages fails, offering to retry or continue without message history -->
+    <string name="MessageSyncScreen__your_messages_couldnt_be_transferred">Mesazhet nuk mund të transferoheshin nga pajisja tjetër. Mund të provosh përsëri ose të vazhdosh pa historikun e mesazheve.</string>
+    <!-- Button that retries the failed message restore -->
+    <string name="MessageSyncScreen__try_again">Provo sërish</string>
+    <!-- Button that finishes linking without restoring message history after a failed restore -->
+    <string name="MessageSyncScreen__continue_without_messages">Vazhdo pa mesazhe</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
     <string name="LinkAccountScreen__scan_this_code_to_link_your_account">Skano këtë kod për të lidhur llogarinë</string>
@@ -384,8 +466,6 @@
     <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Prek foton e profilit për të hapur cilësimet e Signal</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
     <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Prek \"Pajisjet e lidhura\" dhe \"Lidh pajisje të re\"</string>
-    <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">Poziciono kamerën sipër këtij kodi QR</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
     <string name="LinkAccountScreen__get_help_with_these_steps">Merr ndihmë me këto hapa</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
@@ -398,6 +478,22 @@
     <string name="LinkAccountScreen__dont_have_signal_on_another_device">A nuk e ke Signal në një pajisje tjetër?</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">Krijo llogari</string>
+    <!-- Button to retry generating the QR code after it failed to load -->
+    <string name="LinkAccountScreen__retry">Riprovo</string>
+    <!-- Progress dialog message shown while this device is being registered as a linked device -->
+    <string name="LinkAccountScreen__linking_device">Pajisja po lidhet…</string>
+    <!-- Progress dialog message shown while waiting for the primary device to prepare the message backup -->
+    <string name="LinkAccountScreen__waiting_for_your_other_device">Në pritje të pajisjes tjetër…</string>
+    <!-- Error dialog message shown when linking this device fails -->
+    <string name="LinkAccountScreen__error_linking_device">Gabim gjatë lidhjes së kësaj pajisjeje</string>
+    <!-- Title of the confirmation dialog shown when the scanned QR code belongs to a different account than the one this device is currently linked to -->
+    <string name="LinkAccountScreen__delete_app_data_question">Të fshihen të dhënat e aplikacionit?</string>
+    <!-- Body of the confirmation dialog warning that continuing will erase all local data before relinking to a different account -->
+    <string name="LinkAccountScreen__you_are_attempting_to_link_a_different_account">Po përpiqesh të lidhësh një llogari tjetër të Signal. Nëse vazhdon, të gjitha të dhënat e Signal që ndodhen aktualisht në këtë pajisje do të fshihen.</string>
+    <!-- Destructive confirmation button that deletes all local data and restarts the app so it can be linked to a different account -->
+    <string name="LinkAccountScreen__delete_and_restart">Fshi dhe rifillo</string>
+    <!-- Content description for the button that closes the maximized QR code overlay -->
+    <string name="LinkAccountScreen__close_qr_code">Mbyll kodin QR</string>
 
     <!-- Device transfer: Instructions screen -->
     <string name="DeviceTransferInstructions__transfer_your_account">Transfero llogarinë</string>
@@ -481,4 +577,8 @@
     <string name="PhoneNumberDiscoverabilityScreen__save">Ruaj</string>
     <!-- Content description for the back arrow on the discoverability picker. -->
     <string name="PhoneNumberDiscoverabilityScreen__back">Mbrapsht</string>
+    <!-- Error message shown when the captcha fails to load. -->
+    <string name="CaptchaScreen__failed_to_load_captcha">Nuk u ngarkua captcha</string>
+    <!-- Button to cancel out of the captcha screen. -->
+    <string name="CaptchaScreen__cancel">Anulo</string>
 </resources>

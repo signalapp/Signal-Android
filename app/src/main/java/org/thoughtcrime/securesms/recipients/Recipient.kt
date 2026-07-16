@@ -51,7 +51,6 @@ import org.thoughtcrime.securesms.phonenumbers.NumberUtil
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.external
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.UsernameUtil.isValidUsernameForSearch
@@ -339,11 +338,11 @@ class Recipient(
 
   /** Whether calls should break through mute for this recipient. */
   val callNotificationSetting: NotificationSetting
-    get() = if (RemoteConfig.internalUser) callNotificationSettingValue else NotificationSetting.ALWAYS_NOTIFY
+    get() = if (SignalStore.labs.muteBreakthroughNotifications) callNotificationSettingValue else NotificationSetting.ALWAYS_NOTIFY
 
   /** Whether replies should break through mute for this recipient. Only applicable to groups. */
   val replyNotificationSetting: NotificationSetting
-    get() = if (groupIdValue == null) NotificationSetting.DO_NOT_NOTIFY else if (RemoteConfig.internalUser) replyNotificationSettingValue else mentionSetting
+    get() = if (groupIdValue == null) NotificationSetting.DO_NOT_NOTIFY else if (SignalStore.labs.muteBreakthroughNotifications) replyNotificationSettingValue else mentionSetting
 
   /** The state around whether we can send sealed sender to this user. */
   val sealedSenderAccessMode: SealedSenderAccessMode = if (pni.isPresent && pni == serviceId) {
@@ -661,7 +660,7 @@ class Recipient(
   }
 
   private fun getUnknownDisplayName(context: Context): String {
-    return if (registered == RegisteredState.NOT_REGISTERED) {
+    return if (!isResolving && registered == RegisteredState.NOT_REGISTERED) {
       context.getString(R.string.Recipient_deleted_account)
     } else {
       context.getString(R.string.Recipient_unknown)

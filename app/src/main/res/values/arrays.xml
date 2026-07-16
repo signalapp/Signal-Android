@@ -427,4 +427,10 @@
         <item>@string/ConversationFragment__30_days</item>
         <item>@string/ConversationFragment__forever</item>
     </string-array>
+
+    <string-array name="filter_search_entries">
+        <item>@string/MemberSearchFragment__filter_all_members</item>
+        <item>@string/MemberSearchFragment__filter_admins</item>
+        <item>@string/MemberSearchFragment__filter_contacts</item>
+    </string-array>
 </resources>

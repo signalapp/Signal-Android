@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.protocol.NoSessionException
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
@@ -23,15 +24,15 @@ object ReceiptSender {
   fun sendWithSessionRepair(recipientId: RecipientId, operation: ReceiptSendOperation): SendMessageResult? {
     return try {
       operation.send()
-    } catch (e: IllegalStateException) {
-      Log.w(TAG, "Failed to send receipt, likely due to a missing or corrupt session. Archiving sessions and retrying.", e)
+    } catch (e: NoSessionException) {
+      Log.w(TAG, "Failed to send receipt due to a missing session. Archiving sessions and retrying.", e)
 
       AppDependencies.protocolStore.aci().sessions().archiveSessions(recipientId)
       AppDependencies.protocolStore.pni().sessions().archiveSessions(recipientId)
 
       try {
         operation.send()
-      } catch (retryError: IllegalStateException) {
+      } catch (retryError: NoSessionException) {
         Log.w(TAG, "Failed to send receipt even after archiving sessions. Dropping.", retryError)
         null
       }
@@ -39,7 +40,7 @@ object ReceiptSender {
   }
 
   fun interface ReceiptSendOperation {
-    @Throws(IOException::class, UntrustedIdentityException::class)
+    @Throws(IOException::class, UntrustedIdentityException::class, NoSessionException::class)
     fun send(): SendMessageResult
   }
 }

@@ -7,11 +7,11 @@ import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.avatar.AvatarRenderer
 import org.thoughtcrime.securesms.avatar.Avatars
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.ProfileName
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import java.util.concurrent.CountDownLatch
@@ -92,7 +92,7 @@ class CreateReleaseChannelJob private constructor(parameters: Parameters) : Base
         Avatars.ColorPair(ContextCompat.getColor(context, R.color.notification_background_ultramarine), ContextCompat.getColor(context, R.color.core_white), "")
       ),
       onAvatarRendered = { media ->
-        AvatarHelper.setAvatar(context, id, BlobProvider.getInstance().getStream(context, media.uri))
+        AvatarHelper.setAvatar(context, id, AppDependencies.blobs.getStream(context, media.uri))
         SignalDatabase.recipients.setProfileAvatar(id, "local")
         latch.countDown()
       },

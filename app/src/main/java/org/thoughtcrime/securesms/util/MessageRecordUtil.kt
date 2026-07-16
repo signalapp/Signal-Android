@@ -83,6 +83,8 @@ fun MessageRecord.hasLinkPreview(): Boolean = isMms && (this as MmsMessageRecord
 
 fun MessageRecord.hasTextSlide(): Boolean = isMms && (this as MmsMessageRecord).slideDeck.textSlide != null && this.slideDeck.textSlide?.uri != null
 
+fun MessageRecord.hasUndownloadedTextSlide(): Boolean = isMms && (this as MmsMessageRecord).slideDeck.textSlide != null && this.slideDeck.textSlide?.uri == null
+
 fun MessageRecord.requireTextSlide(): TextSlide = requireNotNull((this as MmsMessageRecord).slideDeck.textSlide)
 
 fun MessageRecord.hasPoll(): Boolean = isMms && (this as MmsMessageRecord).poll != null

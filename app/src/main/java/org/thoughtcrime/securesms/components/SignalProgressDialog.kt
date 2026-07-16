@@ -48,11 +48,15 @@ class SignalProgressDialog private constructor(
   }
 
   fun hide() {
-    dialog.hide()
+    if (dialog.window?.decorView?.isAttachedToWindow == true) {
+      dialog.hide()
+    }
   }
 
   fun dismiss() {
-    dialog.dismiss()
+    if (dialog.window?.decorView?.isAttachedToWindow == true) {
+      dialog.dismiss()
+    }
   }
 
   companion object {

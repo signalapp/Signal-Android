@@ -134,7 +134,7 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
 
   class SubmitVerificationCodeRateLimited(cause: Throwable) : VerificationCodeRequestResult(cause)
 
-  class RegistrationLocked(cause: Throwable, val timeRemaining: Long, val svr2Credentials: AuthCredentials, val svr3Credentials: Svr3Credentials) : VerificationCodeRequestResult(cause)
+  class RegistrationLocked(cause: Throwable, val timeRemaining: Long, val svr2Credentials: AuthCredentials, val svr3Credentials: Svr3Credentials?) : VerificationCodeRequestResult(cause)
 
   class NoSuchSession(cause: Throwable) : VerificationCodeRequestResult(cause)
 

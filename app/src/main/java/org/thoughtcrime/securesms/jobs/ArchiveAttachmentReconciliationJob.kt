@@ -82,6 +82,19 @@ class ArchiveAttachmentReconciliationJob private constructor(
         Log.i(TAG, "Skip enqueueing reconciliation job: attempt limit exceeded.")
       }
     }
+
+    /**
+     * Reconcile-first entry point for after a local restore. Runs a [BackupMessagesJob] (to capture a snapshot) chained into a forced reconciliation.
+     * Sets [BackupValues.localRestoreReconcilePending] so the backup holds off on the bulk attachment backfill, letting reconciliation run first. Reconciliation
+     * then clears the flag and re-triggers the backfill for whatever genuinely still needs uploading.
+     */
+    fun enqueueReconcileFirstForLocalRestore() {
+      SignalStore.backup.localRestoreReconcilePending = true
+      AppDependencies.jobManager
+        .startChain(BackupMessagesJob())
+        .then(ArchiveAttachmentReconciliationJob(forced = true))
+        .enqueue()
+    }
   }
 
   constructor(forced: Boolean = false) : this(
@@ -116,7 +129,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
       return Result.success()
     }
 
-    if (SignalStore.backup.lastAttachmentReconciliationTime < 0) {
+    if (!forced && SignalStore.backup.lastAttachmentReconciliationTime < 0) {
       Log.w(TAG, "First ever time we're attempting a reconciliation. Setting the last sync time to now, so we'll run at the proper interval. Skipping this iteration.", true)
       SignalStore.backup.lastAttachmentReconciliationTime = System.currentTimeMillis()
       return Result.success()
@@ -138,10 +151,27 @@ class ArchiveAttachmentReconciliationJob private constructor(
     // we use to determine which attachments need to be re-uploaded will possibly result in us unnecessarily re-uploading attachments.
     snapshotVersion = snapshotVersion ?: SignalDatabase.backupMediaSnapshots.getCurrentSnapshotVersion()
 
-    return syncDataFromCdn(snapshotVersion!!) ?: Result.success()
+    syncDataFromCdn(snapshotVersion!!)?.let { return it }
+
+    clearPendingLocalRestoreReconcile()
+    return Result.success()
   }
 
-  override fun onFailure() = Unit
+  /**
+   * Once a reconciliation has fully crawled the CDN, any media that was already archived has been marked finished, so the bulk backfill that was held off
+   * during a local restore can proceed for whatever genuinely still needs uploading.
+   */
+  private fun clearPendingLocalRestoreReconcile() {
+    if (SignalStore.backup.localRestoreReconcilePending) {
+      Log.i(TAG, "Local restore reconciliation complete. Clearing the pending flag and enqueueing a backup to upload any remaining media.", true)
+      SignalStore.backup.localRestoreReconcilePending = false
+      BackupMessagesJob.enqueue()
+    }
+  }
+
+  override fun onFailure() {
+    clearPendingLocalRestoreReconcile()
+  }
 
   /**
    * Fetches all attachment metadata from the archive CDN and ensures that our local store is in sync with it.
@@ -302,6 +332,8 @@ class ArchiveAttachmentReconciliationJob private constructor(
    * - Mark that page as seen on the remote.
    * - Fix any CDN mismatches by updating our local store with the correct CDN.
    * - Delete any orphaned attachments that are on the CDN but not in our local store.
+   * - During the local-restore reconcile-first flow, mark media confirmed present on the CDN as finished. A local restore resets everything to NONE (we don't
+   *   trust the backup's CDN claims), so this is what promotes the media that genuinely is on the CDN back to finished, preventing a needless re-upload of it.
    *
    * @return A list of media objects that should be deleted (after being verified)
    */
@@ -326,6 +358,13 @@ class ArchiveAttachmentReconciliationJob private constructor(
       Log.w(TAG, "Found ${cdnMismatches.size} items with CDNs that differ from what we have locally. Updating our local store.", true)
       for (mismatch in cdnMismatches) {
         SignalDatabase.attachments.setArchiveCdnByPlaintextHashAndRemoteKey(mismatch.plaintextHash, mismatch.remoteKey, mismatch.cdn)
+      }
+    }
+
+    if (SignalStore.backup.localRestoreReconcilePending) {
+      val markedFinished = SignalDatabase.attachments.setArchiveFinishedForMatchingMediaObjects(mediaObjectsOnBothRemoteAndLocal.toSet())
+      if (markedFinished > 0) {
+        Log.i(TAG, "Marked $markedFinished media object group(s) as finished after confirming they are present on the CDN.", true)
       }
     }
 

@@ -24,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
@@ -41,6 +42,7 @@ import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.attachDebugLogHelper
+import org.signal.registration.test.TestTags
 
 /**
  * Screen shown when the user's account is locked due to too many failed PIN attempts
@@ -67,7 +69,9 @@ private fun OnePaneLayout(
 ) {
   val scrollState = rememberScrollState()
   OnePaneRegistrationScaffold(
-    modifier = modifier.fillMaxSize(),
+    modifier = modifier
+      .fillMaxSize()
+      .testTag(TestTags.ACCOUNT_LOCKED_SCREEN),
     params = params,
     content = { paddingValues ->
       Column(
@@ -89,7 +93,7 @@ private fun OnePaneLayout(
         isElevated = scrollState.canScrollForward
       ) {
         Column(
-          modifier = modifier
+          modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 16.dp)
             .horizontalGutters(),
@@ -121,7 +125,9 @@ private fun TwoPaneLayout(
   val secondPaneScrollState = rememberScrollState()
 
   TwoPaneRegistrationScaffold(
-    modifier = modifier.fillMaxSize(),
+    modifier = modifier
+      .fillMaxSize()
+      .testTag(TestTags.ACCOUNT_LOCKED_SCREEN),
     params = params,
     firstPane = { paddingValues ->
       Column(
@@ -151,7 +157,7 @@ private fun TwoPaneLayout(
         isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
       ) {
         Row(
-          modifier = modifier
+          modifier = Modifier
             .padding(vertical = 16.dp)
             .fillMaxWidth()
             .horizontalGutters(),
@@ -195,7 +201,7 @@ private fun Description(
 private fun NextButton(onEvent: (AccountLockedScreenEvents) -> Unit, modifier: Modifier = Modifier) {
   Button(
     onClick = { onEvent(AccountLockedScreenEvents.Next) },
-    modifier = modifier
+    modifier = modifier.testTag(TestTags.ACCOUNT_LOCKED_NEXT_BUTTON)
   ) {
     Text(stringResource(R.string.RegistrationActivity_next))
   }
@@ -222,7 +228,8 @@ private fun LearnMore(onEvent: (AccountLockedScreenEvents) -> Unit) {
         }
       }
     },
-    textAlign = TextAlign.Center
+    textAlign = TextAlign.Center,
+    modifier = Modifier.testTag(TestTags.ACCOUNT_LOCKED_LEARN_MORE_BUTTON)
   )
 }
 

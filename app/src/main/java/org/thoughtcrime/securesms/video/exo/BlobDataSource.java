@@ -9,12 +9,10 @@ import androidx.annotation.Nullable;
 import androidx.annotation.OptIn;
 import androidx.media3.common.util.UnstableApi;
 import androidx.media3.datasource.DataSource;
-
-import androidx.media3.datasource.DataSource;
 import androidx.media3.datasource.DataSpec;
 import androidx.media3.datasource.TransferListener;
 
-import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -44,15 +42,15 @@ class BlobDataSource implements DataSource {
   @Override
   public long open(DataSpec dataSpec) throws IOException {
     this.dataSpec = dataSpec;
-    this.inputStream = BlobProvider.getInstance().getStream(context, dataSpec.uri, dataSpec.position);
+    this.inputStream = AppDependencies.getBlobs().getStream(context, dataSpec.uri, dataSpec.position);
 
     if (listener != null) {
       listener.onTransferStart(this, dataSpec, false);
     }
 
-    long size = unwrapLong(BlobProvider.getFileSize(dataSpec.uri));
+    long size = unwrapLong(AppDependencies.getBlobs().getFileSize(dataSpec.uri));
     if (size == 0) {
-      size = BlobProvider.getInstance().calculateFileSize(context, dataSpec.uri);
+      size = AppDependencies.getBlobs().calculateFileSize(context, dataSpec.uri);
     }
 
     if (size - dataSpec.position <= 0) throw new EOFException("No more data");

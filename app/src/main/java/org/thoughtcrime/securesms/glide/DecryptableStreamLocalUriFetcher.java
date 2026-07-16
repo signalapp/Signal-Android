@@ -17,9 +17,9 @@ import org.signal.core.util.logging.Log;
 import org.signal.glide.common.io.GlideStreamConfig;
 import org.signal.core.models.database.AttachmentId;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.signal.core.util.contentproviders.BlobProvider;
+import org.signal.core.util.bitmaps.BitmapDecodingException;
+import org.signal.core.util.bitmaps.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.ByteArrayInputStream;

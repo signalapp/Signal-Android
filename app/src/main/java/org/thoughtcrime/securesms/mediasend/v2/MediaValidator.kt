@@ -1,18 +1,17 @@
 package org.thoughtcrime.securesms.mediasend.v2
 
-import android.content.Context
 import androidx.annotation.WorkerThread
 import org.signal.core.models.media.Media
 import org.signal.core.util.Util
-import org.thoughtcrime.securesms.mms.MediaConstraints
+import org.signal.mediasend.MediaConstraints
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MediaUtil
 
 object MediaValidator {
 
   @WorkerThread
-  fun filterMedia(context: Context, media: List<Media>, mediaConstraints: MediaConstraints, maxSelection: Int, isStory: Boolean): FilterResult {
-    val filteredMedia = filterForValidMedia(context, media, mediaConstraints, isStory)
+  fun filterMedia(media: List<Media>, mediaConstraints: MediaConstraints, maxSelection: Int, isStory: Boolean): FilterResult {
+    val filteredMedia = filterForValidMedia(media, mediaConstraints, isStory)
     val isAllMediaValid = filteredMedia.size == media.size
 
     var error: FilterError? = null
@@ -49,27 +48,27 @@ object MediaValidator {
   }
 
   @WorkerThread
-  private fun filterForValidMedia(context: Context, media: List<Media>, mediaConstraints: MediaConstraints, isStory: Boolean): List<Media> {
+  private fun filterForValidMedia(media: List<Media>, mediaConstraints: MediaConstraints, isStory: Boolean): List<Media> {
     return media
       .filter { m -> isSupportedMediaType(m.contentType!!) }
       .filter { m ->
-        MediaUtil.isImageAndNotGif(m.contentType!!) || isValidGif(context, m, mediaConstraints) || isValidVideo(context, m, mediaConstraints) || isValidDocument(context, m, mediaConstraints)
+        MediaUtil.isImageAndNotGif(m.contentType!!) || isValidGif(m, mediaConstraints) || isValidVideo(m, mediaConstraints) || isValidDocument(m, mediaConstraints)
       }
       .filter { m ->
         !isStory || Stories.MediaTransform.getSendRequirements(m) != Stories.MediaTransform.SendRequirements.CAN_NOT_SEND
       }
   }
 
-  private fun isValidGif(context: Context, media: Media, mediaConstraints: MediaConstraints): Boolean {
-    return MediaUtil.isGif(media.contentType) && media.size < mediaConstraints.getGifMaxSize(context)
+  private fun isValidGif(media: Media, mediaConstraints: MediaConstraints): Boolean {
+    return MediaUtil.isGif(media.contentType) && media.size < mediaConstraints.getGifMaxSize()
   }
 
-  private fun isValidVideo(context: Context, media: Media, mediaConstraints: MediaConstraints): Boolean {
-    return MediaUtil.isVideoType(media.contentType) && media.size < mediaConstraints.getUncompressedVideoMaxSize(context)
+  private fun isValidVideo(media: Media, mediaConstraints: MediaConstraints): Boolean {
+    return MediaUtil.isVideoType(media.contentType) && media.size < mediaConstraints.getUncompressedVideoMaxSize()
   }
 
-  private fun isValidDocument(context: Context, media: Media, mediaConstraints: MediaConstraints): Boolean {
-    return MediaUtil.isDocumentType(media.contentType) && media.size < mediaConstraints.getDocumentMaxSize(context)
+  private fun isValidDocument(media: Media, mediaConstraints: MediaConstraints): Boolean {
+    return MediaUtil.isDocumentType(media.contentType) && media.size < mediaConstraints.getDocumentMaxSize()
   }
 
   private fun isSupportedMediaType(mimeType: String): Boolean {

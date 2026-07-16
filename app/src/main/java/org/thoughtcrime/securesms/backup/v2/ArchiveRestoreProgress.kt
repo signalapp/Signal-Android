@@ -82,7 +82,7 @@ object ArchiveRestoreProgress {
   val stateFlow: Flow<ArchiveRestoreProgressState> = store
     .throttleLatest(1.seconds)
     .distinctUntilChanged()
-    .flowOn(Dispatchers.IO)
+    .flowOn(Dispatchers.Default)
 
   init {
     SignalExecutors.BOUNDED.execute { update() }

@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import org.signal.core.util.bitmaps.BitmapUtil
 import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.conversation.colors.AvatarGradientColors
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.BitmapUtil
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
@@ -49,8 +49,8 @@ fun Recipient.getContactDrawable(context: Context): Drawable? {
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .transform(MultiTransformation(listOf(CircleCrop())))
         .submit(
-          context.resources.getDimensionPixelSize(android.R.dimen.notification_large_icon_width),
-          context.resources.getDimensionPixelSize(android.R.dimen.notification_large_icon_height)
+          context.resources.getDimensionPixelSize(R.dimen.contact_photo_target_size),
+          context.resources.getDimensionPixelSize(R.dimen.contact_photo_target_size)
         )
         .get(IMAGE_LOAD_TIMEOUT_SECONDS, TimeUnit.SECONDS)
     } catch (e: InterruptedException) {

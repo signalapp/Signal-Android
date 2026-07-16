@@ -138,7 +138,7 @@ fun ContactSearch(
     userScrollEnabled = !isDisplayingContextMenu,
     fastScrollerState = fastScrollerState,
     lazyListState = lazyListState,
-    modifier = modifier.fillMaxSize(),
+    modifier = modifier,
     letterContent = {
       Emojifier(text = it.toString()) { annotatedText, inlineContent ->
         Text(
@@ -154,7 +154,7 @@ fun ContactSearch(
       userScrollEnabled = !isDisplayingContextMenu,
       controller = mappingCtrl,
       lazyListState = it,
-      modifier = Modifier.fillMaxSize()
+      modifier = modifier
     )
   }
 }

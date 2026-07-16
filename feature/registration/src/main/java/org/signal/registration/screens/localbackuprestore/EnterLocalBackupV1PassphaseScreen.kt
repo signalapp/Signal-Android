@@ -36,6 +36,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontFamily
@@ -54,6 +55,7 @@ import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.attachDebugLogHelper
+import org.signal.registration.test.TestTags
 
 private const val PASSPHRASE_LENGTH = 30
 private const val CHUNK_SIZE = 5
@@ -106,7 +108,9 @@ private fun OnePaneLayout(
 ) {
   val scrollState = rememberScrollState()
   OnePaneRegistrationScaffold(
-    modifier = modifier.fillMaxSize(),
+    modifier = modifier
+      .fillMaxSize()
+      .testTag(TestTags.ENTER_LOCAL_BACKUP_PASSPHRASE_SCREEN),
     params = params,
     content = { paddingValues ->
       Column(
@@ -154,7 +158,9 @@ private fun TwoPaneLayout(
   val secondPaneScrollState = rememberScrollState()
 
   TwoPaneRegistrationScaffold(
-    modifier = modifier.fillMaxSize(),
+    modifier = modifier
+      .fillMaxSize()
+      .testTag(TestTags.ENTER_LOCAL_BACKUP_PASSPHRASE_SCREEN),
     params = params,
     firstPane = { paddingValues ->
       Column(
@@ -232,7 +238,7 @@ private fun PassphraseTextField(
     onValueChange = { newValue ->
       onPassphraseChange(newValue.filter { it.isDigit() })
     },
-    label = { Text(stringResource(R.string.LocalBackupRestoreScreen__recovery_key)) },
+    label = { Text(stringResource(R.string.LocalBackupRestoreScreen__passphrase)) },
     textStyle = MaterialTheme.typography.bodyLarge.copy(
       fontFamily = FontFamily.Monospace,
       lineHeight = 36.sp
@@ -265,6 +271,7 @@ private fun PassphraseTextField(
     visualTransformation = visualTransform,
     modifier = Modifier
       .fillMaxWidth()
+      .testTag(TestTags.ENTER_LOCAL_BACKUP_PASSPHRASE_INPUT)
       .focusRequester(focusRequester)
       .onGloballyPositioned {
         if (requestFocus) {
@@ -293,7 +300,9 @@ private fun FooterButtons(
         .padding(horizontal = 24.dp, vertical = 16.dp)
     ) {
       TextButton(
-        modifier = Modifier.weight(weight = 1f, fill = false),
+        modifier = Modifier
+          .weight(weight = 1f, fill = false)
+          .testTag(TestTags.ENTER_LOCAL_BACKUP_PASSPHRASE_NO_PASSPHRASE_BUTTON),
         onClick = onCancel,
         shape = RoundedCornerShape(0.dp)
       ) {
@@ -304,7 +313,8 @@ private fun FooterButtons(
 
       Buttons.LargeTonal(
         enabled = isValid,
-        onClick = { onSubmit(passphrase) }
+        onClick = { onSubmit(passphrase) },
+        modifier = Modifier.testTag(TestTags.ENTER_LOCAL_BACKUP_PASSPHRASE_NEXT_BUTTON)
       ) {
         Text(text = stringResource(R.string.LocalBackupRestoreScreen__next))
       }

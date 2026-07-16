@@ -109,13 +109,11 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       "CREATE INDEX $CALL_LOG_INDEX ON $TABLE_NAME ($TIMESTAMP, $PEER, $EVENT, $TYPE, $DELETION_TIMESTAMP)"
     )
   }
-  fun markAllCallEventsRead(timestamp: Long = Long.MAX_VALUE) {
-    val proposedExpireStarted = if (timestamp == Long.MAX_VALUE) System.currentTimeMillis() else timestamp
-
+  fun markAllCallEventsRead(timestamp: Long = Long.MAX_VALUE, readAt: Long = System.currentTimeMillis()) {
     val allUnreadMissedCalls = readableDatabase
       .select(MESSAGE_ID)
       .from(TABLE_NAME)
-      .where("$TIMESTAMP <= ? AND $READ != ? AND $EVENT = ?", timestamp, ReadState.serialize(ReadState.READ), Event.serialize(Event.MISSED))
+      .where("$TIMESTAMP <= ? AND $READ != ? AND ($EVENT = ? OR $EVENT = ?)", timestamp, ReadState.serialize(ReadState.READ), Event.serialize(Event.MISSED), Event.serialize(Event.MISSED_NOTIFICATION_PROFILE))
       .run()
       .readToList { cursor ->
         cursor.requireLong(MESSAGE_ID)
@@ -131,9 +129,9 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
     if (expiringCalls.isNotEmpty()) {
       Log.i(TAG, "Found ${expiringCalls.size} calls that needs expiring.")
-      SignalDatabase.messages.markExpireStarted(expiringCalls.map { it.key to proposedExpireStarted })
+      SignalDatabase.messages.markExpireStarted(expiringCalls.map { it.key to readAt })
       for ((messageId, expiresIn) in expiringCalls) {
-        AppDependencies.expiringMessageManager.scheduleDeletion(messageId, true, proposedExpireStarted, expiresIn)
+        AppDependencies.expiringMessageManager.scheduleDeletion(messageId, true, readAt, expiresIn)
       }
     }
 
@@ -142,14 +140,13 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     }
   }
 
-  fun markAllCallEventsWithPeerBeforeTimestampRead(peer: RecipientId, timestamp: Long): Call? {
-    val proposedExpireStarted = if (timestamp == Long.MAX_VALUE) System.currentTimeMillis() else timestamp
+  fun markAllCallEventsWithPeerBeforeTimestampRead(peer: RecipientId, timestamp: Long, readAt: Long = System.currentTimeMillis()): Call? {
     val latestCallAsOfTimestamp = writableDatabase.withinTransaction { db ->
 
       val unreadMissedCalls = db
         .select(MESSAGE_ID)
         .from(TABLE_NAME)
-        .where("$PEER = ? AND $TIMESTAMP <= ? AND $READ != ? AND $EVENT = ? AND $GROUP_CALL_ACTIVE = 0", peer.toLong(), timestamp, ReadState.serialize(ReadState.READ), Event.serialize(Event.MISSED))
+        .where("$PEER = ? AND $TIMESTAMP <= ? AND $READ != ? AND ($EVENT = ? OR $EVENT = ?) AND $GROUP_CALL_ACTIVE = 0", peer.toLong(), timestamp, ReadState.serialize(ReadState.READ), Event.serialize(Event.MISSED), Event.serialize(Event.MISSED_NOTIFICATION_PROFILE))
         .run()
         .readToList { cursor ->
           cursor.requireLong(MESSAGE_ID)
@@ -164,9 +161,9 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
       if (expiring.isNotEmpty()) {
         Log.i(TAG, "Found ${expiring.size} calls that needs expiring.")
-        SignalDatabase.messages.markExpireStarted(expiring.map { it.key to proposedExpireStarted })
+        SignalDatabase.messages.markExpireStarted(expiring.map { it.key to readAt })
         for ((messageId, expiresIn) in expiring) {
-          AppDependencies.expiringMessageManager.scheduleDeletion(messageId, true, proposedExpireStarted, expiresIn)
+          AppDependencies.expiringMessageManager.scheduleDeletion(messageId, true, readAt, expiresIn)
         }
       }
 
@@ -191,7 +188,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     return readableDatabase
       .count()
       .from(TABLE_NAME)
-      .where("$EVENT = ? AND $READ = ?", Event.serialize(Event.MISSED), ReadState.serialize(ReadState.UNREAD))
+      .where("($EVENT = ? OR $EVENT = ?) AND $READ = ?", Event.serialize(Event.MISSED), Event.serialize(Event.MISSED_NOTIFICATION_PROFILE), ReadState.serialize(ReadState.UNREAD))
       .run()
       .readToSingleLong()
   }
@@ -1057,7 +1054,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
           RingUpdate.DECLINED_ON_ANOTHER_DEVICE -> {
             when (call.event) {
-              Event.RINGING, Event.MISSED, Event.MISSED_NOTIFICATION_PROFILE, Event.GENERIC_GROUP_CALL -> updateEventFromRingState(ringId, Event.DECLINED)
+              Event.RINGING, Event.MISSED, Event.GENERIC_GROUP_CALL -> updateEventFromRingState(ringId, Event.DECLINED)
               Event.JOINED -> updateEventFromRingState(ringId, Event.ACCEPTED)
               Event.OUTGOING_RING -> Log.w(TAG, "Received DECLINED_ON_ANOTHER_DEVICE while in OUTGOING_RING state.")
               else -> Unit
@@ -1346,7 +1343,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     writableDatabase.withinTransaction { db ->
       val messageIds: List<Long> = db.select(MESSAGE_ID)
         .from(TABLE_NAME)
-        .where("$EVENT = ? AND $MESSAGE_ID != NULL", Event.serialize(Event.RINGING))
+        .where("$EVENT = ? AND $MESSAGE_ID IS NOT NULL", Event.serialize(Event.RINGING))
         .run()
         .readToList { it.requireLong(MESSAGE_ID) }
 

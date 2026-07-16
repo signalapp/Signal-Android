@@ -41,13 +41,13 @@ class CallPeerRepository(
   private val recipient: Flow<Recipient> = liveRecipient.flatMapLatest { it.observable().asFlow() }
   private val groupRecipient = recipient.filter { it.isActiveGroup }
   private val groupRecord: Flow<GroupRecord> = groupRecipient.mapLatest {
-    withContext(Dispatchers.IO) {
+    withContext(Dispatchers.Default) {
       SignalDatabase.groups.getGroup(it.requireGroupId()).get()
     }
   }
 
   val groupMembers: Flow<List<GroupMemberEntry.FullMember>> = groupRecord.mapLatest { record ->
-    withContext(Dispatchers.IO) {
+    withContext(Dispatchers.Default) {
       record.members.map { Recipient.resolved(it) }.map { GroupMemberEntry.FullMember(it, record.isAdmin(it)) }
     }
   }

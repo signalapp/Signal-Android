@@ -5,6 +5,7 @@ import androidx.annotation.WorkerThread
 import okio.utf8Size
 import org.signal.core.util.UuidUtil.parseOrThrow
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.protocol.NoSessionException
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.RecipientTable.SealedSenderAccessMode
@@ -163,7 +164,17 @@ class IndividualSendJob private constructor(parameters: Parameters, private val 
       val profileKey = recipient.profileKey
       val accessMode = recipient.sealedSenderAccessMode
 
-      val unidentified = deliver(message, originalEditedMessage)
+      val unidentified = try {
+        deliver(message, originalEditedMessage)
+      } catch (e: NoSessionException) {
+        warn(TAG, message.sentTimeMillis.toString(), "Failed to send message, likely due to a missing or corrupt session. Archiving sessions and retrying.", e)
+
+        val recipientId = message.threadRecipient.id
+        AppDependencies.protocolStore.aci().sessions().archiveSessions(recipientId)
+        AppDependencies.protocolStore.pni().sessions().archiveSessions(recipientId)
+
+        throw RetryLaterException()
+      }
 
       SignalDatabase.messages.markAsSent(messageId)
       markAttachmentsUploaded(messageId, message)

@@ -9,6 +9,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.crypto.AttachmentSecretProvider;
 import org.signal.core.util.logging.Log;
 import org.signal.devicetransfer.NewDeviceRestoreStatus;
 import org.signal.devicetransfer.ServerTask;
@@ -16,12 +17,11 @@ import org.thoughtcrime.securesms.AppInitialization;
 import org.thoughtcrime.securesms.backup.BackupEvent;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.backup.FullBackupImporter;
-import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
+import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,7 +52,7 @@ public final class NewDeviceServerTask implements ServerTask {
 
       BackupPassphrase.set(context, passphrase);
       FullBackupImporter.importFile(context,
-                                    AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
+                                    AttachmentSecretProvider.getInstance(context, AppAttachmentSecretStore.INSTANCE).getOrCreateAttachmentSecret(),
                                     database,
                                     inputStream,
                                     passphrase,

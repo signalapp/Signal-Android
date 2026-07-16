@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -885,10 +886,14 @@ public class TextSecurePreferences {
       return;
     }
 
+    Intent registrationIntent = SignalStore.account().isLinkedDevice() ? RegistrationActivity.newIntentForReLinkDevice(context)
+                                                                       : RegistrationActivity.newIntentForReRegistration(context);
+
     PendingIntent reRegistrationIntent = PendingIntent.getActivity(context,
                                                                    0,
-                                                                   RegistrationActivity.newIntentForReRegistration(context),
+                                                                   registrationIntent,
                                                                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntentFlags.immutable());
+
     final NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
         .setSmallIcon(R.drawable.ic_signal_logo_large)
         .setContentText(context.getString(R.string.LoggedOutNotification_you_have_been_logged_out))

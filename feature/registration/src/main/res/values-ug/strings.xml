@@ -44,6 +44,12 @@
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">بىر دۆلەتنى تاللاڭ</string>
     <string name="RegistrationActivity_phone_number_description">تېلېفون نومۇرىڭىز</string>
+    <!-- Error shown beneath the phone number field when the entered number is not valid -->
+    <string name="RegistrationActivity_not_a_valid_phone_number">Not a valid phone number</string>
+    <!-- Dialog title shown when the entered phone number is rejected as invalid -->
+    <string name="RegistrationActivity_invalid_phone_number">Invalid phone number</string>
+    <!-- Dialog body shown when the entered phone number is rejected as invalid -->
+    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">The number you entered doesn\'t appear to be valid. Please check the country code and phone number and try again.</string>
     <string name="RegistrationActivity_next">كېيىنكى</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">تۆۋەندىكى تېلېفون نومۇرى توغرىمۇ؟</string>
@@ -91,6 +97,8 @@
     <string name="VerificationCodeScreen__network_error">ئۇلىنىش مەغلۇپ بولدى. تور ئۇلىنىشىنى تەكشۈرۈپ قايتا سىناڭ.</string>
     <!-- Snackbar shown when rate limited. Placeholder is the retry duration -->
     <string name="VerificationCodeScreen__too_many_attempts_try_again_in_s">زىيادە كۆپ قېتىم سىنىدىڭىز. %1$s تىن كېيىن قايتا سىناڭ.</string>
+    <!-- Snackbar shown when rate limited without a specific retry duration -->
+    <string name="VerificationCodeScreen__too_many_attempts">زىيادە كۆپ قېتىم سىنىدىڭىز. كېيىن قايتا سىناڭ.</string>
     <!-- Snackbar shown for generic/unknown errors -->
     <string name="VerificationCodeScreen__an_unexpected_error_occurred">كۈتۈلمىگەن خاتالىق كۆرۈلدى. قايتا سىناڭ.</string>
     <!-- Snackbar shown when we are unable to send an SMS to the user\'s number -->
@@ -101,6 +109,20 @@
     <string name="VerificationCodeScreen__registration_error">تىزىملىتىش مەغلۇپ بولدى. قايتا سىناڭ.</string>
     <!-- Button text for having trouble with verification -->
     <string name="VerificationCodeScreen__having_trouble">قىيىنچىلىققا يولۇقتىڭىزمۇ؟</string>
+    <!-- Title of the bottom sheet shown when the user is having trouble entering their verification code -->
+    <string name="VerificationCodeScreen__support_bottom_sheet_title">تىزىملىتىشتا قىيىنچىلىققا يولۇقتىڭىزمۇ؟</string>
+    <!-- Bulleted list of suggestions shown in the having trouble bottom sheet -->
+    <string name="VerificationCodeScreen__support_bottom_sheet_body_suggestions">• SMS ياكى تېلېفون قوبۇل قىلىش ئۈچۈن تېلېفونىڭىزدا كۆچمە تور سىگنالى بار بولۇشىغا كاپالەتلىك قىلىڭ\n • تېلېفون نومۇرىڭىزنىڭ تېلېفون قوبۇل قىلالايدىغانلىقىنى جەزملەشتۈرۈڭ\n • تېلېفون نومۇرىڭىزنى توغرا كىرگۈزگەنلىكىڭىزنى جەزملەشتۈرۈڭ.</string>
+    <!-- A call to action for a user having trouble entering the verification code to seek further help. The first placeholder is VerificationCodeScreen__support_bottom_sheet_cta_troubleshooting_steps_substring, the second is VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring -->
+    <string name="VerificationCodeScreen__support_bottom_sheet_body_call_to_action">تېخىمۇ كۆپ ئۇچۇرلار ئۈچۈن %1$s ياكى %2$s گە ئەگىشىڭ</string>
+    <!-- Clickable substring linking to troubleshooting steps within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
+    <string name="VerificationCodeScreen__support_bottom_sheet_cta_troubleshooting_steps_substring">تۆۋەندىكى كاشىلا ھەل قىلىش باسقۇچلىرى</string>
+    <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
+    <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">ياردەم خادىمى بىلەن ئالاقىلىشىش</string>
+    <!-- Email subject used when contacting support from the verification code screen -->
+  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_subject" translatable="false">Signal Registration - Verification Code for Android</string> -->
+    <!-- URL opened for troubleshooting steps from the verification code screen -->
+  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__support_center_url" translatable="false">https://support.signal.org/</string> -->
 
     <!-- RestoreWelcomeBottomSheet -->
     <!-- Row title for restore/transfer using a previous registered phone/device -->
@@ -139,8 +161,6 @@
     <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">كونا تېلېفونىڭىزدىن</string>
     <!-- Subtitle for the device transfer option card -->
     <string name="ArchiveRestoreSelectionScreen__transfer_directly_from_old">كونا ئاندىرويىد ئۈسكۈنىڭىزدىن بىۋاسىتە يۆتكەڭ</string>
-    <!-- Skip button text -->
-    <string name="ArchiveRestoreSelectionScreen__skip">ئاتلا</string>
     <!-- Title for the skip restore confirmation dialog -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_dialog_title">ئەسلىگە كەلتۈرۈشتى ئاتلامسىز؟</string>
     <!-- Warning body text for the skip restore confirmation dialog -->
@@ -183,6 +203,8 @@
     <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">سىزنىڭ ئۈسكۈنىدىكى زاپاسلاش پارولىڭىز بولسا، ھېساباتىڭىز ۋە سانلىق مەلۇماتىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن تەلەپ قىلىنىدىغان 30 خانىلىق كود.</string>
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">ئەسلىگە كەلتۈرۈش ئاچقۇچى</string>
+    <!-- Label for the backup passphrase text field -->
+    <string name="LocalBackupRestoreScreen__passphrase">Passphrase</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">بەك ئۇزۇن (%2$d/%1$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
@@ -204,6 +226,14 @@
     <string name="EnterAepScreen__invalid_recovery_key">ئىناۋەتسىز ئەسلىگە كەلتۈرۈش ئاچقۇچى</string>
     <!-- Error text when key is correct format but does not match account -->
     <string name="EnterAepScreen__incorrect_recovery_key">ناتوغرا ئەسلىگە كەلتۈرۈش ئاچقۇچى</string>
+    <!-- Button that prompts the device password manager to fill in the recovery key -->
+    <string name="EnterAepScreen__fill_from_password_manager">پارول باشقۇرغۇچى ئارقىلىق توشقۇزۇش</string>
+    <!-- Title of the dialog warning that the backup being restored was created with a different account -->
+    <string name="EnterAepScreen__restore_to_new_account">Restore to new account?</string>
+    <!-- Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
+    <string name="EnterAepScreen__restore_to_new_account_body">The backup you are restoring was created using a different Signal account. You can restore this backup to a new account, but you will no longer be a member of any groups that were restored.</string>
+    <!-- Confirm button label for the restore to new account dialog -->
+    <string name="EnterAepScreen__restore">Restore</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">ئەسلىگە كەلتۈرۈشكە تەييارلىنىۋاتىدۇ…</string>
     <!-- Title shown while restore is in progress -->
@@ -220,6 +250,12 @@
     <string name="LocalBackupRestoreScreen__restore_failed_description">زاپىسىڭىزنى ئەسلىگە كەلتۈرۈۋاتقاندا بىر خاتالىق كۆرۈلدى. قايتا سىناڭ.</string>
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">قايتا سىناڭ</string>
+    <!-- Title shown when the entered passphrase cannot decrypt the selected backup -->
+    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Incorrect passphrase</string>
+    <!-- Title shown when the entered recovery key cannot decrypt the selected backup -->
+    <string name="LocalBackupRestoreScreen__incorrect_recovery_key">Incorrect recovery key</string>
+    <!-- Description shown when the entered passphrase or recovery key cannot decrypt the selected backup -->
+    <string name="LocalBackupRestoreScreen__incorrect_credential_description">The credential you entered doesn\'t match this backup. Please check it and try again.</string>
     <!-- Button to link an existing Signal account to this device -->
     <string name="WelcomeScreen__link_your_account">ھېساباتىڭىزنى ئۇلاڭ</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
@@ -268,6 +304,8 @@
     <string name="RemoteRestoreScreen__your_backup_is_not_recoverable">زاپىسىڭىزنى ئەسلىگە كەلتۈرۈۋاتقاندا بىر خاتالىق كۆرۈلدى. زاپىسىڭىزنى ئەسلىگە كەلتۈرگىلى بولمايدۇ. ياردەمچى خادىم بىلەن ئالاقىلىشىپ ياردەم سوراڭ.</string>
     <!-- Button to contact support -->
     <string name="RemoteRestoreScreen__contact_support">ياردەم خادىمى بىلەن ئالاقىلىشىش</string>
+    <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. Also used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_subject" translatable="false">Signal Android Backup restore permanent failure</string> -->
     <!-- Shown while downloading the backup from the server -->
     <string name="RemoteRestoreScreen__downloading_backup">زاپاس مەلۇماتنى چۈشۈرۈۋاتىدۇ…</string>
     <!-- Shown while restoring messages from the downloaded backup -->
@@ -332,6 +370,24 @@
     <string name="PinCreationScreen__pin_at_least_4_characters">PIN ئەڭ ئاز 4 ھەرپلەردىن تۈزۈلۈشى كېرەك</string>
     <!-- Hint shown below the create PIN field when the user is confirming their new Signal PIN. -->
     <string name="PinCreationScreen__reenter_pin">PIN نى قايتا كىرگۈزۈڭ</string>
+    <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
+    <string name="PinCreationScreen__pins_dont_match">PIN ماس كەلمىدى. قايتا سىناڭ.</string>
+    <!-- Overflow menu item that opens a help article about Signal PINs. -->
+    <string name="PinCreationScreen__learn_more_about_pins">PIN ھەققىدە تېخىمۇ كۆپ بىلىم</string>
+    <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
+    <string name="PinCreationScreen__warning">ئاگاھلاندۇرۇش</string>
+    <!-- Warning shown in the dialog confirming that the user wants to disable their Signal PIN. -->
+    <string name="PinCreationScreen__disable_pin_warning">ئەگەر PIN نى چەكلىسىڭىز، Signal غا قايتا تىزىملاتقاندا ئۆزىڭىز زاپاسلاپ ۋە ئەسلىگە كەلتۈرمىگۈچە ھەممە سانلىق مەلۇماتلىرىڭىز يوقىلىدۇ، PIN چەكلەنسە تىزىملىتىش قۇلۇپىنى ئاچالمايسىز.</string>
+    <!-- Overflow menu item and dialog button that disables the Signal PIN. -->
+    <string name="PinCreationScreen__disable_pin">PIN چەكلە</string>
+    <!-- Labels the button that cancels disabling the Signal PIN. -->
+    <string name="PinCreationScreen__cancel">بىكار قىلىش</string>
+    <!-- Dialog message shown when the PIN could not be created because of a problem reaching the service. -->
+    <string name="PinCreationScreen__service_error">ئۈسكۈنىگە ئۇلىنىشتا خاتالىق كۆرۈلدى.</string>
+    <!-- Dialog message shown when the PIN could not be created because of a network error. -->
+    <string name="PinCreationScreen__network_error">تور خاتالىقىغا يولۇقتى.</string>
+    <!-- Dialog message shown when the PIN could not be created because of a network error, and the user may retry after a delay. Placeholder is the wait duration. -->
+    <string name="PinCreationScreen__network_error_try_again_in_s">تور خاتالىقىغا يولۇقتى. %1$s تىن كېيىن قايتا سىناڭ.</string>
 
     <!-- PIN entry screen title when registration lock is active. -->
     <string name="PinEntryScreen__registration_lock">تىزىملىتىش قۇلۇپى</string>
@@ -351,6 +407,20 @@
     <string name="PinEntryScreen__skip">ئاتلا</string>
     <!-- Labels the button to submit the PIN. -->
     <string name="PinEntryScreen__continue">داۋاملاشتۇر</string>
+    <!-- Title of the dialog shown when the user taps skip on the PIN entry screen. -->
+    <string name="PinEntryScreen__skip_pin_entry">PIN كىرگۈزۈشتىن ئاتلامسىز؟</string>
+    <!-- Body of the dialog shown when the user taps skip on the PIN entry screen, explaining the consequences of creating a new PIN. -->
+    <string name="PinEntryScreen__skip_pin_entry_message">PIN نومۇرىنى ئۇنتۇپ قالغان بولسىڭىز، يېڭىدىن بىرنى قۇرسىڭىز بولىدۇ. ھېساباتىڭىزنى تىزىملىتالايسىز ۋە ئىشلىتەلەيسىز، ئەمما ساقلانغان بەزى تەڭشەكلەرنى يوقىتىسىز، مەسىلەن ئارخىپ ئۇچۇرىڭىز دىگەندەكلەر.</string>
+    <!-- Labels the button in the skip dialog that takes the user to create a new PIN. -->
+    <string name="PinEntryScreen__create_new_pin">يېڭى PIN قۇرۇڭ</string>
+    <!-- Labels the button in the skip dialog that dismisses it. -->
+    <string name="PinEntryScreen__cancel">بىكار قىلىش</string>
+    <!-- Body of the dialog shown when no data could be found to restore from the user\'s PIN, prompting them to create a new PIN. -->
+    <string name="PinEntryScreen__no_data_could_be_found">ھېساباتىڭىزنى ئەسلىگە كەلتۈرۈدىغان ھېچقانداق سانلىق-مەلۇمات تېپىلمىدى. يېڭى PIN نومۇر قۇرۇڭ.</string>
+    <!-- Labels the button in the no-data-to-restore dialog that lets the user contact support. -->
+    <string name="PinEntryScreen__contact_support">ياردەم خادىمى بىلەن ئالاقىلىشىش</string>
+    <!-- Subject line of the support email composed when the user contacts support about PIN entry. Also used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_subject" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
 
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">ئۇقتۇرۇشقا رۇخسەت</string>
@@ -367,12 +437,24 @@
     <string name="MessageSyncScreen__this_may_take_a_few_minutes">بۇنىڭغا بىر قانچە مىنۇت كېتىشى مۇمكىن…</string>
     <!-- Progress label shown under the sync progress bar. %1$s is the amount downloaded so far (e.g. "1 MB"), %2$s is the total size to download (e.g. "3.2 MB") -->
     <string name="MessageSyncScreen__downloading_s_of_s">%2$s نىڭ %1$s تى چۈشۈۋاتىدۇ</string>
+    <!-- Progress label shown under the sync progress bar before the download size is known -->
+    <string name="MessageSyncScreen__preparing">تەييارلىنىۋاتىدۇ…</string>
+    <!-- Progress label shown under the sync progress bar while messages are being imported and the rest of the account is restored, after the download finishes -->
+    <string name="MessageSyncScreen__finishing">تاماملاۋاتىدۇ…</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
     <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">ئۇچۇرلار ۋە پاراڭ مەزمۇنلىرى، ماس قەدەملىك جەرياننى ئۆز ئىچىگە ئالغان ئاخىرىغىچە شىفىرلىق مەخپىيلەشتۈرۈش ئارقىلىق قوغدىلىدۇ.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
     <string name="MessageSyncScreen__learn_more">تەپسىلاتى</string>
     <!-- Button label that cancels the in-progress message sync -->
     <string name="MessageSyncScreen__cancel">بىكار قىلىش</string>
+    <!-- Title of the dialog shown when restoring messages from the other device fails -->
+    <string name="MessageSyncScreen__couldnt_restore_messages">ئۇچۇرلارنى ئەسلىگە كەلتۈرۈگىلى بولمىدى</string>
+    <!-- Body of the dialog shown when restoring messages fails, offering to retry or continue without message history -->
+    <string name="MessageSyncScreen__your_messages_couldnt_be_transferred">ئۇچۇرلىرىڭىزنى باشقا ئۈسكۈنىڭىزدىن يۆتكىگىلى بولمىدى. قايتا سىناپ بېقىڭ ياكى ئۇچۇر تارىخىڭىز يوق ھالەتتە داۋاملاشتۇرۇڭ.</string>
+    <!-- Button that retries the failed message restore -->
+    <string name="MessageSyncScreen__try_again">قايتا سىناڭ</string>
+    <!-- Button that finishes linking without restoring message history after a failed restore -->
+    <string name="MessageSyncScreen__continue_without_messages">ئۇچۇرلار يوق ھالەتتە داۋاملاشتۇرۇش</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
     <string name="LinkAccountScreen__scan_this_code_to_link_your_account">بۇ كودنى سكاننېرلاپ ھېساباتىڭىزنى ئۇلاڭ</string>
@@ -382,8 +464,6 @@
     <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">باش رەسىمىڭىزنى چېكىپ Signal تەڭشەكلىرىنى ئېچىڭ</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
     <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">«ئۇلانغان ئۈسكۈنىلەر» ۋە «يېڭى ئۈسكۈنىنى ئۇلاش» نى چېكىڭ</string>
-    <!-- Step in the link-account instructions: aim the primary device\'s camera at the QR code displayed on this screen -->
-    <string name="LinkAccountScreen__position_the_camera_over_this_qr_code">كامېرنى بۇ QR كودىغا قارىتىپ توغىرلاڭ</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
     <string name="LinkAccountScreen__get_help_with_these_steps">بۇ قەدەم-باسقۇچلار ئارقىلىق ياردەمگە ئېرىشىڭ</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
@@ -396,6 +476,22 @@
     <string name="LinkAccountScreen__dont_have_signal_on_another_device">باشقا ئۈسكۈنىڭىزدە Signal يوقمۇ؟</string>
     <!-- Inline link in the link-account screen footer that takes the user to the new-account creation flow instead of linking -->
     <string name="LinkAccountScreen__create_account">ھېسابات قۇرۇش</string>
+    <!-- Button to retry generating the QR code after it failed to load -->
+    <string name="LinkAccountScreen__retry">قايتا سىنا</string>
+    <!-- Progress dialog message shown while this device is being registered as a linked device -->
+    <string name="LinkAccountScreen__linking_device">ئۈسكۈنىنى باغلاۋاتىدۇ…</string>
+    <!-- Progress dialog message shown while waiting for the primary device to prepare the message backup -->
+    <string name="LinkAccountScreen__waiting_for_your_other_device">باشقا ئۈسكۈنىڭىزنى ساقلاۋاتىدۇ…</string>
+    <!-- Error dialog message shown when linking this device fails -->
+    <string name="LinkAccountScreen__error_linking_device">بۇ ئۈسكۈنىنى ئۇلاۋاتقاندا بىر خاتالىق كۆرۈلدى</string>
+    <!-- Title of the confirmation dialog shown when the scanned QR code belongs to a different account than the one this device is currently linked to -->
+    <string name="LinkAccountScreen__delete_app_data_question">ئەپ سانلىق-مەلۇماتلىرىنى ئۆچۈرەمسىز؟</string>
+    <!-- Body of the confirmation dialog warning that continuing will erase all local data before relinking to a different account -->
+    <string name="LinkAccountScreen__you_are_attempting_to_link_a_different_account">سىز باشقا بىر Signal ھېساباتىنى ئۇلاشقا ئۇرۇنىۋاتىسىز. ئەگەر داۋاملاشتۇرسىڭىز، ھازىرقى بۇ ھېساباتتىكى بارلىق Signal سانلىق-مەلۇماتلىرى ئۆچۈرۈلىدۇ.</string>
+    <!-- Destructive confirmation button that deletes all local data and restarts the app so it can be linked to a different account -->
+    <string name="LinkAccountScreen__delete_and_restart">ئۆچۈرۈش &amp; قايتا قوزغىتىش</string>
+    <!-- Content description for the button that closes the maximized QR code overlay -->
+    <string name="LinkAccountScreen__close_qr_code">QR كودىنى ئېتىۋېتىش</string>
 
     <!-- Device transfer: Instructions screen -->
     <string name="DeviceTransferInstructions__transfer_your_account">ھېساباتنى يۆتكەش</string>
@@ -479,4 +575,8 @@
     <string name="PhoneNumberDiscoverabilityScreen__save">ساقلاش</string>
     <!-- Content description for the back arrow on the discoverability picker. -->
     <string name="PhoneNumberDiscoverabilityScreen__back">قايت</string>
+    <!-- Error message shown when the captcha fails to load. -->
+    <string name="CaptchaScreen__failed_to_load_captcha">ماشىنا ئادەم ئەمەسلىكىنى تەكشۈرۈدىغان «captcha» ئىقتىدارىنى يۈكلەش مەغلۇب بولدى</string>
+    <!-- Button to cancel out of the captcha screen. -->
+    <string name="CaptchaScreen__cancel">بىكار قىلىش</string>
 </resources>

@@ -313,7 +313,7 @@ object SvrRepository {
     Log.i(TAG, "[onRegistrationComplete] Starting", true)
     operationLock.withLock {
       if (masterKey == null && userPin != null) {
-        error("If masterKey is present, pin must also be present!")
+        error("If PIN is present, MasterKey must also be present!")
       }
 
       if (masterKey != null && userPin != null) {

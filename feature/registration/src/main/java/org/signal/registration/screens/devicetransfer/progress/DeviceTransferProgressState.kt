@@ -5,15 +5,11 @@
 
 package org.signal.registration.screens.devicetransfer.progress
 
-import org.signal.registration.util.DebugLoggable
-import org.signal.registration.util.DebugLoggableModel
-
 data class DeviceTransferProgressState(
   val messageCount: Long = 0,
   val status: Status = Status.RECEIVING,
-  val errorReason: ErrorReason? = null,
-  val oneTimeEvent: OneTimeEvent? = null
-) : DebugLoggableModel() {
+  val errorReason: ErrorReason? = null
+) {
 
   enum class Status {
     RECEIVING,
@@ -26,9 +22,5 @@ data class DeviceTransferProgressState(
     VERSION_DOWNGRADE,
     FOREIGN_KEY,
     UNKNOWN
-  }
-
-  sealed interface OneTimeEvent : DebugLoggable {
-    data object TransferCanceled : OneTimeEvent
   }
 }

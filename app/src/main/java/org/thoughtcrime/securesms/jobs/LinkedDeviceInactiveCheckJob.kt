@@ -6,15 +6,15 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.Base64
+import org.signal.core.util.crypto.DeviceName
+import org.signal.core.util.crypto.DeviceNameCipher
 import org.signal.core.util.logging.Log
 import org.signal.core.util.roundedString
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.devicelist.protos.DeviceName
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.LeastActiveLinkedDevice
-import org.thoughtcrime.securesms.registration.secondary.DeviceNameCipher
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.io.IOException
 import kotlin.time.Duration.Companion.days

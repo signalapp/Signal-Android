@@ -61,7 +61,7 @@ class VerifyBackupKeyActivity : PassphraseRequiredActivity() {
             // Matches existing behavior: show a generic "authentication required" toast.
             Toast.makeText(
               context,
-              R.string.RemoteBackupsSettingsFragment__authenticatino_required,
+              R.string.RemoteBackupsSettingsFragment__authentication_required,
               Toast.LENGTH_SHORT
             ).show()
           }

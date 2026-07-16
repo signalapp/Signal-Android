@@ -38,7 +38,7 @@ private fun <T> rememberRecipientField(recipientId: RecipientId, initialData: Re
   var recipientAndCounter by remember(recipientId) { mutableStateOf(initialData to 0L) }
 
   LaunchedEffect(recipientId) {
-    withContext(SignalDispatchers.IO) {
+    withContext(SignalDispatchers.Default) {
       Recipient.observable(recipientId)
         .asFlow()
         .collect {

@@ -78,9 +78,9 @@ fun TransferAccountNavHost(
     entries = entries,
     onBack = { viewModel.goBack() },
     modifier = modifier,
-    transitionSpec = TransitionSpecs.HorizontalSlide.transitionSpec,
-    popTransitionSpec = TransitionSpecs.HorizontalSlide.popTransitionSpec,
-    predictivePopTransitionSpec = TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec
+    transitionSpec = { TransitionSpecs.HorizontalSlide.transitionSpec },
+    popTransitionSpec = { TransitionSpecs.HorizontalSlide.popTransitionSpec },
+    predictivePopTransitionSpec = { TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec }
   )
 }
 

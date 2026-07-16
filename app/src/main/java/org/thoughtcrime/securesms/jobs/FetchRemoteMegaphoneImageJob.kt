@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.jobs
 import okhttp3.ResponseBody
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.AutoDownloadEmojiConstraint
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.s3.S3
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import java.io.IOException
@@ -44,7 +44,7 @@ class FetchRemoteMegaphoneImageJob(parameters: Parameters, private val uuid: Str
       S3.getObject(imageUrl).use { response ->
         val body: ResponseBody? = response.body
         if (body != null) {
-          val uri = BlobProvider.getInstance()
+          val uri = AppDependencies.blobs
             .forData(body.byteStream(), body.contentLength())
             .createForMultipleSessionsOnDisk(context)
 

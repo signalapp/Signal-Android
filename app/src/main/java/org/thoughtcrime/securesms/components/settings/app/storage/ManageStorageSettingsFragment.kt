@@ -118,6 +118,8 @@ class ManageStorageSettingsFragment : ComposeFragment() {
                 navController.navigate("paid-tier-pending")
               } else if (state.onDeviceStorageOptimizationState == ManageStorageSettingsViewModel.OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER) {
                 UpgradeToEnableOptimizedStorageSheet().show(parentFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+              } else if (enabled && state.localBackupsEnabled) {
+                navController.navigate("confirm-optimize-with-local-backup")
               } else {
                 viewModel.setOptimizeStorage(enabled)
               }
@@ -234,6 +236,17 @@ class ManageStorageSettingsFragment : ComposeFragment() {
                 viewModel.setChatLengthLimit(newLengthLimit)
               }
             },
+            onDismiss = { navController.popBackStack() }
+          )
+        }
+
+        dialog("confirm-optimize-with-local-backup") {
+          Dialogs.SimpleAlertDialog(
+            title = stringResource(id = R.string.ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup),
+            body = stringResource(id = R.string.ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload),
+            confirm = stringResource(id = R.string.ManageStorageSettingsFragment__turn_on),
+            dismiss = stringResource(id = android.R.string.cancel),
+            onConfirm = { viewModel.setOptimizeStorage(true) },
             onDismiss = { navController.popBackStack() }
           )
         }

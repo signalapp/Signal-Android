@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -28,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -46,6 +48,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentication
 import org.signal.core.ui.R as CoreUiR
 
 enum class MessageBackupsKeyEducationScreenMode {
@@ -80,6 +83,14 @@ fun MessageBackupsKeyEducationScreen(
   mode: MessageBackupsKeyEducationScreenMode = MessageBackupsKeyEducationScreenMode.DEFAULT
 ) {
   val scrollState = rememberScrollState()
+  val context = LocalContext.current
+  val biometrics = rememberBiometricsAuthentication(
+    promptTitle = stringResource(R.string.RemoteBackupsSettingsFragment__unlock_to_view_backup_key),
+    educationSheetMessage = stringResource(R.string.RemoteBackupsSettingsFragment__to_view_your_key),
+    onAuthenticationFailed = {
+      Toast.makeText(context, R.string.RemoteBackupsSettingsFragment__authentication_required, Toast.LENGTH_SHORT).show()
+    }
+  )
 
   Scaffolds.Settings(
     title = "",
@@ -139,7 +150,7 @@ fun MessageBackupsKeyEducationScreen(
           .padding(top = 16.dp, bottom = 24.dp)
       ) {
         Buttons.LargeTonal(
-          onClick = onNextClick,
+          onClick = { biometrics.withBiometricsAuthentication(onNextClick) },
           modifier = Modifier.align(Alignment.Center)
         ) {
           Text(

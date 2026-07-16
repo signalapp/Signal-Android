@@ -12,9 +12,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.AbstractComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.ByteSize
 import org.signal.core.util.ThrottledDebouncer
@@ -25,6 +30,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.components.RecyclerViewParentTransitionController
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.events.PartProgressEvent
+import org.thoughtcrime.securesms.jobs.AttachmentBackfill
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.util.UUID
@@ -47,6 +53,11 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   private var renderState by mutableStateOf<TransferControlsRenderState>(TransferControlsRenderState.Gone)
 
   private val progressUpdateDebouncer = ThrottledDebouncer(100)
+
+  private var previousRenderState: TransferControlsRenderState = TransferControlsRenderState.Gone
+
+  /** Active while view is attached */
+  private var renderScope: CoroutineScope? = null
 
   /** Per-instance id so a single recycled view can be isolated in logcat when [VERBOSE_DEVELOPMENT_LOGGING] is on. */
   private val viewId by lazy { UUID.randomUUID().toString().take(8) }
@@ -72,39 +83,56 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   override fun onAttachedToWindow() {
     super.onAttachedToWindow()
     if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this)
+
+    renderScope = CoroutineScope(Dispatchers.Main.immediate).also { scope ->
+      scope.launch {
+        AttachmentBackfill.awaiting.collect { renderState() }
+      }
+    }
   }
 
   override fun onDetachedFromWindow() {
     super.onDetachedFromWindow()
     EventBus.getDefault().unregister(this)
+    renderScope?.cancel()
+    renderScope = null
   }
 
   fun isGone(): Boolean {
-    return TransferControls.deriveRenderState(state) is TransferControlsRenderState.Gone
+    val state = TransferControls.deriveRenderState(state = state, awaitingAttachmentIds = state.slides.attachmentIdsAwaitingBackfill())
+    return state is TransferControlsRenderState.Gone
   }
 
   private fun updateState(stateFactory: (TransferControlViewState) -> TransferControlViewState) {
-    val newState = stateFactory(state)
+    state = stateFactory(state)
+    renderState()
+  }
 
-    val oldRender = TransferControls.deriveRenderState(state)
-    val newRender = TransferControls.deriveRenderState(newState)
-    state = newState
+  /**
+   * Derives and applies the render state by combining [state] with the current awaiting attachments. Both the state and
+   * awaiting paths change events funnel through here.
+   */
+  private fun renderState() {
+    val oldRenderState = previousRenderState
+    val newRenderState = TransferControls.deriveRenderState(state, state.slides.attachmentIdsAwaitingBackfill())
+    previousRenderState = newRenderState
 
-    if (oldRender == newRender) {
+    if (oldRenderState == newRenderState) {
       return
     }
 
-    verboseLog { "render $oldRender -> $newRender slides=[${slidesAsLogString(newState.slides)}]" }
+    verboseLog { "render $oldRenderState -> $newRenderState slides=[${slidesAsLogString(state.slides)}]" }
 
-    if (oldRender is TransferControlsRenderState.InProgress && oldRender.isProgressOnlyDifference(newRender)) {
+    // Only throttle noisy progress changes
+    if (oldRenderState is TransferControlsRenderState.InProgress && oldRenderState.isProgressOnlyDifference(newRenderState)) {
       progressUpdateDebouncer.publish {
-        renderState = newRender
+        renderState = newRenderState
         visibility = VISIBLE
       }
     } else {
       progressUpdateDebouncer.clear()
-      renderState = newRender
-      if (newRender !is TransferControlsRenderState.Gone) {
+      renderState = newRenderState
+      if (newRenderState !is TransferControlsRenderState.Gone) {
         visibility = VISIBLE
       }
     }
@@ -133,6 +161,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
   fun setSlides(slides: List<Slide>) {
     require(slides.isNotEmpty()) { "Must provide at least one slide." }
+    clearResolvedBackfills(slides)
     updateState { state ->
       val isNewSlideSet = !isUpdateToExistingSet(state, slides)
       val networkProgress: MutableMap<Attachment, Progress> = if (isNewSlideSet) HashMap() else state.networkProgress.toMutableMap()
@@ -201,10 +230,6 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     updateState { it.copy(isVisible = isVisible) }
   }
 
-  fun setAwaitingPrimaryResponse(awaiting: Boolean) {
-    updateState { it.copy(awaitingPrimaryResponse = awaiting) }
-  }
-
   override fun setFocusable(focusable: Boolean) {
     super.setFocusable(false)
     updateState { it.copy(isFocusable = focusable) }
@@ -213,6 +238,22 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   override fun setClickable(clickable: Boolean) {
     super.setClickable(false)
     updateState { it.copy(isClickable = clickable) }
+  }
+
+  private fun List<Slide>.attachmentIdsAwaitingBackfill(): Set<AttachmentId> {
+    return this
+      .mapNotNullTo(HashSet()) { (it.asAttachment() as? DatabaseAttachment)?.attachmentId }
+      .apply { retainAll(AttachmentBackfill.awaiting.value) }
+  }
+
+  /** Tells [AttachmentBackfill] to stop awaiting any backfilled attachment that this view now sees as DONE. */
+  private fun clearResolvedBackfills(slides: List<Slide>) {
+    for (slide in slides) {
+      val attachment = slide.asAttachment() as? DatabaseAttachment ?: continue
+      if (attachment.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE && attachment.attachmentId in AttachmentBackfill.awaiting.value) {
+        AttachmentBackfill.onAttachmentTerminal(attachment.attachmentId, attachment.mmsId)
+      }
+    }
   }
 
   private fun MutableMap<Attachment, Progress>.applyProgress(attachment: Attachment, update: Progress) {

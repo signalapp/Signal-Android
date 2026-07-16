@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.DeletionState
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -44,20 +45,26 @@ class BackupsSettingsViewModel : ViewModel() {
           it.copy(
             backupState = enabledState,
             lastBackupAt = SignalStore.backup.lastBackupTime.milliseconds,
-            showBackupTierInternalOverride = Environment.IS_STAGING,
+            showBackupTierInternalOverride = Environment.IS_STAGING && SignalStore.account.isPrimaryDevice,
             backupTierInternalOverride = SignalStore.backup.backupTierInternalOverride
           )
         }
       }
     }
 
-    viewModelScope.launch(Dispatchers.IO) {
+    viewModelScope.launch(Dispatchers.Default) {
       SignalStore.backup.lastBackupTimeFlow
         .collect { lastBackupTime ->
           internalStateFlow.update {
             it.copy(lastBackupAt = lastBackupTime.milliseconds)
           }
         }
+    }
+
+    if (SignalStore.account.isLinkedDevice) {
+      viewModelScope.launch(Dispatchers.IO) {
+        BackupRepository.refreshBackupFileTimestamp()
+      }
     }
   }
 

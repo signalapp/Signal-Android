@@ -6,8 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-
+import org.signal.core.util.Util;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.NoSessionException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.GroupReceiptTable;
@@ -33,7 +34,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -189,7 +189,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
       PushGroupSendJob.processGroupMessageResults(context, messageId, -1, null, message, results, targets, skipped, existingNetworkFailures, existingIdentityMismatches);
 
-    } catch (UntrustedIdentityException | UndeliverableMessageException e) {
+    } catch (UntrustedIdentityException | UndeliverableMessageException | NoSessionException e) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), e);
       database.markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
@@ -202,7 +202,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
   }
 
   private List<SendMessageResult> deliver(@NonNull OutgoingMessage message, @NonNull List<Recipient> destinations)
-      throws IOException, UntrustedIdentityException, UndeliverableMessageException
+      throws IOException, UntrustedIdentityException, UndeliverableMessageException, NoSessionException
   {
     try {
       List<Attachment>                    attachments        = message.getAttachments().stream().filter(attachment -> !attachment.isSticker()).collect(Collectors.toList());

@@ -44,7 +44,7 @@ class BackupKeyDisplayViewModel : ViewModel(), BackupKeyCredentialManagerHandler
     viewModelScope.launch {
       internalUiState.update { it.copy(rotationState = BackupKeyRotationState.GENERATING_KEY) }
 
-      val stagedKeyRotations = withContext(SignalDispatchers.IO) {
+      val stagedKeyRotations = withContext(SignalDispatchers.Default) {
         BackupRepository.stageBackupKeyRotations()
       }
 

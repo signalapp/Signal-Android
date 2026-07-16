@@ -151,6 +151,8 @@ internal class Svr2Socket(
     override fun onFailure(webSocket: WebSocket, t: Throwable, response: OkHttpResponse?) {
       val exception = if (t.message?.contains("404") == true) {
         NonSuccessfulResponseCodeException(404)
+      } else if (t.message?.contains("429") == true) {
+        NonSuccessfulResponseCodeException(429)
       } else {
         IOException(t)
       }

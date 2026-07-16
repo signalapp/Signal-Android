@@ -111,15 +111,7 @@ object InAppPaymentsRepository {
                 .cancellation(
                   InAppPaymentData.Cancellation(
                     reason = if (chargeFailure != null) InAppPaymentData.Cancellation.Reason.PAST_DUE else InAppPaymentData.Cancellation.Reason.CANCELED,
-                    chargeFailure = chargeFailure?.let {
-                      InAppPaymentData.ChargeFailure(
-                        code = it.code,
-                        message = it.message,
-                        outcomeType = it.outcomeType,
-                        outcomeNetworkReason = it.outcomeNetworkReason ?: "",
-                        outcomeNetworkStatus = it.outcomeNetworkStatus
-                      )
-                    }
+                    chargeFailure = chargeFailure?.toInAppPaymentDataChargeFailure()
                   )
                 )
                 .build()

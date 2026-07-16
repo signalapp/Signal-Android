@@ -12,12 +12,12 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
-import org.signal.registration.screens.EventDrivenViewModel
 import org.signal.registration.screens.util.navigateTo
 
 /**
@@ -97,8 +97,8 @@ class CreateProfileViewModel(
         stateEmitter(state.copy(isSubmitting = true))
         submitProfile(state, parentEventEmitter, repository, stateEmitter)
       }
-      CreateProfileScreenEvents.ConsumeOneTimeEvent -> {
-        stateEmitter(state.copy(oneTimeEvent = null))
+      CreateProfileScreenEvents.UploadFailedDialogDismissed -> {
+        stateEmitter(state.copy(showUploadFailedDialog = false))
       }
     }
   }
@@ -126,15 +126,15 @@ class CreateProfileViewModel(
       }
       is RequestResult.NonSuccess -> {
         Log.w(TAG, "[submitProfile] Profile save failed: ${result.error}")
-        stateEmitter(state.copy(isSubmitting = false, oneTimeEvent = CreateProfileState.OneTimeEvent.UploadFailed))
+        stateEmitter(state.copy(isSubmitting = false, showUploadFailedDialog = true))
       }
       is RequestResult.RetryableNetworkError -> {
         Log.w(TAG, "[submitProfile] Network error saving profile.", result.networkError)
-        stateEmitter(state.copy(isSubmitting = false, oneTimeEvent = CreateProfileState.OneTimeEvent.UploadFailed))
+        stateEmitter(state.copy(isSubmitting = false, showUploadFailedDialog = true))
       }
       is RequestResult.ApplicationError -> {
         Log.w(TAG, "[submitProfile] Application error saving profile.", result.cause)
-        stateEmitter(state.copy(isSubmitting = false, oneTimeEvent = CreateProfileState.OneTimeEvent.UploadFailed))
+        stateEmitter(state.copy(isSubmitting = false, showUploadFailedDialog = true))
       }
     }
   }

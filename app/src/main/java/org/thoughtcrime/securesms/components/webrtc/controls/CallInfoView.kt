@@ -319,7 +319,7 @@ private fun CallInfo(
       }
     }
 
-    if (controlAndInfoState.callLink?.credentials?.adminPassBytes != null) {
+    if (controlAndInfoState.callLink?.canModify == true) {
       item {
         if (!participantsState.inCallLobby) {
           Dividers.Default()

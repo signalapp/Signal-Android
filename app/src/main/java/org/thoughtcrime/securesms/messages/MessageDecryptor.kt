@@ -159,6 +159,8 @@ object MessageDecryptor {
       SignalTrace.endSection()
       val endTimeNanos = System.nanoTime()
 
+      val hadSealedSenderSource = Util.allAreNull(envelope.sourceServiceId, envelope.sourceServiceIdBinary)
+
       val envelope = if (cipherResult?.metadata?.sourceServiceId != null) {
         envelope.newBuilder()
           .sourceServiceIdBinary(cipherResult.metadata.sourceServiceId.toByteString())
@@ -173,7 +175,7 @@ object MessageDecryptor {
         return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
       }
 
-      if (cipherResult.metadata.sourceServiceId is PNI && (envelope.sourceServiceId == null && envelope.sourceServiceIdBinary == null)) {
+      if (cipherResult.metadata.sourceServiceId is PNI && hadSealedSenderSource) {
         Log.w(TAG, "${logPrefix(envelope)} Invalid message! Sealed sender used for a PNI.")
         return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
       }

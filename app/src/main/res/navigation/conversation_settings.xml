@@ -130,6 +130,28 @@
                 app:nullable="false" />
         </action>
 
+        <action
+            android:id="@+id/action_conversationSettingsFragment_to_memberSearchFragment"
+            app:destination="@id/memberSearchFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+
+            <argument
+                android:name="group_id"
+                app:argType="org.thoughtcrime.securesms.groups.GroupId"
+                app:nullable="false" />
+
+            <argument
+                android:name="can_add"
+                app:argType="boolean" />
+
+            <argument
+                android:name="has_group_link"
+                app:argType="boolean" />
+        </action>
+
     </fragment>
 
     <fragment
@@ -213,6 +235,16 @@
     <fragment
         android:id="@+id/memberLabelFragment"
         android:name="org.thoughtcrime.securesms.groups.memberlabel.MemberLabelFragment">
+
+        <argument
+            android:name="group_id"
+            app:argType="org.thoughtcrime.securesms.groups.GroupId"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/memberSearchFragment"
+        android:name="org.thoughtcrime.securesms.groups.ui.MemberSearchFragment">
 
         <argument
             android:name="group_id"

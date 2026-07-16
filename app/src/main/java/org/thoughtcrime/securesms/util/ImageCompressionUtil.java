@@ -16,6 +16,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
 import org.signal.core.util.ByteSize;
+import org.signal.core.util.bitmaps.BitmapDecodingException;
 import org.signal.core.util.logging.Log;
 
 import java.io.ByteArrayOutputStream;

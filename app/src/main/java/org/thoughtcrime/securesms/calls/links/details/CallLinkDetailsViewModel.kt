@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.calls.links.details
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -193,11 +192,5 @@ class CallLinkDetailsViewModel(
 
   private fun toastCouldNotDeleteCallLink() {
     _state.update { it.copy(failureSnackbar = CallLinkDetailsState.FailureSnackbar.COULD_NOT_DELETE_CALL_LINK) }
-  }
-
-  class Factory(private val callLinkRoomId: CallLinkRoomId) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(CallLinkDetailsViewModel(callLinkRoomId)) as T
-    }
   }
 }

@@ -273,62 +273,6 @@
     <!-- Unknown people row info dialog action to close the dialog -->
     <string name="CallInfoView__got_it">বুঝতে পেরেছি</string>
 
-    <!-- CameraFragment -->
-    <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">আপনার ডিভাইসে ভিডিও রেকর্ডিং সমর্থিত নয়</string>
-
-    <!-- CameraXFragment -->
-    <string name="CameraXFragment_tap_for_photo_hold_for_video">ছবির জন্য আলতো চাপুন, ভিডিও\'র জন্য ধরে রাখুন</string>
-    <!-- Accessibility content description to describe the capture button when taking an image/video -->
-    <string name="CameraXFragment_capture_description">ক্যাপচার</string>
-    <string name="CameraXFragment_change_camera_description">ক্যামেরা পরিবর্তন</string>
-    <string name="CameraXFragment_open_gallery_description">গ্যালারী খুলুন</string>
-    <!-- Button text asking for access to camera permissions -->
-    <string name="CameraXFragment_allow_access">অ্যাক্সেসের অনুমতি দিন</string>
-    <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="CameraXFragment_allow_access_camera_microphone">আপনার ক্যামেরা ও মাইক্রোফোনে অ্যাক্সেসের অনুমতি দিন</string>
-    <!-- Dialog title asking users for camera permission -->
-    <string name="CameraXFragment_allow_access_camera">আপনার ক্যামেরায় অ্যাক্সেসের অনুমতি দিন</string>
-    <!-- Dialog title asking users for microphone permission -->
-    <string name="CameraXFragment_allow_access_microphone">আপনার মাইক্রোফোনে অ্যাক্সেসের অনুমতি দিন</string>
-    <!-- Text explaining why Signal needs camera access in order to take photos -->
-    <string name="CameraXFragment_to_capture_photos_allow_camera">ছবি তোলার জন্য, ক্যামেরায় Signal-এর অ্যাক্সেসের অনুমতি দিন।</string>
-    <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
-    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">ছবি ও ভিডিও তুলতে Signal কে ক্যামেরা ব্যাবহারের অনুমতি দিন।</string>
-    <!-- Text explaining why Signal needs camera and microphone access in order to take photos and videos -->
-    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">ছবি তুলতে ও ভিডিও ধারণ করতে, ক্যামেরা ও মাইক্রোফোনে Signal-কে অ্যাক্সেসের অনুমতি দিন।</string>
-    <!-- Text explaining why Signal needs microphone access to take videos -->
-    <string name="CameraXFragment_to_capture_videos_with_sound">শব্দ সহ ভিডিও ধারণ করতে, আপনার মাইক্রোফোনে Signal-কে অ্যাক্সেসের অনুমতি দিন।</string>
-    <!-- Text explaining why Signal needs camera access to scan QR codes -->
-    <string name="CameraXFragment_to_scan_qr_code_allow_camera">QR কোড স্ক্যান করতে, ক্যামেরায় Signal-কে অ্যাক্সেসের অনুমতি দিন।</string>
-    <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
-    <string name="CameraXFragment_signal_needs_camera_access_capture_photos">ছবি তোলার জন্য ক্যামেরায় Signal-এর অ্যাক্সেস প্রয়োজন</string>
-    <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
-    <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">QR কোড স্ক্যান করার জন্য ক্যামেরায় Signal-এর অ্যাক্সেস প্রয়োজন</string>
-    <!-- Toast dialog explaining why Signal needs microphone permissions -->
-    <string name="CameraXFragment_signal_needs_microphone_access_video">ভিডিও ধারণ করতে Signal-এর মাইক্রোফোন অ্যাক্সেসের প্রয়োজন</string>
-    <!-- Dialog description that explains the steps needed to give camera permission -->
-    <string name="CameraXFragment_to_capture_photos">Signal-এ ছবি তুলতে:</string>
-    <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
-    <string name="CameraXFragment_to_capture_photos_videos">Signal-এ ছবি তুলতে এবং ভিডিও ধারণ করতে:</string>
-    <!-- Dialog description that explains the steps needed to give microphone permission -->
-    <string name="CameraXFragment_to_capture_videos">শব্দ সহ ভিডিও ধারণ করতে:</string>
-    <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
-    <string name="CameraXFragment_to_scan_qr_codes">QR কোড স্ক্যান করতে:</string>
-    <!-- Error message shown when we try to take a photo, but fail -->
-    <string name="CameraXFragment_photo_capture_failed">ছবি তোলা সফল হয়নি। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
-    <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
-    <string name="CameraXFragment_photo_processing_failed">ছবি প্রক্রিয়া করা সফল হয়নি। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
-    <!-- Accessibility label for the switch camera button -->
-    <string name="CameraXFragment_switch_camera">ক্যামেরা পরিবর্তন করুন</string>
-    <!-- Accessibility label for flash button when flash is off -->
-    <string name="CameraXFragment_flash_off">ফ্ল্যাশ বন্ধ করুন</string>
-    <!-- Accessibility label for flash button when flash is on -->
-    <string name="CameraXFragment_flash_on">ফ্ল্যাশ চালু করুন</string>
-    <!-- Accessibility label for flash button when flash is set to auto -->
-    <string name="CameraXFragment_flash_auto">স্বয়ংক্রিয় ফ্ল্যাশ</string>
-    <!-- Accessibility label for the send button in media selection -->
-    <string name="CameraXFragment_send">পাঠান</string>
 
     <string name="CameraContacts__menu_search">খুঁজুন</string>
 
@@ -530,7 +474,6 @@
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ছবি অথবা ভিডিও তুলতে Signal এর ক্যামেরা ব্যাবহারের অনুমতির প্রয়োজন, কিন্তু এর উপর স্থায়ীভাবে নিষেধাজ্ঞা আরোপ করা হয়েছে। দয়া করে অ্যাপ সেটিংসে যান, \"অনুমতি\" নির্বাচন করুন এবং \"ক্যামেরা\" এর অনুমতি সক্ষম করুন।</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">ছবি অথবা ভিডিও তুলতে Signal এর ক্যামেরা ব্যাবহারের অনুমতির প্রয়োজন।</string>
     <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">শব্দ সহ ভিডিও ধারন করতে মাইক্রোফোন অনুমতি সক্ষম করুন।</string>
-    <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">ভিডিও রেকর্ড করতে Signal এর মাইক্রোফোনের অনুমতি প্রয়োজন, তবে সেগুলি অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান এবং, \"অনুমতিগুলি\" নির্বাচন করুন এবং \"মাইক্রোফোন\" এবং \"ক্যামেরা\" সক্ষম করুন|</string>
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">ভিডিও রেকর্ড করতে Signal এর ক্যামেরা ব্যাবহারের অনুমতির প্রয়োজন।</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
@@ -672,6 +615,8 @@
     <string name="ConversationFragment__update_build">Signal আপডেট করুন</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">পুনরায় Signal-এ নিবন্ধন করুন</string>
+    <!-- Action shown in the conversation input area to allow a user to re-link this device as it is no longer linked -->
+    <string name="ConversationFragment__relink_signal">পুনরায় লিংক করুন</string>
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
     <string name="ConversationFragment__content_description_back_button">পিছনের দিকে নেভিগেট করুন।</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
@@ -721,6 +666,12 @@
     <string name="ConversationFragment_group_names">গ্রুপের নাম</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">ছবি ডাউনলোড করা যায়নি। আবার চেষ্টা করুন।</string>
+    <!-- Title of the dialog shown when re-requesting an expired attachment from your primary device fails -->
+    <string name="ConversationFragment_attachment_backfill_failed_title">মিডিয়া ডাউনলোড করা যায়নি</string>
+    <!-- Body of the dialog shown when your phone didn\'t respond to a request to re-send an expired attachment -->
+    <string name="ConversationFragment_attachment_backfill_timeout">আপনার ডিভাইস ও ফোনের ইন্টারনেট সংযোগ ঠিক আছে কি না দেখুন। আপনার ফোনে Signal খুলুন, তারপর আবার ডাউনলোড করার চেষ্টা করুন।</string>
+    <!-- Body of the dialog shown when your phone no longer has the attachment you tried to download -->
+    <string name="ConversationFragment_attachment_backfill_not_found">এই মিডিয়াটি আর আপনার ফোনে আর নেই এবং ডাউনলোড করা যাবে না।</string>
     <!-- Dialog for how to long to keep a messaged pinned for -->
     <string name="ConversationFragment__keep_pinned">…এর জন্য পিন করে রাখুন</string>
     <!-- Dialog option to keep message pin for 24 hours -->
@@ -763,7 +714,7 @@
     <!-- Detail tip 0 title -->
     <string name="SafetyTips_detail_tip0_title">Signal থেকে আসা চ্যাটের উত্তর দেবেন না</string>
     <!-- Detail tip 0 message -->
-    <string name="SafetyTips_detail_tip0_message">Signal আপনার রেজিস্ট্রেশন কোড, পিন বা পুনরুদ্ধার \'কি\'-এর জন্য আপনাকে কখনোই মেসেজ করবে না। এমন কোনো চ্যাটের উত্তর দিবেন না যেখানে Signal বা Signal সাপোর্ট-এর প্রতিনিধি হওয়ার ভান করা হয়। ক্ষতিকর ব্যক্তিরা আপনার অ্যাকাউন্ট দখলের চেষ্টা করার জন্য ভুয়া চ্যাট সেট আপ করে।</string>
+    <string name="SafetyTips_detail_tip0_message">Signal কখনোই আপনার রেজিস্ট্রেশন কোড, পিন, বা পুনরুদ্ধার \'কি\'-এর জন্য আপনাকে মেসেজ দেবে না। এমন কোনো চ্যাটের উত্তর দিবেন না যেখানে Signal বা Signal সাপোর্ট-এর প্রতিনিধি হওয়ার ভান করা হয়। ক্ষতিকর ব্যক্তিরা আপনার অ্যাকাউন্ট দখলের চেষ্টা করার জন্য ভুয়া চ্যাট সেট আপ করে।</string>
     <!-- Detail tip 1 title -->
     <string name="SafetyTips_detail_tip1_title">নাম ও ছবি রিভিউ করুন</string>
     <!-- Detail tip 1 message -->
@@ -1021,7 +972,6 @@
     <string name="CustomDefaultPreference_none">কেউ না</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">ছবি তোলার জন্য ক্যামেরার অনুমতি প্রয়োজন।</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">আপনার গ্যালারী দেখার জন্য স্টোরেজের অনুমতি প্রয়োজন।</string>
 
     <!-- DateUtils -->
@@ -1502,6 +1452,12 @@
     <string name="AddGroupDetailsFragment__remove">সরিয়ে ফেলুন</string>
     <string name="AddGroupDetailsFragment__sms_contact">এসএমএস কন্টাক্ট</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s-কে এই গ্রুপ থেকে সরিয়ে দেবেন?</string>
+    <!-- Title of the dialog shown when tapping an existing group while creating a new group, confirming the user wants to leave and discard their in-progress group -->
+    <string name="AddGroupDetailsFragment__discard_group">গ্ৰুপ বাতিল করবেন?</string>
+    <!-- Body of the dialog shown when tapping an existing group while creating a new group. Placeholder is the name of the group being navigated to. -->
+    <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">আপনি যদি \"%1$s\" গ্রুপে এগিয়ে যান, তবে আপনার পরিবর্তনগুলো আর সেভ হবে না।</string>
+    <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
+    <string name="AddGroupDetailsFragment__discard">বাতিল করুন</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">আপনি এমন একটি কন্ট্যাক্ট নির্বাচন করেছেন যেটি Signal গ্ৰুপ সমর্থন করে না, তাই এই গ্ৰুপটি এমএমএস হবে৷ কাস্টম এমএমএস গ্রুপের নাম এবং ছবি শুধু আপনি দেখতে পাবেন।</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -2931,6 +2887,8 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">\'%1$s\' এর জন্য কোনও ফলাফল পাওয়া যায়নি</string>
+    <!-- Text shown when no search results are found.   -->
+    <string name="SearchFragment_no_results_empty">কোনও ফলাফল পাওয়া যায়নি</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -3394,7 +3352,7 @@
     <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">ব্যর্থতাসমূহ</string>
     <!-- Notification channel name for internal-only app issue notifications. Only ever shown to internal users. -->
-    <string name="NotificationChannel_internal_issues">Internal Issues</string>
+    <string name="NotificationChannel_internal_issues">অভ্যন্তরীণ কোনো সমস্যা</string>
     <string name="NotificationChannel_backups">ব্যাকআপ সমূহ</string>
     <string name="NotificationChannel_locked_status">লক্ অবস্থা</string>
     <string name="NotificationChannel_app_updates">অ্যাপ আপডেট সমূহ</string>
@@ -3460,11 +3418,11 @@
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_media">মিডিয়া সংরক্ষণ করা যায়নি</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__media_offloaded_message">\"ডিভাইসের স্টোরেজ অপ্টিমাইজ করুন\" চালু থাকার কারণে এই মিডিয়াটি আপনার ডিভাইস থেকে অফলোড করা হয়েছে। আপনি একটি একটি করে আইটেম সংরক্ষণ করতে পারেন, অথবা আপনার ডিভাইসে সমস্ত মিডিয়া ডাউনলোড করতে \"ডিভাইস স্টোরেজ অপ্টিমাইজ করুন\" বন্ধ করতে পারেন।</string>
+    <string name="AttachmentSaver__media_offloaded_message">\"Signal স্টোরেজ অপ্টিমাইজ করুন\" চালু থাকার কারণে এই মিডিয়াটি আপনার ডিভাইস থেকে অফলোড করা হয়েছে। আপনি একটি একটি করে আইটেম ডাউনলোড করতে পারেন, অথবা আপনার ডিভাইসে সকল মিডিয়া ডাউনলোড করতে \"Signal স্টোরেজ অপ্টিমাইজ করুন\" বন্ধ করতে পারেন।</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_all_items">সব আইটেম সংরক্ষণ করা যায়নি</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">\"ডিভাইসের স্টোরেজ অপ্টিমাইজ করুন\" চালু থাকার কারণে আপনার বেছে নেয়া কিছু মিডিয়া আপনার ডিভাইস থেকে অফলোড করা হয়েছে। আপনি একটি একটি করে আইটেম সংরক্ষণ করতে পারেন, অথবা আপনার ডিভাইসে সমস্ত মিডিয়া ডাউনলোড করতে \"ডিভাইস স্টোরেজ অপ্টিমাইজ করুন\" বন্ধ করতে পারেন।</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">\"Signal স্টোরেজ অপ্টিমাইজ করুন\" চালু থাকার কারণে আপনার নির্বাচিত কিছু মিডিয়া আপনার ডিভাইস থেকে অফলোড করা হয়েছে। আপনি একটি একটি করে আইটেম সেভ করতে পারেন, অথবা আপনার ডিভাইসে সকল মিডিয়া ডাউনলোড করতে \"Signal স্টোরেজ অপ্টিমাইজ করুন\" বন্ধ করতে পারেন।</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
     <string name="AttachmentSaver__view_storage_settings">স্টোরেজ সেটিংস দেখুন</string>
 
@@ -3533,6 +3491,10 @@
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">এই ডিভাইসটি আর নিবন্ধিত নয়। এটি হওয়ার সম্ভাব্য কারণ হলো, আপনি হয়তো একটি ভিন্ন ডিভাইসে Signal-এর সাথে আপনার ফোন নম্বর নিবন্ধন করেছেন।</string>
     <!-- Action in reminder banner that will take user to re-register -->
     <string name="UnauthorizedReminder_reregister_action">ডিভাইসটি আবারো নিবন্ধন করুন</string>
+    <!-- Message shown in a reminder banner when this linked device is no longer linked to a primary device -->
+    <string name="UnauthorizedReminder_this_device_is_no_longer_linked_relink_to_continue_messaging">এই ডিভাইসটি আর সংযুক্ত নয়। ম্যাসেজ করা চালিয়ে যেতে আপনার ফোনের সাথে Signal আবারো সংযুক্ত করুন।</string>
+    <!-- Action in reminder banner that will take the user to re-link this device -->
+    <string name="UnauthorizedReminder_relink_action">ডিভাইসটি আবারো সংযুক্ত করুন</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">আপনি এই ডিভাইসে Signal থেকে লগ আউট হয়ে গিয়েছেন।</string>
@@ -5145,6 +5107,32 @@
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">ডেটা মুছে ফেলা সফল হয়নি</string>
 
+    <!-- LinkedDeviceAccountSettingsFragment -->
+    <!-- Title of an informational card shown on the account settings screen of a linked device -->
+    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">This is a linked device</string>
+    <!-- Body of an informational card explaining that account settings must be managed from the primary device -->
+    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">To manage your account settings, open Signal on your primary device.</string>
+    <!-- Title of a settings row that deletes all Signal data from this linked device -->
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Delete app data</string>
+    <!-- Subtitle of the delete app data row explaining what it does -->
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">This will remove all data from the Signal app on this device.</string>
+    <!-- Title of the confirmation dialog shown when deleting app data from a linked device -->
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">Delete app data?</string>
+    <!-- Message of the confirmation dialog explaining that only this device\'s data is deleted, not the account -->
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">This will delete all data and messages from the Signal app on this device. Your Signal account and data on your primary device or other linked devices will not be deleted. The app will close after this process is complete.</string>
+
+    <!-- LinkedDeviceAccountLearnMoreBottomSheet -->
+    <!-- Emphasized lead-in phrase shown in bold at the start of the learn more sheet body. Must appear verbatim within LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access. -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Linked Devices</string>
+    <!-- Body text of the linked devices learn more sheet. The leading \"Linked Devices\" is shown in bold. -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Linked Devices let you access your Signal account and messages securely on any of your additional devices.</string>
+    <!-- Bullet point describing what devices can be linked -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">You can link a desktop, tablet or additional phone</string>
+    <!-- Bullet point describing that the primary device manages linked devices -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Your primary device manages what\'s linked, you can link up to 5 devices.</string>
+    <!-- Bullet point describing that some settings are only available on the primary device -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Some account settings are managed on your primary device only, including account settings and backups.</string>
+
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">অ্যাকাউন্ট ট্রান্সফার করুন বা পুনরুদ্ধার করুন</string>
     <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">আপনি আগে একটি Signal অ্যাকাউন্টে রেজিস্টার করলে, আপনি আপনার অ্যাকাউন্ট বা মেসেজ ট্রান্সফার বা পুনরুদ্ধার করতে পারবেন</string>
@@ -6058,10 +6046,6 @@
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">উচ্চ মানের মিডিয়া প্রেরণে আরও ডেটা ব্যবহার হবে।</string>
     <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
     <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">ভয়েস মেসেজ ও স্টিকার (%1$s-এর চেয়ে কম) সবসময় স্বয়ংক্রিয়ভাবে ডাউনলোড হয়।</string>
-    <!-- Setting option that can be selected to default media to be sent as high quality by default -->
-    <string name="DataAndStorageSettingsFragment__high">উচ্চ</string>
-    <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
-    <string name="DataAndStorageSettingsFragment__standard">স্ট্যান্ডার্ড</string>
     <string name="DataAndStorageSettingsFragment__calls">কল সমূহ</string>
     <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
     <string name="DataAndStorageSettingsFragment__stay_connected_in_background">ব্যাকগ্রাউন্ডে সংযুক্ত থাকুন</string>
@@ -8287,6 +8271,12 @@
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
     <string name="OnDeviceBackupsScreen__to_restore_a_backup">"ব্যাকআপ পুনর্বহাল করতে, Signal-এর একটি নতুন কপি ইনস্টল করুন। অ্যাপটি খুলুন ও ব্যাকআপ পুনর্বহাল করতে ট্যাপ করুন, তারপর ব্যাকআপ ফাইলটি শনাক্ত করুন।"</string>
+    <!-- Body of a dialog shown when turning on on-device backups while "Optimize Signal storage" is enabled, warning that optimized media won\'t be included -->
+    <string name="OnDeviceBackupsScreen__you_have_optimize_signal_storage_on">আপনার \"Signal স্টোরেজ অপ্টিমাইজ করুন\" চালু আছে। আপনি যদি আপনার ডিভাইসের ব্যাকআপে সব মিডিয়া অন্তর্ভুক্ত করতে চান, তাহলে সেটিংসটি বন্ধ করুন।</string>
+    <!-- Dialog action that takes the user to the "Optimize Signal storage" setting -->
+    <string name="OnDeviceBackupsScreen__view_setting">সেটিংস দেখুন</string>
+    <!-- Dialog action to proceed with turning on on-device backups without turning off "Optimize Signal storage" -->
+    <string name="OnDeviceBackupsScreen__continue_without_turning_off">বন্ধ না করেই চালিয়ে যান</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">আপনার পুনরুদ্ধার \'কি\' যাচাই করুন</string>
@@ -8663,13 +8653,19 @@
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_description">সক্রিয় করা হলে, চ্যাটের উপর আরোপিত সীমাবদ্ধতা আপনার লিংককৃত ডিভাইসগুলো থেকে মেসেজও মুছে ফেলবে।</string>
     <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">অন-ডিভাইস স্টোরেজ</string>
+    <string name="ManageStorageSettingsFragment__on_device_storage">Signal স্টোরেজ</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">অন-ডিভাইস স্টোরেজ অপ্টিমাইজ করুন</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Signal স্টোরেজ অপ্টিমাইজ করুন</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">অব্যবহৃত মিডিয়া অফলোড করা হবে, কিন্তু আপনার ব্যাকআপ থেকে যেকোনো সময় ডাউনলোড করা যাবে।</string>
     <!-- Dialog message for paid tier pending dialog -->
     <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">স্টোরেজ অপ্টিমাইজেশন শুধুমাত্র Signal নিরাপদ ব্যাকআপের পেইড টিয়ারের ক্ষেত্রে ব্যবহার করা যেতে পারে। আপনার ব্যাকআপ সাবস্ক্রিপশন এখনো প্রক্রিয়া করা হচ্ছে এবং এখনো সক্রিয় নয়। অনুগ্রহ করে পরে আবার চেষ্টা করুন।</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">আপনার ডিভাইসের ব্যাকআপ থেকে মিডিয়া মুছে ফেলা হবে</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">\"Signal স্টোরেজ অপ্টিমাইজ করুন\" চালু করলে আপনার ডিভাইস থেকে পুরানো মিডিয়া অফলোড হয়ে যাবে। আপনি যেকোনো সময় এটি আবার ডাউনলোড করতে পারবেন। এটি আপনার ডিভাইসের ব্যাকআপ থেকে পুরোনো মিডিয়া ফাইলগুলোও মুছে ফেলবে।</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">চালু করুন</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8752,6 +8748,8 @@
     <string name="BackupsSettingsFragment__subscription_canceled">সাবস্ক্রিপশন বাতিল করা হয়েছে</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal-এর সুরক্ষিত এন্ড-টু-এন্ড এনক্রিপ্ট করা স্টোরেজ পরিষেবা সহ স্বয়ংক্রিয় ব্যাকআপ।</string>
+    <!-- Subtitle shown on a linked device when backups are off, directing the user to set them up on their phone -->
+    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Automatic backups with Signal\'s secure end-to-end encrypted storage service. Get started on your phone.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"এই ডিভাইসে সাবস্ক্রিপশন পাওয়া যায়নি।"</string>
     <!-- Action button label to set up backups -->
@@ -8769,7 +8767,7 @@
     <!-- Displayed as a label when remote backups are off -->
     <string name="RemoteBackupsSettingsFragment__off">বন্ধ</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
-    <string name="RemoteBackupsSettingsFragment__authenticatino_required">প্রমাণীকরণ প্রয়োজন</string>
+    <string name="RemoteBackupsSettingsFragment__authentication_required">প্রমাণীকরণ প্রয়োজন</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">পেমেন্টের ইতিহাস</string>
     <!-- Section header for backup information -->
@@ -8855,6 +8853,16 @@
     <string name="RemoteBackupsSettingsFragment__s_at_s">%2$s-তে %1$s</string>
     <!-- Subtext describing when a backup has never taken place. -->
     <string name="RemoteBackupsSettingsFragment__never">কখনোই না</string>
+    <!-- Subtext on a linked device describing when the primary device last backed up. Placeholder is the formatted date and time. -->
+    <string name="RemoteBackupsSettingsFragment__your_phone_s">Your phone · %1$s</string>
+    <!-- Message shown on a linked device with a free backup plan explaining that the subscription is managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">You can manage or upgrade your Signal Secure Backups subscription on your primary device.</string>
+    <!-- Message shown on a linked device with a paid backup plan explaining that the subscription is managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">You can manage or cancel your Signal Secure Backups subscription on your primary device.</string>
+    <!-- Message shown on a linked device with a canceled backup subscription explaining that the subscription is managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">You can manage or renew your Signal Secure Backups subscription on your primary device.</string>
+    <!-- Message shown on a linked device when backups are off or the subscription was not found, explaining that backups are managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">You can manage or upgrade Signal Secure Backups on your primary device.</string>
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">এখনি ব্যাকআপ করুন</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
@@ -9146,19 +9154,37 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">মিডিয়া ডাউনলোড করুন</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">একটি নতুন পুনরুদ্ধার \'কি\' তৈরি করতে, আপনাকে অবশ্যই \"স্টোরেজ অপ্টিমাইজ করুন\" বন্ধ করতে হবে এবং আপনার মিডিয়া ডাউনলোড শেষ না হওয়া পর্যন্ত অপেক্ষা করতে হবে। ডাউনলোড সম্পন্ন হলে, আপনি একটি নতুন \'কি\' তৈরি করতে পারবেন।</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">একটি নতুন পুনরুদ্ধার \'কি\' তৈরি করতে, আপনাকে অবশ্যই \"Signal স্টোরেজ অপ্টিমাইজ করুন\" বন্ধ করতে হবে এবং আপনার মিডিয়া ডাউনলোড শেষ না হওয়া পর্যন্ত অপেক্ষা করতে হবে। ডাউনলোড শেষ হলে, আপনি একটি নতুন \'কি\' তৈরি করতে পারবেন।</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">বন্ধ করে ডাউনলোড করুন</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">একটি নতুন পুনরুদ্ধার \'কি\' তৈরি করুন</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">অন্য কেউ যদি আপনার \'কি\' জেনে থাকেন তবেই কেবল একটি নতুন \'কি\' তৈরি করা প্রয়োজন হয়। আপনাকে মিডিয়া সহ আপনার ব্যাকআপ পুনরায় আপলোড করতে হবে। আপনি যদি \"অপ্টিমাইজ স্টোরেজ\" ব্যবহার করেন তবে আপনাকে প্রথমে অফলোড করা মিডিয়া ডাউনলোড করতে হবে।</string>
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">অন্য কেউ যদি আপনার \'কি\' জেনে যায়, শুধুমাত্র তখনই একটি নতুন \'কি\' তৈরি করার প্রয়োজন হয়। আপনাকে মিডিয়া সহ আপনার ব্যাকআপ পুনরায় আপলোড করতে হবে। আপনি যদি \"Signal স্টোরেজ অপ্টিমাইজ করুন\" ব্যবহার করেন তবে আপনাকে প্রথমে অফলোড করা মিডিয়া ডাউনলোড করতে হবে।</string>
     <!-- Dialog title shown when user attempts to exit backup setup before completion -->
     <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">ব্যাকআপ সেটআপ থেকে বেরিয়ে আসবেন?</string>
     <!-- Dialog body warning user that backup setup is incomplete -->
     <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">আপনি ব্যাকআপ সেট আপ করা শেষ করেননি এবং কোনো ব্যাকআপ তৈরি করা হয়নি। আপনি সেটিংস থেকে ব্যাকআপ সক্রিয় করতে পারবেন।</string>
     <!-- Dialog confirmation button to exit backup setup -->
     <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">ব্যাকআপের সেটআপ থেকে বেরিয়ে আসুন</string>
+    <!-- Screen title when saving your recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__save_your_recovery_key">আপনার পুনরুদ্ধার \'কি\' সেভ করুন</string>
+    <!-- Screen subtitle for the recovery key screen -->
+    <string name="MessageBackupsKeyRecordScreen__your_recovery_key">আপনার পুনরুদ্ধার \'কি\' হলো একটি 64-ক্যারেক্টারের কোড যা আপনাকে ব্যাকআপ পুনর্বহাল করতে সাহায্য করে। \'কি\' ভুলে গেলে, আপনি আপনার অ্যাকাউন্ট পুনরুদ্ধার করতে পারবেন না।</string>
+    <!-- Hint text to see the full recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__see_full_key">সম্পূর্ণ \'কি\' দেখুন</string>
+    <!-- Bottom sheet caption to confirm your recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_that_your_recovery">আপনার পুনরুদ্ধার \'কি\' সঠিকভাবে রেকর্ড করা হয়েছে কি না তা নিশ্চিত করুন। পরবর্তী ধাপে আপনাকে আপনার সেভ করা পাসওয়ার্ডটি পূরণ করতে বলা হবে।</string>
+    <!-- Button to confirm the recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_recovery">পুনরুদ্ধার \'কি\' নিশ্চিত করুন</string>
+    <!-- Toast shown when the key is confirmed -->
+    <string name="MessageBackupsKeyRecordScreen__recover_key_confirmed">পুনরুদ্ধার \'কি\' নিশ্চিত করা হয়েছে</string>
+    <!-- Dialog title shown when the recovery key fails to confirm -->
+    <string name="MessageBackupsKeyRecordScreen__recover_key_error">পুনরুদ্ধার \'কি\' নিশ্চিত করার ক্ষেত্রে ত্রুটি দেখা দিয়েছে</string>
+    <!-- Dialog body shown when the recovery key fails to confirm -->
+    <string name="MessageBackupsKeyRecordScreen__recover_key_error_body">আপনার পুনরুদ্ধার \'কি\' নিশ্চিত করা যায়নি। আপনি এটি আপনার পাসওয়ার্ড ম্যানেজার-এ সেভ করার বা নিজে অন্য কোথাও সেভ করার বিষয়টি নিশ্চিত করুন।</string>
+    <!-- Button option to save the key manually -->
+    <string name="MessageBackupsKeyRecordScreen__save_key_manually">\'কি\' ম্যানুয়ালি সেভ করুন</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -9891,8 +9917,28 @@
     <!-- Body for screen shown to let the user know that displaying their member label will take priority over their about text. -->
     <string name="MemberLabelsAboutOverride__body">এই গ্রুপে, আপনার ছবির পাশে আপনার সম্পর্কে লেখার পরিবর্তে আপনার সদস্য লেবেল দেখানো হবে।</string>
 
-    <!-- Label for internal-only section showing groups with same members -->
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
+    <!-- Header for the section shown when creating a group that lists existing groups with the exact same members. Includes the number of such groups. -->
+    <plurals name="AddGroupDetailsFragment__d_groups_with_same_members">
+        <item quantity="one">একই সদস্যদের নিয়ে গঠিত %1$d-টি গ্রুপ</item>
+        <item quantity="other">একই সদস্যদের নিয়ে গঠিত %1$d-টি গ্রুপ</item>
+    </plurals>
+
+    <!-- Header for a section showing all group member -->
+    <string name="MemberSearchFragment__search_members">সদস্য খুঁজুন</string>
+    <!-- Header for a section showing all group members who are contacts -->
+    <string name="MemberSearchFragment__search_contacts">কন্টাক্ট খুঁজুন</string>
+    <!-- Header for a section showing all group member who are admins -->
+    <string name="MemberSearchFragment__search_admins">অ্যাডমিনদের খুঁজুন</string>
+    <!-- Dialog title to filter search by -->
+    <string name="MemberSearchFragment__filter">যার ভিত্তিতে ফিল্টার করবেন:</string>
+    <!-- Dialog option for all group members -->
+    <string name="MemberSearchFragment__filter_all_members">সকল সদস্য</string>
+    <!-- Dialog option for group admins -->
+    <string name="MemberSearchFragment__filter_admins">অ্যাডমিন</string>
+    <!-- Dialog option for your contacts -->
+    <string name="MemberSearchFragment__filter_contacts">পরিচিতিসমূহ</string>
+    <!-- Button to invite members via a group link -->
+    <string name="MemberSearchFragment__invite_via">গ্রুপ লিংকের মাধ্যমে আমন্ত্রণ জানান</string>
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
     <string name="CouldNotCompleteBackupRestoreSheet__title">ব্যাকআপ পুনর্বহাল করা যায়নি</string>

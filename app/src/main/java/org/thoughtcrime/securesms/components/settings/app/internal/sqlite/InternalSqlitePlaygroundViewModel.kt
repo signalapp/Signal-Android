@@ -27,7 +27,7 @@ class InternalSqlitePlaygroundViewModel : ViewModel() {
     get() = _queryResults
 
   fun onQuerySubmitted(query: String) {
-    viewModelScope.launch(Dispatchers.IO) {
+    viewModelScope.launch(Dispatchers.Default) {
       _queryResults.value = null
 
       val startTime = System.nanoTime()

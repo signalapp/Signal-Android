@@ -6,6 +6,11 @@
 package org.signal.registration.screens.quickrestore
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.SizeTransform
+import androidx.compose.animation.core.snap
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,30 +31,40 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.DropdownMenus
+import org.signal.core.ui.compose.IconButtons.IconButton
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.QrCode
 import org.signal.core.ui.compose.QrCodeData
+import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.registration.R
+import org.signal.registration.RegistrationDependencies
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.attachDebugLogHelper
+import org.signal.registration.test.TestTags
+import org.signal.core.ui.R as CoreR
 
 /**
  * Screen to display QR code for restoring from an old device.
@@ -78,8 +93,11 @@ private fun OnePaneLayout(
 ) {
   val scrollState = rememberScrollState()
   OnePaneRegistrationScaffold(
-    modifier = modifier.fillMaxSize(),
+    modifier = modifier
+      .fillMaxSize()
+      .testTag(TestTags.QUICK_RESTORE_QR_SCREEN),
     params = params,
+    topBar = { TopAppBar() },
     content = { paddingValues ->
       Column(
         modifier = Modifier
@@ -116,8 +134,11 @@ private fun TwoPaneLayout(
   val secondPaneScrollState = rememberScrollState()
 
   TwoPaneRegistrationScaffold(
-    modifier = modifier.fillMaxSize(),
+    modifier = modifier
+      .fillMaxSize()
+      .testTag(TestTags.QUICK_RESTORE_QR_SCREEN),
     params = params,
+    topBar = { TopAppBar() },
     firstPane = { paddingValues ->
       Column(
         modifier = Modifier
@@ -148,6 +169,46 @@ private fun TwoPaneLayout(
         isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
       ) {
         CancelFooter(onEvent)
+      }
+    }
+  )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun TopAppBar() {
+  val context = LocalContext.current
+
+  Scaffolds.DefaultTopAppBar(
+    title = "",
+    titleContent = { _, _ -> },
+    onNavigationClick = { },
+    navigationIcon = null,
+    actions = {
+      val menuController = remember { DropdownMenus.MenuController() }
+
+      IconButton(
+        onClick = { menuController.show() },
+        modifier = Modifier.padding(horizontal = 8.dp)
+      ) {
+        Icon(
+          imageVector = ImageVector.vectorResource(CoreR.drawable.symbol_more_vertical_24),
+          contentDescription = stringResource(R.string.RegistrationActivity_open_menu)
+        )
+      }
+
+      DropdownMenus.Menu(
+        controller = menuController,
+        offsetX = 24.dp,
+        offsetY = 0.dp
+      ) {
+        DropdownMenus.Item(
+          text = { Text(text = stringResource(R.string.RegistrationActivity_use_proxy)) },
+          onClick = {
+            RegistrationDependencies.get().proxyConfigCallback?.invoke(context)
+            menuController.hide()
+          }
+        )
       }
     }
   )
@@ -190,13 +251,14 @@ private fun QrCodePane(
       AnimatedContent(
         targetState = state.qrState,
         contentKey = { it::class },
+        transitionSpec = { fadeIn() togetherWith fadeOut() using SizeTransform { _, _ -> snap() } },
         label = "qr-code-state"
       ) { qrState ->
         when (qrState) {
           is QrState.Loaded -> {
             QrCode(
               data = qrState.qrCodeData,
-              foregroundColor = Color(0xFF2449C0),
+              foregroundColor = MaterialTheme.colorScheme.primary,
               modifier = Modifier.fillMaxSize()
             )
           }
@@ -219,7 +281,10 @@ private fun QrCodePane(
 
               Spacer(modifier = Modifier.height(8.dp))
 
-              Button(onClick = { onEvent(QuickRestoreQrEvents.RetryQrCode) }) {
+              Button(
+                onClick = { onEvent(QuickRestoreQrEvents.RetryQrCode) },
+                modifier = Modifier.testTag(TestTags.QUICK_RESTORE_QR_RETRY_BUTTON)
+              ) {
                 Text(stringResource(R.string.QuickRestoreQRScreen__retry))
               }
             }
@@ -239,7 +304,10 @@ private fun QrCodePane(
 
               Spacer(modifier = Modifier.height(8.dp))
 
-              Button(onClick = { onEvent(QuickRestoreQrEvents.RetryQrCode) }) {
+              Button(
+                onClick = { onEvent(QuickRestoreQrEvents.RetryQrCode) },
+                modifier = Modifier.testTag(TestTags.QUICK_RESTORE_QR_RETRY_BUTTON)
+              ) {
                 Text(stringResource(R.string.QuickRestoreQRScreen__retry))
               }
             }
@@ -281,7 +349,8 @@ private fun CancelFooter(onEvent: (QuickRestoreQrEvents) -> Unit) {
     horizontalArrangement = Arrangement.Center
   ) {
     TextButton(
-      onClick = { onEvent(QuickRestoreQrEvents.Cancel) }
+      onClick = { onEvent(QuickRestoreQrEvents.Cancel) },
+      modifier = Modifier.testTag(TestTags.QUICK_RESTORE_QR_CANCEL_BUTTON)
     ) {
       Text(stringResource(android.R.string.cancel))
     }

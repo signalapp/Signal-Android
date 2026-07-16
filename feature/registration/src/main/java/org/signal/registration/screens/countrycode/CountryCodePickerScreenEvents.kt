@@ -5,9 +5,7 @@
 
 package org.signal.registration.screens.countrycode
 
-import org.signal.registration.util.DebugLoggableModel
-
-sealed class CountryCodePickerScreenEvents : DebugLoggableModel() {
+sealed class CountryCodePickerScreenEvents {
   data class Search(val query: String) : CountryCodePickerScreenEvents()
   data class CountrySelected(val country: Country) : CountryCodePickerScreenEvents()
   data object Dismissed : CountryCodePickerScreenEvents()

@@ -47,6 +47,7 @@ import org.signal.core.util.permissions.PermissionCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.mediasend.R as MediaSendR
 
 /**
  * Prompts the user to scan a username QR code. Uses the activity result to communicate the recipient that was found, or null if no valid usernames were scanned.
@@ -132,8 +133,8 @@ class UsernameQrScannerActivity : AppCompatActivity() {
     Permissions.with(this)
       .request(Manifest.permission.CAMERA)
       .ifNecessary()
-      .withPermanentDenialDialog(getString(R.string.CameraXFragment_signal_needs_camera_access_scan_qr_code), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_scan_qr_codes, supportFragmentManager)
-      .onAnyDenied { Toast.makeText(this, R.string.CameraXFragment_signal_needs_camera_access_scan_qr_code, Toast.LENGTH_LONG).show() }
+      .withPermanentDenialDialog(getString(MediaSendR.string.CameraXFragment_signal_needs_camera_access_scan_qr_code), null, MediaSendR.string.CameraXFragment_allow_access_camera, MediaSendR.string.CameraXFragment_to_scan_qr_codes, supportFragmentManager)
+      .onAnyDenied { Toast.makeText(this, MediaSendR.string.CameraXFragment_signal_needs_camera_access_scan_qr_code, Toast.LENGTH_LONG).show() }
       .execute()
   }
 

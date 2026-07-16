@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
 import org.thoughtcrime.securesms.main.MainNavigationListLocation
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.main.MainSnackbarHostKey
@@ -44,7 +45,6 @@ import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
-import org.thoughtcrime.securesms.stories.my.MyStoriesActivity
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -154,7 +154,11 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
           if (!closeSearchIfOpen()) {
-            mainNavigationViewModel.onChatsSelected()
+            if (mainNavigationViewModel.storiesBackStackEntries.last() != MainNavigationDetailLocation.Empty) {
+              mainNavigationViewModel.popStoriesDetailLocation()
+            } else {
+              mainNavigationViewModel.onChatsSelected()
+            }
           }
         }
       }
@@ -284,7 +288,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
 
   private fun openStoryViewer(model: StoriesLandingItem.Model, preview: View, isFromInfoContextMenuAction: Boolean) {
     if (model.data.storyRecipient.isMyStory) {
-      startActivityIfAble(Intent(requireContext(), MyStoriesActivity::class.java))
+      mainNavigationViewModel.goTo(MainNavigationDetailLocation.Stories.MyStories)
     } else if (model.data.primaryStory.messageRecord.isOutgoing && model.data.primaryStory.messageRecord.isFailed) {
       if (model.data.primaryStory.messageRecord.isIdentityMismatchFailure) {
         SafetyNumberBottomSheet

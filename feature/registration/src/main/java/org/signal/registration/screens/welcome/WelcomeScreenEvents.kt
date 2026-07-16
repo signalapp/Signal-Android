@@ -5,12 +5,14 @@
 
 package org.signal.registration.screens.welcome
 
-import org.signal.registration.util.DebugLoggableModel
-
-sealed class WelcomeScreenEvents : DebugLoggableModel() {
+sealed class WelcomeScreenEvents {
   data object Continue : WelcomeScreenEvents()
+
   data object LinkDevice : WelcomeScreenEvents()
+
   data object HasOldPhone : WelcomeScreenEvents()
+
   data object DoesNotHaveOldPhone : WelcomeScreenEvents()
+
   data object ViewTermsAndPrivacy : WelcomeScreenEvents()
 }

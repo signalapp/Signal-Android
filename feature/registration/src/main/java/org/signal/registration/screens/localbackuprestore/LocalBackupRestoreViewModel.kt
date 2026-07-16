@@ -11,48 +11,64 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.signal.archive.LocalBackupRestoreProgress
 import org.signal.core.models.AccountEntropyPool
+import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.ui.navigation.ResultEventBus
 import org.signal.core.util.logging.Log
 import org.signal.registration.RegistrationFlowEvent
+import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
-import org.signal.registration.screens.EventDrivenViewModel
+import org.signal.registration.RestoreDecision
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 
 class LocalBackupRestoreViewModel(
   private val repository: RegistrationRepository,
+  parentState: Flow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val isPreRegistration: Boolean,
   private val resultBus: ResultEventBus,
-  private val resultKey: String
+  private val resultKey: String,
+  private val knownAep: AccountEntropyPool? = null
 ) : EventDrivenViewModel<LocalBackupRestoreEvents>(TAG) {
 
   companion object {
     private val TAG = Log.tag(LocalBackupRestoreViewModel::class)
   }
 
-  private val _localState = MutableStateFlow(LocalBackupRestoreState())
-  val state = _localState
-    .onEach { Log.d(TAG, "[State] $it") }
-    .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), LocalBackupRestoreState())
+  private val _state = MutableStateFlow(LocalBackupRestoreState())
+  val state = _state.asStateFlow()
 
   private var restoreJob: Job? = null
 
+  init {
+    _state
+      .onEach { Log.d(TAG, "[State] $it") }
+      .launchIn(viewModelScope)
+
+    parentState
+      .onEach { onEvent(LocalBackupRestoreEvents.ParentStateChanged(it)) }
+      .launchIn(viewModelScope)
+  }
+
   override suspend fun processEvent(event: LocalBackupRestoreEvents) {
-    applyEvent(state.value, event) { _localState.value = it }
+    applyEvent(state.value, event) { _state.value = it }
   }
 
   @VisibleForTesting
   suspend fun applyEvent(state: LocalBackupRestoreState, event: LocalBackupRestoreEvents, stateEmitter: (LocalBackupRestoreState) -> Unit) {
     when (event) {
+      is LocalBackupRestoreEvents.ParentStateChanged -> {
+        stateEmitter(state.copy(storageCapable = event.state.storageCapable))
+      }
       is LocalBackupRestoreEvents.PickBackupFolder -> {
         stateEmitter(state.copy(launchFolderPicker = true))
       }
@@ -60,13 +76,17 @@ class LocalBackupRestoreViewModel(
         stateEmitter(applyBackupFolderSelected(state, event.uri))
       }
       is LocalBackupRestoreEvents.RestoreBackup -> {
-        applyRestoreBackup(state)
+        applyRestoreBackup(state, stateEmitter)
       }
       is LocalBackupRestoreEvents.PassphraseSubmitted -> {
         applyPassphraseSubmitted(state, event.credential, stateEmitter)
       }
+      is LocalBackupRestoreEvents.RegistrationDeferredToSms -> {
+        resultBus.sendResult(resultKey, LocalBackupRestoreResult.DeferredToSms)
+        parentEventEmitter.navigateBack()
+      }
       is LocalBackupRestoreEvents.ChooseDifferentFolder -> {
-        stateEmitter(LocalBackupRestoreState(launchFolderPicker = true))
+        stateEmitter(LocalBackupRestoreState(launchFolderPicker = true, storageCapable = state.storageCapable))
       }
       is LocalBackupRestoreEvents.BackupSelected -> {
         stateEmitter(state.copy(backupInfo = event.backup))
@@ -89,11 +109,21 @@ class LocalBackupRestoreViewModel(
     )
   }
 
-  private fun applyRestoreBackup(state: LocalBackupRestoreState) {
+  private fun applyRestoreBackup(state: LocalBackupRestoreState, stateEmitter: (LocalBackupRestoreState) -> Unit) {
     val backup = state.backupInfo ?: return
+
+    if (backup.type == LocalBackupInfo.BackupType.V2 && knownAep != null) {
+      Log.i(TAG, "[RestoreBackup] Using the already-known AEP to decrypt the backup.")
+      applyPassphraseSubmitted(state, knownAep.value, stateEmitter)
+      return
+    }
+
     val credentialRoute = when (backup.type) {
       LocalBackupInfo.BackupType.V1 -> RegistrationRoute.EnterLocalBackupV1Passphrase
-      LocalBackupInfo.BackupType.V2 -> RegistrationRoute.EnterAepForLocalBackup
+      LocalBackupInfo.BackupType.V2 -> RegistrationRoute.EnterAepForLocalBackup(
+        isPreRegistration = isPreRegistration,
+        backupUri = backup.uri.toString()
+      )
     }
     parentEventEmitter.navigateTo(credentialRoute)
   }
@@ -109,16 +139,37 @@ class LocalBackupRestoreViewModel(
     startRestore(backup, state.selectedFolderUri, credential, aep)
   }
 
-  private suspend fun onRestoreComplete(state: LocalBackupRestoreState) {
-    if (state.aep != null) {
-      parentEventEmitter(RegistrationFlowEvent.UserSuppliedAepVerified(state.aep))
-    }
+  private suspend fun onRestoreComplete(state: LocalBackupRestoreState, progress: LocalBackupRestoreProgress.Complete, backupType: LocalBackupInfo.BackupType) {
+    repository.persistRestoredBackupState(progress.restoredSvrPin, progress.restoredProfileKey)
 
-    if (isPreRegistration) {
-      resultBus.sendResult(resultKey, LocalBackupRestoreResult.Success(state.aep))
+    // The restore ran, so clear the pending-restore signal. Otherwise a post-registration screen (verification code or
+    // reglock PIN) would see it still set and route back here to restore again.
+    parentEventEmitter(RegistrationFlowEvent.PendingRestoreOptionSelected(null))
+
+    // V1 backups restore before registration, then the phone number screen registers with the restored data.
+    // V2 backups only restore against a registered account, so completion always continues the post-registration flow.
+    if (isPreRegistration && backupType == LocalBackupInfo.BackupType.V1) {
+      repository.persistRestoredIdentityKeys(progress.restoredAciIdentityKey, progress.restoredPniIdentityKey)
+      repository.setRestoreDecision(RestoreDecision.COMPLETED)
+      resultBus.sendResult(resultKey, LocalBackupRestoreResult.Success(state.aep ?: progress.restoredAccountEntropyPool))
       parentEventEmitter.navigateBack()
     } else {
-      repository.finishRegistrationOrCreateProfile(parentEventEmitter)
+      // The entered key decrypted the restored backup, so it becomes the canonical AEP -- even if it didn't match the
+      // AEP the server had associated with the account. Downstream screens (e.g. PIN creation) must use it too.
+      if (backupType == LocalBackupInfo.BackupType.V2 && state.aep != null) {
+        parentEventEmitter(RegistrationFlowEvent.UserSuppliedAepVerified(state.aep))
+      }
+
+      repository.setRestoreDecision(RestoreDecision.COMPLETED)
+
+      if (progress.restoredSvrPin != null) {
+        repository.restoreAccountRecord()
+        parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
+      } else if (state.storageCapable) {
+        parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSvrRestore)
+      } else {
+        parentEventEmitter.navigateTo(RegistrationRoute.PinCreate)
+      }
     }
   }
 
@@ -137,23 +188,26 @@ class LocalBackupRestoreViewModel(
         val backups = repository.scanLocalBackupFolder(uri)
         val mostRecent = backups.firstOrNull()
         if (mostRecent != null) {
-          _localState.value = LocalBackupRestoreState(
+          _state.value = LocalBackupRestoreState(
             restorePhase = LocalBackupRestoreState.RestorePhase.BackupFound,
             backupInfo = mostRecent,
             allBackups = backups,
-            selectedFolderUri = uri
+            selectedFolderUri = uri,
+            storageCapable = _state.value.storageCapable
           )
         } else {
-          _localState.value = LocalBackupRestoreState(
+          _state.value = LocalBackupRestoreState(
             restorePhase = LocalBackupRestoreState.RestorePhase.NoBackupFound,
-            selectedFolderUri = uri
+            selectedFolderUri = uri,
+            storageCapable = _state.value.storageCapable
           )
         }
       } catch (e: Exception) {
         Log.w(TAG, "Error scanning backup folder", e)
-        _localState.value = LocalBackupRestoreState(
+        _state.value = LocalBackupRestoreState(
           restorePhase = LocalBackupRestoreState.RestorePhase.Error,
-          errorMessage = e.message
+          errorMessage = e.message,
+          storageCapable = _state.value.storageCapable
         )
       }
     }
@@ -162,27 +216,33 @@ class LocalBackupRestoreViewModel(
   private fun startRestore(backup: LocalBackupInfo, rootUri: Uri?, credential: String, aep: AccountEntropyPool?) {
     restoreJob?.cancel()
     restoreJob = viewModelScope.launch {
-      val currentState = _localState.value
+      val currentState = _state.value
       val restoreFlow = when (backup.type) {
-        LocalBackupInfo.BackupType.V1 -> repository.restoreV1Backup(backup.uri, passphrase = credential)
+        LocalBackupInfo.BackupType.V1 -> repository.restoreV1Backup(rootUri = rootUri!!, backupUri = backup.uri, passphrase = credential)
         LocalBackupInfo.BackupType.V2 -> repository.restoreV2Backup(rootUri = rootUri!!, backupUri = backup.uri, aep = aep!!)
       }
       restoreFlow.collect { progress ->
-        _localState.value = when (progress) {
+        _state.value = when (progress) {
           is LocalBackupRestoreProgress.Preparing -> LocalBackupRestoreState(
             restorePhase = LocalBackupRestoreState.RestorePhase.Preparing,
             aep = currentState.aep,
-            v1Passphrase = currentState.v1Passphrase
+            v1Passphrase = currentState.v1Passphrase,
+            storageCapable = currentState.storageCapable
           )
           is LocalBackupRestoreProgress.InProgress -> LocalBackupRestoreState(
             restorePhase = LocalBackupRestoreState.RestorePhase.InProgress,
             progressFraction = progress.progressFraction,
             aep = currentState.aep,
-            v1Passphrase = currentState.v1Passphrase
+            v1Passphrase = currentState.v1Passphrase,
+            storageCapable = currentState.storageCapable
           )
           is LocalBackupRestoreProgress.Complete -> {
-            onRestoreComplete(_localState.value.copy(aep = currentState.aep, v1Passphrase = currentState.v1Passphrase))
-            _localState.value
+            onRestoreComplete(_state.value.copy(aep = aep, v1Passphrase = currentState.v1Passphrase, storageCapable = currentState.storageCapable), progress, backup.type)
+            _state.value
+          }
+          is LocalBackupRestoreProgress.IncorrectCredential -> {
+            Log.w(TAG, "Restore failed: incorrect passphrase/recovery key")
+            currentState.copy(restorePhase = LocalBackupRestoreState.RestorePhase.IncorrectCredential)
           }
           is LocalBackupRestoreProgress.Error -> {
             Log.w(TAG, "Restore failed", progress.cause)
@@ -190,7 +250,8 @@ class LocalBackupRestoreViewModel(
               restorePhase = LocalBackupRestoreState.RestorePhase.Error,
               errorMessage = progress.cause.message,
               aep = currentState.aep,
-              v1Passphrase = currentState.v1Passphrase
+              v1Passphrase = currentState.v1Passphrase,
+              storageCapable = currentState.storageCapable
             )
           }
         }
@@ -200,13 +261,15 @@ class LocalBackupRestoreViewModel(
 
   class Factory(
     private val repository: RegistrationRepository,
+    private val parentState: Flow<RegistrationFlowState>,
     private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
     private val isPreRegistration: Boolean,
+    private val knownAep: AccountEntropyPool?,
     private val resultBus: ResultEventBus,
     private val resultKey: String
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return LocalBackupRestoreViewModel(repository, parentEventEmitter, isPreRegistration, resultBus, resultKey) as T
+      return LocalBackupRestoreViewModel(repository, parentState, parentEventEmitter, isPreRegistration, resultBus, resultKey, knownAep) as T
     }
   }
 }

@@ -17,7 +17,6 @@ import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.isActive
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.video.StreamingTranscoder
-import org.thoughtcrime.securesms.video.TranscodingPreset
 import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor
 import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.InputStreamMediaDataSource
 import java.io.File
@@ -33,13 +32,13 @@ class TranscodeTestRepository {
   data class TranscodeResult(val outputUri: Uri, val originalFile: File, val originalSize: Long, val outputSize: Long)
 
   /**
-   * Transcode a video using a [TranscodingPreset] and save the result to the Downloads folder.
+   * Transcode a video using a [TranscodeQuality] and save the result to the Downloads folder.
    */
   @RequiresApi(26)
-  suspend fun transcodeWithPreset(
+  suspend fun transcodeWithQuality(
     context: Context,
     inputUri: Uri,
-    preset: TranscodingPreset,
+    quality: TranscodeQuality,
     enableFastStart: Boolean,
     enableAudioRemux: Boolean,
     outputTag: String = "preset01",
@@ -47,7 +46,7 @@ class TranscodeTestRepository {
   ): TranscodeResult {
     return doTranscode(context, inputUri, enableFastStart, outputTag, onProgress) { inputFile ->
       val dataSource = FileMediaDataSource(inputFile)
-      StreamingTranscoder(dataSource, null, preset, DEFAULT_FILE_SIZE_LIMIT, enableAudioRemux)
+      StreamingTranscoder(dataSource, null, listOf(quality.qualityTier), DEFAULT_FILE_SIZE_LIMIT, enableAudioRemux)
     }
   }
 

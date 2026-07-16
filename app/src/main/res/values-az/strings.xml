@@ -273,62 +273,6 @@
     <!-- Unknown people row info dialog action to close the dialog -->
     <string name="CallInfoView__got_it">Anladım</string>
 
-    <!-- CameraFragment -->
-    <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Cihazınızda video çəkiliş dəstəklənmir</string>
-
-    <!-- CameraXFragment -->
-    <string name="CameraXFragment_tap_for_photo_hold_for_video">Foto üçün toxunun, video üçün basıb saxlayın</string>
-    <!-- Accessibility content description to describe the capture button when taking an image/video -->
-    <string name="CameraXFragment_capture_description">Çək</string>
-    <string name="CameraXFragment_change_camera_description">Kameranı dəyişdir</string>
-    <string name="CameraXFragment_open_gallery_description">Qalereyanı aç</string>
-    <!-- Button text asking for access to camera permissions -->
-    <string name="CameraXFragment_allow_access">Müraciətə icazə ver</string>
-    <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="CameraXFragment_allow_access_camera_microphone">Kamera və mikrofonuna giriş icazəsi ver</string>
-    <!-- Dialog title asking users for camera permission -->
-    <string name="CameraXFragment_allow_access_camera">Kameraya giriş icazəsi ver</string>
-    <!-- Dialog title asking users for microphone permission -->
-    <string name="CameraXFragment_allow_access_microphone">Mikrofona giriş icazəsi verin</string>
-    <!-- Text explaining why Signal needs camera access in order to take photos -->
-    <string name="CameraXFragment_to_capture_photos_allow_camera">Fotolar çəkmək üçün Signal-a kameraya giriş icazəsi ver.</string>
-    <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
-    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">Foto və video çəkmək üçün, Signal-ın kameraya müraciətinə icazə verin.</string>
-    <!-- Text explaining why Signal needs camera and microphone access in order to take photos and videos -->
-    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">Foto və video çəkmək üçün Signal-a kamera və mikrofona giriş icazəsi ver.</string>
-    <!-- Text explaining why Signal needs microphone access to take videos -->
-    <string name="CameraXFragment_to_capture_videos_with_sound">Səsli videolar çəkmək üçün Signal-a mikrofona giriş icazəsi ver.</string>
-    <!-- Text explaining why Signal needs camera access to scan QR codes -->
-    <string name="CameraXFragment_to_scan_qr_code_allow_camera">QR kodunu skan etmək üçün Signal-a kameraya giriş icazəsi ver.</string>
-    <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
-    <string name="CameraXFragment_signal_needs_camera_access_capture_photos">Fotolar çəkmək üçün Signal kameraya giriş tələb edir</string>
-    <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
-    <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">QR kodlarını skan etmək üçün Signal kameraya giriş tələb edir</string>
-    <!-- Toast dialog explaining why Signal needs microphone permissions -->
-    <string name="CameraXFragment_signal_needs_microphone_access_video">Video çəkmək üçün Signal mikrofona giriş tələb edir</string>
-    <!-- Dialog description that explains the steps needed to give camera permission -->
-    <string name="CameraXFragment_to_capture_photos">Signal-da fotolar çəkmək üçün:</string>
-    <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
-    <string name="CameraXFragment_to_capture_photos_videos">Signal-da foto və videolar çəkmək üçün:</string>
-    <!-- Dialog description that explains the steps needed to give microphone permission -->
-    <string name="CameraXFragment_to_capture_videos">Səsli videolar çəkmək üçün:</string>
-    <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
-    <string name="CameraXFragment_to_scan_qr_codes">QR kodlarını skan etmək üçün:</string>
-    <!-- Error message shown when we try to take a photo, but fail -->
-    <string name="CameraXFragment_photo_capture_failed">Foto çəkmək mümkün olmadı. Yenidən cəhd edin.</string>
-    <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
-    <string name="CameraXFragment_photo_processing_failed">Foto emal olunmadı. Yenidən cəhd edin.</string>
-    <!-- Accessibility label for the switch camera button -->
-    <string name="CameraXFragment_switch_camera">Kameranı dəyişin</string>
-    <!-- Accessibility label for flash button when flash is off -->
-    <string name="CameraXFragment_flash_off">Fləş sönülüdür</string>
-    <!-- Accessibility label for flash button when flash is on -->
-    <string name="CameraXFragment_flash_on">Fləş yanılıdır</string>
-    <!-- Accessibility label for flash button when flash is set to auto -->
-    <string name="CameraXFragment_flash_auto">Fləş avtomatik rejimdədir</string>
-    <!-- Accessibility label for the send button in media selection -->
-    <string name="CameraXFragment_send">Göndər</string>
 
     <string name="CameraContacts__menu_search">Axtar</string>
 
@@ -530,7 +474,6 @@
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal-ın, foto və ya video çəkmək üçün Kamera icazəsinə ehtiyacı var, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Kamera\"nı fəallaşdırın.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal-ın, foto və ya video çəkmək üçün Kamera icazəsinə ehtiyacı var.</string>
     <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Səsli video çəkmək üçün mikrofon icazəsini fəallaşdırın.</string>
-    <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal-ın, video çəkmək üçün mikrofon icazəsinə ehtiyacı var, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Mikrofon\" və \"Kamera\"nı fəallaşdırın.</string>
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal-ın, video çəkmək üçün mikrofon icazəsinə ehtiyacı var.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
@@ -672,6 +615,8 @@
     <string name="ConversationFragment__update_build">Signal-ı yenilə</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">Signal-da təkrar qeydiyyatdan keçin</string>
+    <!-- Action shown in the conversation input area to allow a user to re-link this device as it is no longer linked -->
+    <string name="ConversationFragment__relink_signal">Yenidən əlaqələndir</string>
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
     <string name="ConversationFragment__content_description_back_button">Geri qayıt.</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
@@ -721,6 +666,12 @@
     <string name="ConversationFragment_group_names">Qrup adları</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">Fotonu endirmək mümkün olmadı. Yenidən cəhd edin.</string>
+    <!-- Title of the dialog shown when re-requesting an expired attachment from your primary device fails -->
+    <string name="ConversationFragment_attachment_backfill_failed_title">Media faylını endirmək mümkün olmadı</string>
+    <!-- Body of the dialog shown when your phone didn\'t respond to a request to re-send an expired attachment -->
+    <string name="ConversationFragment_attachment_backfill_timeout">Bu cihazı və telefonunuzun internet bağlantısını yoxlayın. Telefonunuzda Signal-ı açın, sonra yenidən endirməyə cəhd edin.</string>
+    <!-- Body of the dialog shown when your phone no longer has the attachment you tried to download -->
+    <string name="ConversationFragment_attachment_backfill_not_found">Bu media faylı artıq telefonunuzda mövcud deyil və endirilə bilməz.</string>
     <!-- Dialog for how to long to keep a messaged pinned for -->
     <string name="ConversationFragment__keep_pinned">Mesajın sancaqlanması müddəti…</string>
     <!-- Dialog option to keep message pin for 24 hours -->
@@ -763,7 +714,7 @@
     <!-- Detail tip 0 title -->
     <string name="SafetyTips_detail_tip0_title">Signal-dan gələn çat mesajlarına cavab verməyin</string>
     <!-- Detail tip 0 message -->
-    <string name="SafetyTips_detail_tip0_message">Signal qeydiyyat kodu, PİN kod və ya bərpa şifrənizi öyrənmək üçün sizə əsla mesaj göndərmir. Özünü Signal kimi və Signal dəstək komandasından göstərən çat mesajlarına cavab verməyin. Hesabınıza daxil olmaq üçün pis niyyətli istifadəçilər saxta çatlar yaradır.</string>
+    <string name="SafetyTips_detail_tip0_message">Signal qeydiyyat kodu, PİN kod və ya bərpa şifrənizi öyrənmək üçün sizə əsla mesaj göndərməz. Özünü Signal kimi və Signal dəstək komandasından göstərən çat mesajlarına cavab verməyin. Hesabınıza daxil olmaq üçün pis niyyətli istifadəçilər saxta çatlar yaradır.</string>
     <!-- Detail tip 1 title -->
     <string name="SafetyTips_detail_tip1_title">Adları və fotoları nəzərdən keçirin</string>
     <!-- Detail tip 1 message -->
@@ -1021,7 +972,6 @@
     <string name="CustomDefaultPreference_none">Heç biri</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Foto çəkmək üçün kamera icazəsi tələb olunur.</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Qalereyanıza baxmaq üçün anbar icazəsi tələb olunur.</string>
 
     <!-- DateUtils -->
@@ -1502,6 +1452,12 @@
     <string name="AddGroupDetailsFragment__remove">Çıxart</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS əlaqəsi</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s bu qrupdan çıxarılsın?</string>
+    <!-- Title of the dialog shown when tapping an existing group while creating a new group, confirming the user wants to leave and discard their in-progress group -->
+    <string name="AddGroupDetailsFragment__discard_group">Qrup silinsin?</string>
+    <!-- Body of the dialog shown when tapping an existing group while creating a new group. Placeholder is the name of the group being navigated to. -->
+    <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">\"%1$s\" qrupuna davam etsəniz, dəyişiklikləriniz yadda saxlanılmayacaq.</string>
+    <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
+    <string name="AddGroupDetailsFragment__discard">Sil</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signal qruplarını dəstəkləməyən bir kontakt seçdiniz, buna görə də bu qrup MMS qrupu olacaq. Xüsusi MMS qrupu adları və şəkillərinə yalnız siz baxa bilərsiniz.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -2931,6 +2887,8 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">\'%1$s\' üçün heç nə tapılmadı</string>
+    <!-- Text shown when no search results are found.   -->
+    <string name="SearchFragment_no_results_empty">Heç nə tapılmadı</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -3394,7 +3352,7 @@
     <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">Xətalar</string>
     <!-- Notification channel name for internal-only app issue notifications. Only ever shown to internal users. -->
-    <string name="NotificationChannel_internal_issues">Internal Issues</string>
+    <string name="NotificationChannel_internal_issues">Daxili problemlər</string>
     <string name="NotificationChannel_backups">Nüsxələr</string>
     <string name="NotificationChannel_locked_status">Kilid statusu</string>
     <string name="NotificationChannel_app_updates">Tətbiq yeniləmələri</string>
@@ -3460,11 +3418,11 @@
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_media">Media faylını yaddaşda saxlamaq mümkün deyil</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__media_offloaded_message">Bu media faylı cihazınızdan köçürülüb, çünki \"Cihaz yaddaşını optimallaşdır\" funksiyası yanılıdır. Elementləri bir-bir endirə və ya \"Cihaz yaddaşını optimallaşdır\" funksiyasını söndürərək bütün media fayllarını cihazınıza endirə bilərsiniz.</string>
+    <string name="AttachmentSaver__media_offloaded_message">Bu media faylı cihazınızdan köçürülüb, çünki \"Signal yaddaşını optimallaşdır\" funksiyası yandırılıb. Faylları bir-bir endirə və ya \"Signal yaddaşını optimallaşdır\" funksiyasını söndürərək bütün media fayllarını cihazınıza endirə bilərsiniz.</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_all_items">Bütün elementləri yaddaşda saxlamaq mümkün olmadı</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">Seçdiyiniz bəzi media faylları cihazınızdan köçürülüb, çünki \"Cihazdaxili yaddaşı optimallaşdır\" funksiyası yanılıdır. Elementləri bir-bir yaddaşda saxlaya və ya \"Cihaz yaddaşını optimallaşdır\" funksiyasını söndürərək bütün media fayllarını cihazınıza endirə bilərsiniz.</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">Seçdiyiniz bəzi media faylları cihazınızdan köçürülüb, çünki \"Signal yaddaşını optimallaşdır\" funksiyası yandırılıb. Faylları bir-bir yaddaşda saxlaya və ya \"Signal yaddaşını optimallaşdır\" funksiyasını söndürərək bütün media fayllarını cihazınıza endirə bilərsiniz.</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
     <string name="AttachmentSaver__view_storage_settings">Yaddaş parametrlərinə baxın</string>
 
@@ -3533,6 +3491,10 @@
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Bu cihaz artıq qeydiyyatda deyil. Böyük ehtimalla, telefon nömrəniz fərqli bir cihazdakı Signal hesabında qeydiyyata alınıb.</string>
     <!-- Action in reminder banner that will take user to re-register -->
     <string name="UnauthorizedReminder_reregister_action">Cihazı təkrar qeydiyyatdan keçirin</string>
+    <!-- Message shown in a reminder banner when this linked device is no longer linked to a primary device -->
+    <string name="UnauthorizedReminder_this_device_is_no_longer_linked_relink_to_continue_messaging">Bu cihaz artıq qoşulu deyil. Mesajlaşmağa davam etmək üçün Signal-ı yenidən telefonunuzla əlaqələndirin.</string>
+    <!-- Action in reminder banner that will take the user to re-link this device -->
+    <string name="UnauthorizedReminder_relink_action">Cihazı yenidən əlaqələndir</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">Bu cihazda Signal tətbiqindən çıxmısınız.</string>
@@ -5145,6 +5107,32 @@
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Verilənləri silmək mümkün olmadı</string>
 
+    <!-- LinkedDeviceAccountSettingsFragment -->
+    <!-- Title of an informational card shown on the account settings screen of a linked device -->
+    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">This is a linked device</string>
+    <!-- Body of an informational card explaining that account settings must be managed from the primary device -->
+    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">To manage your account settings, open Signal on your primary device.</string>
+    <!-- Title of a settings row that deletes all Signal data from this linked device -->
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Delete app data</string>
+    <!-- Subtitle of the delete app data row explaining what it does -->
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">This will remove all data from the Signal app on this device.</string>
+    <!-- Title of the confirmation dialog shown when deleting app data from a linked device -->
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">Delete app data?</string>
+    <!-- Message of the confirmation dialog explaining that only this device\'s data is deleted, not the account -->
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">This will delete all data and messages from the Signal app on this device. Your Signal account and data on your primary device or other linked devices will not be deleted. The app will close after this process is complete.</string>
+
+    <!-- LinkedDeviceAccountLearnMoreBottomSheet -->
+    <!-- Emphasized lead-in phrase shown in bold at the start of the learn more sheet body. Must appear verbatim within LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access. -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Linked Devices</string>
+    <!-- Body text of the linked devices learn more sheet. The leading \"Linked Devices\" is shown in bold. -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Linked Devices let you access your Signal account and messages securely on any of your additional devices.</string>
+    <!-- Bullet point describing what devices can be linked -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">You can link a desktop, tablet or additional phone</string>
+    <!-- Bullet point describing that the primary device manages linked devices -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Your primary device manages what\'s linked, you can link up to 5 devices.</string>
+    <!-- Bullet point describing that some settings are only available on the primary device -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Some account settings are managed on your primary device only, including account settings and backups.</string>
+
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Hesabınızı köçürün və ya geri yükləyin</string>
     <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Daha əvvəl bir Signal hesabını qeydiyyata almısınızsa, hesabınızı və mesajlarınızı köçürə və ya geri yükləyə bilərsiniz.</string>
@@ -6058,10 +6046,6 @@
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Yüksək keyfiyyətli media göndərərkən, daha çox verilənlər istifadə ediləcək.</string>
     <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
     <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Səsli mesajlar və stikerlər (%1$s-dan az olan) hər zaman avtomatik endirilir.</string>
-    <!-- Setting option that can be selected to default media to be sent as high quality by default -->
-    <string name="DataAndStorageSettingsFragment__high">Yüksək</string>
-    <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
-    <string name="DataAndStorageSettingsFragment__standard">Standard</string>
     <string name="DataAndStorageSettingsFragment__calls">Zənglər</string>
     <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
     <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Arxa planda qoşulu qal</string>
@@ -8287,6 +8271,12 @@
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
     <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Ehtiyat nüsxəni bərpa etmək üçün Signal-ın yeni versiyasını quraşdırın. Tətbiqi açıb, \"Ehtiyat nüsxəni bərpa et\" seçiminə toxunun, sonra ehtiyat nüsxə faylını tapın."</string>
+    <!-- Body of a dialog shown when turning on on-device backups while "Optimize Signal storage" is enabled, warning that optimized media won\'t be included -->
+    <string name="OnDeviceBackupsScreen__you_have_optimize_signal_storage_on">\"Signal yaddaşını optimallaşdır\" funksiyası açıqdır. Cihazdaxili ehtiyat nüsxədəki bütün media fayllarını əhatə etmək üçün parametrləri söndürün.</string>
+    <!-- Dialog action that takes the user to the "Optimize Signal storage" setting -->
+    <string name="OnDeviceBackupsScreen__view_setting">Parametrlərə bax</string>
+    <!-- Dialog action to proceed with turning on on-device backups without turning off "Optimize Signal storage" -->
+    <string name="OnDeviceBackupsScreen__continue_without_turning_off">Söndürmədən davam et</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Bərpa şifrənizi yoxlayın</string>
@@ -8663,13 +8653,19 @@
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_description">Aktivləşdirildikdə, əlaqələndirilmiş cihazlarınızdan çat limitləri də mesajları siləcək.</string>
     <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Cihaz yaddaşı</string>
+    <string name="ManageStorageSettingsFragment__on_device_storage">Signal yaddaşı</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Cihaz yaddaşını optimallaşdırın</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Signal yaddaşını optimallaşdır</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">İstifadə edilməyən media faylı yaddaşdan çıxarılacaq, amma ehtiyat nüsxənizdən istənilən vaxt yenidən endirilə bilər.</string>
     <!-- Dialog message for paid tier pending dialog -->
     <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Yaddaş optimallaşdırması yalnız Signal-ın təhlükəsiz ehtiyat nüsxələrinin ödənişli səviyyəsi ilə istifadə oluna bilər. Ehtiyat nüsxə abunəliyiniz hələ də emal olunur və aktiv deyil. Daha sonra yenidən cəhd edin.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Media faylı cihazdaxili ehtiyat nüsxədən silinəcək</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">\"Signal yaddaşını optimallaşdır\" funksiyasını açsanız, bu, cihazınızdan köhnə media faylların köçürülməsinə səbəb olacaq. Bunu istədiyiniz vaxt yenidən endirə bilərsiniz. Bu addım həmçinin cihazdaxili ehtiyat nüsxədən köhnə media faylını siləcək.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">Aç</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8752,6 +8748,8 @@
     <string name="BackupsSettingsFragment__subscription_canceled">Abunəlik ləğv edildi</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal-ın təhlükəsiz tam şəkildə şifrələnmiş saxlama xidməti ilə avtomatik çıxarılan ehtiyat nüsxələr.</string>
+    <!-- Subtitle shown on a linked device when backups are off, directing the user to set them up on their phone -->
+    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Automatic backups with Signal\'s secure end-to-end encrypted storage service. Get started on your phone.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Bu cihazda abunəlik tapılmadı."</string>
     <!-- Action button label to set up backups -->
@@ -8769,7 +8767,7 @@
     <!-- Displayed as a label when remote backups are off -->
     <string name="RemoteBackupsSettingsFragment__off">Bağlı</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
-    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Autentifikasiya tələb olunur</string>
+    <string name="RemoteBackupsSettingsFragment__authentication_required">Autentifikasiya tələb olunur</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Ödəniş tarixçəsi</string>
     <!-- Section header for backup information -->
@@ -8855,6 +8853,16 @@
     <string name="RemoteBackupsSettingsFragment__s_at_s">%1$s, %2$s radəsində</string>
     <!-- Subtext describing when a backup has never taken place. -->
     <string name="RemoteBackupsSettingsFragment__never">Heç vaxt</string>
+    <!-- Subtext on a linked device describing when the primary device last backed up. Placeholder is the formatted date and time. -->
+    <string name="RemoteBackupsSettingsFragment__your_phone_s">Your phone · %1$s</string>
+    <!-- Message shown on a linked device with a free backup plan explaining that the subscription is managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">You can manage or upgrade your Signal Secure Backups subscription on your primary device.</string>
+    <!-- Message shown on a linked device with a paid backup plan explaining that the subscription is managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">You can manage or cancel your Signal Secure Backups subscription on your primary device.</string>
+    <!-- Message shown on a linked device with a canceled backup subscription explaining that the subscription is managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">You can manage or renew your Signal Secure Backups subscription on your primary device.</string>
+    <!-- Message shown on a linked device when backups are off or the subscription was not found, explaining that backups are managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">You can manage or upgrade Signal Secure Backups on your primary device.</string>
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">İndi Arxivləşdir</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
@@ -9146,19 +9154,37 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">Media faylını endir</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Yeni bərpa şifrəsi yaratmaq üçün \"Yaddaşı optimallaşdır\" funksiyasını söndürməli və media faylı endirilənə qədər gözləməlisiniz. Endirmə tamamlandıqda, yeni şifrə yarada bilərsiniz.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Yeni bərpa şifrəsi yaratmaq üçün \"Signal yaddaşını optimallaşdır\" funksiyasını söndürməli və media faylı endirilənə qədər gözləməlisiniz. Endirmə tamamlandıqda, yeni şifrə yarada bilərsiniz.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Söndür və endir</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Yeni bir bərpa şifrəsi yaradın</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Yalnız başqası şifrənizi öyrəndikdə yeni bir şifrə yaratmalısınız. Media fayllarınız daxil, ehtiyat nüsxənizi yenidən yükləməli olacaqsınız. \"Yaddaşı optimallaşdır\" funksiyasından istifadə edirsinizsə, əvvəlcə boşaldılmış media faylları yükləməlisiniz.</string>
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Yalnız başqası şifrənizi öyrəndikdə yeni bir şifrə yaratmalısınız. Media fayllarınız daxil, ehtiyat nüsxənizi yenidən yükləməli olacaqsınız. \"Signal yaddaşını optimallaşdır\" funksiyasından istifadə edirsinizsə, əvvəlcə köçürülmüş media fayllarını endirməlisiniz.</string>
     <!-- Dialog title shown when user attempts to exit backup setup before completion -->
     <string name="MessageBackupsKeyRecordScreen__exit_backup_setup">Ehtiyat nüsxə quraşdırmasından çıxılsın?</string>
     <!-- Dialog body warning user that backup setup is incomplete -->
     <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">Ehtiyat nüsxə parametrlərini tamamlamadınız və heç bir ehtiyat nüsxə yaradılmadı. Ehtiyat nüsxələri Parametrlərdə aktivləşdirə bilərsiniz.</string>
     <!-- Dialog confirmation button to exit backup setup -->
     <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">Ehtiyat nüsxə quraşdırmasından çıxın</string>
+    <!-- Screen title when saving your recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__save_your_recovery_key">Bərpa şifrəsini yadda saxlayın</string>
+    <!-- Screen subtitle for the recovery key screen -->
+    <string name="MessageBackupsKeyRecordScreen__your_recovery_key">Bərpa şifrəsi ehtiyat nüsxənizi bərpa etməyə imkan verən 64 simvollu bir koddur. Şifrəni unutsanız, hesabınızı bərpa edə bilməyəcəksiniz.</string>
+    <!-- Hint text to see the full recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__see_full_key">Bütün şifrəni göstər</string>
+    <!-- Bottom sheet caption to confirm your recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_that_your_recovery">Bərpa şifrəsinin düzgün şəkildə qeyd edildiyini təsdiqləyin. Növbəti addımda yadda saxlanılan parolu daxil etməniz tələb olunur.</string>
+    <!-- Button to confirm the recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_recovery">Bərpa şifrəsini təsdiqləyin</string>
+    <!-- Toast shown when the key is confirmed -->
+    <string name="MessageBackupsKeyRecordScreen__recover_key_confirmed">Bərpa şifrəsi təsdiqləndi</string>
+    <!-- Dialog title shown when the recovery key fails to confirm -->
+    <string name="MessageBackupsKeyRecordScreen__recover_key_error">Bərpa şifrəsi təsdiqlənərkən xəta baş verdi</string>
+    <!-- Dialog body shown when the recovery key fails to confirm -->
+    <string name="MessageBackupsKeyRecordScreen__recover_key_error_body">Bərpa şifrənizi təsdiqləmək mümkün olmadı. Onu şifrə menecerindən istifadə edərək və ya əl ilə yadda saxladığınızdan əmin olun.</string>
+    <!-- Button option to save the key manually -->
+    <string name="MessageBackupsKeyRecordScreen__save_key_manually">Şifrəni əl ilə yadda saxla</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -9891,8 +9917,28 @@
     <!-- Body for screen shown to let the user know that displaying their member label will take priority over their about text. -->
     <string name="MemberLabelsAboutOverride__body">Bu qrupda Üzv etiketi fotonun yanında \"Haqqımda\" mətninin yerində görünəcək.</string>
 
-    <!-- Label for internal-only section showing groups with same members -->
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
+    <!-- Header for the section shown when creating a group that lists existing groups with the exact same members. Includes the number of such groups. -->
+    <plurals name="AddGroupDetailsFragment__d_groups_with_same_members">
+        <item quantity="one">Eyni üzvlərdən ibarət %1$d qrup</item>
+        <item quantity="other">Eyni üzvlərdən ibarət %1$d qrup</item>
+    </plurals>
+
+    <!-- Header for a section showing all group member -->
+    <string name="MemberSearchFragment__search_members">Üzvləri axtar</string>
+    <!-- Header for a section showing all group members who are contacts -->
+    <string name="MemberSearchFragment__search_contacts">Kontaktları axtar</string>
+    <!-- Header for a section showing all group member who are admins -->
+    <string name="MemberSearchFragment__search_admins">Adminləri axtar</string>
+    <!-- Dialog title to filter search by -->
+    <string name="MemberSearchFragment__filter">Buna görə filtrlə:</string>
+    <!-- Dialog option for all group members -->
+    <string name="MemberSearchFragment__filter_all_members">Bütün üzvlər</string>
+    <!-- Dialog option for group admins -->
+    <string name="MemberSearchFragment__filter_admins">Adminlər</string>
+    <!-- Dialog option for your contacts -->
+    <string name="MemberSearchFragment__filter_contacts">Əlaqələr</string>
+    <!-- Button to invite members via a group link -->
+    <string name="MemberSearchFragment__invite_via">Qrup keçidi vasitəsilə dəvət et</string>
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
     <string name="CouldNotCompleteBackupRestoreSheet__title">Ehtiyat nüsxəni bərpa etmək mümkün deyil</string>

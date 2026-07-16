@@ -7,6 +7,7 @@ package org.whispersystems.signalservice.api.registration
 
 import org.signal.network.NetworkResult
 import org.whispersystems.signalservice.api.account.AccountAttributes
+import org.whispersystems.signalservice.api.account.DeviceAttributes
 import org.whispersystems.signalservice.api.account.PreKeyCollection
 import org.whispersystems.signalservice.api.messages.multidevice.RegisterAsSecondaryDeviceResponse
 import org.whispersystems.signalservice.api.provisioning.RestoreMethod
@@ -150,7 +151,7 @@ class RegistrationApi(
    * - 422: Request is invalid
    * - 429: Rate limited
    */
-  fun registerAsSecondaryDevice(verificationCode: String, attributes: AccountAttributes, aciPreKeys: PreKeyCollection, pniPreKeys: PreKeyCollection, fcmToken: String?): NetworkResult<RegisterAsSecondaryDeviceResponse> {
+  fun registerAsSecondaryDevice(verificationCode: String, attributes: DeviceAttributes, aciPreKeys: PreKeyCollection, pniPreKeys: PreKeyCollection, fcmToken: String?): NetworkResult<RegisterAsSecondaryDeviceResponse> {
     val request = RegisterAsSecondaryDeviceRequest(
       verificationCode = verificationCode,
       accountAttributes = attributes,

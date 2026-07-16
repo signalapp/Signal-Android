@@ -22,8 +22,11 @@ object Environment {
     return !IS_INSTRUMENTATION && (BuildConfig.DEBUG || IS_NIGHTLY || IS_PERF || IS_STAGING)
   }
 
-  const val USE_NEW_REGISTRATION: Boolean = false
-  const val IS_LINK_AND_SYNC_AVAILABLE: Boolean = false
+  @JvmField
+  val USE_NEW_REGISTRATION: Boolean = true
+
+  @JvmField
+  val IS_LINK_AND_SYNC_AVAILABLE: Boolean = BuildConfig.DEBUG
 
   object Backups {
     @JvmStatic

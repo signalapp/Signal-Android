@@ -134,6 +134,14 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
     }
 
     /**
+     * Swaps out the singleton for a test instance. Pass null to clear it. Should only be used for testing!
+     */
+    @VisibleForTesting
+    fun testInject(instance: SignalStore?) {
+      Companion.instance = instance
+    }
+
+    /**
      * Restoring a backup changes the underlying disk values, so the cache needs to be reset.
      */
     @JvmStatic

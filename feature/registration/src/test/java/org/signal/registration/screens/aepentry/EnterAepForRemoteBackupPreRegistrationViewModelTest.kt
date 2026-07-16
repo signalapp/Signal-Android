@@ -12,6 +12,7 @@ import assertk.assertions.isInstanceOf
 import assertk.assertions.isNull
 import assertk.assertions.prop
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -137,7 +138,41 @@ class EnterAepForRemoteBackupPreRegistrationViewModelTest {
   }
 
   @Test
-  fun `Submit with RegistrationLock navigates to PinEntryForRegistrationLock`() = runTest {
+  fun `Submit with RegistrationLock retries with the reglock token derived from the AEP`() = runTest {
+    val aep = AccountEntropyPool(VALID_AEP)
+    val mockKeyMaterial = mockk<KeyMaterial>(relaxed = true) {
+      io.mockk.every { accountEntropyPool } returns aep
+    }
+    val mockResponse = mockk<NetworkController.RegisterAccountResponse>(relaxed = true)
+    val initialState = EnterAepState(backupKey = VALID_AEP, isBackupKeyValid = true)
+    val registrationLockData = NetworkController.RegistrationLockResponse(
+      timeRemaining = 86400000L,
+      svr2Credentials = NetworkController.SvrCredentials(username = "test-username", password = "test-password")
+    )
+
+    coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), registrationLock = any<String>(), any(), any(), any()) } returns
+      RequestResult.Success(mockResponse to mockKeyMaterial)
+    coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), registrationLock = null, any(), any(), any()) } returns
+      RequestResult.NonSuccess(
+        NetworkController.RegisterAccountError.RegistrationLock(registrationLockData)
+      )
+
+    viewModel.applyEvent(initialState, EnterAepEvents.Submit, stateEmitter)
+
+    coVerify {
+      mockRepository.registerAccountWithRecoveryPassword(any(), any(), registrationLock = aep.deriveMasterKey().deriveRegistrationLock(), any(), any(), any())
+    }
+    assertThat(emittedParentEvents).hasSize(3)
+    assertThat(emittedParentEvents[0]).isInstanceOf<RegistrationFlowEvent.UserSuppliedAepSubmitted>()
+    assertThat(emittedParentEvents[1]).isInstanceOf<RegistrationFlowEvent.Registered>()
+    assertThat(emittedParentEvents[2])
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isInstanceOf<RegistrationRoute.RemoteRestore>()
+  }
+
+  @Test
+  fun `Submit with RegistrationLock when already providing the reglock token navigates to PinEntryForRegistrationLock`() = runTest {
     val initialState = EnterAepState(backupKey = VALID_AEP, isBackupKeyValid = true)
     val svrCredentials = NetworkController.SvrCredentials(username = "test-username", password = "test-password")
     val registrationLockData = NetworkController.RegistrationLockResponse(

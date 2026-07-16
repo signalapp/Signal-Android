@@ -229,7 +229,7 @@ object ConversationListSearchModels {
         model.thread.query,
         true,
         false,
-        0
+        null
       )
     }
   }

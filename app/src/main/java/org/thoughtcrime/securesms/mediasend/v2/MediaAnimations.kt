@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.mediasend.v2
 
 import android.view.animation.Interpolator
-import org.thoughtcrime.securesms.util.createDefaultCubicBezierInterpolator
+import org.signal.core.ui.view.createDefaultCubicBezierInterpolator
 
 object MediaAnimations {
   /**

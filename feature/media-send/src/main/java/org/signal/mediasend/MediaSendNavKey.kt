@@ -7,6 +7,7 @@ package org.signal.mediasend
 
 import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
+import org.signal.core.models.media.MediaFolder
 
 /**
  * Nav3 keys
@@ -14,7 +15,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed interface MediaSendNavKey : NavKey {
   @Serializable
-  data object Select : MediaSendNavKey
+  sealed interface Select : MediaSendNavKey {
+    @Serializable
+    data object Folders : Select
+
+    @Serializable
+    data class Files(val folder: MediaFolder) : Select
+  }
 
   @Serializable
   sealed interface Capture : MediaSendNavKey {

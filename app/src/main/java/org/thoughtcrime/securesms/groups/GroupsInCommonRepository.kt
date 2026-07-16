@@ -33,7 +33,7 @@ object GroupsInCommonRepository {
     getGroupsInCommonCount(recipientId)
   }
 
-  suspend fun getGroupsInCommonCount(recipientId: RecipientId): Int = withContext(Dispatchers.IO) {
+  suspend fun getGroupsInCommonCount(recipientId: RecipientId): Int = withContext(Dispatchers.Default) {
     SignalDatabase.groups
       .getPushGroupsContainingMember(recipientId)
       .count { it.members.contains(Recipient.self().id) }
@@ -56,7 +56,7 @@ object GroupsInCommonRepository {
       }
   }
 
-  private suspend fun getGroupsContainingRecipient(context: Context, recipientId: RecipientId): List<Recipient> = withContext(Dispatchers.IO) {
+  private suspend fun getGroupsContainingRecipient(context: Context, recipientId: RecipientId): List<Recipient> = withContext(Dispatchers.Default) {
     SignalDatabase.groups
       .getPushGroupsContainingMember(recipientId)
       .asSequence()

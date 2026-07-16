@@ -17,12 +17,14 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.thoughtcrime.securesms.video.StreamingTranscoder
-import org.thoughtcrime.securesms.video.TranscodingPreset
+import org.thoughtcrime.securesms.video.TranscodingConfig
 import org.thoughtcrime.securesms.video.exceptions.VideoSourceException
+import org.thoughtcrime.securesms.video.videoconverter.MediaConverter.VIDEO_CODEC_H264
 import org.thoughtcrime.securesms.video.videoconverter.exceptions.CodecUnavailableException
 import org.thoughtcrime.securesms.video.videoconverter.exceptions.EncodingException
 import org.thoughtcrime.securesms.video.videoconverter.exceptions.HdrDecoderUnavailableException
 import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.InputStreamMediaDataSource
+import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
@@ -62,26 +64,26 @@ class VideoTranscodeInstrumentationTest {
   }
 
   @Test
-  fun transcodeAllVideos_level1() {
-    transcodeAllVideos(TranscodingPreset.LEVEL_1)
+  fun transcodeAllVideos_standard() {
+    transcodeAllVideos(VideoConstants.DEFAULT_LVL1_STANDARD, "LVL1")
   }
 
   @Test
-  fun transcodeAllVideos_level2() {
-    transcodeAllVideos(TranscodingPreset.LEVEL_2)
+  fun transcodeAllVideos_short_standard() {
+    transcodeAllVideos(VideoConstants.DEFAULT_LVL2_SHORT_STANDARD, "LVL2 SHORT")
   }
 
   @Test
-  fun transcodeAllVideos_level3() {
-    transcodeAllVideos(TranscodingPreset.LEVEL_3)
+  fun transcodeAllVideos_long_standard() {
+    transcodeAllVideos(VideoConstants.DEFAULT_LVL2_LONG_STANDARD, "LVL2 LONG")
   }
 
   @Test
-  fun transcodeAllVideos_level3H265() {
-    transcodeAllVideos(TranscodingPreset.LEVEL_3_H265)
+  fun transcodeAllVideos_high() {
+    transcodeAllVideos(VideoConstants.DEFAULT_HIGH, "HIGH")
   }
 
-  private fun transcodeAllVideos(preset: TranscodingPreset) {
+  private fun transcodeAllVideos(qualityTier: TranscodingConfig.QualityTier, name: String) {
     val videoFiles = getVideoFileNames()
     Assume.assumeTrue(
       "No sample videos found in test assets. Set 'sample.videos.dir' in local.properties to a directory containing video files.",
@@ -95,32 +97,32 @@ class VideoTranscodeInstrumentationTest {
     val deviceWarnings = mutableListOf<String>()
 
     for (videoFileName in videoFiles) {
-      Log.i(TAG, "Transcoding '$videoFileName' with preset ${preset.name}...")
+      Log.i(TAG, "Transcoding '$videoFileName' with tier $name...")
       try {
-        transcodeVideo(videoFileName, preset)
-        Log.i(TAG, "Successfully transcoded '$videoFileName' with preset ${preset.name}")
+        transcodeVideo(videoFileName, qualityTier, name)
+        Log.i(TAG, "Successfully transcoded '$videoFileName' with tier $name")
       } catch (e: HdrDecoderUnavailableException) {
-        Log.w(TAG, "No decoder available for HDR video '$videoFileName' with preset ${preset.name} (device limitation)", e)
-        deviceWarnings.add("$videoFileName [${preset.name}]: ${e::class.simpleName}: ${e.message}")
+        Log.w(TAG, "No decoder available for HDR video '$videoFileName' with tier $name (device limitation)", e)
+        deviceWarnings.add("$videoFileName [$name]: ${e::class.simpleName}: ${e.message}")
       } catch (e: FileNotFoundException) {
-        Log.w(TAG, "Skipping '$videoFileName' with preset ${preset.name}: encoder not available on this device", e)
+        Log.w(TAG, "Skipping '$videoFileName' with tier $name: encoder not available on this device", e)
       } catch (e: EncodingException) {
         val isHdrDeviceLimitation = e.isHdrInput && !e.toneMapApplied
         if (isHdrDeviceLimitation) {
-          Log.w(TAG, "Video '$videoFileName' failed with preset ${preset.name} (HDR device limitation, toneMap=${e.toneMapApplied}, decoder=${e.decoderName}, encoder=${e.encoderName})", e)
-          deviceWarnings.add("$videoFileName [${preset.name}]: ${e::class.simpleName}: ${e.message}")
+          Log.w(TAG, "Video '$videoFileName' failed with tier $name (HDR device limitation, toneMap=${e.toneMapApplied}, decoder=${e.decoderName}, encoder=${e.encoderName})", e)
+          deviceWarnings.add("$videoFileName [$name]: ${e::class.simpleName}: ${e.message}")
         } else {
-          Log.e(TAG, "Failed to transcode '$videoFileName' with preset ${preset.name} (hdr=${e.isHdrInput}, toneMap=${e.toneMapApplied}, decoder=${e.decoderName}, encoder=${e.encoderName})", e)
+          Log.e(TAG, "Failed to transcode '$videoFileName' with tier $name (hdr=${e.isHdrInput}, toneMap=${e.toneMapApplied}, decoder=${e.decoderName}, encoder=${e.encoderName})", e)
           failures.add("$videoFileName: ${e::class.simpleName}: ${e.message}")
         }
       } catch (e: VideoSourceException) {
-        Log.w(TAG, "Device cannot read video source '$videoFileName' with preset ${preset.name} (device limitation)", e)
-        deviceWarnings.add("$videoFileName [${preset.name}]: ${e::class.simpleName}: ${e.message}")
+        Log.w(TAG, "Device cannot read video source '$videoFileName' with tier $name (device limitation)", e)
+        deviceWarnings.add("$videoFileName [$name]: ${e::class.simpleName}: ${e.message}")
       } catch (e: CodecUnavailableException) {
-        Log.w(TAG, "All codecs exhausted for '$videoFileName' with preset ${preset.name} (device limitation)", e)
-        deviceWarnings.add("$videoFileName [${preset.name}]: ${e::class.simpleName}: ${e.message}")
+        Log.w(TAG, "All codecs exhausted for '$videoFileName' with tier $name (device limitation)", e)
+        deviceWarnings.add("$videoFileName [$name]: ${e::class.simpleName}: ${e.message}")
       } catch (e: Exception) {
-        Log.e(TAG, "Failed to transcode '$videoFileName' with preset ${preset.name}", e)
+        Log.e(TAG, "Failed to transcode '$videoFileName' with tier $name", e)
         failures.add("$videoFileName: ${e::class.simpleName}: ${e.message}")
       }
     }
@@ -131,15 +133,15 @@ class VideoTranscodeInstrumentationTest {
 
     if (failures.isNotEmpty()) {
       Assert.fail(
-        "${failures.size}/${videoFiles.size} video(s) failed transcoding with ${preset.name}:\n" +
+        "${failures.size}/${videoFiles.size} video(s) failed transcoding with $name:\n" +
           failures.joinToString("\n")
       )
     }
   }
 
-  private fun transcodeVideo(videoFileName: String, preset: TranscodingPreset) {
+  private fun transcodeVideo(videoFileName: String, qualityTier: TranscodingConfig.QualityTier, name: String) {
     val inputFile = createTempFile("input-", "-$videoFileName")
-    val outputFile = createTempFile("output-${preset.name}-", "-$videoFileName")
+    val outputFile = createTempFile("output-$name-", "-$videoFileName")
 
     testContext.assets.open(videoFileName).use { input ->
       inputFile.outputStream().use { output ->
@@ -153,27 +155,27 @@ class VideoTranscodeInstrumentationTest {
     val transcoder = StreamingTranscoder.createManuallyForTesting(
       dataSource,
       null,
-      preset.videoCodec,
-      preset.videoBitRate,
-      preset.audioBitRate,
-      preset.videoShortEdge,
+      VIDEO_CODEC_H264,
+      (qualityTier.videoBitrateMbps * VideoConstants.MB).toInt(),
+      qualityTier.audioBitrateKbps * VideoConstants.KB,
+      qualityTier.resolution,
       true
     )
 
     outputFile.outputStream().use { outputStream ->
       transcoder.transcode(
-        { percent -> Log.d(TAG, "  $videoFileName [${preset.name}]: $percent%") },
+        { percent -> Log.d(TAG, "  $videoFileName [$name]: $percent%") },
         outputStream,
         null
       )
     }
 
     Assert.assertTrue(
-      "Transcoded output for '$videoFileName' with ${preset.name} is empty",
+      "Transcoded output for '$videoFileName' with $name is empty",
       outputFile.length() > 0
     )
 
-    Log.i(TAG, "Output for '$videoFileName' with ${preset.name}: ${outputFile.length()} bytes")
+    Log.i(TAG, "Output for '$videoFileName' with $name: ${outputFile.length()} bytes")
   }
 
   private fun getVideoFileNames(): List<String> {

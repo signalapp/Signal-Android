@@ -18,6 +18,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -69,13 +70,23 @@ class DisabledInputView @JvmOverloads constructor(
         val message = findViewById<TextView>(R.id.logged_out_message)
         val actionButton = findViewById<MaterialButton>(R.id.logged_out_button)
 
-        message.setText(if (clientExpired) R.string.ExpiredBuildReminder_this_version_of_signal_has_expired else R.string.UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device)
-        actionButton.setText(if (clientExpired) R.string.ConversationFragment__update_build else R.string.ConversationFragment__reregister_signal)
-        actionButton.setOnClickListener {
-          if (clientExpired) {
-            listener?.onUpdateAppClicked()
-          } else {
-            listener?.onReRegisterClicked()
+        when {
+          clientExpired -> {
+            message.setText(R.string.ExpiredBuildReminder_this_version_of_signal_has_expired)
+            actionButton.setText(R.string.ConversationFragment__update_build)
+            actionButton.setOnClickListener { listener?.onUpdateAppClicked() }
+          }
+
+          unauthorized && SignalStore.account.isLinkedDevice -> {
+            message.setText(R.string.UnauthorizedReminder_this_device_is_no_longer_linked_relink_to_continue_messaging)
+            actionButton.setText(R.string.ConversationFragment__relink_signal)
+            actionButton.setOnClickListener { listener?.onReLinkDeviceClicked() }
+          }
+
+          else -> {
+            message.setText(R.string.UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device)
+            actionButton.setText(R.string.ConversationFragment__reregister_signal)
+            actionButton.setOnClickListener { listener?.onReRegisterClicked() }
           }
         }
       }
@@ -275,6 +286,7 @@ class DisabledInputView @JvmOverloads constructor(
   interface Listener {
     fun onUpdateAppClicked()
     fun onReRegisterClicked()
+    fun onReLinkDeviceClicked()
     fun onCancelGroupRequestClicked()
     fun onShowAdminsBottomSheetDialog()
     fun onAcceptMessageRequestClicked()

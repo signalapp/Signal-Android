@@ -188,17 +188,13 @@ class ChangeNumberRepository(
       StorageSyncHelper.scheduleSyncForDataChange()
     }
 
-    SignalStore.account.setE164(e164)
-    SignalStore.account.setPni(pni)
+    SignalStore.account.setNumberAndPniIdentity(e164, pni, pniRegistrationId, pniIdentityKeyPair)
     AppDependencies.resetProtocolStores()
 
     AppDependencies.groupsV2Authorization.clear()
 
     val pniProtocolStore = AppDependencies.protocolStore.pni()
     val pniMetadataStore = SignalStore.account.pniPreKeys
-
-    SignalStore.account.pniRegistrationId = pniRegistrationId
-    SignalStore.account.setPniIdentityKeyAfterChangeNumber(pniIdentityKeyPair)
 
     PreKeyUtil.storeSignedPreKey(pniProtocolStore, pniMetadataStore, pniSignedPreKey)
     pniMetadataStore.activeSignedPreKeyId = pniSignedPreKey.id
@@ -326,6 +322,10 @@ class ChangeNumberRepository(
       }
     }
 
+    if (result !is NetworkResult.Success) {
+      result = verifyChangeAppliedDespiteError(newE164 = newE164, originalResult = result)
+    }
+
     if (result is NetworkResult.StatusCodeError) {
       SignalStore.misc.unlockChangeNumber()
     }
@@ -336,11 +336,37 @@ class ChangeNumberRepository(
         NumberChangeResult(
           uuid = accountRegistrationResponse.uuid,
           pni = accountRegistrationResponse.pni,
-          storageCapable = accountRegistrationResponse.storageCapable,
           number = accountRegistrationResponse.number
         )
       }
     )
+  }
+
+  /**
+   * The server can commit a number change but still return an error. Before trusting a non-success result, check
+   * with the server and see if it already reports [newE164] as our number. If it does, then the change actually
+   * went through, so treat it as a success instead of surfacing the error.
+   */
+  private suspend fun verifyChangeAppliedDespiteError(newE164: String, originalResult: NetworkResult<VerifyAccountResponse>): NetworkResult<VerifyAccountResponse> {
+    return try {
+      val whoAmI = withContext(Dispatchers.IO) { whoAmI() }
+      if (whoAmI.number == newE164 && whoAmI.pni != null) {
+        Log.w(TAG, "Change number request did not succeed, but whoami reports the new number is already active. Treating the change as successful.")
+        NetworkResult.Success(
+          VerifyAccountResponse().apply {
+            uuid = whoAmI.aci
+            pni = whoAmI.pni
+            number = whoAmI.number
+          }
+        )
+      } else {
+        Log.i(TAG, "Change number request did not succeed and whoami does not report the new number; treating as a genuine failure.")
+        originalResult
+      }
+    } catch (e: IOException) {
+      Log.w(TAG, "Failed to query whoami while verifying change number outcome; treating as a genuine failure.", e)
+      originalResult
+    }
   }
 
   @WorkerThread
@@ -433,7 +459,6 @@ class ChangeNumberRepository(
   data class NumberChangeResult(
     val uuid: String,
     val pni: String,
-    val storageCapable: Boolean,
     val number: String
   )
 }

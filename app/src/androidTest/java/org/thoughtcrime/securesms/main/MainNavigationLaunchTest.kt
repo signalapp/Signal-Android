@@ -32,8 +32,8 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
 import org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment
 import org.thoughtcrime.securesms.conversationlist.ConversationListFragment
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.landing.StoriesLandingFragment
@@ -49,7 +49,6 @@ import java.util.concurrent.TimeUnit
  */
 @RunWith(AndroidJUnit4::class)
 class MainNavigationLaunchTest {
-
   @get:Rule
   val harness = SignalActivityRule(othersCount = 2)
 
@@ -89,7 +88,8 @@ class MainNavigationLaunchTest {
             appendLine("fragments observed: ${recorder.allCreated}")
             appendLine("activity fragments: ${launched.activity.supportFragmentManager.fragments.map { it::class.simpleName }}")
             appendLine("vm.currentListLocation: ${vm.mainNavigationState.value.currentListLocation}")
-            appendLine("vm.earlyNavigationDetailLocationRequested: ${vm.earlyNavigationDetailLocationRequested}")
+            appendLine("vm.detailLocation: ${vm.detailLocation.value}")
+            appendLine("vm.chatsBackStackEntries: ${vm.chatsBackStackEntries.toList()}")
           }
         }
         throw IllegalStateException("${e.message}\n$state", e)
@@ -254,8 +254,9 @@ class MainNavigationLaunchTest {
           "starts handling it on cold launch, update or delete this test. Got: ${recorder.allCreated}"
       }
       val vm = runOnMainSync { launched.activity.mainNavigationViewModel() }
-      check(vm.earlyNavigationDetailLocationRequested == null) {
-        "Expected no early detail to be staged, got ${vm.earlyNavigationDetailLocationRequested}"
+      val staged = runOnMainSync { vm.chatsBackStackEntries.filterNot { it is MainNavigationDetailLocation.Empty } }
+      check(staged.isEmpty()) {
+        "Expected no detail to be staged on the chats back stack, got $staged"
       }
     }
   }
@@ -289,8 +290,9 @@ class MainNavigationLaunchTest {
         "Expected default CHATS, got ${vm.mainNavigationState.value.currentListLocation}"
       }
       Thread.sleep(750)
-      check(vm.earlyNavigationDetailLocationRequested == null) {
-        "Expected no early detail, got ${vm.earlyNavigationDetailLocationRequested}"
+      val detailLocation = runOnMainSync { vm.detailLocation.value }
+      check(detailLocation == MainNavigationDetailLocation.Empty) {
+        "Expected Empty detail location, got $detailLocation"
       }
       check(recorder.createdArgs.isEmpty()) {
         "Expected no ConversationFragment for bare launch, got ${recorder.createdArgs.size}"
@@ -348,11 +350,13 @@ class MainNavigationLaunchTest {
       await(description = "no new ConversationFragment after Empty detail intent") {
         recorder.createdArgs.size == baseline
       }
-      // The user-visible signal that we're "back on the list" is the chat list fragment
-      // being attached, not just the VM saying CHATS.
-      awaitListFragment(launched, MainNavigationListLocation.CHATS)
 
       val vm = runOnMainSync { launched.activity.mainNavigationViewModel() }
+
+      await(description = "conversation cleared from chats back stack after Empty detail intent") {
+        vm.chatsBackStackEntries.none { it is MainNavigationDetailLocation.Conversation }
+      }
+
       check(vm.mainNavigationState.value.currentListLocation == MainNavigationListLocation.CHATS) {
         "Expected CHATS, got ${vm.mainNavigationState.value.currentListLocation}"
       }
@@ -569,7 +573,7 @@ class MainNavigationLaunchTest {
   }
 
   private fun realBlob(bytes: ByteArray, mimeType: String): Uri {
-    return BlobProvider.getInstance()
+    return AppDependencies.blobs
       .forData(bytes)
       .withMimeType(mimeType)
       .createForSingleSessionInMemory()

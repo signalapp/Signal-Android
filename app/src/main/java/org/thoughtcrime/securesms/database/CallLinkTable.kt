@@ -203,7 +203,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       )
 
       insertCallLink(link)
-      return getCallLinkByRoomId(roomId)!!
+      getCallLinkByRoomId(roomId)!!
     } else {
       callLink
     }
@@ -287,7 +287,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
         deletionTimestamp = 0L
       )
       insertCallLink(link)
-      return getCallLinkByRoomId(callLinkRoomId)!!
+      getCallLinkByRoomId(callLinkRoomId)!!
     } else {
       callLink
     }
@@ -468,7 +468,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       }
     }
 
-    override fun deserialize(data: ContentValues): CallLink {
+    override fun deserialize(input: ContentValues): CallLink {
       throw UnsupportedOperationException()
     }
   }
@@ -478,21 +478,21 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       throw UnsupportedOperationException()
     }
 
-    override fun deserialize(data: Cursor): CallLink {
+    override fun deserialize(input: Cursor): CallLink {
       return CallLink(
-        recipientId = data.requireLong(RECIPIENT_ID).let { if (it > 0) RecipientId.from(it) else RecipientId.UNKNOWN },
-        roomId = CallLinkRoomId.DatabaseSerializer.deserialize(data.requireNonNullString(ROOM_ID)),
-        credentials = data.requireBlob(ROOT_KEY)?.let { linkKey ->
+        recipientId = input.requireLong(RECIPIENT_ID).let { if (it > 0) RecipientId.from(it) else RecipientId.UNKNOWN },
+        roomId = CallLinkRoomId.DatabaseSerializer.deserialize(input.requireNonNullString(ROOM_ID)),
+        credentials = input.requireBlob(ROOT_KEY)?.let { linkKey ->
           CallLinkCredentials(
             linkKeyBytes = linkKey,
-            adminPassBytes = data.requireBlob(ADMIN_KEY)
+            adminPassBytes = input.requireBlob(ADMIN_KEY)
           )
         },
         state = SignalCallLinkState(
-          name = data.requireNonNullString(NAME),
-          restrictions = data.requireInt(RESTRICTIONS).mapToRestrictions(),
-          revoked = data.requireBoolean(REVOKED),
-          expiration = data.requireLong(EXPIRATION).let {
+          name = input.requireNonNullString(NAME),
+          restrictions = input.requireInt(RESTRICTIONS).mapToRestrictions(),
+          revoked = input.requireBoolean(REVOKED),
+          expiration = input.requireLong(EXPIRATION).let {
             if (it == -1L) {
               Instant.MAX
             } else {
@@ -500,7 +500,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
             }
           }
         ),
-        deletionTimestamp = data.requireLong(DELETION_TIMESTAMP)
+        deletionTimestamp = input.requireLong(DELETION_TIMESTAMP)
       )
     }
 
@@ -521,6 +521,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     val deletionTimestamp: Long
   ) {
     val avatarColor: AvatarColor = credentials?.let { AvatarColorHash.forCallLink(it.linkKeyBytes) } ?: AvatarColor.UNKNOWN
+    val canModify: Boolean = credentials?.adminPassBytes != null
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {

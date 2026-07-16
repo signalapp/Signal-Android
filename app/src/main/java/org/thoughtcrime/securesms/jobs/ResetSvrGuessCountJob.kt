@@ -72,6 +72,11 @@ class ResetSvrGuessCountJob private constructor(
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
+    if (SignalStore.account.isLinkedDevice) {
+      Log.i(TAG, "Not primary device. Skipping.")
+      return Result.success()
+    }
+
     SvrRepository.operationLock.withLock {
       val pin = SignalStore.svr.pin
 

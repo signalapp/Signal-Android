@@ -95,6 +95,15 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit"
             app:popUpTo="@+id/enterPhoneNumberChangeFragment" />
+
+        <action
+            android:id="@+id/action_changePhoneNumberVerifyFragment_to_changeNumberRegistrationLock"
+            app:destination="@id/changeNumberRegistrationLock"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@+id/enterPhoneNumberChangeFragment" />
     </fragment>
 
     <fragment

@@ -103,7 +103,8 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
     internalSettingsState.update {
       it.copy(
         canTurnOn = canTurnOn,
-        scheduleTimeLabel = backupTime
+        scheduleTimeLabel = backupTime,
+        optimizeStorageEnabled = SignalStore.backup.optimizeStorage
       )
     }
   }

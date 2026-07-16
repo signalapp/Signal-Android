@@ -19,6 +19,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.registration.NetworkController
 import org.signal.registration.NewRegistrationData
 import org.signal.registration.PreExistingRegistrationData
+import org.signal.registration.RestoreDecision
 
 /**
  * SharedPreferences-based storage for registration data that doesn't need
@@ -42,6 +43,7 @@ object RegistrationPreferences {
   private const val KEY_PNI_IDENTITY_KEY = "pni_identity_key"
   private const val KEY_TEMPORARY_MASTER_KEY = "temporary_master_key"
   private const val KEY_REGISTRATION_LOCK_ENABLED = "registration_lock_enabled"
+  private const val KEY_UNRESTRICTED_UNIDENTIFIED_ACCESS = "unrestricted_unidentified_access"
   private const val KEY_PIN = "has_pin"
   private const val KEY_PIN_ALPHANUMERIC = "pin_alphanumeric"
   private const val KEY_PINS_OPTED_OUT = "pins_opted_out"
@@ -57,6 +59,11 @@ object RegistrationPreferences {
   private const val KEY_PROFILE_FAMILY_NAME = "profile_family_name"
   private const val KEY_PROFILE_AVATAR = "profile_avatar"
   private const val KEY_PROFILE_DISCOVERABLE = "profile_discoverable"
+  private const val KEY_RESTORE_DECISION = "restore_decision"
+  private const val KEY_LINKED_DEVICE_ID = "linked_device_id"
+  private const val KEY_EPHEMERAL_BACKUP_KEY = "ephemeral_backup_key"
+  private const val KEY_LINK_AND_SYNC_FRAME_COUNT = "link_and_sync_frame_count"
+  private const val KEY_LINK_AND_SYNC_DOWNLOADED_BYTES = "link_and_sync_downloaded_bytes"
 
   fun init(context: Application) {
     this.context = context
@@ -84,7 +91,7 @@ object RegistrationPreferences {
 
   var aep: AccountEntropyPool?
     get() = prefs.getString(KEY_AEP, null)?.let { AccountEntropyPool(it) }
-    set(value) = prefs.edit { putString(KEY_AEP, value?.toString()) }
+    set(value) = prefs.edit { putString(KEY_AEP, value?.value) }
 
   var profileKey: ProfileKey?
     get() = prefs.getString(KEY_PROFILE_KEY, null)?.let { ProfileKey(Base64.decode(it)) }
@@ -117,6 +124,10 @@ object RegistrationPreferences {
     get() = prefs.getBoolean(KEY_REGISTRATION_LOCK_ENABLED, false)
     set(value) = prefs.edit { putBoolean(KEY_REGISTRATION_LOCK_ENABLED, value) }
 
+  var unrestrictedUnidentifiedAccess: Boolean
+    get() = prefs.getBoolean(KEY_UNRESTRICTED_UNIDENTIFIED_ACCESS, false)
+    set(value) = prefs.edit { putBoolean(KEY_UNRESTRICTED_UNIDENTIFIED_ACCESS, value) }
+
   val hasPin: Boolean
     get() = pin != null
 
@@ -136,6 +147,10 @@ object RegistrationPreferences {
     get() = prefs.getBoolean(KEY_FETCHES_MESSAGES, true)
     set(value) = prefs.edit { putBoolean(KEY_FETCHES_MESSAGES, value) }
 
+  var restoreDecision: RestoreDecision?
+    get() = prefs.getString(KEY_RESTORE_DECISION, null)?.let { runCatching { RestoreDecision.valueOf(it) }.getOrNull() }
+    set(value) = prefs.edit { putString(KEY_RESTORE_DECISION, value?.name) }
+
   var profileGivenName: String
     get() = prefs.getString(KEY_PROFILE_GIVEN_NAME, "") ?: ""
     set(value) = prefs.edit { putString(KEY_PROFILE_GIVEN_NAME, value) }
@@ -153,6 +168,22 @@ object RegistrationPreferences {
     set(value) = prefs.edit {
       if (value == null) remove(KEY_PROFILE_DISCOVERABLE) else putBoolean(KEY_PROFILE_DISCOVERABLE, value)
     }
+
+  var linkedDeviceId: Int
+    get() = prefs.getInt(KEY_LINKED_DEVICE_ID, -1)
+    set(value) = prefs.edit { putInt(KEY_LINKED_DEVICE_ID, value) }
+
+  var ephemeralBackupKey: ByteArray?
+    get() = prefs.getString(KEY_EPHEMERAL_BACKUP_KEY, null)?.let { Base64.decode(it) }
+    set(value) = prefs.edit { putString(KEY_EPHEMERAL_BACKUP_KEY, value?.let { Base64.encodeWithPadding(it) }) }
+
+  var linkAndSyncFrameCount: Int
+    get() = prefs.getInt(KEY_LINK_AND_SYNC_FRAME_COUNT, -1)
+    set(value) = prefs.edit { putInt(KEY_LINK_AND_SYNC_FRAME_COUNT, value) }
+
+  var linkAndSyncDownloadedBytes: Long
+    get() = prefs.getLong(KEY_LINK_AND_SYNC_DOWNLOADED_BYTES, -1L)
+    set(value) = prefs.edit { putLong(KEY_LINK_AND_SYNC_DOWNLOADED_BYTES, value) }
 
   var restoredSvr2Credentials: List<NetworkController.SvrCredentials>
     get() = prefs.getStringSet(KEY_SVR2_CREDENTIALS, emptySet())?.mapNotNull { parseCredential(it) } ?: emptyList()
@@ -197,6 +228,7 @@ object RegistrationPreferences {
       servicePassword = servicePassword,
       aep = aep,
       registrationLockEnabled = registrationLockEnabled,
+      unrestrictedUnidentifiedAccess = unrestrictedUnidentifiedAccess,
       aciIdentityKeyPair = aciIdentityKeyPair,
       pniIdentityKeyPair = pniIdentityKeyPair
     )

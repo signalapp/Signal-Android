@@ -34,7 +34,7 @@ class MainToolbarViewModel : ViewModel() {
 
   fun refresh() {
     viewModelScope.launch {
-      val self = withContext(SignalDispatchers.IO) {
+      val self = withContext(SignalDispatchers.Default) {
         Recipient.self().resolve()
       }
 

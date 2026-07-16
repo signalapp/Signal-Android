@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <org.thoughtcrime.securesms.video.VideoPlayer
+    <org.signal.video.VideoPlayer
         android:id="@+id/video"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

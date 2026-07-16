@@ -152,11 +152,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
-  fun setHevcEncoding(enabled: Boolean) {
-    SignalStore.internal.hevcEncoding = enabled
-    refresh()
-  }
-
   fun addSampleReleaseNote(callToAction: String = "action") {
     repository.addSampleReleaseNote(callToAction)
   }
@@ -242,7 +237,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     pnpInitialized = SignalStore.misc.hasPniInitializedDevices,
     useConversationItemV2ForMedia = SignalStore.internal.useConversationItemV2Media,
     hasPendingOneTimeDonation = SignalStore.inAppPayments.getPendingOneTimeDonation() != null,
-    hevcEncoding = SignalStore.internal.hevcEncoding,
     forceSplitPane = SignalStore.internal.forceSplitPane,
     forceSinglePane = SignalStore.internal.forceSinglePane,
     useNewMediaActivity = SignalStore.internal.useNewMediaActivity,

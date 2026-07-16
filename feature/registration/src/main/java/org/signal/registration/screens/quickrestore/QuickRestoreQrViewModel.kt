@@ -13,7 +13,11 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import org.signal.core.models.AccountEntropyPool
+import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.ui.compose.QrCodeData
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
@@ -21,7 +25,6 @@ import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
-import org.signal.registration.screens.EventDrivenViewModel
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 
@@ -34,17 +37,21 @@ class QuickRestoreQrViewModel(
     private val TAG = Log.tag(QuickRestoreQrViewModel::class)
   }
 
-  private val _localState = MutableStateFlow(QuickRestoreQrState())
-  val state: StateFlow<QuickRestoreQrState> = _localState.asStateFlow()
+  private val _state = MutableStateFlow(QuickRestoreQrState())
+  val state: StateFlow<QuickRestoreQrState> = _state.asStateFlow()
 
   private var provisioningJob: Job? = null
 
   init {
+    _state
+      .onEach { Log.d(TAG, "[State] $it") }
+      .launchIn(viewModelScope)
+
     startProvisioning()
   }
 
   override suspend fun processEvent(event: QuickRestoreQrEvents) {
-    applyEvent(state.value, event) { _localState.value = it }
+    applyEvent(state.value, event) { _state.value = it }
   }
 
   @VisibleForTesting
@@ -57,9 +64,6 @@ class QuickRestoreQrViewModel(
       is QuickRestoreQrEvents.Cancel -> {
         parentEventEmitter.navigateBack()
         state
-      }
-      is QuickRestoreQrEvents.UseProxy -> {
-        throw NotImplementedError("Proxy settings not implemented!")
       }
       is QuickRestoreQrEvents.DismissError -> {
         startProvisioning()
@@ -76,7 +80,7 @@ class QuickRestoreQrViewModel(
         when (event) {
           is NetworkController.ProvisioningEvent.QrCodeReady -> {
             Log.d(TAG, "[Provisioning] QR code ready")
-            _localState.value = _localState.value.copy(
+            _state.value = _state.value.copy(
               qrState = QrState.Loaded(
                 qrCodeData = QrCodeData.forData(data = event.url, supportIconOverlay = false)
               )
@@ -88,7 +92,7 @@ class QuickRestoreQrViewModel(
           }
           is NetworkController.ProvisioningEvent.Error -> {
             Log.w(TAG, "[Provisioning] Error", event.cause)
-            _localState.value = _localState.value.copy(qrState = QrState.Failed)
+            _state.value = _state.value.copy(qrState = QrState.Failed)
           }
         }
       }
@@ -97,6 +101,7 @@ class QuickRestoreQrViewModel(
 
   private suspend fun handleProvisioningMessage(message: NetworkController.ProvisioningMessage) {
     parentEventEmitter(RegistrationFlowEvent.RestoreMethodTokenReceived(message.restoreMethodToken))
+    parentEventEmitter(RegistrationFlowEvent.E164Chosen(message.e164))
 
     if (message.platform == NetworkController.ProvisioningMessage.Platform.IOS && message.tier == null) {
       // iOS without a backup tier cannot do a quick restore — navigate to the choose-restore screen
@@ -104,22 +109,32 @@ class QuickRestoreQrViewModel(
       return
     }
 
-    _localState.value = _localState.value.copy(isRegistering = true, qrState = QrState.Scanned)
+    _state.value = _state.value.copy(isRegistering = true, qrState = QrState.Scanned)
 
-    val registerResult = repository.registerAccountWithProvisioningData(message)
+    attemptToRegister(message, provideRegistrationLock = false)
+  }
+
+  private suspend fun attemptToRegister(message: NetworkController.ProvisioningMessage, provideRegistrationLock: Boolean) {
+    val registerResult = repository.registerAccountWithProvisioningData(message, provideRegistrationLock)
 
     when (registerResult) {
       is RequestResult.Success -> {
         val (response, keyMaterial) = registerResult.result
         Log.i(TAG, "[Register] Success! reregistration: ${response.reregistration}")
-        parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool))
-        parentEventEmitter.navigateTo(RegistrationRoute.ArchiveRestoreSelection.forQuickRestore(hasRemoteBackup = message.tier != null))
+        parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool, response.storageCapable))
+        parentEventEmitter.navigateTo(
+          RegistrationRoute.ArchiveRestoreSelection.forQuickRestore(
+            aep = AccountEntropyPool(message.accountEntropyPool),
+            hasRemoteBackup = message.tier != null,
+            hasPin = !message.pin.isNullOrBlank()
+          )
+        )
       }
       is RequestResult.NonSuccess -> {
         when (val error = registerResult.error) {
           is NetworkController.RegisterAccountError.RateLimited -> {
             Log.w(TAG, "[Register] Rate limited (retryAfter: ${error.retryAfter}).")
-            _localState.value = _localState.value.copy(
+            _state.value = _state.value.copy(
               isRegistering = false,
               showRegistrationError = true,
               errorMessage = null
@@ -127,24 +142,29 @@ class QuickRestoreQrViewModel(
           }
           is NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
             Log.w(TAG, "[Register] Recovery password incorrect: ${error.message}")
-            _localState.value = _localState.value.copy(
+            _state.value = _state.value.copy(
               isRegistering = false,
               showRegistrationError = true,
               errorMessage = null
             )
           }
           is NetworkController.RegisterAccountError.RegistrationLock -> {
-            Log.w(TAG, "[Register] Registration locked.")
-            parentEventEmitter.navigateTo(
-              RegistrationRoute.PinEntryForRegistrationLock(
-                timeRemaining = error.data.timeRemaining,
-                svrCredentials = error.data.svr2Credentials
+            if (provideRegistrationLock) {
+              Log.w(TAG, "[Register] Still registration locked after providing the reglock token derived from the provisioned AEP. Falling back to PIN entry.")
+              parentEventEmitter.navigateTo(
+                RegistrationRoute.PinEntryForRegistrationLock(
+                  timeRemaining = error.data.timeRemaining,
+                  svrCredentials = error.data.svr2Credentials
+                )
               )
-            )
+            } else {
+              Log.w(TAG, "[Register] Registration locked. Retrying with the reglock token derived from the provisioned AEP.")
+              attemptToRegister(message, provideRegistrationLock = true)
+            }
           }
           is NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified -> {
             Log.w(TAG, "[Register] Session not found or not verified: ${error.message}")
-            _localState.value = _localState.value.copy(
+            _state.value = _state.value.copy(
               isRegistering = false,
               showRegistrationError = true,
               errorMessage = null
@@ -156,7 +176,7 @@ class QuickRestoreQrViewModel(
           }
           is NetworkController.RegisterAccountError.InvalidRequest -> {
             Log.w(TAG, "[Register] Invalid request: ${error.message}")
-            _localState.value = _localState.value.copy(
+            _state.value = _state.value.copy(
               isRegistering = false,
               showRegistrationError = true,
               errorMessage = null
@@ -166,7 +186,7 @@ class QuickRestoreQrViewModel(
       }
       is RequestResult.RetryableNetworkError -> {
         Log.w(TAG, "[Register] Network error.", registerResult.networkError)
-        _localState.value = _localState.value.copy(
+        _state.value = _state.value.copy(
           isRegistering = false,
           showRegistrationError = true,
           errorMessage = null
@@ -174,7 +194,7 @@ class QuickRestoreQrViewModel(
       }
       is RequestResult.ApplicationError -> {
         Log.w(TAG, "[Register] Application error.", registerResult.cause)
-        _localState.value = _localState.value.copy(
+        _state.value = _state.value.copy(
           isRegistering = false,
           showRegistrationError = true,
           errorMessage = null

@@ -49,7 +49,7 @@ object BackupAlertDelegate {
   }
 
   private suspend fun displayBackupDownloadNotifier(fragmentManager: FragmentManager) {
-    val downloadYourBackupToday = withContext(SignalDispatchers.IO) { BackupRepository.getDownloadYourBackupData() }
+    val downloadYourBackupToday = withContext(SignalDispatchers.Default) { BackupRepository.getDownloadYourBackupData() }
     when (downloadYourBackupToday?.type) {
       BackupDownloadNotifierState.Type.SHEET -> {
         Log.d(TAG, "Displaying 'Download your backup today' sheet.")

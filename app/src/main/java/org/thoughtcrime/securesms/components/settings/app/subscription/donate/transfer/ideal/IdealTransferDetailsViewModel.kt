@@ -23,7 +23,7 @@ class IdealTransferDetailsViewModel(inAppPaymentId: InAppPaymentTable.InAppPayme
 
   init {
     viewModelScope.launch {
-      val inAppPayment = withContext(Dispatchers.IO) {
+      val inAppPayment = withContext(Dispatchers.Default) {
         SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
       }
 

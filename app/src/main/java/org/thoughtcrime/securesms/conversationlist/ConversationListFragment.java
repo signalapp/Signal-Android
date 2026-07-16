@@ -27,7 +27,6 @@ import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -44,7 +43,6 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
-import org.signal.core.ui.compose.Snackbars;
 import androidx.compose.ui.platform.ComposeView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
@@ -66,7 +64,13 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.ui.BottomSheetUtil;
+import org.signal.core.ui.WindowSizeClassExtensionsKt;
+import org.signal.core.ui.compose.Snackbars;
+import org.signal.core.ui.view.Stub;
+import org.signal.core.util.AppForegroundObserver;
 import org.signal.core.util.DimensionUnit;
+import org.signal.core.util.ServiceUtil;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -88,13 +92,13 @@ import org.thoughtcrime.securesms.badges.self.expired.ExpiredOneTimeBadgeBottomS
 import org.thoughtcrime.securesms.badges.self.expired.MonthlyDonationCanceledBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.banner.Banner;
 import org.thoughtcrime.securesms.banner.BannerManager;
+import org.thoughtcrime.securesms.banner.banners.ArchiveRestoreStatusBanner;
 import org.thoughtcrime.securesms.banner.banners.ArchiveUploadStatusBanner;
 import org.thoughtcrime.securesms.banner.banners.CdsPermanentErrorBanner;
 import org.thoughtcrime.securesms.banner.banners.CdsTemporaryErrorBanner;
 import org.thoughtcrime.securesms.banner.banners.DeprecatedBuildBanner;
 import org.thoughtcrime.securesms.banner.banners.DeprecatedSdkBanner;
 import org.thoughtcrime.securesms.banner.banners.DozeBanner;
-import org.thoughtcrime.securesms.banner.banners.ArchiveRestoreStatusBanner;
 import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner;
 import org.thoughtcrime.securesms.banner.banners.ServiceOutageBanner;
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner;
@@ -123,7 +127,6 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchRepository;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchViewModel;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchViewModelKt;
-import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments;
 import org.thoughtcrime.securesms.conversation.ConversationUpdateTick;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest;
@@ -156,23 +159,19 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.search.SearchFilter;
 import org.thoughtcrime.securesms.search.SearchFilterBottomSheet;
+import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.signal.core.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
-import org.signal.core.ui.BottomSheetUtil;
-import org.signal.core.ui.view.Stub;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ConversationUtil;
-import org.signal.core.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
 import org.thoughtcrime.securesms.verify.SelfVerificationFailureSheet;
-import org.signal.core.ui.WindowSizeClassExtensionsKt;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
 import java.lang.ref.WeakReference;
@@ -208,12 +207,16 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   private static final String TAG = Log.tag(ConversationListFragment.class);
 
+  private static final long SEARCH_LOADING_SHOW_DELAY_MS = 150L;
+
   private static final int MAX_CHATS_ABOVE_FOLD             = 7;
   private static final int MAX_CONTACTS_ABOVE_FOLD          = 5;
   private static final int MAX_GROUP_MEMBERSHIPS_ABOVE_FOLD = 5;
   private View                                   coordinator;
   private RecyclerView                           chatFolderList;
   private RecyclerView                           list;
+  private View                                   searchLoading;
+  private boolean                                searchInProgress;
   private Stub<ComposeView>                      bannerView;
   private ConversationListFilterPullView         pullView;
   private AppBarLayout                           pullViewAppBarLayout;
@@ -221,6 +224,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
   private RecyclerView.Adapter                   activeAdapter;
   private ConversationListAdapter                defaultAdapter;
   private PagingMappingAdapter<ContactSearchKey> searchAdapter;
+  private final Runnable                         showSearchLoadingRunnable = () -> {
+    if (searchLoading != null && searchInProgress && activeAdapter == searchAdapter) {
+      searchLoading.setVisibility(View.VISIBLE);
+    }
+  };
   private SnapToTopDataObserver                  snapToTopDataObserver;
   private Drawable                               archiveDrawable;
   private AppForegroundObserver.Listener         appForegroundObserver;
@@ -317,6 +325,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
     chatFolderList          = view.findViewById(R.id.chat_folder_list);
     list                    = view.findViewById(R.id.list);
+    searchLoading           = view.findViewById(R.id.search_loading);
     bottomActionBar         = view.findViewById(R.id.conversation_list_bottom_action_bar);
     bannerView              = new Stub<>(view.findViewById(R.id.banner_compose_view));
     voiceNotePlayerViewStub = new Stub<>(view.findViewById(R.id.voice_note_player));
@@ -330,7 +339,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
         false,
         new ConversationListSearchAdapter.ChatFilterRepository(),
         new SearchRepository(requireContext().getString(R.string.note_to_self)),
-        new ContactSearchPagedDataSourceRepository(requireContext()),
+        new ContactSearchPagedDataSourceRepository(requireContext(), requireContext().getString(R.string.note_to_self)),
         Collections.emptySet(),
         true
     )).get(ContactSearchViewModel.class);
@@ -352,6 +361,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
     );
 
     ContactSearchViewModelKt.bindAdapterToLifecycle(contactSearchViewModel, getViewLifecycleOwner(), searchAdapter, this::mapSearchStateToConfiguration);
+    ContactSearchViewModelKt.bindSearchInProgressToLifecycle(contactSearchViewModel, getViewLifecycleOwner(), inProgress -> {
+      searchInProgress = inProgress;
+      updateSearchLoadingVisibility();
+      return Unit.INSTANCE;
+    });
 
     initializeSearchFilterListener();
 
@@ -464,11 +478,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
                                                    }));
 
     if (isSplitPane(getResources())) {
-      lifecycleDisposable.add(mainNavigationViewModel.getObservableActiveChatThreadId()
+      lifecycleDisposable.add(mainNavigationViewModel.getObservableActiveRecipientId()
                                                      .subscribeOn(AndroidSchedulers.mainThread())
-                                                     .subscribe(defaultAdapter::setActiveThreadId));
+                                                     .subscribe(id -> defaultAdapter.setActiveRecipientId(id.orElse(null))));
     } else {
-      defaultAdapter.setActiveThreadId(0);
+      defaultAdapter.setActiveRecipientId(null);
     }
 
     requireCallback().bindScrollHelper(list, getViewLifecycleOwner(), chatFolderList, color -> {
@@ -516,6 +530,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
     activeAdapter  = null;
     defaultAdapter = null;
     searchAdapter  = null;
+
+    if (searchLoading != null) {
+      searchLoading.removeCallbacks(showSearchLoadingRunnable);
+      searchLoading = null;
+    }
 
     dismissProgressDialog();
 
@@ -854,11 +873,6 @@ public class ConversationListFragment extends MainFragment implements Conversati
                   .show();
             }
           }
-
-          @Override
-          public void onDismissComplete() {
-            bannerManager.updateContent(bannerView.get());
-          }
         }),
         new ArchiveUploadStatusBanner(new ArchiveUploadStatusBanner.UploadProgressBannerListener() {
           @Override
@@ -874,14 +888,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
                 .setNegativeButton(R.string.CancelBackupDialog_continue_action, null)
                 .setPositiveButton(R.string.CancelBackupDialog_cancel_action, (d, w) -> {
                   ArchiveUploadProgress.INSTANCE.cancel();
-                  bannerManager.updateContent(bannerView.get());
                 })
                 .show();
-          }
-
-          @Override
-          public void onHidden() {
-            bannerManager.updateContent(bannerView.get());
           }
         })
     );
@@ -955,6 +963,25 @@ public class ConversationListFragment extends MainFragment implements Conversati
       defaultAdapter.registerAdapterDataObserver(snapToTopDataObserver);
     } else {
       defaultAdapter.unregisterAdapterDataObserver(snapToTopDataObserver);
+    }
+
+    updateSearchLoadingVisibility();
+  }
+
+  private void updateSearchLoadingVisibility() {
+    if (searchLoading == null) {
+      return;
+    }
+
+    boolean shouldShow = searchInProgress && activeAdapter == searchAdapter;
+    searchLoading.removeCallbacks(showSearchLoadingRunnable);
+
+    if (shouldShow) {
+      if (searchLoading.getVisibility() != View.VISIBLE) {
+        searchLoading.postDelayed(showSearchLoadingRunnable, SEARCH_LOADING_SHOW_DELAY_MS);
+      }
+    } else {
+      searchLoading.setVisibility(View.GONE);
     }
   }
 
@@ -1196,33 +1223,22 @@ public class ConversationListFragment extends MainFragment implements Conversati
       final Set<Long> selectedConversations = new HashSet<>(ids);
 
       if (!selectedConversations.isEmpty()) {
-        new AsyncTask<Void, Void, Void>() {
-          private SignalProgressDialog dialog;
+        SignalProgressDialog progressDialog = SignalProgressDialog.show(requireActivity(),
+                                                                        context.getString(R.string.ConversationListFragment_deleting),
+                                                                        context.getResources().getQuantityString(R.plurals.ConversationListFragment_deleting_selected_conversations, conversationsCount),
+                                                                        true,
+                                                                        false);
 
-          @Override
-          protected void onPreExecute() {
-            dialog = SignalProgressDialog.show(requireActivity(),
-                                               context.getString(R.string.ConversationListFragment_deleting),
-                                               context.getResources().getQuantityString(R.plurals.ConversationListFragment_deleting_selected_conversations, conversationsCount),
-                                               true,
-                                               false);
-          }
-
-          @Override
-          protected Void doInBackground(Void... params) {
-            Log.d(TAG, "[handleDelete] Deleting " + selectedConversations.size() + " chats");
-            SignalDatabase.threads().deleteConversations(selectedConversations, true);
-            AppDependencies.getMessageNotifier().updateNotification(requireActivity());
-            Log.d(TAG, "[handleDelete] Delete complete");
-            return null;
-          }
-
-          @Override
-          protected void onPostExecute(Void result) {
-            dialog.dismiss();
-            endActionModeIfActive();
-          }
-        }.executeOnExecutor(SignalExecutors.BOUNDED);
+        SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
+          Log.d(TAG, "[handleDelete] Deleting " + selectedConversations.size() + " chats");
+          SignalDatabase.threads().deleteConversations(selectedConversations, true);
+          AppDependencies.getMessageNotifier().updateNotification(AppDependencies.getApplication());
+          Log.d(TAG, "[handleDelete] Delete complete");
+          return null;
+        }, unused -> {
+          progressDialog.dismiss();
+          endActionModeIfActive();
+        });
       }
     });
 

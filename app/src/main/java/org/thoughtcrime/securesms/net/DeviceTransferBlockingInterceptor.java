@@ -45,7 +45,7 @@ public final class DeviceTransferBlockingInterceptor implements Interceptor {
                                  .receivedResponseAtMillis(System.currentTimeMillis())
                                  .message("")
                                  .body(ResponseBody.create(null, ""))
-                                 .code(500)
+                                 .code(555)
                                  .build();
   }
 
@@ -60,6 +60,6 @@ public final class DeviceTransferBlockingInterceptor implements Interceptor {
 
   public void unblockNetwork() {
     blockNetworking = false;
-    SignalExecutors.UNBOUNDED.execute(AppDependencies::startNetwork);
+    AppDependencies.resetNetwork();
   }
 }

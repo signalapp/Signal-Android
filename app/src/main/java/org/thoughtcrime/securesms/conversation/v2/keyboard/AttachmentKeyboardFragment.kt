@@ -51,7 +51,6 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
 
   private val lifecycleDisposable = LifecycleDisposable()
   private val removePaymentFilter: Predicate<AttachmentKeyboardButton> = Predicate { button -> button != AttachmentKeyboardButton.PAYMENT }
-  private val removePollFilter: Predicate<AttachmentKeyboardButton> = Predicate { button -> button != AttachmentKeyboardButton.POLL }
 
   @Suppress("ReplaceGetOrSet")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -133,15 +132,10 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
   private fun updateButtonsAvailable(recipient: Recipient) {
     val paymentsValues = SignalStore.payments
     val isPaymentsAvailable = paymentsValues.paymentsAvailability.isSendAllowed && !recipient.isSelf && !recipient.isGroup && recipient.isRegistered
-    val isPollsAvailable = recipient.isPushV2Group || RemoteConfig.pollsV2
 
-    if (!isPaymentsAvailable && !isPollsAvailable) {
-      attachmentKeyboardView.filterAttachmentKeyboardButtons(removePaymentFilter.and(removePollFilter))
-    } else if (!isPaymentsAvailable) {
+    if (!isPaymentsAvailable) {
       attachmentKeyboardView.filterAttachmentKeyboardButtons(removePaymentFilter)
-    } else if (!isPollsAvailable) (
-      attachmentKeyboardView.filterAttachmentKeyboardButtons(removePollFilter)
-      ) else {
+    } else {
       attachmentKeyboardView.filterAttachmentKeyboardButtons(null)
     }
   }

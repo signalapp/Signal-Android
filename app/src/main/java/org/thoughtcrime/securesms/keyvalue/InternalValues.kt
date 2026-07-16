@@ -30,7 +30,6 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val LAST_SCROLL_POSITION: String = "internal.last_scroll_position"
     const val CONVERSATION_ITEM_V2_MEDIA: String = "internal.conversation_item_v2_media"
     const val WEB_SOCKET_SHADOWING_STATS: String = "internal.web_socket_shadowing_stats"
-    const val ENCODE_HEVC: String = "internal.hevc_encoding"
     const val FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE: String = "internal.force.split.pane.on.compact.landscape.ui"
     const val FORCE_SINGLE_PANE_ON_ALL_DEVICES: String = "internal.force_single_pane_on_all_devices"
     const val SHOW_ARCHIVE_STATE_HINT: String = "internal.show_archive_state_hint"
@@ -144,7 +143,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   /**
    * Whether or not to override the audio settings from the remote configuration.
    */
-  var callingSetAudioConfig by booleanValue(CALLING_SET_AUDIO_CONFIG, true).falseForExternalUsers()
+  var callingSetAudioConfig by booleanValue(CALLING_SET_AUDIO_CONFIG, false).falseForExternalUsers()
 
   /**
    * If overriding the audio settings, use the Oboe ADM or not.
@@ -170,8 +169,6 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
    * If overriding the audio settings, use Voice Comm for the input or not.
    */
   var callingUseInputVoiceComm by booleanValue(CALLING_USE_INPUT_VOICE_COMM, true).defaultForExternalUsers()
-
-  var hevcEncoding by booleanValue(ENCODE_HEVC, false).defaultForExternalUsers()
 
   var lastScrollPosition: Int by integerValue(LAST_SCROLL_POSITION, 0).defaultForExternalUsers()
 

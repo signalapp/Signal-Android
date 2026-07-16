@@ -13,6 +13,7 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.WriteWith
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
+import org.signal.mediasend.edit.video.VideoTrimData
 
 /**
  * The collective state of the media send flow.
@@ -37,10 +38,7 @@ data class MediaSendState(
   val focusedMedia: Media? = null,
   val isMeteredConnection: Boolean = false,
   val isPreUploadEnabled: Boolean = false,
-  /**
-   * Int code to avoid depending on app-layer enums. Conventionally 0 == STANDARD.
-   */
-  val sentMediaQuality: Int = 0,
+  val sentMediaQuality: SentMediaQuality = SentMediaQuality.STANDARD,
   /**
    * Per-media editor state keyed by URI (video trim data, image editor data, etc.).
    */
@@ -123,6 +121,10 @@ data class MediaSendState(
    */
   val selectedMediaFolderItems: @WriteWith<TransientMediaListParceler> List<Media> = emptyList()
 ) : Parcelable {
+
+  fun getOrCreateVideoTrimData(uri: Uri): VideoTrimData {
+    return (editorStateMap[uri] as? EditorState.VideoTrim)?.videoTrimData ?: VideoTrimData()
+  }
 
   /**
    * No-op parcelers for fields that are re-loaded on init and should not

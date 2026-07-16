@@ -13,7 +13,6 @@ import org.signal.qr.QrScannerView
 import org.signal.qr.kitkat.ScanListener
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ShapeScrim
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
 
@@ -41,7 +40,7 @@ class VerifyScanFragment : Fragment() {
       ViewUtil.updateLayoutParams(cameraMarks, width, height)
     }
 
-    cameraView.start(viewLifecycleOwner, CameraXRemoteConfig.isBlocklisted())
+    cameraView.start(viewLifecycleOwner)
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
 

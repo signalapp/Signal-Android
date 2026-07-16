@@ -71,25 +71,25 @@ class SoundsAndNotificationsSettingsViewModel2(
   }
 
   private fun applySetMuteUntil(muteUntil: Long) {
-    viewModelScope.launch(Dispatchers.IO) {
+    viewModelScope.launch(Dispatchers.Default) {
       SignalDatabase.recipients.setMuted(recipientId, muteUntil)
     }
   }
 
   private fun applySetMentionSetting(setting: NotificationSetting) {
-    viewModelScope.launch(Dispatchers.IO) {
+    viewModelScope.launch(Dispatchers.Default) {
       SignalDatabase.recipients.setMentionSetting(recipientId, setting)
     }
   }
 
   private fun applySetCallNotificationSetting(setting: NotificationSetting) {
-    viewModelScope.launch(Dispatchers.IO) {
+    viewModelScope.launch(Dispatchers.Default) {
       SignalDatabase.recipients.setCallNotificationSetting(recipientId, setting)
     }
   }
 
   private fun applySetReplyNotificationSetting(setting: NotificationSetting) {
-    viewModelScope.launch(Dispatchers.IO) {
+    viewModelScope.launch(Dispatchers.Default) {
       SignalDatabase.recipients.setReplyNotificationSetting(recipientId, setting)
     }
   }

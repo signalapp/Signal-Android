@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import kotlin.time.Duration.Companion.days
 
@@ -41,6 +42,11 @@ class RemoteConfigRefreshJob private constructor(parameters: Parameters) : Job(p
   override fun run(): Result {
     if (!SignalStore.account.isRegistered) {
       Log.w(TAG, "Not registered. Skipping.")
+      return Result.success()
+    }
+
+    if (TextSecurePreferences.isUnauthorizedReceived(context)) {
+      Log.i(TAG, "No longer authorized. Ignoring.")
       return Result.success()
     }
 

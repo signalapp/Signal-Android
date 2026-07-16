@@ -18,6 +18,7 @@ import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.libsignal.net.ChallengeOption
+import org.signal.libsignal.protocol.InvalidSessionException
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.network.service.MessageService
 import org.thoughtcrime.securesms.BuildConfig
@@ -339,6 +340,12 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
           }
 
           is MessageService.SendError.ApplicationError -> when (val cause = error.exception) {
+            // InvalidSessionException is a RuntimeException, must check before fatal runtime check
+            is InvalidSessionException -> {
+              Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Session was invalidated mid-send. Retrying.", cause)
+              Result.retry(nextRunAttemptBackoff(runAttempt + 1))
+            }
+
             is RuntimeException -> {
               Log.e(TAG, "${logPrefix(message.sentTimeMillis)} Encountered a fatal application error. Crash imminent.", cause)
               Result.fatalFailure(cause)

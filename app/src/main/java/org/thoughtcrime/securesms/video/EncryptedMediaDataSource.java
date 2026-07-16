@@ -5,7 +5,7 @@ import android.media.MediaDataSource;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.crypto.AttachmentSecret;
+import org.signal.core.util.crypto.AttachmentSecret;
 
 import java.io.File;
 

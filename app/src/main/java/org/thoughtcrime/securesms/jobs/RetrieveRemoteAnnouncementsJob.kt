@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.s3.S3
@@ -361,7 +360,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
       for ((uuid, megaphone) in megaphonesToDelete) {
         SignalDatabase.remoteMegaphones.clear(uuid)
         if (megaphone.imageUri != null) {
-          BlobProvider.getInstance().delete(context, megaphone.imageUri)
+          AppDependencies.blobs.delete(context, megaphone.imageUri)
         }
       }
     }

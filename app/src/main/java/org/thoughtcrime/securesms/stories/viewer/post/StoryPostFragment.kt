@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
+import org.signal.video.VideoPlayer.PlayerCallback
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageViewModel
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.visible
-import org.thoughtcrime.securesms.video.VideoPlayer.PlayerCallback
 
 /**
  * Renders a given StoryPost object as a viewable story.

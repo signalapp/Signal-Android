@@ -38,6 +38,7 @@ import org.signal.core.ui.permissions.Permissions
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.signal.mediasend.R as MediaSendR
 
 /**
  * Fragment that allows users to scan a QR code from their camera to link a device
@@ -102,8 +103,8 @@ class AddLinkDeviceFragment : ComposeFragment() {
     Permissions.with(this)
       .request(Manifest.permission.CAMERA)
       .ifNecessary()
-      .withPermanentDenialDialog(getString(R.string.CameraXFragment_signal_needs_camera_access_scan_qr_code), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_scan_qr_codes, parentFragmentManager)
-      .onAnyDenied { Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_scan_qr_code, Toast.LENGTH_LONG).show() }
+      .withPermanentDenialDialog(getString(MediaSendR.string.CameraXFragment_signal_needs_camera_access_scan_qr_code), null, MediaSendR.string.CameraXFragment_allow_access_camera, MediaSendR.string.CameraXFragment_to_scan_qr_codes, parentFragmentManager)
+      .onAnyDenied { Toast.makeText(requireContext(), MediaSendR.string.CameraXFragment_signal_needs_camera_access_scan_qr_code, Toast.LENGTH_LONG).show() }
       .execute()
   }
 

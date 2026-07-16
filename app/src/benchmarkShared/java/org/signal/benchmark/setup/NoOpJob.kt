@@ -78,7 +78,6 @@ class NoOpJob(parameters: Parameters) : Job(parameters) {
       StoryOnboardingDownloadJob.KEY
     )
 
-    fun replaceFactories(factories: Map<String, Job.Factory<*>>): Map<String, Job.Factory<*>> =
-      factories.mapValues { if (it.key in STARTUP_NETWORK_JOB_KEYS) Factory() else it.value }
+    fun replaceFactories(factories: Map<String, Job.Factory<*>>): Map<String, Job.Factory<*>> = factories.mapValues { if (it.key in STARTUP_NETWORK_JOB_KEYS) Factory() else it.value }
   }
 }

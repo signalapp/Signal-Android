@@ -42,8 +42,10 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
+import org.thoughtcrime.securesms.testing.Flag
+import org.thoughtcrime.securesms.testing.RemoteConfigForTest
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.testing.TestRemoteConfigFlag
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure
@@ -55,6 +57,7 @@ import java.util.Currency
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 
+@RemoteConfigForTest(flags = [Flag(TestRemoteConfigFlag.INTERNAL_USER, "true") ])
 @RunWith(AndroidJUnit4::class)
 class BackupSubscriptionCheckJobTest {
 
@@ -67,9 +70,6 @@ class BackupSubscriptionCheckJobTest {
 
   @Before
   fun setUp() {
-    mockkObject(RemoteConfig)
-    every { RemoteConfig.internalUser } returns true
-
     coEvery { AppDependencies.billingApi.getApiAvailability() } returns BillingResponseCode.OK
 
     coEvery { AppDependencies.billingApi.queryPurchases() } returns BillingPurchaseResult.Success(
@@ -88,6 +88,7 @@ class BackupSubscriptionCheckJobTest {
     every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription()
     )
+    every { RecurringInAppPaymentRepository.ensureSubscriberIdSync(any(), any(), any()) } returns Unit
 
     mockkObject(BackupRepository)
     every { BackupRepository.getBackupTier() } answers {
@@ -120,8 +121,6 @@ class BackupSubscriptionCheckJobTest {
       )
     )
 
-    every { AppDependencies.donationsApi.putSubscription(any()) } returns NetworkResult.Success(Unit)
-
     insertSubscriber()
   }
 
@@ -142,28 +141,22 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenUserIsNotRegistered_whenIRun_thenIExpectSuccessAndEarlyExit() {
-    mockkObject(SignalStore.account) {
-      every { SignalStore.account.e164 } returns "+15555550101"
-      every { SignalStore.account.isRegistered } returns false
+    SignalStore.account.setRegistered(false)
 
-      val job = BackupSubscriptionCheckJob.create()
-      val result = job.run()
+    val job = BackupSubscriptionCheckJob.create()
+    val result = job.run()
 
-      assertEarlyExit(result)
-    }
+    assertEarlyExit(result)
   }
 
   @Test
   fun givenIsLinkedDevice_whenIRun_thenIExpectSuccessAndEarlyExit() {
-    mockkObject(SignalStore.account) {
-      every { SignalStore.account.e164 } returns "+15555550101"
-      every { SignalStore.account.isLinkedDevice } returns true
+    SignalStore.account.deviceId = 2
 
-      val job = BackupSubscriptionCheckJob.create()
-      val result = job.run()
+    val job = BackupSubscriptionCheckJob.create()
+    val result = job.run()
 
-      assertEarlyExit(result)
-    }
+    assertEarlyExit(result)
   }
 
   @Test

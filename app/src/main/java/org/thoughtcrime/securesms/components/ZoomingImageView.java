@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.components.subsampling.AttachmentRegionDecoder
 import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.ActionRequestListener;
-import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.signal.core.util.bitmaps.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;

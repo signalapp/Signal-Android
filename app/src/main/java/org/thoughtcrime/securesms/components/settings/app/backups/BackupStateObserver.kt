@@ -58,7 +58,7 @@ class BackupStateObserver(
   companion object {
     private val TAG = Log.tag(BackupStateObserver::class)
 
-    private val staticScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    private val staticScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     private val backupTierChangedNotifier = MutableSharedFlow<Unit>()
 
     /**
@@ -107,13 +107,13 @@ class BackupStateObserver(
         }
     }
 
-    scope.launch(SignalDispatchers.IO) {
+    scope.launch(SignalDispatchers.Default) {
       backupTierChangedNotifier.collect {
         requestBackupStateRefresh()
       }
     }
 
-    scope.launch(SignalDispatchers.IO) {
+    scope.launch(SignalDispatchers.Default) {
       InternetConnectionObserver.observe().asFlow()
         .collect {
           if (backupState.value is BackupState.Error) {
@@ -122,19 +122,19 @@ class BackupStateObserver(
         }
     }
 
-    scope.launch(SignalDispatchers.IO) {
+    scope.launch(SignalDispatchers.Default) {
       InAppPaymentsRepository.observeLatestBackupPayment().collect {
         requestBackupStateRefresh()
       }
     }
 
-    scope.launch(SignalDispatchers.IO) {
+    scope.launch(SignalDispatchers.Default) {
       SignalStore.backup.subscriptionStateMismatchDetectedFlow.collect {
         requestBackupStateRefresh()
       }
     }
 
-    scope.launch(SignalDispatchers.IO) {
+    scope.launch(SignalDispatchers.Default) {
       SignalStore.backup.deletionStateFlow.collect {
         requestBackupStateRefresh()
       }

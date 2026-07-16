@@ -68,7 +68,8 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
   private val viewModel: MessageBackupsFlowViewModel by viewModel {
     MessageBackupsFlowViewModel(
       initialTierSelection = requireArguments().getSerializableCompat(TIER, MessageBackupTier::class.java),
-      googlePlayApiAvailability = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(requireContext())
+      googlePlayApiAvailability = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(requireContext()),
+      isCredentialManagerSupported = AndroidCredentialRepository.isCredentialManagerSupported(requireContext())
     )
   }
 
@@ -152,6 +153,32 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       }
 
       composable(route = MessageBackupsStage.Route.BACKUP_KEY_RECORD.name) {
+        val context = LocalContext.current
+        val passwordManagerSettingsIntent = AndroidCredentialRepository.getCredentialManagerSettingsIntent(requireContext())
+
+        MessageBackupsKeyRecordScreen(
+          backupKey = state.accountEntropyPool.displayValue,
+          keySaveState = state.backupKeySaveState,
+          canOpenPasswordManagerSettings = passwordManagerSettingsIntent != null,
+          onNavigationClick = viewModel::goToPreviousStage,
+          mode = remember {
+            MessageBackupsKeyRecordMode.Passkey(
+              onSaveToPasswordManager = viewModel::onBackupKeySaveRequested,
+              onSaveManually = viewModel::goToRecordManually,
+              onSaveSuccessful = viewModel::goToNextStage
+            )
+          },
+          onCopyToClipboardClick = { Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS) },
+          onRequestSaveToPasswordManager = viewModel::onBackupKeySaveRequested,
+          onConfirmSaveToPasswordManager = viewModel::onBackupKeySaveConfirmed,
+          onSaveStateCleared = viewModel::onBackupKeySaveStateCleared,
+          onSaveToPasswordManagerComplete = viewModel::onBackupKeySaveCompleted,
+          onGoToPasswordManagerSettingsClick = { requireContext().startActivity(passwordManagerSettingsIntent) },
+          notifyKeyIsSameAsOnDeviceBackupKey = SignalStore.backup.newLocalBackupsEnabled
+        )
+      }
+
+      composable(route = MessageBackupsStage.Route.BACKUP_KEY_RECORD_MANUALLY.name) {
         val context = LocalContext.current
         val passwordManagerSettingsIntent = AndroidCredentialRepository.getCredentialManagerSettingsIntent(requireContext())
 

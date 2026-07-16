@@ -5,9 +5,7 @@
 
 package org.signal.registration.screens.discoverability
 
-import org.signal.registration.util.DebugLoggableModel
-
-sealed class PhoneNumberDiscoverabilityScreenEvents : DebugLoggableModel() {
+sealed class PhoneNumberDiscoverabilityScreenEvents {
   data object EveryoneSelected : PhoneNumberDiscoverabilityScreenEvents()
   data object NobodySelected : PhoneNumberDiscoverabilityScreenEvents()
   data object NobodyConfirmed : PhoneNumberDiscoverabilityScreenEvents()

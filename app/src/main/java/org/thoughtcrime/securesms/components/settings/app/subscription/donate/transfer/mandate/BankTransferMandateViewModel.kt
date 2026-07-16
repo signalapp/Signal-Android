@@ -56,7 +56,7 @@ class BankTransferMandateViewModel(
   }
 
   suspend fun getPaymentMethodType(): InAppPaymentData.PaymentMethodType {
-    return withContext(SignalDispatchers.IO) {
+    return withContext(SignalDispatchers.Default) {
       SignalDatabase.inAppPayments.getById(inAppPaymentId)!!.data.paymentMethodType
     }
   }

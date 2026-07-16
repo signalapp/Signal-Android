@@ -8,20 +8,26 @@ package org.signal.registration.screens.linkaccount
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.BoundsTransform
 import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.animation.SharedTransitionScope
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,6 +41,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -55,8 +62,14 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.DialogProperties
+import kotlinx.coroutines.delay
+import org.signal.core.ui.FormFactor
 import org.signal.core.ui.WindowBreakpoint
+import org.signal.core.ui.assumedFormFactor
 import org.signal.core.ui.compose.AllDevicePreviews
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.LocalAnimateVisibilityScope
 import org.signal.core.ui.compose.LocalSharedTransitionScope
@@ -73,6 +86,10 @@ import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.quickrestore.QrState
 import org.signal.registration.test.TestTags
 
+private val OVERLAY_HORIZONTAL_PADDING = 24.dp
+private const val EXPAND_BUTTON_FADE_DURATION_MS = 100
+private const val QR_MORPH_DURATION_MS = 300
+
 /**
  * Screen which will display a QR code for linking this device as a secondary.
  */
@@ -83,34 +100,90 @@ fun LinkAccountScreen(
   modifier: Modifier = Modifier
 ) {
   val layoutParams = RegistrationScaffold.rememberLayoutParams()
+  val isPhone = rememberWindowBreakpoint().assumedFormFactor == FormFactor.PHONE
+
+  // Sequence the expand button animation with the QR morph
+  var expandButtonVisible by remember { mutableStateOf(!state.displayQrOverlay) }
+  LaunchedEffect(state.displayQrOverlay) {
+    if (state.displayQrOverlay) {
+      expandButtonVisible = false
+    } else {
+      delay(QR_MORPH_DURATION_MS.toLong())
+      expandButtonVisible = true
+    }
+  }
 
   Surface(modifier = modifier.testTag(TestTags.LINK_ACCOUNT_SCREEN)) {
     SharedTransitionLayout {
       AnimatedContent(
         targetState = state.displayQrOverlay,
-        label = "qr_code_fullscreen_transition"
+        label = "qr_code_fullscreen_transition",
+        transitionSpec = {
+          fadeIn(animationSpec = tween(durationMillis = QR_MORPH_DURATION_MS, delayMillis = if (targetState) EXPAND_BUTTON_FADE_DURATION_MS else 0)) togetherWith fadeOut(tween(EXPAND_BUTTON_FADE_DURATION_MS))
+        }
       ) { target ->
         CompositionLocalProvider(
           LocalSharedTransitionScope provides this@SharedTransitionLayout,
           LocalAnimateVisibilityScope provides this
         ) {
           if (target) {
-            QrCodeOverlay(state, onEvent)
+            QrCodeOverlay(state, onEvent, isPhone)
           } else {
             when (layoutParams) {
-              is RegistrationScaffold.Params.OnePane -> OnePane(layoutParams, state, onEvent)
-              is RegistrationScaffold.Params.TwoPane -> TwoPane(layoutParams, state, onEvent)
+              is RegistrationScaffold.Params.OnePane -> OnePane(layoutParams, isPhone, expandButtonVisible, state, onEvent)
+              is RegistrationScaffold.Params.TwoPane -> TwoPane(layoutParams, expandButtonVisible, state, onEvent)
             }
           }
         }
       }
     }
+
+    StateDialogs(state = state, onEvent = onEvent)
+  }
+}
+
+@Composable
+private fun StateDialogs(
+  state: LinkAccountScreenState,
+  onEvent: (LinkAccountScreenEvent) -> Unit
+) {
+  if (state.isRegistering) {
+    Dialogs.IndeterminateProgressDialog(
+      message = stringResource(R.string.LinkAccountScreen__linking_device)
+    )
+  } else if (state.isWaitingForPrimary) {
+    Dialogs.IndeterminateProgressDialog(
+      message = stringResource(R.string.LinkAccountScreen__waiting_for_your_other_device)
+    )
+  }
+
+  if (state.showError) {
+    Dialogs.SimpleMessageDialog(
+      message = stringResource(R.string.LinkAccountScreen__error_linking_device),
+      dismiss = stringResource(android.R.string.ok),
+      onDismiss = { onEvent(LinkAccountScreenEvent.DismissError) }
+    )
+  }
+
+  if (state.showDeleteDataDialog) {
+    Dialogs.SimpleAlertDialog(
+      title = stringResource(R.string.LinkAccountScreen__delete_app_data_question),
+      body = stringResource(R.string.LinkAccountScreen__you_are_attempting_to_link_a_different_account),
+      confirm = stringResource(R.string.LinkAccountScreen__delete_and_restart),
+      confirmColor = MaterialTheme.colorScheme.error,
+      dismiss = stringResource(android.R.string.cancel),
+      onConfirm = { onEvent(LinkAccountScreenEvent.ConfirmDeleteAndRelink) },
+      onDeny = { onEvent(LinkAccountScreenEvent.CancelDeleteAndRelink) },
+      properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
+    )
   }
 }
 
 @Composable
 private fun OnePane(
   params: RegistrationScaffold.Params.OnePane,
+  isPhone: Boolean,
+  expandButtonVisible: Boolean,
   state: LinkAccountScreenState,
   onEvent: (LinkAccountScreenEvent) -> Unit
 ) {
@@ -121,24 +194,32 @@ private fun OnePane(
     content = { paddingValues ->
       Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = spacedBy(64.dp),
+        verticalArrangement = spacedBy(if (isPhone) 32.dp else 64.dp),
         modifier = Modifier
           .verticalScroll(scrollState)
           .padding(paddingValues)
       ) {
         Title()
 
-        QrCodeContent(state = state, onEvent = onEvent)
+        QrCodeContent(state = state, onEvent = onEvent, isPhone = isPhone, expandButtonVisible = expandButtonVisible)
 
-        Steps(verticalArrangement = spacedBy(32.dp), onEvent)
+        Steps(
+          verticalArrangement = spacedBy(if (isPhone) 20.dp else 32.dp),
+          centerGetHelp = isPhone,
+          onEvent = onEvent
+        )
       }
     },
-    footer = {
-      OnePaneFooterContent(
-        params = params,
-        isElevated = scrollState.canScrollForward,
-        onEvent = onEvent
-      )
+    footer = if (state.showCreateAccount) {
+      {
+        OnePaneFooterContent(
+          params = params,
+          isElevated = scrollState.canScrollForward,
+          onEvent = onEvent
+        )
+      }
+    } else {
+      null
     }
   )
 }
@@ -146,6 +227,7 @@ private fun OnePane(
 @Composable
 private fun TwoPane(
   params: RegistrationScaffold.Params.TwoPane,
+  expandButtonVisible: Boolean,
   state: LinkAccountScreenState,
   onEvent: (LinkAccountScreenEvent) -> Unit
 ) {
@@ -165,15 +247,20 @@ private fun TwoPane(
         onEvent = onEvent,
         modifier = Modifier
           .weight(1f)
-          .padding(paddingValues)
+          .padding(paddingValues),
+        expandButtonVisible = expandButtonVisible
       )
     },
-    footer = {
-      TwoPaneFooterContent(
-        params = params,
-        isElevated = false,
-        onEvent = onEvent
-      )
+    footer = if (state.showCreateAccount) {
+      {
+        TwoPaneFooterContent(
+          params = params,
+          isElevated = false,
+          onEvent = onEvent
+        )
+      }
+    } else {
+      null
     }
   )
 }
@@ -189,7 +276,7 @@ private fun FirstPaneContent(
   ) {
     Title()
 
-    Steps(verticalArrangement = spacedBy(32.dp), onEvent = onEvent)
+    Steps(verticalArrangement = spacedBy(32.dp), centerGetHelp = false, onEvent = onEvent)
   }
 }
 
@@ -207,6 +294,7 @@ private fun Title() {
 @Composable
 private fun Steps(
   verticalArrangement: Arrangement.Vertical,
+  centerGetHelp: Boolean,
   onEvent: (LinkAccountScreenEvent) -> Unit
 ) {
   Column(verticalArrangement = verticalArrangement) {
@@ -225,22 +313,21 @@ private fun Steps(
       text = stringResource(R.string.LinkAccountScreen__tap_linked_devices_and_link_new_device)
     )
 
-    Step(
-      icon = SignalIcons.QrCode.imageVector,
-      text = stringResource(R.string.LinkAccountScreen__position_the_camera_over_this_qr_code)
+    GetHelp(
+      onEvent = onEvent,
+      modifier = if (centerGetHelp) Modifier.align(Alignment.CenterHorizontally) else Modifier
     )
-
-    GetHelp(onEvent)
   }
 }
 
 @Composable
 private fun GetHelp(
-  onEvent: (LinkAccountScreenEvent) -> Unit
+  onEvent: (LinkAccountScreenEvent) -> Unit,
+  modifier: Modifier = Modifier
 ) {
   TextButton(
     onClick = { onEvent(LinkAccountScreenEvent.GetHelpClick) },
-    modifier = Modifier.testTag(TestTags.LINK_ACCOUNT_GET_HELP_BUTTON)
+    modifier = modifier.testTag(TestTags.LINK_ACCOUNT_GET_HELP_BUTTON)
   ) {
     Text(text = stringResource(R.string.LinkAccountScreen__get_help_with_these_steps))
   }
@@ -262,15 +349,25 @@ private fun Step(icon: ImageVector, text: String) {
 private fun QrCodeContent(
   state: LinkAccountScreenState,
   onEvent: (LinkAccountScreenEvent) -> Unit,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  isPhone: Boolean = false,
+  isInOverlay: Boolean = false,
+  expandButtonVisible: Boolean = true,
+  overlayMaxWidth: Dp? = null
 ) {
   val sharedTransitionScope = LocalSharedTransitionScope.current!!
   val animatedVisibilityScope = LocalAnimateVisibilityScope.current!!
 
+  // Delay the morph on expand (so the button can fade out first) but not on collapse
+  val expanding = state.displayQrOverlay
+  val qrBoundsTransform = remember(expanding) {
+    BoundsTransform { _, _ ->
+      tween(durationMillis = QR_MORPH_DURATION_MS, delayMillis = if (expanding) EXPAND_BUTTON_FADE_DURATION_MS else 0)
+    }
+  }
+
   Box(
-    contentAlignment = if (!state.displayQrOverlay) {
-      Alignment.CenterEnd
-    } else Alignment.Center,
+    contentAlignment = if (isInOverlay) Alignment.Center else Alignment.CenterEnd,
     modifier = modifier
   ) {
     with(sharedTransitionScope) {
@@ -279,28 +376,30 @@ private fun QrCodeContent(
         modifier = Modifier
           .sharedElement(
             sharedContentState = rememberSharedContentState("qr_code_outer_border"),
-            animatedVisibilityScope = animatedVisibilityScope
+            animatedVisibilityScope = animatedVisibilityScope,
+            boundsTransform = qrBoundsTransform
           )
-          .size(getQrOuterBorderSize(state.displayQrOverlay))
-          .background(color = colorResource(org.signal.core.ui.R.color.signal_light_colorPrimary), shape = RoundedCornerShape(64.dp))
+          .size(getQrOuterBorderSize(isInOverlay, overlayMaxWidth))
+          .background(color = colorResource(org.signal.core.ui.R.color.signal_light_colorPrimary), shape = RoundedCornerShape(if (isPhone) 48.dp else 64.dp))
       ) {
         AnimatedContent(
           targetState = state.qrCodeState,
           modifier = Modifier
             .sharedElement(
               sharedContentState = rememberSharedContentState("qr_code_inner_border"),
-              animatedVisibilityScope = animatedVisibilityScope
+              animatedVisibilityScope = animatedVisibilityScope,
+              boundsTransform = qrBoundsTransform
             )
-            .size(getQrInnerBorderSize(state.displayQrOverlay))
-            .background(color = Color.White, shape = RoundedCornerShape(24.dp))
+            .size(getQrInnerBorderSize(isInOverlay, overlayMaxWidth))
+            .background(color = Color.White, shape = RoundedCornerShape(if (isPhone) 26.dp else 24.dp))
         ) { target ->
           Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxSize()
           ) {
             when (target) {
-              QrState.Failed -> QrCodeFailed()
-              is QrState.Loaded -> QrCodeDisplay(target.qrCodeData, state.displayQrOverlay, sharedTransitionScope, animatedVisibilityScope)
+              QrState.Failed -> QrCodeFailed(onEvent)
+              is QrState.Loaded -> QrCodeDisplay(target.qrCodeData, isInOverlay, overlayMaxWidth, qrBoundsTransform, sharedTransitionScope, animatedVisibilityScope)
               QrState.Loading -> QrCodeLoading()
               QrState.Scanned -> QrCodeScanned()
             }
@@ -310,14 +409,17 @@ private fun QrCodeContent(
     }
 
     AnimatedVisibility(
-      visible = state.qrCodeState is QrState.Loaded && !state.displayQrOverlay,
-      modifier = Modifier.align(Alignment.TopEnd),
-      enter = fadeIn(),
-      exit = fadeOut()
+      visible = state.qrCodeState is QrState.Loaded && !isInOverlay && expandButtonVisible,
+      modifier = Modifier
+        .align(Alignment.TopEnd)
+        .then(if (isPhone) Modifier.offset(x = 6.dp, y = (-6).dp) else Modifier)
+        .then(with(sharedTransitionScope) { Modifier.renderInSharedTransitionScopeOverlay(zIndexInOverlay = 1f) }),
+      enter = fadeIn(tween(EXPAND_BUTTON_FADE_DURATION_MS)),
+      exit = fadeOut(tween(EXPAND_BUTTON_FADE_DURATION_MS))
     ) {
       IconButtons.IconButton(
         onClick = { onEvent(LinkAccountScreenEvent.DisplayOverlayClick) },
-        size = 53.dp,
+        size = if (isPhone) 40.dp else 53.dp,
         colors = IconButtons.iconButtonColors(
           containerColor = Color(0xFF506DCD),
           contentColor = colorResource(org.signal.core.ui.R.color.signal_light_colorOnPrimary)
@@ -337,6 +439,8 @@ private fun QrCodeContent(
 private fun QrCodeDisplay(
   qrCodeData: QrCodeData,
   isInOverlay: Boolean,
+  overlayMaxWidth: Dp?,
+  boundsTransform: BoundsTransform,
   sharedTransitionScope: SharedTransitionScope,
   animatedVisibilityScope: AnimatedVisibilityScope
 ) {
@@ -347,9 +451,10 @@ private fun QrCodeDisplay(
       modifier = Modifier
         .sharedElement(
           sharedContentState = rememberSharedContentState("qr_code_display"),
-          animatedVisibilityScope = animatedVisibilityScope
+          animatedVisibilityScope = animatedVisibilityScope,
+          boundsTransform = boundsTransform
         )
-        .size(getQrCodeSize(isInOverlay))
+        .size(getQrCodeSize(isInOverlay, overlayMaxWidth))
     )
   }
 }
@@ -383,7 +488,9 @@ private fun QrCodeScanned() {
 }
 
 @Composable
-private fun QrCodeFailed() {
+private fun QrCodeFailed(
+  onEvent: (LinkAccountScreenEvent) -> Unit
+) {
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = spacedBy(8.dp)
@@ -399,74 +506,93 @@ private fun QrCodeFailed() {
       style = MaterialTheme.typography.bodyMedium,
       color = colorResource(org.signal.core.ui.R.color.signal_light_colorError)
     )
+    Buttons.Small(onClick = { onEvent(LinkAccountScreenEvent.RetryQrCode) }) {
+      Text(text = stringResource(R.string.LinkAccountScreen__retry))
+    }
   }
 }
 
 @Composable
-fun QrCodeOverlay(
+private fun QrCodeOverlay(
   state: LinkAccountScreenState,
-  onEvent: (LinkAccountScreenEvent) -> Unit
+  onEvent: (LinkAccountScreenEvent) -> Unit,
+  isPhone: Boolean
 ) {
   Surface(
     modifier = Modifier.fillMaxSize()
   ) {
-    Box {
+    BoxWithConstraints(
+      modifier = Modifier
+        .fillMaxSize()
+        .safeDrawingPadding()
+    ) {
       QrCodeContent(
         state = state,
         onEvent = onEvent,
-        modifier = Modifier.align(Alignment.Center)
+        modifier = Modifier.align(Alignment.Center),
+        isPhone = isPhone,
+        isInOverlay = true,
+        overlayMaxWidth = maxWidth
       )
 
       IconButtons.IconButton(
         onClick = { onEvent(LinkAccountScreenEvent.HideOverlayClick) },
         modifier = Modifier.testTag(TestTags.LINK_ACCOUNT_HIDE_OVERLAY_BUTTON)
       ) {
-        Icon(imageVector = SignalIcons.X.imageVector, contentDescription = null) // TODO 'close'
+        Icon(
+          imageVector = SignalIcons.X.imageVector,
+          contentDescription = stringResource(R.string.LinkAccountScreen__close_qr_code)
+        )
       }
     }
   }
 }
 
 @Composable
-fun getQrOuterBorderSize(isInOverlay: Boolean): Dp {
+private fun getQrOuterBorderSize(isInOverlay: Boolean, overlayMaxWidth: Dp? = null): Dp {
   if (isInOverlay) {
-    return 456.dp
+    return overlayOuterBorderSize(overlayMaxWidth)
   }
 
   val breakpoint = rememberWindowBreakpoint()
   return when (breakpoint) {
-    is WindowBreakpoint.Small -> 296.dp
+    is WindowBreakpoint.Small -> 272.dp
     is WindowBreakpoint.Medium -> 296.dp
     is WindowBreakpoint.Large -> 364.dp
   }
 }
 
 @Composable
-fun getQrInnerBorderSize(isInOverlay: Boolean): Dp {
+private fun getQrInnerBorderSize(isInOverlay: Boolean, overlayMaxWidth: Dp? = null): Dp {
   if (isInOverlay) {
-    return 360.dp
+    return overlayOuterBorderSize(overlayMaxWidth) * (360f / 456f)
   }
 
   val breakpoint = rememberWindowBreakpoint()
   return when (breakpoint) {
-    is WindowBreakpoint.Small -> 232.dp
+    is WindowBreakpoint.Small -> 208.dp
     is WindowBreakpoint.Medium -> 232.dp
     is WindowBreakpoint.Large -> 284.dp
   }
 }
 
 @Composable
-fun getQrCodeSize(isInOverlay: Boolean): Dp {
+private fun getQrCodeSize(isInOverlay: Boolean, overlayMaxWidth: Dp? = null): Dp {
   if (isInOverlay) {
-    return 297.dp
+    return overlayOuterBorderSize(overlayMaxWidth) * (297f / 456f)
   }
 
   val breakpoint = rememberWindowBreakpoint()
   return when (breakpoint) {
-    is WindowBreakpoint.Small -> 208.dp
+    is WindowBreakpoint.Small -> 176.dp
     is WindowBreakpoint.Medium -> 208.dp
     is WindowBreakpoint.Large -> 256.dp
   }
+}
+
+private fun overlayOuterBorderSize(overlayMaxWidth: Dp?): Dp {
+  overlayMaxWidth ?: return 456.dp
+  return (overlayMaxWidth - OVERLAY_HORIZONTAL_PADDING * 2).coerceAtMost(456.dp)
 }
 
 @Composable
@@ -574,6 +700,10 @@ private fun LinkAccountScreenPreview() {
           LinkAccountScreenEvent.DisplayOverlayClick -> displayQrOverlay = true
           LinkAccountScreenEvent.GetHelpClick -> Unit
           LinkAccountScreenEvent.HideOverlayClick -> displayQrOverlay = false
+          LinkAccountScreenEvent.RetryQrCode -> Unit
+          LinkAccountScreenEvent.DismissError -> Unit
+          LinkAccountScreenEvent.ConfirmDeleteAndRelink -> Unit
+          LinkAccountScreenEvent.CancelDeleteAndRelink -> Unit
         }
       }
     )

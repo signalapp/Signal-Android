@@ -21,10 +21,12 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationP
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPendingBottomSheetArgs
 import org.thoughtcrime.securesms.components.settings.app.subscription.thanks.ThanksForYourSupportBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.thanks.ThanksForYourSupportBottomSheetDialogFragmentArgs
+import org.thoughtcrime.securesms.database.DatabaseObserver.InAppPaymentObserver
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**
@@ -53,11 +55,27 @@ class InAppPaymentsBottomSheetDelegate(
 
   private val badgeRepository = TerminalDonationRepository()
 
+  /**
+   * Fires while resumed whenever an in-app payment changes, so terminal payments (e.g. a redirect/iDEAL
+   * payment that finishes redeeming after we've already resumed) surface their sheet live rather than
+   * waiting for the next resume.
+   */
+  private val inAppPaymentObserver = InAppPaymentObserver {
+    handleInAppPaymentDonationSheets()
+    handleInAppPaymentBackupsSheets()
+  }
+
   override fun onResume(owner: LifecycleOwner) {
     handleLegacyTerminalDonationSheets()
     handleLegacyVerifiedMonthlyDonationSheets()
     handleInAppPaymentDonationSheets()
     handleInAppPaymentBackupsSheets()
+
+    AppDependencies.databaseObserver.registerInAppPaymentObserver(inAppPaymentObserver)
+  }
+
+  override fun onPause(owner: LifecycleOwner) {
+    AppDependencies.databaseObserver.unregisterObserver(inAppPaymentObserver)
   }
 
   /**

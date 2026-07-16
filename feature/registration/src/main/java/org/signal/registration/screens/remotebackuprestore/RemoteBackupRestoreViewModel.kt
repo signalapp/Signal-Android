@@ -11,25 +11,30 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.models.AccountEntropyPool
+import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
+import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
-import org.signal.registration.screens.EventDrivenViewModel
+import org.signal.registration.RegistrationRoute
+import org.signal.registration.RestoreDecision
 import org.signal.registration.screens.util.navigateBack
+import org.signal.registration.screens.util.navigateTo
 import kotlin.coroutines.CoroutineContext
 
 class RemoteBackupRestoreViewModel(
   private val aep: AccountEntropyPool,
   private val repository: RegistrationRepository,
+  private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val ioDispatcher: CoroutineContext = Dispatchers.IO
 ) : EventDrivenViewModel<RemoteBackupRestoreScreenEvents>(TAG) {
@@ -39,12 +44,13 @@ class RemoteBackupRestoreViewModel(
   }
 
   private val _state = MutableStateFlow(RemoteBackupRestoreState(aep))
-
-  val state: StateFlow<RemoteBackupRestoreState> = _state
-    .onEach { Log.d(TAG, "[State] $it") }
-    .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), RemoteBackupRestoreState(aep))
+  val state: StateFlow<RemoteBackupRestoreState> = _state.asStateFlow()
 
   init {
+    _state
+      .onEach { Log.d(TAG, "[State] $it") }
+      .launchIn(viewModelScope)
+
     loadBackupInfo()
   }
 
@@ -80,6 +86,7 @@ class RemoteBackupRestoreViewModel(
       repository.restoreRemoteBackup(_state.value.aep).collect { progress ->
         when (progress) {
           is RemoteBackupRestoreProgress.Downloading -> {
+            Log.i(TAG, "[restoreBackup] Restoring...")
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.InProgress,
               restoreProgress = RemoteBackupRestoreState.RestoreProgress(
@@ -90,6 +97,7 @@ class RemoteBackupRestoreViewModel(
             )
           }
           is RemoteBackupRestoreProgress.Restoring -> {
+            Log.i(TAG, "[restoreBackup] Restoring...")
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.InProgress,
               restoreProgress = RemoteBackupRestoreState.RestoreProgress(
@@ -100,6 +108,7 @@ class RemoteBackupRestoreViewModel(
             )
           }
           is RemoteBackupRestoreProgress.Finalizing -> {
+            Log.i(TAG, "[restoreBackup] Finalizing...")
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.InProgress,
               restoreProgress = RemoteBackupRestoreState.RestoreProgress(
@@ -110,44 +119,59 @@ class RemoteBackupRestoreViewModel(
             )
           }
           is RemoteBackupRestoreProgress.Complete -> {
-            Log.i(TAG, "Remote restore completed successfully")
+            Log.i(TAG, "[restoreBackup] Remote restore completed successfully.")
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.Restored,
               restoreProgress = null
             )
-            parentEventEmitter(RegistrationFlowEvent.UserSuppliedAepVerified(aep))
-            repository.finishRegistrationOrCreateProfile(parentEventEmitter)
+            repository.persistRestoredBackupState(progress.restoredSvrPin, progress.restoredProfileKey)
+            repository.setRestoreDecision(RestoreDecision.COMPLETED)
+
+            when {
+              repository.hasKnownPin() -> {
+                repository.restoreAccountRecord()
+                parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
+              }
+              parentState.value.storageCapable -> {
+                Log.i(TAG, "[restoreBackup] No PIN is known and the account is storage capable. Navigating to PIN entry to restore the existing PIN.")
+                parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSvrRestore)
+              }
+              else -> {
+                Log.i(TAG, "[restoreBackup] No PIN is known and the account is not storage capable. Navigating to PIN creation.")
+                parentEventEmitter.navigateTo(RegistrationRoute.PinCreate)
+              }
+            }
           }
           is RemoteBackupRestoreProgress.NetworkError -> {
-            Log.w(TAG, "Remote restore failed with network error", progress.cause)
+            Log.w(TAG, "[restoreBackup] Remote restore failed with network error.", progress.cause)
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.NetworkFailure,
               restoreProgress = null
             )
           }
           is RemoteBackupRestoreProgress.InvalidBackupVersion -> {
-            Log.w(TAG, "Remote restore failed: invalid backup version")
+            Log.w(TAG, "[restoreBackup] Remote restore failed: invalid backup version.")
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.InvalidBackupVersion,
               restoreProgress = null
             )
           }
           is RemoteBackupRestoreProgress.PermanentSvrBFailure -> {
-            Log.w(TAG, "Remote restore failed: permanent SVR-B failure")
+            Log.w(TAG, "[restoreBackup] Remote restore failed: permanent SVRB failure.")
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.PermanentSvrBFailure,
               restoreProgress = null
             )
           }
           is RemoteBackupRestoreProgress.Canceled -> {
-            Log.w(TAG, "Remote restore was canceled")
+            Log.w(TAG, "[restoreBackup] Remote restore was canceled.")
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.Failed,
               restoreProgress = null
             )
           }
           is RemoteBackupRestoreProgress.GenericError -> {
-            Log.w(TAG, "Remote restore failed", progress.cause)
+            Log.w(TAG, "[restoreBackup] Remote restore failed.", progress.cause)
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.Failed,
               restoreProgress = null
@@ -168,9 +192,9 @@ class RemoteBackupRestoreViewModel(
 
       when (result) {
         is RequestResult.Success -> {
+          Log.i(TAG, "[loadBackupInfo] Successfully fetched backup info.")
+          parentEventEmitter(RegistrationFlowEvent.UserSuppliedAepVerified(aep))
           val info = result.result
-
-//          parentEventEmitter(RegistrationFlowEvent)
 
           val lastModifiedResult = withContext(ioDispatcher) {
             repository.getBackupFileLastModified(_state.value.aep, info)
@@ -191,15 +215,35 @@ class RemoteBackupRestoreViewModel(
           )
         }
         is RequestResult.NonSuccess -> {
-          _state.value = when (result.error) {
-            is NetworkController.GetBackupInfoError.NoBackup -> _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.NotFound)
-            else -> _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Failure)
+          _state.value = when (val error = result.error) {
+            is NetworkController.GetBackupInfoError.NoBackup -> {
+              Log.w(TAG, "[loadBackupInfo] No backup found.")
+              _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.NotFound)
+            }
+            is NetworkController.GetBackupInfoError.BadArguments -> {
+              Log.w(TAG, "[loadBackupInfo] Failed with bad arguments. Body: ${error.body}")
+              _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Failure)
+            }
+            is NetworkController.GetBackupInfoError.BadAuthCredential -> {
+              Log.w(TAG, "[loadBackupInfo] Bad auth credential. Body: ${error.body}")
+              _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Failure)
+            }
+            is NetworkController.GetBackupInfoError.Forbidden -> {
+              Log.w(TAG, "[loadBackupInfo] Forbidden. Body: ${error.body}")
+              _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Failure)
+            }
+            is NetworkController.GetBackupInfoError.RateLimited -> {
+              Log.w(TAG, "[loadBackupInfo] Rate limited. Try again in: ${error.retryAfter}")
+              _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Failure)
+            }
           }
         }
         is RequestResult.RetryableNetworkError -> {
+          Log.w(TAG, "[loadBackupInfo] Hit network error.", result.networkError)
           _state.value = _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Failure)
         }
         is RequestResult.ApplicationError -> {
+          Log.w(TAG, "[loadBackupInfo] Hit unexpected error.", result.cause)
           _state.value = _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Failure)
         }
       }
@@ -209,10 +253,11 @@ class RemoteBackupRestoreViewModel(
   class Factory(
     private val aep: AccountEntropyPool,
     private val repository: RegistrationRepository,
+    private val parentState: StateFlow<RegistrationFlowState>,
     private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return RemoteBackupRestoreViewModel(aep, repository, parentEventEmitter) as T
+      return RemoteBackupRestoreViewModel(aep, repository, parentState, parentEventEmitter) as T
     }
   }
 }

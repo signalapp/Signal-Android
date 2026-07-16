@@ -14,11 +14,15 @@ import android.view.autofill.AutofillManager
 import androidx.core.content.getSystemService
 import androidx.credentials.CreatePasswordRequest
 import androidx.credentials.CredentialManager
+import androidx.credentials.GetCredentialRequest
+import androidx.credentials.GetPasswordOption
+import androidx.credentials.PasswordCredential
 import androidx.credentials.exceptions.CreateCredentialCancellationException
 import androidx.credentials.exceptions.CreateCredentialInterruptedException
 import androidx.credentials.exceptions.CreateCredentialNoCreateOptionException
 import androidx.credentials.exceptions.CreateCredentialProviderConfigurationException
 import androidx.credentials.exceptions.CreateCredentialUnknownException
+import androidx.credentials.exceptions.GetCredentialException
 import org.signal.core.util.logging.Log
 
 /**
@@ -31,7 +35,13 @@ object AndroidCredentialRepository {
   private const val ERROR_CODE_MISSING_CREDENTIAL_MANAGER = "[28434]"
   private const val ERROR_CODE_SAVE_PROMPT_DISABLED = "[28435]"
 
-  val isCredentialManagerSupported: Boolean = Build.VERSION.SDK_INT >= 19
+  fun isCredentialManagerSupported(context: Context): Boolean {
+    return if (Build.VERSION.SDK_INT >= 26) {
+      context.getSystemService<AutofillManager>()?.isEnabled == true
+    } else {
+      true
+    }
+  }
 
   suspend fun saveCredential(
     activityContext: Context,
@@ -79,6 +89,27 @@ object AndroidCredentialRepository {
 
       else -> CredentialManagerError.Unexpected(e)
     }
+  }
+
+  /**
+   * Retrieves a previously saved password credential by username. Returns null if the credential
+   * cannot be found or if retrieval fails.
+   */
+  suspend fun getCredential(
+    activityContext: Context,
+    id: String
+  ): String? = try {
+    val result = CredentialManager.create(activityContext).getCredential(activityContext, GetCredentialRequest(listOf(GetPasswordOption())))
+    val credential = result.credential
+    if (credential is PasswordCredential && credential.id == id) {
+      credential.password
+    } else {
+      Log.w(TAG, "Failed to find credential from password manager")
+      null
+    }
+  } catch (e: GetCredentialException) {
+    Log.w(TAG, "Failed to find credential from password manager.", e)
+    null
   }
 
   /**

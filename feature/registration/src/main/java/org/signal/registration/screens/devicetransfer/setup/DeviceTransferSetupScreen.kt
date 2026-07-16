@@ -30,6 +30,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -47,6 +48,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.devicetransfer.WifiDirect
 import org.signal.registration.R
 import org.signal.registration.screens.RegistrationScaffold
+import org.signal.registration.test.TestTags
 import java.util.Locale
 
 @Composable
@@ -68,7 +70,7 @@ fun DeviceTransferSetupScreen(
 }
 
 @Composable
-private fun DeviceTransferSetupScreen(
+internal fun DeviceTransferSetupScreen(
   state: DeviceTransferSetupState,
   permissionState: PermissionState,
   onEvent: (DeviceTransferSetupScreenEvents) -> Unit,
@@ -80,25 +82,26 @@ private fun DeviceTransferSetupScreen(
     onEvent(DeviceTransferSetupScreenEvents.BackClicked)
   }
 
-  LaunchedEffect(state.oneTimeEvent) {
-    val event = state.oneTimeEvent ?: return@LaunchedEffect
-    onEvent(DeviceTransferSetupScreenEvents.ConsumeOneTimeEvent)
-    when (event) {
-      DeviceTransferSetupState.OneTimeEvent.RequestLocationPermission -> {
+  LaunchedEffect(state.pendingActions) {
+    when {
+      state.pendingActions.requestLocationPermission -> {
         when (permissionState.status) {
           is PermissionStatus.Granted -> onEvent(DeviceTransferSetupScreenEvents.PermissionsGranted)
           is PermissionStatus.Denied -> permissionState.launchPermissionRequest()
         }
+        onEvent(DeviceTransferSetupScreenEvents.RequestLocationPermissionHandled)
       }
-      DeviceTransferSetupState.OneTimeEvent.OpenLocationSettings -> {
+      state.pendingActions.openLocationSettings -> {
         runCatching { context.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)) }
           .onFailure { runCatching { context.startActivity(Intent(Settings.ACTION_SETTINGS)) } }
+        onEvent(DeviceTransferSetupScreenEvents.OpenLocationSettingsHandled)
       }
-      DeviceTransferSetupState.OneTimeEvent.OpenWifiSettings -> {
+      state.pendingActions.openWifiSettings -> {
         runCatching { context.startActivity(Intent(Settings.ACTION_WIFI_SETTINGS)) }
           .onFailure { runCatching { context.startActivity(Intent(Settings.ACTION_SETTINGS)) } }
+        onEvent(DeviceTransferSetupScreenEvents.OpenWifiSettingsHandled)
       }
-      DeviceTransferSetupState.OneTimeEvent.OpenAppSettings -> {
+      state.pendingActions.openAppSettings -> {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
           data = Uri.fromParts("package", context.packageName, null)
           addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -108,10 +111,7 @@ private fun DeviceTransferSetupScreen(
         } catch (_: ActivityNotFoundException) {
           // nothing we can do
         }
-      }
-      DeviceTransferSetupState.OneTimeEvent.NavigateToProgress,
-      DeviceTransferSetupState.OneTimeEvent.NavigateAway -> {
-        // Navigation is handled by the ViewModel via parentEventEmitter.
+        onEvent(DeviceTransferSetupScreenEvents.OpenAppSettingsHandled)
       }
     }
   }
@@ -129,7 +129,9 @@ private fun DeviceTransferSetupScreen(
   }
 
   RegistrationScaffold(
-    modifier = modifier.fillMaxSize(),
+    modifier = modifier
+      .fillMaxSize()
+      .testTag(TestTags.DEVICE_TRANSFER_SETUP_SCREEN),
     content = {
       Column(
         modifier = Modifier
@@ -245,6 +247,7 @@ private fun VerifyStep(
     modifier = Modifier
       .fillMaxWidth()
       .widthIn(max = 320.dp)
+      .testTag(TestTags.DEVICE_TRANSFER_SETUP_NUMBERS_MATCH_BUTTON)
   ) {
     Text(stringResource(R.string.DeviceTransferSetup__numbers_match))
   }
@@ -254,6 +257,7 @@ private fun VerifyStep(
     modifier = Modifier
       .fillMaxWidth()
       .widthIn(max = 320.dp)
+      .testTag(TestTags.DEVICE_TRANSFER_SETUP_NUMBERS_DO_NOT_MATCH_BUTTON)
   ) {
     Text(stringResource(R.string.DeviceTransferSetup__numbers_do_not_match))
   }
@@ -277,6 +281,7 @@ private fun ErrorStep(
     modifier = Modifier
       .fillMaxWidth()
       .widthIn(max = 320.dp)
+      .testTag(TestTags.DEVICE_TRANSFER_SETUP_ERROR_ACTION_BUTTON)
   ) {
     Text(buttonText)
   }
@@ -304,7 +309,9 @@ private fun TroubleshootingStep(onTryAgain: () -> Unit) {
     ) {
       Buttons.LargeTonal(
         onClick = onTryAgain,
-        modifier = Modifier.widthIn(max = 320.dp)
+        modifier = Modifier
+          .widthIn(max = 320.dp)
+          .testTag(TestTags.DEVICE_TRANSFER_SETUP_TROUBLESHOOTING_RETRY_BUTTON)
       ) {
         Text(stringResource(R.string.DeviceTransferSetup__try_again))
       }

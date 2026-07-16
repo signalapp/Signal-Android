@@ -104,14 +104,14 @@ final class NetworkServerThread extends Thread {
 
           outputStream.write(0x53);
           outputStream.flush();
-        } catch (IOException e) {
+        } catch (IOException | DeviceTransferAuthentication.DeviceTransferAuthenticationException e) {
           if (!isRunning) {
             Log.i(TAG, "Server shutting down...");
           } else if (transferStarted) {
             Log.w(TAG, "Lost connection after the transfer started, aborting instead of accepting another client.", e);
             isRunning = false;
           } else {
-            Log.i(TAG, "Error connecting with client or server socket closed.", e);
+            Log.i(TAG, "Error connecting with or authenticating client, continuing to accept peers.", e);
           }
         } finally {
           StreamUtil.close(clientSocket);

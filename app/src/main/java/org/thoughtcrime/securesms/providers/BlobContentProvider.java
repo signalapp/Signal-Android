@@ -1,3 +1,8 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.providers;
 
 import android.content.ContentValues;
@@ -9,11 +14,13 @@ import android.os.ParcelFileDescriptor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.CoreUtilDependencies;
+import org.signal.core.util.MemoryFileUtil;
 import org.signal.core.util.StreamUtil;
+import org.signal.core.util.Util;
+import org.signal.core.util.contentproviders.BaseContentProvider;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.util.MemoryFileUtil;
-import org.signal.core.util.Util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -35,8 +42,8 @@ public final class BlobContentProvider extends BaseContentProvider {
     Log.i(TAG, "openFile() called: " + uri);
 
     try {
-      try (InputStream stream = BlobProvider.getInstance().getStream(AppDependencies.getApplication(), uri)) {
-        Long fileSize = BlobProvider.getFileSize(uri);
+      try (InputStream stream = AppDependencies.getBlobs().getStream(CoreUtilDependencies.getApplication(), uri)) {
+        Long fileSize = AppDependencies.getBlobs().getFileSize(uri);
         if (fileSize == null) {
           Log.w(TAG, "No file size available");
           throw new FileNotFoundException();
@@ -64,9 +71,9 @@ public final class BlobContentProvider extends BaseContentProvider {
   public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
     Log.i(TAG, "query() called: " + uri);
 
-    String mimeType = BlobProvider.getMimeType(uri);
-    String fileName = BlobProvider.getFileName(uri);
-    Long   fileSize = BlobProvider.getFileSize(uri);
+    String mimeType = AppDependencies.getBlobs().getMimeType(uri);
+    String fileName = AppDependencies.getBlobs().getFileName(uri);
+    Long   fileSize = AppDependencies.getBlobs().getFileSize(uri);
 
     if (fileSize == null) {
       Log.w(TAG, "No file size");
@@ -79,16 +86,16 @@ public final class BlobContentProvider extends BaseContentProvider {
     }
 
     if (fileName == null) {
-      fileName = createFileNameForMimeType(mimeType);
+      fileName = BaseContentProvider.createFileNameForMimeType(mimeType);
     }
 
-    return createCursor(projection, fileName, fileSize);
+    return BaseContentProvider.createCursor(projection, fileName, fileSize);
   }
 
   @Nullable
   @Override
   public String getType(@NonNull Uri uri) {
-    return BlobProvider.getMimeType(uri);
+    return AppDependencies.getBlobs().getMimeType(uri);
   }
 
   @Nullable

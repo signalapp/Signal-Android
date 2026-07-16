@@ -220,7 +220,7 @@ class NameCollisionTables(
             .run()
         }
 
-        pruneCollisions()
+        pruneCollision(collisionId)
       }
     }
 
@@ -470,6 +470,32 @@ class NameCollisionTables(
           HAVING COUNT(*) >= 2
       )
       """.trimIndent()
+    )
+  }
+
+  /**
+   * Removes the given collision if it has fewer than two members.
+   *
+   * Unlike [pruneCollisions], this is scoped to a single collision so it can be used on hot paths
+   * (e.g. opening a conversation) without scanning the entire [NameCollisionTable] while holding the
+   * write lock. Callers that may have modified the membership of more than one collision should
+   * continue to use [pruneCollisions].
+   */
+  private fun pruneCollision(collisionId: Long) {
+    check(writableDatabase.inTransaction())
+
+    writableDatabase.execSQL(
+      """
+      DELETE FROM ${NameCollisionTable.TABLE_NAME}
+      WHERE $ID = ? AND $ID NOT IN (
+          SELECT ${NameCollisionMembershipTable.COLLISION_ID}
+          FROM ${NameCollisionMembershipTable.TABLE_NAME}
+          WHERE ${NameCollisionMembershipTable.COLLISION_ID} = ?
+          GROUP BY ${NameCollisionMembershipTable.COLLISION_ID}
+          HAVING COUNT(*) >= 2
+      )
+      """.trimIndent(),
+      arrayOf(collisionId, collisionId)
     )
   }
 

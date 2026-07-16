@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import org.signal.blurhash.BlurHash;
 import org.signal.core.models.media.TransformProperties;
 import org.signal.core.util.logging.Log;
+import org.signal.mediasend.SentMediaQuality;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;

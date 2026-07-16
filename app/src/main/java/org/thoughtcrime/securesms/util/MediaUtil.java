@@ -14,7 +14,6 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import kotlin.Pair;
 import android.webkit.MimeTypeMap;
 
 import androidx.annotation.NonNull;
@@ -26,14 +25,17 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 
-import org.signal.core.util.ContentTypeUtil;
-import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.attachments.Attachment;
 import org.signal.core.models.database.AttachmentId;
-import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.signal.core.models.media.Media;
-import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.signal.core.util.ContentTypeUtil;
+import org.signal.core.util.bitmaps.BitmapDecodingException;
+import org.signal.core.util.bitmaps.BitmapUtil;
+import org.signal.core.util.logging.Log;
 import org.signal.glide.decryptableuri.DecryptableUri;
+import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.ImageSlide;
@@ -44,7 +46,7 @@ import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.mms.ViewOnceSlide;
-import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.video.MediaDataSourceProvider;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -52,6 +54,8 @@ import java.io.InputStream;
 import java.net.URLConnection;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
+
+import kotlin.Pair;
 
 public class MediaUtil {
 
@@ -291,8 +295,8 @@ public class MediaUtil {
       MediaMetadataRetriever retriever = new MediaMetadataRetriever();
 
       try {
-        if (BlobProvider.isAuthority(uri) && MediaUtil.isVideo(BlobProvider.getMimeType(uri))) {
-          MediaDataSource source = BlobProvider.getInstance().getMediaDataSource(context, uri);
+        if (AppDependencies.getBlobs().isAuthority(uri) && MediaUtil.isVideo(AppDependencies.getBlobs().getMimeType(uri))) {
+          MediaDataSource source = MediaDataSourceProvider.getMediaDataSource(context, uri);
           retriever.setDataSource(source);
         } else if (PartAuthority.isAttachmentUri(uri)) {
           MediaDataSource source = SignalDatabase.attachments().mediaDataSourceFor(PartAuthority.requireAttachmentId(uri), false);
@@ -469,7 +473,7 @@ public class MediaUtil {
       return false;
     }
 
-    if (BlobProvider.isAuthority(uri) && MediaUtil.isVideo(BlobProvider.getMimeType(uri))) {
+    if (AppDependencies.getBlobs().isAuthority(uri) && MediaUtil.isVideo(AppDependencies.getBlobs().getMimeType(uri))) {
       return true;
     }
 
@@ -514,11 +518,11 @@ public class MediaUtil {
                MediaUtil.isVideo(URLConnection.guessContentTypeFromName(uri.toString()))) {
       return ThumbnailUtils.createVideoThumbnail(uri.toString().replace("file://", ""),
                                                  MediaStore.Video.Thumbnails.MINI_KIND);
-    } else if (BlobProvider.isAuthority(uri) &&
-               MediaUtil.isVideo(BlobProvider.getMimeType(uri)))
+    } else if (AppDependencies.getBlobs().isAuthority(uri) &&
+               MediaUtil.isVideo(AppDependencies.getBlobs().getMimeType(uri)))
     {
       try {
-        MediaDataSource source = BlobProvider.getInstance().getMediaDataSource(context, uri);
+        MediaDataSource source = MediaDataSourceProvider.getMediaDataSource(context, uri);
         return extractFrame(source, timeUs);
       } catch (IOException e) {
         Log.w(TAG, "Failed to extract frame for URI: " + uri, e);

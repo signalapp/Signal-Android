@@ -7,9 +7,10 @@ package org.signal.registration.screens.messagesync
 
 import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes
-import org.signal.registration.util.DebugLoggableModel
 
 data class MessageSyncScreenState(
   val downloadedBytes: ByteSize = 0.bytes,
-  val totalBytes: ByteSize = 0.bytes
-) : DebugLoggableModel()
+  val totalBytes: ByteSize = 0.bytes,
+  val isFinishing: Boolean = false,
+  val showSyncFailedDialog: Boolean = false
+)

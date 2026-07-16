@@ -37,8 +37,13 @@ import org.signal.core.util.SqlUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.Util
 import org.signal.core.util.UuidUtil
+import org.signal.core.util.bitmaps.BitmapDecodingException
 import org.signal.core.util.copyTo
 import org.signal.core.util.count
+import org.signal.core.util.crypto.AttachmentSecret
+import org.signal.core.util.crypto.ClassicDecryptingPartInputStream
+import org.signal.core.util.crypto.ModernDecryptingPartInputStream
+import org.signal.core.util.crypto.ModernEncryptingPartOutputStream
 import org.signal.core.util.delete
 import org.signal.core.util.deleteAll
 import org.signal.core.util.drain
@@ -78,10 +83,6 @@ import org.thoughtcrime.securesms.attachments.WallpaperAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter
-import org.thoughtcrime.securesms.crypto.AttachmentSecret
-import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream
-import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
-import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_FILE
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_HASH_END
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.PREUPLOAD_MESSAGE_ID
@@ -102,7 +103,6 @@ import org.thoughtcrime.securesms.mms.MediaStream
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.stickers.StickerLocator
-import org.thoughtcrime.securesms.util.BitmapDecodingException
 import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.ImageCompressionUtil
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -961,6 +961,34 @@ class AttachmentTable(
   }
 
   /**
+   * Whether the user has any archive-finished media that came from a local backup. Used to detect the local-restore bad state where restored media was
+   * incorrectly marked as already archived, so we only run an expensive reconciliation for users who could actually be affected.
+   */
+  fun hasArchiveFinishedLocalBackupMedia(): Boolean {
+    return readableDatabase
+      .exists("$TABLE_NAME INNER JOIN ${AttachmentMetadataTable.TABLE_NAME} ON $TABLE_NAME.$METADATA_ID = ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.ID}")
+      .where("$TABLE_NAME.$ARCHIVE_TRANSFER_STATE = ? AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} NOT NULL", ArchiveTransferState.FINISHED.value)
+      .run()
+  }
+
+  /**
+   * Resets archive-finished media that came from a local backup, returning the number of attachments repaired. Safe only when the user doesn't back up media,
+   * as they can't have anything legitimately on the archive CDN. See [hasArchiveFinishedLocalBackupMedia].
+   */
+  fun resetArchiveTransferStateForLocalBackupMedia(): Int {
+    return writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value,
+        ARCHIVE_CDN to null
+      )
+      .where(
+        "$ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND $METADATA_ID IN (SELECT ${AttachmentMetadataTable.ID} FROM ${AttachmentMetadataTable.TABLE_NAME} WHERE ${AttachmentMetadataTable.LOCAL_BACKUP_KEY} NOT NULL)"
+      )
+      .run()
+  }
+
+  /**
    * Returns whether or not there are thumbnails that need to be uploaded to the archive.
    */
   fun getThumbnailsThatNeedArchiveUpload(): List<AttachmentId> {
@@ -1701,7 +1729,7 @@ class AttachmentTable(
   fun setRestoreTransferState(restorableAttachments: Collection<AttachmentId>, state: Int) {
     val prefix = when (state) {
       TRANSFER_RESTORE_OFFLOADED -> "$TRANSFER_STATE != $TRANSFER_PROGRESS_PERMANENT_FAILURE AND"
-      TRANSFER_RESTORE_IN_PROGRESS -> "($TRANSFER_STATE = $TRANSFER_NEEDS_RESTORE OR $TRANSFER_STATE = $TRANSFER_RESTORE_OFFLOADED) AND"
+      TRANSFER_RESTORE_IN_PROGRESS -> "($TRANSFER_STATE = $TRANSFER_NEEDS_RESTORE OR $TRANSFER_STATE = $TRANSFER_RESTORE_OFFLOADED OR $TRANSFER_STATE = $TRANSFER_PROGRESS_FAILED) AND"
       TRANSFER_PROGRESS_FAILED -> "$TRANSFER_STATE != $TRANSFER_PROGRESS_PERMANENT_FAILURE AND"
       else -> ""
     }
@@ -1721,6 +1749,50 @@ class AttachmentTable(
           .run()
       }
     }
+  }
+
+  /**
+   * Replaces the remote pointer fields on [attachmentId] with the values from a primary device's
+   * backfill response and resets the transfer state to pending so a fresh download can run.
+   */
+  fun updatePointerFromBackfill(attachmentId: AttachmentId, attachment: Attachment): Boolean {
+    val remoteLocation = attachment.remoteLocation
+    if (remoteLocation.isNullOrBlank()) {
+      Log.w(TAG, "[updatePointerFromBackfill] Attachment has no remote location for $attachmentId.")
+      return false
+    }
+
+    val remoteKey = attachment.remoteKey
+    if (remoteKey.isNullOrBlank()) {
+      Log.w(TAG, "[updatePointerFromBackfill] Attachment missing key for $attachmentId.")
+      return false
+    }
+
+    val remoteDigest = attachment.remoteDigest
+    if (remoteDigest == null) {
+      Log.w(TAG, "[updatePointerFromBackfill] Attachment missing digest for $attachmentId.")
+      return false
+    }
+
+    val values = contentValuesOf(
+      TRANSFER_STATE to TRANSFER_PROGRESS_PENDING,
+      CDN_NUMBER to attachment.cdn.cdnNumber,
+      REMOTE_LOCATION to remoteLocation,
+      REMOTE_KEY to remoteKey,
+      REMOTE_DIGEST to remoteDigest,
+      REMOTE_INCREMENTAL_DIGEST to attachment.incrementalDigest,
+      REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE to attachment.incrementalMacChunkSize,
+      DATA_SIZE to attachment.size,
+      UPLOAD_TIMESTAMP to attachment.uploadTimestamp
+    )
+
+    val updateCount = writableDatabase
+      .update(TABLE_NAME)
+      .values(values)
+      .where("$ID = ?", attachmentId.id)
+      .run()
+
+    return updateCount > 0
   }
 
   /**
@@ -1746,7 +1818,7 @@ class AttachmentTable(
    * that the content of the attachment will never change.
    */
   @Throws(MmsException::class)
-  fun finalizeAttachmentAfterDownload(mmsId: Long, attachmentId: AttachmentId, inputStream: InputStream, offloadRestoredAt: Duration? = null, archiveRestore: Boolean = false, notify: Boolean = true) {
+  fun finalizeAttachmentAfterDownload(mmsId: Long, attachmentId: AttachmentId, inputStream: InputStream, offloadRestoredAt: Duration? = null, archiveRestore: Boolean = false, restoredFromArchiveCdn: Boolean = false, notify: Boolean = true) {
     Log.i(TAG, "[finalizeAttachmentAfterDownload] Finalizing downloaded data for $attachmentId. (MessageId: $mmsId, $attachmentId)")
 
     val existingPlaceholder: DatabaseAttachment = getAttachment(attachmentId) ?: throw MmsException("No attachment found for id: $attachmentId")
@@ -1791,8 +1863,11 @@ class AttachmentTable(
         values.put(DATA_HASH_START, fileWriteResult.hash)
         values.put(DATA_HASH_END, fileWriteResult.hash)
 
-        if (archiveRestore) {
+        if (restoredFromArchiveCdn) {
           values.put(ARCHIVE_TRANSFER_STATE, ArchiveTransferState.FINISHED.value)
+        } else if (archiveRestore) {
+          values.putNull(ARCHIVE_CDN)
+          values.put(ARCHIVE_TRANSFER_STATE, ArchiveTransferState.NONE.value)
         }
       }
 
@@ -2103,6 +2178,7 @@ class AttachmentTable(
               REMOTE_INCREMENTAL_DIGEST to duplicateAttachment.incrementalDigest?.takeIf { it.isNotEmpty() },
               REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE to duplicateAttachment.incrementalMacChunkSize,
               UPLOAD_TIMESTAMP to duplicateAttachment.uploadTimestamp,
+              CDN_NUMBER to duplicateAttachment.cdn.serialize(),
               ARCHIVE_CDN to duplicateAttachment.archiveCdn,
               ARCHIVE_TRANSFER_STATE to duplicateAttachment.archiveTransferState.value,
               THUMBNAIL_FILE to dataFileInfo.thumbnailFile,
@@ -2586,6 +2662,8 @@ class AttachmentTable(
         REMOTE_KEY to Base64.encodeWithPadding(Util.getSecretBytes(64)),
         REMOTE_DIGEST to Util.getSecretBytes(64)
       )
+      .where("$ID = ?", attachmentId.id)
+      .run()
   }
 
   private fun deleteDataFiles(filePaths: Set<String>, contentTypes: Set<String>) {

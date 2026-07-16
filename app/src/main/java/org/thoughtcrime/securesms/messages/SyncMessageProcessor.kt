@@ -64,6 +64,7 @@ import org.thoughtcrime.securesms.dependencies.KeyTransparencyApi
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.jobs.AttachmentBackfill
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceAttachmentBackfillMissingJob
@@ -135,6 +136,7 @@ import org.whispersystems.signalservice.internal.push.EditMessage
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.StoryMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
+import org.whispersystems.signalservice.internal.push.SyncMessage.AttachmentBackfillResponse
 import org.whispersystems.signalservice.internal.push.SyncMessage.Blocked
 import org.whispersystems.signalservice.internal.push.SyncMessage.CallLinkUpdate
 import org.whispersystems.signalservice.internal.push.SyncMessage.CallLogEvent
@@ -190,7 +192,7 @@ object SyncMessageProcessor {
       syncMessage.callLogEvent != null -> handleSynchronizeCallLogEvent(syncMessage.callLogEvent!!, envelope.clientTimestamp!!)
       syncMessage.deleteForMe != null -> handleSynchronizeDeleteForMe(context, syncMessage.deleteForMe!!, envelope.clientTimestamp!!, earlyMessageCacheEntry)
       syncMessage.attachmentBackfillRequest != null -> handleSynchronizeAttachmentBackfillRequest(syncMessage.attachmentBackfillRequest!!, envelope.clientTimestamp!!)
-      syncMessage.attachmentBackfillResponse != null -> warn(envelope.clientTimestamp!!, "Contains a backfill response, but we don't handle these!")
+      syncMessage.attachmentBackfillResponse != null -> handleSynchronizeAttachmentBackfillResponse(syncMessage.attachmentBackfillResponse!!, envelope.clientTimestamp!!)
       syncMessage.usernameChange != null -> handleSynchronizeUsernameChange(envelope.clientTimestamp!!)
       else -> warn(envelope.clientTimestamp!!, "Contains no known sync types...")
     }
@@ -1374,7 +1376,7 @@ object SyncMessageProcessor {
       }
 
       CallLogEvent.Type.MARKED_AS_READ -> {
-        SignalDatabase.calls.markAllCallEventsRead(timestamp)
+        SignalDatabase.calls.markAllCallEventsRead(timestamp, envelopeTimestamp)
       }
 
       CallLogEvent.Type.MARKED_AS_READ_IN_CONVERSATION -> {
@@ -1383,7 +1385,7 @@ object SyncMessageProcessor {
           return
         }
 
-        SignalDatabase.calls.markAllCallEventsWithPeerBeforeTimestampRead(peer, timestamp)
+        SignalDatabase.calls.markAllCallEventsWithPeerBeforeTimestampRead(peer, timestamp, envelopeTimestamp)
       }
 
       else -> log(envelopeTimestamp, "Synchronize call log event has an invalid type $eventType, ignoring.")
@@ -1739,7 +1741,7 @@ object SyncMessageProcessor {
       return
     }
 
-    val attachments: List<DatabaseAttachment> = SignalDatabase.attachments.getAttachmentsForMessage(messageId).filterNot { it.quote }.sortedBy { it.displayOrder }
+    val attachments: List<DatabaseAttachment> = AttachmentBackfill.backfillAttachmentsForMessage(messageId)
     if (attachments.isEmpty()) {
       warn(timestamp, "[AttachmentBackfillRequest] There were no attachments found for the message! Enqueuing a 'missing' response.")
       MultiDeviceAttachmentBackfillMissingJob.enqueue(request.targetMessage!!, request.targetConversation!!)
@@ -1747,7 +1749,7 @@ object SyncMessageProcessor {
     }
 
     val now = System.currentTimeMillis()
-    val needsUpload = attachments.filter { now - it.uploadTimestamp > 3.days.inWholeMilliseconds }
+    val needsUpload = attachments.filter { it.hasData && now - it.uploadTimestamp > 3.days.inWholeMilliseconds }
     log(timestamp, "[AttachmentBackfillRequest] ${needsUpload.size}/${attachments.size} attachments need to be re-uploaded.")
 
     for (attachment in needsUpload) {
@@ -1759,6 +1761,99 @@ object SyncMessageProcessor {
 
     // Enqueueing an update immediately to tell the requesting device that the primary is online.
     MultiDeviceAttachmentBackfillUpdateJob.enqueue(request.targetMessage!!, request.targetConversation!!, messageId)
+  }
+
+  private fun handleSynchronizeAttachmentBackfillResponse(response: AttachmentBackfillResponse, timestamp: Long) {
+    if (SignalStore.account.isPrimaryDevice) {
+      log(timestamp, "[AttachmentBackfillResponse] Primary device ignores attachment backfill response.")
+      return
+    }
+
+    if (response.targetMessage == null || response.targetConversation == null) {
+      warn(timestamp, "[AttachmentBackfillResponse] Missing targetMessage or targetConversation; dropping.")
+      return
+    }
+
+    val syncMessageId = response.targetMessage!!.toSyncMessageId(timestamp)
+    if (syncMessageId == null) {
+      warn(timestamp, "[AttachmentBackfillResponse] Invalid targetMessage; dropping.")
+      return
+    }
+
+    val conversationRecipientId = response.targetConversation!!.toRecipientId()
+    if (conversationRecipientId == null) {
+      warn(timestamp, "[AttachmentBackfillResponse] Unable to resolve targetConversation; dropping.")
+      return
+    }
+
+    val threadId = SignalDatabase.threads.getThreadIdFor(conversationRecipientId)
+    if (threadId == null) {
+      warn(timestamp, "[AttachmentBackfillResponse] No thread for conversation; dropping.")
+      return
+    }
+
+    val messageId = SignalDatabase.messages.getMessageIdOrNull(syncMessageId, threadId)
+    if (messageId == null) {
+      warn(timestamp, "[AttachmentBackfillResponse] Unable to find local message; dropping.")
+      return
+    }
+
+    if (response.error == AttachmentBackfillResponse.Error.MESSAGE_NOT_FOUND) {
+      log(timestamp, "[AttachmentBackfillResponse] Primary could not find message $messageId; marking attachments failed")
+      val attachments = AttachmentBackfill.backfillAttachmentsForMessage(messageId)
+        .filterNot { it.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE }
+      for (attachment in attachments) {
+        SignalDatabase.attachments.setTransferProgressFailed(attachment.attachmentId, messageId)
+      }
+      AttachmentBackfill.onResponseMessageNotFound(messageId, threadId)
+      return
+    }
+
+    val attachmentList = response.attachments
+    if (attachmentList == null) {
+      warn(timestamp, "[AttachmentBackfillResponse] Response has neither error nor attachments; dropping.")
+      return
+    }
+
+    val contract = AttachmentBackfill.backfillContractForMessage(messageId)
+    val localBody = contract.bodyAttachments
+    val localLongText = contract.longTextAttachment
+
+    var anyPending = false
+    var pointersApplied = 0
+
+    for ((index, remote) in attachmentList.attachments.withIndex()) {
+      val local = localBody.getOrNull(index)
+      if (local == null) {
+        warn(timestamp, "[AttachmentBackfillResponse] Remote attachment $index has no local row; skipping.")
+        continue
+      }
+      when (applyAttachmentData(local, remote, messageId)) {
+        // UPDATED/PENDING keep awaiting; the re-download terminates them later.
+        BackfillApplyResult.PENDING -> anyPending = true
+        BackfillApplyResult.UPDATED -> pointersApplied++
+        // Won't re-download, so stop awaiting now.
+        BackfillApplyResult.SKIPPED,
+        BackfillApplyResult.TERMINAL -> AttachmentBackfill.onAttachmentTerminal(local.attachmentId, messageId)
+      }
+    }
+
+    if (localLongText != null) {
+      if (attachmentList.longText != null) {
+        when (applyAttachmentData(localLongText, attachmentList.longText!!, messageId)) {
+          BackfillApplyResult.PENDING -> anyPending = true
+          BackfillApplyResult.UPDATED -> pointersApplied++
+          BackfillApplyResult.SKIPPED,
+          BackfillApplyResult.TERMINAL -> AttachmentBackfill.onAttachmentTerminal(localLongText.attachmentId, messageId)
+        }
+      } else {
+        AttachmentBackfill.onAttachmentTerminal(localLongText.attachmentId, messageId)
+      }
+    }
+
+    log(timestamp, "[AttachmentBackfillResponse] Processed response for messageId=$messageId pointersApplied=$pointersApplied anyPending=$anyPending")
+
+    AttachmentBackfill.onResponseProcessed(messageId, anyPending)
   }
 
   private fun handleSynchronizePniChangeNumber(envelope: Envelope, metadata: EnvelopeMetadata, pniChangeNumber: SyncMessage.PniChangeNumber) {
@@ -1801,11 +1896,6 @@ object SyncMessageProcessor {
       return
     }
 
-    if (SignalStore.account.pni == PNI(pni)) {
-      log(timestamp, "PniChangeNumber sync already applied locally. Skipping.")
-      return
-    }
-
     val identityKeyPairBytes = pniChangeNumber.identityKeyPair
     val signedPreKeyBytes = pniChangeNumber.signedPreKey
     val registrationId = pniChangeNumber.registrationId
@@ -1839,8 +1929,6 @@ object SyncMessageProcessor {
       pniRegistrationId = registrationId
     )
 
-    SignalStore.misc.lastAppliedPniChangeServerTimestamp = envelopeServerTimestamp
-
     // The primary already submitted these per-device prekeys to the server as part of the
     // change-number request, so they are registered server-side from this device's perspective.
     val pniMetadataStore = SignalStore.account.pniPreKeys
@@ -1852,6 +1940,48 @@ object SyncMessageProcessor {
     // Rotate the primary-generated keys as soon as possible so we don't rely on them long-term.
     SignalStore.misc.forcePniSignedPreKeyRotation = true
     AppDependencies.jobManager.add(PreKeysSyncJob.create(forceRotationRequested = true))
+
+    SignalStore.misc.lastAppliedPniChangeServerTimestamp = envelopeServerTimestamp
+  }
+
+  private fun applyAttachmentData(
+    local: DatabaseAttachment,
+    remote: AttachmentBackfillResponse.AttachmentData,
+    messageId: Long
+  ): BackfillApplyResult {
+    if (local.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE) {
+      return BackfillApplyResult.SKIPPED
+    }
+
+    if (remote.status == AttachmentBackfillResponse.AttachmentData.Status.PENDING) {
+      return BackfillApplyResult.PENDING
+    }
+
+    if (remote.status == AttachmentBackfillResponse.AttachmentData.Status.TERMINAL_ERROR) {
+      SignalDatabase.attachments.setTransferProgressPermanentFailure(local.attachmentId, messageId)
+      return BackfillApplyResult.TERMINAL
+    }
+
+    val attachment = remote.attachment?.toPointer() ?: return BackfillApplyResult.SKIPPED
+
+    val updated = SignalDatabase.attachments.updatePointerFromBackfill(local.attachmentId, attachment)
+    if (!updated) {
+      SignalDatabase.attachments.setTransferProgressPermanentFailure(local.attachmentId, messageId)
+      return BackfillApplyResult.TERMINAL
+    }
+
+    SignalDatabase.runPostSuccessfulTransaction {
+      AppDependencies.jobManager.add(
+        AttachmentDownloadJob(
+          messageId = messageId,
+          attachmentId = local.attachmentId,
+          forceDownload = true,
+          requestSource = AttachmentDownloadJob.RequestSource.BACKFILL
+        )
+      )
+    }
+
+    return BackfillApplyResult.UPDATED
   }
 
   private fun handleSynchronizedPollCreate(
@@ -2090,4 +2220,6 @@ object SyncMessageProcessor {
       return AttachmentTable.SyncAttachmentId(syncMessageId, uuid, digest, plaintextHash)
     }
   }
+
+  private enum class BackfillApplyResult { SKIPPED, PENDING, TERMINAL, UPDATED }
 }

@@ -32,7 +32,7 @@ class PhoneNumberPrivacySettingsViewModel : ViewModel() {
   val state: State<PhoneNumberPrivacySettingsState> = _state
 
   init {
-    viewModelScope.launch(Dispatchers.IO) {
+    viewModelScope.launch(Dispatchers.Default) {
       while (isActive) {
         refresh()
         delay(5.seconds)

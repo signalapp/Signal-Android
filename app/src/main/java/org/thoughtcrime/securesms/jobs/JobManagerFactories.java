@@ -77,6 +77,7 @@ import org.thoughtcrime.securesms.migrations.GooglePlayBillingPurchaseTokenMigra
 import org.thoughtcrime.securesms.migrations.IdentityTableCleanupMigrationJob;
 import org.thoughtcrime.securesms.migrations.KeyTransparencyUsernameMigrationJob;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
+import org.thoughtcrime.securesms.migrations.LocalArchiveReconciliationMigrationJob;
 import org.thoughtcrime.securesms.migrations.MigrationCompleteJob;
 import org.thoughtcrime.securesms.migrations.OptimizeMessageSearchIndexMigrationJob;
 import org.thoughtcrime.securesms.migrations.PassingMigrationJob;
@@ -210,6 +211,7 @@ public final class JobManagerFactories {
       put(MarkerJob.KEY,                               new MarkerJob.Factory());
       put(MessageSendLogCleanupJob.KEY,                new MessageSendLogCleanupJob.Factory());
       put(MultiDeviceAttachmentBackfillMissingJob.KEY, new MultiDeviceAttachmentBackfillMissingJob.Factory());
+      put(MultiDeviceAttachmentBackfillRequestJob.KEY, new MultiDeviceAttachmentBackfillRequestJob.Factory());
       put(MultiDeviceAttachmentBackfillUpdateJob.KEY,  new MultiDeviceAttachmentBackfillUpdateJob.Factory());
       put(MultiDeviceBlockedUpdateJob.KEY,             new MultiDeviceBlockedUpdateJob.Factory());
       put(MultiDeviceCallLinkSyncJob.KEY,              new MultiDeviceCallLinkSyncJob.Factory());
@@ -343,6 +345,7 @@ public final class JobManagerFactories {
       put(IdentityTableCleanupMigrationJob.KEY,           new IdentityTableCleanupMigrationJob.Factory());
       put(KeyTransparencyUsernameMigrationJob.KEY,        new KeyTransparencyUsernameMigrationJob.Factory());
       put(LegacyMigrationJob.KEY,                         new LegacyMigrationJob.Factory());
+      put(LocalArchiveReconciliationMigrationJob.KEY,     new LocalArchiveReconciliationMigrationJob.Factory());
       put(MigrationCompleteJob.KEY,                       new MigrationCompleteJob.Factory());
       put(OptimizeMessageSearchIndexMigrationJob.KEY,     new OptimizeMessageSearchIndexMigrationJob.Factory());
       put(PinOptOutMigration.KEY,                         new PinOptOutMigration.Factory());

@@ -280,7 +280,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
             false,
             new ContactSelectionListAdapter.ArbitraryRepository(),
             new SearchRepository(requireContext().getString(R.string.note_to_self)),
-            new ContactSearchPagedDataSourceRepository(requireContext()),
+            new ContactSearchPagedDataSourceRepository(requireContext(), requireContext().getString(R.string.note_to_self)),
             fixedContacts,
             false
         )

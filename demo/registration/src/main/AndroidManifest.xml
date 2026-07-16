@@ -19,7 +19,7 @@
     android:fullBackupOnly="false"
     android:icon="@mipmap/ic_launcher"
     android:label="Registration Sample"
-    android:theme="@android:style/Theme.Material.NoActionBar"
+    android:theme="@style/Theme.RegistrationSample"
     android:supportsRtl="true">
 
     <!-- Disable Firebase Analytics -->

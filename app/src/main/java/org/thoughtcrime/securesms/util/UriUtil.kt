@@ -32,7 +32,10 @@ object UriUtil {
       }
     } else if (ContentResolver.SCHEME_CONTENT == uri.scheme) {
       val authority = uri.authority ?: return false
-      return !authority.startsWith(context.packageName)
+
+      // Protect against URI's like "content://0@org.thoughtcrime.securesms.part/..."
+      val normalizedAuthority = authority.substringAfterLast('@')
+      return !normalizedAuthority.startsWith(context.packageName)
     } else {
       return true
     }

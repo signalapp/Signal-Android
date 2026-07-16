@@ -8,12 +8,16 @@ package org.signal.registration.screens.devicetransfer.complete
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationRepository
-import org.signal.registration.screens.EventDrivenViewModel
+import org.signal.registration.RestoreDecision
 
 class DeviceTransferCompleteViewModel(
   private val repository: RegistrationRepository,
@@ -26,6 +30,12 @@ class DeviceTransferCompleteViewModel(
 
   private val _state = MutableStateFlow(DeviceTransferCompleteState())
   val state: StateFlow<DeviceTransferCompleteState> = _state
+
+  init {
+    _state
+      .onEach { Log.d(TAG, "[State] $it") }
+      .launchIn(viewModelScope)
+  }
 
   override suspend fun processEvent(event: DeviceTransferCompleteScreenEvents) {
     applyEvent(state.value, event, parentEventEmitter, repository) { _state.value = it }
@@ -41,10 +51,9 @@ class DeviceTransferCompleteViewModel(
   ) {
     when (event) {
       DeviceTransferCompleteScreenEvents.ContinueClicked -> {
-        repository.finishRegistrationOrCreateProfile(parentEventEmitter)
-      }
-      DeviceTransferCompleteScreenEvents.ConsumeOneTimeEvent -> {
-        stateEmitter(state.copy(oneTimeEvent = null))
+        repository.setRestoreDecision(RestoreDecision.COMPLETED)
+        repository.restoreAccountRecord()
+        parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
       }
     }
   }

@@ -11,11 +11,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         # gh api repos/actions/checkout/commits/v6 --jq '.sha'
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c # v4.2.0
       - name: Build image
-        run: |
-          cd reproducible-builds
-          docker build -t signal-android .
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
+        with:
+          context: reproducible-builds
+          tags: signal-android
+          load: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
       - name: Test build
         run: docker run --memory=12g --rm -v "$(pwd)":/project -w /project signal-android ./gradlew --no-daemon --max-workers=1 -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=512m" -Dkotlin.compiler.execution.strategy=in-process bundlePlayProdRelease

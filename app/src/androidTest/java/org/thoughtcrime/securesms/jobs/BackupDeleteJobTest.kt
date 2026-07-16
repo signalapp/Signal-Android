@@ -32,10 +32,18 @@ import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobs.protos.BackupDeleteJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.testing.Flag
+import org.thoughtcrime.securesms.testing.RemoteConfigForTest
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.testing.TestRemoteConfigFlag
 import java.util.UUID
 
+@RemoteConfigForTest(
+  flags = [
+    Flag(TestRemoteConfigFlag.INTERNAL_USER, "true"),
+    Flag(TestRemoteConfigFlag.DEFAULT_MAX_BACKOFF, "1")
+  ]
+)
 class BackupDeleteJobTest {
 
   @get:Rule
@@ -43,10 +51,6 @@ class BackupDeleteJobTest {
 
   @Before
   fun setUp() {
-    mockkObject(RemoteConfig)
-    every { RemoteConfig.internalUser } returns true
-    every { RemoteConfig.defaultMaxBackoff } returns 1000L
-
     mockkObject(BackupRepository)
     every { BackupRepository.getBackupTier() } returns NetworkResult.Success(MessageBackupTier.PAID)
     every { BackupRepository.deleteBackup() } returns NetworkResult.Success(Unit)
@@ -60,29 +64,24 @@ class BackupDeleteJobTest {
 
   @Test
   fun givenUserNotRegistered_whenIRun_thenIExpectFailure() {
-    mockkObject(SignalStore) {
-      every { SignalStore.account.isRegistered } returns false
+    SignalStore.account.setRegistered(false)
 
-      val job = BackupDeleteJob()
+    val job = BackupDeleteJob()
 
-      val result = job.run()
+    val result = job.run()
 
-      assertThat(result.isFailure).isTrue()
-    }
+    assertThat(result.isFailure).isTrue()
   }
 
   @Test
   fun givenLinkedDevice_whenIRun_thenIExpectFailure() {
-    mockkObject(SignalStore) {
-      every { SignalStore.account.isRegistered } returns true
-      every { SignalStore.account.isLinkedDevice } returns true
+    SignalStore.account.deviceId = 2
 
-      val job = BackupDeleteJob()
+    val job = BackupDeleteJob()
 
-      val result = job.run()
+    val result = job.run()
 
-      assertThat(result.isFailure).isTrue()
-    }
+    assertThat(result.isFailure).isTrue()
   }
 
   @Test

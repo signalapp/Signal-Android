@@ -174,6 +174,7 @@ class PersistedFlowStateTest {
       sessionMetadata = session,
       sessionE164 = "+15551234567",
       accountEntropyPool = AccountEntropyPool.generate(),
+      storageCapable = true,
       temporaryMasterKey = MasterKey(ByteArray(32)),
       doNotAttemptRecoveryPassword = true
     )
@@ -184,6 +185,7 @@ class PersistedFlowStateTest {
     assertThat(persisted.sessionMetadata).isEqualTo(session)
     assertThat(persisted.sessionE164).isEqualTo("+15551234567")
     assertThat(persisted.doNotAttemptRecoveryPassword).isEqualTo(true)
+    assertThat(persisted.storageCapable).isEqualTo(true)
   }
 
   @Test
@@ -202,7 +204,8 @@ class PersistedFlowStateTest {
       backStack = listOf(RegistrationRoute.Welcome, RegistrationRoute.PinCreate),
       sessionMetadata = session,
       sessionE164 = "+15551234567",
-      doNotAttemptRecoveryPassword = true
+      doNotAttemptRecoveryPassword = true,
+      storageCapable = true
     )
 
     val aep = AccountEntropyPool.generate()
@@ -221,5 +224,6 @@ class PersistedFlowStateTest {
     assertThat(flowState.temporaryMasterKey).isEqualTo(masterKey)
     assertThat(flowState.preExistingRegistrationData).isNull()
     assertThat(flowState.doNotAttemptRecoveryPassword).isEqualTo(true)
+    assertThat(flowState.storageCapable).isEqualTo(true)
   }
 }

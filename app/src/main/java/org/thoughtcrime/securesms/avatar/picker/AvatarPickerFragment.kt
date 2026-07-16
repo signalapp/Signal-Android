@@ -1,13 +1,11 @@
 package org.thoughtcrime.securesms.avatar.picker
 
-import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -30,12 +28,10 @@ import org.thoughtcrime.securesms.avatar.vector.VectorAvatarCreationFragment
 import org.thoughtcrime.securesms.components.ButtonStripItemView
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXRemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
-import org.signal.core.ui.R as CoreUiR
 
 /**
  * Primary Avatar picker fragment, displays current user avatar and a list of recently used avatars and defaults.
@@ -223,22 +219,8 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
 
   @Suppress("DEPRECATION")
   private fun openCameraCapture() {
-    if (CameraXRemoteConfig.isSupported()) {
-      val intent = AvatarSelectionActivity.getIntentForCameraCapture(requireContext())
-      startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE)
-    } else {
-      Permissions.with(this)
-        .request(Manifest.permission.CAMERA)
-        .ifNecessary()
-        .onAllGranted {
-          val intent = AvatarSelectionActivity.getIntentForCameraCapture(requireContext())
-          startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE)
-        }
-        .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_allow_camera), CoreUiR.drawable.symbol_camera_24)
-        .withPermanentDenialDialog(getString(R.string.AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos, getParentFragmentManager())
-        .onAnyDenied { Toast.makeText(requireContext(), R.string.AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission, Toast.LENGTH_SHORT).show() }
-        .execute()
-    }
+    val intent = AvatarSelectionActivity.getIntentForCameraCapture(requireContext())
+    startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE)
   }
 
   @Suppress("DEPRECATION")

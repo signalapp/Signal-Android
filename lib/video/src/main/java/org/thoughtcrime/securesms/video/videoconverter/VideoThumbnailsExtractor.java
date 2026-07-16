@@ -18,12 +18,11 @@ import org.thoughtcrime.securesms.video.videoconverter.utils.MediaCodecCompat;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-@RequiresApi(api = 23)
-final class VideoThumbnailsExtractor {
+public final class VideoThumbnailsExtractor {
 
   private static final String TAG = Log.tag(VideoThumbnailsExtractor.class);
 
-  interface Callback {
+  public interface Callback {
     void durationKnown(long duration);
 
     boolean publishProgress(int index, Bitmap thumbnail);
@@ -31,10 +30,10 @@ final class VideoThumbnailsExtractor {
     void failed();
   }
 
-  static void extractThumbnails(final @NonNull MediaInput input,
-                                final int thumbnailCount,
-                                final int thumbnailResolution,
-                                final @NonNull Callback callback)
+  public static void extractThumbnails(final @NonNull MediaInput input,
+                                       final int thumbnailCount,
+                                       final int thumbnailResolution,
+                                       final @NonNull Callback callback)
   {
     MediaExtractor extractor     = null;
     MediaCodec     decoder       = null;

@@ -62,7 +62,8 @@ class AttachmentDownloadJob private constructor(
   parameters: Parameters,
   private val messageId: Long,
   private val attachmentId: AttachmentId,
-  private val forceDownload: Boolean
+  private val forceDownload: Boolean,
+  private val requestSource: RequestSource
 ) : BaseJob(parameters) {
 
   companion object {
@@ -72,6 +73,7 @@ class AttachmentDownloadJob private constructor(
     private const val KEY_MESSAGE_ID = "message_id"
     private const val KEY_ATTACHMENT_ID = "part_row_id"
     private const val KEY_FORCE_DOWNLOAD = "part_manual"
+    private const val KEY_SOURCE = "requestSource"
 
     @JvmStatic
     fun constructQueueString(attachmentId: AttachmentId): String {
@@ -113,7 +115,8 @@ class AttachmentDownloadJob private constructor(
             val downloadJob = AttachmentDownloadJob(
               messageId = databaseAttachment.mmsId,
               attachmentId = databaseAttachment.attachmentId,
-              forceDownload = true
+              forceDownload = true,
+              requestSource = RequestSource.USER
             )
             AppDependencies.jobManager.add(downloadJob)
             downloadJob.id
@@ -144,9 +147,23 @@ class AttachmentDownloadJob private constructor(
     }
   }
 
-  constructor(messageId: Long, attachmentId: AttachmentId, forceDownload: Boolean) : this(messageId, attachmentId, forceDownload, forceDownload, forceDownload)
+  @JvmOverloads
+  constructor(
+    messageId: Long,
+    attachmentId: AttachmentId,
+    forceDownload: Boolean,
+    requestSource: RequestSource = RequestSource.AUTO
+  ) : this(messageId, attachmentId, forceDownload, forceDownload, forceDownload, requestSource)
 
-  constructor(messageId: Long, attachmentId: AttachmentId, forceDownload: Boolean, skipInCallConstraint: Boolean, isHighPriority: Boolean) : this(
+  @JvmOverloads
+  constructor(
+    messageId: Long,
+    attachmentId: AttachmentId,
+    forceDownload: Boolean,
+    skipInCallConstraint: Boolean,
+    isHighPriority: Boolean,
+    requestSource: RequestSource = RequestSource.AUTO
+  ) : this(
     Parameters.Builder()
       .setQueue(constructQueueString(attachmentId))
       .addConstraint(NetworkConstraint.KEY)
@@ -157,7 +174,8 @@ class AttachmentDownloadJob private constructor(
       .build(),
     messageId,
     attachmentId,
-    forceDownload
+    forceDownload,
+    requestSource
   )
 
   override fun serialize(): ByteArray? {
@@ -165,6 +183,7 @@ class AttachmentDownloadJob private constructor(
       .putLong(KEY_MESSAGE_ID, messageId)
       .putLong(KEY_ATTACHMENT_ID, attachmentId.id)
       .putBoolean(KEY_FORCE_DOWNLOAD, forceDownload)
+      .putString(KEY_SOURCE, requestSource.name)
       .serialize()
   }
 
@@ -482,10 +501,48 @@ class AttachmentDownloadJob private constructor(
 
   private fun markFailed(messageId: Long, attachmentId: AttachmentId) {
     SignalDatabase.attachments.setTransferProgressFailed(attachmentId, messageId)
+
+    if (requestSource == RequestSource.BACKFILL) {
+      AttachmentBackfill.onAttachmentTerminal(attachmentId, messageId)
+    } else {
+      maybeRequestBackfill()
+    }
   }
 
   private fun markPermanentlyFailed(messageId: Long, attachmentId: AttachmentId) {
     SignalDatabase.attachments.setTransferProgressPermanentFailure(attachmentId, messageId)
+
+    if (requestSource == RequestSource.BACKFILL) {
+      AttachmentBackfill.onAttachmentTerminal(attachmentId, messageId)
+    } else {
+      maybeRequestBackfill()
+    }
+  }
+
+  private fun maybeRequestBackfill() {
+    if (SignalStore.account.isPrimaryDevice || requestSource != RequestSource.USER) {
+      return
+    }
+
+    val attachment = SignalDatabase.attachments.getAttachment(attachmentId) ?: return
+
+    if (SignalStore.backup.backsUpMedia && attachment.dataHash != null && attachment.transferState == AttachmentTable.TRANSFER_PROGRESS_FAILED) {
+      Log.i(TAG, "[$attachmentId] Backs up media and have a plaintext hash; attempting archive restore before backfill")
+      RestoreAttachmentJob.forManualRestore(attachment)
+      return
+    }
+
+    AttachmentBackfill.maybeRequest(messageId, attachment)
+  }
+
+  enum class RequestSource {
+    AUTO,
+    USER,
+    BACKFILL;
+
+    companion object {
+      fun fromName(name: String?): RequestSource = entries.firstOrNull { it.name == name } ?: AUTO
+    }
   }
 
   class Factory : Job.Factory<AttachmentDownloadJob?> {
@@ -495,7 +552,8 @@ class AttachmentDownloadJob private constructor(
         parameters = parameters,
         messageId = data.getLong(KEY_MESSAGE_ID),
         attachmentId = AttachmentId(data.getLong(KEY_ATTACHMENT_ID)),
-        forceDownload = data.getBoolean(KEY_FORCE_DOWNLOAD)
+        forceDownload = data.getBoolean(KEY_FORCE_DOWNLOAD),
+        requestSource = RequestSource.fromName(data.getStringOrDefault(KEY_SOURCE, null))
       )
     }
   }

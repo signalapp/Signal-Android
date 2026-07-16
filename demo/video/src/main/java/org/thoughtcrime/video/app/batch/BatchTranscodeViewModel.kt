@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.thoughtcrime.securesms.video.TranscodingPreset
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter
 import org.thoughtcrime.video.app.transcode.TranscodeSettings
 import org.thoughtcrime.video.app.transcode.TranscodeTestRepository
@@ -157,11 +156,11 @@ class BatchTranscodeViewModel : ViewModel() {
     onProgress: (Int) -> Unit
   ): TranscodeTestRepository.TranscodeResult {
     val outputTag = "preset%02d".format(profileIndex + 1)
-    return if (profile.isPreset && profile.presetName != null) {
-      repository.transcodeWithPreset(
+    return if (profile.quality != null) {
+      repository.transcodeWithQuality(
         context = context,
         inputUri = inputUri,
-        preset = TranscodingPreset.valueOf(profile.presetName),
+        quality = profile.quality,
         enableFastStart = profile.enableFastStart,
         enableAudioRemux = profile.enableAudioRemux,
         outputTag = outputTag,
@@ -172,7 +171,7 @@ class BatchTranscodeViewModel : ViewModel() {
         context = context,
         inputUri = inputUri,
         options = TranscodeTestRepository.CustomTranscodingOptions(
-          videoCodec = if (profile.useHevc) MediaConverter.VIDEO_CODEC_H265 else MediaConverter.VIDEO_CODEC_H264,
+          videoCodec = MediaConverter.VIDEO_CODEC_H264,
           videoResolution = profile.videoResolution,
           videoBitrate = (profile.videoMegaBitrate * MEGABIT).roundToInt(),
           audioBitrate = profile.audioKiloBitrate * KILOBIT,
@@ -213,10 +212,10 @@ class BatchTranscodeViewModel : ViewModel() {
     private const val KILOBIT = 1_000
 
     fun profileSummary(profile: TranscodeSettings, index: Int): String {
-      return if (profile.isPreset) {
-        "Profile ${index + 1}: ${profile.presetName}"
+      return if (profile.quality != null) {
+        "Profile ${index + 1}: ${profile.quality.name}"
       } else {
-        "Profile ${index + 1}: ${profile.videoResolution.shortEdge}p/${if (profile.useHevc) "H265" else "H264"}/${"%.1f".format(profile.videoMegaBitrate)}Mbps"
+        "Profile ${index + 1}: ${profile.videoResolution.shortEdge}p/${"%.1f".format(profile.videoMegaBitrate)}Mbps"
       }
     }
   }

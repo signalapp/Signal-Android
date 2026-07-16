@@ -274,8 +274,17 @@ class DividerPreferenceViewHolder(itemView: View) : MappingViewHolder<DividerPre
 class SectionHeaderPreferenceViewHolder(itemView: View) : MappingViewHolder<SectionHeaderPreference>(itemView) {
 
   private val sectionHeader: TextView = itemView.findViewById(R.id.section_header)
+  private val iconEndView: ImageView = itemView.findViewById(R.id.icon_end)
 
   override fun bind(model: SectionHeaderPreference) {
     sectionHeader.text = model.title.resolve(context)
+
+    val iconEnd = model.iconEnd?.resolve(context)
+    iconEndView.setImageDrawable(iconEnd)
+    iconEndView.visible = iconEnd != null
+
+    if (model.onClick != null) {
+      iconEndView.setOnClickListener { model.onClick() }
+    }
   }
 }

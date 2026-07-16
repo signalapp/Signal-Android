@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -44,19 +45,23 @@ import androidx.navigation.navGraphViewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.util.getParcelableCompat
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorActionResult
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.createInAppPaymentPreview
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.BankTransferRequestKeys
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.DonationTransferTestTags
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.ideal.IdealTransferDetailsViewModel.Field
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
@@ -189,19 +194,25 @@ class IdealTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDele
 
 @Preview
 @Composable
-private fun IdealTransferDetailsContentPreview() {
-  IdealTransferDetailsContent(
-    state = IdealTransferDetailsState(),
-    idealDirections = R.string.IdealTransferDetailsFragment__enter_your_bank,
-    donateLabel = "Donate $5/month",
-    onNavigationClick = {},
-    onLearnMoreClick = {},
-    onSelectBankClick = {},
-    onNameChanged = {},
-    onEmailChanged = {},
-    onFocusChanged = { _, _ -> },
-    onDonateClick = {}
-  )
+fun IdealTransferDetailsContentPreview() {
+  Previews.Preview {
+    IdealTransferDetailsContent(
+      state = IdealTransferDetailsState(
+        inAppPayment = createInAppPaymentPreview(InAppPaymentType.RECURRING_DONATION),
+        name = "Miles Morales",
+        email = "miles@example.com"
+      ),
+      idealDirections = R.string.IdealTransferDetailsFragment__enter_your_bank,
+      donateLabel = "Donate $5/month",
+      onNavigationClick = {},
+      onLearnMoreClick = {},
+      onSelectBankClick = {},
+      onNameChanged = {},
+      onEmailChanged = {},
+      onFocusChanged = { _, _ -> },
+      onDonateClick = {}
+    )
+  }
 }
 
 @Composable
@@ -232,6 +243,7 @@ private fun IdealTransferDetailsContent(
         modifier = Modifier
           .weight(1f)
           .padding(horizontal = 24.dp)
+          .testTag(DonationTransferTestTags.IDEAL_DETAILS_LIST)
       ) {
         item {
           val learnMore = stringResource(id = R.string.IdealTransferDetailsFragment__learn_more)
@@ -274,6 +286,7 @@ private fun IdealTransferDetailsContent(
               .padding(top = 16.dp)
               .defaultMinSize(minHeight = 78.dp)
               .onFocusChanged { onFocusChanged(Field.NAME, it.hasFocus) }
+              .testTag(DonationTransferTestTags.IDEAL_NAME_FIELD)
           )
         }
 
@@ -307,6 +320,7 @@ private fun IdealTransferDetailsContent(
                 .padding(top = 16.dp)
                 .defaultMinSize(minHeight = 78.dp)
                 .onFocusChanged { onFocusChanged(Field.EMAIL, it.hasFocus) }
+                .testTag(DonationTransferTestTags.IDEAL_EMAIL_FIELD)
             )
           }
         }
@@ -318,6 +332,7 @@ private fun IdealTransferDetailsContent(
         modifier = Modifier
           .defaultMinSize(minWidth = 220.dp)
           .padding(bottom = 16.dp)
+          .testTag(DonationTransferTestTags.IDEAL_DONATE_BUTTON)
       ) {
         Text(text = donateLabel)
       }

@@ -10,44 +10,41 @@ package signal;
 option java_package = "org.signal.registration.proto";
 
 message RegistrationData {
-  // Key material (from generateAndStoreKeyMaterial)
-  bytes  aciIdentityKeyPair = 1;
-  bytes  pniIdentityKeyPair = 2;
-  bytes  aciSignedPreKey = 3;
-  bytes  pniSignedPreKey = 4;
-  bytes  aciLastResortKyberPreKey = 5;
-  bytes  pniLastResortKyberPreKey = 6;
-  int32  aciRegistrationId = 7;
-  int32  pniRegistrationId = 8;
-  bytes  unidentifiedAccessKey = 9;
-  string servicePassword = 10;
-  string accountEntropyPool = 11;
+  // Should only be persisted in the app-layer a single time during registration
+  AccountData accountData = 1;
+  bool accountDataCommitted = 2;
 
-  // Account identity (from saveNewRegistrationData / getPreExistingRegistrationData)
-  string e164 = 12;
-  string aci = 13;
-  string pni = 14;
+  string accountEntropyPool = 3;
+  string pin = 4;
+  bool pinOptedOut = 5;
+  bool registrationLockEnabled = 6;
+  bytes profileKey = 7;
+  bytes masterKeyForInitialDataRestore = 8;
+  repeated SvrCredential svrCredentials = 9;
+  ProvisioningData provisioningData = 10;
+  string flowStateJson = 11;
+  int64 lastUpdatedMillis = 12;
+}
 
-  // PIN data (from saveValidatedPinAndTemporaryMasterKey / saveNewlyCreatedPin)
-  string pin = 15;
-  bool   pinIsAlphanumeric = 16;
-  bytes  temporaryMasterKey = 17;
-  bool   registrationLockEnabled = 18;
+message AccountData {
+  bytes aciIdentityKeyPair = 1;
+  bytes pniIdentityKeyPair = 2;
+  bytes aciSignedPreKey = 3;
+  bytes pniSignedPreKey = 4;
+  bytes aciLastResortKyberPreKey = 5;
+  bytes pniLastResortKyberPreKey = 6;
+  int32 aciRegistrationId = 7;
+  int32 pniRegistrationId = 8;
 
-  // SVR credentials (from appendSvrCredentials / getRestoredSvrCredentials)
-  repeated SvrCredential svrCredentials = 19;
+  string aci = 9;
+  string pni = 10;
+  string e164 = 11;
+  string servicePassword = 12;
 
-  // Provisioning data (from saveProvisioningData)
-  ProvisioningData provisioningData = 20;
+  bytes unidentifiedAccessKey = 13;
+  bool fetchesMessages = 14;
 
-  // Profile key (used to derive unidentified access key)
-  bytes  profileKey = 22;
-
-  // Whether this device fetches messages (true if no FCM token)
-  bool   fetchesMessages = 23;
-
-  // JSON-serialized flow state snapshot (from saveFlowState/restoreFlowState)
-  string flowStateJson = 21;
+  LinkedDeviceData linkedDeviceData = 15;
 }
 
 message SvrCredential {
@@ -68,10 +65,18 @@ message ProvisioningData {
     PAID = 2;
   }
 
-  string   restoreMethodToken = 1;
+  string restoreMethodToken = 1;
   Platform platform = 2;
-  Tier     tier = 3;
-  int64    backupTimestampMs = 4;
-  int64    backupSizeBytes = 5;
-  int64    backupVersion = 6;
+  Tier tier = 3;
+  int64 backupTimestampMs = 4;
+  int64 backupSizeBytes = 5;
+  int64 backupVersion = 6;
+}
+
+message LinkedDeviceData {
+  uint32 deviceId = 1;
+  string deviceName = 2;
+  optional bytes ephemeralBackupKey = 3;
+  optional bytes mediaRootBackupKey = 4;
+  optional bool readReceipts = 5;
 }

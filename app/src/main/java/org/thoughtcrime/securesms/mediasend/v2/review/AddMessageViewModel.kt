@@ -31,7 +31,7 @@ class AddMessageViewModel(initialMessage: CharSequence?) : ViewModel() {
         iterator.setText(it)
         AddMessageCharacterCount(iterator.countBreaks())
       }
-      .flowOn(Dispatchers.IO)
+      .flowOn(Dispatchers.Default)
   }
 
   fun updateAddAMessageCount(input: CharSequence?) {

@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.SvrRepository
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.io.IOException
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
@@ -24,7 +25,7 @@ class RefreshSvrCredentialsJob private constructor(parameters: Parameters) : Bas
 
     @JvmStatic
     fun enqueueIfNecessary() {
-      if (SignalStore.svr.hasPin() && SignalStore.account.isRegistered) {
+      if (SignalStore.svr.hasPin() && SignalStore.account.isRegistered && !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)) {
         val lastTimestamp = SignalStore.svr.lastRefreshAuthTimestamp
         if (lastTimestamp + FREQUENCY.inWholeMilliseconds < System.currentTimeMillis() || lastTimestamp > System.currentTimeMillis()) {
           AppDependencies.jobManager.add(RefreshSvrCredentialsJob())
@@ -52,6 +53,11 @@ class RefreshSvrCredentialsJob private constructor(parameters: Parameters) : Bas
   override fun onRun() {
     if (!SignalStore.account.isRegistered) {
       Log.w(TAG, "Not registered! Skipping.")
+      return
+    }
+
+    if (TextSecurePreferences.isUnauthorizedReceived(context)) {
+      Log.i(TAG, "No longer authorized. Ignoring.")
       return
     }
 

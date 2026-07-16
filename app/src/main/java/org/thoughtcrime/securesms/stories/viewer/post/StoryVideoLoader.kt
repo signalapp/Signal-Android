@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.stories.viewer.post
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.mms.VideoSlide
-import org.thoughtcrime.securesms.video.VideoPlayer
+import org.signal.video.VideoPlayer
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 
 /**
  * Render logic for story video posts
@@ -23,7 +23,8 @@ class StoryVideoLoader(
 
   fun load() {
     fragment.viewLifecycleOwner.lifecycle.addObserver(this)
-    videoPlayer.setVideoSource(VideoSlide(fragment.requireContext(), videoPost.videoUri, videoPost.size, false), false, TAG, videoPost.clipStart.inWholeMilliseconds, videoPost.clipEnd.inWholeMilliseconds)
+    videoPlayer.setExoPlayerPool(AppDependencies.exoPlayerPool)
+    videoPlayer.setVideoSource(videoPost.videoUri, false, TAG, videoPost.clipStart.inWholeMilliseconds, videoPost.clipEnd.inWholeMilliseconds)
     videoPlayer.hideControls()
     videoPlayer.setKeepContentOnPlayerReset(false)
     blurLoader.load()

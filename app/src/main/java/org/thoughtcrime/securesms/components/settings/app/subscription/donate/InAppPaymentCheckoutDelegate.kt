@@ -135,7 +135,7 @@ class InAppPaymentCheckoutDelegate(
       callback.onSubscriptionCancelled(InAppPaymentType.RECURRING_DONATION)
     } else {
       fragment.lifecycleScope.launch {
-        val inAppPayment = withContext(SignalDispatchers.IO) {
+        val inAppPayment = withContext(SignalDispatchers.Default) {
           SignalDatabase.inAppPayments.getById(result.inAppPaymentId!!)!!
         }
 

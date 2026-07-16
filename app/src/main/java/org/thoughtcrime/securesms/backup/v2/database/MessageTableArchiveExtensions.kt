@@ -167,7 +167,11 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
         .where(
           buildString {
             append("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND ")
-            append("($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds})")
+            if (exportState.backupMode.isPlaintextExport) {
+              append("$EXPIRES_IN == 0")
+            } else {
+              append("($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds})")
+            }
             append(" AND $DATE_RECEIVED >= $lastSeenReceivedTime $cutoffQuery")
           }
         )

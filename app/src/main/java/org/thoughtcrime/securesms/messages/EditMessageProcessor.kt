@@ -124,7 +124,8 @@ object EditMessageProcessor {
     message: DataMessage,
     targetMessage: MmsMessageRecord
   ): InsertResult? {
-    val messageRanges: BodyRangeList? = message.bodyRanges.filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toList().toBodyRangeList()
+    val cappedBodyRanges = message.bodyRanges.take(DataMessageProcessor.BODY_RANGE_PROCESSING_LIMIT)
+    val messageRanges: BodyRangeList? = cappedBodyRanges.filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toList().toBodyRangeList()
     val targetQuote = targetMessage.quote
     val quote: QuoteModel? = if (targetQuote != null && (message.quote != null || (targetMessage.parentStoryId != null && message.storyContext != null))) {
       QuoteModel(
@@ -159,7 +160,7 @@ object EditMessageProcessor {
       parentStoryId = targetMessage.parentStoryId,
       sharedContacts = emptyList(),
       linkPreviews = DataMessageProcessor.getLinkPreviews(message.preview, message.body ?: "", false),
-      mentions = DataMessageProcessor.getMentions(message.bodyRanges),
+      mentions = DataMessageProcessor.getMentions(cappedBodyRanges),
       serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
       messageRanges = messageRanges
     )

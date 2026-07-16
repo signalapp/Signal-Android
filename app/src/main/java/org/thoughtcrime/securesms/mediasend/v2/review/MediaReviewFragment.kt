@@ -39,6 +39,10 @@ import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
+import org.signal.mediasend.MediaConstraints
+import org.signal.mediasend.SentMediaQuality
+import org.signal.mediasend.edit.video.VideoThumbnailsRangeSelectorView
+import org.signal.mediasend.edit.video.VideoTrimData
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
@@ -49,6 +53,7 @@ import org.thoughtcrime.securesms.conversation.ScheduleMessageTimePickerBottomSh
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardActivity
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.media.DecryptableUriMediaInput
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
 import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations
@@ -56,9 +61,6 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionState
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mediasend.v2.stories.StoriesMultiselectForwardActivity
-import org.thoughtcrime.securesms.mediasend.v2.videos.VideoTrimData
-import org.thoughtcrime.securesms.mms.MediaConstraints
-import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -67,12 +69,13 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
 import org.thoughtcrime.securesms.util.visible
+import org.thoughtcrime.securesms.video.TranscodingConfig
 import org.thoughtcrime.securesms.video.TranscodingQuality
-import org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView
 import java.io.IOException
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.microseconds
 import org.signal.core.ui.R as CoreUiR
 
 /**
@@ -576,14 +579,14 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       return
     }
     val uri = mediaItem.uri
-    val updatedInputInTimeline = videoTimeLine.setInput(uri)
+    val updatedInputInTimeline = videoTimeLine.setInput(uri, DecryptableUriMediaInput)
     if (updatedInputInTimeline) {
       videoTimeLine.unregisterDragListener()
     }
     val size: Long = tryGetUriSize(requireContext(), uri, Long.MAX_VALUE)
-    val maxSend = sharedViewModel.getMediaConstraints().getVideoMaxSize()
+    val maxSend = sharedViewModel.getMediaConstraints().getEditorVideoMaxSize()
     if (size > maxSend) {
-      videoTimeLine.setTimeLimit(state.transcodingPreset.calculateMaxVideoUploadDurationInSeconds(maxSend), TimeUnit.SECONDS)
+      videoTimeLine.setTimeLimit(TranscodingConfig.calculateMaxVideoUploadDurationInSeconds(state.transcodingConfigs, state.getOrCreateVideoTrimData(uri).totalInputDurationUs.microseconds, maxSend), TimeUnit.SECONDS)
     }
 
     if (state.isTouchEnabled) {
@@ -601,7 +604,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
     videoSizeHint.text = if (state.isVideoTrimmingVisible) {
       val seconds = trimData.getDuration().inWholeSeconds
-      val bytes = TranscodingQuality.createFromPreset(state.transcodingPreset, trimData.getDuration().inWholeMilliseconds).byteCountEstimate
+      val bytes = TranscodingQuality.createFromQualityTiers(state.transcodingConfigs, trimData.getDuration().inWholeMilliseconds).byteCountEstimate
       String.format(Locale.getDefault(), "%d:%02d • %s", seconds / 60, seconds % 60, bytes.bytes.toUnitString())
     } else {
       null

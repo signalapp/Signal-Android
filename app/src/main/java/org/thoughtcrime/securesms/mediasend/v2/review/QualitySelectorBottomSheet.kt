@@ -30,9 +30,9 @@ import androidx.fragment.app.viewModels
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.Previews
+import org.signal.mediasend.SentMediaQuality
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
-import org.thoughtcrime.securesms.mms.SentMediaQuality
 
 /**
  * Bottom sheet dialog to select the media quality (Standard vs. High) when sending media.

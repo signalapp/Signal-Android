@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.conversation.mutiselect.forward
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -161,7 +162,7 @@ private fun MultiselectForwardContent(
         viewModel = contactSearchViewModel,
         mapStateToConfiguration = mapStateToConfiguration,
         modifier = Modifier
-          .fillMaxWidth()
+          .fillMaxSize()
           .weight(1f),
         additionalEntries = additionalEntries,
         displayOptions = remember {

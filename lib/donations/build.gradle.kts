@@ -23,13 +23,17 @@ dependencies {
 
   implementation(platform(libs.androidx.compose.bom))
 
+  api(libs.arrow.core)
+
   implementation(libs.kotlin.reflect)
   implementation(libs.jackson.module.kotlin)
   implementation(libs.jackson.core)
+  implementation(libs.libsignal.android)
 
   testImplementation(testLibs.robolectric.robolectric) {
     exclude(group = "com.google.protobuf", module = "protobuf-java")
   }
+  testImplementation(testFixtures(project(":lib:libsignal-service")))
 
   api(libs.google.play.services.wallet)
   api(libs.square.okhttp3)

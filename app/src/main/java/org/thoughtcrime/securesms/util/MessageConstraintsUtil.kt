@@ -45,7 +45,7 @@ object MessageConstraintsUtil {
 
   @JvmStatic
   fun isValidEditMessageReceive(targetMessage: MessageRecord, editSender: Recipient, editServerTimestamp: Long): Boolean {
-    return isValidRemoteDeleteReceive(targetMessage, editSender.id, editServerTimestamp)
+    return !targetMessage.isRemoteDelete && isValidRemoteDeleteReceive(targetMessage, editSender.id, editServerTimestamp)
   }
 
   @JvmStatic

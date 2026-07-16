@@ -81,7 +81,10 @@ enum class MainNavigationListLocation(
   STORIES(
     label = R.string.ConversationListTabs__stories,
     icon = R.raw.stories_28
-  )
+  );
+
+  val isChatsTab: Boolean
+    get() = this == CHATS || this == ARCHIVE
 }
 
 data class MainNavigationState(

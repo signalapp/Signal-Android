@@ -128,13 +128,14 @@
         tools:visibility="visible">
 
         <TextView
+            android:id="@+id/same_groups_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:minHeight="40dp"
             android:paddingHorizontal="@dimen/dsl_settings_gutter"
-            android:text="@string/AddGroupDetailsFragment__groups_with_same_members"
-            android:textAppearance="@style/Signal.Text.TitleSmall" />
+            android:textAppearance="@style/Signal.Text.TitleSmall"
+            tools:text="4 groups with the same members" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"

@@ -21,6 +21,7 @@ androidx-test-ext-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.
 androidx-test-orchestrator = "androidx.test:orchestrator:1.4.1"
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test" }
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espresso" }
 kotlinx-coroutines-test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0"
 robolectric-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 bouncycastle-bcprov-jdk15on = "org.bouncycastle:bcprov-jdk15on:1.70"

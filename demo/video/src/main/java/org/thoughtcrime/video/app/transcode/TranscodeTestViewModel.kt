@@ -21,7 +21,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.thoughtcrime.securesms.video.TranscodingPreset
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter
 import kotlin.math.roundToInt
 
@@ -34,13 +33,12 @@ class TranscodeTestViewModel : ViewModel() {
 
   var selectedVideo: Uri? by mutableStateOf(null)
 
-  var transcodingPreset by mutableStateOf(TranscodingPreset.LEVEL_2)
+  var transcodeQuality by mutableStateOf(TranscodeQuality.STANDARD)
     private set
 
-  var videoMegaBitrate by mutableFloatStateOf(calculateVideoMegaBitrateFromPreset(transcodingPreset))
-  var videoResolution by mutableStateOf(convertPresetToVideoResolution(transcodingPreset))
-  var audioKiloBitrate by mutableIntStateOf(calculateAudioKiloBitrateFromPreset(transcodingPreset))
-  var useHevc by mutableStateOf(false)
+  var videoMegaBitrate by mutableFloatStateOf(calculateVideoMegaBitrateFromQuality(transcodeQuality))
+  var videoResolution by mutableStateOf(convertQualityToVideoResolution(transcodeQuality))
+  var audioKiloBitrate by mutableIntStateOf(calculateAudioKiloBitrateFromQuality(transcodeQuality))
   var useAutoTranscodingSettings by mutableStateOf(true)
   var enableFastStart by mutableStateOf(true)
   var enableAudioRemux by mutableStateOf(true)
@@ -48,11 +46,11 @@ class TranscodeTestViewModel : ViewModel() {
   private val _transcodingState = MutableStateFlow<TranscodingState>(TranscodingState.Idle)
   val transcodingState: StateFlow<TranscodingState> = _transcodingState.asStateFlow()
 
-  fun updateTranscodingPreset(preset: TranscodingPreset) {
-    transcodingPreset = preset
-    videoResolution = convertPresetToVideoResolution(preset)
-    videoMegaBitrate = calculateVideoMegaBitrateFromPreset(preset)
-    audioKiloBitrate = calculateAudioKiloBitrateFromPreset(preset)
+  fun updateTranscodeQuality(quality: TranscodeQuality) {
+    transcodeQuality = quality
+    videoResolution = convertQualityToVideoResolution(quality)
+    videoMegaBitrate = calculateVideoMegaBitrateFromQuality(quality)
+    audioKiloBitrate = calculateAudioKiloBitrateFromQuality(quality)
   }
 
   fun startTranscode(context: Context) {
@@ -60,12 +58,10 @@ class TranscodeTestViewModel : ViewModel() {
     _transcodingState.value = TranscodingState.InProgress(0)
 
     val settings = TranscodeSettings(
-      isPreset = useAutoTranscodingSettings,
-      presetName = if (useAutoTranscodingSettings) transcodingPreset.name else null,
+      quality = if (useAutoTranscodingSettings) transcodeQuality else null,
       videoResolution = videoResolution,
       videoMegaBitrate = videoMegaBitrate,
       audioKiloBitrate = audioKiloBitrate,
-      useHevc = useHevc,
       enableFastStart = enableFastStart,
       enableAudioRemux = enableAudioRemux
     )
@@ -73,10 +69,10 @@ class TranscodeTestViewModel : ViewModel() {
     transcodeJob = viewModelScope.launch(Dispatchers.IO) {
       try {
         val result = if (useAutoTranscodingSettings) {
-          repository.transcodeWithPreset(
+          repository.transcodeWithQuality(
             context = context,
             inputUri = video,
-            preset = transcodingPreset,
+            quality = transcodeQuality,
             enableFastStart = enableFastStart,
             enableAudioRemux = enableAudioRemux,
             onProgress = { percent -> _transcodingState.value = TranscodingState.InProgress(percent) }
@@ -86,7 +82,7 @@ class TranscodeTestViewModel : ViewModel() {
             context = context,
             inputUri = video,
             options = TranscodeTestRepository.CustomTranscodingOptions(
-              videoCodec = if (useHevc) MediaConverter.VIDEO_CODEC_H265 else MediaConverter.VIDEO_CODEC_H264,
+              videoCodec = MediaConverter.VIDEO_CODEC_H264,
               videoResolution = videoResolution,
               videoBitrate = (videoMegaBitrate * MEGABIT).roundToInt(),
               audioBitrate = audioKiloBitrate * KILOBIT,

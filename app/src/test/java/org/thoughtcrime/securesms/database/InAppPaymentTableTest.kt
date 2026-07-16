@@ -19,6 +19,7 @@ import org.robolectric.annotation.Config
 import org.signal.core.util.deleteAll
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
+import org.thoughtcrime.securesms.jobs.InAppPaymentKeepAliveJob
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SignalDatabaseRule
 
@@ -100,6 +101,44 @@ class InAppPaymentTableTest {
     assertThat(result).isEmpty()
   }
 
+  @Test
+  fun `consumeDonationPaymentsToNotifyUser does not return or mark in-flight donations`() {
+    val createdId = insertDonation(notified = false, state = InAppPaymentTable.State.CREATED)
+    val transactingId = insertDonation(notified = false, state = InAppPaymentTable.State.TRANSACTING)
+    val waitingId = insertDonation(notified = false, state = InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION)
+    val pendingId = insertDonation(notified = false, state = InAppPaymentTable.State.PENDING)
+
+    val result = SignalDatabase.inAppPayments.consumeDonationPaymentsToNotifyUser()
+
+    assertThat(result).isEmpty()
+    // Must remain unnotified so the terminal sheet can still be shown once they reach a notifiable state.
+    assertThat(SignalDatabase.inAppPayments.getById(createdId)!!.notified).isEqualTo(false)
+    assertThat(SignalDatabase.inAppPayments.getById(transactingId)!!.notified).isEqualTo(false)
+    assertThat(SignalDatabase.inAppPayments.getById(waitingId)!!.notified).isEqualTo(false)
+    assertThat(SignalDatabase.inAppPayments.getById(pendingId)!!.notified).isEqualTo(false)
+  }
+
+  @Test
+  fun `consumeDonationPaymentsToNotifyUser returns an in-flight donation only once it reaches END`() {
+    val id = insertDonation(notified = false, state = InAppPaymentTable.State.PENDING)
+
+    assertThat(SignalDatabase.inAppPayments.consumeDonationPaymentsToNotifyUser()).isEmpty()
+
+    val pending = SignalDatabase.inAppPayments.getById(id)!!
+    SignalDatabase.inAppPayments.update(pending.copy(state = InAppPaymentTable.State.END))
+
+    val result = SignalDatabase.inAppPayments.consumeDonationPaymentsToNotifyUser()
+    assertThat(result).single().transform { it.id }.isEqualTo(id)
+  }
+
+  @Test
+  fun `consumeDonationPaymentsToNotifyUser returns a pending donation that carries a keep-alive error`() {
+    val id = insertDonation(notified = false, state = InAppPaymentTable.State.PENDING, data = keepAliveErrorData())
+
+    val result = SignalDatabase.inAppPayments.consumeDonationPaymentsToNotifyUser()
+    assertThat(result).single().transform { it.id }.isEqualTo(id)
+  }
+
   // endregion
 
   // region consumeBackupPaymentsToNotifyUser
@@ -144,21 +183,42 @@ class InAppPaymentTableTest {
     assertThat(result).isEmpty()
   }
 
+  @Test
+  fun `consumeBackupPaymentsToNotifyUser does not return or mark in-flight backups`() {
+    val id = insertBackup(notified = false, state = InAppPaymentTable.State.PENDING)
+
+    assertThat(SignalDatabase.inAppPayments.consumeBackupPaymentsToNotifyUser()).isEmpty()
+    assertThat(SignalDatabase.inAppPayments.getById(id)!!.notified).isEqualTo(false)
+  }
+
   // endregion
 
   // region helpers
 
-  private fun insertDonation(notified: Boolean): InAppPaymentTable.InAppPaymentId = insertPayment(type = InAppPaymentType.ONE_TIME_DONATION, notified = notified)
+  private fun insertDonation(
+    notified: Boolean,
+    state: InAppPaymentTable.State = InAppPaymentTable.State.END,
+    data: InAppPaymentData = InAppPaymentData()
+  ): InAppPaymentTable.InAppPaymentId = insertPayment(type = InAppPaymentType.ONE_TIME_DONATION, notified = notified, state = state, data = data)
 
-  private fun insertBackup(notified: Boolean): InAppPaymentTable.InAppPaymentId = insertPayment(type = InAppPaymentType.RECURRING_BACKUP, notified = notified)
+  private fun insertBackup(
+    notified: Boolean,
+    state: InAppPaymentTable.State = InAppPaymentTable.State.END,
+    data: InAppPaymentData = InAppPaymentData()
+  ): InAppPaymentTable.InAppPaymentId = insertPayment(type = InAppPaymentType.RECURRING_BACKUP, notified = notified, state = state, data = data)
 
-  private fun insertPayment(type: InAppPaymentType, notified: Boolean): InAppPaymentTable.InAppPaymentId {
+  private fun insertPayment(
+    type: InAppPaymentType,
+    notified: Boolean,
+    state: InAppPaymentTable.State,
+    data: InAppPaymentData
+  ): InAppPaymentTable.InAppPaymentId {
     val id = SignalDatabase.inAppPayments.insert(
       type = type,
-      state = InAppPaymentTable.State.CREATED,
+      state = state,
       subscriberId = null,
       endOfPeriod = null,
-      inAppPaymentData = InAppPaymentData()
+      inAppPaymentData = data
     )
     if (!notified) {
       val payment = SignalDatabase.inAppPayments.getById(id)!!
@@ -166,6 +226,13 @@ class InAppPaymentTableTest {
     }
     return id
   }
+
+  private fun keepAliveErrorData(): InAppPaymentData = InAppPaymentData(
+    error = InAppPaymentData.Error(
+      type = InAppPaymentData.Error.Type.REDEMPTION,
+      data_ = InAppPaymentKeepAliveJob.KEEP_ALIVE
+    )
+  )
 
   // endregion
 }

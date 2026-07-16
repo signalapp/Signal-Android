@@ -18,23 +18,26 @@ import com.bumptech.glide.load.resource.gif.StreamGifDecoder;
 
 import org.signal.apng.ApngDecoder;
 import org.signal.blurhash.BlurHash;
-import org.signal.glide.load.resource.apng.decode.APNGDecoder;
+import org.signal.core.util.crypto.AttachmentSecret;
+import org.signal.core.util.crypto.AttachmentSecretProvider;
 import org.signal.glide.blurhash.BlurHashModelLoader;
 import org.signal.glide.blurhash.BlurHashResourceDecoder;
 import org.signal.glide.common.io.InputStreamFactory;
+import org.signal.glide.decryptableuri.DecryptableUri;
+import org.signal.glide.decryptableuri.DecryptableUriStreamLoader;
+import org.signal.glide.load.resource.apng.decode.APNGDecoder;
 import org.thoughtcrime.securesms.badges.load.BadgeLoader;
 import org.thoughtcrime.securesms.badges.load.GiftBadgeModel;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoLoader;
-import org.thoughtcrime.securesms.crypto.AttachmentSecret;
-import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
+import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
 import org.thoughtcrime.securesms.glide.cache.ApngDrawableTranscoder;
 import org.thoughtcrime.securesms.glide.cache.ApngFrameDrawableTranscoder;
 import org.thoughtcrime.securesms.glide.cache.ApngInputStreamFactoryResourceDecoder;
-import org.thoughtcrime.securesms.glide.cache.EncryptedApngCacheDecoder;
 import org.thoughtcrime.securesms.glide.cache.ByteBufferApngDecoder;
+import org.thoughtcrime.securesms.glide.cache.EncryptedApngCacheDecoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedApngCacheEncoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedApngResourceEncoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedBitmapResourceEncoder;
@@ -47,15 +50,13 @@ import org.thoughtcrime.securesms.glide.cache.StreamBitmapDecoder;
 import org.thoughtcrime.securesms.glide.cache.StreamFactoryApngDecoder;
 import org.thoughtcrime.securesms.glide.cache.StreamFactoryGifDecoder;
 import org.thoughtcrime.securesms.glide.cache.WebpSanDecoder;
-import org.signal.glide.decryptableuri.DecryptableUri;
-import org.signal.glide.decryptableuri.DecryptableUriStreamLoader;
 import org.thoughtcrime.securesms.mms.RegisterGlideComponents;
 import org.thoughtcrime.securesms.mms.SignalGlideModule;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUriLoader;
 import org.thoughtcrime.securesms.stories.StoryTextPostModel;
 import org.thoughtcrime.securesms.util.ConversationShortcutPhoto;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.io.File;
 import java.io.InputStream;
@@ -69,7 +70,7 @@ public class SignalGlideComponents implements RegisterGlideComponents {
 
   @Override
   public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
-    AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
+    AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context, AppAttachmentSecretStore.INSTANCE).getOrCreateAttachmentSecret();
     byte[]           secret           = attachmentSecret.getModernKey();
 
     registry.prepend(File.class, File.class, UnitModelLoader.Factory.getInstance());

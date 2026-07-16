@@ -26,6 +26,7 @@ import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.util.Base64
+import org.signal.core.util.crypto.DeviceNameCipher
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.util.KeyHelper
@@ -70,13 +71,13 @@ import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionC
 import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionResult
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.fcm.PushChallengeRequest
-import org.thoughtcrime.securesms.registration.secondary.DeviceNameCipher
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.account.AccountAttributes
+import org.whispersystems.signalservice.api.account.DeviceAttributes
 import org.whispersystems.signalservice.api.account.PreKeyCollection
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import org.whispersystems.signalservice.api.kbs.PinHashUtil
@@ -97,6 +98,7 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.coroutineContext
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -147,7 +149,7 @@ object RegistrationRepository {
    * Queries, and creates if needed, the local profile key.
    */
   @JvmStatic
-  suspend fun getProfileKey(e164: String): ProfileKey = withContext(Dispatchers.IO) {
+  suspend fun getProfileKey(e164: String): ProfileKey = withContext(Dispatchers.Default) {
     // TODO [regv2]: make creation more explicit instead of hiding it in this getter
     val recipientTable = SignalDatabase.recipients
     val recipient = recipientTable.getByE164(e164)
@@ -488,23 +490,46 @@ object RegistrationRepository {
     val aci = message.aciBinary?.let { ACI.parseOrThrow(it) } ?: ACI.parseOrThrow(message.aci)
     val pni = message.pniBinary?.let { PNI.parseOrThrow(it) } ?: PNI.parseOrThrow(message.pni)
 
-    val universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
-    val unidentifiedAccessKey = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)
+    return registerAsLinkedDevice(
+      context = context,
+      deviceName = deviceName,
+      number = message.number!!,
+      provisioningCode = message.provisioningCode!!,
+      aci = aci,
+      pni = pni,
+      accountEntropyPool = AccountEntropyPool(message.accountEntropyPool!!),
+      registrationData = registrationData,
+      aciIdentityKeyPair = aciIdentityKeyPair,
+      pniIdentityKeyPair = pniIdentityKeyPair
+    )
+  }
 
+  /**
+   * Registers this device as a linked (secondary) device using discrete fields rather than a raw
+   * [ProvisionMessage]. This is the form used by the regv5 registration module, which works with a
+   * decoupled provisioning message.
+   */
+  @WorkerThread
+  fun registerAsLinkedDevice(
+    context: Context,
+    deviceName: String,
+    number: String,
+    provisioningCode: String,
+    aci: ACI,
+    pni: PNI,
+    accountEntropyPool: AccountEntropyPool,
+    registrationData: RegistrationData,
+    aciIdentityKeyPair: IdentityKeyPair,
+    pniIdentityKeyPair: IdentityKeyPair
+  ): NetworkResult<RegisterAsLinkedDeviceResponse> {
     val encryptedDeviceName = DeviceNameCipher.encryptDeviceName(deviceName.toByteArray(StandardCharsets.UTF_8), aciIdentityKeyPair)
 
-    val accountAttributes = AccountAttributes(
-      signalingKey = null,
-      registrationId = getRegistrationId(),
+    val deviceAttributes = DeviceAttributes(
       fetchesMessages = registrationData.fcmToken == null,
-      registrationLock = null,
-      unidentifiedAccessKey = unidentifiedAccessKey,
-      unrestrictedUnidentifiedAccess = universalUnidentifiedAccess,
-      capabilities = AppCapabilities.getCapabilities(false),
-      discoverableByPhoneNumber = false,
-      name = Base64.encodeWithPadding(encryptedDeviceName),
+      registrationId = getRegistrationId(),
       pniRegistrationId = getPniRegistrationId(),
-      recoveryPassword = null
+      name = Base64.encodeWithPadding(encryptedDeviceName),
+      capabilities = AppCapabilities.getCapabilities(false)
     )
 
     val aciPreKeys = generateSignedAndLastResortPreKeys(aciIdentityKeyPair, SignalStore.account.aciPreKeys)
@@ -512,20 +537,18 @@ object RegistrationRepository {
 
     return AccountManagerFactory
       .getInstance()
-      .createUnauthenticated(context, message.number!!, -1, registrationData.password)
+      .createUnauthenticated(context, number, -1, registrationData.password)
       .registrationApi
-      .registerAsSecondaryDevice(message.provisioningCode!!, accountAttributes, aciPreKeys, pniPreKeys, registrationData.fcmToken)
-      .map { respone ->
-        val aep = AccountEntropyPool(message.accountEntropyPool!!)
-
+      .registerAsSecondaryDevice(provisioningCode, deviceAttributes, aciPreKeys, pniPreKeys, registrationData.fcmToken)
+      .map { response ->
         RegisterAsLinkedDeviceResponse(
-          deviceId = respone.deviceId.toInt(),
+          deviceId = response.deviceId.toInt(),
           accountRegistrationResult = AccountRegistrationResult(
             uuid = aci.toString(),
             pni = pni.toString(),
             storageCapable = false,
-            number = message.number!!,
-            masterKey = aep.deriveMasterKey(),
+            number = number,
+            masterKey = accountEntropyPool.deriveMasterKey(),
             pin = null,
             aciPreKeyCollection = aciPreKeys,
             pniPreKeyCollection = pniPreKeys,
@@ -674,7 +697,7 @@ object RegistrationRepository {
     return Recipient.self().profileName.isEmpty || !AvatarHelper.hasAvatar(AppDependencies.application, Recipient.self().id)
   }
 
-  suspend fun waitForLinkAndSyncBackupDetails(maxWaitTime: Duration = 60.seconds): TransferArchiveResponse? {
+  suspend fun waitForLinkAndSyncBackupDetails(maxWaitTime: Duration = 1.hours): TransferArchiveResponse? {
     val startTime = System.currentTimeMillis()
     var timeRemaining = maxWaitTime.inWholeMilliseconds
 
@@ -683,7 +706,8 @@ object RegistrationRepository {
 
       when (val result = SignalNetwork.linkDevice.waitForPrimaryDevice(timeout = 60.seconds)) {
         is NetworkResult.Success -> {
-          Log.i(TAG, "[waitForLinkAndSyncBackupDetails] Transfer archive data provided by primary")
+          // The primary has responded: either with an archive location, or an error telling us not to expect one.
+          Log.i(TAG, "[waitForLinkAndSyncBackupDetails] Primary responded (hasArchive=${result.result.hasArchive}, error=${result.result.error})")
           return result.result
         }
         is NetworkResult.ApplicationError -> {

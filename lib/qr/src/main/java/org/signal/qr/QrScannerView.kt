@@ -26,12 +26,8 @@ class QrScannerView @JvmOverloads constructor(
 
   val qrData: Observable<String> = qrDataPublish
 
-  private fun initScannerView(forceLegacy: Boolean) {
-    val scannerView: FrameLayout = if (!forceLegacy) {
-      ScannerView21(context) { qrDataPublish.onNext(it) }
-    } else {
-      ScannerView19(context) { qrDataPublish.onNext(it) }
-    }
+  private fun initScannerView() {
+    val scannerView: FrameLayout = ScannerView21(context) { qrDataPublish.onNext(it) }
 
     scannerView.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
     addView(scannerView)
@@ -39,14 +35,13 @@ class QrScannerView @JvmOverloads constructor(
     this.scannerView = (scannerView as ScannerView)
   }
 
-  @JvmOverloads
-  fun start(lifecycleOwner: LifecycleOwner, forceLegacy: Boolean = false) {
+  fun start(lifecycleOwner: LifecycleOwner) {
     if (scannerView != null) {
       Log.w(TAG, "Attempt to start scanning that has already started")
       return
     }
 
-    initScannerView(forceLegacy)
+    initScannerView()
 
     scannerView?.start(lifecycleOwner)
     lifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {

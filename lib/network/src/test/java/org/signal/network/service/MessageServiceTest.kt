@@ -28,6 +28,7 @@ import org.signal.libsignal.net.ServiceIdNotFoundException
 import org.signal.libsignal.net.UserBasedAuthorization
 import org.signal.libsignal.net.UserBasedSendAuthorization
 import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.libsignal.protocol.NoSessionException
 import org.signal.libsignal.protocol.SessionBuilder
 import org.signal.libsignal.protocol.SessionCipher
 import org.signal.libsignal.protocol.SignalProtocolAddress
@@ -438,6 +439,21 @@ class MessageServiceTest {
 
     val mismatch = (result as Either.Left).value as MessageService.SendError.IdentityMismatch
     assertThat(mismatch.exception).isEqualTo(untrusted)
+  }
+
+  @Test
+  fun `NoSessionException during encryption archives the session and surfaces a retryable error`() = runTest {
+    val service = newService()
+    every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()
+    val noSession = NoSessionException("missing session")
+    every { cipher.encrypt(any(), any(), any()) } throws noSession
+
+    val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = null, story = true, isOnline = false)
+
+    verify { protocolStore.archiveSession(SignalProtocolAddress(recipientAci.libSignalServiceId, SignalServiceAddress.DEFAULT_DEVICE_ID)) }
+    val app = (result as Either.Left).value as MessageService.SendError.ApplicationError
+    assertThat(app.exception).isEqualTo(noSession)
+    coVerify(exactly = 0) { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) }
   }
 
   @Test

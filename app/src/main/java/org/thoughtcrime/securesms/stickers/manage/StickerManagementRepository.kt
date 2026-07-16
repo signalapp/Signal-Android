@@ -37,7 +37,7 @@ object StickerManagementRepository {
   private val databaseObserver: DatabaseObserver = AppDependencies.databaseObserver
   private val stickersDbTable: StickerTable = SignalDatabase.stickers
   private val attachmentsDbTable: AttachmentTable = SignalDatabase.attachments
-  private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
+  private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Default)
 
   /**
    * Emits the sticker packs along with any updates.
@@ -58,7 +58,7 @@ object StickerManagementRepository {
     }
   }
 
-  private suspend fun loadStickerPacks(): StickerPacksResult = withContext(Dispatchers.IO) {
+  private suspend fun loadStickerPacks(): StickerPacksResult = withContext(Dispatchers.Default) {
     StickerPackRecordReader(stickersDbTable.getAllStickerPacks()).use { reader ->
       val installedPacks = mutableListOf<StickerPackRecord>()
       val availablePacks = mutableListOf<StickerPackRecord>()
@@ -83,7 +83,7 @@ object StickerManagementRepository {
     }
   }
 
-  suspend fun deleteOrphanedStickerPacks() = withContext(Dispatchers.IO) {
+  suspend fun deleteOrphanedStickerPacks() = withContext(Dispatchers.Default) {
     stickersDbTable.deleteOrphanedPacks()
   }
 
@@ -104,7 +104,7 @@ object StickerManagementRepository {
     }
   }
 
-  suspend fun installStickerPack(packId: StickerPackId, packKey: StickerPackKey, notify: Boolean) = withContext(Dispatchers.IO) {
+  suspend fun installStickerPack(packId: StickerPackId, packKey: StickerPackKey, notify: Boolean) = withContext(Dispatchers.Default) {
     if (stickersDbTable.isPackAvailableAsReference(packId.value)) {
       stickersDbTable.markPackAsInstalled(packId.value, notify)
     }
@@ -123,7 +123,7 @@ object StickerManagementRepository {
     }
   }
 
-  suspend fun uninstallStickerPacks(packKeysById: Map<StickerPackId, StickerPackKey>) = withContext(Dispatchers.IO) {
+  suspend fun uninstallStickerPacks(packKeysById: Map<StickerPackId, StickerPackKey>) = withContext(Dispatchers.Default) {
     stickersDbTable.uninstallPacks(packIds = packKeysById.keys)
 
     if (SignalStore.account.isMultiDevice) {
@@ -133,7 +133,7 @@ object StickerManagementRepository {
     }
   }
 
-  suspend fun setStickerPacksOrder(packsInOrder: List<StickerPackRecord>) = withContext(Dispatchers.IO) {
+  suspend fun setStickerPacksOrder(packsInOrder: List<StickerPackRecord>) = withContext(Dispatchers.Default) {
     stickersDbTable.updatePackOrder(packsInOrder)
   }
 

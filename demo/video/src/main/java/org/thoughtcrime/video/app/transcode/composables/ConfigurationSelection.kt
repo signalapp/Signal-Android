@@ -31,11 +31,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import org.thoughtcrime.securesms.video.TranscodingPreset
-import org.thoughtcrime.securesms.video.videoconverter.utils.DeviceCapabilities
 import org.thoughtcrime.video.app.transcode.MAX_VIDEO_MEGABITRATE
 import org.thoughtcrime.video.app.transcode.MIN_VIDEO_MEGABITRATE
 import org.thoughtcrime.video.app.transcode.OPTIONS_AUDIO_KILOBITRATES
+import org.thoughtcrime.video.app.transcode.TranscodeQuality
 import org.thoughtcrime.video.app.transcode.TranscodeTestViewModel
 import org.thoughtcrime.video.app.transcode.VideoResolution
 import org.thoughtcrime.video.app.ui.composables.LabeledButton
@@ -47,7 +46,6 @@ import kotlin.math.roundToInt
 @Composable
 fun ConfigureEncodingParameters(
   onTranscodeClicked: () -> Unit,
-  hevcCapable: Boolean = DeviceCapabilities.canEncodeHevc(),
   modifier: Modifier = Modifier,
   viewModel: TranscodeTestViewModel = viewModel()
 ) {
@@ -87,17 +85,15 @@ fun ConfigureEncodingParameters(
       )
     }
     if (viewModel.useAutoTranscodingSettings) {
-      PresetPicker(
-        viewModel.transcodingPreset,
-        viewModel::updateTranscodingPreset,
+      QualityPicker(
+        viewModel.transcodeQuality,
+        viewModel::updateTranscodeQuality,
         modifier = Modifier.padding(vertical = 16.dp)
       )
     } else {
       CustomSettings(
         selectedResolution = viewModel.videoResolution,
         onResolutionSelected = { viewModel.videoResolution = it },
-        useHevc = viewModel.useHevc,
-        onUseHevcSettingChanged = { viewModel.useHevc = it },
         fastStartChecked = viewModel.enableFastStart,
         onFastStartSettingCheckChanged = { viewModel.enableFastStart = it },
         audioRemuxChecked = viewModel.enableAudioRemux,
@@ -106,7 +102,6 @@ fun ConfigureEncodingParameters(
         updateVideoSliderPosition = { viewModel.videoMegaBitrate = it },
         audioSliderPosition = viewModel.audioKiloBitrate,
         updateAudioSliderPosition = { viewModel.audioKiloBitrate = it.roundToInt() },
-        hevcCapable = hevcCapable,
         modifier = Modifier.padding(vertical = 16.dp)
       )
     }
@@ -119,9 +114,9 @@ fun ConfigureEncodingParameters(
 }
 
 @Composable
-internal fun PresetPicker(
-  selectedTranscodingPreset: TranscodingPreset,
-  onPresetSelected: (TranscodingPreset) -> Unit,
+internal fun QualityPicker(
+  selectedTranscodeQuality: TranscodeQuality,
+  onQualitySelected: (TranscodeQuality) -> Unit,
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -130,20 +125,20 @@ internal fun PresetPicker(
       .fillMaxWidth()
       .selectableGroup()
   ) {
-    TranscodingPreset.entries.forEach {
+    TranscodeQuality.entries.forEach {
       Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
           .selectable(
-            selected = selectedTranscodingPreset == it,
+            selected = selectedTranscodeQuality == it,
             onClick = {
-              onPresetSelected(it)
+              onQualitySelected(it)
             },
             role = Role.RadioButton
           )
       ) {
         RadioButton(
-          selected = selectedTranscodingPreset == it,
+          selected = selectedTranscodeQuality == it,
           onClick = null,
           modifier = Modifier.semantics { contentDescription = it.name }
         )
@@ -160,8 +155,6 @@ internal fun PresetPicker(
 internal fun CustomSettings(
   selectedResolution: VideoResolution,
   onResolutionSelected: (VideoResolution) -> Unit,
-  useHevc: Boolean,
-  onUseHevcSettingChanged: (Boolean) -> Unit,
   fastStartChecked: Boolean,
   onFastStartSettingCheckChanged: (Boolean) -> Unit,
   audioRemuxChecked: Boolean,
@@ -170,7 +163,6 @@ internal fun CustomSettings(
   updateVideoSliderPosition: (Float) -> Unit,
   audioSliderPosition: Int,
   updateAudioSliderPosition: (Float) -> Unit,
-  hevcCapable: Boolean,
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -204,21 +196,6 @@ internal fun CustomSettings(
   }
   VideoBitrateSlider(videoSliderPosition, updateVideoSliderPosition)
   AudioBitrateSlider(audioSliderPosition, updateAudioSliderPosition)
-
-  if (hevcCapable) {
-    Row(
-      verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier
-        .padding(vertical = 8.dp, horizontal = 8.dp)
-        .fillMaxWidth()
-    ) {
-      Checkbox(
-        checked = useHevc,
-        onCheckedChange = { onUseHevcSettingChanged(it) }
-      )
-      Text(text = "Use HEVC encoder", style = MaterialTheme.typography.bodySmall)
-    }
-  }
 
   Row(
     verticalAlignment = Alignment.CenterVertically,
@@ -306,5 +283,5 @@ private fun ConfigurationScreenPreviewCustom() {
   val vm: TranscodeTestViewModel = viewModel()
   vm.selectedVideo = Uri.parse("content://media/video/1")
   vm.useAutoTranscodingSettings = false
-  ConfigureEncodingParameters(onTranscodeClicked = {}, hevcCapable = true)
+  ConfigureEncodingParameters(onTranscodeClicked = {})
 }

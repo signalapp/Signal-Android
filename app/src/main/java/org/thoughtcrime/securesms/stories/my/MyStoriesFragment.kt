@@ -5,6 +5,7 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
@@ -18,6 +19,7 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
@@ -35,6 +37,8 @@ class MyStoriesFragment : DSLSettingsFragment(
 
   private val lifecycleDisposable = LifecycleDisposable()
 
+  private val mainNavigationViewModel: MainNavigationViewModel by activityViewModels()
+
   private val viewModel: MyStoriesViewModel by viewModels(
     factoryProducer = {
       MyStoriesViewModel.Factory(MyStoriesRepository(requireContext()))
@@ -48,7 +52,7 @@ class MyStoriesFragment : DSLSettingsFragment(
       viewLifecycleOwner,
       object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-          requireActivity().finish()
+          mainNavigationViewModel.popStoriesDetailLocation()
         }
       }
     )

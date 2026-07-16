@@ -37,7 +37,7 @@ object GatewaySelectorRepository {
   }
 
   suspend fun setInAppPaymentMethodType(inAppPayment: InAppPaymentTable.InAppPayment, paymentMethodType: InAppPaymentData.PaymentMethodType): InAppPaymentTable.InAppPayment {
-    return withContext(Dispatchers.IO) {
+    return withContext(Dispatchers.Default) {
       SignalDatabase.inAppPayments.update(
         inAppPayment.copy(
           data = inAppPayment.data.copy(

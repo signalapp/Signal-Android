@@ -16,7 +16,7 @@ import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toByteArray
-import org.signal.libsignal.zkgroup.backups.BackupLevel
+import org.signal.mediasend.SentMediaQuality
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -126,7 +126,7 @@ object AccountDataArchiveProcessor {
             hasCompletedUsernameOnboarding = signalStore.uiHintValues.hasCompletedUsernameOnboarding(),
             customChatColors = db.chatColorsTable.getSavedChatColors().toRemoteChatColors().also { colors -> exportState.customChatColorIds.addAll(colors.map { it.id }) },
             optimizeOnDeviceStorage = signalStore.backupValues.optimizeStorage && signalStore.backupValues.backupTier == MessageBackupTier.PAID,
-            backupTier = signalStore.backupValues.backupTier.toRemoteBackupTier(),
+            backupTier = signalStore.backupValues.backupTier?.toBackupLevel(),
             defaultSentMediaQuality = signalStore.settingsValues.sentMediaQuality.toRemoteSentMediaQuality(),
             autoDownloadSettings = AccountData.AutoDownloadSettings(
               images = getRemoteAutoDownloadOption("image", mobileAutoDownload, wifiAutoDownload),
@@ -276,7 +276,7 @@ object AccountDataArchiveProcessor {
     SignalStore.story.userHasSeenGroupStoryEducationSheet = settings.hasSeenGroupStoryEducationSheet
     SignalStore.story.viewedReceiptsEnabled = settings.storyViewReceiptsEnabled ?: settings.readReceipts
     SignalStore.backup.optimizeStorage = settings.optimizeOnDeviceStorage
-    SignalStore.backup.backupTier = settings.backupTier?.toLocalBackupTier()
+    SignalStore.backup.backupTier = MessageBackupTier.fromBackupLevel(settings.backupTier)
     SignalStore.settings.sentMediaQuality = settings.defaultSentMediaQuality.toLocalSentMediaQuality()
     SignalStore.settings.setTheme(settings.appTheme.toLocalTheme())
     SignalStore.settings.setCallDataMode(settings.callsUseLessDataSetting.toLocalCallDataMode())
@@ -455,35 +455,19 @@ object AccountDataArchiveProcessor {
       }
   }
 
-  private fun MessageBackupTier?.toRemoteBackupTier(): Long? {
+  private fun SentMediaQuality.toRemoteSentMediaQuality(): AccountData.SentMediaQuality {
     return when (this) {
-      MessageBackupTier.FREE -> BackupLevel.FREE.value.toLong()
-      MessageBackupTier.PAID -> BackupLevel.PAID.value.toLong()
-      null -> null
+      SentMediaQuality.STANDARD -> AccountData.SentMediaQuality.STANDARD
+      SentMediaQuality.HIGH -> AccountData.SentMediaQuality.HIGH
     }
   }
 
-  private fun Long?.toLocalBackupTier(): MessageBackupTier? {
+  private fun AccountData.SentMediaQuality?.toLocalSentMediaQuality(): SentMediaQuality {
     return when (this) {
-      BackupLevel.FREE.value.toLong() -> MessageBackupTier.FREE
-      BackupLevel.PAID.value.toLong() -> MessageBackupTier.PAID
-      else -> null
-    }
-  }
-
-  private fun org.thoughtcrime.securesms.mms.SentMediaQuality.toRemoteSentMediaQuality(): AccountData.SentMediaQuality {
-    return when (this) {
-      org.thoughtcrime.securesms.mms.SentMediaQuality.STANDARD -> AccountData.SentMediaQuality.STANDARD
-      org.thoughtcrime.securesms.mms.SentMediaQuality.HIGH -> AccountData.SentMediaQuality.HIGH
-    }
-  }
-
-  private fun AccountData.SentMediaQuality?.toLocalSentMediaQuality(): org.thoughtcrime.securesms.mms.SentMediaQuality {
-    return when (this) {
-      AccountData.SentMediaQuality.HIGH -> org.thoughtcrime.securesms.mms.SentMediaQuality.HIGH
-      AccountData.SentMediaQuality.STANDARD -> org.thoughtcrime.securesms.mms.SentMediaQuality.STANDARD
-      AccountData.SentMediaQuality.UNKNOWN_QUALITY -> org.thoughtcrime.securesms.mms.SentMediaQuality.STANDARD
-      null -> org.thoughtcrime.securesms.mms.SentMediaQuality.STANDARD
+      AccountData.SentMediaQuality.HIGH -> SentMediaQuality.HIGH
+      AccountData.SentMediaQuality.STANDARD -> SentMediaQuality.STANDARD
+      AccountData.SentMediaQuality.UNKNOWN_QUALITY -> SentMediaQuality.STANDARD
+      null -> SentMediaQuality.STANDARD
     }
   }
 

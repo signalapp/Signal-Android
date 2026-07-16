@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.text.TextPaint;
 import android.text.style.URLSpan;
 import android.view.View;
@@ -38,7 +39,9 @@ public class LongClickCopySpan extends URLSpan {
     Context context = widget.getContext();
     String preparedUrl = prepareUrl(getURL());
     copyUrl(context, preparedUrl);
-    Toast.makeText(context, context.getString(R.string.ConversationItem_copied_text, preparedUrl), Toast.LENGTH_SHORT).show();
+    if (Build.VERSION.SDK_INT <= 32) {
+      Toast.makeText(context, context.getString(R.string.ConversationItem_copied_text, preparedUrl), Toast.LENGTH_SHORT).show();
+    }
   }
 
   @Override

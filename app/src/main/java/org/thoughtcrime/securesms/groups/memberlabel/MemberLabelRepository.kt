@@ -40,7 +40,7 @@ class MemberLabelRepository private constructor(
     val instance: MemberLabelRepository by lazy { MemberLabelRepository() }
   }
 
-  suspend fun getRecipient(recipientId: RecipientId): Recipient = withContext(Dispatchers.IO) {
+  suspend fun getRecipient(recipientId: RecipientId): Recipient = withContext(Dispatchers.Default) {
     Recipient.resolved(recipientId)
   }
 
@@ -83,7 +83,7 @@ class MemberLabelRepository private constructor(
   /**
    * Gets the member label for a specific recipient in the group.
    */
-  suspend fun getLabel(groupId: GroupId.V2, recipient: Recipient): MemberLabel? = withContext(Dispatchers.IO) {
+  suspend fun getLabel(groupId: GroupId.V2, recipient: Recipient): MemberLabel? = withContext(Dispatchers.Default) {
     getLabelSync(groupId, recipient)
   }
 
@@ -92,14 +92,14 @@ class MemberLabelRepository private constructor(
    *
    * Returns a map of [RecipientId] to [MemberLabel] for members that have labels.
    */
-  suspend fun getLabels(groupId: GroupId.V2, recipients: List<Recipient>): Map<RecipientId, MemberLabel> = withContext(Dispatchers.IO) {
+  suspend fun getLabels(groupId: GroupId.V2, recipients: List<Recipient>): Map<RecipientId, MemberLabel> = withContext(Dispatchers.Default) {
     getLabelsSync(groupId, recipients)
   }
 
   /**
    * Checks whether [recipient] has permission to set their member label in the given group.
    */
-  suspend fun canSetLabel(groupId: GroupId.V2, recipient: Recipient): Boolean = withContext(Dispatchers.IO) {
+  suspend fun canSetLabel(groupId: GroupId.V2, recipient: Recipient): Boolean = withContext(Dispatchers.Default) {
     val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext false
 
     if (!isSelfAnActiveGroupMember(groupRecord)) return@withContext false
@@ -116,7 +116,7 @@ class MemberLabelRepository private constructor(
   /**
    * Computes the sender [NameColor] for a recipient as seen by other group members.
    */
-  suspend fun getSenderNameColor(groupId: GroupId.V2, recipient: Recipient): NameColor = withContext(Dispatchers.IO) {
+  suspend fun getSenderNameColor(groupId: GroupId.V2, recipient: Recipient): NameColor = withContext(Dispatchers.Default) {
     val groupMemberIds = groupsTable
       .getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_INCLUDING_SELF)
       .mapNotNull { it.serviceId.orNull() }
@@ -127,7 +127,7 @@ class MemberLabelRepository private constructor(
   /**
    * Returns all group members who have labels set for the given group.
    */
-  suspend fun getMembersWithLabels(groupId: GroupId.V2): List<GroupMemberWithLabel> = withContext(Dispatchers.IO) {
+  suspend fun getMembersWithLabels(groupId: GroupId.V2): List<GroupMemberWithLabel> = withContext(Dispatchers.Default) {
     val groupRecord = groupsTable.getGroup(groupId).orNull() ?: return@withContext emptyList()
     if (!isSelfAnActiveGroupMember(groupRecord)) return@withContext emptyList()
 

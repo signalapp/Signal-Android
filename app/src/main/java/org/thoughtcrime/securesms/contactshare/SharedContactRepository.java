@@ -18,8 +18,8 @@ import org.thoughtcrime.securesms.contactshare.Contact.Email;
 import org.thoughtcrime.securesms.contactshare.Contact.Name;
 import org.thoughtcrime.securesms.contactshare.Contact.Phone;
 import org.thoughtcrime.securesms.contactshare.Contact.PostalAddress;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.SignalE164Util;
 
@@ -98,8 +98,8 @@ public class SharedContactRepository {
       Log.w(TAG, "Failed to parse the vcard.", e);
     }
 
-    if (BlobProvider.AUTHORITY.equals(uri.getAuthority())) {
-      BlobProvider.getInstance().delete(context, uri);
+    if (AppDependencies.getBlobs().getAuthority().equals(uri.getAuthority())) {
+      AppDependencies.getBlobs().delete(context, uri);
     }
 
     return contact;

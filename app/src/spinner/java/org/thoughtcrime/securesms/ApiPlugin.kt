@@ -8,7 +8,9 @@ package org.thoughtcrime.securesms
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.signal.core.models.ServiceId
+import org.signal.core.util.Base64
 import org.signal.core.util.Hex
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
@@ -19,7 +21,9 @@ import org.signal.storageservice.storage.protos.groups.Member
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember
+import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.JobDatabase
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
@@ -106,6 +110,20 @@ class ApiPlugin : Plugin {
         Param("outgoing", "false"),
         Param("type", "NORMAL", placeholder = "NORMAL|IDENTITY_UPDATE|IDENTITY_VERIFIED|IDENTITY_DEFAULT|CONTACT_JOINED|EXPIRATION_UPDATE"),
         Param("timestamp", "", placeholder = "blank = now (epoch millis)")
+      )
+    ),
+    "createAttachment" to ApiSpec(
+      ::createAttachment,
+      listOf(
+        Param("messageId", "1"),
+        Param("contentType", "image/jpeg", placeholder = "any MIME type: image/jpeg, audio/aac, video/mp4, ..."),
+        Param("data", "", placeholder = "base64 bytes; blank = random of sizeBytes"),
+        Param("sizeBytes", "1024", placeholder = "random byte count when data is blank"),
+        Param("fileName", "", placeholder = "optional original filename"),
+        Param("voiceNote", "false"),
+        Param("width", "0"),
+        Param("height", "0"),
+        Param("validForArchive", "true", placeholder = "true = fill remote_key + data_hash_end so it exports to backup")
       )
     )
   )
@@ -565,6 +583,87 @@ class ApiPlugin : Plugin {
     }
   }
 
+  /**
+   * Attaches a media file to an existing message so it lands on-device with real bytes on disk.
+   *
+   * The bytes are written through the normal attachment pipeline ([AttachmentTable.insertAttachmentsForMessage]),
+   * leaving the attachment at [AttachmentTable.TRANSFER_PROGRESS_DONE] with a local `data_file`. When
+   * `validForArchive` is set (the default) we additionally fill `remote_key` + `data_hash_end` via
+   * [AttachmentTable.debugMakeValidForArchive] so the attachment satisfies the backup exporter's validity
+   * check and its media is included when a backup is created.
+   *
+   * `contentType` is arbitrary — images, audio (set `voiceNote=true` for a voice note), video, or any file.
+   */
+  private fun createAttachment(parameters: Map<String, List<String>>): PluginResult {
+    val messageId = parameters["messageId"]?.firstOrNull()?.toLongOrNull()
+      ?: return PluginResult.ErrorResult(message = "Missing or invalid 'messageId' parameter")
+
+    if (SignalDatabase.messages.getMessageRecordOrNull(messageId) == null) {
+      return PluginResult.ErrorResult(message = "No message with id $messageId")
+    }
+
+    val contentType = parameters["contentType"]?.firstOrNull()?.takeIf { it.isNotBlank() } ?: "image/jpeg"
+    val fileName = parameters["fileName"]?.firstOrNull()?.takeIf { it.isNotBlank() }
+    val voiceNote = parameters.boolOrDefault("voiceNote", false)
+    val width = parameters["width"]?.firstOrNull()?.toIntOrNull() ?: 0
+    val height = parameters["height"]?.firstOrNull()?.toIntOrNull() ?: 0
+    val validForArchive = parameters.boolOrDefault("validForArchive", true)
+
+    val bytes = try {
+      parameters["data"]?.firstOrNull()?.takeIf { it.isNotBlank() }?.let { Base64.decode(it) }
+        ?: Util.getSecretBytes(parameters["sizeBytes"]?.firstOrNull()?.toIntOrNull() ?: 1024)
+    } catch (e: Exception) {
+      return PluginResult.ErrorResult(message = "Failed to decode 'data' as base64: ${e.message}")
+    }
+
+    return try {
+      val blobUri = AppDependencies.blobs
+        .forData(bytes)
+        .withMimeType(contentType)
+        .apply { if (fileName != null) withFileName(fileName) }
+        .createForSingleSessionInMemory()
+
+      val attachment = UriAttachment(
+        dataUri = blobUri,
+        contentType = contentType,
+        transferState = AttachmentTable.TRANSFER_PROGRESS_DONE,
+        size = bytes.size.toLong(),
+        width = width,
+        height = height,
+        fileName = fileName,
+        fastPreflightId = null,
+        voiceNote = voiceNote,
+        borderless = false,
+        videoGif = false,
+        quote = false,
+        quoteTargetContentType = null,
+        caption = null,
+        stickerLocator = null,
+        blurHash = null,
+        audioHash = null,
+        transformProperties = null
+      )
+
+      val attachmentId = SignalDatabase.attachments.insertAttachmentsForMessage(messageId, listOf(attachment), emptyList())[attachment]
+        ?: return PluginResult.ErrorResult(message = "Attachment was not inserted")
+
+      if (validForArchive) {
+        SignalDatabase.attachments.debugMakeValidForArchive(attachmentId)
+      }
+
+      CreateAttachmentResponse(
+        attachmentId = attachmentId.id,
+        messageId = messageId,
+        size = bytes.size.toLong(),
+        contentType = contentType,
+        validForArchive = validForArchive
+      ).toJsonResult()
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to create attachment", e)
+      PluginResult.ErrorResult(message = "Failed: ${e.message}")
+    }
+  }
+
   private data class ApiSpec(
     val handler: (Map<String, List<String>>) -> PluginResult,
     val params: List<Param>
@@ -592,6 +691,14 @@ class ApiPlugin : Plugin {
 
   data class CreateMessageResponse @JsonCreator constructor(
     @field:JsonProperty val messageId: Long
+  )
+
+  data class CreateAttachmentResponse @JsonCreator constructor(
+    @field:JsonProperty val attachmentId: Long,
+    @field:JsonProperty val messageId: Long,
+    @field:JsonProperty val size: Long,
+    @field:JsonProperty val contentType: String,
+    @field:JsonProperty val validForArchive: Boolean
   )
 
   data class LocalBackups @JsonCreator constructor(@field:JsonProperty val backups: List<LocalBackup>)

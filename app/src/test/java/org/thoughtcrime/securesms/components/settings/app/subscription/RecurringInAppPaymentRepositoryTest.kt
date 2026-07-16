@@ -62,6 +62,7 @@ class RecurringInAppPaymentRepositoryTest {
     every { StorageSyncHelper.scheduleSyncForDataChange() } returns Unit
 
     every { AppDependencies.donationsService.putSubscription(any()) } returns ServiceResponse.forResult(EmptyResponse.INSTANCE, 200, "")
+    every { AppDependencies.donationsService.createSubscriber(any()) } returns ServiceResponse.forResult(EmptyResponse.INSTANCE, 200, "")
     every { AppDependencies.donationsService.updateSubscriptionLevel(any(), any(), any(), any(), any()) } returns ServiceResponse.forResult(EmptyResponse.INSTANCE, 200, "")
   }
 
@@ -96,6 +97,8 @@ class RecurringInAppPaymentRepositoryTest {
     val newSubscriber = ref.get()
 
     assertThat(newSubscriber).isNotEqualTo(initialSubscriber)
+    verify { AppDependencies.donationsService.createSubscriber(any()) }
+    verify(inverse = true) { AppDependencies.donationsService.putSubscription(any()) }
   }
 
   @Test
@@ -111,6 +114,8 @@ class RecurringInAppPaymentRepositoryTest {
     val newSubscriber = ref.get()
 
     assertThat(newSubscriber).isNotEqualTo(initialSubscriber)
+    verify { AppDependencies.donationsService.createSubscriber(any()) }
+    verify(inverse = true) { AppDependencies.donationsService.putSubscription(any()) }
   }
 
   @Test

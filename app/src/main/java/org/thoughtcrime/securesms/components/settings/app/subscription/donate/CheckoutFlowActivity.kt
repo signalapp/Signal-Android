@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Parcelable
 import androidx.activity.result.contract.ActivityResultContract
+import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
@@ -26,7 +27,8 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePay
 class CheckoutFlowActivity : FragmentWrapperActivity(), GooglePayComponent {
 
   companion object {
-    private const val ARG_IN_APP_PAYMENT_TYPE = "in_app_payment_type"
+    @VisibleForTesting
+    const val ARG_IN_APP_PAYMENT_TYPE = "in_app_payment_type"
     const val RESULT_DATA = "result_data"
 
     fun createIntent(context: Context, inAppPaymentType: InAppPaymentType): Intent {

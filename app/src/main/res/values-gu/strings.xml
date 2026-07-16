@@ -273,62 +273,6 @@
     <!-- Unknown people row info dialog action to close the dialog -->
     <string name="CallInfoView__got_it">સમજાઈ ગયું</string>
 
-    <!-- CameraFragment -->
-    <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">તમારા ડિવાઇસ પર વીડિયો રેકોર્ડિંગ સપોર્ટેડ નથી</string>
-
-    <!-- CameraXFragment -->
-    <string name="CameraXFragment_tap_for_photo_hold_for_video">ફોટો માટે ટેપ કરો, વિડિયો માટે પકડી રાખો</string>
-    <!-- Accessibility content description to describe the capture button when taking an image/video -->
-    <string name="CameraXFragment_capture_description">કેપ્ચર</string>
-    <string name="CameraXFragment_change_camera_description">કેમેરો બદલો</string>
-    <string name="CameraXFragment_open_gallery_description">ગેલેરી ખોલો</string>
-    <!-- Button text asking for access to camera permissions -->
-    <string name="CameraXFragment_allow_access">ઍક્સેસ આપો</string>
-    <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="CameraXFragment_allow_access_camera_microphone">તમારા કૅમેરા અને માઇક્રોફોનની ઍક્સેસ આપો</string>
-    <!-- Dialog title asking users for camera permission -->
-    <string name="CameraXFragment_allow_access_camera">તમારા કૅમેરા પર ઍક્સેસની મંજૂરી આપો</string>
-    <!-- Dialog title asking users for microphone permission -->
-    <string name="CameraXFragment_allow_access_microphone">તમારા માઇક્રોફોનનો ઍક્સેસ આપો</string>
-    <!-- Text explaining why Signal needs camera access in order to take photos -->
-    <string name="CameraXFragment_to_capture_photos_allow_camera">ફોટા કેપ્ચર કરવા માટે, કૅમેરા પર Signal ઍક્સેસની મંજૂરી આપો.</string>
-    <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
-    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera">ફોટા અને વિડિયો મેળવવા માટે, કેમેરામાં Signal એક્સેસની મંજૂરી આપો.</string>
-    <!-- Text explaining why Signal needs camera and microphone access in order to take photos and videos -->
-    <string name="CameraXFragment_to_capture_photos_and_video_allow_camera_microphone">ફોટા અને વીડિયો કેપ્ચર કરવા માટે, કૅમેરા અને માઇક્રોફોન પર Signal ઍક્સેસની મંજૂરી આપો.</string>
-    <!-- Text explaining why Signal needs microphone access to take videos -->
-    <string name="CameraXFragment_to_capture_videos_with_sound">સાઉન્ડ સાથે વીડિયો કેપ્ચર કરવા માટે, તમારા માઇક્રોફોન પર Signal ઍક્સેસની મંજૂરી આપો.</string>
-    <!-- Text explaining why Signal needs camera access to scan QR codes -->
-    <string name="CameraXFragment_to_scan_qr_code_allow_camera">QR કોડ સ્કેન કરવા માટે, કૅમેરા પર Signal ઍક્સેસની મંજૂરી આપો.</string>
-    <!-- Toast dialog explaining why Signal needs camera permissions when capturing photos -->
-    <string name="CameraXFragment_signal_needs_camera_access_capture_photos">ફોટા કેપ્ચર કરવા માટે Signalને કૅમેરા ઍક્સેસની જરૂર છે</string>
-    <!-- Toast dialog explaining why Signal needs camera permissions when scanning QR codes -->
-    <string name="CameraXFragment_signal_needs_camera_access_scan_qr_code">QR કોડ સ્કેન કરવા માટે Signalને કૅમેરાની ઍક્સેસની જરૂર છે</string>
-    <!-- Toast dialog explaining why Signal needs microphone permissions -->
-    <string name="CameraXFragment_signal_needs_microphone_access_video">વીડિયો કેપ્ચર કરવા માટે Signalને માઇક્રોફોન ઍક્સેસની જરૂર છે</string>
-    <!-- Dialog description that explains the steps needed to give camera permission -->
-    <string name="CameraXFragment_to_capture_photos">Signalમાં ફોટા કેપ્ચર કરવા માટે:</string>
-    <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
-    <string name="CameraXFragment_to_capture_photos_videos">Signalમાં ફોટા અને વીડિયો કેપ્ચર કરવા માટે:</string>
-    <!-- Dialog description that explains the steps needed to give microphone permission -->
-    <string name="CameraXFragment_to_capture_videos">સાઉન્ડ સાથે વીડિયો કેપ્ચર કરવા માટે:</string>
-    <!-- Dialog description that explains the steps needed to give Signal camera permissions -->
-    <string name="CameraXFragment_to_scan_qr_codes">QR કોડ સ્કેન કરવા માટે:</string>
-    <!-- Error message shown when we try to take a photo, but fail -->
-    <string name="CameraXFragment_photo_capture_failed">ફોટો કેપ્ચર કરવામાં નિષ્ફળ ગયા. કૃપા કરીને ફરીથી પ્રયાસ કરો.</string>
-    <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
-    <string name="CameraXFragment_photo_processing_failed">ફોટો પર પ્રક્રિયા કરવામાં નિષ્ફળ ગયા. કૃપા કરીને ફરીથી પ્રયાસ કરો.</string>
-    <!-- Accessibility label for the switch camera button -->
-    <string name="CameraXFragment_switch_camera">કૅમેરા સ્વિચ કરો</string>
-    <!-- Accessibility label for flash button when flash is off -->
-    <string name="CameraXFragment_flash_off">ફ્લેશ બંધ</string>
-    <!-- Accessibility label for flash button when flash is on -->
-    <string name="CameraXFragment_flash_on">ફ્લેશ ચાલુ</string>
-    <!-- Accessibility label for flash button when flash is set to auto -->
-    <string name="CameraXFragment_flash_auto">ફ્લેશ ઓટો</string>
-    <!-- Accessibility label for the send button in media selection -->
-    <string name="CameraXFragment_send">મોકલો</string>
 
     <string name="CameraContacts__menu_search">શોધો</string>
 
@@ -530,7 +474,6 @@
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ફોટા અથવા વિડિયો લેવા માટે Signal ને કૅમેરાની પરવાનગીની જરૂર હોય છે, પરંતુ તે કાયમી ધોરણે નામંજૂર કરવામાં આવી છે. કૃપા કરીને એપ્લિકેશન સેટિંગ્સ ચાલુ રાખો, \"પરવાનગી\" પસંદ કરો અને \"કૅમેરા\" સક્ષમ કરો.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal ને ફોટા અથવા વિડિયો લેવા માટે કૅમેરાની પરવાનગીની જરૂર હોય છે</string>
     <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">અવાજ સાથે વિડિયોને કેપ્ચર કરવા માટે માઇક્રોફોન પરવાનગીને સક્ષમ કરો</string>
-    <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">વિડિયોને રેકોર્ડ કરવા માટે Signal ને માઇક્રોફોન પરવાનગીની જરૂર છે, પરંતુ તે નામંજૂર કરવામાં આવી છે. કૃપા કરીને એપ્લિકેશન સેટિંગ્સ ચાલુ રાખો, \"પરવાનગી\" પસંદ કરો અને \"માઇક્રોફોન\" અને \"કેમેરા\" સક્ષમ કરો.</string>
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">વિડિયો રેકોર્ડ કરવા માટે Signal ને માઇક્રોફોન પરવાનગીની જરૂર છે.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
@@ -672,6 +615,8 @@
     <string name="ConversationFragment__update_build">સિગ્નલ ને અપડેટ કરો</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">Signal પર ફરીથી રજીસ્ટર કરો</string>
+    <!-- Action shown in the conversation input area to allow a user to re-link this device as it is no longer linked -->
+    <string name="ConversationFragment__relink_signal">ફરીથી લિંક કરો</string>
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
     <string name="ConversationFragment__content_description_back_button">પાછળ નેવિગેટ કરો.</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
@@ -721,6 +666,12 @@
     <string name="ConversationFragment_group_names">ગ્રૂપના નામ</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
     <string name="ConversationFragment_photo_failed">ફોટો ડાઉનલોડ કરવાનું નિષ્ફળ થયું. ફરીથી પ્રયત્ન કરો.</string>
+    <!-- Title of the dialog shown when re-requesting an expired attachment from your primary device fails -->
+    <string name="ConversationFragment_attachment_backfill_failed_title">મીડિયા ડાઉનલોડ કરી શકતા નથી</string>
+    <!-- Body of the dialog shown when your phone didn\'t respond to a request to re-send an expired attachment -->
+    <string name="ConversationFragment_attachment_backfill_timeout">આ ડિવાઇસ અને તમારા ફોનનું ઇન્ટરનેટ કનેક્શન તપાસો. તમારા ફોન પર Signal ખોલો, પછી ફરીથી ડાઉનલોડ કરવાનો પ્રયાસ કરો.</string>
+    <!-- Body of the dialog shown when your phone no longer has the attachment you tried to download -->
+    <string name="ConversationFragment_attachment_backfill_not_found">આ મીડિયા હવે તમારા ફોન પર ઉપલબ્ધ નથી અને ડાઉનલોડ કરી શકાતું નથી.</string>
     <!-- Dialog for how to long to keep a messaged pinned for -->
     <string name="ConversationFragment__keep_pinned">આટલા સમય માટે પિન કરેલ રાખો…</string>
     <!-- Dialog option to keep message pin for 24 hours -->
@@ -1021,7 +972,6 @@
     <string name="CustomDefaultPreference_none">કંઈ નહીં</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">ફોટો લેવા માટે કૅમેરાની પરવાનગીની જરૂરી છે.</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">તમારી ગેલેરી જોવા માટે સ્ટોરેજ પરવાનગીની જરૂરી છે.</string>
 
     <!-- DateUtils -->
@@ -1502,6 +1452,12 @@
     <string name="AddGroupDetailsFragment__remove">દૂર કરો</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS સંપર્ક</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">આ ગ્રુપમાંથી %1$s દૂર કરવું છે?</string>
+    <!-- Title of the dialog shown when tapping an existing group while creating a new group, confirming the user wants to leave and discard their in-progress group -->
+    <string name="AddGroupDetailsFragment__discard_group">ગ્રૂપ કાઢી નાખીએ?</string>
+    <!-- Body of the dialog shown when tapping an existing group while creating a new group. Placeholder is the name of the group being navigated to. -->
+    <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">જો તમે ગ્રૂપ \"%1$s\" ચાલુ રાખશો, તો તમારા ફેરફારો સેવ નહીં થાય.</string>
+    <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
+    <string name="AddGroupDetailsFragment__discard">કાઢી નાખો</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">તમે એવો સંપર્ક પસંદ કર્યો છે જે Signal ગ્રુપને સપોર્ટ કરતો નથી, તેથી આ ગ્રુપ MMS હશે. કસ્ટમ MMS ગ્રુપ નામ અને ફોટા ફક્ત તમને જ દેખાશે.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -2931,6 +2887,8 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">\'%1$s\' માટે કોઈ પરિણામ મળ્યું નથી</string>
+    <!-- Text shown when no search results are found.   -->
+    <string name="SearchFragment_no_results_empty">કોઈ પરિણામો મળ્યાં નથી</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -3394,7 +3352,7 @@
     <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">નિષ્ફળતા</string>
     <!-- Notification channel name for internal-only app issue notifications. Only ever shown to internal users. -->
-    <string name="NotificationChannel_internal_issues">Internal Issues</string>
+    <string name="NotificationChannel_internal_issues">આંતરિક સમસ્યાઓ</string>
     <string name="NotificationChannel_backups">બેકઅપ્સ</string>
     <string name="NotificationChannel_locked_status">લૉક સ્ટેટસ</string>
     <string name="NotificationChannel_app_updates">એપ્લિકેશન અપડેટ્સ</string>
@@ -3460,11 +3418,11 @@
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_media">મીડિયા સેવ કરી શકતા નથી</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__media_offloaded_message">\"ડિવાઇસ સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\" ચાલુ હોવાથી આ મીડિયા તમારા ડિવાઇસમાંથી ઓફલોડ કરવામાં આવ્યું છે. તમે એક પછી એક આઇટમ સેવ કરી શકો છો અથવા તમારા ડિવાઇસ પર બધા મીડિયા ડાઉનલોડ કરવા માટે \"ડિવાઇસ સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\" બંધ કરી શકો છો.</string>
+    <string name="AttachmentSaver__media_offloaded_message">\"Signal સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\" ચાલુ હોવાથી આ મીડિયા તમારા ડિવાઇસમાંથી ઓફલોડ કરવામાં આવ્યું છે. તમે એક પછી એક આઇટમ સેવ કરી શકો છો અથવા તમારા ડિવાઇસ પર બધા મીડિયા ડાઉનલોડ કરવા માટે \"ડિવાઇસ સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\" બંધ કરી શકો છો.</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_all_items">બધી આઇટમ સેવ કરી શકતા નથી</string>
     <!-- Dialog message explaining that some selected media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__some_media_offloaded_message">\"ડિવાઇસ સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\" ચાલુ હોવાથી તમે પસંદ કરેલા કેટલાક મીડિયા તમારા ડિવાઇસમાંથી ઓફલોડ કરવામાં આવ્યા છે. તમે એક પછી એક આઇટમ સેવ કરી શકો છો અથવા તમારા ડિવાઇસ પર બધા મીડિયા ડાઉનલોડ કરવા માટે \"ડિવાઇસ સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\" બંધ કરી શકો છો.</string>
+    <string name="AttachmentSaver__some_media_offloaded_message">\"Signal સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\" ચાલુ હોવાથી તમે પસંદ કરેલા કેટલાક મીડિયા તમારા ડિવાઇસમાંથી ઓફલોડ કરવામાં આવ્યા છે. તમે એક પછી એક આઇટમ સેવ કરી શકો છો અથવા તમારા ડિવાઇસ પર બધા મીડિયા ડાઉનલોડ કરવા માટે \"ડિવાઇસ સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\" બંધ કરી શકો છો.</string>
     <!-- Button label in the offloaded media dialog that navigates to the storage settings screen. -->
     <string name="AttachmentSaver__view_storage_settings">સ્ટોરેજ સેટિંગ્સ જુઓ</string>
 
@@ -3533,6 +3491,10 @@
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">આ ડિવાઇસ હવે રજિસ્ટર્ડ નથી. આ સંભવ છે કારણ કે તમે તમારા ફોન નંબરને Signal સાથે કોઈ બીજા ડિવાઇસ પર રજિસ્ટર કરાવ્યો છે.</string>
     <!-- Action in reminder banner that will take user to re-register -->
     <string name="UnauthorizedReminder_reregister_action">ડિવાઇસને ફરીથી રજિસ્ટર કરાવો</string>
+    <!-- Message shown in a reminder banner when this linked device is no longer linked to a primary device -->
+    <string name="UnauthorizedReminder_this_device_is_no_longer_linked_relink_to_continue_messaging">આ ડિવાઇસ હવે લિંક થયેલ નથી. મેસેજિંગ ચાલુ રાખવા Signalને તમારા ફોન સાથે ફરીથી લિંક કરો.</string>
+    <!-- Action in reminder banner that will take the user to re-link this device -->
+    <string name="UnauthorizedReminder_relink_action">ડિવાઇસને ફરીથી લિંક કરો</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">તમે આ ડિવાઇસ પર Signalમાંથી લૉગ આઉટ થઈ ગયા છો.</string>
@@ -5145,6 +5107,32 @@
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">ડેટા ડિલીટ કરવામાં નિષ્ફળ</string>
 
+    <!-- LinkedDeviceAccountSettingsFragment -->
+    <!-- Title of an informational card shown on the account settings screen of a linked device -->
+    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">This is a linked device</string>
+    <!-- Body of an informational card explaining that account settings must be managed from the primary device -->
+    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">To manage your account settings, open Signal on your primary device.</string>
+    <!-- Title of a settings row that deletes all Signal data from this linked device -->
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Delete app data</string>
+    <!-- Subtitle of the delete app data row explaining what it does -->
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">This will remove all data from the Signal app on this device.</string>
+    <!-- Title of the confirmation dialog shown when deleting app data from a linked device -->
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">Delete app data?</string>
+    <!-- Message of the confirmation dialog explaining that only this device\'s data is deleted, not the account -->
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">This will delete all data and messages from the Signal app on this device. Your Signal account and data on your primary device or other linked devices will not be deleted. The app will close after this process is complete.</string>
+
+    <!-- LinkedDeviceAccountLearnMoreBottomSheet -->
+    <!-- Emphasized lead-in phrase shown in bold at the start of the learn more sheet body. Must appear verbatim within LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access. -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Linked Devices</string>
+    <!-- Body text of the linked devices learn more sheet. The leading \"Linked Devices\" is shown in bold. -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Linked Devices let you access your Signal account and messages securely on any of your additional devices.</string>
+    <!-- Bullet point describing what devices can be linked -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">You can link a desktop, tablet or additional phone</string>
+    <!-- Bullet point describing that the primary device manages linked devices -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Your primary device manages what\'s linked, you can link up to 5 devices.</string>
+    <!-- Bullet point describing that some settings are only available on the primary device -->
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Some account settings are managed on your primary device only, including account settings and backups.</string>
+
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">એકાઉન્ટ ટ્રાન્સફર અથવા રિસ્ટોર કરો</string>
     <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">જો તમે અગાઉ Signal એકાઉન્ટ રજીસ્ટર કરાવ્યું હોય, તો તમે તમારું એકાઉન્ટ અને મેસેજ ટ્રાન્સફર અથવા રિસ્ટોર કરી શકો છો</string>
@@ -6058,10 +6046,6 @@
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ઉચ્ચ ગુણવત્તાના મીડિયા મોકલવાથી વધુ ડેટા વાપરશે.</string>
     <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
     <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">વોઇસ મેસેજ અને સ્ટીકર (%1$s થી ઓછી સાઇઝના) હંમેશા આપમેળે ડાઉનલોડ થાય છે.</string>
-    <!-- Setting option that can be selected to default media to be sent as high quality by default -->
-    <string name="DataAndStorageSettingsFragment__high">ઉચ્ચ</string>
-    <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
-    <string name="DataAndStorageSettingsFragment__standard">સ્ટાન્ડર્ડ</string>
     <string name="DataAndStorageSettingsFragment__calls">કૉલ્સ</string>
     <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
     <string name="DataAndStorageSettingsFragment__stay_connected_in_background">બૅકગ્રાઉન્ડમાં કનેક્ટેડ રહો</string>
@@ -8287,6 +8271,12 @@
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
     <string name="OnDeviceBackupsScreen__to_restore_a_backup">"બેકઅપ રિસ્ટોર કરવા માટે, Signalની નવી કૉપિ ઇન્સ્ટોલ કરો. ઍપ ખોલો અને \"બેકઅપ રિસ્ટોર કરો\" પર ટેપ કરો, પછી બેકઅપ ફાઇલ શોધો."</string>
+    <!-- Body of a dialog shown when turning on on-device backups while "Optimize Signal storage" is enabled, warning that optimized media won\'t be included -->
+    <string name="OnDeviceBackupsScreen__you_have_optimize_signal_storage_on">તમારું \"Signal સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\" ચાલુ છે. જો તમે તમારા ડિવાઇસ પરના બેકઅપમાં બધા મીડિયા શામેલ કરવા માંગતા હોવ, તો સેટિંગ બંધ કરો.</string>
+    <!-- Dialog action that takes the user to the "Optimize Signal storage" setting -->
+    <string name="OnDeviceBackupsScreen__view_setting">સેટિંગ જુઓ</string>
+    <!-- Dialog action to proceed with turning on on-device backups without turning off "Optimize Signal storage" -->
+    <string name="OnDeviceBackupsScreen__continue_without_turning_off">બંધ કર્યા વિના આગળ વધો</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">તમારી રિકવરી કી ચકાસો</string>
@@ -8663,13 +8653,19 @@
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
     <string name="ManageStorageSettingsFragment_apply_limits_description">જ્યારે ચાલુ કરેલ હોય, ત્યારે ચેટ મર્યાદા તમારા લિંક કરેલા ડિવાઇસમાંથી પણ મેસેજ ડિલીટ કરશે.</string>
     <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">ડિવાઇસ પરનું સ્ટોરેજ</string>
+    <string name="ManageStorageSettingsFragment__on_device_storage">Signal સ્ટોરેજ</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">ડિવાઇસ પરના સ્ટોરેજને ઑપ્ટિમાઈઝ કરો</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Signal સ્ટોરેજ ઑપ્ટિમાઇઝ કરો</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">ન વપરાયેલ મીડિયાને ઓફલોડ કરવામાં આવશે, પરંતુ તમારા બેકઅપમાંથી ગમે ત્યારે ડાઉનલોડ કરી શકાય છે.</string>
     <!-- Dialog message for paid tier pending dialog -->
     <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">સ્ટોરેજ ઑપ્ટિમાઇઝેશનનો ઉપયોગ માત્ર Signal સુરક્ષિત બેકઅપના પેઇડ ટીયર સાથે જ થઈ શકે છે. તમારું બેકઅપ સબ્સ્ક્રિપ્શન હજી પ્રક્રિયામાં છે અને હજી સક્રિય નથી. કૃપા કરીને પછી ફરી પ્રયાસ કરો.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">તમારા ડિવાઇસ પરના બેકઅપ પરથી મીડિયા દૂર થઈ જશે</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">\"Signal સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\" ચાલુ કરવાથી તમારા ડિવાઇસ પરથી જૂના મીડિયા ઓફલોડ થઈ જશે. તમે તેને કોઈ પણ સમયે ફરીથી ડાઉનલોડ કરી શકો છો. તે તમારા ડિવાઇસ પરના બેકઅપ પરથી જૂના મીડિયા પણ દૂર કરશે.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">ચાલુ કરો</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8752,6 +8748,8 @@
     <string name="BackupsSettingsFragment__subscription_canceled">સબ્સ્ક્રિપ્શન રદ કર્યું</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signalની સુરક્ષિત, એન્ડ-ટૂ-એન્ડ એન્ક્રિપ્ટેડ સ્ટોરેજ સેવા સાથે ઓટોમેટિક બેકઅપ.</string>
+    <!-- Subtitle shown on a linked device when backups are off, directing the user to set them up on their phone -->
+    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Automatic backups with Signal\'s secure end-to-end encrypted storage service. Get started on your phone.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"આ ડિવાઇસ પર સબ્સ્ક્રિપ્શન મળ્યું નથી."</string>
     <!-- Action button label to set up backups -->
@@ -8769,7 +8767,7 @@
     <!-- Displayed as a label when remote backups are off -->
     <string name="RemoteBackupsSettingsFragment__off">બંધ</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
-    <string name="RemoteBackupsSettingsFragment__authenticatino_required">પ્રમાણીકરણ આવશ્યક છે</string>
+    <string name="RemoteBackupsSettingsFragment__authentication_required">પ્રમાણીકરણ આવશ્યક છે</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">પેમેન્ટ હિસ્ટ્રી</string>
     <!-- Section header for backup information -->
@@ -8855,6 +8853,16 @@
     <string name="RemoteBackupsSettingsFragment__s_at_s">%1$s %2$s વાગ્યે</string>
     <!-- Subtext describing when a backup has never taken place. -->
     <string name="RemoteBackupsSettingsFragment__never">ક્યારેય નહિ</string>
+    <!-- Subtext on a linked device describing when the primary device last backed up. Placeholder is the formatted date and time. -->
+    <string name="RemoteBackupsSettingsFragment__your_phone_s">Your phone · %1$s</string>
+    <!-- Message shown on a linked device with a free backup plan explaining that the subscription is managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">You can manage or upgrade your Signal Secure Backups subscription on your primary device.</string>
+    <!-- Message shown on a linked device with a paid backup plan explaining that the subscription is managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">You can manage or cancel your Signal Secure Backups subscription on your primary device.</string>
+    <!-- Message shown on a linked device with a canceled backup subscription explaining that the subscription is managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">You can manage or renew your Signal Secure Backups subscription on your primary device.</string>
+    <!-- Message shown on a linked device when backups are off or the subscription was not found, explaining that backups are managed on the primary device -->
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">You can manage or upgrade Signal Secure Backups on your primary device.</string>
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">હમણાં બૅકઅપ</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
@@ -9146,7 +9154,7 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">મીડિયા ડાઉનલોડ કરો</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">નવી રિકવરી કી બનાવવા માટે, તમારે \"સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\" બંધ કરવું પડશે અને તમારા મીડિયા ડાઉનલોડ થાય ત્યાં સુધી રાહ જોવી પડશે. ડાઉનલોડ પૂર્ણ થયા પછી, તમે એક નવી કી બનાવી શકો છો.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">નવી રિકવરી કી બનાવવા માટે, તમારે \"Signal સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\" બંધ કરવું પડશે અને તમારા મીડિયા ડાઉનલોડ થાય ત્યાં સુધી રાહ જોવી પડશે. ડાઉનલોડ પૂર્ણ થયા પછી, તમે એક નવી કી બનાવી શકો છો.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">બંધ કરો અને ડાઉનલોડ કરો</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
@@ -9159,6 +9167,24 @@
     <string name="MessageBackupsKeyRecordScreen__you_have_not_finished_setting_up_backups">તમે બેકઅપ સેટ કરવાનું પૂર્ણ કર્યું નથી અને કોઈ બેકઅપ બનાવવામાં આવ્યો નથી. તમે સેટિંગ્સમાં બેકઅપ સક્ષમ કરી શકો છો.</string>
     <!-- Dialog confirmation button to exit backup setup -->
     <string name="MessageBackupsKeyRecordScreen__exit_backup_setup_confirm">બેકઅપ સેટઅપમાંથી બહાર નીકળો</string>
+    <!-- Screen title when saving your recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__save_your_recovery_key">તમારી રિકવરી કી સેવ કરો</string>
+    <!-- Screen subtitle for the recovery key screen -->
+    <string name="MessageBackupsKeyRecordScreen__your_recovery_key">તમારી રિકવરી કી 64-અક્ષરનો કોડ છે જે તમને તમારો બેકઅપ રિસ્ટોર કરવાની મંજૂરી આપે છે. જો તમે તમારી કી ભૂલી જાઓ, તો તમે તમારા એકાઉન્ટને રિકવર કરી શકશો નહીં.</string>
+    <!-- Hint text to see the full recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__see_full_key">પૂર્ણ કી જુઓ</string>
+    <!-- Bottom sheet caption to confirm your recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_that_your_recovery">ખાતરી કરો કે તમારી રિકવરી કી યોગ્ય રીતે રેકોર્ડ કરી. પછીના પગલામાં તમને તમારો સેવ કરેલો પાસવર્ડ ભરવાનું કહેવામાં આવશે.</string>
+    <!-- Button to confirm the recovery key -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_recovery">રિકવરી કી કન્ફર્મ કરો</string>
+    <!-- Toast shown when the key is confirmed -->
+    <string name="MessageBackupsKeyRecordScreen__recover_key_confirmed">રિકવરી કી કન્ફર્મ કરી</string>
+    <!-- Dialog title shown when the recovery key fails to confirm -->
+    <string name="MessageBackupsKeyRecordScreen__recover_key_error">રિકવરી કી કન્ફર્મ કરવામાં ભૂલ આવી</string>
+    <!-- Dialog body shown when the recovery key fails to confirm -->
+    <string name="MessageBackupsKeyRecordScreen__recover_key_error_body">તમારી રિકવરી કી કન્ફર્મ થઈ શકી નથી. ખાતરી કરો કે તમે તેને તમારા પાસવર્ડ મેનેજરમાં સેવ કરી છે અથવા તેને જાતે સેવ કરી લો.</string>
+    <!-- Button option to save the key manually -->
+    <string name="MessageBackupsKeyRecordScreen__save_key_manually">જાતે કી સેવ કરો</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -9891,8 +9917,28 @@
     <!-- Body for screen shown to let the user know that displaying their member label will take priority over their about text. -->
     <string name="MemberLabelsAboutOverride__body">આ ગ્રૂપમાં, તમારા વિશેની જગ્યાએ તમારા સભ્યનું લેબલ તમારા ફોટાની બાજુમાં પ્રદર્શિત થશે.</string>
 
-    <!-- Label for internal-only section showing groups with same members -->
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_with_same_members" translatable="false">Groups with same members (Labs)</string> -->
+    <!-- Header for the section shown when creating a group that lists existing groups with the exact same members. Includes the number of such groups. -->
+    <plurals name="AddGroupDetailsFragment__d_groups_with_same_members">
+        <item quantity="one">%1$d ગ્રૂપના સભ્યોના નામ સમાન છે</item>
+        <item quantity="other">%1$d ગ્રૂપના સભ્યોના નામ સમાન છે</item>
+    </plurals>
+
+    <!-- Header for a section showing all group member -->
+    <string name="MemberSearchFragment__search_members">સભ્યો શોધો</string>
+    <!-- Header for a section showing all group members who are contacts -->
+    <string name="MemberSearchFragment__search_contacts">સંપર્કો શોધો</string>
+    <!-- Header for a section showing all group member who are admins -->
+    <string name="MemberSearchFragment__search_admins">એડમિન શોધો</string>
+    <!-- Dialog title to filter search by -->
+    <string name="MemberSearchFragment__filter">આના દ્વારા ફિલ્ટર કરો</string>
+    <!-- Dialog option for all group members -->
+    <string name="MemberSearchFragment__filter_all_members">બધા સભ્યો</string>
+    <!-- Dialog option for group admins -->
+    <string name="MemberSearchFragment__filter_admins">એડમિન</string>
+    <!-- Dialog option for your contacts -->
+    <string name="MemberSearchFragment__filter_contacts">સંપર્કો</string>
+    <!-- Button to invite members via a group link -->
+    <string name="MemberSearchFragment__invite_via">ગ્રૂપ લિંક દ્વારા આમંત્રિત કરો</string>
 
     <!-- Title of the sheet shown when a local backup restore could not be completed -->
     <string name="CouldNotCompleteBackupRestoreSheet__title">બેકઅપ રિસ્ટોર કરી શકતા નથી</string>
@@ -9944,7 +9990,7 @@
     <!-- Button opening a help article with more information about recovery key safety -->
     <string name="RecoveryKeyWarningSheetContent__learn_more">વધુ જાણો</string>
     <!-- Inline link opening a help article with more information about recovery key safety -->
-    <string name="RecoveryKeyWarningSheetContent__learn_more_period">વધુ શીખો.</string>
+    <string name="RecoveryKeyWarningSheetContent__learn_more_period">વધુ જાણો.</string>
     <!-- Button declining to paste/share the recovery key, dismissing the warning sheet -->
     <string name="RecoveryKeyWarningSheetContent__do_not_share_key">કી શેર કરશો નહીં</string>
     <!-- Button indicating the user wants to proceed with sharing/pasting the recovery key, which shows a final confirmation -->

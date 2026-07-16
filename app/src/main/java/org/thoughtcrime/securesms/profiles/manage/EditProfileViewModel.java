@@ -10,6 +10,7 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.signal.core.models.media.Media;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -17,10 +18,8 @@ import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
-import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
@@ -135,7 +134,7 @@ class EditProfileViewModel extends ViewModel {
     } else {
       SignalExecutors.BOUNDED.execute(() -> {
         try {
-          InputStream stream = BlobProvider.getInstance().getStream(context, media.getUri());
+          InputStream stream = AppDependencies.getBlobs().getStream(context, media.getUri());
           byte[]      data   = StreamUtil.readFully(stream);
 
           internalAvatarState.postValue(InternalAvatarState.loading(data));

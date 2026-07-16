@@ -5,9 +5,11 @@
 
 package org.thoughtcrime.securesms.components.transfercontrols
 
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -42,7 +44,10 @@ object TransferControls {
     data class Bytes(val completed: ByteSize, val total: ByteSize) : ProgressLabel
   }
 
-  fun deriveRenderState(state: TransferControlViewState): TransferControlsRenderState {
+  fun deriveRenderState(
+    state: TransferControlViewState,
+    awaitingAttachmentIds: Set<AttachmentId> = emptySet()
+  ): TransferControlsRenderState {
     if (state.slides.isEmpty()) {
       return TransferControlsRenderState.Gone
     }
@@ -55,14 +60,17 @@ object TransferControls {
       return TransferControlsRenderState.Gone
     }
 
-    if (state.awaitingPrimaryResponse) {
+    // If any attachments are being backfilled, overwrite with in progress state to maintain spinner
+    val awaitingBackfill = state.slides.any { (it.asAttachment() as? DatabaseAttachment)?.attachmentId in awaitingAttachmentIds }
+    if (awaitingBackfill) {
+      val downloading = state.slides.any { it.transferState == AttachmentTable.TRANSFER_PROGRESS_STARTED }
       return TransferControlsRenderState.InProgress(
         isUpload = false,
         placement = if (state.slides.size == 1) Placement.CENTER else Placement.CORNER,
-        progress = null,
+        progress = if (downloading) calculateProgress(state) else null,
         showPlayButton = false,
-        cancelable = false,
-        label = null
+        cancelable = downloading,
+        label = if (downloading) progressLabel(state) else null
       )
     }
 
@@ -173,10 +181,6 @@ object TransferControls {
     return weightedProgress / weightedTotal
   }
 
-  /**
-   * Internal, view-free mirror of the legacy state machine. Kept verbatim from the original view to preserve behavior; the
-   * resulting [Mode] is mapped to a [TransferControlsRenderState] by [deriveRenderState].
-   */
   private fun deriveMode(state: TransferControlViewState): Mode {
     if (state.slides.isEmpty()) {
       return Mode.GONE
@@ -279,9 +283,6 @@ object TransferControls {
 
   private const val UPLOAD_TASK_WEIGHT = 1
 
-  /**
-   * A weighting compared to [UPLOAD_TASK_WEIGHT]
-   */
   private const val COMPRESSION_TASK_WEIGHT = 3
 
   private enum class Mode {

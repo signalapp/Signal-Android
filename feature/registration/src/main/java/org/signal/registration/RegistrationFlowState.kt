@@ -12,7 +12,6 @@ import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.util.censor
 import org.signal.registration.util.AccountEntropyPoolParceler
-import org.signal.registration.util.DebugLoggableModel
 import org.signal.registration.util.MasterKeyParceler
 
 @Parcelize
@@ -30,6 +29,9 @@ data class RegistrationFlowState(
 
   /** The AEP we generated as part of this registration. */
   val accountEntropyPool: AccountEntropyPool? = null,
+
+  /** Whether the server reported that this account already has SVR/PIN data, captured from the registration response. */
+  val storageCapable: Boolean = false,
 
   /** The master key we restored from SVR. Needed for initial storage service restore, but afterwards we'll generate a new one. */
   val temporaryMasterKey: MasterKey? = null,
@@ -54,8 +56,8 @@ data class RegistrationFlowState(
 
   /** If true, the ViewModel is still deciding whether to restore a previous flow or start fresh. */
   val isRestoringNavigationState: Boolean = true
-) : Parcelable, DebugLoggableModel() {
-  override fun toSafeString(): String {
-    return "RegistrationFlowState(backStack=${backStack.joinToString()}, sessionMetadata=${sessionMetadata.let { "present" }}, sessionE164=$sessionE164, accountEntropyPool=${accountEntropyPool?.displayValue?.censor()}, temporaryMasterKey=${temporaryMasterKey?.toString()?.censor()}, preExistingRegistrationData=${preExistingRegistrationData?.let { "present" }}, doNotAttemptRecoveryPassword=$doNotAttemptRecoveryPassword, pendingRestoreOption=$pendingRestoreOption, unverifiedRestoredAep=${unverifiedRestoredAep?.displayValue?.censor()}, restoreMethodToken=${restoreMethodToken?.censor()}, isRestoringNavigation=$isRestoringNavigationState)"
+) : Parcelable {
+  override fun toString(): String {
+    return "RegistrationFlowState(backStack=${backStack.joinToString()}, sessionMetadata=${sessionMetadata.let { "present" }}, sessionE164=$sessionE164, accountEntropyPool=${accountEntropyPool?.displayValue?.censor()}, storageCapable=$storageCapable, temporaryMasterKey=${temporaryMasterKey?.toString()?.censor()}, preExistingRegistrationData=${preExistingRegistrationData?.let { "present" }}, doNotAttemptRecoveryPassword=$doNotAttemptRecoveryPassword, pendingRestoreOption=$pendingRestoreOption, unverifiedRestoredAep=${unverifiedRestoredAep?.displayValue?.censor()}, restoreMethodToken=${restoreMethodToken?.censor()}, isRestoringNavigation=$isRestoringNavigationState)"
   }
 }

@@ -11,13 +11,20 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.createSavedStateHandle
+import androidx.lifecycle.serialization.saved
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.runtime.serialization.NavBackStackSerializer
+import androidx.navigation3.runtime.serialization.NavKeySerializer
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,18 +37,30 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
+import org.signal.core.ui.compose.DialogController
+import org.signal.core.ui.compose.DialogResult
 import org.signal.core.util.ContentTypeUtil
 import org.signal.core.util.StringUtil
 import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.imageeditor.core.renderers.UriGlideRenderer
+import org.signal.mediasend.capture.CameraXScreenEvent
+import org.signal.mediasend.capture.MediaCaptureScreenEvent
 import org.signal.mediasend.edit.MediaEditScreenEvent
+import org.signal.mediasend.edit.video.VideoTrimData
 import org.signal.mediasend.preupload.PreUploadController
 import org.signal.mediasend.select.MediaSelectScreenEvent
+import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
+import java.io.FileInputStream
+import java.io.IOException
 import java.util.Collections
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.microseconds
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Configuration-survivable state manager for the media send flow.
@@ -74,6 +93,21 @@ class MediaSendViewModel(
     isContactSelectionRequired = args.mode == MediaSendActivityContract.Mode.ChooseAfterMediaSelection,
     sendType = args.sendType
   )
+
+  val backStack: NavBackStack<NavKey> by savedStateHandle.saved(
+    serializer = NavBackStackSerializer(NavKeySerializer()),
+    key = KEY_BACK_STACK
+  ) {
+    NavBackStack(if (args.isCameraFirst) MediaSendNavKey.Capture.Camera else MediaSendNavKey.Select.Folders)
+  }
+
+  private val internalSnackbarEvents: Channel<SnackbarEvent> = Channel(Channel.BUFFERED)
+  internal val snackbarEvents: Flow<SnackbarEvent> = internalSnackbarEvents.receiveAsFlow()
+
+  internal val usernameScannedDialog = DialogController<String>()
+  internal val linkedDeviceScannedDialog = DialogController<Unit>()
+
+  private val qrCheckRequest: Channel<String> = Channel(Channel.RENDEZVOUS)
 
   /**
    * Main UI state. Backed by [SavedStateHandle] for automatic process death survival.
@@ -108,6 +142,38 @@ class MediaSendViewModel(
     viewModelScope.launch {
       isMeteredFlow.collect { metered ->
         updateState { copy(isMeteredConnection = metered, isPreUploadEnabled = shouldPreUpload(metered)) }
+      }
+    }
+
+    viewModelScope.launch(Dispatchers.Default) {
+      for (qrData in qrCheckRequest) {
+        if (qrData.isEmpty()) {
+          continue
+        }
+
+        val result = MediaSendDependencies.qrRepository.checkQrData(qrData)
+        if (result == MediaSendQrRepository.QrCheckResult.None) {
+          continue
+        }
+
+        when (result) {
+          MediaSendQrRepository.QrCheckResult.LinkDevice -> {
+            when (linkedDeviceScannedDialog.show(Unit)) {
+              DialogResult.POSITIVE -> sendHudCommand(HudCommand.GoToLinkedDevices)
+              else -> Unit
+            }
+          }
+          MediaSendQrRepository.QrCheckResult.None -> Unit
+          is MediaSendQrRepository.QrCheckResult.ReRegistration -> sendHudCommand(HudCommand.GoToQuickTransfer(qrData))
+          is MediaSendQrRepository.QrCheckResult.Username -> {
+            when (usernameScannedDialog.show(result.username)) {
+              DialogResult.POSITIVE -> sendHudCommand(HudCommand.GoToConversation(result.recipientId))
+              else -> Unit
+            }
+          }
+        }
+
+        delay(5.seconds)
       }
     }
 
@@ -155,12 +221,44 @@ class MediaSendViewModel(
       is MediaSelectScreenEvent.FolderClick -> onFolderClick(mediaSelectScreenEvent.mediaFolder)
       is MediaSelectScreenEvent.MediaClick -> onMediaClick(mediaSelectScreenEvent.media)
       is MediaSelectScreenEvent.SetFocusedMedia -> setFocusedMedia(mediaSelectScreenEvent.media)
+      MediaSelectScreenEvent.NavigateToEdit -> backStack.goToEdit()
+    }
+  }
+
+  override fun onMediaCaptureScreenEvent(mediaCaptureScreenEvent: MediaCaptureScreenEvent) {
+    when (mediaCaptureScreenEvent) {
+      MediaCaptureScreenEvent.ShowCamera -> backStack.goToCamera()
+      MediaCaptureScreenEvent.ShowTextStory -> backStack.goToTextStory()
+      is MediaCaptureScreenEvent.Camera -> onCameraXScreenEvent(mediaCaptureScreenEvent.event)
+    }
+  }
+
+  private fun onCameraXScreenEvent(event: CameraXScreenEvent) {
+    when (event) {
+      CameraXScreenEvent.CameraCountButtonClicked -> backStack.goToEdit()
+      CameraXScreenEvent.GalleryClicked -> backStack.goToFolders()
+      is CameraXScreenEvent.ImageCaptured -> handleImageCaptured(event)
+      is CameraXScreenEvent.VideoCaptured -> handleVideoCaptured(event)
+      is CameraXScreenEvent.QrCodeFound -> qrCheckRequest.trySend(event.data)
+      CameraXScreenEvent.VideoCaptureError -> {
+        internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__error_recording_video))
+      }
     }
   }
 
   override fun onMediaEditScreenEvent(mediaEditScreenEvent: MediaEditScreenEvent) {
     when (mediaEditScreenEvent) {
       is MediaEditScreenEvent.FocusedMediaChanged -> setFocusedMedia(mediaEditScreenEvent.media)
+      MediaEditScreenEvent.NavigateToSend -> backStack.goToSend()
+      MediaEditScreenEvent.NavigateBack -> onPopFromEdit()
+      is MediaEditScreenEvent.VideoTrimChanged -> onEditVideoDuration(
+        totalDurationUs = mediaEditScreenEvent.videoTrimData.totalInputDurationUs,
+        startTimeUs = mediaEditScreenEvent.videoTrimData.startTimeUs,
+        endTimeUs = mediaEditScreenEvent.videoTrimData.endTimeUs,
+        touchEnabled = mediaEditScreenEvent.editingComplete
+      )
+
+      is MediaEditScreenEvent.VideoSeek -> error("VideoSeek is routed to the video player bus by MediaEditScreen and must not reach the view-model.")
       is MediaEditScreenEvent.AddMessageClick -> {
         val snapshot: MediaSendState = state.value
 
@@ -175,7 +273,89 @@ class MediaSendViewModel(
     }
   }
 
+  private fun handleImageCaptured(imageCaptured: CameraXScreenEvent.ImageCaptured) {
+    viewModelScope.launch {
+      val media: Media? = withContext(Dispatchers.IO) {
+        try {
+          val length = imageCaptured.data.size.toLong()
+          val uri = MediaSendDependencies.blobs
+            .forData(imageCaptured.data)
+            .withMimeType(ContentTypeUtil.IMAGE_JPEG)
+            .createForSingleSessionOnDisk(MediaSendDependencies.application)
+
+          buildCapturedMedia(uri, ContentTypeUtil.IMAGE_JPEG, imageCaptured.width, imageCaptured.height, length)
+        } catch (e: IOException) {
+          null
+        }
+      }
+
+      if (media != null) {
+        onMediaRendered(media)
+      } else {
+        internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__error_taking_photo))
+      }
+    }
+  }
+
+  private fun handleVideoCaptured(videoCaptured: CameraXScreenEvent.VideoCaptured) {
+    viewModelScope.launch {
+      val media: Media? = withContext(Dispatchers.IO) {
+        try {
+          FileInputStream(videoCaptured.fd).use { stream ->
+            val length = stream.channel.size()
+            val uri = MediaSendDependencies.blobs
+              .forData(stream, length)
+              .withMimeType(VideoConstants.RECORDED_VIDEO_CONTENT_TYPE)
+              .createForSingleSessionOnDisk(MediaSendDependencies.application)
+
+            buildCapturedMedia(uri, VideoConstants.RECORDED_VIDEO_CONTENT_TYPE, 0, 0, length)
+          }
+        } catch (e: IOException) {
+          null
+        }
+      }
+
+      if (media != null) {
+        onMediaRendered(media)
+      } else {
+        internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__error_recording_video))
+      }
+    }
+  }
+
+  private fun buildCapturedMedia(uri: Uri, mimeType: String, width: Int, height: Int, size: Long): Media {
+    return Media(
+      uri = uri,
+      contentType = mimeType,
+      date = System.currentTimeMillis(),
+      width = width,
+      height = height,
+      size = size,
+      duration = 0,
+      isBorderless = false,
+      isVideoGif = false,
+      bucketId = Media.ALL_MEDIA_BUCKET_ID,
+      caption = null,
+      transformProperties = null,
+      fileName = null
+    )
+  }
+
+  private fun onMediaRendered(media: Media) {
+    if (args.isCameraFirst && internalState.value.cameraFirstCapture == null) {
+      addCameraFirstCapture(media)
+    } else {
+      addMedia(setOf(media), focusNewlyAdded = true)
+    }
+
+    backStack.goToEdit()
+  }
+
   private fun onFolderClick(mediaFolder: MediaFolder?) {
+    if (mediaFolder != null) {
+      backStack.goToFiles(mediaFolder)
+    }
+
     viewModelScope.launch {
       if (mediaFolder != null) {
         val media = repository.getMedia(mediaFolder.bucketId)
@@ -208,6 +388,16 @@ class MediaSendViewModel(
    * @param media Media items to add.
    */
   fun addMedia(media: Set<Media>) {
+    addMedia(media, focusNewlyAdded = false)
+  }
+
+  /**
+   * Adds [media] to the selection, optionally moving focus to the newly added item.
+   *
+   * Focus is updated within the same atomic state write that adds the media, so [MediaSendState.focusedMedia]
+   * is never left pointing at an item that is not yet present in [MediaSendState.selectedMedia].
+   */
+  private fun addMedia(media: Set<Media>, focusNewlyAdded: Boolean) {
     viewModelScope.launch {
       val snapshot = state.value
       val newSelectionList: List<Media> = linkedSetOf<Media>().apply {
@@ -224,11 +414,11 @@ class MediaSendViewModel(
 
       if (filterResult.filteredMedia.isNotEmpty()) {
         // Initialize video trim states for new videos
-        val maxVideoDurationUs = getMaxVideoDurationUs()
         val initializedVideoEditorStates = filterResult.filteredMedia
           .filterNot { snapshot.editorStateMap.containsKey(it.uri) }
           .filter { isNonGifVideo(it) }
           .associate { video ->
+            val maxVideoDurationUs = getMaxVideoDurationUs(video.duration.milliseconds)
             val durationUs = video.duration.milliseconds.inWholeMicroseconds
             video.uri to EditorState.VideoTrim.forVideo(durationUs, maxVideoDurationUs)
           }
@@ -263,9 +453,15 @@ class MediaSendViewModel(
           }
 
         updateState {
+          val newFocus = if (focusNewlyAdded) {
+            filterResult.filteredMedia.lastOrNull { it in media } ?: focusedMedia ?: filterResult.filteredMedia.firstOrNull()
+          } else {
+            focusedMedia ?: filterResult.filteredMedia.firstOrNull()
+          }
+
           copy(
             selectedMedia = filterResult.filteredMedia,
-            focusedMedia = focusedMedia ?: filterResult.filteredMedia.firstOrNull(),
+            focusedMedia = newFocus,
             editorStateMap = editorStateMap + initializedVideoEditorStates + initializedImageEditorStates
           )
         }
@@ -400,7 +596,7 @@ class MediaSendViewModel(
    *
    * Cancels all pre-uploads and re-initializes video trim data.
    */
-  fun setSentMediaQuality(sentMediaQuality: Int) {
+  fun setSentMediaQuality(sentMediaQuality: SentMediaQuality) {
     val snapshot = state.value
     if (snapshot.sentMediaQuality == sentMediaQuality) return
 
@@ -408,15 +604,15 @@ class MediaSendViewModel(
     preUploadController.cancelAllUploads()
 
     // Re-clamp video durations based on new quality
-    val maxVideoDurationUs = getMaxVideoDurationUs()
     snapshot.selectedMedia.forEach { mediaItem ->
       if (isNonGifVideo(mediaItem) && repository.isVideoTranscodeAvailable()) {
         val existingData = snapshot.editorStateMap[mediaItem.uri] as? EditorState.VideoTrim
         if (existingData != null) {
+          val maxVideoDurationUs = getMaxVideoDurationUs(existingData.videoTrimData.totalInputDurationUs.microseconds)
           onEditVideoDuration(
-            totalDurationUs = existingData.totalInputDurationUs,
-            startTimeUs = existingData.startTimeUs,
-            endTimeUs = existingData.endTimeUs,
+            totalDurationUs = existingData.videoTrimData.totalInputDurationUs,
+            startTimeUs = existingData.videoTrimData.startTimeUs,
+            endTimeUs = existingData.videoTrimData.endTimeUs,
             touchEnabled = true,
             uri = mediaItem.uri
           )
@@ -458,22 +654,22 @@ class MediaSendViewModel(
 
     val snapshot = state.value
     val existingData = snapshot.editorStateMap[uri] as? EditorState.VideoTrim
-      ?: EditorState.VideoTrim(totalInputDurationUs = totalDurationUs)
+      ?: EditorState.VideoTrim(VideoTrimData(totalInputDurationUs = totalDurationUs))
 
     val clampedStartTime = maxOf(startTimeUs, 0)
-    val unedited = !existingData.isDurationEdited
+    val unedited = !existingData.videoTrimData.isDurationEdited
     val durationEdited = clampedStartTime > 0 || endTimeUs < totalDurationUs
     val isEntireDuration = startTimeUs == 0L && endTimeUs == totalDurationUs
-    val endMoved = !isEntireDuration && existingData.endTimeUs != endTimeUs
-    val maxVideoDurationUs = getMaxVideoDurationUs()
+    val endMoved = !isEntireDuration && existingData.videoTrimData.endTimeUs != endTimeUs
+    val maxVideoDurationUs = getMaxVideoDurationUs(existingData.videoTrimData.totalInputDurationUs.microseconds)
     val preserveStartTime = unedited || !endMoved
 
-    val newData = EditorState.VideoTrim(
+    val newData = VideoTrimData(
       isDurationEdited = durationEdited,
       totalInputDurationUs = totalDurationUs,
       startTimeUs = clampedStartTime,
       endTimeUs = endTimeUs
-    ).clampToMaxDuration(maxVideoDurationUs, preserveStartTime)
+    ).let { EditorState.VideoTrim(it) }.clampToMaxDuration(maxVideoDurationUs, preserveStartTime)
 
     // Cancel upload on first edit
     if (unedited && durationEdited) {
@@ -495,11 +691,12 @@ class MediaSendViewModel(
     }
   }
 
-  private fun getMaxVideoDurationUs(): Long {
+  private fun getMaxVideoDurationUs(duration: Duration): Long {
     val snapshot = state.value
     return repository.getMaxVideoDurationUs(
       quality = snapshot.sentMediaQuality,
-      maxFileSizeBytes = repository.getVideoMaxSizeBytes()
+      maxFileSizeBytes = repository.getVideoMaxSizeBytes(),
+      duration = duration
     )
   }
 
@@ -639,15 +836,24 @@ class MediaSendViewModel(
 
   //region Camera First Capture
 
-  fun addCameraFirstCapture(media: Media) {
+  private fun addCameraFirstCapture(media: Media) {
     internalState.update { it.copy(cameraFirstCapture = media) }
-    addMedia(media)
+    addMedia(setOf(media), focusNewlyAdded = true)
   }
 
-  fun removeCameraFirstCapture() {
+  private fun removeCameraFirstCapture() {
     val capture = internalState.value.cameraFirstCapture ?: return
     setSuppressEmptyError(true)
     removeMedia(capture)
+  }
+
+  /**
+   * Handles a back press out of the edit screen during a camera-first flow where the only selected media is the
+   * camera-first capture. Discards that capture and returns to the camera, matching the legacy review behavior.
+   */
+  private fun onPopFromEdit() {
+    removeCameraFirstCapture()
+    backStack.goToCamera()
   }
 
   //endregion
@@ -717,14 +923,6 @@ class MediaSendViewModel(
 
   //endregion
 
-  //region HUD Commands
-
-  fun sendCommand(command: HudCommand) {
-    hudCommandChannel.trySend(command)
-  }
-
-  //endregion
-
   //region Query Methods
 
   fun hasSelectedMedia(): Boolean = internalState.value.selectedMedia.isNotEmpty()
@@ -753,6 +951,7 @@ class MediaSendViewModel(
     private const val KEY_IDENTITY_CHANGES_SINCE = "media_send_vm_identity_changes_since"
     private const val KEY_STATE = "media_send_vm_state"
     private const val KEY_EDITED_VIDEO_URIS = "media_send_vm_edited_video_uris"
+    private const val KEY_BACK_STACK = "media_send_vm_back_stack"
   }
 
   /**

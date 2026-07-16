@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.net.ContentProxySelector;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
-import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
@@ -66,10 +65,10 @@ final class GiphyMp4Repository {
 
     try (Response response = client.newCall(request).execute()) {
       if (response.code() >= 200 && response.code() < 300) {
-        return BlobProvider.getInstance()
-                           .forData(response.body().byteStream(), response.body().contentLength())
-                           .withMimeType(mime)
-                           .createForSingleSessionOnDisk(AppDependencies.getApplication());
+        return AppDependencies.getBlobs()
+                              .forData(response.body().byteStream(), response.body().contentLength())
+                              .withMimeType(mime)
+                              .createForSingleSessionOnDisk(AppDependencies.getApplication());
       } else {
         throw new IOException("Unexpected response code: " + response.code());
       }

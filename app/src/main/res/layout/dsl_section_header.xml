@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:viewBindingIgnore="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="48dp"
+    android:orientation="horizontal"
     android:paddingStart="@dimen/dsl_settings_gutter"
     android:paddingTop="16dp"
     android:paddingEnd="@dimen/dsl_settings_gutter"
@@ -12,8 +13,17 @@
 
     <TextView
         android:id="@+id/section_header"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:textAppearance="@style/Signal.Text.TitleSmall"
         tools:text="Section Header" />
-</FrameLayout>
+
+    <ImageView
+        android:id="@+id/icon_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:visibility="gone" />
+
+</LinearLayout>

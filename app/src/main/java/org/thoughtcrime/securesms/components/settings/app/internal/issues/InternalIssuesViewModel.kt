@@ -42,7 +42,7 @@ class InternalIssuesViewModel(application: Application) : AndroidViewModel(appli
 
   private fun load() {
     viewModelScope.launch {
-      allIssues = withContext(Dispatchers.IO) { issues.getRecent() }
+      allIssues = withContext(Dispatchers.Default) { issues.getRecent() }
       _state.update { it.copy(loading = false, notificationPriority = SignalStore.internal.issueNotificationPriority).withVisibleIssues() }
     }
   }
@@ -54,7 +54,7 @@ class InternalIssuesViewModel(application: Application) : AndroidViewModel(appli
 
   private fun clearAll() {
     viewModelScope.launch {
-      withContext(Dispatchers.IO) { issues.clear() }
+      withContext(Dispatchers.Default) { issues.clear() }
       allIssues = emptyList()
       _state.update { it.copy(nameFilter = null, expandedIds = emptySet()).withVisibleIssues() }
     }

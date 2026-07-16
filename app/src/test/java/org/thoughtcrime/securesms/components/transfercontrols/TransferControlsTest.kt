@@ -16,8 +16,11 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.attachments.Cdn
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -25,6 +28,9 @@ import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 
 class TransferControlsTest {
+
+  /** Distinct default attachmentId per slide so DatabaseAttachment equality (by id) doesn't collapse map keys. */
+  private var nextSlideId: Long = 1000L
 
   @Before
   fun setUp() {
@@ -56,8 +62,9 @@ class TransferControlsTest {
 
   @Test
   fun `awaiting primary single item is centered indeterminate non-cancelable`() {
-    val state = stateOf(listOf(slide(AttachmentTable.TRANSFER_NEEDS_RESTORE)), awaitingPrimaryResponse = true)
-    val render = TransferControls.deriveRenderState(state) as TransferControlsRenderState.InProgress
+    val id = AttachmentId(1L)
+    val state = stateOf(listOf(slide(AttachmentTable.TRANSFER_NEEDS_RESTORE, attachmentId = id)))
+    val render = TransferControls.deriveRenderState(state, setOf(id)) as TransferControlsRenderState.InProgress
     assertNull(render.progress)
     assertEquals(TransferControls.Placement.CENTER, render.placement)
     assertFalse(render.cancelable)
@@ -66,19 +73,29 @@ class TransferControlsTest {
 
   @Test
   fun `awaiting primary gallery is corner indeterminate`() {
+    val first = AttachmentId(1L)
+    val second = AttachmentId(2L)
     val state = stateOf(
-      listOf(slide(AttachmentTable.TRANSFER_NEEDS_RESTORE), slide(AttachmentTable.TRANSFER_NEEDS_RESTORE)),
-      awaitingPrimaryResponse = true
+      listOf(slide(AttachmentTable.TRANSFER_NEEDS_RESTORE, attachmentId = first), slide(AttachmentTable.TRANSFER_NEEDS_RESTORE, attachmentId = second))
     )
-    val render = TransferControls.deriveRenderState(state) as TransferControlsRenderState.InProgress
+    val render = TransferControls.deriveRenderState(state, setOf(first, second)) as TransferControlsRenderState.InProgress
     assertNull(render.progress)
     assertEquals(TransferControls.Placement.CORNER, render.placement)
   }
 
   @Test
   fun `awaiting primary still Gone when not visible`() {
-    val state = stateOf(listOf(slide(AttachmentTable.TRANSFER_NEEDS_RESTORE)), awaitingPrimaryResponse = true, isVisible = false)
-    assertEquals(TransferControlsRenderState.Gone, TransferControls.deriveRenderState(state))
+    val id = AttachmentId(1L)
+    val state = stateOf(listOf(slide(AttachmentTable.TRANSFER_NEEDS_RESTORE, attachmentId = id)), isVisible = false)
+    assertEquals(TransferControlsRenderState.Gone, TransferControls.deriveRenderState(state, setOf(id)))
+  }
+
+  @Test
+  fun `awaiting primary yields to download progress once the re-download starts`() {
+    val id = AttachmentId(1L)
+    val state = stateOf(listOf(slide(AttachmentTable.TRANSFER_PROGRESS_STARTED, attachmentId = id)))
+    val render = TransferControls.deriveRenderState(state, setOf(id)) as TransferControlsRenderState.InProgress
+    assertTrue(render.cancelable)
   }
 
   @Test
@@ -286,9 +303,12 @@ class TransferControlsTest {
   private fun slide(
     transferState: Int,
     hasVideo: Boolean = false,
-    size: Long = 1024
+    size: Long = 1024,
+    attachmentId: AttachmentId = AttachmentId(nextSlideId++)
   ): Slide {
-    val attachment = mockk<Attachment>(relaxed = true)
+    // asAttachment() returns a real DatabaseAttachment: deriveRenderState reads its attachmentId (a @JvmField,
+    // so unmockkable) to decide whether the slide is awaiting backfill.
+    val attachment = databaseAttachment(attachmentId, transferState)
     val slide = mockk<Slide>(relaxed = true)
     every { slide.transferState } returns transferState
     every { slide.hasVideo() } returns hasVideo
@@ -297,13 +317,52 @@ class TransferControlsTest {
     return slide
   }
 
+  private fun databaseAttachment(attachmentId: AttachmentId, transferProgress: Int): DatabaseAttachment {
+    return DatabaseAttachment(
+      attachmentId = attachmentId,
+      mmsId = 1L,
+      hasData = false,
+      hasThumbnail = false,
+      contentType = "image/jpeg",
+      transferProgress = transferProgress,
+      size = 1024L,
+      fileName = "photo.jpg",
+      cdn = Cdn.CDN_3,
+      location = null,
+      key = null,
+      digest = null,
+      incrementalDigest = null,
+      incrementalMacChunkSize = 0,
+      fastPreflightId = null,
+      voiceNote = false,
+      borderless = false,
+      videoGif = false,
+      width = 0,
+      height = 0,
+      quote = false,
+      caption = null,
+      stickerLocator = null,
+      blurHash = null,
+      audioHash = null,
+      transformProperties = null,
+      displayOrder = 0,
+      uploadTimestamp = 0,
+      dataHash = null,
+      archiveCdn = null,
+      thumbnailRestoreState = AttachmentTable.ThumbnailRestoreState.NONE,
+      archiveTransferState = AttachmentTable.ArchiveTransferState.NONE,
+      uuid = null,
+      quoteTargetContentType = null,
+      metadata = null
+    )
+  }
+
   private fun stateOf(
     slides: List<Slide>,
     isUpload: Boolean = false,
     playableWhileDownloading: Boolean = false,
     isVisible: Boolean = true,
     showSecondaryText: Boolean = true,
-    awaitingPrimaryResponse: Boolean = false,
     networkProgress: Map<Attachment, TransferControlView.Progress> = slides.associate { it.asAttachment() to TransferControlView.Progress(0L.bytes, 1024L.bytes) },
     compressionProgress: Map<Attachment, TransferControlView.Progress> = emptyMap()
   ): TransferControlViewState {
@@ -313,7 +372,6 @@ class TransferControlsTest {
       playableWhileDownloading = playableWhileDownloading,
       isVisible = isVisible,
       showSecondaryText = showSecondaryText,
-      awaitingPrimaryResponse = awaitingPrimaryResponse,
       networkProgress = networkProgress,
       compressionProgress = compressionProgress
     )

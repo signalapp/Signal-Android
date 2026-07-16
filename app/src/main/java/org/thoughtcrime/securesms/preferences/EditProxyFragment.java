@@ -57,7 +57,11 @@ public class EditProxyFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     Toolbar toolbar = view.findViewById(R.id.toolbar);
-    toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).popBackStack());
+    toolbar.setNavigationOnClickListener(v -> {
+      if (!Navigation.findNavController(v).popBackStack()) {
+        requireActivity().finish();
+      }
+    });
 
     this.proxySwitch = view.findViewById(R.id.edit_proxy_switch);
     this.proxyTitle  = view.findViewById(R.id.edit_proxy_address_title);

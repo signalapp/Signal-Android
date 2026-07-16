@@ -16,6 +16,7 @@ import androidx.media3.exoplayer.upstream.LoadErrorHandlingPolicy;
 import androidx.media3.extractor.DefaultExtractorsFactory;
 import androidx.media3.extractor.ExtractorsFactory;
 
+import org.signal.video.exo.ExoPlayerPool;
 /**
  * This class is responsible for creating a MediaSource object for a given Uri, using {@link SignalDataSource.Factory}.
  */

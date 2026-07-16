@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.Util
+import org.signal.core.util.bitmaps.BitmapUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
@@ -38,11 +39,9 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.profiles.AvatarHelper
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.util.Objects
 import kotlin.random.Random
@@ -88,7 +87,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
     )
     val stream = BitmapUtil.toCompressedJpeg(bitmap)
     val bytes = stream.readBytes()
-    val uri = BlobProvider.getInstance().forData(bytes).createForSingleSessionOnDisk(requireContext())
+    val uri = AppDependencies.blobs.forData(bytes).createForSingleSessionOnDisk(requireContext())
     return UriAttachment(
       uri = uri,
       contentType = MediaUtil.IMAGE_JPEG,
@@ -175,7 +174,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
   }
 
   override fun add1000Messages(recipientId: RecipientId) {
-    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Default) {
       val recipient = Recipient.live(recipientId).get()
       val messageCount = 1000
       val startTime = System.currentTimeMillis() - messageCount

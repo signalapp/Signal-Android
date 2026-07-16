@@ -72,7 +72,7 @@ fun RestoreLocalBackupNavDisplay(
   Box(modifier = Modifier.fillMaxSize()) {
     NavDisplay(
       backStack = backstack,
-      sceneStrategy = bottomSheetStrategy,
+      sceneStrategies = listOf(bottomSheetStrategy),
       entryProvider = entryProvider {
         entry<RestoreLocalBackupNavKey.SelectLocalBackupTypeScreen> {
           SelectLocalBackupTypeScreen(

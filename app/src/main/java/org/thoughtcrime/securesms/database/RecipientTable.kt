@@ -3546,7 +3546,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         val selfId = Recipient.self().id.toLong()
         arrayOf(
           ID,
-          """CASE WHEN ${TABLE_NAME}.$ID = $selfId THEN '${includeSelfMode.noteToSelfTitle}' ELSE $SYSTEM_JOINED_NAME END AS $SYSTEM_JOINED_NAME""",
+          """CASE WHEN ${TABLE_NAME}.$ID = $selfId THEN '${includeSelfMode.title}' ELSE $SYSTEM_JOINED_NAME END AS $SYSTEM_JOINED_NAME""",
           E164,
           EMAIL,
           SYSTEM_PHONE_LABEL,
@@ -3556,9 +3556,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           ABOUT_EMOJI,
           EXTRAS,
           GROUPS_IN_COMMON,
-          """CASE WHEN ${TABLE_NAME}.$ID = $selfId THEN '${includeSelfMode.noteToSelfTitle}' ELSE COALESCE(NULLIF($PROFILE_JOINED_NAME, ''), NULLIF($PROFILE_GIVEN_NAME, '')) END AS $SEARCH_PROFILE_NAME""",
+          """CASE WHEN ${TABLE_NAME}.$ID = $selfId THEN '${includeSelfMode.title}' ELSE COALESCE(NULLIF($PROFILE_JOINED_NAME, ''), NULLIF($PROFILE_GIVEN_NAME, '')) END AS $SEARCH_PROFILE_NAME""",
           """
-            CASE WHEN ${TABLE_NAME}.$ID = $selfId THEN '${includeSelfMode.noteToSelfTitle.lowercase()}' ELSE
+            CASE WHEN ${TABLE_NAME}.$ID = $selfId THEN '${includeSelfMode.title.lowercase()}' ELSE
             LOWER(
               COALESCE(
                 NULLIF($NICKNAME_JOINED_NAME, ''),
@@ -3710,6 +3710,25 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val orderBy = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + E164
 
     return readableDatabase.query(TABLE_NAME, searchProjection(IncludeSelfMode.Exclude), selection, args, null, null, orderBy)
+  }
+
+  fun queryGroupMemberContactsForGroup(groupId: GroupId, inputQuery: String, selfTitle: String): Cursor? {
+    val orderBy = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + E164
+    val queryFilter = if (inputQuery.isNotEmpty()) "AND ($SORT_NAME GLOB ? OR $USERNAME GLOB ?)" else ""
+
+    val selection = """
+      $ID IN (SELECT ${GroupTable.MembershipTable.RECIPIENT_ID} FROM ${GroupTable.MembershipTable.TABLE_NAME} WHERE ${GroupTable.MembershipTable.GROUP_ID} = ?)
+      $queryFilter
+    """
+
+    val args = if (queryFilter.isBlank()) {
+      mutableListOf(groupId.toString())
+    } else {
+      val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
+      mutableListOf(groupId.toString(), query, query)
+    }
+
+    return readableDatabase.query(TABLE_NAME, searchProjection(IncludeSelfMode.IncludeWithRemap(selfTitle)), selection, args.toTypedArray(), null, null, orderBy)
   }
 
   fun queryAllContacts(inputQuery: String, includeSelfMode: IncludeSelfMode): Cursor? {
@@ -4603,12 +4622,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   /**
    * By default, SQLite will prefer numbers over letters when sorting. e.g. (b, a, 1) is sorted as (1, a, b).
-   * This order by will using a GLOB pattern to instead sort it as (a, b, 1).
+   * This order by will using a GLOB pattern to instead sort it as (a, b, 1). We also put null names (eg deleted accounts) at the end
    *
    * @param column The name of the column to sort by
    */
   private fun orderByPreferringAlphaOverNumeric(column: String): String {
-    return "CASE WHEN $column GLOB '[0-9]*' THEN 1 ELSE 0 END, $column"
+    return "CASE WHEN $column IS NULL THEN 2 WHEN $column GLOB '[0-9]*' THEN 1 ELSE 0 END, $column"
   }
 
   private fun <T> Optional<T>.isAbsent(): Boolean {
@@ -4765,7 +4784,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     data object Exclude : IncludeSelfMode
     data object IncludeWithoutRemap : IncludeSelfMode
-    data class IncludeWithRemap(val noteToSelfTitle: String) : IncludeSelfMode
+    data class IncludeWithRemap(val title: String) : IncludeSelfMode
   }
 
   @VisibleForTesting

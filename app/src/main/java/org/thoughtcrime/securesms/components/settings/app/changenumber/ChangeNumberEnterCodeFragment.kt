@@ -128,11 +128,14 @@ class ChangeNumberEnterCodeFragment : LoggingFragment(R.layout.fragment_change_n
     binding.codeEntryLayout.resendSmsCountDown.startCountDownTo(state.nextSmsTimestamp.milliseconds)
     binding.codeEntryLayout.callMeCountDown.startCountDownTo(state.nextCallTimestamp.milliseconds)
     when (val outcome = state.changeNumberOutcome) {
-      is ChangeNumberOutcome.RecoveryPasswordWorked,
-      is ChangeNumberOutcome.VerificationCodeWorked -> changeNumberSuccess()
+      is ChangeNumberOutcome.Succeeded -> changeNumberSuccess()
 
       is ChangeNumberOutcome.ChangeNumberRequestOutcome -> if (!state.inProgress && !outcome.result.isSuccess()) {
-        presentGenericError(outcome.result)
+        if (outcome.result is VerificationCodeRequestResult.RequestVerificationCodeRateLimited) {
+          Log.i(TAG, "Verification code request rate limited; staying on code entry screen.")
+        } else {
+          presentGenericError(outcome.result)
+        }
       }
 
       null -> Unit
@@ -158,6 +161,8 @@ class ChangeNumberEnterCodeFragment : LoggingFragment(R.layout.fragment_change_n
     when (result) {
       is VerificationCodeRequestResult.Success -> binding.codeEntryLayout.keyboard.displaySuccess()
       is VerificationCodeRequestResult.RateLimited -> presentRateLimitedDialog()
+      is VerificationCodeRequestResult.RequestVerificationCodeRateLimited -> presentRateLimitedDialog(retryAfterSeconds = (result.nextSmsTimestamp - System.currentTimeMillis().milliseconds).inWholeSeconds.coerceAtLeast(0))
+      is VerificationCodeRequestResult.SubmitVerificationCodeRateLimited -> presentRateLimitedDialog()
       is VerificationCodeRequestResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
       else -> presentGenericError(result)
     }

@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.contacts.paged
 
 import android.content.Context
 import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
@@ -17,17 +18,19 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -53,6 +56,7 @@ import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.SearchUtil
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -62,6 +66,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.adapter.mapping.compose.MappingEntryProvider
 import org.thoughtcrime.securesms.util.adapter.mapping.compose.MappingEntryProviderBuilder
 import org.thoughtcrime.securesms.util.visible
+import java.util.Locale
 import org.signal.core.ui.R as CoreUiR
 
 /**
@@ -224,6 +229,18 @@ object ContactSearchModels {
           { view -> ChatTypeViewHolder(view, callbacks::onChatTypeClicked) },
           R.layout.contact_search_chat_type_item
         ).createViewHolder(FrameLayout(ctx))
+      }
+      entry<EmptyModel>(
+        key = { "EmptyModel" }
+      ) { model ->
+        Text(
+          text = if (model.empty.query.isNullOrEmpty()) stringResource(R.string.SearchFragment_no_results_empty) else stringResource(R.string.SearchFragment_no_results, model.empty.query),
+          color = MaterialTheme.colorScheme.onSurface,
+          textAlign = TextAlign.Center,
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 16.dp)
+        )
       }
     }.build()
   }
@@ -454,7 +471,9 @@ object ContactSearchModels {
   ) : MappingModel<RecipientModel>, FastScrollCharacterProvider {
 
     override fun getFastScrollCharacter(context: Context): CharSequence {
-      val name = if (knownRecipient.recipient.isSelf) {
+      val name = if (knownRecipient.recipient.isSelf && knownRecipient.showSelfAsYou) {
+        context.getString(R.string.Recipient_you)
+      } else if (knownRecipient.recipient.isSelf) {
         context.getString(R.string.note_to_self)
       } else {
         knownRecipient.recipient.getDisplayName(context)
@@ -564,11 +583,23 @@ object ContactSearchModels {
     override fun isSelected(model: RecipientModel): Boolean = model.isSelected
     override fun getData(model: RecipientModel): ContactSearchData.KnownRecipient = model.knownRecipient
     override fun getRecipient(model: RecipientModel): Recipient = model.knownRecipient.recipient
+    override fun showSelfAsYou(model: RecipientModel): Boolean = model.knownRecipient.showSelfAsYou
+
+    override fun bindAvatar(model: RecipientModel) {
+      if (model.knownRecipient.showSelfAsYou) {
+        avatar.setAvatarUsingProfile(getRecipient(model))
+      } else {
+        super.bindAvatar(model)
+      }
+    }
+
     override fun bindNumberField(model: RecipientModel) {
       val recipient = getRecipient(model)
-      if (model.knownRecipient.sectionKey == ContactSearchConfiguration.SectionKey.GROUP_MEMBERS) {
+      if (model.knownRecipient.sectionKey == ContactSearchConfiguration.SectionKey.GROUP_MEMBERS && displayOptions.displaySecondaryInformation != ContactSearchAdapter.DisplaySecondaryInformation.NEVER) {
         number.text = model.knownRecipient.groupsInCommon.toDisplayText(context, displayGroupsLimit = 2)
         number.visible = true
+      } else if (model.knownRecipient.sectionKey == ContactSearchConfiguration.SectionKey.GROUP_MEMBERS) {
+        number.visible = false
       } else if (model.shortSummary && recipient.isGroup) {
         val count = recipient.participantIds.size
         number.text = context.resources.getQuantityString(R.plurals.ContactSearchItems__group_d_members, count, count)
@@ -594,6 +625,10 @@ object ContactSearchModels {
       checkbox.isEnabled = !fixedContacts.contains(model.knownRecipient.contactSearchKey)
     }
 
+    override fun bindLabelField(model: RecipientModel) {
+      adminLabel.visible = model.knownRecipient.showAdminLabel
+    }
+
     override fun isEnabled(model: RecipientModel): Boolean {
       return !fixedContacts.contains(model.knownRecipient.contactSearchKey)
     }
@@ -604,6 +639,10 @@ object ContactSearchModels {
 
     override fun bindLongPress(model: RecipientModel) {
       itemView.setOnLongClickListener { onLongClick.onLongClicked(itemView, model.knownRecipient) }
+    }
+
+    override fun getHighlightQuery(model: RecipientModel): String? {
+      return model.knownRecipient.query
     }
   }
 
@@ -623,8 +662,10 @@ object ContactSearchModels {
     protected val name: FromTextView = itemView.findViewById(R.id.name)
     protected val number: TextView = itemView.findViewById(R.id.number)
     protected val label: TextView = itemView.findViewById(R.id.label)
+    protected val adminLabel: TextView = itemView.findViewById(R.id.admin_label)
     private val startAudio: View = itemView.findViewById(R.id.start_audio)
     private val startVideo: View = itemView.findViewById(R.id.start_video)
+    private val searchStyleFactory = SearchUtil.StyleFactory { arrayOf(ForegroundColorSpan(ContextCompat.getColor(context, CoreUiR.color.signal_colorOnSurface)), SpanUtil.getBoldSpan()) }
 
     override fun bind(model: T) {
       if (isEnabled(model)) {
@@ -651,7 +692,14 @@ object ContactSearchModels {
       } else {
         null
       }
-      name.setText(recipient, suffix)
+      val query = getHighlightQuery(model)
+      val displayName: CharSequence = if (!query.isNullOrBlank()) {
+        SearchUtil.getHighlightedSpan(Locale.getDefault(), searchStyleFactory, recipient.getDisplayName(context), query, SearchUtil.MATCH_ALL)
+      } else {
+        recipient.getDisplayName(context)
+      }
+
+      name.setText(recipient, displayName, suffix, true, showSelfAsYou(model))
 
       badge.setBadgeFromRecipient(getRecipient(model))
 
@@ -667,6 +715,8 @@ object ContactSearchModels {
     }
 
     protected open fun isEnabled(model: T): Boolean = true
+    protected open fun showSelfAsYou(model: T): Boolean = false
+    protected open fun getHighlightQuery(model: T): String? = null
 
     protected open fun bindAvatar(model: T) {
       avatar.setAvatar(getRecipient(model))

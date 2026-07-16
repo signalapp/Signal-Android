@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -73,6 +74,7 @@ private fun OnePane(params: RegistrationScaffold.Params.OnePane, permissionState
           .padding(paddingValues)
       ) {
         FirstPaneContent()
+        Spacer(modifier = Modifier.height(16.dp))
         SecondPaneContent()
       }
     },
@@ -147,9 +149,8 @@ private fun FirstPaneContent(
 private fun SecondPaneContent(
   modifier: Modifier = Modifier
 ) {
-  // TODO [regv5] Final image asset
   Image(
-    painter = painterResource(R.drawable.welcome),
+    painter = painterResource(R.drawable.device_notifications),
     contentDescription = null,
     modifier = modifier
   )

@@ -53,7 +53,7 @@ class NewCallViewModel : ViewModel() {
   }
 
   private suspend fun resolveAndStartCall(id: RecipientId) {
-    val recipient = withContext(Dispatchers.IO) {
+    val recipient = withContext(Dispatchers.Default) {
       Recipient.resolved(id)
     }
     openCall(recipient)

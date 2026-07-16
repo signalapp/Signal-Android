@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.profiles.AvatarHelper
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
@@ -58,7 +57,7 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
     val contactAttachment: SignalServiceAttachmentPointer = AttachmentPointerUtil.createSignalAttachmentPointer(attachmentPointer)
 
     try {
-      val contactsFile: File = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(context)
+      val contactsFile: File = AppDependencies.blobs.forNonAutoEncryptingSingleSessionOnDisk(context)
       AppDependencies.signalServiceMessageReceiver
         .retrieveAttachment(contactAttachment, contactsFile, MAX_ATTACHMENT_SIZE, IntegrityCheck.forEncryptedDigest(contactAttachment.digest.get()))
         .use(this::processContactFile)

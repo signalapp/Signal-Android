@@ -12,8 +12,8 @@ data class LabsSettingsState(
   val individualChatPlaintextExport: Boolean = false,
   val storyArchive: Boolean = false,
   val incognito: Boolean = false,
-  val groupSuggestionsForMembers: Boolean = false,
   val betterSearch: Boolean = false,
-  val autoLowerHand: Boolean = false,
-  val starredMessages: Boolean = false
+  val starredMessages: Boolean = false,
+  val stickerReplies: Boolean = false,
+  val muteBreakthroughNotifications: Boolean = false
 )

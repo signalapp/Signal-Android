@@ -14,12 +14,13 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.ContentTypeUtil;
 import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.signal.mediasend.MediaConstraints;
+import org.signal.core.util.bitmaps.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 
 public class SystemProfileUtil {
 
@@ -38,8 +39,23 @@ public class SystemProfileUtil {
 
             if (!TextUtils.isEmpty(photoUri)) {
               try {
-                BitmapUtil.ScaleResult result = BitmapUtil.createScaledBytes(context, Uri.parse(photoUri), mediaConstraints);
-                return result.getBitmap();
+                ImageCompressionUtil.Result result = null;
+
+                for (int size : mediaConstraints.getImageDimensionTargets()) {
+                  result = ImageCompressionUtil.compressWithinConstraints(context,
+                                                                          ContentTypeUtil.IMAGE_JPEG,
+                                                                          Uri.parse(photoUri),
+                                                                          size,
+                                                                          mediaConstraints.getImageMaxSize(),
+                                                                          mediaConstraints.getImageCompressionQualitySetting());
+                  if (result != null) {
+                    break;
+                  }
+                }
+
+                if (result != null) {
+                  return result.getData();
+                }
               } catch (BitmapDecodingException e) {
                 Log.w(TAG, e);
               }

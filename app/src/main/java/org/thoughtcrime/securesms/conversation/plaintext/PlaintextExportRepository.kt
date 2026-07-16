@@ -44,6 +44,18 @@ object PlaintextExportRepository {
   private val TAG = Log.tag(PlaintextExportRepository::class.java)
   private const val BATCH_SIZE = 500
 
+  private val EMOJI_REGEX = Regex(
+    "[" +
+      "\\x{1F000}-\\x{1FAFF}" +
+      "\\x{2600}-\\x{27BF}" +
+      "\\x{2300}-\\x{23FF}" +
+      "\\x{2B00}-\\x{2BFF}" +
+      "\\x{FE00}-\\x{FE0F}" +
+      "\\x{200D}" +
+      "\\x{20E3}" +
+      "]"
+  )
+
   fun export(
     context: Context,
     threadId: Long,
@@ -435,7 +447,13 @@ object PlaintextExportRepository {
 
   @VisibleForTesting
   internal fun sanitizeFileName(name: String): String {
-    return name.replace(Regex("[\\\\/:*?\"<>|]"), "_").trim().take(100)
+    val sanitized = name
+      .replace(EMOJI_REGEX, "")
+      .replace(Regex("[\\\\/:*?\"<>|]"), "_")
+      .replace(Regex("\\s+"), " ")
+      .trim()
+      .take(100)
+    return if (sanitized.isEmpty() || sanitized.all { it == '.' }) "chat" else sanitized
   }
 
   private fun <T> ExecutorService.submitTyped(callable: Callable<T>): Future<T> {

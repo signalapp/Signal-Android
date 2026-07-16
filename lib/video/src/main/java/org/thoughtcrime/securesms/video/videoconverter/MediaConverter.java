@@ -57,10 +57,9 @@ public final class MediaConverter {
 
     // Describes when the annotation will be discarded
     @Retention(RetentionPolicy.SOURCE)
-    @StringDef({VIDEO_CODEC_H264, VIDEO_CODEC_H265})
+    @StringDef({VIDEO_CODEC_H264})
     public @interface VideoCodec {}
     public static final String VIDEO_CODEC_H264 = "video/avc";
-    public static final String VIDEO_CODEC_H265 = "video/hevc";
 
     private MediaInput mInput;
     private Output     mOutput;

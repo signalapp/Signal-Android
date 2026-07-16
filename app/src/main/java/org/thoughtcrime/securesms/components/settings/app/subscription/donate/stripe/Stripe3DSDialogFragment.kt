@@ -119,7 +119,7 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
       val progress = ProgressCardDialogFragment.create()
       progress.show(parentFragmentManager, null)
 
-      withContext(Dispatchers.IO) {
+      withContext(Dispatchers.Default) {
         SignalDatabase.inAppPayments.update(args.waitingForAuthPayment)
       }
 

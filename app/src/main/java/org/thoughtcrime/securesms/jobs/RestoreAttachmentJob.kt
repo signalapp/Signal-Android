@@ -277,14 +277,14 @@ class RestoreAttachmentJob private constructor(
 
     SignalLocalMetrics.ArchiveAttachmentRestore.start(attachmentId)
 
-    val progressServiceController = BackupMediaRestoreService.start(context, context.getString(R.string.BackupStatus__restoring_media))
+    val progressServiceController = if (!manual) BackupMediaRestoreService.start(context, context.getString(R.string.BackupStatus__restoring_media)) else null
 
     if (progressServiceController != null) {
       progressServiceController.use {
         retrieveAttachment(messageId, attachmentId, attachment)
       }
     } else {
-      Log.w(TAG, "Continuing without service.")
+      Log.w(TAG, "Continuing without service. manual: $manual")
       retrieveAttachment(messageId, attachmentId, attachment)
     }
 
@@ -410,6 +410,7 @@ class RestoreAttachmentJob private constructor(
             inputStream = input,
             offloadRestoredAt = if (manual) System.currentTimeMillis().milliseconds else null,
             archiveRestore = true,
+            restoredFromArchiveCdn = useArchiveCdn,
             notify = manual
           )
         ArchiveDatabaseExecutor.throttledNotifyAttachmentAndChatListObservers()
@@ -506,12 +507,22 @@ class RestoreAttachmentJob private constructor(
     ArchiveDatabaseExecutor.runBlocking {
       SignalDatabase.attachments.setRestoreTransferState(attachmentId, AttachmentTable.TRANSFER_PROGRESS_FAILED)
     }
+    maybeRequestBackfill()
   }
 
   private fun markPermanentlyFailed(attachmentId: AttachmentId) {
     ArchiveDatabaseExecutor.runBlocking {
       SignalDatabase.attachments.setRestoreTransferState(attachmentId, AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE)
     }
+    maybeRequestBackfill()
+  }
+
+  private fun maybeRequestBackfill() {
+    if (SignalStore.account.isPrimaryDevice || !manual) {
+      return
+    }
+    val attachment = SignalDatabase.attachments.getAttachment(attachmentId) ?: return
+    AttachmentBackfill.maybeRequest(messageId, attachment)
   }
 
   private fun maybePostFailedToDownloadFromArchiveNotification() {

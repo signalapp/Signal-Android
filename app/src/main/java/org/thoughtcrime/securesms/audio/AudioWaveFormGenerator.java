@@ -33,7 +33,7 @@ public final class AudioWaveFormGenerator {
    */
   @WorkerThread
   public static @NonNull AudioFileInfo generateWaveForm(@NonNull Context context, @NonNull Uri uri) throws IOException {
-    try (MediaInput dataSource = DecryptableUriMediaInput.createForUri(context, uri)) {
+    try (MediaInput dataSource = DecryptableUriMediaInput.INSTANCE.createForUri(context, uri)) {
       long[] wave        = new long[BAR_COUNT];
       int[]  waveSamples = new int[BAR_COUNT];
 

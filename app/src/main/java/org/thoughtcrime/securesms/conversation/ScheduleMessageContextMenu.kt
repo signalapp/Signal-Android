@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.toLocalDateTime
 import org.thoughtcrime.securesms.util.toMillis
 import java.time.DayOfWeek
@@ -73,15 +72,13 @@ class ScheduleMessageContextMenu {
         }
       }
 
-      if (RemoteConfig.internalUser) {
-        val now = currentTimeMs.toLocalDateTime()
-        if (now.dayOfWeek == DayOfWeek.FRIDAY || now.dayOfWeek == DayOfWeek.SATURDAY) {
-          val nextMonday = now.with(TemporalAdjusters.next(DayOfWeek.MONDAY))
-            .withHour(8)
-            .withMinute(0)
-            .withSecond(0)
-          timestampList += nextMonday.toMillis()
-        }
+      val now = currentTimeMs.toLocalDateTime()
+      if (now.dayOfWeek == DayOfWeek.FRIDAY || now.dayOfWeek == DayOfWeek.SATURDAY) {
+        val nextMonday = now.with(TemporalAdjusters.next(DayOfWeek.MONDAY))
+          .withHour(8)
+          .withMinute(0)
+          .withSecond(0)
+        timestampList += nextMonday.toMillis()
       }
 
       timestampList += -1

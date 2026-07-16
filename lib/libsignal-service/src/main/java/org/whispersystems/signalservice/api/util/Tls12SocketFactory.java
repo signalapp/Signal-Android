@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
@@ -62,7 +67,19 @@ public class Tls12SocketFactory extends SSLSocketFactory {
 
   private Socket patch(Socket s) {
     if (s instanceof SSLSocket) {
-      ((SSLSocket) s).setEnabledProtocols(TLS_V12_V13_ONLY);
+      SSLSocket    socket    = (SSLSocket) s;
+      Set<String>  supported = new HashSet<>(Arrays.asList(socket.getSupportedProtocols()));
+      List<String> enabled   = new ArrayList<>(TLS_V12_V13_ONLY.length);
+
+      for (String protocol : TLS_V12_V13_ONLY) {
+        if (supported.contains(protocol)) {
+          enabled.add(protocol);
+        }
+      }
+
+      if (!enabled.isEmpty()) {
+        socket.setEnabledProtocols(enabled.toArray(new String[0]));
+      }
     }
     return s;
   }

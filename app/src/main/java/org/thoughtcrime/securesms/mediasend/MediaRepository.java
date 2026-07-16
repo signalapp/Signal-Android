@@ -378,7 +378,7 @@ public class MediaRepository {
       height = dimens.getSecond();
     }
 
-    return new Media(media.getUri(), media.getContentType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), null, null);
+    return new Media(media.getUri(), media.getContentType(), media.getDate(), width, height, size, media.getDuration(), media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), null, null);
   }
 
   private Media getContentResolverPopulatedMedia(@NonNull Context context, @NonNull Media media) throws IOException {
@@ -405,7 +405,7 @@ public class MediaRepository {
       height = dimens.getSecond();
     }
 
-    return new Media(media.getUri(), media.getContentType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), null, null);
+    return new Media(media.getUri(), media.getContentType(), media.getDate(), width, height, size, media.getDuration(), media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), null, null);
   }
 
   @VisibleForTesting

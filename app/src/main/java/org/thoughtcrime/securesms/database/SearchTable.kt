@@ -69,55 +69,70 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       """
     )
 
+    // The FTS MATCH can hit a huge number of rows for broad/short queries. We defer all of the heavy per-row work (column
+    // materialization and the thread join) until after the LIMIT has cut the result set down to 500 by selecting only the
+    // matching row ids in the inner query, then joining back for the displayed columns. Note that snippet() is intentionally
+    // not computed here: it can only be evaluated cheaply inline during the FTS scan (over every match), so it's generated in
+    // app code from the body of just the returned rows instead. See SearchRepository.
     @Language("sql")
     private const val MESSAGES_QUERY = """
-      SELECT 
-        ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
-        ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} AS $MESSAGE_RECIPIENT, 
-        snippet($FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET, 
-        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
-        $FTS_TABLE_NAME.$THREAD_ID, 
-        $FTS_TABLE_NAME.$BODY, 
-        $FTS_TABLE_NAME.$ID AS $MESSAGE_ID, 
-        1 AS $IS_MMS 
-      FROM
-        $FTS_TABLE_NAME
-          CROSS JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $FTS_TABLE_NAME.$ID
-          INNER JOIN ${ThreadTable.TABLE_NAME} ON $FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID}
-      WHERE 
-        $FTS_TABLE_NAME MATCH ? AND 
-        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.GROUP_V2_BIT} = 0 AND 
-        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 AND
-        ${MessageTable.TABLE_NAME}.${MessageTable.SCHEDULED_DATE} < 0 AND
-        ${MessageTable.TABLE_NAME}.${MessageTable.LATEST_REVISION_ID} IS NULL
-      ORDER BY ${MessageTable.DATE_RECEIVED} DESC 
-      LIMIT 500
+      SELECT
+        ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT,
+        ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} AS $MESSAGE_RECIPIENT,
+        ${MessageTable.TABLE_NAME}.${MessageTable.BODY},
+        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED},
+        ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID},
+        ${MessageTable.TABLE_NAME}.${MessageTable.ID} AS $MESSAGE_ID,
+        1 AS $IS_MMS
+      FROM (
+        SELECT $FTS_TABLE_NAME.$ID AS mid
+        FROM
+          $FTS_TABLE_NAME
+            CROSS JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $FTS_TABLE_NAME.$ID
+            INNER JOIN ${ThreadTable.TABLE_NAME} ON $FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID}
+        WHERE
+          $FTS_TABLE_NAME MATCH ? AND
+          ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.GROUP_V2_BIT} = 0 AND
+          ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 AND
+          ${MessageTable.TABLE_NAME}.${MessageTable.SCHEDULED_DATE} < 0 AND
+          ${MessageTable.TABLE_NAME}.${MessageTable.LATEST_REVISION_ID} IS NULL
+        ORDER BY ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} DESC
+        LIMIT 500
+      ) AS limited
+        JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = limited.mid
+        JOIN ${ThreadTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID}
+      ORDER BY ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} DESC
     """
 
     @Language("sql")
     private const val MESSAGES_FOR_THREAD_QUERY = """
-      SELECT 
-        ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
+      SELECT
+        ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT,
         ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} AS $MESSAGE_RECIPIENT,
-        snippet($FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET,
-        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
-        $FTS_TABLE_NAME.$THREAD_ID, 
-        $FTS_TABLE_NAME.$BODY, 
-        $FTS_TABLE_NAME.$ID AS $MESSAGE_ID,
-        1 AS $IS_MMS 
-      FROM
-        $FTS_TABLE_NAME
-          CROSS JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $FTS_TABLE_NAME.$ID
-          INNER JOIN ${ThreadTable.TABLE_NAME} ON $FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID}
-      WHERE 
-        $FTS_TABLE_NAME MATCH ? AND 
-        ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} = ? AND
-        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.GROUP_V2_BIT} = 0 AND 
-        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 AND
-        ${MessageTable.TABLE_NAME}.${MessageTable.SCHEDULED_DATE} < 0 AND
-        ${MessageTable.TABLE_NAME}.${MessageTable.LATEST_REVISION_ID} IS NULL
-      ORDER BY ${MessageTable.DATE_RECEIVED} DESC 
-      LIMIT 500
+        ${MessageTable.TABLE_NAME}.${MessageTable.BODY},
+        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED},
+        ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID},
+        ${MessageTable.TABLE_NAME}.${MessageTable.ID} AS $MESSAGE_ID,
+        1 AS $IS_MMS
+      FROM (
+        SELECT $FTS_TABLE_NAME.$ID AS mid
+        FROM
+          $FTS_TABLE_NAME
+            CROSS JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $FTS_TABLE_NAME.$ID
+            INNER JOIN ${ThreadTable.TABLE_NAME} ON $FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID}
+        WHERE
+          $FTS_TABLE_NAME MATCH ? AND
+          ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} = ? AND
+          ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.GROUP_V2_BIT} = 0 AND
+          ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 AND
+          ${MessageTable.TABLE_NAME}.${MessageTable.SCHEDULED_DATE} < 0 AND
+          ${MessageTable.TABLE_NAME}.${MessageTable.LATEST_REVISION_ID} IS NULL
+        ORDER BY ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} DESC
+        LIMIT 500
+      ) AS limited
+        JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = limited.mid
+        JOIN ${ThreadTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID}
+      ORDER BY ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} DESC
     """
   }
 
@@ -160,8 +175,8 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     @Language("sql")
     val filteredQuery = MESSAGES_QUERY.replace(
-      "ORDER BY ${MessageTable.DATE_RECEIVED} DESC",
-      "$extraConditions ORDER BY ${MessageTable.DATE_RECEIVED} DESC"
+      "${MessageTable.TABLE_NAME}.${MessageTable.LATEST_REVISION_ID} IS NULL",
+      "${MessageTable.TABLE_NAME}.${MessageTable.LATEST_REVISION_ID} IS NULL$extraConditions"
     )
 
     return readableDatabase.rawQuery(filteredQuery, args.toTypedArray())

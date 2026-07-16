@@ -44,6 +44,13 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
+            android:id="@+id/action_appSettingsFragment_to_linkedDeviceAccountSettingsFragment"
+            app:destination="@id/linkedDeviceAccountSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
             android:id="@+id/action_appSettingsFragment_to_remoteBackupsSettingsFragment"
             app:destination="@id/remoteBackupsSettingsFragment"
             app:enterAnim="@anim/fragment_open_enter"
@@ -210,6 +217,12 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
+
+    <fragment
+        android:id="@+id/linkedDeviceAccountSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.account.LinkedDeviceAccountSettingsFragment"
+        android:label="linked_device_account_settings_fragment"
+        tools:layout="@layout/dsl_settings_fragment" />
 
     <include app:graph="@navigation/app_settings_change_number" />
 
@@ -848,6 +861,16 @@
     <action
         android:id="@+id/action_direct_to_accountSettingsFragment"
         app:destination="@id/accountSettingsFragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/app_settings"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_direct_to_linkedDeviceAccountSettingsFragment"
+        app:destination="@id/linkedDeviceAccountSettingsFragment"
         app:enterAnim="@anim/fragment_open_enter"
         app:exitAnim="@anim/fragment_open_exit"
         app:popEnterAnim="@anim/fragment_close_enter"

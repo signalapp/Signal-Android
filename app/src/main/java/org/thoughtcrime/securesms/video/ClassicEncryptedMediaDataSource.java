@@ -4,8 +4,8 @@ import android.media.MediaDataSource;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.crypto.AttachmentSecret;
-import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
+import org.signal.core.util.crypto.AttachmentSecret;
+import org.signal.core.util.crypto.ClassicDecryptingPartInputStream;
 import org.signal.core.util.Util;
 
 import java.io.File;

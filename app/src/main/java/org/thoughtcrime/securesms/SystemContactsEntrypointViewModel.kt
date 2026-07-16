@@ -79,7 +79,13 @@ class SystemContactsEntrypointViewModel : ViewModel() {
   }
 
   private fun getDestinationForSyncAdapter(context: Context, intent: Intent): DestinationAndBody {
-    context.contentResolver.query(intent.data!!, null, null, null, null).use { cursor ->
+    val uri = intent.data
+    if (uri == null || uri.authority != ContactsContract.AUTHORITY) {
+      Log.w(TAG, "Ignoring content URI with an unexpected authority.")
+      return DestinationAndBody("", "")
+    }
+
+    context.contentResolver.query(uri, null, null, null, null).use { cursor ->
       if (cursor != null && cursor.moveToNext()) {
         return DestinationAndBody(cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.Data.DATA1)), "")
       }

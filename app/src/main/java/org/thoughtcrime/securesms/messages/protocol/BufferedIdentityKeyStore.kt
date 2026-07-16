@@ -1,19 +1,18 @@
 package org.thoughtcrime.securesms.messages.protocol
 
-import org.signal.core.models.ServiceId
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.state.IdentityKeyStore
 import org.signal.libsignal.protocol.state.IdentityKeyStore.IdentityChange
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 
 /**
  * An in-memory identity key store that is intended to be used temporarily while decrypting messages.
  */
 class BufferedIdentityKeyStore(
-  private val selfServiceId: ServiceId,
   private val selfIdentityKeyPair: IdentityKeyPair,
   private val selfRegistrationId: Int
 ) : IdentityKeyStore {
@@ -45,8 +44,12 @@ class BufferedIdentityKeyStore(
   }
 
   override fun isTrustedIdentity(address: SignalProtocolAddress, identityKey: IdentityKey, direction: IdentityKeyStore.Direction): Boolean {
-    if (address.name == selfServiceId.toString()) {
-      return identityKey == selfIdentityKeyPair.publicKey
+    val isSelf = address.name == SignalStore.account.aci?.toString() ||
+      address.name == SignalStore.account.pni?.toString() ||
+      address.name == SignalStore.account.e164
+
+    if (isSelf) {
+      return identityKey == SignalStore.account.aciIdentityKey.publicKey
     }
 
     return when (direction) {

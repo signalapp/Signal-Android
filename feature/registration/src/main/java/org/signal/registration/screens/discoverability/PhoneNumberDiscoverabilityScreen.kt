@@ -26,6 +26,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.AllDevicePreviews
@@ -34,6 +35,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.registration.R
 import org.signal.registration.screens.RegistrationScaffold
+import org.signal.registration.test.TestTags
 
 @Composable
 fun PhoneNumberDiscoverabilityScreen(
@@ -42,13 +44,18 @@ fun PhoneNumberDiscoverabilityScreen(
   modifier: Modifier = Modifier
 ) {
   RegistrationScaffold(
-    modifier = modifier.fillMaxSize(),
+    modifier = modifier
+      .fillMaxSize()
+      .testTag(TestTags.PHONE_NUMBER_DISCOVERABILITY_SCREEN),
     topBar = {
       Row(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
       ) {
-        IconButton(onClick = { onEvent(PhoneNumberDiscoverabilityScreenEvents.BackClicked) }) {
+        IconButton(
+          onClick = { onEvent(PhoneNumberDiscoverabilityScreenEvents.BackClicked) },
+          modifier = Modifier.testTag(TestTags.PHONE_NUMBER_DISCOVERABILITY_BACK_BUTTON)
+        ) {
           Icon(
             imageVector = SignalIcons.ArrowStart.imageVector,
             contentDescription = stringResource(R.string.PhoneNumberDiscoverabilityScreen__back)
@@ -70,13 +77,15 @@ fun PhoneNumberDiscoverabilityScreen(
         DiscoverabilityOption(
           label = stringResource(R.string.PhoneNumberPrivacy_everyone),
           selected = state.discoverable,
-          onClick = { onEvent(PhoneNumberDiscoverabilityScreenEvents.EveryoneSelected) }
+          onClick = { onEvent(PhoneNumberDiscoverabilityScreenEvents.EveryoneSelected) },
+          modifier = Modifier.testTag(TestTags.PHONE_NUMBER_DISCOVERABILITY_EVERYONE_OPTION)
         )
 
         DiscoverabilityOption(
           label = stringResource(R.string.PhoneNumberPrivacy_nobody),
           selected = !state.discoverable,
-          onClick = { onEvent(PhoneNumberDiscoverabilityScreenEvents.NobodySelected) }
+          onClick = { onEvent(PhoneNumberDiscoverabilityScreenEvents.NobodySelected) },
+          modifier = Modifier.testTag(TestTags.PHONE_NUMBER_DISCOVERABILITY_NOBODY_OPTION)
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -107,6 +116,7 @@ fun PhoneNumberDiscoverabilityScreen(
           modifier = Modifier
             .fillMaxWidth()
             .widthIn(max = 320.dp)
+            .testTag(TestTags.PHONE_NUMBER_DISCOVERABILITY_SAVE_BUTTON)
         ) {
           Text(stringResource(R.string.PhoneNumberDiscoverabilityScreen__save))
         }
@@ -137,10 +147,11 @@ fun PhoneNumberDiscoverabilityScreen(
 private fun DiscoverabilityOption(
   label: String,
   selected: Boolean,
-  onClick: () -> Unit
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier
 ) {
   Row(
-    modifier = Modifier
+    modifier = modifier
       .fillMaxWidth()
       .clickable(onClick = onClick)
       .padding(horizontal = 16.dp, vertical = 12.dp),

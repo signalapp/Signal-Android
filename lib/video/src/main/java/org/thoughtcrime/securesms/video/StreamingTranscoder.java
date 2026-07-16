@@ -24,6 +24,7 @@ import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -48,7 +49,7 @@ public final class StreamingTranscoder {
    */
   public StreamingTranscoder(@NonNull MediaDataSource dataSource,
                              @Nullable TranscoderOptions options,
-                             @NonNull TranscodingPreset preset,
+                             @NonNull List<TranscodingConfig.QualityTier> configs,
                              long upperSizeLimit,
                              boolean allowAudioRemux)
       throws IOException, VideoSourceException
@@ -73,7 +74,7 @@ public final class StreamingTranscoder {
 
     this.inSize         = dataSource.getSize();
     this.inputBitRate   = TranscodingQuality.bitRate(inSize, duration);
-    this.targetQuality  = TranscodingQuality.createFromPreset(preset, duration);
+    this.targetQuality  = TranscodingQuality.createFromQualityTiers(configs, duration);
     this.upperSizeLimit = upperSizeLimit;
 
     this.transcodeRequired = inputBitRate >= targetQuality.getTargetTotalBitRate() * 1.2 || inSize > upperSizeLimit || containsLocation(mediaMetadataRetriever) || options != null || !isH264(dataSource);

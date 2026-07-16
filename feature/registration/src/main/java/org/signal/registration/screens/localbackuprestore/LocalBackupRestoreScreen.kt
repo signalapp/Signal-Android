@@ -42,11 +42,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
@@ -102,6 +100,9 @@ fun LocalBackupRestoreScreen(
     LocalBackupRestoreState.RestorePhase.InProgress -> {
       InProgressContent(progressFraction = state.progressFraction, onEvent = onEvent, modifier = modifier)
     }
+    LocalBackupRestoreState.RestorePhase.IncorrectCredential -> {
+      IncorrectCredentialContent(backupType = state.backupInfo?.type, onEvent = onEvent, modifier = modifier)
+    }
     LocalBackupRestoreState.RestorePhase.Error -> {
       ErrorContent(errorMessage = state.errorMessage, onEvent = onEvent, modifier = modifier)
     }
@@ -125,7 +126,7 @@ private fun SelectFolderContent(
       BackupOptionCard(
         icon = {
           Icon(
-            imageVector = ImageVector.vectorResource(R.drawable.symbol_folder_24),
+            imageVector = SignalIcons.Folder.imageVector,
             contentDescription = null,
             tint = MaterialTheme.colorScheme.primary,
             modifier = Modifier.size(32.dp)
@@ -278,7 +279,7 @@ private fun BackupInfoCard(
         val sizeIcon = if (backupInfo.type == LocalBackupInfo.BackupType.V1) {
           SignalIcons.File.imageVector
         } else {
-          ImageVector.vectorResource(R.drawable.symbol_folder_24)
+          SignalIcons.Folder.imageVector
         }
 
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -533,6 +534,41 @@ private fun InProgressContent(
 }
 
 @Composable
+private fun IncorrectCredentialContent(
+  backupType: LocalBackupInfo.BackupType?,
+  onEvent: (LocalBackupRestoreEvents) -> Unit,
+  modifier: Modifier = Modifier
+) {
+  val headline = if (backupType == LocalBackupInfo.BackupType.V1) {
+    stringResource(R.string.LocalBackupRestoreScreen__incorrect_passphrase)
+  } else {
+    stringResource(R.string.LocalBackupRestoreScreen__incorrect_recovery_key)
+  }
+
+  LocalBackupRestoreLayout(
+    modifier = modifier,
+    description = {
+      Description(
+        headline = headline,
+        body = stringResource(R.string.LocalBackupRestoreScreen__incorrect_credential_description)
+      )
+    },
+    content = {},
+    primaryButton = { buttonModifier ->
+      OutlinedButton(
+        onClick = { onEvent(LocalBackupRestoreEvents.RestoreBackup) },
+        modifier = buttonModifier
+      ) {
+        Text(text = stringResource(R.string.LocalBackupRestoreScreen__try_again))
+      }
+    },
+    secondaryButton = { buttonModifier ->
+      CancelButton(onEvent, buttonModifier)
+    }
+  )
+}
+
+@Composable
 private fun ErrorContent(
   errorMessage: String?,
   onEvent: (LocalBackupRestoreEvents) -> Unit,
@@ -669,6 +705,26 @@ private fun LocalBackupRestoreScreenErrorPreview() {
   Previews.Preview {
     LocalBackupRestoreScreen(
       state = LocalBackupRestoreState(restorePhase = LocalBackupRestoreState.RestorePhase.Error, errorMessage = "Backup file is corrupted"),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun LocalBackupRestoreScreenIncorrectCredentialPreview() {
+  Previews.Preview {
+    LocalBackupRestoreScreen(
+      state = LocalBackupRestoreState(
+        restorePhase = LocalBackupRestoreState.RestorePhase.IncorrectCredential,
+        backupInfo = LocalBackupInfo(
+          type = LocalBackupInfo.BackupType.V2,
+          date = LocalDateTime.of(2026, 3, 15, 14, 30, 0),
+          name = "signal-backup-2026-03-15-14-30-00",
+          uri = Uri.EMPTY,
+          sizeBytes = 511.mebiBytes.bytes
+        )
+      ),
       onEvent = {}
     )
   }

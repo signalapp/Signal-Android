@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.util
 import android.content.Context
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.splitByByteLength
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mms.TextSlide
-import org.thoughtcrime.securesms.providers.BlobProvider
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -31,7 +31,7 @@ object MessageUtil {
       val textData = rawText.toByteArray()
       val timestamp = SimpleDateFormat("yyyy-MM-dd-HHmmss", Locale.US).format(Date())
       val filename = String.format("signal-%s.txt", timestamp)
-      val textUri = BlobProvider.getInstance()
+      val textUri = AppDependencies.blobs
         .forData(textData)
         .withMimeType(MediaUtil.LONG_TEXT)
         .withFileName(filename)

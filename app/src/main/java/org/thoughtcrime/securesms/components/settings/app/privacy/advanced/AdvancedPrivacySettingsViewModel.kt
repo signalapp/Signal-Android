@@ -71,8 +71,10 @@ class AdvancedPrivacySettingsViewModel(
 
   fun setAllowAutomaticVerification(enabled: Boolean) {
     SignalStore.settings.automaticVerificationEnabled = enabled
+    SignalStore.misc.hasKeyTransparencyFailure = false
+    SignalStore.misc.hasSeenKeyTransparencyFailure = false
     refresh()
-    viewModelScope.launch(SignalDispatchers.IO) {
+    viewModelScope.launch(SignalDispatchers.Default) {
       if (!enabled) {
         SignalDatabase.recipients.clearAllKeyTransparencyData()
         SignalStore.account.distinguishedHead = null
@@ -105,7 +107,8 @@ class AdvancedPrivacySettingsViewModel(
         AppDependencies.application
       ),
       showProgressSpinner = false,
-      allowAutomaticKeyVerification = SignalStore.settings.automaticVerificationEnabled
+      allowAutomaticKeyVerification = SignalStore.settings.automaticVerificationEnabled,
+      isPrimaryDevice = SignalStore.account.isPrimaryDevice
     )
   }
 

@@ -27,7 +27,7 @@ class StickerSearchRepository {
       .map { findStickersForEmoji(it) }
       .flatten()
 
-    return maybeEmojiQuery + searchResults
+    return (maybeEmojiQuery + searchResults).distinctBy { it.rowId }
   }
 
   @WorkerThread

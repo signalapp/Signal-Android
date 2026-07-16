@@ -113,7 +113,12 @@ class DefaultCallLinkDetailsCallback(
   }
 
   override fun onEditNameClicked() {
-    router.goToCallDetail(MainNavigationDetailLocation.Calls.CallLinks.EditCallLinkName(callLinkRoomId = viewModel.recipientSnapshot!!.requireCallLinkRoomId()))
+    router.goToCallDetail(
+      MainNavigationDetailLocation.Calls.CallLinks.EditCallLinkName(
+        callLinkRoomId = viewModel.recipientSnapshot!!.requireCallLinkRoomId(),
+        currentName = viewModel.nameSnapshot
+      )
+    )
   }
 
   override fun onShareClicked() {
@@ -221,7 +226,7 @@ fun CallLinkDetailsScreen(
         )
       }
 
-      if (state.callLink.credentials?.adminPassBytes != null) {
+      if (state.callLink.canModify) {
         item {
           Rows.TextRow(
             text = stringResource(
@@ -273,13 +278,15 @@ fun CallLinkDetailsScreen(
         )
       }
 
-      item {
-        Rows.TextRow(
-          text = stringResource(id = R.string.CallLinkDetailsFragment__delete_call_link),
-          icon = SignalIcons.Trash.imageVector,
-          foregroundTint = MaterialTheme.colorScheme.error,
-          onClick = callback::onDeleteClicked
-        )
+      if (state.callLink.canModify) {
+        item {
+          Rows.TextRow(
+            text = stringResource(id = R.string.CallLinkDetailsFragment__delete_call_link),
+            icon = SignalIcons.Trash.imageVector,
+            foregroundTint = MaterialTheme.colorScheme.error,
+            onClick = callback::onDeleteClicked
+          )
+        }
       }
     }
 

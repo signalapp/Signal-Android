@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.audio.AudioWaveForms;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
+import org.thoughtcrime.securesms.jobs.AttachmentBackfill;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
@@ -82,9 +83,11 @@ public final class AudioView extends FrameLayout {
             private boolean            isPlaying;
             private long               durationMillis;
             private AudioSlide         audioSlide;
+            private boolean            showControls;
             private Callbacks          callbacks;
 
-            private Disposable disposable = Disposable.disposed();
+  private Disposable disposable         = Disposable.disposed();
+  private Disposable awaitingDisposable = Disposable.disposed();
 
   private final Observer<VoiceNotePlaybackState> playbackStateObserver = this::onPlaybackState;
 
@@ -159,6 +162,12 @@ public final class AudioView extends FrameLayout {
   protected void onAttachedToWindow() {
     super.onAttachedToWindow();
     if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
+
+    awaitingDisposable = AttachmentBackfill.awaitingChanges()
+                                           .observeOn(AndroidSchedulers.mainThread())
+                                           .subscribe(ignored -> {
+                                             if (audioSlide != null) presentTransferControls(audioSlide, showControls);
+                                           }, t -> Log.w(TAG, "Error observing backfill awaiting state.", t));
   }
 
   @Override
@@ -166,6 +175,7 @@ public final class AudioView extends FrameLayout {
     super.onDetachedFromWindow();
     EventBus.getDefault().unregister(this);
     disposable.dispose();
+    awaitingDisposable.dispose();
   }
 
   public void setProgressAndPlayBackgroundTint(@ColorInt int color) {
@@ -197,27 +207,8 @@ public final class AudioView extends FrameLayout {
       }
     }
 
-    if (showControls && audio.isPendingDownload()) {
-      controlToggle.displayQuick(downloadContainer);
-      seekBar.setEnabled(false);
-      downloadButton.setOnClickListener(new DownloadClickedListener(audio));
-      if (circleProgress != null) {
-        if (circleProgress.isSpinning()) circleProgress.stopSpinning();
-        circleProgress.setVisibility(View.GONE);
-      }
-    } else if (showControls && audio.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_STARTED) {
-      controlToggle.displayQuick(progressAndPlay);
-      seekBar.setEnabled(false);
-      showPlayButton();
-      if (circleProgress != null) {
-        circleProgress.setVisibility(View.VISIBLE);
-        circleProgress.spin();
-      }
-    } else {
-      seekBar.setEnabled(true);
-      if (circleProgress != null && circleProgress.isSpinning()) circleProgress.stopSpinning();
-      showPlayButton();
-    }
+    this.showControls = showControls;
+    presentTransferControls(audio, showControls);
 
     if (seekBar instanceof WaveFormSeekBarView) {
       WaveFormSeekBarView waveFormView = (WaveFormSeekBarView) seekBar;
@@ -260,6 +251,38 @@ public final class AudioView extends FrameLayout {
           case PERMANENT_FAILURE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
         }
       }
+    }
+  }
+
+  private void presentTransferControls(@NonNull AudioSlide audio, boolean showControls) {
+    DatabaseAttachment dbAttachment = audio.asAttachment() instanceof DatabaseAttachment ? (DatabaseAttachment) audio.asAttachment() : null;
+
+    if (dbAttachment != null && dbAttachment.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE && AttachmentBackfill.isAwaitingBackfill(dbAttachment.attachmentId)) {
+      AttachmentBackfill.onAttachmentTerminal(dbAttachment.attachmentId, dbAttachment.mmsId);
+    }
+
+    boolean awaitingBackfill = dbAttachment != null && AttachmentBackfill.isAwaitingBackfill(dbAttachment.attachmentId);
+
+    if (showControls && audio.isPendingDownload() && !awaitingBackfill) {
+      controlToggle.displayQuick(downloadContainer);
+      seekBar.setEnabled(false);
+      downloadButton.setOnClickListener(new DownloadClickedListener(audio));
+      if (circleProgress != null) {
+        if (circleProgress.isSpinning()) circleProgress.stopSpinning();
+        circleProgress.setVisibility(View.GONE);
+      }
+    } else if (showControls && (audio.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_STARTED || awaitingBackfill)) {
+      controlToggle.displayQuick(progressAndPlay);
+      seekBar.setEnabled(false);
+      showPlayButton();
+      if (circleProgress != null) {
+        circleProgress.setVisibility(View.VISIBLE);
+        if (!circleProgress.isSpinning()) circleProgress.spin();
+      }
+    } else {
+      seekBar.setEnabled(true);
+      if (circleProgress != null && circleProgress.isSpinning()) circleProgress.stopSpinning();
+      showPlayButton();
     }
   }
 

@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import java.io.File;
 
 /**
- * We moved files stored by {@link org.thoughtcrime.securesms.providers.BlobProvider} from the cache
+ * We moved files stored by {@link org.signal.core.util.contentproviders.BlobProvider} from the cache
  * into internal storage, so we gotta move any existing multi-session files.
  */
 public class BlobStorageLocationMigrationJob extends MigrationJob {

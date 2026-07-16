@@ -50,7 +50,7 @@ object ArchiveUploadProgress {
 
   private val TAG = Log.tag(ArchiveUploadProgress::class)
 
-  private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+  private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
 
   private val _progress: MutableSharedFlow<Unit> = MutableSharedFlow(replay = 1)
 
@@ -119,7 +119,7 @@ object ArchiveUploadProgress {
       updateState(notify = false) { updated }
     }
     .onStart { emit(uploadProgress) }
-    .flowOn(Dispatchers.IO)
+    .flowOn(Dispatchers.Default)
     .shareIn(scope, SharingStarted.Eagerly, replay = 1)
 
   init {

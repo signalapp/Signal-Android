@@ -13,6 +13,7 @@ import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
@@ -58,14 +59,20 @@ class InAppPaymentStripeRecurringSetupJob private constructor(
   }
 
   override fun performPreUserAction(inAppPayment: InAppPaymentTable.InAppPayment): RequiredUserAction {
-    info("Ensuring the subscriber id is set on the server.")
-    RecurringInAppPaymentRepository.ensureSubscriberIdSync(inAppPayment.type.requireSubscriberType())
-    info("Canceling active subscription (if necessary).")
-    RecurringInAppPaymentRepository.cancelActiveSubscriptionIfNecessarySync(inAppPayment.type.requireSubscriberType())
-    info("Creating and confirming setup intent.")
-    return when (val action = StripeRepository.createAndConfirmSetupIntent(inAppPayment.type, data.inAppPaymentSource!!.toPaymentSource(), inAppPayment.data.paymentMethodType.toPaymentSourceType() as PaymentSourceType.Stripe)) {
-      is StripeApi.Secure3DSAction.ConfirmRequired -> RequiredUserAction.StripeActionRequired(action)
-      is StripeApi.Secure3DSAction.NotNeeded -> RequiredUserAction.StripeActionNotRequired(action)
+    try {
+      info("Ensuring the subscriber id is set on the server.")
+      RecurringInAppPaymentRepository.ensureSubscriberIdSync(inAppPayment.type.requireSubscriberType())
+      info("Canceling active subscription (if necessary).")
+      RecurringInAppPaymentRepository.cancelActiveSubscriptionIfNecessarySync(inAppPayment.type.requireSubscriberType())
+      info("Creating and confirming setup intent.")
+      return when (val action = StripeRepository.createAndConfirmSetupIntent(inAppPayment.type, data.inAppPaymentSource!!.toPaymentSource(), inAppPayment.data.paymentMethodType.toPaymentSourceType() as PaymentSourceType.Stripe)) {
+        is StripeApi.Secure3DSAction.ConfirmRequired -> RequiredUserAction.StripeActionRequired(action)
+        is StripeApi.Secure3DSAction.NotNeeded -> RequiredUserAction.StripeActionNotRequired(action)
+      }
+    } catch (e: DonationError) {
+      throw e
+    } catch (e: Exception) {
+      throw DonationError.getPaymentSetupError(inAppPayment.type.toErrorSource(), e, inAppPayment.data.paymentMethodType.toPaymentSourceType())
     }
   }
 

@@ -11,6 +11,7 @@ import androidx.core.os.bundleOf
 import kotlinx.parcelize.Parcelize
 import org.signal.core.util.getParcelableCompat
 import org.signal.imageeditor.core.model.EditorModel
+import org.signal.mediasend.edit.video.VideoTrimData
 
 /**
  * Sealed interface for per-media editor state. All subtypes are [Parcelable] so the
@@ -23,13 +24,10 @@ sealed interface EditorState : Parcelable {
    */
   @Parcelize
   data class VideoTrim(
-    val isDurationEdited: Boolean = false,
-    val totalInputDurationUs: Long = 0,
-    val startTimeUs: Long = 0,
-    val endTimeUs: Long = 0
+    val videoTrimData: VideoTrimData
   ) : EditorState {
 
-    val clipDurationUs: Long get() = endTimeUs - startTimeUs
+    val clipDurationUs: Long get() = videoTrimData.endTimeUs - videoTrimData.startTimeUs
 
     /**
      * Clamps this trim data to the maximum allowed clip duration.
@@ -43,25 +41,21 @@ sealed interface EditorState : Parcelable {
         return this
       }
 
-      return copy(
-        isDurationEdited = true,
-        startTimeUs = if (!preserveStartTime) endTimeUs - maxDurationUs else startTimeUs,
-        endTimeUs = if (preserveStartTime) startTimeUs + maxDurationUs else endTimeUs
+      return VideoTrim(
+        videoTrimData = videoTrimData.copy(
+          isDurationEdited = true,
+          startTimeUs = if (!preserveStartTime) videoTrimData.endTimeUs - maxDurationUs else videoTrimData.startTimeUs,
+          endTimeUs = if (preserveStartTime) videoTrimData.startTimeUs + maxDurationUs else videoTrimData.endTimeUs
+        )
       )
     }
 
     companion object {
-      private const val KEY_IS_DURATION_EDITED = "isDurationEdited"
-      private const val KEY_TOTAL_INPUT_DURATION_US = "totalInputDurationUs"
-      private const val KEY_START_TIME_US = "startTimeUs"
-      private const val KEY_END_TIME_US = "endTimeUs"
+      private const val KEY_MODEL = "model"
 
       fun fromBundle(bundle: Bundle): VideoTrim {
         return VideoTrim(
-          isDurationEdited = bundle.getBoolean(KEY_IS_DURATION_EDITED, false),
-          totalInputDurationUs = bundle.getLong(KEY_TOTAL_INPUT_DURATION_US, 0),
-          startTimeUs = bundle.getLong(KEY_START_TIME_US, 0),
-          endTimeUs = bundle.getLong(KEY_END_TIME_US, 0)
+          videoTrimData = bundle.getParcelableCompat(KEY_MODEL, VideoTrimData::class.java)!!
         )
       }
 
@@ -69,29 +63,28 @@ sealed interface EditorState : Parcelable {
        * Creates initial trim data for a video, clamping to max duration if needed.
        */
       fun forVideo(durationUs: Long, maxDurationUs: Long): VideoTrim {
-        return if (durationUs <= maxDurationUs) {
-          VideoTrim(
+        val videoTrimData = if (durationUs <= maxDurationUs) {
+          VideoTrimData(
             isDurationEdited = false,
             totalInputDurationUs = durationUs,
             startTimeUs = 0,
             endTimeUs = durationUs
           )
         } else {
-          VideoTrim(
+          VideoTrimData(
             isDurationEdited = true,
             totalInputDurationUs = durationUs,
             startTimeUs = 0,
             endTimeUs = maxDurationUs
           )
         }
+
+        return VideoTrim(videoTrimData = videoTrimData)
       }
     }
 
     fun toBundle(): Bundle = Bundle().apply {
-      putBoolean(KEY_IS_DURATION_EDITED, isDurationEdited)
-      putLong(KEY_TOTAL_INPUT_DURATION_US, totalInputDurationUs)
-      putLong(KEY_START_TIME_US, startTimeUs)
-      putLong(KEY_END_TIME_US, endTimeUs)
+      putParcelable(KEY_MODEL, videoTrimData)
     }
   }
 

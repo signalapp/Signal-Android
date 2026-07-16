@@ -31,6 +31,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextDirection
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.IconButtons.IconButton
@@ -70,7 +71,7 @@ fun RecipientSearchBar(
         value = query,
         onValueChange = onQueryChange,
         modifier = Modifier.onFocusChanged { onFocusChanged(it.isFocused) },
-        placeholder = { Text(hint) },
+        placeholder = { Text(hint, maxLines = 1, overflow = TextOverflow.Ellipsis) },
         singleLine = true,
         textStyle = TextStyle(textDirection = TextDirection.ContentOrLtr),
         shape = SearchBarDefaults.inputFieldShape,

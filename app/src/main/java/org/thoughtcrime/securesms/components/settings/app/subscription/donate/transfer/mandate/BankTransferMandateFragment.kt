@@ -40,6 +40,7 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -58,6 +59,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.DonationTransferTestTags
 import org.thoughtcrime.securesms.compose.StatusBarColorAnimator
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -267,6 +269,7 @@ fun BankTransferScreen(
               .wrapContentWidth()
               .padding(top = 16.dp, bottom = 16.dp)
               .defaultMinSize(minWidth = 220.dp)
+              .testTag(DonationTransferTestTags.SEPA_MANDATE_CONTINUE_BUTTON)
           ) {
             Text(text = if (listState.canScrollForward) stringResource(id = R.string.BankTransferMandateFragment__read_more) else stringResource(id = R.string.BankTransferMandateFragment__agree))
           }

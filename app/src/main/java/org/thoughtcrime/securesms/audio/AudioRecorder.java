@@ -11,10 +11,11 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.contentproviders.BlobProvider;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.notifications.v2.InChatNotificationSoundSuppressor;
-import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
@@ -88,9 +89,9 @@ public class AudioRecorder {
 
         ParcelFileDescriptor fds[] = ParcelFileDescriptor.createPipe();
 
-        BlobProvider.BlobBuilder blobBuilder = BlobProvider.getInstance()
-                                                           .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)
-                                                           .withMimeType(MediaUtil.AUDIO_AAC);
+        BlobProvider.BlobBuilder blobBuilder = AppDependencies.getBlobs()
+                                                              .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)
+                                                              .withMimeType(MediaUtil.AUDIO_AAC);
 
         recordingUri       = blobBuilder.buildUriForDraftAttachment();
         recordingUriFuture = blobBuilder.createForDraftAttachmentAsync(context);

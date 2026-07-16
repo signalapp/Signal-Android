@@ -32,7 +32,6 @@ import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.create.CreateCallLinkBottomSheetDialogFragment
-import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsActivity
 import org.thoughtcrime.securesms.components.ProgressCardDialogFragment
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
@@ -58,6 +57,7 @@ import org.thoughtcrime.securesms.main.MainToolbarMode
 import org.thoughtcrime.securesms.main.MainToolbarViewModel
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.doAfterNextLayout
@@ -242,9 +242,11 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
         MainToolbarViewModel.Event.Search.Close -> {
           viewModel.setSearchQuery("")
         }
+
         MainToolbarViewModel.Event.Search.Open -> {
           mainToolbarViewModel.setSearchHint(R.string.SearchToolbar_search)
         }
+
         is MainToolbarViewModel.Event.Search.Query -> {
           viewModel.setSearchQuery(it.query.trim())
         }
@@ -325,7 +327,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       )
       startActivity(intent)
     } else {
-      startActivity(CallLinkDetailsActivity.createIntent(requireContext(), callLogRow.peer.requireCallLinkRoomId()))
+      goToCallLinkDetails(callLogRow.peer.requireCallLinkRoomId())
     }
   }
 
@@ -375,6 +377,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
           )
         }
       }
+
       CallLogRow.CanStartCall.GROUP_TERMINATED -> ConversationDialogs.displayCannotStartGroupCallDueToGroupEndedDialog(requireContext())
       CallLogRow.CanStartCall.NOT_A_MEMBER -> ConversationDialogs.displayCannotStartGroupCallDueToNoLongerAMemberDialog(requireContext())
       CallLogRow.CanStartCall.ADMIN_ONLY -> ConversationDialogs.displayCannotStartGroupCallDueToPermissionsDialog(requireContext())
@@ -384,6 +387,10 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   override fun startSelection(call: CallLogRow) {
     callLogActionMode.start()
     viewModel.toggleSelected(call.id)
+  }
+
+  override fun goToCallLinkDetails(roomId: CallLinkRoomId) {
+    mainNavigationViewModel.goTo(MainNavigationDetailLocation.CallLinkDetails(roomId))
   }
 
   override fun deleteCall(call: CallLogRow) {
