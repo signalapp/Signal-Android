@@ -39,8 +39,8 @@ import kotlin.math.min
  * Capture button colors matching CameraButtonView.java
  */
 private object CaptureButtonColors {
-  /** Background fill: custom control color (0x52888888) */
-  val Background = Color(0x52888888)
+  /** Background fill: custom control color (0xCC333333) */
+  val Background = Color(0xCC333333)
 
   /** Outer ring stroke: pure white (0xFFFFFFFF) */
   val Arc = Color.White
