@@ -19,7 +19,10 @@ val localProperties: Properties? = if (localPropertiesFile.exists()) {
 
 android {
   namespace = "org.thoughtcrime.video.app"
-  compileSdkVersion(libs.versions.compileSdk.get())
+
+  compileSdk {
+    version = release(libs.versions.compileSdk.get().toInt())
+  }
 
   defaultConfig {
     applicationId = "org.thoughtcrime.video.app"
@@ -76,7 +79,7 @@ android {
     if (sampleVideosPath != null) {
       val sampleVideosDir = File(sampleVideosPath)
       if (sampleVideosDir.isDirectory) {
-        getByName("androidTest").assets.srcDir(sampleVideosDir)
+        getByName("androidTest").assets.directories.add(sampleVideosPath)
       }
     }
   }

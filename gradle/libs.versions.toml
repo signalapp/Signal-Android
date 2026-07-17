@@ -4,7 +4,7 @@
 [versions]
 # SDK & Build Versions
 buildTools = "36.0.0"
-compileSdk = "android-36.1"
+compileSdk = "37"
 targetSdk = "35"
 minSdk = "23"
 ndk = "28.0.13004108"

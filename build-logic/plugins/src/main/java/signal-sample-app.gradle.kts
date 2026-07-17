@@ -18,7 +18,10 @@ plugins {
 
 android {
   buildToolsVersion = libs.versions.buildTools.get()
-  compileSdkVersion(libs.versions.compileSdk.get())
+
+  compileSdk {
+    version = release(libs.versions.compileSdk.get().toInt())
+  }
 
   defaultConfig {
     versionCode = 1

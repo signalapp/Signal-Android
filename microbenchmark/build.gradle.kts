@@ -11,7 +11,10 @@ plugins {
 
 android {
   namespace = "org.signal.microbenchmark"
-  compileSdkVersion(libs.versions.compileSdk.get())
+
+  compileSdk {
+    version = release(libs.versions.compileSdk.get().toInt())
+  }
 
   compileOptions {
     isCoreLibraryDesugaringEnabled = true

@@ -154,7 +154,11 @@ android {
   experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
   buildToolsVersion = libs.versions.buildTools.get()
-  compileSdkVersion(libs.versions.compileSdk.get())
+
+  compileSdk {
+    version = release(libs.versions.compileSdk.get().toInt())
+  }
+
   ndkVersion = libs.versions.ndk.get()
 
   flavorDimensions += listOf("distribution", "environment")
@@ -191,12 +195,12 @@ android {
 
   sourceSets {
     getByName("test") {
-      java.srcDir("$projectDir/src/testShared")
+      java.directories += "$projectDir/src/testShared"
     }
 
     getByName("androidTest") {
-      java.srcDir("$projectDir/src/testShared")
-      java.srcDir("$projectDir/src/benchmarkShared/java")
+      java.directories += "$projectDir/src/testShared"
+      java.directories += "$projectDir/src/benchmarkShared/java"
     }
   }
 
@@ -411,6 +415,7 @@ android {
       isDefault = false
       isDebuggable = false
       isMinifyEnabled = true
+      isShrinkResources = true
       matchingFallbacks += "debug"
       buildConfigField("String", "BUILD_VARIANT_TYPE", "\"Benchmark\"")
       buildConfigField("boolean", "TRACING_ENABLED", "true")
@@ -521,18 +526,18 @@ android {
   android.buildTypes.configureEach {
     val path = if (name == "release") releaseDir else debugDir
     sourceSets.named(name) {
-      java.srcDir(path)
+      java.directories += path
     }
   }
 
   sourceSets {
     getByName("mocked") {
-      java.srcDir("$projectDir/src/benchmarkShared/java")
+      java.directories += "$projectDir/src/benchmarkShared/java"
       manifest.srcFile("$projectDir/src/benchmarkShared/AndroidManifest.xml")
     }
 
     getByName("benchmark") {
-      java.srcDir("$projectDir/src/benchmarkShared/java")
+      java.directories += "$projectDir/src/benchmarkShared/java"
       manifest.srcFile("$projectDir/src/benchmarkShared/AndroidManifest.xml")
     }
   }

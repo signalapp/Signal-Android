@@ -6,7 +6,10 @@ plugins {
 
 android {
   namespace = "org.signal.camera.demo"
-  compileSdkVersion(libs.versions.compileSdk.get())
+
+  compileSdk {
+    version = release(libs.versions.compileSdk.get().toInt())
+  }
 
   defaultConfig {
     applicationId = "org.signal.camera.demo"
