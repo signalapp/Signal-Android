@@ -42,6 +42,7 @@ import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
+import org.signal.libsignal.net.LinkedDevice as LibSignalLinkedDevice
 
 /**
  * Repository for linked devices and its various actions (linking, unlinking, listing).
@@ -53,31 +54,35 @@ object LinkDeviceRepository {
 
   suspend fun removeDevice(deviceId: Int): Boolean {
     return when (val result = AppDependencies.linkDeviceApi.removeDevice(deviceId)) {
-      is NetworkResult.Success -> {
+      is RequestResult.Success -> {
         LinkedDeviceInactiveCheckJob.enqueue()
         true
       }
-      else -> {
-        Log.w(TAG, "Unable to remove device", result.getCause())
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "Unable to remove device", result.networkError)
         false
       }
+      is RequestResult.ApplicationError -> throw result.cause
+      is RequestResult.NonSuccess -> error("Code branch is unreachable")
     }
   }
 
-  fun loadDevices(): List<Device>? {
+  suspend fun loadDevices(): List<Device>? {
     return when (val result = AppDependencies.linkDeviceApi.getDevices()) {
-      is NetworkResult.Success -> {
+      is RequestResult.Success -> {
         result
           .result
-          .filter { d: DeviceInfo -> d.getId() != SignalServiceAddress.DEFAULT_DEVICE_ID }
-          .map { deviceInfo: DeviceInfo -> deviceInfo.toDevice() }
+          .filter { it.id != SignalServiceAddress.DEFAULT_DEVICE_ID }
+          .map { it.toLocalDevice() }
           .sortedBy { it.createdMillis }
           .toList()
       }
-      else -> {
-        Log.w(TAG, "Unable to load device", result.getCause())
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "Unable to load device", result.networkError)
         null
       }
+      is RequestResult.ApplicationError -> throw result.cause
+      is RequestResult.NonSuccess -> error("Code branch is unreachable")
     }
   }
 
@@ -89,10 +94,10 @@ object LinkDeviceRepository {
       lastSeen = response.lastSeen
       registrationId = response.registrationId
       createdAtCiphertext = response.createdAtCiphertext
-    }.toDevice()
+    }.toLocalDevice()
   }
 
-  private fun DeviceInfo.toDevice(): Device {
+  private fun DeviceInfo.toLocalDevice(): Device {
     val createdAt = this.getPlaintextCreatedAt()
     val defaultDevice = Device(getId(), getName(), createdAt, getLastSeen(), getRegistrationId())
     try {
@@ -120,11 +125,54 @@ object LinkDeviceRepository {
     return defaultDevice
   }
 
+  private fun LibSignalLinkedDevice.toLocalDevice(): Device {
+    val createdAt = getPlaintextCreatedAt()
+    val defaultDevice = Device(this.id, Base64.encodeWithPadding(this.encryptedName), createdAt, this.lastSeen.toEpochMilli(), this.registrationId)
+    try {
+      if (this.encryptedName.size < 4) {
+        Log.w(TAG, "Invalid LinkedDevice name.")
+        return defaultDevice
+      }
+
+      val deviceName = DeviceName.ADAPTER.decode(this.encryptedName)
+      if (deviceName.ciphertext == null || deviceName.ephemeralPublic == null || deviceName.syntheticIv == null) {
+        Log.w(TAG, "Got a DeviceName that wasn't properly populated.")
+        return defaultDevice
+      }
+
+      val plaintext = DeviceNameCipher.decryptDeviceName(deviceName, SignalStore.account.aciIdentityKey)
+      if (plaintext == null) {
+        Log.w(TAG, "Failed to decrypt device name.")
+        return defaultDevice
+      }
+
+      return Device(id, String(plaintext), createdAt, lastSeen.toEpochMilli(), registrationId)
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed while reading the protobuf.", e)
+    }
+    return defaultDevice
+  }
+
   private fun DeviceInfo.getPlaintextCreatedAt(): Long? {
     return try {
-      val associatedData = byteArrayOf(getId().toByte()) + getRegistrationId().toByteArray()
+      val associatedData = byteArrayOf(getId().toByte()) + this.getRegistrationId().toByteArray()
       val createdAtPlaintext = SignalStore.account.aciIdentityKey.privateKey.open(
-        ciphertext = Base64.decode(getCreatedAtCiphertext().toByteArray()),
+        ciphertext = Base64.decode(this.getCreatedAtCiphertext().toByteArray()),
+        info = DECRYPTION_INFO,
+        associatedData = associatedData
+      )
+      ByteBuffer.wrap(createdAtPlaintext).getLong()
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed while reading the protobuf.", e)
+      null
+    }
+  }
+
+  private fun LibSignalLinkedDevice.getPlaintextCreatedAt(): Long? {
+    return try {
+      val associatedData = byteArrayOf(this.id.toByte()) + this.registrationId.toByteArray()
+      val createdAtPlaintext = SignalStore.account.aciIdentityKey.privateKey.open(
+        ciphertext = this.createdAtCiphertext,
         info = DECRYPTION_INFO,
         associatedData = associatedData
       )

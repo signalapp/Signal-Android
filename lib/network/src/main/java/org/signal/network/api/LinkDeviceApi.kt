@@ -14,12 +14,13 @@ import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.urlEncode
+import org.signal.libsignal.net.AuthDevicesService
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.network.NetworkResult
 import org.signal.network.websocket.WebSocketRequestMessage
-import org.signal.network.websocket.delete
 import org.signal.network.websocket.get
 import org.signal.network.websocket.put
 import org.whispersystems.signalservice.api.fromWebSocketRequest
@@ -29,15 +30,14 @@ import org.whispersystems.signalservice.api.link.SetLinkedDeviceTransferArchiveR
 import org.whispersystems.signalservice.api.link.TransferArchiveError
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse
-import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo
 import org.whispersystems.signalservice.api.provisioning.ProvisioningMessage
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.crypto.PrimaryProvisioningCipher
-import org.whispersystems.signalservice.internal.push.DeviceInfoList
 import org.whispersystems.signalservice.internal.push.ProvisionMessage
 import org.whispersystems.signalservice.internal.push.ProvisioningVersion
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
+import org.signal.libsignal.net.LinkedDevice as LibSignalLinkedDevice
 
 /**
  * Class to interact with device-linking endpoints.
@@ -47,29 +47,19 @@ class LinkDeviceApi(
 ) {
   /**
    * Fetches a list of linked devices.
-   *
-   * GET /v1/devices
-   *
-   * - 200: Success
    */
-  fun getDevices(): NetworkResult<List<DeviceInfo>> {
-    val request = WebSocketRequestMessage.get("/v1/devices")
-    return NetworkResult
-      .fromWebSocketRequest(authWebSocket, request, DeviceInfoList::class)
-      .map { it.getDevices() }
+  suspend fun getDevices(): RequestResult<List<LibSignalLinkedDevice>, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthDevicesService(connection).getDevices()
+    }
   }
 
   /**
    * Remove and unlink a linked device.
-   *
-   * DELETE /v1/devices/{id}
-   *
-   * - 200: Success
    */
-  suspend fun removeDevice(deviceId: Int): NetworkResult<Unit> {
-    val request = WebSocketRequestMessage.delete("/v1/devices/$deviceId")
-    return NetworkResult.fromWebSocketSuspend(NetworkResult.DefaultWebSocketConverter(Unit::class)) {
-      authWebSocket.requestSuspend(request)
+  suspend fun removeDevice(deviceId: Int): RequestResult<Unit, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthDevicesService(connection).removeDevice(deviceId)
     }
   }
 

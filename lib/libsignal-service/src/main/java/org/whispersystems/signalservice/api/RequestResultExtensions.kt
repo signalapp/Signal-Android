@@ -81,7 +81,7 @@ fun <T : Any> RequestResult<T, Nothing>.successOrThrow(): T {
   return when (this) {
     is RequestResult.Success -> result
     is RequestResult.RetryableNetworkError -> throw networkError
-    is RequestResult.NonSuccess -> error("Branch is unreachable")
+    is RequestResult.NonSuccess -> error("Code branch is unreachable")
     is RequestResult.ApplicationError -> throw when (val error = cause) {
       is IOException, is RuntimeException -> error
       else -> RuntimeException(error)
