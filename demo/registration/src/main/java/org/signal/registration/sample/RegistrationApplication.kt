@@ -6,8 +6,11 @@
 package org.signal.registration.sample
 
 import android.app.Application
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.os.Build
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.conscrypt.Conscrypt
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.ui.CoreUiDependencies
@@ -29,11 +32,14 @@ import org.signal.registration.sample.storage.RegistrationPreferences
 import org.whispersystems.signalservice.api.util.CredentialsProvider
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import java.io.InputStream
+import java.security.Security
 import java.util.Optional
 
 class RegistrationApplication : Application() {
 
   companion object {
+    private val TAG = Log.tag(RegistrationApplication::class)
+
     // Staging SVR2 mrEnclave value
     private const val SVR2_MRENCLAVE = "97f151f6ed078edbbfd72fa9cae694dcc08353f1f5e8d9ccd79a971b10ffc535"
 
@@ -45,6 +51,7 @@ class RegistrationApplication : Application() {
     super.onCreate()
 
     Log.initialize(AndroidLogger)
+    initializeSecurityProvider()
 
     RegistrationPreferences.init(this)
     createDeviceTransferNotificationChannel()
@@ -90,12 +97,21 @@ class RegistrationApplication : Application() {
     )
   }
 
+  private fun initializeSecurityProvider() {
+    val position = Security.insertProviderAt(Conscrypt.newProvider(), 1)
+    Log.i(TAG, "Installed Conscrypt provider: $position")
+  }
+
   private fun createDeviceTransferNotificationChannel() {
-    val manager = getSystemService(android.app.NotificationManager::class.java) ?: return
-    val channel = android.app.NotificationChannel(
+    if (Build.VERSION.SDK_INT < 26) {
+      return
+    }
+
+    val manager = getSystemService(NotificationManager::class.java) ?: return
+    val channel = NotificationChannel(
       DemoNetworkController.DEVICE_TRANSFER_NOTIFICATION_CHANNEL_ID,
       "Device transfer",
-      android.app.NotificationManager.IMPORTANCE_LOW
+      NotificationManager.IMPORTANCE_LOW
     )
     manager.createNotificationChannel(channel)
   }
