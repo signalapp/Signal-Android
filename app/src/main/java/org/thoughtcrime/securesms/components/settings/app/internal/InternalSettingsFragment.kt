@@ -25,7 +25,6 @@ import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.permissions.PermissionDeniedBottomSheet
 import org.signal.core.ui.permissions.RationaleDialog
 import org.signal.core.util.AppUtil
-import org.signal.core.util.ThreadUtil
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.concurrent.SimpleTask
@@ -1055,19 +1054,17 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       .setTitle("Unregister?")
       .setMessage("Are you sure? You'll have to re-register to use Signal again -- no promises that the process will go smoothly.")
       .setPositiveButton(android.R.string.ok) { _, _ ->
-        AdvancedPrivacySettingsRepository(requireContext()).disablePushMessages {
-          ThreadUtil.runOnMain {
-            when (it) {
-              AdvancedPrivacySettingsRepository.DisablePushMessagesResult.SUCCESS -> {
-                SignalStore.account.setRegistered(false)
-                SignalStore.registration.clearRegistrationComplete()
-                SignalStore.registration.hasUploadedProfile = false
-                Toast.makeText(context, "Unregistered!", Toast.LENGTH_SHORT).show()
-              }
+        lifecycleScope.launch {
+          when (AdvancedPrivacySettingsRepository(requireContext()).disablePushMessages()) {
+            AdvancedPrivacySettingsRepository.DisablePushMessagesResult.SUCCESS -> {
+              SignalStore.account.setRegistered(false)
+              SignalStore.registration.clearRegistrationComplete()
+              SignalStore.registration.hasUploadedProfile = false
+              Toast.makeText(context, "Unregistered!", Toast.LENGTH_SHORT).show()
+            }
 
-              AdvancedPrivacySettingsRepository.DisablePushMessagesResult.NETWORK_ERROR -> {
-                Toast.makeText(context, "Network error!", Toast.LENGTH_SHORT).show()
-              }
+            AdvancedPrivacySettingsRepository.DisablePushMessagesResult.NETWORK_ERROR -> {
+              Toast.makeText(context, "Network error!", Toast.LENGTH_SHORT).show()
             }
           }
         }

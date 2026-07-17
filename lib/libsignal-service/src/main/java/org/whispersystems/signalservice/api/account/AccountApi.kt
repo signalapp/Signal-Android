@@ -5,8 +5,10 @@
 
 package org.whispersystems.signalservice.api.account
 
+import kotlinx.coroutines.runBlocking
 import org.signal.core.util.Base64
 import org.signal.core.util.Base64.encodeUrlSafeWithoutPadding
+import org.signal.libsignal.net.AuthDevicesService
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.usernames.BaseUsernameException
 import org.signal.libsignal.usernames.Username
@@ -21,7 +23,6 @@ import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.push.ConfirmUsernameRequest
 import org.whispersystems.signalservice.internal.push.ConfirmUsernameResponse
-import org.whispersystems.signalservice.internal.push.GcmRegistrationId
 import org.whispersystems.signalservice.internal.push.PhoneNumberDiscoverabilityRequest
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.push.ReserveUsernameRequest
@@ -52,21 +53,24 @@ class AccountApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSock
   }
 
   /**
-   * PUT /v1/accounts/gcm
-   * - 200: Success
+   * Sets the FCM push token the server should use to notify this device of new messages.
    */
-  fun setFcmToken(fcmToken: String): NetworkResult<Unit> {
-    val request = WebSocketRequestMessage.put("/v1/accounts/gcm", GcmRegistrationId(fcmToken, true))
-    return NetworkResult.fromWebSocketRequest(authWebSocket, request)
+  fun setFcmToken(fcmToken: String): RequestResult<Unit, Nothing> {
+    return runBlocking {
+      authWebSocket.runCatchingWithChatConnection { connection ->
+        AuthDevicesService(connection).setPushToken(fcmToken)
+      }
+    }
   }
 
   /**
-   * DELETE /v1/account/gcm
-   * - 204: Success
+   * Removes any push tokens associated with this device. Afterwards, the server will assume this device
+   * polls for new messages over an open websocket.
    */
-  fun clearFcmToken(): NetworkResult<Unit> {
-    val request = WebSocketRequestMessage.delete("/v1/accounts/gcm")
-    return NetworkResult.fromWebSocketRequest(authWebSocket, request)
+  suspend fun clearFcmToken(): RequestResult<Unit, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthDevicesService(connection).clearPushToken()
+    }
   }
 
   /**
