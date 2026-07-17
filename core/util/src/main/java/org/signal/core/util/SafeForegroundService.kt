@@ -6,6 +6,7 @@
 package org.signal.core.util
 
 import android.annotation.SuppressLint
+import android.app.ForegroundServiceStartNotAllowedException
 import android.app.Notification
 import android.app.Service
 import android.content.Context
@@ -183,7 +184,6 @@ abstract class SafeForegroundService : Service() {
     super.onCreate()
   }
 
-  @SuppressLint("WrongConstant")
   override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
     checkNotNull(intent) { "Must have an intent!" }
 
@@ -191,10 +191,11 @@ abstract class SafeForegroundService : Service() {
 
     if (intent.action == ACTION_TIMEOUT) {
       Log.i(TAG, "Time limit for foreground services has been met. Skipping starting a foreground.")
-    } else if (Build.VERSION.SDK_INT >= 30 && serviceType(intent) != 0) {
-      startForeground(notificationId, getForegroundNotification(intent), serviceType(intent))
-    } else {
-      startForeground(notificationId, getForegroundNotification(intent))
+    } else if (!postForegroundNotification(intent)) {
+      Log.w(tag, "[onStartCommand] Unable to enter the foreground. Stopping service. action: ${intent.action}")
+      stateLock.withLock { states[javaClass] = State.STOPPED }
+      stopSelf()
+      return START_NOT_STICKY
     }
 
     when (val action = intent.action) {
@@ -214,6 +215,29 @@ abstract class SafeForegroundService : Service() {
     }
 
     return START_NOT_STICKY
+  }
+
+  /**
+   * Moves the service into the foreground. Returns false if the system prevented us from doing so, in which case the caller should abandon the start and stop
+   * the service.
+   */
+  @SuppressLint("WrongConstant")
+  private fun postForegroundNotification(intent: Intent): Boolean {
+    return try {
+      if (Build.VERSION.SDK_INT >= 30 && serviceType(intent) != 0) {
+        startForeground(notificationId, getForegroundNotification(intent), serviceType(intent))
+      } else {
+        startForeground(notificationId, getForegroundNotification(intent))
+      }
+      true
+    } catch (e: Exception) {
+      if (Build.VERSION.SDK_INT >= 31 && e is ForegroundServiceStartNotAllowedException) {
+        Log.w(tag, "[postForegroundNotification] Not allowed to start foreground service.", e)
+        false
+      } else {
+        throw e
+      }
+    }
   }
 
   override fun onDestroy() {
