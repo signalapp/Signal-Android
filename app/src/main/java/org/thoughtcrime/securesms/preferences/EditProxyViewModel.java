@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
-import org.whispersystems.signalservice.internal.configuration.SignalProxy;
+import org.signal.network.config.SignalProxy;
 
 import java.util.concurrent.TimeUnit;
 

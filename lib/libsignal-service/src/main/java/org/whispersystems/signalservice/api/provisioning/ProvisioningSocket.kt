@@ -25,13 +25,13 @@ import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.websocket.WebSocketMessage
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.WebSocketResponseMessage
 import org.signal.registration.proto.RegistrationProvisionEnvelope
 import org.whispersystems.signalservice.api.buildOkHttpClient
 import org.whispersystems.signalservice.api.chooseUrl
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.crypto.SecondaryProvisioningCipher
 import org.whispersystems.signalservice.internal.push.ProvisionEnvelope
 import org.whispersystems.signalservice.internal.push.ProvisioningAddress

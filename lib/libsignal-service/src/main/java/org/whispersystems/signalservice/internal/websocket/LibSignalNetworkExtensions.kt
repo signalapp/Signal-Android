@@ -9,7 +9,7 @@ package org.whispersystems.signalservice.internal.websocket
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.libsignal.net.Network
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
+import org.signal.network.config.SignalServiceConfiguration
 import java.io.IOException
 
 private const val TAG = "LibSignalNetworkExtensions"

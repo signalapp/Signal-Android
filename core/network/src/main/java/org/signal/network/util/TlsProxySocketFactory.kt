@@ -1,4 +1,4 @@
-package org.whispersystems.signalservice.api.util
+package org.signal.network.util
 
 import okhttp3.Dns
 import java.io.IOException

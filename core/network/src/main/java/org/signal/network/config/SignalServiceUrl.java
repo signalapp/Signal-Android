@@ -1,7 +1,6 @@
-package org.whispersystems.signalservice.internal.configuration;
+package org.signal.network.config;
 
 
-import org.whispersystems.signalservice.api.push.TrustStore;
 
 import okhttp3.ConnectionSpec;
 

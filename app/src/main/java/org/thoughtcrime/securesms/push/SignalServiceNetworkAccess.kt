@@ -13,6 +13,14 @@ import okhttp3.Interceptor
 import okhttp3.TlsVersion
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
+import org.signal.network.config.HttpProxy
+import org.signal.network.config.SignalCdnUrl
+import org.signal.network.config.SignalCdsiUrl
+import org.signal.network.config.SignalServiceConfiguration
+import org.signal.network.config.SignalServiceUrl
+import org.signal.network.config.SignalStorageUrl
+import org.signal.network.config.SignalSvr2Url
+import org.signal.network.config.TrustStore
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -24,14 +32,6 @@ import org.thoughtcrime.securesms.net.SequentialDns
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor
 import org.thoughtcrime.securesms.net.StaticDns
 import org.thoughtcrime.securesms.net.StorageServiceSizeLoggingInterceptor
-import org.whispersystems.signalservice.api.push.TrustStore
-import org.whispersystems.signalservice.internal.configuration.HttpProxy
-import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl
-import org.whispersystems.signalservice.internal.configuration.SignalCdsiUrl
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
-import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl
-import org.whispersystems.signalservice.internal.configuration.SignalStorageUrl
-import org.whispersystems.signalservice.internal.configuration.SignalSvr2Url
 import java.io.IOException
 import java.util.Optional
 

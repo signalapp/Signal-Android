@@ -4,7 +4,7 @@
  * Licensed according to the LICENSE file in this repository.
  */
 
-package org.whispersystems.signalservice.api.push;
+package org.signal.network.config;
 
 import java.io.InputStream;
 

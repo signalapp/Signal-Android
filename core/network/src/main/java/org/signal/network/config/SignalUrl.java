@@ -1,8 +1,7 @@
-package org.whispersystems.signalservice.internal.configuration;
+package org.signal.network.config;
 
 
 
-import org.whispersystems.signalservice.api.push.TrustStore;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.whispersystems.signalservice.internal.configuration;
+package org.signal.network.config;
 
 public class SignalProxy {
   private final String host;

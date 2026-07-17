@@ -67,6 +67,7 @@ dependencies {
   api(libs.jackson.module.kotlin)
   api(libs.rxjava3.rxjava)
   api(libs.square.okio)
+  api(libs.square.okhttp3)
 
   implementation(libs.google.jsr305)
   implementation(libs.kotlinx.coroutines.core)

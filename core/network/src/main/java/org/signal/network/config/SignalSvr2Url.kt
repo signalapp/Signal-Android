@@ -1,7 +1,6 @@
-package org.whispersystems.signalservice.internal.configuration
+package org.signal.network.config
 
 import okhttp3.ConnectionSpec
-import org.whispersystems.signalservice.api.push.TrustStore
 
 /**
  * Configuration for reach the SVR2 service.

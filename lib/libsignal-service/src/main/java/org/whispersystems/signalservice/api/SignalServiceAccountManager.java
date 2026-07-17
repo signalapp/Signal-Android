@@ -17,7 +17,7 @@ import org.whispersystems.signalservice.api.registration.RegistrationApi;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3;
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
+import org.signal.network.config.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse;
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;

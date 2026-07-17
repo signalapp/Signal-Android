@@ -9,6 +9,7 @@ import org.signal.core.util.billing.BillingApi
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
 import org.signal.network.api.ArchiveApi
+import org.signal.network.config.SignalServiceConfiguration
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache
 import org.thoughtcrime.securesms.testing.endpoints.DonationTestServer
@@ -21,7 +22,6 @@ import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.message.MessageApi
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import java.util.function.Supplier
 import kotlin.time.Duration.Companion.seconds

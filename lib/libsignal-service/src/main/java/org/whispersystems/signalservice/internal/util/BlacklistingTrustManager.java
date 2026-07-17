@@ -6,7 +6,7 @@
 
 package org.whispersystems.signalservice.internal.util;
 
-import org.whispersystems.signalservice.api.push.TrustStore;
+import org.signal.network.config.TrustStore;
 
 import java.io.IOException;
 import java.io.InputStream;

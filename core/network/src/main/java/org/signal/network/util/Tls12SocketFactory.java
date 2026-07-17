@@ -1,4 +1,4 @@
-package org.whispersystems.signalservice.api.util;
+package org.signal.network.util;
 
 import java.io.IOException;
 import java.net.InetAddress;

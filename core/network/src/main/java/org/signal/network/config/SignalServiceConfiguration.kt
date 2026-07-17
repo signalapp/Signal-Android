@@ -1,4 +1,4 @@
-package org.whispersystems.signalservice.internal.configuration
+package org.signal.network.config
 
 import okhttp3.Dns
 import okhttp3.Interceptor

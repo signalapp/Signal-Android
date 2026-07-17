@@ -42,6 +42,7 @@ import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialRequestContext
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialResponse
 import org.signal.network.NetworkResult
 import org.signal.network.api.LinkDeviceApi
+import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.service.StorageServiceService
 import org.signal.registration.LinkAndSyncWaitResult
 import org.signal.registration.NetworkController
@@ -78,7 +79,6 @@ import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2
 import org.whispersystems.signalservice.api.websocket.HealthMonitor
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.crypto.SecondaryProvisioningCipher
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.ProvisionMessage
