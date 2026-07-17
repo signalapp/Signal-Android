@@ -536,8 +536,8 @@ object UsernameRepository {
       return UsernameDeleteResult.NETWORK_ERROR
     }
 
-    return when (val result = SignalNetwork.account.deleteUsername()) {
-      is NetworkResult.Success -> {
+    return when (val result = SignalNetwork.account.deleteUsernameHash()) {
+      is RequestResult.Success -> {
         SignalDatabase.recipients.setUsername(Recipient.self().id, null)
         SignalStore.account.username = null
         SignalStore.account.usernameLink = null
@@ -553,10 +553,15 @@ object UsernameRepository {
         Log.i(TAG, "[deleteUsername] Successfully deleted the username.")
         UsernameDeleteResult.SUCCESS
       }
-      else -> {
-        Log.w(TAG, "[deleteUsername] Generic network exception.", result.getCause())
+
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "[deleteUsername] Generic network exception.", result.networkError)
         UsernameDeleteResult.NETWORK_ERROR
       }
+
+      is RequestResult.ApplicationError -> throw result.cause
+
+      is RequestResult.NonSuccess -> error("Code branch is unreachable")
     }
   }
 

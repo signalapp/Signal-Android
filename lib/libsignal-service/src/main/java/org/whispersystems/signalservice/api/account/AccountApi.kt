@@ -9,6 +9,7 @@ import kotlinx.coroutines.runBlocking
 import org.signal.core.util.Base64
 import org.signal.core.util.Base64.encodeUrlSafeWithoutPadding
 import org.signal.libsignal.net.AuthDevicesService
+import org.signal.libsignal.net.AuthUsernamesService
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.usernames.BaseUsernameException
 import org.signal.libsignal.usernames.Username
@@ -215,12 +216,17 @@ class AccountApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSock
   }
 
   /**
-   * DELETE /v1/accounts/username_hash
-   * - 204: Success
+   * Clears the current username hash, ciphertext, and link for the authenticated account.
+   *
+   * This also succeeds if the account has no username set, so a caller retrying a deletion sees
+   * the same result as the original call.
    */
-  fun deleteUsername(): NetworkResult<Unit> {
-    val request = WebSocketRequestMessage.delete("/v1/accounts/username_hash")
-    return NetworkResult.fromWebSocketRequest(authWebSocket, request)
+  fun deleteUsernameHash(): RequestResult<Unit, Nothing> {
+    return runBlocking {
+      authWebSocket.runCatchingWithChatConnection { connection ->
+        AuthUsernamesService(connection).deleteUsernameHash()
+      }
+    }
   }
 
   /**
