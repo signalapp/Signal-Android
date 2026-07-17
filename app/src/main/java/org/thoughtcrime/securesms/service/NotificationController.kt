@@ -98,6 +98,13 @@ class NotificationController internal constructor(private val context: Context, 
     }
   }
 
+  fun replaceContentText(contentText: String) {
+    lock.withLock {
+      service.get()?.replaceContentText(id, contentText)
+        ?: Log.w(TAG, "Tried to update the content text, but the service was no longer bound!")
+    }
+  }
+
   private fun bindToService(): Boolean {
     return context.bindService(Intent(context, GenericForegroundService::class.java), this, Context.BIND_AUTO_CREATE)
   }

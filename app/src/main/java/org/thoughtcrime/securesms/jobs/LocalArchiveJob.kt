@@ -177,7 +177,7 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
     when {
       exporting != null -> {
         val phase = NotificationPhase.Export(exporting.phase)
-        val title = when (exporting.phase) {
+        val contentText = when (exporting.phase) {
           LocalBackupCreationProgress.ExportPhase.MESSAGE -> {
             if (exporting.frameTotalCount > 0) {
               context.getString(
@@ -195,7 +195,7 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
           else -> context.getString(R.string.BackupCreationProgressRow__preparing_backup)
         }
         if (previousPhase != phase || exporting.phase == LocalBackupCreationProgress.ExportPhase.MESSAGE) {
-          notification.replaceTitle(title)
+          notification.replaceContentText(contentText)
           previousPhase = phase
         }
         if (exporting.frameTotalCount == 0L) {
@@ -207,7 +207,7 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
 
       transferring != null -> {
         if (previousPhase !is NotificationPhase.Transfer) {
-          notification.replaceTitle(AppDependencies.application.getString(R.string.LocalArchiveJob__exporting_media))
+          notification.replaceContentText(AppDependencies.application.getString(R.string.LocalArchiveJob__exporting_media))
           previousPhase = NotificationPhase.Transfer
         }
         if (transferring.total == 0L) {
