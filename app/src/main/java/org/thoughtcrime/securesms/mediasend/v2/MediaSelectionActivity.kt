@@ -53,7 +53,6 @@ import org.thoughtcrime.securesms.mediasend.v2.review.MediaReviewFragment
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationViewModel
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendRepository
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -299,20 +298,13 @@ class MediaSelectionActivity :
   }
 
   override fun onSendError(error: Throwable) {
-    if (error is UntrustedRecords.UntrustedRecordsException) {
-      Log.w(TAG, "Send failed due to untrusted identities.")
-      SafetyNumberBottomSheet
-        .forIdentityRecordsAndDestinations(error.untrustedRecords, error.destinations.toList())
-        .show(supportFragmentManager)
-    } else {
-      setResult(RESULT_CANCELED)
+    setResult(RESULT_CANCELED)
 
-      // TODO [alex] - Toast
-      Log.w(TAG, "Failed to send message.", error)
+    // TODO [alex] - Toast
+    Log.w(TAG, "Failed to send message.", error)
 
-      finish()
-      overrideActivityTransitionCompat(OVERRIDE_TRANSITION_CLOSE_COMPAT, R.anim.stationary, R.anim.camera_slide_to_bottom)
-    }
+    finish()
+    overrideActivityTransitionCompat(OVERRIDE_TRANSITION_CLOSE_COMPAT, R.anim.stationary, R.anim.camera_slide_to_bottom)
   }
 
   override fun onNoMediaSelected() {

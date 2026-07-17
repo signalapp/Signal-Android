@@ -60,8 +60,10 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionState
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
+import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
 import org.thoughtcrime.securesms.mediasend.v2.stories.StoriesMultiselectForwardActivity
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
@@ -81,7 +83,7 @@ import org.signal.core.ui.R as CoreUiR
 /**
  * Allows the user to view and edit selected media.
  */
-class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), ScheduleMessageTimePickerBottomSheet.ScheduleCallback, ScheduleMessageDialogCallback, VideoThumbnailsRangeSelectorView.RangeDragListener {
+class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), ScheduleMessageTimePickerBottomSheet.ScheduleCallback, ScheduleMessageDialogCallback, VideoThumbnailsRangeSelectorView.RangeDragListener, SafetyNumberBottomSheet.Callbacks {
 
   private val sharedViewModel: MediaSelectionViewModel by viewModels(
     ownerProducer = { requireActivity() }
@@ -490,7 +492,15 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
           readyToSend = true
         },
         { error ->
-          callback.onSendError(error)
+          if (error is UntrustedRecords.UntrustedRecordsException) {
+            Log.w(TAG, "Send failed due to untrusted identities.")
+            hideSendProgress()
+            SafetyNumberBottomSheet
+              .forIdentityRecordsAndDestinations(error.untrustedRecords, error.destinations.toList())
+              .show(childFragmentManager)
+          } else {
+            callback.onSendError(error)
+          }
           readyToSend = true
         },
         {
@@ -499,6 +509,22 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
         }
       )
   }
+
+  private fun hideSendProgress() {
+    progressWrapper.animate().cancel()
+    progressWrapper.alpha = 0f
+    progressWrapper.visible = false
+  }
+
+  override fun sendAnywayAfterSafetyNumberChangedInBottomSheet(destinations: List<ContactSearchKey.RecipientSearchKey>) {
+    performSend(destinations)
+  }
+
+  override fun onMessageResentAfterSafetyNumberChangeInBottomSheet() {
+    error("Unsupported, we do not hand in a message id.")
+  }
+
+  override fun onCanceled() = Unit
 
   private fun presentAddMessageEntry(viewOnceState: MediaSelectionState.ViewOnceToggleState, message: CharSequence?) {
     when (viewOnceState) {
