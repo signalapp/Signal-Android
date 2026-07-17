@@ -2404,6 +2404,40 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     markAsRemoteDelete(targetMessage, Recipient.self().id)
   }
 
+  /**
+   * Re-inserts a minimal placeholder for an outgoing message that was previously deleted locally, reusing the
+   * original message id, so that a remote delete can still be sent for it.
+   */
+  fun restoreDeletedOutgoingMessage(
+    messageId: Long,
+    threadId: Long,
+    toRecipientId: RecipientId,
+    dateSent: Long,
+    dateReceived: Long,
+    type: Long,
+    expiresIn: Long,
+    expireStarted: Long,
+    expireTimerVersion: Int
+  ): Boolean {
+    val values = contentValuesOf(
+      ID to messageId,
+      DATE_SENT to dateSent,
+      DATE_RECEIVED to dateReceived,
+      THREAD_ID to threadId,
+      FROM_RECIPIENT_ID to Recipient.self().id.serialize(),
+      FROM_DEVICE_ID to 1,
+      TO_RECIPIENT_ID to toRecipientId.serialize(),
+      TYPE to type,
+      BODY to "",
+      READ to 1,
+      EXPIRES_IN to expiresIn,
+      EXPIRE_STARTED to expireStarted,
+      EXPIRE_TIMER_VERSION to expireTimerVersion
+    )
+
+    return writableDatabase.insert(TABLE_NAME, null, values) != -1L
+  }
+
   private fun markAsRemoteDeleteInternal(messageId: Long, deletedBy: RecipientId) {
     var deletedAttachments = false
     writableDatabase.withinTransaction { db ->

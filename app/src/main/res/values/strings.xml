@@ -390,6 +390,8 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s deleted this message</string>
     <string name="ConversationItem_you_deleted_this_message">You deleted this message</string>
+    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
+    <string name="ConversationItem_delete_for_everyone_question">Delete for everyone?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Admin %1$s deleted this message</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -581,7 +583,7 @@
     <string name="ConversationFragment_delete">Delete</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat. They will be able to see that you deleted a message.</string>
     <string name="ConversationFragment_quoted_message_not_found">Original message not found</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Original message no longer available</string>
     <string name="ConversationFragment_failed_to_open_message">Failed to open message</string>

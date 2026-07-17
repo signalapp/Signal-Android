@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord.DeletedMessageTombstone
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord.RemovedContactHidden
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord.UniversalExpireTimerUpdate
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -72,6 +73,7 @@ class ConversationDataSource(
   override fun size(): Int {
     val startTime = System.currentTimeMillis()
     val size: Int = getSizeInternal() +
+      DeletedMessageTombstoneCache.getForThread(threadId).size +
       THREAD_HEADER_COUNT +
       messageRequestData.isHidden.toInt() +
       showUniversalExpireTimerUpdate.toInt()
@@ -107,6 +109,8 @@ class ConversationDataSource(
           records.add(record)
         }
       }
+
+    records.maybeInsertDeletedPlaceholders(start, length, totalSize)
 
     if (messageRequestData.isHidden && (start + length >= totalSize)) {
       records.add(RemovedContactHidden(threadId))
@@ -169,7 +173,13 @@ class ConversationDataSource(
     }
 
     val stopwatch = Stopwatch(title = "load($key), thread $threadId", decimalPlaces = 2)
-    var record = SignalDatabase.messages.getMessageRecordOrNull(key.id)
+    var record: MessageRecord? = SignalDatabase.messages.getMessageRecordOrNull(key.id)
+
+    if (record == null) {
+      record = DeletedMessageTombstoneCache.getForThread(threadId)
+        .firstOrNull { it.messageId == key.id }
+        ?.toMessageRecord()
+    }
 
     if ((record as? MmsMessageRecord)?.parentStoryId?.isGroupReply() == true) {
       return null
@@ -221,8 +231,59 @@ class ConversationDataSource(
     return ThreadHeader(messageRequestRepository.getRecipientInfo(threadRecipient.id, threadId), AvatarDownloadStateCache.getDownloadState(threadRecipient))
   }
 
+  /**
+   * Splices any deleted-message tombstones into the freshly-loaded page of records if any are present.
+   */
+  private fun MutableList<MessageRecord>.maybeInsertDeletedPlaceholders(start: Int, length: Int, totalSize: Int) {
+    if (DeletedMessageTombstoneCache.getForThread(threadId).isEmpty()) {
+      return
+    }
+
+    // Page 0 has the newest messages, so max date is unbounded (to capture case where placeholder is the most recent message)
+    val maxDateReceivedInclusive = if (start == 0) Long.MAX_VALUE else (this.firstOrNull()?.dateReceived ?: Long.MAX_VALUE)
+
+    // Last page has the oldest messages, so min date is unbounded (to capture case where placeholder is oldest message)
+    val minDateReceivedExclusive = if (start + length >= totalSize) Long.MIN_VALUE else (nextPageNewestDateReceived(start + length) ?: Long.MIN_VALUE)
+
+    for (tombstone in DeletedMessageTombstoneCache.getForThread(threadId, minDateReceivedExclusive, maxDateReceivedInclusive)) {
+      val record = tombstone.toMessageRecord()
+      val insertIndex = this.indexOfFirst { it.dateReceived < record.dateReceived }
+      if (insertIndex >= 0) {
+        this.add(insertIndex, record)
+      } else {
+        this.add(record)
+      }
+    }
+  }
+
+  /**
+   * The [MessageRecord.getDateReceived] of the newest record on the page that begins at [offset], or null if there
+   * is no such record. Used as the exclusive lower bound of the current page's tombstone window.
+   */
+  private fun nextPageNewestDateReceived(offset: Int): Long? {
+    return MessageTable.mmsReaderFor(SignalDatabase.messages.getConversation(threadId, offset.toLong(), 1, filterCollapsed = true))
+      .use { reader -> reader.firstOrNull()?.dateReceived }
+  }
+
+  private fun DeletedMessageTombstoneCache.Entry.toMessageRecord(): DeletedMessageTombstone {
+    return DeletedMessageTombstone(
+      messageId,
+      Recipient.self(),
+      Recipient.resolved(toRecipientId),
+      dateSent,
+      dateReceived,
+      threadId,
+      type,
+      expiresIn,
+      expireStarted,
+      expireTimerVersion
+    )
+  }
+
   private fun ConversationMessage.toMappingModel(): MappingModel<*> {
-    return if (messageRecord.isUpdate) {
+    return if (messageRecord is DeletedMessageTombstone) {
+      OutgoingMedia(this)
+    } else if (messageRecord.isUpdate) {
       ConversationUpdate(this)
     } else if (messageRecord.isOutgoing) {
       if (this.isTextOnly(localContext)) {

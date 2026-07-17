@@ -151,6 +151,15 @@ private fun LabsSettingsContent(
           onCheckChanged = { onEvent(LabsSettingsEvents.ToggleMuteBreakthroughNotifications(it)) }
         )
       }
+
+      item {
+        Rows.ToggleRow(
+          checked = state.improvedMessageDeletion,
+          text = "Improved message deletion",
+          label = "Show a temporary tombstone when you delete a message, allowing you to promote it to a remote deletion.",
+          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleImprovedMessageDeletion(it)) }
+        )
+      }
     }
   }
 }
