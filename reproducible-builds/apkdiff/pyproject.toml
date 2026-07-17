@@ -7,3 +7,13 @@ requires-python = ">=3.12"
 dependencies = [
     "androguard>=4.1.4",
 ]
+
+[tool.ruff]
+line-length = 180
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D100", "D103", "D203", "D212", "COM812", "T201", "TRY003", "S603", "S607", "C901", "EM101", "EM102", "PLR2004"]
+
+[tool.ty.rules]
+all = "error"
