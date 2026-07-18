@@ -68,6 +68,11 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   }
 
   @Override
+  public @Nullable ConversationId getVisibleBubbleThread() {
+    return getNotifier().getVisibleBubbleThread();
+  }
+
+  @Override
   public void notifyMessageDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId) {
     SignalDatabase.runPostSuccessfulTransaction(() -> {
       getNotifier().notifyMessageDeliveryFailed(context, recipient, conversationId);

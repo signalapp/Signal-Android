@@ -22,6 +22,7 @@ public interface MessageNotifier {
   void clearVisibleThread(@NonNull ConversationId conversationId);
   void setVisibleBubbleThread(@Nullable ConversationId conversationId);
   void clearVisibleBubbleThread();
+  @Nullable ConversationId getVisibleBubbleThread();
   void notifyMessageDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId);
   void notifyStoryDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId);
   void notifyProofRequired(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId);
