@@ -632,7 +632,7 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
 
-    assertThat(emittedEvents[1])
+    assertThat(emittedEvents[2])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.PinEntryForSvrRestore>()
