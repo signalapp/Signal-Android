@@ -241,6 +241,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           callParticipantUpdatePopupController = callParticipantUpdatePopupController,
           isSelfAdmin = controlAndInfoState.isSelfAdmin(),
           isCallLink = controlAndInfoState.callLink != null,
+          canRemoteMute = callParticipantsState.groupCallState.isNotIdle,
           onMuteAudio = callInfoCallbacks::onMuteAudio,
           onRemoveFromCall = callInfoCallbacks::onRemoveFromCall,
           onContactDetails = callInfoCallbacks::onContactDetails,

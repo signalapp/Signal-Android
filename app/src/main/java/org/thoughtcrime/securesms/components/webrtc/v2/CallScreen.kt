@@ -134,6 +134,7 @@ fun CallScreen(
   onRemoteMuteToastDismissed: () -> Unit = {},
   isSelfAdmin: Boolean = false,
   isCallLink: Boolean = false,
+  canRemoteMute: Boolean = false,
   onMuteAudio: (CallParticipant) -> Unit = {},
   onRemoveFromCall: (CallParticipant) -> Unit = {},
   onContactDetails: (CallParticipant) -> Unit = {},
@@ -383,6 +384,7 @@ fun CallScreen(
                   participant = longPressedParticipant,
                   isSelfAdmin = isSelfAdmin,
                   isCallLink = isCallLink,
+                  canRemoteMute = canRemoteMute,
                   onDismiss = { longPressedParticipantId = null },
                   onMuteAudio = onMuteAudio,
                   onRemoveFromCall = onRemoveFromCall,
@@ -587,6 +589,7 @@ private fun ParticipantContextMenu(
   participant: CallParticipant?,
   isSelfAdmin: Boolean,
   isCallLink: Boolean,
+  canRemoteMute: Boolean,
   onDismiss: () -> Unit,
   onMuteAudio: (CallParticipant) -> Unit,
   onRemoveFromCall: (CallParticipant) -> Unit,
@@ -620,7 +623,7 @@ private fun ParticipantContextMenu(
         .background(color = MaterialTheme.colorScheme.surfaceVariant)
     )
 
-    if (resolved.isMicrophoneEnabled) {
+    if (canRemoteMute && resolved.isMicrophoneEnabled) {
       DropdownMenuItem(
         text = { Text(stringResource(R.string.CallParticipantSheet__mute_audio)) },
         leadingIcon = { Icon(painter = painterResource(R.drawable.symbol_mic_slash_24), contentDescription = null) },
@@ -683,6 +686,7 @@ private fun ParticipantContextMenuAdminPreview() {
         ),
         isSelfAdmin = true,
         isCallLink = true,
+        canRemoteMute = true,
         onDismiss = {},
         onMuteAudio = {},
         onRemoveFromCall = {},
@@ -705,6 +709,7 @@ private fun ParticipantContextMenuNonAdminPreview() {
         ),
         isSelfAdmin = false,
         isCallLink = false,
+        canRemoteMute = true,
         onDismiss = {},
         onMuteAudio = {},
         onRemoveFromCall = {},
