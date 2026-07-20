@@ -298,7 +298,7 @@ class WebRtcCallViewModel : ViewModel() {
 
   @MainThread
   fun updateFromWebRtcViewModel(webRtcViewModel: WebRtcViewModel, enableVideo: Boolean) {
-    canEnterPipMode.value = !webRtcViewModel.state.isPreJoinOrNetworkUnavailable
+    canEnterPipMode.value = !webRtcViewModel.state.isPreJoinOrNetworkUnavailable && !webRtcViewModel.isLocalScreenSharing
     if (isCallStarting && webRtcViewModel.state.isPassedPreJoin) {
       isCallStarting = false
     }
