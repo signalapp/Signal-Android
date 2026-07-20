@@ -34,6 +34,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.test.core.app.ApplicationProvider
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -52,6 +53,7 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.registration.NetworkController.CheckSvrCredentialsResponse
 import org.signal.registration.NetworkController.MasterKeyResponse
 import org.signal.registration.NetworkController.ProvisioningEvent
 import org.signal.registration.NetworkController.RegisterAccountError
@@ -63,6 +65,7 @@ import org.signal.registration.NetworkController.UpdateSessionError
 import org.signal.registration.fakes.FakeNetworkController
 import org.signal.registration.fakes.FakeStorageController
 import org.signal.registration.fakes.SystemOutLogger
+import org.signal.registration.proto.SvrCredential
 import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreProgress
 import org.signal.registration.screens.util.MockMultiplePermissionsState
 import org.signal.registration.screens.util.MockPermissionsState
@@ -312,6 +315,100 @@ class RegistrationEndToEndTest {
     assert(committed != null) { "Expected registration data to be committed" }
     assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
     assert(committed.accountData?.aci?.isNotEmpty() == true) { "Expected committed ACI to be populated" }
+  }
+
+  @Test
+  fun `a rejected sms-bypass recovery password falls back to sms verification, and the reglock pin refetches the master key`() {
+    val masterKey = MasterKey(ByteArray(32) { 0x11 })
+    val storedCredentials = SvrCredentials(username = "stored-svr-user", password = "stored-svr-pass")
+    val reglockCredentials = SvrCredentials(username = "reglock-svr-user", password = "reglock-svr-pass")
+
+    // A previous registration attempt left SVR credentials behind, enabling the SMS-bypass path
+    runBlocking {
+      storageController.updateInProgressRegistrationData {
+        svrCredentials += SvrCredential(username = storedCredentials.username, password = storedCredentials.password)
+      }
+    }
+    networkController.onCheckSvrCredentials = { _, credentials ->
+      val credential = credentials.first()
+      RequestResult.Success(CheckSvrCredentialsResponse(matches = mapOf("${credential.username}:${credential.password}" to "match")))
+    }
+
+    // SVR consistently returns the same master key for the correct PIN
+    val restoreRequests = mutableListOf<FakeNetworkController.RestoreMasterKeyRequest>()
+    networkController.onRestoreMasterKeyFromSvr = { request ->
+      restoreRequests += request
+      if (request.pin == PIN) {
+        RequestResult.Success(MasterKeyResponse(masterKey))
+      } else {
+        RequestResult.NonSuccess(RestoreMasterKeyError.WrongPin(triesRemaining = 3))
+      }
+    }
+
+    // The server's state is borked such that the RRP derived from the master key is rejected, even though the same
+    // master key still governs the reglock. Only a verified session with the reglock token can register.
+    val registerRequests = mutableListOf<FakeNetworkController.RegisterAccountRequest>()
+    networkController.onRegisterAccount = { request ->
+      registerRequests += request
+      when {
+        request.recoveryPassword != null -> RequestResult.NonSuccess(RegisterAccountError.RegistrationRecoveryPasswordIncorrect("wrong recovery password"))
+        request.registrationLock == masterKey.deriveRegistrationLock() -> RequestResult.Success(networkController.registerAccountResponse(request.e164))
+        else -> RequestResult.NonSuccess(
+          RegisterAccountError.RegistrationLock(
+            RegistrationLockResponse(
+              timeRemaining = 14.days.inWholeMilliseconds,
+              svr2Credentials = reglockCredentials
+            )
+          )
+        )
+      }
+    }
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    submitPhoneNumber()
+
+    // The stored SVR credentials are valid, so the user is offered to enter their PIN to skip SMS verification
+    waitForTag(TestTags.PIN_ENTRY_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.PIN_ENTRY_INPUT).performTextInput(PIN)
+    composeTestRule.onNodeWithTag(TestTags.PIN_ENTRY_CONTINUE_BUTTON).performClick()
+
+    // The recovery password derived from the restored master key is rejected, landing back on phone number entry.
+    // Resubmitting the number now goes through SMS verification instead of another recovery password attempt.
+    waitForTag(TestTags.PHONE_NUMBER_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_NEXT_BUTTON).performClick()
+    waitForTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON)
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    submitVerificationCode(VERIFICATION_CODE)
+
+    // The account is reglocked, so the user must prove they know their existing PIN
+    waitForTag(TestTags.PIN_ENTRY_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.PIN_ENTRY_INPUT).performTextInput(PIN)
+    composeTestRule.onNodeWithTag(TestTags.PIN_ENTRY_CONTINUE_BUTTON).performClick()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    // The reglock master key was refetched with the entered PIN against the challenge's credentials, not reused from the earlier restore
+    assert(restoreRequests.size == 2) { "Expected two master key restores (sms-bypass, then reglock) but was $restoreRequests" }
+    assert(restoreRequests.last() == FakeNetworkController.RestoreMasterKeyRequest(reglockCredentials, PIN)) {
+      "Expected the reglock master key restore to use the challenge credentials and the entered PIN but was ${restoreRequests.last()}"
+    }
+
+    assert(registerRequests.count { it.recoveryPassword != null } == 1) {
+      "Expected the recovery password to never be retried after being rejected, but the requests were $registerRequests"
+    }
+
+    val finalRequest = networkController.lastRegisterAccountRequest
+    assert(finalRequest?.sessionId != null) { "Expected the final registration to use the verified session but was $finalRequest" }
+    assert(finalRequest?.recoveryPassword == null) { "Expected the final registration to carry no recovery password but was $finalRequest" }
+    assert(finalRequest?.registrationLock == masterKey.deriveRegistrationLock()) { "Expected the reglock token to be derived from the restored master key but was $finalRequest" }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+    assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
+    assert(committed.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
   }
 
   @Test
