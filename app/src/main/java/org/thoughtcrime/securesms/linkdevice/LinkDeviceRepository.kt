@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.linkdevice
 
 import android.net.Uri
+import androidx.annotation.VisibleForTesting
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.Stopwatch
@@ -8,7 +9,6 @@ import org.signal.core.util.crypto.DeviceName
 import org.signal.core.util.crypto.DeviceNameCipher
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
-import org.signal.core.util.logging.logD
 import org.signal.core.util.logging.logI
 import org.signal.core.util.logging.logW
 import org.signal.core.util.toByteArray
@@ -33,6 +33,7 @@ import org.whispersystems.signalservice.api.link.TransferArchiveError
 import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import java.io.File
 import java.io.FileInputStream
@@ -384,22 +385,9 @@ object LinkDeviceRepository {
       return LinkUploadArchiveResult.BackupCreationCancelled
     }
 
-    Log.d(TAG, "[createAndUploadArchive] Fetching an upload form...")
-    val uploadForm = when (val result = SignalNetwork.attachments.getAttachmentV4UploadForm(tempBackupFile.length())) {
-      is RequestResult.Success -> result.result.logD(TAG, "[createAndUploadArchive] Successfully retrieved upload form.")
-      is RequestResult.ApplicationError -> throw result.cause
-      is RequestResult.RetryableNetworkError -> return LinkUploadArchiveResult.NetworkError(result.networkError).logW(TAG, "[createAndUploadArchive] Network error when fetching form.", result.networkError)
-      is RequestResult.NonSuccess -> return LinkUploadArchiveResult.BadRequest(result.error).logW(TAG, "[createAndUploadArchive] Upload too large when fetching form.", result.error)
-    }
-
-    if (cancellationSignal()) {
-      Log.i(TAG, "[createAndUploadArchive] Backup was cancelled.")
-      sendTransferArchiveError(deviceId, deviceRegistrationId, TransferArchiveError.RELINK_REQUESTED)
-      return LinkUploadArchiveResult.BackupCreationCancelled
-    }
-
-    when (val result = uploadArchive(tempBackupFile, uploadForm)) {
-      is NetworkResult.Success -> Log.i(TAG, "[createAndUploadArchive] Successfully uploaded backup.")
+    Log.d(TAG, "[createAndUploadArchive] Uploading the archive...")
+    val uploadedForm = when (val result = uploadArchive(tempBackupFile)) {
+      is NetworkResult.Success -> result.result.logI(TAG, "[createAndUploadArchive] Successfully uploaded backup.")
       is NetworkResult.NetworkError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "[createAndUploadArchive] Network error when uploading archive.", result.exception)
       is NetworkResult.StatusCodeError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "[createAndUploadArchive] Status code error when uploading archive.", result.exception)
       is NetworkResult.ApplicationError -> throw result.throwable
@@ -417,8 +405,8 @@ object LinkDeviceRepository {
       SignalNetwork.linkDevice.setTransferArchive(
         destinationDeviceId = deviceId,
         destinationDeviceRegistrationId = deviceRegistrationId,
-        cdn = uploadForm.cdn,
-        cdnKey = uploadForm.key
+        cdn = uploadedForm.cdn,
+        cdnKey = uploadedForm.key
       )
     }
 
@@ -440,37 +428,45 @@ object LinkDeviceRepository {
   }
 
   /**
-   * Handles uploading the archive for [createAndUploadArchive]. Handles resumable uploads and making multiple upload attempts.
+   * Fetches an upload form and uploads the archive for [createAndUploadArchive], resuming and retrying as needed.
+   *
+   * Returns the [AttachmentUploadForm] that was actually used, so the caller can point the linked device at the uploaded object. If the
+   * resume location becomes invalid, we drop the form so the next attempt fetches a fresh one (new CDN key) rather than re-creating the
+   * existing object, which the CDN rejects with a 409.
    */
-  private fun uploadArchive(backupFile: File, uploadForm: AttachmentUploadForm): NetworkResult<Unit> {
+  @VisibleForTesting
+  internal fun uploadArchive(backupFile: File): NetworkResult<AttachmentUploadForm> {
     val checksumSha256 = FileInputStream(backupFile).use { AttachmentUploadUtil.computeRawChecksum(it) }
+    var uploadForm: AttachmentUploadForm? = null
     var resumeUrl: String? = null
 
-    val uploadResult = NetworkResult.withRetry(
+    return NetworkResult.withRetry(
       logAttempt = { attempt, maxAttempts -> Log.i(TAG, "Starting upload attempt ${attempt + 1}/$maxAttempts") }
     ) {
+      val form = uploadForm ?: when (val result = SignalNetwork.attachments.getAttachmentV4UploadForm(backupFile.length())) {
+        is RequestResult.Success -> result.result.also { uploadForm = it }
+        is RequestResult.RetryableNetworkError -> return@withRetry NetworkResult.NetworkError<Unit>(result.networkError)
+        is RequestResult.NonSuccess -> return@withRetry NetworkResult.NetworkError<Unit>(result.error)
+        is RequestResult.ApplicationError -> return@withRetry NetworkResult.ApplicationError<Unit>(result.cause)
+      }
+
       FileInputStream(backupFile).use {
-        val result = SignalNetwork.archive.uploadBackupFile(
-          uploadForm = uploadForm,
+        SignalNetwork.archive.uploadBackupFile(
+          uploadForm = form,
           data = it,
           dataLength = backupFile.length(),
           checksumSha256 = checksumSha256,
           existingResumeUrl = resumeUrl,
           onResumeUrlCreated = { url -> resumeUrl = url }
-        )
-        if (result !is NetworkResult.Success) {
-          resumeUrl = null
+        ).also { result ->
+          if (result is NetworkResult.NetworkError && result.exception is ResumeLocationInvalidException) {
+            Log.w(TAG, "Resume location invalid; dropping the form so the retry fetches a fresh one with a new CDN key.")
+            uploadForm = null
+            resumeUrl = null
+          }
         }
-        result
       }
-    }
-
-    return when (uploadResult) {
-      is NetworkResult.Success -> uploadResult
-      is NetworkResult.NetworkError -> uploadResult.logW(TAG, "Network error while uploading.", uploadResult.exception)
-      is NetworkResult.StatusCodeError -> uploadResult.logW(TAG, "Status code error when uploading archive.", uploadResult.exception)
-      is NetworkResult.ApplicationError -> throw uploadResult.throwable
-    }
+    }.map { uploadForm!! }
   }
 
   /**
