@@ -1464,20 +1464,6 @@ class RegistrationEndToEndTest {
     }
   }
 
-  private fun preExistingRegistrationData(e164: String): PreExistingRegistrationData {
-    return PreExistingRegistrationData(
-      e164 = e164,
-      aci = ACI.from(UUID.randomUUID()),
-      pni = PNI.from(UUID.randomUUID()),
-      servicePassword = "service-password",
-      aep = AccountEntropyPool.generate(),
-      registrationLockEnabled = false,
-      unrestrictedUnidentifiedAccess = false,
-      aciIdentityKeyPair = IdentityKeyPair.generate(),
-      pniIdentityKeyPair = IdentityKeyPair.generate()
-    )
-  }
-
   private fun waitForText(text: String) {
     waitFor("node with text $text") {
       composeTestRule.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty()
