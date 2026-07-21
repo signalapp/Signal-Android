@@ -9,16 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/signal_neutralSurface"
-        android:padding="6dp">
+        android:paddingStart="@dimen/message_bubble_horizontal_padding"
+        android:paddingTop="6dp"
+        android:paddingEnd="@dimen/message_bubble_horizontal_padding"
+        android:paddingBottom="6dp">
 
         <ViewStub
             android:id="@+id/linkpreview_thumbnail"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout="@layout/link_preview_thumbnail_stub"
-            app:layout_constraintBottom_toTopOf="@+id/linkpreview_divider"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/linkpreview_title" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/linkpreview_title"
@@ -30,39 +32,47 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="@color/signal_colorOnSurface"
+            app:layout_constraintBottom_toBottomOf="@+id/linkpreview_thumbnail"
             app:layout_constraintEnd_toStartOf="@+id/linkpreview_close"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/linkpreview_thumbnail"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linkpreview_thumbnail"
             tools:text="J. Jonah Jameson on Twitter" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/linkpreview_header_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="linkpreview_thumbnail,linkpreview_title" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/linkpreview_description"
             style="@style/Signal.Text.BodyMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="15"
             android:textColor="@color/signal_colorOnSurfaceVariant"
             android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/linkpreview_close"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/linkpreview_thumbnail"
-            app:layout_constraintTop_toBottomOf="@id/linkpreview_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linkpreview_header_barrier"
             tools:text="Wall crawler strikes again!" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/linkpreview_site"
             style="@style/Signal.Text.MaterialCaption"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:maxLines="2"
             android:textColor="@color/signal_colorOnSurfaceVariant"
-            app:layout_constraintStart_toEndOf="@+id/linkpreview_thumbnail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linkpreview_description"
             tools:text="dailybugle.com" />
 
@@ -70,12 +80,11 @@
             android:id="@+id/linkpreview_divider"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="6dp"
             android:background="@color/signal_divider_major"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/linkpreview_thumbnail"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linkpreview_content_barrier"
             app:layout_constraintVertical_bias="0.0"
             tools:visibility="visible" />
