@@ -27,6 +27,7 @@ import org.signal.network.api.MessageApiV2
 import org.signal.network.api.PaymentsApi
 import org.signal.network.api.ProvisioningApi
 import org.signal.network.api.RateLimitChallengeApi
+import org.signal.network.api.RegistrationApiV2
 import org.signal.network.api.RemoteConfigApi
 import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
@@ -181,6 +182,8 @@ class NetworkDependenciesModule(
   val registrationApi: RegistrationApi by lazy {
     provider.provideRegistrationApi(pushServiceSocket)
   }
+
+  val registrationApiV2: RegistrationApiV2 by lazy { provider.provideRegistrationApiV2(signalRestClient) }
 
   val storageServiceApi: StorageServiceApi by lazy {
     provider.provideStorageServiceApi(authWebSocket, pushServiceSocket)

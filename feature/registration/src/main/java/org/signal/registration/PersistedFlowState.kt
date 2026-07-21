@@ -8,6 +8,7 @@ package org.signal.registration
 import kotlinx.serialization.Serializable
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
 
 /**
  * A serializable snapshot of [RegistrationFlowState] fields that need to survive app kills.
@@ -19,7 +20,7 @@ import org.signal.core.models.MasterKey
 @Serializable
 data class PersistedFlowState(
   val backStack: List<RegistrationRoute>,
-  val sessionMetadata: NetworkController.SessionMetadata?,
+  val sessionMetadata: SessionMetadata?,
   val sessionE164: String?,
   val submittedVerificationCode: String? = null,
   val doNotAttemptRecoveryPassword: Boolean,

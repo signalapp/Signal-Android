@@ -26,6 +26,8 @@ import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class RegistrationViewModelTest {
@@ -370,7 +372,7 @@ class RegistrationViewModelTest {
         RegistrationRoute.PhoneNumberEntry,
         RegistrationRoute.PinEntryForRegistrationLock(
           timeRemaining = 1000L,
-          svrCredentials = NetworkController.SvrCredentials(username = "user", password = "pass")
+          svrCredentials = SvrCredentials(username = "user", password = "pass")
         ),
         RegistrationRoute.AccountLocked(timeRemainingMs = 1000L)
       )
@@ -830,8 +832,8 @@ class RegistrationViewModelTest {
 
   // ==================== Helpers ====================
 
-  private fun createSessionMetadata(id: String = "test-session"): NetworkController.SessionMetadata {
-    return NetworkController.SessionMetadata(
+  private fun createSessionMetadata(id: String = "test-session"): SessionMetadata {
+    return SessionMetadata(
       id = id,
       nextSms = 1000L,
       nextCall = 2000L,

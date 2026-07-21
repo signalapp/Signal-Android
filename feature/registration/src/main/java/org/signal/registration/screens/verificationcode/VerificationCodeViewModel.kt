@@ -30,7 +30,11 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
-import org.signal.registration.NetworkController
+import org.signal.network.api.RegistrationApiV2.RegisterAccountError
+import org.signal.network.api.RegistrationApiV2.RequestVerificationCodeError
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SubmitVerificationCodeError
+import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
 import org.signal.registration.PendingRestoreOption
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
@@ -131,8 +135,8 @@ class VerificationCodeViewModel(
       is VerificationCodeScreenEvents.CodeAutoFilled -> state.copy(autoFillCode = event.code)
       is VerificationCodeScreenEvents.ConsumeAutoFillCode -> state.copy(autoFillCode = null)
       is VerificationCodeScreenEvents.WrongNumber -> state.also { parentEventEmitter.navigateTo(RegistrationRoute.PhoneNumberEntry) }
-      is VerificationCodeScreenEvents.ResendSms -> applyResendCode(state, NetworkController.VerificationCodeTransport.SMS)
-      is VerificationCodeScreenEvents.CallMe -> applyResendCode(state, NetworkController.VerificationCodeTransport.VOICE)
+      is VerificationCodeScreenEvents.ResendSms -> applyResendCode(state, VerificationCodeTransport.SMS)
+      is VerificationCodeScreenEvents.CallMe -> applyResendCode(state, VerificationCodeTransport.VOICE)
       is VerificationCodeScreenEvents.HavingTrouble -> state.copy(showContactSupportSheet = true)
       is VerificationCodeScreenEvents.DismissContactSupport -> state.copy(showContactSupportSheet = false)
       is VerificationCodeScreenEvents.NetworkErrorSnackbarDismissed -> state.copy(snackbars = state.snackbars.copy(networkError = false))
@@ -312,17 +316,17 @@ class VerificationCodeViewModel(
       }
       is RequestResult.NonSuccess -> {
         when (val error = result.error) {
-          is NetworkController.SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode -> {
+          is SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode -> {
             Log.w(TAG, "[SubmitCode] Invalid sessionId or verification code entered. This is distinct from an *incorrect* verification code. Body: ${error.message}")
             val newAttempts = state.incorrectCodeAttempts + 1
             return state.copy(snackbars = state.snackbars.copy(incorrectVerificationCode = true), incorrectCodeAttempts = newAttempts, digits = VerificationCodeState.emptyDigits(), focusedDigitIndex = 0)
           }
-          is NetworkController.SubmitVerificationCodeError.SessionNotFound -> {
+          is SubmitVerificationCodeError.SessionNotFound -> {
             Log.w(TAG, "[SubmitCode] Session not found: ${error.message}. Navigating back to phone number entry.")
             parentEventEmitter.navigateBack()
             return state
           }
-          is NetworkController.SubmitVerificationCodeError.SessionAlreadyVerifiedOrNoCodeRequested -> {
+          is SubmitVerificationCodeError.SessionAlreadyVerifiedOrNoCodeRequested -> {
             if (error.session.verified) {
               Log.i(TAG, "[SubmitCode] Session already had number verified, continuing with registration.")
               error.session
@@ -332,7 +336,7 @@ class VerificationCodeViewModel(
               return state
             }
           }
-          is NetworkController.SubmitVerificationCodeError.RateLimited -> {
+          is SubmitVerificationCodeError.RateLimited -> {
             Log.w(TAG, "[SubmitCode] Rate limited  (retryAfter: ${error.retryAfter}).")
             return state.copy(snackbars = state.snackbars.copy(rateLimitedRetryAfter = error.retryAfter))
           }
@@ -381,15 +385,15 @@ class VerificationCodeViewModel(
       }
       is RequestResult.NonSuccess -> {
         when (val error = registerResult.error) {
-          is NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified -> {
+          is RegisterAccountError.SessionNotFoundOrNotVerified -> {
             Log.w(TAG, "[Register] Session not found or not verified: ${error.message}. Navigating back to phone number entry.")
             parentEventEmitter.navigateBack()
             state
           }
-          is NetworkController.RegisterAccountError.DeviceTransferPossible -> {
+          is RegisterAccountError.DeviceTransferPossible -> {
             error("[Register] Got told a device transfer is possible. We should never get into this state. Resetting.")
           }
-          is NetworkController.RegisterAccountError.RegistrationLock -> {
+          is RegisterAccountError.RegistrationLock -> {
             Log.w(TAG, "[Register] Reglocked.")
             parentEventEmitter.navigateTo(
               RegistrationRoute.PinEntryForRegistrationLock(
@@ -399,15 +403,15 @@ class VerificationCodeViewModel(
             )
             state
           }
-          is NetworkController.RegisterAccountError.RateLimited -> {
+          is RegisterAccountError.RateLimited -> {
             Log.w(TAG, "[Register] Rate limited (retryAfter: ${error.retryAfter}).")
             state.copy(snackbars = state.snackbars.copy(rateLimitedRetryAfter = error.retryAfter))
           }
-          is NetworkController.RegisterAccountError.InvalidRequest -> {
+          is RegisterAccountError.InvalidRequest -> {
             Log.w(TAG, "[Register] Invalid request when registering account: ${error.message}")
             state.copy(snackbars = state.snackbars.copy(registrationError = true))
           }
-          is NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
+          is RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
             error("[Register] Got told the registration recovery password incorrect. We don't use the RRP in this flow, and should never get this error. Resetting. Message: ${error.message}")
           }
         }
@@ -439,7 +443,7 @@ class VerificationCodeViewModel(
 
   private suspend fun applyResendCode(
     state: VerificationCodeState,
-    transport: NetworkController.VerificationCodeTransport
+    transport: VerificationCodeTransport
   ): VerificationCodeState {
     if (state.sessionMetadata == null) {
       parentEventEmitter(RegistrationFlowEvent.ResetState)
@@ -464,11 +468,11 @@ class VerificationCodeViewModel(
       }
       is RequestResult.NonSuccess -> {
         when (val error = result.error) {
-          is NetworkController.RequestVerificationCodeError.InvalidRequest -> {
+          is RequestVerificationCodeError.InvalidRequest -> {
             Log.w(TAG, "[RequestCode][$transport] Invalid request: ${error.message}")
             state.copy(snackbars = state.snackbars.copy(unknownError = true))
           }
-          is NetworkController.RequestVerificationCodeError.RateLimited -> {
+          is RequestVerificationCodeError.RateLimited -> {
             Log.w(TAG, "[RequestCode][$transport] Rate limited (retryAfter: ${error.retryAfter}).")
             parentEventEmitter(RegistrationFlowEvent.SessionUpdated(error.session))
             state.copy(
@@ -477,7 +481,7 @@ class VerificationCodeViewModel(
               rateLimits = computeRateLimits(error.session)
             )
           }
-          is NetworkController.RequestVerificationCodeError.CouldNotFulfillWithRequestedTransport -> {
+          is RequestVerificationCodeError.CouldNotFulfillWithRequestedTransport -> {
             Log.w(TAG, "[RequestCode][$transport] Could not fulfill with requested transport.")
             parentEventEmitter(RegistrationFlowEvent.SessionUpdated(error.session))
             state.copy(
@@ -486,12 +490,12 @@ class VerificationCodeViewModel(
               rateLimits = computeRateLimits(error.session)
             )
           }
-          is NetworkController.RequestVerificationCodeError.InvalidSessionId -> {
+          is RequestVerificationCodeError.InvalidSessionId -> {
             Log.w(TAG, "[RequestCode][$transport] Invalid session ID: ${error.message}. Navigating back to phone number entry.")
             parentEventEmitter.navigateBack()
             state
           }
-          is NetworkController.RequestVerificationCodeError.MissingRequestInformationOrAlreadyVerified -> {
+          is RequestVerificationCodeError.MissingRequestInformationOrAlreadyVerified -> {
             Log.w(TAG, "[RequestCode][$transport] Missing request information or already verified.")
             parentEventEmitter(RegistrationFlowEvent.SessionUpdated(error.session))
             state.copy(
@@ -500,12 +504,12 @@ class VerificationCodeViewModel(
               rateLimits = computeRateLimits(error.session)
             )
           }
-          is NetworkController.RequestVerificationCodeError.SessionNotFound -> {
+          is RequestVerificationCodeError.SessionNotFound -> {
             Log.w(TAG, "[RequestCode][$transport] Session not found: ${error.message}. Navigating back to phone number entry.")
             parentEventEmitter.navigateBack()
             state
           }
-          is NetworkController.RequestVerificationCodeError.ThirdPartyServiceError -> {
+          is RequestVerificationCodeError.ThirdPartyServiceError -> {
             Log.w(TAG, "[RequestCode][$transport] Third party service error. ${error.data}")
             state.copy(snackbars = state.snackbars.copy(unableToSendSms = true))
           }
@@ -522,7 +526,7 @@ class VerificationCodeViewModel(
     }
   }
 
-  private fun computeRateLimits(session: NetworkController.SessionMetadata): SmsAndCallRateLimits {
+  private fun computeRateLimits(session: SessionMetadata): SmsAndCallRateLimits {
     val now = clock().milliseconds
     nextSmsAvailableAt = now + (session.nextSms?.seconds ?: nextSmsAvailableAt)
     nextCallAvailableAt = now + (session.nextCall?.seconds ?: nextCallAvailableAt)
@@ -538,7 +542,7 @@ class VerificationCodeViewModel(
    * were actually requested (which remain accurate across leaving and re-entering this screen), falling back to
    * anchoring the session's relative nextSms/nextCall values to now.
    */
-  private fun initializeRateLimits(session: NetworkController.SessionMetadata, parentState: RegistrationFlowState): SmsAndCallRateLimits {
+  private fun initializeRateLimits(session: SessionMetadata, parentState: RegistrationFlowState): SmsAndCallRateLimits {
     val now = clock().milliseconds
 
     nextSmsAvailableAt = parentState.lastSmsVerificationCodeRequest

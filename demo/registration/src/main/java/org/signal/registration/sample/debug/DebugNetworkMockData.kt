@@ -7,11 +7,11 @@ package org.signal.registration.sample.debug
 
 import org.signal.libsignal.net.BadRequestError
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.RegistrationLockResponse
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
+import org.signal.network.api.RegistrationApiV2.ThirdPartyServiceErrorResponse
 import org.signal.registration.NetworkController
-import org.signal.registration.NetworkController.RegistrationLockResponse
-import org.signal.registration.NetworkController.SessionMetadata
-import org.signal.registration.NetworkController.SvrCredentials
-import org.signal.registration.NetworkController.ThirdPartyServiceErrorResponse
 import java.io.IOException
 import kotlin.reflect.KClass
 import kotlin.reflect.KParameter

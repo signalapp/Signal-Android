@@ -21,6 +21,8 @@ import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.MasterKey
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
@@ -63,7 +65,7 @@ class PinEntryForSvrRestoreViewModelTest {
   @Test
   fun `PinEntered with correct PIN restores master key and completes registration`() = runTest {
     val masterKey = mockk<MasterKey>(relaxed = true)
-    val svrCredentials = NetworkController.SvrCredentials(
+    val svrCredentials = SvrCredentials(
       username = "test-username",
       password = "test-password"
     )
@@ -150,7 +152,7 @@ class PinEntryForSvrRestoreViewModelTest {
 
   @Test
   fun `PinEntered with wrong PIN returns state with tries remaining`() = runTest {
-    val svrCredentials = NetworkController.SvrCredentials(
+    val svrCredentials = SvrCredentials(
       username = "test-username",
       password = "test-password"
     )
@@ -182,7 +184,7 @@ class PinEntryForSvrRestoreViewModelTest {
 
   @Test
   fun `PinEntered with wrong PIN matching the verification code flags enteredVerificationCode`() = runTest {
-    val svrCredentials = NetworkController.SvrCredentials(
+    val svrCredentials = SvrCredentials(
       username = "test-username",
       password = "test-password"
     )
@@ -202,7 +204,7 @@ class PinEntryForSvrRestoreViewModelTest {
 
   @Test
   fun `PinEntered with wrong PIN not matching the verification code does not flag enteredVerificationCode`() = runTest {
-    val svrCredentials = NetworkController.SvrCredentials(
+    val svrCredentials = SvrCredentials(
       username = "test-username",
       password = "test-password"
     )
@@ -222,7 +224,7 @@ class PinEntryForSvrRestoreViewModelTest {
 
   @Test
   fun `PinEntered with no SVR data shows the no-data-to-restore dialog without navigating`() = runTest {
-    val svrCredentials = NetworkController.SvrCredentials(
+    val svrCredentials = SvrCredentials(
       username = "test-username",
       password = "test-password"
     )
@@ -270,7 +272,7 @@ class PinEntryForSvrRestoreViewModelTest {
 
   @Test
   fun `PinEntered with network error restoring master key returns NetworkError event`() = runTest {
-    val svrCredentials = NetworkController.SvrCredentials(
+    val svrCredentials = SvrCredentials(
       username = "test-username",
       password = "test-password"
     )
@@ -290,7 +292,7 @@ class PinEntryForSvrRestoreViewModelTest {
 
   @Test
   fun `PinEntered with application error restoring master key returns UnknownError event`() = runTest {
-    val svrCredentials = NetworkController.SvrCredentials(
+    val svrCredentials = SvrCredentials(
       username = "test-username",
       password = "test-password"
     )
@@ -349,7 +351,7 @@ class PinEntryForSvrRestoreViewModelTest {
     id: String = "test-session-id",
     requestedInformation: List<String> = emptyList(),
     verified: Boolean = true
-  ) = NetworkController.SessionMetadata(
+  ) = SessionMetadata(
     id = id,
     nextSms = null,
     nextCall = null,

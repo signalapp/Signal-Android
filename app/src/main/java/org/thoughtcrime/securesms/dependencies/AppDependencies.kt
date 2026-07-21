@@ -31,6 +31,7 @@ import org.signal.network.api.MessageApiV2
 import org.signal.network.api.PaymentsApi
 import org.signal.network.api.ProvisioningApi
 import org.signal.network.api.RateLimitChallengeApi
+import org.signal.network.api.RegistrationApiV2
 import org.signal.network.api.RemoteConfigApi
 import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
@@ -374,6 +375,10 @@ object AppDependencies {
   val registrationApi: RegistrationApi
     get() = networkModule.registrationApi
 
+  @JvmStatic
+  val registrationApiV2: RegistrationApiV2
+    get() = networkModule.registrationApiV2
+
   val storageServiceApi: StorageServiceApi
     get() = networkModule.storageServiceApi
 
@@ -508,6 +513,7 @@ object AppDependencies {
     fun provideAttachmentApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): AttachmentApi
     fun provideLinkDeviceApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): LinkDeviceApi
     fun provideRegistrationApi(pushServiceSocket: PushServiceSocket): RegistrationApi
+    fun provideRegistrationApiV2(signalRestClient: SignalRestClient): RegistrationApiV2
     fun provideStorageServiceApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): StorageServiceApi
     fun provideAuthWebSocket(signalServiceConfigurationSupplier: Supplier<SignalServiceConfiguration>, libSignalNetworkSupplier: Supplier<Network>): SignalWebSocket.AuthenticatedWebSocket
     fun provideUnauthWebSocket(signalServiceConfigurationSupplier: Supplier<SignalServiceConfiguration>, libSignalNetworkSupplier: Supplier<Network>): SignalWebSocket.UnauthenticatedWebSocket

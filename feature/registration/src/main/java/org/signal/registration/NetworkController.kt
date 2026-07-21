@@ -5,22 +5,33 @@
 
 package org.signal.registration
 
-import android.os.Parcelable
 import kotlinx.coroutines.flow.Flow
-import kotlinx.parcelize.Parcelize
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import okio.ByteString
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
-import org.signal.core.util.censor
-import org.signal.core.util.serialization.ByteArrayToBase64Serializer
 import org.signal.libsignal.net.BadRequestError
 import org.signal.libsignal.net.RequestResult
-import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
-import org.signal.libsignal.protocol.state.KyberPreKeyRecord
-import org.signal.libsignal.protocol.state.SignedPreKeyRecord
+import org.signal.network.api.RegistrationApiV2.AccountAttributes
+import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
+import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
+import org.signal.network.api.RegistrationApiV2.CreateSessionError
+import org.signal.network.api.RegistrationApiV2.DeviceAttributes
+import org.signal.network.api.RegistrationApiV2.GetSessionStatusError
+import org.signal.network.api.RegistrationApiV2.LinkDeviceResponse
+import org.signal.network.api.RegistrationApiV2.PreKeyCollection
+import org.signal.network.api.RegistrationApiV2.RegisterAccountError
+import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
+import org.signal.network.api.RegistrationApiV2.RegisterAsLinkedDeviceError
+import org.signal.network.api.RegistrationApiV2.RequestVerificationCodeError
+import org.signal.network.api.RegistrationApiV2.RestoreMethod
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SetRestoreMethodError
+import org.signal.network.api.RegistrationApiV2.SubmitVerificationCodeError
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
+import org.signal.network.api.RegistrationApiV2.UpdateSessionError
+import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
 import java.util.Locale
 import kotlin.time.Duration
 
@@ -45,7 +56,7 @@ interface NetworkController {
    *
    * `PATCH /v1/verification/session/{session-id}`
    */
-  suspend fun updateSession(sessionId: String?, pushChallengeToken: String?, captchaToken: String?): RequestResult<SessionMetadata, UpdateSessionError>
+  suspend fun updateSession(sessionId: String, pushChallengeToken: String?, captchaToken: String?): RequestResult<SessionMetadata, UpdateSessionError>
 
   /**
    * Request an SMS verification code. On success, the server will send an SMS verification code to this Signal user.
@@ -359,50 +370,6 @@ interface NetworkController {
     discoverableByPhoneNumber: Boolean
   ): RequestResult<Unit, SetProfileError>
 
-  sealed class CreateSessionError : BadRequestError {
-    data class InvalidRequest(val message: String) : CreateSessionError()
-    data class RateLimited(val retryAfter: Duration) : CreateSessionError()
-  }
-
-  sealed class GetSessionStatusError : BadRequestError {
-    data class InvalidSessionId(val message: String) : GetSessionStatusError()
-    data class SessionNotFound(val message: String) : GetSessionStatusError()
-    data class InvalidRequest(val message: String) : GetSessionStatusError()
-  }
-
-  sealed class UpdateSessionError : BadRequestError {
-    data class RejectedUpdate(val message: String) : UpdateSessionError()
-    data class SessionNotFound(val message: String) : UpdateSessionError()
-    data class InvalidRequest(val message: String) : UpdateSessionError()
-    data class RateLimited(val retryAfter: Duration, val session: SessionMetadata) : UpdateSessionError()
-  }
-
-  sealed class RequestVerificationCodeError : BadRequestError {
-    data class InvalidSessionId(val message: String) : RequestVerificationCodeError()
-    data class SessionNotFound(val message: String) : RequestVerificationCodeError()
-    data class MissingRequestInformationOrAlreadyVerified(val session: SessionMetadata) : RequestVerificationCodeError()
-    data class CouldNotFulfillWithRequestedTransport(val session: SessionMetadata) : RequestVerificationCodeError()
-    data class InvalidRequest(val message: String) : RequestVerificationCodeError()
-    data class RateLimited(val retryAfter: Duration, val session: SessionMetadata) : RequestVerificationCodeError()
-    data class ThirdPartyServiceError(val data: ThirdPartyServiceErrorResponse) : RequestVerificationCodeError()
-  }
-
-  sealed class SubmitVerificationCodeError : BadRequestError {
-    data class InvalidSessionIdOrVerificationCode(val message: String) : SubmitVerificationCodeError()
-    data class SessionNotFound(val message: String) : SubmitVerificationCodeError()
-    data class SessionAlreadyVerifiedOrNoCodeRequested(val session: SessionMetadata) : SubmitVerificationCodeError()
-    data class RateLimited(val retryAfter: Duration, val session: SessionMetadata) : SubmitVerificationCodeError()
-  }
-
-  sealed class RegisterAccountError : BadRequestError {
-    data class SessionNotFoundOrNotVerified(val message: String) : RegisterAccountError()
-    data class RegistrationRecoveryPasswordIncorrect(val message: String) : RegisterAccountError()
-    data object DeviceTransferPossible : RegisterAccountError()
-    data class InvalidRequest(val message: String) : RegisterAccountError()
-    data class RegistrationLock(val data: RegistrationLockResponse) : RegisterAccountError()
-    data class RateLimited(val retryAfter: Duration) : RegisterAccountError()
-  }
-
   sealed class RestoreMasterKeyError : BadRequestError {
     data class WrongPin(val triesRemaining: Int) : RestoreMasterKeyError()
     data object NoDataFound : RestoreMasterKeyError()
@@ -428,16 +395,6 @@ interface NetworkController {
   sealed class GetSvrCredentialsError : BadRequestError {
     data object Unauthorized : GetSvrCredentialsError()
     data object NoServiceCredentialsAvailable : GetSvrCredentialsError()
-  }
-
-  sealed class CheckSvrCredentialsError : BadRequestError {
-    data object Unauthorized : CheckSvrCredentialsError()
-    data class InvalidRequest(val message: String) : CheckSvrCredentialsError()
-  }
-
-  sealed class SetRestoreMethodError : BadRequestError {
-    data class InvalidRequest(val message: String) : SetRestoreMethodError()
-    data class RateLimited(val retryAfter: Duration) : SetRestoreMethodError()
   }
 
   sealed class SetProfileError : BadRequestError {
@@ -472,166 +429,6 @@ interface NetworkController {
   data class MasterKeyResponse(
     val masterKey: MasterKey
   )
-
-  @Serializable
-  @Parcelize
-  data class SessionMetadata(
-    val id: String,
-    val nextSms: Long?,
-    val nextCall: Long?,
-    val nextVerificationAttempt: Long?,
-    val allowedToRequestCode: Boolean,
-    val requestedInformation: List<String>,
-    val verified: Boolean
-  ) : Parcelable {
-    override fun toString(): String = "SessionMetadata(id=${id.censor()}, nextSms=$nextSms, nextCall=$nextCall, nextVerificationAttempt=$nextVerificationAttempt, allowedToRequestCode=$allowedToRequestCode, requestedInformation=$requestedInformation, verified=$verified)"
-  }
-
-  @Serializable
-  class AccountAttributes(
-    val signalingKey: String?,
-    val registrationId: Int,
-    val voice: Boolean = true,
-    val video: Boolean = true,
-    val fetchesMessages: Boolean,
-    val registrationLock: String?,
-    @Serializable(with = ByteArrayToBase64Serializer::class)
-    val unidentifiedAccessKey: ByteArray?,
-    val unrestrictedUnidentifiedAccess: Boolean,
-    val discoverableByPhoneNumber: Boolean,
-    val capabilities: Capabilities?,
-    val pniRegistrationId: Int,
-    val recoveryPassword: String?
-  ) {
-
-    @Serializable
-    data class Capabilities(
-      val storage: Boolean,
-      val versionedExpirationTimer: Boolean,
-      val attachmentBackfill: Boolean,
-      val spqr: Boolean,
-      val usernameChangeSyncMessage: Boolean
-    )
-  }
-
-  @Serializable
-  class DeviceAttributes(
-    val fetchesMessages: Boolean,
-    val registrationId: Int,
-    val pniRegistrationId: Int,
-    val name: String?,
-    val capabilities: AccountAttributes.Capabilities?
-  )
-
-  @Serializable
-  @Parcelize
-  data class RegisterAccountResponse(
-    @SerialName("uuid") val aci: String,
-    val pni: String,
-    @SerialName("number") val e164: String,
-    val usernameHash: String?,
-    val usernameLinkHandle: String?,
-    val storageCapable: Boolean,
-    val entitlements: Entitlements?,
-    val reregistration: Boolean
-  ) : Parcelable {
-    @Serializable
-    @Parcelize
-    data class Entitlements(
-      val badges: List<Badge>,
-      val backup: Backup?
-    ) : Parcelable
-
-    @Serializable
-    @Parcelize
-    data class Badge(
-      val id: String,
-      val expirationSeconds: Long,
-      val visible: Boolean
-    ) : Parcelable
-
-    @Serializable
-    @Parcelize
-    data class Backup(
-      val backupLevel: Long,
-      val expirationSeconds: Long
-    ) : Parcelable
-  }
-
-  @Serializable
-  data class RegistrationLockResponse(
-    val timeRemaining: Long,
-    val svr2Credentials: SvrCredentials
-  )
-
-  @Serializable
-  @Parcelize
-  data class SvrCredentials(
-    val username: String,
-    val password: String
-  ) : Parcelable {
-    override fun toString(): String = "SvrCredentials(username=${username.censor()}, password=${password.censor()})"
-  }
-
-  @Serializable
-  data class CheckSvrCredentialsResponse(
-    val matches: Map<String, String>
-  ) {
-    /**
-     * The first valid credential, if any.
-     *
-     * The response is structured like this:
-     * {
-     *   matches: {
-     *     <token>: "match|no-match|invalid"
-     *   }
-     * }
-     *
-     * So we find the first map entry with "match". The token is "username:password", so we split it apart.
-     * Important: The password can have ":" in it, so we need to make sure to just split on the first ":".
-     */
-    val validCredential: SvrCredentials? by lazy {
-      matches.entries.firstOrNull { it.value == "match" }?.key?.split(":", limit = 2)?.let { SvrCredentials(it[0], it[1]) }
-    }
-  }
-
-  @Serializable
-  data class CheckSvrCredentialsRequest(
-    val number: String,
-    val tokens: List<String>
-  ) {
-    companion object {
-      fun createForCredentials(number: String, credentials: List<SvrCredentials>): CheckSvrCredentialsRequest {
-        return CheckSvrCredentialsRequest(
-          number = number,
-          tokens = credentials.map { "${it.username}:${it.password}" }
-        )
-      }
-    }
-  }
-
-  @Serializable
-  data class ThirdPartyServiceErrorResponse(
-    val reason: String,
-    val permanentFailure: Boolean
-  )
-
-  data class PreKeyCollection(
-    val identityKey: IdentityKey,
-    val signedPreKey: SignedPreKeyRecord,
-    val lastResortKyberPreKey: KyberPreKeyRecord
-  )
-
-  enum class VerificationCodeTransport {
-    SMS, VOICE
-  }
-
-  /**
-   * The user's chosen restore method, reported back to the old device via [setRestoreMethod] so its UX can update.
-   */
-  enum class RestoreMethod {
-    REMOTE_BACKUP, LOCAL_BACKUP, DEVICE_TRANSFER, DECLINE
-  }
 
   @Serializable
   data class GetBackupInfoResponse(
@@ -708,20 +505,6 @@ interface NetworkController {
 
     /** The provisioning session encountered an error. */
     data class Error(val cause: Throwable?) : LinkDeviceProvisioningEvent
-  }
-
-  /** Minimal view of the `PUT /v1/devices/link` success body; we only need the assigned device id. */
-  @Serializable
-  data class LinkDeviceResponse(
-    val deviceId: Int
-  )
-
-  sealed interface RegisterAsLinkedDeviceError : BadRequestError {
-    data object IncorrectVerification : RegisterAsLinkedDeviceError
-    data object MissingCapability : RegisterAsLinkedDeviceError
-    data object MaxLinkedDevices : RegisterAsLinkedDeviceError
-    data class InvalidRequest(val message: String? = null) : RegisterAsLinkedDeviceError
-    data class RateLimited(val retryAfter: Duration?) : RegisterAsLinkedDeviceError
   }
 }
 

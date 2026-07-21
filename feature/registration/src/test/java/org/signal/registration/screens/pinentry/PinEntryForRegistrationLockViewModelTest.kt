@@ -22,6 +22,11 @@ import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.RegisterAccountError
+import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
+import org.signal.network.api.RegistrationApiV2.RegistrationLockResponse
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.KeyMaterial
 import org.signal.registration.NetworkController
 import org.signal.registration.PendingRestoreOption
@@ -63,7 +68,7 @@ class PinEntryForRegistrationLockViewModelTest {
       parentState = parentState,
       parentEventEmitter = parentEventEmitter,
       timeRemaining = testTimeRemaining,
-      svrCredentials = NetworkController.SvrCredentials(
+      svrCredentials = SvrCredentials(
         username = "test-username",
         password = "test-password"
       )
@@ -342,7 +347,7 @@ class PinEntryForRegistrationLockViewModelTest {
       RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified("Session not found")
+        RegisterAccountError.SessionNotFoundOrNotVerified("Session not found")
       )
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
@@ -361,7 +366,7 @@ class PinEntryForRegistrationLockViewModelTest {
       RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect("Wrong password")
+        RegisterAccountError.RegistrationRecoveryPasswordIncorrect("Wrong password")
       )
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
@@ -375,14 +380,14 @@ class PinEntryForRegistrationLockViewModelTest {
   @Test
   fun `PinEntered with registration lock error during registration navigates to AccountLocked`() = runTest {
     val masterKey = mockk<MasterKey>(relaxed = true)
-    val registrationLockData = mockk<NetworkController.RegistrationLockResponse>(relaxed = true)
+    val registrationLockData = mockk<RegistrationLockResponse>(relaxed = true)
     val initialState = PinEntryState(mode = PinEntryState.Mode.RegistrationLock)
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), forRegistrationLock = true) } returns
       RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RegistrationLock(registrationLockData)
+        RegisterAccountError.RegistrationLock(registrationLockData)
       )
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
@@ -407,7 +412,7 @@ class PinEntryForRegistrationLockViewModelTest {
       RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RateLimited(retryAfter)
+        RegisterAccountError.RateLimited(retryAfter)
       )
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
@@ -427,7 +432,7 @@ class PinEntryForRegistrationLockViewModelTest {
       RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.InvalidRequest("Bad request")
+        RegisterAccountError.InvalidRequest("Bad request")
       )
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
@@ -447,7 +452,7 @@ class PinEntryForRegistrationLockViewModelTest {
       RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.DeviceTransferPossible
+        RegisterAccountError.DeviceTransferPossible
       )
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
@@ -531,7 +536,7 @@ class PinEntryForRegistrationLockViewModelTest {
     id: String = "test-session-id",
     requestedInformation: List<String> = emptyList(),
     verified: Boolean = true
-  ) = NetworkController.SessionMetadata(
+  ) = SessionMetadata(
     id = id,
     nextSms = null,
     nextCall = null,
@@ -547,7 +552,7 @@ class PinEntryForRegistrationLockViewModelTest {
     e164: String = "+15551234567",
     storageCapable: Boolean = true,
     reregistration: Boolean = false
-  ) = NetworkController.RegisterAccountResponse(
+  ) = RegisterAccountResponse(
     aci = aci,
     pni = pni,
     e164 = e164,

@@ -30,6 +30,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.RegisterAsLinkedDeviceError
 import org.signal.registration.LinkAndSyncWaitResult
 import org.signal.registration.LinkedDeviceResult
 import org.signal.registration.NetworkController
@@ -177,7 +178,7 @@ class LinkAccountViewModelTest {
   fun `failed registration shows error`() = runTest(testDispatcher) {
     val flow = givenProvisioningFlow()
     val message = mockk<NetworkController.LinkDeviceProvisioningMessage>(relaxed = true)
-    coEvery { mockRepository.registerAsLinkedDevice(message, any()) } returns RequestResult.NonSuccess(NetworkController.RegisterAsLinkedDeviceError.MaxLinkedDevices)
+    coEvery { mockRepository.registerAsLinkedDevice(message, any()) } returns RequestResult.NonSuccess(RegisterAsLinkedDeviceError.MaxLinkedDevices)
 
     val viewModel = createViewModel()
     flow.emit(NetworkController.LinkDeviceProvisioningEvent.MessageReceived(message))

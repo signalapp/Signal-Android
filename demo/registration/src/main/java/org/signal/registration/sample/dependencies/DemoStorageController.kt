@@ -33,6 +33,7 @@ import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.network.NetworkResult
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.NetworkController
 import org.signal.registration.NewRegistrationData
 import org.signal.registration.PreExistingRegistrationData
@@ -197,7 +198,7 @@ class DemoStorageController(private val context: Context) : StorageController {
     // SVR credentials
     if (data.svrCredentials.isNotEmpty()) {
       RegistrationPreferences.restoredSvr2Credentials = data.svrCredentials.map {
-        NetworkController.SvrCredentials(username = it.username, password = it.password)
+        SvrCredentials(username = it.username, password = it.password)
       }
     }
 

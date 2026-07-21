@@ -5,7 +5,7 @@
 
 package org.signal.registration.screens.verificationcode
 
-import org.signal.registration.NetworkController.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 

@@ -18,9 +18,13 @@ import android.graphics.drawable.Drawable
 import android.os.SystemClock
 import androidx.core.graphics.BlendModeCompat
 import androidx.core.graphics.setBlendMode
+import org.signal.core.util.logging.Log
+import java.io.IOException
 
 class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
   companion object {
+    private val TAG = Log.tag(ApngDrawable::class)
+
     private val CLEAR_PAINT = Paint().apply {
       color = Color.TRANSPARENT
       setBlendMode(BlendModeCompat.CLEAR)
@@ -77,7 +81,14 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
     }
 
     val frame = decoder.frames[position]
-    drawFrame(frame, position)
+    try {
+      drawFrame(frame, position)
+    } catch (e: IOException) {
+      Log.w(TAG, "Failed to decode frame $position. Stopping the animation.", e)
+      playing = false
+      canvas.drawBitmap(activeBitmap, 0f, 0f, null)
+      return
+    }
     canvas.drawBitmap(activeBitmap, 0f, 0f, null)
 
     position = (position + 1) % decoder.frames.size

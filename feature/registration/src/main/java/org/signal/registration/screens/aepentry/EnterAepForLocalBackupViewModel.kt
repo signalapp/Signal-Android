@@ -20,7 +20,7 @@ import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.ui.navigation.ResultEventBus
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
-import org.signal.registration.NetworkController
+import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
@@ -137,11 +137,11 @@ class EnterAepForLocalBackupViewModel(
       }
       is RequestResult.NonSuccess -> {
         when (val error = result.error) {
-          is NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
+          is RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
             Log.w(TAG, "[Submit] RRP incorrect, but the key decrypts the backup. The backup belongs to a different account. Message: ${error.message}")
             stateEmitter(inputState.copy(isRegistering = false, showDifferentAccountDialog = true))
           }
-          is NetworkController.RegisterAccountError.InvalidRequest -> {
+          is RegisterAccountError.InvalidRequest -> {
             Log.w(TAG, "[Submit] Invalid request. Message: ${error.message}")
             stateEmitter(
               inputState.copy(
@@ -150,7 +150,7 @@ class EnterAepForLocalBackupViewModel(
               )
             )
           }
-          is NetworkController.RegisterAccountError.RegistrationLock -> {
+          is RegisterAccountError.RegistrationLock -> {
             if (provideRegistrationLock) {
               Log.w(TAG, "[Submit] Still registration locked after providing the reglock token derived from the AEP. Falling back to PIN entry.")
               stateEmitter(inputState.copy(isRegistering = false))
@@ -165,14 +165,14 @@ class EnterAepForLocalBackupViewModel(
               attemptToRegister(inputState, aep, provideRegistrationLock = true, stateEmitter)
             }
           }
-          is NetworkController.RegisterAccountError.RateLimited -> {
+          is RegisterAccountError.RateLimited -> {
             Log.w(TAG, "[Submit] Rate limited (retryAfter: ${error.retryAfter}).")
             stateEmitter(inputState.copy(isRegistering = false, registrationError = RegistrationError.RateLimited))
           }
-          is NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified -> {
+          is RegisterAccountError.SessionNotFoundOrNotVerified -> {
             error("[Submit] Session not found or not verified. This should not happen with RRP-based registration.")
           }
-          is NetworkController.RegisterAccountError.DeviceTransferPossible -> {
+          is RegisterAccountError.DeviceTransferPossible -> {
             error("[Submit] Device transfer possible. This should not happen with RRP-based registration.")
           }
         }

@@ -30,8 +30,14 @@ import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.RegisterAccountError
+import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
+import org.signal.network.api.RegistrationApiV2.RequestVerificationCodeError
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SubmitVerificationCodeError
+import org.signal.network.api.RegistrationApiV2.ThirdPartyServiceErrorResponse
+import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
 import org.signal.registration.KeyMaterial
-import org.signal.registration.NetworkController
 import org.signal.registration.PendingRestoreOption
 import org.signal.registration.PreExistingRegistrationData
 import org.signal.registration.RegistrationFlowEvent
@@ -208,7 +214,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
+        SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
       )
 
     viewModel.applyEvent(
@@ -232,7 +238,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
+        SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
       )
 
     viewModel.applyEvent(
@@ -300,7 +306,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
+        SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
       )
 
     backgroundScope.launch { viewModel.state.collect {} }
@@ -380,7 +386,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
+        SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
       )
 
     viewModel.applyEvent(
@@ -422,7 +428,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
+        SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
       )
 
     viewModel.applyEvent(
@@ -501,7 +507,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
+        SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
       )
 
     viewModel.applyEvent(
@@ -648,7 +654,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
+        SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode("Wrong code")
       )
 
     viewModel.applyEvent(
@@ -670,7 +676,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.SubmitVerificationCodeError.SessionNotFound("Session expired")
+        SubmitVerificationCodeError.SessionNotFound("Session expired")
       )
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
@@ -692,7 +698,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.SubmitVerificationCodeError.SessionAlreadyVerifiedOrNoCodeRequested(verifiedSession)
+        SubmitVerificationCodeError.SessionAlreadyVerifiedOrNoCodeRequested(verifiedSession)
       )
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       RequestResult.Success(registerResponse to keyMaterial)
@@ -718,7 +724,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.SubmitVerificationCodeError.SessionAlreadyVerifiedOrNoCodeRequested(unverifiedSession)
+        SubmitVerificationCodeError.SessionAlreadyVerifiedOrNoCodeRequested(unverifiedSession)
       )
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
@@ -737,7 +743,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.SubmitVerificationCodeError.RateLimited(60.seconds, sessionMetadata)
+        SubmitVerificationCodeError.RateLimited(60.seconds, sessionMetadata)
       )
 
     viewModel.applyEvent(
@@ -804,7 +810,7 @@ class VerificationCodeViewModelTest {
       RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.DeviceTransferPossible
+        RegisterAccountError.DeviceTransferPossible
       )
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
@@ -826,7 +832,7 @@ class VerificationCodeViewModelTest {
       RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RateLimited(30.seconds)
+        RegisterAccountError.RateLimited(30.seconds)
       )
 
     viewModel.applyEvent(
@@ -851,7 +857,7 @@ class VerificationCodeViewModelTest {
       RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.InvalidRequest("Bad request")
+        RegisterAccountError.InvalidRequest("Bad request")
       )
 
     viewModel.applyEvent(
@@ -876,7 +882,7 @@ class VerificationCodeViewModelTest {
       RequestResult.Success(sessionMetadata)
     coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect("Wrong password")
+        RegisterAccountError.RegistrationRecoveryPasswordIncorrect("Wrong password")
       )
 
     viewModel.applyEvent(
@@ -953,7 +959,7 @@ class VerificationCodeViewModelTest {
     val updatedSession = createSessionMetadata(id = "updated-session")
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.SMS)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.SMS)) } returns
       RequestResult.Success(updatedSession)
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
@@ -971,7 +977,7 @@ class VerificationCodeViewModelTest {
     val updatedSession = createSessionMetadata(nextSms = 45L)
     val initialState = VerificationCodeState(sessionMetadata = createSessionMetadata(), e164 = "+15551234567")
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.SMS)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.SMS)) } returns
       RequestResult.Success(updatedSession)
 
     clockedViewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
@@ -990,7 +996,7 @@ class VerificationCodeViewModelTest {
     val updatedSession = createSessionMetadata(nextCall = 90L)
     val initialState = VerificationCodeState(sessionMetadata = createSessionMetadata(), e164 = "+15551234567")
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.VOICE)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.VOICE)) } returns
       RequestResult.Success(updatedSession)
 
     clockedViewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe, stateEmitter)
@@ -1092,7 +1098,7 @@ class VerificationCodeViewModelTest {
       mockRepository.requestVerificationCode(
         sessionId = sessionMetadata.id,
         smsAutoRetrieveCodeSupported = true,
-        transport = NetworkController.VerificationCodeTransport.SMS
+        transport = VerificationCodeTransport.SMS
       )
     }
   }
@@ -1102,9 +1108,9 @@ class VerificationCodeViewModelTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.SMS)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.SMS)) } returns
       RequestResult.NonSuccess(
-        NetworkController.RequestVerificationCodeError.RateLimited(45.seconds, sessionMetadata)
+        RequestVerificationCodeError.RateLimited(45.seconds, sessionMetadata)
       )
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
@@ -1117,9 +1123,9 @@ class VerificationCodeViewModelTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.SMS)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.SMS)) } returns
       RequestResult.NonSuccess(
-        NetworkController.RequestVerificationCodeError.InvalidRequest("Bad request")
+        RequestVerificationCodeError.InvalidRequest("Bad request")
       )
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
@@ -1132,9 +1138,9 @@ class VerificationCodeViewModelTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.SMS)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.SMS)) } returns
       RequestResult.NonSuccess(
-        NetworkController.RequestVerificationCodeError.CouldNotFulfillWithRequestedTransport(sessionMetadata)
+        RequestVerificationCodeError.CouldNotFulfillWithRequestedTransport(sessionMetadata)
       )
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
@@ -1147,9 +1153,9 @@ class VerificationCodeViewModelTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.SMS)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.SMS)) } returns
       RequestResult.NonSuccess(
-        NetworkController.RequestVerificationCodeError.InvalidSessionId("Invalid session")
+        RequestVerificationCodeError.InvalidSessionId("Invalid session")
       )
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
@@ -1163,9 +1169,9 @@ class VerificationCodeViewModelTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.SMS)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.SMS)) } returns
       RequestResult.NonSuccess(
-        NetworkController.RequestVerificationCodeError.SessionNotFound("Session not found")
+        RequestVerificationCodeError.SessionNotFound("Session not found")
       )
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
@@ -1179,9 +1185,9 @@ class VerificationCodeViewModelTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.SMS)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.SMS)) } returns
       RequestResult.NonSuccess(
-        NetworkController.RequestVerificationCodeError.MissingRequestInformationOrAlreadyVerified(sessionMetadata)
+        RequestVerificationCodeError.MissingRequestInformationOrAlreadyVerified(sessionMetadata)
       )
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
@@ -1194,10 +1200,10 @@ class VerificationCodeViewModelTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.SMS)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.SMS)) } returns
       RequestResult.NonSuccess(
-        NetworkController.RequestVerificationCodeError.ThirdPartyServiceError(
-          NetworkController.ThirdPartyServiceErrorResponse("Provider error", false)
+        RequestVerificationCodeError.ThirdPartyServiceError(
+          ThirdPartyServiceErrorResponse("Provider error", false)
         )
       )
 
@@ -1211,7 +1217,7 @@ class VerificationCodeViewModelTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.SMS)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.SMS)) } returns
       RequestResult.RetryableNetworkError(java.io.IOException("Network error"))
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
@@ -1224,7 +1230,7 @@ class VerificationCodeViewModelTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.SMS)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.SMS)) } returns
       RequestResult.ApplicationError(RuntimeException("Unexpected"))
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
@@ -1251,7 +1257,7 @@ class VerificationCodeViewModelTest {
     val updatedSession = createSessionMetadata(id = "updated-session")
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.VOICE)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.VOICE)) } returns
       RequestResult.Success(updatedSession)
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe, stateEmitter)
@@ -1264,9 +1270,9 @@ class VerificationCodeViewModelTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.VOICE)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.VOICE)) } returns
       RequestResult.NonSuccess(
-        NetworkController.RequestVerificationCodeError.RateLimited(90.seconds, sessionMetadata)
+        RequestVerificationCodeError.RateLimited(90.seconds, sessionMetadata)
       )
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe, stateEmitter)
@@ -1279,9 +1285,9 @@ class VerificationCodeViewModelTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.VOICE)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.VOICE)) } returns
       RequestResult.NonSuccess(
-        NetworkController.RequestVerificationCodeError.CouldNotFulfillWithRequestedTransport(sessionMetadata)
+        RequestVerificationCodeError.CouldNotFulfillWithRequestedTransport(sessionMetadata)
       )
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe, stateEmitter)
@@ -1294,10 +1300,10 @@ class VerificationCodeViewModelTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
-    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(NetworkController.VerificationCodeTransport.VOICE)) } returns
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.VOICE)) } returns
       RequestResult.NonSuccess(
-        NetworkController.RequestVerificationCodeError.ThirdPartyServiceError(
-          NetworkController.ThirdPartyServiceErrorResponse("Voice provider error", true)
+        RequestVerificationCodeError.ThirdPartyServiceError(
+          ThirdPartyServiceErrorResponse("Voice provider error", true)
         )
       )
 
@@ -1348,7 +1354,7 @@ class VerificationCodeViewModelTest {
     verified: Boolean = false,
     nextSms: Long? = null,
     nextCall: Long? = null
-  ) = NetworkController.SessionMetadata(
+  ) = SessionMetadata(
     id = id,
     nextSms = nextSms,
     nextCall = nextCall,
@@ -1364,7 +1370,7 @@ class VerificationCodeViewModelTest {
     e164: String = "+15551234567",
     storageCapable: Boolean = false,
     reregistration: Boolean = false
-  ) = NetworkController.RegisterAccountResponse(
+  ) = RegisterAccountResponse(
     aci = aci,
     pni = pni,
     e164 = e164,

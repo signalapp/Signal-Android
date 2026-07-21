@@ -19,11 +19,15 @@ import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.RegisterAccountError
+import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
+import org.signal.network.api.RegistrationApiV2.RegistrationLockResponse
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.KeyMaterial
-import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
+import kotlin.time.Duration
 
 class EnterAepForRemoteBackupPreRegistrationViewModelTest {
 
@@ -68,7 +72,7 @@ class EnterAepForRemoteBackupPreRegistrationViewModelTest {
     val mockKeyMaterial = mockk<KeyMaterial>(relaxed = true) {
       io.mockk.every { accountEntropyPool } returns aep
     }
-    val mockResponse = mockk<NetworkController.RegisterAccountResponse>(relaxed = true)
+    val mockResponse = mockk<RegisterAccountResponse>(relaxed = true)
     val initialState = EnterAepState(backupKey = VALID_AEP, isBackupKeyValid = true)
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any(), any()) } returns
@@ -91,7 +95,7 @@ class EnterAepForRemoteBackupPreRegistrationViewModelTest {
     val mockKeyMaterial = mockk<KeyMaterial>(relaxed = true) {
       io.mockk.every { accountEntropyPool } returns aep
     }
-    val mockResponse = mockk<NetworkController.RegisterAccountResponse>(relaxed = true)
+    val mockResponse = mockk<RegisterAccountResponse>(relaxed = true)
     val initialState = EnterAepState(backupKey = VALID_AEP, isBackupKeyValid = true)
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any(), any()) } returns
@@ -112,7 +116,7 @@ class EnterAepForRemoteBackupPreRegistrationViewModelTest {
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect("Incorrect")
+        RegisterAccountError.RegistrationRecoveryPasswordIncorrect("Incorrect")
       )
 
     viewModel.applyEvent(initialState, EnterAepEvents.Submit, stateEmitter)
@@ -128,7 +132,7 @@ class EnterAepForRemoteBackupPreRegistrationViewModelTest {
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.InvalidRequest("Bad request")
+        RegisterAccountError.InvalidRequest("Bad request")
       )
 
     viewModel.applyEvent(initialState, EnterAepEvents.Submit, stateEmitter)
@@ -143,18 +147,18 @@ class EnterAepForRemoteBackupPreRegistrationViewModelTest {
     val mockKeyMaterial = mockk<KeyMaterial>(relaxed = true) {
       io.mockk.every { accountEntropyPool } returns aep
     }
-    val mockResponse = mockk<NetworkController.RegisterAccountResponse>(relaxed = true)
+    val mockResponse = mockk<RegisterAccountResponse>(relaxed = true)
     val initialState = EnterAepState(backupKey = VALID_AEP, isBackupKeyValid = true)
-    val registrationLockData = NetworkController.RegistrationLockResponse(
+    val registrationLockData = RegistrationLockResponse(
       timeRemaining = 86400000L,
-      svr2Credentials = NetworkController.SvrCredentials(username = "test-username", password = "test-password")
+      svr2Credentials = SvrCredentials(username = "test-username", password = "test-password")
     )
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), registrationLock = any<String>(), any(), any(), any()) } returns
       RequestResult.Success(mockResponse to mockKeyMaterial)
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), registrationLock = null, any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RegistrationLock(registrationLockData)
+        RegisterAccountError.RegistrationLock(registrationLockData)
       )
 
     viewModel.applyEvent(initialState, EnterAepEvents.Submit, stateEmitter)
@@ -174,15 +178,15 @@ class EnterAepForRemoteBackupPreRegistrationViewModelTest {
   @Test
   fun `Submit with RegistrationLock when already providing the reglock token navigates to PinEntryForRegistrationLock`() = runTest {
     val initialState = EnterAepState(backupKey = VALID_AEP, isBackupKeyValid = true)
-    val svrCredentials = NetworkController.SvrCredentials(username = "test-username", password = "test-password")
-    val registrationLockData = NetworkController.RegistrationLockResponse(
+    val svrCredentials = SvrCredentials(username = "test-username", password = "test-password")
+    val registrationLockData = RegistrationLockResponse(
       timeRemaining = 86400000L,
       svr2Credentials = svrCredentials
     )
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RegistrationLock(registrationLockData)
+        RegisterAccountError.RegistrationLock(registrationLockData)
       )
 
     viewModel.applyEvent(initialState, EnterAepEvents.Submit, stateEmitter)
@@ -201,7 +205,7 @@ class EnterAepForRemoteBackupPreRegistrationViewModelTest {
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RateLimited(kotlin.time.Duration.parse("1m"))
+        RegisterAccountError.RateLimited(Duration.parse("1m"))
       )
 
     viewModel.applyEvent(initialState, EnterAepEvents.Submit, stateEmitter)
@@ -216,7 +220,7 @@ class EnterAepForRemoteBackupPreRegistrationViewModelTest {
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified("Not found")
+        RegisterAccountError.SessionNotFoundOrNotVerified("Not found")
       )
 
     viewModel.applyEvent(initialState, EnterAepEvents.Submit, stateEmitter)
@@ -228,7 +232,7 @@ class EnterAepForRemoteBackupPreRegistrationViewModelTest {
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.DeviceTransferPossible
+        RegisterAccountError.DeviceTransferPossible
       )
 
     viewModel.applyEvent(initialState, EnterAepEvents.Submit, stateEmitter)

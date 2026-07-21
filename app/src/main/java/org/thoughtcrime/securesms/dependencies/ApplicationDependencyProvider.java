@@ -42,6 +42,7 @@ import org.signal.network.api.MessageApiV2;
 import org.signal.network.api.PaymentsApi;
 import org.signal.network.api.ProvisioningApi;
 import org.signal.network.api.RateLimitChallengeApi;
+import org.signal.network.api.RegistrationApiV2;
 import org.signal.network.api.RemoteConfigApi;
 import org.signal.network.api.SvrBApi;
 import org.signal.network.api.UsernameApi;
@@ -583,6 +584,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull RegistrationApi provideRegistrationApi(@NonNull PushServiceSocket pushServiceSocket) {
     return new RegistrationApi(pushServiceSocket);
+  }
+
+  @Override
+  public @NonNull RegistrationApiV2 provideRegistrationApiV2(@NonNull SignalRestClient signalRestClient) {
+    return new RegistrationApiV2(signalRestClient);
   }
 
   @Override

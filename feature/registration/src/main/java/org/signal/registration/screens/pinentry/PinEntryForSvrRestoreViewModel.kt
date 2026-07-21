@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.onEach
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
@@ -112,7 +113,7 @@ class PinEntryForSvrRestoreViewModel(
     Log.d(TAG, "[PinEntered] Attempting to restore master key from SVR...")
 
     val svrCredentials = when (val result = repository.getSvrCredentials()) {
-      is RequestResult.Success<NetworkController.SvrCredentials> -> {
+      is RequestResult.Success<SvrCredentials> -> {
         result.result
       }
       is RequestResult.NonSuccess<NetworkController.GetSvrCredentialsError> -> {

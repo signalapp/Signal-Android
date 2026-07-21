@@ -19,6 +19,7 @@ import org.signal.network.api.LinkDeviceApi
 import org.signal.network.api.PaymentsApi
 import org.signal.network.api.ProvisioningApi
 import org.signal.network.api.RateLimitChallengeApi
+import org.signal.network.api.RegistrationApiV2
 import org.signal.network.api.RemoteConfigApi
 import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
@@ -277,6 +278,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideRegistrationApi(pushServiceSocket: PushServiceSocket): RegistrationApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideRegistrationApiV2(signalRestClient: SignalRestClient): RegistrationApiV2 {
     return mockk(relaxed = true)
   }
 

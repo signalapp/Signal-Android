@@ -12,18 +12,21 @@ import kotlinx.serialization.Serializable
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.util.censor
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
 import org.signal.registration.util.AccountEntropyPoolParceler
 import org.signal.registration.util.MasterKeyParceler
+import org.signal.registration.util.NullableSessionMetadataParceler
 
 @Parcelize
 @TypeParceler<MasterKey?, MasterKeyParceler>
 @TypeParceler<AccountEntropyPool?, AccountEntropyPoolParceler>
+@TypeParceler<SessionMetadata?, NullableSessionMetadataParceler>
 data class RegistrationFlowState(
   /** The navigation stack. Controls what screen we're on and what the backstack looks like. */
   val backStack: List<RegistrationRoute> = listOf(RegistrationRoute.Welcome),
 
   /** The metadata for the currently-active registration session. */
-  val sessionMetadata: NetworkController.SessionMetadata? = null,
+  val sessionMetadata: SessionMetadata? = null,
 
   /** The e164 associated with the [sessionMetadata]. */
   val sessionE164: String? = null,

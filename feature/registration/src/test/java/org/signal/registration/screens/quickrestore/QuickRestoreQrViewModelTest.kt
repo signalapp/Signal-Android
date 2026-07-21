@@ -29,6 +29,10 @@ import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.RegisterAccountError
+import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
+import org.signal.network.api.RegistrationApiV2.RegistrationLockResponse
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.KeyMaterial
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
@@ -161,13 +165,13 @@ class QuickRestoreQrViewModelTest {
     val keyMaterial = mockk<KeyMaterial>(relaxed = true) {
       every { accountEntropyPool } returns aep
     }
-    val response = mockk<NetworkController.RegisterAccountResponse>(relaxed = true)
+    val response = mockk<RegisterAccountResponse>(relaxed = true)
     val flow = MutableSharedFlow<NetworkController.ProvisioningEvent>(replay = 1)
     every { mockRepository.startProvisioning() } returns flow
 
     coEvery { mockRepository.registerAccountWithProvisioningData(any(), provideRegistrationLock = false) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RegistrationLock(registrationLockResponse())
+        RegisterAccountError.RegistrationLock(registrationLockResponse())
       )
     coEvery { mockRepository.registerAccountWithProvisioningData(any(), provideRegistrationLock = true) } returns
       RequestResult.Success(response to keyMaterial)
@@ -194,7 +198,7 @@ class QuickRestoreQrViewModelTest {
 
     coEvery { mockRepository.registerAccountWithProvisioningData(any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RegistrationLock(registrationLockResponse())
+        RegisterAccountError.RegistrationLock(registrationLockResponse())
       )
 
     createViewModel()
@@ -210,10 +214,10 @@ class QuickRestoreQrViewModelTest {
       .isInstanceOf<RegistrationRoute.PinEntryForRegistrationLock>()
   }
 
-  private fun registrationLockResponse(): NetworkController.RegistrationLockResponse {
-    return NetworkController.RegistrationLockResponse(
+  private fun registrationLockResponse(): RegistrationLockResponse {
+    return RegistrationLockResponse(
       timeRemaining = 86400000L,
-      svr2Credentials = NetworkController.SvrCredentials(username = "test-username", password = "test-password")
+      svr2Credentials = SvrCredentials(username = "test-username", password = "test-password")
     )
   }
 }

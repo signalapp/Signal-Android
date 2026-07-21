@@ -12,6 +12,8 @@ import kotlinx.serialization.json.Json
 import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 
 class PersistedFlowStateTest {
 
@@ -53,7 +55,7 @@ class PersistedFlowStateTest {
 
   @Test
   fun `round-trip serialization with VerificationCodeEntry`() {
-    val session = NetworkController.SessionMetadata(
+    val session = SessionMetadata(
       id = "session-123",
       nextSms = 1000L,
       nextCall = 2000L,
@@ -104,7 +106,7 @@ class PersistedFlowStateTest {
 
   @Test
   fun `round-trip serialization with PinEntryForRegistrationLock`() {
-    val creds = NetworkController.SvrCredentials(username = "user", password = "pass")
+    val creds = SvrCredentials(username = "user", password = "pass")
     val state = PersistedFlowState(
       backStack = listOf(
         RegistrationRoute.Welcome,
@@ -123,7 +125,7 @@ class PersistedFlowStateTest {
 
   @Test
   fun `round-trip serialization with Captcha route`() {
-    val session = NetworkController.SessionMetadata(
+    val session = SessionMetadata(
       id = "session-456",
       nextSms = null,
       nextCall = null,
@@ -161,7 +163,7 @@ class PersistedFlowStateTest {
 
   @Test
   fun `toPersistedFlowState captures correct fields`() {
-    val session = NetworkController.SessionMetadata(
+    val session = SessionMetadata(
       id = "session-789",
       nextSms = null,
       nextCall = null,
@@ -198,7 +200,7 @@ class PersistedFlowStateTest {
 
   @Test
   fun `toRegistrationFlowState reconstructs all fields`() {
-    val session = NetworkController.SessionMetadata(
+    val session = SessionMetadata(
       id = "session-101",
       nextSms = null,
       nextCall = null,

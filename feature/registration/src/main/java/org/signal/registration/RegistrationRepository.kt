@@ -41,19 +41,26 @@ import org.signal.libsignal.protocol.kem.KEMKeyType
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
-import org.signal.registration.NetworkController.AccountAttributes
-import org.signal.registration.NetworkController.CreateSessionError
-import org.signal.registration.NetworkController.DeviceAttributes
+import org.signal.network.api.RegistrationApiV2.AccountAttributes
+import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
+import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
+import org.signal.network.api.RegistrationApiV2.CreateSessionError
+import org.signal.network.api.RegistrationApiV2.DeviceAttributes
+import org.signal.network.api.RegistrationApiV2.PreKeyCollection
+import org.signal.network.api.RegistrationApiV2.RegisterAccountError
+import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
+import org.signal.network.api.RegistrationApiV2.RegisterAsLinkedDeviceError
+import org.signal.network.api.RegistrationApiV2.RequestVerificationCodeError
+import org.signal.network.api.RegistrationApiV2.RestoreMethod
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SetRestoreMethodError
+import org.signal.network.api.RegistrationApiV2.SubmitVerificationCodeError
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
+import org.signal.network.api.RegistrationApiV2.UpdateSessionError
+import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
 import org.signal.registration.NetworkController.MasterKeyResponse
-import org.signal.registration.NetworkController.PreKeyCollection
 import org.signal.registration.NetworkController.ProvisioningEvent
-import org.signal.registration.NetworkController.RegisterAccountError
-import org.signal.registration.NetworkController.RegisterAccountResponse
-import org.signal.registration.NetworkController.RequestVerificationCodeError
 import org.signal.registration.NetworkController.RestoreMasterKeyError
-import org.signal.registration.NetworkController.SessionMetadata
-import org.signal.registration.NetworkController.SvrCredentials
-import org.signal.registration.NetworkController.UpdateSessionError
 import org.signal.registration.proto.AccountData
 import org.signal.registration.proto.LinkedDeviceData
 import org.signal.registration.proto.ProvisioningData
@@ -92,7 +99,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
   suspend fun requestVerificationCode(
     sessionId: String,
     smsAutoRetrieveCodeSupported: Boolean,
-    transport: NetworkController.VerificationCodeTransport
+    transport: VerificationCodeTransport
   ): RequestResult<SessionMetadata, RequestVerificationCodeError> = withContext(Dispatchers.IO) {
     networkController.requestVerificationCode(
       sessionId = sessionId,
@@ -162,7 +169,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
   suspend fun submitVerificationCode(
     sessionId: String,
     verificationCode: String
-  ): RequestResult<SessionMetadata, NetworkController.SubmitVerificationCodeError> = withContext(Dispatchers.IO) {
+  ): RequestResult<SessionMetadata, SubmitVerificationCodeError> = withContext(Dispatchers.IO) {
     networkController.submitVerificationCode(
       sessionId = sessionId,
       verificationCode = verificationCode
@@ -222,7 +229,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
     data.svrCredentials.map { SvrCredentials(username = it.username, password = it.password) }
   }
 
-  suspend fun checkSvrCredentials(e164: String, credentials: List<SvrCredentials>): RequestResult<NetworkController.CheckSvrCredentialsResponse, NetworkController.CheckSvrCredentialsError> = withContext(Dispatchers.IO) {
+  suspend fun checkSvrCredentials(e164: String, credentials: List<SvrCredentials>): RequestResult<CheckSvrCredentialsResponse, CheckSvrCredentialsError> = withContext(Dispatchers.IO) {
     networkController.checkSvrCredentials(e164, credentials)
   }
 
@@ -353,7 +360,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
   suspend fun registerAsLinkedDevice(
     message: NetworkController.LinkDeviceProvisioningMessage,
     deviceName: String
-  ): RequestResult<LinkedDeviceResult, NetworkController.RegisterAsLinkedDeviceError> = withContext(Dispatchers.IO) {
+  ): RequestResult<LinkedDeviceResult, RegisterAsLinkedDeviceError> = withContext(Dispatchers.IO) {
     checkNotNull(message.accountEntropyPool) { "Link provisioning message missing account entropy pool" }
 
     val e164 = message.e164
@@ -500,8 +507,8 @@ class RegistrationRepository(val context: Context, val networkController: Networ
    */
   suspend fun setRestoreMethod(
     token: String,
-    method: NetworkController.RestoreMethod
-  ): RequestResult<Unit, NetworkController.SetRestoreMethodError> = withContext(Dispatchers.IO) {
+    method: RestoreMethod
+  ): RequestResult<Unit, SetRestoreMethodError> = withContext(Dispatchers.IO) {
     networkController.setRestoreMethod(token, method)
   }
 

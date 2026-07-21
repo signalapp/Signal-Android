@@ -43,6 +43,8 @@ import org.signal.core.ui.navigation.TransitionSpecs
 import org.signal.core.util.LinkActions
 import org.signal.core.util.LinkActions.OpenUrlError
 import org.signal.core.util.serialization.AccountEntropyPoolSerializer
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.screens.accountlocked.AccountLockedScreen
 import org.signal.registration.screens.accountlocked.AccountLockedScreenEvents
 import org.signal.registration.screens.accountlocked.AccountLockedState
@@ -111,6 +113,8 @@ import org.signal.registration.screens.welcome.WelcomeScreenEvents
 import org.signal.registration.screens.welcome.WelcomeScreenViewModel
 import org.signal.registration.util.AccountEntropyPoolParceler
 import org.signal.registration.util.RegistrationCredentialManager
+import org.signal.registration.util.SessionMetadataParceler
+import org.signal.registration.util.SvrCredentialsParceler
 
 /**
  * Navigation routes for the registration flow.
@@ -144,19 +148,22 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object VerificationCodeEntry : RegistrationRoute
 
   @Serializable
-  data class Captcha(val session: NetworkController.SessionMetadata) : RegistrationRoute
+  @TypeParceler<SessionMetadata, SessionMetadataParceler>
+  data class Captcha(val session: SessionMetadata) : RegistrationRoute
 
   @Serializable
   data object PinEntryForSvrRestore : RegistrationRoute
 
   @Serializable
+  @TypeParceler<SvrCredentials, SvrCredentialsParceler>
   data class PinEntryForRegistrationLock(
     val timeRemaining: Long,
-    val svrCredentials: NetworkController.SvrCredentials
+    val svrCredentials: SvrCredentials
   ) : RegistrationRoute
 
   @Serializable
-  data class PinEntryForSmsBypass(val svrCredentials: NetworkController.SvrCredentials) : RegistrationRoute
+  @TypeParceler<SvrCredentials, SvrCredentialsParceler>
+  data class PinEntryForSmsBypass(val svrCredentials: SvrCredentials) : RegistrationRoute
 
   @Serializable
   data class AccountLocked(val timeRemainingMs: Long) : RegistrationRoute

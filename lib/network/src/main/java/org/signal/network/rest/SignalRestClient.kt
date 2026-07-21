@@ -547,3 +547,49 @@ class SignalRestClient @JvmOverloads constructor(
     }
   }
 }
+
+/**
+ * Maps a raw REST result into a fully-typed one.
+ */
+inline fun <T, E : BadRequestError> RequestResult<RestResponse, RestStatusCodeError>.toTypedResult(
+  parseSuccess: (RestResponse) -> T,
+  mapError: (RestStatusCodeError) -> E?
+): RequestResult<T, E> {
+  return when (this) {
+    is RequestResult.Success -> {
+      try {
+        RequestResult.Success(parseSuccess(result))
+      } catch (e: IOException) {
+        RequestResult.RetryableNetworkError(e)
+      } catch (e: Exception) {
+        RequestResult.ApplicationError(e)
+      }
+    }
+    is RequestResult.NonSuccess -> {
+      try {
+        when (val mapped = mapError(error)) {
+          null -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${error.statusCode}, body: ${error.bodyString()}"))
+          else -> RequestResult.NonSuccess(mapped)
+        }
+      } catch (e: Exception) {
+        RequestResult.ApplicationError(e)
+      }
+    }
+    is RequestResult.RetryableNetworkError -> this
+    is RequestResult.ApplicationError -> this
+  }
+}
+
+/**
+ * Parses body as a UTF-8 string.
+ */
+fun RestResponse.bodyString(): String {
+  return body.toString(Charsets.UTF_8)
+}
+
+/**
+ * Parses body as a UTF-8 string.
+ */
+fun RestStatusCodeError.bodyString(): String {
+  return body?.toString(Charsets.UTF_8) ?: ""
+}

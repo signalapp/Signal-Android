@@ -19,6 +19,9 @@ import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.MasterKey
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.RegisterAccountError
+import org.signal.network.api.RegistrationApiV2.RegistrationLockResponse
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
@@ -36,7 +39,7 @@ class PinEntryForSmsBypassViewModelTest {
   private lateinit var emittedStates: MutableList<PinEntryState>
   private lateinit var stateEmitter: (PinEntryState) -> Unit
 
-  private val testSvrCredentials = NetworkController.SvrCredentials(
+  private val testSvrCredentials = SvrCredentials(
     username = "test-username",
     password = "test-password"
   )
@@ -217,7 +220,7 @@ class PinEntryForSmsBypassViewModelTest {
       RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.DeviceTransferPossible
+        RegisterAccountError.DeviceTransferPossible
       )
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
@@ -237,7 +240,7 @@ class PinEntryForSmsBypassViewModelTest {
       RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.InvalidRequest("Bad request")
+        RegisterAccountError.InvalidRequest("Bad request")
       )
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
@@ -258,7 +261,7 @@ class PinEntryForSmsBypassViewModelTest {
       RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RateLimited(retryAfter)
+        RegisterAccountError.RateLimited(retryAfter)
       )
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
@@ -272,7 +275,7 @@ class PinEntryForSmsBypassViewModelTest {
   @Test
   fun `PinEntered with RegistrationLock without provideRegistrationLock retries with reglock`() = runTest {
     val masterKey = mockk<MasterKey>(relaxed = true)
-    val registrationLockData = mockk<NetworkController.RegistrationLockResponse>(relaxed = true)
+    val registrationLockData = mockk<RegistrationLockResponse>(relaxed = true)
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), forRegistrationLock = false) } returns
@@ -280,7 +283,7 @@ class PinEntryForSmsBypassViewModelTest {
     // First call (without reglock) returns RegistrationLock error, second call (with reglock) succeeds
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), registrationLock = null, any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RegistrationLock(registrationLockData)
+        RegisterAccountError.RegistrationLock(registrationLockData)
       )
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), registrationLock = any<String>(), any()) } returns
       RequestResult.Success(mockk(relaxed = true))
@@ -297,7 +300,7 @@ class PinEntryForSmsBypassViewModelTest {
   @Test
   fun `PinEntered with RegistrationLock when already providing reglock emits RecoveryPasswordInvalid and navigates back`() = runTest {
     val masterKey = mockk<MasterKey>(relaxed = true)
-    val registrationLockData = mockk<NetworkController.RegistrationLockResponse>(relaxed = true)
+    val registrationLockData = mockk<RegistrationLockResponse>(relaxed = true)
     val initialState = PinEntryState(mode = PinEntryState.Mode.SmsBypass, e164 = "+15551234567")
 
     coEvery { mockRepository.restoreMasterKeyFromSvr(any(), any(), forRegistrationLock = false) } returns
@@ -305,7 +308,7 @@ class PinEntryForSmsBypassViewModelTest {
     // Both calls (with and without reglock) return RegistrationLock error
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RegistrationLock(registrationLockData)
+        RegisterAccountError.RegistrationLock(registrationLockData)
       )
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
@@ -326,7 +329,7 @@ class PinEntryForSmsBypassViewModelTest {
       RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect("Wrong password")
+        RegisterAccountError.RegistrationRecoveryPasswordIncorrect("Wrong password")
       )
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)
@@ -346,7 +349,7 @@ class PinEntryForSmsBypassViewModelTest {
       RequestResult.Success(NetworkController.MasterKeyResponse(masterKey))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
-        NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified("Not found")
+        RegisterAccountError.SessionNotFoundOrNotVerified("Not found")
       )
 
     viewModel.applyEvent(initialState, PinEntryScreenEvents.PinEntered("123456"), parentEventEmitter, stateEmitter)

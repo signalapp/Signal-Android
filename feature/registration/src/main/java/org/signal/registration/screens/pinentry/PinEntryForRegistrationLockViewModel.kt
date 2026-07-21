@@ -18,6 +18,8 @@ import org.signal.core.models.MasterKey
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.RegisterAccountError
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.NetworkController
 import org.signal.registration.PendingRestoreOption
 import org.signal.registration.RegistrationFlowEvent
@@ -39,7 +41,7 @@ class PinEntryForRegistrationLockViewModel(
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val timeRemaining: Long,
-  private val svrCredentials: NetworkController.SvrCredentials
+  private val svrCredentials: SvrCredentials
 ) : EventDrivenViewModel<PinEntryScreenEvents>(TAG) {
 
   companion object {
@@ -187,29 +189,29 @@ class PinEntryForRegistrationLockViewModel(
       }
       is RequestResult.NonSuccess -> {
         when (val error = registerResult.error) {
-          is NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified -> {
+          is RegisterAccountError.SessionNotFoundOrNotVerified -> {
             Log.w(TAG, "[PinEntered] Session not found or verified: ${error.message}. Resetting.")
             parentEventEmitter(RegistrationFlowEvent.ResetState)
             state
           }
-          is NetworkController.RegisterAccountError.RegistrationLock -> {
+          is RegisterAccountError.RegistrationLock -> {
             Log.w(TAG, "[PinEntered] Still getting registration lock error after providing token. This implies that the MasterKey and reglock token on AccountAttributes is out of sync. All we can do is report the account as locked.")
             parentEventEmitter.navigateTo(RegistrationRoute.AccountLocked(7.days.inWholeMilliseconds))
             state
           }
-          is NetworkController.RegisterAccountError.RateLimited -> {
+          is RegisterAccountError.RateLimited -> {
             Log.w(TAG, "[PinEntered] Rate limited when registering. Retry After: ${error.retryAfter}")
             state.copy(loading = false, dialogs = state.dialogs.copy(rateLimitedRetryAfter = error.retryAfter))
           }
-          is NetworkController.RegisterAccountError.InvalidRequest -> {
+          is RegisterAccountError.InvalidRequest -> {
             Log.w(TAG, "[PinEntered] Invalid request when registering: ${error.message}")
             state.copy(loading = false, dialogs = state.dialogs.copy(unknownError = true))
           }
-          is NetworkController.RegisterAccountError.DeviceTransferPossible -> {
+          is RegisterAccountError.DeviceTransferPossible -> {
             Log.w(TAG, "[PinEntered] Device transfer possible. This shouldn't happen when skipDeviceTransfer is true.")
             state.copy(loading = false, dialogs = state.dialogs.copy(unknownError = true))
           }
-          is NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
+          is RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
             Log.w(TAG, "[PinEntered] Registration recovery password incorrect: ${error.message}. Marking recovery password invalid and navigating back.")
             parentEventEmitter(RegistrationFlowEvent.RecoveryPasswordInvalid)
             parentEventEmitter.navigateBack()
@@ -247,7 +249,7 @@ class PinEntryForRegistrationLockViewModel(
     private val parentState: StateFlow<RegistrationFlowState>,
     private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
     private val timeRemaining: Long,
-    private val svrCredentials: NetworkController.SvrCredentials
+    private val svrCredentials: SvrCredentials
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return PinEntryForRegistrationLockViewModel(

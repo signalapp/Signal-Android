@@ -42,28 +42,33 @@ import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialRequestContext
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialResponse
 import org.signal.network.NetworkResult
 import org.signal.network.api.LinkDeviceApi
+import org.signal.network.api.RegistrationApiV2
+import org.signal.network.api.RegistrationApiV2.AccountAttributes
+import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
+import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
+import org.signal.network.api.RegistrationApiV2.CreateSessionError
+import org.signal.network.api.RegistrationApiV2.DeviceAttributes
+import org.signal.network.api.RegistrationApiV2.GetSessionStatusError
+import org.signal.network.api.RegistrationApiV2.LinkDeviceResponse
+import org.signal.network.api.RegistrationApiV2.PreKeyCollection
+import org.signal.network.api.RegistrationApiV2.RegisterAccountError
+import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
+import org.signal.network.api.RegistrationApiV2.RegisterAsLinkedDeviceError
+import org.signal.network.api.RegistrationApiV2.RequestVerificationCodeError
+import org.signal.network.api.RegistrationApiV2.RestoreMethod
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SetRestoreMethodError
+import org.signal.network.api.RegistrationApiV2.SubmitVerificationCodeError
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
+import org.signal.network.api.RegistrationApiV2.UpdateSessionError
+import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
 import org.signal.network.config.SignalServiceConfiguration
+import org.signal.network.rest.SignalRestClient
 import org.signal.network.service.StorageServiceService
 import org.signal.registration.LinkAndSyncWaitResult
 import org.signal.registration.NetworkController
-import org.signal.registration.NetworkController.AccountAttributes
-import org.signal.registration.NetworkController.CheckSvrCredentialsRequest
-import org.signal.registration.NetworkController.CheckSvrCredentialsResponse
-import org.signal.registration.NetworkController.CreateSessionError
-import org.signal.registration.NetworkController.DeviceAttributes
-import org.signal.registration.NetworkController.GetSessionStatusError
-import org.signal.registration.NetworkController.PreKeyCollection
 import org.signal.registration.NetworkController.ProvisioningEvent
 import org.signal.registration.NetworkController.ProvisioningMessage
-import org.signal.registration.NetworkController.RegisterAccountError
-import org.signal.registration.NetworkController.RegisterAccountResponse
-import org.signal.registration.NetworkController.RegistrationLockResponse
-import org.signal.registration.NetworkController.RequestVerificationCodeError
-import org.signal.registration.NetworkController.SessionMetadata
-import org.signal.registration.NetworkController.SubmitVerificationCodeError
-import org.signal.registration.NetworkController.ThirdPartyServiceErrorResponse
-import org.signal.registration.NetworkController.UpdateSessionError
-import org.signal.registration.NetworkController.VerificationCodeTransport
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.signal.registration.sample.MainActivity
 import org.signal.registration.sample.fcm.FcmUtil
@@ -71,7 +76,6 @@ import org.signal.registration.sample.fcm.PushChallengeReceiver
 import org.signal.registration.sample.storage.RegistrationPreferences
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.provisioning.ProvisioningSocket
-import org.whispersystems.signalservice.api.registration.RegistrationApi
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreResponse
@@ -114,6 +118,10 @@ class DemoNetworkController(
 
   private val json = Json { ignoreUnknownKeys = true }
 
+  private val registrationApi: RegistrationApiV2 by lazy {
+    RegistrationApiV2(SignalRestClient(serviceConfiguration, USER_AGENT))
+  }
+
   private val okHttpClient: okhttp3.OkHttpClient by lazy {
     val trustStore = serviceConfiguration.signalServiceUrls[0].trustStore
     val keyStore = java.security.KeyStore.getInstance(java.security.KeyStore.getDefaultType())
@@ -137,103 +145,24 @@ class DemoNetworkController(
     fcmToken: String?,
     mcc: String?,
     mnc: String?
-  ): RequestResult<SessionMetadata, CreateSessionError> = withContext(Dispatchers.IO) {
-    try {
-      pushServiceSocket.createVerificationSessionV2(e164, fcmToken, mcc, mnc).use { response ->
-        when (response.code) {
-          200 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.Success(session)
-          }
-          422 -> {
-            RequestResult.NonSuccess(CreateSessionError.InvalidRequest(response.body.string()))
-          }
-          429 -> {
-            RequestResult.NonSuccess(CreateSessionError.RateLimited(response.retryAfter()))
-          }
-          else -> {
-            RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
-          }
-        }
-      }
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      RequestResult.ApplicationError(e)
-    }
+  ): RequestResult<SessionMetadata, CreateSessionError> {
+    return registrationApi.createVerificationSession(e164, fcmToken, mcc, mnc)
   }
 
-  override suspend fun getSession(sessionId: String): RequestResult<SessionMetadata, GetSessionStatusError> = withContext(Dispatchers.IO) {
-    try {
-      pushServiceSocket.getSessionStatusV2(sessionId).use { response ->
-        when (response.code) {
-          200 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.Success(session)
-          }
-          400 -> {
-            RequestResult.NonSuccess(GetSessionStatusError.InvalidRequest(response.body.string()))
-          }
-          404 -> {
-            RequestResult.NonSuccess(GetSessionStatusError.SessionNotFound(response.body.string()))
-          }
-          422 -> {
-            RequestResult.NonSuccess(GetSessionStatusError.InvalidSessionId(response.body.string()))
-          }
-          else -> {
-            RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
-          }
-        }
-      }
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      RequestResult.ApplicationError(e)
-    }
+  override suspend fun getSession(sessionId: String): RequestResult<SessionMetadata, GetSessionStatusError> {
+    return registrationApi.getSessionStatus(sessionId)
   }
 
   override suspend fun updateSession(
-    sessionId: String?,
+    sessionId: String,
     pushChallengeToken: String?,
     captchaToken: String?
-  ): RequestResult<SessionMetadata, UpdateSessionError> = withContext(Dispatchers.IO) {
-    try {
-      pushServiceSocket.patchVerificationSessionV2(
-        sessionId,
-        null, // pushToken
-        null, // mcc
-        null, // mnc
-        captchaToken,
-        pushChallengeToken
-      ).use { response ->
-        when (response.code) {
-          200 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.Success(session)
-          }
-          400 -> {
-            RequestResult.NonSuccess(UpdateSessionError.InvalidRequest(response.body.string()))
-          }
-          404 -> {
-            RequestResult.NonSuccess(UpdateSessionError.SessionNotFound(response.body.string()))
-          }
-          409 -> {
-            RequestResult.NonSuccess(UpdateSessionError.RejectedUpdate(response.body.string()))
-          }
-          429 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.NonSuccess(UpdateSessionError.RateLimited(response.retryAfter(), session))
-          }
-          else -> {
-            RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
-          }
-        }
-      }
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      RequestResult.ApplicationError(e)
-    }
+  ): RequestResult<SessionMetadata, UpdateSessionError> {
+    return registrationApi.updateVerificationSession(
+      sessionId = sessionId,
+      captchaToken = captchaToken,
+      pushChallengeToken = pushChallengeToken
+    )
   }
 
   override suspend fun requestVerificationCode(
@@ -241,93 +170,15 @@ class DemoNetworkController(
     locale: Locale?,
     androidSmsRetrieverSupported: Boolean,
     transport: VerificationCodeTransport
-  ): RequestResult<SessionMetadata, RequestVerificationCodeError> = withContext(Dispatchers.IO) {
-    try {
-      val socketTransport = when (transport) {
-        VerificationCodeTransport.SMS -> PushServiceSocket.VerificationCodeTransport.SMS
-        VerificationCodeTransport.VOICE -> PushServiceSocket.VerificationCodeTransport.VOICE
-      }
-
-      pushServiceSocket.requestVerificationCodeV2(
-        sessionId,
-        locale,
-        androidSmsRetrieverSupported,
-        socketTransport
-      ).use { response ->
-        when (response.code) {
-          200 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.Success(session)
-          }
-          400 -> {
-            RequestResult.NonSuccess(RequestVerificationCodeError.InvalidSessionId(response.body.string()))
-          }
-          404 -> {
-            RequestResult.NonSuccess(RequestVerificationCodeError.SessionNotFound(response.body.string()))
-          }
-          409 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.NonSuccess(RequestVerificationCodeError.MissingRequestInformationOrAlreadyVerified(session))
-          }
-          418 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.NonSuccess(RequestVerificationCodeError.CouldNotFulfillWithRequestedTransport(session))
-          }
-          429 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.NonSuccess(RequestVerificationCodeError.RateLimited(response.retryAfter(), session))
-          }
-          440 -> {
-            val errorBody = json.decodeFromString<ThirdPartyServiceErrorResponse>(response.body.string())
-            RequestResult.NonSuccess(RequestVerificationCodeError.ThirdPartyServiceError(errorBody))
-          }
-          else -> {
-            RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
-          }
-        }
-      }
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      RequestResult.ApplicationError(e)
-    }
+  ): RequestResult<SessionMetadata, RequestVerificationCodeError> {
+    return registrationApi.requestVerificationCode(sessionId, locale, androidSmsRetrieverSupported, transport)
   }
 
   override suspend fun submitVerificationCode(
     sessionId: String,
     verificationCode: String
-  ): RequestResult<SessionMetadata, SubmitVerificationCodeError> = withContext(Dispatchers.IO) {
-    try {
-      pushServiceSocket.submitVerificationCodeV2(sessionId, verificationCode).use { response ->
-        when (response.code) {
-          200 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.Success(session)
-          }
-          400 -> {
-            RequestResult.NonSuccess(SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode(response.body.string()))
-          }
-          404 -> {
-            RequestResult.NonSuccess(SubmitVerificationCodeError.SessionNotFound(response.body.string()))
-          }
-          409 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.NonSuccess(SubmitVerificationCodeError.SessionAlreadyVerifiedOrNoCodeRequested(session))
-          }
-          429 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.NonSuccess(SubmitVerificationCodeError.RateLimited(response.retryAfter(), session))
-          }
-          else -> {
-            RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
-          }
-        }
-      }
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      RequestResult.ApplicationError(e)
-    }
+  ): RequestResult<SessionMetadata, SubmitVerificationCodeError> {
+    return registrationApi.submitVerificationCode(sessionId, verificationCode)
   }
 
   override suspend fun registerAccount(
@@ -340,60 +191,18 @@ class DemoNetworkController(
     pniPreKeys: PreKeyCollection,
     fcmToken: String?,
     skipDeviceTransfer: Boolean
-  ): RequestResult<RegisterAccountResponse, RegisterAccountError> = withContext(Dispatchers.IO) {
-    check(sessionId != null || recoveryPassword != null) { "Either sessionId or recoveryPassword must be provided" }
-    check(sessionId == null || recoveryPassword == null) { "Either sessionId or recoveryPassword must be provided, but not both" }
-
-    try {
-      val serviceAttributes = attributes.toServiceAccountAttributes()
-      val serviceAciPreKeys = aciPreKeys.toServicePreKeyCollection()
-      val servicePniPreKeys = pniPreKeys.toServicePreKeyCollection()
-
-      pushServiceSocket.submitRegistrationRequestV2(
-        e164,
-        password,
-        sessionId,
-        recoveryPassword,
-        serviceAttributes,
-        serviceAciPreKeys,
-        servicePniPreKeys,
-        fcmToken,
-        skipDeviceTransfer
-      ).use { response ->
-        when (response.code) {
-          200 -> {
-            val result = json.decodeFromString<RegisterAccountResponse>(response.body.string())
-            RequestResult.Success(result)
-          }
-          401 -> {
-            RequestResult.NonSuccess(RegisterAccountError.SessionNotFoundOrNotVerified(response.body.string()))
-          }
-          403 -> {
-            RequestResult.NonSuccess(RegisterAccountError.RegistrationRecoveryPasswordIncorrect(response.body.string()))
-          }
-          409 -> {
-            RequestResult.NonSuccess(RegisterAccountError.DeviceTransferPossible)
-          }
-          422 -> {
-            RequestResult.NonSuccess(RegisterAccountError.InvalidRequest(response.body.string()))
-          }
-          423 -> {
-            val lockResponse = json.decodeFromString<RegistrationLockResponse>(response.body.string())
-            RequestResult.NonSuccess(RegisterAccountError.RegistrationLock(lockResponse))
-          }
-          429 -> {
-            RequestResult.NonSuccess(RegisterAccountError.RateLimited(response.retryAfter()))
-          }
-          else -> {
-            RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
-          }
-        }
-      }
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      RequestResult.ApplicationError(e)
-    }
+  ): RequestResult<RegisterAccountResponse, RegisterAccountError> {
+    return registrationApi.registerAccount(
+      e164 = e164,
+      password = password,
+      sessionId = sessionId,
+      recoveryPassword = recoveryPassword,
+      attributes = attributes,
+      aciPreKeys = aciPreKeys,
+      pniPreKeys = pniPreKeys,
+      fcmToken = fcmToken,
+      skipDeviceTransfer = skipDeviceTransfer
+    )
   }
 
   override suspend fun getFcmToken(): String? {
@@ -525,44 +334,16 @@ class DemoNetworkController(
     aciPreKeys: PreKeyCollection,
     pniPreKeys: PreKeyCollection,
     fcmToken: String?
-  ): RequestResult<NetworkController.LinkDeviceResponse, NetworkController.RegisterAsLinkedDeviceError> = withContext(Dispatchers.IO) {
-    try {
-      // The link endpoint authenticates via basic auth (e164:password) since this device has no ACI yet.
-      val credentialsProvider = StaticCredentialsProvider(null, null, e164, 1, password)
-      val linkSocket = PushServiceSocket(serviceConfiguration, credentialsProvider, USER_AGENT, true)
-
-      val result = RegistrationApi(linkSocket).registerAsSecondaryDevice(
-        provisioningCode,
-        deviceAttributes.toServiceDeviceAttributes(),
-        aciPreKeys.toServicePreKeyCollection(),
-        pniPreKeys.toServicePreKeyCollection(),
-        fcmToken
-      )
-
-      when (result) {
-        is NetworkResult.Success -> {
-          Log.i(TAG, "[registerAsLinkedDevice] Linked successfully (deviceId=${result.result.deviceId}).")
-          RequestResult.Success(NetworkController.LinkDeviceResponse(deviceId = result.result.deviceId.toInt()))
-        }
-        is NetworkResult.ApplicationError -> RequestResult.ApplicationError(result.throwable)
-        is NetworkResult.NetworkError<*> -> RequestResult.RetryableNetworkError(result.exception)
-        is NetworkResult.StatusCodeError -> {
-          Log.w(TAG, "[registerAsLinkedDevice] Status code error: ${result.code}")
-          val error = when (result.code) {
-            403 -> NetworkController.RegisterAsLinkedDeviceError.IncorrectVerification
-            409 -> NetworkController.RegisterAsLinkedDeviceError.MissingCapability
-            411 -> NetworkController.RegisterAsLinkedDeviceError.MaxLinkedDevices
-            422 -> NetworkController.RegisterAsLinkedDeviceError.InvalidRequest(result.exception.message)
-            429 -> NetworkController.RegisterAsLinkedDeviceError.RateLimited(result.retryAfter())
-            else -> return@withContext RequestResult.ApplicationError(result.exception)
-          }
-          RequestResult.NonSuccess(error)
-        }
-      }
-    } catch (e: Exception) {
-      Log.w(TAG, "[registerAsLinkedDevice] Failed to register as linked device.", e)
-      RequestResult.ApplicationError(e)
-    }
+  ): RequestResult<LinkDeviceResponse, RegisterAsLinkedDeviceError> {
+    return registrationApi.registerAsSecondaryDevice(
+      e164 = e164,
+      password = password,
+      verificationCode = provisioningCode,
+      attributes = deviceAttributes,
+      aciPreKeys = aciPreKeys,
+      pniPreKeys = pniPreKeys,
+      fcmToken = fcmToken
+    )
   }
 
   override suspend fun onLinkedDeviceRegistered() {
@@ -741,7 +522,7 @@ class DemoNetworkController(
   }
 
   override suspend fun restoreMasterKeyFromSvr(
-    svrCredentials: NetworkController.SvrCredentials,
+    svrCredentials: SvrCredentials,
     pin: String
   ): RequestResult<NetworkController.MasterKeyResponse, NetworkController.RestoreMasterKeyError> = withContext(Dispatchers.IO) {
     try {
@@ -798,7 +579,7 @@ class DemoNetworkController(
   override suspend fun setPinAndMasterKeyOnSvr(
     pin: String,
     masterKey: MasterKey
-  ): RequestResult<NetworkController.SvrCredentials?, NetworkController.BackupMasterKeyError> = withContext(Dispatchers.IO) {
+  ): RequestResult<SvrCredentials?, NetworkController.BackupMasterKeyError> = withContext(Dispatchers.IO) {
     try {
       val aci = RegistrationPreferences.aci
       val pni = RegistrationPreferences.pni
@@ -844,7 +625,7 @@ class DemoNetworkController(
       when (response) {
         is BackupResponse.Success -> {
           Log.i(TAG, "[backupMasterKeyToSvr] Successfully backed up master key to SVR2. Value: ${Hex.toStringCondensed(masterKey.serialize())}")
-          RequestResult.Success(NetworkController.SvrCredentials(response.authorization.username(), response.authorization.password()))
+          RequestResult.Success(SvrCredentials(response.authorization.username(), response.authorization.password()))
         }
         is BackupResponse.ApplicationError -> {
           Log.w(TAG, "[backupMasterKeyToSvr] Application error", response.exception)
@@ -1041,7 +822,7 @@ class DemoNetworkController(
     }
   }
 
-  override suspend fun getSvrCredentials(): RequestResult<NetworkController.SvrCredentials, NetworkController.GetSvrCredentialsError> = withContext(Dispatchers.IO) {
+  override suspend fun getSvrCredentials(): RequestResult<SvrCredentials, NetworkController.GetSvrCredentialsError> = withContext(Dispatchers.IO) {
     val aci = RegistrationPreferences.aci
     val password = RegistrationPreferences.servicePassword
 
@@ -1063,7 +844,7 @@ class DemoNetworkController(
       okHttpClient.newCall(request).execute().use { response ->
         when (response.code) {
           200 -> {
-            val svrCredentials = json.decodeFromString<NetworkController.SvrCredentials>(response.body.string())
+            val svrCredentials = json.decodeFromString<SvrCredentials>(response.body.string())
             RequestResult.Success(svrCredentials)
           }
           401 -> {
@@ -1085,45 +866,9 @@ class DemoNetworkController(
 
   override suspend fun checkSvrCredentials(
     e164: String,
-    credentials: List<NetworkController.SvrCredentials>
-  ): RequestResult<CheckSvrCredentialsResponse, NetworkController.CheckSvrCredentialsError> = withContext(Dispatchers.IO) {
-    try {
-      val baseUrl = serviceConfiguration.signalServiceUrls[0].url
-
-      val requestBody = json.encodeToString(
-        CheckSvrCredentialsRequest.serializer(),
-        CheckSvrCredentialsRequest.createForCredentials(number = e164, credentials)
-      ).toRequestBody("application/json".toMediaType())
-
-      val request = okhttp3.Request.Builder()
-        .url("$baseUrl/v2/svr/auth/check")
-        .post(requestBody)
-        .build()
-
-      okHttpClient.newCall(request).execute().use { response ->
-        when (response.code) {
-          200 -> {
-            val result = json.decodeFromString<CheckSvrCredentialsResponse>(response.body.string())
-            RequestResult.Success(result)
-          }
-          400, 422 -> {
-            RequestResult.NonSuccess(NetworkController.CheckSvrCredentialsError.InvalidRequest(response.body.string()))
-          }
-          401 -> {
-            RequestResult.NonSuccess(NetworkController.CheckSvrCredentialsError.Unauthorized)
-          }
-          else -> {
-            RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body?.string()}"))
-          }
-        }
-      }
-    } catch (e: IOException) {
-      Log.w(TAG, "[checkSvrCredentials] IOException", e)
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      Log.w(TAG, "[checkSvrCredentials] Exception", e)
-      RequestResult.ApplicationError(e)
-    }
+    credentials: List<SvrCredentials>
+  ): RequestResult<CheckSvrCredentialsResponse, CheckSvrCredentialsError> {
+    return registrationApi.checkSvr2AuthCredentials(e164, credentials)
   }
 
   override suspend fun enqueueAccountAttributesSyncJob() = withContext(Dispatchers.IO) {
@@ -1253,34 +998,8 @@ class DemoNetworkController(
     }
   }
 
-  override suspend fun setRestoreMethod(token: String, method: NetworkController.RestoreMethod): RequestResult<Unit, NetworkController.SetRestoreMethodError> = withContext(Dispatchers.IO) {
-    try {
-      val baseUrl = serviceConfiguration.signalServiceUrls[0].url
-      val body = json.encodeToString(SetRestoreMethodRequest.serializer(), SetRestoreMethodRequest(method))
-        .toRequestBody("application/json".toMediaType())
-
-      val request = okhttp3.Request.Builder()
-        .url("$baseUrl/v1/devices/restore_account/${java.net.URLEncoder.encode(token, "UTF-8")}")
-        .put(body)
-        .build()
-
-      okHttpClient.newCall(request).execute().use { response ->
-        when (response.code) {
-          200, 204 -> {
-            Log.i(TAG, "[setRestoreMethod] Successfully reported restore method: $method")
-            RequestResult.Success(Unit)
-          }
-          429 -> RequestResult.NonSuccess(NetworkController.SetRestoreMethodError.RateLimited(0.seconds))
-          else -> RequestResult.NonSuccess(NetworkController.SetRestoreMethodError.InvalidRequest("HTTP ${response.code}: ${response.body.string()}"))
-        }
-      }
-    } catch (e: IOException) {
-      Log.w(TAG, "[setRestoreMethod] IOException", e)
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      Log.w(TAG, "[setRestoreMethod] Exception", e)
-      RequestResult.ApplicationError(e)
-    }
+  override suspend fun setRestoreMethod(token: String, method: RestoreMethod): RequestResult<Unit, SetRestoreMethodError> {
+    return registrationApi.setRestoreMethod(token, method)
   }
 
   private fun buildCurrentAccountAttributes(): AccountAttributes {
@@ -1545,9 +1264,6 @@ class DemoNetworkController(
     val credential: String,
     val redemptionTime: Long
   )
-
-  @Serializable
-  private data class SetRestoreMethodRequest(val method: NetworkController.RestoreMethod)
 
   private fun AccountAttributes.toServiceAccountAttributes(): ServiceAccountAttributes {
     return ServiceAccountAttributes(

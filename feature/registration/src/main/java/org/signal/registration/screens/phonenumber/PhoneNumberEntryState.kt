@@ -6,8 +6,8 @@
 package org.signal.registration.screens.phonenumber
 
 import org.signal.core.util.censor
-import org.signal.registration.NetworkController
-import org.signal.registration.NetworkController.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.PendingRestoreOption
 import org.signal.registration.PreExistingRegistrationData
 import org.signal.registration.VerificationCodeRequest
@@ -26,7 +26,7 @@ data class PhoneNumberEntryState(
   val showSpinner: Boolean = false,
   val dialogs: Dialogs = Dialogs(),
   val preExistingRegistrationData: PreExistingRegistrationData? = null,
-  val restoredSvrCredentials: List<NetworkController.SvrCredentials> = emptyList(),
+  val restoredSvrCredentials: List<SvrCredentials> = emptyList(),
   val pendingRestoreOption: PendingRestoreOption? = null,
   val initialized: Boolean = false,
   /** Whether the entered number has a plausible length for the selected country code. */

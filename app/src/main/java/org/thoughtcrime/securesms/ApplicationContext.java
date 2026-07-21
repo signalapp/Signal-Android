@@ -429,7 +429,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
   private void initializeRegistrationDependencies() {
     RegistrationDependencies.provide(
       new RegistrationDependencies(
-        new AppRegistrationNetworkController(this, AppDependencies.getPushServiceSocket()),
+        new AppRegistrationNetworkController(this, AppDependencies.getRegistrationApiV2()),
         new AppRegistrationStorageController(this),
         Environment.IS_LINK_AND_SYNC_AVAILABLE,
         null,
