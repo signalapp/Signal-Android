@@ -4207,12 +4207,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun clearSelfKeyTransparencyData() {
-    Log.i(TAG, "Clearing self key transparency data.")
-    writableDatabase
+    val updated = writableDatabase
       .update(TABLE_NAME)
       .values(KEY_TRANSPARENCY_DATA to null)
       .where("$ACI_COLUMN = ?", Recipient.self().requireAci().toString())
       .run()
+    Log.i(TAG, "Clearing self key transparency data $updated")
   }
 
   /**
