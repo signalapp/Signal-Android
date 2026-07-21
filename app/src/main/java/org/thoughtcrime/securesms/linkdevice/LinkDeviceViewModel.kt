@@ -152,6 +152,10 @@ class LinkDeviceViewModel : ViewModel() {
     pollJob?.cancel()
   }
 
+  fun onDeviceLimitReached() {
+    _state.update { it.copy(oneTimeEvent = OneTimeEvent.SnackbarDeviceLimitReached) }
+  }
+
   fun markQrEducationSheetSeen() {
     SignalStore.uiHints.markHasSeenLinkDeviceQrEducationSheet()
     _state.update {

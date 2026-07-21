@@ -72,6 +72,7 @@ class EditDeviceNameFragment : ComposeFragment() {
         LinkDeviceSettingsState.OneTimeEvent.ToastNetworkFailed,
         is LinkDeviceSettingsState.OneTimeEvent.ToastUnlinked,
         LinkDeviceSettingsState.OneTimeEvent.LaunchEmail,
+        LinkDeviceSettingsState.OneTimeEvent.SnackbarDeviceLimitReached,
         LinkDeviceSettingsState.OneTimeEvent.SnackbarLinkCancelled -> Unit
       }
     }

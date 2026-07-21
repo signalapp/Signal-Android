@@ -41,6 +41,7 @@ data class LinkDeviceSettingsState(
     data class ToastUnlinked(val name: String) : OneTimeEvent
     data class ToastLinked(val name: String) : OneTimeEvent
     data object SnackbarLinkCancelled : OneTimeEvent
+    data object SnackbarDeviceLimitReached : OneTimeEvent
     data object SnackbarNameChangeSuccess : OneTimeEvent
     data object SnackbarNameChangeFailure : OneTimeEvent
     data object ShowFinishedSheet : OneTimeEvent

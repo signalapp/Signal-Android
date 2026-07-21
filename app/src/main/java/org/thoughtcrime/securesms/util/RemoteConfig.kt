@@ -605,6 +605,15 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** The maximum number of linked devices a user can have. */
+  @JvmStatic
+  @get:JvmName("maxLinkedDevices")
+  val maxLinkedDevices: Int by remoteInt(
+    key = "global.maxLinkedDevices",
+    defaultValue = 5,
+    hotSwappable = true
+  )
+
   /** The maximum number of grapheme  */
   @JvmStatic
   val maxGroupNameGraphemeLength: Int by remoteValue(
