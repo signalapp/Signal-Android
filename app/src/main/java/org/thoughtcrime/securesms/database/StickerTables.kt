@@ -40,95 +40,140 @@ import java.io.File
 import java.io.IOException
 import java.io.InputStream
 
-class StickerTable(
+/**
+ * Stores sticker packs and the individual stickers within them.
+ * Broken into two tables: one for the overall pack info, and one for the individual stickers within the pack.
+ */
+class StickerTables(
   context: Context?,
   databaseHelper: SignalDatabase?,
   private val attachmentSecret: AttachmentSecret
 ) : DatabaseTable(context, databaseHelper) {
 
   companion object {
-    private val TAG = tag(StickerTable::class.java)
+    private val TAG = tag(StickerTables::class.java)
 
+    val CREATE_TABLES: Array<String> = arrayOf(Sticker.CREATE_TABLE, Pack.CREATE_TABLE)
+
+    val CREATE_INDEXES: Array<String> = arrayOf(
+      "CREATE INDEX IF NOT EXISTS sticker_pack_id_index ON ${Sticker.TABLE_NAME} (${Sticker.PACK_ID});",
+      "CREATE INDEX IF NOT EXISTS sticker_sticker_id_index ON ${Sticker.TABLE_NAME} (${Sticker.STICKER_ID});"
+    )
+
+    const val DIRECTORY: String = "stickers"
+
+    private val JOINED_TABLES = "${Sticker.TABLE_NAME} INNER JOIN ${Pack.TABLE_NAME} ON ${Sticker.TABLE_NAME}.${Sticker.PACK_ID} = ${Pack.TABLE_NAME}.${Pack.PACK_ID}"
+
+    private val RECORD_PROJECTION = arrayOf(
+      "${Sticker.TABLE_NAME}.${Sticker.ID} AS ${Sticker.ID}",
+      "${Sticker.TABLE_NAME}.${Sticker.PACK_ID} AS ${Sticker.PACK_ID}",
+      "${Pack.TABLE_NAME}.${Pack.PACK_KEY} AS ${Pack.PACK_KEY}",
+      "${Pack.TABLE_NAME}.${Pack.PACK_TITLE} AS ${Pack.PACK_TITLE}",
+      "${Pack.TABLE_NAME}.${Pack.PACK_AUTHOR} AS ${Pack.PACK_AUTHOR}",
+      "${Sticker.TABLE_NAME}.${Sticker.STICKER_ID} AS ${Sticker.STICKER_ID}",
+      "${Sticker.TABLE_NAME}.${Sticker.COVER} AS ${Sticker.COVER}",
+      "${Pack.TABLE_NAME}.${Pack.PACK_ORDER} AS ${Pack.PACK_ORDER}",
+      "${Sticker.TABLE_NAME}.${Sticker.EMOJI} AS ${Sticker.EMOJI}",
+      "${Sticker.TABLE_NAME}.${Sticker.CONTENT_TYPE} AS ${Sticker.CONTENT_TYPE}",
+      "${Sticker.TABLE_NAME}.${Sticker.LAST_USED} AS ${Sticker.LAST_USED}",
+      "${Pack.TABLE_NAME}.${Pack.INSTALLED} AS ${Pack.INSTALLED}",
+      "${Sticker.TABLE_NAME}.${Sticker.FILE_PATH} AS ${Sticker.FILE_PATH}",
+      "${Sticker.TABLE_NAME}.${Sticker.FILE_LENGTH} AS ${Sticker.FILE_LENGTH}",
+      "${Sticker.TABLE_NAME}.${Sticker.FILE_RANDOM} AS ${Sticker.FILE_RANDOM}"
+    )
+  }
+
+  object Sticker {
     const val TABLE_NAME: String = "sticker"
     const val ID: String = "_id"
     const val PACK_ID: String = "pack_id"
-    const val PACK_KEY: String = "pack_key"
-    const val PACK_TITLE: String = "pack_title"
-    const val PACK_AUTHOR: String = "pack_author"
-    private const val STICKER_ID = "sticker_id"
+    const val STICKER_ID = "sticker_id"
     const val EMOJI: String = "emoji"
     const val CONTENT_TYPE: String = "content_type"
     const val COVER: String = "cover"
-    private const val PACK_ORDER = "pack_order"
-    const val INSTALLED: String = "installed"
-    private const val LAST_USED = "last_used"
+    const val LAST_USED = "last_used"
     const val FILE_PATH: String = "file_path"
     const val FILE_LENGTH: String = "file_length"
     const val FILE_RANDOM: String = "file_random"
 
-    val CREATE_TABLE: String = """
+    const val CREATE_TABLE: String = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
-        $PACK_ID TEXT NOT NULL,
-        $PACK_KEY TEXT NOT NULL,
-        $PACK_TITLE TEXT NOT NULL,
-        $PACK_AUTHOR TEXT NOT NULL,
+        $PACK_ID TEXT NOT NULL REFERENCES ${Pack.TABLE_NAME} (${Pack.PACK_ID}) ON DELETE CASCADE,
         $STICKER_ID INTEGER,
         $COVER INTEGER,
-        $PACK_ORDER INTEGER,
         $EMOJI TEXT NOT NULL,
         $CONTENT_TYPE TEXT DEFAULT NULL,
         $LAST_USED INTEGER,
-        $INSTALLED INTEGER,
         $FILE_PATH TEXT NOT NULL,
         $FILE_LENGTH INTEGER,
         $FILE_RANDOM BLOB,
         UNIQUE($PACK_ID, $STICKER_ID, $COVER) ON CONFLICT IGNORE
       )
       """
+  }
 
-    val CREATE_INDEXES: Array<String> = arrayOf(
-      "CREATE INDEX IF NOT EXISTS sticker_pack_id_index ON $TABLE_NAME ($PACK_ID);",
-      "CREATE INDEX IF NOT EXISTS sticker_sticker_id_index ON $TABLE_NAME ($STICKER_ID);"
-    )
+  /**
+   * Pack-level details, one row per sticker pack. Individual stickers live in [StickerTables] and link
+   * back here via [PACK_ID].
+   */
+  object Pack {
+    const val TABLE_NAME: String = "sticker_pack"
+    const val ID: String = "_id"
+    const val PACK_ID: String = "pack_id"
+    const val PACK_KEY: String = "pack_key"
+    const val PACK_TITLE: String = "pack_title"
+    const val PACK_AUTHOR: String = "pack_author"
+    const val PACK_ORDER: String = "pack_order"
+    const val INSTALLED: String = "installed"
 
-    const val DIRECTORY: String = "stickers"
+    val CREATE_TABLE: String = """
+      CREATE TABLE $TABLE_NAME (
+        $ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        $PACK_ID TEXT NOT NULL UNIQUE,
+        $PACK_KEY TEXT NOT NULL,
+        $PACK_TITLE TEXT NOT NULL,
+        $PACK_AUTHOR TEXT NOT NULL,
+        $PACK_ORDER INTEGER,
+        $INSTALLED INTEGER
+      )
+      """
   }
 
   @Throws(IOException::class)
   fun insertSticker(sticker: IncomingSticker, dataStream: InputStream, notify: Boolean) {
     val fileInfo: FileInfo = saveStickerImage(dataStream)
 
-    val values = contentValuesOf(
-      PACK_ID to sticker.packId,
-      PACK_KEY to sticker.packKey,
-      PACK_TITLE to sticker.packTitle,
-      PACK_AUTHOR to sticker.packAuthor,
-      STICKER_ID to sticker.stickerId,
-      EMOJI to sticker.emoji,
-      CONTENT_TYPE to sticker.contentType,
-      COVER to if (sticker.isCover) 1 else 0,
-      INSTALLED to if (sticker.isInstalled) 1 else 0,
-      FILE_PATH to fileInfo.file.absolutePath,
-      FILE_LENGTH to fileInfo.length,
-      FILE_RANDOM to fileInfo.random
-    )
+    writableDatabase.withinTransaction { db ->
+      upsertStickerPack(db, sticker)
 
-    var updated = false
-    if (sticker.isCover) {
-      // Archive restore inserts cover rows without a sticker id, try to update first on a reduced uniqueness constraint
-      updated = writableDatabase
-        .update(TABLE_NAME)
-        .values(values)
-        .where("$PACK_ID = ? AND $COVER = 1", sticker.packId)
-        .run() > 0
-    }
+      val values = contentValuesOf(
+        Sticker.PACK_ID to sticker.packId,
+        Sticker.STICKER_ID to sticker.stickerId,
+        Sticker.EMOJI to sticker.emoji,
+        Sticker.CONTENT_TYPE to sticker.contentType,
+        Sticker.COVER to if (sticker.isCover) 1 else 0,
+        Sticker.FILE_PATH to fileInfo.file.absolutePath,
+        Sticker.FILE_LENGTH to fileInfo.length,
+        Sticker.FILE_RANDOM to fileInfo.random
+      )
 
-    if (!updated) {
-      writableDatabase
-        .insertInto(TABLE_NAME)
-        .values(values)
-        .run(SQLiteDatabase.CONFLICT_REPLACE)
+      var updated = false
+      if (sticker.isCover) {
+        // Archive restore inserts cover rows without a sticker id, try to update first on a reduced uniqueness constraint
+        updated = db
+          .update(Sticker.TABLE_NAME)
+          .values(values)
+          .where("${Sticker.PACK_ID} = ? AND ${Sticker.COVER} = 1", sticker.packId)
+          .run() > 0
+      }
+
+      if (!updated) {
+        db
+          .insertInto(Sticker.TABLE_NAME)
+          .values(values)
+          .run(SQLiteDatabase.CONFLICT_REPLACE)
+      }
     }
 
     notifyStickerListeners()
@@ -142,38 +187,68 @@ class StickerTable(
     }
   }
 
+  /**
+   * Inserts a pack reference (its cover only) without any downloaded sticker data, used when restoring
+   * from an archive. If the pack already exists, this is a no-op.
+   */
+  fun insertPackReference(packId: String, packKey: String) {
+    writableDatabase.withinTransaction { db ->
+      db
+        .insertInto(Pack.TABLE_NAME)
+        .values(
+          Pack.PACK_ID to packId,
+          Pack.PACK_KEY to packKey,
+          Pack.PACK_TITLE to "",
+          Pack.PACK_AUTHOR to "",
+          Pack.INSTALLED to 1
+        )
+        .run(SQLiteDatabase.CONFLICT_IGNORE)
+
+      db
+        .insertInto(Sticker.TABLE_NAME)
+        .values(
+          Sticker.PACK_ID to packId,
+          Sticker.COVER to 1,
+          Sticker.EMOJI to "",
+          Sticker.CONTENT_TYPE to "",
+          Sticker.FILE_PATH to ""
+        )
+        .run(SQLiteDatabase.CONFLICT_IGNORE)
+    }
+  }
+
   fun getSticker(packId: String, stickerId: Int, isCover: Boolean): StickerRecord? {
     return readableDatabase
-      .select()
-      .from(TABLE_NAME)
-      .where("$PACK_ID = ? AND $STICKER_ID = ? AND $COVER = ?", packId, stickerId.toString(), isCover.toInt())
+      .select(*RECORD_PROJECTION)
+      .from(JOINED_TABLES)
+      .where("${Sticker.TABLE_NAME}.${Sticker.PACK_ID} = ? AND ${Sticker.TABLE_NAME}.${Sticker.STICKER_ID} = ? AND ${Sticker.TABLE_NAME}.${Sticker.COVER} = ?", packId, stickerId.toString(), isCover.toInt())
       .run()
       .readToSingleObject { it.readStickerRecord() }
   }
 
   fun getStickerPack(packId: String): StickerPackRecord? {
     return readableDatabase
-      .select()
-      .from(TABLE_NAME)
-      .where("$PACK_ID = ? AND $COVER = 1", packId)
+      .select(*RECORD_PROJECTION)
+      .from(JOINED_TABLES)
+      .where("${Pack.TABLE_NAME}.${Pack.PACK_ID} = ? AND ${Sticker.TABLE_NAME}.${Sticker.COVER} = 1", packId)
       .run()
       .readToSingleObject { it.readStickerPackRecord() }
   }
 
   fun getInstalledStickerPacks(): Cursor {
     return readableDatabase
-      .select()
-      .from(TABLE_NAME)
-      .where("$COVER = 1 AND $INSTALLED = 1")
-      .orderBy("$PACK_ORDER ASC")
+      .select(*RECORD_PROJECTION)
+      .from(JOINED_TABLES)
+      .where("${Sticker.TABLE_NAME}.${Sticker.COVER} = 1 AND ${Pack.TABLE_NAME}.${Pack.INSTALLED} = 1")
+      .orderBy("${Pack.TABLE_NAME}.${Pack.PACK_ORDER} ASC")
       .run()
   }
 
   fun getStickersByEmoji(emoji: String): Cursor {
     return readableDatabase
-      .select()
-      .from(TABLE_NAME)
-      .where("$EMOJI LIKE ? AND $COVER = 0", "%$emoji%")
+      .select(*RECORD_PROJECTION)
+      .from(JOINED_TABLES)
+      .where("${Sticker.TABLE_NAME}.${Sticker.EMOJI} LIKE ? AND ${Sticker.TABLE_NAME}.${Sticker.COVER} = 0", "%$emoji%")
       .run()
   }
 
@@ -183,55 +258,55 @@ class StickerTable(
 
   fun getAllStickerPacks(limit: String?): Cursor {
     return readableDatabase.query(
-      TABLE_NAME,
+      JOINED_TABLES,
+      RECORD_PROJECTION,
+      "${Sticker.TABLE_NAME}.${Sticker.COVER} = 1",
       null,
-      "$COVER = 1",
+      "${Sticker.TABLE_NAME}.${Sticker.PACK_ID}",
       null,
-      PACK_ID,
-      null,
-      "$PACK_ORDER ASC",
+      "${Pack.TABLE_NAME}.${Pack.PACK_ORDER} ASC",
       limit
     )
   }
 
   fun getStickersForPack(packId: String): Cursor {
     return readableDatabase
-      .select()
-      .from(TABLE_NAME)
-      .where("$PACK_ID = ? AND $COVER = 0", packId)
-      .orderBy("$STICKER_ID ASC")
+      .select(*RECORD_PROJECTION)
+      .from(JOINED_TABLES)
+      .where("${Sticker.TABLE_NAME}.${Sticker.PACK_ID} = ? AND ${Sticker.TABLE_NAME}.${Sticker.COVER} = 0", packId)
+      .orderBy("${Sticker.TABLE_NAME}.${Sticker.STICKER_ID} ASC")
       .run()
   }
 
   fun getRecentlyUsedStickers(limit: Int): Cursor {
     return readableDatabase
-      .select()
-      .from(TABLE_NAME)
-      .where("$LAST_USED > 0 AND $COVER = 0")
-      .orderBy("$LAST_USED DESC")
+      .select(*RECORD_PROJECTION)
+      .from(JOINED_TABLES)
+      .where("${Sticker.TABLE_NAME}.${Sticker.LAST_USED} > 0 AND ${Sticker.TABLE_NAME}.${Sticker.COVER} = 0")
+      .orderBy("${Sticker.TABLE_NAME}.${Sticker.LAST_USED} DESC")
       .limit(limit)
       .run()
   }
 
   fun getAllStickerFiles(): Set<String> {
     return readableDatabase
-      .select(FILE_PATH)
-      .from(TABLE_NAME)
+      .select(Sticker.FILE_PATH)
+      .from(Sticker.TABLE_NAME)
       .run()
-      .readToSet { it.requireNonNullString(FILE_PATH) }
+      .readToSet { it.requireNonNullString(Sticker.FILE_PATH) }
   }
 
   @Throws(IOException::class)
   fun getStickerStream(rowId: Long): InputStream? {
     return readableDatabase
       .select()
-      .from(TABLE_NAME)
-      .where("$ID = ?", rowId)
+      .from(Sticker.TABLE_NAME)
+      .where("${Sticker.ID} = ?", rowId)
       .run()
       .use { cursor ->
         if (cursor.moveToFirst()) {
-          val path = cursor.requireString(FILE_PATH)
-          val random = cursor.requireBlob(FILE_RANDOM)
+          val path = cursor.requireString(Sticker.FILE_PATH)
+          val random = cursor.requireBlob(Sticker.FILE_RANDOM)
 
           if (path != null && random != null) {
             ModernDecryptingPartInputStream.createFor(attachmentSecret, random, File(path), 0)
@@ -252,16 +327,16 @@ class StickerTable(
 
   fun isPackAvailableAsReference(packId: String): Boolean {
     return readableDatabase
-      .exists(TABLE_NAME)
-      .where("$PACK_ID = ? AND $COVER = 1", packId)
+      .exists(Sticker.TABLE_NAME)
+      .where("${Sticker.PACK_ID} = ? AND ${Sticker.COVER} = 1", packId)
       .run()
   }
 
   fun updateStickerLastUsedTime(rowId: Long, lastUsed: Long) {
     writableDatabase
-      .update(TABLE_NAME)
-      .values(LAST_USED to lastUsed)
-      .where("$ID = ?", rowId)
+      .update(Sticker.TABLE_NAME)
+      .values(Sticker.LAST_USED to lastUsed)
+      .where("${Sticker.ID} = ?", rowId)
       .run()
 
     notifyStickerListeners()
@@ -284,11 +359,11 @@ class StickerTable(
     writableDatabase.withinTransaction { db ->
       db.rawQuery(
         """
-        SELECT $PACK_ID 
-        FROM $TABLE_NAME 
-        WHERE 
-          $INSTALLED = 0 AND 
-          $PACK_ID NOT IN (
+        SELECT ${Pack.PACK_ID}
+        FROM ${Pack.TABLE_NAME}
+        WHERE
+          ${Pack.INSTALLED} = 0 AND
+          ${Pack.PACK_ID} NOT IN (
             SELECT DISTINCT ${AttachmentTable.STICKER_PACK_ID}
             FROM ${AttachmentTable.TABLE_NAME}
             WHERE ${AttachmentTable.STICKER_PACK_ID} NOT NULL
@@ -296,7 +371,7 @@ class StickerTable(
         """,
         null
       ).forEach { cursor ->
-        val packId = cursor.getString(cursor.getColumnIndexOrThrow(PACK_ID))
+        val packId = cursor.getString(cursor.getColumnIndexOrThrow(Pack.PACK_ID))
 
         if (!BlessedPacks.contains(packId)) {
           deletePack(db, packId)
@@ -330,14 +405,37 @@ class StickerTable(
   fun updatePackOrder(packsInOrder: List<StickerPackRecord>) {
     writableDatabase.withinTransaction { db ->
       for ((i, pack) in packsInOrder.withIndex()) {
-        db.update(TABLE_NAME)
-          .values(PACK_ORDER to i)
-          .where("$PACK_ID = ? AND $COVER = 1", pack.packId)
+        db.update(Pack.TABLE_NAME)
+          .values(Pack.PACK_ORDER to i)
+          .where("${Pack.PACK_ID} = ?", pack.packId)
           .run()
       }
     }
 
     notifyStickerPackListeners()
+  }
+
+  private fun upsertStickerPack(db: SQLiteDatabase, sticker: IncomingSticker) {
+    val values = contentValuesOf(
+      Pack.PACK_ID to sticker.packId,
+      Pack.PACK_KEY to sticker.packKey,
+      Pack.PACK_TITLE to sticker.packTitle,
+      Pack.PACK_AUTHOR to sticker.packAuthor,
+      Pack.INSTALLED to if (sticker.isInstalled) 1 else 0
+    )
+
+    val updated = db
+      .update(Pack.TABLE_NAME)
+      .values(values)
+      .where("${Pack.PACK_ID} = ?", sticker.packId)
+      .run()
+
+    if (updated == 0) {
+      db
+        .insertInto(Pack.TABLE_NAME)
+        .values(values)
+        .run(SQLiteDatabase.CONFLICT_IGNORE)
+    }
   }
 
   private fun updatePackInstalled(db: SQLiteDatabase, packId: String, installed: Boolean, notify: Boolean) {
@@ -347,9 +445,9 @@ class StickerTable(
       return
     }
 
-    db.update(TABLE_NAME)
-      .values(INSTALLED to installed.toInt())
-      .where("$PACK_ID = ?", packId)
+    db.update(Pack.TABLE_NAME)
+      .values(Pack.INSTALLED to installed.toInt())
+      .where("${Pack.PACK_ID} = ?", packId)
       .run()
 
     if (installed && notify) {
@@ -368,8 +466,8 @@ class StickerTable(
   }
 
   private fun deleteSticker(db: SQLiteDatabase, rowId: Long, filePath: String?) {
-    db.delete(TABLE_NAME)
-      .where("$ID = ?", rowId)
+    db.delete(Sticker.TABLE_NAME)
+      .where("${Sticker.ID} = ?", rowId)
       .run()
 
     if (filePath.isNotNullOrBlank()) {
@@ -378,41 +476,41 @@ class StickerTable(
   }
 
   private fun deletePack(db: SQLiteDatabase, packId: String) {
-    db.delete(TABLE_NAME)
-      .where("$PACK_ID = ?", packId)
-      .run()
-
     deleteStickersInPack(db, packId)
+
+    db.delete(Pack.TABLE_NAME)
+      .where("${Pack.PACK_ID} = ?", packId)
+      .run()
   }
 
   private fun deleteStickersInPack(database: SQLiteDatabase, packId: String) {
     database.withinTransaction { db ->
-      db.select(ID, FILE_PATH)
-        .from(TABLE_NAME)
-        .where("$PACK_ID = ?", packId)
+      db.select(Sticker.ID, Sticker.FILE_PATH)
+        .from(Sticker.TABLE_NAME)
+        .where("${Sticker.PACK_ID} = ?", packId)
         .run()
         .forEach { cursor ->
-          val rowId = cursor.requireLong(ID)
-          val filePath = cursor.requireString(FILE_PATH)
+          val rowId = cursor.requireLong(Sticker.ID)
+          val filePath = cursor.requireString(Sticker.FILE_PATH)
 
           deleteSticker(db, rowId, filePath)
         }
 
-      db.delete(TABLE_NAME)
-        .where("$PACK_ID = ?", packId)
+      db.delete(Sticker.TABLE_NAME)
+        .where("${Sticker.PACK_ID} = ?", packId)
         .run()
     }
   }
 
   private fun deleteStickersInPackExceptCover(database: SQLiteDatabase, packId: String) {
     database.withinTransaction { db ->
-      db.select(ID, FILE_PATH)
-        .from(TABLE_NAME)
-        .where("$PACK_ID = ? AND $COVER = 0", packId)
+      db.select(Sticker.ID, Sticker.FILE_PATH)
+        .from(Sticker.TABLE_NAME)
+        .where("${Sticker.PACK_ID} = ? AND ${Sticker.COVER} = 0", packId)
         .run()
         .forEach { cursor ->
-          val rowId = cursor.requireLong(ID)
-          val filePath = cursor.requireString(FILE_PATH)
+          val rowId = cursor.requireLong(Sticker.ID)
+          val filePath = cursor.requireString(Sticker.FILE_PATH)
 
           deleteSticker(db, rowId, filePath)
         }
@@ -453,14 +551,14 @@ class StickerTable(
 
     fun getCurrent(): StickerRecord {
       return StickerRecord(
-        rowId = cursor.requireLong(ID),
-        packId = cursor.requireNonNullString(PACK_ID),
-        packKey = cursor.requireNonNullString(PACK_KEY),
-        stickerId = cursor.requireInt(STICKER_ID),
-        emoji = cursor.requireNonNullString(EMOJI),
-        contentType = cursor.requireString(CONTENT_TYPE) ?: MediaUtil.IMAGE_WEBP,
-        size = cursor.requireLong(FILE_LENGTH),
-        isCover = cursor.requireBoolean(COVER)
+        rowId = cursor.requireLong(Sticker.ID),
+        packId = cursor.requireNonNullString(Sticker.PACK_ID),
+        packKey = cursor.requireNonNullString(Pack.PACK_KEY),
+        stickerId = cursor.requireInt(Sticker.STICKER_ID),
+        emoji = cursor.requireNonNullString(Sticker.EMOJI),
+        contentType = cursor.requireString(Sticker.CONTENT_TYPE) ?: MediaUtil.IMAGE_WEBP,
+        size = cursor.requireLong(Sticker.FILE_LENGTH),
+        isCover = cursor.requireBoolean(Sticker.COVER)
       )
     }
 
@@ -483,12 +581,12 @@ class StickerTable(
       val cover = StickerRecordReader(cursor).getCurrent()
 
       return StickerPackRecord(
-        packId = cursor.requireNonNullString(PACK_ID),
-        packKey = cursor.requireNonNullString(PACK_KEY),
-        title = cursor.requireNonNullString(PACK_TITLE),
-        author = cursor.requireNonNullString(PACK_AUTHOR),
+        packId = cursor.requireNonNullString(Sticker.PACK_ID),
+        packKey = cursor.requireNonNullString(Pack.PACK_KEY),
+        title = cursor.requireNonNullString(Pack.PACK_TITLE),
+        author = cursor.requireNonNullString(Pack.PACK_AUTHOR),
         cover = cover,
-        isInstalled = cursor.requireBoolean(INSTALLED)
+        isInstalled = cursor.requireBoolean(Pack.INSTALLED)
       )
     }
 

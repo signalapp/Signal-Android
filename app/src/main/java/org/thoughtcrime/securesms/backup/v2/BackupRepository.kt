@@ -105,7 +105,7 @@ import org.thoughtcrime.securesms.database.SearchTable
 import org.thoughtcrime.securesms.database.SessionTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignedPreKeyTable
-import org.thoughtcrime.securesms.database.StickerTable
+import org.thoughtcrime.securesms.database.StickerTables
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -1487,7 +1487,7 @@ object BackupRepository {
     }
 
     val stickerJobs = SignalDatabase.stickers.getAllStickerPacks().use { cursor ->
-      val reader = StickerTable.StickerPackRecordReader(cursor)
+      val reader = StickerTables.StickerPackRecordReader(cursor)
       reader
         .filter { it.isInstalled }
         .map {

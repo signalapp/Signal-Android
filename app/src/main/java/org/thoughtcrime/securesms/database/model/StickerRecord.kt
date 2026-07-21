@@ -4,7 +4,7 @@ import android.net.Uri
 import org.thoughtcrime.securesms.mms.PartAuthority
 
 /**
- * Represents a record for a sticker pack in the [org.thoughtcrime.securesms.database.StickerTable].
+ * Represents a record for a sticker pack in the [org.thoughtcrime.securesms.database.StickerTables].
  */
 data class StickerRecord(
   @JvmField val rowId: Long,

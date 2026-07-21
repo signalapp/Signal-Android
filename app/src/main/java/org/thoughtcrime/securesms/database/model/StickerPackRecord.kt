@@ -6,7 +6,7 @@ import org.thoughtcrime.securesms.stickers.StickerUrl
 import java.util.Optional
 
 /**
- * Represents a record for a sticker pack in the [org.thoughtcrime.securesms.database.StickerTable].
+ * Represents a record for a sticker pack in the [org.thoughtcrime.securesms.database.StickerTables].
  */
 data class StickerPackRecord(
   @JvmField val packId: String,

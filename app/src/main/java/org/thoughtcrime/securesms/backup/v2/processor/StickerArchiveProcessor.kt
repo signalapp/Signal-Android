@@ -10,13 +10,10 @@ import org.signal.archive.proto.Frame
 import org.signal.archive.proto.StickerPack
 import org.signal.archive.stream.BackupFrameEmitter
 import org.signal.core.util.Hex
-import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.ExportSkips
-import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.StickerTable
-import org.thoughtcrime.securesms.database.StickerTable.StickerPackRecordReader
+import org.thoughtcrime.securesms.database.StickerTables.StickerPackRecordReader
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
 import java.io.IOException
 
@@ -27,7 +24,7 @@ private val TAG = Log.tag(StickerArchiveProcessor::class)
  */
 object StickerArchiveProcessor {
   fun export(db: SignalDatabase, emitter: BackupFrameEmitter) {
-    StickerPackRecordReader(db.stickerTable.getAllStickerPacks()).use { reader ->
+    StickerPackRecordReader(db.stickerTables.getAllStickerPacks()).use { reader ->
       var record: StickerPackRecord? = null
       while (reader.getNext()?.let { record = it } != null) {
         if (record!!.isInstalled) {
@@ -39,20 +36,10 @@ object StickerArchiveProcessor {
   }
 
   fun import(stickerPack: StickerPack) {
-    SignalDatabase.rawDatabase
-      .insertInto(StickerTable.TABLE_NAME)
-      .values(
-        StickerTable.PACK_ID to Hex.toStringCondensed(stickerPack.packId.toByteArray()),
-        StickerTable.PACK_KEY to Hex.toStringCondensed(stickerPack.packKey.toByteArray()),
-        StickerTable.PACK_TITLE to "",
-        StickerTable.PACK_AUTHOR to "",
-        StickerTable.INSTALLED to 1,
-        StickerTable.COVER to 1,
-        StickerTable.EMOJI to "",
-        StickerTable.CONTENT_TYPE to "",
-        StickerTable.FILE_PATH to ""
-      )
-      .run(SQLiteDatabase.CONFLICT_IGNORE)
+    SignalDatabase.stickers.insertPackReference(
+      packId = Hex.toStringCondensed(stickerPack.packId.toByteArray()),
+      packKey = Hex.toStringCondensed(stickerPack.packKey.toByteArray())
+    )
   }
 }
 

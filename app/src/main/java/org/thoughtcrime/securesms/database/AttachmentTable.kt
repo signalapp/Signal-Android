@@ -2507,7 +2507,7 @@ class AttachmentTable(
       WHERE
         $STICKER_PACK_ID NOT NULL AND
         $STICKER_PACK_KEY NOT NULL AND
-        $STICKER_PACK_ID NOT IN (SELECT DISTINCT ${StickerTable.PACK_ID} FROM ${StickerTable.TABLE_NAME})
+        $STICKER_PACK_ID NOT IN (SELECT DISTINCT ${StickerTables.Sticker.PACK_ID} FROM ${StickerTables.Sticker.TABLE_NAME})
     """
 
     return readableDatabase.rawQuery(query, null)
