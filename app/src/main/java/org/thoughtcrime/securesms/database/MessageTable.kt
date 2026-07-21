@@ -65,6 +65,7 @@ import org.signal.core.util.toInt
 import org.signal.core.util.toOptional
 import org.signal.core.util.toSingleLine
 import org.signal.core.util.update
+import org.signal.core.util.withFtsSecureDelete
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.IdentityKey
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -2440,40 +2441,41 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   private fun markAsRemoteDeleteInternal(messageId: Long, deletedBy: RecipientId) {
     var deletedAttachments = false
-    writableDatabase.withinTransaction { db ->
-      db.update(TABLE_NAME)
-        .values(
-          DELETED_BY to deletedBy.toLong(),
-          BODY to null,
-          QUOTE_BODY to null,
-          QUOTE_AUTHOR to null,
-          QUOTE_TYPE to null,
-          QUOTE_ID to null,
-          LINK_PREVIEWS to null,
-          SHARED_CONTACTS to null,
-          ORIGINAL_MESSAGE_ID to null,
-          LATEST_REVISION_ID to null,
-          STARRED to 0
-        )
-        .where("$ID = ?", messageId)
-        .run()
+    writableDatabase.withFtsSecureDelete(SearchTable.FTS_TABLE_NAME) {
+      writableDatabase.withinTransaction { db ->
+        db.update(TABLE_NAME)
+          .values(
+            DELETED_BY to deletedBy.toLong(),
+            BODY to null,
+            QUOTE_BODY to null,
+            QUOTE_AUTHOR to null,
+            QUOTE_TYPE to null,
+            QUOTE_ID to null,
+            LINK_PREVIEWS to null,
+            SHARED_CONTACTS to null,
+            ORIGINAL_MESSAGE_ID to null,
+            LATEST_REVISION_ID to null,
+            STARRED to 0
+          )
+          .where("$ID = ?", messageId)
+          .run()
 
-      deletedAttachments = attachments.deleteAttachmentsForMessage(messageId)
-      mentions.deleteMentionsForMessage(messageId)
-      SignalDatabase.messageLog.deleteAllRelatedToMessage(messageId)
-      reactions.deleteReactions(MessageId(messageId))
-      deleteGroupStoryReplies(messageId)
-      disassociateStoryQuotes(messageId)
-      polls.deletePoll(messageId)
-      disassociatePollFromPollTerminate(polls.getPollTerminateMessageId(messageId))
-      disassociatePinnedMessage(messageId)
+        deletedAttachments = attachments.deleteAttachmentsForMessage(messageId)
+        mentions.deleteMentionsForMessage(messageId)
+        SignalDatabase.messageLog.deleteAllRelatedToMessage(messageId)
+        reactions.deleteReactions(MessageId(messageId))
+        deleteGroupStoryReplies(messageId)
+        disassociateStoryQuotes(messageId)
+        polls.deletePoll(messageId)
+        disassociatePollFromPollTerminate(polls.getPollTerminateMessageId(messageId))
+        disassociatePinnedMessage(messageId)
 
-      val threadId = getThreadIdForMessage(messageId)
-      threads.update(threadId, false)
-      notifyConversationListeners(threadId)
+        val threadId = getThreadIdForMessage(messageId)
+        threads.update(threadId, false)
+        notifyConversationListeners(threadId)
+      }
     }
 
-    OptimizeMessageSearchIndexJob.enqueue()
     AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
     AppDependencies.databaseObserver.notifyConversationListListeners()
 
@@ -3916,33 +3918,35 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     collectionOperator: SqlUtil.CollectionOperator
   ): Int {
     var rowsDeleted = 0
-    val threadIds: Set<Long> = writableDatabase.withinTransaction {
-      SqlUtil.buildCollectionQuery(
-        column = ID,
-        values = messageIds,
-        prefix = "$IS_CALL_TYPE_CLAUSE AND ",
-        collectionOperator = collectionOperator
-      ).map { query ->
-        val threadSet = writableDatabase.select(THREAD_ID)
-          .from(TABLE_NAME)
-          .where(query.where, query.whereArgs)
-          .run()
-          .readToSet { cursor ->
-            cursor.requireLong(THREAD_ID)
+    val threadIds: Set<Long> = writableDatabase.withFtsSecureDelete(SearchTable.FTS_TABLE_NAME) {
+      writableDatabase.withinTransaction {
+        SqlUtil.buildCollectionQuery(
+          column = ID,
+          values = messageIds,
+          prefix = "$IS_CALL_TYPE_CLAUSE AND ",
+          collectionOperator = collectionOperator
+        ).map { query ->
+          val threadSet = writableDatabase.select(THREAD_ID)
+            .from(TABLE_NAME)
+            .where(query.where, query.whereArgs)
+            .run()
+            .readToSet { cursor ->
+              cursor.requireLong(THREAD_ID)
+            }
+
+          val rows = writableDatabase
+            .delete(TABLE_NAME)
+            .where(query.where, query.whereArgs)
+            .run()
+
+          if (rows <= 0) {
+            Log.w(TAG, "Failed to delete some rows during call update deletion.")
           }
 
-        val rows = writableDatabase
-          .delete(TABLE_NAME)
-          .where(query.where, query.whereArgs)
-          .run()
-
-        if (rows <= 0) {
-          Log.w(TAG, "Failed to delete some rows during call update deletion.")
-        }
-
-        rowsDeleted += rows
-        threadSet
-      }.flatten().toSet()
+          rowsDeleted += rows
+          threadSet
+        }.flatten().toSet()
+      }
     }
 
     threadIds.forEach {
@@ -4027,7 +4031,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   @VisibleForTesting
-  fun deleteMessage(messageId: Long, threadId: Long, notify: Boolean = true, updateThread: Boolean = true): Boolean {
+  fun deleteMessage(messageId: Long, threadId: Long, notify: Boolean = true, updateThread: Boolean = true, skipSecureDelete: Boolean = false): Boolean {
     Log.d(TAG, "deleteMessage($messageId)")
 
     attachments.deleteAttachmentsForMessage(messageId)
@@ -4037,10 +4041,20 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     disassociatePinnedMessage(messageId)
     reassignCollapsedHead(messageId)
 
-    writableDatabase
-      .delete(TABLE_NAME)
-      .where("$ID = ?", messageId)
-      .run()
+    val deletionOperation = {
+      writableDatabase
+        .delete(TABLE_NAME)
+        .where("$ID = ?", messageId)
+        .run()
+    }
+
+    if (skipSecureDelete) {
+      deletionOperation()
+    } else {
+      writableDatabase.withFtsSecureDelete(SearchTable.FTS_TABLE_NAME) {
+        deletionOperation()
+      }
+    }
 
     calls.updateCallEventDeletionTimestamps()
     threads.setLastScrolled(threadId, 0)
@@ -4055,7 +4069,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       notifyConversationListeners(threadId)
       notifyStickerListeners()
       notifyStickerPackListeners()
-      OptimizeMessageSearchIndexJob.enqueue()
 
       if (updateThread) {
         notifyConversationListListeners()
@@ -4468,28 +4481,31 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val threads = mutableSetOf<Long>()
     val unhandled = mutableListOf<SyncMessageId>()
 
-    for (message in messagesToDelete) {
-      readableDatabase
-        .select(ID, THREAD_ID)
-        .from(TABLE_NAME)
-        .where("$DATE_SENT = ? AND $FROM_RECIPIENT_ID = ?", message.timetamp, message.recipientId)
-        .run()
-        .use {
-          if (it.moveToFirst()) {
-            val messageId = it.requireLong(ID)
-            val threadId = it.requireLong(THREAD_ID)
+    writableDatabase.withFtsSecureDelete(SearchTable.FTS_TABLE_NAME) {
+      for (message in messagesToDelete) {
+        readableDatabase
+          .select(ID, THREAD_ID)
+          .from(TABLE_NAME)
+          .where("$DATE_SENT = ? AND $FROM_RECIPIENT_ID = ?", message.timetamp, message.recipientId)
+          .run()
+          .use {
+            if (it.moveToFirst()) {
+              val messageId = it.requireLong(ID)
+              val threadId = it.requireLong(THREAD_ID)
 
-            deleteMessage(
-              messageId = messageId,
-              threadId = threadId,
-              notify = false,
-              updateThread = false
-            )
-            threads += threadId
-          } else {
-            unhandled += message
+              deleteMessage(
+                messageId = messageId,
+                threadId = threadId,
+                notify = false,
+                updateThread = false,
+                skipSecureDelete = true
+              )
+              threads += threadId
+            } else {
+              unhandled += message
+            }
           }
-        }
+      }
     }
 
     flushBulkDeleteNotifications(threads)
