@@ -84,27 +84,17 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         $THREAD_RECIPIENT_ID > 0
       """
 
-    private val UNIQUE_MEDIA_QUERY = """
-        SELECT 
-          MAX(${AttachmentTable.DATA_SIZE}) as ${AttachmentTable.DATA_SIZE}, 
-          ${AttachmentTable.CONTENT_TYPE} 
-        FROM 
-          ${AttachmentTable.TABLE_NAME} 
-        WHERE 
-          ${AttachmentTable.STICKER_PACK_ID} IS NULL AND 
-          ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_PROGRESS_DONE} 
+    private const val UNIQUE_MEDIA_QUERY = """
+        SELECT
+          MAX(${AttachmentTable.DATA_SIZE}) as ${AttachmentTable.DATA_SIZE},
+          ${AttachmentTable.CONTENT_TYPE}
+        FROM
+          ${AttachmentTable.TABLE_NAME}
+        WHERE
+          ${AttachmentTable.STICKER_PACK_ID} IS NULL AND
+          ${AttachmentTable.DATA_FILE} IS NOT NULL
         GROUP BY ${AttachmentTable.DATA_FILE}
       """
-
-    private val GALLERY_MEDIA_QUERY = String.format(
-      BASE_MEDIA_QUERY,
-      """
-        ${AttachmentTable.DATA_FILE} IS NOT NULL AND
-        ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/svg%' AND 
-        (${AttachmentTable.CONTENT_TYPE} LIKE 'image/%' OR ${AttachmentTable.CONTENT_TYPE} LIKE 'video/%') AND
-        ${MessageTable.LINK_PREVIEWS} IS NULL
-      """
-    )
 
     private val GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS = String.format(
       BASE_MEDIA_QUERY,
