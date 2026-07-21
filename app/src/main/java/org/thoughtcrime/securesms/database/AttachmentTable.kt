@@ -1722,6 +1722,14 @@ class AttachmentTable(
       .run()
   }
 
+  fun resetRestorableAttachmentsInProgressToNeedsRestore(): Int {
+    return writableDatabase
+      .update(TABLE_NAME)
+      .values(TRANSFER_STATE to TRANSFER_NEEDS_RESTORE)
+      .where("$TRANSFER_STATE = ?", TRANSFER_RESTORE_IN_PROGRESS)
+      .run()
+  }
+
   fun setRestoreTransferState(attachmentId: AttachmentId, state: Int) {
     setRestoreTransferState(listOf(attachmentId), state)
   }

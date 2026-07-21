@@ -66,6 +66,11 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
       Log.w(TAG, "$orphanedCount orphaned restorable attachments marked failed")
     }
 
+    val stalledCount = SignalDatabase.attachments.resetRestorableAttachmentsInProgressToNeedsRestore()
+    if (stalledCount > 0) {
+      Log.w(TAG, "$stalledCount attachments were stuck mid-restore; reset to needs-restore so they can be re-enqueued")
+    }
+
     do {
       val restoreThumbnailJobs: MutableList<RestoreAttachmentThumbnailJob> = mutableListOf()
       val restoreFullAttachmentJobs: MutableList<RestoreAttachmentJob> = mutableListOf()
