@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.hasGroupContex
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.hasSignedGroupChange
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.hasStarted
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isExpirationUpdate
+import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isGroupV2Update
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isMediaMessage
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isValid
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.signedGroupChange
@@ -197,7 +198,7 @@ open class MessageContentProcessor(private val context: Context) {
         val isTextMessage = message.body != null
         val isMediaMessage = message.isMediaMessage
         val isExpireMessage = message.isExpirationUpdate
-        val isGv2Update = message.hasSignedGroupChange
+        val isGv2Update = message.isGroupV2Update
         val isContentMessage = !isGv2Update && !isExpireMessage && (isTextMessage || isMediaMessage)
         val isGroupActive = threadRecipient.isActiveGroup
 
