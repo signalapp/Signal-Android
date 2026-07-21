@@ -25,6 +25,11 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val CALLING_USE_SOFTWARE_NS: String = "internal.calling_use_software_ns"
     const val CALLING_USE_INPUT_LOW_LATENCY: String = "internal.calling_use_input_low_latency"
     const val CALLING_USE_INPUT_VOICE_COMM: String = "internal.calling_use_input_voice_comm"
+    const val CALLING_SET_VIDEO_CONFIG: String = "internal.calling_set_video_config"
+    const val CALLING_USE_HARDWARE_VP9_ENCODE: String = "internal.calling_use_hardware_vp9_encode"
+    const val CALLING_USE_HARDWARE_VP9_DECODE: String = "internal.calling_use_hardware_vp9_decode"
+    const val CALLING_USE_SOFTWARE_VP9_ENCODE: String = "internal.calling_use_software_vp9_encode"
+    const val CALLING_USE_SOFTWARE_VP9_DECODE: String = "internal.calling_use_software_vp9_decode"
     const val SHAKE_TO_REPORT: String = "internal.shake_to_report"
     const val DISABLE_STORAGE_SERVICE: String = "internal.disable_storage_service"
     const val LAST_SCROLL_POSITION: String = "internal.last_scroll_position"
@@ -169,6 +174,31 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
    * If overriding the audio settings, use Voice Comm for the input or not.
    */
   var callingUseInputVoiceComm by booleanValue(CALLING_USE_INPUT_VOICE_COMM, true).defaultForExternalUsers()
+
+  /**
+   * Whether or not to override the video settings from the remote configuration.
+   */
+  var callingSetVideoConfig by booleanValue(CALLING_SET_VIDEO_CONFIG, false).falseForExternalUsers()
+
+  /**
+   * If overriding the video settings, use hardware VP9 encoder or not if available
+   */
+  var callingUseHardwareVp9Encode by booleanValue(CALLING_USE_HARDWARE_VP9_ENCODE, true).defaultForExternalUsers()
+
+  /**
+   * If overriding the video settings, use hardware VP9 decoder or not if available
+   */
+  var callingUseHardwareVp9Decode by booleanValue(CALLING_USE_HARDWARE_VP9_DECODE, true).defaultForExternalUsers()
+
+  /**
+   * If overriding the video settings, use software VP9 encoder or not
+   */
+  var callingUseSoftwareVp9Encode by booleanValue(CALLING_USE_SOFTWARE_VP9_ENCODE, true).defaultForExternalUsers()
+
+  /**
+   * If overriding the video settings, use software VP9 encoder or not
+   */
+  var callingUseSoftwareVp9Decode by booleanValue(CALLING_USE_SOFTWARE_VP9_DECODE, true).defaultForExternalUsers()
 
   var lastScrollPosition: Int by integerValue(LAST_SCROLL_POSITION, 0).defaultForExternalUsers()
 

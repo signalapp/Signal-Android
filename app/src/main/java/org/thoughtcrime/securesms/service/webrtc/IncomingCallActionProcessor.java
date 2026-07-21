@@ -98,7 +98,6 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
     }
 
     byte            dredDuration    = (byte) RemoteConfig.dredDuration();
-    boolean         enableVp9       = RemoteConfig.enableSoftwareVp9();
     boolean         hideIp          = !activePeer.getRecipient().isProfileSharing() || callSetupState.isAlwaysTurnServers();
     VideoState      videoState      = currentState.getVideoState();
     CallParticipant callParticipant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
@@ -108,6 +107,7 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 context,
                                                 videoState.getLockableEglBase().require(),
                                                 RingRtcDynamicConfiguration.getAudioConfig(),
+                                                RingRtcDynamicConfiguration.getVideoConfig(),
                                                 videoState.requireLocalSink(),
                                                 callParticipant.getVideoSink(),
                                                 videoState.requireRouter(),
@@ -116,7 +116,6 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 NetworkUtil.getCallingDataMode(context),
                                                 AUDIO_LEVELS_INTERVAL,
                                                 dredDuration,
-                                                enableVp9,
                                                 false);
     } catch (CallException e) {
       return callFailure(currentState, "Unable to proceed with call: ", e);

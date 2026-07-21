@@ -11,6 +11,7 @@ import org.signal.core.util.gibiBytes
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
+import org.signal.core.util.serialization.SignalJson
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -542,6 +543,25 @@ object RemoteConfig {
       active = active,
       onChangeListener = onChangeListener,
       transformer = { it.asString(defaultValue) }
+    )
+  }
+
+  private fun remoteStringSet(
+    key: String,
+    defaultValue: Set<String>,
+    hotSwappable: Boolean,
+    active: Boolean = true,
+    onChangeListener: OnFlagChange? = null
+  ): Config<Set<String>> {
+    return remoteValue(
+      key = key,
+      hotSwappable = hotSwappable,
+      sticky = false,
+      active = active,
+      onChangeListener = onChangeListener,
+      transformer = { value ->
+        value?.let { SignalJson.decode<Set<String>>(it.toString()).getOrNull() } ?: defaultValue
+      }
     )
   }
 
@@ -1309,12 +1329,69 @@ object RemoteConfig {
   )
 
   /**
-   * Enables software Vp9 support for 1:1 calls
+   * Enables software Vp9 encode support for 1:1 calls
+   * Contains SoCs that are capable of encoding VP9
    */
   @JvmStatic
-  @get:JvmName("enableSoftwareVp9")
-  val enableSoftwareVp9: Boolean by remoteBoolean(
-    key = "android.calling.enableSoftwareVp9",
+  @get:JvmName("enableSoftwareVp9EncodeSoCList")
+  val enableSoftwareVp9EncodeSoCList: Set<String> by remoteStringSet(
+    key = "android.calling.enableSoftwareVp9EncodeSocList",
+    defaultValue = setOf(),
+    hotSwappable = true
+  )
+
+  /**
+   * Enables software Vp9 decode support for 1:1 calls
+   * Contains SoCs that are capable of decoding VP9
+   */
+  @JvmStatic
+  @get:JvmName("enableSoftwareVp9DecodeSoCList")
+  val enableSoftwareVp9DecodeSoCList: Set<String> by remoteStringSet(
+    key = "android.calling.enableSoftwareVp9DecodeSoCList",
+    defaultValue = setOf(),
+    hotSwappable = true
+  )
+
+  /**
+   * Enables software Vp9 decode support for 1:1 calls for all devices
+   */
+  @JvmStatic
+  @get:JvmName("enableSoftwareVp9Decode")
+  val enableSoftwareVp9Decode: Boolean by remoteBoolean(
+    key = "android.calling.enableSoftwareVp9Decode",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /**
+   * List of devices to skip hardware VP9 on due to reliability issues
+   */
+  @JvmStatic
+  @get:JvmName("disableHardwareVp9EncodeSocList")
+  val disableHardwareVp9EncodeSocList: Set<String> by remoteStringSet(
+    key = "android.calling.disableHardwareVp9EncodeSocList",
+    defaultValue = setOf(),
+    hotSwappable = true
+  )
+
+  /**
+   * List of devices to skip hardware VP9 on due to reliability issues
+   */
+  @JvmStatic
+  @get:JvmName("disableHardwareVp9DecodeSocList")
+  val disableHardwareVp9DecodeSocList: Set<String> by remoteStringSet(
+    key = "android.calling.disableHardwareVp9DecodeSocList",
+    defaultValue = setOf(),
+    hotSwappable = true
+  )
+
+  /**
+   * Enables using VP9 in Group Calls
+   */
+  @JvmStatic
+  @get:JvmName("enableGroupCallVp9")
+  val enableGroupCallVp9: Boolean by remoteBoolean(
+    key = "android.calling.enableGroupCallVp9",
     defaultValue = false,
     hotSwappable = true
   )

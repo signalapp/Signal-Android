@@ -776,6 +776,50 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      switchPref(
+        title = DSLSettingsText.from("Set Video Config:"),
+        isChecked = state.callingSetVideoConfig,
+        onClick = {
+          viewModel.setInternalCallingSetVideoConfig(!state.callingSetVideoConfig)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Hardware Vp9 Encode"),
+        isChecked = state.callingUseHardwareVp9Encode,
+        isEnabled = state.callingSetVideoConfig,
+        onClick = {
+          viewModel.setInternalCallingUseHardwareVp9Encode(!state.callingUseHardwareVp9Encode)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Hardware Vp9 Decode"),
+        isChecked = state.callingUseHardwareVp9Decode,
+        isEnabled = state.callingSetVideoConfig,
+        onClick = {
+          viewModel.setInternalCallingUseHardwareVp9Decode(!state.callingUseHardwareVp9Decode)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Software Vp9 Encode"),
+        isChecked = state.callingUseSoftwareVp9Encode,
+        isEnabled = state.callingSetVideoConfig,
+        onClick = {
+          viewModel.setInternalCallingUseSoftwareVp9Encode(!state.callingUseSoftwareVp9Encode)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Software Vp9 Decode"),
+        isChecked = state.callingUseSoftwareVp9Decode,
+        isEnabled = state.callingSetVideoConfig,
+        onClick = {
+          viewModel.setInternalCallingUseSoftwareVp9Decode(!state.callingUseSoftwareVp9Decode)
+        }
+      )
+
       dividerPref()
 
       // TODO [alex] -- db access on main thread!
