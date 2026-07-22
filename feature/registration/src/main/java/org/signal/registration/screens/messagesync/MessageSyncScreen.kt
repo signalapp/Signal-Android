@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -46,7 +45,8 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.KeepScreenOnEffect
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.fonts.SignalSymbols
+import org.signal.core.ui.fonts.SignalSymbols.SignalSymbol
 import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.mebiBytes
@@ -297,7 +297,13 @@ private fun InlineFooter(
     verticalAlignment = Alignment.CenterVertically
   ) {
     Spacer(modifier = Modifier.weight(1f))
-    Notice(onEvent = onEvent)
+
+    Box(
+      modifier = Modifier.weight(2f),
+      contentAlignment = Alignment.Center
+    ) {
+      Notice(onEvent = onEvent)
+    }
 
     Box(
       modifier = Modifier.weight(1f),
@@ -320,17 +326,10 @@ private fun Notice(
   onEvent: (MessageSyncScreenEvent) -> Unit
 ) {
   Row(modifier = modifier) {
-    Icon(
-      imageVector = SignalIcons.Lock.imageVector,
-      contentDescription = null,
-      tint = MaterialTheme.colorScheme.onSurfaceVariant,
-      modifier = Modifier
-        .padding(end = 2.dp)
-        .align(Alignment.CenterVertically)
-    )
-
     Text(
       text = buildAnnotatedString {
+        SignalSymbol(glyph = SignalSymbols.Glyph.LOCK)
+        append(' ')
         append(stringResource(R.string.MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee))
         append(' ')
 
@@ -339,7 +338,7 @@ private fun Notice(
             tag = "learn-more",
             styles = TextLinkStyles(
               style = SpanStyle(
-                color = MaterialTheme.colorScheme.onSurface,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontWeight = FontWeight.Bold,
                 textDecoration = TextDecoration.Underline
               )

@@ -64,6 +64,7 @@ import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.TabletPortraitDayPreview
 import org.signal.core.ui.compose.dismissWithAnimation
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
@@ -410,7 +411,9 @@ private fun ColumnScope.SecondaryDeviceCallToActionButtons(
     modifier = Modifier.align(Alignment.CenterHorizontally)
   ) {
     Text(
-      text = stringResource(R.string.WelcomeScreen__not_on_signal_yet)
+      text = stringResource(R.string.WelcomeScreen__not_on_signal_yet),
+      style = MaterialTheme.typography.bodyMedium,
+      color = MaterialTheme.colorScheme.onSurfaceVariant
     )
 
     TextButton(
@@ -561,6 +564,14 @@ private fun rememberDisplayLinkAndSyncAsPrimaryPath(isLinkAndSyncAvailable: Bool
 private fun WelcomeScreenPreview() {
   Previews.Preview {
     WelcomeScreen(state = WelcomeScreenState(), onEvent = {})
+  }
+}
+
+@TabletPortraitDayPreview
+@Composable
+private fun WelcomeScreenLinkedDevicePreview() {
+  Previews.Preview {
+    WelcomeScreen(state = WelcomeScreenState(isLinkAndSyncAvailable = true), onEvent = {})
   }
 }
 
