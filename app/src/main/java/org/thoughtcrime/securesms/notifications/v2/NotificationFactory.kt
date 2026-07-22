@@ -213,8 +213,9 @@ object NotificationFactory {
       else -> 0.seconds
     }
     val canAlertBasedOnTime: Boolean = lastNotificationTimestamp < System.currentTimeMillis() - throttle.inWholeMilliseconds || lastNotificationTimestamp > System.currentTimeMillis()
+    val isUnreadNoteToSelf: Boolean = conversation.recipient.isSelf && (conversation.mostRecentNotification as? MessageNotification)?.isUnread == true
 
-    return ((conversation.hasNewNotifications() && canAlertBasedOnTime) || alertOverride) && !conversation.mostRecentNotification.authorRecipient.isSelf
+    return ((conversation.hasNewNotifications() && canAlertBasedOnTime) || alertOverride) && (!conversation.mostRecentNotification.authorRecipient.isSelf || isUnreadNoteToSelf)
   }
 
   @WorkerThread

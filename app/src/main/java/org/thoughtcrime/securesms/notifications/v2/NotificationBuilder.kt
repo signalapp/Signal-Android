@@ -301,15 +301,16 @@ sealed class NotificationBuilder(protected val context: Context) {
 
       conversation.notificationItems.forEach { notificationItem ->
         var person: PersonCompat? = null
+        val isNoteToSelf = notificationItem.isPersonSelf && conversation.recipient.isSelf
 
-        if (!notificationItem.isPersonSelf) {
+        if (!notificationItem.isPersonSelf || isNoteToSelf) {
           val personBuilder: PersonCompat.Builder = PersonCompat.Builder()
             .setBot(false)
             .setName(notificationItem.getPersonName(context))
             .setUri(notificationItem.getPersonUri(context))
             .setIcon(notificationItem.getPersonIcon(context))
 
-          if (includeShortcut) {
+          if (includeShortcut && !isNoteToSelf) {
             personBuilder.setKey(ConversationUtil.getShortcutId(notificationItem.authorRecipient))
           }
 

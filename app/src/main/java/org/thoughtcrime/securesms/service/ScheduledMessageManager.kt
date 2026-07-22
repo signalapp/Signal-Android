@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.IndividualSendJob
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob
+import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.recipients.RecipientId
 import kotlin.time.Duration.Companion.seconds
 
@@ -55,11 +56,16 @@ class ScheduledMessageManager(
     val scheduledMessagesToSend = messagesTable.getScheduledMessagesBefore(System.currentTimeMillis())
     for (record in scheduledMessagesToSend) {
       val expiresIn = SignalDatabase.recipients.getExpiresInSeconds(record.toRecipient.id)
-      if (messagesTable.clearScheduledStatus(record.threadId, record.id, expiresIn.seconds.inWholeMilliseconds)) {
+      val isNoteToSelf = record.toRecipient.isSelf
+      if (messagesTable.clearScheduledStatus(record.threadId, record.id, expiresIn.seconds.inWholeMilliseconds, markUnread = isNoteToSelf)) {
         if (record.toRecipient.isPushGroup) {
           PushGroupSendJob.enqueue(application, AppDependencies.jobManager, record.id, record.toRecipient.id, emptySet(), true)
         } else {
           IndividualSendJob.enqueue(application, AppDependencies.jobManager, record.id, record.toRecipient, true)
+        }
+
+        if (isNoteToSelf) {
+          AppDependencies.messageNotifier.updateNotification(application, ConversationId.forConversation(record.threadId))
         }
       } else {
         Log.i(TAG, "messageId=${record.id} was not a scheduled message, ignoring")

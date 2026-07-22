@@ -2494,15 +2494,22 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
   }
 
-  fun clearScheduledStatus(threadId: Long, messageId: Long, expiresIn: Long): Boolean {
+  fun clearScheduledStatus(threadId: Long, messageId: Long, expiresIn: Long, markUnread: Boolean = false): Boolean {
+    val values = contentValuesOf(
+      SCHEDULED_DATE to -1,
+      DATE_SENT to System.currentTimeMillis(),
+      DATE_RECEIVED to System.currentTimeMillis(),
+      EXPIRES_IN to expiresIn
+    )
+
+    if (markUnread) {
+      values.put(READ, 0)
+      values.put(NOTIFIED, 0)
+    }
+
     val rowsUpdated = writableDatabase
       .update(TABLE_NAME)
-      .values(
-        SCHEDULED_DATE to -1,
-        DATE_SENT to System.currentTimeMillis(),
-        DATE_RECEIVED to System.currentTimeMillis(),
-        EXPIRES_IN to expiresIn
-      )
+      .values(values)
       .where("$ID = ? AND $SCHEDULED_DATE != ?", messageId, -1)
       .run()
 

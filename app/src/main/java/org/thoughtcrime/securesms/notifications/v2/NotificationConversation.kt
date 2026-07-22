@@ -55,7 +55,11 @@ data class NotificationConversation(
 
   fun getContactLargeIcon(context: Context): Drawable? {
     return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) {
-      recipient.getContactDrawable(context)
+      if (recipient.isSelf) {
+        FallbackAvatarDrawable(context, FallbackAvatar.Resource.NoteToSelf(recipient.avatarColor)).circleCrop()
+      } else {
+        recipient.getContactDrawable(context)
+      }
     } else {
       FallbackAvatarDrawable(context, FallbackAvatar.forTextOrDefault("Unknown", AvatarColor.UNKNOWN)).circleCrop()
     }
@@ -207,6 +211,8 @@ data class NotificationConversation(
   private fun getDisplayName(context: Context): String {
     return if (thread.groupStoryId != null) {
       context.getString(R.string.SingleRecipientNotificationBuilder__s_dot_story, recipient.getDisplayName(context))
+    } else if (recipient.isSelf) {
+      context.getString(R.string.note_to_self)
     } else {
       recipient.getDisplayName(context)
     }
