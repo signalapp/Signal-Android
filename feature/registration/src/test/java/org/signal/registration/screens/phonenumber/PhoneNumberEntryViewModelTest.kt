@@ -485,6 +485,73 @@ class PhoneNumberEntryViewModelTest {
     assertThat(state.nationalNumber).isEqualTo("15123456789")
   }
 
+  // ==================== Trunk Prefix Normalization Tests ====================
+
+  @Test
+  fun `NextClicked strips a redundant leading trunk prefix before showing the confirmation dialog`() = runTest {
+    // Dutch users habitually type their number with the leading national '0' (e.g. 0612345678), which must not end
+    // up in the E164 (+31612345678, not +310612345678).
+    val initialState = PhoneNumberEntryState(regionCode = "NL", countryCode = "31", nationalNumber = "0612345678", formattedNumber = "06 12345678")
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.NextClicked, parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates).hasSize(1)
+    val result = emittedStates.last()
+    assertThat(result.nationalNumber).isEqualTo("612345678")
+    assertThat(result.countryCode).isEqualTo("31")
+    assertThat(result.isNumberPossible).isTrue()
+    assertThat(result.dialogs.confirmNumber).isTrue()
+  }
+
+  @Test
+  fun `NextClicked leaves a number without a trunk prefix unchanged`() = runTest {
+    val initialState = PhoneNumberEntryState(regionCode = "US", countryCode = "1", nationalNumber = "5551234567", formattedNumber = "(555) 123-4567")
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.NextClicked, parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates).hasSize(1)
+    val result = emittedStates.last()
+    assertThat(result.nationalNumber).isEqualTo("5551234567")
+    assertThat(result.formattedNumber).isEqualTo("(555) 123-4567")
+    assertThat(result.dialogs.confirmNumber).isTrue()
+  }
+
+  @Test
+  fun `NextClicked preserves a leading zero that is a significant part of the number`() = runTest {
+    // Italian landlines include the leading zero as part of the number itself, so it must not be stripped.
+    val initialState = PhoneNumberEntryState(regionCode = "IT", countryCode = "39", nationalNumber = "0612345678", formattedNumber = "06 1234 5678")
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.NextClicked, parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates).hasSize(1)
+    val result = emittedStates.last()
+    assertThat(result.nationalNumber).isEqualTo("0612345678")
+    assertThat(result.dialogs.confirmNumber).isTrue()
+  }
+
+  @Test
+  fun `PhoneNumberConfirmed submits the E164 without a redundant leading trunk prefix`() = runTest {
+    val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
+
+    coEvery { mockRepository.createSession(any()) } returns
+      RequestResult.Success(sessionMetadata)
+    coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
+      RequestResult.Success(sessionMetadata)
+
+    val initialState = PhoneNumberEntryState(
+      regionCode = "NL",
+      countryCode = "31",
+      nationalNumber = "0612345678"
+    )
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberConfirmed, parentEventEmitter, stateEmitter)
+
+    coVerify(exactly = 1) { mockRepository.createSession("+31612345678") }
+    assertThat(emittedStates.last().nationalNumber).isEqualTo("612345678")
+    assertThat(emittedEvents.filterIsInstance<RegistrationFlowEvent.E164Chosen>())
+      .isEqualTo(listOf(RegistrationFlowEvent.E164Chosen("+31612345678")))
+  }
+
   // ==================== FullPhoneNumberEntered Tests ====================
 
   @Test

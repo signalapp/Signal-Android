@@ -117,7 +117,8 @@ class PhoneNumberEntryViewModel(
         stateEmitter(applyPhoneNumberChanged(state, event.oldValue, event.newValue))
       }
       is PhoneNumberEntryScreenEvents.NextClicked -> {
-        stateEmitter(state.copy(dialogs = state.dialogs.copy(confirmNumber = true)))
+        val normalized = state.withNormalizedNationalNumber()
+        stateEmitter(normalized.copy(dialogs = normalized.dialogs.copy(confirmNumber = true)))
       }
       is PhoneNumberEntryScreenEvents.PhoneNumberCancelled -> {
         stateEmitter(state.copy(dialogs = state.dialogs.copy(confirmNumber = false)))
@@ -275,8 +276,8 @@ class PhoneNumberEntryViewModel(
     inputState: PhoneNumberEntryState,
     parentEventEmitter: (RegistrationFlowEvent) -> Unit
   ): PhoneNumberEntryState {
-    val e164 = "+${inputState.countryCode}${inputState.nationalNumber}"
-    var state = inputState.copy()
+    var state = inputState.withNormalizedNationalNumber()
+    val e164 = "+${state.countryCode}${state.nationalNumber}"
 
     // If the user selected a restore option before entering their phone number, navigate to the restore flow
     if (state.pendingRestoreOption != null) {
@@ -889,6 +890,34 @@ class PhoneNumberEntryViewModel(
     }
 
     return (new.length - prefix - suffix).coerceAtLeast(0)
+  }
+
+  /**
+   * Strips a redundant national trunk prefix from the national number (e.g. the leading 0 a Dutch user habitually
+   * types in "0612345678"), which would otherwise produce a wrong E164 when naively concatenated with the country
+   * code (+310612345678 instead of +31612345678). Leading zeros that are a significant part of the number (e.g.
+   * Italian landlines) are preserved.
+   */
+  private fun PhoneNumberEntryState.withNormalizedNationalNumber(): PhoneNumberEntryState {
+    if (countryCode.isEmpty() || nationalNumber.isEmpty()) {
+      return this
+    }
+
+    val parsedNumber = try {
+      phoneNumberUtil.parse("+$countryCode$nationalNumber", null)
+    } catch (_: NumberParseException) {
+      return this
+    }
+
+    val significantNumber = phoneNumberUtil.getNationalSignificantNumber(parsedNumber)
+    if (significantNumber == nationalNumber || parsedNumber.countryCode.toString() != countryCode) {
+      return this
+    }
+
+    return copy(
+      nationalNumber = significantNumber,
+      formattedNumber = formatNumber(significantNumber)
+    ).withNumberValidity()
   }
 
   /**
