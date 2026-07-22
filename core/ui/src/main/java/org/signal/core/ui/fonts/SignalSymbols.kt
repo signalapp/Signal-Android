@@ -3,13 +3,18 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.fonts
+package org.signal.core.ui.fonts
 
 import android.content.Context
 import android.graphics.Typeface
+import android.text.SpannableString
 import android.text.SpannableStringBuilder
+import android.text.Spanned
 import android.text.TextPaint
+import android.text.style.AbsoluteSizeSpan
+import android.text.style.ForegroundColorSpan
 import android.text.style.MetricAffectingSpan
+import android.view.View
 import androidx.annotation.ColorRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -24,8 +29,6 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.core.content.ContextCompat
 import androidx.core.text.buildSpannedString
 import org.signal.core.util.BidiUtil
-import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.ViewUtil
 
 /**
  * Helper object for working with the SignalSymbols font
@@ -224,7 +227,7 @@ object SignalSymbols {
     text.setSpan(span, 0, text.length, 0)
 
     return if (colorRes != -1) {
-      SpanUtil.color(ContextCompat.getColor(context, colorRes), text)
+      colorSpan(ContextCompat.getColor(context, colorRes), text)
     } else {
       text
     }
@@ -241,7 +244,7 @@ object SignalSymbols {
     glyphStartSizeSp: Int = 16,
     glyphEndSizeSp: Int = 16
   ): CharSequence {
-    val isLtr = ViewUtil.isLtr(context)
+    val isLtr = isLtr(context)
     val leftGlyph = if (isLtr) glyphStart else glyphEnd
     val leftGlyphWeight = if (isLtr) glyphStartWeight else glyphEndWeight
     val leftGlyphSizeSp = if (isLtr) glyphStartSizeSp else glyphEndSizeSp
@@ -251,7 +254,7 @@ object SignalSymbols {
 
     return buildSpannedString {
       if (leftGlyph != null) {
-        val symbol = SpanUtil.ofSize(
+        val symbol = sizeSpan(
           getSpannedString(context, leftGlyphWeight, leftGlyph),
           leftGlyphSizeSp
         )
@@ -260,7 +263,7 @@ object SignalSymbols {
       }
       append(text)
       if (rightGlyph != null) {
-        val symbol = SpanUtil.ofSize(
+        val symbol = sizeSpan(
           getSpannedString(context, rightGlyphWeight, rightGlyph),
           rightGlyphSizeSp
         )
@@ -344,7 +347,6 @@ object SignalSymbols {
     return when (weight) {
       Weight.BOLD -> getBoldWeightedFont(context)
       Weight.REGULAR -> getRegularWeightedFont(context)
-      else -> error("Unsupported weight: $weight")
     }
   }
 
@@ -367,6 +369,22 @@ object SignalSymbols {
         context.assets,
         "fonts/SignalSymbols-Regular.otf"
       )
+    }
+  }
+
+  private fun isLtr(context: Context): Boolean {
+    return context.resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_LTR
+  }
+
+  private fun sizeSpan(sequence: CharSequence, sizeSp: Int): CharSequence {
+    return SpannableString(sequence).apply {
+      setSpan(AbsoluteSizeSpan(sizeSp, true), 0, sequence.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    }
+  }
+
+  private fun colorSpan(color: Int, sequence: CharSequence): CharSequence {
+    return SpannableString(sequence).apply {
+      setSpan(ForegroundColorSpan(color), 0, sequence.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
     }
   }
 

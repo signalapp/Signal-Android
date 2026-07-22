@@ -22,6 +22,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
 
+import org.signal.core.ui.fonts.SignalSymbols;
 import org.signal.core.ui.view.Stub;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.Util;
@@ -37,7 +38,6 @@ import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.conversation.v2.items.SenderNameWithLabelView;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
-import org.thoughtcrime.securesms.fonts.SignalSymbols;
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;

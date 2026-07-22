@@ -40,9 +40,9 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.horizontalGutters
+import org.signal.core.ui.fonts.SignalSymbols
+import org.signal.core.ui.fonts.SignalSymbols.SignalSymbol
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.fonts.SignalSymbols
-import org.thoughtcrime.securesms.fonts.SignalSymbols.SignalSymbol
 import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceActivity
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceState

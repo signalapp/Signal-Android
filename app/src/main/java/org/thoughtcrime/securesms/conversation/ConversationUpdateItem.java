@@ -31,7 +31,11 @@ import com.bumptech.glide.RequestManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.common.collect.Sets;
 
+import org.signal.core.models.ServiceId;
+import org.signal.core.ui.fonts.SignalSymbols;
 import org.signal.core.util.DimensionUnit;
+import org.signal.core.util.DrawableUtil;
+import org.signal.core.util.Util;
 import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BindableConversationItem;
@@ -40,8 +44,8 @@ import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
-import org.thoughtcrime.securesms.database.CollapsibleEvents;
 import org.thoughtcrime.securesms.database.CollapsedState;
+import org.thoughtcrime.securesms.database.CollapsibleEvents;
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
@@ -49,29 +53,21 @@ import org.thoughtcrime.securesms.database.model.LiveUpdateMessage;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
-import org.thoughtcrime.securesms.fonts.SignalSymbols;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.signal.core.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ProjectionList;
 import org.thoughtcrime.securesms.util.SpanUtil;
-import org.signal.core.ui.util.ThemeUtil;
-import org.signal.core.util.Util;
-import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.disposables.Disposable;
-import org.signal.core.models.ServiceId;
 
 import java.util.Collection;
 import java.util.Locale;
@@ -81,6 +77,9 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public final class ConversationUpdateItem extends FrameLayout
                                           implements BindableConversationItem

@@ -11,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import org.signal.core.ui.util.ThemeUtil;
-import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
 import org.signal.core.models.ServiceId;
+import org.signal.core.ui.fonts.SignalSymbols.Glyph;
+import org.signal.core.ui.util.ThemeUtil;
 
 import java.util.Collection;
 import java.util.Collections;

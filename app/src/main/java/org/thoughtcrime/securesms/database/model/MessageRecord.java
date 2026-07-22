@@ -30,16 +30,19 @@ import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 
-import java.util.stream.Collectors;
-
+import org.signal.archive.proto.GroupChangeChatUpdate;
+import org.signal.archive.proto.GroupCreationUpdate;
+import org.signal.core.models.ServiceId;
+import org.signal.core.models.ServiceId.ACI;
+import org.signal.core.ui.fonts.SignalSymbols.Glyph;
 import org.signal.core.util.Base64;
 import org.signal.core.util.BidiUtil;
+import org.signal.core.util.Util;
+import org.signal.core.util.UuidUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.R;
-import org.signal.archive.proto.GroupChangeChatUpdate;
-import org.signal.archive.proto.GroupCreationUpdate;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.transfercontrols.TransferControls;
@@ -57,7 +60,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchove
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
-import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -69,11 +71,7 @@ import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
-import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
-import org.signal.core.models.ServiceId;
-import org.signal.core.models.ServiceId.ACI;
-import org.signal.core.util.UuidUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -84,6 +82,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import okio.ByteString;
 

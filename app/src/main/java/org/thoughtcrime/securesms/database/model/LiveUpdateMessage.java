@@ -11,19 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
-import java.util.stream.Collectors;
-
-import org.thoughtcrime.securesms.fonts.SignalSymbols;
-import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
-import org.thoughtcrime.securesms.fonts.SignalSymbols.Weight;
+import org.signal.core.ui.fonts.SignalSymbols;
+import org.signal.core.ui.fonts.SignalSymbols.Glyph;
+import org.signal.core.ui.fonts.SignalSymbols.Weight;
+import org.signal.core.ui.util.ThemeUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SpanUtil;
-import org.signal.core.ui.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public final class LiveUpdateMessage {
 

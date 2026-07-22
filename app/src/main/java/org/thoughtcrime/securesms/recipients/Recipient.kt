@@ -11,6 +11,7 @@ import kotlinx.collections.immutable.toImmutableList
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.ui.fonts.SignalSymbols
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.Util
 import org.signal.core.util.UuidUtil
@@ -43,7 +44,6 @@ import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
