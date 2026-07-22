@@ -78,7 +78,7 @@ fun VerificationCodeScreen(
   val resources = LocalResources.current
 
   LaunchedEffect(state.rateLimits) {
-    if (state.rateLimits.smsResendTimeRemaining > 0.seconds || state.rateLimits.callRequestTimeRemaining > 0.seconds) {
+    if (state.smsResendCountdown() != null || state.callRequestCountdown() != null) {
       while (true) {
         delay(1000)
         onEvent(VerificationCodeScreenEvents.CountdownTick)
@@ -362,8 +362,10 @@ private fun CodeField(
 
 @Composable
 private fun AlternateCodeOptions(state: VerificationCodeState, onEvent: (VerificationCodeScreenEvents) -> Unit) {
-  val canResendSms = state.canResendSms()
   val disabledColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+
+  val canResendSms = state.canResendSms()
+  val smsCountdown = state.smsResendCountdown()
   TextButton(
     onClick = { onEvent(VerificationCodeScreenEvents.ResendSms) },
     enabled = canResendSms,
@@ -371,14 +373,14 @@ private fun AlternateCodeOptions(state: VerificationCodeState, onEvent: (Verific
       .testTag(TestTags.VERIFICATION_CODE_RESEND_SMS_BUTTON)
   ) {
     Text(
-      text = if (canResendSms) {
-        stringResource(R.string.VerificationCodeScreen__resend_code)
-      } else {
-        val totalSeconds = state.rateLimits.smsResendTimeRemaining.inWholeSeconds.toInt()
+      text = if (smsCountdown != null) {
+        val totalSeconds = smsCountdown.inWholeSeconds.toInt()
         val minutes = totalSeconds / 60
         val seconds = totalSeconds % 60
         stringResource(R.string.VerificationCodeScreen__resend_code) + " " +
           stringResource(R.string.VerificationCodeScreen__countdown_format, minutes, seconds)
+      } else {
+        stringResource(R.string.VerificationCodeScreen__resend_code)
       },
       color = if (canResendSms) MaterialTheme.colorScheme.primary else disabledColor,
       textAlign = TextAlign.Center,
@@ -389,6 +391,7 @@ private fun AlternateCodeOptions(state: VerificationCodeState, onEvent: (Verific
   Spacer(modifier = Modifier.width(8.dp))
 
   val canRequestCall = state.canRequestCall()
+  val callCountdown = state.callRequestCountdown()
   TextButton(
     onClick = { onEvent(VerificationCodeScreenEvents.CallMe) },
     enabled = canRequestCall,
@@ -396,13 +399,13 @@ private fun AlternateCodeOptions(state: VerificationCodeState, onEvent: (Verific
       .testTag(TestTags.VERIFICATION_CODE_CALL_ME_BUTTON)
   ) {
     Text(
-      text = if (canRequestCall) {
-        stringResource(R.string.VerificationCodeScreen__call_me_instead)
-      } else {
-        val totalSeconds = state.rateLimits.callRequestTimeRemaining.inWholeSeconds.toInt()
+      text = if (callCountdown != null) {
+        val totalSeconds = callCountdown.inWholeSeconds.toInt()
         val minutes = totalSeconds / 60
         val seconds = totalSeconds % 60
         stringResource(R.string.VerificationCodeScreen__call_me_available_in, minutes, seconds)
+      } else {
+        stringResource(R.string.VerificationCodeScreen__call_me_instead)
       },
       color = if (canRequestCall) MaterialTheme.colorScheme.primary else disabledColor,
       textAlign = TextAlign.Center,

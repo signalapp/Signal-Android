@@ -968,6 +968,36 @@ class VerificationCodeViewModelTest {
   }
 
   @Test
+  fun `ResendSms success with a null nextCall marks calls unavailable instead of a bogus countdown`() = runTest {
+    val updatedSession = createSessionMetadata(nextSms = 0L, nextCall = null)
+    val initialState = VerificationCodeState(sessionMetadata = createSessionMetadata(), e164 = "+15551234567")
+
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.SMS)) } returns
+      RequestResult.Success(updatedSession)
+
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
+
+    assertThat(emittedStates.last().rateLimits).isEqualTo(
+      SmsAndCallRateLimits(smsResendTimeRemaining = 0.seconds, callRequestTimeRemaining = null)
+    )
+  }
+
+  @Test
+  fun `ResendSms success with a null nextSms marks SMS resend unavailable instead of a bogus countdown`() = runTest {
+    val updatedSession = createSessionMetadata(nextSms = null, nextCall = 30L)
+    val initialState = VerificationCodeState(sessionMetadata = createSessionMetadata(), e164 = "+15551234567")
+
+    coEvery { mockRepository.requestVerificationCode(any(), any(), eq(VerificationCodeTransport.SMS)) } returns
+      RequestResult.Success(updatedSession)
+
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
+
+    assertThat(emittedStates.last().rateLimits).isEqualTo(
+      SmsAndCallRateLimits(smsResendTimeRemaining = null, callRequestTimeRemaining = 30.seconds)
+    )
+  }
+
+  @Test
   fun `ResendSms with success emits VerificationCodeRequested with the next allowed timestamp`() = runTest {
     val fixedNow = 1_000_000L
     val clockedViewModel = VerificationCodeViewModel(mockRepository, parentState, parentEventEmitter, clock = { fixedNow })
@@ -1060,7 +1090,7 @@ class VerificationCodeViewModelTest {
     clockedViewModel.applyEvent(VerificationCodeState(), VerificationCodeScreenEvents.ParentStateChanged(parentFlowState), stateEmitter)
 
     assertThat(emittedStates.last().rateLimits).isEqualTo(
-      SmsAndCallRateLimits(smsResendTimeRemaining = 5.seconds, callRequestTimeRemaining = 0.seconds)
+      SmsAndCallRateLimits(smsResendTimeRemaining = 5.seconds, callRequestTimeRemaining = null)
     )
   }
 
@@ -1079,7 +1109,7 @@ class VerificationCodeViewModelTest {
     clockedViewModel.applyEvent(VerificationCodeState(), VerificationCodeScreenEvents.ParentStateChanged(parentFlowState), stateEmitter)
 
     assertThat(emittedStates.last().rateLimits).isEqualTo(
-      SmsAndCallRateLimits(smsResendTimeRemaining = 0.seconds, callRequestTimeRemaining = 0.seconds)
+      SmsAndCallRateLimits(smsResendTimeRemaining = 0.seconds, callRequestTimeRemaining = null)
     )
   }
 

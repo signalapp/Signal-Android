@@ -103,9 +103,6 @@ class VerificationCodeViewModel(
   private val _state = MutableStateFlow(VerificationCodeState())
   val state: StateFlow<VerificationCodeState> = _state.asStateFlow()
 
-  private var nextSmsAvailableAt: Duration = 0.seconds
-  private var nextCallAvailableAt: Duration = 0.seconds
-
   init {
     _state
       .onEach { Log.d(TAG, "[State] $it") }
@@ -196,8 +193,8 @@ class VerificationCodeViewModel(
   private fun applyCountdownTick(state: VerificationCodeState): VerificationCodeState {
     return state.copy(
       rateLimits = SmsAndCallRateLimits(
-        smsResendTimeRemaining = (state.rateLimits.smsResendTimeRemaining - 1.seconds).coerceAtLeast(0.seconds),
-        callRequestTimeRemaining = (state.rateLimits.callRequestTimeRemaining - 1.seconds).coerceAtLeast(0.seconds)
+        smsResendTimeRemaining = state.rateLimits.smsResendTimeRemaining?.minus(1.seconds)?.coerceAtLeast(0.seconds),
+        callRequestTimeRemaining = state.rateLimits.callRequestTimeRemaining?.minus(1.seconds)?.coerceAtLeast(0.seconds)
       )
     )
   }
@@ -526,38 +523,40 @@ class VerificationCodeViewModel(
     }
   }
 
+  /**
+   * Builds the countdowns from a freshly-returned session. A null [SessionMetadata.nextSms]/[SessionMetadata.nextCall]
+   * means the server won't permit that request, which we surface as a null remaining time (an unavailable button)
+   * rather than a countdown.
+   */
   private fun computeRateLimits(session: SessionMetadata): SmsAndCallRateLimits {
-    val now = clock().milliseconds
-    nextSmsAvailableAt = now + (session.nextSms?.seconds ?: nextSmsAvailableAt)
-    nextCallAvailableAt = now + (session.nextCall?.seconds ?: nextCallAvailableAt)
-
     return SmsAndCallRateLimits(
-      smsResendTimeRemaining = (nextSmsAvailableAt - clock().milliseconds).coerceAtLeast(0.seconds),
-      callRequestTimeRemaining = (nextCallAvailableAt - clock().milliseconds).coerceAtLeast(0.seconds)
+      smsResendTimeRemaining = session.nextSms?.seconds?.coerceAtLeast(0.seconds),
+      callRequestTimeRemaining = session.nextCall?.seconds?.coerceAtLeast(0.seconds)
     )
   }
 
   /**
    * Seeds the resend countdowns when we first see a session. Prefers the absolute timestamps recorded when the codes
    * were actually requested (which remain accurate across leaving and re-entering this screen), falling back to
-   * anchoring the session's relative nextSms/nextCall values to now.
+   * anchoring the session's relative nextSms/nextCall values to now. A null value with no recorded request means the
+   * transport is unavailable, surfaced as a null remaining time.
    */
   private fun initializeRateLimits(session: SessionMetadata, parentState: RegistrationFlowState): SmsAndCallRateLimits {
     val now = clock().milliseconds
 
-    nextSmsAvailableAt = parentState.lastSmsVerificationCodeRequest
+    val nextSmsAvailableAt: Duration? = parentState.lastSmsVerificationCodeRequest
       ?.takeIf { it.e164 == parentState.sessionE164 }
       ?.nextAllowedRequestTime?.milliseconds
-      ?: (now + (session.nextSms?.seconds ?: 0.seconds))
+      ?: session.nextSms?.let { now + it.seconds }
 
-    nextCallAvailableAt = parentState.lastCallVerificationCodeRequest
+    val nextCallAvailableAt: Duration? = parentState.lastCallVerificationCodeRequest
       ?.takeIf { it.e164 == parentState.sessionE164 }
       ?.nextAllowedRequestTime?.milliseconds
-      ?: (now + (session.nextCall?.seconds ?: 0.seconds))
+      ?: session.nextCall?.let { now + it.seconds }
 
     return SmsAndCallRateLimits(
-      smsResendTimeRemaining = (nextSmsAvailableAt - now).coerceAtLeast(0.seconds),
-      callRequestTimeRemaining = (nextCallAvailableAt - now).coerceAtLeast(0.seconds)
+      smsResendTimeRemaining = nextSmsAvailableAt?.minus(now)?.coerceAtLeast(0.seconds),
+      callRequestTimeRemaining = nextCallAvailableAt?.minus(now)?.coerceAtLeast(0.seconds)
     )
   }
 

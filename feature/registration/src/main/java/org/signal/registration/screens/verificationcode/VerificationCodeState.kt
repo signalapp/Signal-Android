@@ -54,14 +54,28 @@ data class VerificationCodeState(
   )
 
   /**
-   * Returns true if the user can resend SMS (timer has expired)
+   * Returns true if the user can resend SMS right now (a timer exists and has expired). False while a timer is still
+   * counting down, and also when SMS resend is unavailable ([SmsAndCallRateLimits.smsResendTimeRemaining] is null).
    */
-  fun canResendSms(): Boolean = rateLimits.smsResendTimeRemaining <= 0.seconds
+  fun canResendSms(): Boolean = rateLimits.smsResendTimeRemaining.let { it != null && it <= 0.seconds }
 
   /**
-   * Returns true if the user can request a call (timer has expired)
+   * Returns true if the user can request a call right now (a timer exists and has expired). False while a timer is
+   * still counting down, and also when calls are unavailable ([SmsAndCallRateLimits.callRequestTimeRemaining] is null).
    */
-  fun canRequestCall(): Boolean = rateLimits.callRequestTimeRemaining <= 0.seconds
+  fun canRequestCall(): Boolean = rateLimits.callRequestTimeRemaining.let { it != null && it <= 0.seconds }
+
+  /**
+   * The SMS resend cooldown to display as a countdown, or null when there is nothing to count down — either because
+   * resend is available now or because it is unavailable.
+   */
+  fun smsResendCountdown(): Duration? = rateLimits.smsResendTimeRemaining?.takeIf { it > 0.seconds }
+
+  /**
+   * The call request cooldown to display as a countdown, or null when there is nothing to count down — either because
+   * a call can be requested now or because it is unavailable.
+   */
+  fun callRequestCountdown(): Duration? = rateLimits.callRequestTimeRemaining?.takeIf { it > 0.seconds }
 
   /**
    * Returns true if the "Having Trouble" button should be shown.
@@ -72,8 +86,12 @@ data class VerificationCodeState(
 
 /**
  * Rate limit data for SMS resend and phone call request countdown timers.
+ *
+ * For each transport: `null` means the server won't allow that request at all (its button is disabled with no
+ * countdown), [kotlin.time.Duration.ZERO] means it can be requested now, and a positive value is the countdown until
+ * it becomes available.
  */
 data class SmsAndCallRateLimits(
-  val smsResendTimeRemaining: Duration = 0.seconds,
-  val callRequestTimeRemaining: Duration = 0.seconds
+  val smsResendTimeRemaining: Duration? = 0.seconds,
+  val callRequestTimeRemaining: Duration? = 0.seconds
 )
