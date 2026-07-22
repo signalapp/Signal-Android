@@ -377,8 +377,7 @@ private fun AlternateCodeOptions(state: VerificationCodeState, onEvent: (Verific
         val totalSeconds = smsCountdown.inWholeSeconds.toInt()
         val minutes = totalSeconds / 60
         val seconds = totalSeconds % 60
-        stringResource(R.string.VerificationCodeScreen__resend_code) + " " +
-          stringResource(R.string.VerificationCodeScreen__countdown_format, minutes, seconds)
+        stringResource(R.string.VerificationCodeScreen__resend_code_available_in, minutes, seconds)
       } else {
         stringResource(R.string.VerificationCodeScreen__resend_code)
       },
