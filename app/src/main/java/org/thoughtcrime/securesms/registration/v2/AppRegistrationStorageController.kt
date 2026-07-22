@@ -19,6 +19,8 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -111,6 +113,13 @@ import kotlin.time.Duration.Companion.seconds
 class AppRegistrationStorageController(private val context: Context) : StorageController {
 
   /**
+   * Serializes access to the in-progress registration data blob. Updates are read-modify-write, and concurrent
+   * writers (e.g. a flow-state save racing an account-data write) would otherwise lose one of the updates. Reads
+   * take the lock too, since a write deletes the previous blob after swapping the URI.
+   */
+  private val inProgressDataLock = Mutex()
+
+  /**
    * Restarts the process-wide network stack after account data is applied. Overridable only so tests can avoid
    * touching the real, suite-shared network module; production must never replace it.
    */
@@ -155,8 +164,10 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
   }
 
   override suspend fun clearAllData() = withContext(Dispatchers.IO) {
-    SignalStore.registration.inProgressRegistrationDataBlobUri?.toUri()?.let { AppDependencies.blobs.delete(context, it) }
-    SignalStore.registration.inProgressRegistrationDataBlobUri = null
+    inProgressDataLock.withLock {
+      SignalStore.registration.inProgressRegistrationDataBlobUri?.toUri()?.let { AppDependencies.blobs.delete(context, it) }
+      SignalStore.registration.inProgressRegistrationDataBlobUri = null
+    }
 
     // Best-effort cleanup of the legacy plaintext file written by older builds.
     File(context.cacheDir, TEMP_PROTO_FILENAME).takeIf { it.exists() }?.delete()
@@ -202,19 +213,27 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
   }
 
   override suspend fun readInProgressRegistrationData(): RegistrationData = withContext(Dispatchers.IO) {
-    val uri = SignalStore.registration.inProgressRegistrationDataBlobUri?.toUri() ?: return@withContext RegistrationData()
-    try {
+    inProgressDataLock.withLock {
+      readInProgressRegistrationDataInternal()
+    }
+  }
+
+  override suspend fun updateInProgressRegistrationData(updater: RegistrationData.Builder.() -> Unit) = withContext(Dispatchers.IO) {
+    inProgressDataLock.withLock {
+      val current = readInProgressRegistrationDataInternal()
+      val updated = current.newBuilder().apply(updater).build()
+      writeRegistrationData(updated)
+    }
+  }
+
+  private fun readInProgressRegistrationDataInternal(): RegistrationData {
+    val uri = SignalStore.registration.inProgressRegistrationDataBlobUri?.toUri() ?: return RegistrationData()
+    return try {
       AppDependencies.blobs.getStream(context, uri).use { RegistrationData.ADAPTER.decode(it) }
     } catch (e: Exception) {
       Log.w(TAG, "Failed to read/decode in-progress registration data, returning empty.", e)
       RegistrationData()
     }
-  }
-
-  override suspend fun updateInProgressRegistrationData(updater: RegistrationData.Builder.() -> Unit) = withContext(Dispatchers.IO) {
-    val current = readInProgressRegistrationData()
-    val updated = current.newBuilder().apply(updater).build()
-    writeRegistrationData(updated)
   }
 
   override suspend fun commitRegistrationData() = withContext(Dispatchers.IO) {
