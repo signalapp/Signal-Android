@@ -118,7 +118,6 @@ class RegistrationEndToEndTest {
     networkController = FakeNetworkController()
     storageController = FakeStorageController()
     repository = RegistrationRepository(context, networkController, storageController, isLinkAndSyncAvailable = false)
-    viewModel = RegistrationViewModel(repository, SavedStateHandle())
   }
 
   @Test
@@ -952,10 +951,14 @@ class RegistrationEndToEndTest {
     enterPhoneNumber()
     enterAep(wrongAep)
 
-    // The server rejects the recovery password derived from the wrong AEP, disabling submission until the key changes
-    waitFor("the incorrect AEP to be rejected") {
+    // The server rejects the recovery password derived from the wrong AEP, disabling submission until the key changes.
+    // Wait on the error text rather than the disabled button, which is also disabled while the attempt is in flight.
+    waitForText(ApplicationProvider.getApplicationContext<Application>().getString(R.string.EnterAepScreen__incorrect_recovery_key))
+    assert(
       composeTestRule.onAllNodesWithTag(TestTags.ENTER_AEP_NEXT_BUTTON).fetchSemanticsNodes().firstOrNull()
         ?.config?.getOrNull(SemanticsProperties.Disabled) != null
+    ) {
+      "Expected submission to be disabled after the AEP was rejected"
     }
     assert(networkController.lastRegisterAccountRequest?.recoveryPassword == wrongAep.deriveMasterKey().deriveRegistrationRecoveryPassword()) {
       "Expected a registration attempt with the wrong recovery password but was ${networkController.lastRegisterAccountRequest}"
@@ -1295,6 +1298,9 @@ class RegistrationEndToEndTest {
     folderPickerResult: Uri? = null,
     onRegistrationComplete: () -> Unit = {}
   ) {
+    // Created here rather than in setup() so that its async init cannot read controller state before the test has finished configuring it
+    viewModel = RegistrationViewModel(repository, SavedStateHandle())
+
     composeTestRule.setContent {
       SignalTheme {
         ActivityResultInterceptor(folderPickerResult) {
