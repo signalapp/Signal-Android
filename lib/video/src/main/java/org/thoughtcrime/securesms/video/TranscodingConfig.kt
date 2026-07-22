@@ -48,12 +48,8 @@ object TranscodingConfig {
       ?: TranscodeConfig()
   }
 
-  fun calculateMaxVideoUploadDurationInSeconds(tiers: List<QualityTier>, videoDuration: Duration, maxFileSize: Long): Int {
-    val config = getQualityTier(tiers, videoDuration)
-    val upperFileSizeLimitWithMargin = (maxFileSize / 1.1).toLong()
-    val totalBitRate = ((config.videoBitrateMbps * VideoConstants.MB) + (config.audioBitrateKbps * VideoConstants.KB)).toLong()
-    val maxDurationFromFileSize = Math.toIntExact((upperFileSizeLimitWithMargin * 8) / totalBitRate)
-    return maxDurationFromFileSize.coerceAtMost(config.maxDurationSec)
+  fun calculateMaxVideoUploadDurationInSeconds(tiers: List<QualityTier>, videoDuration: Duration): Int {
+    return getQualityTier(tiers, videoDuration).maxDurationSec
   }
 
   @JvmStatic

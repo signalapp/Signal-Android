@@ -130,13 +130,9 @@ object MediaSendV3Repository : MediaSendRepository {
     }
   }
 
-  override fun getMaxVideoDurationUs(quality: SentMediaQuality, maxFileSizeBytes: Long, duration: Duration): Long {
+  override fun getMaxVideoDurationUs(quality: SentMediaQuality, duration: Duration): Long {
     val config = PushMediaConstraints(quality).videoTranscodingSettings
-    return TranscodingConfig.calculateMaxVideoUploadDurationInSeconds(config, duration, maxFileSizeBytes).seconds.inWholeMicroseconds
-  }
-
-  override fun getVideoMaxSizeBytes(): Long {
-    return PushMediaConstraints(null).getEditorVideoMaxSize()
+    return TranscodingConfig.calculateMaxVideoUploadDurationInSeconds(config, duration).seconds.inWholeMicroseconds
   }
 
   override fun isVideoTranscodeAvailable(): Boolean {

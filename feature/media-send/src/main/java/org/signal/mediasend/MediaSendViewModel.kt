@@ -421,8 +421,8 @@ class MediaSendViewModel(
           .filterNot { snapshot.editorStateMap.containsKey(it.uri) }
           .filter { isNonGifVideo(it) }
           .associate { video ->
-            val maxVideoDurationUs = getMaxVideoDurationUs(video.duration.milliseconds)
             val durationUs = video.duration.milliseconds.inWholeMicroseconds
+            val maxVideoDurationUs = if (repository.isVideoTranscodeAvailable()) getMaxVideoDurationUs(video.duration.milliseconds) else durationUs
             video.uri to EditorState.VideoTrim.forVideo(durationUs, maxVideoDurationUs)
           }
 
@@ -698,7 +698,6 @@ class MediaSendViewModel(
     val snapshot = state.value
     return repository.getMaxVideoDurationUs(
       quality = snapshot.sentMediaQuality,
-      maxFileSizeBytes = repository.getVideoMaxSizeBytes(),
       duration = duration
     )
   }

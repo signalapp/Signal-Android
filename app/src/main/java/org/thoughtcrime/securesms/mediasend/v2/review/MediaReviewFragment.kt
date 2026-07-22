@@ -612,7 +612,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     val size: Long = tryGetUriSize(requireContext(), uri, Long.MAX_VALUE)
     val maxSend = sharedViewModel.getMediaConstraints().getEditorVideoMaxSize()
     if (size > maxSend) {
-      videoTimeLine.setTimeLimit(TranscodingConfig.calculateMaxVideoUploadDurationInSeconds(state.transcodingConfigs, state.getOrCreateVideoTrimData(uri).totalInputDurationUs.microseconds, maxSend), TimeUnit.SECONDS)
+      videoTimeLine.setTimeLimit(TranscodingConfig.calculateMaxVideoUploadDurationInSeconds(state.transcodingConfigs, state.getOrCreateVideoTrimData(uri).totalInputDurationUs.microseconds), TimeUnit.SECONDS)
     }
 
     if (state.isTouchEnabled) {

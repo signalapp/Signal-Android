@@ -172,11 +172,11 @@ class MediaSelectionViewModel(
                 .filter { media -> MediaUtil.isNonGifVideo(media) }
                 .associate { video: Media ->
                   val duration = video.duration.milliseconds.inWholeMicroseconds
-                  val maxDuration = it.calculateMaxVideoDurationUs(getMediaConstraints().getEditorVideoMaxSize(), video.duration.milliseconds)
-                  if (duration < maxDuration) {
-                    video.uri to VideoTrimData(false, duration, 0, duration)
-                  } else {
+                  val maxDuration = it.calculateMaxVideoDurationUs(video.duration.milliseconds)
+                  if (MediaConstraints.isVideoTranscodeAvailable() && duration >= maxDuration) {
                     video.uri to VideoTrimData(true, duration, 0, maxDuration)
+                  } else {
+                    video.uri to VideoTrimData(false, duration, 0, duration)
                   }
                 }
 
@@ -362,7 +362,7 @@ class MediaSelectionViewModel(
       val durationEdited = clampedStartTime > 0 || endTimeUs < totalDurationUs
       val isEntireDuration = startTimeUs == 0L && endTimeUs == totalDurationUs
       val endMoved = !isEntireDuration && data.endTimeUs != endTimeUs
-      val maxVideoDurationUs: Long = it.calculateMaxVideoDurationUs(getMediaConstraints().getEditorVideoMaxSize(), (endTimeUs - clampedStartTime).microseconds)
+      val maxVideoDurationUs: Long = it.calculateMaxVideoDurationUs((endTimeUs - clampedStartTime).microseconds)
       val preserveStartTime = unedited || !endMoved
       val videoTrimData = VideoTrimData(durationEdited, totalDurationUs, clampedStartTime, endTimeUs)
       val updatedData = clampToMaxClipDuration(videoTrimData, maxVideoDurationUs, preserveStartTime)

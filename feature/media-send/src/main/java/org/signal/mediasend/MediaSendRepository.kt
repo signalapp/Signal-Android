@@ -58,19 +58,13 @@ interface MediaSendRepository {
   suspend fun send(request: SendRequest): SendResult
 
   /**
-   * Gets the maximum video duration in microseconds based on quality and file size limits.
+   * Gets the maximum video duration in microseconds based on quality.
    *
    * @param quality The sent media quality.
-   * @param maxFileSizeBytes Maximum file size in bytes.
    * @param duration Duration of the video.
    * @return Maximum duration in microseconds.
    */
-  fun getMaxVideoDurationUs(quality: SentMediaQuality, maxFileSizeBytes: Long, duration: Duration): Long
-
-  /**
-   * Gets the maximum video file size in bytes.
-   */
-  fun getVideoMaxSizeBytes(): Long
+  fun getMaxVideoDurationUs(quality: SentMediaQuality, duration: Duration): Long
 
   /**
    * Checks if video transcoding is available on this device.
