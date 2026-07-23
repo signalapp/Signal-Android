@@ -20,6 +20,7 @@ import kotlinx.coroutines.withContext
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
+import org.signal.core.util.throttleLatest
 import org.signal.libsignal.net.RequestResult
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
@@ -31,6 +32,7 @@ import org.signal.registration.screens.shared.RestoreProgress
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 import kotlin.coroutines.CoroutineContext
+import kotlin.time.Duration.Companion.seconds
 
 class RemoteBackupRestoreViewModel(
   private val aep: AccountEntropyPool,
@@ -49,6 +51,7 @@ class RemoteBackupRestoreViewModel(
 
   init {
     _state
+      .throttleLatest(1.seconds) { it.restoreState != RemoteBackupRestoreState.RestoreState.InProgress }
       .onEach { Log.d(TAG, "[State] $it") }
       .launchIn(viewModelScope)
 

@@ -22,6 +22,7 @@ import org.signal.core.models.AccountEntropyPool
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.ui.navigation.ResultEventBus
 import org.signal.core.util.logging.Log
+import org.signal.core.util.throttleLatest
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
@@ -30,6 +31,7 @@ import org.signal.registration.RestoreDecision
 import org.signal.registration.screens.shared.RestoreProgress
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
+import kotlin.time.Duration.Companion.seconds
 
 class LocalBackupRestoreViewModel(
   private val repository: RegistrationRepository,
@@ -52,6 +54,7 @@ class LocalBackupRestoreViewModel(
 
   init {
     _state
+      .throttleLatest(1.seconds) { it.restorePhase != LocalBackupRestoreState.RestorePhase.InProgress }
       .onEach { Log.d(TAG, "[State] $it") }
       .launchIn(viewModelScope)
 

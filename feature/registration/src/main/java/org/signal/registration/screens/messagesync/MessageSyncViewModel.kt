@@ -20,12 +20,14 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
+import org.signal.core.util.throttleLatest
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
 import org.signal.registration.screens.messagesync.MessageSyncScreenState.Stage
 import org.signal.registration.screens.util.navigateTo
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Drives the link-and-sync message backup restore that runs after this device is registered as a
@@ -49,6 +51,7 @@ class MessageSyncViewModel(
 
   init {
     _state
+      .throttleLatest(1.seconds) { !it.isProgressUpdate() }
       .onEach { Log.d(TAG, "[State] $it") }
       .launchIn(viewModelScope)
 
@@ -143,4 +146,8 @@ class MessageSyncViewModel(
       return MessageSyncViewModel(repository, parentState, parentEventEmitter) as T
     }
   }
+}
+
+private fun MessageSyncScreenState.isProgressUpdate(): Boolean {
+  return !showSyncFailedDialog && (stage is Stage.Downloading || stage is Stage.Restoring)
 }
