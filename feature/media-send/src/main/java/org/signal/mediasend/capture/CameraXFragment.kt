@@ -158,7 +158,7 @@ class CameraXFragment : ComposeFragment(), CameraFragment {
     CameraXScreen(
       state = state,
       onEvent = { event -> controller?.onCameraXScreenEvent(event) },
-      maxVideoDurationSeconds = controller?.let { getMaxVideoDurationInSeconds(it.mediaConstraints, it.maxVideoDuration) } ?: 0,
+      maxVideoDurationSeconds = controller?.let { controller -> controller.maxVideoDuration.takeIf { it > 0 } ?: getMaxVideoDurationInSeconds(controller.mediaConstraints) } ?: 0,
       onCheckPermissions = { checkPermissions(state.isVideoEnabled) },
       hasCameraPermission = { hasCameraPermission() },
       onRequestMicPermission = { requestMicPermission() }
@@ -268,12 +268,8 @@ class CameraXFragment : ComposeFragment(), CameraFragment {
   }
 }
 
-internal fun getMaxVideoDurationInSeconds(mediaConstraints: MediaConstraints, maxVideoDuration: Int): Int {
-  var maxDuration = VideoUtil.getMaxVideoRecordDurationInSeconds(mediaConstraints)
-  if (maxVideoDuration > 0) {
-    maxDuration = maxVideoDuration
-  }
-  return maxDuration
+internal fun getMaxVideoDurationInSeconds(mediaConstraints: MediaConstraints): Int {
+  return VideoUtil.getMaxVideoRecordDurationInSeconds(mediaConstraints)
 }
 
 /**

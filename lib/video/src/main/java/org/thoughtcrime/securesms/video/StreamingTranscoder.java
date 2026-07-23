@@ -164,7 +164,7 @@ public final class StreamingTranscoder {
     final boolean sizeLimitEnabled = 0 < upperSizeLimit;
 
     if (sizeLimitEnabled && upperSizeLimit < fileSizeEstimate) {
-      throw new VideoSizeException("Size constraints could not be met!");
+      throw new VideoSizeException("Size constraints could not be met! upperSizeLimit: " + upperSizeLimit + ", fileSizeEstimate: " + fileSizeEstimate);
     }
 
     final long startTime = System.currentTimeMillis();

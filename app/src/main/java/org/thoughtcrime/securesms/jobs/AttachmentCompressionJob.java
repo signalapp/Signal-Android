@@ -260,7 +260,7 @@ public final class AttachmentCompressionJob extends BaseJob {
           }
         }
 
-        StreamingTranscoder transcoder = new StreamingTranscoder(dataSource, options, constraints.getVideoTranscodingSettings(), constraints.getCompressedVideoMaxSize(), RemoteConfig.allowAudioRemuxing());
+        StreamingTranscoder transcoder = new StreamingTranscoder(dataSource, options, constraints.getVideoTranscodingSettings(), AttachmentUploadJob.getMaxPlaintextSize(), RemoteConfig.allowAudioRemuxing());
 
         if (transcoder.isTranscodeRequired()) {
           Log.i(TAG, "Compressing with streaming muxer");
