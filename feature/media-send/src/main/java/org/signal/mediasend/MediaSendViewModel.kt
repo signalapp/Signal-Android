@@ -469,6 +469,10 @@ class MediaSendViewModel(
           )
         }
 
+        if (initializedVideoEditorStates.any { (_, editorState) -> editorState.videoTrimData.isDurationEdited }) {
+          internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__video_trimmed_to_fit))
+        }
+
         // Update story requirements
         updateStorySendRequirements(filterResult.filteredMedia)
 
@@ -607,11 +611,11 @@ class MediaSendViewModel(
     preUploadController.cancelAllUploads()
 
     // Re-clamp video durations based on new quality
+    var videoTrimmed = false
     snapshot.selectedMedia.forEach { mediaItem ->
       if (isNonGifVideo(mediaItem) && repository.isVideoTranscodeAvailable()) {
         val existingData = snapshot.editorStateMap[mediaItem.uri] as? EditorState.VideoTrim
         if (existingData != null) {
-          val maxVideoDurationUs = getMaxVideoDurationUs(existingData.videoTrimData.totalInputDurationUs.microseconds)
           onEditVideoDuration(
             totalDurationUs = existingData.videoTrimData.totalInputDurationUs,
             startTimeUs = existingData.videoTrimData.startTimeUs,
@@ -619,8 +623,16 @@ class MediaSendViewModel(
             touchEnabled = true,
             uri = mediaItem.uri
           )
+          val updatedData = state.value.editorStateMap[mediaItem.uri] as? EditorState.VideoTrim
+          if (updatedData != null && updatedData.videoTrimData.getDuration() < existingData.videoTrimData.getDuration()) {
+            videoTrimmed = true
+          }
         }
       }
+    }
+
+    if (videoTrimmed) {
+      internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__video_trimmed_to_fit))
     }
   }
 

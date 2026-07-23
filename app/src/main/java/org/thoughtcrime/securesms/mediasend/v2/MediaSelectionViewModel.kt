@@ -82,6 +82,9 @@ class MediaSelectionViewModel(
   val mediaErrors: BehaviorSubject<MediaValidator.FilterError> = BehaviorSubject.createDefault(MediaValidator.FilterError.None)
   val hudCommands: Observable<HudCommand> = internalHudCommands
 
+  private val _videoTrimmedEvents = PublishSubject.create<Unit>()
+  val videoTrimmedEvents: Observable<Unit> = _videoTrimmedEvents
+
   private val disposables = CompositeDisposable()
 
   private val isMeteredDisposable: Disposable = repository.isMetered.subscribe { metered ->
@@ -167,19 +170,20 @@ class MediaSelectionViewModel(
         .populateAndFilterMedia(newSelectionList, getMediaConstraints(), store.state.maxSelection, store.state.isStory)
         .subscribe { filterResult ->
           if (filterResult.filteredMedia.isNotEmpty()) {
-            store.update {
-              val initializedVideoEditorStates = filterResult.filteredMedia.filterNot { media -> it.editorStateMap.containsKey(media.uri) }
-                .filter { media -> MediaUtil.isNonGifVideo(media) }
-                .associate { video: Media ->
-                  val duration = video.duration.milliseconds.inWholeMicroseconds
-                  val maxDuration = it.calculateMaxVideoDurationUs(video.duration.milliseconds)
-                  if (MediaConstraints.isVideoTranscodeAvailable() && duration >= maxDuration) {
-                    video.uri to VideoTrimData(true, duration, 0, maxDuration)
-                  } else {
-                    video.uri to VideoTrimData(false, duration, 0, duration)
-                  }
+            val existingState = store.state
+            val initializedVideoEditorStates = filterResult.filteredMedia.filterNot { media -> existingState.editorStateMap.containsKey(media.uri) }
+              .filter { media -> MediaUtil.isNonGifVideo(media) }
+              .associate { video: Media ->
+                val duration = video.duration.milliseconds.inWholeMicroseconds
+                val maxDuration = existingState.calculateMaxVideoDurationUs(video.duration.milliseconds)
+                if (MediaConstraints.isVideoTranscodeAvailable() && duration >= maxDuration) {
+                  video.uri to VideoTrimData(true, duration, 0, maxDuration)
+                } else {
+                  video.uri to VideoTrimData(false, duration, 0, duration)
                 }
+              }
 
+            store.update {
               val updatedCameraFirstCapture = if (it.cameraFirstCapture != null) {
                 filterResult.filteredMedia.find { filtered -> filtered.uri == it.cameraFirstCapture.uri }
               } else {
@@ -192,6 +196,10 @@ class MediaSelectionViewModel(
                 editorStateMap = it.editorStateMap + initializedVideoEditorStates,
                 cameraFirstCapture = if (filterResult.filteredMedia.size > 1) null else updatedCameraFirstCapture ?: it.cameraFirstCapture
               )
+            }
+
+            if (initializedVideoEditorStates.any { (_, data) -> data.isDurationEdited }) {
+              _videoTrimmedEvents.onNext(Unit)
             }
 
             selectedMediaSubject.onNext(filterResult.filteredMedia)
@@ -335,12 +343,21 @@ class MediaSelectionViewModel(
     store.update { it.copy(quality = sentMediaQuality, isPreUploadEnabled = false, transcodingConfigs = TranscodingConfigProvider.getConfigsForMediaQuality(sentMediaQuality)) }
     repository.uploadRepository.cancelAllUploads()
 
+    var videoTrimmed = false
     store.state.selectedMedia.forEach { mediaItem ->
       if (MediaUtil.isVideoType(mediaItem.contentType) && MediaConstraints.isVideoTranscodeAvailable()) {
         val uri = mediaItem.uri
-        val data = store.state.getOrCreateVideoTrimData(uri)
-        onEditVideoDuration(totalDurationUs = data.totalInputDurationUs, startTimeUs = data.startTimeUs, endTimeUs = data.endTimeUs, touchEnabled = true, uri = uri)
+        val before = store.state.getOrCreateVideoTrimData(uri)
+        onEditVideoDuration(totalDurationUs = before.totalInputDurationUs, startTimeUs = before.startTimeUs, endTimeUs = before.endTimeUs, touchEnabled = true, uri = uri)
+        val after = store.state.getOrCreateVideoTrimData(uri)
+        if (after.getDuration() < before.getDuration()) {
+          videoTrimmed = true
+        }
       }
+    }
+
+    if (videoTrimmed) {
+      _videoTrimmedEvents.onNext(Unit)
     }
   }
 

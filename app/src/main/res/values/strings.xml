@@ -6392,6 +6392,7 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">One or more items were too large</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">One or more items were invalid</string>
     <string name="MediaReviewFragment__too_many_items_selected">Too many items selected</string>
+    <string name="MediaReviewFragment__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">Video set to view once</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->

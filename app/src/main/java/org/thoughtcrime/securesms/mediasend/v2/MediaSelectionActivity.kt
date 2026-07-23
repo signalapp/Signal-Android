@@ -214,6 +214,10 @@ class MediaSelectionActivity :
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe(this::handleError)
 
+    lifecycleDisposable += viewModel.videoTrimmedEvents
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe { Toast.makeText(this, R.string.MediaReviewFragment__video_trimmed_to_fit, Toast.LENGTH_SHORT).show() }
+
     onBackPressedDispatcher.addCallback(OnBackPressed())
 
     if (savedInstanceState == null && intent.getBooleanExtra(IS_FOR_QUICK_RESTORE, false)) {
