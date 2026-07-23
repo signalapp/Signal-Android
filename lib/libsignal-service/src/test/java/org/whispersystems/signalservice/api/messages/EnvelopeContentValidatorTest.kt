@@ -306,6 +306,106 @@ class EnvelopeContentValidatorTest {
   }
 
   @Test
+  fun `validate - ensure pin messages without a valid aci are marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pinMessage = DataMessage.PinMessage(
+          targetAuthorAciBinary = "bad".toByteArray().toByteString(),
+          targetSentTimestamp = 1000,
+          pinDurationSeconds = 60
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure pin messages without a target timestamp are marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pinMessage = DataMessage.PinMessage(
+          targetAuthorAciBinary = OTHER_ACI.toByteString(),
+          pinDurationSeconds = 60
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure pin messages without a pin duration are marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pinMessage = DataMessage.PinMessage(
+          targetAuthorAciBinary = OTHER_ACI.toByteString(),
+          targetSentTimestamp = 1000
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure pin messages with pinDurationForever set to false but no seconds are marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pinMessage = DataMessage.PinMessage(
+          targetAuthorAciBinary = OTHER_ACI.toByteString(),
+          targetSentTimestamp = 1000,
+          pinDurationForever = false
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure pin messages with a pin duration in seconds are marked valid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pinMessage = DataMessage.PinMessage(
+          targetAuthorAciBinary = OTHER_ACI.toByteString(),
+          targetSentTimestamp = 1000,
+          pinDurationSeconds = 60
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure pin messages with pinDurationForever set to true are marked valid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pinMessage = DataMessage.PinMessage(
+          targetAuthorAciBinary = OTHER_ACI.toByteString(),
+          targetSentTimestamp = 1000,
+          pinDurationForever = true
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
   fun `validate - ensure quote body range mentions with invalid aci are marked invalid`() {
     val content = Content(
       dataMessage = DataMessage(

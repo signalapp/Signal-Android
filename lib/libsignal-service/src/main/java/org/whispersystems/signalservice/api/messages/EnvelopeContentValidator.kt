@@ -184,7 +184,7 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Invalid poll vote!")
     }
 
-    if (dataMessage.pinMessage != null && (dataMessage.pinMessage.targetAuthorAciBinary.isNullOrInvalidAci() || dataMessage.pinMessage.targetSentTimestamp == null || (dataMessage.pinMessage.pinDurationSeconds == null && dataMessage.pinMessage.pinDurationForever == null))) {
+    if (dataMessage.pinMessage != null && (dataMessage.pinMessage.targetAuthorAciBinary.isNullOrInvalidAci() || dataMessage.pinMessage.targetSentTimestamp == null || (dataMessage.pinMessage.pinDurationSeconds == null && dataMessage.pinMessage.pinDurationForever != true))) {
       return Result.Invalid("[DataMessage] Invalid pin message!")
     }
 
