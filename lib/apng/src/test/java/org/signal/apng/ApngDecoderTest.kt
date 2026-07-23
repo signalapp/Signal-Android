@@ -442,6 +442,36 @@ class ApngDecoderTest {
     ApngDecoder.create { ByteArrayInputStream(malicious) }
   }
 
+  @Test(expected = IOException::class)
+  fun `create rejects APNG that has an acTL but no valid frames`() {
+    // acTL is present (so isApng returns true and scanning proceeds), but there is no fcTL before IDAT and no fcTL/fdAT
+    // pairs afterward, so the frame list ends up empty. This used to construct an ApngDrawable that crashed on the first
+    // render when it indexed frames[0].
+    val malicious = ByteArrayOutputStream().apply {
+      write(apngWithIhdrDimensions(1, 1)) // PNG magic + valid 1x1 IHDR
+
+      // acTL: 1 frame, 0 plays
+      write(byteArrayOf(0x00, 0x00, 0x00, 0x08)) // length = 8
+      write("acTL".toByteArray(Charsets.US_ASCII))
+      write(byteArrayOf(0x00, 0x00, 0x00, 0x01)) // numFrames
+      write(byteArrayOf(0x00, 0x00, 0x00, 0x00)) // numPlays
+      write(byteArrayOf(0x00, 0x00, 0x00, 0x00)) // CRC
+
+      // IDAT with no preceding fcTL, so it is only the default image and not a frame
+      write(byteArrayOf(0x00, 0x00, 0x00, 0x01)) // length = 1
+      write("IDAT".toByteArray(Charsets.US_ASCII))
+      write(byteArrayOf(0x00)) // data
+      write(byteArrayOf(0x00, 0x00, 0x00, 0x00)) // CRC
+
+      // IEND
+      write(byteArrayOf(0x00, 0x00, 0x00, 0x00)) // length = 0
+      write("IEND".toByteArray(Charsets.US_ASCII))
+      write(byteArrayOf(0x00, 0x00, 0x00, 0x00)) // CRC
+    }.toByteArray()
+
+    ApngDecoder.create { ByteArrayInputStream(malicious) }
+  }
+
   // -- Helpers --
 
   private fun open(filename: String): InputStream {

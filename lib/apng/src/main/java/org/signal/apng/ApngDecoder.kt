@@ -283,6 +283,10 @@ class ApngDecoder private constructor(
         }
       }
 
+      if (frames.isEmpty()) {
+        throw IOException("APNG contains no valid frames!")
+      }
+
       return ApngDecoder(
         streamFactory = streamFactory,
         metadata = metadata,
