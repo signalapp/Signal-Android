@@ -9,6 +9,7 @@ import android.app.Application
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performFirstLinkClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Rule
@@ -63,7 +64,7 @@ class LinkAccountScreenTest {
       }
     }
 
-    composeTestRule.onNodeWithTag(TestTags.LINK_ACCOUNT_CREATE_ACCOUNT_LINK).performClick()
+    composeTestRule.onNodeWithTag(TestTags.LINK_ACCOUNT_CREATE_ACCOUNT_LINK).performFirstLinkClick()
 
     assert(emittedEvent == LinkAccountScreenEvent.CreateAccountClick)
   }

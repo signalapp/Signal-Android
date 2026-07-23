@@ -106,6 +106,7 @@ object SignalSymbols {
     CHEVRON_SQUARE_UP('\uE02E'),
     CHEVRON_SQUARE_DOWN('\uE02F'),
     CREDIT_CARD('\uE127'),
+    DEVICE_PHONE('\uE0F2'),
     DROPDOWN_DOWN('\uE07F'),
     DROPDOWN_UP('\uE080'),
     DROPDOWN_TRIANGLE_DOWN('\uE082'),
