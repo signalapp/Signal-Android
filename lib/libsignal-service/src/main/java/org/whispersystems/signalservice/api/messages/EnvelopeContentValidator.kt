@@ -148,6 +148,10 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Invalid ACI on DataMessage.storyContext!")
     }
 
+    if (dataMessage.storyContext != null && dataMessage.storyContext.sentTimestamp == null) {
+      return Result.Invalid("[DataMessage] Missing sentTimestamp on DataMessage.storyContext!")
+    }
+
     if (dataMessage.giftBadge != null) {
       if (dataMessage.giftBadge.receiptCredentialPresentation == null) {
         return Result.Invalid("[DataMessage] Missing DataMessage.giftBadge.receiptCredentialPresentation!")

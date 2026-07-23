@@ -659,6 +659,47 @@ class EnvelopeContentValidatorTest {
   }
 
   @Test
+  fun `validate - ensure story context with a valid author but missing sentTimestamp is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        reaction = DataMessage.Reaction(
+          emoji = "👍",
+          targetAuthorAci = OTHER_ACI.toString(),
+          targetSentTimestamp = 1
+        ),
+        storyContext = DataMessage.StoryContext(
+          authorAci = OTHER_ACI.toString()
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure story context with a valid author and sentTimestamp is marked valid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        reaction = DataMessage.Reaction(
+          emoji = "👍",
+          targetAuthorAci = OTHER_ACI.toString(),
+          targetSentTimestamp = 1
+        ),
+        storyContext = DataMessage.StoryContext(
+          authorAci = OTHER_ACI.toString(),
+          sentTimestamp = 1000
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
   fun `validate - ensure edit message with mismatched nested timestamp is marked invalid`() {
     val content = Content(
       editMessage = EditMessage(
