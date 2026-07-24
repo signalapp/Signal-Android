@@ -1,8 +1,10 @@
 package org.whispersystems.signalservice.internal.websocket
 
+import io.mockk.Runs
 import io.mockk.clearAllMocks
 import io.mockk.clearMocks
 import io.mockk.every
+import io.mockk.just
 import io.mockk.mockk
 import io.mockk.verify
 import io.reactivex.rxjava3.observers.TestObserver
@@ -58,6 +60,7 @@ class LibSignalChatConnectionTest {
     every { healthMonitor.onMessageError(any(), any()) }
     every { healthMonitor.onKeepAliveResponse(any(), any()) }
     every { healthMonitor.onReceivedAlerts(any(), any()) }
+    every { healthMonitor.onServerTimestamp(any(), any()) } just Runs
 
     // NB: We provide default success behavior mocks here to cut down on boilerplate later, but it is
     //  expected that some tests will override some of these to test failures.
@@ -331,6 +334,17 @@ class LibSignalChatConnectionTest {
     verify(exactly = 0) {
       healthMonitor.onKeepAliveResponse(any(), any())
       healthMonitor.onMessageError(any(), any())
+    }
+  }
+
+  @Test
+  fun onServerTimestampForwardsToHealthMonitor() {
+    setupConnectedConnection()
+
+    chatListener!!.onServerTimestamp(chatConnection, 1234567890L)
+
+    verify(exactly = 1) {
+      healthMonitor.onServerTimestamp(1234567890L, false)
     }
   }
 

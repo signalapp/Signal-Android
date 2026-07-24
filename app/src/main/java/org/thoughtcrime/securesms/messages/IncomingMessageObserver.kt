@@ -11,6 +11,11 @@ import androidx.core.app.NotificationCompat
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.signal.core.models.ServiceId
 import org.signal.core.util.AppForegroundObserver
 import org.signal.core.util.SafeForegroundService
@@ -21,6 +26,7 @@ import org.signal.core.util.logging.Log
 import org.signal.network.config.HttpProxy
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.clockskew.ClockSkewDetector
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -139,6 +145,7 @@ class IncomingMessageObserver(
   private var appVisible = false
   private var lastInteractionTime: Long = System.currentTimeMillis()
   private var webSocketStateDisposable = Disposable.disposed()
+  private val clockSkewScope = CoroutineScope(Dispatchers.Default)
 
   @Volatile
   private var terminated = false
@@ -193,6 +200,14 @@ class IncomingMessageObserver(
         }
       }
     }
+
+    clockSkewScope.launch {
+      ClockSkewDetector.detected.collect {
+        lock.withLock {
+          connectionNecessarySemaphore.release()
+        }
+      }
+    }
   }
 
   fun notifyRegistrationStateChanged() {
@@ -218,6 +233,7 @@ class IncomingMessageObserver(
   private fun onAppForegrounded() {
     lock.withLock {
       appVisible = true
+      ClockSkewDetector.recheck()
       BackgroundService.start(context)
       connectionNecessarySemaphore.release()
     }
@@ -226,6 +242,7 @@ class IncomingMessageObserver(
   private fun onAppBackgrounded() {
     lock.withLock {
       appVisible = false
+      ClockSkewDetector.recheck()
       lastInteractionTime = System.currentTimeMillis()
       connectionNecessarySemaphore.release()
     }
@@ -247,10 +264,13 @@ class IncomingMessageObserver(
     val hasProxy = SignalStore.proxy.isProxyEnabled
     val forceWebsocket = SignalStore.settings.forceWebsocketMode.isEnabled
     val websocketAlreadyOpen = isConnectionAvailable()
+    val clockSkewDetected = ClockSkewDetector.isDetected
+    val clockSkew = ClockSkewDetector.skew
 
     val lastInteractionString = if (appVisibleSnapshot) "N/A" else timeIdle.toString() + " ms (" + (if (timeIdle < maxBackgroundTime) "within limit" else "over limit") + ")"
     val conclusion = registered &&
       !unauthorizedReceived &&
+      !clockSkewDetected &&
       (appVisibleSnapshot || timeIdle < maxBackgroundTime || !fcmEnabled || forceWebsocket) &&
       hasNetwork
 
@@ -258,7 +278,7 @@ class IncomingMessageObserver(
 
     Log.d(
       TAG,
-      "[$needsConnectionString] Network: $hasNetwork, Foreground: $appVisibleSnapshot, Time Since Last Interaction: $lastInteractionString, FCM: $fcmEnabled, WS Open or Keep-alives: $websocketAlreadyOpen, Registered: $registered, Unauthorized: $unauthorizedReceived, Proxy: $hasProxy, Force websocket: $forceWebsocket"
+      "[$needsConnectionString] Network: $hasNetwork, Foreground: $appVisibleSnapshot, Time Since Last Interaction: $lastInteractionString, FCM: $fcmEnabled, WS Open or Keep-alives: $websocketAlreadyOpen, Registered: $registered, Unauthorized: $unauthorizedReceived, Proxy: $hasProxy, Force websocket: $forceWebsocket, Clock skew: $clockSkewDetected ($clockSkew)"
     )
 
     return conclusion
@@ -271,7 +291,7 @@ class IncomingMessageObserver(
   private fun waitForConnectionNecessary() {
     try {
       connectionNecessarySemaphore.drainPermits()
-      while (!isConnectionNecessary() && !isConnectionAvailable()) {
+      while (ClockSkewDetector.isDetected || (!isConnectionNecessary() && !isConnectionAvailable())) {
         val numberDrained = connectionNecessarySemaphore.drainPermits()
         if (numberDrained == 0) {
           connectionNecessarySemaphore.acquire()
@@ -287,6 +307,7 @@ class IncomingMessageObserver(
     INSTANCE_COUNT.decrementAndGet()
     networkConnectionListener.unregister()
     webSocketStateDisposable.dispose()
+    clockSkewScope.cancel()
     terminated = true
     authWebSocket.disconnect()
   }
@@ -468,7 +489,7 @@ class IncomingMessageObserver(
         try {
           authWebSocket.connect()
           var isConnectionNecessary = false
-          while (!terminated && (isConnectionNecessary().also { isConnectionNecessary = it } || isConnectionAvailable())) {
+          while (!terminated && !ClockSkewDetector.isDetected && (isConnectionNecessary().also { isConnectionNecessary = it } || isConnectionAvailable())) {
             if (isConnectionNecessary) {
               authWebSocket.registerKeepAliveToken(WEB_SOCKET_KEEP_ALIVE_TOKEN)
             } else {

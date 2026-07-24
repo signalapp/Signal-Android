@@ -52,6 +52,7 @@ import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.apkupdate.ApkUpdateRefreshListener;
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
 import org.thoughtcrime.securesms.backup.v2.BackupRepository;
+import org.thoughtcrime.securesms.clockskew.ClockSkewDetector;
 import org.thoughtcrime.securesms.preferences.EditProxyActivity;
 import org.thoughtcrime.securesms.conversation.drafts.DraftBlobs;
 import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;
@@ -420,6 +421,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
       AppDependencies.init(this, new ApplicationDependencyProvider(this));
     }
     AppForegroundObserver.begin();
+    ClockSkewDetector.beginObserving(this);
 
     if (Environment.USE_NEW_REGISTRATION) {
       initializeRegistrationDependencies();

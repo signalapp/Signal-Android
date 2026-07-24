@@ -398,6 +398,7 @@ class DemoNetworkController(
       override fun onKeepAliveResponse(sentTimestamp: Long, isIdentifiedWebSocket: Boolean) {}
       override fun onMessageError(status: Int, isIdentifiedWebSocket: Boolean) {}
       override fun onReceivedAlerts(alerts: Array<out String>, isIdentifiedWebSocket: Boolean) {}
+      override fun onServerTimestamp(serverTimestamp: Long, isIdentifiedWebSocket: Boolean) {}
     }
     val libSignalConnection = LibSignalChatConnection(
       name = "LinkAndSync",
@@ -597,6 +598,7 @@ class DemoNetworkController(
         override fun onKeepAliveResponse(sentTimestamp: Long, isIdentifiedWebSocket: Boolean) {}
         override fun onMessageError(status: Int, isIdentifiedWebSocket: Boolean) {}
         override fun onReceivedAlerts(alerts: Array<out String>, isIdentifiedWebSocket: Boolean) {}
+        override fun onServerTimestamp(serverTimestamp: Long, isIdentifiedWebSocket: Boolean) {}
       }
 
       val libSignalConnection = LibSignalChatConnection(
@@ -919,6 +921,7 @@ class DemoNetworkController(
       override fun onKeepAliveResponse(sentTimestamp: Long, isIdentifiedWebSocket: Boolean) {}
       override fun onMessageError(status: Int, isIdentifiedWebSocket: Boolean) {}
       override fun onReceivedAlerts(alerts: Array<out String>, isIdentifiedWebSocket: Boolean) {}
+      override fun onServerTimestamp(serverTimestamp: Long, isIdentifiedWebSocket: Boolean) {}
     }
     val libSignalConnection = LibSignalChatConnection(
       name = "Storage-Restore",

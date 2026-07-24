@@ -893,6 +893,14 @@
             android:theme="@style/Theme.Signal.DayNight.NoActionBar" />
 
         <activity
+            android:name=".clockskew.ClockSkewActivity"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Signal.DayNight.NoActionBar" />
+
+        <activity
             android:name=".ratelimit.RecaptchaProofActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="false"

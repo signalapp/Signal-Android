@@ -18,6 +18,8 @@ import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
 import org.signal.devicetransfer.TransferStatus;
 import org.signal.registration.RegistrationRoute;
+import org.thoughtcrime.securesms.clockskew.ClockSkewActivity;
+import org.thoughtcrime.securesms.clockskew.ClockSkewDetector;
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberLockActivity;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
@@ -59,6 +61,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   private static final int STATE_CHANGE_NUMBER_LOCK  = 10;
   private static final int STATE_TRANSFER_OR_RESTORE = 11;
   private static final int STATE_RESUME_LINKING_REG  = 12;
+  private static final int STATE_CLOCK_SKEW          = 13;
 
   private SignalServiceNetworkAccess networkAccess;
   private BroadcastReceiver          clearKeyReceiver;
@@ -158,6 +161,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       case STATE_CHANGE_NUMBER_LOCK:  return getChangeNumberLockIntent();
       case STATE_TRANSFER_OR_RESTORE: return getTransferOrRestoreIntent();
       case STATE_RESUME_LINKING_REG:  return getResumeLinkedRegistrationIntent();
+      case STATE_CLOCK_SKEW:          return getClockSkewIntent();
       default:                        return null;
     }
   }
@@ -187,6 +191,8 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       return STATE_TRANSFER_LOCKED;
     } else if (SignalStore.misc().isChangeNumberLocked() && getClass() != ChangeNumberLockActivity.class) {
       return STATE_CHANGE_NUMBER_LOCK;
+    } else if (ClockSkewDetector.INSTANCE.isDetected() && getClass() != ClockSkewActivity.class) {
+      return STATE_CLOCK_SKEW;
     } else {
       return STATE_NORMAL;
     }
@@ -286,6 +292,10 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   private Intent getChangeNumberLockIntent() {
     return ChangeNumberLockActivity.createIntent(this);
+  }
+
+  private Intent getClockSkewIntent() {
+    return ClockSkewActivity.createIntent(this);
   }
 
   private Intent getRoutedIntent(Intent destination, @Nullable Intent nextIntent) {

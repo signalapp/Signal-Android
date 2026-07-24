@@ -1501,5 +1501,14 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** The maximum allowed difference, in seconds, between our local clock and the server's clock before we block the app and prompt the user to fix their clock. */
+  @JvmStatic
+  @get:JvmName("maxAllowedClockSkewSeconds")
+  val maxAllowedClockSkewSeconds: Long by remoteLong(
+    key = "client.maxAllowedClockSkewSeconds",
+    defaultValue = 24.hours.inWholeSeconds,
+    hotSwappable = true
+  )
+
   // endregion
 }
