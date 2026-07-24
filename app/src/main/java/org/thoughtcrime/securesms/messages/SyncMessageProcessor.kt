@@ -2193,7 +2193,7 @@ object SyncMessageProcessor {
   }
 
   private fun AddressableMessage.toSyncMessageId(envelopeTimestamp: Long): MessageTable.SyncMessageId? {
-    return if (this.sentTimestamp != null && Utils.anyNotNull(this.authorServiceId, this.authorServiceIdBinary) || this.authorE164 != null) {
+    return if (this.sentTimestamp != null && (Utils.anyNotNull(this.authorServiceId, this.authorServiceIdBinary) || this.authorE164 != null)) {
       val serviceId = ServiceId.parseOrNull(this.authorServiceId, this.authorServiceIdBinary)
       val id = if (serviceId != null) {
         SignalDatabase.recipients.getOrInsertFromServiceId(serviceId)

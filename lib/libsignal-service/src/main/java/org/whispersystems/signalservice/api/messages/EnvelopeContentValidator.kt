@@ -216,6 +216,10 @@ object EnvelopeContentValidator {
     }
 
     if (syncMessage.sent != null) {
+      if (syncMessage.sent.timestamp == null) {
+        return Result.Invalid("[SyncMessage] Missing timestamp on SyncMessage.sent!")
+      }
+
       val validAddress = ServiceId.parseOrNull(syncMessage.sent.destinationServiceId, syncMessage.sent.destinationServiceIdBinary) != null
       val hasDataGroup = syncMessage.sent.message?.groupV2 != null
       val hasStoryGroup = syncMessage.sent.storyMessage?.group != null
@@ -244,6 +248,22 @@ object EnvelopeContentValidator {
         }
       }
 
+      for (recipient in syncMessage.sent.storyMessageRecipients) {
+        if (Util.anyNotNull(recipient.destinationServiceId, recipient.destinationServiceIdBinary)) {
+          if (ServiceId.parseOrNull(recipient.destinationServiceId, recipient.destinationServiceIdBinary) == null) {
+            return Result.Invalid("[SyncMessage] Invalid destination ServiceId in SyncMessage.sent.storyMessageRecipients!")
+          }
+
+          if (recipient.isAllowedToReply == null) {
+            return Result.Invalid("[SyncMessage] Missing isAllowedToReply in SyncMessage.sent.storyMessageRecipients!")
+          }
+        }
+      }
+
+      if (hasStoryManifest && syncMessage.sent.storyMessage == null && syncMessage.sent.isRecipientUpdate != true) {
+        return Result.Invalid("[SyncMessage] SyncMessage.sent had story recipients but no story message and was not a recipient update!")
+      }
+
       return if (syncMessage.sent.message != null) {
         validateDataMessage(envelope, syncMessage.sent.message)
       } else if (syncMessage.sent.storyMessage != null) {
@@ -259,6 +279,10 @@ object EnvelopeContentValidator {
 
     if (syncMessage.read.any { ACI.parseOrNull(it.senderAci, it.senderAciBinary).isNullOrInvalidServiceId() }) {
       return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.readList!")
+    }
+
+    if (syncMessage.read.any { it.timestamp == null }) {
+      return Result.Invalid("[SyncMessage] Missing timestamp in SyncMessage.readList!")
     }
 
     if (syncMessage.viewed.any { ACI.parseOrNull(it.senderAci, it.senderAciBinary).isNullOrInvalidServiceId() }) {
@@ -285,8 +309,33 @@ object EnvelopeContentValidator {
       return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.messageRequestResponse!")
     }
 
-    if (syncMessage.outgoingPayment != null && syncMessage.outgoingPayment.recipientServiceId.isNullOrInvalidServiceId()) {
-      return Result.Invalid("[SyncMessage] Invalid ServiceId in SyncMessage.outgoingPayment!")
+    if (syncMessage.outgoingPayment != null) {
+      if (syncMessage.outgoingPayment.recipientServiceId.isNullOrInvalidServiceId()) {
+        return Result.Invalid("[SyncMessage] Invalid ServiceId in SyncMessage.outgoingPayment!")
+      }
+
+      val mobileCoin = syncMessage.outgoingPayment.mobileCoin
+      if (mobileCoin != null && (mobileCoin.recipientAddress == null || mobileCoin.amountPicoMob == null || mobileCoin.feePicoMob == null || mobileCoin.receipt == null || mobileCoin.ledgerBlockIndex == null)) {
+        return Result.Invalid("[SyncMessage] Missing required MobileCoin field in SyncMessage.outgoingPayment!")
+      }
+    }
+
+    if (syncMessage.callEvent != null && syncMessage.callEvent.callId != null) {
+      val callEvent = syncMessage.callEvent
+      val isOneToOne = callEvent.type == SyncMessage.CallEvent.Type.AUDIO_CALL || callEvent.type == SyncMessage.CallEvent.Type.VIDEO_CALL
+
+      if (isOneToOne && callEvent.conversationId != null && ACI.parseOrNull(callEvent.conversationId) == null) {
+        return Result.Invalid("[SyncMessage] Invalid ACI conversationId in SyncMessage.callEvent!")
+      }
+
+      if (callEvent.type == SyncMessage.CallEvent.Type.AD_HOC_CALL &&
+        callEvent.event == SyncMessage.CallEvent.Event.OBSERVED &&
+        callEvent.direction == SyncMessage.CallEvent.Direction.INCOMING &&
+        callEvent.conversationId != null &&
+        callEvent.timestamp == null
+      ) {
+        return Result.Invalid("[SyncMessage] Missing timestamp on observed ad-hoc call event in SyncMessage.callEvent!")
+      }
     }
 
     return Result.Valid

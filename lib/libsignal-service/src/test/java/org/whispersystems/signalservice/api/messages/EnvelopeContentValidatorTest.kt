@@ -837,4 +837,269 @@ class EnvelopeContentValidatorTest {
     val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
     assert(result is EnvelopeContentValidator.Result.Valid)
   }
+
+  @Test
+  fun `validate - ensure sync sent without a timestamp is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
+    val content = Content(
+      syncMessage = SyncMessage(
+        sent = SyncMessage.Sent(
+          destinationServiceId = OTHER_ACI.toString(),
+          message = DataMessage(timestamp = 1234)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync sent with a timestamp and valid destination is marked valid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
+    val content = Content(
+      syncMessage = SyncMessage(
+        sent = SyncMessage.Sent(
+          timestamp = 1234,
+          destinationServiceId = OTHER_ACI.toString(),
+          message = DataMessage(timestamp = 1234)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure sync sent with story recipients but no story message and not a recipient update is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
+    val content = Content(
+      syncMessage = SyncMessage(
+        sent = SyncMessage.Sent(
+          timestamp = 1234,
+          storyMessageRecipients = listOf(
+            SyncMessage.Sent.StoryMessageRecipient(
+              destinationServiceId = OTHER_ACI.toString(),
+              isAllowedToReply = true
+            )
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync sent story recipient update without a story message is marked valid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
+    val content = Content(
+      syncMessage = SyncMessage(
+        sent = SyncMessage.Sent(
+          timestamp = 1234,
+          isRecipientUpdate = true,
+          storyMessageRecipients = listOf(
+            SyncMessage.Sent.StoryMessageRecipient(
+              destinationServiceId = OTHER_ACI.toString(),
+              isAllowedToReply = true
+            )
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure sync sent story recipient with an invalid destination is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
+    val content = Content(
+      syncMessage = SyncMessage(
+        sent = SyncMessage.Sent(
+          timestamp = 1234,
+          storyMessage = StoryMessage(),
+          storyMessageRecipients = listOf(
+            SyncMessage.Sent.StoryMessageRecipient(
+              destinationServiceId = "not-a-uuid",
+              isAllowedToReply = true
+            )
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync sent story recipient without isAllowedToReply is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
+    val content = Content(
+      syncMessage = SyncMessage(
+        sent = SyncMessage.Sent(
+          timestamp = 1234,
+          storyMessage = StoryMessage(),
+          storyMessageRecipients = listOf(
+            SyncMessage.Sent.StoryMessageRecipient(
+              destinationServiceId = OTHER_ACI.toString()
+            )
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync read without a timestamp is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        read = listOf(
+          SyncMessage.Read(senderAci = OTHER_ACI.toString())
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync read with a valid aci and timestamp is marked valid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        read = listOf(
+          SyncMessage.Read(senderAci = OTHER_ACI.toString(), timestamp = 1000)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure sync outgoing payment with mobileCoin missing required fields is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        outgoingPayment = SyncMessage.OutgoingPayment(
+          recipientServiceId = OTHER_ACI.toString(),
+          mobileCoin = SyncMessage.OutgoingPayment.MobileCoin(
+            recipientAddress = "address".toByteArray().toByteString(),
+            amountPicoMob = 1,
+            feePicoMob = 1,
+            receipt = "receipt".toByteArray().toByteString()
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync outgoing payment with all mobileCoin fields is marked valid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        outgoingPayment = SyncMessage.OutgoingPayment(
+          recipientServiceId = OTHER_ACI.toString(),
+          mobileCoin = SyncMessage.OutgoingPayment.MobileCoin(
+            recipientAddress = "address".toByteArray().toByteString(),
+            amountPicoMob = 1,
+            feePicoMob = 1,
+            receipt = "receipt".toByteArray().toByteString(),
+            ledgerBlockIndex = 1
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure one-to-one call event with a malformed conversationId is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        callEvent = SyncMessage.CallEvent(
+          callId = 1,
+          type = SyncMessage.CallEvent.Type.AUDIO_CALL,
+          conversationId = "bad".toByteArray().toByteString()
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure one-to-one call event with a valid aci conversationId is marked valid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        callEvent = SyncMessage.CallEvent(
+          callId = 1,
+          type = SyncMessage.CallEvent.Type.AUDIO_CALL,
+          conversationId = OTHER_ACI.toByteString()
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure observed ad-hoc call event without a timestamp is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        callEvent = SyncMessage.CallEvent(
+          callId = 1,
+          type = SyncMessage.CallEvent.Type.AD_HOC_CALL,
+          event = SyncMessage.CallEvent.Event.OBSERVED,
+          direction = SyncMessage.CallEvent.Direction.INCOMING,
+          conversationId = "room".toByteArray().toByteString()
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure observed ad-hoc call event with a timestamp is marked valid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        callEvent = SyncMessage.CallEvent(
+          callId = 1,
+          type = SyncMessage.CallEvent.Type.AD_HOC_CALL,
+          event = SyncMessage.CallEvent.Event.OBSERVED,
+          direction = SyncMessage.CallEvent.Direction.INCOMING,
+          conversationId = "room".toByteArray().toByteString(),
+          timestamp = 1000
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
 }
