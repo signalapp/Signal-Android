@@ -124,6 +124,24 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   private var scheduledSendTime: Long? = null
   private var readyToSend = true
 
+  private val multiselectLauncher = registerForActivityResult(MultiselectForwardActivity.SelectionContract()) { keys ->
+    if (keys.isNotEmpty()) {
+      Log.d(TAG, "Performing send from multi-select activity result.")
+      performSend(keys)
+    } else {
+      readyToSend = true
+    }
+  }
+
+  private val storiesLauncher = registerForActivityResult(StoriesMultiselectForwardActivity.SelectionContract()) { keys ->
+    if (keys.isNotEmpty()) {
+      Log.d(TAG, "Performing send from stories activity result.")
+      performSend(keys)
+    } else {
+      readyToSend = true
+    }
+  }
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     postponeEnterTransition()
 
@@ -198,27 +216,6 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
     saveButton.setOnClickListener {
       sharedViewModel.sendCommand(HudCommand.SaveMedia)
-    }
-
-    val multiselectContract = MultiselectForwardActivity.SelectionContract()
-    val storiesContract = StoriesMultiselectForwardActivity.SelectionContract()
-
-    val multiselectLauncher = registerForActivityResult(multiselectContract) { keys ->
-      if (keys.isNotEmpty()) {
-        Log.d(TAG, "Performing send from multi-select activity result.")
-        performSend(keys)
-      } else {
-        readyToSend = true
-      }
-    }
-
-    val storiesLauncher = registerForActivityResult(storiesContract) { keys ->
-      if (keys.isNotEmpty()) {
-        Log.d(TAG, "Performing send from stories activity result.")
-        performSend(keys)
-      } else {
-        readyToSend = true
-      }
     }
 
     sendButton.setOnClickListener {
