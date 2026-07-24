@@ -2,10 +2,12 @@ package org.thoughtcrime.securesms.payments.preferences;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.BaseSettingsAdapter;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 
 import java.util.Currency;
 
@@ -30,6 +33,12 @@ public final class SetCurrencyFragment extends LoggingFragment {
     RecyclerView list    = view.findViewById(R.id.set_currency_fragment_list);
 
     toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).popBackStack());
+
+    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    SystemWindowInsetsSetter.attach(toolbar, getViewLifecycleOwner(), WindowInsetsCompat.Type.statusBars());
+
+    list.setClipToPadding(false);
+    SystemWindowInsetsSetter.attach(list, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars());
 
     SetCurrencyViewModel viewModel = new ViewModelProvider(this, new SetCurrencyViewModel.Factory()).get(SetCurrencyViewModel.class);
 

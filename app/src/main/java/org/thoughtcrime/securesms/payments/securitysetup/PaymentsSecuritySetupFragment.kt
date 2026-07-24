@@ -2,13 +2,17 @@ package org.thoughtcrime.securesms.payments.securitysetup
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.PaymentsSecuritySetupFragmentBinding
 import org.thoughtcrime.securesms.payments.preferences.PaymentsHomeFragmentDirections
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -18,6 +22,10 @@ class PaymentsSecuritySetupFragment : Fragment(R.layout.payments_security_setup_
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val binding = PaymentsSecuritySetupFragmentBinding.bind(view)
+
+    binding.toolbar.updateLayoutParams { height = ViewGroup.LayoutParams.WRAP_CONTENT }
+    SystemWindowInsetsSetter.attach(binding.toolbar, viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
+    SystemWindowInsetsSetter.attach(binding.paymentsSecuritySetupScrollView, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars())
 
     requireActivity().onBackPressedDispatcher.addCallback(
       viewLifecycleOwner,

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -18,6 +19,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkUrlAndStatus;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.signal.core.ui.BottomSheetUtil;
 
 import java.util.Objects;
@@ -51,6 +53,9 @@ public class RequestingMembersFragment extends Fragment {
     requestingMembers     = view.findViewById(R.id.requesting_members);
     noRequestingMessage   = view.findViewById(R.id.no_requesting);
     requestingExplanation = view.findViewById(R.id.requesting_members_explain);
+
+    ((ViewGroup) view).setClipToPadding(false);
+    SystemWindowInsetsSetter.attach(view, this, WindowInsetsCompat.Type.navigationBars());
 
     requestingMembers.initializeAdapter(getViewLifecycleOwner());
 

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -20,6 +21,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.payments.MoneyView;
 import org.thoughtcrime.securesms.util.SpanUtil;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 
@@ -37,6 +39,10 @@ public class DeactivateWalletFragment extends Fragment {
     View              transferRemainingBalance  = view.findViewById(R.id.deactivate_wallet_fragment_transfer);
     View              deactivateWithoutTransfer = view.findViewById(R.id.deactivate_wallet_fragment_deactivate);
     LearnMoreTextView notice                    = view.findViewById(R.id.deactivate_wallet_fragment_notice);
+
+    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    SystemWindowInsetsSetter.attach(toolbar, getViewLifecycleOwner(), WindowInsetsCompat.Type.statusBars());
+    SystemWindowInsetsSetter.attach(view.findViewById(R.id.deactivate_wallet_fragment_scroll_view), getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars());
 
     notice.setLearnMoreVisible(true);
     notice.setLink(getString(R.string.DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds));

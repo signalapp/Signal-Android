@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
@@ -14,6 +15,7 @@ import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.PaymentPreferencesDirections;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.payments.preferences.model.PaymentItem;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 public class PaymentsPagerItemFragment extends LoggingFragment {
@@ -56,6 +58,8 @@ public class PaymentsPagerItemFragment extends LoggingFragment {
     PaymentsHomeAdapter adapter  = new PaymentsHomeAdapter(new Callbacks());
 
     recycler.setAdapter(adapter);
+    recycler.setClipToPadding(false);
+    SystemWindowInsetsSetter.attach(recycler, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars());
 
     viewModel.getList().observe(getViewLifecycleOwner(), adapter::submitList);
   }

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.groups.ui.AdminActionsListener;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.signal.core.ui.BottomSheetUtil;
 
 import java.util.Objects;
@@ -48,6 +50,9 @@ public class PendingMemberInvitesFragment extends Fragment {
     othersInvited           = view.findViewById(R.id.members_others_invited);
     youInvitedEmptyState    = view.findViewById(R.id.no_pending_from_you);
     othersInvitedEmptyState = view.findViewById(R.id.no_pending_from_others);
+
+    ((ViewGroup) view).setClipToPadding(false);
+    SystemWindowInsetsSetter.attach(view, this, WindowInsetsCompat.Type.navigationBars());
 
     youInvited.initializeAdapter(getViewLifecycleOwner());
     othersInvited.initializeAdapter(getViewLifecycleOwner());

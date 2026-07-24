@@ -8,7 +8,6 @@ import android.view.KeyEvent
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -99,8 +98,6 @@ class MediaSelectionActivity :
   }
 
   override fun onPreCreate() {
-    enableEdgeToEdge()
-
     val sendType: MessageSendType = requireNotNull(intent.getParcelableExtraCompat(MESSAGE_SEND_TYPE, MessageSendType::class.java))
     val initialMedia: List<Media> = intent.getParcelableArrayListExtraCompat(MEDIA, Media::class.java) ?: listOf()
     val message: CharSequence? = if (shareToTextStory) null else draftText

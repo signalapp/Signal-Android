@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.mediasend.v3
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
@@ -36,8 +35,6 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 class MediaSendV3Activity : PassphraseRequiredActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    enableEdgeToEdge()
-
     val contractArgs = MediaSendActivityContract.Args.fromIntent(intent)
 
     setContent {

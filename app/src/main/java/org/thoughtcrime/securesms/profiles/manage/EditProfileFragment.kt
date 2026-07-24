@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
 import org.thoughtcrime.securesms.util.NameUtil.getAbbreviation
 import org.thoughtcrime.securesms.util.PlayStoreUtil
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
@@ -72,6 +73,8 @@ class EditProfileFragment : LoggingFragment() {
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner)
+
     disposables = LifecycleDisposable()
     disposables.bindTo(viewLifecycleOwner)
 

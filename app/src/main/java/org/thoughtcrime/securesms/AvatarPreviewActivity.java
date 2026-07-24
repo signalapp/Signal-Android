@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
+import org.thoughtcrime.securesms.util.WindowUtil;
 
 /**
  * Activity for displaying avatars full screen.
@@ -76,6 +77,9 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
 
     setTheme(R.style.TextSecure_MediaPreview);
     setContentView(R.layout.contact_photo_preview_activity);
+
+    WindowUtil.clearLightStatusBar(getWindow());
+    WindowUtil.clearLightNavigationBar(getWindow());
 
     postponeEnterTransition();
     TransitionInflater inflater = TransitionInflater.from(this);

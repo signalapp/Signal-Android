@@ -47,7 +47,6 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.Texts
 import org.signal.core.util.ServiceUtil
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.rememberStatusBarColorNestedScrollModifier
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -265,9 +264,7 @@ fun AccountSettingsScreen(
   ) { contentPadding ->
     LazyColumn(
       modifier = Modifier
-        .padding(contentPadding)
-        .then(rememberStatusBarColorNestedScrollModifier())
-        .testTag(AccountSettingsTestTags.SCROLLER)
+        .padding(contentPadding).testTag(AccountSettingsTestTags.SCROLLER)
     ) {
       item {
         Texts.SectionHeader(

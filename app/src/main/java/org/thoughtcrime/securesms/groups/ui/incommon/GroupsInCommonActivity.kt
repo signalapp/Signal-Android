@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.groups.ui.incommon
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -29,7 +28,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -48,7 +46,6 @@ import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
-import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -85,7 +82,6 @@ class GroupsInCommonActivity : PassphraseRequiredActivity() {
     setContent {
       SignalTheme {
         GroupsInCommonScreen(
-          activity = this,
           viewModel = viewModel,
           onNavigateBack = ::supportFinishAfterTransition,
           onNavigateToConversation = ::navigateToConversation
@@ -107,19 +103,16 @@ class GroupsInCommonActivity : PassphraseRequiredActivity() {
 
 @Composable
 private fun GroupsInCommonScreen(
-  activity: Activity,
   viewModel: GroupsInCommonViewModel,
   onNavigateBack: () -> Unit = {},
   onNavigateToConversation: (recipient: Recipient) -> Unit = {}
 ) {
   val groups by viewModel.groups.collectAsStateWithLifecycle()
-  val nestedScrollConnection = remember { StatusBarColorNestedScrollConnection(activity) }
 
   GroupsInCommonContent(
     groups = groups,
     onBackPress = onNavigateBack,
-    onRowClick = onNavigateToConversation,
-    modifier = Modifier.nestedScroll(nestedScrollConnection)
+    onRowClick = onNavigateToConversation
   )
 }
 

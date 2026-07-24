@@ -3,16 +3,20 @@ package org.thoughtcrime.securesms.contactshare;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 
 import static org.thoughtcrime.securesms.contactshare.Contact.Name;
 
@@ -69,6 +73,9 @@ public class ContactNameEditActivity extends PassphraseRequiredActivity {
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
+    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    SystemWindowInsetsSetter.attach(toolbar, this, WindowInsetsCompat.Type.statusBars());
+
     toolbar.setTitle("");
     toolbar.setNavigationOnClickListener(v -> {
       Intent resultIntent = new Intent();
@@ -80,6 +87,9 @@ public class ContactNameEditActivity extends PassphraseRequiredActivity {
   }
 
   private void initializeViews(@NonNull Name name) {
+    ScrollView scrollView = findViewById(R.id.scroll_view);
+    SystemWindowInsetsSetter.attach(scrollView, this, WindowInsetsCompat.Type.navigationBars());
+
     TextView givenName   = findViewById(R.id.name_edit_given_name);
     TextView familyName  = findViewById(R.id.name_edit_family_name);
     TextView middleName  = findViewById(R.id.name_edit_middle_name);

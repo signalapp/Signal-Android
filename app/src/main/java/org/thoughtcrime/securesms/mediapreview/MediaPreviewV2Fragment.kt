@@ -485,7 +485,7 @@ class MediaPreviewV2Fragment :
   }
 
   private fun crossfadeViewIn(view: View, duration: Long = 200): Boolean {
-    return if (!view.isVisible && !fullscreenHelper.isSystemUiVisible) {
+    return if (!view.isVisible && fullscreenHelper.isSystemUiVisible) {
       val viewPropertyAnimator = view.animate()
         .alpha(1f)
         .setDuration(duration)

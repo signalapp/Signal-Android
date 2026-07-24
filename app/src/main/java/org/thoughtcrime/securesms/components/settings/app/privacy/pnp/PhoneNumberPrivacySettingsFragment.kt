@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.privacy.pnp
 
 import android.content.res.Configuration
-import android.os.Bundle
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -14,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,23 +32,11 @@ import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.showSnackbar
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
 import org.signal.core.ui.R as CoreUiR
 
 class PhoneNumberPrivacySettingsFragment : ComposeFragment() {
 
   private val viewModel: PhoneNumberPrivacySettingsViewModel by viewModels()
-  private lateinit var statusBarNestedScrollConnection: StatusBarColorNestedScrollConnection
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    statusBarNestedScrollConnection = StatusBarColorNestedScrollConnection(requireActivity())
-  }
-
-  override fun onResume() {
-    super.onResume()
-    statusBarNestedScrollConnection.setColorImmediate()
-  }
 
   @Composable
   override fun FragmentContent() {
@@ -62,7 +48,6 @@ class PhoneNumberPrivacySettingsFragment : ComposeFragment() {
       state = state,
       snackbarHostState = snackbarHostState,
       onNavigationClick = { findNavController().popBackStack() },
-      statusBarNestedScrollConnection = statusBarNestedScrollConnection,
       onEveryoneCanSeeMyNumberClicked = viewModel::setEveryoneCanSeeMyNumber,
       onNobodyCanSeeMyNumberClicked = viewModel::setNobodyCanSeeMyNumber,
       onEveryoneCanFindMeByNumberClicked = viewModel::setEveryoneCanFindMeByMyNumber,
@@ -96,7 +81,6 @@ private fun Screen(
   state: PhoneNumberPrivacySettingsState,
   snackbarHostState: SnackbarHostState = SnackbarHostState(),
   onNavigationClick: () -> Unit = {},
-  statusBarNestedScrollConnection: StatusBarColorNestedScrollConnection? = null,
   onEveryoneCanSeeMyNumberClicked: () -> Unit = {},
   onNobodyCanSeeMyNumberClicked: () -> Unit = {},
   onEveryoneCanFindMeByNumberClicked: () -> Unit = {},
@@ -109,8 +93,7 @@ private fun Screen(
     navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close),
     snackbarHost = {
       SnackbarHost(snackbarHostState)
-    },
-    modifier = statusBarNestedScrollConnection?.let { Modifier.nestedScroll(it) } ?: Modifier
+    }
   ) { contentPadding ->
     Box(modifier = Modifier.padding(contentPadding)) {
       LazyColumn {

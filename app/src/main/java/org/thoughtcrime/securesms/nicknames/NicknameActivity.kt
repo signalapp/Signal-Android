@@ -13,7 +13,9 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -219,6 +221,8 @@ private fun NicknameContent(
     Column(
       modifier = Modifier
         .padding(paddingValues)
+        .consumeWindowInsets(paddingValues)
+        .imePadding()
         .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
     ) {
       LazyColumn(modifier = Modifier.weight(1f)) {

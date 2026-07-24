@@ -152,8 +152,6 @@ private fun ConversationSettingsEntry(route: MainNavigationDetailLocation.Chats.
       modifier = Modifier
         .fillMaxSize()
         .background(MaterialTheme.colorScheme.background)
-        .statusBarsPadding()
-        .navigationBarsPadding()
     ) { fragment ->
       backPressedState.attach(fragment)
     }

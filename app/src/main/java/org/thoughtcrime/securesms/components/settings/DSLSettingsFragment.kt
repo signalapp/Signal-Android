@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.EdgeEffect
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
@@ -11,12 +12,19 @@ import androidx.annotation.MenuRes
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.signal.core.ui.logging.LoggingFragment
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavHostFragment
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
 /**
@@ -70,11 +78,55 @@ abstract class DSLSettingsFragment(
       }
     }
 
+    applyEdgeToEdgeInsets()
+
     when (settingsAdapter) {
       is ConcatAdapter -> bindAdapters(settingsAdapter)
       is MappingAdapter -> bindAdapter(settingsAdapter)
       else -> error("Illegal adapter subtype: ${settingsAdapter.javaClass.simpleName}")
     }
+  }
+
+  /**
+   * Activity windows are all edge-to-edge (enabled centrally in [org.thoughtcrime.securesms.BaseActivity]),
+   * so the toolbar tint must extend behind the (transparent) status bar and the list must scroll clear of
+   * the navigation bar. Skipped for dialog windows (not edge-to-edge) and for fragments embedded directly in
+   * [MainActivity]'s Compose scaffolding, which insets those containers itself — except the
+   * conversation-settings detail entry ([ConversationSettingsNavHostFragment]), which leaves insets to these
+   * fragments so the toolbar scroll tint can reach behind the status bar.
+   */
+  private fun applyEdgeToEdgeInsets() {
+    if (isDialogHosted() || isInsetByMainActivityHost()) {
+      return
+    }
+
+    toolbar?.let { toolbar ->
+      toolbar.updateLayoutParams { height = ViewGroup.LayoutParams.WRAP_CONTENT }
+      SystemWindowInsetsSetter.attach(toolbar, viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
+    }
+
+    recyclerView?.let { recycler ->
+      recycler.clipToPadding = false
+      SystemWindowInsetsSetter.attach(recycler, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars())
+    }
+  }
+
+  private fun isDialogHosted(): Boolean {
+    var fragment: Fragment? = this
+    while (fragment != null) {
+      if (fragment is DialogFragment && fragment.showsDialog) {
+        return true
+      }
+      fragment = fragment.parentFragment
+    }
+    return false
+  }
+
+  private fun isInsetByMainActivityHost(): Boolean {
+    if (activity !is MainActivity) {
+      return false
+    }
+    return generateSequence(parentFragment) { it.parentFragment }.none { it is ConversationSettingsNavHostFragment }
   }
 
   open fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper? {
@@ -85,7 +137,8 @@ abstract class DSLSettingsFragment(
     return Material3OnScrollHelper(
       activity = requireActivity(),
       views = listOf(toolbar),
-      lifecycleOwner = viewLifecycleOwner
+      lifecycleOwner = viewLifecycleOwner,
+      setStatusBarColor = {}
     )
   }
 

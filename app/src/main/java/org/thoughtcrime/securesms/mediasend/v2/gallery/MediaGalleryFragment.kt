@@ -115,7 +115,8 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     Material3OnScrollHelper(
       activity = requireActivity(),
       views = listOf(binding.mediaGalleryToolbar, binding.mediaGalleryStatusBarBackground),
-      lifecycleOwner = viewLifecycleOwner
+      lifecycleOwner = viewLifecycleOwner,
+      setStatusBarColor = {}
     ).attach(binding.mediaGalleryGrid)
 
     if (callbacks.isCameraEnabled()) {

@@ -13,6 +13,9 @@ import android.widget.Toast;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
@@ -53,6 +56,13 @@ public class RecaptchaProofActivity extends PassphraseRequiredActivity {
 
     requireSupportActionBar().setDisplayHomeAsUpEnabled(true);
     requireSupportActionBar().setTitle(R.string.RecaptchaProofActivity_complete_verification);
+
+    // Insets are re-dispatched by appcompat's ActionBarOverlayLayout with the action bar height folded into the top inset.
+    ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), (v, insets) -> {
+      Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+      v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
+      return WindowInsetsCompat.CONSUMED;
+    });
 
     WebView webView = findViewById(R.id.recaptcha_webview);
     webView.getSettings().setJavaScriptEnabled(true);

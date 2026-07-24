@@ -10,6 +10,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
+import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.SignalE164Util
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 
 /**
  * A captive activity that can determine if an interrupted/erred change number request
@@ -57,6 +59,8 @@ class ChangeNumberLockActivity : PassphraseRequiredActivity() {
     )
 
     setContentView(R.layout.activity_change_number_lock)
+
+    SystemWindowInsetsSetter.attach(findViewById(R.id.change_number_lock_scroll), this, WindowInsetsCompat.Type.systemBars())
 
     reattemptChange()
   }

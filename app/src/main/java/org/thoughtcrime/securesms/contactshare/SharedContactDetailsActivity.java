@@ -14,7 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,7 +36,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.WindowUtil;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -118,8 +118,6 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActivity {
     getSupportActionBar().setLogo(null);
     getSupportActionBar().setTitle("");
     toolbar.setNavigationOnClickListener(v -> onBackPressed());
-
-    WindowUtil.setStatusBarColor(getWindow(), ContextCompat.getColor(this, R.color.shared_contact_details_titlebar));
   }
 
   private void initViews() {
@@ -137,6 +135,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActivity {
     RecyclerView list = findViewById(R.id.contact_details_fields);
     list.setLayoutManager(new LinearLayoutManager(this));
     list.setAdapter(contactFieldAdapter);
+    SystemWindowInsetsSetter.attach(list, this, WindowInsetsCompat.Type.navigationBars());
 
     requestManager = Glide.with(this);
   }

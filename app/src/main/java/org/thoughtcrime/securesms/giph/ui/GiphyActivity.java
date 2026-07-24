@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -28,6 +29,7 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.RemoteConfig;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
@@ -98,6 +100,9 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
     searchView.setCallbacks(this);
     searchView.enableBackNavigation(true);
     ViewUtil.focusAndShowKeyboard(searchView);
+
+    SystemWindowInsetsSetter.attach(findViewById(R.id.giphy_toolbar), this, WindowInsetsCompat.Type.statusBars());
+    SystemWindowInsetsSetter.attach(findViewById(R.id.giphy_logo), this, WindowInsetsCompat.Type.navigationBars());
   }
 
   private void handleGiphyMp4SaveResult(@NonNull GiphyMp4SaveResult result) {

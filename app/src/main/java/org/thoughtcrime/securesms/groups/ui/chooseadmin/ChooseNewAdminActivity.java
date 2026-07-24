@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import java.util.stream.Collectors;
@@ -25,6 +27,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 import java.util.Objects;
@@ -61,6 +64,9 @@ public final class ChooseNewAdminActivity extends PassphraseRequiredActivity {
     //noinspection ConstantConditions
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    SystemWindowInsetsSetter.attach(toolbar, this, WindowInsetsCompat.Type.statusBars());
+
     try {
       groupId = GroupId.parse(Objects.requireNonNull(getIntent().getStringExtra(EXTRA_GROUP_ID))).requireV2();
     } catch (BadGroupIdException e) {
@@ -69,6 +75,10 @@ public final class ChooseNewAdminActivity extends PassphraseRequiredActivity {
 
     groupList = findViewById(R.id.choose_new_admin_group_list);
     done      = findViewById(R.id.choose_new_admin_done);
+
+    groupList.setClipToPadding(false);
+    SystemWindowInsetsSetter.attach(groupList, this, WindowInsetsCompat.Type.navigationBars());
+    SystemWindowInsetsSetter.attach(done, this, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
 
     initializeViewModel();
 

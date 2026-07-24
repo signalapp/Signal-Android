@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 
 /**
  * Shown after the old device successfully completes sending a backup to the new device.
@@ -20,6 +21,8 @@ public final class OldDeviceTransferCompleteFragment extends LoggingFragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    SystemWindowInsetsSetter.attach(view, getViewLifecycleOwner());
+
     view.findViewById(R.id.old_device_transfer_complete_fragment_close)
         .setOnClickListener(v -> close());
   }

@@ -1,7 +1,12 @@
 package org.thoughtcrime.securesms.components.settings
 
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
@@ -9,6 +14,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * The DSL API can be completely replaced by compose.
@@ -22,6 +28,8 @@ open class DSLSettingsActivity : PassphraseRequiredActivity() {
     private set
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    enableSettingsEdgeToEdge()
+
     setContentView(R.layout.dsl_settings_activity)
 
     if (savedInstanceState == null) {
@@ -59,6 +67,23 @@ open class DSLSettingsActivity : PassphraseRequiredActivity() {
       true
     } else {
       false
+    }
+  }
+
+  private fun enableSettingsEdgeToEdge() {
+    val navBarColor = ContextCompat.getColor(this, CoreUiR.color.signal_colorSurface2)
+    val isDark = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+
+    if (Build.VERSION.SDK_INT >= 26) {
+      enableEdgeToEdge(
+        navigationBarStyle = if (isDark) {
+          SystemBarStyle.dark(navBarColor)
+        } else {
+          SystemBarStyle.light(navBarColor, navBarColor)
+        }
+      )
+    } else {
+      enableEdgeToEdge()
     }
   }
 

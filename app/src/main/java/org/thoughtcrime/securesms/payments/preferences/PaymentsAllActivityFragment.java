@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -16,6 +17,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 
 public class PaymentsAllActivityFragment extends LoggingFragment {
 
@@ -28,6 +30,9 @@ public class PaymentsAllActivityFragment extends LoggingFragment {
     ViewPager viewPager = view.findViewById(R.id.payments_all_activity_fragment_view_pager);
     TabLayout tabLayout = view.findViewById(R.id.payments_all_activity_fragment_tabs);
     Toolbar   toolbar   = view.findViewById(R.id.payments_all_activity_fragment_toolbar);
+    View      appBar    = view.findViewById(R.id.payments_activity_fragment_appbar);
+
+    SystemWindowInsetsSetter.attach(appBar, getViewLifecycleOwner(), WindowInsetsCompat.Type.statusBars());
 
     toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 

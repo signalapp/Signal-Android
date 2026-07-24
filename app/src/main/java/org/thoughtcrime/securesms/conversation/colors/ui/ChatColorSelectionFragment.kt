@@ -2,13 +2,17 @@ package org.thoughtcrime.securesms.conversation.colors.ui
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class ChatColorSelectionFragment : Fragment(R.layout.chat_color_selection_fragment) {
@@ -27,6 +31,11 @@ class ChatColorSelectionFragment : Fragment(R.layout.chat_color_selection_fragme
       requireContext(),
       Callbacks(args, view)
     )
+
+    toolbar.updateLayoutParams { height = ViewGroup.LayoutParams.WRAP_CONTENT }
+    SystemWindowInsetsSetter.attach(toolbar, viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
+
+    SystemWindowInsetsSetter.attach(recycler, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars())
 
     recycler.itemAnimator = null
     recycler.adapter = adapter

@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.conversation
 
-import android.os.Bundle
-import androidx.core.view.WindowCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivity
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -14,11 +12,6 @@ import org.thoughtcrime.securesms.util.ViewUtil
  * independent "is in bubble?" check.
  */
 class BubbleConversationActivity : ConversationActivity() {
-
-  override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    WindowCompat.setDecorFitsSystemWindows(window, false)
-    super.onCreate(savedInstanceState, ready)
-  }
 
   override fun onPause() {
     super.onPause()

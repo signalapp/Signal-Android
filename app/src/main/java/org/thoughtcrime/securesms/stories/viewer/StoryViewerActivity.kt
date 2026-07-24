@@ -8,7 +8,6 @@ import android.media.AudioManager
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.media.AudioManagerCompat
@@ -46,8 +45,6 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    enableEdgeToEdge()
-
     if (savedInstanceState != null) {
       val cache: StoryViewStateCache? = savedInstanceState.getParcelableCompat(DATA_CACHE, StoryViewStateCache::class.java)
       if (cache != null) {

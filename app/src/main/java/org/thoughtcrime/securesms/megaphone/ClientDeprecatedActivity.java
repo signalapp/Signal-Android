@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.megaphone;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.core.view.WindowInsetsCompat;
+
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
@@ -12,6 +14,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 
 /**
  * Shown when a users build fully expires. Controlled by {@link Megaphones.Event#CLIENT_DEPRECATED}.
@@ -23,6 +26,8 @@ public class ClientDeprecatedActivity extends PassphraseRequiredActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     setContentView(R.layout.client_deprecated_activity);
+
+    SystemWindowInsetsSetter.attach(findViewById(R.id.client_deprecated_root), this, WindowInsetsCompat.Type.systemBars());
 
     findViewById(R.id.client_deprecated_update_button).setOnClickListener(v -> onUpdateClicked());
     findViewById(R.id.client_deprecated_dont_update_button).setOnClickListener(v -> onDontUpdateClicked());

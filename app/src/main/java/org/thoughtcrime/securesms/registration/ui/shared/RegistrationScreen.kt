@@ -14,10 +14,16 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
@@ -112,6 +118,7 @@ fun RegistrationScreen(
       modifier = Modifier
         .fillMaxWidth()
         .fillMaxHeight()
+        .imePadding()
     ) {
       val scrollState = rememberScrollState()
       val context = LocalContext.current
@@ -120,8 +127,9 @@ fun RegistrationScreen(
 
       Column(
         modifier = Modifier
-          .verticalScroll(scrollState)
           .weight(weight = 1f, fill = false)
+          .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal))
+          .verticalScroll(scrollState)
           .padding(bottom = 16.dp)
           .horizontalGutters()
       ) {
@@ -160,6 +168,7 @@ fun RegistrationScreen(
       ) {
         Box(
           modifier = Modifier
+            .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))
             .padding(top = 8.dp, bottom = 24.dp)
             .horizontalGutters()
         ) {

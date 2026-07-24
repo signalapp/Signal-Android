@@ -19,8 +19,10 @@
         app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 
     <ScrollView
+        android:id="@+id/deactivate_wallet_fragment_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout

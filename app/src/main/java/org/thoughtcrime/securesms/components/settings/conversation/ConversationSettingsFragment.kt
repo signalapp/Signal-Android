@@ -29,7 +29,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.launch
-import org.signal.core.ui.isSplitPane
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.Result
@@ -117,7 +116,6 @@ import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
@@ -275,11 +273,7 @@ class ConversationSettingsFragment :
       activity = requireActivity(),
       views = listOf(toolbar!!),
       lifecycleOwner = viewLifecycleOwner,
-      setStatusBarColor = { color ->
-        if (!resources.isSplitPane() || activity is ConversationSettingsActivity) {
-          WindowUtil.setStatusBarColor(requireActivity().window, color)
-        }
-      }
+      setStatusBarColor = {}
     ) {
       override val inactiveColorSet = ColorSet(
         toolbarColorRes = CoreUiR.color.signal_colorBackground_0,

@@ -16,6 +16,7 @@ import org.signal.core.ui.logging.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import kotlin.time.Duration.Companion.milliseconds
 
 /**
@@ -25,6 +26,8 @@ class AccountLockedFragment : LoggingFragment(R.layout.account_locked_fragment) 
   private val viewModel by activityViewModels<RegistrationViewModel>()
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+
+    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner)
 
     setDebugLogSubmitMultiTapView(view.findViewById(R.id.account_locked_title))
 

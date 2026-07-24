@@ -37,7 +37,7 @@ open class Material3OnScrollHelper(
      */
     @JvmStatic
     fun create(activity: FragmentActivity, toolbar: View): Material3OnScrollHelper {
-      return Material3OnScrollHelper(activity = activity, views = listOf(toolbar), lifecycleOwner = activity)
+      return Material3OnScrollHelper(activity = activity, views = listOf(toolbar), lifecycleOwner = activity, setStatusBarColor = {})
     }
   }
 

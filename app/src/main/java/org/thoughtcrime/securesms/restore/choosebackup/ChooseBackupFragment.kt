@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.databinding.FragmentChooseBackupBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
 import org.thoughtcrime.securesms.restore.RestoreViewModel
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -44,6 +45,7 @@ class ChooseBackupFragment : LoggingFragment(R.layout.fragment_choose_backup) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner)
     RegistrationViewDelegate.setDebugLogSubmitMultiTapView(binding.chooseBackupFragmentTitle)
     binding.chooseBackupFragmentButton.setOnClickListener { onChooseBackupSelected() }
 

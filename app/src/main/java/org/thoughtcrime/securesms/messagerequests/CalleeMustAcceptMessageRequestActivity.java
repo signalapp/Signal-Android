@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
@@ -20,6 +21,7 @@ import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 
 import java.util.concurrent.TimeUnit;
 
@@ -49,6 +51,8 @@ public class CalleeMustAcceptMessageRequestActivity extends BaseActivity {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.callee_must_accept_message_request_dialog_fragment);
+
+    SystemWindowInsetsSetter.attach(findViewById(R.id.callee_must_accept_root), this, WindowInsetsCompat.Type.systemBars());
 
     boolean callingFixedToPortrait = getResources().getConfiguration().densityDpi < 480;
     if (callingFixedToPortrait) {

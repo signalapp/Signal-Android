@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
@@ -57,6 +58,7 @@ import org.thoughtcrime.securesms.util.BottomOffsetDecoration;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.OffloadedMediaDialogUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import org.json.JSONArray;
@@ -172,6 +174,10 @@ public final class MediaOverviewPageFragment extends LoggingFragment
                                               this,
                                               sorting.isRelatedToFileSize(),
                                               threadId == MediaTable.ALL_THREADS);
+    this.recyclerView.setClipToPadding(false);
+    SystemWindowInsetsSetter.attach(recyclerView, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars());
+    SystemWindowInsetsSetter.attach(bottomActionBar, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
+
     this.recyclerView.setAdapter(adapter);
     this.recyclerView.setLayoutManager(gridManager);
     this.recyclerView.setHasFixedSize(true);

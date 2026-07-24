@@ -10,12 +10,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.wallpaper.crop.WallpaperImageSelectionActivity;
 
 public class ChatWallpaperSelectionFragment extends Fragment {
@@ -34,6 +36,12 @@ public class ChatWallpaperSelectionFragment extends Fragment {
     Toolbar              toolbar              = view.findViewById(R.id.toolbar);
     View                 chooseFromPhotos     = view.findViewById(R.id.chat_wallpaper_choose_from_photos);
     RecyclerView         recyclerView         = view.findViewById(R.id.chat_wallpaper_recycler);
+
+    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    SystemWindowInsetsSetter.attach(toolbar, getViewLifecycleOwner(), WindowInsetsCompat.Type.statusBars());
+
+    recyclerView.setClipToPadding(false);
+    SystemWindowInsetsSetter.attach(recyclerView, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars());
 
     chooseFromPhotos.setOnClickListener(unused -> {
       startActivityForResult(WallpaperImageSelectionActivity.getIntent(requireContext(), viewModel.getRecipientId()), CHOOSE_WALLPAPER);
