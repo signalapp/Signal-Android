@@ -3090,6 +3090,7 @@
     <string name="SupportEmailUtil_locale" translatable="false">Locale:</string>
     <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string>
     <string name="SupportEmailUtil_registered" translatable="false">Registered:</string>
+    <string name="SupportEmailUtil_backups" translatable="false">Backups:</string>
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Group updated</string>
