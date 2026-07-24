@@ -11,6 +11,7 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.BodyRange
+import org.whispersystems.signalservice.internal.push.CallMessage
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.EditMessage
@@ -61,7 +62,7 @@ object EnvelopeContentValidator {
       envelope.story == true && !content.meetsStoryFlagCriteria() -> Result.Invalid("Envelope was flagged as a story, but it did not have any story-related content!")
       content.dataMessage != null -> validateDataMessage(envelope, content.dataMessage)
       content.syncMessage != null -> validateSyncMessage(envelope, content.syncMessage, localAci)
-      content.callMessage != null -> Result.Valid
+      content.callMessage != null -> validateCallMessage(content.callMessage)
       content.nullMessage != null -> Result.Valid
       content.receiptMessage != null -> validateReceiptMessage(content.receiptMessage)
       content.typingMessage != null -> validateTypingMessage(envelope, content.typingMessage)
@@ -205,6 +206,14 @@ object EnvelopeContentValidator {
 
   private fun DataMessage.PollCreate.hasInvalidPollOptions(): Boolean {
     return this.options.size < MIN_POLL_OPTIONS || this.options.any { option -> option.length > MAX_POLL_CHARACTER_LENGTH }
+  }
+
+  private fun validateCallMessage(callMessage: CallMessage): Result {
+    if (callMessage.hangup != null && callMessage.hangup.type == null) {
+      return Result.Invalid("[CallMessage] Missing type on CallMessage.hangup!")
+    }
+
+    return Result.Valid
   }
 
   private fun validateSyncMessage(envelope: Envelope, syncMessage: SyncMessage, localAci: ACI): Result {

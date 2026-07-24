@@ -12,6 +12,7 @@ import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.BodyRange
+import org.whispersystems.signalservice.internal.push.CallMessage
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.EditMessage
@@ -1100,6 +1101,42 @@ class EnvelopeContentValidatorTest {
     )
 
     val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure call message hangup without a type is marked invalid`() {
+    val content = Content(
+      callMessage = CallMessage(
+        hangup = CallMessage.Hangup(id = 1)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure call message hangup with a type is marked valid`() {
+    val content = Content(
+      callMessage = CallMessage(
+        hangup = CallMessage.Hangup(id = 1, type = CallMessage.Hangup.Type.HANGUP_NORMAL)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure call message without a hangup is marked valid`() {
+    val content = Content(
+      callMessage = CallMessage(
+        busy = CallMessage.Busy(id = 1)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
     assert(result is EnvelopeContentValidator.Result.Valid)
   }
 }
