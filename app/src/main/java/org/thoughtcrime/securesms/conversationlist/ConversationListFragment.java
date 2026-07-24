@@ -1192,11 +1192,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
   }
 
   @SuppressLint("StaticFieldLeak")
-  private void handleDelete(@NonNull Collection<Long> ids) {
+  private void handleDelete(@NonNull Collection<Long> ids, boolean containsActiveGroup) {
     if (DeleteSyncEducationDialog.shouldShow()) {
       lifecycleDisposable.add(
           DeleteSyncEducationDialog.show(getChildFragmentManager())
-                                   .subscribe(() -> handleDelete(ids))
+                                   .subscribe(() -> handleDelete(ids, containsActiveGroup))
       );
 
       return;
@@ -1205,17 +1205,23 @@ public class ConversationListFragment extends MainFragment implements Conversati
     int                        conversationsCount = ids.size();
     MaterialAlertDialogBuilder alert              = new MaterialAlertDialogBuilder(requireActivity());
     Context                    context            = requireContext();
+    boolean                    isMultiDevice      = SignalStore.account().isMultiDevice();
 
     alert.setTitle(context.getResources().getQuantityString(R.plurals.ConversationListFragment_delete_selected_conversations,
                                                             conversationsCount, conversationsCount));
 
-    if (SignalStore.account().isMultiDevice()) {
-      alert.setMessage(context.getResources().getQuantityString(R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device,
-                                                                conversationsCount, conversationsCount));
+    int messageRes;
+    if (isMultiDevice && containsActiveGroup) {
+      messageRes = R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group;
+    } else if (isMultiDevice) {
+      messageRes = R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device;
+    } else if (containsActiveGroup) {
+      messageRes = R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group;
     } else {
-      alert.setMessage(context.getResources().getQuantityString(R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations,
-                                                                conversationsCount, conversationsCount));
+      messageRes = R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations;
     }
+
+    alert.setMessage(context.getResources().getQuantityString(messageRes, conversationsCount, conversationsCount));
 
     alert.setCancelable(true);
 
@@ -1452,7 +1458,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(id)));
     }
 
-    items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_trash_24, getResources().getString(R.string.ConversationListFragment_delete), () -> handleDelete(id)));
+    items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_trash_24, getResources().getString(R.string.ConversationListFragment_delete), () -> handleDelete(id, conversation.getThreadRecord().getRecipient().resolve().isActiveGroup())));
 
     activeContextMenu = new SignalContextMenu.Builder(view, list)
         .offsetX(ViewUtil.dpToPx(12))
@@ -1524,11 +1530,12 @@ public class ConversationListFragment extends MainFragment implements Conversati
   }
 
   private void updateMultiSelectState() {
-    int     count       = viewModel.currentSelectedConversations().size();
-    boolean hasUnread   = viewModel.currentSelectedConversations().stream().anyMatch(conversation -> !conversation.getThreadRecord().isRead());
-    boolean hasUnpinned = viewModel.currentSelectedConversations().stream().anyMatch(conversation -> !conversation.getThreadRecord().isPinned());
-    boolean hasUnmuted  = viewModel.currentSelectedConversations().stream().anyMatch(conversation -> !conversation.getThreadRecord().getRecipient().live().get().isMuted());
-    boolean canPin      = viewModel.getPinnedCount() < RemoteConfig.pinnedChatLimit();
+    int     count         = viewModel.currentSelectedConversations().size();
+    boolean hasUnread     = viewModel.currentSelectedConversations().stream().anyMatch(conversation -> !conversation.getThreadRecord().isRead());
+    boolean hasUnpinned   = viewModel.currentSelectedConversations().stream().anyMatch(conversation -> !conversation.getThreadRecord().isPinned());
+    boolean hasUnmuted    = viewModel.currentSelectedConversations().stream().anyMatch(conversation -> !conversation.getThreadRecord().getRecipient().resolve().isMuted());
+    boolean containsGroup = viewModel.currentSelectedConversations().stream().anyMatch(conversation -> conversation.getThreadRecord().getRecipient().resolve().isActiveGroup());
+    boolean canPin        = viewModel.getPinnedCount() < RemoteConfig.pinnedChatLimit();
 
     if (mainToolbarViewModel.isInActionMode()) {
       mainToolbarViewModel.setActionModeCount(count);
@@ -1559,7 +1566,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(selectionIds)));
     }
 
-    items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_trash_24, getResources().getString(R.string.ConversationListFragment_delete), () -> handleDelete(selectionIds)));
+    items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_trash_24, getResources().getString(R.string.ConversationListFragment_delete), () -> handleDelete(selectionIds, containsGroup)));
 
     if (hasUnmuted) {
       items.add(new ActionItem(R.drawable.symbol_bell_slash_24, getResources().getString(R.string.ConversationListFragment_mute), () -> handleMute(viewModel.currentSelectedConversations())));

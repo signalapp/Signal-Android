@@ -62,8 +62,11 @@ public final class LiveGroup {
     this.requestingMembers = mapToRequestingMembers(this.groupRecord);
 
     if (groupId.isV2()) {
-      LiveData<GroupTable.V2GroupProperties> v2Properties = Transformations.map(this.groupRecord, GroupRecord::requireV2GroupProperties);
+      LiveData<GroupTable.V2GroupProperties> v2Properties = Transformations.map(this.groupRecord, g -> g.getHasV2GroupProperties() ? g.requireV2GroupProperties() : null);
       this.groupLink = Transformations.map(v2Properties, g -> {
+                        if (g == null) {
+                          return GroupLinkUrlAndStatus.NONE;
+                        }
                          DecryptedGroup               group             = g.getDecryptedGroup();
                          AccessControl.AccessRequired addFromInviteLink = group.accessControl != null ? group.accessControl.addFromInviteLink : new AccessControl().addFromInviteLink;
 
@@ -98,7 +101,7 @@ public final class LiveGroup {
   protected static LiveData<List<GroupMemberEntry.RequestingMember>> mapToRequestingMembers(@NonNull LiveData<GroupRecord> groupRecord) {
     return LiveDataUtil.mapAsync(groupRecord,
                                  g -> {
-                                   if (!g.isV2Group()) {
+                                   if (!g.getHasV2GroupProperties()) {
                                      return Collections.emptyList();
                                    }
 
@@ -144,7 +147,7 @@ public final class LiveGroup {
   }
 
   public LiveData<Set<ServiceId>> getBannedMembers() {
-    return Transformations.map(groupRecord, g -> g.isV2Group() ? g.requireV2GroupProperties().getBannedMembers() : Collections.emptySet());
+    return Transformations.map(groupRecord, g -> g.getHasV2GroupProperties() ? g.requireV2GroupProperties().getBannedMembers() : Collections.emptySet());
   }
 
   public LiveData<Boolean> isActive() {
@@ -164,12 +167,12 @@ public final class LiveGroup {
   }
 
   public LiveData<Integer> getPendingMemberCount() {
-    return Transformations.map(groupRecord, g -> g.isV2Group() ? g.requireV2GroupProperties().getDecryptedGroup().pendingMembers.size() : 0);
+    return Transformations.map(groupRecord, g -> g.getHasV2GroupProperties() ? g.requireV2GroupProperties().getDecryptedGroup().pendingMembers.size() : 0);
   }
 
   public LiveData<Integer> getPendingAndRequestingMemberCount() {
     return Transformations.map(groupRecord, g -> {
-      if (g.isV2Group()) {
+      if (g.getHasV2GroupProperties()) {
         DecryptedGroup decryptedGroup = g.requireV2GroupProperties().getDecryptedGroup();
 
         return decryptedGroup.pendingMembers.size() + decryptedGroup.requestingMembers.size();

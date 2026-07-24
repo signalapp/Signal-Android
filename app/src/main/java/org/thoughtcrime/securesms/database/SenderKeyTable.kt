@@ -109,6 +109,16 @@ class SenderKeyTable internal constructor(context: Context?, databaseHelper: Sig
   }
 
   /**
+   * Removes all sender key session state for every address/device for the provided distributionId.
+   */
+  fun deleteAllFor(distributionId: DistributionId) {
+    writableDatabase
+      .delete(TABLE_NAME)
+      .where("$DISTRIBUTION_ID = ?", distributionId)
+      .run()
+  }
+
+  /**
    * Get metadata for all sender keys created by the local user. Used for debugging.
    */
   fun getAllCreatedBySelf(): Cursor {

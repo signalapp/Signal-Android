@@ -1287,7 +1287,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           TrimThreadJob.enqueueAsync(threadId)
         }
 
-      groupRecords.filter { it.isV2Group }.forEach {
+      groupRecords.filter { it.hasV2GroupProperties }.forEach {
         SignalDatabase.nameCollisions.handleGroupNameCollisions(it.id.requireV2(), setOf(recipient.id))
       }
     }
@@ -6085,6 +6085,26 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .where("$THREAD_ID = ?", fromId)
         .run()
     }
+  }
+
+  override fun onDeletedRecipient(recipientId: RecipientId) {
+    val deleted = writableDatabase
+      .delete(TABLE_NAME)
+      .where(
+        "$FROM_RECIPIENT_ID = ? OR $TO_RECIPIENT_ID = ? OR $QUOTE_AUTHOR = ? OR $DELETED_BY = ?",
+        recipientId,
+        recipientId,
+        recipientId,
+        recipientId
+      )
+      .run()
+
+    Log.d(TAG, "Deleted recipient: $deleted")
+  }
+
+  /** To get here a thread already needs to be empty, so this is effectively a no-op */
+  override fun onDeletedGroupThread(threadId: Long) {
+    deleteMessagesInThread(listOf(threadId))
   }
 
   /**

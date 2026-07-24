@@ -430,5 +430,14 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
     Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 
+  override fun onDeletedRecipient(recipientId: RecipientId) {
+    val deleted = writableDatabase
+      .delete(MslRecipientTable.TABLE_NAME)
+      .where("${MslRecipientTable.RECIPIENT_ID} = ?", recipientId)
+      .run()
+
+    Log.d(TAG, "Deleted recipient: $deleted")
+  }
+
   private data class RecipientDevice(val recipientId: RecipientId, val devices: List<Int>)
 }

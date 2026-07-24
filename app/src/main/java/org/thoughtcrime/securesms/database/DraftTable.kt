@@ -113,6 +113,10 @@ class DraftTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       .run()
   }
 
+  override fun onDeletedGroupThread(threadId: Long) {
+    clearDrafts(threadId)
+  }
+
   private fun List<Draft>.asDrafts(): Drafts {
     return Drafts(this)
   }

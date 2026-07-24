@@ -98,11 +98,26 @@ public final class PendingRetryReceiptTable extends DatabaseTable implements Rec
   }
 
   @Override
+  public void onDeletedRecipient(@NonNull RecipientId recipientId) {
+    int count = databaseHelper.getSignalWritableDatabase().delete(TABLE_NAME, AUTHOR + " = ?", SqlUtil.buildArgs(recipientId.serialize()));
+    AppDependencies.getPendingRetryReceiptCache().clear();
+
+    Log.d(TAG, "Deleted recipient: " + count);
+  }
+
+  @Override
   public void remapThread(long fromId, long toId) {
     ContentValues values = new ContentValues();
     values.put(THREAD_ID, toId);
     getWritableDatabase().update(TABLE_NAME, values, THREAD_ID + " = ?", SqlUtil.buildArgs(fromId));
 
     AppDependencies.getPendingRetryReceiptCache().clear();
+  }
+
+  @Override
+  public void onDeletedGroupThread(long threadId) {
+    int count = databaseHelper.getSignalWritableDatabase().delete(TABLE_NAME, THREAD_ID + " = ?", SqlUtil.buildArgs(threadId));
+    AppDependencies.getPendingRetryReceiptCache().clear();
+    Log.d(TAG, "Deleted pending retry receipts for thread: " + count);
   }
 }

@@ -94,6 +94,11 @@ final class RequestGroupV2InfoWorkerJob extends BaseJob {
       return;
     }
 
+    if (group.isPresent() && !group.get().getHasV2GroupProperties()) {
+      Log.w(TAG, "Group is deleted, skipping fetch.");
+      return;
+    }
+
     GroupManager.updateGroupFromServer(context, group.get().requireV2GroupProperties().getGroupMasterKey(), toRevision, System.currentTimeMillis());
   }
 

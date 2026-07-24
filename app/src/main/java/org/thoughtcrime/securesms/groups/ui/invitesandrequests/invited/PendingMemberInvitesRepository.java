@@ -15,6 +15,7 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedPendingMember;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -50,8 +51,15 @@ final class PendingMemberInvitesRepository {
 
   public void getInvitees(@NonNull Consumer<InviteeResult> onInviteesLoaded) {
     executor.execute(() -> {
-      GroupTable                                   groupDatabase      = SignalDatabase.groups();
-      GroupTable.V2GroupProperties                 v2GroupProperties  = groupDatabase.getGroup(groupId).get().requireV2GroupProperties();
+      GroupTable  groupDatabase = SignalDatabase.groups();
+      GroupRecord groupRecord   = groupDatabase.getGroup(groupId).orElse(null);
+
+      if (groupRecord == null || !groupRecord.getHasV2GroupProperties()) {
+        Log.w(TAG, "Missing group, likely deleted.");
+        return;
+      }
+
+      GroupTable.V2GroupProperties                 v2GroupProperties  = groupRecord.requireV2GroupProperties();
       DecryptedGroup                               decryptedGroup     = v2GroupProperties.getDecryptedGroup();
       List<DecryptedPendingMember>                 pendingMembersList = decryptedGroup.pendingMembers;
       List<SinglePendingMemberInvitedByYou>        byMe               = new ArrayList<>(pendingMembersList.size());

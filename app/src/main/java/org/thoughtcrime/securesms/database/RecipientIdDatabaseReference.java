@@ -10,4 +10,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
  */
 interface RecipientIdDatabaseReference {
   void remapRecipient(@NonNull RecipientId fromId, @NonNull RecipientId toId);
+  /** Called when a recipient is deleted or blanked (which does not trigger FK) */
+  void onDeletedRecipient(@NonNull RecipientId recipientId);
 }

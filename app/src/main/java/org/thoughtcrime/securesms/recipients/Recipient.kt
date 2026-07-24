@@ -304,6 +304,7 @@ class Recipient(
   val participantAcis: List<ServiceId>
     get() {
       return groupRecord
+        .filter { it.hasV2GroupProperties }
         .map { it.requireV2GroupProperties().getMemberServiceIds().toImmutableList() }
         .orElse(emptyList<ServiceId>().toImmutableList())
     }

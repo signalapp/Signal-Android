@@ -287,6 +287,15 @@ class NameCollisionTables(
     Log.d(TAG, "Remapped $fromId to $toId")
   }
 
+  override fun onDeletedRecipient(recipientId: RecipientId) {
+    val deleted = writableDatabase
+      .delete(NameCollisionMembershipTable.TABLE_NAME)
+      .where("${NameCollisionMembershipTable.RECIPIENT_ID} = ?", recipientId)
+      .run()
+
+    Log.d(TAG, "Deleted recipient: $deleted")
+  }
+
   private fun handleNameCollisions(
     threadRecipientId: RecipientId,
     getCollisionRecipients: () -> Set<ReviewRecipient>

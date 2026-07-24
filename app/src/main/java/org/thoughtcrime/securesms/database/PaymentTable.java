@@ -483,6 +483,12 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
     Log.d(TAG, "Remapped " + fromId + " to " + toId + ". count: " + count);
   }
 
+  @Override
+  public void onDeletedRecipient(@NonNull RecipientId recipientId) {
+    int count = getWritableDatabase().delete(TABLE_NAME, RECIPIENT_ID + " = ?", new String[] { recipientId.serialize() });
+    Log.d(TAG, "Deleted recipient: " + count);
+  }
+
   public boolean markPaymentSubmitted(@NonNull UUID uuid,
                                       @NonNull byte[] transaction,
                                       @NonNull byte[] receipt,

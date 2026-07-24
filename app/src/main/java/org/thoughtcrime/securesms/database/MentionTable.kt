@@ -177,11 +177,29 @@ class MentionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseT
     Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 
+  override fun onDeletedRecipient(recipientId: RecipientId) {
+    val deleted = writableDatabase
+      .delete("$TABLE_NAME INDEXED BY $RECIPIENT_ID_INDEX")
+      .where("$RECIPIENT_ID = ?", recipientId)
+      .run()
+
+    Log.d(TAG, "Deleted recipient: $deleted")
+  }
+
   override fun remapThread(fromId: Long, toId: Long) {
     writableDatabase
       .update("$TABLE_NAME INDEXED BY $RECIPIENT_ID_INDEX")
       .values(THREAD_ID to toId)
       .where("$THREAD_ID = $fromId")
       .run()
+  }
+
+  override fun onDeletedGroupThread(threadId: Long) {
+    val deleted = writableDatabase
+      .delete("$TABLE_NAME INDEXED BY $RECIPIENT_ID_INDEX")
+      .where("$THREAD_ID = ?", threadId)
+      .run()
+
+    Log.d(TAG, "Deleted mentions for thread: $deleted")
   }
 }

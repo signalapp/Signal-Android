@@ -107,6 +107,11 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
       return;
     }
 
+    if (!SignalDatabase.recipients().containsId(threadRecipient)) {
+      Log.i(TAG, "Missing record for recipient, likely a deleted group");
+      return;
+    }
+
     SignalServiceMessageSender messageSender = AppDependencies.getSignalServiceMessageSender();
     RecipientRecord            recipient     = SignalDatabase.recipients().getRecord(threadRecipient);
 

@@ -19,7 +19,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.storageservice.storage.protos.groups.AccessControl;
-import org.thoughtcrime.securesms.BlockUnblockDialog;
+import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavigator;
 import org.thoughtcrime.securesms.conversation.colors.ColorizerV2;
@@ -96,8 +96,9 @@ final class RecipientDialogViewModel extends ViewModel {
         GroupTable.MemberLevel       memberLevel    = group.memberLevel(r);
         boolean                      inGroup        = memberLevel.isInGroup();
         boolean                      recipientAdmin = memberLevel == GroupTable.MemberLevel.ADMINISTRATOR;
-        AccessControl.AccessRequired linkAccess     = group.requireV2GroupProperties().getDecryptedGroup().accessControl != null ? group.requireV2GroupProperties().getDecryptedGroup().accessControl.addFromInviteLink
-                                                                                                                                 : AccessControl.AccessRequired.UNKNOWN;
+        DecryptedGroup               decryptedGroup = group.getHasV2GroupProperties() ? group.requireV2GroupProperties().getDecryptedGroup() : null;
+        AccessControl.AccessRequired linkAccess     = decryptedGroup != null && decryptedGroup.accessControl != null ? decryptedGroup.accessControl.addFromInviteLink
+                                                                                                                     : AccessControl.AccessRequired.UNKNOWN;
         boolean                      isLinkActive   = linkAccess == AccessControl.AccessRequired.ANY || linkAccess == AccessControl.AccessRequired.ADMINISTRATOR;
 
         return new AdminActionStatus(active && inGroup && localAdmin,
@@ -143,7 +144,7 @@ final class RecipientDialogViewModel extends ViewModel {
         if (label != null) {
           ColorizerV2           colorizer   = new ColorizerV2();
           Optional<GroupRecord> groupRecord = SignalDatabase.groups().getGroup(v2GroupId);
-          if (groupRecord.isPresent()) {
+          if (groupRecord.isPresent() && groupRecord.get().getHasV2GroupProperties()) {
             colorizer.onGroupMembershipChanged(groupRecord.get().requireV2GroupProperties().getMemberServiceIds());
           }
           styledLabel = new StyledMemberLabel(label, colorizer.getIncomingGroupSenderColor(context, recipient));

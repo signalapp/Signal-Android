@@ -600,7 +600,7 @@ class ConversationRepository(
     return Single.fromCallable {
       val recipients = if (groupRecord == null) {
         listOf(recipient)
-      } else if (groupRecord.isV2Group) {
+      } else if (groupRecord.hasV2GroupProperties) {
         groupRecord.requireV2GroupProperties().getMemberRecipients(GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)
       } else {
         emptyList()
@@ -651,7 +651,7 @@ class ConversationRepository(
         }
       }
 
-      if (group != null && group.isV2Group) {
+      if (group != null && group.hasV2GroupProperties) {
         val groupId = group.id.requireV2()
         val duplicateRecipients: List<ReviewRecipient> = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(group.recipientId)
 

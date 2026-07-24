@@ -74,6 +74,7 @@ import org.thoughtcrime.securesms.migrations.EmojiSearchEnglishLabelsMigrationJo
 import org.thoughtcrime.securesms.migrations.EmojiSearchIndexCheckMigrationJob;
 import org.thoughtcrime.securesms.migrations.FixChangeNumberErrorMigrationJob;
 import org.thoughtcrime.securesms.migrations.GooglePlayBillingPurchaseTokenMigrationJob;
+import org.thoughtcrime.securesms.migrations.GroupDeletedBackfillMigrationJob;
 import org.thoughtcrime.securesms.migrations.IdentityTableCleanupMigrationJob;
 import org.thoughtcrime.securesms.migrations.KeyTransparencyUsernameMigrationJob;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
@@ -186,6 +187,7 @@ public final class JobManagerFactories {
       put(GroupCallUpdateSendJob.KEY,                  new GroupCallUpdateSendJob.Factory());
       put(GroupCallPeekJob.KEY,                        new GroupCallPeekJob.Factory());
       put(GroupCallPeekWorkerJob.KEY,                  new GroupCallPeekWorkerJob.Factory());
+      put(GroupDeletedBackfillWorkerJob.KEY,           new GroupDeletedBackfillWorkerJob.Factory());
       put(GroupRingCleanupJob.KEY,                     new GroupRingCleanupJob.Factory());
       put(GroupV2UpdateSelfProfileKeyJob.KEY,          new GroupV2UpdateSelfProfileKeyJob.Factory());
       put(InAppPaymentAuthCheckJob.KEY,                new InAppPaymentAuthCheckJob.Factory());
@@ -342,6 +344,7 @@ public final class JobManagerFactories {
       put(EmojiSearchIndexCheckMigrationJob.KEY,          new EmojiSearchIndexCheckMigrationJob.Factory());
       put(FixChangeNumberErrorMigrationJob.KEY,           new FixChangeNumberErrorMigrationJob.Factory());
       put(GooglePlayBillingPurchaseTokenMigrationJob.KEY, new GooglePlayBillingPurchaseTokenMigrationJob.Factory());
+      put(GroupDeletedBackfillMigrationJob.KEY,           new GroupDeletedBackfillMigrationJob.Factory());
       put(IdentityTableCleanupMigrationJob.KEY,           new IdentityTableCleanupMigrationJob.Factory());
       put(KeyTransparencyUsernameMigrationJob.KEY,        new KeyTransparencyUsernameMigrationJob.Factory());
       put(LegacyMigrationJob.KEY,                         new LegacyMigrationJob.Factory());

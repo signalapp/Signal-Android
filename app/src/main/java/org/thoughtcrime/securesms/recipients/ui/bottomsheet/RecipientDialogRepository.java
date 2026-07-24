@@ -114,7 +114,7 @@ final class RecipientDialogRepository {
       GroupRecord   groupRecord = SignalDatabase.groups().getGroup(groupId.requireV2()).orElse(null);
       ServiceId.ACI aci         = Recipient.resolved(recipientId).getAci().orElse(null);
 
-      if (groupRecord != null && aci != null) {
+      if (groupRecord != null && groupRecord.getHasV2GroupProperties() && aci != null) {
         return groupRecord.requireV2GroupProperties().adminDemotionClearsLabel(aci);
       }
       return false;

@@ -9,6 +9,7 @@ import androidx.core.content.contentValuesOf
 import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.UuidUtil
+import org.signal.core.util.delete
 import org.signal.core.util.exists
 import org.signal.core.util.hasUnknownFields
 import org.signal.core.util.insertInto
@@ -529,6 +530,15 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
     AppDependencies.databaseObserver.notifyNotificationProfileObservers()
 
     Log.d(TAG, "Remapped $fromId to $toId. count: $count")
+  }
+
+  override fun onDeletedRecipient(recipientId: RecipientId) {
+    val deleted = writableDatabase
+      .delete(NotificationProfileAllowedMembersTable.TABLE_NAME)
+      .where("${NotificationProfileAllowedMembersTable.RECIPIENT_ID} = ?", recipientId)
+      .run()
+
+    Log.d(TAG, "Deleted recipient: $deleted")
   }
 
   private fun getProfile(cursor: Cursor): NotificationProfile {

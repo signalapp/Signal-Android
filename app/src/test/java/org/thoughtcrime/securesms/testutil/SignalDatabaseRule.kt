@@ -10,6 +10,7 @@ import io.mockk.every
 import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import org.junit.rules.ExternalResource
+import org.thoughtcrime.securesms.database.DatabaseTable
 import org.thoughtcrime.securesms.database.RemappedRecordsTestHelper
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.database.SearchTable
@@ -31,6 +32,7 @@ class SignalDatabaseRule : ExternalResource() {
   override fun before() {
     RecipientId.clearCache()
     RemappedRecordsTestHelper.resetInstance()
+    DatabaseTable.clearTableReferencesForTests()
 
     signalDatabase = inMemorySignalDatabase()
 
@@ -44,6 +46,7 @@ class SignalDatabaseRule : ExternalResource() {
     signalDatabase.close()
     RecipientId.clearCache()
     RemappedRecordsTestHelper.resetInstance()
+    DatabaseTable.clearTableReferencesForTests()
   }
 
   companion object {

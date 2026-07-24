@@ -115,7 +115,7 @@ class GroupsV2StateProcessor private constructor(
   @Throws(IOException::class, GroupNotAMemberException::class)
   fun forceSanityUpdateFromServer(timestamp: Long): GroupUpdateResult {
     val groupRecord = SignalDatabase.groups.getGroup(groupId).orNull()
-    val currentLocalState: DecryptedGroup? = groupRecord?.requireV2GroupProperties()?.decryptedGroup?.let { if (it.isEmptyPlaceholder()) null else it }
+    val currentLocalState: DecryptedGroup? = groupRecord?.takeIf { it.hasV2GroupProperties }?.requireV2GroupProperties()?.decryptedGroup?.let { if (it.isEmptyPlaceholder()) null else it }
 
     if (currentLocalState == null) {
       Log.i(TAG, "$logPrefix No local state to force update")
@@ -184,7 +184,7 @@ class GroupsV2StateProcessor private constructor(
       return GroupUpdateResult(GroupUpdateResult.UpdateStatus.GROUP_CONSISTENT_OR_AHEAD, null)
     }
 
-    val currentLocalState: DecryptedGroup? = groupRecord.map { it.requireV2GroupProperties().decryptedGroup }.orNull()?.let { if (it.isEmptyPlaceholder()) null else it }
+    val currentLocalState: DecryptedGroup? = groupRecord.filter { it.hasV2GroupProperties }.map { it.requireV2GroupProperties().decryptedGroup }.orNull()?.let { if (it.isEmptyPlaceholder()) null else it }
 
     if (signedGroupChange != null && canApplyP2pChange(targetRevision, signedGroupChange, currentLocalState, groupRecord)) {
       when (val p2pUpdateResult = updateViaPeerGroupChange(timestamp, serverGuid, signedGroupChange, currentLocalState!!, forceApply = false)) {
@@ -307,7 +307,7 @@ class GroupsV2StateProcessor private constructor(
     serverGuid: String?,
     groupRecord: Optional<GroupRecord> = SignalDatabase.groups.getGroup(groupId)
   ): InternalUpdateResult {
-    var currentLocalState: DecryptedGroup? = groupRecord.map { it.requireV2GroupProperties().decryptedGroup }.orNull()?.let { if (it.isEmptyPlaceholder()) null else it }
+    var currentLocalState: DecryptedGroup? = groupRecord.filter { it.hasV2GroupProperties }.map { it.requireV2GroupProperties().decryptedGroup }.orNull()?.let { if (it.isEmptyPlaceholder()) null else it }
 
     if (targetRevision == LATEST && (currentLocalState == null || currentLocalState.revision == RESTORE_PLACEHOLDER_REVISION)) {
       Log.i(TAG, "$logPrefix Latest revision only, update to latest directly")
@@ -865,6 +865,11 @@ class GroupsV2StateProcessor private constructor(
         return
       }
 
+      if (!group.hasV2GroupProperties) {
+        Log.w(TAG, "Group $groupId has no properties (likely deleted).")
+        return
+      }
+
       val groupRecipient = Recipient.externalGroupExact(groupId)
 
       val decryptedGroup = group.requireV2GroupProperties().decryptedGroup
@@ -892,6 +897,11 @@ class GroupsV2StateProcessor private constructor(
 
       if (group == null) {
         Log.w(TAG, "Group not found when inserting join request rejection message for $groupId")
+        return
+      }
+
+      if (!group.hasV2GroupProperties) {
+        Log.w(TAG, "Group has no properties, likely deleted")
         return
       }
 

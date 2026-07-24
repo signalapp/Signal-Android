@@ -118,7 +118,7 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
 
       for (GroupId.V2 id : SignalDatabase.groups().getAllGroupV2Ids()) {
         Optional<GroupRecord> group = SignalDatabase.groups().getGroup(id);
-        if (!group.isPresent()) {
+        if (!group.isPresent() || !group.get().getHasV2GroupProperties()) {
           Log.w(TAG, "Group " + group + " no longer exists?");
           continue;
         }
@@ -187,6 +187,11 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
 
     if (!group.get().isActive()) {
       Log.i(TAG, "Group is not active, skipping update.");
+      return;
+    }
+
+    if (!group.get().getHasV2GroupProperties()) {
+      Log.i(TAG, "Group is missing properties, likely deleted.");
       return;
     }
 

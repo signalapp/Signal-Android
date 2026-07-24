@@ -1522,7 +1522,7 @@ object BackupRepository {
       val jobs = mutableListOf<Job>()
       groups
         .asSequence()
-        .filter { it.id.isV2 }
+        .filter { it.id.isV2 && it.hasV2GroupProperties }
         .forEach { group ->
           jobs.add(RequestGroupV2InfoJob(group.id as GroupId.V2))
           val avatarKey = group.requireV2GroupProperties().avatarKey

@@ -51,7 +51,14 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
 
   public static void enqueueUnblurredAvatar(@NonNull GroupId.V2 groupId) {
     SignalExecutors.BOUNDED.execute(() -> {
-      String cdnKey = SignalDatabase.groups().getGroup(groupId).get().requireV2GroupProperties().getAvatarKey();
+      GroupRecord groupRecord = SignalDatabase.groups().getGroup(groupId).orElse(null);
+
+      if (groupRecord == null || !groupRecord.getHasV2GroupProperties()) {
+        Log.w(TAG, "Missing group properties (probably previously deleted)");
+        return;
+      }
+
+      String cdnKey = groupRecord.requireV2GroupProperties().getAvatarKey();
       AppDependencies.getJobManager().add(new AvatarGroupsV2DownloadJob(groupId, cdnKey, true));
     });
   }
@@ -100,8 +107,8 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
     File                  attachment = null;
 
     try {
-      if (!record.isPresent()) {
-        Log.w(TAG, "Cannot download avatar for unknown group");
+      if (!record.isPresent() || !record.get().getHasV2GroupProperties()) {
+        Log.w(TAG, "Cannot download avatar for unknown group/group with no properties");
         return;
       }
 

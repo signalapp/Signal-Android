@@ -1458,7 +1458,7 @@ object DataMessageProcessor {
     }
 
     val groupRecord = SignalDatabase.groups.getGroup(targetThreadRecipientId).orNull()
-    if (groupRecord == null || !groupRecord.isV2Group) {
+    if (groupRecord == null || !groupRecord.hasV2GroupProperties) {
       warn(envelope.clientTimestamp!!, "[handleAdminRemoteDelete] Invalid group.")
       return null
     }

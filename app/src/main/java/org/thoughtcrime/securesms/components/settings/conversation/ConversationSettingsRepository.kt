@@ -141,7 +141,7 @@ class ConversationSettingsRepository(
     SignalExecutors.BOUNDED.execute {
       val groupRecord: GroupRecord = SignalDatabase.groups.getGroup(groupId).get()
       consumer(
-        if (groupRecord.isV2Group) {
+        if (groupRecord.hasV2GroupProperties) {
           val decryptedGroup: DecryptedGroup = groupRecord.requireV2GroupProperties().decryptedGroup
           val pendingMembers: List<RecipientId> = decryptedGroup.pendingMembers
             .map { m -> m.serviceIdBytes }

@@ -208,9 +208,10 @@ public class ApplicationMigrations {
     static final int KT_USERNAME_CAPABILITY        = 164;
     static final int FIX_CHANGE_NUMBER_ERROR_2     = 165;
     static final int LOCAL_ARCHIVE_RECONCILE       = 166;
+    static final int GROUP_DELETED_AT_BACKFILL     = 167;
   }
 
-  public static final int CURRENT_VERSION = 166;
+  public static final int CURRENT_VERSION = 167;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -963,6 +964,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.LOCAL_ARCHIVE_RECONCILE) {
       jobs.put(Version.LOCAL_ARCHIVE_RECONCILE, new LocalArchiveReconciliationMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.GROUP_DELETED_AT_BACKFILL) {
+      jobs.put(Version.GROUP_DELETED_AT_BACKFILL, new GroupDeletedBackfillMigrationJob());
     }
 
     return jobs;

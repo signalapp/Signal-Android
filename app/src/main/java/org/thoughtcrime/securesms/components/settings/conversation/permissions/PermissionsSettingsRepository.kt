@@ -65,7 +65,7 @@ class PermissionsSettingsRepository(
 
   fun hasNonAdminMembersWithLabels(groupId: GroupId): Boolean {
     val v2GroupId = groupId.v2OrNull() ?: return false
-    val group = groupTable.getGroup(v2GroupId).orNull() ?: return false
+    val group = groupTable.getGroup(v2GroupId).filter { it.hasV2GroupProperties }.orNull() ?: return false
     return group.requireV2GroupProperties().nonAdminMembersWithLabels().isNotEmpty()
   }
 

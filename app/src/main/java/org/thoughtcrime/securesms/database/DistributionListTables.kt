@@ -554,6 +554,15 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     Log.d(TAG, "Remapped $fromId to $toId.")
   }
 
+  override fun onDeletedRecipient(recipientId: RecipientId) {
+    val deleted = writableDatabase
+      .delete(MembershipTable.TABLE_NAME)
+      .where("${MembershipTable.RECIPIENT_ID} = ?", recipientId)
+      .run()
+
+    Log.d(TAG, "Deleted recipient: $deleted")
+  }
+
   fun deleteList(distributionListId: DistributionListId, deletionTimestamp: Long = System.currentTimeMillis()) {
     writableDatabase.update(
       ListTable.TABLE_NAME,

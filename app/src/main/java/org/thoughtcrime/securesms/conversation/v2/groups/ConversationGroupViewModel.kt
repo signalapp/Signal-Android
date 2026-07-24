@@ -53,7 +53,7 @@ class ConversationGroupViewModel(
 
   init {
     disposables += _groupRecord.subscribe { groupRecord ->
-      _groupActiveState.onNext(ConversationGroupActiveState(groupRecord.isActive, groupRecord.isV2Group))
+      _groupActiveState.onNext(ConversationGroupActiveState(groupRecord.isActive, groupRecord.hasV2GroupProperties))
       _memberLevel.onNext(ConversationGroupMemberLevel(groupRecord.memberLevel(Recipient.self()), groupRecord.isAnnouncementGroup, groupRecord.attributesAccessControl == GroupAccessControl.ALL_MEMBERS))
     }
   }

@@ -119,6 +119,10 @@ public final class PushGroupSendJob extends PushSendJob {
                              boolean isScheduledSend)
   {
     try {
+      if (!SignalDatabase.recipients().containsId(destination)) {
+        throw new MmsException("Recipient no longer exists, likely deleted group.");
+      }
+
       RecipientRecord group = SignalDatabase.recipients().getRecord(destination);
       if (group.getGroupId() == null || !group.getGroupId().isPush()) {
         throw new AssertionError("Not a group!");
@@ -300,6 +304,10 @@ public final class PushGroupSendJob extends PushSendJob {
 
         if (groupRecord.isPresent() && groupRecord.get().isAnnouncementGroup() && !groupRecord.get().isAdmin(Recipient.self())) {
           throw new UndeliverableMessageException("Non-admins cannot send stories in announcement groups!");
+        }
+
+        if (groupRecord.isPresent() && !groupRecord.get().getHasV2GroupProperties()) {
+          throw new UndeliverableMessageException("Cannot send stories to deleted groups!");
         }
 
         if (groupRecord.isPresent()) {

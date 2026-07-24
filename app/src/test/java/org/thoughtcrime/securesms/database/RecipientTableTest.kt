@@ -6,6 +6,9 @@
 package org.thoughtcrime.securesms.database
 
 import android.app.Application
+import assertk.assertThat
+import assertk.assertions.isEmpty
+import assertk.assertions.isNotEmpty
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
@@ -19,6 +22,7 @@ import org.robolectric.annotation.Config
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.CursorUtil
+import org.signal.core.util.SqlUtil
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
@@ -202,6 +206,28 @@ class RecipientTableTest {
       "Storage id should rotate when an already-synced contact is unregistered, so the change publishes to storage service",
       originalStorageId!!.contentEquals(updatedStorageId!!)
     )
+  }
+
+  /**
+   * Guards [RecipientTable.clearGroupRecipient]: every recipient column must be either blanked by [RecipientTable.buildClearedGroupRecipientValues]
+   * or explicitly listed here as intentionally preserved. Adding a column without categorizing it fails this test so we don't silently leak it.
+   */
+  @Test
+  fun buildClearedGroupRecipientValues_accountsForEveryColumn() {
+    val keptColumns = setOf(
+      RecipientTable.ID,
+      RecipientTable.GROUP_ID,
+      RecipientTable.TYPE,
+      RecipientTable.BLOCKED,
+      RecipientTable.STORAGE_SERVICE_ID
+    )
+
+    val clearedColumns = SignalDatabase.recipients.buildClearedGroupRecipientValues().keySet()
+    val allColumns = SqlUtil.getAllColumns(SignalDatabase.recipients.writableDatabase, RecipientTable.TABLE_NAME)
+    val uncategorized = allColumns - clearedColumns - keptColumns
+
+    assertThat(allColumns).isNotEmpty()
+    assertThat(uncategorized).isEmpty()
   }
 
   companion object {

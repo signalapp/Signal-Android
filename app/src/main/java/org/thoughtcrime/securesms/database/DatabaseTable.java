@@ -18,6 +18,8 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 
+import androidx.annotation.VisibleForTesting;
+
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
 import java.util.HashSet;
@@ -45,6 +47,12 @@ public abstract class DatabaseTable {
     if (this instanceof ThreadIdDatabaseReference) {
       threadIdDatabaseTables.add((ThreadIdDatabaseReference) this);
     }
+  }
+
+  @VisibleForTesting
+  public static void clearTableReferencesForTests() {
+    recipientIdDatabaseTables.clear();
+    threadIdDatabaseTables.clear();
   }
 
   protected void notifyConversationListeners(Set<Long> threadIds) {

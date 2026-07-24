@@ -262,7 +262,7 @@ public final class GroupSendUtil {
 
     RecipientData               recipients                     = new RecipientData(context, registeredTargets, isStorySend);
     Optional<GroupRecord>       groupRecord                    = groupId != null ? SignalDatabase.groups().getGroup(groupId) : Optional.empty();
-    GroupSendEndorsementRecords groupSendEndorsementRecords    = groupRecord.filter(GroupRecord::isV2Group).map(g -> SignalDatabase.groups().getGroupSendEndorsements(g.getId())).orElse(null);
+    GroupSendEndorsementRecords groupSendEndorsementRecords    = groupRecord.filter(GroupRecord::getHasV2GroupProperties).map(g -> SignalDatabase.groups().getGroupSendEndorsements(g.getId())).orElse(null);
     long                        groupSendEndorsementExpiration = groupRecord.map(GroupRecord::getGroupSendEndorsementExpiration).orElse(0L);
     SenderCertificate           senderCertificate              = SealedSenderAccessUtil.getSealedSenderCertificate();
     boolean                     useGroupSendEndorsements       = groupSendEndorsementRecords != null;

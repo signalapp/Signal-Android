@@ -153,7 +153,7 @@ class ConversationViewModel(
 
   val groupMemberServiceIds: Observable<List<ServiceId>> = recipientRepository
     .groupRecord
-    .filter { it.isPresent && it.get().isV2Group }
+    .filter { it.isPresent && it.get().hasV2GroupProperties }
     .map { it.get().requireV2GroupProperties().getMemberServiceIds() }
     .distinctUntilChanged()
     .observeOn(AndroidSchedulers.mainThread())

@@ -144,6 +144,8 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
       .run()
   }
 
+  override fun onDeletedGroupThread(threadId: Long) = Unit // No-op bc thread id is foreign key
+
   /**
    * Returns a single chat folder that corresponds to that query.
    * Assumes query will only match to one chat folder.
