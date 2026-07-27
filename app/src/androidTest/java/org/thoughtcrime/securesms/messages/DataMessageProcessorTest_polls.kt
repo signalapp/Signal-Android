@@ -101,7 +101,7 @@ class DataMessageProcessorTest_polls {
       message = DataMessage(pollTerminate = DataMessage.PollTerminate(targetSentTimestamp = 100)),
       senderRecipient = alice,
       metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId(), CiphertextMessage.WHISPER_TYPE),
-      threadRecipient = bob,
+      threadRecipient = Recipient.resolved(groupRecipientId),
       groupId = groupId,
       receivedTime = 200
     )
@@ -310,6 +310,7 @@ class DataMessageProcessorTest_polls {
       envelope = MessageContentFuzzer.envelope(100),
       message = DataMessage(pollVote = pollVote),
       senderRecipient = senderRecipient,
+      threadRecipient = Recipient.resolved(groupRecipientId),
       earlyMessageCacheEntry = null
     )
   }

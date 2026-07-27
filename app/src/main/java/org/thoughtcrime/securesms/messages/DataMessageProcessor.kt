@@ -185,7 +185,7 @@ object DataMessageProcessor {
       message.groupCallUpdate != null -> handleGroupCallUpdateMessage(envelope, senderRecipient.id, groupId)
       message.pollCreate != null -> insertResult = handlePollCreate(context, envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime)
       message.pollTerminate != null -> insertResult = handlePollTerminate(context, envelope, metadata, message, senderRecipient, earlyMessageCacheEntry, threadRecipient, groupId, receivedTime)
-      message.pollVote != null -> messageId = handlePollVote(context, envelope, message, senderRecipient, earlyMessageCacheEntry)
+      message.pollVote != null -> messageId = handlePollVote(context, envelope, message, senderRecipient, threadRecipient, earlyMessageCacheEntry)
       message.pinMessage != null -> insertResult = handlePinMessage(envelope, metadata, message, senderRecipient, threadRecipient, groupId, receivedTime, earlyMessageCacheEntry)
       message.unpinMessage != null -> messageId = handleUnpinMessage(envelope, message, senderRecipient, threadRecipient, earlyMessageCacheEntry)
       message.adminDelete != null -> messageId = handleAdminRemoteDelete(context, envelope, message, senderRecipient, threadRecipient, earlyMessageCacheEntry)
@@ -1152,7 +1152,7 @@ object DataMessageProcessor {
 
     handlePossibleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime)
 
-    val messageId = handlePollValidation(envelope = envelope, targetSentTimestamp = targetSentTimestamp, senderRecipient = senderRecipient, earlyMessageCacheEntry = earlyMessageCacheEntry, targetAuthor = senderRecipient)
+    val messageId = handlePollValidation(envelope = envelope, targetSentTimestamp = targetSentTimestamp, senderRecipient = senderRecipient, earlyMessageCacheEntry = earlyMessageCacheEntry, targetAuthor = senderRecipient, threadRecipient = threadRecipient)
     if (messageId == null) {
       return null
     }
@@ -1191,6 +1191,7 @@ object DataMessageProcessor {
     envelope: Envelope,
     message: DataMessage,
     senderRecipient: Recipient,
+    threadRecipient: Recipient,
     earlyMessageCacheEntry: EarlyMessageCacheEntry?
   ): MessageId? {
     val pollVote: DataMessage.PollVote = message.pollVote!!
@@ -1204,7 +1205,7 @@ object DataMessageProcessor {
       return null
     }
 
-    val messageId = handlePollValidation(envelope, targetSentTimestamp, senderRecipient, earlyMessageCacheEntry, Recipient.externalPush(targetAuthorServiceId))
+    val messageId = handlePollValidation(envelope, targetSentTimestamp, senderRecipient, earlyMessageCacheEntry, Recipient.externalPush(targetAuthorServiceId), threadRecipient)
     if (messageId == null) {
       return null
     }
@@ -1618,7 +1619,8 @@ object DataMessageProcessor {
     targetSentTimestamp: Long,
     senderRecipient: Recipient,
     earlyMessageCacheEntry: EarlyMessageCacheEntry?,
-    targetAuthor: Recipient
+    targetAuthor: Recipient,
+    threadRecipient: Recipient
   ): MessageId? {
     val targetMessage = SignalDatabase.messages.getMessageFor(targetSentTimestamp, targetAuthor.id)
     if (targetMessage == null) {
@@ -1638,6 +1640,11 @@ object DataMessageProcessor {
     val targetThreadRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(targetMessage.threadId)
     if (targetThreadRecipientId == null) {
       warn(envelope.clientTimestamp!!, "[handlePollValidation] Could not find a thread for the message. timestamp: $targetSentTimestamp  author: ${targetAuthor.id}")
+      return null
+    }
+
+    if (targetThreadRecipientId != threadRecipient.id) {
+      warn(envelope.clientTimestamp!!, "[handlePollValidation] Target poll belongs to a different conversation than the message. timestamp: $targetSentTimestamp  author: ${targetAuthor.id}")
       return null
     }
 

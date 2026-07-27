@@ -263,7 +263,8 @@ object SyncMessageProcessor {
         dataMessage.isMediaMessage -> threadId = handleSynchronizeSentMediaMessage(context, sent, envelope.clientTimestamp!!, senderRecipient)
         dataMessage.pollCreate != null -> threadId = handleSynchronizedPollCreate(envelope, dataMessage, sent, senderRecipient)
         dataMessage.pollVote != null -> {
-          DataMessageProcessor.handlePollVote(context, envelope, dataMessage, senderRecipient, earlyMessageCacheEntry)
+          val destination = getSyncMessageDestination(sent)
+          DataMessageProcessor.handlePollVote(context, envelope, dataMessage, senderRecipient, destination, earlyMessageCacheEntry)
           threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
         }
         dataMessage.pollTerminate != null -> threadId = handleSynchronizedPollEnd(envelope, dataMessage, sent, senderRecipient, earlyMessageCacheEntry)
@@ -2060,6 +2061,13 @@ object SyncMessageProcessor {
       }
       return -1
     }
+
+    val targetThreadId = SignalDatabase.threads.getRecipientIdForThreadId(targetMessage.threadId)
+    if (threadId != targetMessage.threadId) {
+      warn(envelope.clientTimestamp!!, "Target thread does not match. $threadId $targetThreadId")
+      return -1
+    }
+
     val poll = SignalDatabase.polls.getPoll(targetMessage.id)
     if (poll == null) {
       warn(envelope.clientTimestamp!!, "Unable to find poll for poll termination. Dropping.")
