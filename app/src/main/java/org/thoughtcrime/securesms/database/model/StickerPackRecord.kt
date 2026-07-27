@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database.model
 import android.net.Uri
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.stickers.StickerUrl
+import org.whispersystems.signalservice.api.storage.StorageId
 import java.util.Optional
 
 /**
@@ -22,6 +23,20 @@ data class StickerPackRecord(
   @JvmField
   val authorOptional: Optional<String> = if (author.isBlank()) Optional.empty() else Optional.of(author)
 }
+
+/**
+ * The subset of sticker pack data that is synced via storage service. Unlike [StickerPackRecord],
+ * this can represent packs that have no downloaded stickers, like tombstones for uninstalled packs.
+ */
+data class StickerPackSyncRecord(
+  val packId: StickerPackId,
+  val packKey: StickerPackKey,
+  val position: Int,
+  val installed: Boolean,
+  val deletedTimestampMs: Long,
+  val storageServiceId: StorageId?,
+  val storageServiceProto: ByteArray?
+)
 
 /**
  * A unique identifier for a sticker pack.

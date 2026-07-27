@@ -16,7 +16,7 @@ class TestSignalDatabase(
   context: Application,
   val supportReadableDatabase: SupportSQLiteDatabase,
   val supportWritableDatabase: SupportSQLiteDatabase
-) : SignalDatabase(context, DatabaseSecret(ByteArray(32).apply { SecureRandom().nextBytes(this) }), AttachmentSecret()) {
+) : SignalDatabase(context, DatabaseSecret(ByteArray(32).apply { SecureRandom().nextBytes(this) }), AttachmentSecret(null, null, ByteArray(32).apply { SecureRandom().nextBytes(this) })) {
 
   constructor(context: Application, testOpenHelper: SupportSQLiteOpenHelper) : this(context, testOpenHelper.readableDatabase, testOpenHelper.writableDatabase)
 

@@ -209,9 +209,10 @@ public class ApplicationMigrations {
     static final int FIX_CHANGE_NUMBER_ERROR_2     = 165;
     static final int LOCAL_ARCHIVE_RECONCILE       = 166;
     static final int GROUP_DELETED_AT_BACKFILL     = 167;
+    static final int STICKER_PACK_STORAGE_SYNC     = 168;
   }
 
-  public static final int CURRENT_VERSION = 167;
+  public static final int CURRENT_VERSION = 168;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -968,6 +969,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.GROUP_DELETED_AT_BACKFILL) {
       jobs.put(Version.GROUP_DELETED_AT_BACKFILL, new GroupDeletedBackfillMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.STICKER_PACK_STORAGE_SYNC) {
+      jobs.put(Version.STICKER_PACK_STORAGE_SYNC, new SyncStickerPacksMigrationJob());
     }
 
     return jobs;

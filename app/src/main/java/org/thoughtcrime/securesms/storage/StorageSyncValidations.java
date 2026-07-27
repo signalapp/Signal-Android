@@ -159,6 +159,11 @@ public final class StorageSyncValidations {
         throw new DuplicateNotificationProfileError();
       }
 
+      ids = manifest.getStorageIdsByType().get(ManifestRecord.Identifier.Type.STICKER_PACK.getValue());
+      if (ids.size() != new HashSet<>(ids).size()) {
+        throw new DuplicateStickerPackError();
+      }
+
       throw new DuplicateRawIdAcrossTypesError();
     }
 
@@ -221,6 +226,9 @@ public final class StorageSyncValidations {
   }
 
   private static final class DuplicateNotificationProfileError extends Error {
+  }
+
+  private static final class DuplicateStickerPackError extends Error {
   }
 
   private static final class InsertNotPresentInFullIdSetError extends Error {

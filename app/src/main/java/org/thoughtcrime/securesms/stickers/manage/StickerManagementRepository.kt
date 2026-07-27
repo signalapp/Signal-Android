@@ -134,7 +134,7 @@ object StickerManagementRepository {
   }
 
   suspend fun setStickerPacksOrder(packsInOrder: List<StickerPackRecord>) = withContext(Dispatchers.Default) {
-    stickersDbTable.updatePackOrder(packsInOrder)
+    stickersDbTable.updatePackPositions(packsInOrder)
   }
 
   interface Callback<T> {

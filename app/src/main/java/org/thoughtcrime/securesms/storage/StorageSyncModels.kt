@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.storage
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId
+import org.signal.core.util.Hex
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.isNullOrEmpty
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.inAppPaymentSubscribers
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.RecipientRecord
+import org.thoughtcrime.securesms.database.model.StickerPackSyncRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
@@ -39,6 +41,7 @@ import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
+import org.whispersystems.signalservice.api.storage.SignalStickerPackRecord
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.storage.StorageId
@@ -48,6 +51,7 @@ import org.whispersystems.signalservice.api.storage.toSignalContactRecord
 import org.whispersystems.signalservice.api.storage.toSignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.toSignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.toSignalNotificationProfileRecord
+import org.whispersystems.signalservice.api.storage.toSignalStickerPackRecord
 import org.whispersystems.signalservice.api.storage.toSignalStorageRecord
 import org.whispersystems.signalservice.api.storage.toSignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
@@ -100,6 +104,10 @@ object StorageSyncModels {
 
   fun localToRemoteRecord(profile: NotificationProfile, rawStorageId: ByteArray): SignalStorageRecord {
     return localToRemoteNotificationProfile(profile, rawStorageId).toSignalStorageRecord()
+  }
+
+  fun localToRemoteRecord(pack: StickerPackSyncRecord, rawStorageId: ByteArray): SignalStorageRecord {
+    return localToRemoteStickerPack(pack, rawStorageId).toSignalStorageRecord()
   }
 
   @JvmStatic
@@ -463,6 +471,22 @@ object StorageSyncModels {
       scheduleDaysEnabled = localToRemoteDayOfWeek(profile.schedule.daysEnabled)
       deletedAtTimestampMs = profile.deletedTimestampMs
     }.build().toSignalNotificationProfileRecord(StorageId.forNotificationProfile(rawStorageId))
+  }
+
+  fun localToRemoteStickerPack(pack: StickerPackSyncRecord, rawStorageId: ByteArray?): SignalStickerPackRecord {
+    return SignalStickerPackRecord.newBuilder(pack.storageServiceProto).apply {
+      packId = Hex.fromStringCondensed(pack.packId.value).toByteString()
+
+      if (pack.deletedTimestampMs > 0) {
+        packKey = ByteString.EMPTY
+        position = 0
+        deletedAtTimestamp = pack.deletedTimestampMs
+      } else {
+        packKey = Hex.fromStringCondensed(pack.packKey.value).toByteString()
+        position = pack.position
+        deletedAtTimestamp = 0
+      }
+    }.build().toSignalStickerPackRecord(StorageId.forStickerPack(rawStorageId))
   }
 
   private fun localToRemoteDayOfWeek(daysEnabled: Set<DayOfWeek>): List<RemoteDayOfWeek> {

@@ -114,6 +114,7 @@ import org.thoughtcrime.securesms.migrations.SyncCallLinksMigrationJob;
 import org.thoughtcrime.securesms.migrations.SyncChatFoldersMigrationJob;
 import org.thoughtcrime.securesms.migrations.SyncDistributionListsMigrationJob;
 import org.thoughtcrime.securesms.migrations.SyncKeysMigrationJob;
+import org.thoughtcrime.securesms.migrations.SyncStickerPacksMigrationJob;
 import org.thoughtcrime.securesms.migrations.TrimByLengthSettingsMigrationJob;
 import org.thoughtcrime.securesms.migrations.UpdateSmsJobsMigrationJob;
 import org.thoughtcrime.securesms.migrations.UserNotificationMigrationJob;
@@ -383,6 +384,7 @@ public final class JobManagerFactories {
       put(SyncChatFoldersMigrationJob.KEY,                new SyncChatFoldersMigrationJob.Factory());
       put(SyncDistributionListsMigrationJob.KEY,          new SyncDistributionListsMigrationJob.Factory());
       put(SyncKeysMigrationJob.KEY,                       new SyncKeysMigrationJob.Factory());
+      put(SyncStickerPacksMigrationJob.KEY,               new SyncStickerPacksMigrationJob.Factory());
       put(TrimByLengthSettingsMigrationJob.KEY,           new TrimByLengthSettingsMigrationJob.Factory());
       put(UpdateSmsJobsMigrationJob.KEY,                  new UpdateSmsJobsMigrationJob.Factory());
       put(UserNotificationMigrationJob.KEY,               new UserNotificationMigrationJob.Factory());

@@ -34,6 +34,10 @@ public class StorageId {
     return new StorageId(ManifestRecord.Identifier.Type.ACCOUNT.getValue(), Preconditions.checkNotNull(raw));
   }
 
+  public static StorageId forStickerPack(byte[] raw) {
+    return new StorageId(ManifestRecord.Identifier.Type.STICKER_PACK.getValue(), Preconditions.checkNotNull(raw));
+  }
+
   public static StorageId forCallLink(byte[] raw) {
     return new StorageId(ManifestRecord.Identifier.Type.CALL_LINK.getValue(), Preconditions.checkNotNull(raw));
   }
