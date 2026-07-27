@@ -409,6 +409,51 @@ class ApngDecoderTest {
     ApngDecoder.create(contentLength = 1024) { ByteArrayInputStream(malicious) }
   }
 
+  @Test(expected = IOException::class)
+  fun `create rejects a non-PNG with IOException rather than an unchecked exception`() {
+    ApngDecoder.create { ByteArrayInputStream(ByteArray(32)) }
+  }
+
+  @Test
+  fun `isApng returns false for a chunk length that overruns the end of the file`() {
+    val malicious = ByteArrayOutputStream().apply {
+      write(byteArrayOf(0x89.toByte(), 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A)) // PNG magic
+      write(byteArrayOf(0x7F, 0xFF.toByte(), 0xFF.toByte(), 0xFF.toByte())) // declared chunk length = 0x7FFFFFFF
+      write("junk".toByteArray(Charsets.US_ASCII))
+    }.toByteArray()
+
+    assertFalse(isApngWithoutLeaking(malicious))
+  }
+
+  @Test
+  fun `isApng returns false for input shorter than the PNG magic`() {
+    assertFalse(isApngWithoutLeaking(ByteArray(3)))
+    assertFalse(isApngWithoutLeaking(ByteArray(0)))
+  }
+
+  @Test
+  fun `isApng returns false for a truncated chunk header`() {
+    val magic = byteArrayOf(0x89.toByte(), 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A)
+    assertFalse(isApngWithoutLeaking(magic + byteArrayOf(0x00, 0x00)))
+  }
+
+  @Test
+  fun `isApng returns a clean result for truncation at every byte boundary of a real APNG`() {
+    val full = open("test07.png").use { it.readBytes() }
+    for (length in 0 until full.size) {
+      isApngWithoutLeaking(full.copyOf(length))
+    }
+  }
+
+  /** Runs [ApngDecoder.isApng], failing the test if anything other than a clean true/false comes back. */
+  private fun isApngWithoutLeaking(bytes: ByteArray): Boolean {
+    try {
+      return ApngDecoder.isApng(ByteArrayInputStream(bytes))
+    } catch (e: Throwable) {
+      throw AssertionError("isApng leaked ${e.javaClass.name}", e)
+    }
+  }
+
   // -- Bounds checking --
 
   @Test(expected = IOException::class)
