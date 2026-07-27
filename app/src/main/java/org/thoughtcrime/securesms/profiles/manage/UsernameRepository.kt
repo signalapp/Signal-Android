@@ -311,7 +311,11 @@ object UsernameRepository {
   fun parseLink(url: String): UsernameLinkComponents? {
     val match: MatchResult = URL_REGEX.find(url) ?: return null
     val path: String = match.groups[2]?.value ?: return null
-    val allBytes: ByteArray = Base64.decode(path)
+    val allBytes: ByteArray = try {
+      Base64.decode(path)
+    } catch (e: IllegalArgumentException) {
+      return null
+    }
 
     if (allBytes.size != 48) {
       return null
