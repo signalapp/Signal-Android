@@ -77,7 +77,7 @@ class CreatePollFragment : ComposeDialogFragment() {
   companion object {
     private val TAG = Log.tag(CreatePollFragment::class)
 
-    const val MAX_QUESTION_CHARACTER_LENGTH = 200
+    const val MAX_QUESTION_CHARACTER_LENGTH = 100
     const val MAX_CHARACTER_LENGTH = 100
     const val MAX_OPTIONS = 10
     const val MIN_OPTIONS = 2
