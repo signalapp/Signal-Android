@@ -45,11 +45,11 @@
     <string name="RegistrationActivity_select_a_country">Vyberte krajinu</string>
     <string name="RegistrationActivity_phone_number_description">Telefónne číslo</string>
     <!-- Error shown beneath the phone number field when the entered number is not valid -->
-    <string name="RegistrationActivity_not_a_valid_phone_number">Not a valid phone number</string>
+    <string name="RegistrationActivity_not_a_valid_phone_number">Nie je platné telefónne číslo</string>
     <!-- Dialog title shown when the entered phone number is rejected as invalid -->
     <string name="RegistrationActivity_invalid_phone_number">Neplatné telefónne číslo</string>
     <!-- Dialog body shown when the entered phone number is rejected as invalid -->
-    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">The number you entered doesn\'t appear to be valid. Please check the country code and phone number and try again.</string>
+    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">Číslo, ktoré ste zadali, je pravdepodobne neplatné. Skontrolujte kód krajiny a telefónne číslo a skúste to znova.</string>
     <string name="RegistrationActivity_next">Ďalej</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">Je nižšie uvedené telefónne číslo správne?</string>
@@ -87,8 +87,8 @@
     <string name="VerificationCodeScreen__resend_code">Znovu odoslať kód</string>
     <!-- Button text for call me action -->
     <string name="VerificationCodeScreen__call_me_instead">Zavolajte mi</string>
-    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
-    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for resend SMS when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__resend_code_available_in">Resend Code (%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__call_me_available_in">Zavolajte mi (%1$02d:%2$02d)</string>
     <!-- Toast shown when the user enters an incorrect verification code -->
@@ -105,6 +105,10 @@
     <string name="VerificationCodeScreen__unable_to_send_sms">Momentálne nemôžeme poslať SMS na vaše číslo. Skúste to znova o pár hodín.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Kód sa nepodarilo odoslať zvoleným spôsobom. Skúste inú možnosť.</string>
+    <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">We couldn\'t call you with a verification code. Please try again, or request the code via SMS instead.</string>
+    <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">We couldn\'t send you an SMS with a verification code. Please try again, or request the code via a phone call instead.</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">Registrácia zlyhala. Skúste to znova.</string>
     <!-- Button text for having trouble with verification -->
@@ -204,7 +208,7 @@
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">Kľúč na obnovenie</string>
     <!-- Label for the backup passphrase text field -->
-    <string name="LocalBackupRestoreScreen__passphrase">Passphrase</string>
+    <string name="LocalBackupRestoreScreen__passphrase">Prístupová fráza</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">Príliš dlhé (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
@@ -251,11 +255,11 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">Skúsiť znova</string>
     <!-- Title shown when the entered passphrase cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Incorrect passphrase</string>
+    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Nesprávna prístupová fráza</string>
     <!-- Title shown when the entered recovery key cannot decrypt the selected backup -->
     <string name="LocalBackupRestoreScreen__incorrect_recovery_key">Nesprávny kľúč na obnovenie</string>
     <!-- Description shown when the entered passphrase or recovery key cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_credential_description">The credential you entered doesn\'t match this backup. Please check it and try again.</string>
+    <string name="LocalBackupRestoreScreen__incorrect_credential_description">Zadaný prihlasovací údaj sa nezhoduje s touto zálohou. Skontrolujte ho a skúste to znova.</string>
     <!-- Button to link an existing Signal account to this device -->
     <string name="WelcomeScreen__link_your_account">Prepojte svoj účet</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
@@ -375,6 +379,8 @@
     <string name="PinCreationScreen__reenter_pin">Znovu zadajte PIN</string>
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">PIN kódy sa nezhodujú. Skúste to znova.</string>
+    <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
+    <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">Zistiť viac o PINoch</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -398,6 +404,8 @@
     <string name="PinEntryScreen__enter_your_pin">Zadajte svoj PIN</string>
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Zadajte PIN kód, ktorý ste vytvorili pri prvej inštalácii Signalu</string>
+    <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
+    <string name="PinEntryScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Enter the unique Signal PIN that you previously chose for your account.</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="one">Nesprávny PIN kód. Zostáva %1$d pokus.</item>

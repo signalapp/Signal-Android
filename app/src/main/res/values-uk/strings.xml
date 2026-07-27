@@ -298,6 +298,16 @@
     <string name="ClientDeprecatedActivity_warning">Увага</string>
     <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Ваша версія Signal застаріла. Ви можете переглядати історію повідомлень, але не зможете надсилати й отримувати повідомлення, поки не оновите застосунок.</string>
 
+    <!-- ClockSkewActivity -->
+    <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
+    <string name="ClockSkewActivity__title">Date is inaccurate</string>
+    <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
+    <string name="ClockSkewActivity__date_inaccurate_description">Your device date is inaccurate.\nAdjust your clock and try again.</string>
+    <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
+    <string name="ClockSkewActivity__time_prefix">Your device date and time is:\n%1$s</string>
+    <!-- Button that opens the system date and time settings -->
+    <string name="ClockSkewActivity__adjust_date_button">Adjust date</string>
+
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Браузер не знайдено.</string>
     <string name="CommunicationActions_send_email">Відправити електронного листа</string>
@@ -392,6 +402,8 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">Користувач %1$s видалив це повідомлення</string>
     <string name="ConversationItem_you_deleted_this_message">Ви видалили це повідомлення</string>
+    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
+    <string name="ConversationItem_delete_for_everyone_question">Delete for everyone?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Адміністратор %1$s видалив це повідомлення</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -603,7 +615,7 @@
     <string name="ConversationFragment_delete">Видалити</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Видалити всюди</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Це повідомлення буде видалено для всіх у цьому чаті, якщо вони використовують найновішу версію Signal. Учасники чату побачать, що ви видалили повідомлення.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat. They will be able to see that you deleted a message.</string>
     <string name="ConversationFragment_quoted_message_not_found">Початкове повідомлення не знайдено</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Початкове повідомлення вже недоступне</string>
     <string name="ConversationFragment_failed_to_open_message">Не вдалося відкрити повідомлення</string>
@@ -786,23 +798,38 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Немає непрочитаних чатів</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Видалити вибраний чат?</item>
-        <item quantity="few">Видалити вибрані чати?</item>
-        <item quantity="many">Видалити вибрані чати?</item>
-        <item quantity="other">Видалити вибрані чати?</item>
+        <item quantity="one">Delete message history?</item>
+        <item quantity="few">Delete message histories?</item>
+        <item quantity="many">Delete message histories?</item>
+        <item quantity="other">Delete message histories?</item>
     </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">%1$d вибраний чат буде видалено назавжди.</item>
-        <item quantity="few">%1$d вибрані чати буде видалено назавжди.</item>
-        <item quantity="many">%1$d вибраних чатів буде видалено назавжди.</item>
-        <item quantity="other">%1$d вибраного чату буде видалено назавжди.</item>
+        <item quantity="one">All messages in this chat will be deleted.</item>
+        <item quantity="few">All messages in these chats will be deleted.</item>
+        <item quantity="many">All messages in these chats will be deleted.</item>
+        <item quantity="other">All messages in these chats will be deleted.</item>
     </plurals>
-    <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
+    <!-- Dialog message shown when deleting chats, with at least one group -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
+        <item quantity="one">All messages in this chat will be deleted. You will still be a member of this group.</item>
+        <item quantity="few">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="many">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="other">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">Вибраний чат буде остаточно видалено з усіх ваших пристроїв.</item>
-        <item quantity="few">%1$d вибрані чати буде остаточно видалено з усіх ваших пристроїв.</item>
-        <item quantity="many">%1$d вибраних чатів буде остаточно видалено з усіх ваших пристроїв.</item>
-        <item quantity="other">%1$d вибраного чату буде остаточно видалено з усіх ваших пристроїв.</item>
+        <item quantity="one">All messages in this chat will be deleted from all your devices.</item>
+        <item quantity="few">All messages in these chats will be deleted from all your devices.</item>
+        <item quantity="many">All messages in these chats will be deleted from all your devices.</item>
+        <item quantity="other">All messages in these chats will be deleted from all your devices.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
+        <item quantity="one">All messages in this chat will be deleted from all your devices. You will still be a member of this group.</item>
+        <item quantity="few">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="many">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="other">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Триває видалення</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1172,6 +1199,8 @@
     <string name="LinkDeviceFragment__edit_name">Змінити назву</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">Зв\'язування скасовано</string>
+    <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">You can only have %1$d linked devices.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">Не закривайте застосунок</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -3266,6 +3295,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_backups" translatable="false">Backups:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Групу оновлено</string>
@@ -5375,29 +5405,29 @@
 
     <!-- LinkedDeviceAccountSettingsFragment -->
     <!-- Title of an informational card shown on the account settings screen of a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">This is a linked device</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">Це зв\'язаний пристрій</string>
     <!-- Body of an informational card explaining that account settings must be managed from the primary device -->
-    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">To manage your account settings, open Signal on your primary device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">Щоб керувати налаштуваннями акаунта, відкрийте Signal на основному пристрої.</string>
     <!-- Title of a settings row that deletes all Signal data from this linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Delete app data</string>
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Видалити дані застосунку</string>
     <!-- Subtitle of the delete app data row explaining what it does -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">This will remove all data from the Signal app on this device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">Із застосунку Signal на цьому пристрої буде видалено всі дані.</string>
     <!-- Title of the confirmation dialog shown when deleting app data from a linked device -->
     <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">Видалити дані застосунку?</string>
     <!-- Message of the confirmation dialog explaining that only this device\'s data is deleted, not the account -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">This will delete all data and messages from the Signal app on this device. Your Signal account and data on your primary device or other linked devices will not be deleted. The app will close after this process is complete.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">Із застосунку Signal на цьому пристрої буде видалено всі дані. Ваш акаунт Signal і дані на основному пристрої та інших зв\'язаних пристроях не буде видалено. Після цього застосунок закриється.</string>
 
     <!-- LinkedDeviceAccountLearnMoreBottomSheet -->
     <!-- Emphasized lead-in phrase shown in bold at the start of the learn more sheet body. Must appear verbatim within LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Зв’язані пристрої</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Зв\'язані пристрої</string>
     <!-- Body text of the linked devices learn more sheet. The leading \"Linked Devices\" is shown in bold. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Linked Devices let you access your Signal account and messages securely on any of your additional devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Зв\'язані пристрої дають безпечний доступ до акаунту й повідомлень Signal на будь-якому з додаткових пристроїв.</string>
     <!-- Bullet point describing what devices can be linked -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">You can link a desktop, tablet or additional phone</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">Ви можете зв\'язати комп’ютер, планшет або додатковий телефон.</string>
     <!-- Bullet point describing that the primary device manages linked devices -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Your primary device manages what\'s linked, you can link up to 5 devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Керування зв\'язаними пристроями здійснюється з основного. Ви можете зв\'язати до 5 пристроїв.</string>
     <!-- Bullet point describing that some settings are only available on the primary device -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Some account settings are managed on your primary device only, including account settings and backups.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Деякі налаштування доступні лише на основному пристрої, зокрема налаштування акаунту й резервні копії.</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Перенести або відновити акаунт</string>
@@ -6699,6 +6729,7 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Принаймні один файл був завеликий</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Принаймні один елемент був неприпустимий</string>
     <string name="MediaReviewFragment__too_many_items_selected">Вибрано забагато файлів</string>
+    <string name="MediaReviewFragment__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">Відео буде показано один раз</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
@@ -7255,7 +7286,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Сума</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Дякуємо за підтримку Signal. Ваш внесок допомагає реалізувати нашу місію: розробляти технологію конфіденційного обміну повідомленнями з відкритим кодом, яка захищає свободу слова й робить можливим безпечне спілкування для мільйонів людей у всьому світі. Якщо ви резидент Сполучених Штатів Америки, збережіть це підтвердження для звітування в податкові органи. Signal Technology Foundation — звільнена від оподаткування неприбуткова організація, створена відповідно до розділу 501c3 податкового кодексу США. Наш федеральний податковий номер: 82–4506840.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Thank you for supporting Signal. Your contribution helps fuel the mission of protecting free expression and enabling secure global communication for millions around the world, through open source privacy technology. If you’re a resident of the United States, please retain this receipt for your tax records. Signal Technology Foundation is a tax–exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82–4506840. Signal did not provide any goods or services in consideration of this contribution.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Підтверджень немає</string>
 
@@ -9244,15 +9275,15 @@
     <!-- Subtext describing when a backup has never taken place. -->
     <string name="RemoteBackupsSettingsFragment__never">Відсутня</string>
     <!-- Subtext on a linked device describing when the primary device last backed up. Placeholder is the formatted date and time. -->
-    <string name="RemoteBackupsSettingsFragment__your_phone_s">Your phone · %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__your_phone_s">Ваш телефон · %1$s</string>
     <!-- Message shown on a linked device with a free backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">You can manage or upgrade your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">Щоб змінити передплату на надійне резервне копіювання від Signal, зайдіть в акаунт на основному пристрої.</string>
     <!-- Message shown on a linked device with a paid backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">You can manage or cancel your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">Щоб змінити або скасувати передплату на надійне резервне копіювання від Signal, зайдіть в акаунт на основному пристрої.</string>
     <!-- Message shown on a linked device with a canceled backup subscription explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">You can manage or renew your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">Щоб змінити або поновити передплату на надійне резервне копіювання від Signal, зайдіть в акаунт на основному пристрої.</string>
     <!-- Message shown on a linked device when backups are off or the subscription was not found, explaining that backups are managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">You can manage or upgrade Signal Secure Backups on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">Щоб змінити налаштування надійного резервного копіювання від Signal, зайдіть в акаунт на основному пристрої.</string>
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">Створити копію зараз</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->

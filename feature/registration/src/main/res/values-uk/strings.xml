@@ -45,11 +45,11 @@
     <string name="RegistrationActivity_select_a_country">Оберіть країну</string>
     <string name="RegistrationActivity_phone_number_description">Номер телефону</string>
     <!-- Error shown beneath the phone number field when the entered number is not valid -->
-    <string name="RegistrationActivity_not_a_valid_phone_number">Not a valid phone number</string>
+    <string name="RegistrationActivity_not_a_valid_phone_number">Недійсний номер телефону</string>
     <!-- Dialog title shown when the entered phone number is rejected as invalid -->
     <string name="RegistrationActivity_invalid_phone_number">Такого номера не існує</string>
     <!-- Dialog body shown when the entered phone number is rejected as invalid -->
-    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">The number you entered doesn\'t appear to be valid. Please check the country code and phone number and try again.</string>
+    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">Схоже, ви ввели недійсний номер. Перевірте код країни та номер телефону й спробуйте ще раз.</string>
     <string name="RegistrationActivity_next">Далі</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">Чи правильно зазначено номер телефону?</string>
@@ -87,8 +87,8 @@
     <string name="VerificationCodeScreen__resend_code">Надішліть код ще раз</string>
     <!-- Button text for call me action -->
     <string name="VerificationCodeScreen__call_me_instead">Подзвоніть мені</string>
-    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
-    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for resend SMS when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__resend_code_available_in">Resend Code (%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__call_me_available_in">Подзвоніть мені (%1$02d:%2$02d)</string>
     <!-- Toast shown when the user enters an incorrect verification code -->
@@ -105,6 +105,10 @@
     <string name="VerificationCodeScreen__unable_to_send_sms">Не вдається надіслати SMS на ваш номер. Будь ласка, спробуйте знову через кілька годин.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Не вдалося надіслати код обраним способом. Будь ласка, оберіть інший.</string>
+    <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">We couldn\'t call you with a verification code. Please try again, or request the code via SMS instead.</string>
+    <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">We couldn\'t send you an SMS with a verification code. Please try again, or request the code via a phone call instead.</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">Помилка реєстрації. Будь ласка, спробуйте ще раз.</string>
     <!-- Button text for having trouble with verification -->
@@ -204,7 +208,7 @@
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">Ключ відновлення</string>
     <!-- Label for the backup passphrase text field -->
-    <string name="LocalBackupRestoreScreen__passphrase">Passphrase</string>
+    <string name="LocalBackupRestoreScreen__passphrase">Пароль</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">Ключ задовгий (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
@@ -231,7 +235,7 @@
     <!-- Title of the dialog warning that the backup being restored was created with a different account -->
     <string name="EnterAepScreen__restore_to_new_account">Відновити на новому акаунті?</string>
     <!-- Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="EnterAepScreen__restore_to_new_account_body">Цю резервну копію було створено на іншому акаунті Signal. Ви можете відновити дані з неї на новому акаунті, але не будете учасником відновлених груп.</string>
+    <string name="EnterAepScreen__restore_to_new_account_body">Цю резервну копію було створено для іншого акаунту Signal. Ви можете відновити дані з неї в новому акаунті, але не будете учасником відновлених груп.</string>
     <!-- Confirm button label for the restore to new account dialog -->
     <string name="EnterAepScreen__restore">Відновити</string>
     <!-- Text shown while preparing the restore -->
@@ -251,11 +255,11 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">Повторити спробу</string>
     <!-- Title shown when the entered passphrase cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Incorrect passphrase</string>
+    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Неправильний пароль</string>
     <!-- Title shown when the entered recovery key cannot decrypt the selected backup -->
     <string name="LocalBackupRestoreScreen__incorrect_recovery_key">Неправильний ключ відновлення</string>
     <!-- Description shown when the entered passphrase or recovery key cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_credential_description">The credential you entered doesn\'t match this backup. Please check it and try again.</string>
+    <string name="LocalBackupRestoreScreen__incorrect_credential_description">Введений ключ не відповідає цій резервній копії. Перевірте його правильність і спробуйте знову.</string>
     <!-- Button to link an existing Signal account to this device -->
     <string name="WelcomeScreen__link_your_account">Зв\'язати акаунт</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
@@ -375,6 +379,8 @@
     <string name="PinCreationScreen__reenter_pin">Введіть PIN-код ще раз</string>
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">PIN-коди не збігаються. Спробуйте ще раз.</string>
+    <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
+    <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">Докладніше про PIN-коди</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -398,6 +404,8 @@
     <string name="PinEntryScreen__enter_your_pin">Введіть свій PIN-код</string>
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Введіть PIN-код, який ви створили, коли вперше встановили Signal</string>
+    <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
+    <string name="PinEntryScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Enter the unique Signal PIN that you previously chose for your account.</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="one">Неправильний PIN-код. У вас є ще %1$d спроба.</item>

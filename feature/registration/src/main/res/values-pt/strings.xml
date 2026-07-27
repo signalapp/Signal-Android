@@ -3,7 +3,7 @@
   <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedScreen__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Leve a privacidade consigo.\nSeja você mesmo em todas as mensagens.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Leve a privacidade consigo.\nMostre o seu \"eu\" autêntico em todas as mensagens.</string>
     <!-- Non-English translations should use "Signal is a nonprofit" instead, dropping the 501c3 reference. -->
     <string name="RegistrationActivity_terms_and_privacy">O Signal é uma organização sem fins lucrativos\nTermos e Política de Privacidade</string>
     <string name="RegistrationActivity_continue">Continuar</string>
@@ -45,11 +45,11 @@
     <string name="RegistrationActivity_select_a_country">Selecione um país</string>
     <string name="RegistrationActivity_phone_number_description">Número de telefone</string>
     <!-- Error shown beneath the phone number field when the entered number is not valid -->
-    <string name="RegistrationActivity_not_a_valid_phone_number">Not a valid phone number</string>
+    <string name="RegistrationActivity_not_a_valid_phone_number">Não é um número de telemóvel válido</string>
     <!-- Dialog title shown when the entered phone number is rejected as invalid -->
     <string name="RegistrationActivity_invalid_phone_number">Número de telemóvel inválido</string>
     <!-- Dialog body shown when the entered phone number is rejected as invalid -->
-    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">The number you entered doesn\'t appear to be valid. Please check the country code and phone number and try again.</string>
+    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">O número que introduziu não parece ser válido. Verifique o código do país e número de telemóvel e tente novamente.</string>
     <string name="RegistrationActivity_next">Seguinte</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">O número de telemóvel em baixo está correto?</string>
@@ -80,15 +80,15 @@
     <!-- Title of the verification code entry screen -->
     <string name="VerificationCodeScreen__verification_code">Código de verificação</string>
     <!-- Subtitle explaining where the code was sent. Placeholder is the phone number -->
-    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Introduza o código que enviamos para %1$s</string>
+    <string name="VerificationCodeScreen__enter_the_code_we_sent_to_s">Introduza o código que enviámos para %1$s</string>
     <!-- Button text for wrong number action -->
     <string name="VerificationCodeScreen__wrong_number">Número errado?</string>
     <!-- Button text for resend SMS action -->
     <string name="VerificationCodeScreen__resend_code">Reenviar código</string>
     <!-- Button text for call me action -->
     <string name="VerificationCodeScreen__call_me_instead">Ligar-me</string>
-    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
-    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for resend SMS when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__resend_code_available_in">Resend Code (%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__call_me_available_in">Liguem-me (%1$02d:%2$02d)</string>
     <!-- Toast shown when the user enters an incorrect verification code -->
@@ -105,6 +105,10 @@
     <string name="VerificationCodeScreen__unable_to_send_sms">Não conseguimos enviar SMS para o seu número. Tente novamente daqui a umas horas.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Não foi possível enviar o código através do método selecionado. Tente outra opção.</string>
+    <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">We couldn\'t call you with a verification code. Please try again, or request the code via SMS instead.</string>
+    <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">We couldn\'t send you an SMS with a verification code. Please try again, or request the code via a phone call instead.</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">O registo falhou. Tente novamente.</string>
     <!-- Button text for having trouble with verification -->
@@ -204,7 +208,7 @@
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">Chave de recuperação</string>
     <!-- Label for the backup passphrase text field -->
-    <string name="LocalBackupRestoreScreen__passphrase">Passphrase</string>
+    <string name="LocalBackupRestoreScreen__passphrase">Frase de acesso</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">Demasiado longo (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
@@ -251,11 +255,11 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">Tentar novamente</string>
     <!-- Title shown when the entered passphrase cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Incorrect passphrase</string>
+    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Frase de acesso incorreta</string>
     <!-- Title shown when the entered recovery key cannot decrypt the selected backup -->
     <string name="LocalBackupRestoreScreen__incorrect_recovery_key">Chave de recuperação incorreta</string>
     <!-- Description shown when the entered passphrase or recovery key cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_credential_description">The credential you entered doesn\'t match this backup. Please check it and try again.</string>
+    <string name="LocalBackupRestoreScreen__incorrect_credential_description">A credencial que introduziu não corresponde a esta cópia de segurança. Verifique e tente novamente.</string>
     <!-- Button to link an existing Signal account to this device -->
     <string name="WelcomeScreen__link_your_account">Vincule a sua conta</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
@@ -373,6 +377,8 @@
     <string name="PinCreationScreen__reenter_pin">Reintroduza o PIN</string>
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">Os PINs não coincidem. Tente novamente.</string>
+    <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
+    <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">Saber mais acerca dos PINs</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -396,6 +402,8 @@
     <string name="PinEntryScreen__enter_your_pin">Introduza o seu PIN</string>
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Introduza o PIN que criou quando instalou o Signal</string>
+    <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
+    <string name="PinEntryScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Enter the unique Signal PIN that you previously chose for your account.</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="one">PIN incorreto. Resta-lhe %1$d tentativa</item>

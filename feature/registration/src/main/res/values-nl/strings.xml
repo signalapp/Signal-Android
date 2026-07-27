@@ -45,11 +45,11 @@
     <string name="RegistrationActivity_select_a_country">Selecteer een land</string>
     <string name="RegistrationActivity_phone_number_description">Telefoonnummer</string>
     <!-- Error shown beneath the phone number field when the entered number is not valid -->
-    <string name="RegistrationActivity_not_a_valid_phone_number">Not a valid phone number</string>
+    <string name="RegistrationActivity_not_a_valid_phone_number">Dit is geen geldig telefoonnummer</string>
     <!-- Dialog title shown when the entered phone number is rejected as invalid -->
     <string name="RegistrationActivity_invalid_phone_number">Ongeldig telefoonnummer</string>
     <!-- Dialog body shown when the entered phone number is rejected as invalid -->
-    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">The number you entered doesn\'t appear to be valid. Please check the country code and phone number and try again.</string>
+    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">Het ingevoerde telefoonnummer lijkt ongeldig. Controleer de landcode en het telefoonnummer en probeer het opnieuw.</string>
     <string name="RegistrationActivity_next">Volgende</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">Klopt het onderstaand telefoonnummer?</string>
@@ -87,8 +87,8 @@
     <string name="VerificationCodeScreen__resend_code">Stuur code opnieuw</string>
     <!-- Button text for call me action -->
     <string name="VerificationCodeScreen__call_me_instead">Bel me liever</string>
-    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
-    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for resend SMS when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__resend_code_available_in">Resend Code (%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__call_me_available_in">Bel me (%1$02d:%2$02d)</string>
     <!-- Toast shown when the user enters an incorrect verification code -->
@@ -105,6 +105,10 @@
     <string name="VerificationCodeScreen__unable_to_send_sms">We kunnen geen sms naar je nummer sturen. Probeer het over enkele uren opnieuw.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Code kon niet verzonden worden via de gekozen methode. Probeer een andere optie.</string>
+    <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">We couldn\'t call you with a verification code. Please try again, or request the code via SMS instead.</string>
+    <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">We couldn\'t send you an SMS with a verification code. Please try again, or request the code via a phone call instead.</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">Registratie is mislukt. Probeer het opnieuw.</string>
     <!-- Button text for having trouble with verification -->
@@ -204,7 +208,7 @@
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">Herstelsleutel</string>
     <!-- Label for the backup passphrase text field -->
-    <string name="LocalBackupRestoreScreen__passphrase">Passphrase</string>
+    <string name="LocalBackupRestoreScreen__passphrase">Wachtwoord</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">Te lang (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
@@ -251,11 +255,11 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">Opnieuw proberen</string>
     <!-- Title shown when the entered passphrase cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Incorrect passphrase</string>
+    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Incorrect wachtwoord</string>
     <!-- Title shown when the entered recovery key cannot decrypt the selected backup -->
     <string name="LocalBackupRestoreScreen__incorrect_recovery_key">Onjuiste herstelsleutel</string>
     <!-- Description shown when the entered passphrase or recovery key cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_credential_description">The credential you entered doesn\'t match this backup. Please check it and try again.</string>
+    <string name="LocalBackupRestoreScreen__incorrect_credential_description">Het wachtwoord dat je hebt ingevoerd komt niet overeen met deze back-up. Controleer het en probeer het opnieuw.</string>
     <!-- Button to link an existing Signal account to this device -->
     <string name="WelcomeScreen__link_your_account">Je account koppelen</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
@@ -373,6 +377,8 @@
     <string name="PinCreationScreen__reenter_pin">Voer je pincode opnieuw in</string>
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">De pincodes komen niet overeen, probeer het opnieuw.</string>
+    <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
+    <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">Meer lezen over pincodes</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -396,6 +402,8 @@
     <string name="PinEntryScreen__enter_your_pin">Voer je pincode in</string>
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Voer de pincode in die je hebt aangemaakt toen je Signal voor het eerst installeerde</string>
+    <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
+    <string name="PinEntryScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Enter the unique Signal PIN that you previously chose for your account.</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="one">Onjuiste pincode. Nog %1$d poging over.</item>
@@ -467,7 +475,7 @@
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
     <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">Tik op je profielfoto om Signal-instellingen te openen</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tip op ‘Gekoppelde apparaten’ en ‘Nieuw apparaat koppelen’</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">Tik op ‘Gekoppelde apparaten’ en ‘Nieuw apparaat koppelen’</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
     <string name="LinkAccountScreen__get_help_with_these_steps">Hulp bij deze stappen</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
@@ -489,7 +497,7 @@
     <!-- Error dialog message shown when linking this device fails -->
     <string name="LinkAccountScreen__error_linking_device">Er is een fout opgetreden bij het koppelen van dit apparaat</string>
     <!-- Title of the confirmation dialog shown when the scanned QR code belongs to a different account than the one this device is currently linked to -->
-    <string name="LinkAccountScreen__delete_app_data_question">Alle appgegevens wissen?</string>
+    <string name="LinkAccountScreen__delete_app_data_question">Alle app-gegevens wissen?</string>
     <!-- Body of the confirmation dialog warning that continuing will erase all local data before relinking to a different account -->
     <string name="LinkAccountScreen__you_are_attempting_to_link_a_different_account">Je probeert een ander Signal-account te koppelen. Als je doorgaat, worden alle Signal-gegevens die nu op dit apparaat staan gewist.</string>
     <!-- Destructive confirmation button that deletes all local data and restarts the app so it can be linked to a different account -->

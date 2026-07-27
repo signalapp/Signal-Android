@@ -292,6 +292,16 @@
     <string name="ClientDeprecatedActivity_warning">ご注意ください</string>
     <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">このバージョンのSignalは期限が切れています。メッセージの履歴は閲覧できますが、アップデートするまで送受信はできません。</string>
 
+    <!-- ClockSkewActivity -->
+    <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
+    <string name="ClockSkewActivity__title">Date is inaccurate</string>
+    <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
+    <string name="ClockSkewActivity__date_inaccurate_description">Your device date is inaccurate.\nAdjust your clock and try again.</string>
+    <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
+    <string name="ClockSkewActivity__time_prefix">Your device date and time is:\n%1$s</string>
+    <!-- Button that opens the system date and time settings -->
+    <string name="ClockSkewActivity__adjust_date_button">Adjust date</string>
+
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">ウェブブラウザが見つかりません。</string>
     <string name="CommunicationActions_send_email">メールを送る</string>
@@ -386,6 +396,8 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$sがこのメッセージを消去しました</string>
     <string name="ConversationItem_you_deleted_this_message">メッセージを消去しました</string>
+    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
+    <string name="ConversationItem_delete_for_everyone_question">Delete for everyone?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">管理者の%1$sがこのメッセージを消去しました</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -567,7 +579,7 @@
     <string name="ConversationFragment_delete">消去</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">すべての端末から消去</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">このメッセージは、チャットの参加者全員が最新バージョンのSignalを使用している場合、全員に対して消去されます。参加者には、あなたがメッセージを消去したことがわかります。</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat. They will be able to see that you deleted a message.</string>
     <string name="ConversationFragment_quoted_message_not_found">元のメッセージが見つかりません</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">元のメッセージはすでに削除されています</string>
     <string name="ConversationFragment_failed_to_open_message">メッセージを開けませんでした</string>
@@ -744,14 +756,23 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">未読のチャットはありません</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="other">選択したチャットを消去しますか？</item>
+        <item quantity="other">Delete message histories?</item>
     </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="other">選択した %1$d 件のチャットを完全に消去します。</item>
+        <item quantity="other">All messages in these chats will be deleted.</item>
     </plurals>
-    <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
+    <!-- Dialog message shown when deleting chats, with at least one group -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
+        <item quantity="other">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="other">選択した%1$d件のチャットを、すべての端末から完全に消去します。</item>
+        <item quantity="other">All messages in these chats will be deleted from all your devices.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
+        <item quantity="other">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">削除しています</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1091,6 +1112,8 @@
     <string name="LinkDeviceFragment__edit_name">名前を編集</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">リンクがキャンセルされました</string>
+    <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">You can only have %1$d linked devices.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">アプリを閉じないでください</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -2972,6 +2995,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_backups" translatable="false">Backups:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">グループが更新されました</string>
@@ -6225,6 +6249,7 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">1つ以上のアイテムのサイズが大きすぎます</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">1つ以上のアイテムが不正です</string>
     <string name="MediaReviewFragment__too_many_items_selected">選択されたアイテムが多すぎます</string>
+    <string name="MediaReviewFragment__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">ビデオは一度だけ表示するように設定されています</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
@@ -6775,7 +6800,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">寄付額</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Signalをサポートいただき、ありがとうございます。皆様のご寄付は、表現の自由を守り、世界中の何百万人もの人々に安全なグローバルコミュニケーションを可能にするオープンソースのプライバシー技術の開発というミッションの推進に役立っています。米国にお住まいの方は、この領収書を税務記録のために保管しておいてください。Signal Technology Foundationは、米国内国歳入法第501c3条に基づく非課税の非営利団体です。連邦税IDは82-4506840です。</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Thank you for supporting Signal. Your contribution helps fuel the mission of protecting free expression and enabling secure global communication for millions around the world, through open source privacy technology. If you’re a resident of the United States, please retain this receipt for your tax records. Signal Technology Foundation is a tax–exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82–4506840. Signal did not provide any goods or services in consideration of this contribution.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">領収書なし</string>
 

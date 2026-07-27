@@ -22,10 +22,16 @@
   <string name="MediaSelectScreen__gallery">វិចិត្រសាល</string>
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
   <string name="MediaSelectScreen__next">បន្ទាប់</string>
+
   <!-- Label for the button that switches the capture screen to the camera. -->
   <string name="MediaCaptureScreen__camera">កាមេរ៉ា</string>
   <!-- Label for the button that switches the capture screen to the text story editor. -->
-  <string name="MediaCaptureScreen__text_story">រឿងរ៉ាវជាអត្ថបទ</string>
+  <string name="MediaCaptureScreen__text">Text</string>
+    <!-- Label for the pill that displays the media count -->
+    <plurals name="MediaCaptureScreen_n_items">
+        <item quantity="other">%1$d items</item>
+    </plurals>
+
   <!-- Video editor play button content description -->
   <string name="VideoEditorHud_play_video_description">ចាក់វីដេអូ</string>
 
@@ -90,6 +96,8 @@
   <string name="MediaSendViewModel__error_recording_video">មានបញ្ហាក្នុងការថតវីដេអូ</string>
   <!-- Displayed when there is an error capturing image -->
   <string name="MediaSendViewModel__error_taking_photo">មានបញ្ហាក្នុងការថតរូប</string>
+  <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
+  <string name="MediaSendViewModel__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">បានរកឃើញ %1$s</string>

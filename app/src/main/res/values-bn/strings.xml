@@ -294,6 +294,16 @@
     <string name="ClientDeprecatedActivity_warning">সতর্কবার্তা</string>
     <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">আপনার Signal-এর সংস্করণটি পুরোনো হয়ে গেছে। আপডেট না করা পর্যন্ত আপনি পুরোনো ম্যাসেজগুলো দেখতে পাবেন, কিন্তু নতুন ম্যাসেজ দেখতে বা পাঠাতে পারবেন না।</string>
 
+    <!-- ClockSkewActivity -->
+    <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
+    <string name="ClockSkewActivity__title">Date is inaccurate</string>
+    <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
+    <string name="ClockSkewActivity__date_inaccurate_description">Your device date is inaccurate.\nAdjust your clock and try again.</string>
+    <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
+    <string name="ClockSkewActivity__time_prefix">Your device date and time is:\n%1$s</string>
+    <!-- Button that opens the system date and time settings -->
+    <string name="ClockSkewActivity__adjust_date_button">Adjust date</string>
+
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">কোন ওয়েব ব্রাউজার পাওয়া যায়নি।</string>
     <string name="CommunicationActions_send_email">ইমেইল পাঠান</string>
@@ -388,6 +398,8 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s এই মেসেজটি মুছে ফেলেছেন</string>
     <string name="ConversationItem_you_deleted_this_message">আপনি এই মেসেজটি মুছে ফেলেছেন</string>
+    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
+    <string name="ConversationItem_delete_for_everyone_question">Delete for everyone?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">অ্যাডমিন %1$s এই মেসেজটি মুছে ফেলেছেন</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -579,7 +591,7 @@
     <string name="ConversationFragment_delete">মুছে ফেলুন</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">সব জায়গা থেকে মুছে ফেলুন</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">এই ম্যাসেজটি চ্যাট-এর প্রত্যেকের জন্য মুছে ফেলা হবে, যদি তাদের কাছে Signal-এর কোনো সাম্প্রতিক সংস্করণ থেকে থাকে। তারা দেখতে পাবেন যে আপনি একটি ম্যাসেজ মুছে ফেলেছেন।</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat. They will be able to see that you deleted a message.</string>
     <string name="ConversationFragment_quoted_message_not_found">মূল বার্তাটি পাওয়া যায়নি</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">মূল বার্তাটি আর পাওয়া যাচ্ছে না</string>
     <string name="ConversationFragment_failed_to_open_message">বার্তা দেখাতে ব্যর্থ</string>
@@ -758,17 +770,28 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">অপঠিত কোনো চ্যাট নেই</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">নির্বাচিত চ্যাট মুছে ফেলবেন?</item>
-        <item quantity="other">নির্বাচিত চ্যাট মুছে ফেলবেন?</item>
+        <item quantity="one">Delete message history?</item>
+        <item quantity="other">Delete message histories?</item>
     </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">এটি নির্বাচিত চ্যাট চিরতরে মুছে ফেলবে।</item>
-        <item quantity="other">এটি %1$dটি নির্বাচিত চ্যাট চিরতরে মুছে ফেলবে।</item>
+        <item quantity="one">All messages in this chat will be deleted.</item>
+        <item quantity="other">All messages in these chats will be deleted.</item>
     </plurals>
-    <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
+    <!-- Dialog message shown when deleting chats, with at least one group -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
+        <item quantity="one">All messages in this chat will be deleted. You will still be a member of this group.</item>
+        <item quantity="other">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">এটি আপনার ডিভাইস থেকে সকল নির্বাচিত চ্যাট স্থায়ীভাবে মুছে ফেলবে।</item>
-        <item quantity="other">এটি আপনার ডিভাইস থেকে নির্বাচিত সকল %1$d চ্যাট স্থায়ীভাবে মুছে ফেলবে।</item>
+        <item quantity="one">All messages in this chat will be deleted from all your devices.</item>
+        <item quantity="other">All messages in these chats will be deleted from all your devices.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
+        <item quantity="one">All messages in this chat will be deleted from all your devices. You will still be a member of this group.</item>
+        <item quantity="other">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">মোছা হচ্ছে…</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1118,6 +1141,8 @@
     <string name="LinkDeviceFragment__edit_name">নাম এডিট করুন</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">লিংক করা বাতিল করা হয়েছে</string>
+    <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">You can only have %1$d linked devices.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">অ্যাপ বন্ধ করবেন না</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -3070,6 +3095,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_backups" translatable="false">Backups:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">গ্রুপ অাপডেট হয়েছে</string>
@@ -5109,29 +5135,29 @@
 
     <!-- LinkedDeviceAccountSettingsFragment -->
     <!-- Title of an informational card shown on the account settings screen of a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">This is a linked device</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">এটি একটি লিংক করা ডিভাইস</string>
     <!-- Body of an informational card explaining that account settings must be managed from the primary device -->
-    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">To manage your account settings, open Signal on your primary device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">আপনার অ্যাকাউন্ট সেটিংস ম্যানেজ করতে, আপনার মূল ডিভাইসে Signal খুলুন।</string>
     <!-- Title of a settings row that deletes all Signal data from this linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Delete app data</string>
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">অ্যাপের ডেটা মুছে ফেলুন</string>
     <!-- Subtitle of the delete app data row explaining what it does -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">This will remove all data from the Signal app on this device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">এটি এই ডিভাইসের Signal অ্যাপ থেকে সব ডেটা মুছে ফেলবে।</string>
     <!-- Title of the confirmation dialog shown when deleting app data from a linked device -->
     <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">অ্যাপের ডেটা মুছে ফেলবেন?</string>
     <!-- Message of the confirmation dialog explaining that only this device\'s data is deleted, not the account -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">This will delete all data and messages from the Signal app on this device. Your Signal account and data on your primary device or other linked devices will not be deleted. The app will close after this process is complete.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">এটি এই ডিভাইসের Signal অ্যাপ থেকে সব ডেটা এবং মেসেজ মুছে ফেলবে। আপনার মূল ডিভাইস বা অন্যান্য লিংক করা ডিভাইসের Signal অ্যাকাউন্ট এবং ডেটা মুছে ফেলা হবে না। এই প্রক্রিয়াটি সম্পন্ন হওয়ার পর অ্যাপটি বন্ধ হয়ে যাবে।</string>
 
     <!-- LinkedDeviceAccountLearnMoreBottomSheet -->
     <!-- Emphasized lead-in phrase shown in bold at the start of the learn more sheet body. Must appear verbatim within LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access. -->
     <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">সংযুক্ত ডিভাইসগুলি</string>
     <!-- Body text of the linked devices learn more sheet. The leading \"Linked Devices\" is shown in bold. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Linked Devices let you access your Signal account and messages securely on any of your additional devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">লিংক করা ডিভাইসগুলো আপনাকে আপনার আরো যেকোনো ডিভাইসে নিরাপদে আপনার Signal অ্যাকাউন্ট এবং মেসেজ অ্যাক্সেস করতে দেয়।</string>
     <!-- Bullet point describing what devices can be linked -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">You can link a desktop, tablet or additional phone</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">আপনি একটি ডেস্কটপ, ট্যাবলেট বা আরো একটি ফোন লিংক করতে পারেন</string>
     <!-- Bullet point describing that the primary device manages linked devices -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Your primary device manages what\'s linked, you can link up to 5 devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">আপনার মূল ডিভাইসটি লিংক করা ডিভাইসগুলো পরিচালনা করে, আপনি সর্বোচ্চ 5-টি ডিভাইস লিংক করতে পারবেন।</string>
     <!-- Bullet point describing that some settings are only available on the primary device -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Some account settings are managed on your primary device only, including account settings and backups.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">কিছু অ্যাকাউন্ট সেটিংস শুধুমাত্র আপনার মূল ডিভাইসে ম্যানেজ করা হয়, যার মধ্যে অ্যাকাউন্ট সেটিংস এবং ব্যাকআপ অন্তর্ভুক্ত।</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">অ্যাকাউন্ট ট্রান্সফার করুন বা পুনরুদ্ধার করুন</string>
@@ -6383,6 +6409,7 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">এক বা একাধিক আইটেম খুব বড় ছিল৷</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">এক বা একাধিক আইটেম বাতিল ছিল</string>
     <string name="MediaReviewFragment__too_many_items_selected">অনেকগুলি আইটেম নির্বাচন করা হয়েছে</string>
+    <string name="MediaReviewFragment__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">ভিডিও একবার দেখার জন্য সেট করা হয়েছে</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
@@ -6935,7 +6962,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">পরিমাণ</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Signal-এর পাশে থাকার জন্য আপনাকে ধন্যবাদ। আপনার অবদান এমন একটি ওপেন সোর্স প্রাইভেসি টেকনোলজির ক্রমবিকাশের মিশনে ইন্ধন জোগাতে সাহায্য করে যা স্বাধীন মতপ্রকাশকে রক্ষা করে এবং সারা বিশ্বের লক্ষ লক্ষ মানুষের জন্য নিরাপদ বৈশ্বিক যোগাযোগ সক্ষম করে। আপনি যদি মার্কিন যুক্তরাষ্ট্রের বাসিন্দা হন, তাহলে আপনার ট্যাক্স রেকর্ডের জন্য এই রিসিপ্টটি রাখুন। Signal Technology Foundation অভ্যন্তরীণ রাজস্ব কোডের ধারা 501c3-এর অধীনে মার্কিন যুক্তরাষ্ট্রে অবস্থিত একটি কর-মুক্ত অলাভজনক সংস্থা। আমাদের Federal Tax ID হলো 82–4506840।</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Thank you for supporting Signal. Your contribution helps fuel the mission of protecting free expression and enabling secure global communication for millions around the world, through open source privacy technology. If you’re a resident of the United States, please retain this receipt for your tax records. Signal Technology Foundation is a tax–exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82–4506840. Signal did not provide any goods or services in consideration of this contribution.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">রিসিপ্ট নেই</string>
 
@@ -8854,15 +8881,15 @@
     <!-- Subtext describing when a backup has never taken place. -->
     <string name="RemoteBackupsSettingsFragment__never">কখনোই না</string>
     <!-- Subtext on a linked device describing when the primary device last backed up. Placeholder is the formatted date and time. -->
-    <string name="RemoteBackupsSettingsFragment__your_phone_s">Your phone · %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__your_phone_s">আপনার ফোন · %1$s</string>
     <!-- Message shown on a linked device with a free backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">You can manage or upgrade your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">আপনি আপনার মূল ডিভাইসে আপনার Signal নিরাপদ ব্যাকআপ সাবস্ক্রিপশন পরিচালনা বা আপগ্রেড করতে পারেন।</string>
     <!-- Message shown on a linked device with a paid backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">You can manage or cancel your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">আপনি আপনার মূল ডিভাইসে আপনার Signal নিরাপদ ব্যাকআপ সাবস্ক্রিপশন ম্যানেজ বা বাতিল করতে পারেন।</string>
     <!-- Message shown on a linked device with a canceled backup subscription explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">You can manage or renew your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">আপনি আপনার মূল ডিভাইসে আপনার Signal নিরাপদ ব্যাকআপ সাবস্ক্রিপশন ম্যানেজ বা নবায়ন করতে পারেন।</string>
     <!-- Message shown on a linked device when backups are off or the subscription was not found, explaining that backups are managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">You can manage or upgrade Signal Secure Backups on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">আপনি আপনার মূল ডিভাইসে Signal নিরাপদ ব্যাকআপ ম্যানেজ বা আপগ্রেড করতে পারেন।</string>
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">এখনি ব্যাকআপ করুন</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->

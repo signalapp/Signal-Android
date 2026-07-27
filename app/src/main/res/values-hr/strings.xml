@@ -298,6 +298,16 @@
     <string name="ClientDeprecatedActivity_warning">Upozorenje</string>
     <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Vaša verzija Signala je istekla. Možete pregledati svoju povijest poruka, ali nećete moći slati ili primati poruke dok ne ažurirate aplikaciju.</string>
 
+    <!-- ClockSkewActivity -->
+    <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
+    <string name="ClockSkewActivity__title">Date is inaccurate</string>
+    <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
+    <string name="ClockSkewActivity__date_inaccurate_description">Your device date is inaccurate.\nAdjust your clock and try again.</string>
+    <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
+    <string name="ClockSkewActivity__time_prefix">Your device date and time is:\n%1$s</string>
+    <!-- Button that opens the system date and time settings -->
+    <string name="ClockSkewActivity__adjust_date_button">Adjust date</string>
+
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Nije pronađen nijedan web preglednik.</string>
     <string name="CommunicationActions_send_email">Pošalji e-poštu</string>
@@ -392,6 +402,8 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s je izbrisao/la ovu poruku</string>
     <string name="ConversationItem_you_deleted_this_message">Izbrisali ste ovu poruku</string>
+    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
+    <string name="ConversationItem_delete_for_everyone_question">Delete for everyone?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Administrator %1$s izbrisao je ovu poruku</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -603,7 +615,7 @@
     <string name="ConversationFragment_delete">Izbriši</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Izbriši sa svih uređaja</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ova će poruka biti trajno izbrisana za sve osobe u razgovoru ako su na najnovijoj verziji Signala, a oni će moći vidjeti da ste izbrisali poruku.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat. They will be able to see that you deleted a message.</string>
     <string name="ConversationFragment_quoted_message_not_found">Originalna poruka nije pronađena</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Originalna poruka više nije dostupna</string>
     <string name="ConversationFragment_failed_to_open_message">Otvaranje poruke nije uspjelo</string>
@@ -786,23 +798,38 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Nema nepročitanih razgovora</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Izbrisati odabrani razgovor?</item>
-        <item quantity="few">Izbrisati odabrane razgovore?</item>
-        <item quantity="many">Izbrisati odabrane razgovore?</item>
-        <item quantity="other">Izbrisati odabrane razgovore?</item>
+        <item quantity="one">Delete message history?</item>
+        <item quantity="few">Delete message histories?</item>
+        <item quantity="many">Delete message histories?</item>
+        <item quantity="other">Delete message histories?</item>
     </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">Ovo će trajno izbrisati odabrani razgovor.</item>
-        <item quantity="few">Ovo će trajno izbrisati %1$d odabrana razgovora.</item>
-        <item quantity="many">Ovo će trajno izbrisati %1$d odabranih razgovora.</item>
-        <item quantity="other">Ovo će trajno izbrisati %1$d odabranih razgovora.</item>
+        <item quantity="one">All messages in this chat will be deleted.</item>
+        <item quantity="few">All messages in these chats will be deleted.</item>
+        <item quantity="many">All messages in these chats will be deleted.</item>
+        <item quantity="other">All messages in these chats will be deleted.</item>
     </plurals>
-    <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
+    <!-- Dialog message shown when deleting chats, with at least one group -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
+        <item quantity="one">All messages in this chat will be deleted. You will still be a member of this group.</item>
+        <item quantity="few">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="many">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="other">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">Ovo će trajno izbrisati odabrani razgovor sa svih vaših uređaja.</item>
-        <item quantity="few">Ovo će trajno izbrisati %1$d odabrana razgovora sa svih vaših uređaja.</item>
-        <item quantity="many">Ovo će trajno izbrisati %1$d odabranih razgovora sa svih vaših uređaja.</item>
-        <item quantity="other">Ovo će trajno izbrisati %1$d odabranih razgovora sa svih vaših uređaja.</item>
+        <item quantity="one">All messages in this chat will be deleted from all your devices.</item>
+        <item quantity="few">All messages in these chats will be deleted from all your devices.</item>
+        <item quantity="many">All messages in these chats will be deleted from all your devices.</item>
+        <item quantity="other">All messages in these chats will be deleted from all your devices.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
+        <item quantity="one">All messages in this chat will be deleted from all your devices. You will still be a member of this group.</item>
+        <item quantity="few">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="many">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="other">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Brisanje</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1172,6 +1199,8 @@
     <string name="LinkDeviceFragment__edit_name">Uredite ime</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">Povezivanje je otkazano</string>
+    <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">You can only have %1$d linked devices.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">Ne zatvarajte aplikaciju</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -3266,6 +3295,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_backups" translatable="false">Backups:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Grupa je ažurirana</string>
@@ -6699,6 +6729,7 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Jedna ili više stavki bile su prevelike</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Jedna ili više stavki bile su nevažeće</string>
     <string name="MediaReviewFragment__too_many_items_selected">Odabrano je previše stavki</string>
+    <string name="MediaReviewFragment__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">Ovaj videozapis može se prikazati samo jednom</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
@@ -7255,7 +7286,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Količina</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Hvala što podržavate Signal. Vaš doprinos pomaže u poticanju misije razvoja tehnologije privatnosti otvorenog koda koja štiti slobodu izražavanja i omogućuje sigurnu globalnu komunikaciju za milijune diljem svijeta. Ako ste stanovnik Sjedinjenih Američkih Država, molimo sačuvajte ovu potvrdu za poreznu evidenciju. Signal Technology Foundation je neprofitna organizacija oslobođena poreza u Sjedinjenim Američkim Državama prema odjeljku 501c3 Poreznog zakona. Naš federalni porezni broj je 82–4506840.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Thank you for supporting Signal. Your contribution helps fuel the mission of protecting free expression and enabling secure global communication for millions around the world, through open source privacy technology. If you’re a resident of the United States, please retain this receipt for your tax records. Signal Technology Foundation is a tax–exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82–4506840. Signal did not provide any goods or services in consideration of this contribution.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Nema računa</string>
 

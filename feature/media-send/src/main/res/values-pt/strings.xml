@@ -22,10 +22,17 @@
   <string name="MediaSelectScreen__gallery">Galeria</string>
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
   <string name="MediaSelectScreen__next">Seguinte</string>
+
   <!-- Label for the button that switches the capture screen to the camera. -->
   <string name="MediaCaptureScreen__camera">Câmara</string>
   <!-- Label for the button that switches the capture screen to the text story editor. -->
-  <string name="MediaCaptureScreen__text_story">História de texto</string>
+  <string name="MediaCaptureScreen__text">Text</string>
+    <!-- Label for the pill that displays the media count -->
+    <plurals name="MediaCaptureScreen_n_items">
+        <item quantity="one">%1$d item</item>
+        <item quantity="other">%1$d items</item>
+    </plurals>
+
   <!-- Video editor play button content description -->
   <string name="VideoEditorHud_play_video_description">Reproduzir vídeo</string>
 
@@ -62,7 +69,7 @@
   <!-- Toast dialog explaining why Signal needs microphone permissions -->
   <string name="CameraXFragment_signal_needs_microphone_access_video">O Signal necessita de acesso ao microfone para gravar vídeos</string>
   <!-- Dialog description that explains the steps needed to give camera permission -->
-  <string name="CameraXFragment_to_capture_photos">Para tirar fotos no Signal</string>
+  <string name="CameraXFragment_to_capture_photos">Para tirar fotos no Signal:</string>
   <!-- Dialog description that explains the steps needed to give camera and microphone permission -->
   <string name="CameraXFragment_to_capture_photos_videos">Para tirar fotos e gravar vídeos no Signal:</string>
   <!-- Dialog description that explains the steps needed to give microphone permission -->
@@ -84,12 +91,14 @@
   <!-- Accessibility label for the send button in media selection -->
   <string name="CameraXFragment_send">Enviar</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
-  <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">O Sinal necessita de permissões de microfone para poder gravar vídeos. mas elas foram negadas. Por favor, avance até às definições das aplicações,. selecione o Signal e nas \"Permissões\", ative o \"Microfone\" e a \"Câmara\"</string>
+  <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">O Signal necessita de permissões do microfone para poder gravar vídeos, mas elas foram recusadas. Continue para as definições de apps, selecione \"Permissões\", ative \"Microfone\" e \"Câmara\".</string>
 
   <!-- Displayed when there is an error capturing video -->
   <string name="MediaSendViewModel__error_recording_video">Erro ao gravar vídeo</string>
   <!-- Displayed when there is an error capturing image -->
   <string name="MediaSendViewModel__error_taking_photo">Erro ao tirar foto</string>
+  <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
+  <string name="MediaSendViewModel__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">Encontrou %1$s</string>

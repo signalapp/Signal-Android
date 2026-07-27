@@ -294,6 +294,16 @@
     <string name="ClientDeprecatedActivity_warning">Предупредување</string>
     <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Вашата верзија на Signal е застарена. Можете да ја видите историјата на вашите пораки, но нема да можете да испраќате или примате пораки сè додека не ја ажурирате апликацијата.</string>
 
+    <!-- ClockSkewActivity -->
+    <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
+    <string name="ClockSkewActivity__title">Date is inaccurate</string>
+    <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
+    <string name="ClockSkewActivity__date_inaccurate_description">Your device date is inaccurate.\nAdjust your clock and try again.</string>
+    <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
+    <string name="ClockSkewActivity__time_prefix">Your device date and time is:\n%1$s</string>
+    <!-- Button that opens the system date and time settings -->
+    <string name="ClockSkewActivity__adjust_date_button">Adjust date</string>
+
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Не е пронајден веб прелистувач.</string>
     <string name="CommunicationActions_send_email">Испрати е-пошта</string>
@@ -388,6 +398,8 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s ја избриша оваа порака</string>
     <string name="ConversationItem_you_deleted_this_message">Ја избришавте оваа порака</string>
+    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
+    <string name="ConversationItem_delete_for_everyone_question">Delete for everyone?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Администраторот %1$s ја избриша оваа порака</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -579,7 +591,7 @@
     <string name="ConversationFragment_delete">Избриши</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Избриши секаде</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Оваа порака ќе биде избришана за сите во разговорот ако ја користат најновата верзија на Signal. Тие ќе можат да видат дека сте ја избришале пораката.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat. They will be able to see that you deleted a message.</string>
     <string name="ConversationFragment_quoted_message_not_found">Оригиналната порака не е пронајдена</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Оригиналната порака повеќе не е достапна</string>
     <string name="ConversationFragment_failed_to_open_message">Не успеа да се отвори пораката</string>
@@ -758,17 +770,28 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Немате непрочитани разговори</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Да се избрише разговорот?</item>
-        <item quantity="other">Да се избришат избраните разговори?</item>
+        <item quantity="one">Delete message history?</item>
+        <item quantity="other">Delete message histories?</item>
     </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">Ова трајно ќе го избрише избраниот разговор.</item>
-        <item quantity="other">Ова трајно ќе ги избрише сите %1$d избрани разговори.</item>
+        <item quantity="one">All messages in this chat will be deleted.</item>
+        <item quantity="other">All messages in these chats will be deleted.</item>
     </plurals>
-    <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
+    <!-- Dialog message shown when deleting chats, with at least one group -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
+        <item quantity="one">All messages in this chat will be deleted. You will still be a member of this group.</item>
+        <item quantity="other">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">Ова трајно ќе го избрише избраниот разговор од сите ваши уреди.</item>
-        <item quantity="other">Ова трајно ќе ги избрише сите %1$d избрани разговори од сите ваши уреди.</item>
+        <item quantity="one">All messages in this chat will be deleted from all your devices.</item>
+        <item quantity="other">All messages in these chats will be deleted from all your devices.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
+        <item quantity="one">All messages in this chat will be deleted from all your devices. You will still be a member of this group.</item>
+        <item quantity="other">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Бришење</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1118,6 +1141,8 @@
     <string name="LinkDeviceFragment__edit_name">Сменете го името</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">Поврзувањето е откажано</string>
+    <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">You can only have %1$d linked devices.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">Не ја затворајте апликацијата</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -3070,6 +3095,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_backups" translatable="false">Backups:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Групата е ажурирана</string>
@@ -6383,6 +6409,7 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Еден или повеќе предмети беа премногу големи</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Еден или повеќе предмети беа невалидни</string>
     <string name="MediaReviewFragment__too_many_items_selected">Премногу избрани предмети</string>
+    <string name="MediaReviewFragment__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">Видеото е поставено на еднократен преглед</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
@@ -6935,7 +6962,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Износ</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Ви благодариме што го поддржувате Signal. Вашиот придонес помага за развивање на технологија за приватност со отворен код која го штити слободното изразување и овозможува безбедна глобална комуникација за милиони луѓе низ целиот свет. Ако сте жител на Соединетите Американски Држави, Ве молиме чувајте ја оваа потврда за Вашата даночна евиденција. Signal Technology Foundation е непрофитна организација која е ослободена од данок во Соединетите Американски Држави според член 501c3 од законот за внатрешни приходи (Internal Revenue Code). Нашата федерална даночна идентификација е 82–4506840.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Thank you for supporting Signal. Your contribution helps fuel the mission of protecting free expression and enabling secure global communication for millions around the world, through open source privacy technology. If you’re a resident of the United States, please retain this receipt for your tax records. Signal Technology Foundation is a tax–exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82–4506840. Signal did not provide any goods or services in consideration of this contribution.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Нема потврди</string>
 
