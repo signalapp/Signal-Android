@@ -1086,9 +1086,7 @@ final class GroupManagerV2 {
     {
       try {
         GroupsV2StateProcessor.forGroup(serviceIds, groupMasterKey)
-                              .updateLocalGroupToRevision(decryptedChange.revision,
-                                                          System.currentTimeMillis(),
-                                                          decryptedChange);
+                              .updateLocalGroupToRevision(GroupsV2StateProcessor.LATEST, System.currentTimeMillis(), null);
 
         RecipientAndThread recipientAndThread = sendGroupUpdateHelper.sendGroupUpdate(groupMasterKey, new GroupMutation(null, decryptedChange, decryptedGroup), signedGroupChange);
 

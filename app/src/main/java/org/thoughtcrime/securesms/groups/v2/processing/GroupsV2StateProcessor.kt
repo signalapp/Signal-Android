@@ -339,6 +339,7 @@ class GroupsV2StateProcessor private constructor(
     var includeFirstState = currentLocalState == null ||
       currentLocalState.revision < 0 ||
       currentLocalState.revision == joinedAtRevision ||
+      currentLocalState.isPlaceholderGroup ||
       !GroupProtoUtil.isMember(serviceIds.aci, currentLocalState.members)
 
     val profileKeys = ProfileKeySet()
