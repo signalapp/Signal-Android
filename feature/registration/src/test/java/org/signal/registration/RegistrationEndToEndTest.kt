@@ -1509,9 +1509,10 @@ class RegistrationEndToEndTest {
   @Suppress("DEPRECATION")
   private fun solveCaptcha(token: String) {
     var webView: WebView? = null
+    // Matched with onAllNodesWithTag so that an absent screen fails the condition and is retried, rather than throwing out of the wait
     waitFor("the captcha WebView") {
-      val composeView = (composeTestRule.onNodeWithTag(TestTags.CAPTCHA_SCREEN).fetchSemanticsNode().root as ViewRootForTest).view
-      webView = findWebView(composeView)
+      val composeView = (composeTestRule.onAllNodesWithTag(TestTags.CAPTCHA_SCREEN).fetchSemanticsNodes().firstOrNull()?.root as? ViewRootForTest)?.view
+      webView = composeView?.let { findWebView(it) }
       webView != null
     }
     webView!!.let { Shadows.shadowOf(it).webViewClient.shouldOverrideUrlLoading(it, "signalcaptcha://$token") }
