@@ -272,12 +272,10 @@ class ConversationSettingsFragment :
     return object : Material3OnScrollHelper(
       activity = requireActivity(),
       views = listOf(toolbar!!),
-      lifecycleOwner = viewLifecycleOwner,
-      setStatusBarColor = {}
+      lifecycleOwner = viewLifecycleOwner
     ) {
       override val inactiveColorSet = ColorSet(
-        toolbarColorRes = CoreUiR.color.signal_colorBackground_0,
-        statusBarColorRes = CoreUiR.color.signal_colorBackground
+        toolbarColorRes = CoreUiR.color.signal_colorBackground_0
       )
     }
   }

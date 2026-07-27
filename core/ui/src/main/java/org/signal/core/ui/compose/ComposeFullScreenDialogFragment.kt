@@ -5,6 +5,7 @@
 
 package org.signal.core.ui.compose
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.DialogFragment
 import org.signal.core.ui.R
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.enableEdgeToEdge
 import org.signal.core.ui.initializeScreenshotSecurity
 import org.signal.core.ui.util.ThemeUtil
 
@@ -35,6 +37,12 @@ abstract class ComposeFullScreenDialogFragment : DialogFragment() {
     super.onCreate(savedInstanceState)
     val fullScreenDialogStyle = ThemeUtil.getThemedResourceId(requireContext(), R.attr.fullScreenDialogStyle)
     setStyle(STYLE_NO_FRAME, fullScreenDialogStyle)
+  }
+
+  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    return super.onCreateDialog(savedInstanceState).apply {
+      window?.enableEdgeToEdge()
+    }
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

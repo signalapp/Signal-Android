@@ -63,6 +63,7 @@ class TextAvatarCreationFragment : Fragment(R.layout.text_avatar_creation_fragme
     val tabLayout: ControllableTabLayout = view.findViewById(R.id.text_avatar_creation_tabs)
     val doneButton: View = view.findViewById(R.id.text_avatar_creation_done)
     val keyboardAwareLayout: KeyboardAwareLinearLayout = view.findViewById(R.id.keyboard_aware_layout)
+    keyboardAwareLayout.setInsetPaddingMode(KeyboardAwareLinearLayout.InsetPaddingMode.SAFE_AREA)
 
     withRecyclerSet.load(requireContext(), R.layout.text_avatar_creation_fragment_content)
     withoutRecyclerSet.load(requireContext(), R.layout.text_avatar_creation_fragment_content_hidden_recycler)

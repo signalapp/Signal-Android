@@ -50,8 +50,7 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
     return Material3OnScrollHelper(
       activity = requireActivity(),
       views = listOf(scrollShadow),
-      lifecycleOwner = viewLifecycleOwner,
-      setStatusBarColor = {}
+      lifecycleOwner = viewLifecycleOwner
     )
   }
 

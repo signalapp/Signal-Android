@@ -14,8 +14,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -88,15 +86,17 @@ abstract class DSLSettingsFragment(
   }
 
   /**
-   * Activity windows are all edge-to-edge (enabled centrally in [org.thoughtcrime.securesms.BaseActivity]),
-   * so the toolbar tint must extend behind the (transparent) status bar and the list must scroll clear of
-   * the navigation bar. Skipped for dialog windows (not edge-to-edge) and for fragments embedded directly in
+   * All host windows are edge-to-edge — activities centrally via [org.thoughtcrime.securesms.BaseActivity],
+   * and the full-screen dialog hosts ([org.thoughtcrime.securesms.components.WrapperDialogFragment],
+   * [org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogFragment]) via their own
+   * `enableEdgeToEdge` calls — so the toolbar tint must extend behind the (transparent) status bar and the
+   * list must scroll clear of the navigation bar. Skipped only for fragments embedded directly in
    * [MainActivity]'s Compose scaffolding, which insets those containers itself — except the
    * conversation-settings detail entry ([ConversationSettingsNavHostFragment]), which leaves insets to these
    * fragments so the toolbar scroll tint can reach behind the status bar.
    */
   private fun applyEdgeToEdgeInsets() {
-    if (isDialogHosted() || isInsetByMainActivityHost()) {
+    if (isInsetByMainActivityHost()) {
       return
     }
 
@@ -109,17 +109,6 @@ abstract class DSLSettingsFragment(
       recycler.clipToPadding = false
       SystemWindowInsetsSetter.attach(recycler, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars())
     }
-  }
-
-  private fun isDialogHosted(): Boolean {
-    var fragment: Fragment? = this
-    while (fragment != null) {
-      if (fragment is DialogFragment && fragment.showsDialog) {
-        return true
-      }
-      fragment = fragment.parentFragment
-    }
-    return false
   }
 
   private fun isInsetByMainActivityHost(): Boolean {
@@ -137,8 +126,7 @@ abstract class DSLSettingsFragment(
     return Material3OnScrollHelper(
       activity = requireActivity(),
       views = listOf(toolbar),
-      lifecycleOwner = viewLifecycleOwner,
-      setStatusBarColor = {}
+      lifecycleOwner = viewLifecycleOwner
     )
   }
 

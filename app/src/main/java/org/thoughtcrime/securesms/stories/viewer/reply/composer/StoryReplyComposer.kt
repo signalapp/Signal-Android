@@ -21,6 +21,7 @@ import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ComposeText
 import org.thoughtcrime.securesms.components.InputAwareLayout
+import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
 import org.thoughtcrime.securesms.components.emoji.Emoji
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
@@ -168,6 +169,10 @@ class StoryReplyComposer @JvmOverloads constructor(
     input.setText("")
 
     return Input(trimmedText, mentions, bodyRanges)
+  }
+
+  fun setInsetPaddingMode(mode: KeyboardAwareLinearLayout.InsetPaddingMode) {
+    inputAwareLayout.setInsetPaddingMode(mode)
   }
 
   fun openEmojiSearch() {

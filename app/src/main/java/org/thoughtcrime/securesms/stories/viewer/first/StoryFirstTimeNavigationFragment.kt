@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.stories.viewer.first
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -10,6 +11,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import org.signal.core.ui.enableEdgeToEdge
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -34,13 +36,13 @@ class StoryFirstTimeNavigationFragment : DialogFragment(R.layout.story_viewer_fi
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val dialog = super.onCreateDialog(savedInstanceState)
     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    dialog.window!!.enableEdgeToEdge()
 
-    dialog.window!!.addFlags(
-      WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION or
-        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS or
-        WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS or
-        WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-    )
+    if (Build.VERSION.SDK_INT >= 28) {
+      dialog.window!!.attributes = dialog.window!!.attributes.apply {
+        layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+      }
+    }
     return dialog
   }
 

@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.profiles.username
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -32,6 +33,7 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.enableEdgeToEdge
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity
 import org.signal.core.ui.R as CoreUiR
@@ -46,6 +48,12 @@ class NewWaysToConnectDialogFragment : ComposeDialogFragment() {
     super.onCreate(savedInstanceState)
 
     setStyle(STYLE_NO_FRAME, R.style.Signal_DayNight_Dialog_FullScreen)
+  }
+
+  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    return super.onCreateDialog(savedInstanceState).apply {
+      window?.enableEdgeToEdge()
+    }
   }
 
   @Composable

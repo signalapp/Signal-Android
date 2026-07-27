@@ -974,7 +974,6 @@ class MainActivity :
       onSetToolbarColor = {
         toolbarViewModel.setToolbarColor(it)
       },
-      setStatusBarColor = {},
       lifecycleOwner = lifecycleOwner
     ).attach(recyclerView)
   }
@@ -984,7 +983,6 @@ class MainActivity :
       activity = this,
       views = listOf(chatFolders),
       viewStubs = listOf(),
-      setStatusBarColor = {},
       onSetToolbarColor = {
         toolbarViewModel.setToolbarColor(it)
       },

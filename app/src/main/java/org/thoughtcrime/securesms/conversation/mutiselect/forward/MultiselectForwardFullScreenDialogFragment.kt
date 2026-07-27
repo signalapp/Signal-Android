@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.conversation.mutiselect.forward
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
+import org.signal.core.ui.enableEdgeToEdge
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.fragments.findListener
@@ -17,6 +19,12 @@ class MultiselectForwardFullScreenDialogFragment : DialogFragment(), Multiselect
     super.onCreate(savedInstanceState)
 
     setStyle(STYLE_NO_FRAME, R.style.Signal_DayNight_Dialog_FullScreen)
+  }
+
+  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    return super.onCreateDialog(savedInstanceState).apply {
+      window?.enableEdgeToEdge()
+    }
   }
 
   override fun onFinishForwardAction() {

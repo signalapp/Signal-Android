@@ -50,20 +50,14 @@
 
     <style name="Theme.Signal.WallpaperCropper" parent="@style/TextSecure.DarkNoActionBar">
         <item name="colorPrimaryDark">@color/wallpaper_preview_background</item>
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
-        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <style name="Theme.Signal.WallpaperCropper.Light" parent="@style/TextSecure.LightNoActionBar">
         <item name="colorPrimary">@color/wallpaper_preview_background</item>
         <item name="colorPrimaryDark">@color/wallpaper_preview_background</item>
         <item name="android:textColorSecondary">@color/white</item>
-        <item name="android:windowTranslucentNavigation">true</item>
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
     </style>
 
@@ -96,8 +90,6 @@
     <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="27">default</item>
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/signal_colorSurface</item>
-        <item name="android:navigationBarColor">@color/signal_colorSurface</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -113,8 +105,6 @@
     <style name="TextSecure.DarkIntroTheme" parent="@style/Theme.AppCompat">
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="27">default</item>
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/signal_colorSurface</item>
-        <item name="android:navigationBarColor">@color/signal_colorSurface</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
@@ -446,7 +436,7 @@
 
     <style name="Widget.Signal.FixedRoundedCorners.Messages" parent="Widget.Signal.FixedRoundedCorners">
         <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.Messages.BottomSheet</item>
-        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/signal_colorSurface</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/bottom_sheet_navigation_bar_surface</item>
     </style>
 
     <style name="Widget.Signal.FixedRoundedCorners.Messages.BottomSheet" parent="Widget.Material3.BottomSheet">
@@ -457,7 +447,7 @@
 
     <style name="Widget.Signal.FixedRoundedCorners.Stories">
         <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.BottomSheet.Stories</item>
-        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/signal_colorSurface</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/bottom_sheet_navigation_bar_surface</item>
     </style>
 
     <style name="Widget.Signal.FixedRoundedCorners.BottomSheet.Stories" parent="Widget.CoreUi.FixedRoundedCorners.BottomSheet">
@@ -550,7 +540,7 @@
 
         <item name="colorAccent">@color/core_ultramarine</item>
 
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_colorSurface1</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_bottom_sheet_navigation_bar</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
 
         <item name="android:colorForeground">@color/black</item>
@@ -565,7 +555,7 @@
 
         <item name="colorAccent">@color/core_ultramarine_light</item>
 
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_colorSurface1</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_bottom_sheet_navigation_bar</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/transparent</item>
         <item name="materialButtonStyle">@style/Widget.Signal.BottomSheet.MaterialButtonStyle</item>
@@ -581,7 +571,7 @@
 
         <item name="colorAccent">@color/signal_colorPrimary</item>
 
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_colorSurface</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/bottom_sheet_navigation_bar_surface</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/transparent</item>
     </style>

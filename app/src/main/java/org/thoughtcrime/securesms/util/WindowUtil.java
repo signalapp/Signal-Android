@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Build;
 import android.view.Window;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.core.view.WindowInsetsControllerCompat;
 
@@ -41,18 +40,6 @@ public final class WindowUtil {
     controller(window).setAppearanceLightNavigationBars(true);
   }
 
-  public static void setNavigationBarColor(@NonNull Activity activity, @ColorInt int color) {
-    setNavigationBarColor(activity, activity.getWindow(), color);
-  }
-
-  public static void setNavigationBarColor(@NonNull Context context, @NonNull Window window, @ColorInt int color) {
-    if (Build.VERSION.SDK_INT < 27) {
-      window.setNavigationBarColor(ThemeUtil.getThemedColor(context, android.R.attr.navigationBarColor));
-    } else {
-      window.setNavigationBarColor(color);
-    }
-  }
-
   public static void setLightStatusBarFromTheme(@NonNull Activity activity) {
     final boolean isLightStatusBar = ThemeUtil.getThemedBoolean(activity, android.R.attr.windowLightStatusBar);
 
@@ -66,14 +53,6 @@ public final class WindowUtil {
 
   public static void setLightStatusBar(@NonNull Window window) {
     controller(window).setAppearanceLightStatusBars(true);
-  }
-
-  public static void setStatusBarColor(@NonNull Window window, @ColorInt int color) {
-    window.setStatusBarColor(color);
-  }
-
-  public static int getStatusBarColor(@NonNull Window window) {
-    return window.getStatusBarColor();
   }
 
   private static @NonNull WindowInsetsControllerCompat controller(@NonNull Window window) {

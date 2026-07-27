@@ -21,6 +21,7 @@ import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.InputAwareLayout
+import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -94,6 +95,7 @@ class GiftFlowConfirmationFragment :
       .create()
 
     inputAwareLayout = requireView().findViewById(R.id.input_aware_layout)
+    inputAwareLayout.setInsetPaddingMode(KeyboardAwareLinearLayout.InsetPaddingMode.KEYBOARD_AND_NAVIGATION_BAR)
     emojiKeyboard = requireView().findViewById(R.id.emoji_drawer)
 
     emojiKeyboard.setFragmentManager(childFragmentManager)

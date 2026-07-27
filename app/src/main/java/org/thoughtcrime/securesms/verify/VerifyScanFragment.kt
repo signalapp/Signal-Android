@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.OneShotPreDrawListener
 import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -39,9 +38,8 @@ class VerifyScanFragment : Fragment() {
     cameraScrim = view.findViewById(R.id.camera_scrim)
     cameraMarks = view.findViewById(R.id.camera_marks)
 
-    if (!isDialogHosted()) {
-      SystemWindowInsetsSetter.attach(view.findViewById<TextView>(R.id.information), viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
-    }
+    SystemWindowInsetsSetter.attach(view.findViewById<TextView>(R.id.information), viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
+
     OneShotPreDrawListener.add(cameraScrim) {
       val width = cameraScrim.scrimWidth
       val height = cameraScrim.scrimHeight
@@ -59,9 +57,5 @@ class VerifyScanFragment : Fragment() {
       .subscribe { qrData: String ->
         findListener<ScanListener>()?.onQrDataFound(qrData)
       }
-  }
-
-  private fun isDialogHosted(): Boolean {
-    return generateSequence<Fragment>(this) { it.parentFragment }.any { it is DialogFragment && it.showsDialog }
   }
 }

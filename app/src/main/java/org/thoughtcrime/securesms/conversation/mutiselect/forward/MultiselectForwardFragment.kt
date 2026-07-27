@@ -203,7 +203,9 @@ class MultiselectForwardFragment :
             isSplitPane = isSplitPane,
             modifier = Modifier
               .fillMaxWidth()
-              .navigationBarsPadding()
+              // Bottom-sheet hosts already clear the navigation bar via BottomSheetBehavior's
+              // edge-to-edge padding; padding again here would double up.
+              .then(if (args.isWrappedInBottomSheet) Modifier else Modifier.navigationBarsPadding())
           )
         }
       }

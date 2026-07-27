@@ -2,8 +2,11 @@ package org.thoughtcrime.securesms.stories.settings.select
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,6 +23,7 @@ import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.fragments.findListener
 import java.util.Optional
 import java.util.function.Consumer
@@ -53,6 +57,11 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
     }
 
     toolbar.setTitle(toolbarTitleId)
+
+    toolbar.updateLayoutParams { height = ViewGroup.LayoutParams.WRAP_CONTENT }
+    SystemWindowInsetsSetter.attach(toolbar, viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
+    SystemWindowInsetsSetter.attach(view.findViewById(R.id.contacts_container), viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars())
+    SystemWindowInsetsSetter.attach(actionButton, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
 
