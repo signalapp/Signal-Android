@@ -63,7 +63,6 @@ import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
-import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob
 import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.jobs.TrimThreadJob
 import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
@@ -217,7 +216,7 @@ object DataMessageProcessor {
     }
 
     if (metadata.sealedSender && messageId != null) {
-      batchCache.addJob(SendDeliveryReceiptJob(senderRecipient.id, message.timestamp!!, messageId))
+      batchCache.addDeliveryReceipt(senderRecipient.id, groupId, message.timestamp!!, messageId)
     } else if (!metadata.sealedSender) {
       if (RecipientUtil.shouldHaveProfileKey(threadRecipient)) {
         Log.w(MessageContentProcessor.TAG, "Received an unsealed sender message from " + senderRecipient.id + ", but they should already have our profile key. Correcting.")

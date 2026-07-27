@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.messages
 
 import android.content.Context
 import org.signal.core.util.UuidUtil
-import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult
 import org.thoughtcrime.securesms.database.MessageType
@@ -16,7 +15,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
-import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.log
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.warn
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
@@ -46,7 +44,8 @@ object EditMessageProcessor {
     envelope: Envelope,
     content: Content,
     metadata: EnvelopeMetadata,
-    earlyMessageCacheEntry: EarlyMessageCacheEntry?
+    earlyMessageCacheEntry: EarlyMessageCacheEntry?,
+    batchCache: BatchCache
   ) {
     val editMessage = content.editMessage!!
 
@@ -92,14 +91,16 @@ object EditMessageProcessor {
     targetMessage = targetMessage.withAttachments(SignalDatabase.attachments.getAttachmentsForMessage(targetMessage.id))
 
     val insertResult: InsertResult? = if (isMediaMessage || targetMessage.quote != null || targetMessage.slideDeck.slides.isNotEmpty()) {
-      handleEditMediaMessage(senderRecipient.id, groupId, envelope, metadata, message, targetMessage)
+      handleEditMediaMessage(senderRecipient.id, groupId, envelope, metadata, message, targetMessage, batchCache)
     } else {
-      handleEditTextMessage(senderRecipient.id, groupId, envelope, metadata, message, targetMessage)
+      handleEditTextMessage(senderRecipient.id, groupId, envelope, metadata, message, targetMessage, batchCache)
     }
 
     if (insertResult != null) {
-      SignalExecutors.BOUNDED.execute {
-        AppDependencies.jobManager.add(SendDeliveryReceiptJob(senderRecipient.id, message.timestamp!!, MessageId(insertResult.messageId)))
+      batchCache.addDeliveryReceipt(senderRecipient.id, groupId, message.timestamp!!, MessageId(insertResult.messageId))
+
+      if (insertResult.needsThreadUpdate) {
+        batchCache.addIncomingMessageInsertThreadUpdate(insertResult.threadId)
       }
 
       if (targetMessage.expireStarted > 0) {
@@ -122,7 +123,8 @@ object EditMessageProcessor {
     envelope: Envelope,
     metadata: EnvelopeMetadata,
     message: DataMessage,
-    targetMessage: MmsMessageRecord
+    targetMessage: MmsMessageRecord,
+    batchCache: BatchCache
   ): InsertResult? {
     val cappedBodyRanges = message.bodyRanges.take(DataMessageProcessor.BODY_RANGE_PROCESSING_LIMIT)
     val messageRanges: BodyRangeList? = cappedBodyRanges.filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toList().toBodyRangeList()
@@ -165,7 +167,7 @@ object EditMessageProcessor {
       messageRanges = messageRanges
     )
 
-    val insertResult = SignalDatabase.messages.insertEditMessageInbox(mediaMessage, targetMessage).orNull()
+    val insertResult = SignalDatabase.messages.insertEditMessageInbox(mediaMessage, targetMessage, skipThreadUpdate = batchCache.batchThreadUpdates).orNull()
     if (insertResult?.insertedAttachments != null) {
       SignalDatabase.runPostSuccessfulTransaction {
         val downloadJobs: List<AttachmentDownloadJob> = insertResult.insertedAttachments.mapNotNull { (_, attachmentId) ->
@@ -183,7 +185,8 @@ object EditMessageProcessor {
     envelope: Envelope,
     metadata: EnvelopeMetadata,
     message: DataMessage,
-    targetMessage: MmsMessageRecord
+    targetMessage: MmsMessageRecord,
+    batchCache: BatchCache
   ): InsertResult? {
     val textMessage = IncomingMessage(
       type = MessageType.NORMAL,
@@ -199,6 +202,6 @@ object EditMessageProcessor {
       serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary)
     )
 
-    return SignalDatabase.messages.insertEditMessageInbox(textMessage, targetMessage).orNull()
+    return SignalDatabase.messages.insertEditMessageInbox(textMessage, targetMessage, skipThreadUpdate = batchCache.batchThreadUpdates).orNull()
   }
 }

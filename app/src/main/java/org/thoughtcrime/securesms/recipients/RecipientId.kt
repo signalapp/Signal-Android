@@ -156,6 +156,8 @@ class RecipientId private constructor(private val id: Long) : Parcelable, Compar
 
   fun toScheduledSendQueueKey(): String = "RecipientId::$id::SCHEDULED"
 
+  fun toReceiptQueueKey(): String = "RecipientId::$id::RECEIPT"
+
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
     if (javaClass != other?.javaClass) return false

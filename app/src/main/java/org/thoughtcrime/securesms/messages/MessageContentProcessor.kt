@@ -554,7 +554,8 @@ open class MessageContentProcessor(private val context: Context) {
           envelope,
           content,
           metadata,
-          if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
+          if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp),
+          batchCache
         )
       }
 
