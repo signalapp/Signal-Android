@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.database
 import android.app.Application
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import assertk.assertions.isGreaterThan
+import assertk.assertions.isLessThan
 import assertk.assertions.isNull
 import assertk.assertions.isPresent
 import io.mockk.every
@@ -37,7 +39,7 @@ import java.util.UUID
 @Suppress("ClassName", "TestFunctionName")
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
-class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
+class MessageTableTest_groupUpdates {
 
   @get:Rule
   val recipientRule = RecipientTestRule()
@@ -293,6 +295,78 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
           .isEqualTo(secondLatestMessage.messageId)
         assertThat(sms.getMessageRecordOrNull(latestMessage.messageId), "latest message should be deleted").isNull()
       }
+  }
+
+  @Test
+  fun groupUpdateSortsAboveTriggeringMessage() {
+    val receivedTime = 5_000L
+
+    val message = sms.insertMessageInbox(
+      IncomingMessage(
+        type = MessageType.NORMAL,
+        from = alice,
+        sentTimeMillis = receivedTime,
+        serverTimeMillis = receivedTime,
+        receivedTimeMillis = receivedTime,
+        body = "What up",
+        groupId = groupId,
+        isUnidentified = true
+      )
+    ).get()
+
+    val update = sms.insertMessageInbox(joinUpdateMessage(sentTime = 4_000L, receivedTime = receivedTime)).get()
+
+    val messageRecord = sms.getMessageRecordOrNull(message.messageId)!!
+    val updateRecord = sms.getMessageRecordOrNull(update.messageId)!!
+
+    assertThat(updateRecord.dateReceived, "update anchored just before triggering message").isEqualTo(receivedTime - 1)
+    assertThat(updateRecord.dateReceived, "update sorts above triggering message").isLessThan(messageRecord.dateReceived)
+  }
+
+  @Test
+  fun groupUpdateSortsBelowOlderMessages() {
+    val olderMessage = sms.insertMessageInbox(
+      IncomingMessage(
+        type = MessageType.NORMAL,
+        from = alice,
+        sentTimeMillis = 1_000L,
+        serverTimeMillis = 1_000L,
+        receivedTimeMillis = 1_000L,
+        body = "What up",
+        groupId = groupId,
+        isUnidentified = true
+      )
+    ).get()
+
+    val update = sms.insertMessageInbox(joinUpdateMessage(sentTime = 500L, receivedTime = 5_000L)).get()
+
+    val olderRecord = sms.getMessageRecordOrNull(olderMessage.messageId)!!
+    val updateRecord = sms.getMessageRecordOrNull(update.messageId)!!
+
+    assertThat(updateRecord.dateReceived, "update sorts below older messages despite older sent time").isGreaterThan(olderRecord.dateReceived)
+  }
+
+  private fun joinUpdateMessage(sentTime: Long, receivedTime: Long): IncomingMessage {
+    val updateContext = groupContext(masterKey = masterKey) {
+      change = groupChange(editor = aliceServiceId) {
+        addMember(bobServiceId)
+      }
+    }
+
+    val updateDescription = GV2UpdateDescription(
+      gv2ChangeDescription = updateContext,
+      groupChangeUpdate = GroupsV2UpdateMessageConverter.translateDecryptedChangeUpdate(SignalStore.account.getServiceIds(), updateContext)
+    )
+
+    return IncomingMessage.groupUpdate(
+      from = alice,
+      timestamp = sentTime,
+      groupId = groupId,
+      update = updateDescription,
+      isNotifiable = true,
+      serverGuid = null,
+      receivedTime = receivedTime
+    )
   }
 
   private fun smsMessage(sender: RecipientId, body: String? = ""): IncomingMessage {

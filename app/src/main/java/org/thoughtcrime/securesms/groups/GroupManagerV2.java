@@ -847,11 +847,12 @@ final class GroupManagerV2 {
                                                   @NonNull Optional<GroupRecord> localRecord,
                                                   @Nullable GroupSecretParams groupSecretParams,
                                                   @Nullable byte[] signedGroupChange,
-                                                  @Nullable String serverGuid)
+                                                  @Nullable String serverGuid,
+                                                  @Nullable Long receivedTime)
         throws IOException, GroupNotAMemberException
     {
       return GroupsV2StateProcessor.forGroup(serviceIds, groupMasterKey, groupSecretParams)
-                                   .updateLocalGroupToRevision(revision, timestamp, getDecryptedGroupChange(signedGroupChange), localRecord, serverGuid);
+                                   .updateLocalGroupToRevision(revision, timestamp, getDecryptedGroupChange(signedGroupChange), localRecord, serverGuid, receivedTime);
     }
 
     @WorkerThread

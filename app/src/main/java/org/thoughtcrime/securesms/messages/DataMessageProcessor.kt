@@ -155,7 +155,8 @@ object DataMessageProcessor {
         senderRecipient = senderRecipient,
         groupSecretParams = groupSecretParams,
         serverGuid = UuidUtil.getStringUUID(envelope.serverGuid, envelope.serverGuidBinary),
-        batchCache = batchCache
+        batchCache = batchCache,
+        receivedTime = receivedTime
       )
       SignalTrace.endSection()
 
