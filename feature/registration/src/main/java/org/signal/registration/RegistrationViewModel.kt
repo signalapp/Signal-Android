@@ -112,7 +112,11 @@ class RegistrationViewModel(
       is RegistrationFlowEvent.NavigateBackToScreen -> applyNavigateBackToScreenEvent(state, event)
       is RegistrationFlowEvent.NavigateBack -> {
         if (state.backStack.size > 1) {
-          state.copy(backStack = state.backStack.dropLast(1))
+          val poppedRoute = state.backStack.last()
+          state.copy(
+            backStack = state.backStack.dropLast(1),
+            pendingRestoreOption = if (poppedRoute.abandonsPendingRestore()) null else state.pendingRestoreOption
+          )
         } else {
           finishChannel.trySend(Unit)
           state
@@ -155,6 +159,23 @@ class RegistrationViewModel(
       is RegistrationRoute.PinEntryForSvrRestore,
       is RegistrationRoute.RemoteRestore -> true
       is RegistrationRoute.ArchiveRestoreSelection -> this.registeredState != RegisteredState.NotRegistered
+      else -> false
+    }
+  }
+
+  /**
+   * Whether backing out of this route means the user is abandoning a restore they selected before phone number entry.
+   * Without clearing [RegistrationFlowState.pendingRestoreOption], re-submitting a phone number would route them right
+   * back into the restore flow they just backed out of, with no way to register over SMS instead.
+   *
+   * [RegistrationRoute.LocalBackupRestore] is intentionally absent: it pops itself when a restore is deferred to SMS
+   * verification, and that flow relies on the still-set pending option to resume the restore after registration.
+   * Abandoning it is instead handled by its explicit cancel action.
+   */
+  private fun RegistrationRoute.abandonsPendingRestore(): Boolean {
+    return when (this) {
+      is RegistrationRoute.PhoneNumberEntry,
+      is RegistrationRoute.EnterAepForRemoteBackupPreRegistration -> true
       else -> false
     }
   }

@@ -11,7 +11,9 @@ import android.os.Looper
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
+import androidx.activity.OnBackPressedDispatcher
 import androidx.activity.compose.LocalActivityResultRegistryOwner
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.activity.result.ActivityResultRegistry
 import androidx.activity.result.ActivityResultRegistryOwner
 import androidx.activity.result.contract.ActivityResultContract
@@ -105,6 +107,7 @@ class RegistrationEndToEndTest {
   private lateinit var storageController: FakeStorageController
   private lateinit var repository: RegistrationRepository
   private lateinit var viewModel: RegistrationViewModel
+  private var backDispatcher: OnBackPressedDispatcher? = null
 
   private val backupFolderUri: Uri = Uri.parse("content://test/backups")
 
@@ -375,10 +378,7 @@ class RegistrationEndToEndTest {
 
     // The recovery password derived from the restored master key is rejected, landing back on phone number entry.
     // Resubmitting the number now goes through SMS verification instead of another recovery password attempt.
-    waitForTag(TestTags.PHONE_NUMBER_SCREEN)
-    composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_NEXT_BUTTON).performClick()
-    waitForTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON)
-    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+    resubmitPhoneNumber()
 
     submitVerificationCode(VERIFICATION_CODE)
 
@@ -1072,6 +1072,98 @@ class RegistrationEndToEndTest {
   }
 
   @Test
+  fun `choosing no recovery key returns to phone entry, and resubmitting the number verifies over sms instead of looping`() {
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startManualRestore()
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_FROM_SIGNAL_BACKUPS)
+    enterPhoneNumber()
+
+    // The user realizes they have no recovery key and abandons the restore
+    waitForTag(TestTags.ENTER_AEP_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.ENTER_AEP_NO_KEY_BUTTON).performClick()
+
+    // Resubmitting the same number verifies over SMS rather than routing back to recovery key entry
+    resubmitPhoneNumber()
+    submitVerificationCode(VERIFICATION_CODE)
+    createPin(PIN)
+
+    waitFor("registration to complete") { registrationComplete }
+
+    assert(networkController.lastRegisterAccountRequest?.sessionId != null) { "Expected registration via a verified session but was ${networkController.lastRegisterAccountRequest}" }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+    assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
+    assert(storageController.restoreDecision == RestoreDecision.NEW_ACCOUNT) { "Expected NEW_ACCOUNT restore decision but was ${storageController.restoreDecision}" }
+  }
+
+  @Test
+  fun `backing out of recovery key entry to the welcome screen and continuing verifies over sms instead of looping`() {
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startManualRestore()
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_FROM_SIGNAL_BACKUPS)
+    enterPhoneNumber()
+    waitForTag(TestTags.ENTER_AEP_SCREEN)
+
+    // The user has no recovery key and backs all the way out to the welcome screen
+    pressSystemBack()
+    waitForTag(TestTags.PHONE_NUMBER_SCREEN)
+    pressSystemBack()
+    waitForTag(TestTags.ARCHIVE_RESTORE_SELECTION_SCREEN)
+    pressSystemBack()
+
+    // Continuing normally verifies over SMS rather than routing back into the abandoned restore
+    submitPhoneNumber()
+    submitVerificationCode(VERIFICATION_CODE)
+    createPin(PIN)
+
+    waitFor("registration to complete") { registrationComplete }
+
+    assert(networkController.lastRegisterAccountRequest?.sessionId != null) { "Expected registration via a verified session but was ${networkController.lastRegisterAccountRequest}" }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+    assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
+    assert(storageController.restoreDecision == RestoreDecision.NEW_ACCOUNT) { "Expected NEW_ACCOUNT restore decision but was ${storageController.restoreDecision}" }
+  }
+
+  @Test
+  fun `backing out of the local backup folder screen to the welcome screen and continuing verifies over sms instead of looping`() {
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startManualRestore()
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_FROM_BACKUP_FOLDER)
+    enterPhoneNumber()
+
+    // The folder screen is shown, but the user never selects a folder and backs all the way out to the welcome screen
+    waitForTag(TestTags.LOCAL_BACKUP_RESTORE_SELECT_FOLDER_BUTTON)
+    pressSystemBack()
+    waitForTag(TestTags.PHONE_NUMBER_SCREEN)
+    pressSystemBack()
+    waitForTag(TestTags.ARCHIVE_RESTORE_SELECTION_SCREEN)
+    pressSystemBack()
+
+    // Continuing normally verifies over SMS rather than routing back to the folder screen
+    submitPhoneNumber()
+    submitVerificationCode(VERIFICATION_CODE)
+    createPin(PIN)
+
+    waitFor("registration to complete") { registrationComplete }
+
+    assert(networkController.lastRegisterAccountRequest?.sessionId != null) { "Expected registration via a verified session but was ${networkController.lastRegisterAccountRequest}" }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+    assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
+    assert(storageController.restoreDecision == RestoreDecision.NEW_ACCOUNT) { "Expected NEW_ACCOUNT restore decision but was ${storageController.restoreDecision}" }
+  }
+
+  @Test
   fun `restoring a local backup for a reglocked account whose reglock is not derived from the aep verifies the pin then restores`() {
     val aep = AccountEntropyPool.generate()
     val svrMasterKey = MasterKey(ByteArray(32) { it.toByte() })
@@ -1302,6 +1394,7 @@ class RegistrationEndToEndTest {
     viewModel = RegistrationViewModel(repository, SavedStateHandle())
 
     composeTestRule.setContent {
+      backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
       SignalTheme {
         ActivityResultInterceptor(folderPickerResult) {
           RegistrationNavHost(
@@ -1338,10 +1431,21 @@ class RegistrationEndToEndTest {
   private fun enterPhoneNumber() {
     waitForTag(TestTags.PHONE_NUMBER_SCREEN)
     composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_PHONE_FIELD).performTextInput(PHONE_NUMBER)
+    resubmitPhoneNumber()
+  }
+
+  /** From the phone number entry screen with the number already filled in: taps next and confirms the dialog. */
+  private fun resubmitPhoneNumber() {
+    waitForTag(TestTags.PHONE_NUMBER_SCREEN)
     composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_NEXT_BUTTON).performClick()
 
     waitForTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON)
     composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+  }
+
+  /** Simulates the system back button by dispatching through the activity's back dispatcher, the same path a real back press takes into the NavDisplay. */
+  private fun pressSystemBack() {
+    composeTestRule.runOnUiThread { backDispatcher!!.onBackPressed() }
   }
 
   /** From the Welcome screen: navigates to manual restore selection via "restore or transfer" → "don't have my old phone". */

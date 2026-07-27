@@ -359,6 +359,63 @@ class RegistrationViewModelTest {
   }
 
   @Test
+  fun `applyEvent NavigateBack from recovery key entry clears pendingRestoreOption`() = runTest(testDispatcher) {
+    coEvery { mockRepository.restoreFlowState() } returns null
+    coEvery { mockRepository.getPreExistingRegistrationData() } returns null
+
+    val viewModel = RegistrationViewModel(mockRepository, SavedStateHandle())
+    advanceUntilIdle()
+
+    val initialState = RegistrationFlowState(
+      backStack = listOf(RegistrationRoute.Welcome, RegistrationRoute.PhoneNumberEntry, RegistrationRoute.EnterAepForRemoteBackupPreRegistration("+15551234567")),
+      pendingRestoreOption = PendingRestoreOption.RemoteBackup
+    )
+
+    val result = viewModel.applyEvent(initialState, RegistrationFlowEvent.NavigateBack)
+
+    assertThat(result.backStack).isEqualTo(listOf(RegistrationRoute.Welcome, RegistrationRoute.PhoneNumberEntry))
+    assertThat(result.pendingRestoreOption).isNull()
+  }
+
+  @Test
+  fun `applyEvent NavigateBack from phone number entry clears pendingRestoreOption`() = runTest(testDispatcher) {
+    coEvery { mockRepository.restoreFlowState() } returns null
+    coEvery { mockRepository.getPreExistingRegistrationData() } returns null
+
+    val viewModel = RegistrationViewModel(mockRepository, SavedStateHandle())
+    advanceUntilIdle()
+
+    val initialState = RegistrationFlowState(
+      backStack = listOf(RegistrationRoute.Welcome, RegistrationRoute.PhoneNumberEntry),
+      pendingRestoreOption = PendingRestoreOption.LocalBackup
+    )
+
+    val result = viewModel.applyEvent(initialState, RegistrationFlowEvent.NavigateBack)
+
+    assertThat(result.backStack).isEqualTo(listOf(RegistrationRoute.Welcome))
+    assertThat(result.pendingRestoreOption).isNull()
+  }
+
+  @Test
+  fun `applyEvent NavigateBack from local backup restore keeps pendingRestoreOption`() = runTest(testDispatcher) {
+    coEvery { mockRepository.restoreFlowState() } returns null
+    coEvery { mockRepository.getPreExistingRegistrationData() } returns null
+
+    val viewModel = RegistrationViewModel(mockRepository, SavedStateHandle())
+    advanceUntilIdle()
+
+    val initialState = RegistrationFlowState(
+      backStack = listOf(RegistrationRoute.Welcome, RegistrationRoute.PhoneNumberEntry, RegistrationRoute.LocalBackupRestore(isPreRegistration = true)),
+      pendingRestoreOption = PendingRestoreOption.LocalBackup
+    )
+
+    val result = viewModel.applyEvent(initialState, RegistrationFlowEvent.NavigateBack)
+
+    assertThat(result.backStack).isEqualTo(listOf(RegistrationRoute.Welcome, RegistrationRoute.PhoneNumberEntry))
+    assertThat(result.pendingRestoreOption).isEqualTo(PendingRestoreOption.LocalBackup)
+  }
+
+  @Test
   fun `applyEvent NavigateToScreen Welcome clears backStack`() = runTest(testDispatcher) {
     coEvery { mockRepository.restoreFlowState() } returns null
     coEvery { mockRepository.getPreExistingRegistrationData() } returns null
