@@ -452,6 +452,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     }
 
     if (SignalStore.account().isRegistered() &&
+        SignalStore.registration().isRegistrationComplete() &&
         !TextSecurePreferences.isUnauthorizedReceived(requireContext()) &&
         SignalStore.settings().getAutomaticVerificationEnabled() &&
         SignalStore.misc().getHasKeyTransparencyFailure() &&

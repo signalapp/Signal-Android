@@ -90,6 +90,9 @@ class CheckKeyTransparencyJob private constructor(
       return if (!SignalStore.account.isRegistered) {
         Log.i(TAG, "Account not registered. Exiting.")
         false
+      } else if (!SignalStore.registration.isRegistrationComplete) {
+        Log.i(TAG, "Registration is not complete. Exiting.")
+        false
       } else if (TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)) {
         Log.i(TAG, "Account is unauthorized. Exiting.")
         false
