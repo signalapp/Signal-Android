@@ -6,6 +6,7 @@
 package org.signal.registration.screens.verificationcode
 
 import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -19,9 +20,10 @@ data class VerificationCodeState(
   val digits: List<String> = List(CODE_LENGTH) { "" },
   val focusedDigitIndex: Int = 0,
   val showContactSupportSheet: Boolean = false,
-  val snackbars: Snackbars = Snackbars()
+  val snackbars: Snackbars = Snackbars(),
+  val dialogs: Dialogs = Dialogs()
 ) {
-  override fun toString(): String = "VerificationCodeState(sessionMetadata=$sessionMetadata, e164=$e164, isSubmittingCode=$isSubmittingCode, rateLimits=$rateLimits, incorrectCodeAttempts=$incorrectCodeAttempts, autoFillCode=${autoFillCode?.let { "present" }}, digitsEntered=${digits.count { it.isNotEmpty() }}, focusedDigitIndex=$focusedDigitIndex, showContactSupportSheet=$showContactSupportSheet, snackbars=$snackbars)"
+  override fun toString(): String = "VerificationCodeState(sessionMetadata=$sessionMetadata, e164=$e164, isSubmittingCode=$isSubmittingCode, rateLimits=$rateLimits, incorrectCodeAttempts=$incorrectCodeAttempts, autoFillCode=${autoFillCode?.let { "present" }}, digitsEntered=${digits.count { it.isNotEmpty() }}, focusedDigitIndex=$focusedDigitIndex, showContactSupportSheet=$showContactSupportSheet, snackbars=$snackbars, dialogs=$dialogs)"
 
   /**
    * The full code as currently entered. Only meaningful when [isComplete] is true.
@@ -42,15 +44,24 @@ data class VerificationCodeState(
     fun emptyDigits(): List<String> = List(CODE_LENGTH) { "" }
   }
 
-  /** Transient error messages shown as snackbars. Cleared once the snackbar has been shown and dismissed. */
+  /** Transient errors from submitting a code or registering, shown as snackbars. Cleared once shown and dismissed. */
   data class Snackbars(
+    val networkError: Boolean = false,
+    val unknownError: Boolean = false,
+    val rateLimitedRetryAfter: Duration? = null,
+    val incorrectVerificationCode: Boolean = false,
+    val registrationError: Boolean = false
+  )
+
+  /** Errors from requesting a verification code (resend SMS / call me), shown as modal dialogs so they aren't missed. */
+  data class Dialogs(
     val networkError: Boolean = false,
     val unknownError: Boolean = false,
     val rateLimitedRetryAfter: Duration? = null,
     val unableToSendSms: Boolean = false,
     val couldNotRequestCodeWithSelectedTransport: Boolean = false,
-    val incorrectVerificationCode: Boolean = false,
-    val registrationError: Boolean = false
+    /** Nonnull when the delivery provider rejected the request. Carries the failed transport for accurate wording. */
+    val providerRejectedTransport: VerificationCodeTransport? = null
   )
 
   /**

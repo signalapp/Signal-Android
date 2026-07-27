@@ -139,8 +139,12 @@ class VerificationCodeViewModel(
       is VerificationCodeScreenEvents.NetworkErrorSnackbarDismissed -> state.copy(snackbars = state.snackbars.copy(networkError = false))
       is VerificationCodeScreenEvents.UnknownErrorSnackbarDismissed -> state.copy(snackbars = state.snackbars.copy(unknownError = false))
       is VerificationCodeScreenEvents.RateLimitedSnackbarDismissed -> state.copy(snackbars = state.snackbars.copy(rateLimitedRetryAfter = null))
-      is VerificationCodeScreenEvents.UnableToSendSmsSnackbarDismissed -> state.copy(snackbars = state.snackbars.copy(unableToSendSms = false))
-      is VerificationCodeScreenEvents.CouldNotRequestCodeWithSelectedTransportSnackbarDismissed -> state.copy(snackbars = state.snackbars.copy(couldNotRequestCodeWithSelectedTransport = false))
+      is VerificationCodeScreenEvents.NetworkErrorDialogDismissed -> state.copy(dialogs = state.dialogs.copy(networkError = false))
+      is VerificationCodeScreenEvents.UnknownErrorDialogDismissed -> state.copy(dialogs = state.dialogs.copy(unknownError = false))
+      is VerificationCodeScreenEvents.RateLimitedDialogDismissed -> state.copy(dialogs = state.dialogs.copy(rateLimitedRetryAfter = null))
+      is VerificationCodeScreenEvents.UnableToSendSmsDialogDismissed -> state.copy(dialogs = state.dialogs.copy(unableToSendSms = false))
+      is VerificationCodeScreenEvents.CouldNotRequestCodeWithSelectedTransportDialogDismissed -> state.copy(dialogs = state.dialogs.copy(couldNotRequestCodeWithSelectedTransport = false))
+      is VerificationCodeScreenEvents.ProviderRejectedDialogDismissed -> state.copy(dialogs = state.dialogs.copy(providerRejectedTransport = null))
       is VerificationCodeScreenEvents.IncorrectVerificationCodeSnackbarDismissed -> state.copy(snackbars = state.snackbars.copy(incorrectVerificationCode = false))
       is VerificationCodeScreenEvents.RegistrationErrorSnackbarDismissed -> state.copy(snackbars = state.snackbars.copy(registrationError = false))
       is VerificationCodeScreenEvents.CountdownTick -> applyCountdownTick(state)
@@ -467,13 +471,13 @@ class VerificationCodeViewModel(
         when (val error = result.error) {
           is RequestVerificationCodeError.InvalidRequest -> {
             Log.w(TAG, "[RequestCode][$transport] Invalid request: ${error.message}")
-            state.copy(snackbars = state.snackbars.copy(unknownError = true))
+            state.copy(dialogs = state.dialogs.copy(unknownError = true))
           }
           is RequestVerificationCodeError.RateLimited -> {
             Log.w(TAG, "[RequestCode][$transport] Rate limited (retryAfter: ${error.retryAfter}).")
             parentEventEmitter(RegistrationFlowEvent.SessionUpdated(error.session))
             state.copy(
-              snackbars = state.snackbars.copy(rateLimitedRetryAfter = error.retryAfter),
+              dialogs = state.dialogs.copy(rateLimitedRetryAfter = error.retryAfter),
               sessionMetadata = error.session,
               rateLimits = computeRateLimits(error.session)
             )
@@ -482,7 +486,7 @@ class VerificationCodeViewModel(
             Log.w(TAG, "[RequestCode][$transport] Could not fulfill with requested transport.")
             parentEventEmitter(RegistrationFlowEvent.SessionUpdated(error.session))
             state.copy(
-              snackbars = state.snackbars.copy(couldNotRequestCodeWithSelectedTransport = true),
+              dialogs = state.dialogs.copy(couldNotRequestCodeWithSelectedTransport = true),
               sessionMetadata = error.session,
               rateLimits = computeRateLimits(error.session)
             )
@@ -496,7 +500,7 @@ class VerificationCodeViewModel(
             Log.w(TAG, "[RequestCode][$transport] Missing request information or already verified.")
             parentEventEmitter(RegistrationFlowEvent.SessionUpdated(error.session))
             state.copy(
-              snackbars = state.snackbars.copy(unableToSendSms = true),
+              dialogs = state.dialogs.copy(unableToSendSms = true),
               sessionMetadata = error.session,
               rateLimits = computeRateLimits(error.session)
             )
@@ -508,17 +512,17 @@ class VerificationCodeViewModel(
           }
           is RequestVerificationCodeError.ThirdPartyServiceError -> {
             Log.w(TAG, "[RequestCode][$transport] Third party service error. ${error.data}")
-            state.copy(snackbars = state.snackbars.copy(unableToSendSms = true))
+            state.copy(dialogs = state.dialogs.copy(providerRejectedTransport = transport))
           }
         }
       }
       is RequestResult.RetryableNetworkError -> {
         Log.w(TAG, "[RequestCode][$transport] Network error.", result.networkError)
-        state.copy(snackbars = state.snackbars.copy(networkError = true))
+        state.copy(dialogs = state.dialogs.copy(networkError = true))
       }
       is RequestResult.ApplicationError -> {
         Log.w(TAG, "[RequestCode][$transport] Unknown application error.", result.cause)
-        state.copy(snackbars = state.snackbars.copy(unknownError = true))
+        state.copy(dialogs = state.dialogs.copy(unknownError = true))
       }
     }
   }

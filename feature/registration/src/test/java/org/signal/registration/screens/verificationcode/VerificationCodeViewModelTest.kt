@@ -1145,7 +1145,7 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(emittedStates.last().snackbars.rateLimitedRetryAfter).isEqualTo(45.seconds)
+    assertThat(emittedStates.last().dialogs.rateLimitedRetryAfter).isEqualTo(45.seconds)
   }
 
   @Test
@@ -1160,7 +1160,7 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(emittedStates.last().snackbars.unknownError).isTrue()
+    assertThat(emittedStates.last().dialogs.unknownError).isTrue()
   }
 
   @Test
@@ -1175,7 +1175,7 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(emittedStates.last().snackbars.couldNotRequestCodeWithSelectedTransport).isTrue()
+    assertThat(emittedStates.last().dialogs.couldNotRequestCodeWithSelectedTransport).isTrue()
   }
 
   @Test
@@ -1222,11 +1222,11 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(emittedStates.last().snackbars.unableToSendSms).isTrue()
+    assertThat(emittedStates.last().dialogs.unableToSendSms).isTrue()
   }
 
   @Test
-  fun `ResendSms with ThirdPartyServiceError returns UnableToSendSms event`() = runTest {
+  fun `ResendSms with ThirdPartyServiceError shows provider rejected dialog for SMS`() = runTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
@@ -1239,7 +1239,7 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(emittedStates.last().snackbars.unableToSendSms).isTrue()
+    assertThat(emittedStates.last().dialogs.providerRejectedTransport).isEqualTo(VerificationCodeTransport.SMS)
   }
 
   @Test
@@ -1252,7 +1252,7 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(emittedStates.last().snackbars.networkError).isTrue()
+    assertThat(emittedStates.last().dialogs.networkError).isTrue()
   }
 
   @Test
@@ -1265,7 +1265,7 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.ResendSms, stateEmitter)
 
-    assertThat(emittedStates.last().snackbars.unknownError).isTrue()
+    assertThat(emittedStates.last().dialogs.unknownError).isTrue()
   }
 
   // ==================== applyEvent: CallMe Tests ====================
@@ -1307,7 +1307,7 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe, stateEmitter)
 
-    assertThat(emittedStates.last().snackbars.rateLimitedRetryAfter).isEqualTo(90.seconds)
+    assertThat(emittedStates.last().dialogs.rateLimitedRetryAfter).isEqualTo(90.seconds)
   }
 
   @Test
@@ -1322,11 +1322,11 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe, stateEmitter)
 
-    assertThat(emittedStates.last().snackbars.couldNotRequestCodeWithSelectedTransport).isTrue()
+    assertThat(emittedStates.last().dialogs.couldNotRequestCodeWithSelectedTransport).isTrue()
   }
 
   @Test
-  fun `CallMe with ThirdPartyServiceError returns UnableToSendSms event`() = runTest {
+  fun `CallMe with ThirdPartyServiceError shows provider rejected dialog for VOICE`() = runTest {
     val sessionMetadata = createSessionMetadata()
     val initialState = VerificationCodeState(sessionMetadata = sessionMetadata)
 
@@ -1339,7 +1339,7 @@ class VerificationCodeViewModelTest {
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CallMe, stateEmitter)
 
-    assertThat(emittedStates.last().snackbars.unableToSendSms).isTrue()
+    assertThat(emittedStates.last().dialogs.providerRejectedTransport).isEqualTo(VerificationCodeTransport.VOICE)
   }
 
   // ==================== applyEvent: Foregrounded Tests ====================
