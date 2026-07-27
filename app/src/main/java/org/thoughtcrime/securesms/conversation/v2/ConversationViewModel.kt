@@ -642,6 +642,13 @@ class ConversationViewModel(
     refreshIdentityRecords.onNext(Unit)
   }
 
+  fun refreshInputReadyState() {
+    val recipientId = recipientSnapshot?.id ?: return
+    viewModelScope.launch(Dispatchers.Default) {
+      Recipient.live(recipientId).refresh()
+    }
+  }
+
   fun updateIdentityRecords(): Completable {
     val state: IdentityRecordsState = identityRecordsStore.state
     if (state.recipient == null) {

@@ -2916,7 +2916,10 @@ class ConversationFragment :
         messageRequestViewModel
           .onReportSpam()
           .doOnSubscribe { disabledInput.showBusy() }
-          .doOnTerminate { disabledInput.hideBusy() }
+          .doOnTerminate {
+            disabledInput.hideBusy()
+            viewModel.refreshInputReadyState()
+          }
           .subscribeBy {
             Log.d(TAG, "report spam complete")
             toast(R.string.ConversationFragment_reported_as_spam)
@@ -2930,7 +2933,10 @@ class ConversationFragment :
           messageRequestViewModel
             .onBlockAndReportSpam()
             .doOnSubscribe { disabledInput.showBusy() }
-            .doOnTerminate { disabledInput.hideBusy() }
+            .doOnTerminate {
+              disabledInput.hideBusy()
+              viewModel.refreshInputReadyState()
+            }
             .subscribeBy { result ->
               when (result) {
                 is Result.Success -> {
@@ -3009,7 +3015,10 @@ class ConversationFragment :
   private fun Single<Result<Unit, GroupChangeFailureReason>>.subscribeWithShowProgress(logMessage: String): Disposable {
     val disabledInput = binding.conversationDisabledInput
     return doOnSubscribe { disabledInput.showBusy() }
-      .doOnTerminate { disabledInput.hideBusy() }
+      .doOnTerminate {
+        disabledInput.hideBusy()
+        viewModel.refreshInputReadyState()
+      }
       .subscribeBy { result ->
         when (result) {
           is Result.Success -> Log.d(TAG, "$logMessage complete")
