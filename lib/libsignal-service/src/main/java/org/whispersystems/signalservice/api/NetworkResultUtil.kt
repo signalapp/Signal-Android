@@ -123,7 +123,7 @@ object NetworkResultUtil {
         throw when (result.code) {
           400, 401 -> AuthorizationFailedException(result.code, "Authorization failed!")
           404 -> NotFoundException("Not found")
-          429 -> RateLimitException(result.code, "Rate limit exceeded: ${result.code}", Optional.empty())
+          429 -> RateLimitException(result.code, "Rate limit exceeded: ${result.code}", Optional.ofNullable(result.retryAfter()?.inWholeMilliseconds))
           508 -> ServerRejectedException()
           else -> result.exception
         }
