@@ -25,6 +25,7 @@ import org.signal.network.api.RegistrationApiV2
 import org.signal.network.api.RemoteConfigApi
 import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
+import org.signal.network.config.NetworkProxyState
 import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.rest.SignalRestClient
 import org.signal.network.service.StorageServiceService
@@ -281,7 +282,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideLibsignalNetwork(config: SignalServiceConfiguration): Network {
+  override fun provideLibsignalNetwork(config: SignalServiceConfiguration, proxyState: NetworkProxyState): Network {
     return mockk(relaxed = true)
   }
 
