@@ -25,10 +25,12 @@ import kotlinx.coroutines.CancellationException
  * Modified version of detectDragGesturesAfterLongPress from [androidx.compose.foundation.gestures.DragGestureDetector]
  * that initiates drags when the touch starts within a specified x coordinate range.
  *
- * @param dragHandleXRange The x coordinate range (in pixels) where drags can be initiated.
+ * @param dragHandleXRange The x coordinate range (in pixels) where drags can be initiated, or null to allow drags to start
+ *   anywhere in the container. A range implies a dedicated drag handle, so drags begin almost immediately; without one, a
+ *   full long press is required so that taps and scrolls within the container still work.
  */
 suspend fun PointerInputScope.detectDragGestures(
-  dragHandleXRange: ClosedFloatingPointRange<Float>,
+  dragHandleXRange: ClosedFloatingPointRange<Float>?,
   onDragStart: (Offset) -> Unit = { },
   onDragEnd: () -> Unit = { },
   onDragCancel: () -> Unit = { },
@@ -37,8 +39,9 @@ suspend fun PointerInputScope.detectDragGestures(
   awaitEachGesture {
     try {
       val down = awaitFirstDown(requireUnconsumed = false)
-      val dragChange = awaitLongPressOrCancellation(down.id)
-      if (dragChange != null && dragChange.position.x in dragHandleXRange) {
+      val timeoutMillis = if (dragHandleXRange != null) viewConfiguration.longPressTimeoutMillis / 100 else viewConfiguration.longPressTimeoutMillis
+      val dragChange = awaitLongPressOrCancellation(down.id, timeoutMillis)
+      if (dragChange != null && (dragHandleXRange == null || dragChange.position.x in dragHandleXRange)) {
         dispatchDragCallbacks(dragChange, onDragStart, onDragEnd, onDragCancel, onDrag)
       }
     } catch (c: CancellationException) {
@@ -76,10 +79,11 @@ private suspend fun AwaitPointerEventScope.dispatchDragCallbacks(
 }
 
 /**
- * Modified version of awaitLongPressOrCancellation from [androidx.compose.foundation.gestures.DragGestureDetector] with a reduced long press timeout
+ * Modified version of awaitLongPressOrCancellation from [androidx.compose.foundation.gestures.DragGestureDetector] with a configurable long press timeout
  */
 suspend fun AwaitPointerEventScope.awaitLongPressOrCancellation(
-  pointerId: PointerId
+  pointerId: PointerId,
+  timeoutMillis: Long
 ): PointerInputChange? {
   if (currentEvent.isPointerUp(pointerId)) {
     return null // The pointer has already been lifted, so the long press is cancelled.
@@ -90,10 +94,9 @@ suspend fun AwaitPointerEventScope.awaitLongPressOrCancellation(
 
   var longPress: PointerInputChange? = null
   var currentDown = initialDown
-  val longPressTimeout = (viewConfiguration.longPressTimeoutMillis / 100)
   return try {
     // wait for first tap up or long press
-    withTimeout(longPressTimeout) {
+    withTimeout(timeoutMillis) {
       var finished = false
       while (!finished) {
         val event = awaitPointerEvent(PointerEventPass.Main)

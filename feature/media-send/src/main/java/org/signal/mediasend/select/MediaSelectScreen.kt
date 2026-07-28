@@ -17,6 +17,7 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -33,7 +34,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -67,6 +69,10 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.ensureWidthIsAtLeastHeight
+import org.signal.core.ui.compose.list.ReorderableItem
+import org.signal.core.ui.compose.list.rememberReorderBuffer
+import org.signal.core.ui.compose.list.rememberReorderableListState
+import org.signal.core.ui.compose.list.reorderableList
 import org.signal.glide.compose.GlideImage
 import org.signal.mediasend.MediaSendMetrics
 import org.signal.mediasend.R
@@ -137,19 +143,14 @@ internal fun MediaSelectScreen(
             .background(color = MaterialTheme.colorScheme.surface)
             .padding(vertical = gridConfiguration.bottomBarVerticalPadding, horizontal = gridConfiguration.bottomBarHorizontalPadding)
         ) {
-          LazyRow(
+          SelectedMediaRow(
+            selectedMedia = state.selectedMedia,
+            alignment = gridConfiguration.bottomBarAlignment,
+            onEvent = onEvent,
             modifier = Modifier
               .weight(1f)
-              .padding(end = 16.dp),
-            horizontalArrangement = spacedBy(space = 12.dp, alignment = gridConfiguration.bottomBarAlignment)
-          ) {
-            items(state.selectedMedia, key = { it.uri }) { media ->
-              MediaThumbnail(media, modifier = Modifier.animateItem()) {
-                onEvent(MediaSelectScreenEvent.SetFocusedMedia(media))
-                onEvent(MediaSelectScreenEvent.NavigateToEdit)
-              }
-            }
-          }
+              .padding(end = 16.dp)
+          )
 
           NextButton(state.selectedMedia.size) {
             onEvent(MediaSelectScreenEvent.NavigateToEdit)
@@ -376,6 +377,44 @@ private fun NextButton(mediaSelectionCount: Int, onClick: () -> Unit) {
   }
 }
 
+/**
+ * The rail of currently selected media. Items can be long pressed and dragged to change the order they'll be sent in.
+ */
+@Composable
+private fun SelectedMediaRow(
+  selectedMedia: List<Media>,
+  alignment: Alignment.Horizontal,
+  onEvent: (MediaSelectScreenEvent) -> Unit,
+  modifier: Modifier = Modifier
+) {
+  val listState = rememberLazyListState()
+  val reorderBuffer = rememberReorderBuffer(selectedMedia) { fromIndex, toIndex ->
+    onEvent(MediaSelectScreenEvent.ReorderSelectedMedia(fromIndex, toIndex))
+  }
+  val reorderableListState = rememberReorderableListState(
+    lazyListState = listState,
+    includeHeader = false,
+    includeFooter = false,
+    orientation = Orientation.Horizontal,
+    onEvent = reorderBuffer::onReorderListEvent
+  )
+
+  LazyRow(
+    state = listState,
+    modifier = modifier.reorderableList(reorderableListState),
+    horizontalArrangement = spacedBy(space = 12.dp, alignment = alignment)
+  ) {
+    itemsIndexed(reorderBuffer.items, key = { _, media -> media.uri }) { index, media ->
+      ReorderableItem(reorderableListState, index) {
+        MediaThumbnail(media) {
+          onEvent(MediaSelectScreenEvent.SetFocusedMedia(media))
+          onEvent(MediaSelectScreenEvent.NavigateToEdit)
+        }
+      }
+    }
+  }
+}
+
 @Composable
 private fun MediaThumbnail(
   media: Media,
@@ -387,6 +426,7 @@ private fun MediaThumbnail(
       modifier = modifier
         .size(MediaSendMetrics.SelectedMediaPreviewSize)
         .background(color = Previews.rememberRandomColor(), shape = RoundedCornerShape(8.dp))
+        .clickable(onClick = onClick, onClickLabel = media.fileName, role = Role.Button)
     )
   } else {
     GlideImage(
@@ -395,6 +435,7 @@ private fun MediaThumbnail(
       modifier = modifier
         .size(MediaSendMetrics.SelectedMediaPreviewSize)
         .clip(RoundedCornerShape(8.dp))
+        .clickable(onClick = onClick, onClickLabel = media.fileName, role = Role.Button)
     )
   }
 }

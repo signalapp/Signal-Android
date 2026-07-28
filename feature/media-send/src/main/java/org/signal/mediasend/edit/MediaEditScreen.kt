@@ -174,6 +174,9 @@ fun MediaEditScreen(
             scope.launch {
               pagerState.animateScrollToPage(index)
             }
+          },
+          onReorder = { fromIndex, toIndex ->
+            onEvent(MediaEditScreenEvent.ReorderSelectedMedia(fromIndex, toIndex))
           }
         )
       }

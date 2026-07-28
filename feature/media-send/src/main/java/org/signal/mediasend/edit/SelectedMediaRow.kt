@@ -29,6 +29,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -46,6 +47,10 @@ import kotlinx.coroutines.launch
 import org.signal.core.models.media.Media
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.list.ReorderableItem
+import org.signal.core.ui.compose.list.rememberReorderBuffer
+import org.signal.core.ui.compose.list.rememberReorderableListState
+import org.signal.core.ui.compose.list.reorderableList
 import org.signal.core.util.ContentTypeUtil
 import org.signal.glide.compose.GlideImage
 import org.signal.mediasend.MediaSendMetrics
@@ -66,7 +71,8 @@ internal fun ThumbnailRow(
   selectedMedia: List<Media>,
   pagerState: PagerState,
   onFocusedMediaChange: (Media) -> Unit,
-  onThumbnailClick: (Int) -> Unit = {}
+  onThumbnailClick: (Int) -> Unit = {},
+  onReorder: (fromIndex: Int, toIndex: Int) -> Unit = { _, _ -> }
 ) {
   val density = LocalDensity.current
   val scope = rememberCoroutineScope()
@@ -77,10 +83,25 @@ internal fun ThumbnailRow(
   val pagerPageSize = pagerState.layoutInfo.pageSize.takeIf { it > 0 } ?: 1
   val listState = rememberLazyListState()
 
+  val reorderBuffer = rememberReorderBuffer(selectedMedia, onReorder)
+  val reorderableListState = rememberReorderableListState(
+    lazyListState = listState,
+    includeHeader = false,
+    includeFooter = false,
+    orientation = Orientation.Horizontal,
+    autoScroll = false,
+    onEvent = reorderBuffer::onReorderListEvent
+  )
+  val isReordering = reorderableListState.draggingItemIndex != null
+
   val draggableState = rememberDraggableState { delta ->
     val scaledDelta = delta * (pagerPageSize.toFloat() / itemStride)
     pagerState.dispatchRawDelta(-scaledDelta)
   }
+
+  // Read through the latest selection rather than the one captured when the effect started, since reordering changes
+  // which media a settled page refers to without restarting the effect.
+  val currentSelectedMedia by rememberUpdatedState(selectedMedia)
 
   LaunchedEffect(pagerState) {
     snapshotFlow { pagerState.isScrollInProgress }
@@ -88,24 +109,45 @@ internal fun ThumbnailRow(
       .drop(1)
       .collectLatest {
         val settledPage = pagerState.currentPage
-        if (settledPage in selectedMedia.indices) {
-          onFocusedMediaChange(selectedMedia[settledPage])
+        if (settledPage in currentSelectedMedia.indices) {
+          onFocusedMediaChange(currentSelectedMedia[settledPage])
         }
       }
   }
 
+  // The rail's scroll position belongs to the drag rather than the pager from the moment an item is picked up until the
+  // reorder it produced has landed in state. Resuming any earlier means syncing to the pre-drag order and then having to
+  // correct once the new order arrives. The single catch-up afterwards is animated so the rail glides to the dropped
+  // item's slot rather than snapping to it.
   LaunchedEffect(pagerState, itemStride, selectedMedia.size) {
     if (selectedMedia.isEmpty()) return@LaunchedEffect
 
-    snapshotFlow { pagerState.currentPage + pagerState.currentPageOffsetFraction }
+    var isCatchingUp = false
+
+    snapshotFlow {
+      val isReordering = reorderableListState.draggingItemIndex != null || reorderBuffer.isReordering
+      (pagerState.currentPage + pagerState.currentPageOffsetFraction) to isReordering
+    }
       .distinctUntilChanged()
-      .collectLatest { position ->
+      .collectLatest { (position, isReordering) ->
+        if (isReordering) {
+          isCatchingUp = true
+          return@collectLatest
+        }
+
         val clampedPosition = position.coerceIn(0f, selectedMedia.lastIndex.toFloat())
         val baseIndex = floor(clampedPosition.toDouble()).toInt()
         val fraction = (clampedPosition - baseIndex).coerceIn(0f, 1f)
         val scrollOffsetPx = (fraction * itemStride).roundToInt()
 
-        listState.scrollToItem(baseIndex, scrollOffsetPx)
+        if (isCatchingUp) {
+          // Left set until the animation actually finishes: if the pager retargets midway, collectLatest cancels this
+          // and the next pass animates on from wherever the rail got to instead of snapping.
+          listState.animateScrollToItem(baseIndex, scrollOffsetPx)
+          isCatchingUp = false
+        } else {
+          listState.scrollToItem(baseIndex, scrollOffsetPx)
+        }
       }
   }
 
@@ -113,6 +155,7 @@ internal fun ThumbnailRow(
     modifier = Modifier.fillMaxWidth().draggable(
       state = draggableState,
       orientation = Orientation.Horizontal,
+      enabled = !isReordering,
       onDragStopped = { velocity ->
         scope.launch {
           val targetPage = when {
@@ -139,9 +182,10 @@ internal fun ThumbnailRow(
       horizontalArrangement = spacedBy(BASE_SPACING),
       contentPadding = PaddingValues(start = startPadding, end = endPadding),
       state = listState,
-      userScrollEnabled = false
+      userScrollEnabled = false,
+      modifier = Modifier.reorderableList(reorderableListState)
     ) {
-      itemsIndexed(selectedMedia, key = { _, media -> media.uri }) { index, media ->
+      itemsIndexed(reorderBuffer.items, key = { _, media -> media.uri }) { index, media ->
         val padding by remember(index) {
           derivedStateOf {
             val currentPosition = pagerState.currentPage + pagerState.currentPageOffsetFraction
@@ -150,12 +194,14 @@ internal fun ThumbnailRow(
           }
         }
 
-        Thumbnail(
-          media = media,
-          modifier = Modifier
-            .padding(horizontal = padding)
-            .clickable { onThumbnailClick(index) }
-        )
+        ReorderableItem(reorderableListState, index) {
+          Thumbnail(
+            media = media,
+            modifier = Modifier
+              .padding(horizontal = padding)
+              .clickable { onThumbnailClick(index) }
+          )
+        }
       }
     }
   }

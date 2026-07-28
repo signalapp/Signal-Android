@@ -60,7 +60,6 @@ import org.signal.mediasend.select.MediaSelectScreenEvent
 import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
 import java.io.FileInputStream
 import java.io.IOException
-import java.util.Collections
 import kotlin.coroutines.resume
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.microseconds
@@ -145,9 +144,6 @@ class MediaSendViewModel(
   val messageCharacterCount: Flow<Int> = state
     .map { it.message?.let { msg -> StringUtil.getGraphemeCount(msg) } ?: 0 }
     .distinctUntilChanged()
-
-  /** Tracks drag state for media reordering. */
-  private var lastMediaDrag: Pair<Int, Int> = Pair(0, 0)
 
   init {
     // Matches legacy behavior: VM subscribes to connectivity updates and derives
@@ -234,6 +230,7 @@ class MediaSendViewModel(
       is MediaSelectScreenEvent.FolderClick -> onFolderClick(mediaSelectScreenEvent.mediaFolder)
       is MediaSelectScreenEvent.MediaClick -> onMediaClick(mediaSelectScreenEvent.media)
       is MediaSelectScreenEvent.SetFocusedMedia -> setFocusedMedia(mediaSelectScreenEvent.media)
+      is MediaSelectScreenEvent.ReorderSelectedMedia -> reorderMedia(mediaSelectScreenEvent.fromIndex, mediaSelectScreenEvent.toIndex)
       MediaSelectScreenEvent.NavigateToEdit -> backStack.goToEdit()
     }
   }
@@ -265,6 +262,7 @@ class MediaSendViewModel(
   override fun onMediaEditScreenEvent(mediaEditScreenEvent: MediaEditScreenEvent) {
     when (mediaEditScreenEvent) {
       is MediaEditScreenEvent.FocusedMediaChanged -> setFocusedMedia(mediaEditScreenEvent.media)
+      is MediaEditScreenEvent.ReorderSelectedMedia -> reorderMedia(mediaEditScreenEvent.fromIndex, mediaEditScreenEvent.toIndex)
       MediaEditScreenEvent.NextClick -> {
         if (state.value.isContactSelectionRequired) {
           backStack.goToSend()
@@ -767,54 +765,22 @@ class MediaSendViewModel(
 
   //region Drag/Reordering
 
-  fun swapMedia(originalStart: Int, end: Int): Boolean {
-    var start = originalStart
+  /** Moves the media at [fromIndex] to [toIndex]. Called once per drag, once the item has been dropped. */
+  private fun reorderMedia(fromIndex: Int, toIndex: Int) {
+    val selectedMedia = state.value.selectedMedia
 
-    if (lastMediaDrag.first == start && lastMediaDrag.second == end) {
-      return true
-    } else if (lastMediaDrag.first == start) {
-      start = lastMediaDrag.second
+    if (fromIndex == toIndex || fromIndex !in selectedMedia.indices || toIndex !in selectedMedia.indices) {
+      return
     }
 
-    val snapshot = state.value
+    val reordered = selectedMedia.toMutableList().apply { add(toIndex, removeAt(fromIndex)) }
 
-    if (end >= snapshot.selectedMedia.size ||
-      end < 0 ||
-      start >= snapshot.selectedMedia.size ||
-      start < 0
-    ) {
-      return false
-    }
-
-    lastMediaDrag = Pair(originalStart, end)
-
-    val newMediaList = snapshot.selectedMedia.toMutableList()
-
-    if (start < end) {
-      for (i in start until end) {
-        Collections.swap(newMediaList, i, i + 1)
-      }
-    } else {
-      for (i in start downTo end + 1) {
-        Collections.swap(newMediaList, i, i - 1)
-      }
-    }
-
-    updateState { copy(selectedMedia = newMediaList) }
-    return true
-  }
-
-  fun isValidMediaDragPosition(position: Int): Boolean {
-    return position >= 0 && position < internalState.value.selectedMedia.size
+    updateState { copy(selectedMedia = reordered) }
+    preUploadController.updateDisplayOrder(reordered)
   }
 
   private fun isNonGifVideo(media: Media): Boolean {
     return ContentTypeUtil.isVideo(media.contentType) && !media.isVideoGif
-  }
-
-  fun onMediaDragFinished() {
-    lastMediaDrag = Pair(0, 0)
-    preUploadController.updateDisplayOrder(internalState.value.selectedMedia)
   }
 
   //endregion
