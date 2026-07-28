@@ -117,7 +117,7 @@ fun MediaEditScreen(
           )
         }
 
-        is EditorState.VideoTrim -> {
+        is EditorState.VideoTrim, EditorState.VideoGif -> {
           val media = state.selectedMedia[index]
           var videoEditorFragment by remember(media.uri) { mutableStateOf<VideoEditorFragment?>(null) }
 
@@ -238,7 +238,7 @@ fun MediaEditScreen(
           )
         }
 
-        null -> Unit
+        EditorState.VideoGif, null -> Unit
       }
 
       AddAMessageRow(

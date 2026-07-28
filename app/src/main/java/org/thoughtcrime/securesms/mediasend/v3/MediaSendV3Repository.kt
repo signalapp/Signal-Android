@@ -241,11 +241,12 @@ object MediaSendV3Repository : MediaSendRepository {
 
   private fun mapLegacyEditorState(editorStateMap: Map<Uri, EditorState>): Map<Uri, Any> {
     return editorStateMap.mapNotNull { (uri, state) ->
-      val legacyState: Any = when (state) {
+      val legacyState: Any? = when (state) {
         is EditorState.Image -> ImageEditorFragment.Data().apply { writeModel(state.model) }
         is EditorState.VideoTrim -> state.videoTrimData
+        EditorState.VideoGif -> null
       }
-      uri to legacyState
+      legacyState?.let { uri to it }
     }.toMap()
   }
 

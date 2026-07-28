@@ -94,6 +94,13 @@ sealed interface EditorState : Parcelable {
   }
 
   /**
+   * Gif video state. Gif videos loop silently and cannot be trimmed, so there is nothing to track beyond the type
+   * itself.
+   */
+  @Parcelize
+  data object VideoGif : EditorState
+
+  /**
    * Image editor state.
    */
   @Parcelize

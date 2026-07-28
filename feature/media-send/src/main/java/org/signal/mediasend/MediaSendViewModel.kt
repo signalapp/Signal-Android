@@ -451,6 +451,11 @@ class MediaSendViewModel(
             video.uri to EditorState.VideoTrim.forVideo(durationUs, maxVideoDurationUs)
           }
 
+        val initializedVideoGifEditorStates = filterResult.filteredMedia
+          .filterNot { snapshot.editorStateMap.containsKey(it.uri) }
+          .filter { isGifVideo(it) }
+          .associate { it.uri to EditorState.VideoGif }
+
         val initializedImageEditorStates = filterResult.filteredMedia
           .filterNot { snapshot.editorStateMap.containsKey(it.uri) }
           .filter { ContentTypeUtil.isImageType(it.contentType) }
@@ -490,7 +495,7 @@ class MediaSendViewModel(
           copy(
             selectedMedia = filterResult.filteredMedia,
             focusedMedia = newFocus,
-            editorStateMap = editorStateMap + initializedVideoEditorStates + initializedImageEditorStates,
+            editorStateMap = editorStateMap + initializedVideoEditorStates + initializedVideoGifEditorStates + initializedImageEditorStates,
             // Re-bind to the populated instance by URI: population fills in a video's 0x0 dimensions, producing a new
             // Media that no longer equals the pre-population capture, which would otherwise leak past equality-based
             // removal on back. Cleared once more than the capture is selected.
@@ -781,6 +786,10 @@ class MediaSendViewModel(
 
   private fun isNonGifVideo(media: Media): Boolean {
     return ContentTypeUtil.isVideo(media.contentType) && !media.isVideoGif
+  }
+
+  private fun isGifVideo(media: Media): Boolean {
+    return ContentTypeUtil.isVideo(media.contentType) && media.isVideoGif
   }
 
   //endregion
