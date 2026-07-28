@@ -139,7 +139,6 @@
         <item name="fixedRoundedCornerBottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners</item>
         <item name="permissionsRationaleDialogTheme">@style/Theme.Signal.AlertDialog.Light.Cornered</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
-        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
 
         <!-- Material 3 -->
         <item name="colorPrimary">@color/signal_colorPrimary</item>
@@ -236,7 +235,6 @@
         <item name="fixedRoundedCornerBottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners</item>
         <item name="permissionsRationaleDialogTheme">@style/Theme.Signal.AlertDialog.Dark.Cornered</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
-        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
 
         <!-- Material 3 -->
         <item name="colorPrimary">@color/signal_colorPrimary</item>
@@ -434,6 +432,12 @@
         <item name="contactCheckboxBackground">@drawable/contact_selection_checkbox_dialog</item>
     </style>
 
+    <!--
+      The navigationBarColor items below only apply under API 35. At and above, edge-to-edge is enforced and
+      the bar is always transparent, so BottomSheetDialog instead draws the sheet itself behind the bar and
+      pads its content by the inset. The colors are matched to the sheet backgroundTint so both paths look
+      the same.
+    -->
     <style name="Widget.Signal.FixedRoundedCorners.Messages" parent="Widget.Signal.FixedRoundedCorners">
         <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.Messages.BottomSheet</item>
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/bottom_sheet_navigation_bar_surface</item>
@@ -533,6 +537,7 @@
         <item name="android:singleLine">false</item>
     </style>
 
+    <!-- As above: the navigationBarColor/statusBarColor items in this group only apply under API 35. -->
     <style name="Theme.Signal.RoundedBottomSheet.Light">
         <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.Rounded</item>
 

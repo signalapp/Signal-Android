@@ -28,8 +28,9 @@ fun Window.initializeScreenshotSecurity() {
 
 /**
  * Dialog-window analog of [androidx.activity.enableEdgeToEdge]: lays the window out edge-to-edge with
- * transparent (or scrimmed, pre-29) system bars, matching what targetSdk 36 enforces. Dialog windows are
- * not covered by the activity-level call in BaseActivity, so every non-floating dialog must opt in itself.
+ * transparent (or scrimmed, pre-29) system bars, matching what the framework enforces on API 35+. Dialog
+ * windows are not covered by the activity-level call in BaseActivity, so every non-floating dialog must opt
+ * in itself.
  *
  * Bar icon appearance (`windowLightStatusBar` / `windowLightNavigationBar`) is left to the window's theme,
  * which stays honored under edge-to-edge.
@@ -37,6 +38,12 @@ fun Window.initializeScreenshotSecurity() {
 @Suppress("DEPRECATION")
 fun Window.enableEdgeToEdge() {
   WindowCompat.setDecorFitsSystemWindows(this, false)
+
+  if (Build.VERSION.SDK_INT >= 35) {
+    // Edge-to-edge is enforced, which forces the bars transparent and makes both setters no-ops.
+    return
+  }
+
   statusBarColor = Color.TRANSPARENT
   navigationBarColor = when {
     Build.VERSION.SDK_INT >= 29 -> Color.TRANSPARENT
