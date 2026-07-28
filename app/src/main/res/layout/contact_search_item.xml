@@ -106,7 +106,7 @@
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/button_barrier"
-        app:constraint_referenced_ids="start_audio,start_video"
+        app:constraint_referenced_ids="check_box,start_audio,start_video"
         app:barrierDirection="start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
