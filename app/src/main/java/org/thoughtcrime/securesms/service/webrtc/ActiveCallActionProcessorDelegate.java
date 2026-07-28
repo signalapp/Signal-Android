@@ -182,7 +182,7 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
     RemotePeer            activePeer           = currentState.getCallInfoState().getActivePeer();
     boolean               remotePeerIsActive   = remotePeer.callIdEquals(activePeer);
     boolean               outgoingBeforeAccept = remotePeer.getState() == CallState.DIALING || remotePeer.getState() == CallState.REMOTE_RINGING;
-    boolean               incomingBeforeAccept = remotePeer.getState() == CallState.ANSWERING || remotePeer.getState() == CallState.LOCAL_RINGING;
+    boolean               incomingBeforeAccept = isIncomingBeforeAccept(currentState, remotePeer);
 
     if (remotePeerIsActive && ENDED_REMOTE_END_REASON_TO_STATE.containsKey(callEndReason)) {
       state = Objects.requireNonNull(ENDED_REMOTE_END_REASON_TO_STATE.get(callEndReason));
@@ -235,7 +235,7 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
       webRtcInteractor.postStateUpdate(currentState);
     }
 
-    if (remotePeer.getState() == CallState.ANSWERING || remotePeer.getState() == CallState.LOCAL_RINGING) {
+    if (isIncomingBeforeAccept(currentState, remotePeer)) {
       webRtcInteractor.insertMissedCall(remotePeer, remotePeer.getCallStartTimestamp(), currentState.getCallSetupState(remotePeer).isRemoteVideoOffer());
     }
 
@@ -266,7 +266,7 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
 
       webRtcInteractor.postStateUpdate(currentState);
 
-      if (activePeer.getState() == CallState.ANSWERING || activePeer.getState() == CallState.LOCAL_RINGING) {
+      if (isIncomingBeforeAccept(currentState, activePeer)) {
         webRtcInteractor.insertMissedCall(activePeer, activePeer.getCallStartTimestamp(), currentState.getCallSetupState(activePeer).isRemoteVideoOffer());
       }
 
@@ -279,5 +279,15 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
     }
 
     return currentState;
+  }
+
+  /**
+   * Whether the given peer represents an incoming call that the user never picked up. The peer stays in
+   * {@link CallState#LOCAL_RINGING} from accept until the call connects, so the peer state alone cannot
+   * distinguish a missed call from one that was answered but ended before connecting.
+   */
+  private static boolean isIncomingBeforeAccept(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
+    boolean isIncoming = remotePeer.getState() == CallState.ANSWERING || remotePeer.getState() == CallState.LOCAL_RINGING;
+    return isIncoming && !currentState.getCallSetupState(remotePeer).isAccepted();
   }
 }

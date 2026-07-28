@@ -10,6 +10,7 @@ data class CallSetupState(
   var isEnableVideoOnCreate: Boolean = false,
   var isRemoteVideoOffer: Boolean = false,
   var isAcceptWithVideo: Boolean = false,
+  var isAccepted: Boolean = false,
   @get:JvmName("hasSentJoinedMessage") var sentJoinedMessage: Boolean = false,
   @get:JvmName("shouldRingGroup") var ringGroup: Boolean = true,
   var ringId: Long = NO_RING,

@@ -152,6 +152,7 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
     currentState = currentState.builder()
                                .changeCallSetupState(activePeer.getCallId())
                                .acceptWithVideo(answerWithVideo)
+                               .accepted(true)
                                .build();
 
     try {
@@ -168,6 +169,11 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
 
     if (activePeer.getState() != CallState.LOCAL_RINGING) {
       Log.w(TAG, "Can only deny from ringing!");
+      return currentState;
+    }
+
+    if (currentState.getCallSetupState(activePeer).isAccepted()) {
+      Log.w(TAG, "Cannot deny after call has been accepted!");
       return currentState;
     }
 
@@ -193,10 +199,15 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleSetIncomingRingingVanity(@NonNull WebRtcServiceState currentState, boolean enabled) {
-    RemotePeer activePeer = currentState.getCallInfoState().requireActivePeer();
-    boolean    isVideoOffer = currentState.getCallSetupState(activePeer).isRemoteVideoOffer();
+    RemotePeer     activePeer     = currentState.getCallInfoState().requireActivePeer();
+    CallSetupState callSetupState = currentState.getCallSetupState(activePeer);
 
-    if (!isVideoOffer) {
+    if (!callSetupState.isRemoteVideoOffer()) {
+      return currentState;
+    }
+
+    if (callSetupState.isAccepted()) {
+      Log.w(TAG, "handleSetIncomingRingingVanity(): call has already been accepted, ignoring");
       return currentState;
     }
 

@@ -50,6 +50,11 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
 
     activePeer.connected();
 
+    OutgoingVideoSourceRouter router = currentState.getVideoState().getRouter();
+    if (router != null) {
+      router.setVanitySink(null);
+    }
+
     boolean localVideoEnabled  = currentState.getLocalDeviceState().getCameraState().isEnabled();
     boolean remoteVideoEnabled = currentState.getCallSetupState(activePeer).isRemoteVideoOffer();
     webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, remoteVideoEnabled));
