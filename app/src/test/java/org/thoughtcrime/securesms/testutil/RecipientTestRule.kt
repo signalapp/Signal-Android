@@ -79,7 +79,7 @@ class RecipientTestRule : TestRule {
 
       every { signalStore.registration.isRegistrationComplete } returns true
 
-      self = insertRecipient(selfAci, ProfileName.fromParts("Tester", "McTesterson"))
+      self = insertRecipient(selfAci, ProfileName.fromParts("Tester", "McTesterson"), e164 = selfE164)
     }
 
     override fun after() {
@@ -180,8 +180,12 @@ class RecipientTestRule : TestRule {
     Recipient.live(id).refresh()
   }
 
-  private fun insertRecipient(aci: ACI, profileName: ProfileName, profileSharing: Boolean = true): RecipientId {
-    val id = SignalDatabase.recipients.getOrInsertFromServiceId(aci)
+  private fun insertRecipient(aci: ACI, profileName: ProfileName, profileSharing: Boolean = true, e164: String? = null): RecipientId {
+    val id = if (e164 != null) {
+      SignalDatabase.recipients.getAndPossiblyMerge(aci, e164)
+    } else {
+      SignalDatabase.recipients.getOrInsertFromServiceId(aci)
+    }
     SignalDatabase.recipients.setProfileName(id, profileName)
     SignalDatabase.recipients.setProfileKeyIfAbsent(id, ProfileKey(Random.nextBytes(32)))
     SignalDatabase.recipients.setCapabilities(id, SignalServiceProfile.Capabilities(true, true, true))
