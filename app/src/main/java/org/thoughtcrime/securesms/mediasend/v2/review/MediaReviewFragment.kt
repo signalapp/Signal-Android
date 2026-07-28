@@ -22,6 +22,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -126,7 +127,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     postponeEnterTransition()
 
-    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner)
+    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner, WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout())
 
     disposables.bindTo(viewLifecycleOwner)
 
