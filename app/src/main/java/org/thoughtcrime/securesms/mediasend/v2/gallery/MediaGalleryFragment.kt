@@ -7,8 +7,12 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.marginEnd
 import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
+import androidx.core.view.updatePaddingRelative
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
@@ -29,7 +33,6 @@ import org.thoughtcrime.securesms.databinding.V2MediaGalleryFragmentBinding
 import org.thoughtcrime.securesms.mediasend.MediaRepository
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaGalleryGridItemTouchListener
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
-import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -73,15 +76,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     callbacks = requireListener()
     val binding = V2MediaGalleryFragmentBinding.bind(view)
 
-    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars())
-
-    binding.mediaGalleryToolbar.updateLayoutParams<ConstraintLayout.LayoutParams> {
-      topMargin = ViewUtil.getStatusBarHeight(view)
-    }
-
-    binding.mediaGalleryStatusBarBackground.updateLayoutParams {
-      height = ViewUtil.getStatusBarHeight(view)
-    }
+    applyWindowInsets(view, binding)
 
     binding.mediaGalleryGrid.layoutManager = object : GridLayoutManager(requireContext(), SPAN_COUNT) {
       override fun canScrollVertically() = shouldEnableScrolling
@@ -267,6 +262,52 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     }
 
     requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+  }
+
+  /**
+   * The top bar spans the full width so its background covers the cutout, while everything that holds
+   * content is inset horizontally. Driven off the inset dispatch rather than read once, since our hosts
+   * declare `configChanges="orientation"` and never recreate this view on rotation.
+   */
+  private fun applyWindowInsets(view: View, binding: V2MediaGalleryFragmentBinding) {
+    val rootPaddingBottom = view.paddingBottom
+    val toolbarPaddingLeft = binding.mediaGalleryToolbar.paddingLeft
+    val toolbarPaddingRight = binding.mediaGalleryToolbar.paddingRight
+    val managePaddingLeft = binding.mediaGalleryManageContainer.paddingLeft
+    val managePaddingRight = binding.mediaGalleryManageContainer.paddingRight
+    val selectedPaddingStart = binding.mediaGallerySelected.paddingStart
+    val countButtonMarginEnd = binding.mediaGalleryCountButton.marginEnd
+
+    ViewCompat.setOnApplyWindowInsetsListener(view) { root, windowInsets ->
+      val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout())
+      val isLtr = ViewUtil.isLtr(root)
+      val startInset = if (isLtr) insets.left else insets.right
+      val endInset = if (isLtr) insets.right else insets.left
+
+      root.updatePadding(bottom = rootPaddingBottom + insets.bottom)
+
+      binding.mediaGalleryStatusBarBackground.updateLayoutParams {
+        height = insets.top
+      }
+
+      binding.mediaGalleryToolbar.updateLayoutParams<ConstraintLayout.LayoutParams> {
+        topMargin = insets.top
+      }
+
+      binding.mediaGalleryToolbar.updatePadding(left = toolbarPaddingLeft + insets.left, right = toolbarPaddingRight + insets.right)
+      binding.mediaGalleryManageContainer.updatePadding(left = managePaddingLeft + insets.left, right = managePaddingRight + insets.right)
+      binding.mediaGalleryGrid.updatePadding(left = insets.left, right = insets.right)
+      binding.mediaGalleryMissingPermissions.updatePadding(left = insets.left, right = insets.right)
+      binding.mediaGallerySelected.updatePaddingRelative(start = selectedPaddingStart + startInset)
+
+      binding.mediaGalleryCountButton.updateLayoutParams<ConstraintLayout.LayoutParams> {
+        marginEnd = countButtonMarginEnd + endInset
+      }
+
+      windowInsets
+    }
+
+    view.post { ViewCompat.requestApplyInsets(view) }
   }
 
   override fun onResume() {

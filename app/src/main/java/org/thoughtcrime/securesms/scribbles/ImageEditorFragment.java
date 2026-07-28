@@ -23,6 +23,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.load.DataSource;
@@ -66,6 +67,7 @@ import org.thoughtcrime.securesms.scribbles.stickers.FeatureSticker;
 import org.thoughtcrime.securesms.scribbles.stickers.TappableRenderer;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
@@ -234,12 +236,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     Mode mode = Mode.getByCode(requireArguments().getString(KEY_MODE));
 
     if (mode == Mode.AVATAR_CAPTURE || mode == Mode.AVATAR_EDIT) {
-      view.setPadding(
-          0,
-          ViewUtil.getStatusBarHeight(view),
-          0,
-          ViewUtil.getNavigationBarHeight(view)
-      );
+      SystemWindowInsetsSetter.attach(view, getViewLifecycleOwner(), WindowInsetsCompat.Type.systemBars());
     }
 
     imageEditorHud  = view.findViewById(R.id.scribble_hud);
