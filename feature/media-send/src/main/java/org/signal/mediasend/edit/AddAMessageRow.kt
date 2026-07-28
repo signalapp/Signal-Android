@@ -34,10 +34,10 @@ import org.signal.mediasend.R
  * Because we need to be able to support stuff like mentions, styled text, and custom emoji, we need to allow
  * the users of this feature to inject their own text-field.
  */
-val LocalAddAMessageRowTextField = compositionLocalOf<@Composable (String, Modifier) -> Unit> {
+val LocalAddAMessageRowTextField = compositionLocalOf<@Composable (CharSequence, Modifier) -> Unit> {
   { message, modifier ->
     Text(
-      text = message,
+      text = message.toString(),
       style = MaterialTheme.typography.bodyLarge,
       color = MaterialTheme.colorScheme.onSurfaceVariant,
       modifier = modifier
@@ -47,10 +47,11 @@ val LocalAddAMessageRowTextField = compositionLocalOf<@Composable (String, Modif
 
 @Composable
 fun AddAMessageRow(
-  message: String?,
+  message: CharSequence?,
   onEvent: (MediaEditScreenEvent) -> Unit,
   onNextClick: () -> Unit,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  enabled: Boolean = true
 ) {
   Row(
     horizontalArrangement = Arrangement.Center,
@@ -63,9 +64,10 @@ fun AddAMessageRow(
         .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(percent = 50))
         .weight(1f)
         .heightIn(min = 40.dp)
-        .clickable(onClickLabel = stringResource(R.string.AddAMessageRow__add_a_message), onClick = { onEvent(MediaEditScreenEvent.AddMessageClick()) }, role = Role.Button)
+        .clickable(enabled = enabled, onClickLabel = stringResource(R.string.AddAMessageRow__add_a_message), onClick = { onEvent(MediaEditScreenEvent.AddMessageClick()) }, role = Role.Button)
     ) {
       IconButtons.IconButton(
+        enabled = enabled,
         onClick = { onEvent(MediaEditScreenEvent.AddMessageClick(startWithEmojiKeyboard = true)) }
       ) {
         Icon(
@@ -83,6 +85,7 @@ fun AddAMessageRow(
     }
 
     IconButtons.IconButton(
+      enabled = enabled,
       onClick = onNextClick,
       modifier = Modifier
         .padding(start = 12.dp)

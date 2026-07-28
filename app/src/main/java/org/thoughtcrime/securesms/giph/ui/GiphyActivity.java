@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Fragment;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4SaveResult;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ViewModel;
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
+import org.thoughtcrime.securesms.mediasend.MediaSendLauncher;
 import org.thoughtcrime.securesms.mms.SlideFactory;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -131,7 +131,7 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
     }
 
     Media media = new Media(success.getBlobUri(), mimeType, 0, success.getWidth(), success.getHeight(), 0, 0, false,  true, null, null, null, null);
-    startActivityForResult(MediaSelectionActivity.editor(this, sendType, Collections.singletonList(media), recipientId, text), MEDIA_SENDER);
+    startActivityForResult(MediaSendLauncher.editor(this, sendType, Collections.singletonList(media), recipientId, text), MEDIA_SENDER);
   }
 
   private void handleGiphyMp4ErrorResult(@NonNull GiphyMp4SaveResult.Error error) {

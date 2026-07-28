@@ -69,7 +69,7 @@ import org.thoughtcrime.securesms.mediapreview.caption.ExpandingCaptionView
 import org.thoughtcrime.securesms.mediapreview.mediarail.CenterDecoration
 import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter
 import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter.ImageLoadingListener
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
+import org.thoughtcrime.securesms.mediasend.MediaSendLauncher
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -752,7 +752,7 @@ class MediaPreviewV2Fragment :
       }
       return
     }
-    startActivity(MediaSelectionActivity.editor(context = requireContext(), media = listOf(media)))
+    startActivity(MediaSendLauncher.editor(context = requireContext(), media = listOf(media)))
   }
 
   override fun onPause() {

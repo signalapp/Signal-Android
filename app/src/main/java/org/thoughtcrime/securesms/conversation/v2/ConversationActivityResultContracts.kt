@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity
 import org.thoughtcrime.securesms.maps.PlacePickerActivity
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
+import org.thoughtcrime.securesms.mediasend.MediaSendLauncher
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
@@ -121,45 +121,33 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
   private object MediaSelection : ActivityResultContract<MediaSelectionInput, MediaSendActivityResult?>() {
     override fun createIntent(context: Context, input: MediaSelectionInput): Intent {
       val (media, recipientId, text) = input
-      return MediaSelectionActivity.editor(context, MessageSendType.SignalMessageSendType, media, recipientId, text)
+      return MediaSendLauncher.editor(context, MessageSendType.SignalMessageSendType, media, recipientId, text)
     }
 
     override fun parseResult(resultCode: Int, intent: Intent?): MediaSendActivityResult? {
-      return if (resultCode == Activity.RESULT_OK) {
-        intent?.let { MediaSendActivityResult.fromData(intent) }
-      } else {
-        null
-      }
+      return MediaSendLauncher.parseResult(resultCode, intent)
     }
   }
 
   private object MediaCapture : ActivityResultContract<MediaSelectionInput, MediaSendActivityResult?>() {
     override fun createIntent(context: Context, input: MediaSelectionInput): Intent {
       val (_, recipientId, _, isReply) = input
-      return MediaSelectionActivity.camera(context, MessageSendType.SignalMessageSendType, recipientId, isReply)
+      return MediaSendLauncher.camera(context, MessageSendType.SignalMessageSendType, recipientId, isReply)
     }
 
     override fun parseResult(resultCode: Int, intent: Intent?): MediaSendActivityResult? {
-      return if (resultCode == Activity.RESULT_OK) {
-        intent?.let { MediaSendActivityResult.fromData(intent) }
-      } else {
-        null
-      }
+      return MediaSendLauncher.parseResult(resultCode, intent)
     }
   }
 
   private object MediaGallery : ActivityResultContract<MediaSelectionInput, MediaSendActivityResult?>() {
     override fun createIntent(context: Context, input: MediaSelectionInput): Intent {
       val (media, recipientId, text, isReply) = input
-      return MediaSelectionActivity.gallery(context, MessageSendType.SignalMessageSendType, media, recipientId, text, isReply)
+      return MediaSendLauncher.gallery(context, MessageSendType.SignalMessageSendType, media, recipientId, text, isReply)
     }
 
     override fun parseResult(resultCode: Int, intent: Intent?): MediaSendActivityResult? {
-      return if (resultCode == Activity.RESULT_OK) {
-        intent?.let { MediaSendActivityResult.fromData(intent) }
-      } else {
-        null
-      }
+      return MediaSendLauncher.parseResult(resultCode, intent)
     }
   }
 

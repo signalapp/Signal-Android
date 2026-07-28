@@ -29,7 +29,9 @@ import org.signal.mediasend.edit.image.ImageEditorState
  * trim/seek interaction flows through the screen's event channel.
  */
 @Stable
-class ImageController @RememberInComposition constructor(val editorModel: EditorModel) {
+class ImageController @RememberInComposition constructor(
+  val editorModel: EditorModel
+) {
 
   val isUserInEdit: Boolean by derivedStateOf { mode != Mode.NONE }
 
@@ -314,18 +316,6 @@ class ImageController @RememberInComposition constructor(val editorModel: Editor
     mainImage.commitEditorMatrix()
     editorModel.postEdit(true)
     initialDialScale = mainImage.localScaleX
-  }
-
-  fun toggleImageQuality() {
-    // TODO
-  }
-
-  fun saveToDisk() {
-    // TODO
-  }
-
-  fun addMedia() {
-    // TODO
   }
 
   enum class Mode {

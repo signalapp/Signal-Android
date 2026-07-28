@@ -29,6 +29,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import androidx.fragment.compose.AndroidFragment
@@ -41,6 +42,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.EditorState
+import org.signal.mediasend.MediaSendDependencies
 import org.signal.mediasend.MediaSendState
 import org.signal.mediasend.edit.image.ImageEditor
 import org.signal.mediasend.edit.image.ImageEditorToolbar
@@ -117,11 +119,20 @@ fun MediaEditScreen(
 
         is EditorState.VideoTrim -> {
           val media = state.selectedMedia[index]
+          var videoEditorFragment by remember(media.uri) { mutableStateOf<VideoEditorFragment?>(null) }
+
           AndroidFragment<VideoEditorFragment>(
             modifier = Modifier.fillMaxSize(),
             arguments = VideoEditorFragment.arguments(media.uri, maxAttachmentSize = 0L, isVideoGif = media.isVideoGif)
           ) { fragment ->
-            fragment.onStateUpdate(
+            videoEditorFragment = fragment
+          }
+
+          // AndroidFragment's onUpdate fires only when the fragment is first added, so trim/focus changes have to be
+          // pushed in from a keyed effect or the preview player never re-clips.
+          val videoTrimData = (state.editorStateMap[media.uri] as? EditorState.VideoTrim)?.videoTrimData
+          LaunchedEffect(videoEditorFragment, state.focusedMedia?.uri, state.isTouchEnabled, videoTrimData) {
+            videoEditorFragment?.onStateUpdate(
               state.focusedMedia?.uri,
               state.isTouchEnabled,
               state::getOrCreateVideoTrimData
@@ -133,7 +144,11 @@ fun MediaEditScreen(
           if (!LocalInspectionMode.current) {
             error("Invalid editor state.")
           } else {
-            Box(modifier = Modifier.fillMaxSize().background(color = Previews.rememberRandomColor()))
+            Box(
+              modifier = Modifier
+                .fillMaxSize()
+                .background(color = Previews.rememberRandomColor())
+            )
           }
         }
       }
@@ -175,10 +190,11 @@ fun MediaEditScreen(
               )
             }
             if (isSmallWindowBreakpoint) {
-              ImageEditorToolbar(imageEditorController = controller)
+              ImageEditorToolbar(imageEditorController = controller, onEvent = onEvent)
             }
           }
         }
+
         is EditorState.VideoTrim -> {
           val playbackPositionUs by produceState(focusedEditorState.videoTrimData.startTimeUs, focusedUri) {
             videoEditorViewModel.events(focusedUri).collect { event ->
@@ -189,7 +205,10 @@ fun MediaEditScreen(
           }
 
           VideoEditorToolbar(
+            videoUri = focusedUri,
+            mediaInputFactory = MediaSendDependencies.mediaInputFactory,
             videoTrimData = focusedEditorState.videoTrimData,
+            maxSelectableDurationUs = focusedEditorState.maxDurationUs,
             playbackPositionUs = playbackPositionUs,
             onEvent = { event ->
               when (event) {
@@ -197,6 +216,7 @@ fun MediaEditScreen(
                   isVideoInteracting = !event.editingComplete
                   onEvent(event)
                 }
+
                 is MediaEditScreenEvent.VideoSeek -> {
                   isVideoInteracting = !event.editingComplete
                   videoEditorViewModel.sendCommand(
@@ -208,30 +228,33 @@ fun MediaEditScreen(
                     }
                   )
                 }
+
                 else -> onEvent(event)
               }
             }
           )
         }
+
         null -> Unit
       }
 
-      if (!isInteracting) {
-        AddAMessageRow(
-          message = state.message,
-          onEvent = onEvent,
-          onNextClick = { onEvent(MediaEditScreenEvent.NavigateToSend) },
-          modifier = Modifier
-            .widthIn(max = 624.dp)
-            .padding(horizontal = 16.dp)
-            .padding(bottom = 16.dp)
-        )
-      }
+      AddAMessageRow(
+        enabled = !isInteracting && !state.isSending,
+        message = state.message,
+        onEvent = onEvent,
+        onNextClick = { onEvent(MediaEditScreenEvent.NextClick) },
+        modifier = Modifier
+          .widthIn(max = 624.dp)
+          .padding(horizontal = 16.dp)
+          .padding(bottom = 16.dp)
+          .alpha(if (isInteracting) 0f else 1f)
+      )
     }
 
     if (!isSmallWindowBreakpoint && imageController != null) {
       ImageEditorToolbar(
         imageEditorController = imageController,
+        onEvent = onEvent,
         modifier = Modifier
           .align(Alignment.CenterEnd)
           .padding(end = 24.dp)

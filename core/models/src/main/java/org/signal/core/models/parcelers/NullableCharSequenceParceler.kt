@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.util.parcelers
+package org.signal.core.models.parcelers
 
 import android.os.Parcel
 import android.text.TextUtils

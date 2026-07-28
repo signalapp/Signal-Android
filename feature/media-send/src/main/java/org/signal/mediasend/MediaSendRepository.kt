@@ -7,9 +7,11 @@ package org.signal.mediasend
 
 import android.content.Context
 import android.net.Uri
+import android.os.Parcelable
 import kotlinx.coroutines.flow.Flow
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
+import org.signal.mediasend.preupload.PreUploadResult
 import java.io.InputStream
 import kotlin.time.Duration
 
@@ -135,13 +137,17 @@ data class SendRequest(
   val selectedMedia: List<Media>,
   val editorStateMap: Map<Uri, EditorState>,
   val quality: SentMediaQuality,
-  val message: String?,
+  val message: CharSequence?,
   val isViewOnce: Boolean,
   val singleRecipientId: MediaRecipientId?,
   val recipientIds: List<MediaRecipientId>,
   val scheduledTime: Long,
   val sendType: Int,
-  val isStory: Boolean
+  val isStory: Boolean,
+  /**
+   * Media already pre-uploaded by the flow, so the send does not have to upload it again.
+   */
+  val preUploadResults: List<PreUploadResult> = emptyList()
 )
 
 /**
@@ -151,6 +157,12 @@ sealed interface SendResult {
   data object Success : SendResult
   data class Error(val message: String) : SendResult
   data class UntrustedIdentity(val recipientIds: List<Long>) : SendResult
+
+  /**
+   * Nothing was sent: the caller that launched the flow owns the send and is handed [payload], which is
+   * opaque to this module.
+   */
+  data class ReadyToSend(val payload: Parcelable) : SendResult
 }
 
 /**

@@ -115,15 +115,16 @@ internal fun ThumbnailRow(
       orientation = Orientation.Horizontal,
       onDragStopped = { velocity ->
         scope.launch {
-          val currentOffset = pagerState.currentPageOffsetFraction
           val targetPage = when {
             velocity > 500f -> (pagerState.currentPage - 1).coerceAtLeast(0)
             velocity < -500f -> (pagerState.currentPage + 1).coerceAtMost(selectedMedia.lastIndex)
-            currentOffset > 0.5f -> (pagerState.currentPage + 1).coerceAtMost(selectedMedia.lastIndex)
-            currentOffset < -0.5f -> (pagerState.currentPage - 1).coerceAtLeast(0)
             else -> pagerState.currentPage
           }
           pagerState.animateScrollToPage(targetPage)
+
+          if (targetPage in selectedMedia.indices) {
+            onFocusedMediaChange(selectedMedia[targetPage])
+          }
         }
       }
     )

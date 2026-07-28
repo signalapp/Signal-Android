@@ -37,6 +37,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
@@ -44,6 +45,8 @@ import org.signal.core.ui.compose.DialogController
 import org.signal.core.ui.compose.DialogResult
 import org.signal.core.util.ContentTypeUtil
 import org.signal.core.util.StringUtil
+import org.signal.core.util.logging.Log
+import org.signal.core.util.next
 import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.imageeditor.core.renderers.UriGlideRenderer
@@ -52,11 +55,13 @@ import org.signal.mediasend.capture.MediaCaptureScreenEvent
 import org.signal.mediasend.edit.MediaEditScreenEvent
 import org.signal.mediasend.edit.video.VideoTrimData
 import org.signal.mediasend.preupload.PreUploadController
+import org.signal.mediasend.preupload.PreUploadResult
 import org.signal.mediasend.select.MediaSelectScreenEvent
 import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
 import java.io.FileInputStream
 import java.io.IOException
 import java.util.Collections
+import kotlin.coroutines.resume
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.microseconds
 import kotlin.time.Duration.Companion.milliseconds
@@ -98,7 +103,13 @@ class MediaSendViewModel(
     serializer = NavBackStackSerializer(NavKeySerializer()),
     key = KEY_BACK_STACK
   ) {
-    NavBackStack(if (args.isCameraFirst) MediaSendNavKey.Capture.Camera else MediaSendNavKey.Select.Folders)
+    val startKey = when {
+      args.isCameraFirst -> MediaSendNavKey.Capture.Camera
+      args.initialMedia.isNotEmpty() -> MediaSendNavKey.Edit
+      else -> MediaSendNavKey.Select.Folders
+    }
+
+    NavBackStack(startKey)
   }
 
   private val internalSnackbarEvents: Channel<SnackbarEvent> = Channel(Channel.BUFFERED)
@@ -252,7 +263,13 @@ class MediaSendViewModel(
   override fun onMediaEditScreenEvent(mediaEditScreenEvent: MediaEditScreenEvent) {
     when (mediaEditScreenEvent) {
       is MediaEditScreenEvent.FocusedMediaChanged -> setFocusedMedia(mediaEditScreenEvent.media)
-      MediaEditScreenEvent.NavigateToSend -> backStack.goToSend()
+      MediaEditScreenEvent.NextClick -> {
+        if (state.value.isContactSelectionRequired) {
+          backStack.goToSend()
+        } else {
+          performSend()
+        }
+      }
       MediaEditScreenEvent.NavigateBack -> onPopFromEdit()
       is MediaEditScreenEvent.VideoTrimChanged -> onEditVideoDuration(
         totalDurationUs = mediaEditScreenEvent.videoTrimData.totalInputDurationUs,
@@ -272,6 +289,14 @@ class MediaSendViewModel(
             isViewOnceAvailable = snapshot.selectedMedia.size == 1 && !snapshot.isStory && !ContentTypeUtil.isDocumentType(snapshot.focusedMedia?.contentType)
           )
         )
+      }
+
+      MediaEditScreenEvent.NavigateToGallery -> {
+        backStack.goToFolders()
+      }
+
+      MediaEditScreenEvent.ToggleMediaQuality -> {
+        setSentMediaQuality(state.value.sentMediaQuality.next())
       }
     }
   }
@@ -465,7 +490,15 @@ class MediaSendViewModel(
           copy(
             selectedMedia = filterResult.filteredMedia,
             focusedMedia = newFocus,
-            editorStateMap = editorStateMap + initializedVideoEditorStates + initializedImageEditorStates
+            editorStateMap = editorStateMap + initializedVideoEditorStates + initializedImageEditorStates,
+            // Re-bind to the populated instance by URI: population fills in a video's 0x0 dimensions, producing a new
+            // Media that no longer equals the pre-population capture, which would otherwise leak past equality-based
+            // removal on back. Cleared once more than the capture is selected.
+            cameraFirstCapture = if (filterResult.filteredMedia.size > 1) {
+              null
+            } else {
+              cameraFirstCapture?.let { capture -> filterResult.filteredMedia.find { it.uri == capture.uri } ?: capture }
+            }
           )
         }
 
@@ -684,7 +717,7 @@ class MediaSendViewModel(
       totalInputDurationUs = totalDurationUs,
       startTimeUs = clampedStartTime,
       endTimeUs = endTimeUs
-    ).let { EditorState.VideoTrim(it) }.clampToMaxDuration(maxVideoDurationUs, preserveStartTime)
+    ).let { EditorState.VideoTrim(it, maxVideoDurationUs) }.clampToMaxDuration(maxVideoDurationUs, preserveStartTime)
 
     // Cancel upload on first edit
     if (unedited && durationEdited) {
@@ -812,7 +845,7 @@ class MediaSendViewModel(
 
   //region Message
 
-  fun setMessage(text: String?) {
+  fun setMessage(text: CharSequence?) {
     updateState { copy(message = text) }
   }
 
@@ -893,6 +926,36 @@ class MediaSendViewModel(
   //region Send
 
   /**
+   * Completes the flow for destinations that are already known, either by sending in place or by handing the
+   * payload back to whoever launched us. Safe to call again after the user resolves a safety number change.
+   */
+  fun performSend() {
+    if (internalState.value.isSending || internalState.value.isSent) {
+      return
+    }
+
+    updateState { copy(isSending = true) }
+
+    viewModelScope.launch {
+      when (val result = send()) {
+        is SendResult.ReadyToSend -> sendHudCommand(HudCommand.FinishWithResult(result.payload))
+        is SendResult.Success -> sendHudCommand(HudCommand.CloseScreen)
+
+        is SendResult.UntrustedIdentity -> {
+          updateState { copy(isSending = false) }
+          sendHudCommand(HudCommand.ResolveUntrustedIdentities(result.recipientIds))
+        }
+
+        is SendResult.Error -> {
+          Log.w(TAG, "Send failed: ${result.message}")
+          updateState { copy(isSending = false) }
+          sendHudCommand(HudCommand.CloseScreen)
+        }
+      }
+    }
+  }
+
+  /**
    * Sends the media with current state.
    *
    * @return Result of the send operation.
@@ -923,16 +986,23 @@ class MediaSendViewModel(
       recipientIds = snapshot.additionalRecipientIds,
       scheduledTime = snapshot.scheduledTime,
       sendType = snapshot.sendType,
-      isStory = snapshot.isStory
+      isStory = snapshot.isStory,
+      preUploadResults = awaitPreUploadResults()
     )
 
     val result = repository.send(request)
 
-    if (result is SendResult.Success) {
+    if (result is SendResult.Success || result is SendResult.ReadyToSend) {
       updateState { copy(isSent = true) }
     }
 
     return result
+  }
+
+  private suspend fun awaitPreUploadResults(): List<PreUploadResult> = suspendCancellableCoroutine { continuation ->
+    preUploadController.getPreUploadResults { results ->
+      continuation.resume(results.toList())
+    }
   }
 
   //endregion
@@ -952,6 +1022,10 @@ class MediaSendViewModel(
   //region Lifecycle
 
   override fun onCleared() {
+    if (internalState.value.isSent) {
+      return
+    }
+
     preUploadController.cancelAllUploads()
     preUploadController.deleteAbandonedAttachments()
   }
@@ -961,6 +1035,8 @@ class MediaSendViewModel(
   //endregion
 
   companion object {
+    private val TAG = Log.tag(MediaSendViewModel::class)
+
     private const val KEY_ARGS = "media_send_vm_args"
     private const val KEY_IDENTITY_CHANGES_SINCE = "media_send_vm_identity_changes_since"
     private const val KEY_STATE = "media_send_vm_state"

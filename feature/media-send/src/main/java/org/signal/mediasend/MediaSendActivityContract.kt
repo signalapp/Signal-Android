@@ -12,7 +12,9 @@ import android.net.Uri
 import android.os.Parcelable
 import androidx.activity.result.contract.ActivityResultContract
 import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.WriteWith
 import org.signal.core.models.media.Media
+import org.signal.core.models.parcelers.NullableCharSequenceParceler
 
 /**
  * Well-defined entry/exit contract for the media sending flow.
@@ -63,9 +65,9 @@ class MediaSendActivityContract(private val clazz: Class<out Activity>) : Activi
      */
     val initialMedia: List<Media> = emptyList(),
     /**
-     * Initial message/caption text.
+     * Initial message/caption text. Retains mention and styling spans.
      */
-    val initialMessage: String? = null,
+    val initialMessage: @WriteWith<NullableCharSequenceParceler> CharSequence? = null,
     /**
      * Whether this is a reply flow (affects UI/constraints).
      */

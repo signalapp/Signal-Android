@@ -5,6 +5,7 @@
 
 package org.signal.mediasend
 
+import android.os.Parcelable
 import org.signal.mediasend.capture.MediaCaptureScreenEvent
 import org.signal.mediasend.edit.MediaEditScreenEvent
 import org.signal.mediasend.select.MediaSelectScreenEvent
@@ -30,7 +31,7 @@ sealed interface HudCommand {
 
   /** Show the dialog to allow the user to add a message */
   data class ShowAddAMessageDialog(
-    val message: String,
+    val message: CharSequence,
     val startWithEmojiKeyboard: Boolean,
     val isViewOnceAvailable: Boolean
   ) : HudCommand
@@ -39,4 +40,13 @@ sealed interface HudCommand {
   data object GoToLinkedDevices : HudCommand
   data class GoToQuickTransfer(val qrData: String) : HudCommand
   data object CloseScreen : HudCommand
+
+  /**
+   * The send was handed off to the caller. [payload] is opaque to this module and is expected to be
+   * returned to whoever launched the flow.
+   */
+  data class FinishWithResult(val payload: Parcelable) : HudCommand
+
+  /** The send was blocked by safety number changes for [untrustedRecipientIds]. */
+  data class ResolveUntrustedIdentities(val untrustedRecipientIds: List<Long>) : HudCommand
 }

@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -89,6 +90,7 @@ fun MediaCaptureScreen(
         onEvent = onEvent,
         modifier = Modifier
           .align(Alignment.BottomCenter)
+          .navigationBarsPadding()
       )
     }
   }
@@ -97,7 +99,8 @@ fun MediaCaptureScreen(
 @Composable
 private fun rememberCanDisplayBottomBar(state: MediaSendState): Boolean {
   return remember(state) {
-    state.isCameraFirst && state.storiesEnabled && state.mode == MediaSendActivityContract.Mode.ChooseAfterMediaSelection // TODO [media-send] single story?
+    val isSingleStory = state.mode == MediaSendActivityContract.Mode.SingleRecipient && state.isStory
+    state.isCameraFirst && state.storiesEnabled && (state.mode == MediaSendActivityContract.Mode.ChooseAfterMediaSelection || isSingleStory)
   }
 }
 

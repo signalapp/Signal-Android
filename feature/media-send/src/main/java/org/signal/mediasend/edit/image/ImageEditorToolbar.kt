@@ -38,11 +38,13 @@ import org.signal.core.util.next
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.edit.ImageController
 import org.signal.mediasend.edit.MediaEditScreenDialogs
+import org.signal.mediasend.edit.MediaEditScreenEvent
 import java.util.EnumMap
 
 @Composable
 fun ImageEditorToolbar(
   imageEditorController: ImageController,
+  onEvent: (MediaEditScreenEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
   when {
@@ -54,7 +56,7 @@ fun ImageEditorToolbar(
       )
     }
     imageEditorController.mode == ImageController.Mode.NONE -> {
-      ImageEditorNoneStateToolbar(imageEditorController, modifier)
+      ImageEditorNoneStateToolbar(imageEditorController, onEvent, modifier)
     }
     imageEditorController.mode == ImageController.Mode.CROP -> {
       ImageEditorCropAndResizeToolbar(imageEditorController, modifier)
@@ -71,6 +73,7 @@ fun ImageEditorToolbar(
 @Composable
 private fun ImageEditorNoneStateToolbar(
   imageEditorController: ImageController,
+  onEvent: (MediaEditScreenEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
   OrientedImageEditorToolbar(modifier) {
@@ -86,17 +89,17 @@ private fun ImageEditorNoneStateToolbar(
 
     ImageEditorButton(
       imageVector = SignalIcons.QualityHigh.imageVector,
-      onClick = imageEditorController::toggleImageQuality
+      onClick = { onEvent(MediaEditScreenEvent.ToggleMediaQuality) }
     )
 
     ImageEditorButton(
       imageVector = SignalIcons.Save.imageVector,
-      onClick = imageEditorController::saveToDisk
+      onClick = { /*onEvent(MediaEditScreenEvent)*/ }
     )
 
     ImageEditorButton(
       imageVector = SignalIcons.Plus.imageVector, // TODO [alex] - wrong art asset
-      onClick = imageEditorController::addMedia
+      onClick = { onEvent(MediaEditScreenEvent.NavigateToGallery) }
     )
   }
 }
@@ -337,7 +340,8 @@ private fun ImageEditorNoneStateToolbarPreview() {
     ImageEditorNoneStateToolbar(
       imageEditorController = remember {
         ImageController(EditorModel.create(0))
-      }
+      },
+      onEvent = {}
     )
   }
 }

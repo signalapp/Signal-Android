@@ -14,6 +14,7 @@ import kotlinx.parcelize.WriteWith
 import org.signal.camera.CameraDependencies
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
+import org.signal.core.models.parcelers.NullableCharSequenceParceler
 import org.signal.mediasend.edit.video.VideoTrimData
 import kotlin.time.Duration
 
@@ -50,9 +51,9 @@ data class MediaSendState(
    */
   val viewOnceToggleState: ViewOnceToggleState = ViewOnceToggleState.OFF,
   /**
-   * Optional message/caption text to accompany the media.
+   * Optional message/caption text to accompany the media. Retains mention and styling spans.
    */
-  val message: String? = null,
+  val message: @WriteWith<NullableCharSequenceParceler> CharSequence? = null,
   /**
    * If non-null, this media was the first capture from the camera and may be
    * removed if the user backs out of camera-first flow.
@@ -67,6 +68,10 @@ data class MediaSendState(
    * Used during camera-first flow exit.
    */
   val suppressEmptyError: Boolean = false,
+  /**
+   * Whether a send is currently in flight (prevents duplicate sends).
+   */
+  val isSending: Boolean = false,
   /**
    * Whether the media has been sent (prevents duplicate sends).
    */

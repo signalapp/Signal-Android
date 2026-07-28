@@ -5,8 +5,11 @@
 
 package org.thoughtcrime.securesms.mediasend.v3
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
@@ -19,23 +22,38 @@ import kotlinx.coroutines.withContext
 import org.signal.mediasend.HudCommand
 import org.signal.mediasend.MediaSendActivityContract
 import org.signal.mediasend.MediaSendScreen
+import org.signal.mediasend.MediaSendViewModel
 import org.signal.mediasend.edit.LocalAddAMessageRowTextField
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
+import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.review.AddMessageDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceActivity
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.util.CommunicationActions
 
 /**
  * Encapsulates the media send flow for v3.
  */
-class MediaSendV3Activity : PassphraseRequiredActivity() {
+class MediaSendV3Activity : PassphraseRequiredActivity(), SafetyNumberBottomSheet.Callbacks {
+
+  private val contractArgs: MediaSendActivityContract.Args by lazy { MediaSendActivityContract.Args.fromIntent(intent) }
+
+  private val viewModel: MediaSendViewModel by viewModels { MediaSendViewModel.Factory(args = contractArgs) }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    val contractArgs = MediaSendActivityContract.Args.fromIntent(intent)
+    supportFragmentManager.setFragmentResultListener(AddMessageDialogFragment.REQUEST_KEY, this) { _, bundle ->
+      if (bundle.getBoolean(AddMessageDialogFragment.RESULT_INCREMENT_VIEW_ONCE_STATE)) {
+        viewModel.setMessage(null)
+        viewModel.incrementViewOnceState()
+      } else {
+        viewModel.setMessage(bundle.getCharSequence(AddMessageDialogFragment.RESULT_MESSAGE, null))
+      }
+    }
 
     setContent {
       CompositionLocalProvider(
@@ -92,6 +110,14 @@ class MediaSendV3Activity : PassphraseRequiredActivity() {
                 finish()
               }
 
+              is HudCommand.FinishWithResult -> finishWithResult(it.payload)
+
+              is HudCommand.ResolveUntrustedIdentities -> {
+                SafetyNumberBottomSheet
+                  .forRecipientIdsAndDestinations(it.untrustedRecipientIds.map(RecipientId::from), destinations())
+                  .show(supportFragmentManager)
+              }
+
               is HudCommand.CloseScreen -> {
                 // TODO [media-send] warning dialog
                 finish()
@@ -101,5 +127,24 @@ class MediaSendV3Activity : PassphraseRequiredActivity() {
         )
       }
     }
+  }
+
+  override fun sendAnywayAfterSafetyNumberChangedInBottomSheet(destinations: List<ContactSearchKey.RecipientSearchKey>) {
+    viewModel.performSend()
+  }
+
+  override fun onMessageResentAfterSafetyNumberChangeInBottomSheet() = error("Unsupported, we do not hand in a message id.")
+
+  override fun onCanceled() = Unit
+
+  private fun finishWithResult(payload: Parcelable) {
+    setResult(RESULT_OK, Intent().putExtra(MediaSendActivityResult.EXTRA_RESULT, payload))
+    finish()
+  }
+
+  private fun destinations(): List<ContactSearchKey.RecipientSearchKey> {
+    return contractArgs.recipientId
+      ?.let { listOf(ContactSearchKey.RecipientSearchKey(RecipientId.from(it.id), contractArgs.isStory)) }
+      ?: emptyList()
   }
 }

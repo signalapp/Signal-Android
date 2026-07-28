@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.rx3.asFlow
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 import org.signal.core.util.asListContains
@@ -29,8 +30,11 @@ import org.signal.mediasend.SendRequest
 import org.signal.mediasend.SendResult
 import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.StorySendRequirements
+import org.signal.mediasend.preupload.PreUploadResult
+import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
+import org.thoughtcrime.securesms.conversation.MessageStyler
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -43,6 +47,7 @@ import org.thoughtcrime.securesms.mms.PushMediaConstraints
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
+import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -103,28 +108,32 @@ object MediaSendV3Repository : MediaSendRepository {
   }
 
   override suspend fun send(request: SendRequest): SendResult = withContext(Dispatchers.IO) {
-    val recipients = buildRecipients(request)
-    if (recipients.isEmpty()) {
+    val singleContact = buildSingleContact(request)
+    val recipients = if (singleContact != null) emptyList() else buildRecipients(request)
+    if (singleContact == null && recipients.isEmpty()) {
       return@withContext SendResult.Error("No recipients provided.")
     }
 
     val legacyEditorStateMap = mapLegacyEditorState(request.editorStateMap)
 
+    legacyRepository.uploadRepository.setPreUploadResults(request.preUploadResults.map { it.toLegacyPreUploadResult() })
+
     return@withContext try {
-      legacyRepository.send(
+      val result = legacyRepository.send(
         selectedMedia = request.selectedMedia,
         stateMap = legacyEditorStateMap,
         quality = request.quality,
         message = request.message,
         isViewOnce = request.isViewOnce,
-        singleContact = null,
+        singleContact = singleContact,
         contacts = recipients,
-        mentions = emptyList(),
-        bodyRanges = null,
+        mentions = MentionAnnotation.getMentionsFromAnnotations(request.message),
+        bodyRanges = MessageStyler.getStyling(request.message),
         sendType = resolveSendType(request.sendType),
         scheduledTime = request.scheduledTime
       ).blockingGet()
-      SendResult.Success
+
+      if (result != null) SendResult.ReadyToSend(result) else SendResult.Success
     } catch (exception: Exception) {
       SendResult.Error(exception.message ?: "Failed to send media.")
     }
@@ -200,10 +209,24 @@ object MediaSendV3Repository : MediaSendRepository {
 
   override var storyMaxVideoDuration: Duration = Stories.MAX_VIDEO_DURATION_MILLIS.milliseconds
 
+  private fun PreUploadResult.toLegacyPreUploadResult(): MessageSender.PreUploadResult {
+    return MessageSender.PreUploadResult(media, AttachmentId(attachmentId), jobIds)
+  }
+
   private fun resolveSendType(sendType: Int): MessageSendType {
     return when (sendType) {
       else -> MessageSendType.SignalMessageSendType
     }
+  }
+
+  /**
+   * A known destination with nobody else in the mix means the launching caller owns the send, and the legacy
+   * repository hands us back a [org.thoughtcrime.securesms.mediasend.MediaSendActivityResult] for it.
+   */
+  private fun buildSingleContact(request: SendRequest): ContactSearchKey.RecipientSearchKey? {
+    return request.singleRecipientId
+      ?.takeIf { request.recipientIds.isEmpty() }
+      ?.let { ContactSearchKey.RecipientSearchKey(RecipientId.from(it.id), request.isStory) }
   }
 
   private fun buildRecipients(request: SendRequest): List<ContactSearchKey.RecipientSearchKey> {

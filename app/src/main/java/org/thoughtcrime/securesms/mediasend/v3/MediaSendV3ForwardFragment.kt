@@ -91,6 +91,10 @@ class MediaSendV3ForwardFragment : Fragment(R.layout.multiselect_forward_activit
           Log.w(TAG, "Send failed: ${result.message}")
           requireActivity().finish()
         }
+        is SendResult.ReadyToSend -> {
+          Log.w(TAG, "Unexpected hand-off to the caller from contact selection.")
+          requireActivity().finish()
+        }
         is SendResult.UntrustedIdentity -> {
           Log.w(TAG, "Send failed due to untrusted identities.")
           SafetyNumberBottomSheet

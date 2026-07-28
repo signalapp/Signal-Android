@@ -5,19 +5,8 @@
 
 package org.thoughtcrime.securesms.mediasend.v3
 
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import org.signal.mediasend.MediaSendActivityContract
 import org.signal.mediasend.StorySendRequirements
 import org.thoughtcrime.securesms.stories.Stories
-
-private fun contract(): ActivityResultContract<MediaSendActivityContract.Args, MediaSendActivityContract.Result?> = MediaSendActivityContract(MediaSendV3Activity::class.java)
-
-fun Fragment.mediaSendLauncher(callback: (MediaSendActivityContract.Result?) -> Unit = {}): ActivityResultLauncher<MediaSendActivityContract.Args> = registerForActivityResult(contract(), callback)
-
-fun AppCompatActivity.mediaSendLauncher(callback: (MediaSendActivityContract.Result?) -> Unit = {}): ActivityResultLauncher<MediaSendActivityContract.Args> = registerForActivityResult(contract(), callback)
 
 /**
  * Maps the feature-module [StorySendRequirements] to the app-layer [Stories.MediaTransform.SendRequirements].

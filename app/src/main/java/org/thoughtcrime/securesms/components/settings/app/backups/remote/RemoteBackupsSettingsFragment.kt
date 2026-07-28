@@ -109,7 +109,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBa
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
+import org.thoughtcrime.securesms.mediasend.MediaSendLauncher
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DateUtils
@@ -278,7 +278,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onTransferScanQrCodeClick() {
-      startActivity(MediaSelectionActivity.camera(context!!))
+      startActivity(MediaSendLauncher.camera(context!!))
     }
   }
 

@@ -103,7 +103,6 @@ import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.getSerializableCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
-import org.signal.mediasend.MediaSendActivityContract
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState
 import org.thoughtcrime.securesms.backup.v2.ui.CouldNotCompleteBackupRestoreSheet
@@ -165,8 +164,7 @@ import org.thoughtcrime.securesms.main.MainToolbarMode
 import org.thoughtcrime.securesms.main.MainToolbarState
 import org.thoughtcrime.securesms.main.MainToolbarViewModel
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
-import org.thoughtcrime.securesms.mediasend.v3.mediaSendLauncher
+import org.thoughtcrime.securesms.mediasend.MediaSendLauncher
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.Megaphones
@@ -273,8 +271,6 @@ class MainActivity :
   override val googlePayRepository: GooglePayRepository by lazy { GooglePayRepository(this) }
   override val googlePayResultPublisher: Subject<GooglePayComponent.GooglePayResult> = PublishSubject.create()
 
-  private lateinit var mediaSendLauncher: ActivityResultLauncher<MediaSendActivityContract.Args>
-
   override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
     return motionEventRelay.offer(ev) || super.dispatchTouchEvent(ev)
   }
@@ -291,8 +287,6 @@ class MainActivity :
 
     super.onCreate(savedInstanceState, ready)
     navigator = MainNavigator(this, mainNavigationViewModel)
-
-    mediaSendLauncher = mediaSendLauncher()
 
     AppForegroundObserver.addListener(object : AppForegroundObserver.Listener {
       override fun onForeground() {
@@ -1152,17 +1146,10 @@ class MainActivity :
   private fun onCameraClick(destination: MainNavigationListLocation, isForQuickRestore: Boolean) {
     val onGranted = {
       if (isForQuickRestore) {
-        startActivity(MediaSelectionActivity.cameraForQuickRestore(context = this@MainActivity))
-      } else if (SignalStore.internal.useNewMediaActivity) {
-        mediaSendLauncher.launch(
-          MediaSendActivityContract.Args(
-            isCameraFirst = true,
-            isStory = destination == MainNavigationListLocation.STORIES
-          )
-        )
+        startActivity(MediaSendLauncher.cameraForQuickRestore(context = this@MainActivity))
       } else {
         startActivity(
-          MediaSelectionActivity.camera(
+          MediaSendLauncher.camera(
             context = this@MainActivity,
             isStory = destination == MainNavigationListLocation.STORIES
           )
