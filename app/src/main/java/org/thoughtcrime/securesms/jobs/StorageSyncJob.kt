@@ -374,6 +374,30 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       return false
     }
 
+    val knownTypes = getKnownTypes()
+    val knownUnknownIds = SignalDatabase.unknownStorageIds.getAllWithTypes(knownTypes)
+
+    if (knownUnknownIds.isNotEmpty()) {
+      Log.i(TAG, "We have ${knownUnknownIds.size} unknown records that we can now process.")
+
+      val remote = when (val result = repository.readStorageRecords(storageServiceKey, remoteManifest.recordIkm, knownUnknownIds)) {
+        is StorageServiceService.StorageRecordResult.Success -> result.records
+        is StorageServiceService.StorageRecordResult.DecryptionError -> throw result.exception
+        is StorageServiceService.StorageRecordResult.NetworkError -> throw result.exception
+        is StorageServiceService.StorageRecordResult.StatusCodeError -> throw result.exception
+      }
+      val records = StorageRecordCollection(remote)
+
+      Log.i(TAG, "Found ${remote.size} of the known-unknowns remotely.")
+
+      db.withinTransaction {
+        processKnownRecords(context, records)
+        SignalDatabase.unknownStorageIds.deleteAllWithTypes(knownTypes)
+      }
+    }
+
+    stopwatch.split("known-unknowns")
+
     val remoteWriteOperation: WriteOperationResult = db.withinTransaction {
       self = freshSelf()
 
@@ -432,33 +456,6 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     } else {
       Log.i(TAG, "No remote writes needed. Still at version: " + remoteManifest.versionString)
     }
-
-    val knownTypes = getKnownTypes()
-    val knownUnknownIds = SignalDatabase.unknownStorageIds.getAllWithTypes(knownTypes)
-
-    if (knownUnknownIds.isNotEmpty()) {
-      Log.i(TAG, "We have ${knownUnknownIds.size} unknown records that we can now process.")
-
-      val remote = when (val result = repository.readStorageRecords(storageServiceKey, remoteManifest.recordIkm, knownUnknownIds)) {
-        is StorageServiceService.StorageRecordResult.Success -> result.records
-        is StorageServiceService.StorageRecordResult.DecryptionError -> throw result.exception
-        is StorageServiceService.StorageRecordResult.NetworkError -> throw result.exception
-        is StorageServiceService.StorageRecordResult.StatusCodeError -> throw result.exception
-      }
-      val records = StorageRecordCollection(remote)
-
-      Log.i(TAG, "Found ${remote.size} of the known-unknowns remotely.")
-
-      db.withinTransaction {
-        processKnownRecords(context, records)
-        SignalDatabase.unknownStorageIds.deleteAllWithTypes(knownTypes)
-      }
-
-      Log.i(TAG, "Enqueueing a storage sync job to handle any possible merges after applying unknown records.")
-      AppDependencies.jobManager.add(StorageSyncJob.forLocalChange())
-    }
-
-    stopwatch.split("known-unknowns")
 
     if (needsForcePush && SignalStore.account.isPrimaryDevice) {
       Log.w(TAG, "Scheduling a force push.")
