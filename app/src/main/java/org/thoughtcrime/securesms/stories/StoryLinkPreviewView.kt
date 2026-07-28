@@ -37,6 +37,9 @@ class StoryLinkPreviewView @JvmOverloads constructor(
   private val binding = StoriesTextPostLinkPreviewBinding.bind(this)
   private val spinnerStub = Stub<View>(binding.loadingSpinner)
 
+  private var canClose: Boolean = false
+  private var hasContent: Boolean = false
+
   init {
     binding.linkPreviewImage.isClickable = false
     binding.linkPreviewLarge.isClickable = false
@@ -70,6 +73,9 @@ class StoryLinkPreviewView @JvmOverloads constructor(
       visibility = hiddenVisibility
     }
 
+    hasContent = linkPreview != null
+    updateCloseVisibility()
+
     return future ?: SettableFuture(false)
   }
 
@@ -85,6 +91,8 @@ class StoryLinkPreviewView @JvmOverloads constructor(
     spinnerStub.get().visible = linkPreviewState.isLoading
     if (linkPreviewState.isLoading) {
       visible = true
+      hasContent = true
+      updateCloseVisibility()
     }
   }
 
@@ -175,7 +183,12 @@ class StoryLinkPreviewView @JvmOverloads constructor(
   }
 
   fun setCanClose(canClose: Boolean) {
-    binding.linkPreviewClose.visible = canClose
+    this.canClose = canClose
+    updateCloseVisibility()
+  }
+
+  private fun updateCloseVisibility() {
+    binding.linkPreviewClose.visible = canClose && hasContent
   }
 
   private fun formatDate(date: Long): String? {

@@ -5,11 +5,13 @@
 
 package org.thoughtcrime.securesms.mediasend.v3
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
@@ -21,6 +23,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.mediasend.HudCommand
 import org.signal.mediasend.MediaSendActivityContract
+import org.signal.mediasend.MediaSendRecipient
 import org.signal.mediasend.MediaSendScreen
 import org.signal.mediasend.MediaSendViewModel
 import org.signal.mediasend.edit.LocalAddAMessageRowTextField
@@ -29,7 +32,9 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
+import org.thoughtcrime.securesms.mediasend.v2.QuickRestoreInfoDialog
 import org.thoughtcrime.securesms.mediasend.v2.review.AddMessageDialogFragment
+import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceActivity
@@ -39,13 +44,31 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 /**
  * Encapsulates the media send flow for v3.
  */
-class MediaSendV3Activity : PassphraseRequiredActivity(), SafetyNumberBottomSheet.Callbacks {
+class MediaSendV3Activity : PassphraseRequiredActivity(), SafetyNumberBottomSheet.Callbacks, TextStoryPostCreationFragment.Callback {
 
   private val contractArgs: MediaSendActivityContract.Args by lazy { MediaSendActivityContract.Args.fromIntent(intent) }
 
   private val viewModel: MediaSendViewModel by viewModels { MediaSendViewModel.Factory(args = contractArgs) }
 
+  override val textStoryDestinations: Set<ContactSearchKey.RecipientSearchKey>
+    get() = destinations().toSet()
+
+  override val isAddToGroupStoryFlow: Boolean
+    get() = contractArgs.isAddToGroupStoryFlow
+
+  override val textStoryDraftText: CharSequence?
+    get() = if (contractArgs.asTextStory) contractArgs.initialMessage else null
+
+  override fun attachBaseContext(newBase: Context) {
+    delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
+    super.attachBaseContext(newBase)
+  }
+
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    if (savedInstanceState == null && contractArgs.isForQuickRestore) {
+      QuickRestoreInfoDialog.show(supportFragmentManager)
+    }
+
     supportFragmentManager.setFragmentResultListener(AddMessageDialogFragment.REQUEST_KEY, this) { _, bundle ->
       if (bundle.getBoolean(AddMessageDialogFragment.RESULT_INCREMENT_VIEW_ONCE_STATE)) {
         viewModel.setMessage(null)
@@ -69,6 +92,12 @@ class MediaSendV3Activity : PassphraseRequiredActivity(), SafetyNumberBottomShee
       ) {
         MediaSendScreen(
           contractArgs = contractArgs,
+          textStoryEditorSlot = {
+            AndroidFragment(
+              clazz = TextStoryPostCreationFragment::class.java,
+              modifier = Modifier.fillMaxSize()
+            )
+          },
           sendSlot = {
             AndroidFragment(
               clazz = MediaSendV3ForwardFragment::class.java,
@@ -112,6 +141,8 @@ class MediaSendV3Activity : PassphraseRequiredActivity(), SafetyNumberBottomShee
 
               is HudCommand.FinishWithResult -> finishWithResult(it.payload)
 
+              is HudCommand.FinishWithoutResult -> onSentWithoutResult()
+
               is HudCommand.ResolveUntrustedIdentities -> {
                 SafetyNumberBottomSheet
                   .forRecipientIdsAndDestinations(it.untrustedRecipientIds.map(RecipientId::from), destinations())
@@ -129,6 +160,11 @@ class MediaSendV3Activity : PassphraseRequiredActivity(), SafetyNumberBottomShee
     }
   }
 
+  override fun onSentWithoutResult() {
+    setResult(RESULT_OK, Intent())
+    finish()
+  }
+
   override fun sendAnywayAfterSafetyNumberChangedInBottomSheet(destinations: List<ContactSearchKey.RecipientSearchKey>) {
     viewModel.performSend()
   }
@@ -142,9 +178,15 @@ class MediaSendV3Activity : PassphraseRequiredActivity(), SafetyNumberBottomShee
     finish()
   }
 
+  /**
+   * Reads from state rather than the launch args so that recipients chosen inside the flow are included.
+   */
   private fun destinations(): List<ContactSearchKey.RecipientSearchKey> {
-    return contractArgs.recipientId
-      ?.let { listOf(ContactSearchKey.RecipientSearchKey(RecipientId.from(it.id), contractArgs.isStory)) }
-      ?: emptyList()
+    val state = viewModel.state.value
+    val single = state.recipientId?.let { MediaSendRecipient(it, state.isStory) }
+
+    return (listOfNotNull(single) + state.additionalRecipients)
+      .distinct()
+      .map { ContactSearchKey.RecipientSearchKey(RecipientId.from(it.id.id), it.isStory) }
   }
 }

@@ -26,7 +26,6 @@ import org.signal.core.models.media.Media
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.getWindowBreakpoint
-import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.Debouncer
 import org.signal.core.util.OVERRIDE_TRANSITION_CLOSE_COMPAT
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -46,11 +45,9 @@ import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEvent
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEventViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
-import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaReviewFragment
-import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationViewModel
-import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendRepository
+import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationFragment
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -58,6 +55,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 class MediaSelectionActivity :
   PassphraseRequiredActivity(),
   MediaReviewFragment.Callback,
+  TextStoryPostCreationFragment.Callback,
   EmojiKeyboardPageFragment.Callback,
   EmojiEventListener,
   EmojiSearchFragment.Callback {
@@ -70,16 +68,19 @@ class MediaSelectionActivity :
 
   private val lifecycleDisposable = LifecycleDisposable()
 
-  private val textViewModel: TextStoryPostCreationViewModel by viewModels(
-    factoryProducer = {
-      TextStoryPostCreationViewModel.Factory(TextStoryPostSendRepository())
-    }
-  )
-
   private val addMessageCommandViewModel: EmojiKeyboardEventViewModel by viewModels()
 
   private val destination: MediaSelectionDestination
     get() = MediaSelectionDestination.fromBundle(requireNotNull(intent.getBundleExtra(DESTINATION)))
+
+  override val textStoryDestinations: Set<ContactSearchKey.RecipientSearchKey>
+    get() = (destination.getRecipientSearchKeyList() + destination.getRecipientSearchKey()).filterNotNull().toSet()
+
+  override val isAddToGroupStoryFlow: Boolean
+    get() = intent.getBooleanExtra(IS_ADD_TO_GROUP_STORY_FLOW, false)
+
+  override val textStoryDraftText: CharSequence?
+    get() = if (shareToTextStory) draftText else null
 
   private val isStory: Boolean
     get() = intent.getBooleanExtra(IS_STORY, false)
@@ -136,7 +137,7 @@ class MediaSelectionActivity :
             selectedMedia = state?.selectedMedia ?: emptyList(),
             onEvent = { event ->
               when (event) {
-                MediaCaptureScreenEvent.ShowCamera -> debouncer.publish { viewModel.sendCommand(HudCommand.GoToCapture) }
+                MediaCaptureScreenEvent.ShowCamera -> debouncer.publish { popTextStoryPostCreationFragment() }
                 MediaCaptureScreenEvent.ShowTextStory -> viewModel.sendCommand(HudCommand.GoToText)
                 MediaCaptureScreenEvent.NextClicked -> viewModel.sendCommand(HudCommand.GoToReview)
                 is MediaCaptureScreenEvent.Camera -> Unit
@@ -151,10 +152,6 @@ class MediaSelectionActivity :
     }
 
     if (savedInstanceState == null) {
-      if (shareToTextStory) {
-        initializeTextStory()
-      }
-
       val navHostFragment = NavHostFragment.create(R.navigation.media)
 
       supportFragmentManager
@@ -165,7 +162,6 @@ class MediaSelectionActivity :
       navigateToStartDestination()
     } else {
       viewModel.onRestoreState(this, savedInstanceState)
-      textViewModel.restoreFromInstanceState(savedInstanceState)
     }
 
     (supportFragmentManager.findFragmentByTag(NAV_HOST_TAG) as NavHostFragment).navController.addOnDestinationChangedListener { _, d, _ ->
@@ -239,22 +235,10 @@ class MediaSelectionActivity :
     viewModel.clearMediaErrors()
   }
 
-  private fun initializeTextStory() {
-    val message = draftText?.toString() ?: return
-    val firstLink = LinkPreviewUtil.findValidPreviewUrls(message).findFirst()
-    val firstLinkUrl = firstLink.map { it.url }.orElse(null)
-
-    val iterator = BreakIteratorCompat.getInstance()
-    iterator.setText(message)
-    val trimmedMessage = iterator.take(700).toString()
-
-    if (firstLinkUrl == message) {
-      textViewModel.setLinkPreview(firstLinkUrl)
-    } else if (firstLinkUrl != null) {
-      textViewModel.setLinkPreview(firstLinkUrl)
-      textViewModel.setBody(trimmedMessage.replace(firstLinkUrl, "").trim())
-    } else {
-      textViewModel.setBody(trimmedMessage.trim())
+  private fun popTextStoryPostCreationFragment() {
+    val navController = findNavController(R.id.fragment_container)
+    if (navController.currentDestination?.id == R.id.textStoryPostCreationFragment) {
+      navController.popBackStack()
     }
   }
 
@@ -275,7 +259,6 @@ class MediaSelectionActivity :
   override fun onSaveInstanceState(outState: Bundle) {
     super.onSaveInstanceState(outState)
     viewModel.onSaveState(outState)
-    textViewModel.saveToInstanceState(outState)
   }
 
   override fun onSentWithResult(mediaSendActivityResult: MediaSendActivityResult) {

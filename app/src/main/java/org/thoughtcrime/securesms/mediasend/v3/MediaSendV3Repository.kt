@@ -25,6 +25,7 @@ import org.signal.mediasend.MediaConstraints
 import org.signal.mediasend.MediaFilterError
 import org.signal.mediasend.MediaFilterResult
 import org.signal.mediasend.MediaRecipientId
+import org.signal.mediasend.MediaSendRecipient
 import org.signal.mediasend.MediaSendRepository
 import org.signal.mediasend.SendRequest
 import org.signal.mediasend.SendResult
@@ -225,16 +226,16 @@ object MediaSendV3Repository : MediaSendRepository {
    */
   private fun buildSingleContact(request: SendRequest): ContactSearchKey.RecipientSearchKey? {
     return request.singleRecipientId
-      ?.takeIf { request.recipientIds.isEmpty() }
+      ?.takeIf { request.recipients.isEmpty() }
       ?.let { ContactSearchKey.RecipientSearchKey(RecipientId.from(it.id), request.isStory) }
   }
 
   private fun buildRecipients(request: SendRequest): List<ContactSearchKey.RecipientSearchKey> {
     return buildList {
-      request.singleRecipientId?.let { add(it) }
-      addAll(request.recipientIds)
-    }.distinctBy(MediaRecipientId::id).map {
-      ContactSearchKey.RecipientSearchKey(RecipientId.from(it.id), request.isStory)
+      request.singleRecipientId?.let { add(MediaSendRecipient(it, request.isStory)) }
+      addAll(request.recipients)
+    }.distinct().map {
+      ContactSearchKey.RecipientSearchKey(RecipientId.from(it.id.id), it.isStory)
     }
   }
 

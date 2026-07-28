@@ -17,13 +17,15 @@ import androidx.core.view.postDelayed
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.createSavedStateHandle
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.camera.CameraDisplay
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.horizontalGutters
@@ -42,14 +44,14 @@ import org.thoughtcrime.securesms.databinding.StoriesTextPostCreationFragmentBin
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewState
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
-import org.thoughtcrime.securesms.mediasend.v2.HudCommand
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
+import org.thoughtcrime.securesms.mediasend.v2.review.MediaReviewFragment
 import org.thoughtcrime.securesms.mediasend.v2.stories.StoriesMultiselectForwardActivity
-import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendRepository
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendResult
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.activityViewModel
+import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.visible
 import java.util.Optional
 
@@ -58,20 +60,12 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
   private var _binding: StoriesTextPostCreationFragmentBinding? = null
   private val binding: StoriesTextPostCreationFragmentBinding get() = _binding!!
 
-  private val sharedViewModel: MediaSelectionViewModel by viewModels(
-    ownerProducer = {
-      requireActivity()
-    }
-  )
+  private val callback: Callback
+    get() = requireListener()
 
-  private val viewModel: TextStoryPostCreationViewModel by viewModels(
-    ownerProducer = {
-      requireActivity()
-    },
-    factoryProducer = {
-      TextStoryPostCreationViewModel.Factory(TextStoryPostSendRepository())
-    }
-  )
+  private val viewModel: TextStoryPostCreationViewModel by activityViewModel { extras ->
+    TextStoryPostCreationViewModel.create(extras, callback.textStoryDraftText)
+  }
 
   private val linkPreviewViewModel: LinkPreviewViewModelV2 by activityViewModel { extras ->
     LinkPreviewViewModelV2(extras.createSavedStateHandle(), enablePlaceholder = true)
@@ -95,11 +89,6 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
     binding.storyTextPost.enableCreationMode()
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
-    lifecycleDisposable += sharedViewModel.hudCommands.subscribe {
-      if (it == HudCommand.GoToCapture) {
-        findNavController().popBackStack()
-      }
-    }
 
     lifecycleDisposable += viewModel.typeface.subscribeBy { typeface ->
       binding.storyTextPost.setTypeface(typeface)
@@ -145,8 +134,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
       if (it.isNotEmpty()) {
         performSend(it.toSet())
       } else {
-        binding.send.isClickable = true
-        binding.sendInProgressIndicator.visible = false
+        onSendAborted()
       }
     }
 
@@ -156,9 +144,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
 
       binding.storyTextPost.disableCreationMode()
 
-      val contacts = (sharedViewModel.destination.getRecipientSearchKeyList() + sharedViewModel.destination.getRecipientSearchKey())
-        .filterIsInstance(ContactSearchKey::class.java)
-        .toSet()
+      val contacts: Set<ContactSearchKey.RecipientSearchKey> = callback.textStoryDestinations
 
       if (contacts.isEmpty()) {
         val bitmap = binding.storyTextPost.drawToBitmap()
@@ -174,14 +160,8 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
             )
           )
         }
-      } else if (sharedViewModel.isAddToGroupStoryFlow) {
-        MaterialAlertDialogBuilder(requireContext())
-          .setMessage(getString(R.string.MediaReviewFragment__add_to_the_group_story, sharedViewModel.state.value!!.recipient!!.getDisplayName(requireContext())))
-          .setPositiveButton(R.string.MediaReviewFragment__add_to_story) { _, _ -> performSend(contacts) }
-          .setNegativeButton(android.R.string.cancel) { _, _ ->
-            binding.sendInProgressIndicator.visible = false
-          }
-          .show()
+      } else if (callback.isAddToGroupStoryFlow) {
+        confirmAddToGroupStory(contacts)
       } else {
         performSend(contacts)
       }
@@ -284,6 +264,32 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
     }
   }
 
+  private fun confirmAddToGroupStory(contacts: Set<ContactSearchKey.RecipientSearchKey>) {
+    val context = requireContext()
+
+    viewLifecycleOwner.lifecycleScope.launch {
+      val displayName = withContext(Dispatchers.Default) {
+        Recipient.resolved(contacts.first().recipientId).getDisplayName(context)
+      }
+
+      MaterialAlertDialogBuilder(context)
+        .setMessage(getString(R.string.MediaReviewFragment__add_to_the_group_story, displayName))
+        .setPositiveButton(R.string.MediaReviewFragment__add_to_story) { _, _ -> performSend(contacts) }
+        .setNegativeButton(android.R.string.cancel) { _, _ -> onSendAborted() }
+        .setOnCancelListener { onSendAborted() }
+        .show()
+    }
+  }
+
+  /**
+   * Re-enables the screen after the user backs out of sending, since nothing else will restore it.
+   */
+  private fun onSendAborted() {
+    binding.send.isClickable = true
+    binding.sendInProgressIndicator.visible = false
+    binding.storyTextPost.enableCreationMode()
+  }
+
   private fun performSend(contacts: Set<ContactSearchKey>) {
     lifecycleDisposable += viewModel.send(
       contacts = contacts,
@@ -292,7 +298,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
       when (result) {
         TextStoryPostSendResult.Success -> {
           Toast.makeText(requireContext(), R.string.TextStoryPostCreationFragment__sent_story, Toast.LENGTH_SHORT).show()
-          requireActivity().finish()
+          callback.onSentWithoutResult()
         }
         TextStoryPostSendResult.Failure -> {
           Toast.makeText(requireContext(), R.string.TextStoryPostCreationFragment__failed_to_send_story, Toast.LENGTH_SHORT).show()
@@ -331,4 +337,30 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
   }
 
   override fun onCanceled() = Unit
+
+  /**
+   * Flow-level information the host is responsible for, so that this fragment can be dropped into
+   * any media send flow without knowing which one it is running in.
+   */
+  interface Callback {
+    /**
+     * The recipients to send to, or empty if the user still needs to select them.
+     */
+    val textStoryDestinations: Set<ContactSearchKey.RecipientSearchKey>
+
+    val isAddToGroupStoryFlow: Boolean
+
+    /**
+     * Text the flow was launched with, used to seed the post body and link preview.
+     */
+    val textStoryDraftText: CharSequence?
+
+    /**
+     * The story was sent by this flow, so there is no payload to hand back to whoever launched it.
+     *
+     * Shares the name and semantics of [MediaReviewFragment.Callback.onSentWithoutResult] so a host
+     * supporting both flows can satisfy them with one implementation.
+     */
+    fun onSentWithoutResult()
+  }
 }

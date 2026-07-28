@@ -6,7 +6,6 @@ sealed class HudCommand {
   object SaveMedia : HudCommand()
 
   object GoToText : HudCommand()
-  object GoToCapture : HudCommand()
   object GoToReview : HudCommand()
 
   object ResumeEntryTransition : HudCommand()

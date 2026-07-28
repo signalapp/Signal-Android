@@ -140,7 +140,7 @@ data class SendRequest(
   val message: CharSequence?,
   val isViewOnce: Boolean,
   val singleRecipientId: MediaRecipientId?,
-  val recipientIds: List<MediaRecipientId>,
+  val recipients: List<MediaSendRecipient>,
   val scheduledTime: Long,
   val sendType: Int,
   val isStory: Boolean,

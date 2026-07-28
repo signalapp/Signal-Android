@@ -89,12 +89,13 @@ class MediaSendViewModel(
   private val defaultState = MediaSendState(
     isCameraFirst = args.isCameraFirst,
     recipientId = args.recipientId,
+    additionalRecipients = args.additionalRecipients,
     mode = args.mode,
     isStory = args.isStory,
     isReply = args.isReply,
     isAddToGroupStoryFlow = args.isAddToGroupStoryFlow,
     maxSelection = args.maxSelection,
-    message = args.initialMessage,
+    message = if (args.asTextStory) null else args.initialMessage,
     isContactSelectionRequired = args.mode == MediaSendActivityContract.Mode.ChooseAfterMediaSelection,
     sendType = args.sendType
   )
@@ -104,6 +105,7 @@ class MediaSendViewModel(
     key = KEY_BACK_STACK
   ) {
     val startKey = when {
+      args.asTextStory -> MediaSendNavKey.Capture.TextStory
       args.isCameraFirst -> MediaSendNavKey.Capture.Camera
       args.initialMedia.isNotEmpty() -> MediaSendNavKey.Edit
       else -> MediaSendNavKey.Select.Folders
@@ -861,8 +863,11 @@ class MediaSendViewModel(
 
   fun getStorySendRequirements(): StorySendRequirements = state.value.storySendRequirements
 
+  /**
+   * Computed for every flow, not just story flows: the contact picker consults this before allowing a story
+   * to be selected, so leaving it at its default would strip story selections made mid-flow.
+   */
   private suspend fun updateStorySendRequirements(media: List<Media>) {
-    if (!state.value.isStory) return
     val requirements = repository.getStorySendRequirements(media)
     updateState { copy(storySendRequirements = requirements) }
   }
@@ -871,8 +876,8 @@ class MediaSendViewModel(
 
   //region Recipients
 
-  fun setAdditionalRecipients(recipientIds: List<MediaRecipientId>) {
-    updateState { copy(additionalRecipientIds = recipientIds) }
+  fun setAdditionalRecipients(recipients: List<MediaSendRecipient>) {
+    updateState { copy(additionalRecipients = recipients) }
   }
 
   fun setScheduledTime(time: Long) {
@@ -939,7 +944,7 @@ class MediaSendViewModel(
     viewModelScope.launch {
       when (val result = send()) {
         is SendResult.ReadyToSend -> sendHudCommand(HudCommand.FinishWithResult(result.payload))
-        is SendResult.Success -> sendHudCommand(HudCommand.CloseScreen)
+        is SendResult.Success -> sendHudCommand(HudCommand.FinishWithoutResult)
 
         is SendResult.UntrustedIdentity -> {
           updateState { copy(isSending = false) }
@@ -966,7 +971,7 @@ class MediaSendViewModel(
     // Check for untrusted identities
     val allRecipientIds = buildSet {
       snapshot.recipientId?.let { add(it.id) }
-      addAll(snapshot.additionalRecipientIds.map { it.id })
+      addAll(snapshot.additionalRecipients.map { it.id.id })
     }
 
     if (allRecipientIds.isNotEmpty()) {
@@ -983,7 +988,7 @@ class MediaSendViewModel(
       message = snapshot.message,
       isViewOnce = isViewOnceEnabled(),
       singleRecipientId = snapshot.recipientId,
-      recipientIds = snapshot.additionalRecipientIds,
+      recipients = snapshot.additionalRecipients,
       scheduledTime = snapshot.scheduledTime,
       sendType = snapshot.sendType,
       isStory = snapshot.isStory,

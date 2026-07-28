@@ -11,15 +11,16 @@ import android.content.Intent
 import android.os.Parcelable
 import org.signal.core.models.media.Media
 import org.signal.core.util.getParcelableExtraCompat
-import org.signal.core.util.logging.Log
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendActivityContract
+import org.signal.mediasend.MediaSendRecipient
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.mediasend.v3.MediaSendV3Activity
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Single entry point for launching the media send flow.
@@ -27,12 +28,9 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  * Callers describe the flow they want, and this decides whether to launch the v2 [MediaSelectionActivity] or the
  * v3 [MediaSendV3Activity], translating the request into that implementation's arguments.
  *
- * Flows v3 cannot express yet -- quick restore, text stories, and shares with pre-selected recipients -- always
- * launch v2.
+ * Every flow is expressible by both implementations, so the choice is purely [useV3].
  */
 object MediaSendLauncher {
-
-  private val TAG = Log.tag(MediaSendLauncher::class)
 
   private val useV3: Boolean
     get() = SignalStore.internal.useNewMediaActivity
@@ -81,11 +79,18 @@ object MediaSendLauncher {
   }
 
   fun cameraForQuickRestore(context: Context): Intent {
-    if (useV3) {
-      Log.i(TAG, "Quick restore is unsupported by v3. Falling back to v2.")
+    return if (useV3) {
+      v3Intent(
+        context,
+        MediaSendActivityContract.Args(
+          isCameraFirst = true,
+          mode = MediaSendActivityContract.Mode.ChooseAfterMediaSelection,
+          isForQuickRestore = true
+        )
+      )
+    } else {
+      MediaSelectionActivity.cameraForQuickRestore(context)
     }
-
-    return MediaSelectionActivity.cameraForQuickRestore(context)
   }
 
   fun addToGroupStory(context: Context, recipientId: RecipientId): Intent {
@@ -177,11 +182,21 @@ object MediaSendLauncher {
     message: CharSequence?,
     asTextStory: Boolean
   ): Intent {
-    if (useV3) {
-      Log.i(TAG, "Sharing with pre-selected recipients is unsupported by v3. Falling back to v2.")
+    return if (useV3) {
+      v3Intent(
+        context,
+        MediaSendActivityContract.Args(
+          mode = MediaSendActivityContract.Mode.MultiRecipient,
+          additionalRecipients = recipientSearchKeys.map { MediaSendRecipient(it.recipientId.toMediaRecipientId(), it.isStory) },
+          initialMedia = media,
+          initialMessage = message,
+          isStory = recipientSearchKeys.any { it.isStory },
+          asTextStory = asTextStory
+        )
+      )
+    } else {
+      MediaSelectionActivity.share(context, messageSendType, media, recipientSearchKeys, message, asTextStory)
     }
-
-    return MediaSelectionActivity.share(context, messageSendType, media, recipientSearchKeys, message, asTextStory)
   }
 
   /**
@@ -200,7 +215,8 @@ object MediaSendLauncher {
   }
 
   private fun v3Intent(context: Context, args: MediaSendActivityContract.Args): Intent {
-    return Intent(context, MediaSendV3Activity::class.java).putExtra(MediaSendActivityContract.EXTRA_ARGS, args)
+    return Intent(context, MediaSendV3Activity::class.java)
+      .putExtra(MediaSendActivityContract.EXTRA_ARGS, args.copy(maxSelection = RemoteConfig.maxAttachmentCount))
   }
 
   private fun RecipientId.toMediaRecipientId(): MediaRecipientId = MediaRecipientId(toLong())

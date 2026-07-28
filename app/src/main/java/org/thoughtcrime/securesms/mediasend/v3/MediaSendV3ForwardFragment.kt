@@ -11,21 +11,16 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
 import org.signal.core.util.getParcelableArrayListCompat
-import org.signal.core.util.logging.Log
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendActivityContract
+import org.signal.mediasend.MediaSendRecipient
 import org.signal.mediasend.MediaSendState
 import org.signal.mediasend.MediaSendViewModel
-import org.signal.mediasend.SendResult
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
-import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.Stories
 import org.signal.core.ui.R as CoreUiR
 
@@ -37,10 +32,6 @@ import org.signal.core.ui.R as CoreUiR
  * the send flow forward.
  */
 class MediaSendV3ForwardFragment : Fragment(R.layout.multiselect_forward_activity), MultiselectForwardFragment.Callback {
-
-  companion object {
-    private val TAG = Log.tag(MediaSendV3ForwardFragment::class.java)
-  }
 
   private val viewModel: MediaSendViewModel by activityViewModels {
     MediaSendViewModel.Factory(args = MediaSendActivityContract.Args.fromIntent(requireActivity().intent))
@@ -78,31 +69,9 @@ class MediaSendV3ForwardFragment : Fragment(R.layout.multiselect_forward_activit
     val selectedRecipients: List<ContactSearchKey.RecipientSearchKey> = bundle.getParcelableArrayListCompat(MultiselectForwardFragment.RESULT_SELECTION, ContactSearchKey.RecipientSearchKey::class.java)
       ?: emptyList()
 
-    val recipientIds = selectedRecipients.map { MediaRecipientId(it.recipientId.toLong()) }
-    viewModel.setAdditionalRecipients(recipientIds)
-
-    viewLifecycleOwner.lifecycleScope.launch {
-      when (val result = viewModel.send()) {
-        is SendResult.Success -> {
-          Log.d(TAG, "Send completed successfully.")
-          requireActivity().finish()
-        }
-        is SendResult.Error -> {
-          Log.w(TAG, "Send failed: ${result.message}")
-          requireActivity().finish()
-        }
-        is SendResult.ReadyToSend -> {
-          Log.w(TAG, "Unexpected hand-off to the caller from contact selection.")
-          requireActivity().finish()
-        }
-        is SendResult.UntrustedIdentity -> {
-          Log.w(TAG, "Send failed due to untrusted identities.")
-          SafetyNumberBottomSheet
-            .forRecipientIdsAndDestinations(result.recipientIds.map { RecipientId.from(it) }, selectedRecipients)
-            .show(childFragmentManager)
-        }
-      }
-    }
+    val recipients = selectedRecipients.map { MediaSendRecipient(MediaRecipientId(it.recipientId.toLong()), it.isStory) }
+    viewModel.setAdditionalRecipients(recipients)
+    viewModel.performSend()
   }
 
   override fun getContainer(): ViewGroup {

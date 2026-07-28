@@ -5,6 +5,12 @@
 
 package org.signal.mediasend.capture
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ContentTransform
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement.spacedBy
@@ -56,6 +62,12 @@ import org.signal.mediasend.edit.rememberPreviewMedia
 import org.signal.mediasend.rememberPreviewState
 
 /**
+ * The text story editor slides in over a stationary camera, so it always sits on top.
+ */
+private const val CAMERA_Z_INDEX = 0f
+private const val TEXT_STORY_Z_INDEX = 1f
+
+/**
  * Screen that allows user to capture the media they will send using a camera or text story
  */
 @Composable
@@ -70,13 +82,32 @@ fun MediaCaptureScreen(
       .fillMaxSize()
       .background(color = Color.Black)
   ) {
-    when (selectedCaptureScreen) {
-      is MediaSendNavKey.Capture.TextStory -> textStoryEditorSlot()
-      else -> {
-        MediaCameraCaptureScreen(
-          state = state,
-          onEvent = onEvent
-        )
+    AnimatedContent(
+      targetState = selectedCaptureScreen,
+      transitionSpec = {
+        if (targetState is MediaSendNavKey.Capture.TextStory) {
+          ContentTransform(
+            targetContentEnter = slideInHorizontally { width -> width },
+            initialContentExit = ExitTransition.KeepUntilTransitionsFinished,
+            targetContentZIndex = TEXT_STORY_Z_INDEX
+          )
+        } else {
+          ContentTransform(
+            targetContentEnter = EnterTransition.None,
+            initialContentExit = slideOutHorizontally { width -> width },
+            targetContentZIndex = CAMERA_Z_INDEX
+          )
+        }
+      }
+    ) { captureScreen ->
+      when (captureScreen) {
+        is MediaSendNavKey.Capture.TextStory -> textStoryEditorSlot()
+        else -> {
+          MediaCameraCaptureScreen(
+            state = state,
+            onEvent = onEvent
+          )
+        }
       }
     }
 

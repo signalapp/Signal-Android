@@ -47,6 +47,12 @@ sealed interface HudCommand {
    */
   data class FinishWithResult(val payload: Parcelable) : HudCommand
 
+  /**
+   * The flow performed the send itself, so there is no payload. Callers still need to be told the send
+   * succeeded, as opposed to [CloseScreen] which is a cancellation.
+   */
+  data object FinishWithoutResult : HudCommand
+
   /** The send was blocked by safety number changes for [untrustedRecipientIds]. */
   data class ResolveUntrustedIdentities(val untrustedRecipientIds: List<Long>) : HudCommand
 }

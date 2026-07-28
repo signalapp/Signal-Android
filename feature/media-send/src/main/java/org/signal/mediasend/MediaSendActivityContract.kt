@@ -57,6 +57,10 @@ class MediaSendActivityContract(private val clazz: Class<out Activity>) : Activi
      * Optional recipient identifier for single-recipient flows.
      */
     val recipientId: MediaRecipientId? = null,
+    /**
+     * Recipients known up front for multi-recipient flows, in addition to [recipientId].
+     */
+    val additionalRecipients: List<MediaSendRecipient> = emptyList(),
     val mode: Mode = Mode.SingleRecipient,
     /**
      * Initial media to populate the selection.
@@ -80,6 +84,14 @@ class MediaSendActivityContract(private val clazz: Class<out Activity>) : Activi
      * Whether this is specifically the "add to group story" flow.
      */
     val isAddToGroupStoryFlow: Boolean = false,
+    /**
+     * Whether the flow should open directly into the text story editor, seeded with [initialMessage].
+     */
+    val asTextStory: Boolean = false,
+    /**
+     * Whether the flow was entered to scan a quick restore QR code, which shows an explanatory sheet.
+     */
+    val isForQuickRestore: Boolean = false,
     /**
      * Maximum number of media items that can be selected.
      */

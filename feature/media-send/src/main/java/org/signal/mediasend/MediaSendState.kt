@@ -105,9 +105,9 @@ data class MediaSendState(
    */
   val isAddToGroupStoryFlow: Boolean = false,
   /**
-   * Additional recipient IDs for multi-recipient sends.
+   * Additional recipients for multi-recipient sends.
    */
-  val additionalRecipientIds: List<MediaRecipientId> = emptyList(),
+  val additionalRecipients: List<MediaSendRecipient> = emptyList(),
   /**
    * Scheduled send time (-1 for immediate).
    */
