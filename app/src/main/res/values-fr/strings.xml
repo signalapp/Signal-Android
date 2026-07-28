@@ -8774,9 +8774,9 @@
     <!-- Subtitle for row for canceled backup -->
     <string name="BackupsSettingsFragment__subscription_canceled">Abonnement résilié</string>
     <!-- Subtitle for row for no backup ever created -->
-    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal sauvegarde automatiquement vos données avec son service de stockage sécurisé et chiffré de bout en bout.</string>
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Sauvegardes automatiques chiffrées de bout en bout grâce au service de stockage sécurisé de Signal.</string>
     <!-- Subtitle shown on a linked device when backups are off, directing the user to set them up on their phone -->
-    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Signal sauvegarde automatiquement vos données avec son service de stockage sécurisé et chiffré de bout en bout. Ouvrez Signal sur votre téléphone pour vous lancer.</string>
+    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Sauvegardes automatiques chiffrées de bout en bout grâce au service de stockage sécurisé de Signal. Ouvrez Signal sur votre téléphone pour vous lancer.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Abonnement introuvable sur cet appareil."</string>
     <!-- Action button label to set up backups -->

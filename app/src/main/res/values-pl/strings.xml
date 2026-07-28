@@ -6835,7 +6835,7 @@
     <string name="ImageView__badge">Odznaka</string>
 
     <string name="SubscribeFragment__cancel_subscription">Anuluj darowiznę cykliczną</string>
-    <string name="SubscribeFragment__confirm_cancellation">Potwierdzić anulowanie?</string>
+    <string name="SubscribeFragment__confirm_cancellation">Potwierdziasz anulowanie?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Nie zostaną już od Ciebie pobrane żadne środki. Odznaka zniknie z Twojego profilu z końcem okresu rozliczeniowego.</string>
     <string name="SubscribeFragment__not_now">Nie teraz</string>
     <string name="SubscribeFragment__confirm">Potwierdź</string>

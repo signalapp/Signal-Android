@@ -435,7 +435,7 @@
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">Permitir notificaciones</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal necesita permiso para mostrarte notificaciones. Así podrás recibir alertas en tu dispositivo cuando te lleguen mensajes nuevos.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal necesita permiso para mostrarte notificaciones. Así podrás recibir avisos en tu dispositivo cuando te lleguen mensajes nuevos.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">Ahora no</string>
     <!-- Button label that proceeds with the notification permission request -->

@@ -841,9 +841,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">기기 다시 연결</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">기기를 다시 연동하세요ㄴ=</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">기기 등록을 해제하여 기기 연결이 해제됐습니다. 설정으로 가서 기기를 다시 연결하세요.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">기기 등록을 해제하여 기기 연동이 해제됐습니다. 설정으로 가서 기기를 다시 연동하세요.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">설정 열기</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1052,7 +1052,7 @@
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">휴대폰의 Signal과 연결하면 Signal 메시지가 동기화됩니다. 이전 메시지 내역은 표시되지 않습니다.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
-    <string name="LinkDeviceFragment__on_other_device_visit_signal">연결하려는 기기에서 %1$s 링크를 방문하여 Signal을 설치하세요.</string>
+    <string name="LinkDeviceFragment__on_other_device_visit_signal">연동하려는 기기에서 %1$s 링크를 방문하여 Signal을 설치하세요.</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">내 연결된 기기</string>
@@ -1061,7 +1061,7 @@
     <!-- Toast message indicating a device has been unlinked, where %s is the name of the device -->
     <string name="LinkDeviceFragment__s_unlinked">\'%1$s\'의 연결을 해제했습니다.</string>
     <!-- Toast message indicating a device has been successfully linked, where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_linked">\'%1$s\' 기기를 연결했습니다.</string>
+    <string name="LinkDeviceFragment__s_linked">\'%1$s\' 기기를 연동했습니다.</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">기기를 연결하는 중…</string>
     <!-- Toast message shown after a device has been linked -->
@@ -1098,9 +1098,9 @@
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">메시지 동기화 실패</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
-    <string name="LinkDeviceFragment__sync_failure_body">연결된 기기로 메시지 기록을 가져오지 못했습니다. 다시 연결해서 메시지 기록을 가져오거나, 가져오지 않고 그대로 시작할 수 있습니다.</string>
+    <string name="LinkDeviceFragment__sync_failure_body">연동 기기로 메시지 기록을 가져오지 못했습니다. 다시 연동해서 메시지 기록을 가져오거나, 가져오지 않고 그대로 시작할 수 있습니다.</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
-    <string name="LinkDeviceFragment__sync_failure_body_unretryable">기기 연결은 완료되었으나, 메시지 기록을 가져오지 못했습니다.</string>
+    <string name="LinkDeviceFragment__sync_failure_body_unretryable">기기 연동은 완료되었으나, 메시지 기록을 가져오지 못했습니다.</string>
     <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
     <string name="LinkDeviceFragment__learn_more">자세히 알아보기</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
@@ -1125,7 +1125,7 @@
     <!-- Dialog title shown when you don\'t have enough storage space -->
     <string name="LinkDeviceFragment__not_enough_storage_space">저장 공간 부족</string>
     <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
-    <string name="LinkDeviceFragment__you_dont_have_enough">기기에 메시지를 가져올 저장 공간이 부족합니다. 여유 공간을 확보한 뒤 다시 시도하거나, 메시지 이전 없이 기기를 연결해 보세요.</string>
+    <string name="LinkDeviceFragment__you_dont_have_enough">기기에 메시지를 가져올 저장 공간이 부족합니다. 여유 공간을 확보한 뒤 다시 시도하거나, 메시지 이전 없이 기기를 연동해 보세요.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1155,7 +1155,7 @@
     <!-- Bottom sheet description telling users to complete the linking process -->
     <string name="AddLinkDeviceFragment__finish_linking_signal">다른 기기에서 Signal 연결을 완료하세요.</string>
     <!-- Title of dialog when the QR code being scanned is invalid -->
-    <string name="AddLinkDeviceFragment__linking_device_failed">기기 연결 실패</string>
+    <string name="AddLinkDeviceFragment__linking_device_failed">기기 연동 실패</string>
     <!-- Text shown in a dialog when the QR code being scanned is invalid -->
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">QR 코드가 올바르지 않습니다. 스캔하고자 하는 기기에 있는 QR 코드를 읽었는지 다시 한번 확인하세요.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
@@ -1171,26 +1171,26 @@
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">이전 안 함</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
-    <string name="LinkDeviceSyncBottomSheet_no_old_messages">기존 메시지 또는 미디어를 연결된 기기로 이전하지 않습니다</string>
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">기존 메시지 또는 미디어를 연동 기기로 이전하지 않습니다</string>
 
     <!-- Title of notification telling users that a device was linked to their account -->
-    <string name="NewLinkedDeviceNotification__you_linked_new_device">새 기기를 연결함</string>
+    <string name="NewLinkedDeviceNotification__you_linked_new_device">새 기기를 연동함</string>
     <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">%1$s 새 기기를 계정에 연결했습니다. 탭하여 확인하세요.</string>
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">%1$s 새 기기를 계정에 연동했습니다. 탭하여 확인하세요.</string>
 
     <!-- DeviceListActivity -->
-    <string name="DeviceListActivity_unlink_s">\'%1$s\' 기기의 연결을 해제할까요?</string>
-    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">기기를 연결 해제하면 메시지를 주고받을 수 없습니다.</string>
+    <string name="DeviceListActivity_unlink_s">\'%1$s\' 기기를 연동 해제할까요?</string>
+    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">이 기기를 연동 해제하면 메시지를 주고받을 수 없습니다.</string>
     <string name="DeviceListActivity_network_connection_failed">네트워크 연결 실패</string>
     <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
     <string name="DeviceListActivity_try_again">다시 시도해 주세요</string>
-    <string name="DeviceListActivity_unlinking_device">기기 연결 해제 중…</string>
-    <string name="DeviceListActivity_unlinking_device_no_ellipsis">기기 연결 해제 중</string>
+    <string name="DeviceListActivity_unlinking_device">기기 연동 해제 중…</string>
+    <string name="DeviceListActivity_unlinking_device_no_ellipsis">기기 연동 해제 중</string>
     <string name="DeviceListActivity_network_failed">네트워크 연결 실패</string>
 
     <!-- DeviceListItem -->
     <string name="DeviceListItem_unnamed_device">이름 없는 기기</string>
-    <string name="DeviceListItem_linked_s">%1$s 연결됨</string>
+    <string name="DeviceListItem_linked_s">%1$s 연동됨</string>
     <string name="DeviceListItem_last_active_s">%1$s 마지막으로 사용됨</string>
     <string name="DeviceListItem_today">오늘</string>
 
@@ -1784,7 +1784,7 @@
     <string name="Megaphones_add_a_profile_photo">프로필 사진 추가</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">%1$s 새 기기를 계정에 연결했습니다.</string>
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">%1$s 새 기기를 계정에 연동했습니다.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
     <string name="NewLinkedDeviceMegaphone__view_device">기기 보기</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
@@ -2252,24 +2252,24 @@
     <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">새 암호 문구를 입력하세요.</string>
 
     <!-- DeviceProvisioningActivity -->
-    <string name="DeviceProvisioningActivity_link_this_device">기기를 연결할까요?</string>
+    <string name="DeviceProvisioningActivity_link_this_device">기기를 연동할까요?</string>
     <string name="DeviceProvisioningActivity_continue">계속</string>
 
     <string name="DeviceProvisioningActivity_content_intro">다음 수행 가능:</string>
     <string name="DeviceProvisioningActivity_content_bullets">
         • 모든 메시지 읽기 \n• 내 이름으로 메시지 보내기
     </string>
-    <string name="DeviceProvisioningActivity_content_progress_title">기기 연결</string>
-    <string name="DeviceProvisioningActivity_content_progress_content">새 기기 연결 중…</string>
+    <string name="DeviceProvisioningActivity_content_progress_title">기기 연동 중</string>
+    <string name="DeviceProvisioningActivity_content_progress_content">새 기기 연동 중…</string>
     <string name="DeviceProvisioningActivity_content_progress_success">기기가 승인되었습니다.</string>
     <string name="DeviceProvisioningActivity_content_progress_no_device">기기를 찾을 수 없습니다.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">네트워크 오류가 발생했습니다.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">잘못된 QR 코드입니다.</string>
     <!-- Toast message shown when a user has too many linked devices and needs to remove one before linking another -->
-    <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">현재 연결된 기기 수가 한도를 초과했습니다. 일부 기기를 해제한 후 다시 시도해 주세요.</string>
-    <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">올바른 기기 연결 QR 코드가 아닙니다.</string>
-    <string name="DeviceProvisioningActivity_link_a_signal_device">Signal 기기를 연결할까요?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">이 Signal 계정에 데스크톱이나 iPad를 연결하려면 연결된 기기로 이동하여 \'새 기기 연결\'을 탭한 다음 QR 코드를 다시 스캔하세요. Signal에서 직접 제공한 QR 코드만 스캔하세요.</string>
+    <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">현재 연동된 기기 수가 한도를 초과했습니다. 일부 기기를 해제한 후 다시 시도해 주세요.</string>
+    <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">올바른 기기 연동 QR 코드가 아닙니다.</string>
+    <string name="DeviceProvisioningActivity_link_a_signal_device">Signal 기기를 연동할까요?</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">이 Signal 계정에 데스크톱이나 iPad를 연동하려면 \'연동 기기\'로 이동하여 \'새 기기 연동\'을 탭한 다음 QR 코드를 다시 스캔하세요. Signal에서 직접 제공한 QR 코드만 스캔하세요.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal에서 QR 코드를 읽으려면 카메라 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'카메라\' 항목을 허용해 주세요.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">카메라 권한이 없어 QR 코드를 스캔할 수 없습니다</string>
@@ -2631,7 +2631,7 @@
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
-    <string name="AboutSheet__signal_connection">Signal 커넥션</string>
+    <string name="AboutSheet__signal_connection">Signal 친구</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">인증 완료</string>
     <!-- Displayed in a sheet row that tells users that profile names are not verified -->
@@ -3295,7 +3295,7 @@
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">추가 메시지 알림</string>
     <!-- Notification channel name for notifications sent when a device has been linked -->
-    <string name="NotificationChannel_new_linked_device">새 연결된 기기</string>
+    <string name="NotificationChannel_new_linked_device">새로 연동된 기기</string>
 
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal가 잠겨 있는 경우 빠른 답장을 사용할 수 없어요.</string>
@@ -3427,9 +3427,9 @@
     <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">영상 통화를 수락하려면 Signal에서 마이크와 카메라를 사용하도록 허용하세요.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal에서 전화 기능을 사용하려면 마이크와 카메라 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\'와 \'카메라\' 항목을 허용해 주세요.</string>
-    <string name="WebRtcCallActivity__answered_on_a_linked_device">연결된 기기에서 응답했습니다.</string>
-    <string name="WebRtcCallActivity__declined_on_a_linked_device">연결된 기기에서 거부했습니다.</string>
-    <string name="WebRtcCallActivity__busy_on_a_linked_device">연결된 기기에서 이미 통화 중입니다.</string>
+    <string name="WebRtcCallActivity__answered_on_a_linked_device">연동 기기에서 응답했습니다.</string>
+    <string name="WebRtcCallActivity__declined_on_a_linked_device">연동 기기에서 거부했습니다.</string>
+    <string name="WebRtcCallActivity__busy_on_a_linked_device">연동 기기에서 이미 통화 중입니다.</string>
     <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
     <string name="WebRtcCallActivity__flip_camera_tooltip">카메라 전환 기능이 여기로 이동했어요. 영상 화면을 탭하여 사용해 보세요.</string>
 
@@ -3699,14 +3699,14 @@
     <string name="country_selection_fragment__no_matching_countries">일치하는 국가 없음</string>
 
     <!-- device_add_fragment -->
-    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">기기에 표시된 QR 코드를 스캔하여 기기를 연결하세요.</string>
+    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">기기에 표시된 QR 코드를 스캔하여 기기를 연동하세요.</string>
 
     <!-- device_link_fragment -->
-    <string name="device_link_fragment__link_device">기기 연결</string>
+    <string name="device_link_fragment__link_device">기기 연동</string>
 
     <!-- device_list_fragment -->
-    <string name="device_list_fragment__no_devices_linked">연결된 기기 없음</string>
-    <string name="device_list_fragment__link_new_device">새 기기 연결</string>
+    <string name="device_list_fragment__no_devices_linked">연동 기기 없음</string>
+    <string name="device_list_fragment__link_new_device">새 기기 연동</string>
 
     <!-- expiration -->
     <string name="expiration_off">꺼짐</string>
@@ -3943,7 +3943,7 @@
     <string name="AndroidManifest__verify_safety_number">안전 번호 인증</string>
     <string name="AndroidManifest__media_preview">미디어 미리보기</string>
     <string name="AndroidManifest__message_details">메시지 세부 정보</string>
-    <string name="AndroidManifest__linked_devices">연결된 기기</string>
+    <string name="AndroidManifest__linked_devices">연동 기기</string>
     <string name="AndroidManifest__invite_friends">친구 초대</string>
     <string name="AndroidManifest_archived_conversations">보관된 대화</string>
 
@@ -4132,7 +4132,7 @@
     <string name="preferences__conversation_length_limit">채팅 내 최대 메시지 수</string>
     <string name="preferences__keep_messages">메시지 보관</string>
     <string name="preferences__clear_message_history">메시지 기록 삭제</string>
-    <string name="preferences__linked_devices">연결된 기기</string>
+    <string name="preferences__linked_devices">연동 기기</string>
     <string name="preferences__light_theme">밝게</string>
     <string name="preferences__dark_theme">어둡게</string>
     <string name="preferences__appearance">모양</string>
@@ -4202,7 +4202,7 @@
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">이 기기의 모든 메시지 기록과 미디어를 영구 삭제합니다.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">이 기기와 모든 연결된 기기에서 영구적으로 모든 메시지 기록과 미디어를 삭제합니다.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">이 기기와 모든 연동 기기에서 영구적으로 모든 메시지 기록과 미디어를 삭제합니다.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">모든 메시지 기록을 정말 삭제하시겠어요?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">모든 메시지 기록을 영구적으로 제거합니다. 이 작업은 다시 되돌릴 수 없습니다.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
@@ -5000,7 +5000,7 @@
 
     <!-- LinkedDeviceAccountSettingsFragment -->
     <!-- Title of an informational card shown on the account settings screen of a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">연결된 기기입니다</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">이 기기는 연동 기기입니다</string>
     <!-- Body of an informational card explaining that account settings must be managed from the primary device -->
     <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">계정 설정을 관리하려면 기본 사용 기기에서 Signal을 열어 주세요.</string>
     <!-- Title of a settings row that deletes all Signal data from this linked device -->
@@ -5010,17 +5010,17 @@
     <!-- Title of the confirmation dialog shown when deleting app data from a linked device -->
     <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">앱 데이터를 삭제할까요?</string>
     <!-- Message of the confirmation dialog explaining that only this device\'s data is deleted, not the account -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">이 기기에 저장된 Signal 앱의 모든 데이터와 메시지가 삭제됩니다. 기본 사용 기기 또는 다른 연결된 기기에 저장된 Signal 계정과 데이터는 삭제되지 않습니다. 이 절차가 완료되면 자동으로 앱이 종료됩니다.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">이 기기에 저장된 Signal 앱의 모든 데이터와 메시지가 삭제됩니다. 기본 사용 기기 또는 다른 연동 기기에 저장된 Signal 계정과 데이터는 삭제되지 않습니다. 이 절차가 완료되면 자동으로 앱이 종료됩니다.</string>
 
     <!-- LinkedDeviceAccountLearnMoreBottomSheet -->
     <!-- Emphasized lead-in phrase shown in bold at the start of the learn more sheet body. Must appear verbatim within LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">연결된 기기</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">연동 기기</string>
     <!-- Body text of the linked devices learn more sheet. The leading \"Linked Devices\" is shown in bold. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">연결된 기기 기능을 사용하면 다른 추가 기기에서도 Signal 계정과 메시지를 안전하게 이용할 수 있습니다.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">연동 기기 기능을 사용하면 다른 추가 기기에서도 Signal 계정과 메시지를 안전하게 이용할 수 있습니다.</string>
     <!-- Bullet point describing what devices can be linked -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">데스크톱, 태블릿 또는 추가 휴대폰을 연결할 수 있습니다.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">데스크톱, 태블릿 또는 추가 휴대폰을 연동할 수 있습니다.</string>
     <!-- Bullet point describing that the primary device manages linked devices -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">연결된 기기는 기본 기기에서 관리하며, 최대 5대까지 연결할 수 있습니다.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">연동 기기는 기본 기기에서 관리하며, 최대 5대까지 연동할 수 있습니다.</string>
     <!-- Bullet point describing that some settings are only available on the primary device -->
     <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">계정 설정 및 백업을 포함한 일부 계정 설정은 기본 기기에서만 관리할 수 있습니다.</string>
 
@@ -5414,7 +5414,7 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">지갑 비활성화</string>
     <string name="DeactivateWalletFragment__your_balance">잔액</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">결제를 비활성화하기 전에 다른 지갑 주소로 자금을 이체하는 것이 좋습니다. 지금 이체하지 않더라도, 나중에 결제 기능을 다시 활성화하면 Signal에 연결된 지갑 내 잔액을 그대로 이용하실 수 있습니다.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">결제를 비활성화하기 전에 다른 지갑 주소로 자금을 이체하는 것이 좋습니다. 지금 이체하지 않더라도, 나중에 결제 기능을 다시 활성화하면 Signal에 연동된 지갑 내 잔액을 그대로 이용하실 수 있습니다.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">잔액 이체</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">이전하지 않고 비활성화</string>
     <string name="DeactivateWalletFragment__deactivate">비활성화</string>
@@ -6320,7 +6320,7 @@
     <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">대화로 이동</string>
 
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">기기를 연결할까요?</string>
+    <string name="MediaCaptureFragment_device_link_dialog_title">기기를 연동할까요?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_it_looks_like_youre_trying">Signal 기기를 연결하려는 것 같네요. 계속을 탭한 다음 \'새 기기 연결\'을 탭하고 QR 코드를 다시 스캔하세요.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
@@ -6992,7 +6992,7 @@
     <string name="MyStorySettingsFragment__who_can_view_this_story">이 스토리를 볼 수 있는 사람</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections">모든 Signal 커넥션</string>
+    <string name="MyStorySettingsFragment__all_signal_connections">모든 Signal 친구</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">일부를 제외한 모든 사용자</string>
@@ -7019,9 +7019,9 @@
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">내 스토리를 볼 수 있는 사용자의 공감 및 답장 허용</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">Signal 커넥션</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">Signal 친구</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal 커넥션은 다음과 같은 방법을 통해 신뢰하는 사용자로 선택한 사람들입니다.</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal 친구는 다음과 같은 방법을 통해 신뢰하는 사용자로 지정된 사람들입니다.</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">대화 시작</string>
     <!-- Signal connections sheet bullet point 2 -->
@@ -7029,7 +7029,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">내 휴대폰 연락처에 저장</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"커넥션은 나의 이름과 사진을 볼 수 있고 스토리를 따로 숨기지 않는 한 \'내 스토리\'의 게시물을 볼 수 있습니다."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Signal 친구는 나의 이름과 사진을 볼 수 있고 스토리를 따로 숨기지 않는 한 \'내 스토리\'의 게시물을 볼 수 있습니다."</string>
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">볼 수 있는 사람 추가</string>
     <!-- Clickable option to delete a custom story -->
@@ -7301,27 +7301,27 @@
     <!-- Title of safety number changes bottom sheet when showing individual records -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_changes">안전 번호 변경 기록</string>
     <!-- Message of safety number changes bottom sheet when showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__the_following_people">다음 사용자는 Signal을 다시 설치했거나 기기를 변경했을 수 있습니다. 받는 사람을 탭하여 새 안전 번호를 확인하세요. 이 작업은 선택 사항입니다.</string>
+    <string name="SafetyNumberBottomSheetFragment__the_following_people">다음 사용자는 Signal을 재설치했거나 기기를 변경했을 수 있습니다. 새 안전 번호를 확인하려면 해당 사용자를 탭하세요. (선택 사항)</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">안전 번호 확인</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">안전 번호 확인 완료</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
-    <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">모든 커넥션을 검토했습니다. 보내기를 탭하여 계속하세요.</string>
+    <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">모든 친구를 검토했습니다. 전송을 탭하여 계속하세요.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="other">%1$d명의 사용자가 Signal을 재설치했거나 기기를 변경했을 수 있습니다. 안전 번호를 검토하거나 전송을 계속하세요.</item>
+        <item quantity="other">%1$d명의 Signal 친구가 앱을 재설치했거나 기기를 변경했을 수 있습니다. 안전 번호를 다시 확인하거나 이대로 메시지를 전송할 수 있습니다.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">안전 번호 인증</string>
     <!-- Menu action to remove user from story -->
     <string name="SafetyNumberBottomSheetFragment__remove_from_story">스토리에서 제거</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
-    <string name="SafetyNumberBottomSheetFragment__send_anyway">그냥 보내기</string>
+    <string name="SafetyNumberBottomSheetFragment__send_anyway">그래도 전송하기</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
-    <string name="SafetyNumberBottomSheetFragment__review_connections">커넥션 검토</string>
+    <string name="SafetyNumberBottomSheetFragment__review_connections">친구 검토하기</string>
     <!-- Empty state copy for SafetyNumberBottomSheetFragment -->
-    <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">표시할 받는 사람이 없습니다.</string>
+    <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">더 이상 표시할 수신인이 없습니다</string>
     <!-- Done button on safety number review fragment -->
     <string name="SafetyNumberReviewConnectionsFragment__done">확인</string>
     <!-- Title of safety number review fragment -->
@@ -7342,7 +7342,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">내 스토리 게시물을 볼 수 있는 사람을 선택하세요. 설정에서 언제든지 변경할 수 있습니다.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">모든 Signal 커넥션</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">모든 Signal 친구</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">일부를 제외한 모든 사용자</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -8195,10 +8195,10 @@
     <string name="FindByActivity__network_error_dialog">네트워크 오류가 발생했습니다. 나중에 다시 시도하세요.</string>
 
     <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
-    <string name="LinkedDeviceInactiveMegaphone_title">미사용 연결 기기</string>
+    <string name="LinkedDeviceInactiveMegaphone_title">미사용 연동 기기</string>
     <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
     <plurals name="LinkedDeviceInactiveMegaphone_body">
-        <item quantity="other">\'%1$s\'의 연결 상태를 유지하려면 해당 기기에서 %2$d일 이내에 Signal을 여세요.</item>
+        <item quantity="other">\'%1$s\'의 연동 상태를 유지하려면 해당 기기에서 %2$d일 이내에 Signal을 열어주세요.</item>
     </plurals>
     <!-- Button label for an alert letting someone know that one of their linked devices is inactive. When clicked, the user will opt out of all future alerts. -->
     <string name="LinkedDeviceInactiveMegaphone_dont_remind_button_label">알림 해제</string>

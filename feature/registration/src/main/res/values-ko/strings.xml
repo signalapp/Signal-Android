@@ -62,7 +62,7 @@
     <!-- Menu option to use a proxy -->
     <string name="RegistrationActivity_use_proxy">프록시 사용하기</string>
     <!-- Menu option to link this as a device -->
-    <string name="RegistrationActivity_link_device">기기 연결</string>
+    <string name="RegistrationActivity_link_device">기기 연동</string>
     <!-- Clickable text that opens a corresponding URL -->
     <string name="RegistrationActivity_learn_more">자세히 알아보기</string>
 
@@ -467,13 +467,13 @@
     <string name="MessageSyncScreen__continue_without_messages">메시지 없이 계속하기</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">이 코드를 스캔하여 계정을 연결하세요</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">이 코드를 스캔하여 계정을 연동하세요</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">휴대전화에서 Signal을 엽니다.</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
     <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">프로필 사진을 탭하여 Signal 설정을 엽니다.</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">\'연결된 기기\'와 \'새 기기 연결\'을 차례로 탭합니다.</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">\'연동 기기\'와 \'새 기기 연동\'을 차례로 탭합니다.</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
     <string name="LinkAccountScreen__get_help_with_these_steps">도움이 필요하신가요?</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
@@ -489,11 +489,11 @@
     <!-- Button to retry generating the QR code after it failed to load -->
     <string name="LinkAccountScreen__retry">재시도</string>
     <!-- Progress dialog message shown while this device is being registered as a linked device -->
-    <string name="LinkAccountScreen__linking_device">기기를 연결하는 중…</string>
+    <string name="LinkAccountScreen__linking_device">기기를 연동하는 중…</string>
     <!-- Progress dialog message shown while waiting for the primary device to prepare the message backup -->
     <string name="LinkAccountScreen__waiting_for_your_other_device">다른 기기를 기다리는 중…</string>
     <!-- Error dialog message shown when linking this device fails -->
-    <string name="LinkAccountScreen__error_linking_device">기기 연결 도중 오류가 발생했습니다.</string>
+    <string name="LinkAccountScreen__error_linking_device">기기를 연동하는 데 오류가 발생했습니다.</string>
     <!-- Title of the confirmation dialog shown when the scanned QR code belongs to a different account than the one this device is currently linked to -->
     <string name="LinkAccountScreen__delete_app_data_question">앱 데이터를 삭제할까요?</string>
     <!-- Body of the confirmation dialog warning that continuing will erase all local data before relinking to a different account -->
