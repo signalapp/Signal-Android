@@ -31,6 +31,9 @@ import org.signal.glide.apng.ApngOptions
 
 /**
  * Our very own GlideImage. The GlideImage composable provided by the bumptech library is not suitable because it was is using our encrypted cache decoder/encoder.
+ *
+ * @param contentScale How the loaded drawable is scaled into the available space. Ignored when [enableApngAnimation] is
+ *   set, as that path hands scaling to the underlying [ImageView] via [scaleType].
  */
 @Composable
 fun <T> GlideImage(
@@ -42,6 +45,7 @@ fun <T> GlideImage(
   error: Drawable? = fallback,
   transition: TransitionOptions<*, Drawable>? = null,
   diskCacheStrategy: DiskCacheStrategy = DiskCacheStrategy.ALL,
+  contentScale: ContentScale = ContentScale.Crop,
   enableApngAnimation: Boolean = false
 ) {
   if (enableApngAnimation) {
@@ -82,6 +86,7 @@ fun <T> GlideImage(
       error = error,
       transition = transition,
       diskCacheStrategy = diskCacheStrategy,
+      contentScale = contentScale,
       modifier = modifier
     )
   }
@@ -96,7 +101,8 @@ private fun <T> GlideImage(
   fallback: Drawable? = null,
   error: Drawable? = fallback,
   transition: TransitionOptions<*, Drawable>? = null,
-  diskCacheStrategy: DiskCacheStrategy = DiskCacheStrategy.ALL
+  diskCacheStrategy: DiskCacheStrategy = DiskCacheStrategy.ALL,
+  contentScale: ContentScale = ContentScale.Crop
 ) {
   var drawable by remember {
     mutableStateOf<Drawable?>(null)
@@ -148,7 +154,7 @@ private fun <T> GlideImage(
     Image(
       painter = rememberDrawablePainter(drawable),
       contentDescription = null,
-      contentScale = if (model == null) ContentScale.Inside else ContentScale.Crop,
+      contentScale = if (model == null) ContentScale.Inside else contentScale,
       modifier = modifier
     )
   }

@@ -30,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import androidx.fragment.compose.AndroidFragment
@@ -40,6 +41,9 @@ import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.rememberWindowBreakpoint
+import org.signal.glide.compose.GlideImage
+import org.signal.glide.compose.GlideImageScaleType
+import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaSendDependencies
@@ -115,6 +119,17 @@ fun MediaEditScreen(
             controller = imageControllers.getOrCreate(uri, editorState.model),
             modifier = Modifier.fillMaxSize()
           )
+        }
+
+        EditorState.Gif -> {
+          if (!LocalInspectionMode.current) {
+            GlideImage(
+              model = DecryptableUri(uri),
+              scaleType = GlideImageScaleType.FIT_CENTER,
+              contentScale = ContentScale.Fit,
+              modifier = Modifier.fillMaxSize()
+            )
+          }
         }
 
         is EditorState.VideoTrim, EditorState.VideoGif -> {
@@ -238,7 +253,7 @@ fun MediaEditScreen(
           )
         }
 
-        EditorState.VideoGif, null -> Unit
+        EditorState.VideoGif, EditorState.Gif, null -> Unit
       }
 
       AddAMessageRow(

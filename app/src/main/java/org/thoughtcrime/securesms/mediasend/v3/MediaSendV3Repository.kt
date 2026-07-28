@@ -244,7 +244,7 @@ object MediaSendV3Repository : MediaSendRepository {
       val legacyState: Any? = when (state) {
         is EditorState.Image -> ImageEditorFragment.Data().apply { writeModel(state.model) }
         is EditorState.VideoTrim -> state.videoTrimData
-        EditorState.VideoGif -> null
+        EditorState.VideoGif, EditorState.Gif -> null
       }
       legacyState?.let { uri to it }
     }.toMap()

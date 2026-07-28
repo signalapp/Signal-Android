@@ -101,6 +101,13 @@ sealed interface EditorState : Parcelable {
   data object VideoGif : EditorState
 
   /**
+   * Animated gif state. Gifs are played back as-is rather than being routed through the image editor, so there is
+   * nothing to track beyond the type itself.
+   */
+  @Parcelize
+  data object Gif : EditorState
+
+  /**
    * Image editor state.
    */
   @Parcelize
