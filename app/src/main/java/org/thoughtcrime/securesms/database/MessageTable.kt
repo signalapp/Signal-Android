@@ -5705,12 +5705,13 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val threads: MutableList<Long> = LinkedList()
 
     readableDatabase
-      .select(ID, THREAD_ID, EXPIRES_IN, EXPIRE_STARTED, LATEST_REVISION_ID)
+      .select(ID, TYPE, THREAD_ID, EXPIRES_IN, EXPIRE_STARTED, LATEST_REVISION_ID)
       .from(TABLE_NAME)
       .where("$DATE_SENT = ? AND ($FROM_RECIPIENT_ID = ? OR ($FROM_RECIPIENT_ID = ? AND $outgoingTypeClause))", messageId.timetamp, messageId.recipientId, Recipient.self().id)
       .run()
       .forEach { cursor ->
         val id = cursor.requireLong(ID)
+        val type = cursor.requireLong(TYPE)
         val threadId = cursor.requireLong(THREAD_ID)
         val expiresIn = cursor.requireLong(EXPIRES_IN)
         val expireStarted = cursor.requireLong(EXPIRE_STARTED).let {
@@ -5731,7 +5732,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           VOTES_LAST_SEEN to System.currentTimeMillis()
         )
 
-        if (expiresIn > 0) {
+        if (expiresIn > 0 && !MessageTypes.isExpirationTimerUpdate(type)) {
           values.put(EXPIRE_STARTED, expireStarted)
           expiring += Pair(id, expiresIn)
         }
