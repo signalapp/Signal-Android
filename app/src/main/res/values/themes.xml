@@ -139,6 +139,13 @@
         <item name="fixedRoundedCornerBottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners</item>
         <item name="permissionsRationaleDialogTheme">@style/Theme.Signal.AlertDialog.Light.Cornered</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+        <!--
+          Off so the framework does not scrim a transparent system bar for legibility, hiding the content we
+          draw behind it. Set here rather than alongside enableEdgeToEdge() because dialog and bottom sheet
+          windows inherit this theme, and they are not covered by those calls.
+        -->
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="29">false</item>
 
         <!-- Material 3 -->
         <item name="colorPrimary">@color/signal_colorPrimary</item>
@@ -235,6 +242,9 @@
         <item name="fixedRoundedCornerBottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners</item>
         <item name="permissionsRationaleDialogTheme">@style/Theme.Signal.AlertDialog.Dark.Cornered</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+        <!-- As above: no framework contrast scrim over the transparent system bars. -->
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="29">false</item>
 
         <!-- Material 3 -->
         <item name="colorPrimary">@color/signal_colorPrimary</item>

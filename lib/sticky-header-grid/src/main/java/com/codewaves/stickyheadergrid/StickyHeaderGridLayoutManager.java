@@ -261,12 +261,22 @@ public class StickyHeaderGridLayoutManager extends RecyclerView.LayoutManager im
       requestLayout();
    }
 
+   /**
+    * <p>Rows are laid out, and recycled, against {@code getPaddingTop()} and
+    * {@code getHeight() - getPaddingBottom()}. That is the right boundary while the padding clips, but when it
+    * does not -- the usual edge-to-edge setup, where the list is padded by the navigation bar inset and draws
+    * behind it -- the padded strips are visible, so a row treated as off screen there pops into existence in
+    * plain sight. Extending the boundaries by the padding makes rows scroll through those strips instead.
+    */
    private int getExtraLayoutSpace(RecyclerView.State state) {
       if (state.hasTargetScrollPosition()) {
          return getHeight();
       }
-      else {
+      else if (getClipToPadding()) {
          return 0;
+      }
+      else {
+         return Math.max(getPaddingTop(), getPaddingBottom());
       }
    }
 

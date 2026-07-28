@@ -22,10 +22,14 @@ object SystemWindowInsetsSetter {
   }
 
   /**
-   * Updates the view whenever a layout occurs to properly account for the system bar insets, added
-   * on top of the view's original padding ([ApplyMode.PADDING]) or margin ([ApplyMode.MARGIN]).
-   * This is safe to call repeatedly because it only triggers an extra layout pass IF the applied
-   * values actually changed.
+   * Accounts for the system bar insets by adding them on top of the view's original padding
+   * ([ApplyMode.PADDING]) or margin ([ApplyMode.MARGIN]).
+   *
+   * Applied from two places. Primarily from the inset dispatch, which runs before measure and layout, so the
+   * first frame is already inset instead of visibly shifting a frame later. That dispatch doesn't reach every
+   * view though (an ancestor may consume the insets first), so each layout re-applies as a fallback, posted
+   * because a layout-time `requestLayout()` is dropped by the framework. Both paths are safe to run
+   * repeatedly: they only trigger another layout if the values actually changed.
    */
   @JvmStatic
   @JvmOverloads
@@ -42,30 +46,41 @@ object SystemWindowInsetsSetter {
       Insets.of(view.paddingLeft, view.paddingTop, view.paddingRight, view.paddingBottom)
     }
 
-    val listener = view.doOnEachLayout {
+    val applyInsets = {
       val insets = resolveInsets(view, insetType)
       val left = base.left + insets.left
       val top = base.top + insets.top
       val right = base.right + insets.right
       val bottom = base.bottom + insets.bottom
 
-      view.post {
-        when (applyMode) {
-          ApplyMode.PADDING -> view.setPadding(left, top, right, bottom)
-          ApplyMode.MARGIN -> {
-            val params = view.layoutParams as? ViewGroup.MarginLayoutParams ?: return@post
-            if (params.leftMargin != left || params.topMargin != top || params.rightMargin != right || params.bottomMargin != bottom) {
-              params.setMargins(left, top, right, bottom)
-              view.layoutParams = params
-            }
+      when (applyMode) {
+        ApplyMode.PADDING -> view.setPadding(left, top, right, bottom)
+
+        ApplyMode.MARGIN -> {
+          val params = view.layoutParams as? ViewGroup.MarginLayoutParams
+          if (params != null && (params.leftMargin != left || params.topMargin != top || params.rightMargin != right || params.bottomMargin != bottom)) {
+            params.setMargins(left, top, right, bottom)
+            view.layoutParams = params
           }
         }
       }
     }
 
+    ViewCompat.setOnApplyWindowInsetsListener(view) { target, windowInsets ->
+      // Let the view dispatch on down to its children first, then apply ours on top.
+      val result = ViewCompat.onApplyWindowInsets(target, windowInsets)
+      applyInsets()
+      result
+    }
+
+    val listener = view.doOnEachLayout {
+      view.post { applyInsets() }
+    }
+
     val lifecycleObserver = object : DefaultLifecycleObserver {
       override fun onDestroy(owner: LifecycleOwner) {
         view.removeOnLayoutChangeListener(listener)
+        ViewCompat.setOnApplyWindowInsetsListener(view, null)
       }
     }
 

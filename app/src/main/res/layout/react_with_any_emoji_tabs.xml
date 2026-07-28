@@ -16,13 +16,15 @@
         android:background="@drawable/bottom_toolbar_shadow" />
 
     <LinearLayout
+        android:id="@+id/emoji_categories_row"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/react_with_any_background"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center_vertical"
+        android:minHeight="?actionBarSize"
         android:orientation="horizontal">
 
         <FrameLayout

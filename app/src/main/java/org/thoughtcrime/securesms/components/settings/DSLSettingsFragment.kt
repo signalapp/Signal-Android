@@ -41,6 +41,12 @@ abstract class DSLSettingsFragment(
 
   private var toolbar: Toolbar? = null
 
+  /**
+   * Set by layouts that anchor the list to the top of the toolbar rather than below it. Those lists scroll
+   * behind the toolbar, so they have to carry the status bar inset themselves.
+   */
+  protected open val listScrollsBehindToolbar: Boolean = false
+
   @CallSuper
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     toolbar = view.findViewById(R.id.toolbar)
@@ -106,8 +112,10 @@ abstract class DSLSettingsFragment(
     }
 
     recyclerView?.let { recycler ->
+      val insetTypes = WindowInsetsCompat.Type.navigationBars() or if (listScrollsBehindToolbar) WindowInsetsCompat.Type.statusBars() else 0
+
       recycler.clipToPadding = false
-      SystemWindowInsetsSetter.attach(recycler, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars())
+      SystemWindowInsetsSetter.attach(recycler, viewLifecycleOwner, insetTypes)
     }
   }
 

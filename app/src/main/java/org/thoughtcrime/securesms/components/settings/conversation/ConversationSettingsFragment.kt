@@ -140,6 +140,8 @@ class ConversationSettingsFragment :
     menuId = R.menu.conversation_settings
   ) {
 
+  override val listScrollsBehindToolbar: Boolean = true
+
   private val args: ConversationSettingsFragmentArgs by navArgs()
   private val alertTint by lazy { ContextCompat.getColor(requireContext(), R.color.signal_alert_primary) }
   private val alertDisabledTint by lazy { ContextCompat.getColor(requireContext(), R.color.signal_alert_primary_50) }

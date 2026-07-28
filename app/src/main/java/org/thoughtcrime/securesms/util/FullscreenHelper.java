@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.graphics.Insets;
 import androidx.core.view.DisplayCutoutCompat;
 import androidx.core.view.ViewCompat;
@@ -92,7 +93,7 @@ public final class FullscreenHelper {
 
   public void showAndHideWithSystemUI(@NonNull Window window, @NonNull View... views) {
     ViewCompat.setOnApplyWindowInsetsListener(window.getDecorView(), (view, insets) -> {
-      boolean hide = !insets.isVisible(WindowInsetsCompat.Type.systemBars());
+      boolean hide = !areBarsVisible(insets);
 
       for (View target : views) {
         if (target == null) {
@@ -114,7 +115,7 @@ public final class FullscreenHelper {
               .start();
       }
 
-      return insets;
+      return ViewCompat.onApplyWindowInsets(view, insets);
     });
   }
 
@@ -127,8 +128,22 @@ public final class FullscreenHelper {
   }
 
   public boolean isSystemUiVisible() {
-    WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(activity.getWindow().getDecorView());
-    return insets == null || insets.isVisible(WindowInsetsCompat.Type.systemBars());
+    return areBarsVisible(ViewCompat.getRootWindowInsets(activity.getWindow().getDecorView()));
+  }
+
+  /**
+   * Whether the bars that {@link #showSystemUI()} / {@link #hideSystemUI()} control are currently on screen.
+   * <p>
+   * Checks the two bars individually rather than {@link WindowInsetsCompat.Type#systemBars()}, which also
+   * covers the caption bar: {@code isVisible} requires every requested type to be visible, and a phone window
+   * has no caption bar source, so the aggregate answer is always "hidden".
+   */
+  private static boolean areBarsVisible(@Nullable WindowInsetsCompat insets) {
+    if (insets == null) {
+      return true;
+    }
+
+    return insets.isVisible(WindowInsetsCompat.Type.statusBars()) || insets.isVisible(WindowInsetsCompat.Type.navigationBars());
   }
 
   public void hideSystemUI() {
