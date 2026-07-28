@@ -56,7 +56,10 @@ public class HidingLinearLayout extends LinearLayout {
   }
 
   public void show() {
-    if (!isEnabled() || getVisibility() == VISIBLE) return;
+    if (!isEnabled()) return;
+
+    clearAnimation();
+    if (getVisibility() == VISIBLE) return;
 
     setVisibility(VISIBLE);
 
