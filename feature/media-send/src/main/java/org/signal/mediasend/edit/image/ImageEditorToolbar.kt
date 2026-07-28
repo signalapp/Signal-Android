@@ -36,14 +36,18 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.core.util.next
 import org.signal.imageeditor.core.model.EditorModel
+import org.signal.mediasend.MediaSendState
+import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.edit.ImageController
 import org.signal.mediasend.edit.MediaEditScreenDialogs
 import org.signal.mediasend.edit.MediaEditScreenEvent
+import org.signal.mediasend.rememberPreviewState
 import java.util.EnumMap
 
 @Composable
 fun ImageEditorToolbar(
   imageEditorController: ImageController,
+  state: MediaSendState,
   onEvent: (MediaEditScreenEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -56,7 +60,7 @@ fun ImageEditorToolbar(
       )
     }
     imageEditorController.mode == ImageController.Mode.NONE -> {
-      ImageEditorNoneStateToolbar(imageEditorController, onEvent, modifier)
+      ImageEditorNoneStateToolbar(imageEditorController, state, onEvent, modifier)
     }
     imageEditorController.mode == ImageController.Mode.CROP -> {
       ImageEditorCropAndResizeToolbar(imageEditorController, modifier)
@@ -73,6 +77,7 @@ fun ImageEditorToolbar(
 @Composable
 private fun ImageEditorNoneStateToolbar(
   imageEditorController: ImageController,
+  state: MediaSendState,
   onEvent: (MediaEditScreenEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -88,7 +93,11 @@ private fun ImageEditorNoneStateToolbar(
     )
 
     ImageEditorButton(
-      imageVector = SignalIcons.QualityHigh.imageVector,
+      imageVector = if (state.sentMediaQuality == SentMediaQuality.HIGH) {
+        SignalIcons.QualityHigh.imageVector
+      } else {
+        SignalIcons.QualityHighSlash.imageVector
+      },
       onClick = { onEvent(MediaEditScreenEvent.ToggleMediaQuality) }
     )
 
@@ -341,6 +350,7 @@ private fun ImageEditorNoneStateToolbarPreview() {
       imageEditorController = remember {
         ImageController(EditorModel.create(0))
       },
+      state = rememberPreviewState(),
       onEvent = {}
     )
   }

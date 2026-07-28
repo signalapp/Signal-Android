@@ -190,7 +190,7 @@ fun MediaEditScreen(
               )
             }
             if (isSmallWindowBreakpoint) {
-              ImageEditorToolbar(imageEditorController = controller, onEvent = onEvent)
+              ImageEditorToolbar(imageEditorController = controller, state = state, onEvent = onEvent)
             }
           }
         }
@@ -254,6 +254,7 @@ fun MediaEditScreen(
     if (!isSmallWindowBreakpoint && imageController != null) {
       ImageEditorToolbar(
         imageEditorController = imageController,
+        state = state,
         onEvent = onEvent,
         modifier = Modifier
           .align(Alignment.CenterEnd)
