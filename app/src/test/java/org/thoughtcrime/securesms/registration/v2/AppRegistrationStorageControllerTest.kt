@@ -24,6 +24,7 @@ import io.mockk.mockkStatic
 import io.mockk.unmockkAll
 import io.mockk.verify
 import kotlinx.coroutines.runBlocking
+import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.junit.After
 import org.junit.Before
@@ -212,6 +213,43 @@ class AppRegistrationStorageControllerTest {
     coVerify { AppDependencies.jobManager.runJobBlocking(ofType<RefreshOwnProfileJob>(), any()) }
     verify { AppDependencies.jobManager.add(ofType<RotateCertificateJob>()) }
     verify(exactly = 0) { AppDependencies.jobManager.add(ofType<DirectoryRefreshJob>()) }
+  }
+
+  @Test
+  fun `commit - linked device with no phone number - applies aci-only account`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(
+          linkedDeviceData = LinkedDeviceData(deviceId = 2, deviceName = "device-name")
+        ).newBuilder()
+          .e164("")
+          .pni("")
+          .pniIdentityKeyPair(ByteString.EMPTY)
+          .pniSignedPreKey(ByteString.EMPTY)
+          .pniLastResortKyberPreKey(ByteString.EMPTY)
+          .pniRegistrationId(0)
+          .build(),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.account.aci).isEqualTo(aci)
+    assertThat(SignalStore.account.pni).isNull()
+    assertThat(SignalStore.account.e164).isNull()
+    assertThat(SignalStore.account.hasPniIdentityKey()).isFalse()
+    assertThat(SignalStore.account.isRegistered).isTrue()
+
+    assertThat(SignalStore.account.aciPreKeys.isSignedPreKeyRegistered).isTrue()
+    assertThat(SignalStore.account.pniPreKeys.isSignedPreKeyRegistered).isFalse()
+
+    val selfRecord = SignalDatabase.recipients.getRecord(SignalDatabase.recipients.getByAci(aci).get())
+    assertThat(selfRecord.e164).isNull()
+    assertThat(selfRecord.pni).isNull()
+    assertThat(selfRecord.registered).isEqualTo(RecipientTable.RegisteredState.REGISTERED)
+
+    assertThat(readInProgressData().accountDataCommitted).isTrue()
   }
 
   @Test

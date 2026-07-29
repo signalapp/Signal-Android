@@ -389,8 +389,9 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
       )
     } else {
       val pniSignature = if (recipient.needsPniSignature) {
-        Log.i(TAG, "${logPrefix(dataMessage.timestamp)} Including PNI signature.")
-        AppDependencies.signalServiceMessageSender.createPniSignatureMessage()
+        AppDependencies.signalServiceMessageSender.createPniSignatureMessage()?.also {
+          Log.i(TAG, "${logPrefix(dataMessage.timestamp)} Including PNI signature.")
+        }
       } else {
         null
       }

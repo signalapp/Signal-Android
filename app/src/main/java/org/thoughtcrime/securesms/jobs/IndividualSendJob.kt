@@ -171,7 +171,7 @@ class IndividualSendJob private constructor(parameters: Parameters, private val 
 
         val recipientId = message.threadRecipient.id
         AppDependencies.protocolStore.aci().sessions().archiveSessions(recipientId)
-        AppDependencies.protocolStore.pni().sessions().archiveSessions(recipientId)
+        AppDependencies.protocolStore.pniOrNull()?.sessions()?.archiveSessions(recipientId)
 
         throw RetryLaterException()
       }

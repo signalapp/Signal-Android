@@ -269,17 +269,14 @@ class DemoNetworkController(
         if (result is SecondaryProvisioningCipher.ProvisioningDecryptResult.Success) {
           val msg = result.message
           val aci = msg.aciBinary?.let { ServiceId.ACI.parseOrThrow(it) } ?: ServiceId.ACI.parseOrThrow(msg.aci)
-          val pni = msg.pniBinary?.let { ServiceId.PNI.parseOrThrow(it) } ?: ServiceId.PNI.parseOrThrow(msg.pni)
 
           trySend(
             NetworkController.LinkDeviceProvisioningEvent.MessageReceived(
               NetworkController.LinkDeviceProvisioningMessage(
-                e164 = msg.number!!,
                 provisioningCode = msg.provisioningCode!!,
                 aci = aci.toString(),
-                pni = pni.toString(),
                 aciIdentityKeyPair = IdentityKeyPair(IdentityKey(msg.aciIdentityKeyPublic!!.toByteArray()), ECPrivateKey(msg.aciIdentityKeyPrivate!!.toByteArray())),
-                pniIdentityKeyPair = IdentityKeyPair(IdentityKey(msg.pniIdentityKeyPublic!!.toByteArray()), ECPrivateKey(msg.pniIdentityKeyPrivate!!.toByteArray())),
+                phoneNumberData = NetworkController.LinkDeviceProvisioningMessage.PhoneNumberData.fromProvisionMessage(msg),
                 profileKey = msg.profileKey!!.toByteArray(),
                 ephemeralBackupKey = msg.ephemeralBackupKey,
                 accountEntropyPool = msg.accountEntropyPool,
@@ -327,16 +324,16 @@ class DemoNetworkController(
   }
 
   override suspend fun registerAsLinkedDevice(
-    e164: String,
+    aci: ServiceId.ACI,
     password: String,
     provisioningCode: String,
     deviceAttributes: DeviceAttributes,
     aciPreKeys: PreKeyCollection,
-    pniPreKeys: PreKeyCollection,
+    pniPreKeys: PreKeyCollection?,
     fcmToken: String?
   ): RequestResult<LinkDeviceResponse, RegisterAsLinkedDeviceError> {
     return registrationApi.registerAsSecondaryDevice(
-      e164 = e164,
+      aci = aci,
       password = password,
       verificationCode = provisioningCode,
       attributes = deviceAttributes,
@@ -1298,7 +1295,8 @@ class DemoNetworkController(
     return ServiceDeviceAttributes(
       fetchesMessages = fetchesMessages,
       registrationId = registrationId,
-      pniRegistrationId = pniRegistrationId,
+      // The legacy service model has no way to express an absent PNI registration ID.
+      pniRegistrationId = pniRegistrationId ?: 0,
       name = name,
       capabilities = capabilities?.toServiceCapabilities()
     )

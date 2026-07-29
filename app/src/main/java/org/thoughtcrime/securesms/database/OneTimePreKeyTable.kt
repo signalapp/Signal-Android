@@ -78,6 +78,14 @@ class OneTimePreKeyTable(context: Context, databaseHelper: SignalDatabase) : Dat
     database.delete(TABLE_NAME, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(serviceId.toAccountId(), keyId))
   }
 
+  /** Deletes every one-time EC pre-key belonging to the given identity. */
+  fun deleteAll(serviceId: ServiceId) {
+    writableDatabase
+      .delete(TABLE_NAME)
+      .where("$ACCOUNT_ID = ?", serviceId.toAccountId())
+      .run()
+  }
+
   fun markAllStaleIfNecessary(serviceId: ServiceId, staleTime: Long) {
     writableDatabase
       .update(TABLE_NAME)

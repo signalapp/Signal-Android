@@ -235,13 +235,13 @@ object LinkDeviceRepository {
     }
 
     val deviceLinkResult = SignalNetwork.linkDevice.linkDevice(
-      e164 = SignalStore.account.e164!!,
+      e164 = SignalStore.account.e164,
       aci = SignalStore.account.aci!!,
-      pni = SignalStore.account.pni!!,
+      pni = SignalStore.account.pni,
       deviceIdentifier = ephemeralId,
       deviceKey = publicKey,
       aciIdentityKeyPair = SignalStore.account.aciIdentityKey,
-      pniIdentityKeyPair = SignalStore.account.pniIdentityKey,
+      pniIdentityKeyPair = SignalStore.account.pniIdentityKeyOrNull,
       profileKey = ProfileKeyUtil.getSelfProfileKey(),
       accountEntropyPool = SignalStore.account.accountEntropyPool,
       masterKey = SignalStore.svr.masterKey,

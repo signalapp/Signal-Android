@@ -408,7 +408,7 @@ class IncomingMessageObserver(
    * Comparing the batch-start PNI against the current value makes the check idempotent — a
    * redelivered envelope finds the PNI already applied and won't re-trigger a websocket reset.
    */
-  private fun isNetworkResetRequired(result: MessageDecryptor.Result.Success, pniAtBatchStart: ServiceId.PNI): Boolean {
+  private fun isNetworkResetRequired(result: MessageDecryptor.Result.Success, pniAtBatchStart: ServiceId.PNI?): Boolean {
     return result.content.syncMessage?.pniChangeNumber != null && SignalStore.account.pni != pniAtBatchStart
   }
 

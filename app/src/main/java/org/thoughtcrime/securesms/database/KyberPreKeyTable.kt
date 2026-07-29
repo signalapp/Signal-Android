@@ -155,6 +155,14 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
       .run()
   }
 
+  /** Deletes every kyber pre-key belonging to the given identity. Cascades to [LastResortKeyTupleTable]. */
+  fun deleteAll(serviceId: ServiceId) {
+    writableDatabase
+      .delete(TABLE_NAME)
+      .where("$ACCOUNT_ID = ?", serviceId.toAccountId())
+      .run()
+  }
+
   fun markAllStaleIfNecessary(serviceId: ServiceId, staleTime: Long) {
     writableDatabase
       .update(TABLE_NAME)

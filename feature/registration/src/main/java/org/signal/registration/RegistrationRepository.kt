@@ -369,20 +369,26 @@ class RegistrationRepository(
   ): RequestResult<LinkedDeviceResult, RegisterAsLinkedDeviceError> = withContext(Dispatchers.IO) {
     checkNotNull(message.accountEntropyPool) { "Link provisioning message missing account entropy pool" }
 
-    val e164 = message.e164
+    val phoneNumberData = message.phoneNumberData
+    if (phoneNumberData == null) {
+      check(isPhoneNumberlessRegistrationAvailable) { "Primary sent no phone number data, but linking to an account with no phone number isn't supported!" }
+      Log.i(TAG, "[registerAsLinkedDevice] Primary sent no phone number data. Linking to an account with no phone number.")
+    }
+
+    val e164 = phoneNumberData?.e164
     val accountEntropyPool = AccountEntropyPool(message.accountEntropyPool)
     val aci = ACI.parseOrThrow(message.aci)
-    val pni = PNI.parseOrThrow(message.pni)
+    val pni = phoneNumberData?.let { PNI.parseOrThrow(it.pni) }
     val aciIdentityKeyPair = message.aciIdentityKeyPair
-    val pniIdentityKeyPair = message.pniIdentityKeyPair
     val profileKey = ProfileKey(message.profileKey)
     val provisioningCode = message.provisioningCode
 
     val keyMaterial = generateKeyMaterial(
       existingAccountEntropyPool = accountEntropyPool,
       existingAciIdentityKeyPair = aciIdentityKeyPair,
-      existingPniIdentityKeyPair = pniIdentityKeyPair,
-      profileKey = profileKey
+      existingPniIdentityKeyPair = phoneNumberData?.pniIdentityKeyPair,
+      profileKey = profileKey,
+      includePniKeyMaterial = phoneNumberData != null
     )
 
     storageController.updateInProgressRegistrationData {
@@ -391,15 +397,18 @@ class RegistrationRepository(
     }
     updateAccountData {
       this.aciIdentityKeyPair = keyMaterial.aciIdentityKeyPair.serialize().toByteString()
-      this.pniIdentityKeyPair = keyMaterial.pniIdentityKeyPair.serialize().toByteString()
       this.aciSignedPreKey = keyMaterial.aciSignedPreKey.serialize().toByteString()
-      this.pniSignedPreKey = keyMaterial.pniSignedPreKey.serialize().toByteString()
       this.aciLastResortKyberPreKey = keyMaterial.aciLastResortKyberPreKey.serialize().toByteString()
-      this.pniLastResortKyberPreKey = keyMaterial.pniLastResortKyberPreKey.serialize().toByteString()
       this.aciRegistrationId = keyMaterial.aciRegistrationId
-      this.pniRegistrationId = keyMaterial.pniRegistrationId
       this.unidentifiedAccessKey = keyMaterial.unidentifiedAccessKey.toByteString()
       this.servicePassword = keyMaterial.servicePassword
+
+      keyMaterial.pni?.let { pniKeyMaterial ->
+        this.pniIdentityKeyPair = pniKeyMaterial.identityKeyPair.serialize().toByteString()
+        this.pniSignedPreKey = pniKeyMaterial.signedPreKey.serialize().toByteString()
+        this.pniLastResortKyberPreKey = pniKeyMaterial.lastResortKyberPreKey.serialize().toByteString()
+        this.pniRegistrationId = pniKeyMaterial.registrationId
+      }
     }
 
     val fcmToken = networkController.getFcmToken()
@@ -413,7 +422,7 @@ class RegistrationRepository(
     val deviceAttributes = DeviceAttributes(
       fetchesMessages = fcmToken == null,
       registrationId = keyMaterial.aciRegistrationId,
-      pniRegistrationId = keyMaterial.pniRegistrationId,
+      pniRegistrationId = keyMaterial.pni?.registrationId,
       name = Base64.encodeWithPadding(encryptedDeviceName),
       capabilities = getAccountCapabilities()
     )
@@ -424,14 +433,16 @@ class RegistrationRepository(
       lastResortKyberPreKey = keyMaterial.aciLastResortKyberPreKey
     )
 
-    val pniPreKeys = PreKeyCollection(
-      identityKey = keyMaterial.pniIdentityKeyPair.publicKey,
-      signedPreKey = keyMaterial.pniSignedPreKey,
-      lastResortKyberPreKey = keyMaterial.pniLastResortKyberPreKey
-    )
+    val pniPreKeys = keyMaterial.pni?.let {
+      PreKeyCollection(
+        identityKey = it.identityKeyPair.publicKey,
+        signedPreKey = it.signedPreKey,
+        lastResortKyberPreKey = it.lastResortKyberPreKey
+      )
+    }
 
     val result = networkController.registerAsLinkedDevice(
-      e164 = e164,
+      aci = aci,
       password = keyMaterial.servicePassword,
       provisioningCode = provisioningCode,
       deviceAttributes = deviceAttributes,
@@ -442,9 +453,16 @@ class RegistrationRepository(
 
     if (result is RequestResult.Success) {
       updateAccountData {
-        this.e164 = e164
         this.aci = aci.toString()
-        this.pni = pni.toString()
+
+        if (e164 != null) {
+          this.e164 = e164
+        }
+
+        if (pni != null) {
+          this.pni = pni.toString()
+        }
+
         this.linkedDeviceData = LinkedDeviceData(
           deviceId = result.result.deviceId.toInt(),
           deviceName = deviceName,
@@ -613,19 +631,21 @@ class RegistrationRepository(
       profileKey = resumedProfileKey
     )
 
+    val pniKeyMaterial = checkNotNull(keyMaterial.pni) { "Missing PNI key material for a primary registration!" }
+
     storageController.updateInProgressRegistrationData {
       this.profileKey = keyMaterial.profileKey.toByteString()
       this.accountEntropyPool = keyMaterial.accountEntropyPool.value
     }
     updateAccountData {
       this.aciIdentityKeyPair = keyMaterial.aciIdentityKeyPair.serialize().toByteString()
-      this.pniIdentityKeyPair = keyMaterial.pniIdentityKeyPair.serialize().toByteString()
+      this.pniIdentityKeyPair = pniKeyMaterial.identityKeyPair.serialize().toByteString()
       this.aciSignedPreKey = keyMaterial.aciSignedPreKey.serialize().toByteString()
-      this.pniSignedPreKey = keyMaterial.pniSignedPreKey.serialize().toByteString()
+      this.pniSignedPreKey = pniKeyMaterial.signedPreKey.serialize().toByteString()
       this.aciLastResortKyberPreKey = keyMaterial.aciLastResortKyberPreKey.serialize().toByteString()
-      this.pniLastResortKyberPreKey = keyMaterial.pniLastResortKyberPreKey.serialize().toByteString()
+      this.pniLastResortKyberPreKey = pniKeyMaterial.lastResortKyberPreKey.serialize().toByteString()
       this.aciRegistrationId = keyMaterial.aciRegistrationId
-      this.pniRegistrationId = keyMaterial.pniRegistrationId
+      this.pniRegistrationId = pniKeyMaterial.registrationId
       this.unidentifiedAccessKey = keyMaterial.unidentifiedAccessKey.toByteString()
       this.servicePassword = keyMaterial.servicePassword
     }
@@ -652,7 +672,7 @@ class RegistrationRepository(
       unrestrictedUnidentifiedAccess = unrestrictedUnidentifiedAccess,
       discoverableByPhoneNumber = false, // Important -- this should be false initially, and then the user should be given a choice as to whether to turn it on later
       capabilities = getAccountCapabilities(),
-      pniRegistrationId = keyMaterial.pniRegistrationId,
+      pniRegistrationId = pniKeyMaterial.registrationId,
       recoveryPassword = newRecoveryPassword
     )
 
@@ -663,9 +683,9 @@ class RegistrationRepository(
     )
 
     val pniPreKeys = PreKeyCollection(
-      identityKey = keyMaterial.pniIdentityKeyPair.publicKey,
-      signedPreKey = keyMaterial.pniSignedPreKey,
-      lastResortKyberPreKey = keyMaterial.pniLastResortKyberPreKey
+      identityKey = pniKeyMaterial.identityKeyPair.publicKey,
+      signedPreKey = pniKeyMaterial.signedPreKey,
+      lastResortKyberPreKey = pniKeyMaterial.lastResortKyberPreKey
     )
 
     val result = networkController.registerAccount(
@@ -956,6 +976,7 @@ class RegistrationRepository(
     storageController.commitRegistrationData()
     networkController.enqueueAccountAttributesSyncJob()
     networkController.enqueueSvrGuessResetJobIfPossible()
+    storageController.onRegistrationFlowFinished()
   }
 
   /**
@@ -968,22 +989,37 @@ class RegistrationRepository(
     }
   }
 
+  /**
+   * @param includePniKeyMaterial Whether to generate PNI key material at all. False for an account with no phone number,
+   *   which has no PNI to attach the keys to.
+   */
   private fun generateKeyMaterial(
     existingAccountEntropyPool: AccountEntropyPool? = null,
     existingAciIdentityKeyPair: IdentityKeyPair? = null,
     existingPniIdentityKeyPair: IdentityKeyPair? = null,
-    profileKey: ProfileKey? = null
+    profileKey: ProfileKey? = null,
+    includePniKeyMaterial: Boolean = true
   ): KeyMaterial {
     val accountEntropyPool = existingAccountEntropyPool ?: AccountEntropyPool.generate()
     val aciIdentityKeyPair = existingAciIdentityKeyPair ?: IdentityKeyPair.generate()
-    val pniIdentityKeyPair = existingPniIdentityKeyPair ?: IdentityKeyPair.generate()
 
     val timestamp = System.currentTimeMillis()
 
     val aciSignedPreKey = generateSignedPreKey(generatePreKeyId(), timestamp, aciIdentityKeyPair)
-    val pniSignedPreKey = generateSignedPreKey(generatePreKeyId(), timestamp, pniIdentityKeyPair)
     val aciLastResortKyberPreKey = generateKyberPreKey(generatePreKeyId(), timestamp, aciIdentityKeyPair)
-    val pniLastResortKyberPreKey = generateKyberPreKey(generatePreKeyId(), timestamp, pniIdentityKeyPair)
+
+    val pniKeyMaterial = if (includePniKeyMaterial) {
+      val pniIdentityKeyPair = existingPniIdentityKeyPair ?: IdentityKeyPair.generate()
+
+      KeyMaterial.PniKeyMaterial(
+        identityKeyPair = pniIdentityKeyPair,
+        signedPreKey = generateSignedPreKey(generatePreKeyId(), timestamp, pniIdentityKeyPair),
+        lastResortKyberPreKey = generateKyberPreKey(generatePreKeyId(), timestamp, pniIdentityKeyPair),
+        registrationId = generateRegistrationId()
+      )
+    } else {
+      null
+    }
 
     val profileKey = profileKey ?: generateProfileKey()
 
@@ -991,11 +1027,8 @@ class RegistrationRepository(
       aciIdentityKeyPair = aciIdentityKeyPair,
       aciSignedPreKey = aciSignedPreKey,
       aciLastResortKyberPreKey = aciLastResortKyberPreKey,
-      pniIdentityKeyPair = pniIdentityKeyPair,
-      pniSignedPreKey = pniSignedPreKey,
-      pniLastResortKyberPreKey = pniLastResortKyberPreKey,
+      pni = pniKeyMaterial,
       aciRegistrationId = generateRegistrationId(),
-      pniRegistrationId = generateRegistrationId(),
       profileKey = profileKey.serialize(),
       unidentifiedAccessKey = deriveUnidentifiedAccessKey(profileKey),
       servicePassword = generatePassword(),

@@ -13,6 +13,7 @@ import org.signal.core.models.ServiceId.PNI
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Base64
+import org.signal.core.util.logging.Log
 import org.signal.core.util.urlEncode
 import org.signal.libsignal.net.AuthDevicesService
 import org.signal.libsignal.net.RequestResult
@@ -45,6 +46,11 @@ import org.signal.libsignal.net.LinkedDevice as LibSignalLinkedDevice
 class LinkDeviceApi(
   private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket
 ) {
+
+  companion object {
+    private val TAG = Log.tag(LinkDeviceApi::class)
+  }
+
   /**
    * Fetches a list of linked devices.
    */
@@ -89,15 +95,18 @@ class LinkDeviceApi(
    * - 411: Account is already at the device limit.
    * - 422: Bad request.
    * - 429: Rate-limited.
+   *
+   * [e164], [pni], and [pniIdentityKeyPair] are absent for an account with no phone number, and are only ever sent
+   * as a complete set.
    */
   fun linkDevice(
-    e164: String,
+    e164: String?,
     aci: ACI,
-    pni: PNI,
+    pni: PNI?,
     deviceIdentifier: String,
     deviceKey: ECPublicKey,
     aciIdentityKeyPair: IdentityKeyPair,
-    pniIdentityKeyPair: IdentityKeyPair,
+    pniIdentityKeyPair: IdentityKeyPair?,
     profileKey: ProfileKey,
     accountEntropyPool: AccountEntropyPool,
     masterKey: MasterKey,
@@ -105,15 +114,24 @@ class LinkDeviceApi(
     code: String,
     ephemeralMessageBackupKey: MessageBackupKey?
   ): NetworkResult<Unit> {
+    val sendPhoneNumberData = e164 != null && pni != null && pniIdentityKeyPair != null
+    if (!sendPhoneNumberData && (e164 != null || pni != null || pniIdentityKeyPair != null)) {
+      Log.w(TAG, "[linkDevice] Incomplete phone number data! hasNumber: ${e164 != null}, hasPni: ${pni != null}, hasPniIdentityKey: ${pniIdentityKeyPair != null}. Linking the new device without a phone number.")
+    }
+
+    val sentE164 = e164.takeIf { sendPhoneNumberData }
+    val sentPni = pni.takeIf { sendPhoneNumberData }
+    val sentPniIdentityKeyPair = pniIdentityKeyPair.takeIf { sendPhoneNumberData }
+
     val cipher = PrimaryProvisioningCipher(deviceKey)
     val message = ProvisionMessage(
       aciIdentityKeyPublic = aciIdentityKeyPair.publicKey.serialize().toByteString(),
       aciIdentityKeyPrivate = aciIdentityKeyPair.privateKey.serialize().toByteString(),
-      pniIdentityKeyPublic = pniIdentityKeyPair.publicKey.serialize().toByteString(),
-      pniIdentityKeyPrivate = pniIdentityKeyPair.privateKey.serialize().toByteString(),
+      pniIdentityKeyPublic = sentPniIdentityKeyPair?.publicKey?.serialize()?.toByteString(),
+      pniIdentityKeyPrivate = sentPniIdentityKeyPair?.privateKey?.serialize()?.toByteString(),
       aci = aci.toString(),
-      pni = pni.toStringWithoutPrefix(),
-      number = e164,
+      pni = sentPni?.toStringWithoutPrefix(),
+      number = sentE164,
       provisioningCode = code,
       userAgent = null,
       profileKey = profileKey.serialize().toByteString(),
@@ -122,7 +140,7 @@ class LinkDeviceApi(
       accountEntropyPool = accountEntropyPool.value,
       mediaRootBackupKey = mediaRootBackupKey.value.toByteString(),
       aciBinary = aci.toByteString(),
-      pniBinary = pni.toByteStringWithoutPrefix()
+      pniBinary = sentPni?.toByteStringWithoutPrefix()
     )
     val ciphertext: ByteArray = cipher.encrypt(message)
     val body = ProvisioningMessage(Base64.encodeWithPadding(ciphertext))

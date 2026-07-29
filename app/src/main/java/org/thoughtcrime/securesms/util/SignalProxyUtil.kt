@@ -82,7 +82,7 @@ object SignalProxyUtil {
   fun testWebsocketConnection(timeout: Long): Boolean {
     startListeningToWebsocket()
 
-    if (SignalStore.account.e164 == null) {
+    if (!SignalStore.account.isRegistered || SignalStore.account.aci == null) {
       Log.i(TAG, "User is unregistered! Doing simple check.")
       return testWebsocketConnectionUnregistered(timeout)
     }

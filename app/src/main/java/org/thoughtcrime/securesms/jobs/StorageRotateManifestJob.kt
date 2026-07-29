@@ -40,7 +40,7 @@ class StorageRotateManifestJob private constructor(parameters: Parameters) : Job
       return Result.failure()
     }
 
-    if (!SignalStore.account.isRegistered || SignalStore.account.e164 == null) {
+    if (!SignalStore.account.isRegistered || SignalStore.account.aci == null) {
       Log.w(TAG, "User not registered. Skipping.")
       return Result.failure()
     }

@@ -9,10 +9,12 @@ import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import okhttp3.Credentials
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.Base64
 import org.signal.core.util.censor
 import org.signal.core.util.serialization.ByteArrayToBase64Serializer
@@ -46,6 +48,10 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
 
   companion object {
     private val APPLICATION_JSON = "application/json".toMediaType()
+
+    /** Drops null properties instead of emitting explicit nulls, for bodies where a field is meant to be absent entirely. */
+    @OptIn(ExperimentalSerializationApi::class)
+    private val JSON_OMITTING_NULLS = Json(SignalJson.json) { explicitNulls = false }
   }
 
   /**
@@ -388,7 +394,7 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
 
   /**
    * Registers a device as a linked device on a pre-existing account, authenticating via basic auth
-   * built from the given [e164] and [password].
+   * built from [password] and the [aci].
    *
    * `PUT /v1/devices/link`
    * - 200: Success, body is the link device response
@@ -397,23 +403,25 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
    * - 411: Account reached max number of linked devices
    * - 422: Request is invalid
    * - 429: Rate limited
+   *
+   * @param pniPreKeys The PNI pre-keys, or null if the account has no PNI. Omitted from the request when null.
    */
   suspend fun registerAsSecondaryDevice(
-    e164: String,
+    aci: ACI,
     password: String,
     verificationCode: String,
     attributes: DeviceAttributes,
     aciPreKeys: PreKeyCollection,
-    pniPreKeys: PreKeyCollection,
+    pniPreKeys: PreKeyCollection?,
     fcmToken: String?
   ): RequestResult<LinkDeviceResponse, RegisterAsLinkedDeviceError> {
     val request = RegisterAsSecondaryDeviceRequestBody(
       verificationCode = verificationCode,
       accountAttributes = attributes,
       aciSignedPreKey = aciPreKeys.signedPreKey.toSignedPreKeyEntity(),
-      pniSignedPreKey = pniPreKeys.signedPreKey.toSignedPreKeyEntity(),
+      pniSignedPreKey = pniPreKeys?.signedPreKey?.toSignedPreKeyEntity(),
       aciPqLastResortPreKey = aciPreKeys.lastResortKyberPreKey.toKyberPreKeyEntity(),
-      pniPqLastResortPreKey = pniPreKeys.lastResortKyberPreKey.toKyberPreKeyEntity(),
+      pniPqLastResortPreKey = pniPreKeys?.lastResortKyberPreKey?.toKyberPreKeyEntity(),
       gcmToken = fcmToken?.let { GcmRegistrationId(it, true) }
     )
 
@@ -422,8 +430,8 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
         method = RequestSpec.Method.PUT,
         host = RequestSpec.Host.Service,
         path = "/v1/devices/link",
-        body = request.toJsonRequestBody(),
-        auth = RequestSpec.Auth.Header("Authorization", basicAuth(e164, password))
+        body = request.toJsonRequestBodyOmittingNulls(),
+        auth = RequestSpec.Auth.Header("Authorization", basicAuth(aci.toString(), password))
       )
     )
 
@@ -452,6 +460,10 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
 
   private inline fun <reified T> T.toJsonRequestBody(): RequestBody {
     return SignalJson.json.encodeToString(this).toRequestBody(APPLICATION_JSON)
+  }
+
+  private inline fun <reified T> T.toJsonRequestBodyOmittingNulls(): RequestBody {
+    return JSON_OMITTING_NULLS.encodeToString(this).toRequestBody(APPLICATION_JSON)
   }
 
   private fun SignedPreKeyRecord.toSignedPreKeyEntity(): SignedPreKeyEntity {
@@ -510,7 +522,8 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
   class DeviceAttributes(
     val fetchesMessages: Boolean,
     val registrationId: Int,
-    val pniRegistrationId: Int,
+    /** Null for an account with no PNI, in which case it is omitted from the request. */
+    val pniRegistrationId: Int?,
     val name: String?,
     val capabilities: AccountAttributes.Capabilities?
   )
@@ -679,9 +692,9 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
     val verificationCode: String,
     val accountAttributes: DeviceAttributes,
     val aciSignedPreKey: SignedPreKeyEntity,
-    val pniSignedPreKey: SignedPreKeyEntity,
+    val pniSignedPreKey: SignedPreKeyEntity? = null,
     val aciPqLastResortPreKey: KyberPreKeyEntity,
-    val pniPqLastResortPreKey: KyberPreKeyEntity,
+    val pniPqLastResortPreKey: KyberPreKeyEntity? = null,
     val gcmToken: GcmRegistrationId? = null
   )
 

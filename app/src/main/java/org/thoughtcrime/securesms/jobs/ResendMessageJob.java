@@ -9,6 +9,7 @@ import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
+import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl;
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListRecord;
@@ -192,8 +193,11 @@ public class ResendMessageJob extends BaseJob {
       Log.w(TAG, "Failed to resend content due to a missing session. Archiving session and trying again.", e);
       AppDependencies.getProtocolStore().aci().sessions().archiveSessions(recipientId, SignalServiceAddress.DEFAULT_DEVICE_ID);
       AppDependencies.getProtocolStore().aci().sessions().archiveSiblingSessions(recipient.getServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID));
-      AppDependencies.getProtocolStore().pni().sessions().archiveSessions(recipientId, SignalServiceAddress.DEFAULT_DEVICE_ID);
-      AppDependencies.getProtocolStore().pni().sessions().archiveSiblingSessions(recipient.getServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID));
+      SignalServiceAccountDataStoreImpl pniStore = AppDependencies.getProtocolStore().pniOrNull();
+      if (pniStore != null) {
+        pniStore.sessions().archiveSessions(recipientId, SignalServiceAddress.DEFAULT_DEVICE_ID);
+        pniStore.sessions().archiveSiblingSessions(recipient.getServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID));
+      }
       SignalDatabase.senderKeyShared().deleteAllFor(recipientId);
 
       result = messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.ofNullable(groupId).map(GroupId::getDecodedId), urgent);

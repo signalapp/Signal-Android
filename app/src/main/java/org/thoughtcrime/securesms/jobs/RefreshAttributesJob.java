@@ -86,7 +86,7 @@ public class RefreshAttributesJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    if (!SignalStore.account().isRegistered() || SignalStore.account().getE164() == null) {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().getAci() == null) {
       Log.w(TAG, "Not yet registered. Skipping.");
       return;
     }

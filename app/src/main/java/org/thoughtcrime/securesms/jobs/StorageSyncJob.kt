@@ -192,8 +192,8 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       return
     }
 
-    if (!Recipient.self().hasE164 || !Recipient.self().hasServiceId) {
-      Log.w(TAG, "Missing E164 or ACI!")
+    if (!Recipient.self().hasAci) {
+      Log.w(TAG, "Missing ACI!")
       return
     }
 

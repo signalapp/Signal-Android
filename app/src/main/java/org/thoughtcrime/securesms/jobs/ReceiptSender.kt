@@ -28,7 +28,7 @@ object ReceiptSender {
       Log.w(TAG, "Failed to send receipt due to a missing session. Archiving sessions and retrying.", e)
 
       AppDependencies.protocolStore.aci().sessions().archiveSessions(recipientId)
-      AppDependencies.protocolStore.pni().sessions().archiveSessions(recipientId)
+      AppDependencies.protocolStore.pniOrNull()?.sessions()?.archiveSessions(recipientId)
 
       try {
         operation.send()

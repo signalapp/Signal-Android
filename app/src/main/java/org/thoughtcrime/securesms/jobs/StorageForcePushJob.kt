@@ -61,7 +61,7 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
       return
     }
 
-    if (!SignalStore.account.isRegistered || SignalStore.account.e164 == null) {
+    if (!SignalStore.account.isRegistered || SignalStore.account.aci == null) {
       Log.w(TAG, "User not registered. Skipping.")
       return
     }

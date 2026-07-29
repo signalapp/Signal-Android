@@ -39,6 +39,7 @@ import org.signal.core.util.StreamUtil
 import org.signal.core.util.crypto.AttachmentSecretProvider
 import org.signal.core.util.getLength
 import org.signal.core.util.logging.Log
+import org.signal.core.util.nullIfBlank
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
@@ -97,6 +98,7 @@ import org.thoughtcrime.securesms.service.DirectoryRefreshListener
 import org.thoughtcrime.securesms.service.LocalBackupListener
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener
 import org.thoughtcrime.securesms.util.BackupUtil
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import java.io.File
@@ -279,6 +281,26 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     }
 
     RegistrationUtil.maybeMarkRegistrationComplete()
+  }
+
+  override suspend fun onRegistrationFlowFinished() = withContext(Dispatchers.Default) {
+    if (Environment.MOCK_PHONE_NUMBERLESS_REGISTRATION) {
+      Log.w(TAG, "[onRegistrationFlowFinished] Mocking a phone-number-less account. Wiping all local knowledge of the E164 and PNI.")
+
+      val pni = SignalStore.account.pni
+
+      SignalStore.account.clearE164AndPni()
+      SignalDatabase.recipients.clearSelfE164AndPni(Recipient.self().id)
+      AppDependencies.recipientCache.clearSelf()
+
+      if (pni != null) {
+        SignalDatabase.oneTimePreKeys.deleteAll(pni)
+        SignalDatabase.signedPreKeys.deleteAll(pni)
+        SignalDatabase.kyberPreKeys.deleteAll(pni)
+      }
+
+      AppDependencies.resetProtocolStores()
+    }
   }
 
   override suspend fun setRestoreDecision(decision: RestoreDecision) = withContext(Dispatchers.Default) {
@@ -698,8 +720,9 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     return accountEntropyPool.deriveMasterKey()
   }
 
+  /** The E164 and PNI are deliberately not required -- an account may have no phone number. */
   private fun AccountData.isComplete(): Boolean {
-    return e164.isNotEmpty() && aci.isNotEmpty() && pni.isNotEmpty() && servicePassword.isNotEmpty()
+    return aci.isNotEmpty() && servicePassword.isNotEmpty()
   }
 
   /**
@@ -720,45 +743,61 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     }
 
     val aciIdentityKeyPair = IdentityKeyPair(accountData.aciIdentityKeyPair.toByteArray())
-    val pniIdentityKeyPair = IdentityKeyPair(accountData.pniIdentityKeyPair.toByteArray())
     SignalStore.account.restoreAciIdentityKeyFromBackup(aciIdentityKeyPair.publicKey.serialize(), aciIdentityKeyPair.privateKey.serialize())
-    SignalStore.account.restorePniIdentityKeyFromBackup(pniIdentityKeyPair.publicKey.serialize(), pniIdentityKeyPair.privateKey.serialize())
+
+    val pniIdentityKeyPair = accountData.pniIdentityKeyPair.takeIf { it.size > 0 }?.let { IdentityKeyPair(it.toByteArray()) }
+    if (pniIdentityKeyPair != null) {
+      SignalStore.account.restorePniIdentityKeyFromBackup(pniIdentityKeyPair.publicKey.serialize(), pniIdentityKeyPair.privateKey.serialize())
+    }
 
     val aci = ACI.parseOrThrow(accountData.aci)
-    val pni = PNI.parseOrThrow(accountData.pni)
+    val pni = PNI.parseOrNull(accountData.pni)
+    val e164 = accountData.e164.nullIfBlank()
     val isAciChanged = SignalStore.account.aci != aci
 
+    if (pni == null) {
+      Log.i(TAG, "[applyAccountData] No PNI in the account data. Registering an account with no phone number.")
+    }
+
     SignalStore.account.setAci(aci)
-    SignalStore.account.setPni(pni)
+    if (pni != null) {
+      SignalStore.account.setPni(pni)
+    }
 
     AppDependencies.resetProtocolStores()
 
-    AppDependencies.protocolStore.aci().sessions().archiveAllSessions()
-    AppDependencies.protocolStore.pni().sessions().archiveAllSessions()
+    val aciProtocolStore = AppDependencies.protocolStore.aci()
+    val pniProtocolStore = AppDependencies.protocolStore.pniOrNull()
+
+    aciProtocolStore.sessions().archiveAllSessions()
+    pniProtocolStore?.sessions()?.archiveAllSessions()
     SenderKeyUtil.clearAllState()
 
-    val aciProtocolStore = AppDependencies.protocolStore.aci()
-    val pniProtocolStore = AppDependencies.protocolStore.pni()
-
     storeSignedAndLastResortPreKeys(aciProtocolStore, SignalStore.account.aciPreKeys, SignedPreKeyRecord(accountData.aciSignedPreKey.toByteArray()), KyberPreKeyRecord(accountData.aciLastResortKyberPreKey.toByteArray()))
-    storeSignedAndLastResortPreKeys(pniProtocolStore, SignalStore.account.pniPreKeys, SignedPreKeyRecord(accountData.pniSignedPreKey.toByteArray()), KyberPreKeyRecord(accountData.pniLastResortKyberPreKey.toByteArray()))
+    if (pniProtocolStore != null) {
+      storeSignedAndLastResortPreKeys(pniProtocolStore, SignalStore.account.pniPreKeys, SignedPreKeyRecord(accountData.pniSignedPreKey.toByteArray()), KyberPreKeyRecord(accountData.pniLastResortKyberPreKey.toByteArray()))
+    }
 
-    val profileKey = getOrCreateProfileKey(accountData.e164)
+    val profileKey = getOrCreateProfileKey(aci)
     val recipientTable = SignalDatabase.recipients
-    val selfId = recipientTable.getAndPossiblyMergePnpVerified(aci, pni, accountData.e164)
+    val selfId = recipientTable.getAndPossiblyMergePnpVerified(aci, pni, e164)
 
     recipientTable.setProfileSharing(selfId, true)
     recipientTable.markRegisteredOrThrow(selfId, aci)
-    recipientTable.linkIdsForSelf(aci, pni, accountData.e164)
+    recipientTable.linkIdsForSelf(aci, pni, e164)
     recipientTable.setProfileKey(selfId, profileKey)
 
     AppDependencies.recipientCache.clearSelf()
 
-    SignalStore.account.setE164(accountData.e164)
+    if (e164 != null) {
+      SignalStore.account.setE164(e164)
+    }
 
     val now = System.currentTimeMillis()
     saveOwnIdentityKey(selfId, aci, aciProtocolStore, now)
-    saveOwnIdentityKey(selfId, pni, pniProtocolStore, now)
+    if (pni != null && pniProtocolStore != null) {
+      saveOwnIdentityKey(selfId, pni, pniProtocolStore, now)
+    }
 
     accountData.linkedDeviceData?.mediaRootBackupKey?.let {
       SignalStore.backup.mediaRootBackupKey = MediaRootBackupKey(it.toByteArray())
@@ -810,8 +849,8 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     accountData.linkedDeviceData?.readReceipts?.let { TextSecurePreferences.setReadReceiptsEnabled(context, it) }
   }
 
-  private fun getOrCreateProfileKey(e164: String): ProfileKey {
-    val existing = SignalDatabase.recipients.getByE164(e164).getOrNull()?.let { ProfileKeyUtil.profileKeyOrNull(SignalDatabase.recipients.getRecord(it).profileKey) }
+  private fun getOrCreateProfileKey(aci: ACI?): ProfileKey {
+    val existing = aci?.let { SignalDatabase.recipients.getByAci(it).getOrNull() }?.let { ProfileKeyUtil.profileKeyOrNull(SignalDatabase.recipients.getRecord(it).profileKey) }
     return existing ?: ProfileKeyUtil.createNew().also { Log.i(TAG, "[commitRegistrationData] No profile key found, created a new one") }
   }
 

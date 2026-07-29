@@ -10,9 +10,14 @@ import kotlinx.serialization.Serializable
 import okio.ByteString
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
+import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
+import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.BadRequestError
 import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.network.api.RegistrationApiV2.AccountAttributes
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
@@ -32,6 +37,7 @@ import org.signal.network.api.RegistrationApiV2.SubmitVerificationCodeError
 import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.network.api.RegistrationApiV2.UpdateSessionError
 import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
+import org.whispersystems.signalservice.internal.push.ProvisionMessage
 import java.util.Locale
 import kotlin.time.Duration
 
@@ -269,19 +275,21 @@ interface NetworkController {
 
   /**
    * Performs the network call to register this device as a linked (secondary) device on a pre-existing
-   * account (`PUT /v1/devices/link`), authenticated via basic auth with [e164] and [password].
+   * account (`PUT /v1/devices/link`), authenticated via basic auth with [password] and [aci].
    *
    * This only performs the network request and returns the assigned device id. The caller is responsible
    * for committing the account locally (via [StorageController.commitRegistrationData]) and performing the
    * post-registration housekeeping (via [onLinkedDeviceRegistered]) and any restores.
+   *
+   * @param pniPreKeys The PNI pre-keys, or null if the account has no PNI.
    */
   suspend fun registerAsLinkedDevice(
-    e164: String,
+    aci: ACI,
     password: String,
     provisioningCode: String,
     deviceAttributes: DeviceAttributes,
     aciPreKeys: PreKeyCollection,
-    pniPreKeys: PreKeyCollection,
+    pniPreKeys: PreKeyCollection?,
     fcmToken: String?
   ): RequestResult<LinkDeviceResponse, RegisterAsLinkedDeviceError>
 
@@ -476,22 +484,61 @@ interface NetworkController {
   /**
    * Data received from the primary device during QR-based device linking.
    *
-   * The ACI/PNI are resolved to their canonical string form by the implementation. Identity keys are
+   * The ACI is resolved to its canonical string form by the implementation. Identity keys are
    * provided by the primary so this device shares the account's identity.
    */
   class LinkDeviceProvisioningMessage(
-    val e164: String,
     val provisioningCode: String,
     val aci: String,
-    val pni: String,
     val aciIdentityKeyPair: IdentityKeyPair,
-    val pniIdentityKeyPair: IdentityKeyPair,
+    val phoneNumberData: PhoneNumberData?,
     val profileKey: ByteArray,
     val ephemeralBackupKey: ByteString?,
     val accountEntropyPool: String?,
     val mediaRootBackupKey: ByteString?,
     val readReceipts: Boolean?
-  )
+  ) {
+    /**
+     * The phone-number-linked half of the provisioning data. Absent when the account has no phone number.
+     *
+     * This is deliberately all-or-nothing: the primary either sends the E164, PNI, and PNI identity key together
+     * or we ignore the lot, since a partial set can't be used to register the PNI identity.
+     */
+    class PhoneNumberData(
+      val e164: String,
+      val pni: String,
+      val pniIdentityKeyPair: IdentityKeyPair
+    ) {
+      companion object {
+        private val TAG = Log.tag(PhoneNumberData::class)
+
+        /**
+         * Reads the phone-number-linked fields out of a provisioning message, or returns null if the primary didn't send
+         * a complete set. A primary on an account with no phone number omits all of it.
+         *
+         * Note that [ProvisionMessage.pni] is deprecated in favor of [ProvisionMessage.pniBinary], so neither is
+         * required on its own.
+         */
+        fun fromProvisionMessage(message: ProvisionMessage): PhoneNumberData? {
+          val e164 = message.number
+          val pni = message.pniBinary?.let { PNI.parseOrNull(it) } ?: PNI.parseOrNull(message.pni)
+          val pniIdentityKeyPublic = message.pniIdentityKeyPublic
+          val pniIdentityKeyPrivate = message.pniIdentityKeyPrivate
+
+          if (e164 == null || pni == null || pniIdentityKeyPublic == null || pniIdentityKeyPrivate == null) {
+            Log.i(TAG, "[fromProvisionMessage] No usable phone number data. hasNumber: ${e164 != null}, hasPni: ${pni != null}, hasPniIdentityKey: ${pniIdentityKeyPublic != null && pniIdentityKeyPrivate != null}. Ignoring all of it.")
+            return null
+          }
+
+          return PhoneNumberData(
+            e164 = e164,
+            pni = pni.toString(),
+            pniIdentityKeyPair = IdentityKeyPair(IdentityKey(pniIdentityKeyPublic.toByteArray()), ECPrivateKey(pniIdentityKeyPrivate.toByteArray()))
+          )
+        }
+      }
+    }
+  }
 
   /**
    * Events emitted during a device-linking provisioning session.

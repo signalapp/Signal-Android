@@ -26,7 +26,7 @@ final class LogSectionBadges implements LogSection {
       return "Unregistered";
     }
 
-    if (SignalStore.account().getE164() == null || SignalStore.account().getAci() == null) {
+    if (SignalStore.account().getAci() == null) {
       return "Self not yet available!";
     }
 

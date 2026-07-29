@@ -102,6 +102,8 @@ class FakeStorageController : StorageController {
     }
   }
 
+  override suspend fun onRegistrationFlowFinished() = Unit
+
   override suspend fun setRestoreDecision(decision: RestoreDecision) {
     // Mirrors the real controller: only the first decision sticks, later ones are ignored
     if (restoreDecision == null) {

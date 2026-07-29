@@ -232,6 +232,8 @@ class DemoStorageController(private val context: Context) : StorageController {
     Unit
   }
 
+  override suspend fun onRegistrationFlowFinished() = Unit
+
   override suspend fun setRestoreDecision(decision: RestoreDecision) = withContext(Dispatchers.IO) {
     Log.i(TAG, "[setRestoreDecision] Recording restore decision: $decision")
     RegistrationPreferences.restoreDecision = decision

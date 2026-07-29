@@ -2323,10 +2323,27 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   /**
    * Associates the provided IDs together. The assumption here is that all of the IDs correspond to the local user and have been verified.
+   * The PNI and E164 are optional, as an account may have no phone number.
    */
-  fun linkIdsForSelf(aci: ACI, pni: PNI, e164: String) {
+  fun linkIdsForSelf(aci: ACI, pni: PNI?, e164: String?) {
     val id: RecipientId = getAndPossiblyMerge(aci = aci, pni = pni, e164 = e164, changeSelf = true, pniVerified = true)
     updatePendingSelfData(id)
+  }
+
+  /**
+   * Wipes the E164 and PNI off of the self recipient, leaving it ACI-only.
+   *
+   * Does *not* handle clearing the recipient cache. It is assumed the caller handles this.
+   */
+  fun clearSelfE164AndPni(selfId: RecipientId) {
+    val contentValues = contentValuesOf(
+      E164 to null,
+      PNI_COLUMN to null
+    )
+
+    if (update(selfId, contentValues)) {
+      AppDependencies.databaseObserver.notifyRecipientChanged(selfId)
+    }
   }
 
   /**

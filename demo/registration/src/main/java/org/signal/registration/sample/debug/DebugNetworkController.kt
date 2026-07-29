@@ -8,6 +8,7 @@ package org.signal.registration.sample.debug
 import kotlinx.coroutines.flow.Flow
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
+import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.network.api.RegistrationApiV2.AccountAttributes
@@ -255,15 +256,15 @@ class DebugNetworkController(
   }
 
   override suspend fun registerAsLinkedDevice(
-    e164: String,
+    aci: ACI,
     password: String,
     provisioningCode: String,
     deviceAttributes: DeviceAttributes,
     aciPreKeys: PreKeyCollection,
-    pniPreKeys: PreKeyCollection,
+    pniPreKeys: PreKeyCollection?,
     fcmToken: String?
   ): RequestResult<LinkDeviceResponse, RegisterAsLinkedDeviceError> {
-    return delegate.registerAsLinkedDevice(e164, password, provisioningCode, deviceAttributes, aciPreKeys, pniPreKeys, fcmToken)
+    return delegate.registerAsLinkedDevice(aci, password, provisioningCode, deviceAttributes, aciPreKeys, pniPreKeys, fcmToken)
   }
 
   override suspend fun onLinkedDeviceRegistered() {

@@ -181,7 +181,7 @@ public class SignalServiceMessageSender {
   private final int                           localDeviceId;
   private final PNI                           localPni;
   private final Optional<EventListener>       eventListener;
-  private final IdentityKeyPair               localPniIdentity;
+  private final @Nullable IdentityKeyPair     localPniIdentity;
 
   private final MessageApi       messageApi;
   private final KeysApi          keysApi;
@@ -217,11 +217,16 @@ public class SignalServiceMessageSender {
     this.eventListener                 = eventListener;
     this.maxEnvelopeSize               = maxEnvelopeSize;
     this.maxIncrementalMacsPerEnvelope = maxIncrementalMacsPerEnvelope;
-    this.localPniIdentity              = store.pni().getIdentityKeyPair();
+    this.localPniIdentity              = localPniIdentity(store);
     this.scheduler                     = Schedulers.from(executor, false, false);
     this.keysApi                       = keysApi;
     this.preKeyRepository              = preKeyRepository;
     this.useRestFallback               = useRestFallback;
+  }
+
+  private static @Nullable IdentityKeyPair localPniIdentity(SignalServiceDataStore store) {
+    SignalServiceAccountDataStore pniStore = store.pniOrNull();
+    return pniStore != null ? pniStore.getIdentityKeyPair() : null;
   }
 
   /**
@@ -906,7 +911,12 @@ public class SignalServiceMessageSender {
     return sendMessage(address, sealedSenderAccess, System.currentTimeMillis(), envelopeContent, false, null, null, false, false);
   }
 
-  public PniSignatureMessage createPniSignatureMessage() {
+  public @Nullable PniSignatureMessage createPniSignatureMessage() {
+    if (localPni == null || localPniIdentity == null) {
+      Log.w(TAG, "Tried to create a PNI signature message, but we have no PNI! Skipping.");
+      return null;
+    }
+
     byte[] signature = localPniIdentity.signAlternateIdentity(aciStore.getIdentityKeyPair().getPublicKey());
 
     return new PniSignatureMessage.Builder()

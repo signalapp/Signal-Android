@@ -41,6 +41,7 @@ import org.signal.storageservice.storage.protos.groups.ExternalGroupCredential;
 import org.thoughtcrime.securesms.calls.quality.CallQuality;
 import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
+import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl;
 import org.thoughtcrime.securesms.database.CallLinkTable;
 import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.GroupTable;
@@ -1347,7 +1348,11 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   private void archiveSessions(@NonNull RecipientId recipientId) {
     AppDependencies.getProtocolStore().aci().sessions().archiveSessions(recipientId);
-    AppDependencies.getProtocolStore().pni().sessions().archiveSessions(recipientId);
+
+    SignalServiceAccountDataStoreImpl pniStore = AppDependencies.getProtocolStore().pniOrNull();
+    if (pniStore != null) {
+      pniStore.sessions().archiveSessions(recipientId);
+    }
   }
 
   public void sendAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing, boolean isVideoCall) {

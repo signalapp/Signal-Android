@@ -81,7 +81,7 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
 
   @Throws(Exception::class)
   override fun onRun() {
-    if (!SignalStore.account.isRegistered || SignalStore.account.e164.isNullOrEmpty()) {
+    if (!SignalStore.account.isRegistered || SignalStore.account.aci == null) {
       Log.w(TAG, "Not yet registered!")
       return
     }

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.dependencies
 
 import androidx.media3.exoplayer.ExoPlayer
+import io.mockk.every
 import io.mockk.mockk
 import okhttp3.OkHttpClient
 import org.signal.core.util.billing.BillingApi
@@ -32,6 +33,7 @@ import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.PendingRetryReceiptCache
 import org.thoughtcrime.securesms.jobmanager.JobManager
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver
 import org.thoughtcrime.securesms.notifications.MessageNotifier
@@ -206,7 +208,9 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideProtocolStore(): SignalServiceDataStoreImpl {
-    return mockk(relaxed = true)
+    return mockk(relaxed = true) {
+      every { pniOrNull() } answers { if (SignalStore.account.pni != null) pni() else null }
+    }
   }
 
   override fun provideGiphyMp4Cache(): GiphyMp4Cache {

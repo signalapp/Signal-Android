@@ -457,10 +457,6 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
       throw new IllegalStateException("No ACI set!");
     }
 
-    if (localPni == null) {
-      throw new IllegalStateException("No PNI set!");
-    }
-
     boolean needsPreKeyJob = false;
 
     if (!SignalStore.account().hasAciIdentityKey()) {
@@ -468,7 +464,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
       needsPreKeyJob = true;
     }
 
-    if (!SignalStore.account().hasPniIdentityKey()) {
+    if (localPni != null && !SignalStore.account().hasPniIdentityKey()) {
       SignalStore.account().generatePniIdentityKeyIfNecessary();
       needsPreKeyJob = true;
     }
@@ -486,12 +482,16 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
                                                                                        new TextSecureSessionStore(localAci),
                                                                                        new SignalSenderKeyStore(context));
 
-    SignalServiceAccountDataStoreImpl pniStore = new SignalServiceAccountDataStoreImpl(context,
-                                                                                       new TextSecurePreKeyStore(localPni),
-                                                                                       new SignalKyberPreKeyStore(localPni),
-                                                                                       new SignalIdentityKeyStore(baseIdentityStore, () -> SignalStore.account().getPniIdentityKey()),
-                                                                                       new TextSecureSessionStore(localPni),
-                                                                                       new SignalSenderKeyStore(context));
+    SignalServiceAccountDataStoreImpl pniStore = null;
+    if (localPni != null) {
+      pniStore = new SignalServiceAccountDataStoreImpl(context,
+                                                       new TextSecurePreKeyStore(localPni),
+                                                       new SignalKyberPreKeyStore(localPni),
+                                                       new SignalIdentityKeyStore(baseIdentityStore, () -> SignalStore.account().getPniIdentityKey()),
+                                                       new TextSecureSessionStore(localPni),
+                                                       new SignalSenderKeyStore(context));
+    }
+
     return new SignalServiceDataStoreImpl(context, aciStore, pniStore);
   }
 

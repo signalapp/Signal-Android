@@ -31,9 +31,10 @@ public class EditProxyViewModel extends ViewModel {
     this.events    = PublishSubject.create();
     this.uiState   = BehaviorSubject.create();
     this.saveState = BehaviorSubject.createDefault(SaveState.IDLE);
-    this.pipeState = SignalStore.account().getE164() == null ? Flowable.empty()
-                                                             : AppDependencies.getWebSocketObserver()
-                                                                              .toFlowable(BackpressureStrategy.LATEST);
+    this.pipeState = !SignalStore.account().isRegistered() || SignalStore.account().getAci() == null
+                     ? Flowable.empty()
+                     : AppDependencies.getWebSocketObserver()
+                                      .toFlowable(BackpressureStrategy.LATEST);
 
     if (SignalStore.proxy().isProxyEnabled()) {
       uiState.onNext(UiState.ALL_ENABLED);
