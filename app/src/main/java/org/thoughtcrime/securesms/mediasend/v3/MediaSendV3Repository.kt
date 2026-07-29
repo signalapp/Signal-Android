@@ -36,6 +36,7 @@ import org.signal.mediasend.SendRequest
 import org.signal.mediasend.SendResult
 import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.StorySendRequirements
+import org.signal.mediasend.edit.image.BrushWidths
 import org.signal.mediasend.preupload.PreUploadResult
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
@@ -63,6 +64,7 @@ import java.io.InputStream
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
+import kotlin.math.roundToInt
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -263,6 +265,21 @@ object MediaSendV3Repository : MediaSendRepository {
   }
 
   override var storyMaxVideoDuration: Duration = Stories.MAX_VIDEO_DURATION_MILLIS.milliseconds
+
+  /**
+   * Stored as whole percentages so that the v2 and v3 editors stay in sync.
+   */
+  override var brushWidths: BrushWidths
+    get() = BrushWidths(
+      marker = SignalStore.imageEditor.getMarkerPercentage() / 100f,
+      highlighter = SignalStore.imageEditor.getHighlighterPercentage() / 100f,
+      blur = SignalStore.imageEditor.getBlurPercentage() / 100f
+    )
+    set(value) {
+      SignalStore.imageEditor.setMarkerPercentage((value.marker * 100).roundToInt())
+      SignalStore.imageEditor.setHighlighterPercentage((value.highlighter * 100).roundToInt())
+      SignalStore.imageEditor.setBlurPercentage((value.blur * 100).roundToInt())
+    }
 
   private fun PreUploadResult.toLegacyPreUploadResult(): MessageSender.PreUploadResult {
     return MessageSender.PreUploadResult(media, AttachmentId(attachmentId), jobIds)

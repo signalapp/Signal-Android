@@ -15,6 +15,7 @@ import org.signal.camera.CameraDependencies
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 import org.signal.core.models.parcelers.NullableCharSequenceParceler
+import org.signal.mediasend.edit.image.BrushWidths
 import org.signal.mediasend.edit.video.VideoTrimData
 import kotlin.time.Duration
 
@@ -132,7 +133,12 @@ data class MediaSendState(
 
   val storiesEnabled: Boolean = CameraDependencies.isStoriesFeatureEnabled(),
 
-  val storyMaxVideoDuration: Duration = MediaSendDependencies.mediaSendRepository.storyMaxVideoDuration
+  val storyMaxVideoDuration: Duration = MediaSendDependencies.mediaSendRepository.storyMaxVideoDuration,
+
+  /**
+   * The image editor's per-tool brush widths. Seeded from storage and written back as the user adjusts them.
+   */
+  val brushWidths: BrushWidths = MediaSendDependencies.mediaSendRepository.brushWidths
 ) : Parcelable {
 
   fun getOrCreateVideoTrimData(uri: Uri): VideoTrimData {

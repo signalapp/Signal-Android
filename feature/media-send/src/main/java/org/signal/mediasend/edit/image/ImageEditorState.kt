@@ -14,6 +14,7 @@ import android.graphics.RectF
 import android.graphics.Typeface
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -47,7 +48,7 @@ class ImageEditorState(
   var textEditingElement: EditorElement? = null
   var isDrawing: Boolean = false
   var isBlur: Boolean = false
-  var drawColor: Int = 0xff000000.toInt()
+  var drawColor: Int by mutableIntStateOf(0xff000000.toInt())
   var drawThickness: Float = 0.02f
   var drawCap: Paint.Cap = Paint.Cap.ROUND
   var onGestureCompleted: (() -> Unit)? = null

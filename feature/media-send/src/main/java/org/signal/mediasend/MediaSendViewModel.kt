@@ -53,6 +53,7 @@ import org.signal.imageeditor.core.renderers.UriGlideRenderer
 import org.signal.mediasend.capture.CameraXScreenEvent
 import org.signal.mediasend.capture.MediaCaptureScreenEvent
 import org.signal.mediasend.edit.MediaEditScreenEvent
+import org.signal.mediasend.edit.image.BrushTool
 import org.signal.mediasend.edit.video.VideoTrimData
 import org.signal.mediasend.preupload.PreUploadController
 import org.signal.mediasend.preupload.PreUploadResult
@@ -302,7 +303,18 @@ class MediaSendViewModel(
       is MediaEditScreenEvent.RemoveMedia -> {
         removeMedia(mediaEditScreenEvent.media)
       }
+
+      is MediaEditScreenEvent.BrushWidthChanged -> {
+        setBrushWidth(mediaEditScreenEvent.tool, mediaEditScreenEvent.fraction)
+      }
     }
+  }
+
+  private fun setBrushWidth(tool: BrushTool, fraction: Float) {
+    val brushWidths = state.value.brushWidths.with(tool, fraction)
+
+    updateState { copy(brushWidths = brushWidths) }
+    repository.brushWidths = brushWidths
   }
 
   private fun handleImageCaptured(imageCaptured: CameraXScreenEvent.ImageCaptured) {

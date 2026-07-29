@@ -18,6 +18,8 @@ import org.signal.imageeditor.core.SelectableRenderer
 import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer
+import org.signal.mediasend.edit.image.BrushTool
+import org.signal.mediasend.edit.image.BrushWidthsState
 import org.signal.mediasend.edit.image.HSVColorBarState
 import org.signal.mediasend.edit.image.ImageEditorState
 
@@ -30,7 +32,8 @@ import org.signal.mediasend.edit.image.ImageEditorState
  */
 @Stable
 class ImageController @RememberInComposition constructor(
-  val editorModel: EditorModel
+  val editorModel: EditorModel,
+  private val brushWidths: BrushWidthsState = BrushWidthsState()
 ) {
 
   val isUserInEdit: Boolean by derivedStateOf { mode != Mode.NONE }
@@ -60,6 +63,7 @@ class ImageController @RememberInComposition constructor(
     private set
 
   val textColorBarState = HSVColorBarState()
+  val drawColorBarState = HSVColorBarState()
 
   var showDiscardDialog: Boolean by mutableStateOf(false)
     private set
@@ -75,12 +79,26 @@ class ImageController @RememberInComposition constructor(
     }
   }
 
-  val shouldDisplayColorBar: Boolean by derivedStateOf {
+  val shouldDisplayTextColorBar: Boolean by derivedStateOf {
     textEditingElement != null || mode == Mode.MOVE_TEXT
   }
 
   val isUserDrawing: Boolean by derivedStateOf { mode == Mode.DRAW || mode == Mode.HIGHLIGHT }
   val isUserBlurring: Boolean by derivedStateOf { mode == Mode.BLUR }
+
+  val brushTool: BrushTool? by derivedStateOf {
+    when (mode) {
+      Mode.DRAW -> BrushTool.MARKER
+      Mode.HIGHLIGHT -> BrushTool.HIGHLIGHTER
+      Mode.BLUR -> BrushTool.BLUR
+      else -> null
+    }
+  }
+
+  val brushWidthFraction: Float by derivedStateOf { brushTool?.let { brushWidths[it] } ?: 0f }
+
+  val brushThickness: Float by derivedStateOf { brushTool?.thicknessAt(brushWidthFraction) ?: 0f }
+
   val isUserEnteringText: Boolean by derivedStateOf { mode == Mode.TEXT }
   val isUserInsertingSticker: Boolean by derivedStateOf { mode == Mode.INSERT_STICKER }
 
@@ -176,14 +194,18 @@ class ImageController @RememberInComposition constructor(
     imageEditorState.drawColor = color
   }
 
-  fun setDrawThickness(thickness: Float) {
-    imageEditorState.drawThickness = thickness
+  fun setBrushWidthFraction(fraction: Float) {
+    val tool = brushTool ?: return
+    brushWidths.set(tool, fraction)
+    imageEditorState.drawThickness = tool.thicknessAt(fraction)
   }
 
   private fun syncDrawingState() {
     imageEditorState.isDrawing = true
     imageEditorState.isBlur = mode == Mode.BLUR
     imageEditorState.drawCap = if (mode == Mode.HIGHLIGHT) Paint.Cap.SQUARE else Paint.Cap.ROUND
+    imageEditorState.drawThickness = brushThickness
+    imageEditorState.drawColor = drawColorBarState.color
   }
 
   fun enterCropMode() {
@@ -332,11 +354,13 @@ class ImageController @RememberInComposition constructor(
   }
 
   @Stable
-  class Container @RememberInComposition constructor() {
+  class Container @RememberInComposition constructor(
+    private val brushWidths: BrushWidthsState = BrushWidthsState()
+  ) {
     private val controllers = SnapshotStateMap<Uri, ImageController>()
 
     fun getOrCreate(uri: Uri, editorModel: EditorModel): ImageController {
-      return controllers.getOrPut(uri) { ImageController(editorModel) }
+      return controllers.getOrPut(uri) { ImageController(editorModel, brushWidths) }
     }
   }
 }

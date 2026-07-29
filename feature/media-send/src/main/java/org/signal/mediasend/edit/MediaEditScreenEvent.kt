@@ -6,6 +6,7 @@
 package org.signal.mediasend.edit
 
 import org.signal.core.models.media.Media
+import org.signal.mediasend.edit.image.BrushTool
 import org.signal.mediasend.edit.video.VideoTrimData
 
 sealed interface MediaEditScreenEvent {
@@ -17,6 +18,7 @@ sealed interface MediaEditScreenEvent {
   data object NavigateBack : MediaEditScreenEvent
   data object NavigateToGallery : MediaEditScreenEvent
   data object ToggleMediaQuality : MediaEditScreenEvent
+  data class BrushWidthChanged(val tool: BrushTool, val fraction: Float) : MediaEditScreenEvent
   data class VideoTrimChanged(val videoTrimData: VideoTrimData, val editingComplete: Boolean) : MediaEditScreenEvent
   data class VideoSeek(val positionUs: Long, val editingComplete: Boolean) : MediaEditScreenEvent
 }

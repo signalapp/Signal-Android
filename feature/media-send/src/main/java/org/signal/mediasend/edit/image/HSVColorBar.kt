@@ -41,13 +41,9 @@ import org.signal.core.ui.rememberWindowBreakpoint
 fun HSVColorBar(
   state: HSVColorBarState,
   onColorChanged: (Int) -> Unit,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  orientation: ColorBarOrientation = rememberDefaultColorBarOrientation()
 ) {
-  val orientation = if (rememberWindowBreakpoint() is WindowBreakpoint.Small) {
-    ColorBarOrientation.HORIZONTAL
-  } else {
-    ColorBarOrientation.VERTICAL
-  }
   val colors = remember { HSVColors.composeColors }
   val thumbColor = SignalTheme.colors.colorSurface5
 
@@ -85,7 +81,11 @@ fun HSVColorBar(
   }
 }
 
-private enum class ColorBarOrientation(val barModifier: Modifier) {
+/**
+ * Whichever axis the bar is laid out along. Defaults to [rememberDefaultColorBarOrientation], but call sites that
+ * always host the bar in a fixed slot should pass their own.
+ */
+enum class ColorBarOrientation(internal val barModifier: Modifier) {
   HORIZONTAL(
     Modifier
       .widthIn(max = MAX_BAR_LENGTH_DP.dp)
@@ -99,7 +99,7 @@ private enum class ColorBarOrientation(val barModifier: Modifier) {
       .width(THUMB_DIAMETER_DP.dp)
   );
 
-  fun fractionAt(offset: Offset, width: Float, height: Float): Float {
+  internal fun fractionAt(offset: Offset, width: Float, height: Float): Float {
     val distance = when (this) {
       HORIZONTAL -> offset.x
       VERTICAL -> offset.y
@@ -113,7 +113,7 @@ private enum class ColorBarOrientation(val barModifier: Modifier) {
     return (distance / maxDistance).coerceIn(0f, 1f)
   }
 
-  fun thumbCenter(fraction: Float, size: Size): Offset {
+  internal fun thumbCenter(fraction: Float, size: Size): Offset {
     return when (this) {
       HORIZONTAL -> Offset(fraction * size.width, size.height / 2f)
       VERTICAL -> Offset(size.width / 2f, fraction * size.height)
@@ -185,6 +185,18 @@ fun rememberHSVColorBarState(): HSVColorBarState {
   return remember { HSVColorBarState() }
 }
 
+/**
+ * Lays the bar out along whichever axis has room in the current window.
+ */
+@Composable
+fun rememberDefaultColorBarOrientation(): ColorBarOrientation {
+  return if (rememberWindowBreakpoint() is WindowBreakpoint.Small) {
+    ColorBarOrientation.HORIZONTAL
+  } else {
+    ColorBarOrientation.VERTICAL
+  }
+}
+
 private object HSVColors {
   private const val MAX_HUE = 360
   private const val BLACK_DIVISIONS = 175
@@ -245,7 +257,7 @@ private object HSVColors {
 }
 
 private const val DEFAULT_FRACTION = 0.14f
-private const val MAX_BAR_LENGTH_DP = 320
+private const val MAX_BAR_LENGTH_DP = 324
 private const val TRACK_THICKNESS_DP = 20
 private const val THUMB_DIAMETER_DP = 24
 private const val THUMB_BORDER_DP = 6

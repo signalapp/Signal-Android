@@ -52,7 +52,7 @@ fun ImageEditorToolbar(
   modifier: Modifier = Modifier
 ) {
   when {
-    imageEditorController.shouldDisplayColorBar -> {
+    imageEditorController.shouldDisplayTextColorBar -> {
       HSVColorBar(
         state = imageEditorController.textColorBarState,
         onColorChanged = imageEditorController::setTextColor,

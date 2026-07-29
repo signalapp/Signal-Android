@@ -11,6 +11,7 @@ import android.os.Parcelable
 import kotlinx.coroutines.flow.Flow
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
+import org.signal.mediasend.edit.image.BrushWidths
 import org.signal.mediasend.preupload.PreUploadResult
 import java.io.InputStream
 import kotlin.time.Duration
@@ -113,6 +114,11 @@ interface MediaSendRepository {
   fun getMediaConstraints(): MediaConstraints
 
   var storyMaxVideoDuration: Duration
+
+  /**
+   * The image editor's per-tool brush widths, shared with the v2 editor.
+   */
+  var brushWidths: BrushWidths
 }
 
 /**

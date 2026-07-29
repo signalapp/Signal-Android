@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,6 +32,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
@@ -51,6 +53,11 @@ import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaSendDependencies
 import org.signal.mediasend.MediaSendState
 import org.signal.mediasend.edit.document.DocumentPage
+import org.signal.mediasend.edit.image.BrushWidthBar
+import org.signal.mediasend.edit.image.BrushWidthPreview
+import org.signal.mediasend.edit.image.BrushWidthsState
+import org.signal.mediasend.edit.image.ColorBarOrientation
+import org.signal.mediasend.edit.image.HSVColorBar
 import org.signal.mediasend.edit.image.ImageEditor
 import org.signal.mediasend.edit.image.ImageEditorToolbar
 import org.signal.mediasend.edit.image.RotationDial
@@ -89,13 +96,9 @@ fun MediaEditScreen(
     onEvent(MediaEditScreenEvent.NavigateBack)
   }
 
-  Box(
-    modifier = Modifier
-      .fillMaxSize()
-      .navigationBarsPadding()
-  ) {
+  Box(modifier = Modifier.fillMaxSize()) {
     val isSmallWindowBreakpoint = rememberWindowBreakpoint() is WindowBreakpoint.Small
-    val imageControllers = remember { ImageController.Container() }
+    val imageControllers = remember { ImageController.Container(BrushWidthsState(state.brushWidths)) }
 
     val videoEditorViewModel = rememberVideoEditorViewModel()
 
@@ -108,6 +111,7 @@ fun MediaEditScreen(
     }
 
     var isVideoInteracting by remember(focusedUri) { mutableStateOf(false) }
+    var isAdjustingBrushWidth by remember(focusedUri) { mutableStateOf(false) }
     val isInteracting = imageController?.isUserInEdit == true || isVideoInteracting
 
     HorizontalPager(
@@ -180,6 +184,36 @@ fun MediaEditScreen(
       }
     }
 
+    if (imageController != null && (imageController.isUserDrawing || imageController.isUserBlurring)) {
+      // A multi-touch commit/discard can tear down the bar mid-drag, so the terminal gesture callback is not guaranteed.
+      DisposableEffect(Unit) {
+        onDispose { isAdjustingBrushWidth = false }
+      }
+
+      BrushWidthPreview(
+        visible = isAdjustingBrushWidth,
+        thickness = imageController.brushThickness,
+        viewMatrix = imageController.imageEditorState.viewMatrix,
+        color = Color(imageController.imageEditorState.drawColor),
+        isBlur = imageController.isUserBlurring,
+        modifier = Modifier.fillMaxSize()
+      )
+
+      BrushWidthBar(
+        fraction = imageController.brushWidthFraction,
+        onFractionChanged = { fraction, gestureComplete ->
+          isAdjustingBrushWidth = !gestureComplete
+          val tool = imageController.brushTool
+          imageController.setBrushWidthFraction(fraction)
+
+          if (gestureComplete && tool != null) {
+            onEvent(MediaEditScreenEvent.BrushWidthChanged(tool, fraction))
+          }
+        },
+        modifier = Modifier.align(Alignment.CenterStart)
+      )
+    }
+
     val isTextEditing = imageController?.textEditingElement != null
 
     Column(
@@ -187,6 +221,8 @@ fun MediaEditScreen(
       horizontalAlignment = Alignment.CenterHorizontally,
       modifier = Modifier
         .align(Alignment.BottomCenter)
+        .padding(bottom = 10.dp)
+        .navigationBarsPadding()
         .then(if (isTextEditing) Modifier.imePadding() else Modifier)
     ) {
       if (state.selectedMedia.size > 1 && !isInteracting) {
@@ -222,6 +258,15 @@ fun MediaEditScreen(
                   .padding(horizontal = 16.dp)
               )
             }
+
+            if (controller.isUserDrawing) {
+              HSVColorBar(
+                state = controller.drawColorBarState,
+                onColorChanged = controller::setDrawColor,
+                orientation = ColorBarOrientation.HORIZONTAL
+              )
+            }
+
             if (isSmallWindowBreakpoint) {
               ImageEditorToolbar(imageEditorController = controller, state = state, onEvent = onEvent)
             }
@@ -271,17 +316,20 @@ fun MediaEditScreen(
         is EditorState.Document, EditorState.VideoGif, EditorState.Gif, null -> Unit
       }
 
-      AddAMessageRow(
-        enabled = !isInteracting && !state.isSending,
-        message = state.message,
-        onEvent = onEvent,
-        onNextClick = { onEvent(MediaEditScreenEvent.NextClick) },
-        modifier = Modifier
-          .widthIn(max = 624.dp)
-          .padding(horizontal = 16.dp)
-          .padding(bottom = 16.dp)
-          .alpha(if (isInteracting) 0f else 1f)
-      )
+      val showAddMessageRow = !(isInteracting && focusedEditorState !is EditorState.VideoTrim)
+      if (showAddMessageRow) {
+        AddAMessageRow(
+          enabled = !isInteracting && !state.isSending,
+          message = state.message,
+          onEvent = onEvent,
+          onNextClick = { onEvent(MediaEditScreenEvent.NextClick) },
+          modifier = Modifier
+            .widthIn(max = 624.dp)
+            .padding(horizontal = 16.dp)
+            .padding(bottom = 16.dp)
+            .alpha(if (isInteracting) 0f else 1f)
+        )
+      }
     }
 
     if (!isSmallWindowBreakpoint && imageController != null) {
@@ -291,6 +339,7 @@ fun MediaEditScreen(
         onEvent = onEvent,
         modifier = Modifier
           .align(Alignment.CenterEnd)
+          .navigationBarsPadding()
           .padding(end = 24.dp)
           .then(if (isTextEditing) Modifier.imePadding() else Modifier)
       )
