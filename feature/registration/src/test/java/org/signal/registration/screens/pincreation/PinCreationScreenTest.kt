@@ -10,6 +10,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.test.core.app.ApplicationProvider
@@ -20,6 +21,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.ui.CoreUiDependenciesRule
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.registration.R
 import org.signal.registration.test.TestTags
 
 /**
@@ -100,5 +102,20 @@ class PinCreationScreenTest {
     composeTestRule.onNodeWithTag(TestTags.PIN_CREATION_NEXT_BUTTON).performClick()
 
     assert(emittedEvent is PinCreationScreenEvents.PinSubmitted)
+  }
+
+  @Test
+  fun `when the pin is too weak, the stronger pin error is displayed`() {
+    composeTestRule.setContent {
+      SignalTheme {
+        PinCreationScreen(
+          state = PinCreationState(pinTooWeak = true),
+          onEvent = {}
+        )
+      }
+    }
+
+    val context = ApplicationProvider.getApplicationContext<Application>()
+    composeTestRule.onNodeWithText(context.getString(R.string.PinCreationScreen__choose_a_stronger_pin)).assertIsDisplayed()
   }
 }

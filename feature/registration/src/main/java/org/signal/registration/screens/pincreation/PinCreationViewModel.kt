@@ -22,6 +22,7 @@ import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RestoreDecision
+import org.whispersystems.signalservice.api.kbs.PinValidityChecker
 import kotlin.time.toKotlinDuration
 
 /**
@@ -66,12 +67,17 @@ class PinCreationViewModel(
         when {
           !state.isConfirmEnabled && event.pin == state.submittedVerificationCode -> {
             Log.w(TAG, "[PinSubmitted] User entered their verification code as their PIN. Prompting them to choose a different PIN.")
-            _state.value = state.copy(pinMatchesVerificationCode = true, pinMismatch = false)
+            _state.value = state.copy(pinMatchesVerificationCode = true, pinMismatch = false, pinTooWeak = false)
+          }
+
+          !state.isConfirmEnabled && !PinValidityChecker.valid(event.pin) -> {
+            Log.w(TAG, "[PinSubmitted] User entered a PIN that is too common. Prompting them to choose a stronger PIN.")
+            _state.value = state.copy(pinTooWeak = true, pinMismatch = false, pinMatchesVerificationCode = false)
           }
 
           !state.isConfirmEnabled -> {
             Log.d(TAG, "[PinSubmitted] First PIN entered. Asking the user to confirm it.")
-            _state.value = state.copy(firstPin = event.pin, isConfirmEnabled = true, pinMismatch = false, pinMatchesVerificationCode = false)
+            _state.value = state.copy(firstPin = event.pin, isConfirmEnabled = true, pinMismatch = false, pinMatchesVerificationCode = false, pinTooWeak = false)
           }
 
           event.pin != state.firstPin -> {

@@ -401,7 +401,8 @@ private fun PinInputSection(
       isConfirm = isConfirm,
       isAlphanumericKeyboard = state.isAlphanumericKeyboard,
       isMismatch = state.pinMismatch,
-      matchesVerificationCode = state.pinMatchesVerificationCode
+      matchesVerificationCode = state.pinMatchesVerificationCode,
+      isTooWeak = state.pinTooWeak
     )
     Spacer(modifier = Modifier.height(16.dp))
     KeyboardToggleButton(
@@ -445,14 +446,16 @@ private fun PinInputLabel(
   isAlphanumericKeyboard: Boolean,
   isMismatch: Boolean,
   matchesVerificationCode: Boolean,
+  isTooWeak: Boolean,
   modifier: Modifier = Modifier
 ) {
-  val isError = !isConfirm && (isMismatch || matchesVerificationCode)
+  val isError = !isConfirm && (isMismatch || matchesVerificationCode || isTooWeak)
 
   Text(
     text = when {
       isConfirm -> stringResource(R.string.PinCreationScreen__reenter_pin)
       matchesVerificationCode -> stringResource(R.string.PinCreationScreen__reentered_verification_code)
+      isTooWeak -> stringResource(R.string.PinCreationScreen__choose_a_stronger_pin)
       isMismatch -> stringResource(R.string.PinCreationScreen__pins_dont_match)
       isAlphanumericKeyboard -> stringResource(R.string.PinCreationScreen__pin_at_least_4_characters)
       else -> stringResource(R.string.PinCreationScreen__pin_at_least_4_digits)
