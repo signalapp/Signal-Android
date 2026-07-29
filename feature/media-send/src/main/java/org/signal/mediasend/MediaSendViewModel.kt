@@ -814,11 +814,11 @@ class MediaSendViewModel(
   }
 
   private fun isNonGifVideo(media: Media): Boolean {
-    return ContentTypeUtil.isVideo(media.contentType) && !media.isVideoGif
+    return ContentTypeUtil.isVideoType(media.contentType) && !media.isVideoGif
   }
 
   private fun isGifVideo(media: Media): Boolean {
-    return ContentTypeUtil.isVideo(media.contentType) && media.isVideoGif
+    return ContentTypeUtil.isVideoType(media.contentType) && media.isVideoGif
   }
 
   //endregion
