@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -39,6 +40,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.AllDevicePreviews
+import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.glide.compose.GlideImage
@@ -55,6 +57,7 @@ import org.signal.mediasend.edit.image.RotationDial
 import org.signal.mediasend.edit.video.VideoEditorFragment
 import org.signal.mediasend.edit.video.VideoEditorToolbar
 import org.signal.mediasend.edit.video.VideoEditorViewModel
+import org.signal.mediasend.rememberPreviewState
 
 @Composable
 fun MediaEditScreen(
@@ -292,6 +295,19 @@ fun MediaEditScreen(
           .then(if (isTextEditing) Modifier.imePadding() else Modifier)
       )
     }
+
+    val displayNameState = state.recipientId?.let { LocalDisplayNameProvider.current(it.id) } ?: remember { mutableStateOf(null) }
+    val displayName: String? by displayNameState
+
+    MediaEditSummaryPill(
+      displayName = displayName,
+      selectedMedia = state.selectedMedia,
+      selectedPage = pagerState.currentPage,
+      modifier = Modifier
+        .align(Alignment.TopCenter)
+        .padding(top = 10.dp)
+        .systemBarsPadding()
+    )
   }
 }
 
@@ -311,7 +327,7 @@ private fun MediaEditScreenPreview() {
 
   Previews.Preview {
     MediaEditScreen(
-      state = MediaSendState(
+      state = rememberPreviewState().copy(
         selectedMedia = selectedMedia,
         focusedMedia = selectedMedia.first(),
         editorStateMap = mutableMapOf(

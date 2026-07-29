@@ -15,12 +15,14 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.compose.AndroidFragment
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.mediasend.HudCommand
 import org.signal.mediasend.MediaSendActivityContract
 import org.signal.mediasend.MediaSendRecipient
@@ -37,6 +39,7 @@ import org.thoughtcrime.securesms.mediasend.v2.review.AddMessageDialogFragment
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.rememberRecipientField
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceActivity
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -79,6 +82,8 @@ class MediaSendV3Activity : PassphraseRequiredActivity(), SafetyNumberBottomShee
     }
 
     setContent {
+      val context = LocalContext.current
+
       CompositionLocalProvider(
         LocalAddAMessageRowTextField provides { message, modifier ->
           AndroidView(
@@ -88,6 +93,15 @@ class MediaSendV3Activity : PassphraseRequiredActivity(), SafetyNumberBottomShee
             },
             modifier = modifier
           )
+        },
+        LocalDisplayNameProvider provides { id ->
+          rememberRecipientField(RecipientId.from(id)) {
+            if (isUnknown) {
+              ""
+            } else {
+              getDisplayName(context)
+            }
+          }
         }
       ) {
         MediaSendScreen(

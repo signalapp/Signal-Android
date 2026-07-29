@@ -116,4 +116,32 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">Continue</string>
+
+    <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__gif">
+        <item quantity="one">%1$d Gif</item>
+        <item quantity="other">%1$d Gifs</item>
+    </plurals>
+    <!-- Photo label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__photo">
+        <item quantity="one">%1$d Photo</item>
+        <item quantity="other">%1$d Photos</item>
+    </plurals>
+    <!-- Video label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__video">
+        <item quantity="one">%1$d Video</item>
+        <item quantity="other">%1$d Videos</item>
+    </plurals>
+    <!-- Document label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__document">
+        <item quantity="one">%1$d Document</item>
+        <item quantity="other">%1$d Documents</item>
+    </plurals>
+    <!-- Item label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__item">
+        <item quantity="one">%1$d Item</item>
+        <item quantity="other">%1$d Items</item>
+    </plurals>
+    <!-- x of y label displayed in a pill in the editor specifying the type of media being sent. First placeholder is selected page, second is total count. -->
+    <string name="MediaEditScreen__d_of_d">%1$d of %2$d</string>
 </resources>
