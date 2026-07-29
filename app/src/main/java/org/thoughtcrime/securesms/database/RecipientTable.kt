@@ -107,7 +107,6 @@ import org.thoughtcrime.securesms.wallpaper.WallpaperStorage
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
-import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.storage.signalAci
@@ -1018,27 +1017,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun applyStorageSyncGroupV1Insert(insert: SignalGroupV1Record) {
-    val id = writableDatabase.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV1(insert, true))
-
-    val recipientId = RecipientId.from(id)
-    threads.applyStorageSyncUpdate(recipientId, insert)
-    AppDependencies.databaseObserver.notifyRecipientChanged(recipientId)
-  }
-
-  fun applyStorageSyncGroupV1Update(update: StorageRecordUpdate<SignalGroupV1Record>) {
-    val values = getValuesForStorageGroupV1(update.new, false)
-
-    val updateCount = writableDatabase.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", arrayOf(Base64.encodeWithPadding(update.old.id.raw)))
-    if (updateCount < 1) {
-      throw AssertionError("Had an update, but it didn't match any rows!")
-    }
-
-    val recipient = Recipient.externalGroupExact(GroupId.v1orThrow(update.old.proto.id.toByteArray()))
-    threads.applyStorageSyncUpdate(recipient.id, update.new)
-    recipient.live().refresh()
-  }
-
   fun applyStorageSyncGroupV2Insert(insert: SignalGroupV2Record) {
     val masterKey = GroupMasterKey(insert.proto.masterKey.toByteArray())
     val groupId = GroupId.v2(masterKey)
@@ -1285,8 +1263,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $STORAGE_SERVICE_ID NOT NULL AND (
             ($TYPE = ${RecipientType.INDIVIDUAL.id} AND ($ACI_COLUMN NOT NULL OR $PNI_COLUMN NOT NULL) AND $ID != ${Recipient.self().id.toLong()})
             OR
-            $TYPE = ${RecipientType.GV1.id}
-            OR
             ($TYPE = ${RecipientType.DISTRIBUTION_LIST.id} AND $DISTRIBUTION_LIST_ID NOT NULL AND $DISTRIBUTION_LIST_ID IN (
               SELECT ${DistributionListTables.ListTable.ID}
               FROM ${DistributionListTables.ListTable.TABLE_NAME}
@@ -1318,7 +1294,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
                 out[id] = StorageId.forContact(key)
               }
             }
-            RecipientType.GV1 -> out[id] = StorageId.forGroupV1(key)
             RecipientType.DISTRIBUTION_LIST -> out[id] = StorageId.forStoryDistributionList(key)
             RecipientType.CALL_LINK -> out[id] = StorageId.forCallLink(key)
             else -> throw AssertionError()
@@ -4477,29 +4452,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         put(AVATAR_COLOR, avatarColor.serialize())
       } else if (isInsert) {
         put(AVATAR_COLOR, AvatarColorHash.forAddress(contact.proto.signalAci ?: contact.proto.signalPni, contact.proto.e164).serialize())
-      }
-    }
-  }
-
-  private fun getValuesForStorageGroupV1(groupV1: SignalGroupV1Record, isInsert: Boolean): ContentValues {
-    return ContentValues().apply {
-      val groupId = GroupId.v1orThrow(groupV1.proto.id.toByteArray())
-
-      put(GROUP_ID, groupId.toString())
-      put(TYPE, RecipientType.GV1.id)
-      put(PROFILE_SHARING, if (groupV1.proto.whitelisted) "1" else "0")
-      put(BLOCKED, if (groupV1.proto.blocked) "1" else "0")
-      put(MUTE_UNTIL, groupV1.proto.mutedUntilTimestamp)
-      put(STORAGE_SERVICE_ID, Base64.encodeWithPadding(groupV1.id.raw))
-
-      if (groupV1.proto.hasUnknownFields()) {
-        put(STORAGE_SERVICE_PROTO, Base64.encodeWithPadding(groupV1.serializedUnknowns!!))
-      } else {
-        putNull(STORAGE_SERVICE_PROTO)
-      }
-
-      if (isInsert) {
-        put(AVATAR_COLOR, AvatarColorHash.forGroupId(groupId).serialize())
       }
     }
   }

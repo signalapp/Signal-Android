@@ -176,6 +176,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V320_AddAttachmentT
 import org.thoughtcrime.securesms.database.helpers.migration.V321_AddScheduledMessageIndex
 import org.thoughtcrime.securesms.database.helpers.migration.V322_NormalizeStickerTable
 import org.thoughtcrime.securesms.database.helpers.migration.V323_AddStickerPackStorageSync
+import org.thoughtcrime.securesms.database.helpers.migration.V324_MoveGroupV1StorageIdsToUnknownIds
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
@@ -359,10 +360,11 @@ object SignalDatabaseMigrations {
     320 to V320_AddAttachmentThumbnailFileAndUuidIndexes,
     321 to V321_AddScheduledMessageIndex,
     322 to V322_NormalizeStickerTable,
-    323 to V323_AddStickerPackStorageSync
+    323 to V323_AddStickerPackStorageSync,
+    324 to V324_MoveGroupV1StorageIdsToUnknownIds
   )
 
-  const val DATABASE_VERSION = 323
+  const val DATABASE_VERSION = 324
 
   @JvmStatic
   fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {

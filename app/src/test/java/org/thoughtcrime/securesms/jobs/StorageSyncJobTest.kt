@@ -11,6 +11,7 @@ import io.mockk.every
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -27,6 +28,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StickerPackId
+import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -37,6 +39,7 @@ import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
+import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record
 import org.whispersystems.signalservice.internal.storage.protos.StickerPackRecord
 import org.whispersystems.signalservice.internal.storage.protos.StorageRecord
 import java.util.UUID
@@ -222,6 +225,74 @@ class StorageSyncJobTest {
     assertArrayEquals(record.id.raw, pack!!.storageServiceId!!.raw)
   }
 
+  @Test
+  fun `given a remote GV1 record, when I run, then I keep it in the manifest`() {
+    val record = groupV1Record()
+    remoteStorage.addRemoteRecords(listOf(record))
+
+    val result = runJob(StorageSyncJob.forRemoteChange())
+
+    assertTrue(result.isSuccess)
+    assertEquals(0, remoteStorage.writeCount)
+    assertTrue(remoteStorage.manifest!!.storageIds.contains(record.id))
+    assertTrue(SignalDatabase.unknownStorageIds.allUnknownIds.contains(record.id))
+  }
+
+  @Test
+  fun `given a remote GV1 record, when I run, then I do not apply it locally`() {
+    val groupId = GroupId.v1(Util.getSecretBytes(16))
+    remoteStorage.addRemoteRecords(listOf(groupV1Record(groupId)))
+
+    val result = runJob(StorageSyncJob.forRemoteChange())
+
+    assertTrue(result.isSuccess)
+    assertFalse(SignalDatabase.recipients.getByGroupId(groupId).isPresent)
+  }
+
+  @Test
+  fun `given a GV1 recipient with a storage ID, when I run, then I ignore it entirely`() {
+    val storageId = StorageId.forGroupV1(Util.getSecretBytes(16))
+    val recipientId = SignalDatabase.recipients.getOrInsertFromGroupId(GroupId.v1(Util.getSecretBytes(16)))
+    SignalDatabase.recipients.updateStorageId(recipientId, storageId.raw)
+
+    val result = runJob(StorageSyncJob.forLocalChange())
+
+    assertTrue(result.isSuccess)
+    assertEquals(0, remoteStorage.writeCount)
+    assertFalse(remoteStorage.manifest!!.storageIds.contains(storageId))
+  }
+
+  @Test
+  fun `given a newer remote manifest without my GV1 ID, when I run, then I stop tracking it`() {
+    val record = groupV1Record()
+    remoteStorage.addRemoteRecords(listOf(record))
+    check(runJob(StorageSyncJob.forRemoteChange()).isSuccess)
+    check(SignalDatabase.unknownStorageIds.allUnknownIds.contains(record.id))
+
+    val withoutGroupV1 = remoteStorage.records.filterNot { it.id == record.id }
+    remoteStorage.setRemoteState(withoutGroupV1, version = remoteStorage.manifest!!.version + 1)
+
+    val result = runJob(StorageSyncJob.forRemoteChange())
+
+    assertTrue(result.isSuccess)
+    assertFalse(SignalDatabase.unknownStorageIds.allUnknownIds.contains(record.id))
+  }
+
+  @Test
+  fun `given a local-only unknown ID and a local contact, when I run, then I write only the contact and drop the unknown ID`() {
+    val strandedId = StorageId.forGroupV1(Util.getSecretBytes(16))
+    insertUnknownStorageId(strandedId)
+    SignalDatabase.recipients.rotateStorageId(recipients.createRecipient("Local Contact"))
+
+    val result = runJob(StorageSyncJob.forLocalChange())
+
+    assertTrue(result.isSuccess)
+    assertEquals(1, remoteStorage.writeCount)
+    assertEquals(1, remoteStorage.records.count { it.proto.contact?.givenName == "Local" })
+    assertFalse(remoteStorage.manifest!!.storageIds.contains(strandedId))
+    assertFalse(SignalDatabase.unknownStorageIds.allUnknownIds.contains(strandedId))
+  }
+
   /**
    * Gets us to a steady state: remote holds our account record at version 1, then a sync pushes up everything else
    * the fresh database came with (the default chat folder), leaving both sides at [BASE_MANIFEST_VERSION].
@@ -276,6 +347,19 @@ class StorageSyncJobTest {
     SignalDatabase.writableDatabase.withinTransaction {
       SignalDatabase.unknownStorageIds.insert(listOf(SignalStorageRecord.forUnknown(id)))
     }
+  }
+
+  private fun groupV1Record(groupId: GroupId.V1 = GroupId.v1(Util.getSecretBytes(16)), storageId: StorageId = StorageId.forGroupV1(Util.getSecretBytes(16))): SignalStorageRecord {
+    return SignalStorageRecord(
+      id = storageId,
+      proto = StorageRecord(
+        groupV1 = GroupV1Record(
+          id = groupId.decodedId.toByteString(),
+          blocked = true,
+          whitelisted = true
+        )
+      )
+    )
   }
 
   private fun runJob(job: StorageSyncJob): Job.Result {

@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.storage.AccountRecordProcessor
 import org.thoughtcrime.securesms.storage.CallLinkRecordProcessor
 import org.thoughtcrime.securesms.storage.ChatFolderRecordProcessor
 import org.thoughtcrime.securesms.storage.ContactRecordProcessor
-import org.thoughtcrime.securesms.storage.GroupV1RecordProcessor
 import org.thoughtcrime.securesms.storage.GroupV2RecordProcessor
 import org.thoughtcrime.securesms.storage.NotificationProfileRecordProcessor
 import org.thoughtcrime.securesms.storage.StickerPackRecordProcessor
@@ -45,7 +44,6 @@ import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
-import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.SignalStickerPackRecord
@@ -57,7 +55,6 @@ import org.whispersystems.signalservice.api.storage.toSignalAccountRecord
 import org.whispersystems.signalservice.api.storage.toSignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.toSignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.toSignalContactRecord
-import org.whispersystems.signalservice.api.storage.toSignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.toSignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.toSignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.toSignalStickerPackRecord
@@ -336,7 +333,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
 
         db.beginTransaction()
         try {
-          Log.i(TAG, "[Remote Sync] Remote-Only :: Contacts: ${remoteOnly.contacts.size}, GV1: ${remoteOnly.gv1.size}, GV2: ${remoteOnly.gv2.size}, Account: ${remoteOnly.account.size}, DLists: ${remoteOnly.storyDistributionLists.size}, call links: ${remoteOnly.callLinkRecords.size}, chat folders: ${remoteOnly.chatFolderRecords.size}, notification profiles: ${remoteOnly.notificationProfileRecords.size}, sticker packs: ${remoteOnly.stickerPackRecords.size}")
+          Log.i(TAG, "[Remote Sync] Remote-Only :: Contacts: ${remoteOnly.contacts.size}, GV2: ${remoteOnly.gv2.size}, Account: ${remoteOnly.account.size}, DLists: ${remoteOnly.storyDistributionLists.size}, call links: ${remoteOnly.callLinkRecords.size}, chat folders: ${remoteOnly.chatFolderRecords.size}, notification profiles: ${remoteOnly.notificationProfileRecords.size}, sticker packs: ${remoteOnly.stickerPackRecords.size}")
 
           processKnownRecords(context, remoteOnly)
 
@@ -409,8 +406,20 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
         Log.i(TAG, "Removed $removedUnregistered unregistered, $removedDeletedFolders folders, $removedDeletedProfiles notification profiles, $removedDeletedPacks sticker packs from storage service that have been deleted for longer than ${RemoteConfig.messageQueueTime.milliseconds.inWholeDays} days.")
       }
 
-      val localStorageIds = getAllLocalStorageIds(self)
-      val idDifference = StorageSyncHelper.findIdDifference(remoteManifest.storageIds, localStorageIds)
+      var localStorageIds = getAllLocalStorageIds(self)
+      var idDifference = StorageSyncHelper.findIdDifference(remoteManifest.storageIds, localStorageIds)
+
+      // We can't build a record for an unknown id, so declaring one the remote doesn't already have would fail validation.
+      val localOnlyUnknownIds = idDifference.localOnlyIds.filter { it.isUnknown }
+      if (localOnlyUnknownIds.isNotEmpty()) {
+        Log.w(TAG, "Found ${localOnlyUnknownIds.size} unknown ids that aren't in the remote manifest. Removed them. Recalculating diff.")
+
+        SignalDatabase.unknownStorageIds.delete(localOnlyUnknownIds)
+
+        localStorageIds = getAllLocalStorageIds(self)
+        idDifference = StorageSyncHelper.findIdDifference(remoteManifest.storageIds, localStorageIds)
+      }
+
       val remoteInserts = buildLocalStorageRecords(context, self, idDifference.localOnlyIds.stream().filter { it: StorageId -> !it.isUnknown }.collect(Collectors.toList()))
       val remoteDeletes = idDifference.remoteOnlyIds.stream().map { obj: StorageId -> obj.raw }.collect(Collectors.toList())
 
@@ -469,7 +478,6 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
   @Throws(IOException::class)
   private fun processKnownRecords(context: Context, records: StorageRecordCollection) {
     ContactRecordProcessor().process(records.contacts, StorageSyncHelper.KEY_GENERATOR)
-    GroupV1RecordProcessor().process(records.gv1, StorageSyncHelper.KEY_GENERATOR)
     GroupV2RecordProcessor().process(records.gv2, StorageSyncHelper.KEY_GENERATOR)
     NotificationProfileRecordProcessor().process(records.notificationProfileRecords, StorageSyncHelper.KEY_GENERATOR)
     AccountRecordProcessor(context, freshSelf()).process(records.account, StorageSyncHelper.KEY_GENERATOR)
@@ -502,7 +510,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       }
 
       when (type) {
-        ManifestRecord.Identifier.Type.CONTACT, ManifestRecord.Identifier.Type.GROUPV1, ManifestRecord.Identifier.Type.GROUPV2 -> {
+        ManifestRecord.Identifier.Type.CONTACT, ManifestRecord.Identifier.Type.GROUPV2 -> {
           val settings = SignalDatabase.recipients.getByStorageId(id.raw)
           if (settings != null) {
             if (settings.recipientType == RecipientTable.RecipientType.GV2 && settings.syncExtras.groupMasterKey == null) {
@@ -599,13 +607,12 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
 
   private fun getKnownTypes(): List<Int> {
     return ManifestRecord.Identifier.Type.entries
-      .filter { it != ManifestRecord.Identifier.Type.UNKNOWN }
       .map { it.value }
+      .filter { StorageId.isKnownType(it) }
   }
 
   private class StorageRecordCollection(records: Collection<SignalStorageRecord>) {
     val contacts: MutableList<SignalContactRecord> = mutableListOf()
-    val gv1: MutableList<SignalGroupV1Record> = mutableListOf()
     val gv2: MutableList<SignalGroupV2Record> = mutableListOf()
     val account: MutableList<SignalAccountRecord> = mutableListOf()
     val unknown: MutableList<SignalStorageRecord> = mutableListOf()
@@ -619,8 +626,6 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       for (record in records) {
         if (record.proto.contact != null) {
           contacts += record.proto.contact!!.toSignalContactRecord(record.id)
-        } else if (record.proto.groupV1 != null) {
-          gv1 += record.proto.groupV1!!.toSignalGroupV1Record(record.id)
         } else if (record.proto.groupV2 != null) {
           gv2 += record.proto.groupV2!!.toSignalGroupV2Record(record.id)
         } else if (record.proto.account != null) {

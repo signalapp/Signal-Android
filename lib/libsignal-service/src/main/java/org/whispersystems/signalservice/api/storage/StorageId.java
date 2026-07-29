@@ -75,9 +75,13 @@ public class StorageId {
     return new StorageId(type, key);
   }
 
+  /**
+   * GROUPV1 is deliberately excluded. We no longer read or write gv1 records, so treating them as unknown lets us keep
+   * their ids in the manifest instead of deleting them.
+   */
   public static boolean isKnownType(int val) {
     for (ManifestRecord.Identifier.Type type : ManifestRecord.Identifier.Type.values()) {
-      if (type != ManifestRecord.Identifier.Type.UNKNOWN && type.getValue() == val) {
+      if (type != ManifestRecord.Identifier.Type.UNKNOWN && type != ManifestRecord.Identifier.Type.GROUPV1 && type.getValue() == val) {
         return true;
       }
     }

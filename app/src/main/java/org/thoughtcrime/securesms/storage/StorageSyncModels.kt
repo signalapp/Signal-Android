@@ -38,7 +38,6 @@ import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
-import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.SignalStickerPackRecord
@@ -48,7 +47,6 @@ import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.storage.toSignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.toSignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.toSignalContactRecord
-import org.whispersystems.signalservice.api.storage.toSignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.toSignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.toSignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.toSignalStickerPackRecord
@@ -90,7 +88,6 @@ object StorageSyncModels {
   fun localToRemoteRecord(settings: RecipientRecord, rawStorageId: ByteArray): SignalStorageRecord {
     return when (settings.recipientType) {
       RecipientType.INDIVIDUAL -> localToRemoteContact(settings, rawStorageId).toSignalStorageRecord()
-      RecipientType.GV1 -> localToRemoteGroupV1(settings, rawStorageId).toSignalStorageRecord()
       RecipientType.GV2 -> localToRemoteGroupV2(settings, rawStorageId, settings.syncExtras.groupMasterKey!!).toSignalStorageRecord()
       RecipientType.DISTRIBUTION_LIST -> localToRemoteStoryDistributionList(settings, rawStorageId).toSignalStorageRecord()
       RecipientType.CALL_LINK -> localToRemoteCallLink(settings, rawStorageId).toSignalStorageRecord()
@@ -227,23 +224,6 @@ object StorageSyncModels {
       note = recipient.note ?: ""
       avatarColor = localToRemoteAvatarColor(recipient.avatarColor)
     }.build().toSignalContactRecord(StorageId.forContact(rawStorageId))
-  }
-
-  private fun localToRemoteGroupV1(recipient: RecipientRecord, rawStorageId: ByteArray): SignalGroupV1Record {
-    val groupId = recipient.groupId ?: throw AssertionError("Must have a groupId!")
-
-    if (!groupId.isV1) {
-      throw AssertionError("Group is not V1")
-    }
-
-    return SignalGroupV1Record.newBuilder(recipient.syncExtras.storageProto).apply {
-      id = recipient.groupId.requireV1().decodedId.toByteString()
-      blocked = recipient.isBlocked
-      whitelisted = recipient.profileSharing
-      archived = recipient.syncExtras.isArchived
-      markedUnread = recipient.syncExtras.isForcedUnread
-      mutedUntilTimestamp = recipient.muteUntil
-    }.build().toSignalGroupV1Record(StorageId.forGroupV1(rawStorageId))
   }
 
   private fun localToRemoteGroupV2(recipient: RecipientRecord, rawStorageId: ByteArray?, groupMasterKey: GroupMasterKey): SignalGroupV2Record {

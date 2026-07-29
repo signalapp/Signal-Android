@@ -82,7 +82,6 @@ import org.thoughtcrime.securesms.util.isPoll
 import org.thoughtcrime.securesms.util.isScheduled
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
-import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.toSignalServiceAddress
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
@@ -1606,10 +1605,6 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalContactRecord) {
     applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread, isGroup = false)
-  }
-
-  fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalGroupV1Record) {
-    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread, isGroup = true)
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalGroupV2Record) {
