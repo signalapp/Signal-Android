@@ -9,6 +9,7 @@ import org.signal.core.models.media.Media
 import org.signal.mediasend.edit.video.VideoTrimData
 
 sealed interface MediaEditScreenEvent {
+  data class RemoveMedia(val media: Media) : MediaEditScreenEvent
   data class FocusedMediaChanged(val media: Media) : MediaEditScreenEvent
   data class ReorderSelectedMedia(val fromIndex: Int, val toIndex: Int) : MediaEditScreenEvent
   data class AddMessageClick(val startWithEmojiKeyboard: Boolean = false) : MediaEditScreenEvent

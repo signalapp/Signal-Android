@@ -186,8 +186,7 @@ fun MediaEditScreen(
         .align(Alignment.BottomCenter)
         .then(if (isTextEditing) Modifier.imePadding() else Modifier)
     ) {
-      // A document is always the whole selection and has no thumbnail to show, so the rail stays hidden for it.
-      if (state.selectedMedia.isNotEmpty() && !isInteracting && focusedEditorState !is EditorState.Document) {
+      if (state.selectedMedia.size > 1 && !isInteracting) {
         ThumbnailRow(
           selectedMedia = state.selectedMedia,
           pagerState = pagerState,
@@ -195,8 +194,12 @@ fun MediaEditScreen(
             onEvent(MediaEditScreenEvent.FocusedMediaChanged(it))
           },
           onThumbnailClick = { index ->
-            scope.launch {
-              pagerState.animateScrollToPage(index)
+            if (pagerState.currentPage == index) {
+              onEvent(MediaEditScreenEvent.RemoveMedia(state.selectedMedia[index]))
+            } else {
+              scope.launch {
+                pagerState.animateScrollToPage(index)
+              }
             }
           },
           onReorder = { fromIndex, toIndex ->

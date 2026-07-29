@@ -298,6 +298,10 @@ class MediaSendViewModel(
       MediaEditScreenEvent.ToggleMediaQuality -> {
         setSentMediaQuality(state.value.sentMediaQuality.next())
       }
+
+      is MediaEditScreenEvent.RemoveMedia -> {
+        removeMedia(mediaEditScreenEvent.media)
+      }
     }
   }
 

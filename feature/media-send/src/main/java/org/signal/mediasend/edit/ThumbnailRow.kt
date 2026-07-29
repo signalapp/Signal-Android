@@ -22,7 +22,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
@@ -31,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -47,6 +48,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.models.media.Media
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.list.ReorderableItem
 import org.signal.core.ui.compose.list.rememberReorderBuffer
 import org.signal.core.ui.compose.list.rememberReorderableListState
@@ -152,25 +154,27 @@ internal fun ThumbnailRow(
   }
 
   BoxWithConstraints(
-    modifier = Modifier.fillMaxWidth().draggable(
-      state = draggableState,
-      orientation = Orientation.Horizontal,
-      enabled = !isReordering,
-      onDragStopped = { velocity ->
-        scope.launch {
-          val targetPage = when {
-            velocity > 500f -> (pagerState.currentPage - 1).coerceAtLeast(0)
-            velocity < -500f -> (pagerState.currentPage + 1).coerceAtMost(selectedMedia.lastIndex)
-            else -> pagerState.currentPage
-          }
-          pagerState.animateScrollToPage(targetPage)
+    modifier = Modifier
+      .fillMaxWidth()
+      .draggable(
+        state = draggableState,
+        orientation = Orientation.Horizontal,
+        enabled = !isReordering,
+        onDragStopped = { velocity ->
+          scope.launch {
+            val targetPage = when {
+              velocity > 500f -> (pagerState.currentPage - 1).coerceAtLeast(0)
+              velocity < -500f -> (pagerState.currentPage + 1).coerceAtMost(selectedMedia.lastIndex)
+              else -> pagerState.currentPage
+            }
+            pagerState.animateScrollToPage(targetPage)
 
-          if (targetPage in selectedMedia.indices) {
-            onFocusedMediaChange(selectedMedia[targetPage])
+            if (targetPage in selectedMedia.indices) {
+              onFocusedMediaChange(selectedMedia[targetPage])
+            }
           }
         }
-      }
-    )
+      )
   ) {
     val itemWidth = MediaSendMetrics.SelectedMediaPreviewSize.width
 
@@ -194,13 +198,21 @@ internal fun ThumbnailRow(
           }
         }
 
-        ReorderableItem(reorderableListState, index) {
-          Thumbnail(
-            media = media,
-            modifier = Modifier
-              .padding(horizontal = padding)
-              .clickable { onThumbnailClick(index) }
-          )
+        ReorderableItem(
+          reorderableListState = reorderableListState,
+          index = index,
+          modifier = Modifier.clip(MediaSendMetrics.SelectedMediaPreviewShape)
+        ) {
+          DeleteBox(
+            enabled = pagerState.currentPage == index
+          ) {
+            Thumbnail(
+              media = media,
+              modifier = Modifier
+                .padding(horizontal = padding)
+                .clickable { onThumbnailClick(index) }
+            )
+          }
         }
       }
     }
@@ -212,6 +224,29 @@ private fun lerp(start: Dp, stop: Dp, fraction: Float): Dp {
 }
 
 @Composable
+private fun DeleteBox(
+  enabled: Boolean,
+  content: @Composable () -> Unit
+) {
+  Box {
+    content()
+
+    if (enabled) {
+      Icon(
+        imageVector = SignalIcons.Trash.imageVector,
+        tint = Color.White,
+        contentDescription = null,
+        modifier = Modifier
+          .background(color = Color.Black.copy(alpha = 0.32f), shape = MediaSendMetrics.SelectedMediaPreviewShape)
+          .size(MediaSendMetrics.SelectedMediaPreviewSize)
+          .padding(10.dp)
+          .align(Alignment.Center)
+      )
+    }
+  }
+}
+
+@Composable
 private fun Thumbnail(media: Media, modifier: Modifier = Modifier) {
   if (!LocalInspectionMode.current) {
     GlideImage(
@@ -219,13 +254,13 @@ private fun Thumbnail(media: Media, modifier: Modifier = Modifier) {
       imageSize = MediaSendMetrics.SelectedMediaPreviewSize,
       modifier = modifier
         .size(MediaSendMetrics.SelectedMediaPreviewSize)
-        .clip(shape = RoundedCornerShape(8.dp))
+        .clip(shape = MediaSendMetrics.SelectedMediaPreviewShape)
     )
   } else {
     Box(
       modifier = modifier
         .size(MediaSendMetrics.SelectedMediaPreviewSize)
-        .background(color = Color.Gray, shape = RoundedCornerShape(8.dp))
+        .background(color = Color.Gray, shape = MediaSendMetrics.SelectedMediaPreviewShape)
     )
   }
 }
@@ -252,6 +287,18 @@ private fun ThumbnailPreview() {
     Thumbnail(
       media = rememberPreviewMedia(1).first()
     )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun DeleteBoxPreview() {
+  Previews.Preview {
+    DeleteBox(enabled = true) {
+      Thumbnail(
+        media = rememberPreviewMedia(1).first()
+      )
+    }
   }
 }
 
