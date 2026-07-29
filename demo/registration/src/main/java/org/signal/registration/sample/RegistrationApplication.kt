@@ -88,7 +88,8 @@ class RegistrationApplication : Application() {
               .show()
           }
         },
-        isLinkAndSyncAvailable = true
+        isLinkAndSyncAvailable = true,
+        isPhoneNumberlessRegistrationAvailable = true
       )
     )
 

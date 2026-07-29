@@ -433,6 +433,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
         new AppRegistrationNetworkController(this, AppDependencies.getRegistrationApiV2()),
         new AppRegistrationStorageController(this),
         Environment.IS_LINK_AND_SYNC_AVAILABLE,
+        Environment.PHONENUMBERLESS_REGISTRATION,
         null,
         context -> {
           context.startActivity(new Intent(context, SubmitDebugLogActivity.class));

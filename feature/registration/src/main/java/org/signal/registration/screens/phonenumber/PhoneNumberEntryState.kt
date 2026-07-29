@@ -34,9 +34,11 @@ data class PhoneNumberEntryState(
   /** Whether the entered number is definitively invalid. A still-too-short number is not considered invalid, since the user may simply be mid-entry. */
   val isNumberInvalid: Boolean = false,
   /** Gates whether the link device option is shown in the overflow menu. */
-  val isLinkAndSyncAvailable: Boolean = false
+  val isLinkAndSyncAvailable: Boolean = false,
+  /** Gates whether the "register without number" option is shown in the footer. */
+  val isPhoneNumberlessRegistrationAvailable: Boolean = false
 ) {
-  override fun toString(): String = "PhoneNumberEntryState(regionCode=$regionCode, countryCode=$countryCode, countryName=$countryName, countryEmoji=$countryEmoji, nationalNumber=${nationalNumber.censor()}, formattedNumber=${formattedNumber.censor()}, sessionE164=$sessionE164, sessionMetadata=$sessionMetadata, smsVerificationCodeRequest=$smsVerificationCodeRequest, showSpinner=$showSpinner, dialogs=$dialogs, preExistingRegistrationData=${preExistingRegistrationData?.let { "present" }}, restoredSvrCredentials=${restoredSvrCredentials.size} items, pendingRestoreOption=$pendingRestoreOption, initialized=$initialized, isNumberPossible=$isNumberPossible, isNumberInvalid=$isNumberInvalid,  isLinkAndSyncAvailable=$isLinkAndSyncAvailable)"
+  override fun toString(): String = "PhoneNumberEntryState(regionCode=$regionCode, countryCode=$countryCode, countryName=$countryName, countryEmoji=$countryEmoji, nationalNumber=${nationalNumber.censor()}, formattedNumber=${formattedNumber.censor()}, sessionE164=$sessionE164, sessionMetadata=$sessionMetadata, smsVerificationCodeRequest=$smsVerificationCodeRequest, showSpinner=$showSpinner, dialogs=$dialogs, preExistingRegistrationData=${preExistingRegistrationData?.let { "present" }}, restoredSvrCredentials=${restoredSvrCredentials.size} items, pendingRestoreOption=$pendingRestoreOption, initialized=$initialized, isNumberPossible=$isNumberPossible, isNumberInvalid=$isNumberInvalid,  isLinkAndSyncAvailable=$isLinkAndSyncAvailable, isPhoneNumberlessRegistrationAvailable=$isPhoneNumberlessRegistrationAvailable)"
 
   data class Dialogs(
     /** Asks the user to confirm the number they entered before submitting it. */

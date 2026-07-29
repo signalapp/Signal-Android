@@ -79,7 +79,13 @@ import javax.crypto.spec.SecretKeySpec
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
-class RegistrationRepository(val context: Context, val networkController: NetworkController, val storageController: StorageController, val isLinkAndSyncAvailable: Boolean) {
+class RegistrationRepository(
+  val context: Context,
+  val networkController: NetworkController,
+  val storageController: StorageController,
+  val isLinkAndSyncAvailable: Boolean,
+  val isPhoneNumberlessRegistrationAvailable: Boolean = false
+) {
 
   companion object {
     private val TAG = Log.tag(RegistrationRepository::class)

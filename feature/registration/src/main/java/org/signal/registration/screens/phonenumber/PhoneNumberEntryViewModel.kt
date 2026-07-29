@@ -58,7 +58,12 @@ class PhoneNumberEntryViewModel(
   private val phoneNumberUtil: PhoneNumberUtil = PhoneNumberUtil.getInstance()
   private var formatter: AsYouTypeFormatter = phoneNumberUtil.getAsYouTypeFormatter("US")
 
-  private val _state = MutableStateFlow(PhoneNumberEntryState(isLinkAndSyncAvailable = repository.isLinkAndSyncAvailable))
+  private val _state = MutableStateFlow(
+    PhoneNumberEntryState(
+      isLinkAndSyncAvailable = repository.isLinkAndSyncAvailable,
+      isPhoneNumberlessRegistrationAvailable = repository.isPhoneNumberlessRegistrationAvailable
+    )
+  )
   val state: StateFlow<PhoneNumberEntryState> = _state.asStateFlow()
 
   init {
@@ -140,6 +145,9 @@ class PhoneNumberEntryViewModel(
       }
       is PhoneNumberEntryScreenEvents.LinkDevice -> {
         parentEventEmitter.navigateTo(RegistrationRoute.LinkAccount())
+      }
+      is PhoneNumberEntryScreenEvents.RegisterWithoutNumber -> {
+        parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginPayment)
       }
       is PhoneNumberEntryScreenEvents.CaptchaCompleted -> {
         stateEmitter(applyCaptchaCompleted(state, event.token, parentEventEmitter))

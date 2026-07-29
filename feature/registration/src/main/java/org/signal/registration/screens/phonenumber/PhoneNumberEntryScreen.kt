@@ -35,6 +35,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
@@ -427,6 +428,18 @@ private fun NextButton(
     horizontalArrangement = Arrangement.End,
     verticalAlignment = Alignment.CenterVertically
   ) {
+    if (state.isPhoneNumberlessRegistrationAvailable) {
+      TextButton(
+        onClick = { onEvent(PhoneNumberEntryScreenEvents.RegisterWithoutNumber) },
+        enabled = !state.showSpinner,
+        modifier = Modifier.testTag(TestTags.PHONE_NUMBER_REGISTER_WITHOUT_NUMBER_BUTTON)
+      ) {
+        Text(stringResource(R.string.RegistrationActivity_register_without_number))
+      }
+
+      Spacer(modifier = Modifier.weight(1f))
+    }
+
     Buttons.LargeTonal(
       onClick = { onEvent(PhoneNumberEntryScreenEvents.NextClicked) },
       enabled = !state.showSpinner && state.isNumberPossible,
@@ -624,6 +637,17 @@ private fun PhoneNumberScreenPreview() {
   Previews.Preview {
     PhoneNumberScreen(
       state = PhoneNumberEntryState(),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun PhoneNumberScreenRegisterWithoutNumberPreview() {
+  Previews.Preview {
+    PhoneNumberScreen(
+      state = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = true),
       onEvent = {}
     )
   }

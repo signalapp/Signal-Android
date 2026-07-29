@@ -12,6 +12,9 @@ import org.signal.registration.util.SensitiveLog
 /**
  * Injection point for dependencies needed by this module.
  *
+ * @param isPhoneNumberlessRegistrationAvailable Whether the in-progress phone-numberless registration flow (registering
+ *   with a purchased Signal Login instead of a phone number) is offered. The screens are always present in the
+ *   navigation graph; this only gates them off at runtime while the flow is unfinished.
  * @param sensitiveLogger A logger for logging sensitive material. The intention is this would only be used in the demo app for testing + debugging, while
  *   the actual app would just pass null.
  * @param debugLogCallback Callback to launch the debug log viewer. The actual app provides the real implementation.
@@ -22,6 +25,7 @@ class RegistrationDependencies(
   val networkController: NetworkController,
   val storageController: StorageController,
   val isLinkAndSyncAvailable: Boolean,
+  val isPhoneNumberlessRegistrationAvailable: Boolean,
   val sensitiveLogger: Log.Logger?,
   val debugLogCallback: ((Context) -> Unit)?,
   val proxyConfigCallback: ((Context) -> Unit)?,

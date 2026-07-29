@@ -7,6 +7,7 @@
 
 package org.signal.registration
 
+import android.content.Context
 import android.os.Parcelable
 import android.widget.Toast
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
@@ -48,6 +49,9 @@ import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.screens.accountlocked.AccountLockedScreen
 import org.signal.registration.screens.accountlocked.AccountLockedScreenEvents
 import org.signal.registration.screens.accountlocked.AccountLockedState
+import org.signal.registration.screens.addusername.AddUsernameScreen
+import org.signal.registration.screens.addusername.AddUsernameScreenEvents
+import org.signal.registration.screens.addusername.AddUsernameViewModel
 import org.signal.registration.screens.aepentry.EnterAepForLocalBackupResult
 import org.signal.registration.screens.aepentry.EnterAepForLocalBackupViewModel
 import org.signal.registration.screens.aepentry.EnterAepForRemoteBackupPostRegistrationViewModel
@@ -104,6 +108,11 @@ import org.signal.registration.screens.restoreselection.ArchiveRestoreOption
 import org.signal.registration.screens.restoreselection.ArchiveRestoreSelectionScreen
 import org.signal.registration.screens.restoreselection.ArchiveRestoreSelectionViewModel
 import org.signal.registration.screens.restoreselection.RegisteredState
+import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreen
+import org.signal.registration.screens.signallogininfo.SignalLoginInfoViewModel
+import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentScreen
+import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentScreenEvents
+import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentViewModel
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 import org.signal.registration.screens.verificationcode.VerificationCodeScreen
@@ -146,6 +155,18 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
 
   @Serializable
   data object VerificationCodeEntry : RegistrationRoute
+
+  /** Buy a Signal Login (or declare an existing one) in order to register without a phone number. */
+  @Serializable
+  data object SignalLoginPayment : RegistrationRoute
+
+  /** Presents a freshly-purchased Signal Login and asks the user to save it. */
+  @Serializable
+  data object SignalLoginInfo : RegistrationRoute
+
+  /** Optional username selection for a phone-numberless account. */
+  @Serializable
+  data object AddUsername : RegistrationRoute
 
   @Serializable
   @TypeParceler<SessionMetadata, SessionMetadataParceler>
@@ -299,6 +320,19 @@ private const val AEP_FOR_LOCAL_BACKUP_RESULT = "aep_for_local_backup_result"
 private const val LOCAL_BACKUP_RESTORE_RESULT = "local_backup_restore_result"
 private const val PHONE_NUMBER_DISCOVERABILITY_RESULT = "phone_number_discoverability_result"
 private const val PIN_LEARN_MORE_URL = "https://support.signal.org/hc/articles/360007059792"
+private const val USERNAME_LEARN_MORE_URL = "https://support.signal.org/hc/articles/5389476324250"
+
+// TODO [phonenumberless] Point at the real support article once it exists.
+private const val SIGNAL_LOGIN_LEARN_MORE_URL = "https://support.signal.org/"
+
+/** Opens [url] in a browser, surfacing a toast if the device has none. */
+private fun openUrl(context: Context, url: String) {
+  LinkActions.openUrl(context, url) { error ->
+    when (error) {
+      OpenUrlError.NoBrowserFound -> Toast.makeText(context, R.string.LinkActions_error_no_browser_found, Toast.LENGTH_SHORT).show()
+    }
+  }
+}
 
 /**
  * Sets up the navigation graph for the registration flow using Navigation 3.
@@ -414,13 +448,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       state = state,
       onEvent = { event ->
         when (event) {
-          WelcomeScreenEvents.ViewTermsAndPrivacy -> {
-            LinkActions.openUrl(context, termsAndPrivacyUrl) { error ->
-              when (error) {
-                OpenUrlError.NoBrowserFound -> Toast.makeText(context, R.string.LinkActions_error_no_browser_found, Toast.LENGTH_SHORT).show()
-              }
-            }
-          }
+          WelcomeScreenEvents.ViewTermsAndPrivacy -> openUrl(context, termsAndPrivacyUrl)
           else -> viewModel.onEvent(event)
         }
       }
@@ -473,9 +501,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       state = state,
       onEvent = {
         when (it) {
-          LinkAccountScreenEvent.GetHelpClick -> LinkActions.openUrl(context, url) {
-            Toast.makeText(context, R.string.LinkActions_error_no_browser_found, Toast.LENGTH_SHORT).show()
-          }
+          LinkAccountScreenEvent.GetHelpClick -> openUrl(context, url)
           else -> viewModel.onEvent(it)
         }
       }
@@ -499,9 +525,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       state = state,
       onEvent = {
         when (it) {
-          MessageSyncScreenEvent.LearnMoreClick -> LinkActions.openUrl(context, url) {
-            Toast.makeText(context, R.string.LinkActions_error_no_browser_found, Toast.LENGTH_SHORT).show()
-          }
+          MessageSyncScreenEvent.LearnMoreClick -> openUrl(context, url)
           else -> viewModel.onEvent(it)
         }
       }
@@ -600,6 +624,68 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     )
   }
 
+  // -- Signal Login Payment Screen
+  entry<RegistrationRoute.SignalLoginPayment> {
+    val viewModel: SignalLoginPaymentViewModel = viewModel(
+      factory = SignalLoginPaymentViewModel.Factory(
+        repository = registrationRepository,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val context = LocalContext.current
+
+    SignalLoginPaymentScreen(
+      state = state,
+      onEvent = { event ->
+        when (event) {
+          SignalLoginPaymentScreenEvents.LearnMoreClicked -> openUrl(context, SIGNAL_LOGIN_LEARN_MORE_URL)
+          else -> viewModel.onEvent(event)
+        }
+      }
+    )
+  }
+
+  // -- Signal Login Info Screen
+  entry<RegistrationRoute.SignalLoginInfo> {
+    val context = LocalContext.current
+    val viewModel: SignalLoginInfoViewModel = viewModel(
+      factory = SignalLoginInfoViewModel.Factory(
+        repository = registrationRepository,
+        parentEventEmitter = registrationViewModel::onEvent,
+        isPasswordManagerAvailable = RegistrationCredentialManager.isSupported(context)
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    SignalLoginInfoScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  // -- Add Username Screen
+  entry<RegistrationRoute.AddUsername> {
+    val viewModel: AddUsernameViewModel = viewModel(
+      factory = AddUsernameViewModel.Factory(
+        repository = registrationRepository,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    )
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val context = LocalContext.current
+
+    AddUsernameScreen(
+      state = state,
+      onEvent = { event ->
+        when (event) {
+          AddUsernameScreenEvents.LearnMoreClicked -> openUrl(context, USERNAME_LEARN_MORE_URL)
+          else -> viewModel.onEvent(event)
+        }
+      }
+    )
+  }
+
   // -- SVR Restore PIN Entry Screen (for users with existing backup data)
   entry<RegistrationRoute.PinEntryForSvrRestore> {
     val viewModel: PinEntryForSvrRestoreViewModel = viewModel(
@@ -633,13 +719,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       state = state,
       onEvent = { event ->
         when (event) {
-          PinCreationScreenEvents.LearnMore -> {
-            LinkActions.openUrl(context, PIN_LEARN_MORE_URL) { error ->
-              when (error) {
-                OpenUrlError.NoBrowserFound -> Toast.makeText(context, R.string.LinkActions_error_no_browser_found, Toast.LENGTH_SHORT).show()
-              }
-            }
-          }
+          PinCreationScreenEvents.LearnMore -> openUrl(context, PIN_LEARN_MORE_URL)
 
           else -> viewModel.onEvent(event)
         }
@@ -698,13 +778,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
             parentEventEmitter.navigateTo(RegistrationRoute.Welcome)
           }
 
-          AccountLockedScreenEvents.LearnMore -> {
-            LinkActions.openUrl(context, learnMoreUrl) { error ->
-              when (error) {
-                OpenUrlError.NoBrowserFound -> Toast.makeText(context, R.string.LinkActions_error_no_browser_found, Toast.LENGTH_SHORT).show()
-              }
-            }
-          }
+          AccountLockedScreenEvents.LearnMore -> openUrl(context, learnMoreUrl)
         }
       }
     )

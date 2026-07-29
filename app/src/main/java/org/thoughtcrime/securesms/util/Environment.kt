@@ -28,6 +28,8 @@ object Environment {
   @JvmField
   val IS_LINK_AND_SYNC_AVAILABLE: Boolean = true
 
+  const val PHONENUMBERLESS_REGISTRATION: Boolean = false
+
   object Backups {
     @JvmStatic
     fun supportsGooglePlayBilling(): Boolean {
