@@ -46,6 +46,11 @@
   <!-- Name shown on the document preview when we cannot read the file\'s name. -->
   <string name="DocumentPage__unnamed_file">Unnamed file</string>
 
+  <!-- Content description for button to enable highlighter mode -->
+  <string name="DrawModeColorBar__highlighter">Highlighter</string>
+  <!-- Content description for button to enable brush mode -->
+  <string name="DrawModeColorBar__brush">Brush</string>
+
   <!-- Video editor play button content description -->
   <string name="VideoEditorHud_play_video_description">Play video</string>
 

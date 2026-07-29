@@ -56,8 +56,7 @@ import org.signal.mediasend.edit.document.DocumentPage
 import org.signal.mediasend.edit.image.BrushWidthBar
 import org.signal.mediasend.edit.image.BrushWidthPreview
 import org.signal.mediasend.edit.image.BrushWidthsState
-import org.signal.mediasend.edit.image.ColorBarOrientation
-import org.signal.mediasend.edit.image.HSVColorBar
+import org.signal.mediasend.edit.image.DrawModeColorBar
 import org.signal.mediasend.edit.image.ImageEditor
 import org.signal.mediasend.edit.image.ImageEditorToolbar
 import org.signal.mediasend.edit.image.RotationDial
@@ -260,11 +259,7 @@ fun MediaEditScreen(
             }
 
             if (controller.isUserDrawing) {
-              HSVColorBar(
-                state = controller.drawColorBarState,
-                onColorChanged = controller::setDrawColor,
-                orientation = ColorBarOrientation.HORIZONTAL
-              )
+              DrawModeColorBar(imageEditorController = controller)
             }
 
             if (isSmallWindowBreakpoint) {
