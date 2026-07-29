@@ -193,7 +193,7 @@ fun MediaEditScreen(
         visible = isAdjustingBrushWidth,
         thickness = imageController.brushThickness,
         viewMatrix = imageController.imageEditorState.viewMatrix,
-        color = Color(imageController.imageEditorState.drawColor),
+        color = Color(imageController.drawColorBarState.color),
         isBlur = imageController.isUserBlurring,
         modifier = Modifier.fillMaxSize()
       )

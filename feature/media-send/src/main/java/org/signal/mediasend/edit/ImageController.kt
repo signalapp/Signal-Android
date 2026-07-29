@@ -191,7 +191,7 @@ class ImageController @RememberInComposition constructor(
   }
 
   fun setDrawColor(color: Int) {
-    imageEditorState.drawColor = color
+    imageEditorState.drawColor = brushTool?.applyAlpha(color) ?: color
   }
 
   fun setBrushWidthFraction(fraction: Float) {
@@ -205,7 +205,7 @@ class ImageController @RememberInComposition constructor(
     imageEditorState.isBlur = mode == Mode.BLUR
     imageEditorState.drawCap = if (mode == Mode.HIGHLIGHT) Paint.Cap.SQUARE else Paint.Cap.ROUND
     imageEditorState.drawThickness = brushThickness
-    imageEditorState.drawColor = drawColorBarState.color
+    setDrawColor(drawColorBarState.color)
   }
 
   fun enterCropMode() {

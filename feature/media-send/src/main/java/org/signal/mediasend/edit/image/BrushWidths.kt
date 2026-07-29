@@ -11,7 +11,11 @@ import androidx.compose.runtime.annotation.RememberInComposition
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.core.graphics.ColorUtils
 import kotlinx.parcelize.Parcelize
+
+private const val OPAQUE_ALPHA = 0xFF
+private const val HIGHLIGHTER_ALPHA = 0x60
 
 /**
  * The image editor tools which support a user-adjustable stroke width.
@@ -19,12 +23,15 @@ import kotlinx.parcelize.Parcelize
  * Thicknesses are expressed as a fraction of the editor's coordinate space width, matching what
  * [ImageEditorState.drawThickness] expects.
  */
-enum class BrushTool(val minThickness: Float, val maxThickness: Float) {
+enum class BrushTool(val minThickness: Float, val maxThickness: Float, val alpha: Int = OPAQUE_ALPHA) {
   MARKER(0.01f, 0.05f),
-  HIGHLIGHTER(0.03f, 0.08f),
+  HIGHLIGHTER(0.03f, 0.08f, alpha = HIGHLIGHTER_ALPHA),
   BLUR(0.052f, 0.092f);
 
   fun thicknessAt(fraction: Float): Float = minThickness + (maxThickness - minThickness) * fraction
+
+  /** [color] with this tool's opacity applied. */
+  fun applyAlpha(color: Int): Int = ColorUtils.setAlphaComponent(color, alpha)
 }
 
 /**
