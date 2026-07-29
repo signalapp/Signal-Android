@@ -17,12 +17,12 @@ import kotlinx.coroutines.flow.onEach
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.pin.PinValidityChecker
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RestoreDecision
-import org.whispersystems.signalservice.api.kbs.PinValidityChecker
 import kotlin.time.toKotlinDuration
 
 /**
