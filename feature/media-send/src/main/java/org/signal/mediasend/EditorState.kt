@@ -108,6 +108,16 @@ sealed interface EditorState : Parcelable {
   data object Gif : EditorState
 
   /**
+   * Document state. Documents cannot be edited, so we hold onto what we need to describe the file to the user.
+   */
+  @Parcelize
+  data class Document(
+    val fileName: String?,
+    val fileSize: Long,
+    val extension: String
+  ) : EditorState
+
+  /**
    * Image editor state.
    */
   @Parcelize

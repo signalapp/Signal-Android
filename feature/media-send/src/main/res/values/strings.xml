@@ -33,6 +33,9 @@
         <item quantity="other">%1$d items</item>
     </plurals>
 
+  <!-- Name shown on the document preview when we cannot read the file\'s name. -->
+  <string name="DocumentPage__unnamed_file">Unnamed file</string>
+
   <!-- Video editor play button content description -->
   <string name="VideoEditorHud_play_video_description">Play video</string>
 

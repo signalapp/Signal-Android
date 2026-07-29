@@ -48,6 +48,7 @@ import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaSendDependencies
 import org.signal.mediasend.MediaSendState
+import org.signal.mediasend.edit.document.DocumentPage
 import org.signal.mediasend.edit.image.ImageEditor
 import org.signal.mediasend.edit.image.ImageEditorToolbar
 import org.signal.mediasend.edit.image.RotationDial
@@ -121,6 +122,13 @@ fun MediaEditScreen(
           )
         }
 
+        is EditorState.Document -> {
+          DocumentPage(
+            document = editorState,
+            modifier = Modifier.fillMaxSize()
+          )
+        }
+
         EditorState.Gif -> {
           if (!LocalInspectionMode.current) {
             GlideImage(
@@ -178,7 +186,8 @@ fun MediaEditScreen(
         .align(Alignment.BottomCenter)
         .then(if (isTextEditing) Modifier.imePadding() else Modifier)
     ) {
-      if (state.selectedMedia.isNotEmpty() && !isInteracting) {
+      // A document is always the whole selection and has no thumbnail to show, so the rail stays hidden for it.
+      if (state.selectedMedia.isNotEmpty() && !isInteracting && focusedEditorState !is EditorState.Document) {
         ThumbnailRow(
           selectedMedia = state.selectedMedia,
           pagerState = pagerState,
@@ -253,7 +262,7 @@ fun MediaEditScreen(
           )
         }
 
-        EditorState.VideoGif, EditorState.Gif, null -> Unit
+        is EditorState.Document, EditorState.VideoGif, EditorState.Gif, null -> Unit
       }
 
       AddAMessageRow(

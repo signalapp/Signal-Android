@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.mediasend.v3
 import android.content.Context
 import android.net.Uri
 import android.os.Build
+import android.provider.OpenableColumns
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -20,6 +21,10 @@ import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 import org.signal.core.util.asListContains
 import org.signal.core.util.logging.Log
+import org.signal.core.util.optionalLong
+import org.signal.core.util.optionalString
+import org.signal.core.util.orNull
+import org.signal.mediasend.DocumentInfo
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaConstraints
 import org.signal.mediasend.MediaFilterError
@@ -53,7 +58,9 @@ import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.video.TranscodingConfig
+import java.io.IOException
 import java.io.InputStream
+import java.util.Optional
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.time.Duration
@@ -99,6 +106,53 @@ object MediaSendV3Repository : MediaSendRepository {
 
     val error = mapFilterError(result.filterError, populated, constraints, maxSelection, isStory)
     MediaFilterResult(result.filteredMedia, error)
+  }
+
+  override suspend fun getDocumentInfo(media: Media): DocumentInfo? = withContext(Dispatchers.IO) {
+    val uri = media.uri
+
+    val fileInfo: Pair<String?, Long>? = try {
+      if (PartAuthority.isLocalUri(uri)) {
+        readLocalFileInfo(uri)
+      } else {
+        readContentResolverFileInfo(uri) ?: readLocalFileInfo(uri)
+      }
+    } catch (e: IOException) {
+      Log.w(TAG, "Unable to read document info for $uri", e)
+      null
+    }
+
+    if (fileInfo == null) {
+      return@withContext null
+    }
+
+    val (fileName, fileSize) = fileInfo
+    DocumentInfo(
+      fileName = fileName,
+      fileSize = fileSize,
+      extension = MediaUtil.getFileType(appContext, Optional.ofNullable(fileName), uri).orElse("")
+    )
+  }
+
+  @Throws(IOException::class)
+  private fun readLocalFileInfo(uri: Uri): Pair<String?, Long> {
+    val isLocal = PartAuthority.isLocalUri(uri)
+    val fileName = if (isLocal) PartAuthority.getAttachmentFileName(appContext, uri) else null
+    val fileSize = (if (isLocal) PartAuthority.getAttachmentSize(appContext, uri) else null) ?: MediaUtil.getMediaSize(appContext, uri)
+
+    return fileName to fileSize
+  }
+
+  private fun readContentResolverFileInfo(uri: Uri): Pair<String?, Long>? {
+    return appContext.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+      if (!cursor.moveToFirst()) {
+        return@use null
+      }
+
+      val fileSize = cursor.optionalLong(OpenableColumns.SIZE).orNull() ?: return@use null
+
+      cursor.optionalString(OpenableColumns.DISPLAY_NAME).orNull() to fileSize
+    }
   }
 
   override suspend fun deleteBlobs(media: List<Media>) {
@@ -244,7 +298,7 @@ object MediaSendV3Repository : MediaSendRepository {
       val legacyState: Any? = when (state) {
         is EditorState.Image -> ImageEditorFragment.Data().apply { writeModel(state.model) }
         is EditorState.VideoTrim -> state.videoTrimData
-        EditorState.VideoGif, EditorState.Gif -> null
+        is EditorState.Document, EditorState.VideoGif, EditorState.Gif -> null
       }
       legacyState?.let { uri to it }
     }.toMap()

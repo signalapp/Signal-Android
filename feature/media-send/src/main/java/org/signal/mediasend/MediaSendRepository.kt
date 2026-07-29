@@ -48,6 +48,11 @@ interface MediaSendRepository {
   ): MediaFilterResult
 
   /**
+   * Reads the display information for a document, or null if it could not be read.
+   */
+  suspend fun getDocumentInfo(media: Media): DocumentInfo?
+
+  /**
    * Deletes temporary blob files for the given media.
    */
   suspend fun deleteBlobs(media: List<Media>)
@@ -116,6 +121,19 @@ interface MediaSendRepository {
 data class MediaFilterResult(
   val filteredMedia: List<Media>,
   val error: MediaFilterError?
+)
+
+/**
+ * Everything needed to describe a document to the user.
+ *
+ * @param fileName The document's name, or null if the platform did not give us one.
+ * @param fileSize The document's size in bytes.
+ * @param extension The document's file type, e.g. "pdf". Empty when it could not be determined.
+ */
+data class DocumentInfo(
+  val fileName: String?,
+  val fileSize: Long,
+  val extension: String
 )
 
 /**

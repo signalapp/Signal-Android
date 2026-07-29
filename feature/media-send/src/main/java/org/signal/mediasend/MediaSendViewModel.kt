@@ -441,86 +441,49 @@ class MediaSendViewModel(
       )
 
       if (filterResult.filteredMedia.isNotEmpty()) {
-        // Initialize video trim states for new videos
-        val initializedVideoEditorStates = filterResult.filteredMedia
+        val initializedEditorStates: Map<Uri, EditorState> = filterResult.filteredMedia
           .filterNot { snapshot.editorStateMap.containsKey(it.uri) }
-          .filter { isNonGifVideo(it) }
-          .associate { video ->
-            val durationUs = video.duration.milliseconds.inWholeMicroseconds
-            val maxVideoDurationUs = if (repository.isVideoTranscodeAvailable()) getMaxVideoDurationUs(video.duration.milliseconds) else durationUs
-            video.uri to EditorState.VideoTrim.forVideo(durationUs, maxVideoDurationUs)
-          }
+          .mapNotNull { item -> createEditorState(item)?.let { item.uri to it } }
+          .toMap()
 
-        val initializedVideoGifEditorStates = filterResult.filteredMedia
-          .filterNot { snapshot.editorStateMap.containsKey(it.uri) }
-          .filter { isGifVideo(it) }
-          .associate { it.uri to EditorState.VideoGif }
-
-        val initializedGifEditorStates = filterResult.filteredMedia
-          .filterNot { snapshot.editorStateMap.containsKey(it.uri) }
-          .filter { ContentTypeUtil.isGif(it.contentType) }
-          .associate { it.uri to EditorState.Gif }
-
-        val initializedImageEditorStates = filterResult.filteredMedia
-          .filterNot { snapshot.editorStateMap.containsKey(it.uri) }
-          .filter { ContentTypeUtil.isImageAndNotGif(it.contentType) }
-          .associate { image ->
-            // TODO - this should likely be in a repository?
-            val editorModel = EditorModel.create(0x0)
-            val element = EditorElement(
-              UriGlideRenderer(
-                image.uri,
-                true,
-                0,
-                0,
-                UriGlideRenderer.STRONG_BLUR,
-                object : RequestListener<Bitmap> {
-                  override fun onResourceReady(resource: Bitmap?, model: Any?, target: Target<Bitmap?>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                    return false
-                  }
-
-                  override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap?>?, isFirstResource: Boolean): Boolean {
-                    return false
-                  }
-                }
-              )
-            )
-            element.flags.setSelectable(false).persist()
-            editorModel.addElement(element)
-            image.uri to EditorState.Image(editorModel)
-          }
+        // A document's name is only known once its info has been read, and it has to ride along on the media itself
+        // because that is what the send builds the attachment's file name from.
+        val updatedMedia: List<Media> = filterResult.filteredMedia.map { item ->
+          val documentFileName = (initializedEditorStates[item.uri] as? EditorState.Document)?.fileName
+          if (documentFileName != null) item.copy(fileName = documentFileName) else item
+        }
 
         updateState {
           val newFocus = if (focusNewlyAdded) {
-            filterResult.filteredMedia.lastOrNull { it in media } ?: focusedMedia ?: filterResult.filteredMedia.firstOrNull()
+            updatedMedia.lastOrNull { item -> media.any { it.uri == item.uri } } ?: focusedMedia ?: updatedMedia.firstOrNull()
           } else {
-            focusedMedia ?: filterResult.filteredMedia.firstOrNull()
+            focusedMedia ?: updatedMedia.firstOrNull()
           }
 
           copy(
-            selectedMedia = filterResult.filteredMedia,
+            selectedMedia = updatedMedia,
             focusedMedia = newFocus,
-            editorStateMap = editorStateMap + initializedVideoEditorStates + initializedVideoGifEditorStates + initializedGifEditorStates + initializedImageEditorStates,
+            editorStateMap = editorStateMap + initializedEditorStates,
             // Re-bind to the populated instance by URI: population fills in a video's 0x0 dimensions, producing a new
             // Media that no longer equals the pre-population capture, which would otherwise leak past equality-based
             // removal on back. Cleared once more than the capture is selected.
-            cameraFirstCapture = if (filterResult.filteredMedia.size > 1) {
+            cameraFirstCapture = if (updatedMedia.size > 1) {
               null
             } else {
-              cameraFirstCapture?.let { capture -> filterResult.filteredMedia.find { it.uri == capture.uri } ?: capture }
+              cameraFirstCapture?.let { capture -> updatedMedia.find { it.uri == capture.uri } ?: capture }
             }
           )
         }
 
-        if (initializedVideoEditorStates.any { (_, editorState) -> editorState.videoTrimData.isDurationEdited }) {
+        if (initializedEditorStates.values.any { it is EditorState.VideoTrim && it.videoTrimData.isDurationEdited }) {
           internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__video_trimmed_to_fit))
         }
 
         // Update story requirements
-        updateStorySendRequirements(filterResult.filteredMedia)
+        updateStorySendRequirements(updatedMedia)
 
         // Start pre-uploads for new media
-        val newMedia = filterResult.filteredMedia.toSet().intersect(media).toList()
+        val newMedia = updatedMedia.filter { item -> media.any { it.uri == item.uri } }
         startUpload(newMedia)
       }
 
@@ -528,6 +491,67 @@ class MediaSendViewModel(
         _mediaErrors.emit(filterResult.error)
       }
     }
+  }
+
+  /**
+   * Builds the initial editor state for a newly selected [media] item, which decides how the Edit screen displays it.
+   * Null for anything we have no way to display, which validation should already have filtered out.
+   */
+  private suspend fun createEditorState(media: Media): EditorState? {
+    return when {
+      isNonGifVideo(media) -> {
+        val durationUs = media.duration.milliseconds.inWholeMicroseconds
+        val maxVideoDurationUs = if (repository.isVideoTranscodeAvailable()) getMaxVideoDurationUs(media.duration.milliseconds) else durationUs
+        EditorState.VideoTrim.forVideo(durationUs, maxVideoDurationUs)
+      }
+
+      isGifVideo(media) -> EditorState.VideoGif
+
+      ContentTypeUtil.isGif(media.contentType) -> EditorState.Gif
+
+      ContentTypeUtil.isDocumentType(media.contentType) -> {
+        val documentInfo = repository.getDocumentInfo(media)
+        EditorState.Document(
+          fileName = documentInfo?.fileName,
+          fileSize = documentInfo?.fileSize ?: media.size,
+          extension = documentInfo?.extension ?: ""
+        )
+      }
+
+      ContentTypeUtil.isImageType(media.contentType) -> EditorState.Image(createImageEditorModel(media))
+
+      else -> {
+        Log.w(TAG, "Nothing can display '${media.contentType}'.")
+        null
+      }
+    }
+  }
+
+  // TODO - this should likely be in a repository?
+  private fun createImageEditorModel(media: Media): EditorModel {
+    val editorModel = EditorModel.create(0x0)
+    val element = EditorElement(
+      UriGlideRenderer(
+        media.uri,
+        true,
+        0,
+        0,
+        UriGlideRenderer.STRONG_BLUR,
+        object : RequestListener<Bitmap> {
+          override fun onResourceReady(resource: Bitmap?, model: Any?, target: Target<Bitmap?>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+            return false
+          }
+
+          override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap?>?, isFirstResource: Boolean): Boolean {
+            return false
+          }
+        }
+      )
+    )
+    element.flags.setSelectable(false).persist()
+    editorModel.addElement(element)
+
+    return editorModel
   }
 
   /**
