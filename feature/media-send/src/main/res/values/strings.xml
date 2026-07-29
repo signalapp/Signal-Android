@@ -6,6 +6,16 @@
   <string name="MediaSendDialogs__youll_lose_any_changes">You\'ll lose any changes you\'ve made to this photo.</string>
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">Discard</string>
+  <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
+  <string name="MediaSendDialogs__save_to_phone">Save to phone?</string>
+  <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->
+  <string name="MediaSendDialogs__this_media_will_be_saved">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</string>
+  <!-- Confirmation button that saves the media being edited to the phone\'s storage. -->
+  <string name="MediaSendDialogs__save">Save</string>
+  <!-- Checkbox shown in the save dialog to not show the dialog again in future saves -->
+  <string name="MediaSendDialogs__dont_show_again">Don\'t show again</string>
+  <!-- Progress dialog message shown while the media being edited is written out to the phone\'s storage. -->
+  <string name="MediaSendDialogs__saving_media">Saving attachment to storage…</string>
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">Add a message</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
@@ -102,6 +112,14 @@
   <string name="MediaSendViewModel__error_taking_photo">Error taking photo</string>
   <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
   <string name="MediaSendViewModel__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
+  <!-- Displayed after the media being edited was successfully saved to the phone\'s storage -->
+  <string name="MediaSendViewModel__media_saved">Media saved</string>
+  <!-- Displayed when the media being edited could not be saved to the phone\'s storage -->
+  <string name="MediaSendViewModel__error_saving_media">Error while saving attachment to storage!</string>
+  <!-- Displayed when the media being edited cannot be saved because the storage permission was denied -->
+  <string name="MediaSendViewModel__unable_to_save_without_storage_permission">Unable to save to external storage without permissions</string>
+  <!-- Message shown when saving the media being edited requires the storage permission, but that permission has been permanently denied by the user. -->
+  <string name="MediaSendViewModel__signal_needs_the_storage_permission">Signal needs the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">Found %1$s</string>

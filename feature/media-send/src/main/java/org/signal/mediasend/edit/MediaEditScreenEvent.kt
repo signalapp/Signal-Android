@@ -19,6 +19,7 @@ sealed interface MediaEditScreenEvent {
   data object NavigateToGallery : MediaEditScreenEvent
   data object ToggleMediaQuality : MediaEditScreenEvent
   data class BrushWidthChanged(val tool: BrushTool, val fraction: Float) : MediaEditScreenEvent
+  data object SaveMedia : MediaEditScreenEvent
   data class VideoTrimChanged(val videoTrimData: VideoTrimData, val editingComplete: Boolean) : MediaEditScreenEvent
   data class VideoSeek(val positionUs: Long, val editingComplete: Boolean) : MediaEditScreenEvent
 }

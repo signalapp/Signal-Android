@@ -5,9 +5,26 @@
 
 package org.signal.mediasend.edit
 
+import androidx.compose.foundation.layout.Arrangement.spacedBy
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.mediasend.R
@@ -28,6 +45,61 @@ object MediaEditScreenDialogs {
       onDismiss = onDismiss
     )
   }
+
+  @Composable
+  fun SaveToStorageConfirmationDialog(
+    onSave: (doNotShowAgain: Boolean) -> Unit,
+    onDismissRequest: () -> Unit
+  ) {
+    var doNotShowAgain by remember { mutableStateOf(false) }
+
+    Dialogs.BaseAlertDialog(
+      onDismissRequest = onDismissRequest,
+      title = { Text(text = stringResource(R.string.MediaSendDialogs__save_to_phone)) },
+      text = {
+        Column(verticalArrangement = spacedBy(16.dp)) {
+          Text(text = stringResource(R.string.MediaSendDialogs__this_media_will_be_saved))
+
+          Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+              .fillMaxWidth()
+              .toggleable(
+                value = doNotShowAgain,
+                role = Role.Checkbox,
+                onValueChange = { doNotShowAgain = it }
+              )
+          ) {
+            Checkbox(
+              checked = doNotShowAgain,
+              onCheckedChange = null
+            )
+
+            Text(
+              text = stringResource(R.string.MediaSendDialogs__dont_show_again),
+              modifier = Modifier.padding(start = 16.dp)
+            )
+          }
+        }
+      },
+      confirmButton = {
+        TextButton(onClick = { onSave(doNotShowAgain) }) {
+          Text(text = stringResource(R.string.MediaSendDialogs__save))
+        }
+      },
+      dismissButton = {
+        TextButton(onClick = onDismissRequest) {
+          Text(text = stringResource(android.R.string.cancel))
+        }
+      },
+      modifier = Modifier
+    )
+  }
+
+  @Composable
+  fun SavingToStorageProgressDialog() {
+    Dialogs.IndeterminateProgressDialog(message = stringResource(R.string.MediaSendDialogs__saving_media))
+  }
 }
 
 @Preview
@@ -38,5 +110,24 @@ private fun DiscardEditsConfirmationDialogPreview() {
       onDiscard = {},
       onDismiss = {}
     )
+  }
+}
+
+@Preview
+@Composable
+private fun SaveToStorageConfirmationDialogPreview() {
+  Previews.Preview {
+    MediaEditScreenDialogs.SaveToStorageConfirmationDialog(
+      onSave = {},
+      onDismissRequest = {}
+    )
+  }
+}
+
+@Preview
+@Composable
+private fun SavingToStorageProgressDialogPreview() {
+  Previews.Preview {
+    MediaEditScreenDialogs.SavingToStorageProgressDialog()
   }
 }

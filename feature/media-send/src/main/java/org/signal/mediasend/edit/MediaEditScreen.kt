@@ -357,6 +357,10 @@ fun MediaEditScreen(
         .padding(top = 10.dp)
         .systemBarsPadding()
     )
+
+    if (state.isSavingMedia) {
+      MediaEditScreenDialogs.SavingToStorageProgressDialog()
+    }
   }
 }
 

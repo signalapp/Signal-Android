@@ -11,6 +11,7 @@ import android.os.Parcelable
 import kotlinx.coroutines.flow.Flow
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
+import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.edit.image.BrushWidths
 import org.signal.mediasend.preupload.PreUploadResult
 import java.io.InputStream
@@ -57,6 +58,18 @@ interface MediaSendRepository {
    * Deletes temporary blob files for the given media.
    */
   suspend fun deleteBlobs(media: List<Media>)
+
+  /**
+   * Whether the user has opted out of the warning shown before media is written to shared device storage.
+   */
+  val hasDismissedSaveToStorageWarning: Boolean
+
+  fun markSaveToStorageWarningDismissed()
+
+  /**
+   * Renders [editorModel], edits included, and writes the result to the device's shared media storage.
+   */
+  suspend fun saveImageToStorage(editorModel: EditorModel): SaveToStorageResult
 
   /**
    * Sends the media with the given parameters.
@@ -141,6 +154,15 @@ data class DocumentInfo(
   val fileSize: Long,
   val extension: String
 )
+
+/**
+ * Outcome of writing media out to the device's shared storage.
+ */
+enum class SaveToStorageResult {
+  SUCCESS,
+  FAILURE,
+  NO_WRITE_ACCESS
+}
 
 /**
  * Errors that can occur during media filtering.

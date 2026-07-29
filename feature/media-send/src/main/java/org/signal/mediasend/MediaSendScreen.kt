@@ -17,6 +17,7 @@ import androidx.navigationevent.NavigationEventDispatcherOwner
 import androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.mediasend.edit.MediaEditScreenDialogs
 
 @Composable
 fun MediaSendScreen(
@@ -57,6 +58,20 @@ fun MediaSendScreen(
             onDismissRequest = onDismissRequest
           )
         }
+
+        viewModel.saveToStorageDialog.Content { _, onDismissRequest, onConfirm, _, _ ->
+          MediaEditScreenDialogs.SaveToStorageConfirmationDialog(
+            onSave = { doNotShowAgain ->
+              if (doNotShowAgain) {
+                viewModel.markSaveToStorageWarningDismissed()
+              }
+              onConfirm()
+            },
+            onDismissRequest = onDismissRequest
+          )
+        }
+
+        viewModel.writeStoragePermission.Content()
 
         MediaSendNavDisplay(
           stateFlow = viewModel.state,

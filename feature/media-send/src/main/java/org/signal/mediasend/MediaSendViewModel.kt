@@ -5,6 +5,7 @@
 
 package org.signal.mediasend
 
+import android.Manifest
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
@@ -43,6 +44,8 @@ import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 import org.signal.core.ui.compose.DialogController
 import org.signal.core.ui.compose.DialogResult
+import org.signal.core.ui.compose.PermissionController
+import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.ContentTypeUtil
 import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
@@ -119,6 +122,12 @@ class MediaSendViewModel(
 
   internal val usernameScannedDialog = DialogController<String>()
   internal val linkedDeviceScannedDialog = DialogController<Unit>()
+  internal val saveToStorageDialog = DialogController<Unit>()
+
+  internal val writeStoragePermission = PermissionController(
+    permission = Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    permanentDenialMessage = R.string.MediaSendViewModel__signal_needs_the_storage_permission
+  )
 
   private val qrCheckRequest: Channel<String> = Channel(Channel.RENDEZVOUS)
 
@@ -298,6 +307,10 @@ class MediaSendViewModel(
 
       MediaEditScreenEvent.ToggleMediaQuality -> {
         setSentMediaQuality(state.value.sentMediaQuality.next())
+      }
+
+      MediaEditScreenEvent.SaveMedia -> {
+        saveFocusedMediaToStorage()
       }
 
       is MediaEditScreenEvent.RemoveMedia -> {
@@ -847,6 +860,54 @@ class MediaSendViewModel(
 
   fun setEditorState(uri: Uri, state: EditorState) {
     updateState { copy(editorStateMap = editorStateMap + (uri to state)) }
+  }
+
+  //endregion
+
+  //region Save To Storage
+
+  /**
+   * Writes the focused image, edits included, out to the device's shared storage.
+   */
+  private fun saveFocusedMediaToStorage() {
+    val focusedUri = state.value.focusedMedia?.uri ?: return
+    val editorState = state.value.editorStateMap[focusedUri] as? EditorState.Image ?: return
+
+    viewModelScope.launch {
+      if (!repository.hasDismissedSaveToStorageWarning && saveToStorageDialog.show(Unit) != DialogResult.POSITIVE) {
+        return@launch
+      }
+
+      if (!StorageUtil.canWriteToMediaStore() && !writeStoragePermission.request()) {
+        internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__unable_to_save_without_storage_permission))
+        return@launch
+      }
+
+      if (state.value.isSavingMedia) {
+        return@launch
+      }
+
+      updateState { copy(isSavingMedia = true) }
+      val result = try {
+        repository.saveImageToStorage(editorState.model)
+      } finally {
+        updateState { copy(isSavingMedia = false) }
+      }
+
+      internalSnackbarEvents.trySend(
+        SnackbarEvent(
+          message = when (result) {
+            SaveToStorageResult.SUCCESS -> R.string.MediaSendViewModel__media_saved
+            SaveToStorageResult.FAILURE -> R.string.MediaSendViewModel__error_saving_media
+            SaveToStorageResult.NO_WRITE_ACCESS -> R.string.MediaSendViewModel__unable_to_save_without_storage_permission
+          }
+        )
+      )
+    }
+  }
+
+  fun markSaveToStorageWarningDismissed() {
+    repository.markSaveToStorageWarningDismissed()
   }
 
   //endregion

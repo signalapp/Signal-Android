@@ -103,7 +103,7 @@ private fun ImageEditorNoneStateToolbar(
 
     ImageEditorButton(
       imageVector = SignalIcons.Save.imageVector,
-      onClick = { /*onEvent(MediaEditScreenEvent)*/ }
+      onClick = { onEvent(MediaEditScreenEvent.SaveMedia) }
     )
 
     ImageEditorButton(

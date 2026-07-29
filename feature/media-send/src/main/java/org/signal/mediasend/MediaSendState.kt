@@ -78,6 +78,10 @@ data class MediaSendState(
    */
   val isSent: Boolean = false,
   /**
+   * Whether the focused media is currently being written out to the device's shared storage.
+   */
+  val isSavingMedia: @WriteWith<TransientInFlightFlagParceler> Boolean = false,
+  /**
    * Whether this is a story send flow.
    */
   val isStory: Boolean = false,
@@ -162,6 +166,14 @@ data class MediaSendState(
   private object TransientMediaListParceler : Parceler<List<Media>> {
     override fun create(parcel: Parcel): List<Media> = emptyList()
     override fun List<Media>.write(parcel: Parcel, flags: Int) = Unit
+  }
+
+  /**
+   * No-op parceler for flags tracking work that cannot outlive the process that started it.
+   */
+  private object TransientInFlightFlagParceler : Parceler<Boolean> {
+    override fun create(parcel: Parcel): Boolean = false
+    override fun Boolean.write(parcel: Parcel, flags: Int) = Unit
   }
 
   private object TransientMediaConstraintsParceler : Parceler<MediaConstraints> {

@@ -24,6 +24,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalLong
 import org.signal.core.util.optionalString
 import org.signal.core.util.orNull
+import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.DocumentInfo
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaConstraints
@@ -32,6 +33,7 @@ import org.signal.mediasend.MediaFilterResult
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendRecipient
 import org.signal.mediasend.MediaSendRepository
+import org.signal.mediasend.SaveToStorageResult
 import org.signal.mediasend.SendRequest
 import org.signal.mediasend.SendResult
 import org.signal.mediasend.SentMediaQuality
@@ -58,6 +60,8 @@ import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.SaveAttachmentUtil
+import org.thoughtcrime.securesms.util.SaveAttachmentUtil.SaveAttachmentsResult
 import org.thoughtcrime.securesms.video.TranscodingConfig
 import java.io.IOException
 import java.io.InputStream
@@ -162,6 +166,38 @@ object MediaSendV3Repository : MediaSendRepository {
       .map(Media::uri)
       .filter { AppDependencies.blobs.isAuthority(it) }
       .forEach { AppDependencies.blobs.delete(appContext, it) }
+  }
+
+  override val hasDismissedSaveToStorageWarning: Boolean
+    get() = SignalStore.uiHints.hasDismissedSaveStorageWarning()
+
+  override fun markSaveToStorageWarningDismissed() {
+    SignalStore.uiHints.markDismissedSaveStorageWarning()
+  }
+
+  override suspend fun saveImageToStorage(editorModel: EditorModel): SaveToStorageResult = withContext(Dispatchers.IO) {
+    val blobUri: Uri = try {
+      ImageEditorFragment.renderToSingleUseBlob(appContext, editorModel)
+    } catch (exception: Exception) {
+      Log.w(TAG, "Failed to render the edited image.", exception)
+      return@withContext SaveToStorageResult.FAILURE
+    }
+
+    try {
+      val attachment = SaveAttachmentUtil.SaveAttachment(blobUri, MediaUtil.IMAGE_JPEG, System.currentTimeMillis(), null)
+
+      when (SaveAttachmentUtil.saveAttachments(setOf(attachment))) {
+        is SaveAttachmentsResult.Success -> SaveToStorageResult.SUCCESS
+        SaveAttachmentsResult.ErrorNoWriteAccess, SaveAttachmentsResult.WriteStoragePermissionDenied -> SaveToStorageResult.NO_WRITE_ACCESS
+        else -> SaveToStorageResult.FAILURE
+      }
+    } catch (exception: Exception) {
+      Log.w(TAG, "Failed to write the edited image to storage.", exception)
+      SaveToStorageResult.FAILURE
+    } finally {
+      // The in-memory blob is only evicted on read, so a save that never got that far would hold the image until death.
+      AppDependencies.blobs.delete(appContext, blobUri)
+    }
   }
 
   override suspend fun send(request: SendRequest): SendResult = withContext(Dispatchers.IO) {
