@@ -216,11 +216,13 @@ object SyncMessageProcessor {
 
       if (sent.storyMessage != null || sent.storyMessageRecipients.isNotEmpty()) {
         handleSynchronizeSentStoryMessage(envelope, sent)
+        SignalStore.misc.lastSyncMessageSeenTimeMs = System.currentTimeMillis()
         return
       }
 
       if (sent.editMessage != null) {
         handleSynchronizeSentEditMessage(context, envelope, sent, senderRecipient, earlyMessageCacheEntry)
+        SignalStore.misc.lastSyncMessageSeenTimeMs = System.currentTimeMillis()
         return
       }
 
