@@ -581,4 +581,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">无法加载人机验证</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">取消</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">要提交调试日志吗？</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">你可以选择上传调试日志，这些日志能帮助我们更快地解决问题。</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">提交并附上调试日志</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">提交但不附调试日志</string>
 </resources>

@@ -583,4 +583,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">A captcha betöltése sikertelen</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Mégse</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Hibanapló küldése?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">A hibanapló fájlok segítenek a hibák gyorsabb javításában. Beküldésük opcionális.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Beküldés hibanaplóval együtt</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Beküldés hibanapló nélkül</string>
 </resources>

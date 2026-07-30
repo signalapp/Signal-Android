@@ -587,4 +587,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Не вдалося завантажити перевірку CAPTCHA</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Скасувати</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Надіслати журнал налагодження?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Ваш журнал налагодження допоможе нам швидше усунути проблему. Надсилати журнал необов\'язково.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Відправити з журналом налагодження</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Відправити без журналу налагодження</string>
 </resources>

@@ -583,4 +583,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Captchan lataaminen epäonnistui</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Peruuta</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Lähetetäänkö vianetsintäloki?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Voimme selvittää vian nopeammin virheenkorjauslokisi avulla. Lokien lähettäminen on valinnaista.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Lähetä virheenkorjauslokilla</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Lähetä ilman virheenkorjauslokia</string>
 </resources>

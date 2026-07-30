@@ -581,4 +581,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Gagal memuat captcha</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Batal</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Kirim log debug?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Kami dapat menangani masalah dengan lebih cepat jika Anda mengirimkan log debug (opsional).</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Kirimkan dengan log debug</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Kirim tanpa log debug</string>
 </resources>

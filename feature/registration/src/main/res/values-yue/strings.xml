@@ -581,4 +581,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">載入唔到「我不是機械人」驗證</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">取消</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">係咪要提交除錯記錄？</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">您嘅除錯記錄檔會幫到我哋更快搵出問題嘅箇中原因。有就錦上添花，但唔係事必要您提交您嘅記錄檔嘅。</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">連同除錯記錄檔提交</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">抽起除錯記錄檔提交</string>
 </resources>

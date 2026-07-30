@@ -6,6 +6,7 @@
 package org.signal.registration.sample
 
 import android.app.Application
+import android.content.Context
 import android.os.Build
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.models.ServiceId.ACI
@@ -14,6 +15,7 @@ import org.signal.core.ui.CoreUiDependencies
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
+import org.signal.registration.ContactSupportController
 import org.signal.registration.RegistrationDependencies
 import org.signal.registration.sample.debug.DebugNetworkController
 import org.signal.registration.sample.dependencies.DemoNetworkController
@@ -69,11 +71,15 @@ class RegistrationApplication : Application() {
             .setPositiveButton(android.R.string.ok, null)
             .show()
         },
-        contactSupportCallback = { context, subject ->
-          MaterialAlertDialogBuilder(context)
-            .setMessage("Contact support not supported in the demo. Subject: $subject")
-            .setPositiveButton(android.R.string.ok, null)
-            .show()
+        contactSupportController = object : ContactSupportController {
+          override suspend fun uploadDebugLog(): String? = null
+
+          override fun sendSupportEmail(context: Context, subject: String, filter: String, debugLogUrl: String?) {
+            MaterialAlertDialogBuilder(context)
+              .setMessage("Contact support not supported in the demo. Subject: $subject, Filter: $filter, Debug log: $debugLogUrl")
+              .setPositiveButton(android.R.string.ok, null)
+              .show()
+          }
         },
         isLinkAndSyncAvailable = true
       )

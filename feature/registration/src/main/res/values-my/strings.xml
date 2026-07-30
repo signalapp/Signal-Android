@@ -581,4 +581,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">စက်ရုပ်မဟုတ်ကြောင်း အတည်ပြုချက်ကို ဖွင့်၍မရပါ</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">မလုပ်တော့ပါ</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">ပြစ်ချက်မှတ်တမ်း ပေးပို့မည်လား။</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">ပြစ်ချက်မှတ်တမ်းများသည် သင့်ပြဿနာကို ပိုမိုမြန်ဆန်စွာ ဖြေရှင်းရန် အထောက်အကူပေးမည်။ သင်၏မှတ်တမ်းများကို ဆန္ဒရှိမှတင်သွင်းနိုင်သည်။</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">ပြစ်ချက်မှတ်တမ်းဖြင့် တင်ပြရန်</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">ပြစ်ချက်မှတ်တမ်းမပါဘဲ တင်ပြရန်</string>
 </resources>

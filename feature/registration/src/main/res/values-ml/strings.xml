@@ -583,4 +583,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">ക്യാപ്‌ച ലോഡ് ചെയ്യാനായില്ല</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">റദ്ദാക്കുക</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">ഡീബഗ് ലോഗ് സമർപ്പിക്കണോ?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">നിങ്ങളുടെ ഡീബഗ് ലോഗുകൾ പ്രശ്നം വേഗത്തിൽ പരിഹരിക്കാൻ ഞങ്ങളെ സഹായിക്കും. നിങ്ങളുടെ ലോഗുകൾ സമർപ്പിക്കുന്നത് ഓപ്ഷണലാണ്.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">ഡീബഗ് ലോഗ് ഉപയോഗിച്ച് സമർപ്പിക്കുക</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">ഡീബഗ് ലോഗ് ഇല്ലാതെ സമർപ്പിക്കുക</string>
 </resources>

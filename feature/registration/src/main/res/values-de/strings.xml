@@ -583,4 +583,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Captcha konnte nicht geladen werden</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Abbrechen</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Diagnoseprotokoll übermitteln?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Deine Diagnoseprotokolle helfen uns, dein Problem schneller zu lösen. Das Übermitteln deiner Protokolle ist optional.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Mit Diagnoseprotokoll übermitteln</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Ohne Diagnoseprotokoll übermitteln</string>
 </resources>

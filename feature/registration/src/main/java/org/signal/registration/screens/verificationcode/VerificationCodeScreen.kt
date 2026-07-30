@@ -59,6 +59,7 @@ import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.attachDebugLogHelper
+import org.signal.registration.screens.shared.ContactSupportDialog
 import org.signal.registration.test.TestTags
 import kotlin.time.Duration.Companion.seconds
 
@@ -121,7 +122,16 @@ fun VerificationCodeScreen(
 
   if (state.showContactSupportSheet) {
     ContactSupportBottomSheet(
+      onContactSupport = { onEvent(VerificationCodeScreenEvents.ContactSupportDialog) },
       onDismiss = { onEvent(VerificationCodeScreenEvents.DismissContactSupport) }
+    )
+  }
+
+  if (state.showContactSupportDialog) {
+    ContactSupportDialog(
+      subject = R.string.VerificationCodeScreen__contact_support_email_subject,
+      filter = R.string.VerificationCodeScreen__contact_support_email_filter,
+      onDismiss = { onEvent(VerificationCodeScreenEvents.DismissContactSupportDialog) }
     )
   }
 

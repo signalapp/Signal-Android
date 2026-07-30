@@ -45,6 +45,10 @@ sealed class VerificationCodeScreenEvents {
 
   data object DismissContactSupport : VerificationCodeScreenEvents()
 
+  data object ContactSupportDialog : VerificationCodeScreenEvents()
+
+  data object DismissContactSupportDialog : VerificationCodeScreenEvents()
+
   /** The network error snackbar was shown and dismissed. */
   data object NetworkErrorSnackbarDismissed : VerificationCodeScreenEvents()
 

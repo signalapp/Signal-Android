@@ -583,4 +583,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Captcha laadimine ebaõnnestus</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Loobu</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Kas saata silumislogi?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Sinu silumislogid aitavad meil su probleemi kiiremini lahendada. Logide saatmine on valikuline.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Postita koos silumislogiga</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Postita ilma silumislogita</string>
 </resources>

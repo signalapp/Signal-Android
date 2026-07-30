@@ -82,12 +82,13 @@ class PinEntryForSvrRestoreViewModel(
       }
       is PinEntryScreenEvents.ContactSupport -> {
         Log.i(TAG, "[ContactSupport] User opted to contact support after no data was found.")
-        stateEmitter(state.copy(showNoDataToRestoreDialog = false))
+        stateEmitter(state.copy(showNoDataToRestoreDialog = false, showContactSupportDialog = true))
       }
       is PinEntryScreenEvents.ToggleKeyboard,
       is PinEntryScreenEvents.NetworkErrorDialogDismissed,
       is PinEntryScreenEvents.RateLimitedDialogDismissed,
-      is PinEntryScreenEvents.UnknownErrorDialogDismissed -> {
+      is PinEntryScreenEvents.UnknownErrorDialogDismissed,
+      is PinEntryScreenEvents.DismissContactSupport -> {
         stateEmitter(PinEntryScreenEventHandler.applyEvent(state, event))
       }
       is PinEntryScreenEvents.ParentStateChanged -> Unit

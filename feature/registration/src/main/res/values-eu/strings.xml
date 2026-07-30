@@ -583,4 +583,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Ezin izan da kargatu captcha</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Utzi</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Arazketa-erregistroa bidali nahi duzu?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Arazketa-erregistroarekin, zure arazoa bizkorrago konpondu ahalko dugu. Erregistroa bidaltzea hautazkoa da.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Bidali arazketa-erregistroarekin</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Bidali arazketa-erregistrorik gabe</string>
 </resources>

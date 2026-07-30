@@ -583,4 +583,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Αποτυχία φόρτωσης captcha</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Ακύρωση</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Αποστολή αρχείου καταγραφής αποσφαλμάτωσης;</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Τα αρχεία καταγραφής θα μας βοηθήσουν στην γρηγορότερη επίλυση του προβλήματος. Η υποβολή των αρχείων είναι προαιρετική.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Υποβολή με αρχείο καταγραφής</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Υποβολή χωρίς αρχείο καταγραφής</string>
 </resources>

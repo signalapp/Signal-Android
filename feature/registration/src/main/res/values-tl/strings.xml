@@ -583,4 +583,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Nagkaroon ng error sa pag-load ng captcha</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">I-cancel</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Gusto mo bang mag-submit ng debug log?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Makatutulong ang debug logs para mas mabilis naming maayos ang isyung ibinahagi mo. Optional ang pag-submit ng iyong logs.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">I-submit kasama ang debug log</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">I-submit na walang debug log</string>
 </resources>

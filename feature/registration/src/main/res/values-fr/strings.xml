@@ -583,4 +583,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Impossible de charger le captcha</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Annuler</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Envoyer le journal de débogage ?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Les journaux de débogage nous permettent d\'accélérer la résolution des problèmes. Leur envoi est facultatif.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Envoyer avec journal de débogage</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Envoyer sans journal de débogage</string>
 </resources>

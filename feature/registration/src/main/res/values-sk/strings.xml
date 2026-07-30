@@ -587,4 +587,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Nepodarilo sa načítať captcha</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Zrušiť</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Odoslať denník ladenia?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Vaše denníky ladenia nám pomôžu vyriešiť váš problém rýchlejšie. Ich odoslanie nie je povinné.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Odoslať s denníkom ladenia</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Odoslať bez denníka ladenia</string>
 </resources>

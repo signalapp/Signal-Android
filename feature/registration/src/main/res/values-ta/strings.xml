@@ -583,4 +583,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">கேப்ட்சாவை ஏற்ற முடியவில்லை</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">ரத்துசெய்</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">பிழைத்திருத்தப் பதிவு சமர்ப்பிப்பதா?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">உங்கள் பிழைத்திருத்தப் பதிவுகள் உங்கள் சிக்கலை விரைவாகச் சரிசெய்ய உதவும். உங்கள் பதிவுகளைச் சமர்ப்பிப்பது விருப்பத்தேர்வுக்குரியது.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">பிழைத்திருத்தப் பதிவுடன் சமர்ப்பி</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">பிழைத்திருத்தப் பதிவு இல்லாமல் சமர்ப்பி</string>
 </resources>

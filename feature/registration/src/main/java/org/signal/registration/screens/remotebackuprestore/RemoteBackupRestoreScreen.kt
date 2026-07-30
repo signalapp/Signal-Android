@@ -43,11 +43,11 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.registration.R
-import org.signal.registration.RegistrationDependencies
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.attachDebugLogHelper
+import org.signal.registration.screens.shared.ContactSupportDialog
 import org.signal.registration.screens.shared.RestoreProgressDialog
 import org.signal.registration.test.TestTags
 import java.util.Date
@@ -300,8 +300,13 @@ private fun RestoreStateDialogs(
   state: RemoteBackupRestoreState,
   onEvent: (RemoteBackupRestoreScreenEvents) -> Unit
 ) {
-  val context = LocalContext.current
-  val contactSupportEmailSubject = stringResource(R.string.RemoteRestoreScreen__contact_support_email_subject)
+  if (state.showContactSupportDialog) {
+    ContactSupportDialog(
+      subject = R.string.RemoteRestoreScreen__contact_support_email_subject,
+      filter = R.string.RemoteRestoreScreen__contact_support_email_filter,
+      onDismiss = { onEvent(RemoteBackupRestoreScreenEvents.DismissContactSupport) }
+    )
+  }
 
   when (state.restoreState) {
     RemoteBackupRestoreState.RestoreState.None -> Unit
@@ -338,7 +343,7 @@ private fun RestoreStateDialogs(
         confirm = stringResource(R.string.RemoteRestoreScreen__contact_support),
         dismiss = stringResource(android.R.string.ok),
         onConfirm = {
-          RegistrationDependencies.get().contactSupportCallback?.invoke(context, contactSupportEmailSubject)
+          onEvent(RemoteBackupRestoreScreenEvents.ContactSupport)
           onEvent(RemoteBackupRestoreScreenEvents.DismissError)
         },
         onDismiss = { onEvent(RemoteBackupRestoreScreenEvents.DismissError) }

@@ -585,4 +585,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Nu s-a putut încărca captcha</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Anulează</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Trimiți jurnalul de depanare?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Jurnalele tale de depanare ne vor ajuta să rezolvăm mai rapid problema. Trimiterea lor este opțională.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Trimite împreună cu jurnalul de depanare</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Trimite fără jurnalul de depanare</string>
 </resources>
