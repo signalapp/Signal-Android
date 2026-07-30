@@ -124,7 +124,7 @@
     <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
     <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">Kontakt brukerstøtte</string>
     <!-- Email subject used when contacting support from the verification code screen -->
-    <string name="VerificationCodeScreen__contact_support_email_subject">Signal Registration - Verification Code for Android</string>
+    <string name="VerificationCodeScreen__contact_support_email_subject">Signal Registrering - Verifikasjonskode for Android</string>
     <!-- Text placed in the body of the support email composed from the verification code screen. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_filter" translatable="false">Signal Registration - Verification Code for Android</string> -->
     <!-- URL opened for troubleshooting steps from the verification code screen -->
@@ -311,7 +311,7 @@
     <!-- Button to contact support -->
     <string name="RemoteRestoreScreen__contact_support">Kontakt brukerstøtten</string>
     <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. -->
-    <string name="RemoteRestoreScreen__contact_support_email_subject">Signal Android Backup Restore Permanent Failure</string>
+    <string name="RemoteRestoreScreen__contact_support_email_subject">Sikkerhetskopi av Signal for Android kunne ikke gjenopprettes pga. en feil</string>
     <!-- Text placed in the body of the support email composed when the user contacts support about an unrecoverable backup. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
     <!-- Shown while downloading the backup from the server -->
@@ -382,7 +382,7 @@
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">PIN-kodene stemmer ikke overens. Prøv igjen.</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
-    <string name="PinCreationScreen__choose_a_stronger_pin">Choose a stronger PIN</string>
+    <string name="PinCreationScreen__choose_a_stronger_pin">Velg en sterkere PIN-kode</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
     <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
@@ -436,7 +436,7 @@
     <!-- Labels the button in the no-data-to-restore dialog that lets the user contact support. -->
     <string name="PinEntryScreen__contact_support">Kontakt brukerstøtten</string>
     <!-- Subject line of the support email composed when the user contacts support about PIN entry. -->
-    <string name="PinEntryScreen__contact_support_email_subject">Signal Registration - Need Help with PIN for Android</string>
+    <string name="PinEntryScreen__contact_support_email_subject">Signal Registrering - Hjelp ønskes til PIN for Android</string>
     <!-- Text placed in the body of the support email composed when the user contacts support about PIN entry. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_filter" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
 
@@ -602,11 +602,11 @@
 
     <!-- ContactSupportDialog -->
     <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
-    <string name="ContactSupportDialog__submit_debug_log">Submit debug log?</string>
+    <string name="ContactSupportDialog__submit_debug_log">Vil du sende inn en feilsøkingslogg?</string>
     <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
-    <string name="ContactSupportDialog__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="ContactSupportDialog__your_debug_logs">Feilsøkingsloggene hjelper oss med å feilsøke problemet ditt raskere. Det er valgfritt å sende inn disse loggene.</string>
     <!-- Button that contacts support with a debug log attached -->
-    <string name="ContactSupportDialog__submit_with_debug_log">Submit with debug log</string>
+    <string name="ContactSupportDialog__submit_with_debug_log">Send inn med feilsøkingslogg</string>
     <!-- Button that contacts support without attaching a debug log -->
-    <string name="ContactSupportDialog__submit_without_debug_log">Submit without debug log</string>
+    <string name="ContactSupportDialog__submit_without_debug_log">Send inn uten feilsøkingslogg</string>
 </resources>
