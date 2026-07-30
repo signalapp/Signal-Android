@@ -745,7 +745,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
       @Override
       public void startHide(@Nullable View focusedView) {
         if (onHideListener != null) {
-          onHideListener.startHide(focusedView);
+          onHideListener.startHide(action == Action.VIEW_INFO ? null : focusedView);
         }
       }
 
