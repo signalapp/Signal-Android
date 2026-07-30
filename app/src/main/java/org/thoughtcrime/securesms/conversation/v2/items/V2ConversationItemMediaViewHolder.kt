@@ -80,6 +80,16 @@ class V2ConversationItemMediaViewHolder<Model : MappingModel<Model>>(
     }
 
     binding.quoteStub.visibility = View.VISIBLE
+
+    quoteView.setMessageType(
+      when {
+        conversationMessage.messageRecord.isStoryReaction() && binding.textBridge.isIncoming -> QuoteView.MessageType.STORY_REPLY_INCOMING
+        conversationMessage.messageRecord.isStoryReaction() -> QuoteView.MessageType.STORY_REPLY_OUTGOING
+        binding.textBridge.isIncoming -> QuoteView.MessageType.INCOMING
+        else -> QuoteView.MessageType.OUTGOING
+      }
+    )
+
     quoteView.setQuote(
       conversationContext.requestManager,
       quote.id,
@@ -91,15 +101,6 @@ class V2ConversationItemMediaViewHolder<Model : MappingModel<Model>>(
       quote.quoteType,
       false,
       conversationMessage.quoteMemberLabel
-    )
-
-    quoteView.setMessageType(
-      when {
-        conversationMessage.messageRecord.isStoryReaction() && binding.textBridge.isIncoming -> QuoteView.MessageType.STORY_REPLY_INCOMING
-        conversationMessage.messageRecord.isStoryReaction() -> QuoteView.MessageType.STORY_REPLY_OUTGOING
-        binding.textBridge.isIncoming -> QuoteView.MessageType.INCOMING
-        else -> QuoteView.MessageType.OUTGOING
-      }
     )
 
     quoteView.setWallpaperEnabled(conversationContext.hasWallpaper())

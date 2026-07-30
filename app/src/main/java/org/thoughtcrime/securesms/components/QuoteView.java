@@ -322,7 +322,7 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
     if (storyReaction != null) {
       storyReactionEmoji.setImageEmoji(storyReaction);
       storyReactionEmoji.setVisibility(View.VISIBLE);
-      missingStoryReaction.setVisibility(View.INVISIBLE);
+      missingStoryReaction.setVisibility(View.GONE);
     } else {
       storyReactionEmoji.setVisibility(View.GONE);
       missingStoryReaction.setVisibility(View.GONE);
