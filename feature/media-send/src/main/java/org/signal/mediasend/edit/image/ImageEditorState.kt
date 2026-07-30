@@ -45,6 +45,10 @@ class ImageEditorState(
   var redoAvailable: Boolean by mutableStateOf(false)
     private set
 
+  /** True while the user is actively manipulating the image: drawing, moving, scaling, or rotating. */
+  var isGestureActive: Boolean by mutableStateOf(false)
+    internal set
+
   var textEditingElement: EditorElement? = null
   var isDrawing: Boolean = false
   var isBlur: Boolean = false

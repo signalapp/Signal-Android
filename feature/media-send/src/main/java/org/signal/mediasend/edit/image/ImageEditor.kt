@@ -143,37 +143,42 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
       }
 
       down.consume()
+      state.isGestureActive = true
 
       var previousPointerCount = 1
 
-      while (true) {
-        val event = awaitPointerEvent()
-        val currentPressed = event.changes.filter { it.pressed }
-        val currentCount = currentPressed.size
+      try {
+        while (true) {
+          val event = awaitPointerEvent()
+          val currentPressed = event.changes.filter { it.pressed }
+          val currentCount = currentPressed.size
 
-        if (currentCount == 0) {
+          if (currentCount == 0) {
+            event.changes.forEach { it.consume() }
+            touchHandler.onUp(state.editorModel)
+            state.onGestureCompleted?.invoke()
+            break
+          }
+
+          if (currentCount == 2 && previousPointerCount < 2) {
+            val newPointer = event.changes.firstOrNull { it.changedToDown() } ?: currentPressed.last()
+            val pointerIndex = event.changes.indexOf(newPointer).coerceIn(0, 1)
+            touchHandler.onSecondPointerDown(state.editorModel, state.viewMatrix, newPointer.position.toPointF(), pointerIndex)
+          } else if (currentCount == 1 && previousPointerCount == 2) {
+            val released = event.changes.firstOrNull { !it.pressed && it.previousPressed }
+            val releasedIndex = if (released != null) event.changes.indexOf(released).coerceIn(0, 1) else 0
+            touchHandler.onSecondPointerUp(state.editorModel, state.viewMatrix, releasedIndex)
+          } else if (touchHandler.hasActiveSession()) {
+            val pointers = currentPressed.take(2).map { it.position.toPointF() }.toTypedArray()
+            touchHandler.onMove(state.editorModel, pointers)
+            state.invalidate()
+          }
+
           event.changes.forEach { it.consume() }
-          touchHandler.onUp(state.editorModel)
-          state.onGestureCompleted?.invoke()
-          break
+          previousPointerCount = currentCount
         }
-
-        if (currentCount == 2 && previousPointerCount < 2) {
-          val newPointer = event.changes.firstOrNull { it.changedToDown() } ?: currentPressed.last()
-          val pointerIndex = event.changes.indexOf(newPointer).coerceIn(0, 1)
-          touchHandler.onSecondPointerDown(state.editorModel, state.viewMatrix, newPointer.position.toPointF(), pointerIndex)
-        } else if (currentCount == 1 && previousPointerCount == 2) {
-          val released = event.changes.firstOrNull { !it.pressed && it.previousPressed }
-          val releasedIndex = if (released != null) event.changes.indexOf(released).coerceIn(0, 1) else 0
-          touchHandler.onSecondPointerUp(state.editorModel, state.viewMatrix, releasedIndex)
-        } else if (touchHandler.hasActiveSession()) {
-          val pointers = currentPressed.take(2).map { it.position.toPointF() }.toTypedArray()
-          touchHandler.onMove(state.editorModel, pointers)
-          state.invalidate()
-        }
-
-        event.changes.forEach { it.consume() }
-        previousPointerCount = currentCount
+      } finally {
+        state.isGestureActive = false
       }
     }
   }

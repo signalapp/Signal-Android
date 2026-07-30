@@ -76,6 +76,7 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   QualityHigh(icon(R.drawable.symbol_quality_high_24)),
   QualityHighSlash(icon(R.drawable.symbol_quality_high_slash_24)),
   Recent(icon(R.drawable.symbol_recent_24)),
+  Redo(icon(R.drawable.symbol_redo_24)),
   Save(icon(R.drawable.symbol_save_android_24)),
   Search(icon(R.drawable.symbol_search_24)),
   Settings(icon(R.drawable.symbol_settings_android_24)),
@@ -86,6 +87,7 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   Transfer(icon(R.drawable.symbol_transfer_24)),
   TransferDisplay(icon(R.drawable.symbol_transfer_display_48)),
   Trash(icon(R.drawable.symbol_trash_24)),
+  Undo(icon(R.drawable.symbol_undo_24)),
   X(icon(R.drawable.symbol_x_24)),
   XCircleFill(icon(R.drawable.symbol_x_circle_fill_24))
 }

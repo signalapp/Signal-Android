@@ -32,7 +32,7 @@ import org.signal.mediasend.edit.image.ImageEditorState
  */
 @Stable
 class ImageController @RememberInComposition constructor(
-  val editorModel: EditorModel,
+  private val editorModel: EditorModel,
   private val brushWidths: BrushWidthsState = BrushWidthsState()
 ) {
 
@@ -190,6 +190,20 @@ class ImageController @RememberInComposition constructor(
     }
   }
 
+  fun undo() {
+    editorModel.undo()
+  }
+
+  fun redo() {
+    editorModel.redo()
+  }
+
+  fun clearAllEdits() {
+    while (imageEditorState.undoAvailable) {
+      editorModel.undo()
+    }
+  }
+
   fun setDrawColor(color: Int) {
     imageEditorState.drawColor = brushTool?.applyAlpha(color) ?: color
   }
@@ -321,6 +335,7 @@ class ImageController @RememberInComposition constructor(
   }
 
   fun onDialGestureStart() {
+    imageEditorState.isGestureActive = true
     val mainImage = editorModel.mainImage ?: return
     initialDialScale = mainImage.localScaleX
     minDialScaleDown = 1f
@@ -334,6 +349,7 @@ class ImageController @RememberInComposition constructor(
   }
 
   fun onDialGestureEnd() {
+    imageEditorState.isGestureActive = false
     val mainImage = editorModel.mainImage ?: return
     mainImage.commitEditorMatrix()
     editorModel.postEdit(true)

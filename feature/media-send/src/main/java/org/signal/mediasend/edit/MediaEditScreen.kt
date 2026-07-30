@@ -58,7 +58,9 @@ import org.signal.mediasend.edit.image.BrushWidthPreview
 import org.signal.mediasend.edit.image.BrushWidthsState
 import org.signal.mediasend.edit.image.DrawModeColorBar
 import org.signal.mediasend.edit.image.ImageEditor
+import org.signal.mediasend.edit.image.ImageEditorClearAllButton
 import org.signal.mediasend.edit.image.ImageEditorToolbar
+import org.signal.mediasend.edit.image.ImageEditorUndoRedoButtons
 import org.signal.mediasend.edit.image.RotationDial
 import org.signal.mediasend.edit.video.VideoEditorFragment
 import org.signal.mediasend.edit.video.VideoEditorToolbar
@@ -350,6 +352,22 @@ fun MediaEditScreen(
       modifier = Modifier
         .align(Alignment.TopCenter)
         .padding(top = 10.dp)
+        .systemBarsPadding()
+    )
+
+    ImageEditorUndoRedoButtons(
+      imageEditorController = imageController,
+      modifier = Modifier
+        .align(Alignment.TopStart)
+        .padding(top = 12.dp, start = 16.dp)
+        .systemBarsPadding()
+    )
+
+    ImageEditorClearAllButton(
+      imageEditorController = imageController,
+      modifier = Modifier
+        .align(Alignment.TopEnd)
+        .padding(top = 12.dp, end = 16.dp)
         .systemBarsPadding()
     )
 

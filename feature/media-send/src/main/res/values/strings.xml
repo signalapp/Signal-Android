@@ -51,7 +51,16 @@
   <!-- Content description for button to enable brush mode -->
   <string name="DrawModeColorBar__brush">Brush</string>
 
+  <!-- Label for the button that undoes every edit made to the image, returning it to its original state -->
+  <string name="ImageEditorClearAllButton__clear_all">Clear all</string>
+
+  <!-- Content description for the button that undoes the last edit made to the image -->
+  <string name="ImageEditorUndoRedoButtons__undo_edit">Undo edit</string>
+  <!-- Content description for the button that redoes the last undone edit made to the image -->
+  <string name="ImageEditorUndoRedoButtons__redo_edit">Redo edit</string>
+
   <!-- Video editor play button content description -->
+
   <string name="VideoEditorHud_play_video_description">Play video</string>
 
   <!-- CameraFragment -->
