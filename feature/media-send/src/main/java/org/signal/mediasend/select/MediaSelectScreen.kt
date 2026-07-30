@@ -38,6 +38,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -68,6 +69,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.ensureWidthIsAtLeastHeight
 import org.signal.core.ui.compose.list.ReorderableItem
 import org.signal.core.ui.compose.list.rememberReorderBuffer
@@ -96,7 +98,14 @@ internal fun MediaSelectScreen(
       is MediaSelectScreenState.Files -> state.selectedMediaFolder.title
     },
     navigationIcon = ImageVector.vectorResource(org.signal.core.ui.R.drawable.symbol_arrow_start_24),
-    onNavigationClick = { backDispatcher?.onBackPressed() }
+    onNavigationClick = { backDispatcher?.onBackPressed() },
+    actions = {
+      IconButton(onClick = {
+        onEvent(MediaSelectScreenEvent.NavigateToCamera)
+      }) {
+        Icon(imageVector = SignalIcons.Camera.imageVector, contentDescription = stringResource(R.string.MediaSelectScreen__go_to_camera))
+      }
+    }
   ) { paddingValues ->
     Column(
       modifier = Modifier

@@ -14,4 +14,5 @@ sealed interface MediaSelectScreenEvent {
   data class SetFocusedMedia(val media: Media) : MediaSelectScreenEvent
   data class ReorderSelectedMedia(val fromIndex: Int, val toIndex: Int) : MediaSelectScreenEvent
   data object NavigateToEdit : MediaSelectScreenEvent
+  data object NavigateToCamera : MediaSelectScreenEvent
 }

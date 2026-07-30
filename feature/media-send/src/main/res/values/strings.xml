@@ -32,6 +32,8 @@
   <string name="MediaSelectScreen__gallery">Gallery</string>
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
   <string name="MediaSelectScreen__next">Next</string>
+  <!-- Accessibility description for the button that leaves media selection and opens the camera. -->
+  <string name="MediaSelectScreen__go_to_camera">Go to camera</string>
 
   <!-- Label for the button that switches the capture screen to the camera. -->
   <string name="MediaCaptureScreen__camera">Camera</string>

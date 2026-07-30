@@ -74,7 +74,8 @@ internal fun ThumbnailRow(
   pagerState: PagerState,
   onFocusedMediaChange: (Media) -> Unit,
   onThumbnailClick: (Int) -> Unit = {},
-  onReorder: (fromIndex: Int, toIndex: Int) -> Unit = { _, _ -> }
+  onReorder: (fromIndex: Int, toIndex: Int) -> Unit = { _, _ -> },
+  enabled: Boolean = true
 ) {
   val density = LocalDensity.current
   val scope = rememberCoroutineScope()
@@ -159,7 +160,7 @@ internal fun ThumbnailRow(
       .draggable(
         state = draggableState,
         orientation = Orientation.Horizontal,
-        enabled = !isReordering,
+        enabled = enabled && !isReordering,
         onDragStopped = { velocity ->
           scope.launch {
             val targetPage = when {
@@ -187,7 +188,7 @@ internal fun ThumbnailRow(
       contentPadding = PaddingValues(start = startPadding, end = endPadding),
       state = listState,
       userScrollEnabled = false,
-      modifier = Modifier.reorderableList(reorderableListState)
+      modifier = if (enabled) Modifier.reorderableList(reorderableListState) else Modifier
     ) {
       itemsIndexed(reorderBuffer.items, key = { _, media -> media.uri }) { index, media ->
         val padding by remember(index) {
@@ -210,7 +211,7 @@ internal fun ThumbnailRow(
               media = media,
               modifier = Modifier
                 .padding(horizontal = padding)
-                .clickable { onThumbnailClick(index) }
+                .clickable(enabled = enabled) { onThumbnailClick(index) }
             )
           }
         }

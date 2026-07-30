@@ -242,6 +242,7 @@ class MediaSendViewModel(
       is MediaSelectScreenEvent.SetFocusedMedia -> setFocusedMedia(mediaSelectScreenEvent.media)
       is MediaSelectScreenEvent.ReorderSelectedMedia -> reorderMedia(mediaSelectScreenEvent.fromIndex, mediaSelectScreenEvent.toIndex)
       MediaSelectScreenEvent.NavigateToEdit -> backStack.goToEdit()
+      MediaSelectScreenEvent.NavigateToCamera -> backStack.goToCamera()
     }
   }
 
@@ -251,8 +252,8 @@ class MediaSendViewModel(
       MediaCaptureScreenEvent.ShowTextStory -> backStack.goToTextStory()
       is MediaCaptureScreenEvent.Camera -> onCameraXScreenEvent(mediaCaptureScreenEvent.event)
       MediaCaptureScreenEvent.NextClicked -> backStack.goToEdit()
-      MediaCaptureScreenEvent.CycleTextStoryBackgroundColor -> Unit // TODO [media-send]
-      MediaCaptureScreenEvent.AddLinkToTextStory -> Unit // TODO [media-send]
+      MediaCaptureScreenEvent.CycleTextStoryBackgroundColor -> error("Handled directly in the fragment.")
+      MediaCaptureScreenEvent.AddLinkToTextStory -> error("Handled directly in the fragment.")
     }
   }
 

@@ -5,8 +5,13 @@
 
 package org.signal.mediasend.edit
 
+import android.net.Uri
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.LocalActivity
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.snapping.SnapPosition
 import androidx.compose.foundation.layout.Arrangement.spacedBy
@@ -51,6 +56,7 @@ import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaSendDependencies
+import org.signal.mediasend.MediaSendMetrics
 import org.signal.mediasend.MediaSendState
 import org.signal.mediasend.edit.document.DocumentPage
 import org.signal.mediasend.edit.image.BrushWidthBar
@@ -113,7 +119,8 @@ fun MediaEditScreen(
 
     var isVideoInteracting by remember(focusedUri) { mutableStateOf(false) }
     var isAdjustingBrushWidth by remember(focusedUri) { mutableStateOf(false) }
-    val isInteracting = imageController?.isUserInEdit == true || isVideoInteracting
+    val isImageEditing = imageController?.isUserInEdit == true
+    val isInteracting = isImageEditing || isVideoInteracting
 
     HorizontalPager(
       state = pagerState,
@@ -218,7 +225,6 @@ fun MediaEditScreen(
     val isTextEditing = imageController?.textEditingElement != null
 
     Column(
-      verticalArrangement = spacedBy(20.dp),
       horizontalAlignment = Alignment.CenterHorizontally,
       modifier = Modifier
         .align(Alignment.BottomCenter)
@@ -226,95 +232,71 @@ fun MediaEditScreen(
         .navigationBarsPadding()
         .then(if (isTextEditing) Modifier.imePadding() else Modifier)
     ) {
-      if (state.selectedMedia.size > 1 && !isInteracting) {
-        ThumbnailRow(
-          selectedMedia = state.selectedMedia,
-          pagerState = pagerState,
-          onFocusedMediaChange = {
-            onEvent(MediaEditScreenEvent.FocusedMediaChanged(it))
-          },
-          onThumbnailClick = { index ->
-            if (pagerState.currentPage == index) {
-              onEvent(MediaEditScreenEvent.RemoveMedia(state.selectedMedia[index]))
-            } else {
-              scope.launch {
-                pagerState.animateScrollToPage(index)
-              }
-            }
-          },
-          onReorder = { fromIndex, toIndex ->
-            onEvent(MediaEditScreenEvent.ReorderSelectedMedia(fromIndex, toIndex))
-          }
-        )
-      }
-
-      when (focusedEditorState) {
-        is EditorState.Image -> {
-          imageController?.let { controller ->
-            if (controller.mode == ImageController.Mode.CROP) {
-              RotationDial(
-                imageEditorController = controller,
-                modifier = Modifier
-                  .widthIn(max = 380.dp)
-                  .padding(horizontal = 16.dp)
-              )
-            }
-
-            if (controller.isUserDrawing) {
-              DrawModeColorBar(imageEditorController = controller)
-            }
-
-            if (isSmallWindowBreakpoint) {
-              ImageEditorToolbar(imageEditorController = controller, state = state, onEvent = onEvent)
-            }
-          }
-        }
-
-        is EditorState.VideoTrim -> {
-          val playbackPositionUs by produceState(focusedEditorState.videoTrimData.startTimeUs, focusedUri) {
-            videoEditorViewModel.events(focusedUri).collect { event ->
-              if (event is VideoEditorViewModel.Event.ActualPositionChanged) {
-                value = event.positionUs
-              }
-            }
-          }
-
-          VideoEditorToolbar(
+      Column(
+        verticalArrangement = spacedBy(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+      ) {
+        if (focusedEditorState is EditorState.VideoTrim) {
+          VideoTrimTimeline(
             videoUri = focusedUri,
-            mediaInputFactory = MediaSendDependencies.mediaInputFactory,
-            videoTrimData = focusedEditorState.videoTrimData,
-            maxSelectableDurationUs = focusedEditorState.maxDurationUs,
-            playbackPositionUs = playbackPositionUs,
-            onEvent = { event ->
-              when (event) {
-                is MediaEditScreenEvent.VideoTrimChanged -> {
-                  isVideoInteracting = !event.editingComplete
-                  onEvent(event)
-                }
-
-                is MediaEditScreenEvent.VideoSeek -> {
-                  isVideoInteracting = !event.editingComplete
-                  videoEditorViewModel.sendCommand(
-                    focusedUri,
-                    if (event.editingComplete) {
-                      VideoEditorViewModel.Command.EndPositionDrag(event.positionUs)
-                    } else {
-                      VideoEditorViewModel.Command.PositionDrag(event.positionUs)
-                    }
-                  )
-                }
-
-                else -> onEvent(event)
-              }
-            }
+            editorState = focusedEditorState,
+            videoEditorViewModel = videoEditorViewModel,
+            onInteractingChange = { isVideoInteracting = it },
+            onEvent = onEvent
           )
         }
 
-        is EditorState.Document, EditorState.VideoGif, EditorState.Gif, null -> Unit
+        if (state.selectedMedia.size > 1) {
+          MediaEditControl(visible = !isImageEditing, faded = isVideoInteracting) {
+            ThumbnailRow(
+              selectedMedia = state.selectedMedia,
+              pagerState = pagerState,
+              enabled = !isInteracting,
+              onFocusedMediaChange = {
+                onEvent(MediaEditScreenEvent.FocusedMediaChanged(it))
+              },
+              onThumbnailClick = { index ->
+                if (pagerState.currentPage == index) {
+                  onEvent(MediaEditScreenEvent.RemoveMedia(state.selectedMedia[index]))
+                } else {
+                  scope.launch {
+                    pagerState.animateScrollToPage(index)
+                  }
+                }
+              },
+              onReorder = { fromIndex, toIndex ->
+                onEvent(MediaEditScreenEvent.ReorderSelectedMedia(fromIndex, toIndex))
+              }
+            )
+          }
+        }
+
+        imageController?.let { controller ->
+          if (controller.mode == ImageController.Mode.CROP) {
+            RotationDial(
+              imageEditorController = controller,
+              modifier = Modifier
+                .widthIn(max = 380.dp)
+                .padding(horizontal = 16.dp)
+            )
+          }
+
+          if (controller.isUserDrawing) {
+            DrawModeColorBar(imageEditorController = controller)
+          }
+
+          if (isSmallWindowBreakpoint) {
+            ImageEditorToolbar(imageEditorController = controller, state = state, onEvent = onEvent)
+          }
+        }
       }
 
-      val showAddMessageRow = !(isInteracting && focusedEditorState !is EditorState.VideoTrim)
-      if (showAddMessageRow) {
+      MediaEditControl(
+        visible = !isImageEditing,
+        faded = isVideoInteracting,
+        enter = MediaSendMetrics.SlidingControlEnterTransition,
+        exit = MediaSendMetrics.SlidingControlExitTransition
+      ) {
         AddAMessageRow(
           enabled = !isInteracting && !state.isSending,
           message = state.message,
@@ -323,8 +305,8 @@ fun MediaEditScreen(
           modifier = Modifier
             .widthIn(max = 624.dp)
             .padding(horizontal = 16.dp)
-            .padding(bottom = 16.dp)
-            .alpha(if (isInteracting) 0f else 1f)
+            // Own padding rather than the stack's arrangement so the gap collapses along with the slide.
+            .padding(top = 20.dp, bottom = 16.dp)
         )
       }
     }
@@ -375,6 +357,82 @@ fun MediaEditScreen(
       MediaEditScreenDialogs.SavingToStorageProgressDialog()
     }
   }
+}
+
+/**
+ * A control in the bottom stack, and the two ways it gets out of the user's way. Going not-[visible] gives up its layout
+ * space, letting the rest of the stack settle into it, while [faded] holds onto the space -- releasing it mid-gesture
+ * would move whatever the user is dragging out from under their finger.
+ */
+@Composable
+private fun MediaEditControl(
+  visible: Boolean,
+  faded: Boolean,
+  enter: EnterTransition = MediaSendMetrics.ControlEnterTransition,
+  exit: ExitTransition = MediaSendMetrics.ControlExitTransition,
+  content: @Composable () -> Unit
+) {
+  val alpha by animateFloatAsState(targetValue = if (faded) 0f else 1f)
+
+  AnimatedVisibility(
+    visible = visible,
+    enter = enter,
+    exit = exit,
+    modifier = Modifier.alpha(alpha)
+  ) {
+    content()
+  }
+}
+
+/**
+ * Trim/scrub timeline for the focused video. Drag state is reported through [onInteractingChange] so the rest of the
+ * stack can get out of the way, and seeks are translated into player commands rather than screen events.
+ */
+@Composable
+private fun VideoTrimTimeline(
+  videoUri: Uri,
+  editorState: EditorState.VideoTrim,
+  videoEditorViewModel: VideoEditorViewModel,
+  onInteractingChange: (Boolean) -> Unit,
+  onEvent: (MediaEditScreenEvent) -> Unit
+) {
+  val playbackPositionUs by produceState(editorState.videoTrimData.startTimeUs, videoUri) {
+    videoEditorViewModel.events(videoUri).collect { event ->
+      if (event is VideoEditorViewModel.Event.ActualPositionChanged) {
+        value = event.positionUs
+      }
+    }
+  }
+
+  VideoEditorToolbar(
+    videoUri = videoUri,
+    mediaInputFactory = MediaSendDependencies.mediaInputFactory,
+    videoTrimData = editorState.videoTrimData,
+    maxSelectableDurationUs = editorState.maxDurationUs,
+    playbackPositionUs = playbackPositionUs,
+    onEvent = { event ->
+      when (event) {
+        is MediaEditScreenEvent.VideoTrimChanged -> {
+          onInteractingChange(!event.editingComplete)
+          onEvent(event)
+        }
+
+        is MediaEditScreenEvent.VideoSeek -> {
+          onInteractingChange(!event.editingComplete)
+          videoEditorViewModel.sendCommand(
+            videoUri,
+            if (event.editingComplete) {
+              VideoEditorViewModel.Command.EndPositionDrag(event.positionUs)
+            } else {
+              VideoEditorViewModel.Command.PositionDrag(event.positionUs)
+            }
+          )
+        }
+
+        else -> onEvent(event)
+      }
+    }
+  )
 }
 
 @Composable

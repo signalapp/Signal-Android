@@ -7,9 +7,12 @@ package org.signal.mediasend
 
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 
@@ -19,4 +22,11 @@ object MediaSendMetrics {
 
   val ControlEnterTransition: EnterTransition = fadeIn()
   val ControlExitTransition: ExitTransition = fadeOut()
+
+  /**
+   * For the bottom-most control of a bottom-aligned stack: the control slides off the bottom edge while giving up its
+   * layout space at the same rate, so everything above it slides along with it as a unit.
+   */
+  val SlidingControlEnterTransition: EnterTransition = ControlEnterTransition + expandVertically(expandFrom = Alignment.Top, clip = false)
+  val SlidingControlExitTransition: ExitTransition = ControlExitTransition + shrinkVertically(shrinkTowards = Alignment.Top, clip = false)
 }
