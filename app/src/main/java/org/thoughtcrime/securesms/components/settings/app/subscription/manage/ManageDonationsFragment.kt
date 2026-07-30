@@ -74,6 +74,8 @@ class ManageDonationsFragment :
 
   private val viewModel: ManageDonationsViewModel by viewModels()
 
+  override val listScrollsBehindToolbar: Boolean = true
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     viewLifecycleOwner.lifecycle.addObserver(InAppPaymentsBottomSheetDelegate(childFragmentManager, viewLifecycleOwner))
     super.onViewCreated(view, savedInstanceState)
@@ -145,7 +147,7 @@ class ManageDonationsFragment :
 
   private fun getConfiguration(state: ManageDonationsState): DSLConfiguration {
     return configure {
-      space(36.dp)
+      space(12.dp)
 
       customPref(
         BadgePreview.BadgeModel.SubscriptionModel(

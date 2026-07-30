@@ -109,6 +109,8 @@ class DonateToSignalFragment :
       )
   }
 
+  override val listScrollsBehindToolbar: Boolean = true
+
   override fun onToolbarNavigationClicked() {
     requireActivity().onBackPressedDispatcher.onBackPressed()
   }
@@ -224,7 +226,7 @@ class DonateToSignalFragment :
 
   private fun getConfiguration(state: DonateToSignalState): DSLConfiguration {
     return configure {
-      space(36.dp)
+      space(12.dp)
 
       customPref(BadgePreview.BadgeModel.SubscriptionModel(state.badge))
 

@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,7 +44,7 @@ abstract class DSLSettingsFragment(
 
   /**
    * Set by layouts that anchor the list to the top of the toolbar rather than below it. Those lists scroll
-   * behind the toolbar, so they have to carry the status bar inset themselves.
+   * behind the toolbar, so they have to carry the status bar inset and the toolbar height themselves.
    */
   protected open val listScrollsBehindToolbar: Boolean = false
 
@@ -113,6 +114,10 @@ abstract class DSLSettingsFragment(
 
     recyclerView?.let { recycler ->
       val insetTypes = WindowInsetsCompat.Type.navigationBars() or if (listScrollsBehindToolbar) WindowInsetsCompat.Type.statusBars() else 0
+
+      if (listScrollsBehindToolbar) {
+        recycler.updatePadding(top = recycler.paddingTop + resources.getDimensionPixelSize(R.dimen.signal_m3_toolbar_height))
+      }
 
       recycler.clipToPadding = false
       SystemWindowInsetsSetter.attach(recycler, viewLifecycleOwner, insetTypes)
