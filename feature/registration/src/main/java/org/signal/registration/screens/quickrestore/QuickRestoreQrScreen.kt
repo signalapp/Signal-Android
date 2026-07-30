@@ -41,6 +41,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
@@ -57,6 +58,7 @@ import org.signal.core.ui.compose.QrCode
 import org.signal.core.ui.compose.QrCodeData
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.theme.ForceLightColors
 import org.signal.registration.R
 import org.signal.registration.RegistrationDependencies
 import org.signal.registration.screens.OnePaneRegistrationScaffold
@@ -240,75 +242,77 @@ private fun QrCodePane(
       .padding(24.dp),
     contentAlignment = Alignment.Center
   ) {
-    Box(
-      modifier = Modifier
-        .fillMaxSize()
-        .clip(RoundedCornerShape(12.dp))
-        .background(MaterialTheme.colorScheme.surface)
-        .padding(16.dp),
-      contentAlignment = Alignment.Center
-    ) {
-      AnimatedContent(
-        targetState = state.qrState,
-        contentKey = { it::class },
-        transitionSpec = { fadeIn() togetherWith fadeOut() using SizeTransform { _, _ -> snap() } },
-        label = "qr-code-state"
-      ) { qrState ->
-        when (qrState) {
-          is QrState.Loaded -> {
-            QrCode(
-              data = qrState.qrCodeData,
-              foregroundColor = MaterialTheme.colorScheme.primary,
-              modifier = Modifier.fillMaxSize()
-            )
-          }
-
-          QrState.Loading -> {
-            CircularProgressIndicator(modifier = Modifier.size(48.dp))
-          }
-
-          QrState.Scanned -> {
-            Column(
-              horizontalAlignment = Alignment.CenterHorizontally,
-              verticalArrangement = Arrangement.Center
-            ) {
-              Text(
-                text = stringResource(R.string.QuickRestoreQRScreen__scanned),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center
+    ForceLightColors {
+      Box(
+        modifier = Modifier
+          .fillMaxSize()
+          .clip(RoundedCornerShape(12.dp))
+          .background(Color.White)
+          .padding(16.dp),
+        contentAlignment = Alignment.Center
+      ) {
+        AnimatedContent(
+          targetState = state.qrState,
+          contentKey = { it::class },
+          transitionSpec = { fadeIn() togetherWith fadeOut() using SizeTransform { _, _ -> snap() } },
+          label = "qr-code-state"
+        ) { qrState ->
+          when (qrState) {
+            is QrState.Loaded -> {
+              QrCode(
+                data = qrState.qrCodeData,
+                foregroundColor = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.fillMaxSize()
               )
+            }
 
-              Spacer(modifier = Modifier.height(8.dp))
+            QrState.Loading -> {
+              CircularProgressIndicator(modifier = Modifier.size(48.dp))
+            }
 
-              Button(
-                onClick = { onEvent(QuickRestoreQrEvents.RetryQrCode) },
-                modifier = Modifier.testTag(TestTags.QUICK_RESTORE_QR_RETRY_BUTTON)
+            QrState.Scanned -> {
+              Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
               ) {
-                Text(stringResource(R.string.QuickRestoreQRScreen__retry))
+                Text(
+                  text = stringResource(R.string.QuickRestoreQRScreen__scanned),
+                  style = MaterialTheme.typography.bodyMedium,
+                  color = MaterialTheme.colorScheme.onSurfaceVariant,
+                  textAlign = TextAlign.Center
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Button(
+                  onClick = { onEvent(QuickRestoreQrEvents.RetryQrCode) },
+                  modifier = Modifier.testTag(TestTags.QUICK_RESTORE_QR_RETRY_BUTTON)
+                ) {
+                  Text(stringResource(R.string.QuickRestoreQRScreen__retry))
+                }
               }
             }
-          }
 
-          QrState.Failed -> {
-            Column(
-              horizontalAlignment = Alignment.CenterHorizontally,
-              verticalArrangement = Arrangement.Center
-            ) {
-              Text(
-                text = stringResource(R.string.QuickRestoreQRScreen__failed),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.error,
-                textAlign = TextAlign.Center
-              )
-
-              Spacer(modifier = Modifier.height(8.dp))
-
-              Button(
-                onClick = { onEvent(QuickRestoreQrEvents.RetryQrCode) },
-                modifier = Modifier.testTag(TestTags.QUICK_RESTORE_QR_RETRY_BUTTON)
+            QrState.Failed -> {
+              Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
               ) {
-                Text(stringResource(R.string.QuickRestoreQRScreen__retry))
+                Text(
+                  text = stringResource(R.string.QuickRestoreQRScreen__failed),
+                  style = MaterialTheme.typography.bodyMedium,
+                  color = MaterialTheme.colorScheme.error,
+                  textAlign = TextAlign.Center
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Button(
+                  onClick = { onEvent(QuickRestoreQrEvents.RetryQrCode) },
+                  modifier = Modifier.testTag(TestTags.QUICK_RESTORE_QR_RETRY_BUTTON)
+                ) {
+                  Text(stringResource(R.string.QuickRestoreQRScreen__retry))
+                }
               }
             }
           }

@@ -214,6 +214,19 @@ fun SignalTheme(
   }
 }
 
+/**
+ * Applies the light color scheme to [content] regardless of the ambient theme, leaving typography and shapes untouched.
+ */
+@Composable
+fun ForceLightColors(content: @Composable () -> Unit) {
+  CompositionLocalProvider(LocalExtendedColors provides lightExtendedColors) {
+    MaterialTheme(
+      colorScheme = lightColorScheme,
+      content = content
+    )
+  }
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun TypographyPreview() {
