@@ -10,6 +10,7 @@ import android.graphics.Matrix
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Size
 import android.view.Surface
 import android.view.Window
 import android.view.WindowManager
@@ -26,6 +27,7 @@ import androidx.camera.core.SurfaceOrientedMeteringPointFactory
 import androidx.camera.core.UseCase
 import androidx.camera.core.resolutionselector.AspectRatioStrategy
 import androidx.camera.core.resolutionselector.ResolutionSelector
+import androidx.camera.core.resolutionselector.ResolutionStrategy
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.video.Recorder
 import androidx.camera.video.Recording
@@ -51,6 +53,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.logging.Log
@@ -74,6 +77,9 @@ class CameraScreenViewModel : ViewModel() {
 
     /** Initial delay between camera binding retries, in milliseconds. Doubles on each subsequent retry. */
     private const val CAMERA_BIND_RETRY_DELAY_MS = 500L
+
+    /** Requested resolution for the QR analysis stream. */
+    private val QR_ANALYSIS_RESOLUTION = Size(1280, 720)
   }
 
   private val _state: MutableState<CameraScreenState> = mutableStateOf(CameraScreenState())
@@ -101,7 +107,9 @@ class CameraScreenViewModel : ViewModel() {
    * Flow of detected QR codes. Observers can collect from this flow to receive QR code detections.
    * The flow filters consecutive duplicates and is throttled to avoid rapid-fire detections.
    */
-  val qrCodeDetected: Flow<String> = _qrCodeDetected.throttleLatest(2.seconds)
+  val qrCodeDetected: Flow<String> = _qrCodeDetected
+    .throttleLatest(2.seconds)
+    .onEach { Log.i(TAG, "Decoded a QR code. payloadLength: ${it.length}") }
 
   private val qrCodeReader = QRCodeReader()
   private val qrCodeHint = EnumMap<DecodeHintType, Any>(DecodeHintType::class.java).apply {
@@ -465,6 +473,8 @@ class CameraScreenViewModel : ViewModel() {
           Log.w(TAG, "Use case binding succeeded on fallback attempt ${index + 1} of ${bindingAttempts.size}")
         }
 
+        attempt.imageAnalysis?.let { Log.d(TAG, "Bound QR analysis at ${it.resolutionInfo?.resolution}") }
+
         lifecycleOwner = event.lifecycleOwner
         cameraProvider = event.cameraProvider
         lastSuccessfulAttempt = attempt
@@ -526,8 +536,14 @@ class CameraScreenViewModel : ViewModel() {
     }
 
     val qrAnalysis: ImageAnalysis? = if (event.enableQrScanning) {
+      val qrResolutionSelector = ResolutionSelector.Builder()
+        .setAspectRatioStrategy(AspectRatioStrategy.RATIO_16_9_FALLBACK_AUTO_STRATEGY)
+        .setResolutionStrategy(ResolutionStrategy(QR_ANALYSIS_RESOLUTION, ResolutionStrategy.FALLBACK_RULE_CLOSEST_HIGHER_THEN_LOWER))
+        .build()
+
       ImageAnalysis.Builder()
         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+        .setResolutionSelector(qrResolutionSelector)
         .build()
         .also {
           it.setAnalyzer(imageAnalysisExecutor) { imageProxy ->
