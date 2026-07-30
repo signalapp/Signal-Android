@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.keyboard.sticker
 
 import android.net.Uri
+import org.signal.core.models.database.StickerRecord
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.nullIfBlank
 import org.thoughtcrime.securesms.R
@@ -8,7 +9,6 @@ import org.thoughtcrime.securesms.database.StickerTables
 import org.thoughtcrime.securesms.database.StickerTables.StickerPackRecordReader
 import org.thoughtcrime.securesms.database.StickerTables.StickerRecordReader
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
-import org.thoughtcrime.securesms.database.model.StickerRecord
 import java.util.function.Consumer
 
 private const val RECENT_LIMIT = 24

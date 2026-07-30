@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.database.model
+package org.signal.core.models.database
 
 import android.net.Uri
-import org.thoughtcrime.securesms.mms.PartAuthority
+import org.signal.core.util.PartAuthorityUris
 
 /**
- * Represents a record for a sticker pack in the [org.thoughtcrime.securesms.database.StickerTables].
+ * Represents a record for a sticker pack in the sticker tables.
  */
 data class StickerRecord(
   @JvmField val rowId: Long,
@@ -17,5 +17,5 @@ data class StickerRecord(
   @JvmField val isCover: Boolean
 ) {
   @JvmField
-  val uri: Uri = PartAuthority.getStickerUri(rowId)
+  val uri: Uri = PartAuthorityUris.getStickerUri(rowId)
 }

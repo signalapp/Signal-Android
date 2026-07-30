@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.models.database.StickerRecord
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.SqlUtil
@@ -40,7 +41,6 @@ import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
 import org.thoughtcrime.securesms.database.model.StickerPackSyncRecord
-import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
 import org.thoughtcrime.securesms.stickers.BlessedPacks

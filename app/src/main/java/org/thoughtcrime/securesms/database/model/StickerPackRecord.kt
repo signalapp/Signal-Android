@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database.model
 
 import android.net.Uri
+import org.signal.core.models.database.StickerRecord
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.stickers.StickerUrl
 import org.whispersystems.signalservice.api.storage.StorageId

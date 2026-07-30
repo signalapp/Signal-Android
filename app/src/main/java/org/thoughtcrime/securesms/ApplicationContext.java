@@ -36,6 +36,7 @@ import org.signal.aesgcmprovider.AesGcmProvider;
 import org.signal.core.util.AppForegroundObserver;
 import org.signal.core.util.DiskUtil;
 import org.signal.core.util.MemoryTracker;
+import org.signal.core.util.PartAuthorityUris;
 import org.signal.core.util.Util;
 import org.signal.core.util.concurrent.AnrDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -166,6 +167,8 @@ public class ApplicationContext extends Application implements AppForegroundObse
 
   @Override
   public void onCreate() {
+    PartAuthorityUris.init(BuildConfig.APPLICATION_ID);
+
     Tracer.getInstance().start("Application#onCreate()");
     AppStartup.getInstance().onApplicationCreate();
     SignalLocalMetrics.ColdStart.start();

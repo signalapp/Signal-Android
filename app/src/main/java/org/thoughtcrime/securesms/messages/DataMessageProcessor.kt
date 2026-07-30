@@ -6,6 +6,7 @@ import com.mobilecoin.lib.exceptions.SerializationException
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.database.StickerRecord
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.UuidUtil
@@ -40,7 +41,6 @@ import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.ParentStoryId.DirectReply
 import org.thoughtcrime.securesms.database.model.ParentStoryId.GroupReply
 import org.thoughtcrime.securesms.database.model.ReactionRecord
-import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras

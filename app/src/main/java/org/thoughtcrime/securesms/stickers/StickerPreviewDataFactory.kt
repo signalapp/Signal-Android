@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.stickers
 
+import org.signal.core.models.database.StickerRecord
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
-import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.stickers.manage.AvailableStickerPack
 import org.thoughtcrime.securesms.stickers.manage.InstalledStickerPack
 import java.util.UUID

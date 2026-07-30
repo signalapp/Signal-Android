@@ -11,6 +11,8 @@ import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import org.junit.rules.ExternalResource
+import org.signal.core.util.PartAuthorityUris
+import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.database.DatabaseTable
 import org.thoughtcrime.securesms.database.RemappedRecordsTestHelper
 import org.thoughtcrime.securesms.database.SQLiteDatabase
@@ -32,6 +34,8 @@ class SignalDatabaseRule : ExternalResource() {
     get() = signalDatabase.signalWritableDatabase
 
   override fun before() {
+    PartAuthorityUris.init(BuildConfig.APPLICATION_ID)
+
     RecipientId.clearCache()
     RemappedRecordsTestHelper.resetInstance()
     DatabaseTable.clearTableReferencesForTests()

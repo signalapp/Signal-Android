@@ -17,11 +17,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.models.database.StickerRecord
 import org.signal.core.util.Hex
 import org.signal.core.util.deleteAll
 import org.thoughtcrime.securesms.database.model.IncomingSticker
 import org.thoughtcrime.securesms.database.model.StickerPackId
-import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import org.thoughtcrime.securesms.util.RemoteConfig

@@ -7,13 +7,13 @@ import androidx.annotation.WorkerThread;
 
 import java.util.stream.Collectors;
 
+import org.signal.core.models.database.StickerRecord;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerTables;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
-import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.signal.core.util.Hex;
 import org.thoughtcrime.securesms.stickers.StickerManifest;

@@ -8,8 +8,8 @@ package org.thoughtcrime.securesms.attachments
 import android.net.Uri
 import android.os.Parcel
 import androidx.core.os.ParcelCompat
+import org.signal.core.models.database.StickerRecord
 import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import java.security.SecureRandom
