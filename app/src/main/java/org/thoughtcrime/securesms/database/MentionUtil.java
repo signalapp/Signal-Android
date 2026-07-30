@@ -131,7 +131,7 @@ public final class MentionUtil {
     int start  = mention.getStart();
     int length = mention.getLength();
 
-    return start < 0 || length < 0 || (start + length) > body.length();
+    return start < 0 || length < 0 || ((long) start + length) > body.length();
   }
 
   public static class UpdatedBodyAndMentions {

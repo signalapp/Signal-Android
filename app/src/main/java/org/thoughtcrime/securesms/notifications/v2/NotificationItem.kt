@@ -193,9 +193,14 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
 
     if (spoilerRanges?.isNotEmpty() == true) {
       for (spoiler in spoilerRanges) {
+        val startIndex = spoiler.start.coerceAtMost(updatedText.length - 1).coerceAtLeast(0)
+        val endIndex = (spoiler.start.toLong() + spoiler.length)
+          .coerceIn(0L, updatedText.length.toLong())
+          .toInt()
+          .coerceAtLeast(startIndex)
         updatedText = updatedText.replaceRange(
-          startIndex = spoiler.start.coerceAtMost(updatedText.length - 1).coerceAtLeast(0),
-          endIndex = (spoiler.start + spoiler.length).coerceAtMost(updatedText.length).coerceAtLeast(0),
+          startIndex = startIndex,
+          endIndex = endIndex,
           replacement = "■■■■"
         )
       }
