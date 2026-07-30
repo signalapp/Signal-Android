@@ -470,7 +470,7 @@ class FilesFileSystem(private val context: Context, private val root: DocumentFi
     val allFiles = ConcurrentHashMap<String, DocumentFileInfo>()
     val total = subFolders.values.size
     val completed = AtomicInteger(0)
-    val chunkSize = (total + batchCount - 1) / batchCount
+    val chunkSize = ((total + batchCount - 1) / batchCount).coerceAtLeast(1)
 
     Log.d(TAG, "allFilesAsync: $batchCount")
 
