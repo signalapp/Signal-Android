@@ -32,4 +32,6 @@
     <item name="edittext_monospace" type="id" />
     <item name="edittext_spoiler" type="id" />
     <item name="edittext_clear_formatting" type="id" />
+
+    <item name="nav_host_wrapper_container" type="id" />
 </resources>

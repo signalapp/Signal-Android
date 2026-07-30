@@ -30,6 +30,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.navigation.TransitionSpecs
 import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavHostFragment
+import org.thoughtcrime.securesms.compose.AndroidNavHostFragment
 import org.thoughtcrime.securesms.compose.FragmentBackHandler
 import org.thoughtcrime.securesms.compose.FragmentBackPressedState
 import org.thoughtcrime.securesms.conversation.ConversationIntents
@@ -141,7 +142,7 @@ private fun ConversationSettingsEntry(route: MainNavigationDetailLocation.Chats.
     val backPressedState = remember { FragmentBackPressedState() }
     FragmentBackHandler(backPressedState)
 
-    AndroidFragment(
+    AndroidNavHostFragment(
       clazz = ConversationSettingsNavHostFragment::class.java,
       fragmentState = fragmentState,
       arguments = args,
