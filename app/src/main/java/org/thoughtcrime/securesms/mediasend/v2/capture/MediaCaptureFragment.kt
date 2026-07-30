@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.ui.permissions.Permissions
+import org.signal.core.util.SeekableFileDescriptor
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.signal.mediasend.CameraFragment
@@ -23,8 +24,8 @@ import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceA
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import java.io.FileDescriptor
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.milliseconds
 
 private val TAG = Log.tag(MediaCaptureFragment::class.java)
 
@@ -144,7 +145,8 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
     viewModel.onImageCaptured(data, width, height)
   }
 
-  override fun onVideoCaptured(fd: FileDescriptor) {
+  override fun onVideoCaptured(fd: SeekableFileDescriptor, durationMs: Long) {
+    sharedViewModel.onVideoRecorded(durationMs.milliseconds)
     viewModel.onVideoCaptured(fd)
   }
 

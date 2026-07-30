@@ -14,7 +14,6 @@ object VideoConstants {
   const val MB: Int = 1000 * KB
   const val VIDEO_SHORT_EDGE_HD = 720
   const val VIDEO_LONG_EDGE_HD = 1280
-  const val VIDEO_MAX_RECORD_LENGTH_S = 60
   const val AUDIO_MIME_TYPE = MediaFormat.MIMETYPE_AUDIO_AAC
   const val RECORDED_VIDEO_CONTENT_TYPE: String = "video/mp4"
 

@@ -29,13 +29,10 @@ fun MediaCameraCaptureScreen(
       )
     },
     onEvent = { event -> onEvent(MediaCaptureScreenEvent.Camera(event)) },
-    maxVideoDurationSeconds = remember(state.isStory) {
-      if (state.isStory) {
-        state.storyMaxVideoDuration.inWholeSeconds.toInt()
-      } else {
-        getMaxVideoDurationInSeconds(mediaConstraints = state.mediaConstraints)
-      }
-    },
+    videoRecordingConfig = rememberVideoRecordingConfig(
+      mediaConstraints = state.mediaConstraints,
+      maxDurationSecondsOverride = if (state.isStory) state.storyMaxVideoDuration.inWholeSeconds.toInt() else 0
+    ),
     onCheckPermissions = {}, // TODO [media-send]
     onRequestMicPermission = {}, // TODO [media-send]
     hasCameraPermission = { true }, // TODO [media-send]

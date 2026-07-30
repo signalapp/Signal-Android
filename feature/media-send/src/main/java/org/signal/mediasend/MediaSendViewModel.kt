@@ -358,14 +358,16 @@ class MediaSendViewModel(
     viewModelScope.launch {
       val media: Media? = withContext(Dispatchers.IO) {
         try {
-          FileInputStream(videoCaptured.fd).use { stream ->
-            val length = stream.channel.size()
-            val uri = MediaSendDependencies.blobs
-              .forData(stream, length)
-              .withMimeType(VideoConstants.RECORDED_VIDEO_CONTENT_TYPE)
-              .createForSingleSessionOnDisk(MediaSendDependencies.application)
+          videoCaptured.fd.use { descriptor ->
+            FileInputStream(descriptor.fileDescriptor).use { stream ->
+              val length = stream.channel.size()
+              val uri = MediaSendDependencies.blobs
+                .forData(stream, length)
+                .withMimeType(VideoConstants.RECORDED_VIDEO_CONTENT_TYPE)
+                .createForSingleSessionOnDisk(MediaSendDependencies.application)
 
-            buildCapturedMedia(uri, VideoConstants.RECORDED_VIDEO_CONTENT_TYPE, 0, 0, length)
+              buildCapturedMedia(uri, VideoConstants.RECORDED_VIDEO_CONTENT_TYPE, 0, 0, length)
+            }
           }
         } catch (e: IOException) {
           null
@@ -373,6 +375,7 @@ class MediaSendViewModel(
       }
 
       if (media != null) {
+        onVideoRecorded(videoCaptured.durationMs.milliseconds)
         onMediaRendered(media)
       } else {
         internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__error_recording_video))
@@ -693,6 +696,22 @@ class MediaSendViewModel(
   //endregion
 
   //region Quality
+
+  /**
+   * A recording is assumed to be wanted in its entirety, so if it is longer than high quality allows we fall back to
+   * standard quality rather than have the editor truncate it to fit.
+   */
+  private fun onVideoRecorded(duration: Duration) {
+    if (state.value.sentMediaQuality != SentMediaQuality.HIGH) {
+      return
+    }
+
+    val maxDuration = repository.getMaxVideoDurationUs(SentMediaQuality.HIGH, duration).microseconds
+    if (duration > maxDuration) {
+      Log.i(TAG, "Recording of $duration exceeds the $maxDuration allowed at high quality. Falling back to standard quality.")
+      setSentMediaQuality(SentMediaQuality.STANDARD)
+    }
+  }
 
   /**
    * Sets the sent media quality.

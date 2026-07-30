@@ -1,6 +1,7 @@
 package org.signal.camera
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
@@ -29,6 +30,9 @@ import androidx.camera.core.resolutionselector.AspectRatioStrategy
 import androidx.camera.core.resolutionselector.ResolutionSelector
 import androidx.camera.core.resolutionselector.ResolutionStrategy
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.video.FallbackStrategy
+import androidx.camera.video.Quality
+import androidx.camera.video.QualitySelector
 import androidx.camera.video.Recorder
 import androidx.camera.video.Recording
 import androidx.camera.video.VideoCapture
@@ -61,6 +65,7 @@ import org.signal.core.util.throttleLatest
 import java.lang.ref.WeakReference
 import java.util.EnumMap
 import java.util.concurrent.Executors
+import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.Duration.Companion.seconds
 
 private const val TAG = "CameraScreenViewModel"
@@ -262,7 +267,7 @@ class CameraScreenViewModel : ViewModel() {
    * If flash is enabled, turns on the torch for the duration of the recording.
    */
   @androidx.annotation.OptIn(markerClass = [androidx.camera.core.ExperimentalGetImage::class])
-  @android.annotation.SuppressLint("MissingPermission", "RestrictedApi", "NewApi")
+  @SuppressLint("MissingPermission", "RestrictedApi", "NewApi")
   fun startRecording(
     context: Context,
     output: VideoOutput,
@@ -317,12 +322,13 @@ class CameraScreenViewModel : ViewModel() {
 
             val result = if (!recordEvent.hasError()) {
               Log.d(TAG, "Video recording succeeded")
+              val durationMs = recordEvent.recordingStats.recordedDurationNanos.nanoseconds.inWholeMilliseconds
               when (output) {
                 is VideoOutput.FileOutput -> {
-                  VideoCaptureResult.Success(outputFile = output.file)
+                  VideoCaptureResult.Success(outputFile = output.file, durationMs = durationMs)
                 }
                 is VideoOutput.FileDescriptorOutput -> {
-                  VideoCaptureResult.Success(fileDescriptor = output.fileDescriptor)
+                  VideoCaptureResult.Success(fileDescriptor = output.fileDescriptor, durationMs = durationMs)
                 }
               }
             } else {
@@ -495,16 +501,18 @@ class CameraScreenViewModel : ViewModel() {
     return false
   }
 
-  @android.annotation.SuppressLint("RestrictedApi")
+  @SuppressLint("RestrictedApi")
   private fun buildVideoCapture(): VideoCapture<Recorder> {
     val recorder = Recorder.Builder()
       .setAspectRatio(AspectRatio.RATIO_16_9)
       .setQualitySelector(
-        androidx.camera.video.QualitySelector.from(
-          androidx.camera.video.Quality.HIGHEST,
-          androidx.camera.video.FallbackStrategy.higherQualityOrLowerThan(androidx.camera.video.Quality.HD)
+        QualitySelector.from(
+          Quality.HD,
+          FallbackStrategy.lowerQualityOrHigherThan(Quality.HD)
         )
       )
+      // Recording at the highest transcoding target means no sent-media quality tier is sourced from a lower-bitrate capture.
+      .setTargetVideoEncodingBitRate(CameraDependencies.getMaxVideoBitrateBps())
       .build()
     return VideoCapture.withOutput(recorder)
   }

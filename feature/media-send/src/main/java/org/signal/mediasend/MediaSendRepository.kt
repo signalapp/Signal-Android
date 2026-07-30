@@ -88,6 +88,12 @@ interface MediaSendRepository {
   fun getMaxVideoDurationUs(quality: SentMediaQuality, duration: Duration): Long
 
   /**
+   * Gets the maximum allowed duration in seconds for in-app video recording, based on the longest
+   * duration allowed by any transcoding quality tier.
+   */
+  fun getMaxVideoRecordDurationSeconds(): Int
+
+  /**
    * Checks if video transcoding is available on this device.
    */
   fun isVideoTranscodeAvailable(): Boolean

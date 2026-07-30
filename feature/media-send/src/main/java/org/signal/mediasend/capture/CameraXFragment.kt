@@ -13,6 +13,7 @@ import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.os.ParcelFileDescriptor
+import android.system.ErrnoException
 import android.system.Os
 import android.system.OsConstants
 import android.widget.Toast
@@ -37,7 +38,9 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
@@ -57,9 +60,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.withContext
 import org.signal.camera.CameraCaptureMode
 import org.signal.camera.CameraDependencies
 import org.signal.camera.CameraDisplay
@@ -82,7 +87,9 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.permissions.PermissionDeniedBottomSheet
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.ui.rememberWindowBreakpoint
-import org.signal.core.util.MemoryFileDescriptor
+import org.signal.core.util.EncryptedProxyFileDescriptor
+import org.signal.core.util.SeekableFileDescriptor
+import org.signal.core.util.closeQuietly
 import org.signal.core.util.logging.Log
 import org.signal.mediasend.CameraFragment
 import org.signal.mediasend.MediaConstraints
@@ -158,7 +165,10 @@ class CameraXFragment : ComposeFragment(), CameraFragment {
     CameraXScreen(
       state = state,
       onEvent = { event -> controller?.onCameraXScreenEvent(event) },
-      maxVideoDurationSeconds = controller?.let { controller -> controller.maxVideoDuration.takeIf { it > 0 } ?: getMaxVideoDurationInSeconds(controller.mediaConstraints) } ?: 0,
+      videoRecordingConfig = rememberVideoRecordingConfig(
+        mediaConstraints = controller?.mediaConstraints,
+        maxDurationSecondsOverride = controller?.maxVideoDuration ?: 0
+      ),
       onCheckPermissions = { checkPermissions(state.isVideoEnabled) },
       hasCameraPermission = { hasCameraPermission() },
       onRequestMicPermission = { requestMicPermission() }
@@ -268,8 +278,61 @@ class CameraXFragment : ComposeFragment(), CameraFragment {
   }
 }
 
-internal fun getMaxVideoDurationInSeconds(mediaConstraints: MediaConstraints): Int {
-  return VideoUtil.getMaxVideoRecordDurationInSeconds(mediaConstraints)
+/**
+ * How a recording is backed on this device, together with the duration caps that follow from it. They travel
+ * together because they have to agree: a disk-backed recording may run far longer than a RAM-backed one, so
+ * recording with a shorter-lived descriptor than the cap advertises would truncate the video.
+ *
+ * @param memoryBackedMaxDurationSeconds The cap that applies whenever the RAM-backed descriptor ends up being
+ *   used, which includes the case where creating the disk-backed one fails at record time.
+ */
+data class VideoRecordingConfig(
+  val useEncryptedDisk: Boolean = false,
+  val maxDurationSeconds: Int = 0,
+  val memoryBackedMaxDurationSeconds: Int = maxDurationSeconds
+)
+
+/**
+ * Resolves the recording configuration for this device. Deciding whether the encrypted disk-backed
+ * descriptor works runs a filesystem self-test, so it happens off the main thread; the conservative
+ * RAM-backed configuration applies until the answer arrives.
+ *
+ * @param maxDurationSecondsOverride A positive value replaces the derived cap, leaving the backing choice intact.
+ */
+@Composable
+internal fun rememberVideoRecordingConfig(mediaConstraints: MediaConstraints?, maxDurationSecondsOverride: Int = 0): VideoRecordingConfig {
+  if (mediaConstraints == null) {
+    return VideoRecordingConfig(maxDurationSeconds = maxDurationSecondsOverride)
+  }
+
+  val context = LocalContext.current
+
+  // Keyed on the derived duration rather than the MediaConstraints instance, because implementations hand
+  // back a fresh object on every call and would otherwise restart resolution on every recomposition.
+  val memoryBackedDurationSeconds = VideoUtil.getMemoryBackedMaxRecordDurationSeconds(mediaConstraints)
+  val memoryBackedCap = maxDurationSecondsOverride.takeIf { it > 0 } ?: memoryBackedDurationSeconds
+  val memoryBacked = VideoRecordingConfig(
+    useEncryptedDisk = false,
+    maxDurationSeconds = memoryBackedCap
+  )
+
+  return produceState(memoryBacked, memoryBackedDurationSeconds, maxDurationSecondsOverride) {
+    if (Build.VERSION.SDK_INT < 26) {
+      return@produceState
+    }
+
+    value = withContext(Dispatchers.IO) {
+      if (EncryptedProxyFileDescriptor.isSupported(context)) {
+        VideoRecordingConfig(
+          useEncryptedDisk = true,
+          maxDurationSeconds = maxDurationSecondsOverride.takeIf { it > 0 } ?: VideoUtil.getDiskBackedMaxRecordDurationSeconds(),
+          memoryBackedMaxDurationSeconds = memoryBackedCap
+        )
+      } else {
+        memoryBacked
+      }
+    }
+  }.value
 }
 
 /**
@@ -279,7 +342,7 @@ internal fun getMaxVideoDurationInSeconds(mediaConstraints: MediaConstraints): I
 private fun CameraFragment.Controller.onCameraXScreenEvent(event: CameraXScreenEvent) {
   when (event) {
     is CameraXScreenEvent.ImageCaptured -> onImageCaptured(event.data, event.width, event.height)
-    is CameraXScreenEvent.VideoCaptured -> onVideoCaptured(event.fd)
+    is CameraXScreenEvent.VideoCaptured -> onVideoCaptured(event.fd, event.durationMs)
     is CameraXScreenEvent.QrCodeFound -> onQrCodeFound(event.data)
     CameraXScreenEvent.VideoCaptureError -> onVideoCaptureError()
     CameraXScreenEvent.GalleryClicked -> onGalleryClicked()
@@ -310,35 +373,66 @@ data class CameraXScreenState(
   val selectedMediaCount: Int = 0
 )
 
+/** A descriptor to record into, paired with the duration cap that the descriptor actually supports. */
+class ActiveRecording(val parcelFd: ParcelFileDescriptor, val maxDurationSeconds: Int)
+
 @Stable
 class VideoFileDescriptor(val context: Context) {
 
-  private var videoFileDescriptor: MemoryFileDescriptor? = null
+  private var videoFileDescriptor: SeekableFileDescriptor? = null
 
-  fun create(): ParcelFileDescriptor? {
+  /**
+   * Creates the descriptor to record into, reporting the cap that goes with whichever descriptor was actually
+   * created. A disk-backed descriptor that fails to be created falls back to the RAM-backed one and its shorter
+   * cap, rather than blocking recording entirely.
+   */
+  fun create(config: VideoRecordingConfig): ActiveRecording? {
     if (Build.VERSION.SDK_INT < 26) {
       throw IllegalStateException("Video capture requires API 26 or higher")
     }
 
+    destroy()
+
+    if (config.useEncryptedDisk) {
+      val encrypted = CameraXUtil.createEncryptedDiskVideoFileDescriptor(context)
+      if (encrypted != null) {
+        videoFileDescriptor = encrypted
+        return ActiveRecording(encrypted.parcelFd, config.maxDurationSeconds)
+      }
+      Log.w(TAG, "Failed to create encrypted disk file descriptor, falling back to memory")
+    }
+
     return try {
-      destroy()
-      videoFileDescriptor = CameraXUtil.createVideoFileDescriptor(context)
-      videoFileDescriptor?.parcelFd
+      val memory = CameraXUtil.createMemoryVideoFileDescriptor(context)
+      videoFileDescriptor = memory
+      ActiveRecording(memory.parcelFd, config.memoryBackedMaxDurationSeconds)
     } catch (e: IOException) {
       Log.w(TAG, "Failed to create video file descriptor", e)
       null
     }
   }
 
-  fun destroy() {
-    videoFileDescriptor?.let {
-      try {
-        it.close()
-      } catch (e: IOException) {
-        Log.w(TAG, "Failed to close video file descriptor", e)
-      }
-      videoFileDescriptor = null
+  /**
+   * Hands the recorded descriptor to the consumer, which becomes responsible for closing it. The copy on the
+   * consuming side runs asynchronously and can outlive this screen, so ownership has to travel with it.
+   */
+  fun releaseForReading(): SeekableFileDescriptor? {
+    val descriptor = videoFileDescriptor ?: return null
+    videoFileDescriptor = null
+
+    return try {
+      Os.lseek(descriptor.fileDescriptor, 0, OsConstants.SEEK_SET)
+      descriptor
+    } catch (e: ErrnoException) {
+      Log.w(TAG, "Failed to seek video file descriptor", e)
+      descriptor.closeQuietly()
+      null
     }
+  }
+
+  fun destroy() {
+    videoFileDescriptor?.closeQuietly()
+    videoFileDescriptor = null
   }
 }
 
@@ -346,7 +440,7 @@ class VideoFileDescriptor(val context: Context) {
 fun CameraXScreen(
   state: CameraXScreenState,
   onEvent: (CameraXScreenEvent) -> Unit,
-  maxVideoDurationSeconds: Int,
+  videoRecordingConfig: VideoRecordingConfig,
   onCheckPermissions: () -> Unit,
   hasCameraPermission: () -> Boolean,
   onRequestMicPermission: () -> Unit,
@@ -375,6 +469,7 @@ fun CameraXScreen(
 
   val cameraDisplay = CameraDisplay.rememberCameraDisplay(cameraState.isLandscape)
   var hasPermission by remember { mutableStateOf(hasCameraPermission()) }
+  var activeRecordingMaxDurationMs by remember { mutableLongStateOf(0L) }
 
   DisposableEffect(Unit) {
     onDispose { videoFileDescriptor.destroy() }
@@ -485,7 +580,7 @@ fun CameraXScreen(
           StandardCameraHud(
             state = cameraState,
             modifier = Modifier.padding(bottom = if (isPortraitPhone) hudBottomPaddingInsideViewport else 0.dp),
-            maxRecordingDurationMs = maxVideoDurationSeconds * 1000L,
+            maxRecordingDurationMs = activeRecordingMaxDurationMs,
             hasAudioPermission = { context.checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED },
             emitter = { event ->
               handleHudEvent(
@@ -495,7 +590,12 @@ fun CameraXScreen(
                 onEvent = onEvent,
                 isVideoEnabled = captureMode != CameraCaptureMode.ImageOnly,
                 onRequestMicPermission = onRequestMicPermission,
-                createVideoFileDescriptor = { videoFileDescriptor.create() }
+                createVideoFileDescriptor = {
+                  videoFileDescriptor.create(videoRecordingConfig)?.also {
+                    activeRecordingMaxDurationMs = it.maxDurationSeconds * 1000L
+                  }
+                },
+                releaseVideoFileDescriptor = { videoFileDescriptor.releaseForReading() }
               )
             },
             stringResources = StringResources(
@@ -591,7 +691,8 @@ private fun handleHudEvent(
   onEvent: (CameraXScreenEvent) -> Unit,
   isVideoEnabled: Boolean,
   onRequestMicPermission: () -> Unit,
-  createVideoFileDescriptor: () -> ParcelFileDescriptor?
+  createVideoFileDescriptor: () -> ActiveRecording?,
+  releaseVideoFileDescriptor: () -> SeekableFileDescriptor?
 ) {
   when (event) {
     is StandardCameraHudEvents.PhotoCaptureTriggered -> {
@@ -604,20 +705,16 @@ private fun handleHudEvent(
     }
 
     is StandardCameraHudEvents.VideoCaptureStarted -> {
-      if (Build.VERSION.SDK_INT >= 26 && isVideoEnabled) {
-        val fileDescriptor = createVideoFileDescriptor()
-        if (fileDescriptor != null) {
-          cameraViewModel.startRecording(
-            context = context,
-            output = VideoOutput.FileDescriptorOutput(fileDescriptor),
-            onVideoCaptured = { result ->
-              handleVideoCaptured(result, onEvent)
-            }
-          )
-        } else {
-          Toast.makeText(context, R.string.CameraFragment__video_recording_is_not_supported_on_your_device, Toast.LENGTH_SHORT)
-            .show()
-        }
+      val recording = if (Build.VERSION.SDK_INT >= 26 && isVideoEnabled) createVideoFileDescriptor() else null
+
+      if (recording != null) {
+        cameraViewModel.startRecording(
+          context = context,
+          output = VideoOutput.FileDescriptorOutput(recording.parcelFd),
+          onVideoCaptured = { result ->
+            handleVideoCaptured(result, releaseVideoFileDescriptor, onEvent)
+          }
+        )
       } else {
         Toast.makeText(context, R.string.CameraFragment__video_recording_is_not_supported_on_your_device, Toast.LENGTH_SHORT)
           .show()
@@ -667,19 +764,19 @@ private fun handlePhotoCaptured(bitmap: Bitmap, onEvent: (CameraXScreenEvent) ->
   onEvent(CameraXScreenEvent.ImageCaptured(data, bitmap.width, bitmap.height))
 }
 
-private fun handleVideoCaptured(result: VideoCaptureResult, onEvent: (CameraXScreenEvent) -> Unit) {
+private fun handleVideoCaptured(
+  result: VideoCaptureResult,
+  releaseVideoFileDescriptor: () -> SeekableFileDescriptor?,
+  onEvent: (CameraXScreenEvent) -> Unit
+) {
   when (result) {
     is VideoCaptureResult.Success -> {
-      result.fileDescriptor?.let { parcelFd ->
-        try {
-          // Seek to beginning before reading
-          Os.lseek(parcelFd.fileDescriptor, 0, OsConstants.SEEK_SET)
-          onEvent(CameraXScreenEvent.VideoCaptured(parcelFd.fileDescriptor))
-        } catch (e: Exception) {
-          Log.w(TAG, "Failed to seek video file descriptor", e)
-          onEvent(CameraXScreenEvent.VideoCaptureError)
-        }
-      } ?: onEvent(CameraXScreenEvent.VideoCaptureError)
+      val descriptor = releaseVideoFileDescriptor()
+      if (descriptor != null) {
+        onEvent(CameraXScreenEvent.VideoCaptured(descriptor, result.durationMs))
+      } else {
+        onEvent(CameraXScreenEvent.VideoCaptureError)
+      }
     }
 
     is VideoCaptureResult.Error -> {
@@ -696,7 +793,7 @@ private fun CameraXScreenPreview() {
     CameraXScreen(
       state = CameraXScreenState(),
       onEvent = {},
-      maxVideoDurationSeconds = 0,
+      videoRecordingConfig = VideoRecordingConfig(),
       onCheckPermissions = {},
       hasCameraPermission = { true },
       onRequestMicPermission = { },
@@ -717,7 +814,7 @@ private fun CameraXScreenPreview_19_9() {
     CameraXScreen(
       state = CameraXScreenState(),
       onEvent = {},
-      maxVideoDurationSeconds = 0,
+      videoRecordingConfig = VideoRecordingConfig(),
       onCheckPermissions = {},
       hasCameraPermission = { true },
       onRequestMicPermission = { },
@@ -738,7 +835,7 @@ private fun CameraXScreenPreview_18_9() {
     CameraXScreen(
       state = CameraXScreenState(),
       onEvent = {},
-      maxVideoDurationSeconds = 0,
+      videoRecordingConfig = VideoRecordingConfig(),
       onCheckPermissions = {},
       hasCameraPermission = { true },
       onRequestMicPermission = { },
@@ -759,7 +856,7 @@ private fun CameraXScreenPreview_16_9() {
     CameraXScreen(
       state = CameraXScreenState(),
       onEvent = {},
-      maxVideoDurationSeconds = 0,
+      videoRecordingConfig = VideoRecordingConfig(),
       onCheckPermissions = {},
       hasCameraPermission = { true },
       onRequestMicPermission = { },

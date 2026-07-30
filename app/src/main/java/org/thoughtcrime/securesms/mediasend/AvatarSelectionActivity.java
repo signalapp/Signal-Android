@@ -28,7 +28,7 @@ import org.signal.core.util.contentproviders.BlobProvider;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
-import java.io.FileDescriptor;
+import org.signal.core.util.SeekableFileDescriptor;
 import java.util.Collections;
 
 public class AvatarSelectionActivity extends AppCompatActivity implements CameraFragment.Controller, ImageEditorFragment.Controller, MediaGalleryFragment.Callbacks {
@@ -98,7 +98,7 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
   }
 
   @Override
-  public void onVideoCaptured(@NonNull FileDescriptor fd) {
+  public void onVideoCaptured(@NonNull SeekableFileDescriptor fd, long durationMs) {
     throw new UnsupportedOperationException("Cannot set profile as video");
   }
 

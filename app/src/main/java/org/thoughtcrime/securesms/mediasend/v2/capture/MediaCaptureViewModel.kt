@@ -10,12 +10,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.models.media.Media
+import org.signal.core.util.SeekableFileDescriptor
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
-import java.io.FileDescriptor
 import java.util.concurrent.TimeUnit
 
 class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : ViewModel() {
@@ -80,7 +80,7 @@ class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : Vi
     repository.renderImageToMedia(data, width, height, this::onMediaRendered, this::onMediaRenderFailed)
   }
 
-  fun onVideoCaptured(fd: FileDescriptor) {
+  fun onVideoCaptured(fd: SeekableFileDescriptor) {
     repository.renderVideoToMedia(fd, this::onMediaRendered, this::onMediaRenderFailed)
   }
 

@@ -6,10 +6,15 @@
 package org.thoughtcrime.securesms.dependencies
 
 import org.signal.camera.CameraDependencies
+import org.thoughtcrime.securesms.mms.TranscodingConfigProvider
 import org.thoughtcrime.securesms.stories.Stories
 
 object CameraDependenciesProvider : CameraDependencies.Provider {
   override fun isStoriesFeatureEnabled(): Boolean {
     return Stories.isFeatureEnabled()
+  }
+
+  override fun getMaxVideoBitrateBps(): Int {
+    return TranscodingConfigProvider.getMaxVideoBitrateBps()
   }
 }

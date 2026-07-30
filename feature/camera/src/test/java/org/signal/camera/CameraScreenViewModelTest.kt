@@ -65,6 +65,12 @@ class CameraScreenViewModelTest {
   @Before
   fun setUp() {
     Dispatchers.setMain(testDispatcher)
+    CameraDependencies.init(
+      RuntimeEnvironment.getApplication(),
+      object : CameraDependencies.Provider {
+        override fun isStoriesFeatureEnabled(): Boolean = false
+      }
+    )
     viewModel = CameraScreenViewModel()
 
     every { mockCamera.cameraControl } returns mockCameraControl

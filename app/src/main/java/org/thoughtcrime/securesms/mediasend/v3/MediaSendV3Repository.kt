@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionRepository
 import org.thoughtcrime.securesms.mediasend.v2.MediaValidator
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.PushMediaConstraints
+import org.thoughtcrime.securesms.mms.TranscodingConfigProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
@@ -235,6 +236,10 @@ object MediaSendV3Repository : MediaSendRepository {
   override fun getMaxVideoDurationUs(quality: SentMediaQuality, duration: Duration): Long {
     val config = PushMediaConstraints(quality).videoTranscodingSettings
     return TranscodingConfig.calculateMaxVideoUploadDurationInSeconds(config, duration).seconds.inWholeMicroseconds
+  }
+
+  override fun getMaxVideoRecordDurationSeconds(): Int {
+    return TranscodingConfigProvider.getMaxVideoDurationSeconds()
   }
 
   override fun isVideoTranscodeAvailable(): Boolean {

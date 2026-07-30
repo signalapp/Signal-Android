@@ -43,8 +43,10 @@ import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Collections
 import kotlin.math.max
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.microseconds
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * ViewModel which maintains the list of selected media and other shared values.
@@ -333,6 +335,22 @@ class MediaSelectionViewModel(
 
   fun getMediaConstraints(): MediaConstraints {
     return PushMediaConstraints(null)
+  }
+
+  /**
+   * A recording is assumed to be wanted in its entirety, so if it is longer than high quality allows we fall back to
+   * standard quality rather than have the editor truncate it to fit.
+   */
+  fun onVideoRecorded(duration: Duration) {
+    if (store.state.quality != SentMediaQuality.HIGH) {
+      return
+    }
+
+    val maxDuration = TranscodingConfigProvider.getMaxVideoDurationSeconds(SentMediaQuality.HIGH, duration).seconds
+    if (duration > maxDuration) {
+      Log.i(TAG, "Recording of $duration exceeds the $maxDuration allowed at high quality. Falling back to standard quality.")
+      setSentMediaQuality(SentMediaQuality.STANDARD)
+    }
   }
 
   fun setSentMediaQuality(sentMediaQuality: SentMediaQuality) {

@@ -7,6 +7,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes
+import org.signal.core.util.gibiBytes
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
@@ -979,7 +980,7 @@ object RemoteConfig {
   @get:JvmName("maxSourceTranscodeVideoSizeBytes")
   val maxSourceTranscodeVideoSizeBytes: Long by remoteLong(
     key = "android.media.sourceTranscodeVideo.maxBytes",
-    defaultValue = 500L.mebiBytes.inWholeBytes,
+    defaultValue = 1.gibiBytes.inWholeBytes,
     hotSwappable = true
   )
 

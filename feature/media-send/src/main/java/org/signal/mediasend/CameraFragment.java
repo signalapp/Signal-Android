@@ -7,7 +7,7 @@ package org.signal.mediasend;
 
 import androidx.annotation.NonNull;
 
-import java.io.FileDescriptor;
+import org.signal.core.util.SeekableFileDescriptor;
 
 public interface CameraFragment {
 
@@ -17,7 +17,12 @@ public interface CameraFragment {
 
   interface Controller {
     void onImageCaptured(@NonNull byte[] data, int width, int height);
-    void onVideoCaptured(@NonNull FileDescriptor fd);
+    /**
+     * The descriptor is owned by the callee, which must close it once it is finished reading the recording.
+     *
+     * @param durationMs How long the recording ran, as reported by the recorder.
+     */
+    void onVideoCaptured(@NonNull SeekableFileDescriptor fd, long durationMs);
     void onVideoCaptureError();
     void onGalleryClicked();
     void onCameraCloseClicked();
