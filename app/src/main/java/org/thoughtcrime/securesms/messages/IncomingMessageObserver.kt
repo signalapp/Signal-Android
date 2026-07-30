@@ -202,8 +202,12 @@ class IncomingMessageObserver(
     }
 
     clockSkewScope.launch {
-      ClockSkewDetector.detected.collect {
+      ClockSkewDetector.detected.collect { detected ->
         lock.withLock {
+          if (detected) {
+            Log.w(TAG, "Clock skew detected. Disconnecting.")
+            authWebSocket.disconnect()
+          }
           connectionNecessarySemaphore.release()
         }
       }
@@ -542,8 +546,12 @@ class IncomingMessageObserver(
                 attempts = 0
               }
             } catch (e: WebSocketUnavailableException) {
-              Log.i(TAG, "Pipe unexpectedly unavailable, connecting")
-              authWebSocket.connect()
+              if (ClockSkewDetector.isDetected) {
+                Log.i(TAG, "Pipe unavailable because of clock skew, not reconnecting")
+              } else {
+                Log.i(TAG, "Pipe unexpectedly unavailable, connecting")
+                authWebSocket.connect()
+              }
             } catch (e: TimeoutException) {
               Log.w(TAG, "Application level read timeout...")
               attempts = 0
@@ -554,8 +562,12 @@ class IncomingMessageObserver(
             BackgroundService.stop(context)
           }
         } catch (e: Throwable) {
-          attempts++
-          Log.w(TAG, e)
+          if (ClockSkewDetector.isDetected) {
+            Log.w(TAG, "Websocket torn down because of clock skew. Not counting as a failed attempt.", e)
+          } else {
+            attempts++
+            Log.w(TAG, e)
+          }
         } finally {
           Log.w(TAG, "Disconnecting auth websocket")
           authWebSocket.disconnect()
