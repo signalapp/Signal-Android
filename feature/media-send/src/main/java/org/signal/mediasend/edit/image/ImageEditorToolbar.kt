@@ -6,15 +6,7 @@
 package org.signal.mediasend.edit.image
 
 import androidx.compose.animation.Crossfade
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -22,7 +14,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.FoldablePortraitDayPreview
 import org.signal.core.ui.compose.FoldablePortraitNightPreview
 import org.signal.core.ui.compose.IconButtons
@@ -31,16 +22,16 @@ import org.signal.core.ui.compose.PhonePortraitDayPreview
 import org.signal.core.ui.compose.PhonePortraitNightPreview
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
-import org.signal.core.ui.compose.copied.androidx.compose.material3.IconButtonColors
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.core.util.next
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.MediaSendState
-import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.edit.ImageController
 import org.signal.mediasend.edit.MediaEditScreenDialogs
 import org.signal.mediasend.edit.MediaEditScreenEvent
+import org.signal.mediasend.edit.MediaEditorToolbar
+import org.signal.mediasend.edit.MediaEditorToolbarButton
+import org.signal.mediasend.edit.MediaEditorToolbarSharedButtons
 import org.signal.mediasend.rememberPreviewState
 import java.util.EnumMap
 
@@ -81,34 +72,21 @@ private fun ImageEditorNoneStateToolbar(
   onEvent: (MediaEditScreenEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  OrientedImageEditorToolbar(modifier) {
-    ImageEditorButton(
+  MediaEditorToolbar(modifier) {
+    MediaEditorToolbarButton(
       imageVector = SignalIcons.BrushPen.imageVector,
       onClick = imageEditorController::beginDrawEdit
     )
 
-    ImageEditorButton(
+    MediaEditorToolbarButton(
       imageVector = SignalIcons.CropRotate.imageVector,
       onClick = imageEditorController::beginCropAndRotateEdit
     )
 
-    ImageEditorButton(
-      imageVector = if (state.sentMediaQuality == SentMediaQuality.HIGH) {
-        SignalIcons.QualityHigh.imageVector
-      } else {
-        SignalIcons.QualityHighSlash.imageVector
-      },
-      onClick = { onEvent(MediaEditScreenEvent.ToggleMediaQuality) }
-    )
-
-    ImageEditorButton(
-      imageVector = SignalIcons.Save.imageVector,
-      onClick = { onEvent(MediaEditScreenEvent.SaveMedia) }
-    )
-
-    ImageEditorButton(
-      imageVector = SignalIcons.Plus.imageVector, // TODO [alex] - wrong art asset
-      onClick = { onEvent(MediaEditScreenEvent.NavigateToGallery) }
+    MediaEditorToolbarSharedButtons(
+      state = state,
+      canSave = true,
+      onEvent = onEvent
     )
   }
 }
@@ -118,7 +96,7 @@ private fun ImageEditorDrawStateToolbar(
   imageEditorController: ImageController,
   modifier: Modifier = Modifier
 ) {
-  OrientedImageEditorToolbar(
+  MediaEditorToolbar(
     modifier = modifier,
     leading = {
       CommitButton(imageEditorController)
@@ -174,7 +152,7 @@ private fun ImageEditorCropAndResizeToolbar(
   imageEditorController: ImageController,
   modifier: Modifier = Modifier
 ) {
-  OrientedImageEditorToolbar(
+  MediaEditorToolbar(
     modifier = modifier,
     leading = {
       CommitButton(imageEditorController)
@@ -183,12 +161,12 @@ private fun ImageEditorCropAndResizeToolbar(
       DiscardButton(imageEditorController)
     }
   ) {
-    ImageEditorButton(
+    MediaEditorToolbarButton(
       imageVector = SignalIcons.CropRotate.imageVector,
       onClick = imageEditorController::rotate
     )
 
-    ImageEditorButton(
+    MediaEditorToolbarButton(
       imageVector = SignalIcons.Flip.imageVector,
       onClick = imageEditorController::flip
     )
@@ -218,7 +196,7 @@ private fun ImageEditorCropAndResizeToolbar(
 
 @Composable
 private fun CommitButton(imageEditorController: ImageController) {
-  ImageEditorButton(
+  MediaEditorToolbarButton(
     imageVector = SignalIcons.Check.imageVector,
     onClick = imageEditorController::commitEdit,
     colors = IconButtons.iconButtonColors(
@@ -236,7 +214,7 @@ private fun DiscardButton(imageEditorController: ImageController) {
     )
   }
 
-  ImageEditorButton(
+  MediaEditorToolbarButton(
     imageVector = SignalIcons.X.imageVector,
     onClick = imageEditorController::requestCancelEdit,
     colors = IconButtons.iconButtonColors(
@@ -265,21 +243,6 @@ private inline fun <reified E : Enum<E>> IconCrossfadeToggleButton(
 }
 
 @Composable
-private fun ImageEditorButton(
-  imageVector: ImageVector,
-  onClick: () -> Unit,
-  contentDescription: String? = null,
-  colors: IconButtonColors = IconButtons.iconButtonColors()
-) {
-  IconButtons.IconButton(
-    onClick = onClick,
-    colors = colors
-  ) {
-    Icon(imageVector = imageVector, contentDescription = contentDescription, modifier = Modifier.size(24.dp))
-  }
-}
-
-@Composable
 private fun ImageEditorToggleButton(
   imageVector: ImageVector,
   checked: Boolean,
@@ -295,47 +258,6 @@ private fun ImageEditorToggleButton(
     )
   ) {
     Icon(imageVector = imageVector, contentDescription = contentDescription, modifier = Modifier.size(24.dp))
-  }
-}
-
-@Composable
-private fun OrientedImageEditorToolbar(
-  modifier: Modifier = Modifier,
-  leading: @Composable () -> Unit = {},
-  trailing: @Composable () -> Unit = {},
-  content: @Composable () -> Unit
-) {
-  val windowBreakpoint = rememberWindowBreakpoint()
-  val isRow = windowBreakpoint is WindowBreakpoint.Small
-
-  if (isRow) {
-    Row(modifier = modifier.height(48.dp)) {
-      leading()
-
-      Row(
-        modifier = Modifier
-          .fillMaxHeight()
-          .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(percent = 50))
-      ) {
-        content()
-      }
-
-      trailing()
-    }
-  } else {
-    Column(modifier = modifier.width(48.dp)) {
-      leading()
-
-      Column(
-        modifier = Modifier
-          .fillMaxWidth()
-          .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(percent = 50))
-      ) {
-        content()
-      }
-
-      trailing()
-    }
   }
 }
 

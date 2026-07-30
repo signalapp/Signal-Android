@@ -44,7 +44,7 @@ private const val TAG = "VideoEditorToolbar"
  * caps how long a range the user can trim to (0 means no cap).
  */
 @Composable
-fun VideoEditorToolbar(
+fun VideoTrimBar(
   videoUri: Uri,
   mediaInputFactory: MediaInputFactory,
   videoTrimData: VideoTrimData,
@@ -140,9 +140,9 @@ fun VideoEditorToolbar(
 
 @Preview
 @Composable
-fun VideoEditorToolbarPreview() {
+fun VideoTrimBarPreview() {
   Previews.Preview {
-    VideoEditorToolbar(
+    VideoTrimBar(
       videoUri = Uri.EMPTY,
       mediaInputFactory = object : MediaInputFactory {
         override fun createForUri(context: Context, uri: Uri) = throw UnsupportedOperationException()

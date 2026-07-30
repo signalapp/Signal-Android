@@ -69,8 +69,8 @@ import org.signal.mediasend.edit.image.ImageEditorToolbar
 import org.signal.mediasend.edit.image.ImageEditorUndoRedoButtons
 import org.signal.mediasend.edit.image.RotationDial
 import org.signal.mediasend.edit.video.VideoEditorFragment
-import org.signal.mediasend.edit.video.VideoEditorToolbar
 import org.signal.mediasend.edit.video.VideoEditorViewModel
+import org.signal.mediasend.edit.video.VideoTrimBar
 import org.signal.mediasend.rememberPreviewState
 
 @Composable
@@ -284,10 +284,17 @@ fun MediaEditScreen(
           if (controller.isUserDrawing) {
             DrawModeColorBar(imageEditorController = controller)
           }
+        }
 
-          if (isSmallWindowBreakpoint) {
-            ImageEditorToolbar(imageEditorController = controller, state = state, onEvent = onEvent)
-          }
+        if (isSmallWindowBreakpoint) {
+          MediaToolbar(
+            focusedUri = focusedUri,
+            focusedEditorState = focusedEditorState,
+            state = state,
+            onEvent = onEvent,
+            imageController = imageController,
+            isTextEditing = isTextEditing
+          )
         }
       }
 
@@ -311,16 +318,16 @@ fun MediaEditScreen(
       }
     }
 
-    if (!isSmallWindowBreakpoint && imageController != null) {
-      ImageEditorToolbar(
-        imageEditorController = imageController,
+    if (!isSmallWindowBreakpoint) {
+      MediaToolbar(
+        focusedUri = focusedUri,
+        focusedEditorState = focusedEditorState,
         state = state,
         onEvent = onEvent,
+        imageController = imageController,
+        isTextEditing = isTextEditing,
         modifier = Modifier
           .align(Alignment.CenterEnd)
-          .navigationBarsPadding()
-          .padding(end = 24.dp)
-          .then(if (isTextEditing) Modifier.imePadding() else Modifier)
       )
     }
 
@@ -355,6 +362,49 @@ fun MediaEditScreen(
 
     if (state.isSavingMedia) {
       MediaEditScreenDialogs.SavingToStorageProgressDialog()
+    }
+  }
+}
+
+/**
+ * Toolbar allowing for common actions
+ */
+@Composable
+private fun MediaToolbar(
+  state: MediaSendState,
+  onEvent: (MediaEditScreenEvent) -> Unit,
+  focusedUri: Uri?,
+  focusedEditorState: EditorState?,
+  imageController: ImageController?,
+  isTextEditing: Boolean,
+  modifier: Modifier = Modifier
+) {
+  if (focusedUri == null) {
+    return
+  }
+
+  when (focusedEditorState) {
+    null -> return
+    is EditorState.Image -> {
+      imageController?.let {
+        ImageEditorToolbar(
+          imageEditorController = it,
+          state = state,
+          onEvent = onEvent,
+          modifier = modifier
+            .navigationBarsPadding()
+            .padding(end = 24.dp)
+            .then(if (isTextEditing) Modifier.imePadding() else Modifier)
+        )
+      }
+    }
+
+    else -> MediaEditorToolbar(modifier = modifier) {
+      MediaEditorToolbarSharedButtons(
+        state = state,
+        onEvent = onEvent,
+        canSave = focusedEditorState is EditorState.VideoTrim
+      )
     }
   }
 }
@@ -404,7 +454,7 @@ private fun VideoTrimTimeline(
     }
   }
 
-  VideoEditorToolbar(
+  VideoTrimBar(
     videoUri = videoUri,
     mediaInputFactory = MediaSendDependencies.mediaInputFactory,
     videoTrimData = editorState.videoTrimData,
