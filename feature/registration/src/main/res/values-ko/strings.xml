@@ -88,7 +88,7 @@
     <!-- Button text for call me action -->
     <string name="VerificationCodeScreen__call_me_instead">전화로 받기</string>
     <!-- Button text for resend SMS when countdown is active. Placeholders are minutes and seconds -->
-    <string name="VerificationCodeScreen__resend_code_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="VerificationCodeScreen__resend_code_available_in">코드 다시 보내기(%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__call_me_available_in">전화로 받기(%1$02d:%2$02d)</string>
     <!-- Toast shown when the user enters an incorrect verification code -->
@@ -124,7 +124,9 @@
     <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
     <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">고객 지원 문의</string>
     <!-- Email subject used when contacting support from the verification code screen -->
-  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_subject" translatable="false">Signal Registration - Verification Code for Android</string> -->
+    <string name="VerificationCodeScreen__contact_support_email_subject">Signal Registration - Verification Code for Android</string>
+    <!-- Text placed in the body of the support email composed from the verification code screen. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_filter" translatable="false">Signal Registration - Verification Code for Android</string> -->
     <!-- URL opened for troubleshooting steps from the verification code screen -->
   <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__support_center_url" translatable="false">https://support.signal.org/</string> -->
 
@@ -261,7 +263,7 @@
     <!-- Description shown when the entered passphrase or recovery key cannot decrypt the selected backup -->
     <string name="LocalBackupRestoreScreen__incorrect_credential_description">입력한 인증 정보가 이 백업과 일치하지 않습니다. 확인 후 다시 시도해 주세요.</string>
     <!-- Button to link an existing Signal account to this device -->
-    <string name="WelcomeScreen__link_your_account">계정 연결하기</string>
+    <string name="WelcomeScreen__link_your_account">계정 연동하기</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
     <string name="WelcomeScreen__not_on_signal_yet">아직 Signal에 가입하지 않으셨나요?</string>
     <!-- Button to create a new Signal account -->
@@ -308,8 +310,10 @@
     <string name="RemoteRestoreScreen__your_backup_is_not_recoverable">백업을 복원하는 동안 오류가 발생하여, 백업이 복원되지 않았습니다. 고객 지원팀에 문의해 주시기 바랍니다.</string>
     <!-- Button to contact support -->
     <string name="RemoteRestoreScreen__contact_support">지원팀에 문의</string>
-    <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. Also used to route the request, so it is not translated. -->
-  <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_subject" translatable="false">Signal Android Backup restore permanent failure</string> -->
+    <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. -->
+    <string name="RemoteRestoreScreen__contact_support_email_subject">Signal Android Backup Restore Permanent Failure</string>
+    <!-- Text placed in the body of the support email composed when the user contacts support about an unrecoverable backup. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
     <!-- Shown while downloading the backup from the server -->
     <string name="RemoteRestoreScreen__downloading_backup">백업을 다운로드하는 중…</string>
     <!-- Shown while restoring messages from the downloaded backup -->
@@ -376,6 +380,8 @@
     <string name="PinCreationScreen__reenter_pin">PIN 재입력</string>
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">PIN이 일치하지 않습니다. 다시 시도해 주세요.</string>
+    <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
+    <string name="PinCreationScreen__choose_a_stronger_pin">Choose a stronger PIN</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
     <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
@@ -427,8 +433,10 @@
     <string name="PinEntryScreen__no_data_could_be_found">계정을 복구할 수 있는 데이터를 찾을 수 없습니다. 새로운 PIN을 생성하세요.</string>
     <!-- Labels the button in the no-data-to-restore dialog that lets the user contact support. -->
     <string name="PinEntryScreen__contact_support">지원팀에 문의</string>
-    <!-- Subject line of the support email composed when the user contacts support about PIN entry. Also used to route the request, so it is not translated. -->
-  <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_subject" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
+    <!-- Subject line of the support email composed when the user contacts support about PIN entry. -->
+    <string name="PinEntryScreen__contact_support_email_subject">Signal Registration - Need Help with PIN for Android</string>
+    <!-- Text placed in the body of the support email composed when the user contacts support about PIN entry. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_filter" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
 
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">알림 허용</string>
@@ -497,7 +505,7 @@
     <!-- Title of the confirmation dialog shown when the scanned QR code belongs to a different account than the one this device is currently linked to -->
     <string name="LinkAccountScreen__delete_app_data_question">앱 데이터를 삭제할까요?</string>
     <!-- Body of the confirmation dialog warning that continuing will erase all local data before relinking to a different account -->
-    <string name="LinkAccountScreen__you_are_attempting_to_link_a_different_account">다른 Signal 계정을 연결하고 있습니다. 계속 진행할 경우 현재 기기에 있는 모든 Signal 데이터가 삭제됩니다.</string>
+    <string name="LinkAccountScreen__you_are_attempting_to_link_a_different_account">다른 Signal 계정을 연동하려고 합니다. 계속 진행하면 현재 기기에 있는 모든 Signal 데이터가 삭제됩니다.</string>
     <!-- Destructive confirmation button that deletes all local data and restarts the app so it can be linked to a different account -->
     <string name="LinkAccountScreen__delete_and_restart">삭제 후 재시작</string>
     <!-- Content description for the button that closes the maximized QR code overlay -->
@@ -589,13 +597,14 @@
     <string name="CaptchaScreen__failed_to_load_captcha">CAPTCHA를 로드하지 못했습니다.</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">취소</string>
+
     <!-- ContactSupportDialog -->
     <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
-    <string name="ContactSupportDialog__submit_debug_log">디버그 로그를 제출할까요?</string>
+    <string name="ContactSupportDialog__submit_debug_log">Submit debug log?</string>
     <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
-    <string name="ContactSupportDialog__your_debug_logs">디버그 로그를 보내 문제 해결에 도움을 주실 수 있습니다. 로그 보내기는 선택 사항입니다.</string>
+    <string name="ContactSupportDialog__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
     <!-- Button that contacts support with a debug log attached -->
-    <string name="ContactSupportDialog__submit_with_debug_log">디버그 로그와 함께 보내기</string>
+    <string name="ContactSupportDialog__submit_with_debug_log">Submit with debug log</string>
     <!-- Button that contacts support without attaching a debug log -->
-    <string name="ContactSupportDialog__submit_without_debug_log">디버그 로그를 제외하고 보내기</string>
+    <string name="ContactSupportDialog__submit_without_debug_log">Submit without debug log</string>
 </resources>

@@ -26,7 +26,7 @@
   <!-- Label for the button that switches the capture screen to the camera. -->
   <string name="MediaCaptureScreen__camera">Камера</string>
   <!-- Label for the button that switches the capture screen to the text story editor. -->
-  <string name="MediaCaptureScreen__text">Text</string>
+  <string name="MediaCaptureScreen__text">Текст</string>
     <!-- Label for the pill that displays the media count -->
     <plurals name="MediaCaptureScreen_n_items">
         <item quantity="one">%1$d item</item>

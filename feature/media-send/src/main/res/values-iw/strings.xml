@@ -26,13 +26,13 @@
   <!-- Label for the button that switches the capture screen to the camera. -->
   <string name="MediaCaptureScreen__camera">מצלמה</string>
   <!-- Label for the button that switches the capture screen to the text story editor. -->
-  <string name="MediaCaptureScreen__text">Text</string>
+  <string name="MediaCaptureScreen__text">מלל</string>
     <!-- Label for the pill that displays the media count -->
     <plurals name="MediaCaptureScreen_n_items">
-        <item quantity="one">%1$d item</item>
-        <item quantity="two">%1$d items</item>
-        <item quantity="many">%1$d items</item>
-        <item quantity="other">%1$d items</item>
+        <item quantity="one">פריט %1$d</item>
+        <item quantity="two">%1$d פריטים</item>
+        <item quantity="many">%1$d פריטים</item>
+        <item quantity="other">%1$d פריטים</item>
     </plurals>
 
   <!-- Video editor play button content description -->

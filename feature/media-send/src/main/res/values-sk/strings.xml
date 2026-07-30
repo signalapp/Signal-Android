@@ -29,10 +29,10 @@
   <string name="MediaCaptureScreen__text">Text</string>
     <!-- Label for the pill that displays the media count -->
     <plurals name="MediaCaptureScreen_n_items">
-        <item quantity="one">%1$d item</item>
-        <item quantity="few">%1$d items</item>
-        <item quantity="many">%1$d items</item>
-        <item quantity="other">%1$d items</item>
+        <item quantity="one">%1$d položka</item>
+        <item quantity="few">%1$d položky</item>
+        <item quantity="many">%1$d položiek</item>
+        <item quantity="other">%1$d položiek</item>
     </plurals>
 
   <!-- Video editor play button content description -->

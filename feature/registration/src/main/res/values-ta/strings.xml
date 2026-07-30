@@ -88,7 +88,7 @@
     <!-- Button text for call me action -->
     <string name="VerificationCodeScreen__call_me_instead">அதற்குப் பதிலாக என்னை அழைக்கவும்</string>
     <!-- Button text for resend SMS when countdown is active. Placeholders are minutes and seconds -->
-    <string name="VerificationCodeScreen__resend_code_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="VerificationCodeScreen__resend_code_available_in">குறியீட்டை மீண்டும் அனுப்புக (%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__call_me_available_in">என்னை அழைக்கவும் (%1$02d:%2$02d)</string>
     <!-- Toast shown when the user enters an incorrect verification code -->
@@ -124,7 +124,9 @@
     <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
     <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">தொடர்பு ஆதரவு</string>
     <!-- Email subject used when contacting support from the verification code screen -->
-  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_subject" translatable="false">Signal Registration - Verification Code for Android</string> -->
+    <string name="VerificationCodeScreen__contact_support_email_subject">Signal Registration - Verification Code for Android</string>
+    <!-- Text placed in the body of the support email composed from the verification code screen. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_filter" translatable="false">Signal Registration - Verification Code for Android</string> -->
     <!-- URL opened for troubleshooting steps from the verification code screen -->
   <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__support_center_url" translatable="false">https://support.signal.org/</string> -->
 
@@ -308,8 +310,10 @@
     <string name="RemoteRestoreScreen__your_backup_is_not_recoverable">உங்கள் காப்புப்பிரதியை மீட்டெடுக்கும்போது பிழை ஏற்பட்டது. உங்கள் காப்புப்பிரதி மீட்டெடுக்கப்படவில்லை. உதவிக்கு ஆதரவைத் தொடர்பு கொள்ளுங்கள்.</string>
     <!-- Button to contact support -->
     <string name="RemoteRestoreScreen__contact_support">ஆதரவைத் தொடர்பு கொள்க</string>
-    <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. Also used to route the request, so it is not translated. -->
-  <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_subject" translatable="false">Signal Android Backup restore permanent failure</string> -->
+    <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. -->
+    <string name="RemoteRestoreScreen__contact_support_email_subject">Signal Android Backup Restore Permanent Failure</string>
+    <!-- Text placed in the body of the support email composed when the user contacts support about an unrecoverable backup. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
     <!-- Shown while downloading the backup from the server -->
     <string name="RemoteRestoreScreen__downloading_backup">காப்புப்பிரதியை பதிவிறக்குகிறது…</string>
     <!-- Shown while restoring messages from the downloaded backup -->
@@ -377,6 +381,8 @@
     <string name="PinCreationScreen__reenter_pin">பின்னை மீண்டும் உள்ளிடுக</string>
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">பின்-கள் பொருந்தவில்லை. மீண்டும் முயற்சி செய்க.</string>
+    <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
+    <string name="PinCreationScreen__choose_a_stronger_pin">Choose a stronger PIN</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
     <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
@@ -429,8 +435,10 @@
     <string name="PinEntryScreen__no_data_could_be_found">உங்கள் கணக்கை மீட்டமைப்பதற்கான தரவு எதுவும் கண்டறியப்படவில்லை. புதிய பின்னை உருவாக்கவும்.</string>
     <!-- Labels the button in the no-data-to-restore dialog that lets the user contact support. -->
     <string name="PinEntryScreen__contact_support">ஆதரவைத் தொடர்பு கொள்க</string>
-    <!-- Subject line of the support email composed when the user contacts support about PIN entry. Also used to route the request, so it is not translated. -->
-  <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_subject" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
+    <!-- Subject line of the support email composed when the user contacts support about PIN entry. -->
+    <string name="PinEntryScreen__contact_support_email_subject">Signal Registration - Need Help with PIN for Android</string>
+    <!-- Text placed in the body of the support email composed when the user contacts support about PIN entry. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_filter" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
 
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">அறிவிப்புகளுக்கான அனுமதி</string>
@@ -591,13 +599,14 @@
     <string name="CaptchaScreen__failed_to_load_captcha">கேப்ட்சாவை ஏற்ற முடியவில்லை</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">ரத்துசெய்</string>
+
     <!-- ContactSupportDialog -->
     <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
-    <string name="ContactSupportDialog__submit_debug_log">பிழைத்திருத்தப் பதிவு சமர்ப்பிப்பதா?</string>
+    <string name="ContactSupportDialog__submit_debug_log">Submit debug log?</string>
     <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
-    <string name="ContactSupportDialog__your_debug_logs">உங்கள் பிழைத்திருத்தப் பதிவுகள் உங்கள் சிக்கலை விரைவாகச் சரிசெய்ய உதவும். உங்கள் பதிவுகளைச் சமர்ப்பிப்பது விருப்பத்தேர்வுக்குரியது.</string>
+    <string name="ContactSupportDialog__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
     <!-- Button that contacts support with a debug log attached -->
-    <string name="ContactSupportDialog__submit_with_debug_log">பிழைத்திருத்தப் பதிவுடன் சமர்ப்பி</string>
+    <string name="ContactSupportDialog__submit_with_debug_log">Submit with debug log</string>
     <!-- Button that contacts support without attaching a debug log -->
-    <string name="ContactSupportDialog__submit_without_debug_log">பிழைத்திருத்தப் பதிவு இல்லாமல் சமர்ப்பி</string>
+    <string name="ContactSupportDialog__submit_without_debug_log">Submit without debug log</string>
 </resources>

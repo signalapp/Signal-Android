@@ -29,9 +29,9 @@
   <string name="MediaCaptureScreen__text">Text</string>
     <!-- Label for the pill that displays the media count -->
     <plurals name="MediaCaptureScreen_n_items">
-        <item quantity="one">%1$d item</item>
-        <item quantity="few">%1$d items</item>
-        <item quantity="other">%1$d items</item>
+        <item quantity="one">%1$d articol</item>
+        <item quantity="few">%1$d itemi</item>
+        <item quantity="other">%1$d de itemi</item>
     </plurals>
 
   <!-- Video editor play button content description -->

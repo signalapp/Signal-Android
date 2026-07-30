@@ -4,7 +4,7 @@
   ~ SPDX-License-Identifier: AGPL-3.0-only
   -->
 <!-- smartling.instruction_comments_enabled = on -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
@@ -399,7 +399,7 @@
     <string name="ConversationItem_s_deleted_this_message">%1$s ha eliminato questo messaggio</string>
     <string name="ConversationItem_you_deleted_this_message">Hai eliminato questo messaggio</string>
     <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
-    <string name="ConversationItem_delete_for_everyone_question">Delete for everyone?</string>
+    <string name="ConversationItem_delete_for_everyone_question">Eliminare per tutti?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">L\'admin %1$s ha eliminato questo messaggio</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -681,7 +681,7 @@
     <!-- Title of the dialog shown when re-requesting an expired attachment from your primary device fails -->
     <string name="ConversationFragment_attachment_backfill_failed_title">Impossibile scaricare il contenuto multimediale</string>
     <!-- Body of the dialog shown when your phone didn\'t respond to a request to re-send an expired attachment -->
-    <string name="ConversationFragment_attachment_backfill_timeout">Controlla la connessione internet di questo dispositivo e del tuo telefono. Apri Signal sul tuo telefono, poi riprova a effettuare il download.</string>
+    <string name="ConversationFragment_attachment_backfill_timeout">Controlla la connessione Internet di questo dispositivo e del tuo telefono. Apri Signal sul tuo telefono, poi riprova a effettuare il download.</string>
     <!-- Body of the dialog shown when your phone no longer has the attachment you tried to download -->
     <string name="ConversationFragment_attachment_backfill_not_found">Questo contenuto multimediale non è più disponibile sul tuo telefono e non può essere scaricato.</string>
     <!-- Dialog for how to long to keep a messaged pinned for -->
@@ -984,7 +984,7 @@
     <string name="BackupsPreferenceFragment__d_so_far">%1$d finora…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% finora…</string>
-    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal richiede l\'autorizzazione per creare backup in memoria, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
+    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal richiede l\'autorizzazione per creare backup in memoria, ma è stata negata in modo permanente. Vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\", e abilita \"Archiviazione\".</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
     <string name="BackupsPreferenceFragment__set_backup_time">Imposta orario per il backup</string>
 
@@ -1825,7 +1825,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">Inviato da %1$s a %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Inviato da te a %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Questo media non è stato ancora inviato.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Questo contenuto multimediale non è stato ancora inviato.</string>
     <string name="MediaOverviewActivity_jump_to_message">Passa al messaggio</string>
 
     <!-- Megaphones -->
@@ -1934,7 +1934,7 @@
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha impostato il timer dei messaggi temporanei a %2$s.</string>
     <string name="MessageRecord_disappearing_message_time_set_to_s">Il timer dei messaggi temporanei è stato impostato a %1$s.</string>
     <string name="MessageRecord_this_group_was_updated_to_a_new_group">Questo gruppo è stato aggiornato a un Nuovo Gruppo.</string>
-    <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Non è stato possibile aggiungerti al Nuovo Gruppo e sei stato invitato a unirti.</string>
+    <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Non è stato possibile aggiungerti al Nuovo Gruppo e hai ricevuto un invito a unirti.</string>
     <string name="MessageRecord_chat_session_refreshed">Sessione di chat aggiornata</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
         <item quantity="one">Una persona non può essere aggiunta al Nuovo gruppo ed è stata invitata a unirsi.</item>
@@ -1962,8 +1962,8 @@
     <string name="MessageRecord_you_added_s">Hai aggiunto %1$s.</string>
     <string name="MessageRecord_s_added_s">%1$s ha aggiunto %2$s.</string>
     <string name="MessageRecord_s_added_you">%1$s ti ha aggiunto al gruppo.</string>
-    <string name="MessageRecord_you_joined_the_group">Ti sei unito al gruppo.</string>
-    <string name="MessageRecord_s_joined_the_group">%1$s si è unito al gruppo.</string>
+    <string name="MessageRecord_you_joined_the_group">Ora fai parte del gruppo.</string>
+    <string name="MessageRecord_s_joined_the_group">%1$s ora fa parte del gruppo.</string>
 
     <!-- GV2 member removals -->
     <string name="MessageRecord_you_removed_s">Hai rimosso %1$s.</string>
@@ -1988,12 +1988,12 @@
 
     <!-- GV2 invitations -->
     <string name="MessageRecord_you_invited_s_to_the_group">Hai invitato %1$s al gruppo.</string>
-    <string name="MessageRecord_s_invited_you_to_the_group">%1$s ti ha invitato al gruppo.</string>
+    <string name="MessageRecord_s_invited_you_to_the_group">%1$s ti ha mandato un invito al gruppo.</string>
     <plurals name="MessageRecord_s_invited_members">
         <item quantity="one">%1$s ha invitato 1 persona a entrare nel gruppo.</item>
         <item quantity="other">%1$s ha invitato %2$d persone a entrare nel gruppo.</item>
     </plurals>
-    <string name="MessageRecord_you_were_invited_to_the_group">Sei stato invitato al gruppo.</string>
+    <string name="MessageRecord_you_were_invited_to_the_group">Hai ricevuto un invito al gruppo.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
         <item quantity="one">1 persona è stata invitata a entrare nel gruppo.</item>
         <item quantity="other">%1$d persone sono state invitate a entrare nel gruppo.</item>
@@ -2086,7 +2086,7 @@
     <string name="MessageRecord_the_group_link_has_been_reset">Il link del gruppo è stato reimpostato.</string>
 
     <!-- GV2 group link joins -->
-    <string name="MessageRecord_you_joined_the_group_via_the_group_link">Ti sei unito al gruppo tramite il link del gruppo.</string>
+    <string name="MessageRecord_you_joined_the_group_via_the_group_link">Ora partecipi al gruppo tramite il link del gruppo.</string>
     <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s si è unito al gruppo tramite il link del gruppo.</string>
 
     <!-- GV2 group link requests -->
@@ -2251,8 +2251,8 @@
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Questo Gruppo Legacy non può essere più usato. Crea un altro gruppo per attivare nuove funzioni come le @menzioni e gli admin.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Questo Gruppo Legacy non può più essere usato perché è troppo grande. La dimensione massima del gruppo è %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Vuoi continuare questa chat con %1$s e condividere il tuo nome e la tua foto con questo utente?</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Unirsi a questo gruppo e condividere il tuo nome e la tua foto con i suoi membri? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Unirsi a questo gruppo e condividere il tuo nome e la tua foto con i suoi membri? Non vedrai i loro messaggi finché non avrai accettato.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vuoi unirti a questo gruppo e condividere il tuo nome e la tua foto con i suoi membri? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Vuoi unirti a questo gruppo e condividere il tuo nome e la tua foto con i suoi membri? Non vedrai i loro messaggi finché non avrai accettato.</string>
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vuoi unirti a questo gruppo? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Vuoi sbloccare questo gruppo e condividere il tuo nome e la tua foto con chi ne fa parte? Non riceverai messaggi finché non sbloccherai il gruppo.</string>
@@ -3071,7 +3071,7 @@
     <string name="SubmitDebugLogActivity_close">Chiudi</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Questo log verrà postato pubblicamente online per essere visualizzato dai contributori. Puoi esaminarlo prima di caricarlo.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Quando fai clic su Invia, il tuo log sarà pubblicato online per 30 giorni su un URL unico e non pubblicato. Puoi prima salvarlo localmente.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Quando clicchi su Invia, il tuo log sarà pubblicato online per 30 giorni su un URL unico e non pubblicato. Puoi prima salvarlo localmente.</string>
     <!-- Debug log level names to filter by levels. -->
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
@@ -3302,7 +3302,7 @@
     <string name="MediaPreviewActivity_unable_to_play_media">Impossibile riprodurre il video.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Errore durante la ricerca del messaggio.</string>
-    <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Impossibile trovare un\'app per condividere questo media.</string>
+    <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Impossibile trovare un\'app per condividere questo contenuto multimediale.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Chiudi</string>
     <string name="MediaPreviewFragment_edit_media_error">Errore nel video o nell\'immagine</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
@@ -3442,7 +3442,7 @@
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Impossibile salvare nella memoria esterna senza l\'autorizzazione</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
-    <string name="AttachmentSaver__cant_save_media">Impossibile salvare questo media</string>
+    <string name="AttachmentSaver__cant_save_media">Impossibile salvare questo contenuto multimediale</string>
     <!-- Dialog message explaining that media cannot be saved because it has been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__media_offloaded_message">Questo contenuto multimediale è stato trasferito dal tuo dispositivo su un backup remoto perché hai attivato l\'opzione \"Ottimizza lo spazio di archiviazione di Signal\". Puoi scaricare gli elementi uno alla volta o disattivare questa opzione per scaricare tutti i contenuti multimediali sul tuo dispositivo.</string>
     <!-- Dialog title shown when attempting to save multiple media items, some of which have been offloaded from the device by the storage optimization feature. -->
@@ -3824,7 +3824,7 @@
     <string name="device_list_fragment__link_new_device">Collega nuovo dispositivo</string>
 
     <!-- expiration -->
-    <string name="expiration_off">No</string>
+    <string name="expiration_off">Off</string>
 
     <plurals name="expiration_seconds">
         <item quantity="one">%1$d secondo</item>
@@ -4008,7 +4008,7 @@
     <!-- Title for auto verification education sheet -->
     <string name="VerifyAutomaticallyEducationSheet__title">Signal ora può verificare automaticamente la crittografia delle chiavi</string>
     <!-- Body for auto verification education sheet -->
-    <string name="VerifyAutomaticallyEducationSheet__body">Per le chat avviate usando il numero di telefono, Signal conferma automaticamente che la conversazione sia sicura tramite la \"trasparenza delle chiavi\".Per maggiore sicurezza, puoi comunque effettuare una verifica manuale scansionando un codice QR o confrontando il codice di sicurezza.</string>
+    <string name="VerifyAutomaticallyEducationSheet__body">Per le chat avviate usando il numero di telefono, Signal conferma automaticamente che la conversazione sia sicura tramite la \"trasparenza delle chiavi\". Per maggiore sicurezza, puoi comunque effettuare una verifica manuale scansionando un codice QR o un codice di sicurezza.</string>
     <!-- Button to learn more about automatic verification -->
     <string name="VerifyAutomaticallyEducationSheet__learn_more">Scopri di più</string>
     <!-- Button to go to verification page -->
@@ -4385,8 +4385,8 @@
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Abilita il mittente sigillato per i messaggi in arrivo da non-contatti e persone con cui non hai condiviso il tuo profilo.</string>
     <string name="preferences_proxy">Proxy</string>
     <string name="preferences_use_proxy">Usa proxy</string>
-    <string name="preferences_off">No</string>
-    <string name="preferences_on">Sì</string>
+    <string name="preferences_off">Off</string>
+    <string name="preferences_on">On</string>
     <string name="preferences_proxy_address">Indirizzo proxy</string>
     <string name="preferences_only_use_a_proxy_if">Usa un proxy solo se non sei in grado di connetterti a Signal su dati mobili o Wi-Fi.</string>
     <string name="preferences_share">Condividi</string>
@@ -5090,7 +5090,7 @@
 
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">No</string>
+    <string name="ScreenLockSettingsFragment__off">Off</string>
     <!-- Text shown with toggle that when switched on will enable screen lock -->
     <string name="ScreenLockSettingsFragment__use_screen_lock">Usa il blocco schermo</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
@@ -5879,7 +5879,7 @@
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
-    <string name="ChatFoldersFragment__organize_your_chats">Suddividi le tue chat in più cartelle e passa al volo da una cartella all\'altra nell\'elenco delle chat.</string>
+    <string name="ChatFoldersFragment__organize_your_chats">Organizza le tue chat in più cartelle e passa al volo da una cartella all\'altra nell\'elenco delle chat.</string>
     <!-- Header for section showing current chat folders -->
     <string name="ChatFoldersFragment__folders">Cartelle</string>
     <!-- Text next to button that allows users to create a new chat folder -->
@@ -6032,7 +6032,7 @@
     <!-- ExpireTimerSettingsFragment -->
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Una volta abilitati, i nuovi messaggi inviati e ricevuti in nuove chat avviate da te scompariranno dopo essere stati visti.</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Una volta abilitati, i nuovi messaggi inviati e ricevuti in questa chat scompariranno dopo essere stati visti.</string>
-    <string name="ExpireTimerSettingsFragment__off">No</string>
+    <string name="ExpireTimerSettingsFragment__off">Off</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 settimane</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 settimana</string>
     <string name="ExpireTimerSettingsFragment__1_day">1 giorno</string>
@@ -6214,7 +6214,7 @@
     <string name="ConversationSettingsFragment__phone_number">Numero di telefono</string>
     <string name="ConversationSettingsFragment__get_badges">Ottieni i badge per il tuo profilo supportando Signal. Tocca un badge per saperne di più.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Questo media non è stato ancora inviato.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Questo contenuto multimediale non è stato ancora inviato.</string>
     <!-- End group option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__end_group">Chiudi gruppo</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
@@ -6831,7 +6831,7 @@
     <!-- Button that starts the create new notification profile flow -->
     <string name="NotificationProfilesFragment__new_profile">Nuovo profilo</string>
     <!-- Profile active status, indicating the current profile is on for an unknown amount of time -->
-    <string name="NotificationProfilesFragment__on">Attivo</string>
+    <string name="NotificationProfilesFragment__on">On</string>
 
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Elimina profilo</string>
@@ -6848,9 +6848,9 @@
     <!-- Schedule description if all days are selected -->
     <string name="NotificationProfileDetails__everyday">Tutti i giorni</string>
     <!-- Profile status on if it is the active profile -->
-    <string name="NotificationProfileDetails__on">Attivo</string>
+    <string name="NotificationProfileDetails__on">On</string>
     <!-- Profile status on if it is not the active profile -->
-    <string name="NotificationProfileDetails__off">Non attivo</string>
+    <string name="NotificationProfileDetails__off">Off</string>
     <!-- Description of hours for schedule (start to end) times -->
     <string name="NotificationProfileDetails__s_to_s">%1$s a %2$s</string>
     <!-- Section header for exceptions to the notification profile -->
@@ -6962,7 +6962,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Importo</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Thank you for supporting Signal. Your contribution helps fuel the mission of protecting free expression and enabling secure global communication for millions around the world, through open source privacy technology. If you’re a resident of the United States, please retain this receipt for your tax records. Signal Technology Foundation is a tax–exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82–4506840. Signal did not provide any goods or services in consideration of this contribution.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Thank you for supporting Signal. Your contribution helps fuel the mission of protecting free expression and enabling secure global communication for millions around the world, through open source privacy technology. If you\'re a resident of the United States, please retain this receipt for your tax records. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. Signal did not provide any goods or services in consideration of this contribution.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Nessun destinatario</string>
 
@@ -7139,7 +7139,7 @@
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">Risposte</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">Reagisci a questa Storia</string>
+    <string name="StoryReplyComposer__react_to_this_story">Invia una reazione a questa Storia</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__reply_to_s">Rispondi a %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
@@ -7199,7 +7199,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Inserendole nei contatti del tuo telefono</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Le tue connessioni possono vedere il tuo nome e la tua foto, così come i post su \"La mia Storia\", a meno che tu non decida di nasconderli a qualcuno."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Le tue Amicizie possono vedere il tuo nome e la tua foto, così come i post su \"La mia Storia\", a meno che tu non decida di nasconderli a qualcuno."</string>
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Aggiungi persona</string>
     <!-- Clickable option to delete a custom story -->
@@ -8704,7 +8704,7 @@
 
     <!-- UpgradeToStartMediaBackupSheet -->
     <!-- Title on a bottom sheet, detailing that in order to start backing up media, they need to upgrade to paid backup storage -->
-    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">Questo media non è più disponibile</string>
+    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">Questo contenuto multimediale non è più disponibile</string>
     <!-- Subtitle of bottom sheet detailing that with their current plan, there is a limitation to how many days media is stored for. Placeholder is number of days. -->
     <plurals name="UpgradeToStartMediaBackupSheet__your_current_signal_backup_plan_includes">
         <item quantity="one">Il tuo piano per i backup su Signal include %1$d giorno di media (il più recente). Se desideri un backup completo di tutti i tuoi media, passa a un altro abbonamento.</item>
@@ -8715,7 +8715,7 @@
 
     <!-- MediaNoLongerAvailableSheet -->
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
-    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Questo media non è più disponibile</string>
+    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Questo contenuto multimediale non è più disponibile</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
     <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Per cominciare il backup di tutti i media, concedi l\'autorizzazione per i Backup sicuri di Signal e scegli l\'abbonamento.</string>
     <!-- Primary action button on bottom sheet -->
@@ -9853,7 +9853,7 @@
     <string name="CallQualitySheet__try_again">Riprova</string>
 
     <!-- Message body when someone pins a message where %1$s is the name of the person -->
-    <string name="PinnedMessage__s_pinned_a_message">%1$s ha fissato un messaggio</string>
+    <string name="PinnedMessage__s_pinned_a_message">%1$s ha messo in evidenza un messaggio</string>
     <!-- Message body when you pin a message -->
     <string name="PinnedMessage__you_pinned_a_message">Hai messo in evidenza un messaggio</string>
     <!-- Button body to go to the pinned message -->
@@ -9875,7 +9875,7 @@
     <!-- Caption shown when the pinned message is a view once media -->
     <string name="PinnedMessage__view_once">Media visualizzabile una volta</string>
     <!-- Context menu option to unpin the message -->
-    <string name="PinnedMessage__unpin_message">Togli dai fissati</string>
+    <string name="PinnedMessage__unpin_message">Togli da In evidenza</string>
     <!-- Context menu option to view all the message -->
     <string name="PinnedMessage__view_all_messages">Vedi tutti i messaggi</string>
     <!-- Text to unpin all messages -->

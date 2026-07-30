@@ -26,10 +26,10 @@
   <!-- Label for the button that switches the capture screen to the camera. -->
   <string name="MediaCaptureScreen__camera">كامېرا</string>
   <!-- Label for the button that switches the capture screen to the text story editor. -->
-  <string name="MediaCaptureScreen__text">Text</string>
+  <string name="MediaCaptureScreen__text">تېكىست</string>
     <!-- Label for the pill that displays the media count -->
     <plurals name="MediaCaptureScreen_n_items">
-        <item quantity="other">%1$d items</item>
+        <item quantity="other">%1$d تۈر</item>
     </plurals>
 
   <!-- Video editor play button content description -->
