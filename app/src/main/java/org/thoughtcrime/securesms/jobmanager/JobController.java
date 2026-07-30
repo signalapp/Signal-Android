@@ -44,6 +44,9 @@ class JobController {
 
   private static final Predicate<MinimalJobSpec> NO_PREDICATE = spec -> true;
 
+  /** Max number of items we'll print for any single collection in {@link #getDebugInfo()}, to avoid OOM'ing while building the string. */
+  private static final int DEBUG_ITEM_LIMIT = 500;
+
   private final Application                application;
   private final JobStorage                 jobStorage;
   private final JobInstantiator            jobInstantiator;
@@ -409,8 +412,8 @@ class JobController {
   @WorkerThread
   synchronized @NonNull String getDebugInfo() {
     List<JobSpec>        running      = runningJobs.keySet().stream().map(jobStorage::getJobSpec).collect(Collectors.toList());
-    List<JobSpec>        jobs         = jobStorage.debugGetJobSpecs(1000);
-    List<ConstraintSpec> constraints  = jobStorage.debugGetConstraintSpecs(1000);
+    List<JobSpec>        jobs         = jobStorage.debugGetJobSpecs(DEBUG_ITEM_LIMIT);
+    List<ConstraintSpec> constraints  = jobStorage.debugGetConstraintSpecs(DEBUG_ITEM_LIMIT);
     List<DependencySpec> dependencies = jobStorage.debugGetAllDependencySpecs();
     String               additional   = jobStorage.debugAdditionalDetails();
 
@@ -443,7 +446,10 @@ class JobController {
 
     info.append("\n-- Dependencies\n");
     if (!dependencies.isEmpty()) {
-      dependencies.stream().forEach(d -> info.append(d.toString()).append('\n'));
+      dependencies.stream().limit(DEBUG_ITEM_LIMIT).forEach(d -> info.append(d.toString()).append('\n'));
+      if (dependencies.size() > DEBUG_ITEM_LIMIT) {
+        info.append("...TRUNCATED, showing first ").append(DEBUG_ITEM_LIMIT).append(" of ").append(dependencies.size()).append('\n');
+      }
     } else {
       info.append("None\n");
     }
