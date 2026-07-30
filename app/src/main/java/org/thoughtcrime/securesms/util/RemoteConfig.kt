@@ -7,7 +7,6 @@ import org.json.JSONException
 import org.json.JSONObject
 import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes
-import org.signal.core.util.gibiBytes
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
@@ -748,24 +747,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /** The minimum memory class required for rendering animated stickers in the keyboard and such  */
-  @JvmStatic
-  @get:JvmName("animatedStickerMinimumMemoryClass")
-  val animatedStickerMinimumMemoryClass: Int by remoteInt(
-    key = "android.animatedStickerMinMemory",
-    defaultValue = 193,
-    hotSwappable = true
-  )
-
-  /** The minimum total memory for rendering animated stickers in the keyboard and such  */
-  @JvmStatic
-  @get:JvmName("animatedStickerMinimumTotalMemoryMb")
-  val animatedStickerMinimumTotalMemoryMb: Int by remoteInt(
-    key = "android.animatedStickerMinTotalMemory",
-    defaultValue = 3.gibiBytes.inWholeMebiBytes.toInt(),
-    hotSwappable = true
-  )
-
   @JvmStatic
   val mediaQualityLevels: String by remoteString(
     key = "android.mediaQuality.levels",
@@ -1405,17 +1386,6 @@ object RemoteConfig {
     key = "android.collapseEvents.2",
     defaultValue = false,
     hotSwappable = true
-  )
-
-  /**
-   * Whether to use the new custom APNG renderer instead of the existing third-party library.
-   */
-  @JvmStatic
-  @get:JvmName("newApngRenderer")
-  val newApngRenderer: Boolean by remoteBoolean(
-    key = "android.newApngRenderer",
-    defaultValue = false,
-    hotSwappable = false
   )
 
   /**

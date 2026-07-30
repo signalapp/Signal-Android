@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
 import org.thoughtcrime.securesms.stickers.StickerRolloverTouchListener;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.stickers.manage.StickerManagementRepository;
-import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
@@ -164,7 +163,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
     SystemWindowInsetsSetter.attach(installButton, this, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
     SystemWindowInsetsSetter.attach(removeButton, this, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
 
-    this.adapter       = new StickerPackPreviewAdapter(Glide.with(this), this, DeviceProperties.shouldAllowApngStickerAnimation(this));
+    this.adapter       = new StickerPackPreviewAdapter(Glide.with(this), this, true);
     this.layoutManager = new GridLayoutManager(this, 2);
     this.touchListener = new StickerRolloverTouchListener(this, Glide.with(this), this, this);
     onScreenWidthChanged(getScreenWidth());
@@ -219,7 +218,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
       Glide.with(this).load(model)
               .transition(DrawableTransitionOptions.withCrossFade())
               .fitCenter()
-              .set(ApngOptions.ANIMATE, DeviceProperties.shouldAllowApngStickerAnimation(this))
+              .set(ApngOptions.ANIMATE, true)
               .into(coverImage);
     } else {
       coverImage.setImageDrawable(null);

@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
 import org.thoughtcrime.securesms.stickers.StickerEventListener
 import org.thoughtcrime.securesms.stickers.StickerRolloverTouchListener
 import org.thoughtcrime.securesms.stickers.StickerRolloverTouchListener.RolloverStickerRetriever
-import org.thoughtcrime.securesms.util.DeviceProperties
 import org.thoughtcrime.securesms.util.InsetItemDecoration
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList
@@ -57,7 +56,7 @@ open class StickerKeyboardPageFragment :
     super.onViewCreated(view, savedInstanceState)
 
     val requestManager = Glide.with(this)
-    stickerListAdapter = KeyboardStickerListAdapter(requestManager, this, DeviceProperties.shouldAllowApngStickerAnimation(requireContext()))
+    stickerListAdapter = KeyboardStickerListAdapter(requestManager, this, true)
     layoutManager = GridLayoutManager(requireContext(), 2).apply {
       spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
         override fun getSpanSize(position: Int): Int {
@@ -80,7 +79,7 @@ open class StickerKeyboardPageFragment :
 
     stickerPacksRecycler = view.findViewById(R.id.sticker_packs_recycler)
 
-    stickerPacksAdapter = KeyboardStickerPackListAdapter(requestManager, DeviceProperties.shouldAllowApngStickerAnimation(requireContext()), this::onTabSelected)
+    stickerPacksAdapter = KeyboardStickerPackListAdapter(requestManager, true, this::onTabSelected)
     stickerPacksRecycler.adapter = stickerPacksAdapter
 
     appBarLayout = view.findViewById(R.id.sticker_keyboard_search_appbar)

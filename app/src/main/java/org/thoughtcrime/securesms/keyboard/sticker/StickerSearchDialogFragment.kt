@@ -18,7 +18,6 @@ import org.signal.core.ui.enableEdgeToEdge
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
 import org.thoughtcrime.securesms.stickers.StickerEventListener
-import org.thoughtcrime.securesms.util.DeviceProperties
 import org.thoughtcrime.securesms.util.InsetItemDecoration
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
@@ -63,7 +62,7 @@ class StickerSearchDialogFragment : DialogFragment(), KeyboardStickerListAdapter
     list = view.findViewById(R.id.sticker_search_list)
     noResults = view.findViewById(R.id.sticker_search_no_results)
 
-    adapter = KeyboardStickerListAdapter(Glide.with(this), this, DeviceProperties.shouldAllowApngStickerAnimation(requireContext()))
+    adapter = KeyboardStickerListAdapter(Glide.with(this), this, true)
     layoutManager = GridLayoutManager(requireContext(), 2)
 
     list.layoutManager = layoutManager
