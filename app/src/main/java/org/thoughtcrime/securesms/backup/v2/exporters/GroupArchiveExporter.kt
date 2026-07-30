@@ -51,7 +51,7 @@ class GroupArchiveExporter(private val selfAci: ServiceId.ACI, private val curso
     val showAsStoryState: GroupTable.ShowAsStoryState = GroupTable.ShowAsStoryState.deserialize(cursor.requireInt(GroupTable.SHOW_AS_STORY_STATE))
 
     val isMember: Boolean = cursor.requireBoolean(GroupTable.IS_MEMBER)
-    val decryptedGroup: DecryptedGroup = DecryptedGroup.ADAPTER.decode(cursor.requireBlob(GroupTable.V2_DECRYPTED_GROUP)!!)
+    val decryptedGroup: DecryptedGroup? = cursor.requireBlob(GroupTable.V2_DECRYPTED_GROUP)?.let { DecryptedGroup.ADAPTER.decode(it) }
 
     return ArchiveRecipient(
       id = cursor.requireLong(RecipientTable.ID),
@@ -61,7 +61,7 @@ class GroupArchiveExporter(private val selfAci: ServiceId.ACI, private val curso
         blocked = cursor.requireBoolean(RecipientTable.BLOCKED),
         hideStory = extras?.hideStory() ?: false,
         storySendMode = showAsStoryState.toRemote(),
-        snapshot = decryptedGroup.toRemote(isMember, selfAci),
+        snapshot = decryptedGroup?.toRemote(isMember, selfAci) ?: Group.GroupSnapshot(),
         avatarColor = cursor.requireString(RecipientTable.AVATAR_COLOR)?.let { AvatarColor.deserialize(it) }?.toRemote()
       )
     )

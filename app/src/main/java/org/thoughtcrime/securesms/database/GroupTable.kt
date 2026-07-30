@@ -1022,7 +1022,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
 
     Log.i(TAG, "Group ${record.id} has been both left and had its thread deleted. Clearing all group data.")
     val keepGroupIdentifier = SignalStore.account.isMultiDevice || recipients.isBlocked(record.recipientId)
-    var clearRecipientCache: Boolean = false
+    var clearRecipientCache = false
     writableDatabase.withinTransaction { db ->
       db
         .delete(MembershipTable.TABLE_NAME)
@@ -1087,7 +1087,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
       IS_MEMBER to 0,
       TERMINATED_BY to 0,
       MMS to 0,
-      V2_REVISION to null,
+      V2_REVISION to 0,
       V2_DECRYPTED_GROUP to null,
       EXPECTED_V2_ID to null,
       UNMIGRATED_V1_MEMBERS to null,

@@ -1096,6 +1096,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     groups.setVerifiedGroupNameHash(groupId, update.new.proto.verifiedNameHash.nullIfEmpty()?.toByteArray())
     threads.applyStorageSyncUpdate(recipient.id, update.new)
     AppDependencies.databaseObserver.notifyRecipientChanged(recipient.id)
+
+    if (update.old.proto.blocked && !update.new.proto.blocked) {
+      groups.clearGroupIfLeftAndDeleted(recipient.id)
+    }
   }
 
   fun applyStorageSyncAccountUpdate(update: StorageRecordUpdate<SignalAccountRecord>) {
@@ -3891,9 +3895,26 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun applyBlockedUpdate(blockedE164s: List<String>, blockedAcis: List<ACI>, blockedGroupIds: List<ByteArray?>) {
+    val oldBlockedGV1: Set<GroupId> = readableDatabase
+      .select(GROUP_ID)
+      .from(TABLE_NAME)
+      .where("$BLOCKED = 1 AND $TYPE = ?", SqlUtil.buildArgs(RecipientType.GV1.id))
+      .run()
+      .readToList {
+        try {
+          GroupId.parseNullableOrThrow(it.requireString(GROUP_ID))
+        } catch (e: BadGroupIdException) {
+          Log.w(TAG, "[applyBlockedUpdate] Bad existing GV1 ID!")
+          null
+        }
+      }
+      .filterNotNull()
+      .toSet()
+
     writableDatabase.withinTransaction { db ->
-      db.updateAll(TABLE_NAME)
+      db.update(TABLE_NAME)
         .values(BLOCKED to 0)
+        .where("$TYPE != ?", RecipientType.GV2.id)
         .run()
 
       val blockValues = contentValuesOf(
@@ -3918,7 +3939,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
 
       if (blockedGroupIds.isNotEmpty()) {
-        val groupIds: List<GroupId.V1> = blockedGroupIds.filterNotNull().mapNotNull { raw ->
+        val groupV1Ids: List<GroupId.V1> = blockedGroupIds.filterNotNull().mapNotNull { raw ->
           try {
             raw?.let { GroupId.v1(it) }
           } catch (e: BadGroupIdException) {
@@ -3927,11 +3948,17 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           }
         }
 
-        val groupIdQuery = SqlUtil.buildFastCollectionQuery(GROUP_ID, groupIds.map { it.toString() })
-        db.update(TABLE_NAME)
-          .values(blockValues)
-          .where(groupIdQuery.where, groupIdQuery.whereArgs)
-          .run()
+        if (groupV1Ids.isNotEmpty()) {
+          val groupIdQuery = SqlUtil.buildFastCollectionQuery(GROUP_ID, groupV1Ids.map { it.toString() })
+          db.update(TABLE_NAME)
+            .values(blockValues)
+            .where(groupIdQuery.where, groupIdQuery.whereArgs)
+            .run()
+
+          for (groupId in oldBlockedGV1 - groupV1Ids.toSet()) {
+            groups.clearGroupIfLeftAndDeleted(groupId)
+          }
+        }
       }
     }
 

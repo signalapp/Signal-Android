@@ -208,11 +208,12 @@ public class ApplicationMigrations {
     static final int KT_USERNAME_CAPABILITY        = 164;
     static final int FIX_CHANGE_NUMBER_ERROR_2     = 165;
     static final int LOCAL_ARCHIVE_RECONCILE       = 166;
-    static final int GROUP_DELETED_AT_BACKFILL     = 167;
+//    static final int GROUP_DELETED_AT_BACKFILL     = 167;
     static final int STICKER_PACK_STORAGE_SYNC     = 168;
+    static final int GROUP_DELETED_AT_BACKFILL     = 169;
   }
 
-  public static final int CURRENT_VERSION = 168;
+  public static final int CURRENT_VERSION = 169;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -967,12 +968,16 @@ public class ApplicationMigrations {
       jobs.put(Version.LOCAL_ARCHIVE_RECONCILE, new LocalArchiveReconciliationMigrationJob());
     }
 
-    if (lastSeenVersion < Version.GROUP_DELETED_AT_BACKFILL) {
-      jobs.put(Version.GROUP_DELETED_AT_BACKFILL, new GroupDeletedBackfillMigrationJob());
-    }
+//    if (lastSeenVersion < Version.GROUP_DELETED_AT_BACKFILL) {
+//      jobs.put(Version.GROUP_DELETED_AT_BACKFILL, new GroupDeletedBackfillMigrationJob());
+//    }
 
     if (lastSeenVersion < Version.STICKER_PACK_STORAGE_SYNC) {
       jobs.put(Version.STICKER_PACK_STORAGE_SYNC, new SyncStickerPacksMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.GROUP_DELETED_AT_BACKFILL) {
+      jobs.put(Version.GROUP_DELETED_AT_BACKFILL, new GroupDeletedBackfillMigrationJob());
     }
 
     return jobs;

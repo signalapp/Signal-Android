@@ -203,6 +203,10 @@ public class RecipientUtil {
     insertUnblockedUpdate(recipient, SignalDatabase.threads().getOrCreateThreadIdFor(recipient));
     AppDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
     StorageSyncHelper.scheduleSyncForDataChange();
+
+    if (recipient.isGroup()) {
+      SignalDatabase.groups().clearGroupIfLeftAndDeleted(recipient.getId());
+    }
   }
 
   private static void insertBlockedUpdate(@NonNull Recipient recipient, long threadId) {
