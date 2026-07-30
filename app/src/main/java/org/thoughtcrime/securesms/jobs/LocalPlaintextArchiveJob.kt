@@ -103,6 +103,8 @@ class LocalPlaintextArchiveJob internal constructor(
         return Result.failure()
       }
 
+      exportDir.createFile("application/octet-stream", ".nomedia")
+
       stopwatch.split("create-dir")
 
       try {

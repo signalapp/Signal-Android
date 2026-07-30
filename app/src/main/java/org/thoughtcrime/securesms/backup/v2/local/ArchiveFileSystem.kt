@@ -54,6 +54,7 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
     const val MAIN_DIRECTORY_NAME = "SignalBackups"
     const val BACKUP_DIRECTORY_PREFIX: String = "signal-backup"
     const val TEMP_BACKUP_DIRECTORY_SUFFIX: String = "tmp"
+    private const val NO_MEDIA_FILE_NAME = ".nomedia"
 
     /**
      * Attempt to create an [ArchiveFileSystem] from a tree [Uri], creating the necessary directory
@@ -137,6 +138,16 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
     }
 
     /**
+     * Ensure a `.nomedia` file exists in the given directory to prevent Android's
+     * MediaProvider from scanning backup files.
+     */
+    private fun ensureNoMedia(directory: DocumentFile) {
+      if (directory.findFile(NO_MEDIA_FILE_NAME) == null) {
+        directory.createFile("application/octet-stream", NO_MEDIA_FILE_NAME)
+      }
+    }
+
+    /**
      * Recursively delete the entire SignalBackups directory using parallelized SAF calls.
      */
     @JvmStatic
@@ -216,6 +227,7 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
     } else {
       isRootedAtSignalBackups = false
       signalBackups = root.mkdirp(MAIN_DIRECTORY_NAME) ?: throw IOException("Unable to create main backups directory")
+      ensureNoMedia(signalBackups)
       val filesDirectory = signalBackups.mkdirp("files") ?: throw IOException("Unable to create files directory")
       filesFileSystem = FilesFileSystem(context, filesDirectory)
     }
