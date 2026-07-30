@@ -589,4 +589,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">មិនអាចផ្ទុក captcha បានទេ</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">បោះបង់</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">ដាក់បញ្ជូនកំណត់ត្រាបញ្ហា?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">កំណត់ត្រាបញ្ហារបស់អ្នកនឹងជួយយើងដោះស្រាយបញ្ហារបស់អ្នកឱ្យបានកាន់តែលឿន។ អ្នកមានជម្រើសដាក់ឬមិនដាក់បញ្ជូនកំណត់ត្រារបស់អ្នក។</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">ដាក់បញ្ជូនជាមួយកំណត់ត្រាបញ្ហា</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">ដាក់បញ្ជូនដោយគ្មានកំណត់ត្រាបញ្ហា</string>
 </resources>

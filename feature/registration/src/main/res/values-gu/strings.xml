@@ -591,4 +591,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">કેપ્ચા લોડ કરવામાં નિષ્ફળ</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">રદ કરો</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">ડીબગ લૉગ સબમિટ કરવો છે?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">તમારા ડીબગ લૉગ તમારી સમસ્યાને ઝડપથી નિવારણ કરવામાં મદદ કરશે. તમારા લૉગ સબમિટ કરવું વૈકલ્પિક છે.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">ડીબગ લૉગ સાથે સબમિટ કરો</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">ડીબગ લૉગ વિના સબમિટ કરો</string>
 </resources>

@@ -591,4 +591,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Det gick inte att läsa in captchan</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Avbryt</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Skicka felsökningslogg?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Dina felsökningsloggar kommer att hjälpa oss att felsöka problemet snabbare. Att skicka in dina loggar är valfritt.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Skicka med felsökningslogg</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Skicka utan felsökningslogg</string>
 </resources>

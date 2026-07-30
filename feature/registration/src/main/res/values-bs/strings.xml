@@ -595,4 +595,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Učitavanje captcha koda nije uspjelo</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Otkaži</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Pošalji zapisnik o otklanjanju grešaka?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Vaši zapisnici o otklanjanju grešaka će nam pomoći da brže dijagnosticiramo problem. Slanje zapisnika je opcionalno.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Pošaljite sa zapisnikom o otklanjanju grešaka</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Pošaljite bez zapisnika o otklanjanju grešaka</string>
 </resources>

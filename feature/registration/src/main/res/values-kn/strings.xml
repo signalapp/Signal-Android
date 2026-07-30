@@ -591,4 +591,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">ಕ್ಯಾಪ್ಚ ಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">ರದ್ದುಮಾಡಿ</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">ಡೀಬಗ್ ಲಾಗ್ ಸಲ್ಲಿಸಬೇಕೆ?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">ನಿಮ್ಮ ಡೀಬಗ್ ಲಾಗ್‌ಗಳು ನಿಮ್ಮ ಸಮಸ್ಯೆಯನ್ನು ವೇಗವಾಗಿ ಪರಿಹರಿಸಲು ನಮಗೆ ಸಹಾಯ ಮಾಡುತ್ತವೆ. ನಿಮ್ಮ ಲಾಗ್‌ಗಳನ್ನು ಸಲ್ಲಿಸುವುದು ಐಚ್ಛಿಕವಾಗಿದೆ.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">ಡೀಬಗ್ ಲಾಗ್ ಜೊತೆಗೆ ಸಲ್ಲಿಸಿ</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">ಡೀಬಗ್ ಲಾಗ್ ಇಲ್ಲದೆಯೇ ಸಲ್ಲಿಸಿ</string>
 </resources>

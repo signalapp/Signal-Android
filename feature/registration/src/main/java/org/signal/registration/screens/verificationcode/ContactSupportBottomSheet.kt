@@ -34,7 +34,6 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.dismissWithAnimation
 import org.signal.core.util.LinkActions
 import org.signal.registration.R
-import org.signal.registration.RegistrationDependencies
 
 /**
  * Bottom sheet shown during registration when the user is having trouble entering their verification code. Offers
@@ -42,11 +41,13 @@ import org.signal.registration.RegistrationDependencies
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ContactSupportBottomSheet(onDismiss: () -> Unit) {
+fun ContactSupportBottomSheet(
+  onContactSupport: () -> Unit,
+  onDismiss: () -> Unit
+) {
   val sheetState = rememberModalBottomSheetState()
   val scope = rememberCoroutineScope()
   val context = LocalContext.current
-  val supportEmailSubject = stringResource(R.string.VerificationCodeScreen__contact_support_email_subject)
   val supportCenterUrl = stringResource(R.string.VerificationCodeScreen__support_center_url)
 
   BottomSheets.BottomSheet(
@@ -60,7 +61,10 @@ fun ContactSupportBottomSheet(onDismiss: () -> Unit) {
         }
       },
       onContactSupportClick = {
-        RegistrationDependencies.get().contactSupportCallback?.invoke(context, supportEmailSubject)
+        sheetState.dismissWithAnimation(scope) {
+          onDismiss()
+          onContactSupport()
+        }
       }
     )
   }

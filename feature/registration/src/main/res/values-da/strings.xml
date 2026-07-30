@@ -591,4 +591,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Captchaen kunne ikke indlæses</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Annuller</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Vil du indsende fejlsøgningslog?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Dine fejlsøgningslogs hjælper os med at fejlsøge hurtigere. Det er frivilligt om du ønsker at vedhæfte dem.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Send med fejlsøgningslog</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Send uden fejlsøgningslog</string>
 </resources>

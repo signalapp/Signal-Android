@@ -591,4 +591,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Imeshindwa kupakia captcha</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Ghairi</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Je, wasilisha kumbukumbu za utatuzi?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Faili zako la rekebisho zitatusaidia kutatua tatizo lako haraka. Kuwasilisha faili zako za rekebisho ni hiari.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Wasilisha faili la rekebisho</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Wasilisha bila faili la rekebisho</string>
 </resources>

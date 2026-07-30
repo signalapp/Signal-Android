@@ -591,4 +591,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Laden van captcha mislukt</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Annuleren</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Foutopsporingslog indienen?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Je foutopsporingslog helpt ons om je probleem sneller te ontdekken en op te lossen. Het indienen van een foutopsporingslog is optioneel.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Indienen met foutopsporingslog</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Indienen zonder foutopsporingslog</string>
 </resources>

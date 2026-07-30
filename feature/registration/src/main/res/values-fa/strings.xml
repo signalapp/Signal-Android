@@ -591,4 +591,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">کپچا بارگیری نشد</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">لغو</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">گزارش اشکال‌زدایی ارسال شود؟</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">گزارش‌های اشکال‌زدایی شما به ما کمک خواهد کرد تا مشکل‌تان را سریع‌تر حل کنیم. ارسال این گزارش‌ها اختیاری است.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">ارسال با گزارش اشکال‌زدایی</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">ارسال بدون گزارش اشکال‌زدایی</string>
 </resources>

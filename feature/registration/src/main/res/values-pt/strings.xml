@@ -591,4 +591,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Falha ao carregar o captcha</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Cancelar</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Enviar registo de depuração?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Os seus registos de depuração irão ajudar-nos a resolver mais rapidamente o seu problema. A submissão dos seus registos é opcional.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Enviar com relatório de depuração</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Enviar sem relatório de depuração</string>
 </resources>

@@ -39,7 +39,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -55,11 +54,11 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.registration.R
-import org.signal.registration.RegistrationDependencies
 import org.signal.registration.screens.PinVisualTransformation
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.attachDebugLogHelper
+import org.signal.registration.screens.shared.ContactSupportDialog
 import org.signal.registration.test.TestTags
 
 /**
@@ -72,13 +71,11 @@ fun PinEntryScreen(
   onEvent: (PinEntryScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val context = LocalContext.current
   var pin by rememberSaveable { mutableStateOf("") }
   var showSkipDialog by rememberSaveable { mutableStateOf(false) }
   val focusRequester = remember { FocusRequester() }
   val canSubmitPin = pin.isNotEmpty()
-  val supportEmailSubject = stringResource(R.string.PinEntryScreen__contact_support_email_subject)
-  val onContactSupport: () -> Unit = { RegistrationDependencies.get().contactSupportCallback?.invoke(context, supportEmailSubject) }
+  val onContactSupport: () -> Unit = { onEvent(PinEntryScreenEvents.ContactSupport) }
 
   when (val params = RegistrationScaffold.rememberLayoutParams()) {
     is RegistrationScaffold.Params.OnePane -> OnePaneLayout(
@@ -151,15 +148,20 @@ fun PinEntryScreen(
       confirm = stringResource(R.string.PinEntryScreen__create_new_pin),
       dismiss = stringResource(R.string.PinEntryScreen__contact_support),
       onConfirm = { onEvent(PinEntryScreenEvents.CreateNewPin) },
-      onDeny = {
-        onContactSupport()
-        onEvent(PinEntryScreenEvents.ContactSupport)
-      },
+      onDeny = { onEvent(PinEntryScreenEvents.ContactSupport) },
       onDismissRequest = { onEvent(PinEntryScreenEvents.ContactSupport) },
       properties = DialogProperties(
         dismissOnBackPress = false,
         dismissOnClickOutside = false
       )
+    )
+  }
+
+  if (state.showContactSupportDialog) {
+    ContactSupportDialog(
+      subject = R.string.PinEntryScreen__contact_support_email_subject,
+      filter = R.string.PinEntryScreen__contact_support_email_filter,
+      onDismiss = { onEvent(PinEntryScreenEvents.DismissContactSupport) }
     )
   }
 

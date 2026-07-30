@@ -86,12 +86,15 @@ class PinEntryForSmsBypassViewModel(
       is PinEntryScreenEvents.Skip -> {
         handleSkip()
       }
-      is PinEntryScreenEvents.CreateNewPin,
-      is PinEntryScreenEvents.ContactSupport -> Unit
+      is PinEntryScreenEvents.CreateNewPin -> Unit
+      is PinEntryScreenEvents.ContactSupport -> {
+        stateEmitter(state.copy(showContactSupportDialog = true))
+      }
       is PinEntryScreenEvents.ToggleKeyboard,
       is PinEntryScreenEvents.NetworkErrorDialogDismissed,
       is PinEntryScreenEvents.RateLimitedDialogDismissed,
-      is PinEntryScreenEvents.UnknownErrorDialogDismissed -> {
+      is PinEntryScreenEvents.UnknownErrorDialogDismissed,
+      is PinEntryScreenEvents.DismissContactSupport -> {
         stateEmitter(PinEntryScreenEventHandler.applyEvent(state, event))
       }
     }

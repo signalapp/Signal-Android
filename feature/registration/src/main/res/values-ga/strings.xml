@@ -597,4 +597,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Theip ar lódáil CAPTCHA</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Cuir ar ceal</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Cuir isteach loga dífhabhtaithe?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Cabhróidh na logaí dífhabhtaithe linn d\'fhadhb a réiteach níos sciobtha. É sin ráite, níl siad riachtanach.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Seol loga dífhabhtaithe isteach freisin</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Ná seol loga dífhabhtaithe isteach freisin</string>
 </resources>

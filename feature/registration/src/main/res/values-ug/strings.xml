@@ -589,4 +589,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">ماشىنا ئادەم ئەمەسلىكىنى تەكشۈرۈدىغان «captcha» ئىقتىدارىنى يۈكلەش مەغلۇب بولدى</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">بىكار قىلىش</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">كاشىلا ھەل قىلىش خاتىرىسىنى يوللامسىز؟</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">سازلاش خاتىرىڭىز مەسىلىنى تېخىمۇ تېز ھەل قىلىشىمىزغا ياردەم بېرىدۇ. خاتىرە يوللاش ئىختىيارىي.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">سازلاش خاتىرىسىنى قوشۇپ يوللا</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">سازلاش خاتىرەسىز يوللا</string>
 </resources>

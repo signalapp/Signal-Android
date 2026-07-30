@@ -599,4 +599,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">تعذَّر تحميل اختبار التحقُّق</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">إلغاء</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">هل ترغبُ بإرسال سجل الأخطاء؟</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">تساعدنا سجلات الأخطاء في استكشاف مشاكلك وإصلاحها في أسرع وقت. إرسال سجلاتك إلينا أمر اختياري.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">إرسال مع سجل الأخطاء</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">إرسال بدون سجل الأخطاء</string>
 </resources>

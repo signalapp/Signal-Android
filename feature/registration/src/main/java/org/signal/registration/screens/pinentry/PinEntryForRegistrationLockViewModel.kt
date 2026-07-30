@@ -89,7 +89,8 @@ class PinEntryForRegistrationLockViewModel(
       is PinEntryScreenEvents.ToggleKeyboard,
       is PinEntryScreenEvents.NetworkErrorDialogDismissed,
       is PinEntryScreenEvents.RateLimitedDialogDismissed,
-      is PinEntryScreenEvents.UnknownErrorDialogDismissed -> {
+      is PinEntryScreenEvents.UnknownErrorDialogDismissed,
+      is PinEntryScreenEvents.DismissContactSupport -> {
         stateEmitter(PinEntryScreenEventHandler.applyEvent(state, event))
       }
     }

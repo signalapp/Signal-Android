@@ -13,6 +13,7 @@ data class PinEntryState(
   val isAlphanumericKeyboard: Boolean = false,
   val loading: Boolean = false,
   val showNoDataToRestoreDialog: Boolean = false,
+  val showContactSupportDialog: Boolean = false,
   val triesRemaining: Int? = null,
   /** True when the last wrong PIN the user entered matched the code they used to verify their phone number. */
   val enteredVerificationCode: Boolean = false,

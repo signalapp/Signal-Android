@@ -589,4 +589,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">キャプチャの読み込みに失敗しました</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">キャンセル</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">デバッグログを送信しますか？</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">デバッグログがあると、問題の早い解決に役立ちます。ログの提出は任意です。</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">デバッグログを添付して送信する</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">デバッグログなしで送信する</string>
 </resources>

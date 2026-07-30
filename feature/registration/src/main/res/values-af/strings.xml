@@ -591,4 +591,13 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Kon nie captcha laai nie</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Kanselleer</string>
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Dien ontfout-log in?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Jou ontfout-logs sal ons help om jou probleem vinniger op te los. Die indiening van jou logs is opsioneel.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Dien met ontfout-log in</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Dien sonder ontfout-log in</string>
 </resources>

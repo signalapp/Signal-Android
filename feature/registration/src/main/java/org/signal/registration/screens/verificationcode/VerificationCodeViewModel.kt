@@ -136,6 +136,8 @@ class VerificationCodeViewModel(
       is VerificationCodeScreenEvents.CallMe -> applyResendCode(state, VerificationCodeTransport.VOICE)
       is VerificationCodeScreenEvents.HavingTrouble -> state.copy(showContactSupportSheet = true)
       is VerificationCodeScreenEvents.DismissContactSupport -> state.copy(showContactSupportSheet = false)
+      is VerificationCodeScreenEvents.ContactSupportDialog -> state.copy(showContactSupportDialog = true)
+      is VerificationCodeScreenEvents.DismissContactSupportDialog -> state.copy(showContactSupportDialog = false)
       is VerificationCodeScreenEvents.NetworkErrorSnackbarDismissed -> state.copy(snackbars = state.snackbars.copy(networkError = false))
       is VerificationCodeScreenEvents.UnknownErrorSnackbarDismissed -> state.copy(snackbars = state.snackbars.copy(unknownError = false))
       is VerificationCodeScreenEvents.RateLimitedSnackbarDismissed -> state.copy(snackbars = state.snackbars.copy(rateLimitedRetryAfter = null))

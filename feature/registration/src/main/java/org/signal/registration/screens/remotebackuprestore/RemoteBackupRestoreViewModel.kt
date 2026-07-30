@@ -82,6 +82,12 @@ class RemoteBackupRestoreViewModel(
       is RemoteBackupRestoreScreenEvents.DismissError -> {
         stateEmitter(state.copy(restoreState = RemoteBackupRestoreState.RestoreState.None, restoreProgress = null))
       }
+      is RemoteBackupRestoreScreenEvents.ContactSupport -> {
+        stateEmitter(state.copy(showContactSupportDialog = true))
+      }
+      is RemoteBackupRestoreScreenEvents.DismissContactSupport -> {
+        stateEmitter(state.copy(showContactSupportDialog = false))
+      }
     }
   }
 
