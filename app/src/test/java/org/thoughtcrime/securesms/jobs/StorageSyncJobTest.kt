@@ -13,6 +13,7 @@ import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -25,17 +26,21 @@ import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
+import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testutil.FakeStorageServiceRule
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
@@ -293,6 +298,79 @@ class StorageSyncJobTest {
     assertFalse(SignalDatabase.unknownStorageIds.allUnknownIds.contains(strandedId))
   }
 
+  @Test
+  fun `given self was unregistered long ago, when I run, then I keep our storage id`() {
+    markUnregisteredLongAgo(recipients.self)
+    val selfStorageId = storageIdOf(recipients.self)!!
+
+    val result = runJob(StorageSyncJob.forLocalChange())
+
+    assertTrue(result.isSuccess)
+    assertArrayEquals(selfStorageId, storageIdOf(recipients.self))
+    assertTrue(remoteStorage.manifest!!.storageIds.contains(StorageId.forAccount(selfStorageId)))
+  }
+
+  @Test
+  fun `given self was unregistered long ago, when I run again, then I do not rotate our storage id`() {
+    markUnregisteredLongAgo(recipients.self)
+    check(runJob(StorageSyncJob.forLocalChange()).isSuccess)
+
+    val selfStorageId = storageIdOf(recipients.self)!!
+    remoteStorage.resetCounters()
+
+    val result = runJob(StorageSyncJob.forLocalChange())
+
+    assertTrue(result.isSuccess)
+    assertArrayEquals(selfStorageId, storageIdOf(recipients.self))
+    assertEquals(0, remoteStorage.writeCount)
+  }
+
+  @Test
+  fun `given self was unregistered long ago and our storage id is local-only, when I run, then I keep our storage id`() {
+    markUnregisteredLongAgo(recipients.self)
+    val selfStorageId = storageIdOf(recipients.self)!!
+
+    remoteStorage.setRemoteState(remoteStorage.records.filter { it.proto.account == null }, version = remoteStorage.manifest!!.version + 1)
+
+    val result = runJob(StorageSyncJob.forRemoteChange())
+
+    assertTrue(result.isSuccess)
+    assertArrayEquals(selfStorageId, storageIdOf(recipients.self))
+    assertEquals(1, remoteStorage.records.count { it.proto.account != null })
+    assertTrue(remoteStorage.manifest!!.storageIds.contains(StorageId.forAccount(selfStorageId)))
+  }
+
+  @Test
+  fun `given self has no storage id, when I run, then I generate one and write our account record`() {
+    clearStorageId(recipients.self)
+
+    val result = runJob(StorageSyncJob.forLocalChange())
+
+    assertTrue(result.isSuccess)
+
+    val selfStorageId = storageIdOf(recipients.self)
+    assertNotNull(selfStorageId)
+    assertEquals(1, remoteStorage.records.count { it.proto.account != null })
+    assertTrue(remoteStorage.manifest!!.storageIds.contains(StorageId.forAccount(selfStorageId!!)))
+  }
+
+  @Test
+  fun `given a contact was unregistered long ago, when I run, then I remove their storage id`() {
+    val contact = recipients.createRecipient("Local Contact")
+    SignalDatabase.recipients.rotateStorageId(contact)
+    check(runJob(StorageSyncJob.forLocalChange()).isSuccess)
+    check(remoteStorage.records.count { it.proto.contact != null } == 1)
+
+    markUnregisteredLongAgo(contact)
+    remoteStorage.resetCounters()
+
+    val result = runJob(StorageSyncJob.forLocalChange())
+
+    assertTrue(result.isSuccess)
+    assertNull(storageIdOf(contact))
+    assertEquals(0, remoteStorage.records.count { it.proto.contact != null })
+  }
+
   /**
    * Gets us to a steady state: remote holds our account record at version 1, then a sync pushes up everything else
    * the fresh database came with (the default chat folder), leaving both sides at [BASE_MANIFEST_VERSION].
@@ -313,6 +391,33 @@ class StorageSyncJobTest {
 
   private fun localManifestVersion(): Long {
     return recipients.signalStore.storageService.manifest.version
+  }
+
+  private fun storageIdOf(id: RecipientId): ByteArray? {
+    return SignalDatabase.recipients.getRecord(id).storageId
+  }
+
+  private fun clearStorageId(id: RecipientId) {
+    SignalDatabase.writableDatabase
+      .update(RecipientTable.TABLE_NAME)
+      .values(RecipientTable.STORAGE_SERVICE_ID to null)
+      .where("${RecipientTable.ID} = ?", id.toLong())
+      .run()
+
+    Recipient.live(id).refresh()
+  }
+
+  /** Marks [id] unregistered further back than [RemoteConfig.messageQueueTime], making its storageId eligible for cleanup. */
+  private fun markUnregisteredLongAgo(id: RecipientId) {
+    SignalDatabase.recipients.markUnregistered(id)
+
+    SignalDatabase.writableDatabase
+      .update(RecipientTable.TABLE_NAME)
+      .values(RecipientTable.UNREGISTERED_TIMESTAMP to System.currentTimeMillis() - RemoteConfig.messageQueueTime - 1)
+      .where("${RecipientTable.ID} = ?", id.toLong())
+      .run()
+
+    Recipient.live(id).refresh()
   }
 
   private fun contactRecord(aci: ACI, profileName: ProfileName): SignalStorageRecord {

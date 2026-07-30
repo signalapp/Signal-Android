@@ -396,14 +396,20 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     stopwatch.split("known-unknowns")
 
     val remoteWriteOperation: WriteOperationResult = db.withinTransaction {
-      self = freshSelf()
-
       val removedUnregistered = SignalDatabase.recipients.removeStorageIdsFromOldUnregisteredRecipients(System.currentTimeMillis())
       val removedDeletedFolders = SignalDatabase.chatFolders.removeStorageIdsFromOldDeletedFolders(System.currentTimeMillis())
       val removedDeletedProfiles = SignalDatabase.notificationProfiles.removeStorageIdsFromOldDeletedProfiles(System.currentTimeMillis())
       val removedDeletedPacks = SignalDatabase.stickers.removeStorageIdsFromOldDeletedPacks(System.currentTimeMillis())
       if (removedUnregistered > 0 || removedDeletedFolders > 0 || removedDeletedProfiles > 0 || removedDeletedPacks > 0) {
         Log.i(TAG, "Removed $removedUnregistered unregistered, $removedDeletedFolders folders, $removedDeletedProfiles notification profiles, $removedDeletedPacks sticker packs from storage service that have been deleted for longer than ${RemoteConfig.messageQueueTime.milliseconds.inWholeDays} days.")
+      }
+
+      self = freshSelf()
+
+      if (self.storageId == null) {
+        Log.w(TAG, "No storageId for self. Generating.")
+        SignalDatabase.recipients.updateStorageId(self.id, StorageSyncHelper.generateKey())
+        self = freshSelf()
       }
 
       var localStorageIds = getAllLocalStorageIds(self)

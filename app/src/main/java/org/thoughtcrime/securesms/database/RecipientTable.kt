@@ -1141,25 +1141,30 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   /**
    * Removes storageIds from unregistered recipients who were unregistered more than [RemoteConfig.messageQueueTime] ago.
+   *
+   * Never touches self: our own storageId backs the ACCOUNT record, so it always needs to be present. If self ever ends up with a stale
+   * [UNREGISTERED_TIMESTAMP], clearing it here would leave us regenerating our storageId on every single storage sync.
+   *
    * @return The number of rows affected.
    */
   fun removeStorageIdsFromOldUnregisteredRecipients(now: Long): Int {
     return writableDatabase
       .update(TABLE_NAME)
       .values(STORAGE_SERVICE_ID to null)
-      .where("$STORAGE_SERVICE_ID NOT NULL AND $UNREGISTERED_TIMESTAMP > 0 AND $UNREGISTERED_TIMESTAMP < ?", now - RemoteConfig.messageQueueTime)
+      .where("$STORAGE_SERVICE_ID NOT NULL AND $ID != ${Recipient.self().id.toLong()} AND $UNREGISTERED_TIMESTAMP > 0 AND $UNREGISTERED_TIMESTAMP < ?", now - RemoteConfig.messageQueueTime)
       .run()
   }
 
   /**
-   * Removes storageIds from unregistered contacts that have storageIds in the provided collection.
+   * Removes storageIds from unregistered contacts that have storageIds in the provided collection. Never touches self, for the reasons
+   * described in [removeStorageIdsFromOldUnregisteredRecipients].
    * @return The number of updated rows.
    */
   fun removeStorageIdsFromLocalOnlyUnregisteredRecipients(storageIds: Collection<StorageId>): Int {
     val values = contentValuesOf(STORAGE_SERVICE_ID to null)
     var updated = 0
 
-    SqlUtil.buildCollectionQuery(STORAGE_SERVICE_ID, storageIds.map { Base64.encodeWithPadding(it.raw) }, "$UNREGISTERED_TIMESTAMP > 0 AND")
+    SqlUtil.buildCollectionQuery(STORAGE_SERVICE_ID, storageIds.map { Base64.encodeWithPadding(it.raw) }, "$ID != ${Recipient.self().id.toLong()} AND $UNREGISTERED_TIMESTAMP > 0 AND")
       .forEach {
         updated += writableDatabase.update(TABLE_NAME, values, it.where, it.whereArgs)
       }
