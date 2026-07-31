@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -207,6 +208,7 @@ class MultiselectForwardFragment :
             isSplitPane = isSplitPane,
             modifier = Modifier
               .fillMaxWidth()
+              .imePadding()
               .navigationBarsPadding()
               .onSizeChanged { bottomBarHeightPx = it.height }
           )
