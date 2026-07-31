@@ -22,17 +22,21 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.R
 import org.signal.mediasend.edit.ImageController
+import org.signal.mediasend.edit.MediaEditControl
 
 @Composable
 internal fun ImageEditorUndoRedoButtons(
   imageEditorController: ImageController?,
+  isDragging: Boolean,
   modifier: Modifier = Modifier,
   canUndo: Boolean = imageEditorController?.imageEditorState?.undoAvailable ?: false,
   canRedo: Boolean = imageEditorController?.imageEditorState?.redoAvailable ?: false
 ) {
-  ImageEditorGestureAwareControl(imageEditorController, modifier = modifier, extraCheck = {
-    canUndo || canRedo
-  }) {
+  MediaEditControl(
+    visible = imageEditorController != null && imageEditorController.mode != ImageController.Mode.NONE && (canUndo || canRedo),
+    faded = isDragging,
+    modifier = modifier
+  ) {
     Row(horizontalArrangement = spacedBy(8.dp)) {
       IconButton(
         enabled = canUndo,
@@ -73,6 +77,7 @@ private fun ImageEditorUndoRedoButtonsPreview() {
           enterDrawMode()
         }
       },
+      isDragging = false,
       canUndo = true,
       canRedo = true
     )

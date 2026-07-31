@@ -35,11 +35,13 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import org.signal.imageeditor.core.ImageEditorTouchHandler
 import org.signal.imageeditor.core.model.EditorElement
+import org.signal.imageeditor.core.renderers.MultiLineTextRenderer
 import org.signal.mediasend.edit.ImageController
 
 @Composable
@@ -91,7 +93,14 @@ internal fun ImageEditor(
 
 @Composable
 private fun HiddenTextInput(controller: ImageController) {
-  var text by remember { mutableStateOf(TextFieldValue("")) }
+  val element = controller.textEditingElement
+
+  // Re-opening an existing element has to start from its current text, or the first keystroke would replace it.
+  var text by remember(element) {
+    val existing = (element?.renderer as? MultiLineTextRenderer)?.text ?: ""
+    mutableStateOf(TextFieldValue(existing, TextRange(existing.length)))
+  }
+
   val focusRequester = remember { FocusRequester() }
   val keyboardController = LocalSoftwareKeyboardController.current
 
@@ -109,8 +118,11 @@ private fun HiddenTextInput(controller: ImageController) {
     keyboardOptions = KeyboardOptions(imeAction = ImeAction.None)
   )
 
-  LaunchedEffect(Unit) {
+  LaunchedEffect(element) {
     focusRequester.requestFocus()
+
+    // Also zooms the element clear of the keyboard, which otherwise would not happen until the first keystroke.
+    controller.onTextSelectionChanged(text.selection.start, text.selection.end)
   }
 
   DisposableEffect(Unit) {
@@ -124,6 +136,10 @@ private const val MAX_MOVE_SQUARED_BEFORE_DRAG = 10f
 private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller: ImageController): Modifier {
   return this.pointerInput(controller, controller.textEditingElement) {
     val touchHandler = ImageEditorTouchHandler()
+
+    // The tap that a second one has to land on, and beat the timeout from, to count as a double tap.
+    var lastTapElement: EditorElement? = null
+    var lastTapUptimeMillis = 0L
 
     awaitEachGesture {
       val down = awaitFirstDown(requireUnconsumed = true)
@@ -163,6 +179,7 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
       var inDrag = false
       var draggedElement: EditorElement? = null
       var droppedOnTrash = false
+      var didPinch = false
 
       try {
         while (true) {
@@ -180,12 +197,28 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
                 state.editorModel.findElementAtPoint(upPoint, state.viewMatrix, Matrix()) === draggedElement
             }
 
-            val wasSingleTap = !inDrag && !touchHandler.isDrawingSession()
+            // A tap that neither painted, dragged nor pinched leaves the model exactly as it found it, so it must not
+            // count as an edit -- otherwise merely selecting something would arm the "Discard changes?" prompt.
+            val didModifyModel = inDrag || didPinch || touchHandler.isDrawingSession()
+            val wasSingleTap = !didModifyModel
 
             touchHandler.onUp(state.editorModel)
-            state.onGestureCompleted?.invoke()
 
-            if (wasSingleTap) {
+            if (didModifyModel) {
+              state.onGestureCompleted?.invoke()
+            }
+
+            val isDoubleTap = wasSingleTap &&
+              hitElement != null &&
+              hitElement === lastTapElement &&
+              down.uptimeMillis - lastTapUptimeMillis <= viewConfiguration.doubleTapTimeoutMillis
+
+            lastTapElement = if (wasSingleTap && !isDoubleTap) hitElement else null
+            lastTapUptimeMillis = event.changes.firstOrNull()?.uptimeMillis ?: down.uptimeMillis
+
+            if (isDoubleTap) {
+              controller.onEntityDoubleTap(hitElement)
+            } else if (wasSingleTap) {
               controller.onEntitySingleTap(hitElement)
             }
 
@@ -193,6 +226,7 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
           }
 
           if (currentCount == 2 && previousPointerCount < 2) {
+            didPinch = true
             val newPointer = event.changes.firstOrNull { it.changedToDown() } ?: currentPressed.last()
             val pointerIndex = event.changes.indexOf(newPointer).coerceIn(0, 1)
             touchHandler.onSecondPointerDown(state.editorModel, state.viewMatrix, newPointer.position.toPointF(), pointerIndex)

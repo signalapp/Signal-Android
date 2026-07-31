@@ -43,8 +43,6 @@ internal fun ImageEditorToolbar(
   modifier: Modifier = Modifier
 ) {
   when {
-    // The trash is the only thing on screen during a drag.
-    imageEditorController.isUserDraggingElement -> Unit
     imageEditorController.shouldDisplayTextColorBar -> {
       TextModeColorBar(
         imageEditorController = imageEditorController,
@@ -131,10 +129,10 @@ private fun ImageEditorDrawStateToolbar(
       imageVector = SignalIcons.Sticker.imageVector,
       checked = imageEditorController.isUserInsertingSticker,
       onCheckChanged = {
-        if (!imageEditorController.isUserInsertingSticker) {
-          imageEditorController.enterStickerMode()
-          onEvent(MediaEditScreenEvent.StickerClick)
-        }
+        // Unconditional: if a previous pick never delivered a result the mode is still INSERT_STICKER, and gating on it
+        // would leave the button dead.
+        imageEditorController.enterStickerMode()
+        onEvent(MediaEditScreenEvent.StickerClick)
       }
     )
 

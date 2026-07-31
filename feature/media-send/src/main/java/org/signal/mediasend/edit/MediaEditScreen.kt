@@ -8,10 +8,6 @@ package org.signal.mediasend.edit
 import android.net.Uri
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.LocalActivity
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.ExitTransition
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.snapping.SnapPosition
 import androidx.compose.foundation.layout.Arrangement.spacedBy
@@ -36,7 +32,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
@@ -115,10 +110,20 @@ internal fun MediaEditScreen(
       null
     }
 
+    // Composed after the camera-first handler so it wins while an editor mode is open: back should step out of that mode
+    // rather than leave the screen.
+    BackHandler(enabled = imageController?.canHandleBack == true) {
+      imageController?.onBackPressed()
+    }
+
     var isVideoInteracting by remember(focusedUri) { mutableStateOf(false) }
     var isAdjustingBrushWidth by remember(focusedUri) { mutableStateOf(false) }
     val isImageEditing = imageController?.isUserInEdit == true
     val isInteracting = isImageEditing || isVideoInteracting
+
+    // Drags of the media itself, which every piece of chrome gets out of the way for. Sliders are excluded -- they are
+    // chrome themselves, and clearing the screen would hide what they adjust.
+    val isDragging = imageController?.imageEditorState?.isGestureActive == true || isVideoInteracting
 
     HorizontalPager(
       state = pagerState,
@@ -205,19 +210,23 @@ internal fun MediaEditScreen(
         modifier = Modifier.fillMaxSize()
       )
 
-      BrushWidthBar(
-        fraction = imageController.brushWidthFraction,
-        onFractionChanged = { fraction, gestureComplete ->
-          isAdjustingBrushWidth = !gestureComplete
-          val tool = imageController.brushTool
-          imageController.setBrushWidthFraction(fraction)
-
-          if (gestureComplete && tool != null) {
-            onEvent(MediaEditScreenEvent.BrushWidthChanged(tool, fraction))
-          }
-        },
+      MediaEditControl(
+        faded = isDragging,
         modifier = Modifier.align(Alignment.CenterStart)
-      )
+      ) {
+        BrushWidthBar(
+          fraction = imageController.brushWidthFraction,
+          onFractionChanged = { fraction, gestureComplete ->
+            isAdjustingBrushWidth = !gestureComplete
+            val tool = imageController.brushTool
+            imageController.setBrushWidthFraction(fraction)
+
+            if (gestureComplete && tool != null) {
+              onEvent(MediaEditScreenEvent.BrushWidthChanged(tool, fraction))
+            }
+          }
+        )
+      }
     }
 
     val isTextEditing = imageController?.textEditingElement != null
@@ -245,7 +254,7 @@ internal fun MediaEditScreen(
         }
 
         if (state.selectedMedia.size > 1) {
-          MediaEditControl(visible = !isImageEditing, faded = isVideoInteracting) {
+          MediaEditControl(visible = !isImageEditing, faded = isDragging) {
             ThumbnailRow(
               selectedMedia = state.selectedMedia,
               pagerState = pagerState,
@@ -280,7 +289,9 @@ internal fun MediaEditScreen(
           }
 
           if (controller.isUserDrawing) {
-            DrawModeColorBar(imageEditorController = controller)
+            MediaEditControl(faded = isDragging) {
+              DrawModeColorBar(imageEditorController = controller)
+            }
           }
         }
 
@@ -291,14 +302,15 @@ internal fun MediaEditScreen(
             state = state,
             onEvent = onEvent,
             imageController = imageController,
-            isTextEditing = isTextEditing
+            isTextEditing = isTextEditing,
+            isDragging = isDragging
           )
         }
       }
 
       MediaEditControl(
         visible = !isImageEditing,
-        faded = isVideoInteracting,
+        faded = isDragging,
         enter = MediaSendMetrics.SlidingControlEnterTransition,
         exit = MediaSendMetrics.SlidingControlExitTransition
       ) {
@@ -324,6 +336,7 @@ internal fun MediaEditScreen(
         onEvent = onEvent,
         imageController = imageController,
         isTextEditing = isTextEditing,
+        isDragging = isDragging,
         modifier = Modifier
           .align(Alignment.CenterEnd)
       )
@@ -332,18 +345,23 @@ internal fun MediaEditScreen(
     val displayNameState = state.recipientId?.let { LocalDisplayNameProvider.current(it.id) } ?: remember { mutableStateOf(null) }
     val displayName: String? by displayNameState
 
-    MediaEditSummaryPill(
-      displayName = displayName,
-      selectedMedia = state.selectedMedia,
-      selectedPage = pagerState.currentPage,
+    MediaEditControl(
+      faded = isDragging,
       modifier = Modifier
         .align(Alignment.TopCenter)
         .padding(top = 10.dp)
         .systemBarsPadding()
-    )
+    ) {
+      MediaEditSummaryPill(
+        displayName = displayName,
+        selectedMedia = state.selectedMedia,
+        selectedPage = pagerState.currentPage
+      )
+    }
 
     ImageEditorUndoRedoButtons(
       imageEditorController = imageController,
+      isDragging = isDragging,
       modifier = Modifier
         .align(Alignment.TopStart)
         .padding(top = 12.dp, start = 16.dp)
@@ -352,6 +370,7 @@ internal fun MediaEditScreen(
 
     ImageEditorClearAllButton(
       imageEditorController = imageController,
+      isDragging = isDragging,
       modifier = Modifier
         .align(Alignment.TopEnd)
         .padding(top = 12.dp, end = 16.dp)
@@ -375,60 +394,37 @@ private fun MediaToolbar(
   focusedEditorState: EditorState?,
   imageController: ImageController?,
   isTextEditing: Boolean,
+  isDragging: Boolean,
   modifier: Modifier = Modifier
 ) {
-  if (focusedUri == null) {
+  if (focusedUri == null || focusedEditorState == null) {
     return
   }
 
-  when (focusedEditorState) {
-    null -> return
-    is EditorState.Image -> {
-      imageController?.let {
-        ImageEditorToolbar(
-          imageEditorController = it,
+  MediaEditControl(faded = isDragging, modifier = modifier) {
+    when (focusedEditorState) {
+      is EditorState.Image -> {
+        imageController?.let {
+          ImageEditorToolbar(
+            imageEditorController = it,
+            state = state,
+            onEvent = onEvent,
+            modifier = Modifier
+              .navigationBarsPadding()
+              .padding(end = 24.dp)
+              .then(if (isTextEditing) Modifier.imePadding() else Modifier)
+          )
+        }
+      }
+
+      else -> MediaEditorToolbar {
+        MediaEditorToolbarSharedButtons(
           state = state,
           onEvent = onEvent,
-          modifier = modifier
-            .navigationBarsPadding()
-            .padding(end = 24.dp)
-            .then(if (isTextEditing) Modifier.imePadding() else Modifier)
+          canSave = focusedEditorState is EditorState.VideoTrim
         )
       }
     }
-
-    else -> MediaEditorToolbar(modifier = modifier) {
-      MediaEditorToolbarSharedButtons(
-        state = state,
-        onEvent = onEvent,
-        canSave = focusedEditorState is EditorState.VideoTrim
-      )
-    }
-  }
-}
-
-/**
- * A control in the bottom stack, and the two ways it gets out of the user's way. Going not-[visible] gives up its layout
- * space, letting the rest of the stack settle into it, while [faded] holds onto the space -- releasing it mid-gesture
- * would move whatever the user is dragging out from under their finger.
- */
-@Composable
-private fun MediaEditControl(
-  visible: Boolean,
-  faded: Boolean,
-  enter: EnterTransition = MediaSendMetrics.ControlEnterTransition,
-  exit: ExitTransition = MediaSendMetrics.ControlExitTransition,
-  content: @Composable () -> Unit
-) {
-  val alpha by animateFloatAsState(targetValue = if (faded) 0f else 1f)
-
-  AnimatedVisibility(
-    visible = visible,
-    enter = enter,
-    exit = exit,
-    modifier = Modifier.alpha(alpha)
-  ) {
-    content()
   }
 }
 

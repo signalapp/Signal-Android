@@ -19,17 +19,19 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.R
 import org.signal.mediasend.edit.ImageController
+import org.signal.mediasend.edit.MediaEditControl
 
 @Composable
 internal fun ImageEditorClearAllButton(
   imageEditorController: ImageController?,
+  isDragging: Boolean,
   modifier: Modifier = Modifier,
   canUndo: Boolean = imageEditorController?.imageEditorState?.undoAvailable ?: false
 ) {
-  ImageEditorGestureAwareControl(
-    imageEditorController = imageEditorController,
-    modifier = modifier,
-    extraCheck = { canUndo }
+  MediaEditControl(
+    visible = imageEditorController != null && imageEditorController.mode != ImageController.Mode.NONE && canUndo,
+    faded = isDragging,
+    modifier = modifier
   ) {
     Buttons.MediumTonal(
       colors = ButtonDefaults.buttonColors(
@@ -51,6 +53,7 @@ private fun ImageEditorClearAllButtonPreview() {
   Previews.Preview {
     ImageEditorClearAllButton(
       imageEditorController = remember { ImageController(EditorModel.create(0x0)).apply { enterDrawMode() } },
+      isDragging = false,
       canUndo = true
     )
   }

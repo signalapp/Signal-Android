@@ -49,6 +49,7 @@ internal class ImageController(
   }
 
   var mode: Mode by mutableStateOf(Mode.NONE)
+    private set
 
   var isCropAspectRatioLocked: Boolean by mutableStateOf(editorModel.isCropAspectLocked)
     private set
@@ -59,10 +60,15 @@ internal class ImageController(
   private var initialDialScale: Float = editorModel.mainImage?.localScaleX ?: 1f
   private var initialDialImageDegrees: Float = 0f
   private var minDialScaleDown: Float = 1f
-  private var drawSessionSnapshot: ByteArray? = null
+  private var drawSessionSnapshot: ByteArray? by mutableStateOf(null)
   private var drawSessionDirty: Boolean by mutableStateOf(false)
   private var modeBeforeStickerInsertion: Mode = Mode.NONE
-  private var modeBeforeDrag: Mode = Mode.NONE
+
+  /**
+   * The mode a transient one falls back to. Selecting, dragging, inserting a sticker and entering text are all things
+   * the user does *within* an editing session, so they must not be able to strand that session -- or start one.
+   */
+  private var restingMode: Mode = Mode.NONE
 
   var textEditingElement: EditorElement? by mutableStateOf(null)
     private set
@@ -76,7 +82,14 @@ internal class ImageController(
   var showDiscardDialog: Boolean by mutableStateOf(false)
     private set
 
-  private val isInDrawSession: Boolean by derivedStateOf { mode == Mode.DRAW || mode == Mode.HIGHLIGHT || mode == Mode.BLUR }
+  /**
+   * Whether there is an uncommitted session to commit or discard. Keyed off the snapshot rather than [mode], because
+   * the transient modes -- placing a sticker, entering text, dragging -- all sit on top of a live session.
+   */
+  private val isInDrawSession: Boolean by derivedStateOf { drawSessionSnapshot != null }
+
+  /** Whether the brush itself is the active tool, which is a narrower question than [isInDrawSession]. */
+  private val isPaintMode: Boolean by derivedStateOf { mode == Mode.DRAW || mode == Mode.HIGHLIGHT || mode == Mode.BLUR }
 
   val hasUnsavedChanges: Boolean by derivedStateOf {
     when {
@@ -88,7 +101,7 @@ internal class ImageController(
   }
 
   val shouldDisplayTextColorBar: Boolean by derivedStateOf {
-    textEditingElement != null || mode == Mode.MOVE_TEXT
+    textEditingElement != null
   }
 
   val isUserDrawing: Boolean by derivedStateOf { mode == Mode.DRAW || mode == Mode.HIGHLIGHT }
@@ -110,10 +123,36 @@ internal class ImageController(
   val isUserEnteringText: Boolean by derivedStateOf { mode == Mode.TEXT }
   val isUserInsertingSticker: Boolean by derivedStateOf { mode == Mode.INSERT_STICKER }
 
-  val isUserDraggingElement: Boolean by derivedStateOf { mode == Mode.DELETE }
-
   var isDraggedElementOverTrash: Boolean by mutableStateOf(false)
     private set
+
+  /** Whether back should back out of an editor mode rather than leaving the screen. */
+  val canHandleBack: Boolean by derivedStateOf {
+    when (mode) {
+      // The sticker picker is its own window and owns back while it is up, and DELETE only exists mid-drag.
+      Mode.INSERT_STICKER, Mode.DELETE -> false
+      Mode.NONE -> selectedElement != null
+      else -> true
+    }
+  }
+
+  /**
+   * Backs out of the current mode into the one before it. Draw and crop sessions go through [requestCancelEdit] so that
+   * backing out of a dirty one asks first rather than silently throwing the work away.
+   */
+  fun onBackPressed() {
+    // A selection is a level of its own: back gives that up before it gives up the mode.
+    if (selectedElement != null) {
+      clearSelection()
+      return
+    }
+
+    when (mode) {
+      Mode.TEXT -> finishTextEditing()
+      Mode.DRAW, Mode.HIGHLIGHT, Mode.BLUR, Mode.CROP -> requestCancelEdit()
+      Mode.NONE, Mode.INSERT_STICKER, Mode.DELETE -> Unit
+    }
+  }
 
   fun requestCancelEdit() {
     if (hasUnsavedChanges) {
@@ -173,31 +212,59 @@ internal class ImageController(
     drawSessionSnapshot = null
     drawSessionDirty = false
     selectedElement = null
-    mode = Mode.NONE
+    transitionTo(Mode.NONE)
     imageEditorState.isDrawing = false
     imageEditorState.isBlur = false
   }
 
+  private fun transitionTo(newMode: Mode) {
+    if (!newMode.isTransient) {
+      restingMode = newMode
+    }
+
+    mode = newMode
+  }
+
+  /** Ends a transient mode by returning to the session the user was in before it. */
+  private fun returnToRestingMode() {
+    when (restingMode) {
+      Mode.DRAW, Mode.HIGHLIGHT, Mode.BLUR -> {
+        transitionTo(restingMode)
+        syncDrawingState()
+      }
+
+      // The crop is still open on the model, so there is nothing to restart -- only the mode to hand back.
+      Mode.CROP -> transitionTo(Mode.CROP)
+
+      else -> exitEditMode()
+    }
+
+    imageEditorState.invalidate()
+  }
+
   fun enterDrawMode() {
+    clearSelection()
     snapshotIfNewDrawSession()
-    mode = Mode.DRAW
+    transitionTo(Mode.DRAW)
     syncDrawingState()
   }
 
   fun enterHighlightMode() {
+    clearSelection()
     snapshotIfNewDrawSession()
-    mode = Mode.HIGHLIGHT
+    transitionTo(Mode.HIGHLIGHT)
     syncDrawingState()
   }
 
   fun enterBlurMode() {
+    clearSelection()
     snapshotIfNewDrawSession()
-    mode = Mode.BLUR
+    transitionTo(Mode.BLUR)
     syncDrawingState()
   }
 
   private fun snapshotIfNewDrawSession() {
-    if (!isInDrawSession) {
+    if (drawSessionSnapshot == null) {
       drawSessionSnapshot = editorModel.createSnapshot()
       drawSessionDirty = false
     }
@@ -228,8 +295,11 @@ internal class ImageController(
   }
 
   private fun syncDrawingState() {
-    imageEditorState.isDrawing = true
-    imageEditorState.isBlur = mode == Mode.BLUR
+    // A selected element takes the touch: with the brush live, a sticker the user just placed could not be moved.
+    val canPaint = selectedElement == null
+
+    imageEditorState.isDrawing = canPaint
+    imageEditorState.isBlur = canPaint && mode == Mode.BLUR
     imageEditorState.drawCap = if (mode == Mode.HIGHLIGHT) Paint.Cap.SQUARE else Paint.Cap.ROUND
     imageEditorState.drawThickness = brushThickness
     setDrawColor(drawColorBarState.color)
@@ -238,7 +308,7 @@ internal class ImageController(
   fun enterCropMode() {
     editorModel.startCrop()
     initialDialScale = editorModel.mainImage?.localScaleX ?: 1f
-    mode = Mode.CROP
+    transitionTo(Mode.CROP)
   }
 
   fun enterTextMode() {
@@ -250,7 +320,7 @@ internal class ImageController(
   }
 
   private fun beginTextEditing(element: EditorElement) {
-    mode = Mode.TEXT
+    transitionTo(Mode.TEXT)
     textEditingElement = element
     imageEditorState.textEditingElement = element
     editorModel.addFade()
@@ -262,21 +332,31 @@ internal class ImageController(
     val element = textEditingElement ?: return
     val renderer = element.renderer as? MultiLineTextRenderer
     val hasText = renderer?.text?.isNotEmpty() == true
-    val snapshot = drawSessionSnapshot
 
     renderer?.setFocused(false)
     editorModel.zoomOut()
     editorModel.removeFade()
     editorModel.setSelectionVisible(true)
 
-    if (!hasText && snapshot != null) {
-      editorModel.restoreFromSnapshot(snapshot)
-    }
-
-    editorModel.setSelected(null)
     textEditingElement = null
     imageEditorState.textEditingElement = null
-    exitEditMode()
+
+    if (hasText) {
+      drawSessionDirty = true
+
+      // Staying selected keeps the brush off it, so it can still be moved or double-tapped back open.
+      selectElement(element)
+    } else {
+      // Drop just the abandoned element. Restoring the draw session snapshot here would take every stroke made before
+      // text entry with it.
+      clearSelection()
+      editorModel.delete(element)
+      editorModel.updateUndoRedoAvailabilityState()
+    }
+
+    // Returning to the session that text entry was started from keeps its commit and discard available, rather than
+    // banking the work without the user ever confirming it.
+    returnToRestingMode()
   }
 
   fun onTextChanged(text: String) {
@@ -324,47 +404,64 @@ internal class ImageController(
     imageEditorState.invalidate()
   }
 
+  /** Re-opens an existing text element, which is how the user gets back to its color and style controls. */
+  fun onEntityDoubleTap(element: EditorElement?) {
+    if (mode == Mode.CROP || element == null || element.renderer !is MultiLineTextRenderer) {
+      return
+    }
+
+    beginTextEditing(element)
+  }
+
   private fun selectElement(element: EditorElement) {
     (selectedElement?.renderer as? SelectableRenderer)?.onSelected(false)
     (element.renderer as? SelectableRenderer)?.onSelected(true)
     editorModel.setSelected(element)
     selectedElement = element
-    mode = when (element.renderer) {
-      is MultiLineTextRenderer -> Mode.MOVE_TEXT
-      else -> Mode.MOVE_STICKER
+
+    if (isPaintMode) {
+      syncDrawingState()
     }
+
+    imageEditorState.invalidate()
   }
 
   private fun clearSelection() {
-    if (selectedElement != null) {
-      (selectedElement?.renderer as? SelectableRenderer)?.onSelected(false)
-      editorModel.setSelected(null)
-      selectedElement = null
-      mode = Mode.NONE
-      imageEditorState.invalidate()
+    val element = selectedElement ?: return
+
+    (element.renderer as? SelectableRenderer)?.onSelected(false)
+    editorModel.setSelected(null)
+    selectedElement = null
+
+    if (isPaintMode) {
+      syncDrawingState()
     }
+
+    imageEditorState.invalidate()
   }
 
   fun enterStickerMode() {
-    modeBeforeStickerInsertion = mode
-    mode = Mode.INSERT_STICKER
+    // Re-opening the picker must not record INSERT_STICKER as the mode to come back to.
+    if (mode != Mode.INSERT_STICKER) {
+      modeBeforeStickerInsertion = mode
+    }
+
+    transitionTo(Mode.INSERT_STICKER)
   }
 
   fun insertSticker(renderer: Renderer) {
     val element = EditorElement(renderer, EditorModel.Z_STICKERS)
     editorModel.addElementCentered(element, STICKER_SCALE)
+    drawSessionDirty = true
 
-    // The picker can be opened mid-draw-session, where touches would otherwise keep painting.
-    imageEditorState.isDrawing = false
-    imageEditorState.isBlur = false
-
+    // Selecting first leaves the new sticker holding the touch, so a draw session resumed here does not paint over it.
     selectElement(element)
-    imageEditorState.invalidate()
+    returnToRestingMode()
   }
 
   fun cancelStickerInsertion() {
     if (mode == Mode.INSERT_STICKER) {
-      mode = modeBeforeStickerInsertion
+      transitionTo(modeBeforeStickerInsertion)
     }
   }
 
@@ -374,10 +471,9 @@ internal class ImageController(
       return
     }
 
-    modeBeforeDrag = mode
     selectElement(element)
     isDraggedElementOverTrash = false
-    mode = Mode.DELETE
+    transitionTo(Mode.DELETE)
     setTrashVisible(true)
   }
 
@@ -403,24 +499,21 @@ internal class ImageController(
     isDraggedElementOverTrash = false
     setTrashVisible(false)
 
-    if (element == null) {
-      exitEditMode()
-      return
-    }
-
-    if (isOverTrash) {
-      editorModel.delete(element)
-      editorModel.updateUndoRedoAvailabilityState()
-
-      when (modeBeforeDrag) {
-        Mode.DRAW, Mode.HIGHLIGHT, Mode.BLUR -> {
-          selectedElement = null
-          mode = modeBeforeDrag
-        }
-        else -> exitEditMode()
+    if (element == null || isOverTrash) {
+      element?.let {
+        editorModel.delete(it)
+        editorModel.updateUndoRedoAvailabilityState()
+        drawSessionDirty = true
       }
+
+      clearSelection()
+      returnToRestingMode()
     } else {
       element.animatePartialFadeIn(imageEditorState::invalidate)
+
+      // Moving something is not an edit mode of its own, so the drag hands back whatever the user was in -- but the
+      // element they were just dragging stays selected.
+      returnToRestingMode()
       selectElement(element)
     }
   }
@@ -480,10 +573,12 @@ internal class ImageController(
     DRAW,
     HIGHLIGHT,
     BLUR,
-    MOVE_STICKER,
-    MOVE_TEXT,
     DELETE,
-    INSERT_STICKER
+    INSERT_STICKER;
+
+    /** Whether this is something done within a session rather than a session in its own right. */
+    internal val isTransient: Boolean
+      get() = this == TEXT || this == DELETE || this == INSERT_STICKER
   }
 
   /**
