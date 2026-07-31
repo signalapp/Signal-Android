@@ -1,6 +1,4 @@
-package org.thoughtcrime.securesms.scribbles.stickers
-
-import org.signal.imageeditor.core.Renderer
+package org.signal.imageeditor.core
 
 /**
  * A renderer that can handle a tap event

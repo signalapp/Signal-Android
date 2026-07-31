@@ -36,13 +36,15 @@ import org.signal.mediasend.rememberPreviewState
 import java.util.EnumMap
 
 @Composable
-fun ImageEditorToolbar(
+internal fun ImageEditorToolbar(
   imageEditorController: ImageController,
   state: MediaSendState,
   onEvent: (MediaEditScreenEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
   when {
+    // The trash is the only thing on screen during a drag.
+    imageEditorController.isUserDraggingElement -> Unit
     imageEditorController.shouldDisplayTextColorBar -> {
       HSVColorBar(
         state = imageEditorController.textColorBarState,
@@ -57,7 +59,7 @@ fun ImageEditorToolbar(
       ImageEditorCropAndResizeToolbar(imageEditorController, modifier)
     }
     else -> {
-      ImageEditorDrawStateToolbar(imageEditorController, modifier)
+      ImageEditorDrawStateToolbar(imageEditorController, onEvent, modifier)
     }
   }
 }
@@ -94,6 +96,7 @@ private fun ImageEditorNoneStateToolbar(
 @Composable
 private fun ImageEditorDrawStateToolbar(
   imageEditorController: ImageController,
+  onEvent: (MediaEditScreenEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
   MediaEditorToolbar(
@@ -131,6 +134,7 @@ private fun ImageEditorDrawStateToolbar(
       onCheckChanged = {
         if (!imageEditorController.isUserInsertingSticker) {
           imageEditorController.enterStickerMode()
+          onEvent(MediaEditScreenEvent.StickerClick)
         }
       }
     )
@@ -290,7 +294,8 @@ private fun ImageEditorDrawStateToolbarPreview() {
         ImageController(EditorModel.create(0)).apply {
           enterDrawMode()
         }
-      }
+      },
+      onEvent = {}
     )
   }
 }

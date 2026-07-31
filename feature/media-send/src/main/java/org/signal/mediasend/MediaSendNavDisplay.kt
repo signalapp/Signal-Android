@@ -31,6 +31,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.showSnackbar
 import org.signal.mediasend.capture.MediaCaptureScreen
+import org.signal.mediasend.edit.ImageController
 import org.signal.mediasend.edit.MediaEditScreen
 import org.signal.mediasend.select.MediaSelectScreen
 import org.signal.mediasend.select.MediaSelectScreenState
@@ -45,6 +46,7 @@ import org.signal.mediasend.select.MediaSelectScreenState
 internal fun MediaSendNavDisplay(
   stateFlow: StateFlow<MediaSendState>,
   snackbarEvents: Flow<SnackbarEvent>,
+  imageControllers: ImageController.Container,
   backStack: NavBackStack<NavKey>,
   eventHandler: MediaSendEventHandler,
   modifier: Modifier = Modifier,
@@ -103,7 +105,8 @@ internal fun MediaSendNavDisplay(
           val state by stateFlow.collectAsStateWithLifecycle()
           MediaEditScreen(
             state = state,
-            onEvent = eventHandler::onMediaEditScreenEvent
+            onEvent = eventHandler::onMediaEditScreenEvent,
+            imageControllers = imageControllers
           )
         }
 
@@ -151,6 +154,7 @@ private fun MediaSendNavDisplayPreview() {
       MediaSendNavDisplay(
         stateFlow = MutableStateFlow(MediaSendState(isCameraFirst = true)),
         snackbarEvents = emptyFlow(),
+        imageControllers = remember { ImageController.Container() },
         backStack = rememberNavBackStack(MediaSendNavKey.Edit),
         eventHandler = MediaSendEventHandler.Empty,
         textStoryEditorSlot = { BoxWithText("Text Story Editor Slot") },

@@ -36,6 +36,9 @@ sealed interface HudCommand {
     val isViewOnceAvailable: Boolean
   ) : HudCommand
 
+  /** Show the app's sticker picker. The pick is handed back via [MediaSendViewModel.onStickerSelected]. */
+  data object SelectSticker : HudCommand
+
   data class GoToConversation(val recipientId: MediaRecipientId) : HudCommand
   data object GoToLinkedDevices : HudCommand
   data class GoToQuickTransfer(val qrData: String) : HudCommand

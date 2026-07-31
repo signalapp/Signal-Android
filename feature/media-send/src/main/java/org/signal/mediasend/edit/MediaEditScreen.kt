@@ -61,7 +61,6 @@ import org.signal.mediasend.MediaSendState
 import org.signal.mediasend.edit.document.DocumentPage
 import org.signal.mediasend.edit.image.BrushWidthBar
 import org.signal.mediasend.edit.image.BrushWidthPreview
-import org.signal.mediasend.edit.image.BrushWidthsState
 import org.signal.mediasend.edit.image.DrawModeColorBar
 import org.signal.mediasend.edit.image.ImageEditor
 import org.signal.mediasend.edit.image.ImageEditorClearAllButton
@@ -74,9 +73,10 @@ import org.signal.mediasend.edit.video.VideoTrimBar
 import org.signal.mediasend.rememberPreviewState
 
 @Composable
-fun MediaEditScreen(
+internal fun MediaEditScreen(
   state: MediaSendState,
-  onEvent: (MediaEditScreenEvent) -> Unit
+  onEvent: (MediaEditScreenEvent) -> Unit,
+  imageControllers: ImageController.Container
 ) {
   val scope = rememberCoroutineScope()
 
@@ -105,8 +105,6 @@ fun MediaEditScreen(
 
   Box(modifier = Modifier.fillMaxSize()) {
     val isSmallWindowBreakpoint = rememberWindowBreakpoint() is WindowBreakpoint.Small
-    val imageControllers = remember { ImageController.Container(BrushWidthsState(state.brushWidths)) }
-
     val videoEditorViewModel = rememberVideoEditorViewModel()
 
     val focusedUri = state.focusedMedia?.uri
@@ -508,7 +506,8 @@ private fun MediaEditScreenPreview() {
           selectedMedia.first().uri to EditorState.Image(EditorModel.create(0))
         )
       ),
-      onEvent = {}
+      onEvent = {},
+      imageControllers = remember { ImageController.Container() }
     )
   }
 }

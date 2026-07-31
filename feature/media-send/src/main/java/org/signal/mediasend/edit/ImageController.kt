@@ -8,13 +8,14 @@ package org.signal.mediasend.edit
 import android.graphics.Paint
 import android.net.Uri
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.annotation.RememberInComposition
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateMap
+import org.signal.imageeditor.core.Renderer
 import org.signal.imageeditor.core.SelectableRenderer
+import org.signal.imageeditor.core.TappableRenderer
 import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer
@@ -31,10 +32,15 @@ import org.signal.mediasend.edit.image.ImageEditorState
  * trim/seek interaction flows through the screen's event channel.
  */
 @Stable
-class ImageController @RememberInComposition constructor(
+internal class ImageController(
   private val editorModel: EditorModel,
   private val brushWidths: BrushWidthsState = BrushWidthsState()
 ) {
+
+  companion object {
+    /** Size of a new sticker, relative to the visible area of the image. */
+    private const val STICKER_SCALE = 0.4f
+  }
 
   val isUserInEdit: Boolean by derivedStateOf { mode != Mode.NONE }
 
@@ -55,6 +61,8 @@ class ImageController @RememberInComposition constructor(
   private var minDialScaleDown: Float = 1f
   private var drawSessionSnapshot: ByteArray? = null
   private var drawSessionDirty: Boolean by mutableStateOf(false)
+  private var modeBeforeStickerInsertion: Mode = Mode.NONE
+  private var modeBeforeDrag: Mode = Mode.NONE
 
   var textEditingElement: EditorElement? by mutableStateOf(null)
     private set
@@ -101,6 +109,11 @@ class ImageController @RememberInComposition constructor(
 
   val isUserEnteringText: Boolean by derivedStateOf { mode == Mode.TEXT }
   val isUserInsertingSticker: Boolean by derivedStateOf { mode == Mode.INSERT_STICKER }
+
+  val isUserDraggingElement: Boolean by derivedStateOf { mode == Mode.DELETE }
+
+  var isDraggedElementOverTrash: Boolean by mutableStateOf(false)
+    private set
 
   fun requestCancelEdit() {
     if (hasUnsavedChanges) {
@@ -288,17 +301,29 @@ class ImageController @RememberInComposition constructor(
     imageEditorState.invalidate()
   }
 
-  fun onEntityTapped(element: EditorElement?) {
+  fun onEntityDown(element: EditorElement?) {
     if (element != null && element.renderer is SelectableRenderer) {
-      (element.renderer as SelectableRenderer).onSelected(true)
-      editorModel.setSelected(element)
-      selectedElement = element
-      mode = when (element.renderer) {
-        is MultiLineTextRenderer -> Mode.MOVE_TEXT
-        else -> Mode.MOVE_STICKER
-      }
+      selectElement(element)
     } else {
       clearSelection()
+    }
+  }
+
+  fun onEntitySingleTap(element: EditorElement?) {
+    val tappable = element?.renderer as? TappableRenderer ?: return
+
+    tappable.onTapped()
+    imageEditorState.invalidate()
+  }
+
+  private fun selectElement(element: EditorElement) {
+    (selectedElement?.renderer as? SelectableRenderer)?.onSelected(false)
+    (element.renderer as? SelectableRenderer)?.onSelected(true)
+    editorModel.setSelected(element)
+    selectedElement = element
+    mode = when (element.renderer) {
+      is MultiLineTextRenderer -> Mode.MOVE_TEXT
+      else -> Mode.MOVE_STICKER
     }
   }
 
@@ -313,7 +338,91 @@ class ImageController @RememberInComposition constructor(
   }
 
   fun enterStickerMode() {
+    modeBeforeStickerInsertion = mode
     mode = Mode.INSERT_STICKER
+  }
+
+  fun insertSticker(renderer: Renderer) {
+    val element = EditorElement(renderer, EditorModel.Z_STICKERS)
+    editorModel.addElementCentered(element, STICKER_SCALE)
+
+    // The picker can be opened mid-draw-session, where touches would otherwise keep painting.
+    imageEditorState.isDrawing = false
+    imageEditorState.isBlur = false
+
+    selectElement(element)
+    imageEditorState.invalidate()
+  }
+
+  fun cancelStickerInsertion() {
+    if (mode == Mode.INSERT_STICKER) {
+      mode = modeBeforeStickerInsertion
+    }
+  }
+
+  /** Reveals the trash so the drag can end in a delete. */
+  fun onDragStarted(element: EditorElement?) {
+    if (mode == Mode.CROP || element == null || element.renderer !is SelectableRenderer) {
+      return
+    }
+
+    modeBeforeDrag = mode
+    selectElement(element)
+    isDraggedElementOverTrash = false
+    mode = Mode.DELETE
+    setTrashVisible(true)
+  }
+
+  fun onDragMoved(element: EditorElement?, isOverTrash: Boolean) {
+    if (mode != Mode.DELETE || element == null || isOverTrash == isDraggedElementOverTrash) {
+      return
+    }
+
+    isDraggedElementOverTrash = isOverTrash
+
+    if (isOverTrash) {
+      element.animatePartialFadeOut(imageEditorState::invalidate)
+    } else {
+      element.animatePartialFadeIn(imageEditorState::invalidate)
+    }
+  }
+
+  fun onDragEnded(element: EditorElement?, isOverTrash: Boolean) {
+    if (mode != Mode.DELETE) {
+      return
+    }
+
+    isDraggedElementOverTrash = false
+    setTrashVisible(false)
+
+    if (element == null) {
+      exitEditMode()
+      return
+    }
+
+    if (isOverTrash) {
+      editorModel.delete(element)
+      editorModel.updateUndoRedoAvailabilityState()
+
+      when (modeBeforeDrag) {
+        Mode.DRAW, Mode.HIGHLIGHT, Mode.BLUR -> {
+          selectedElement = null
+          mode = modeBeforeDrag
+        }
+        else -> exitEditMode()
+      }
+    } else {
+      element.animatePartialFadeIn(imageEditorState::invalidate)
+      selectElement(element)
+    }
+  }
+
+  private fun setTrashVisible(visible: Boolean) {
+    editorModel.trash.flags
+      .setVisible(visible)
+      .persist()
+
+    imageEditorState.invalidate()
   }
 
   fun lockCrop() {
@@ -369,14 +478,28 @@ class ImageController @RememberInComposition constructor(
     INSERT_STICKER
   }
 
+  /**
+   * The controller for each image in the selection. Owned by the view-model rather than the composition so edits from
+   * outside the Edit screen apply right away.
+   */
   @Stable
-  class Container @RememberInComposition constructor(
+  class Container(
     private val brushWidths: BrushWidthsState = BrushWidthsState()
   ) {
     private val controllers = SnapshotStateMap<Uri, ImageController>()
 
     fun getOrCreate(uri: Uri, editorModel: EditorModel): ImageController {
-      return controllers.getOrPut(uri) { ImageController(editorModel, brushWidths) }
+      val existing = controllers[uri]
+      if (existing != null && existing.editorModel === editorModel) {
+        return existing
+      }
+
+      // Re-adding a removed item builds it a fresh model, leaving any cached controller editing one nobody renders.
+      return ImageController(editorModel, brushWidths).also { controllers[uri] = it }
+    }
+
+    fun remove(uri: Uri) {
+      controllers.remove(uri)
     }
   }
 }

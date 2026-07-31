@@ -7,7 +7,6 @@ package org.signal.mediasend.edit.image
 
 import android.os.Parcelable
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.annotation.RememberInComposition
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -66,7 +65,7 @@ data class BrushWidths(
  * selection draws with the same brush.
  */
 @Stable
-class BrushWidthsState @RememberInComposition constructor(initialWidths: BrushWidths = BrushWidths()) {
+internal class BrushWidthsState(initialWidths: BrushWidths = BrushWidths()) {
 
   var widths: BrushWidths by mutableStateOf(initialWidths)
     private set

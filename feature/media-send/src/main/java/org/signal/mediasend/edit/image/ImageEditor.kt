@@ -5,6 +5,7 @@
 
 package org.signal.mediasend.edit.image
 
+import android.graphics.Matrix
 import android.graphics.PointF
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.awaitEachGesture
@@ -27,28 +28,38 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.changedToDown
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import org.signal.imageeditor.core.ImageEditorTouchHandler
+import org.signal.imageeditor.core.model.EditorElement
 import org.signal.mediasend.edit.ImageController
 
 @Composable
-fun ImageEditor(
+internal fun ImageEditor(
   controller: ImageController,
   modifier: Modifier = Modifier
 ) {
   val context = LocalContext.current
   val state = controller.imageEditorState
+  val hapticFeedback = LocalHapticFeedback.current
 
   DisposableEffect(state) {
     state.attach()
     onDispose { state.detach() }
+  }
+
+  LaunchedEffect(controller.isDraggedElementOverTrash) {
+    if (controller.isDraggedElementOverTrash) {
+      hapticFeedback.performHapticFeedback(HapticFeedbackType.TextHandleMove)
+    }
   }
 
   Box(modifier = modifier) {
@@ -107,6 +118,9 @@ private fun HiddenTextInput(controller: ImageController) {
   }
 }
 
+/** How far a finger travels before a touch on an element counts as a drag. */
+private const val MAX_MOVE_SQUARED_BEFORE_DRAG = 10f
+
 private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller: ImageController): Modifier {
   return this.pointerInput(controller, controller.textEditingElement) {
     val touchHandler = ImageEditorTouchHandler()
@@ -134,7 +148,7 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
       val hitElement = touchHandler.onDown(state.editorModel, state.viewMatrix, down.position.toPointF())
 
       if (!state.isDrawing && !state.isBlur) {
-        controller.onEntityTapped(hitElement)
+        controller.onEntityDown(hitElement)
       }
 
       // In NONE mode with nothing hit, let the pager handle the gesture
@@ -146,6 +160,9 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
       state.isGestureActive = true
 
       var previousPointerCount = 1
+      var inDrag = false
+      var draggedElement: EditorElement? = null
+      var droppedOnTrash = false
 
       try {
         while (true) {
@@ -155,8 +172,23 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
 
           if (currentCount == 0) {
             event.changes.forEach { it.consume() }
+
+            if (inDrag) {
+              val upPoint = (event.changes.firstOrNull()?.position ?: down.position).toPointF()
+              droppedOnTrash = previousPointerCount == 1 &&
+                touchHandler.checkTrashIntersect(state.editorModel, upPoint) &&
+                state.editorModel.findElementAtPoint(upPoint, state.viewMatrix, Matrix()) === draggedElement
+            }
+
+            val wasSingleTap = !inDrag && !touchHandler.isDrawingSession()
+
             touchHandler.onUp(state.editorModel)
             state.onGestureCompleted?.invoke()
+
+            if (wasSingleTap) {
+              controller.onEntitySingleTap(hitElement)
+            }
+
             break
           }
 
@@ -174,11 +206,24 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
             state.invalidate()
           }
 
+          val position = currentPressed.first().position
+          if (inDrag) {
+            controller.onDragMoved(draggedElement, touchHandler.checkTrashIntersect(state.editorModel, position.toPointF()))
+          } else if (currentCount == 1 && !touchHandler.isDrawingSession() && (position - down.position).getDistanceSquared() > MAX_MOVE_SQUARED_BEFORE_DRAG) {
+            inDrag = true
+            draggedElement = touchHandler.getSelected()
+            controller.onDragStarted(draggedElement)
+          }
+
           event.changes.forEach { it.consume() }
           previousPointerCount = currentCount
         }
       } finally {
         state.isGestureActive = false
+
+        if (inDrag) {
+          controller.onDragEnded(draggedElement, droppedOnTrash)
+        }
       }
     }
   }

@@ -58,7 +58,7 @@ private val MINOR_INDICATOR_HEIGHT = 12.dp
 private val MAJOR_INDICATOR_HEIGHT = 24.dp
 
 @Composable
-fun RotationDial(
+internal fun RotationDial(
   imageEditorController: ImageController,
   modifier: Modifier = Modifier
 ) {

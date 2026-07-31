@@ -15,7 +15,7 @@ import org.signal.mediasend.edit.ImageController
  * Hides or shows content based on whether the user is performing a gesture.
  */
 @Composable
-fun ImageEditorGestureAwareControl(
+internal fun ImageEditorGestureAwareControl(
   imageEditorController: ImageController?,
   modifier: Modifier = Modifier,
   extraCheck: () -> Boolean = { true },

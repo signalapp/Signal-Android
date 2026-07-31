@@ -32,7 +32,7 @@ import org.signal.imageeditor.core.model.EditorModel
  * flow: mutations go into the model, the composable only reads and renders.
  */
 @Stable
-class ImageEditorState(
+internal class ImageEditorState(
   val editorModel: EditorModel
 ) {
 

@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceActivity
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
+import org.thoughtcrime.securesms.scribbles.StickerSelectActivityContract
 import org.thoughtcrime.securesms.util.CommunicationActions
 
 /**
@@ -52,6 +53,10 @@ class MediaSendV3Activity : PassphraseRequiredActivity(), SafetyNumberBottomShee
   private val contractArgs: MediaSendActivityContract.Args by lazy { MediaSendActivityContract.Args.fromIntent(intent) }
 
   private val viewModel: MediaSendViewModel by viewModels { MediaSendViewModel.Factory(args = contractArgs) }
+
+  private val stickerLauncher = registerForActivityResult(StickerSelectActivityContract()) { result ->
+    viewModel.onStickerSelected(result?.toRenderer())
+  }
 
   override val textStoryDestinations: Set<ContactSearchKey.RecipientSearchKey>
     get() = destinations().toSet()
@@ -129,6 +134,8 @@ class MediaSendV3Activity : PassphraseRequiredActivity(), SafetyNumberBottomShee
                   }
                 )
               }
+
+              is HudCommand.SelectSticker -> stickerLauncher.launch(Unit)
 
               is HudCommand.GoToConversation -> {
                 lifecycleScope.launch(Dispatchers.Default) {

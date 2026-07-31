@@ -50,13 +50,16 @@ import org.signal.core.util.ContentTypeUtil
 import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.next
+import org.signal.imageeditor.core.Renderer
 import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.imageeditor.core.renderers.UriGlideRenderer
 import org.signal.mediasend.capture.CameraXScreenEvent
 import org.signal.mediasend.capture.MediaCaptureScreenEvent
+import org.signal.mediasend.edit.ImageController
 import org.signal.mediasend.edit.MediaEditScreenEvent
 import org.signal.mediasend.edit.image.BrushTool
+import org.signal.mediasend.edit.image.BrushWidthsState
 import org.signal.mediasend.edit.video.VideoTrimData
 import org.signal.mediasend.preupload.PreUploadController
 import org.signal.mediasend.preupload.PreUploadResult
@@ -145,6 +148,9 @@ class MediaSendViewModel(
   /** One-shot HUD commands exposed as a Flow. */
   private val hudCommandChannel = Channel<HudCommand>(Channel.BUFFERED)
   val hudCommands: Flow<HudCommand> = hudCommandChannel.receiveAsFlow()
+
+  /** Per-image editor controllers, held here so results arriving from outside the flow can be applied immediately. */
+  internal val imageControllers = ImageController.Container(BrushWidthsState(internalState.value.brushWidths))
 
   /** Media filter errors. */
   private val _mediaErrors = MutableSharedFlow<MediaFilterError>(replay = 1)
@@ -302,6 +308,10 @@ class MediaSendViewModel(
         )
       }
 
+      MediaEditScreenEvent.StickerClick -> {
+        sendHudCommand(HudCommand.SelectSticker)
+      }
+
       MediaEditScreenEvent.NavigateToGallery -> {
         backStack.goToFolders()
       }
@@ -322,6 +332,28 @@ class MediaSendViewModel(
         setBrushWidth(mediaEditScreenEvent.tool, mediaEditScreenEvent.fraction)
       }
     }
+  }
+
+  /**
+   * Result of the picker opened for [HudCommand.SelectSticker], applied to the focused image. A null [renderer] means
+   * the picker was dismissed.
+   */
+  fun onStickerSelected(renderer: Renderer?) {
+    val controller = focusedImageController() ?: return
+
+    if (renderer != null) {
+      controller.insertSticker(renderer)
+    } else {
+      controller.cancelStickerInsertion()
+    }
+  }
+
+  private fun focusedImageController(): ImageController? {
+    val snapshot = state.value
+    val uri = snapshot.focusedMedia?.uri ?: return null
+    val editorState = snapshot.editorStateMap[uri] as? EditorState.Image ?: return null
+
+    return imageControllers.getOrCreate(uri, editorState.model)
   }
 
   private fun setBrushWidth(tool: BrushTool, fraction: Float) {
@@ -632,6 +664,8 @@ class MediaSendViewModel(
         cameraFirstCapture = newCameraFirstCapture
       )
     }
+
+    media.forEach { imageControllers.remove(it.uri) }
 
     if (newSelection.isEmpty() && !snapshot.suppressEmptyError) {
       viewModelScope.launch {
