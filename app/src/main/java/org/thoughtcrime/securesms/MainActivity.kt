@@ -911,7 +911,9 @@ class MainActivity :
     SplashScreenUtil.setSplashScreenThemeIfNecessary(this, SignalStore.settings.theme)
   }
 
-  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray, deviceId: Int) {
+  @Suppress("OVERRIDE_DEPRECATION")
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
   }
 
