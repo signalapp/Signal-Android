@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.avatar.AvatarBundler
 import org.thoughtcrime.securesms.avatar.AvatarColorItem
 import org.thoughtcrime.securesms.avatar.Avatars
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
@@ -33,6 +34,8 @@ class VectorAvatarCreationFragment : Fragment(R.layout.vector_avatar_creation_fr
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner)
+
     val toolbar: Toolbar = view.findViewById(R.id.vector_avatar_creation_toolbar)
     val recycler: RecyclerView = view.findViewById(R.id.vector_avatar_creation_recycler)
     val doneButton: View = view.findViewById(R.id.vector_avatar_creation_done)
