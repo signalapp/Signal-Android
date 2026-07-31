@@ -10,12 +10,14 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigationevent.NavigationEventDispatcherOwner
 import androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.mediasend.edit.MediaEditScreenDialogs
 
@@ -67,6 +69,17 @@ fun MediaSendScreen(
               }
               onConfirm()
             },
+            onDismissRequest = onDismissRequest
+          )
+        }
+
+        viewModel.addToGroupStoryDialog.Content { recipientId, onDismissRequest, onConfirm, _, onDeny ->
+          val groupName: String by LocalDisplayNameProvider.current(recipientId.id)
+
+          MediaEditScreenDialogs.AddToGroupStoryConfirmationDialog(
+            groupName = groupName,
+            onAddToStory = onConfirm,
+            onDeny = onDeny,
             onDismissRequest = onDismissRequest
           )
         }

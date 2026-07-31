@@ -16,6 +16,10 @@
   <string name="MediaSendDialogs__dont_show_again">Don\'t show again</string>
   <!-- Progress dialog message shown while the media being edited is written out to the phone\'s storage. -->
   <string name="MediaSendDialogs__saving_media">Saving attachment to storage…</string>
+  <!-- Dialog message asking the user to confirm that the media should be added to a group\'s story. The placeholder is the group\'s name. -->
+  <string name="MediaSendDialogs__add_to_the_group_story">Add to the group story \"%1$s\"</string>
+  <!-- Confirmation button that adds the media to the group\'s story. -->
+  <string name="MediaSendDialogs__add_to_story">Add to story</string>
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">Add a message</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->

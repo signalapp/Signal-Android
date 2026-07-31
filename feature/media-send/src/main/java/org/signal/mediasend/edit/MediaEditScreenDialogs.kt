@@ -46,6 +46,27 @@ object MediaEditScreenDialogs {
     )
   }
 
+  /**
+   * Last chance to back out before the media is posted to [groupName]'s story.
+   */
+  @Composable
+  fun AddToGroupStoryConfirmationDialog(
+    groupName: String,
+    onAddToStory: () -> Unit,
+    onDeny: () -> Unit,
+    onDismissRequest: () -> Unit
+  ) {
+    Dialogs.SimpleAlertDialog(
+      title = "",
+      body = stringResource(R.string.MediaSendDialogs__add_to_the_group_story, groupName),
+      confirm = stringResource(R.string.MediaSendDialogs__add_to_story),
+      onConfirm = onAddToStory,
+      dismiss = stringResource(android.R.string.cancel),
+      onDeny = onDeny,
+      onDismissRequest = onDismissRequest
+    )
+  }
+
   @Composable
   fun SaveToStorageConfirmationDialog(
     onSave: (doNotShowAgain: Boolean) -> Unit,
@@ -109,6 +130,19 @@ private fun DiscardEditsConfirmationDialogPreview() {
     MediaEditScreenDialogs.DiscardEditsConfirmationDialog(
       onDiscard = {},
       onDismiss = {}
+    )
+  }
+}
+
+@Preview
+@Composable
+private fun AddToGroupStoryConfirmationDialogPreview() {
+  Previews.Preview {
+    MediaEditScreenDialogs.AddToGroupStoryConfirmationDialog(
+      groupName = "Signal Android",
+      onAddToStory = {},
+      onDeny = {},
+      onDismissRequest = {}
     )
   }
 }

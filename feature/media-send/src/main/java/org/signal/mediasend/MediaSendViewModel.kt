@@ -124,6 +124,7 @@ class MediaSendViewModel(
   internal val usernameScannedDialog = DialogController<String>()
   internal val linkedDeviceScannedDialog = DialogController<Unit>()
   internal val saveToStorageDialog = DialogController<Unit>()
+  internal val addToGroupStoryDialog = DialogController<MediaRecipientId>()
 
   internal val writeStoragePermission = PermissionController(
     permission = Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -1108,11 +1109,26 @@ class MediaSendViewModel(
   //region Send
 
   /**
-   * Leaves the editor, either on to destination selection or straight into the send.
+   * Advances out of the editor: either on to contact selection, or into the send itself.
+   *
+   * The add-to-group-story flow has no review step of its own, so the send is gated behind a confirmation naming the
+   * group. Denying it leaves the editor exactly as it was — nothing is marked as sending until the user confirms.
    */
   private fun onNextClick() {
-    if (state.value.isContactSelectionRequired) {
+    val snapshot = state.value
+
+    if (snapshot.isContactSelectionRequired) {
       backStack.goToSend()
+      return
+    }
+
+    val recipientId = snapshot.recipientId
+    if (snapshot.isAddToGroupStoryFlow && recipientId != null) {
+      viewModelScope.launch {
+        if (addToGroupStoryDialog.show(recipientId) == DialogResult.POSITIVE) {
+          performSend()
+        }
+      }
     } else {
       performSend()
     }
