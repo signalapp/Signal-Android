@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
+import android.view.KeyEvent
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
@@ -30,9 +31,14 @@ import org.signal.mediasend.MediaSendScreen
 import org.signal.mediasend.MediaSendViewModel
 import org.signal.mediasend.edit.LocalAddAMessageRowTextField
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
+import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
+import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEvent
+import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEventViewModel
+import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
+import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.QuickRestoreInfoDialog
 import org.thoughtcrime.securesms.mediasend.v2.review.AddMessageDialogFragment
@@ -48,11 +54,19 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 /**
  * Encapsulates the media send flow for v3.
  */
-class MediaSendV3Activity : PassphraseRequiredActivity(), SafetyNumberBottomSheet.Callbacks, TextStoryPostCreationFragment.Callback {
+class MediaSendV3Activity :
+  PassphraseRequiredActivity(),
+  SafetyNumberBottomSheet.Callbacks,
+  TextStoryPostCreationFragment.Callback,
+  EmojiKeyboardPageFragment.Callback,
+  EmojiEventListener,
+  EmojiSearchFragment.Callback {
 
   private val contractArgs: MediaSendActivityContract.Args by lazy { MediaSendActivityContract.Args.fromIntent(intent) }
 
   private val viewModel: MediaSendViewModel by viewModels { MediaSendViewModel.Factory(args = contractArgs) }
+
+  private val addMessageCommandViewModel: EmojiKeyboardEventViewModel by viewModels()
 
   private val stickerLauncher = registerForActivityResult(StickerSelectActivityContract()) { result ->
     viewModel.onStickerSelected(result?.toRenderer())
@@ -193,6 +207,22 @@ class MediaSendV3Activity : PassphraseRequiredActivity(), SafetyNumberBottomShee
   override fun onMessageResentAfterSafetyNumberChangeInBottomSheet() = error("Unsupported, we do not hand in a message id.")
 
   override fun onCanceled() = Unit
+
+  override fun openEmojiSearch() {
+    addMessageCommandViewModel.onEvent(EmojiKeyboardEvent.OpenEmojiSearch)
+  }
+
+  override fun closeEmojiSearch() {
+    addMessageCommandViewModel.onEvent(EmojiKeyboardEvent.CloseEmojiSearch)
+  }
+
+  override fun onEmojiSelected(emoji: String?) {
+    addMessageCommandViewModel.onEvent(EmojiKeyboardEvent.EmojiInsert(emoji))
+  }
+
+  override fun onKeyEvent(keyEvent: KeyEvent?) {
+    addMessageCommandViewModel.onEvent(EmojiKeyboardEvent.EmojiKeyEvent(keyEvent))
+  }
 
   private fun finishWithResult(payload: Parcelable) {
     setResult(RESULT_OK, Intent().putExtra(MediaSendActivityResult.EXTRA_RESULT, payload))
