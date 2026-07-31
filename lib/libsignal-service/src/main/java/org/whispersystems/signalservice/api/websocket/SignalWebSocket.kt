@@ -368,6 +368,14 @@ sealed class SignalWebSocket(
     suspend fun <Result, Error : BadRequestError> runCatchingWithChatConnection(
       callback: (UnauthenticatedChatConnection) -> CompletableFuture<RequestResult<Result, Error>>
     ): RequestResult<Result, Error> = runCatchingWithChatConnectionInternal { callback(it as UnauthenticatedChatConnection) }
+
+    /**
+     * Companion to [runCatchingWithChatConnection] for libsignal's streaming endpoints, which hand back a [kotlinx.coroutines.flow.Flow] rather than a future.
+     * The stream is started on the chat connection here; collecting it (and classifying whatever it throws) is up to the caller.
+     */
+    suspend fun <T> withChatConnection(callback: (UnauthenticatedChatConnection) -> T): T {
+      return getWebSocket().runWithChatConnection { callback(it as UnauthenticatedChatConnection) }
+    }
   }
 
   /**

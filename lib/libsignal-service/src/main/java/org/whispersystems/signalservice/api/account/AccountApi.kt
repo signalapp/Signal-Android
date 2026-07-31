@@ -6,11 +6,15 @@
 package org.whispersystems.signalservice.api.account
 
 import kotlinx.coroutines.runBlocking
-import org.signal.core.util.Base64
+import org.signal.core.models.MasterKey
 import org.signal.core.util.Base64.encodeUrlSafeWithoutPadding
+import org.signal.libsignal.net.AuthAccountsService
 import org.signal.libsignal.net.AuthDevicesService
 import org.signal.libsignal.net.AuthUsernamesService
 import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.net.SvrKey
+import org.signal.libsignal.net.UsernameNotAvailableException
+import org.signal.libsignal.net.UsernameNotSetException
 import org.signal.libsignal.usernames.BaseUsernameException
 import org.signal.libsignal.usernames.Username
 import org.signal.network.NetworkResult
@@ -24,12 +28,6 @@ import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.push.ConfirmUsernameRequest
 import org.whispersystems.signalservice.internal.push.ConfirmUsernameResponse
-import org.whispersystems.signalservice.internal.push.PhoneNumberDiscoverabilityRequest
-import org.whispersystems.signalservice.internal.push.PushServiceSocket
-import org.whispersystems.signalservice.internal.push.ReserveUsernameRequest
-import org.whispersystems.signalservice.internal.push.ReserveUsernameResponse
-import org.whispersystems.signalservice.internal.push.SetUsernameLinkRequestBody
-import org.whispersystems.signalservice.internal.push.SetUsernameLinkResponseBody
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse
 import java.security.SecureRandom
@@ -99,31 +97,51 @@ class AccountApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSock
   /**
    * Set whether this account is discoverable by phone number. Unlike [setAccountAttributes], this
    * dedicated endpoint can be called from a linked device.
+   */
+  fun setPhoneNumberDiscoverability(discoverable: Boolean): RequestResult<Unit, Nothing> {
+    return runBlocking {
+      authWebSocket.runCatchingWithChatConnection { connection ->
+        AuthAccountsService(connection).setDiscoverableByPhoneNumber(discoverable)
+      }
+    }
+  }
+
+  /**
+   * Enables the registration lock, deriving the lock secret from [masterKey]. While enabled, re-registering this
+   * account's phone number requires proving knowledge of the secret. Only the primary device may do this.
+   */
+  fun enableRegistrationLock(masterKey: MasterKey): RequestResult<Unit, Nothing> {
+    return runBlocking {
+      authWebSocket.runCatchingWithChatConnection { connection ->
+        AuthAccountsService(connection).setRegistrationLock(SvrKey(masterKey.serialize()))
+      }
+    }
+  }
+
+  /**
+   * Removes any registration lock from the account. Also succeeds if no lock was set. Only the primary device may
+   * do this.
+   */
+  fun disableRegistrationLock(): RequestResult<Unit, Nothing> {
+    return runBlocking {
+      authWebSocket.runCatchingWithChatConnection { connection ->
+        AuthAccountsService(connection).clearRegistrationLock()
+      }
+    }
+  }
+
+  /**
+   * Sets the registration recovery password, derived from [masterKey], letting this account re-register its phone number without SMS verification.
+   * Any of the account's devices may do this.
    *
-   * PUT /v2/accounts/phone_number_discoverability
-   * - 204: Success
+   * Note that we normally set the recovery password as part of [setAccountAttributes] instead.
    */
-  fun setPhoneNumberDiscoverability(discoverable: Boolean): RequestResult<Unit, RestStatusCodeError> {
-    val request = WebSocketRequestMessage.put("/v2/accounts/phone_number_discoverability", PhoneNumberDiscoverabilityRequest(discoverable))
-    return authWebSocket.fromWebSocketRequest(request, Unit::class)
-  }
-
-  /**
-   * PUT /v1/accounts/registration_lock
-   * - 204: Success
-   */
-  fun enableRegistrationLock(registrationLock: String): NetworkResult<Unit> {
-    val request = WebSocketRequestMessage.put("/v1/accounts/registration_lock", PushServiceSocket.RegistrationLockV2(registrationLock))
-    return NetworkResult.fromWebSocketRequest(authWebSocket, request)
-  }
-
-  /**
-   * DELETE /v1/accounts/registration_lock
-   * - 204: Success
-   */
-  fun disableRegistrationLock(): NetworkResult<Unit> {
-    val request = WebSocketRequestMessage.delete("/v1/accounts/registration_lock")
-    return NetworkResult.fromWebSocketRequest(authWebSocket, request)
+  fun setRegistrationRecoveryPassword(masterKey: MasterKey): RequestResult<Unit, Nothing> {
+    return runBlocking {
+      authWebSocket.runCatchingWithChatConnection { connection ->
+        AuthAccountsService(connection).setRegistrationRecoveryPassword(SvrKey(masterKey.serialize()))
+      }
+    }
   }
 
   /**
@@ -168,18 +186,16 @@ class AccountApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSock
    * Reserve a username for the account. This replaces an existing reservation if one exists. The username is guaranteed to be available for 5 minutes and can
    * be confirmed with confirmUsername.
    *
-   * PUT /v1/accounts/username_hash/reserve
-   * - 200: Success
-   * - 409: Username taken
-   * - 422: Username malformed
-   * - 429: Rate limited
-   *
-   * @param usernameHashes A list of hashed usernames encoded as web-safe base64 strings without padding. The list will have a max length of 20, and each hash will be 32 bytes.
-   * @return The reserved username. It is available for confirmation for 5 minutes.
+   * @param usernameHashes A prioritized list of 32-byte username hashes. Must contain between 1 and 20 entries.
+   * @return The hash of the reserved username. It is available for confirmation for 5 minutes. A [UsernameNotAvailableException] means none of the provided
+   *   hashes were available.
    */
-  fun reserveUsername(usernameHashes: List<String>): NetworkResult<ReserveUsernameResponse> {
-    val request = WebSocketRequestMessage.put("/v1/accounts/username_hash/reserve", ReserveUsernameRequest(usernameHashes))
-    return NetworkResult.fromWebSocketRequest(authWebSocket, request, ReserveUsernameResponse::class)
+  fun reserveUsername(usernameHashes: List<ByteArray>): RequestResult<ByteArray, UsernameNotAvailableException> {
+    return runBlocking {
+      authWebSocket.runCatchingWithChatConnection { connection ->
+        AuthUsernamesService(connection).reserveUsernameHash(usernameHashes)
+      }
+    }
   }
 
   /**
@@ -230,36 +246,39 @@ class AccountApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSock
   }
 
   /**
-   * Creates a new username link for the given [usernameLink].
-   *
-   * PUT /v1/accounts/username_link
-   * - 200: Success
-   * - 409: Username is not set
-   * - 422: Invalid [SetUsernameLinkRequestBody] format
-   * - 429: Rate limited
+   * Creates a new username link for the given [usernameLink]. A [UsernameNotSetException] means the account has no username set.
    */
-  fun createUsernameLink(usernameLink: Username.UsernameLink): NetworkResult<UsernameLinkComponents> {
-    return modifyUsernameLink(usernameLink, false)
+  fun createUsernameLink(usernameLink: Username.UsernameLink): RequestResult<UsernameLinkComponents, UsernameNotSetException> {
+    return modifyUsernameLink(usernameLink, keepLinkHandle = false)
   }
 
   /**
-   * Update account username link for the given [usernameLink].
-   *
-   * PUT /v1/accounts/username_link
-   * - 200: Success
-   * - 409: Username is not set
-   * - 422: Invalid [SetUsernameLinkRequestBody] format
-   * - 429: Rate limited
+   * Updates the account's username link to the given [usernameLink], keeping the existing link handle.
+   * A [UsernameNotSetException] means the account has no username set.
    */
-  fun updateUsernameLink(usernameLink: Username.UsernameLink): NetworkResult<UsernameLinkComponents> {
-    return modifyUsernameLink(usernameLink, true)
+  fun updateUsernameLink(usernameLink: Username.UsernameLink): RequestResult<UsernameLinkComponents, UsernameNotSetException> {
+    return modifyUsernameLink(usernameLink, keepLinkHandle = true)
   }
 
-  private fun modifyUsernameLink(usernameLink: Username.UsernameLink, keepLinkHandle: Boolean): NetworkResult<UsernameLinkComponents> {
-    val encryptedUsername = Base64.encodeUrlSafeWithPadding(usernameLink.encryptedUsername)
-    val request = WebSocketRequestMessage.put("/v1/accounts/username_link", SetUsernameLinkRequestBody(encryptedUsername, keepLinkHandle))
+  /**
+   * Clears any username link on the account, deactivating the link handle but leaving the username hash in place. This also succeeds if the account has no
+   * username link, so a caller retrying a deletion sees the same result as the original call.
+   *
+   * Note that our own delete flow uses [deleteUsernameHash], which clears the link as well.
+   */
+  fun deleteUsernameLink(): RequestResult<Unit, Nothing> {
+    return runBlocking {
+      authWebSocket.runCatchingWithChatConnection { connection ->
+        AuthUsernamesService(connection).deleteUsernameLink()
+      }
+    }
+  }
 
-    return NetworkResult.fromWebSocketRequest(authWebSocket, request, SetUsernameLinkResponseBody::class)
-      .map { UsernameLinkComponents(usernameLink.entropy, it.usernameLinkHandle) }
+  private fun modifyUsernameLink(usernameLink: Username.UsernameLink, keepLinkHandle: Boolean): RequestResult<UsernameLinkComponents, UsernameNotSetException> {
+    return runBlocking {
+      authWebSocket.runCatchingWithChatConnection { connection ->
+        AuthUsernamesService(connection).setUsernameLink(usernameLink.encryptedUsername, keepLinkHandle)
+      }.map { UsernameLinkComponents(usernameLink.entropy, it) }
+    }
   }
 }

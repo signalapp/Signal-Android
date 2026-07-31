@@ -16,6 +16,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.core.util.urlEncode
 import org.signal.libsignal.net.AuthDevicesService
+import org.signal.libsignal.net.DeviceIdNotFoundException
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPublicKey
@@ -26,7 +27,6 @@ import org.signal.network.websocket.get
 import org.signal.network.websocket.put
 import org.whispersystems.signalservice.api.fromWebSocketRequest
 import org.whispersystems.signalservice.api.link.LinkedDeviceVerificationCodeResponse
-import org.whispersystems.signalservice.api.link.SetDeviceNameRequest
 import org.whispersystems.signalservice.api.link.SetLinkedDeviceTransferArchiveRequest
 import org.whispersystems.signalservice.api.link.TransferArchiveError
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
@@ -215,17 +215,16 @@ class LinkDeviceApi(
   }
 
   /**
-   * Sets the name for a linked device
+   * Sets the name for a linked device.
    *
-   * PUT /v1/accounts/name?deviceId=[deviceId]
+   * @param encryptedDeviceName Must be between 1 and 225 bytes long.
    *
-   * - 204: Success.
-   * - 403: Not authorized to change the name of the device with the given ID
-   * - 404: No device found with the given ID
+   * A [DeviceIdNotFoundException] means there is no device with the given [deviceId].
    */
-  fun setDeviceName(encryptedDeviceName: String, deviceId: Int): NetworkResult<Unit> {
-    val request = WebSocketRequestMessage.put("/v1/accounts/name?deviceId=$deviceId", SetDeviceNameRequest(encryptedDeviceName))
-    return NetworkResult.fromWebSocketRequest(authWebSocket, request)
+  suspend fun setDeviceName(encryptedDeviceName: ByteArray, deviceId: Int): RequestResult<Unit, DeviceIdNotFoundException> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthDevicesService(connection).setDeviceName(deviceId, encryptedDeviceName)
+    }
   }
 
   /**

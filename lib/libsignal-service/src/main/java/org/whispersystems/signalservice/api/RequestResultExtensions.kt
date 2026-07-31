@@ -89,6 +89,20 @@ fun <T : Any> RequestResult<T, Nothing>.successOrThrow(): T {
   }
 }
 
+/**
+ * Returns the [Throwable] associated with a non-successful result, or null if there isn't one. Mirrors
+ * [org.signal.network.NetworkResult.getCause] for logging-only call sites that don't care which flavor of failure
+ * they got.
+ */
+fun RequestResult<*, *>.getCause(): Throwable? {
+  return when (this) {
+    is RequestResult.Success -> null
+    is RequestResult.NonSuccess -> error as? Throwable
+    is RequestResult.RetryableNetworkError -> networkError
+    is RequestResult.ApplicationError -> cause
+  }
+}
+
 private fun <T : Any> WebsocketResponse.toRequestResult(clazz: KClass<T>): RequestResult<T, RestStatusCodeError> {
   return if (status < 200 || status > 299) {
     RequestResult.NonSuccess(RestStatusCodeError(status, headers, body?.toByteArray()))

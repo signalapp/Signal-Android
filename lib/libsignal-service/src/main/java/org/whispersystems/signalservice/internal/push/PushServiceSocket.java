@@ -1610,17 +1610,6 @@ public class PushServiceSocket {
 
   public enum VerificationCodeTransport { SMS, VOICE }
 
-  public static class RegistrationLockV2 {
-    @JsonProperty
-    private String registrationLock;
-
-    public RegistrationLockV2() {}
-
-    public RegistrationLockV2(String registrationLock) {
-      this.registrationLock = registrationLock;
-    }
-  }
-
   public static class RegistrationLockFailure {
     @JsonProperty
     public int length;

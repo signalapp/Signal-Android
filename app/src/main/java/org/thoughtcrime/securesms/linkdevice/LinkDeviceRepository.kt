@@ -490,21 +490,21 @@ object LinkDeviceRepository {
   /**
    * Changes the name of a linked device and sends a sync message if successful
    */
-  fun changeDeviceName(deviceName: String, deviceId: Int): DeviceNameChangeResult {
-    val encryptedDeviceName = Base64.encodeWithoutPadding(DeviceNameCipher.encryptDeviceName(deviceName.toByteArray(StandardCharsets.UTF_8), SignalStore.account.aciIdentityKey))
+  suspend fun changeDeviceName(deviceName: String, deviceId: Int): DeviceNameChangeResult {
+    val encryptedDeviceName = DeviceNameCipher.encryptDeviceName(deviceName.toByteArray(StandardCharsets.UTF_8), SignalStore.account.aciIdentityKey)
     return when (val result = SignalNetwork.linkDevice.setDeviceName(encryptedDeviceName, deviceId)) {
-      is NetworkResult.Success -> {
+      is RequestResult.Success -> {
         AppDependencies.jobManager.add(DeviceNameChangeJob(deviceId))
         DeviceNameChangeResult.Success.logI(TAG, "Successfully changed device name")
       }
-      is NetworkResult.NetworkError -> {
-        DeviceNameChangeResult.NetworkError(result.exception).logW(TAG, "Could not change name due to network error.", result.exception)
+      is RequestResult.NonSuccess -> {
+        DeviceNameChangeResult.NetworkError(result.error).logW(TAG, "Could not change name because the device could not be found.")
       }
-      is NetworkResult.StatusCodeError -> {
-        DeviceNameChangeResult.NetworkError(result.exception).logW(TAG, "Could not change name due to status code error ${result.code}")
+      is RequestResult.RetryableNetworkError -> {
+        DeviceNameChangeResult.NetworkError(result.networkError).logW(TAG, "Could not change name due to network error.", result.networkError)
       }
-      is NetworkResult.ApplicationError -> {
-        throw result.throwable.logW(TAG, "Could not change name due to application error.")
+      is RequestResult.ApplicationError -> {
+        throw result.cause.logW(TAG, "Could not change name due to application error.")
       }
     }
   }

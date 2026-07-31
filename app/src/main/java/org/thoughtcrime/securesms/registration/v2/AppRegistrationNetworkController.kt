@@ -296,32 +296,11 @@ class AppRegistrationNetworkController(
       return@withContext RequestResult.NonSuccess(SetRegistrationLockError.NoPinSet)
     }
 
-    when (val result = SignalNetwork.account.enableRegistrationLock(masterKey.deriveRegistrationLock())) {
-      is NetworkResult.Success -> RequestResult.Success(Unit)
-      is NetworkResult.StatusCodeError -> {
-        when (result.code) {
-          401 -> RequestResult.NonSuccess(SetRegistrationLockError.Unauthorized)
-          422 -> RequestResult.NonSuccess(SetRegistrationLockError.InvalidRequest(result.toString()))
-          else -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${result.code}"))
-        }
-      }
-      is NetworkResult.NetworkError -> RequestResult.RetryableNetworkError(result.exception)
-      is NetworkResult.ApplicationError -> RequestResult.ApplicationError(result.throwable)
-    }
+    SignalNetwork.account.enableRegistrationLock(masterKey)
   }
 
   override suspend fun disableRegistrationLock(): RequestResult<Unit, SetRegistrationLockError> = withContext(Dispatchers.IO) {
-    when (val result = SignalNetwork.account.disableRegistrationLock()) {
-      is NetworkResult.Success -> RequestResult.Success(Unit)
-      is NetworkResult.StatusCodeError -> {
-        when (result.code) {
-          401 -> RequestResult.NonSuccess(SetRegistrationLockError.Unauthorized)
-          else -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${result.code}"))
-        }
-      }
-      is NetworkResult.NetworkError -> RequestResult.RetryableNetworkError(result.exception)
-      is NetworkResult.ApplicationError -> RequestResult.ApplicationError(result.throwable)
-    }
+    SignalNetwork.account.disableRegistrationLock()
   }
 
   override suspend fun getSvrCredentials(): RequestResult<SvrCredentials, GetSvrCredentialsError> = withContext(Dispatchers.IO) {
@@ -384,26 +363,29 @@ class AppRegistrationNetworkController(
       }
     }
 
-    when (val result = SignalNetwork.archive.getBackupInfo(aci, access)) {
+    when (val result = SignalNetwork.archive.getMessageBackupInfo(aci, access)) {
       is NetworkResult.Success -> {
         val info = result.result
         RequestResult.Success(
           NetworkController.GetBackupInfoResponse(
             cdn = info.cdn,
             backupDir = info.backupDir,
-            mediaDir = info.mediaDir,
+            // mediaDir and usedSpace live under the media credential, not the message credential we're using here. The server left them empty on this request
+            // before too, so nothing that reads them is losing a value it used to get.
+            mediaDir = null,
             backupName = info.backupName,
-            usedSpace = info.usedSpace
+            usedSpace = null
           )
         )
       }
       is NetworkResult.StatusCodeError -> {
         when (result.code) {
-          400 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.BadArguments(result.stringBody))
-          401 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.BadAuthCredential(result.stringBody))
-          403 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.Forbidden(result.stringBody))
-          404 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.NoBackup)
-          429 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.RateLimited(0.seconds))
+          401 -> {
+            // The server doesn't distinguish an invalid credential from a backup-id that was never provisioned, so libsignal's guidance is to treat this as
+            // "backups aren't set up" rather than an auth failure.
+            RequestResult.NonSuccess(NetworkController.GetBackupInfoError.NoBackup)
+          }
+          429 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.RateLimited(result.retryAfter() ?: Duration.ZERO))
           else -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${result.code}"))
         }
       }

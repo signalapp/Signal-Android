@@ -29,8 +29,8 @@ import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.registration.ui.restore.StorageServiceRestore
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
-import org.whispersystems.signalservice.api.NetworkResultUtil
 import org.whispersystems.signalservice.api.SvrNoDataException
+import org.whispersystems.signalservice.api.successOrThrow
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreResponse
@@ -393,7 +393,7 @@ object SvrRepository {
       check(SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to set a registration lock!" }
 
       Log.i(TAG, "[enableRegistrationLockForUserWithPin] Enabling registration lock.", true)
-      NetworkResultUtil.toBasicLegacy(SignalNetwork.account.enableRegistrationLock(SignalStore.svr.masterKey.deriveRegistrationLock()))
+      SignalNetwork.account.enableRegistrationLock(SignalStore.svr.masterKey).successOrThrow()
       SignalStore.svr.isRegistrationLockEnabled = true
       Log.i(TAG, "[enableRegistrationLockForUserWithPin] Registration lock successfully enabled.", true)
     }
@@ -407,7 +407,7 @@ object SvrRepository {
       check(SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to disable registration lock!" }
 
       Log.i(TAG, "[disableRegistrationLockForUserWithPin] Disabling registration lock.", true)
-      NetworkResultUtil.toBasicLegacy(SignalNetwork.account.disableRegistrationLock())
+      SignalNetwork.account.disableRegistrationLock().successOrThrow()
       SignalStore.svr.isRegistrationLockEnabled = false
       Log.i(TAG, "[disableRegistrationLockForUserWithPin] Registration lock successfully disabled.", true)
     }

@@ -31,11 +31,11 @@ import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.models.backup.BackupId
+import org.signal.core.models.backup.MediaId
 import org.signal.core.models.backup.MediaName
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.models.database.AttachmentId
-import org.signal.core.util.Base64
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.DiskUtil
@@ -66,6 +66,9 @@ import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.core.util.urlEncode
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
+import org.signal.libsignal.net.CopyBackupMediaItem
+import org.signal.libsignal.net.CopyBackupMediaOutcome
+import org.signal.libsignal.net.DeleteBackupMediaItem
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
@@ -152,12 +155,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.toMillis
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
 import org.whispersystems.signalservice.api.archive.ArchiveKeyRotationLimitResponse
-import org.whispersystems.signalservice.api.archive.ArchiveMediaRequest
-import org.whispersystems.signalservice.api.archive.ArchiveMediaResponse
 import org.whispersystems.signalservice.api.archive.ArchiveServiceAccess
 import org.whispersystems.signalservice.api.archive.ArchiveServiceAccessPair
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
-import org.whispersystems.signalservice.api.archive.DeleteArchivedMediaRequest
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
@@ -1626,7 +1626,7 @@ object BackupRepository {
   fun debugGetRemoteBackupState(): NetworkResult<DebugBackupMetadata> {
     return initBackupAndFetchAuth()
       .then { credential ->
-        SignalNetwork.archive.getBackupInfo(SignalStore.account.requireAci(), credential.mediaBackupAccess)
+        SignalNetwork.archive.getMediaBackupInfo(SignalStore.account.requireAci(), credential.mediaBackupAccess)
           .map { it to credential }
       }
       .then { pair ->
@@ -1634,7 +1634,7 @@ object BackupRepository {
         SignalNetwork.archive.debugGetUploadedMediaItemMetadata(SignalStore.account.requireAci(), credential.mediaBackupAccess)
           .map { mediaObjects ->
             DebugBackupMetadata(
-              usedSpace = mediaBackupInfo.usedSpace ?: 0,
+              usedSpace = mediaBackupInfo.usedSpace,
               mediaCount = mediaObjects.size.toLong(),
               mediaSize = mediaObjects.sumOf { it.objectLength }
             )
@@ -1652,26 +1652,26 @@ object BackupRepository {
   fun downloadBackupFile(destination: File, listener: ProgressListener? = null): NetworkResult<Unit> {
     return initBackupAndFetchAuth()
       .then { credential ->
-        SignalNetwork.archive.getBackupInfo(SignalStore.account.requireAci(), credential.messageBackupAccess)
+        SignalNetwork.archive.getMessageBackupInfo(SignalStore.account.requireAci(), credential.messageBackupAccess)
       }
-      .then { info -> getCdnReadCredentials(CredentialType.MESSAGE, info.cdn ?: Cdn.CDN_3.cdnNumber).map { it.headers to info } }
+      .then { info -> getCdnReadCredentials(CredentialType.MESSAGE, info.cdn).map { it.headers to info } }
       .map { pair ->
         val (cdnCredentials, info) = pair
         val messageReceiver = AppDependencies.signalServiceMessageReceiver
-        messageReceiver.retrieveBackup(info.cdn!!, cdnCredentials, "backups/${info.backupDir}/${info.backupName}", destination, listener)
+        messageReceiver.retrieveBackup(info.cdn, cdnCredentials, "backups/${info.backupDir}/${info.backupName}", destination, listener)
       }
   }
 
   fun getBackupFileLastModified(): NetworkResult<ZonedDateTime> {
     return initBackupAndFetchAuth()
       .then { credential ->
-        SignalNetwork.archive.getBackupInfo(SignalStore.account.requireAci(), credential.messageBackupAccess)
+        SignalNetwork.archive.getMessageBackupInfo(SignalStore.account.requireAci(), credential.messageBackupAccess)
       }
-      .then { info -> getCdnReadCredentials(CredentialType.MESSAGE, info.cdn ?: RemoteConfig.backupFallbackArchiveCdn).map { it.headers to info } }
+      .then { info -> getCdnReadCredentials(CredentialType.MESSAGE, info.cdn).map { it.headers to info } }
       .then { pair ->
         val (cdnCredentials, info) = pair
         NetworkResult.fromFetch {
-          AppDependencies.signalServiceMessageReceiver.getCdnLastModifiedTime(info.cdn!!, cdnCredentials, "backups/${info.backupDir}/${info.backupName}")
+          AppDependencies.signalServiceMessageReceiver.getCdnLastModifiedTime(info.cdn, cdnCredentials, "backups/${info.backupDir}/${info.backupName}")
         }
       }
   }
@@ -1737,17 +1737,14 @@ object BackupRepository {
 
   /**
    * Copies a thumbnail that has been uploaded to the transit cdn to the archive cdn.
+   *
+   * @return The archive cdn number the thumbnail landed on.
    */
-  fun copyThumbnailToArchive(thumbnail: UploadedThumbnailInfo, parentAttachment: DatabaseAttachment): NetworkResult<ArchiveMediaResponse> {
+  fun copyThumbnailToArchive(thumbnail: UploadedThumbnailInfo, parentAttachment: DatabaseAttachment): NetworkResult<Int> {
     return initBackupAndFetchAuth()
       .then { credential ->
-        val request = buildArchiveMediaRequest(thumbnail.cdnNumber, thumbnail.remoteLocation, thumbnail.size, parentAttachment.requireThumbnailMediaName(), credential.mediaBackupAccess.backupKey)
-
-        SignalNetwork.archive.copyAttachmentToArchive(
-          aci = SignalStore.account.requireAci(),
-          archiveServiceAccess = credential.mediaBackupAccess,
-          item = request
-        )
+        val item = buildCopyBackupMediaItem(thumbnail.cdnNumber, thumbnail.remoteLocation, thumbnail.size, parentAttachment.requireThumbnailMediaName(), credential.mediaBackupAccess.backupKey)
+        copySingleMediaToArchive(credential.mediaBackupAccess, item)
       }
   }
 
@@ -1757,43 +1754,32 @@ object BackupRepository {
   fun copyAttachmentToArchive(attachment: DatabaseAttachment): NetworkResult<Unit> {
     return initBackupAndFetchAuth()
       .then { credential ->
-        val mediaName = attachment.requireMediaName()
-        val request = buildArchiveMediaRequest(attachment.cdn.cdnNumber, attachment.remoteLocation!!, attachment.size, mediaName, credential.mediaBackupAccess.backupKey)
-        SignalNetwork.archive
-          .copyAttachmentToArchive(
-            aci = SignalStore.account.requireAci(),
-            archiveServiceAccess = credential.mediaBackupAccess,
-            item = request
-          )
+        val item = buildCopyBackupMediaItem(attachment.cdn.cdnNumber, attachment.remoteLocation!!, attachment.size, attachment.requireMediaName(), credential.mediaBackupAccess.backupKey)
+        copySingleMediaToArchive(credential.mediaBackupAccess, item)
       }
-      .map { response ->
-        SignalDatabase.attachments.setArchiveCdn(attachmentId = attachment.attachmentId, archiveCdn = response.cdn)
+      .map { archiveCdn ->
+        SignalDatabase.attachments.setArchiveCdn(attachmentId = attachment.attachmentId, archiveCdn = archiveCdn)
       }
       .also { Log.i(TAG, "archiveMediaResult: ${it::class.simpleName}") }
   }
 
   fun deleteAbandonedMediaObjects(mediaObjects: Collection<ArchivedMediaObject>): NetworkResult<Unit> {
-    val mediaToDelete = mediaObjects
-      .map {
-        DeleteArchivedMediaRequest.ArchivedMediaObject(
-          cdn = it.cdn,
-          mediaId = it.mediaId
-        )
-      }
-      .filter { it.cdn == Cdn.CDN_3.cdnNumber }
+    return NetworkResult
+      .fromLocal { mediaObjects.filter { it.cdn == Cdn.CDN_3.cdnNumber }.map { it.toDeleteBackupMediaItem() } }
+      .then { mediaToDelete ->
+        if (mediaToDelete.isEmpty()) {
+          Log.i(TAG, "No media to delete, quick success")
+          return@then NetworkResult.Success(Unit)
+        }
 
-    if (mediaToDelete.isEmpty()) {
-      Log.i(TAG, "No media to delete, quick success")
-      return NetworkResult.Success(Unit)
-    }
-
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        SignalNetwork.archive.deleteArchivedMedia(
-          aci = SignalStore.account.requireAci(),
-          archiveServiceAccess = credential.mediaBackupAccess,
-          mediaToDelete = mediaToDelete
-        )
+        initBackupAndFetchAuth()
+          .then { credential ->
+            SignalNetwork.archive.deleteArchivedMedia(
+              aci = SignalStore.account.requireAci(),
+              archiveServiceAccess = credential.mediaBackupAccess,
+              mediaToDelete = mediaToDelete
+            ).map { }
+          }
       }
       .also { Log.i(TAG, "deleteAbandonedMediaObjectsResult: ${it::class.simpleName}") }
   }
@@ -1817,13 +1803,8 @@ object BackupRepository {
     return debugGetArchivedMediaState()
       .then { archivedMedia ->
         val mediaChunksToDelete = archivedMedia
-          .map {
-            DeleteArchivedMediaRequest.ArchivedMediaObject(
-              cdn = it.cdn,
-              mediaId = it.mediaId
-            )
-          }
           .filter { it.cdn == Cdn.CDN_3.cdnNumber }
+          .map { ArchivedMediaObject(mediaId = it.mediaId, cdn = it.cdn).toDeleteBackupMediaItem() }
           .chunked(itemLimit)
 
         if (mediaChunksToDelete.isEmpty()) {
@@ -1838,7 +1819,7 @@ object BackupRepository {
                 aci = SignalStore.account.requireAci(),
                 archiveServiceAccess = credential.mediaBackupAccess,
                 mediaToDelete = chunk
-              )
+              ).map { }
 
               if (result !is NetworkResult.Success) {
                 Log.w(TAG, "Error occurred while deleting archived media chunk #$index: $result")
@@ -1975,12 +1956,12 @@ object BackupRepository {
         }
       }
       .then { messageAccess ->
-        SignalNetwork.archive.getBackupInfo(SignalStore.account.requireAci(), messageAccess)
-          .then { info -> SignalNetwork.archive.getCdnReadCredentials(info.cdn ?: RemoteConfig.backupFallbackArchiveCdn, aci, messageAccess).map { it.headers to info } }
+        SignalNetwork.archive.getMessageBackupInfo(SignalStore.account.requireAci(), messageAccess)
+          .then { info -> SignalNetwork.archive.getCdnReadCredentials(info.cdn, aci, messageAccess).map { it.headers to info } }
           .then { pair ->
             val (cdnCredentials, info) = pair
             NetworkResult.fromFetch {
-              AppDependencies.signalServiceMessageReceiver.getCdnLastModifiedTime(info.cdn!!, cdnCredentials, "backups/${info.backupDir}/${info.backupName}")
+              AppDependencies.signalServiceMessageReceiver.getCdnLastModifiedTime(info.cdn, cdnCredentials, "backups/${info.backupDir}/${info.backupName}")
             }
           }
       }
@@ -2026,8 +2007,8 @@ object BackupRepository {
 
     return initBackupAndFetchAuth()
       .then { credential ->
-        SignalNetwork.archive.getBackupInfo(SignalStore.account.requireAci(), credential.mediaBackupAccess).map {
-          "${it.backupDir!!.urlEncode()}/${it.mediaDir!!.urlEncode()}"
+        SignalNetwork.archive.getMediaBackupInfo(SignalStore.account.requireAci(), credential.mediaBackupAccess).map {
+          "${it.backupDir.urlEncode()}/${it.mediaDir.urlEncode()}"
         }
       }
       .also {
@@ -2209,19 +2190,36 @@ object BackupRepository {
     val profileKey: ProfileKey
   )
 
-  private fun buildArchiveMediaRequest(cdnNumber: Int, remoteLocation: String, plaintextSize: Long, mediaName: MediaName, mediaRootBackupKey: MediaRootBackupKey): ArchiveMediaRequest {
+  private fun buildCopyBackupMediaItem(cdnNumber: Int, remoteLocation: String, plaintextSize: Long, mediaName: MediaName, mediaRootBackupKey: MediaRootBackupKey): CopyBackupMediaItem {
     val mediaSecrets = mediaRootBackupKey.deriveMediaSecrets(mediaName)
 
-    return ArchiveMediaRequest(
-      sourceAttachment = ArchiveMediaRequest.SourceAttachment(
-        cdn = cdnNumber,
-        key = remoteLocation
-      ),
-      objectLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(plaintextSize)).toInt(),
-      mediaId = mediaSecrets.id.encode(),
-      hmacKey = Base64.encodeWithPadding(mediaSecrets.macKey),
-      encryptionKey = Base64.encodeWithPadding(mediaSecrets.aesKey)
+    return CopyBackupMediaItem(
+      sourceAttachmentCdn = cdnNumber,
+      sourceKey = remoteLocation,
+      objectLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(plaintextSize)),
+      mediaId = mediaSecrets.id.value,
+      encryptionKey = mediaSecrets.macKey + mediaSecrets.aesKey
     )
+  }
+
+  /**
+   * Copies a single item to the archive cdn, returning the cdn it landed on.
+   *
+   * libsignal reports per-item outcomes rather than status codes, so we translate them back into the status codes callers already branch on: a missing source
+   * is a 410, a length mismatch is a 400, and no remaining space is a 413.
+   */
+  private fun copySingleMediaToArchive(archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>, item: CopyBackupMediaItem): NetworkResult<Int> {
+    return SignalNetwork.archive
+      .copyMediaToArchive(SignalStore.account.requireAci(), archiveServiceAccess, listOf(item))
+      .then { outcomes ->
+        when (val outcome = outcomes.firstOrNull()) {
+          is CopyBackupMediaOutcome.Success -> NetworkResult.Success(outcome.cdn)
+          is CopyBackupMediaOutcome.SourceNotFound -> NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(410, "Source attachment not found"))
+          is CopyBackupMediaOutcome.WrongSourceLength -> NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(400, "Wrong source length"))
+          is CopyBackupMediaOutcome.OutOfSpace -> NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(413, "No media space remaining"))
+          null -> NetworkResult.ApplicationError(IllegalStateException("Copy stream ended without an outcome for the item!"))
+        }
+      }
   }
 
   suspend fun restoreRemoteBackup(): RemoteRestoreResult {
@@ -2471,8 +2469,8 @@ object BackupRepository {
 
   fun getRemoteBackupForwardSecrecyMetadata(): NetworkResult<ByteArray?> {
     return initBackupAndFetchAuth()
-      .then { credential -> SignalNetwork.archive.getBackupInfo(SignalStore.account.requireAci(), credential.messageBackupAccess) }
-      .then { info -> getCdnReadCredentials(CredentialType.MESSAGE, info.cdn ?: Cdn.CDN_3.cdnNumber).map { it.headers to info } }
+      .then { credential -> SignalNetwork.archive.getMessageBackupInfo(SignalStore.account.requireAci(), credential.messageBackupAccess) }
+      .then { info -> getCdnReadCredentials(CredentialType.MESSAGE, info.cdn).map { it.headers to info } }
       .then { pair ->
         val (cdnCredentials, info) = pair
         val headers = cdnCredentials.toMutableMap().apply {
@@ -2480,7 +2478,7 @@ object BackupRepository {
         }
 
         AppDependencies.signalServiceMessageReceiver.retrieveBackupForwardSecretMetadataBytes(
-          info.cdn!!,
+          info.cdn,
           headers,
           "backups/${info.backupDir}/${info.backupName}",
           EncryptedBackupReader.BACKUP_SECRET_METADATA_UPPERBOUND
@@ -2511,7 +2509,11 @@ data class ResumableMessagesBackupUploadSpec(
   val resumableUri: String
 )
 
-data class ArchivedMediaObject(val mediaId: String, val cdn: Int)
+data class ArchivedMediaObject(val mediaId: String, val cdn: Int) {
+  fun toDeleteBackupMediaItem(): DeleteBackupMediaItem {
+    return DeleteBackupMediaItem(mediaId = MediaId(mediaId).value, cdn = cdn)
+  }
+}
 
 class ExportState(
   val backupTime: Long,

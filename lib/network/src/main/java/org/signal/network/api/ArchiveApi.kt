@@ -5,38 +5,48 @@
 
 package org.signal.network.api
 
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.runBlocking
 import org.signal.core.models.ServiceId.ACI
-import org.signal.core.models.backup.BackupKey
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.internal.CompletableFuture
+import org.signal.libsignal.net.BackupAuth
+import org.signal.libsignal.net.BadRequestError
+import org.signal.libsignal.net.CopyBackupMediaItem
+import org.signal.libsignal.net.CopyBackupMediaOutcome
+import org.signal.libsignal.net.DeleteBackupMediaItem
+import org.signal.libsignal.net.GetUploadFormError
+import org.signal.libsignal.net.MediaBackupInfo
+import org.signal.libsignal.net.MessageBackupInfo
+import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.net.RequestUnauthorizedException
+import org.signal.libsignal.net.UnauthBackupsService
+import org.signal.libsignal.net.UnauthenticatedChatConnection
+import org.signal.libsignal.net.UploadForm
+import org.signal.libsignal.net.UploadTooLargeException
+import org.signal.libsignal.net.toRequestResult
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
-import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.zkgroup.GenericServerPublicParams
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredential
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialRequestContext
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialResponse
 import org.signal.network.NetworkResult
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.signal.network.websocket.WebSocketRequestMessage
-import org.signal.network.websocket.delete
 import org.signal.network.websocket.get
-import org.signal.network.websocket.post
 import org.signal.network.websocket.put
 import org.whispersystems.signalservice.api.archive.ArchiveCredentialPresentation
-import org.whispersystems.signalservice.api.archive.ArchiveGetBackupInfoResponse
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse.StoredMediaObject
 import org.whispersystems.signalservice.api.archive.ArchiveKeyRotationLimitResponse
-import org.whispersystems.signalservice.api.archive.ArchiveMediaRequest
-import org.whispersystems.signalservice.api.archive.ArchiveMediaResponse
 import org.whispersystems.signalservice.api.archive.ArchiveServiceAccess
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredentialsResponse
 import org.whispersystems.signalservice.api.archive.ArchiveSetBackupIdRequest
-import org.whispersystems.signalservice.api.archive.ArchiveSetPublicKeyRequest
-import org.whispersystems.signalservice.api.archive.BatchArchiveMediaRequest
-import org.whispersystems.signalservice.api.archive.BatchArchiveMediaResponse
-import org.whispersystems.signalservice.api.archive.DeleteArchivedMediaRequest
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
 import org.whispersystems.signalservice.api.fromWebSocketRequest
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
@@ -48,7 +58,6 @@ import java.io.InputStream
 import java.time.Instant
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.Duration.Companion.seconds
 
 /**
  * Class to interact with various archive-related endpoints.
@@ -91,23 +100,16 @@ class ArchiveApi(
   }
 
   /**
-   * Gets credentials needed to read from the CDN. Make sure you use the right [backupKey] depending on whether you're doing a message or media operation.
+   * Gets credentials needed to read from the CDN. Make sure you use the right [archiveServiceAccess] depending on whether you're doing a message or media
+   * operation.
    *
-   * GET /v1/archives/auth/read
-   *
-   * - 200: Success
-   * - 400: Bad arguments, or made on an authenticated channel
-   * - 401: Bad presentation, invalid public key signature, no matching backupId on teh server, or the credential was of the wrong type (messages/media)
-   * - 403: Forbidden
+   * - 401: Bad presentation, invalid public key signature, no matching backupId on the server, or the credential was of the wrong type (messages/media)
    * - 429: Rate-limited
    */
   fun getCdnReadCredentials(cdnNumber: Int, aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<GetArchiveCdnCredentialsResponse> {
-    return getCredentialPresentation(aci, archiveServiceAccess)
-      .map { it.toArchiveCredentialPresentation().toHeaders() }
-      .then { headers ->
-        val request = WebSocketRequestMessage.get("/v1/archives/auth/read?cdn=$cdnNumber", headers)
-        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, GetArchiveCdnCredentialsResponse::class)
-      }
+    return runWithBackupAuth(aci, archiveServiceAccess) { connection, auth ->
+      UnauthBackupsService(connection).getCdnCredentials(auth, cdnNumber)
+    }.toNetworkResult().map { GetArchiveCdnCredentialsResponse(it.headers) }
   }
 
   /**
@@ -139,110 +141,67 @@ class ArchiveApi(
    * unauthorized  users from changing your backup data. You only need to do it once, but repeated
    * calls are safe.
    *
-   * PUT /v1/archives/keys
-   *
-   * - 204: Success
-   * - 400: Bad arguments, or request was made on an authenticated channel
-   * - 401: Bad presentation, invalid public key signature, no matching backupId on teh server, or the credential was of the wrong type (messages/media)
-   * - 403: Forbidden
+   * - 401: The credential in particular is invalid, since the key is being updated
    * - 429: Rate-limited
    */
   fun setPublicKey(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<Unit> {
-    return getCredentialPresentation(aci, archiveServiceAccess)
-      .then { presentation ->
-        val headers = presentation.toArchiveCredentialPresentation().toHeaders()
-        val publicKey = presentation.publicKey
-
-        val request = WebSocketRequestMessage.put("/v1/archives/keys", ArchiveSetPublicKeyRequest(publicKey), headers)
-        NetworkResult.fromWebSocketRequest(unauthWebSocket, request)
-      }
+    return runWithBackupAuth(aci, archiveServiceAccess) { connection, auth -> UnauthBackupsService(connection).setPublicKey(auth) }.toNetworkResult()
   }
 
   /**
    * Fetches an upload form you can use to upload your main message backup file to cloud storage.
    *
-   * GET /v1/archives/upload/form
-   * - 200: Success
-   * - 400: Bad args, or made on an authenticated channel
-   * - 403: Insufficient permissions
+   * - 401: Authorization failed
    * - 413: The backup is too large
    * - 429: Rate-limited
    */
   fun getMessageBackupUploadForm(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>, backupFileSize: Long): NetworkResult<AttachmentUploadForm> {
-    return getCredentialPresentation(aci, archiveServiceAccess)
-      .map { it.toArchiveCredentialPresentation().toHeaders() }
-      .then { headers ->
-        val request = WebSocketRequestMessage.get("/v1/archives/upload/form?uploadLength=$backupFileSize", headers)
-        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, AttachmentUploadForm::class)
-      }
+    return runWithBackupAuth(aci, archiveServiceAccess) { connection, auth ->
+      UnauthBackupsService(connection).getUploadForm(auth, backupFileSize)
+    }.toUploadFormNetworkResult().map { it.toAttachmentUploadForm() }
   }
 
   /**
-   * Fetches metadata about your current backup. This will be different for different key/credential pairs. For example, message credentials will always
-   * return 0 for used space since that is stored under the media key/credential.
+   * Fetches metadata about the currently-stored message backup.
    *
-   * Will return a [NetworkResult.StatusCodeError] with status code 404 if you haven't uploaded a backup yet.
-   *
-   * GET /v1/archives
-   * - 200: Success
-   * - 400: Bad arguments. The request may have been made on an authenticated channel.
-   * - 401: The provided backup auth credential presentation could not be verified or the public key signature was invalid or there is no backup associated with
-   *        the backup-id in the presentation or the credential was of the wrong type (messages/media)
-   * - 403: Forbidden
-   * - 404: No backup
-   * - 429: Rate limited
+   * - 401: Authorization failed. Note that the server does not distinguish an invalid credential from a backup-id that was never provisioned, so callers using
+   *        this to check whether a backup exists should treat a 401 as "backups not set up" rather than a fatal error.
+   * - 429: Rate-limited
    */
-  fun getBackupInfo(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<ArchiveGetBackupInfoResponse> {
-    return getCredentialPresentation(aci, archiveServiceAccess)
-      .map { it.toArchiveCredentialPresentation().toHeaders() }
-      .then { headers ->
-        val request = WebSocketRequestMessage.get("/v1/archives", headers)
-        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, ArchiveGetBackupInfoResponse::class)
-      }
+  fun getMessageBackupInfo(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<MessageBackupInfo> {
+    return runWithBackupAuth(aci, archiveServiceAccess) { connection, auth -> UnauthBackupsService(connection).getMessageBackupInfo(auth) }.toNetworkResult()
   }
 
   /**
-   * Indicate that this backup is still active. Clients must periodically upload new backups or perform a refresh via a POST request. If a backup is not
-   * refreshed, after 30 days it may be deleted.
+   * Fetches metadata about the currently-stored media backup, including how much space it uses.
    *
-   * POST /v1/archives
+   * - 401: Authorization failed. Note that the server does not distinguish an invalid credential from a backup-id that was never provisioned, so callers using
+   *        this to check whether a backup exists should treat a 401 as "backups not set up" rather than a fatal error.
+   * - 429: Rate-limited
+   */
+  fun getMediaBackupInfo(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>): NetworkResult<MediaBackupInfo> {
+    return runWithBackupAuth(aci, archiveServiceAccess) { connection, auth -> UnauthBackupsService(connection).getMediaBackupInfo(auth) }.toNetworkResult()
+  }
+
+  /**
+   * Indicate that this backup is still active. Clients must periodically upload new backups or perform a refresh. If a backup is not refreshed, after 30 days
+   * it may be deleted.
    *
-   * - 204: The backup was successfully refreshed.
-   * - 400: Bad arguments. The request may have been made on an authenticated channel.
-   * - 401: The provided backup auth credential presentation could not be verified or The public key signature was invalid or There is no backup associated with
-   *        the backup-id in the presentation or The credential was of the wrong type (messages/media)
-   * - 403: Forbidden. The request had insufficient permissions to perform the requested action.
-   * - 429: Rate limited.
+   * - 401: Authorization failed
+   * - 429: Rate-limited
    */
   fun refreshBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<Unit> {
-    return getCredentialPresentation(aci, archiveServiceAccess)
-      .map { it.toArchiveCredentialPresentation().toHeaders() }
-      .then { headers ->
-        val request = WebSocketRequestMessage.post(path = "/v1/archives", body = null, headers = headers)
-        NetworkResult.fromWebSocketRequest(unauthWebSocket, request)
-      }
+    return runWithBackupAuth(aci, archiveServiceAccess) { connection, auth -> UnauthBackupsService(connection).refresh(auth) }.toNetworkResult()
   }
 
   /**
    * Delete all backup metadata, objects, and stored public key. To use backups again, a public key must be resupplied.
    *
-   * DELETE /v1/archives
-   *
-   * - 204: The backup has been successfully deleted
-   * - 400: Bad arguments. The request may have been made on an authenticated channel.
-   * - 401: The provided backup auth credential presentation could not be verified or The public key signature was invalid or There is no backup associated with
-   *        the backup-id in the presentation or The credential was of the wrong type (messages/media)
-   * - 403: Forbidden. The request had insufficient permissions to perform the requested action.
-   * - 429: Rate limited.
-   *
+   * - 401: Authorization failed
+   * - 429: Rate-limited
    */
   fun deleteBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<Unit> {
-    return getCredentialPresentation(aci, archiveServiceAccess)
-      .map { it.toArchiveCredentialPresentation().toHeaders() }
-      .then { headers ->
-        val request = WebSocketRequestMessage.delete("/v1/archives", headers)
-        NetworkResult.fromWebSocketRequest(unauthWebSocket, request)
-      }
+    return runWithBackupAuth(aci, archiveServiceAccess) { connection, auth -> UnauthBackupsService(connection).deleteAll(auth) }.toNetworkResult()
   }
 
   /**
@@ -287,23 +246,16 @@ class ArchiveApi(
    * This is basically the same as [org.signal.network.api.AttachmentApi.getAttachmentV4UploadForm], but with a relaxed rate limit
    * so we can request them more often (which is required for backfilling).
    *
-   * After uploading, the media still needs to be copied via [copyAttachmentToArchive].
+   * After uploading, the media still needs to be copied via [copyMediaToArchive].
    *
-   * GET /v1/archives/media/upload/form
-   *
-   * - 200: Success
-   * - 400: Bad request, or made on authenticated channel
-   * - 403: Forbidden
+   * - 401: Authorization failed
    * - 413: The media is too large
    * - 429: Rate-limited
    */
   fun getMediaUploadForm(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>, uploadLength: Long): NetworkResult<AttachmentUploadForm> {
-    return getCredentialPresentation(aci, archiveServiceAccess)
-      .map { it.toArchiveCredentialPresentation().toHeaders() }
-      .then { headers ->
-        val request = WebSocketRequestMessage.get("/v1/archives/media/upload/form?uploadLength=$uploadLength", headers)
-        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, AttachmentUploadForm::class)
-      }
+    return runWithBackupAuth(aci, archiveServiceAccess) { connection, auth ->
+      UnauthBackupsService(connection).getMediaUploadForm(auth, uploadLength)
+    }.toUploadFormNetworkResult().map { it.toAttachmentUploadForm() }
   }
 
   /**
@@ -339,8 +291,7 @@ class ArchiveApi(
    * @param cursor A token that can be read from your previous response, telling the server where to start the next page.
    */
   fun getArchiveMediaItemsPage(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>, limit: Int, cursor: String?): NetworkResult<ArchiveGetMediaItemsResponse> {
-    return getCredentialPresentation(aci, archiveServiceAccess)
-      .map { it.toArchiveCredentialPresentation().toHeaders() }
+    return getCredentialPresentationHeaders(aci, archiveServiceAccess)
       .then { headers ->
         val request = WebSocketRequestMessage.get("/v1/archives/media?limit=$limit${if (cursor.isNotNullOrBlank()) "&cursor=$cursor" else ""}", headers)
         NetworkResult.fromWebSocketRequest(unauthWebSocket, request, ArchiveGetMediaItemsResponse::class)
@@ -350,84 +301,49 @@ class ArchiveApi(
   /**
    * Copy and re-encrypt media from the attachments cdn into the backup cdn.
    *
-   * PUT /v1/archives/media
+   * The copy operation is not atomic: each item gets its own [CopyBackupMediaOutcome], and there is no need to retry items that produced one. If the stream
+   * terminates early, the returned list only contains the outcomes received so far, so a partial success is reported as a failure carrying no outcomes.
    *
-   * - 200: Success
-   * - 400: Bad arguments, or made on an authenticated channel
-   * - 401: Invalid presentation or signature
-   * - 403: Insufficient permissions
-   * - 410: The source object was not found
-   * - 413: No media space remaining
+   * - 401: Authorization failed. Because large batches span multiple server requests, this can happen partway through.
    * - 429: Rate-limited
    */
-  fun copyAttachmentToArchive(
+  fun copyMediaToArchive(
     aci: ACI,
     archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>,
-    item: ArchiveMediaRequest
-  ): NetworkResult<ArchiveMediaResponse> {
-    return getCredentialPresentation(aci, archiveServiceAccess)
-      .map { it.toArchiveCredentialPresentation().toHeaders() }
-      .then { headers ->
-        val request = WebSocketRequestMessage.put("/v1/archives/media", item, headers)
-        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, ArchiveMediaResponse::class)
-      }
-  }
-
-  /**
-   * Copy and re-encrypt media from the attachments cdn into the backup cdn.
-   */
-  fun copyAttachmentToArchive(
-    aci: ACI,
-    archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>,
-    items: List<ArchiveMediaRequest>
-  ): NetworkResult<BatchArchiveMediaResponse> {
-    return getCredentialPresentation(aci, archiveServiceAccess)
-      .map { it.toArchiveCredentialPresentation().toHeaders() }
-      .then { headers ->
-        val request = WebSocketRequestMessage.put("/v1/archives/media/batch", BatchArchiveMediaRequest(items = items), headers)
-        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, BatchArchiveMediaResponse::class)
-      }
+    items: List<CopyBackupMediaItem>
+  ): NetworkResult<List<CopyBackupMediaOutcome>> {
+    return collectBackupMediaStream(aci, archiveServiceAccess) { connection, auth ->
+      UnauthBackupsService(connection).copyMedia(auth, items)
+    }.toNetworkResult()
   }
 
   /**
    * Delete media from the backup cdn.
    *
-   * POST /v1/archives/media/delete
+   * Like [copyMediaToArchive], the operation is not atomic and a stream that terminates early reports failure rather than a partial result.
    *
-   * - 400: Bad args or made on an authenticated channel
-   * - 401: Bad presentation, invalid public key signature, no matching backupId on the server, or the credential was of the wrong type (messages/media)
-   * - 403: Forbidden
+   * - 401: Authorization failed
    * - 429: Rate-limited
    */
   fun deleteArchivedMedia(
     aci: ACI,
     archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>,
-    mediaToDelete: List<DeleteArchivedMediaRequest.ArchivedMediaObject>
-  ): NetworkResult<Unit> {
-    return getCredentialPresentation(aci, archiveServiceAccess)
-      .map { it.toArchiveCredentialPresentation().toHeaders() }
-      .then { headers ->
-        val request = WebSocketRequestMessage.post("/v1/archives/media/delete", DeleteArchivedMediaRequest(mediaToDelete = mediaToDelete), headers)
-        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, timeout = 30.seconds)
-      }
+    mediaToDelete: List<DeleteBackupMediaItem>
+  ): NetworkResult<List<DeleteBackupMediaItem>> {
+    return collectBackupMediaStream(aci, archiveServiceAccess) { connection, auth ->
+      UnauthBackupsService(connection).deleteMedia(auth, mediaToDelete)
+    }.toNetworkResult()
   }
 
   /**
-   * Retrieves auth credentials that can be used to perform SVRB operations.
+   * Retrieves auth credentials that can be used to perform SVR-B operations.
    *
-   * GET /v1/archives/auth/svrb
-   * - 200: Success
-   * - 400: Bad arguments, or made on an authenticated channel
-   * - 401: Bad presentation, invalid public key signature, no matching backupId on the server, or the credential was of the wrong type (messages/media)
-   * - 403: Forbidden
+   * - 401: Authorization failed
    */
   fun getSvrBAuthorization(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<AuthCredentials> {
-    return getCredentialPresentation(aci, archiveServiceAccess)
-      .map { it.toArchiveCredentialPresentation().toHeaders() }
-      .then { headers ->
-        val request = WebSocketRequestMessage.get("/v1/archives/auth/svrb", headers)
-        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, AuthCredentials::class)
-      }
+    return runWithBackupAuth(aci, archiveServiceAccess) { connection, auth ->
+      UnauthBackupsService(connection).getSvrBCredentials(auth)
+    }.toNetworkResult().map { (username, password) -> AuthCredentials.create(username, password) }
   }
 
   /**
@@ -442,10 +358,121 @@ class ArchiveApi(
     return NetworkResult.fromWebSocketRequest(authWebSocket, request, ArchiveKeyRotationLimitResponse::class)
   }
 
-  private fun getCredentialPresentation(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<CredentialPresentationData> {
+  /**
+   * Issues an anonymous backup request over the unauthenticated chat connection, deriving the [BackupAuth] from [archiveServiceAccess]. Failing to derive it is
+   * a local programming error, so it surfaces as [RequestResult.ApplicationError].
+   */
+  private fun <T, E : BadRequestError> runWithBackupAuth(
+    aci: ACI,
+    archiveServiceAccess: ArchiveServiceAccess<*>,
+    block: (UnauthenticatedChatConnection, BackupAuth) -> CompletableFuture<RequestResult<T, E>>
+  ): RequestResult<T, E> {
+    val auth = try {
+      getBackupAuth(aci, archiveServiceAccess)
+    } catch (e: Throwable) {
+      return RequestResult.ApplicationError(e)
+    }
+
+    return runBlocking {
+      unauthWebSocket.runCatchingWithChatConnection { connection -> block(connection, auth) }
+    }
+  }
+
+  /**
+   * Drains a per-item backup media stream into a list. A stream that terminates early throws, which we classify the same way the non-streaming endpoints do.
+   */
+  private fun <T> collectBackupMediaStream(
+    aci: ACI,
+    archiveServiceAccess: ArchiveServiceAccess<*>,
+    block: (UnauthenticatedChatConnection, BackupAuth) -> Flow<T>
+  ): RequestResult<List<T>, RequestUnauthorizedException> {
+    val auth = try {
+      getBackupAuth(aci, archiveServiceAccess)
+    } catch (e: Throwable) {
+      return RequestResult.ApplicationError(e)
+    }
+
+    return runBlocking {
+      try {
+        val stream = unauthWebSocket.withChatConnection { connection -> block(connection, auth) }
+        RequestResult.Success(stream.toList())
+      } catch (e: CancellationException) {
+        throw e
+      } catch (e: Throwable) {
+        e.toRequestResult<RequestUnauthorizedException>()
+      }
+    }
+  }
+
+  /**
+   * Builds the anonymous-credential headers for the archive endpoints that still go out as hand-rolled websocket requests.
+   */
+  private fun getCredentialPresentationHeaders(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<Map<String, String>> {
     return NetworkResult.fromLocal {
-      val zkCredential = getZkCredential(aci, archiveServiceAccess)
-      CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
+      val privateKey: ECPrivateKey = archiveServiceAccess.backupKey.deriveAnonymousCredentialPrivateKey(aci)
+      val presentation: ByteArray = getZkCredential(aci, archiveServiceAccess).present(backupServerPublicParams).serialize()
+
+      ArchiveCredentialPresentation(
+        presentation = presentation,
+        signedPresentation = privateKey.calculateSignature(presentation)
+      ).toHeaders()
+    }
+  }
+
+  private fun getBackupAuth(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): BackupAuth {
+    return BackupAuth(
+      credential = getZkCredential(aci, archiveServiceAccess),
+      serverKeys = backupServerPublicParams,
+      signingKey = archiveServiceAccess.backupKey.deriveAnonymousCredentialPrivateKey(aci)
+    )
+  }
+
+  private fun UploadForm.toAttachmentUploadForm(): AttachmentUploadForm {
+    return AttachmentUploadForm(
+      cdn = cdn,
+      key = key,
+      headers = headers,
+      signedUploadLocation = signedUploadUrl.toString()
+    )
+  }
+
+  /**
+   * Converts a libsignal result into a [NetworkResult] for this class's callers, which still chain [NetworkResult].
+   *
+   * Note that libsignal reports both HTTP 401 and 403 as [RequestUnauthorizedException] ("incorrect or insufficient" authorization), so a caller that used to
+   * distinguish "bad credential" from "insufficient permissions" only ever sees the 401.
+   */
+  private fun <T> RequestResult<T, RequestUnauthorizedException>.toNetworkResult(): NetworkResult<T> {
+    return when (this) {
+      is RequestResult.Success -> NetworkResult.Success(result)
+      is RequestResult.NonSuccess -> NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(401, "Unauthorized"))
+      is RequestResult.RetryableNetworkError -> toNetworkResult()
+      is RequestResult.ApplicationError -> NetworkResult.ApplicationError(cause)
+    }
+  }
+
+  /**
+   * [toNetworkResult] for the upload-form endpoints, which can additionally reject the requested size.
+   */
+  private fun <T> RequestResult<T, GetUploadFormError>.toUploadFormNetworkResult(): NetworkResult<T> {
+    return when (this) {
+      is RequestResult.Success -> NetworkResult.Success(result)
+      is RequestResult.NonSuccess -> when (error) {
+        is UploadTooLargeException -> NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(413, "Upload too large"))
+        is RequestUnauthorizedException -> NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(401, "Unauthorized"))
+      }
+      is RequestResult.RetryableNetworkError -> toNetworkResult()
+      is RequestResult.ApplicationError -> NetworkResult.ApplicationError(cause)
+    }
+  }
+
+  /**
+   * A rate limit becomes a synthetic 429 carrying a `retry-after` header, since that's where [NetworkResult.StatusCodeError.retryAfter] looks for it.
+   */
+  private fun <T> RequestResult.RetryableNetworkError.toNetworkResult(): NetworkResult<T> {
+    return when (val retryAfter = retryAfter) {
+      null -> NetworkResult.NetworkError(networkError)
+      else -> NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(429, "Rate limited", null as String?, mapOf("retry-after" to retryAfter.seconds.toString())))
     }
   }
 
@@ -458,30 +485,5 @@ class ArchiveApi(
       Instant.ofEpochSecond(archiveServiceAccess.credential.redemptionTime),
       backupServerPublicParams
     )
-  }
-
-  private class CredentialPresentationData(
-    val privateKey: ECPrivateKey,
-    val presentation: ByteArray,
-    val signedPresentation: ByteArray
-  ) {
-    val publicKey: ECPublicKey = privateKey.getPublicKey()
-
-    companion object {
-      fun from(backupKey: BackupKey, aci: ACI, credential: BackupAuthCredential, backupServerPublicParams: GenericServerPublicParams): CredentialPresentationData {
-        val privateKey: ECPrivateKey = backupKey.deriveAnonymousCredentialPrivateKey(aci)
-        val presentation: ByteArray = credential.present(backupServerPublicParams).serialize()
-        val signedPresentation: ByteArray = privateKey.calculateSignature(presentation)
-
-        return CredentialPresentationData(privateKey, presentation, signedPresentation)
-      }
-    }
-
-    fun toArchiveCredentialPresentation(): ArchiveCredentialPresentation {
-      return ArchiveCredentialPresentation(
-        presentation = presentation,
-        signedPresentation = signedPresentation
-      )
-    }
   }
 }
