@@ -12,8 +12,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -23,6 +21,7 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -33,8 +32,12 @@ import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.mediasend.R
 import org.signal.mediasend.test.TestTags
+
+/** Mirrors the legacy send button's disabled tint, which has no equivalent in the core-ui color scheme. */
+private val DisabledNextButtonColor = Color(0xFF777777)
 
 /**
  * Because we need to be able to support stuff like mentions, styled text, and custom emoji, we need to allow
@@ -51,6 +54,11 @@ val LocalAddAMessageRowTextField = compositionLocalOf<@Composable (CharSequence,
   }
 }
 
+/**
+ * @param recipientChatColor The chat color of the single recipient this media is headed to, or null when the destination
+ *   is still to be chosen. Non-null makes the trailing button a chat-color-tinted send button rather than a themed
+ *   "next" arrow.
+ */
 @Composable
 fun AddAMessageRow(
   message: CharSequence?,
@@ -60,7 +68,8 @@ fun AddAMessageRow(
   enabled: Boolean = true,
   canScheduleSend: Boolean = false,
   viewOnceAvailable: Boolean = false,
-  viewOnce: Boolean = false
+  viewOnce: Boolean = false,
+  recipientChatColor: Color? = null
 ) {
   Row(
     horizontalArrangement = Arrangement.Center,
@@ -132,20 +141,19 @@ fun AddAMessageRow(
         onClick = onNextClick,
         onLongClick = if (canScheduleSend) scheduleSendMenuController::show else null,
         onLongClickLabel = stringResource(R.string.AddAMessageRow__schedule_send),
+        colors = IconButtons.iconButtonColors(
+          containerColor = recipientChatColor ?: MaterialTheme.colorScheme.onSecondaryContainer,
+          contentColor = if (recipientChatColor != null) SignalTheme.colors.colorOnCustom else MaterialTheme.colorScheme.secondaryContainer,
+          disabledContainerColor = DisabledNextButtonColor,
+          disabledContentColor = MaterialTheme.colorScheme.secondaryContainer
+        ),
         modifier = Modifier
           .testTag(TestTags.ADD_A_MESSAGE_NEXT_BUTTON)
           .padding(start = 12.dp)
-          .background(
-            color = MaterialTheme.colorScheme.primaryContainer,
-            shape = CircleShape
-          )
       ) {
         Icon(
-          painter = SignalIcons.ArrowEnd.painter,
-          contentDescription = stringResource(R.string.AddAMessageRow__next),
-          modifier = Modifier
-            .size(40.dp)
-            .padding(8.dp)
+          painter = if (recipientChatColor != null) SignalIcons.SendFill.painter else SignalIcons.ArrowEnd.painter,
+          contentDescription = stringResource(if (recipientChatColor != null) R.string.AddAMessageRow__send else R.string.AddAMessageRow__next)
         )
       }
 
@@ -192,6 +200,33 @@ private fun AddAMessageRowViewOncePreview() {
       onNextClick = {},
       viewOnceAvailable = true,
       viewOnce = true
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun AddAMessageRowKnownRecipientPreview() {
+  Previews.Preview {
+    AddAMessageRow(
+      message = null,
+      onEvent = {},
+      onNextClick = {},
+      recipientChatColor = Color(0xFF3B7845)
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun AddAMessageRowDisabledPreview() {
+  Previews.Preview {
+    AddAMessageRow(
+      message = null,
+      onEvent = {},
+      onNextClick = {},
+      enabled = false,
+      recipientChatColor = Color(0xFF3B7845)
     )
   }
 }

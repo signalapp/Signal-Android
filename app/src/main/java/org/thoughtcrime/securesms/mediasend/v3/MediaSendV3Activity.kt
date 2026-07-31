@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.compose.AndroidFragment
@@ -27,6 +28,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.ui.WindowBreakpoint
+import org.signal.core.ui.compose.LocalChatColorProvider
 import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.core.ui.getWindowBreakpoint
 import org.signal.mediasend.HudCommand
@@ -144,6 +146,11 @@ class MediaSendV3Activity :
             } else {
               getDisplayName(context)
             }
+          }
+        },
+        LocalChatColorProvider provides { id ->
+          rememberRecipientField(RecipientId.from(id)) {
+            Color(chatColors.asSingleColor())
           }
         }
       ) {

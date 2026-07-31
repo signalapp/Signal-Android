@@ -42,6 +42,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.AllDevicePreviews
+import org.signal.core.ui.compose.LocalChatColorProvider
 import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.rememberWindowBreakpoint
@@ -231,6 +232,10 @@ internal fun MediaEditScreen(
 
     val isTextEditing = imageController?.textEditingElement != null
 
+    // Null whenever the destination is still to be chosen, which is what turns the trailing button back into a
+    // "next" arrow.
+    val recipientChatColor: Color? = state.recipientId?.let { LocalChatColorProvider.current(it.id).value }
+
     Column(
       horizontalAlignment = Alignment.CenterHorizontally,
       modifier = Modifier
@@ -320,6 +325,7 @@ internal fun MediaEditScreen(
           viewOnceAvailable = state.isViewOnceAvailable,
           viewOnce = state.isViewOnceEnabled,
           message = state.message,
+          recipientChatColor = recipientChatColor,
           onEvent = onEvent,
           onNextClick = { onEvent(MediaEditScreenEvent.NextClick) },
           modifier = Modifier

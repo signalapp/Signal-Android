@@ -82,6 +82,7 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   Redo(icon(R.drawable.symbol_redo_24)),
   Save(icon(R.drawable.symbol_save_android_24)),
   Search(icon(R.drawable.symbol_search_24)),
+  SendFill(icon(R.drawable.symbol_send_fill_24)),
   Settings(icon(R.drawable.symbol_settings_android_24)),
   Share(icon(R.drawable.symbol_share_android_24)),
   SignalBackupsDisplay(icon(R.drawable.symbol_signal_backups_display_48)),
