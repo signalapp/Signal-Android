@@ -26,6 +26,7 @@ import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.signal.mediasend.MediaConstraints
+import org.signal.mediasend.MediaValidator
 import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.edit.video.VideoTrimData
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation

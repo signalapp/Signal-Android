@@ -33,6 +33,7 @@ import org.signal.mediasend.MediaFilterResult
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendRecipient
 import org.signal.mediasend.MediaSendRepository
+import org.signal.mediasend.MediaValidator
 import org.signal.mediasend.SaveToStorageResult
 import org.signal.mediasend.SendRequest
 import org.signal.mediasend.SendResult
@@ -50,7 +51,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.MediaRepository
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionRepository
-import org.thoughtcrime.securesms.mediasend.v2.MediaValidator
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.PushMediaConstraints
 import org.thoughtcrime.securesms.mms.TranscodingConfigProvider
@@ -109,10 +109,11 @@ object MediaSendV3Repository : MediaSendRepository {
   ): MediaFilterResult = withContext(Dispatchers.IO) {
     val populated = MediaRepository().getPopulatedMedia(appContext, media)
     val constraints = PushMediaConstraints(null)
-    val result = MediaValidator.filterMedia(populated, constraints, maxSelection, isStory)
+    val result = MediaValidator.filterMedia(populated, constraints, maxSelection, isStory) {
+      Stories.MediaTransform.getSendRequirements(it) != Stories.MediaTransform.SendRequirements.CAN_NOT_SEND
+    }
 
-    val error = mapFilterError(result.filterError, populated, constraints, maxSelection, isStory)
-    MediaFilterResult(result.filteredMedia, error)
+    MediaFilterResult(result.filteredMedia, mapFilterError(result.filterError, maxSelection))
   }
 
   override suspend fun getDocumentInfo(media: Media): DocumentInfo? = withContext(Dispatchers.IO) {
@@ -362,58 +363,17 @@ object MediaSendV3Repository : MediaSendRepository {
     }.toMap()
   }
 
-  private fun mapFilterError(
-    error: MediaValidator.FilterError?,
-    media: List<Media>,
-    constraints: MediaConstraints,
-    maxSelection: Int,
-    isStory: Boolean
-  ): MediaFilterError? {
+  /**
+   * [MediaValidator.FilterError.NoItems] wraps the reason nothing survived, and it is that reason the user needs. The
+   * emptiness itself travels back as an empty [MediaFilterResult.filteredMedia].
+   */
+  private fun mapFilterError(error: MediaValidator.FilterError?, maxSelection: Int): MediaFilterError? {
     return when (error) {
-      is MediaValidator.FilterError.NoItems -> MediaFilterError.NoItems
+      is MediaValidator.FilterError.NoItems -> mapFilterError(error.cause, maxSelection)
       is MediaValidator.FilterError.TooManyItems -> MediaFilterError.TooManyItems(maxSelection)
-      is MediaValidator.FilterError.ItemInvalidType -> {
-        findFirstInvalidType(media)?.let { MediaFilterError.ItemInvalidType(it) }
-          ?: MediaFilterError.Other("One or more items have an invalid type.")
-      }
-      is MediaValidator.FilterError.ItemTooLarge -> {
-        findFirstTooLarge(media, constraints, isStory)?.let { MediaFilterError.ItemTooLarge(it) }
-          ?: MediaFilterError.Other("One or more items are too large.")
-      }
+      is MediaValidator.FilterError.ItemInvalidType -> MediaFilterError.ItemInvalidType(error.media)
+      is MediaValidator.FilterError.ItemTooLarge -> MediaFilterError.ItemTooLarge(error.media)
       MediaValidator.FilterError.None, null -> null
-    }
-  }
-
-  private fun findFirstInvalidType(media: List<Media>): Media? {
-    return media.firstOrNull { item ->
-      val contentType = item.contentType ?: return@firstOrNull true
-      !MediaUtil.isGif(contentType) &&
-        !MediaUtil.isImageType(contentType) &&
-        !MediaUtil.isVideoType(contentType) &&
-        !MediaUtil.isDocumentType(contentType)
-    }
-  }
-
-  private fun findFirstTooLarge(
-    media: List<Media>,
-    constraints: MediaConstraints,
-    isStory: Boolean
-  ): Media? {
-    return media.firstOrNull { item ->
-      val contentType = item.contentType ?: return@firstOrNull true
-      val size = item.size
-
-      val isTooLarge = when {
-        MediaUtil.isGif(contentType) -> size > constraints.getGifMaxSize()
-        MediaUtil.isVideoType(contentType) -> size > constraints.getUncompressedVideoMaxSize()
-        MediaUtil.isImageType(contentType) -> size > constraints.getImageMaxSize()
-        MediaUtil.isDocumentType(contentType) -> size > constraints.getDocumentMaxSize()
-        else -> true
-      }
-
-      val isStoryInvalid = isStory && Stories.MediaTransform.getSendRequirements(item) == Stories.MediaTransform.SendRequirements.CAN_NOT_SEND
-
-      isTooLarge || isStoryInvalid
     }
   }
 }

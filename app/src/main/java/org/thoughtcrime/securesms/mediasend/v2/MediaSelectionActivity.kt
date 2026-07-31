@@ -34,6 +34,7 @@ import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.signal.core.util.overrideActivityTransitionCompat
 import org.signal.mediasend.MediaSendNavKey
+import org.signal.mediasend.MediaValidator
 import org.signal.mediasend.capture.MediaCaptureBottomBar
 import org.signal.mediasend.capture.MediaCaptureScreenEvent
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
@@ -221,13 +222,11 @@ class MediaSelectionActivity :
   private fun handleError(error: MediaValidator.FilterError) {
     when (error) {
       MediaValidator.FilterError.None -> return
-      MediaValidator.FilterError.ItemTooLarge -> Toast.makeText(this, R.string.MediaReviewFragment__one_or_more_items_were_too_large, Toast.LENGTH_SHORT).show()
-      MediaValidator.FilterError.ItemInvalidType -> Toast.makeText(this, R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
+      is MediaValidator.FilterError.ItemTooLarge -> Toast.makeText(this, R.string.MediaReviewFragment__one_or_more_items_were_too_large, Toast.LENGTH_SHORT).show()
+      is MediaValidator.FilterError.ItemInvalidType -> Toast.makeText(this, R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
       MediaValidator.FilterError.TooManyItems -> Toast.makeText(this, R.string.MediaReviewFragment__too_many_items_selected, Toast.LENGTH_SHORT).show()
       is MediaValidator.FilterError.NoItems -> {
-        if (error.cause != null) {
-          handleError(error.cause)
-        }
+        error.cause?.let { handleError(it) }
         onNoMediaSelected()
       }
     }

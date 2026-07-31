@@ -33,6 +33,14 @@ internal fun NavBackStack<NavKey>.goToCamera() {
   goToSingle(MediaSendNavKey.Capture.Camera)
 }
 
+/**
+ * Discards the entire back stack in favor of [key], which becomes the flow's root. Backing out of it leaves the flow.
+ */
+internal fun NavBackStack<NavKey>.resetTo(key: NavKey) {
+  clear()
+  add(key)
+}
+
 internal fun NavBackStack<NavKey>.pop() {
   if (isNotEmpty()) {
     removeAt(size - 1)

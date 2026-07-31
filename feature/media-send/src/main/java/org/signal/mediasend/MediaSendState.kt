@@ -65,11 +65,6 @@ data class MediaSendState(
    */
   val isTouchEnabled: Boolean = true,
   /**
-   * When true, suppresses the "no items" error when selection becomes empty.
-   * Used during camera-first flow exit.
-   */
-  val suppressEmptyError: Boolean = false,
-  /**
    * Whether a send is currently in flight (prevents duplicate sends).
    */
   val isSending: Boolean = false,

@@ -27,11 +27,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
@@ -151,10 +148,6 @@ class MediaSendViewModel(
 
   /** Per-image editor controllers, held here so results arriving from outside the flow can be applied immediately. */
   internal val imageControllers = ImageController.Container(BrushWidthsState(internalState.value.brushWidths))
-
-  /** Media filter errors. */
-  private val _mediaErrors = MutableSharedFlow<MediaFilterError>(replay = 1)
-  val mediaErrors: SharedFlow<MediaFilterError> = _mediaErrors.asSharedFlow()
 
   /** Character count for the message field. */
   val messageCharacterCount: Flow<Int> = state
@@ -552,9 +545,27 @@ class MediaSendViewModel(
         startUpload(newMedia)
       }
 
-      if (filterResult.error != null) {
-        _mediaErrors.emit(filterResult.error)
-      }
+      filterResult.error?.let { onMediaFilterError(it, isSelectionEmpty = filterResult.filteredMedia.isEmpty()) }
+    }
+  }
+
+  /**
+   * Tells the user why media they picked did not make it into the selection.
+   *
+   * When nothing survived there is no editor to show the message on top of, so the flow falls back to whichever screen
+   * the user can pick again from instead of leaving them on an empty one.
+   */
+  private fun onMediaFilterError(error: MediaFilterError, isSelectionEmpty: Boolean) {
+    val message = when (error) {
+      is MediaFilterError.ItemTooLarge -> R.string.MediaSendViewModel__one_or_more_items_were_too_large
+      is MediaFilterError.ItemInvalidType -> R.string.MediaSendViewModel__one_or_more_items_were_invalid
+      is MediaFilterError.TooManyItems -> R.string.MediaSendViewModel__too_many_items_selected
+    }
+
+    internalSnackbarEvents.trySend(SnackbarEvent(message = message))
+
+    if (isSelectionEmpty && backStack.lastOrNull() == MediaSendNavKey.Edit) {
+      backStack.resetTo(if (state.value.isCameraFirst) MediaSendNavKey.Capture.Camera else MediaSendNavKey.Select.Folders)
     }
   }
 
@@ -666,12 +677,6 @@ class MediaSendViewModel(
     }
 
     media.forEach { imageControllers.remove(it.uri) }
-
-    if (newSelection.isEmpty() && !snapshot.suppressEmptyError) {
-      viewModelScope.launch {
-        _mediaErrors.emit(MediaFilterError.NoItems)
-      }
-    }
 
     // Update story requirements
     viewModelScope.launch {
@@ -1030,7 +1035,6 @@ class MediaSendViewModel(
 
   private fun removeCameraFirstCapture() {
     val capture = internalState.value.cameraFirstCapture ?: return
-    setSuppressEmptyError(true)
     removeMedia(capture)
   }
 
@@ -1045,20 +1049,10 @@ class MediaSendViewModel(
 
   //endregion
 
-  //region Touch & Error Suppression
+  //region Touch
 
   fun setTouchEnabled(isEnabled: Boolean) {
     updateState { copy(isTouchEnabled = isEnabled) }
-  }
-
-  fun setSuppressEmptyError(isSuppressed: Boolean) {
-    updateState { copy(suppressEmptyError = isSuppressed) }
-  }
-
-  fun clearMediaErrors() {
-    viewModelScope.launch {
-      _mediaErrors.resetReplayCache()
-    }
   }
 
   //endregion

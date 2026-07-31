@@ -14,6 +14,7 @@ import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.MediaConstraints
+import org.signal.mediasend.MediaValidator
 import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.edit.video.VideoTrimData
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
@@ -67,8 +68,9 @@ class MediaSelectionRepository(context: Context) {
     return Single.fromCallable {
       val populatedMedia = mediaRepository.getPopulatedMedia(context, media)
 
-      val result = MediaValidator.filterMedia(populatedMedia, mediaConstraints, maxSelection, isStory)
-      result
+      MediaValidator.filterMedia(populatedMedia, mediaConstraints, maxSelection, isStory) {
+        Stories.MediaTransform.getSendRequirements(it) != Stories.MediaTransform.SendRequirements.CAN_NOT_SEND
+      }
     }.subscribeOn(Schedulers.io())
   }
 

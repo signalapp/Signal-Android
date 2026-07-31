@@ -171,15 +171,17 @@ enum class SaveToStorageResult {
 }
 
 /**
- * Errors that can occur during media filtering.
+ * Reasons media handed to [MediaSendRepository.validateAndFilterMedia] did not survive filtering.
+ *
+ * There is deliberately no "nothing selected" case: an empty selection is a fact the caller already has from
+ * [MediaFilterResult.filteredMedia], while this type only answers why something was dropped.
+ *
+ * @property media The first item that was rejected, or null when the filtering could not pin one down.
  */
 sealed interface MediaFilterError {
-  data object NoItems : MediaFilterError
-  data class ItemTooLarge(val media: Media) : MediaFilterError
-  data class ItemInvalidType(val media: Media) : MediaFilterError
+  data class ItemTooLarge(val media: Media?) : MediaFilterError
+  data class ItemInvalidType(val media: Media?) : MediaFilterError
   data class TooManyItems(val max: Int) : MediaFilterError
-  data class CannotMixMediaTypes(val message: String) : MediaFilterError
-  data class Other(val message: String) : MediaFilterError
 }
 
 /**
