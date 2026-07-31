@@ -15,6 +15,7 @@ import org.signal.camera.CameraDependencies
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 import org.signal.core.models.parcelers.NullableCharSequenceParceler
+import org.signal.core.util.ContentTypeUtil
 import org.signal.mediasend.edit.image.BrushWidths
 import org.signal.mediasend.edit.video.VideoTrimData
 import kotlin.time.Duration
@@ -139,6 +140,19 @@ data class MediaSendState(
    */
   val brushWidths: BrushWidths = MediaSendDependencies.mediaSendRepository.brushWidths
 ) : Parcelable {
+
+  /**
+   * View-once only makes sense for a single, non-document attachment that isn't headed for a story.
+   */
+  val isViewOnceAvailable: Boolean
+    get() = selectedMedia.size == 1 && !isStory && !ContentTypeUtil.isDocumentType(focusedMedia?.contentType)
+
+  /**
+   * Whether the current selection will actually be sent as view-once. [viewOnceToggleState] is sticky, so it can
+   * outlive the conditions that allowed it to be set, and must always be read alongside [isViewOnceAvailable].
+   */
+  val isViewOnceEnabled: Boolean
+    get() = isViewOnceAvailable && viewOnceToggleState == ViewOnceToggleState.ONCE
 
   fun getOrCreateVideoTrimData(uri: Uri): VideoTrimData {
     return (editorStateMap[uri] as? EditorState.VideoTrim)?.videoTrimData ?: VideoTrimData()

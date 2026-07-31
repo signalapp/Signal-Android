@@ -106,8 +106,11 @@ internal fun MediaEditorToolbarSharedButtons(
     )
   }
 
-  MediaEditorToolbarButton(
-    imageVector = SignalIcons.Plus.imageVector, // TODO [alex] - wrong art asset
-    onClick = { onEvent(MediaEditScreenEvent.NavigateToGallery) }
-  )
+  // Adding a second attachment would silently drop view-once, so the entry point goes away while it is on.
+  if (!state.isViewOnceEnabled) {
+    MediaEditorToolbarButton(
+      imageVector = SignalIcons.Plus.imageVector, // TODO [alex] - wrong art asset
+      onClick = { onEvent(MediaEditScreenEvent.NavigateToGallery) }
+    )
+  }
 }

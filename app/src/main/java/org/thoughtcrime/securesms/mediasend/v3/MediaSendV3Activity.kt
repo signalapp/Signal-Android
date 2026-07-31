@@ -100,8 +100,7 @@ class MediaSendV3Activity :
 
     supportFragmentManager.setFragmentResultListener(AddMessageDialogFragment.REQUEST_KEY, this) { _, bundle ->
       if (bundle.getBoolean(AddMessageDialogFragment.RESULT_INCREMENT_VIEW_ONCE_STATE)) {
-        viewModel.setMessage(null)
-        viewModel.incrementViewOnceState()
+        viewModel.toggleViewOnce()
       } else {
         viewModel.setMessage(bundle.getCharSequence(AddMessageDialogFragment.RESULT_MESSAGE, null))
       }

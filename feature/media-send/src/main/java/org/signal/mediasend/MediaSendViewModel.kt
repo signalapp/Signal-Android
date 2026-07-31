@@ -292,7 +292,7 @@ class MediaSendViewModel(
           HudCommand.ShowAddAMessageDialog(
             message = snapshot.message ?: "",
             startWithEmojiKeyboard = mediaEditScreenEvent.startWithEmojiKeyboard,
-            isViewOnceAvailable = snapshot.selectedMedia.size == 1 && !snapshot.isStory && !ContentTypeUtil.isDocumentType(snapshot.focusedMedia?.contentType)
+            isViewOnceAvailable = snapshot.isViewOnceAvailable
           )
         )
       }
@@ -307,6 +307,10 @@ class MediaSendViewModel(
 
       MediaEditScreenEvent.ToggleMediaQuality -> {
         setSentMediaQuality(state.value.sentMediaQuality.next())
+      }
+
+      MediaEditScreenEvent.ToggleViewOnce -> {
+        toggleViewOnce()
       }
 
       MediaEditScreenEvent.SaveMedia -> {
@@ -969,14 +973,37 @@ class MediaSendViewModel(
 
   //region View Once
 
-  fun incrementViewOnceState() {
-    updateState { copy(viewOnceToggleState = viewOnceToggleState.next()) }
+  fun isViewOnceEnabled(): Boolean {
+    return internalState.value.isViewOnceEnabled
   }
 
-  fun isViewOnceEnabled(): Boolean {
-    val snapshot = internalState.value
-    return snapshot.selectedMedia.size == 1 &&
-      snapshot.viewOnceToggleState == MediaSendState.ViewOnceToggleState.ONCE
+  /**
+   * Flips view-once. Turning it on drops any message the user had already typed, since a view-once send cannot carry
+   * a body, and confirms the change with a snackbar.
+   */
+  fun toggleViewOnce() {
+    updateState { copy(viewOnceToggleState = viewOnceToggleState.next()) }
+
+    if (!internalState.value.isViewOnceEnabled) {
+      return
+    }
+
+    setMessage(null)
+
+    val focusedMedia = internalState.value.focusedMedia
+    val isVideo = focusedMedia != null &&
+      ContentTypeUtil.isVideoType(focusedMedia.contentType) &&
+      !focusedMedia.isVideoGif
+
+    internalSnackbarEvents.trySend(
+      SnackbarEvent(
+        message = if (isVideo) {
+          R.string.MediaSendViewModel__video_set_to_view_once
+        } else {
+          R.string.MediaSendViewModel__photo_set_to_view_once
+        }
+      )
+    )
   }
 
   //endregion

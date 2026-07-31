@@ -1430,7 +1430,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       }
 
       if (SignalStore.labs().getIncognito()) {
-        items.add(new ActionItem(R.drawable.symbol_view_once_24, "Open Incognito (Labs)", () -> handleOpenIncognito(conversation)));
+        items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_view_once_24, "Open Incognito (Labs)", () -> handleOpenIncognito(conversation)));
       }
     }
 

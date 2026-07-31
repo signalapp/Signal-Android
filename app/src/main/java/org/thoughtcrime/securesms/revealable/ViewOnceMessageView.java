@@ -123,12 +123,12 @@ public class ViewOnceMessageView extends LinearLayout {
       } else {
         iconColor = unopenedIconColor;
         text.setText(R.string.RevealableMessageView_media);
-        icon.setImageResource(R.drawable.symbol_view_once_24);
+        icon.setImageResource(org.signal.core.ui.R.drawable.symbol_view_once_24);
       }
     } else if (ViewOnceUtil.isViewable(messageRecord)) {
       iconColor = unopenedIconColor;
       text.setText(getDescriptionId(messageRecord));
-      icon.setImageResource(R.drawable.symbol_view_once_24);
+      icon.setImageResource(org.signal.core.ui.R.drawable.symbol_view_once_24);
     } else if (networkInProgress(messageRecord)) {
       iconColor = unopenedIconColor;
       text.setText("");

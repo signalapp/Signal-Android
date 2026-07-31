@@ -15,7 +15,6 @@ import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendActivityContract
 import org.signal.mediasend.MediaSendRecipient
-import org.signal.mediasend.MediaSendState
 import org.signal.mediasend.MediaSendViewModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
@@ -47,7 +46,7 @@ class MediaSendV3ForwardFragment : Fragment(R.layout.multiselect_forward_activit
           title = R.string.MediaReviewFragment__send_to,
           storySendRequirements = state.storySendRequirements.toAppSendRequirements(),
           isSearchEnabled = !state.isStory,
-          isViewOnce = state.viewOnceToggleState == MediaSendState.ViewOnceToggleState.ONCE
+          isViewOnce = state.isViewOnceEnabled
         )
       )
 

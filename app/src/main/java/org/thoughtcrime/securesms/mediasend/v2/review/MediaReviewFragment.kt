@@ -416,7 +416,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       getString(R.string.MediaReviewFragment__photo_set_to_view_once)
     }
 
-    MediaReviewToastPopupWindow.show(controls, R.drawable.symbol_view_once_24, description)
+    MediaReviewToastPopupWindow.show(controls, CoreUiR.drawable.symbol_view_once_24, description)
   }
 
   private fun presentQualityToggleToast(state: MediaSelectionState) {

@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.DropdownMenus
@@ -57,7 +58,9 @@ fun AddAMessageRow(
   onNextClick: () -> Unit,
   modifier: Modifier = Modifier,
   enabled: Boolean = true,
-  canScheduleSend: Boolean = false
+  canScheduleSend: Boolean = false,
+  viewOnceAvailable: Boolean = false,
+  viewOnce: Boolean = false
 ) {
   Row(
     horizontalArrangement = Arrangement.Center,
@@ -70,24 +73,55 @@ fun AddAMessageRow(
         .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(percent = 50))
         .weight(1f)
         .heightIn(min = 40.dp)
-        .clickable(enabled = enabled, onClickLabel = stringResource(R.string.AddAMessageRow__add_a_message), onClick = { onEvent(MediaEditScreenEvent.AddMessageClick()) }, role = Role.Button)
+        .then(
+          if (viewOnce) {
+            // A view-once send cannot carry a body, so the row becomes a static label rather than an entry point.
+            Modifier
+          } else {
+            Modifier.clickable(enabled = enabled, onClickLabel = stringResource(R.string.AddAMessageRow__add_a_message), onClick = { onEvent(MediaEditScreenEvent.AddMessageClick()) }, role = Role.Button)
+          }
+        )
     ) {
-      IconButtons.IconButton(
-        enabled = enabled,
-        onClick = { onEvent(MediaEditScreenEvent.AddMessageClick(startWithEmojiKeyboard = true)) }
-      ) {
-        Icon(
-          painter = SignalIcons.Emoji.painter,
-          contentDescription = stringResource(R.string.AddAMessageRow__open_emoji_keyboard)
+      if (viewOnce) {
+        Text(
+          text = stringResource(R.string.AddAMessageRow__view_once_media),
+          style = MaterialTheme.typography.bodyLarge,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          textAlign = TextAlign.Center,
+          modifier = Modifier
+            .weight(1f)
+            .padding(horizontal = 16.dp)
+        )
+      } else {
+        IconButtons.IconButton(
+          enabled = enabled,
+          onClick = { onEvent(MediaEditScreenEvent.AddMessageClick(startWithEmojiKeyboard = true)) }
+        ) {
+          Icon(
+            painter = SignalIcons.Emoji.painter,
+            contentDescription = stringResource(R.string.AddAMessageRow__open_emoji_keyboard)
+          )
+        }
+
+        LocalAddAMessageRowTextField.current(
+          message ?: stringResource(R.string.AddAMessageRow__message),
+          Modifier
+            .weight(1f)
+            .padding(end = if (viewOnceAvailable) 0.dp else 16.dp)
         )
       }
 
-      LocalAddAMessageRowTextField.current(
-        message ?: stringResource(R.string.AddAMessageRow__message),
-        Modifier
-          .weight(1f)
-          .padding(end = 16.dp)
-      )
+      if (viewOnceAvailable) {
+        IconButtons.IconButton(
+          enabled = enabled,
+          onClick = { onEvent(MediaEditScreenEvent.ToggleViewOnce) }
+        ) {
+          Icon(
+            painter = if (viewOnce) SignalIcons.ViewOnce.painter else SignalIcons.ViewOnceInfinite.painter,
+            contentDescription = stringResource(R.string.AddAMessageRow__toggle_view_once)
+          )
+        }
+      }
     }
 
     Box {
@@ -131,6 +165,33 @@ private fun AddAMessageRowPreview() {
       message = null,
       onEvent = {},
       onNextClick = {}
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun AddAMessageRowViewOnceAvailablePreview() {
+  Previews.Preview {
+    AddAMessageRow(
+      message = null,
+      onEvent = {},
+      onNextClick = {},
+      viewOnceAvailable = true
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun AddAMessageRowViewOncePreview() {
+  Previews.Preview {
+    AddAMessageRow(
+      message = null,
+      onEvent = {},
+      onNextClick = {},
+      viewOnceAvailable = true,
+      viewOnce = true
     )
   }
 }

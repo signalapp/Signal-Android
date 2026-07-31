@@ -92,6 +92,8 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   TransferDisplay(icon(R.drawable.symbol_transfer_display_48)),
   Trash(icon(R.drawable.symbol_trash_24)),
   Undo(icon(R.drawable.symbol_undo_24)),
+  ViewOnce(icon(R.drawable.symbol_view_once_24)),
+  ViewOnceInfinite(icon(R.drawable.symbol_view_once_infinite_24)),
   X(icon(R.drawable.symbol_x_24)),
   XCircleFill(icon(R.drawable.symbol_x_circle_fill_24))
 }
