@@ -72,10 +72,11 @@ internal fun MediaSendNavDisplay(
 
         MediaSendNavKey.Select.Folders -> NavEntry(key) {
           val state by stateFlow.collectAsStateWithLifecycle()
-          val screenState = remember(state.mediaFolders, state.selectedMedia) {
+          val screenState = remember(state.mediaFolders, state.selectedMedia, state.mediaPermissions) {
             MediaSelectScreenState.Folders(
               mediaFolders = state.mediaFolders,
-              selectedMedia = state.selectedMedia
+              selectedMedia = state.selectedMedia,
+              mediaPermissions = state.mediaPermissions
             )
           }
 
@@ -87,11 +88,12 @@ internal fun MediaSendNavDisplay(
 
         is MediaSendNavKey.Select.Files -> NavEntry(key) {
           val state by stateFlow.collectAsStateWithLifecycle()
-          val screenState = remember(state.selectedMedia, state.selectedMediaFolderItems) {
+          val screenState = remember(state.selectedMedia, state.selectedMediaFolderItems, state.mediaPermissions) {
             MediaSelectScreenState.Files(
               selectedMediaFolder = key.folder,
               selectedMediaFolderItems = state.selectedMediaFolderItems,
-              selectedMedia = state.selectedMedia
+              selectedMedia = state.selectedMedia,
+              mediaPermissions = state.mediaPermissions
             )
           }
 

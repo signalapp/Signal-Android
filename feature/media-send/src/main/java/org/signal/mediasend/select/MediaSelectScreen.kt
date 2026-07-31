@@ -14,6 +14,7 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -27,6 +28,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -47,26 +49,32 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.window.core.layout.WindowSizeClass
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
@@ -79,6 +87,10 @@ import org.signal.glide.compose.GlideImage
 import org.signal.mediasend.MediaSendMetrics
 import org.signal.mediasend.R
 import org.signal.mediasend.edit.rememberPreviewMedia
+import org.signal.core.ui.permissions.Permissions as PermissionsUtil
+
+/** How many empty tiles stand in for the gallery we are not allowed to show. Matches the v2 gallery. */
+private const val PLACEHOLDER_COUNT = 100
 
 /**
  * Allows user to select one or more pieces of content to add to the
@@ -89,8 +101,20 @@ internal fun MediaSelectScreen(
   state: MediaSelectScreenState,
   onEvent: (MediaSelectScreenEvent) -> Unit
 ) {
-  val gridConfiguration = rememberGridConfiguration(state is MediaSelectScreenState.Folders)
+  // Without read access there is nothing to browse, and with selected-photos access and nothing selected there is
+  // nothing yet. Both show the placeholder grid behind a call to action, so both use the denser file grid.
+  val showPlaceholders = state.mediaPermissions == MediaPermissions.NONE ||
+    (state.mediaPermissions == MediaPermissions.PARTIAL && !state.hasContent)
+
+  val gridConfiguration = rememberGridConfiguration(state is MediaSelectScreenState.Folders && !showPlaceholders)
   val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+
+  // The system prompt and the app settings round-trip both land us back here, and neither tells us what changed.
+  val currentOnEvent by rememberUpdatedState(onEvent)
+  LifecycleResumeEffect(Unit) {
+    currentOnEvent(MediaSelectScreenEvent.Refresh)
+    onPauseOrDispose { }
+  }
 
   Scaffolds.Settings(
     title = when (state) {
@@ -112,26 +136,49 @@ internal fun MediaSelectScreen(
         .padding(paddingValues)
         .fillMaxSize()
     ) {
-      LazyVerticalGrid(
-        columns = gridConfiguration.gridCells,
-        horizontalArrangement = spacedBy(gridConfiguration.horizontalSpacing),
-        verticalArrangement = spacedBy(gridConfiguration.verticalSpacing),
-        modifier = Modifier
-          .padding(horizontal = gridConfiguration.horizontalMargin)
-          .weight(1f)
-      ) {
-        when (state) {
-          is MediaSelectScreenState.Folders -> {
-            items(state.mediaFolders, key = { it.bucketId }) {
-              MediaFolderTile(it, onEvent)
-            }
-          }
+      // Selected-photos access that has something to show gets a persistent reminder rather than an interstitial,
+      // so the user can keep browsing what they already shared while still having a way to share more.
+      if (state.mediaPermissions == MediaPermissions.PARTIAL && state.hasContent) {
+        LimitedAccessBar(onEvent)
+      }
 
-          is MediaSelectScreenState.Files -> {
-            items(state.selectedMediaFolderItems, key = { it.uri }) { media ->
-              MediaTile(media = media, state.selectedMedia.indexOfFirst { it.uri == media.uri }, onEvent = onEvent)
+      Box(modifier = Modifier.weight(1f)) {
+        LazyVerticalGrid(
+          columns = gridConfiguration.gridCells,
+          horizontalArrangement = spacedBy(gridConfiguration.horizontalSpacing),
+          verticalArrangement = spacedBy(gridConfiguration.verticalSpacing),
+          userScrollEnabled = !showPlaceholders,
+          modifier = Modifier
+            .padding(horizontal = gridConfiguration.horizontalMargin)
+            .fillMaxSize()
+        ) {
+          if (showPlaceholders) {
+            items(PLACEHOLDER_COUNT) {
+              MediaTilePlaceholder()
+            }
+          } else {
+            when (state) {
+              is MediaSelectScreenState.Folders -> {
+                items(state.mediaFolders, key = { it.bucketId }) {
+                  MediaFolderTile(it, onEvent)
+                }
+              }
+
+              is MediaSelectScreenState.Files -> {
+                items(state.selectedMediaFolderItems, key = { it.uri }) { media ->
+                  MediaTile(media = media, state.selectedMedia.indexOfFirst { it.uri == media.uri }, onEvent = onEvent)
+                }
+              }
             }
           }
+        }
+
+        if (showPlaceholders) {
+          MediaAccessCallToAction(
+            mediaPermissions = state.mediaPermissions,
+            onEvent = onEvent,
+            modifier = Modifier.align(Alignment.Center)
+          )
         }
       }
 
@@ -245,6 +292,132 @@ private fun <T> WindowSizeClass.forWidthBreakpoint(
     isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND) -> medium
     else -> compact
   }
+}
+
+/**
+ * Persistent reminder that we are only seeing the media the user handed us, shown above the grid whenever
+ * selected-photos access has produced something to browse.
+ */
+@Composable
+private fun LimitedAccessBar(onEvent: (MediaSelectScreenEvent) -> Unit) {
+  val menuController = remember { DropdownMenus.MenuController() }
+
+  Row(
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = Modifier
+      .fillMaxWidth()
+      .heightIn(min = 72.dp)
+      .padding(16.dp)
+  ) {
+    Text(
+      text = stringResource(R.string.MediaSelectScreen__signal_has_limited_access),
+      style = MaterialTheme.typography.bodyMedium,
+      modifier = Modifier
+        .weight(1f)
+        .padding(end = 16.dp)
+    )
+
+    Box {
+      Buttons.MediumTonal(onClick = menuController::toggle) {
+        Text(text = stringResource(R.string.MediaSelectScreen__manage))
+      }
+
+      ManageAccessMenu(menuController = menuController, onEvent = onEvent)
+    }
+  }
+}
+
+/**
+ * Shown over the placeholder grid when we have nothing of the user's to display: either we cannot read their media
+ * at all and have to ask, or they granted selected-photos access without sharing anything we can use.
+ */
+@Composable
+private fun MediaAccessCallToAction(
+  mediaPermissions: MediaPermissions,
+  onEvent: (MediaSelectScreenEvent) -> Unit,
+  modifier: Modifier = Modifier
+) {
+  val menuController = remember { DropdownMenus.MenuController() }
+  val hasNoAccess = mediaPermissions == MediaPermissions.NONE
+
+  Column(
+    horizontalAlignment = Alignment.CenterHorizontally,
+    modifier = modifier.padding(horizontal = 30.dp)
+  ) {
+    Image(
+      painter = painterResource(R.drawable.permission_gallery),
+      contentDescription = null
+    )
+
+    Text(
+      text = stringResource(
+        if (hasNoAccess) {
+          R.string.MediaSelectScreen__signal_needs_permission_to_show_your_photos_and_videos
+        } else {
+          R.string.MediaSelectScreen__no_photos_or_videos_found
+        }
+      ),
+      style = MaterialTheme.typography.bodyLarge,
+      textAlign = TextAlign.Center,
+      modifier = Modifier.padding(top = 20.dp)
+    )
+
+    Box(modifier = Modifier.padding(top = 20.dp)) {
+      if (hasNoAccess) {
+        Buttons.LargeTonal(onClick = { onEvent(MediaSelectScreenEvent.RequestMediaPermissions) }) {
+          Text(text = stringResource(R.string.MediaSelectScreen__allow_access))
+        }
+      } else {
+        Buttons.LargeTonal(onClick = menuController::toggle) {
+          Text(text = stringResource(R.string.MediaSelectScreen__manage))
+        }
+
+        ManageAccessMenu(menuController = menuController, onEvent = onEvent)
+      }
+    }
+  }
+}
+
+/**
+ * The two ways out of selected-photos access: widen the selection through the system prompt, or go turn the
+ * permission up in app settings.
+ */
+@Composable
+private fun ManageAccessMenu(
+  menuController: DropdownMenus.MenuController,
+  onEvent: (MediaSelectScreenEvent) -> Unit
+) {
+  val context = LocalContext.current
+
+  DropdownMenus.Menu(controller = menuController, offsetX = 0.dp, offsetY = 8.dp) { controller ->
+    DropdownMenus.ItemWithIcon(
+      menuController = controller,
+      drawableResId = R.drawable.symbol_album_tilt_24,
+      stringResId = R.string.MediaSelectScreen__select_more_photos,
+      onClick = { onEvent(MediaSelectScreenEvent.SelectMorePhotos) }
+    )
+
+    DropdownMenus.ItemWithIcon(
+      menuController = controller,
+      drawableResId = org.signal.core.ui.R.drawable.symbol_settings_android_24,
+      stringResId = R.string.MediaSelectScreen__go_to_settings,
+      onClick = { context.startActivity(PermissionsUtil.getApplicationSettingsIntent(context)) }
+    )
+  }
+}
+
+/**
+ * Empty tile standing in for media we are not allowed to see, so the call to action reads as a gallery we could
+ * be looking at rather than a blank screen.
+ */
+@Composable
+private fun MediaTilePlaceholder() {
+  Box(
+    modifier = Modifier
+      .fillMaxWidth()
+      .aspectRatio(1f)
+      .background(color = MaterialTheme.colorScheme.surfaceVariant)
+  )
 }
 
 @Composable
@@ -486,6 +659,51 @@ private fun MediaSelectScreenMediaPreview() {
           }
         }
       }
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun MediaSelectScreenNoPermissionPreview() {
+  Previews.Preview {
+    MediaSelectScreen(
+      state = MediaSelectScreenState.Folders(
+        mediaFolders = emptyList(),
+        selectedMedia = emptyList(),
+        mediaPermissions = MediaPermissions.NONE
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun MediaSelectScreenPartialPermissionEmptyPreview() {
+  Previews.Preview {
+    MediaSelectScreen(
+      state = MediaSelectScreenState.Folders(
+        mediaFolders = emptyList(),
+        selectedMedia = emptyList(),
+        mediaPermissions = MediaPermissions.PARTIAL
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun MediaSelectScreenPartialPermissionPreview() {
+  Previews.Preview {
+    MediaSelectScreen(
+      state = MediaSelectScreenState.Folders(
+        mediaFolders = rememberPreviewMediaFolders(4),
+        selectedMedia = emptyList(),
+        mediaPermissions = MediaPermissions.PARTIAL
+      ),
+      onEvent = {}
     )
   }
 }

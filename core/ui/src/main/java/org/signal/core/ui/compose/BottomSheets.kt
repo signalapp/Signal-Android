@@ -32,13 +32,14 @@ object BottomSheets {
     onDismissRequest: () -> Unit,
     sheetState: SheetState = rememberModalBottomSheetState(),
     properties: ModalBottomSheetProperties = ModalBottomSheetProperties(),
+    dragHandle: @Composable (() -> Unit)? = { Handle() },
     content: @Composable ColumnScope.() -> Unit
   ) {
     return ModalBottomSheet(
       onDismissRequest = onDismissRequest,
       sheetState = sheetState,
       properties = properties,
-      dragHandle = { Handle() }
+      dragHandle = dragHandle
     ) {
       content()
     }

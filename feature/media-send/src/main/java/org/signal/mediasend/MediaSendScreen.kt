@@ -85,6 +85,7 @@ fun MediaSendScreen(
         }
 
         viewModel.writeStoragePermission.Content()
+        viewModel.readMediaPermission.Content()
 
         MediaSendNavDisplay(
           stateFlow = viewModel.state,

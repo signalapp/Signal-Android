@@ -48,6 +48,26 @@
   <string name="MediaSelectScreen__next">Next</string>
   <!-- Accessibility description for the button that leaves media selection and opens the camera. -->
   <string name="MediaSelectScreen__go_to_camera">Go to camera</string>
+  <!-- Message shown in place of the gallery when the user has not granted permission to read their photos and videos. -->
+  <string name="MediaSelectScreen__signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+  <!-- Label for the button that asks the system for permission to read the user\'s photos and videos. -->
+  <string name="MediaSelectScreen__allow_access">Allow Access</string>
+  <!-- Message shown in place of the gallery when the user only shared selected photos with Signal and none of them can be shown. -->
+  <string name="MediaSelectScreen__no_photos_or_videos_found">No photos or videos found. Signal only has access to photos and videos you selected.</string>
+  <!-- Reminder shown above the gallery when the user only shared selected photos with Signal. -->
+  <string name="MediaSelectScreen__signal_has_limited_access">Signal has limited access to photos or videos</string>
+  <!-- Label for the button that opens the menu for changing which photos and videos Signal can see. -->
+  <string name="MediaSelectScreen__manage">Manage</string>
+  <!-- Menu option that re-opens the system picker so the user can share more photos and videos with Signal. -->
+  <string name="MediaSelectScreen__select_more_photos">Select more photos</string>
+  <!-- Menu option that opens Signal\'s permission settings in the system settings app. -->
+  <string name="MediaSelectScreen__go_to_settings">Go to Settings</string>
+  <!-- Title of the sheet shown when the permission to read photos and videos has been permanently denied, directing the user to app settings. -->
+  <string name="MediaSelectScreen__allow_access_to_storage">Allow access to storage</string>
+  <!-- Subtitle of the sheet shown when the permission to read photos and videos has been permanently denied, introducing the steps that follow. -->
+  <string name="MediaSelectScreen__to_show_photos_and_videos">To show photos and videos:</string>
+  <!-- Snackbar shown when the user denies the permission to read their photos and videos. -->
+  <string name="MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos">Signal needs access to show your photos and videos.</string>
 
   <!-- Label for the button that switches the capture screen to the camera. -->
   <string name="MediaCaptureScreen__camera">Camera</string>

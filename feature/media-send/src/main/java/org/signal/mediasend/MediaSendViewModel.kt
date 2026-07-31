@@ -42,6 +42,7 @@ import org.signal.core.models.media.MediaFolder
 import org.signal.core.ui.compose.DialogController
 import org.signal.core.ui.compose.DialogResult
 import org.signal.core.ui.compose.PermissionController
+import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.ContentTypeUtil
 import org.signal.core.util.StringUtil
@@ -61,6 +62,8 @@ import org.signal.mediasend.edit.image.BrushWidthsState
 import org.signal.mediasend.edit.video.VideoTrimData
 import org.signal.mediasend.preupload.PreUploadController
 import org.signal.mediasend.preupload.PreUploadResult
+import org.signal.mediasend.select.MediaPermissionController
+import org.signal.mediasend.select.MediaPermissions
 import org.signal.mediasend.select.MediaSelectScreenEvent
 import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
 import java.io.FileInputStream
@@ -130,6 +133,8 @@ class MediaSendViewModel(
     permission = Manifest.permission.WRITE_EXTERNAL_STORAGE,
     permanentDenialMessage = R.string.MediaSendViewModel__signal_needs_the_storage_permission
   )
+
+  internal val readMediaPermission = MediaPermissionController()
 
   private val qrCheckRequest: Channel<String> = Channel(Channel.RENDEZVOUS)
 
@@ -223,14 +228,33 @@ class MediaSendViewModel(
 
   //region Media Selection
 
+  /**
+   * Re-reads the gallery from the media store, along with the level of access we currently have. The contents of
+   * the selected folder are re-read too, since widening selected-photos access adds items to it without changing
+   * the folder itself.
+   */
   fun refreshMediaFolders() {
     viewModelScope.launch {
+      val mediaPermissions = MediaPermissions.current()
       val folders = repository.getFolders()
-      internalState.update {
-        it.copy(
+
+      val reloadedFolder = internalState.value.selectedMediaFolder?.takeIf { it in folders }
+      val reloadedItems = reloadedFolder?.let { repository.getMedia(it.bucketId) }
+
+      internalState.update { current ->
+        // The folder can be picked while we are still loading, so what we re-read is only applied if it is still
+        // what is on screen. Anything else keeps whatever the folder click itself put there.
+        val selectedFolder = current.selectedMediaFolder?.takeIf { it in folders }
+
+        current.copy(
+          mediaPermissions = mediaPermissions,
           mediaFolders = folders,
-          selectedMediaFolder = if (it.selectedMediaFolder in folders) it.selectedMediaFolder else null,
-          selectedMediaFolderItems = if (it.selectedMediaFolder in folders) it.selectedMediaFolderItems else emptyList()
+          selectedMediaFolder = selectedFolder,
+          selectedMediaFolderItems = when {
+            selectedFolder == null -> emptyList()
+            selectedFolder == reloadedFolder && reloadedItems != null -> reloadedItems
+            else -> current.selectedMediaFolderItems
+          }
         )
       }
     }
@@ -244,6 +268,30 @@ class MediaSendViewModel(
       is MediaSelectScreenEvent.ReorderSelectedMedia -> reorderMedia(mediaSelectScreenEvent.fromIndex, mediaSelectScreenEvent.toIndex)
       MediaSelectScreenEvent.NavigateToEdit -> backStack.goToEdit()
       MediaSelectScreenEvent.NavigateToCamera -> backStack.goToCamera()
+      MediaSelectScreenEvent.Refresh -> refreshMediaFolders()
+      MediaSelectScreenEvent.RequestMediaPermissions -> requestReadMediaPermissions(reportDenial = true)
+      MediaSelectScreenEvent.SelectMorePhotos -> requestReadMediaPermissions(reportDenial = false)
+    }
+  }
+
+  /**
+   * Prompts for the gallery's read permissions and refreshes on any result, granted or not: selected-photos access
+   * comes back as a denial of the broad permissions but still changes what we can see.
+   */
+  private fun requestReadMediaPermissions(reportDenial: Boolean) {
+    viewModelScope.launch {
+      val denied = readMediaPermission.request(permanentDenialSheet = reportDenial)
+
+      if (reportDenial && denied) {
+        internalSnackbarEvents.trySend(
+          SnackbarEvent(
+            message = R.string.MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos,
+            duration = Snackbars.Duration.LONG
+          )
+        )
+      }
+
+      refreshMediaFolders()
     }
   }
 

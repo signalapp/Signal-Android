@@ -18,6 +18,7 @@ import org.signal.core.models.parcelers.NullableCharSequenceParceler
 import org.signal.core.util.ContentTypeUtil
 import org.signal.mediasend.edit.image.BrushWidths
 import org.signal.mediasend.edit.video.VideoTrimData
+import org.signal.mediasend.select.MediaPermissions
 import kotlin.time.Duration
 
 /**
@@ -128,6 +129,12 @@ data class MediaSendState(
    * The media content for a given selected [MediaFolder]
    */
   val selectedMediaFolderItems: @WriteWith<TransientMediaListParceler> List<Media> = emptyList(),
+
+  /**
+   * How much of the device's media the user currently lets us read. Re-derived alongside [mediaFolders], since a
+   * permission granted while we were backgrounded is only observable by looking again.
+   */
+  val mediaPermissions: MediaPermissions = MediaPermissions.FULL,
 
   val mediaConstraints: @WriteWith<TransientMediaConstraintsParceler> MediaConstraints = MediaSendDependencies.mediaSendRepository.getMediaConstraints(),
 
