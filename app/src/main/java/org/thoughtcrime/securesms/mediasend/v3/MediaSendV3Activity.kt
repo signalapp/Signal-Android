@@ -30,11 +30,15 @@ import org.signal.mediasend.MediaSendRecipient
 import org.signal.mediasend.MediaSendScreen
 import org.signal.mediasend.MediaSendViewModel
 import org.signal.mediasend.edit.LocalAddAMessageRowTextField
+import org.signal.mediasend.edit.LocalScheduledSendTimeFormatter
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
+import org.thoughtcrime.securesms.conversation.ReenableScheduledMessagesDialogFragment
+import org.thoughtcrime.securesms.conversation.ScheduleMessageDialogCallback
+import org.thoughtcrime.securesms.conversation.ScheduleMessageTimePickerBottomSheet
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEvent
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEventViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
@@ -50,6 +54,7 @@ import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceA
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.scribbles.StickerSelectActivityContract
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.DateUtils
 
 /**
  * Encapsulates the media send flow for v3.
@@ -60,7 +65,9 @@ class MediaSendV3Activity :
   TextStoryPostCreationFragment.Callback,
   EmojiKeyboardPageFragment.Callback,
   EmojiEventListener,
-  EmojiSearchFragment.Callback {
+  EmojiSearchFragment.Callback,
+  ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
+  ScheduleMessageDialogCallback {
 
   private val contractArgs: MediaSendActivityContract.Args by lazy { MediaSendActivityContract.Args.fromIntent(intent) }
 
@@ -113,6 +120,9 @@ class MediaSendV3Activity :
             modifier = modifier
           )
         },
+        LocalScheduledSendTimeFormatter provides { time ->
+          DateUtils.getScheduledMessageDateString(context, time)
+        },
         LocalDisplayNameProvider provides { id ->
           rememberRecipientField(RecipientId.from(id)) {
             if (isUnknown) {
@@ -150,6 +160,16 @@ class MediaSendV3Activity :
               }
 
               is HudCommand.SelectSticker -> stickerLauncher.launch(Unit)
+
+              is HudCommand.PickScheduledSendTime -> {
+                ScheduleMessageTimePickerBottomSheet.showSchedule(supportFragmentManager)
+              }
+
+              is HudCommand.ConfirmScheduledSend -> {
+                if (!ReenableScheduledMessagesDialogFragment.showIfNeeded(this, supportFragmentManager, null, it.scheduledTime)) {
+                  viewModel.onScheduledSendConfirmed(it.scheduledTime)
+                }
+              }
 
               is HudCommand.GoToConversation -> {
                 lifecycleScope.launch(Dispatchers.Default) {
@@ -222,6 +242,14 @@ class MediaSendV3Activity :
 
   override fun onKeyEvent(keyEvent: KeyEvent?) {
     addMessageCommandViewModel.onEvent(EmojiKeyboardEvent.EmojiKeyEvent(keyEvent))
+  }
+
+  override fun onScheduleSend(scheduledTime: Long) {
+    viewModel.onScheduledSendTimeSelected(scheduledTime)
+  }
+
+  override fun onSchedulePermissionsGranted(metricId: String?, scheduledDate: Long) {
+    viewModel.onScheduledSendConfirmed(scheduledDate)
   }
 
   private fun finishWithResult(payload: Parcelable) {

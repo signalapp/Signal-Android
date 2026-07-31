@@ -39,6 +39,19 @@ sealed interface HudCommand {
   /** Show the app's sticker picker. The pick is handed back via [MediaSendViewModel.onStickerSelected]. */
   data object SelectSticker : HudCommand
 
+  /**
+   * Show the app's date and time picker for a scheduled send. The pick is handed back via
+   * [MediaSendViewModel.onScheduledSendTimeSelected].
+   */
+  data object PickScheduledSendTime : HudCommand
+
+  /**
+   * Clear whatever the app requires before a send can be scheduled for [scheduledTime], such as the scheduled messages
+   * intro sheet or the exact alarm permission. Once cleared, the app calls
+   * [MediaSendViewModel.onScheduledSendConfirmed] to let the send proceed.
+   */
+  data class ConfirmScheduledSend(val scheduledTime: Long) : HudCommand
+
   data class GoToConversation(val recipientId: MediaRecipientId) : HudCommand
   data object GoToLinkedDevices : HudCommand
   data class GoToQuickTransfer(val qrData: String) : HudCommand

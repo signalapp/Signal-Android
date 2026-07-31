@@ -55,6 +55,7 @@ import org.signal.mediasend.capture.CameraXScreenEvent
 import org.signal.mediasend.capture.MediaCaptureScreenEvent
 import org.signal.mediasend.edit.ImageController
 import org.signal.mediasend.edit.MediaEditScreenEvent
+import org.signal.mediasend.edit.ScheduleSendOption
 import org.signal.mediasend.edit.image.BrushTool
 import org.signal.mediasend.edit.image.BrushWidthsState
 import org.signal.mediasend.edit.video.VideoTrimData
@@ -273,13 +274,8 @@ class MediaSendViewModel(
     when (mediaEditScreenEvent) {
       is MediaEditScreenEvent.FocusedMediaChanged -> setFocusedMedia(mediaEditScreenEvent.media)
       is MediaEditScreenEvent.ReorderSelectedMedia -> reorderMedia(mediaEditScreenEvent.fromIndex, mediaEditScreenEvent.toIndex)
-      MediaEditScreenEvent.NextClick -> {
-        if (state.value.isContactSelectionRequired) {
-          backStack.goToSend()
-        } else {
-          performSend()
-        }
-      }
+      MediaEditScreenEvent.NextClick -> onNextClick()
+      is MediaEditScreenEvent.ScheduleSendClick -> onScheduleSendClick(mediaEditScreenEvent.option)
       MediaEditScreenEvent.NavigateBack -> onPopFromEdit()
       is MediaEditScreenEvent.VideoTrimChanged -> onEditVideoDuration(
         totalDurationUs = mediaEditScreenEvent.videoTrimData.totalInputDurationUs,
@@ -1020,8 +1016,32 @@ class MediaSendViewModel(
     updateState { copy(additionalRecipients = recipients) }
   }
 
-  fun setScheduledTime(time: Long) {
-    updateState { copy(scheduledTime = time) }
+  //endregion
+
+  //region Scheduled Send
+
+  private fun onScheduleSendClick(option: ScheduleSendOption) {
+    when (option) {
+      is ScheduleSendOption.PresetTime -> sendHudCommand(HudCommand.ConfirmScheduledSend(option.timeMs))
+      ScheduleSendOption.PickTime -> sendHudCommand(HudCommand.PickScheduledSendTime)
+    }
+  }
+
+  /**
+   * A time chosen in the picker opened for [HudCommand.PickScheduledSendTime]. It still has to clear the app's
+   * scheduling prerequisites, just like a time picked straight from the menu.
+   */
+  fun onScheduledSendTimeSelected(scheduledTime: Long) {
+    sendHudCommand(HudCommand.ConfirmScheduledSend(scheduledTime))
+  }
+
+  /**
+   * The app's scheduling prerequisites are cleared, so the flow can carry on with the send scheduled for
+   * [scheduledTime].
+   */
+  fun onScheduledSendConfirmed(scheduledTime: Long) {
+    updateState { copy(scheduledTime = scheduledTime) }
+    onNextClick()
   }
 
   //endregion
@@ -1058,6 +1078,17 @@ class MediaSendViewModel(
   //endregion
 
   //region Send
+
+  /**
+   * Leaves the editor, either on to destination selection or straight into the send.
+   */
+  private fun onNextClick() {
+    if (state.value.isContactSelectionRequired) {
+      backStack.goToSend()
+    } else {
+      performSend()
+    }
+  }
 
   /**
    * Completes the flow for destinations that are already known, either by sending in place or by handing the

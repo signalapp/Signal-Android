@@ -24,6 +24,10 @@
   <string name="AddAMessageRow__message">Message</string>
   <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
   <string name="AddAMessageRow__next">Next</string>
+  <!-- Accessibility description for long-pressing the send button to schedule the send for later. -->
+  <string name="AddAMessageRow__schedule_send">Schedule send</string>
+  <!-- Menu option that opens a picker for choosing the exact date and time to send at. -->
+  <string name="ScheduleSendMenu__pick_date_and_time">Pick Date &amp; Time</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
   <string name="SentMediaQuality__high">High</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->

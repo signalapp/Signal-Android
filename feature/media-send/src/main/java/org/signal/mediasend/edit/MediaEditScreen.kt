@@ -316,6 +316,7 @@ internal fun MediaEditScreen(
       ) {
         AddAMessageRow(
           enabled = !isInteracting && !state.isSending,
+          canScheduleSend = !state.isStory,
           message = state.message,
           onEvent = onEvent,
           onNextClick = { onEvent(MediaEditScreenEvent.NextClick) },

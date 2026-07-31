@@ -16,6 +16,7 @@ sealed interface MediaEditScreenEvent {
   data class AddMessageClick(val startWithEmojiKeyboard: Boolean = false) : MediaEditScreenEvent
   data object StickerClick : MediaEditScreenEvent
   data object NextClick : MediaEditScreenEvent
+  data class ScheduleSendClick(val option: ScheduleSendOption) : MediaEditScreenEvent
   data object NavigateBack : MediaEditScreenEvent
   data object NavigateToGallery : MediaEditScreenEvent
   data object ToggleMediaQuality : MediaEditScreenEvent

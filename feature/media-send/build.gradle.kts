@@ -72,6 +72,7 @@ dependencies {
   implementation(libs.androidx.camera.core)
 
   // Testing
+  testImplementation(testFixtures(project(":core:ui")))
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.mockk)
   testImplementation(testLibs.assertk)

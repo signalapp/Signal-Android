@@ -8,6 +8,7 @@ package org.signal.mediasend.edit
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -19,16 +20,20 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.mediasend.R
+import org.signal.mediasend.test.TestTags
 
 /**
  * Because we need to be able to support stuff like mentions, styled text, and custom emoji, we need to allow
@@ -51,7 +56,8 @@ fun AddAMessageRow(
   onEvent: (MediaEditScreenEvent) -> Unit,
   onNextClick: () -> Unit,
   modifier: Modifier = Modifier,
-  enabled: Boolean = true
+  enabled: Boolean = true,
+  canScheduleSend: Boolean = false
 ) {
   Row(
     horizontalArrangement = Arrangement.Center,
@@ -84,22 +90,34 @@ fun AddAMessageRow(
       )
     }
 
-    IconButtons.IconButton(
-      enabled = enabled,
-      onClick = onNextClick,
-      modifier = Modifier
-        .padding(start = 12.dp)
-        .background(
-          color = MaterialTheme.colorScheme.primaryContainer,
-          shape = CircleShape
-        )
-    ) {
-      Icon(
-        painter = SignalIcons.ArrowEnd.painter,
-        contentDescription = stringResource(R.string.AddAMessageRow__next),
+    Box {
+      val scheduleSendMenuController = remember { DropdownMenus.MenuController() }
+
+      IconButtons.IconButton(
+        enabled = enabled,
+        onClick = onNextClick,
+        onLongClick = if (canScheduleSend) scheduleSendMenuController::show else null,
+        onLongClickLabel = stringResource(R.string.AddAMessageRow__schedule_send),
         modifier = Modifier
-          .size(40.dp)
-          .padding(8.dp)
+          .testTag(TestTags.ADD_A_MESSAGE_NEXT_BUTTON)
+          .padding(start = 12.dp)
+          .background(
+            color = MaterialTheme.colorScheme.primaryContainer,
+            shape = CircleShape
+          )
+      ) {
+        Icon(
+          painter = SignalIcons.ArrowEnd.painter,
+          contentDescription = stringResource(R.string.AddAMessageRow__next),
+          modifier = Modifier
+            .size(40.dp)
+            .padding(8.dp)
+        )
+      }
+
+      ScheduleSendMenu(
+        controller = scheduleSendMenuController,
+        onOptionClick = { onEvent(MediaEditScreenEvent.ScheduleSendClick(it)) }
       )
     }
   }
