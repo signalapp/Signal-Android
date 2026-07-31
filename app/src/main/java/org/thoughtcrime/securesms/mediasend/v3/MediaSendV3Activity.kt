@@ -7,14 +7,17 @@ package org.thoughtcrime.securesms.mediasend.v3
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.KeyEvent
+import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
@@ -23,9 +26,12 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.LocalDisplayNameProvider
+import org.signal.core.ui.getWindowBreakpoint
 import org.signal.mediasend.HudCommand
 import org.signal.mediasend.MediaSendActivityContract
+import org.signal.mediasend.MediaSendNavKey
 import org.signal.mediasend.MediaSendRecipient
 import org.signal.mediasend.MediaSendScreen
 import org.signal.mediasend.MediaSendViewModel
@@ -94,6 +100,10 @@ class MediaSendV3Activity :
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    if (resources.getWindowBreakpoint() !is WindowBreakpoint.Small) {
+      requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+    }
+
     if (savedInstanceState == null && contractArgs.isForQuickRestore) {
       QuickRestoreInfoDialog.show(supportFragmentManager)
     }
@@ -108,6 +118,11 @@ class MediaSendV3Activity :
 
     setContent {
       val context = LocalContext.current
+      val isOnCaptureScreen = viewModel.backStack.lastOrNull() is MediaSendNavKey.Capture
+
+      LaunchedEffect(isOnCaptureScreen) {
+        onCaptureScreenChanged(isOnCaptureScreen)
+      }
 
       CompositionLocalProvider(
         LocalAddAMessageRowTextField provides { message, modifier ->
@@ -217,6 +232,28 @@ class MediaSendV3Activity :
   override fun onSentWithoutResult() {
     setResult(RESULT_OK, Intent())
     finish()
+  }
+
+  /**
+   * The manifest hard-locks this activity to portrait, which we only want to honor for the capture screen on small
+   * windows. Everything else is free to rotate so that the landscape and expanded layouts are reachable on tablets
+   * and unfolded foldables.
+   */
+  private fun onCaptureScreenChanged(isOnCaptureScreen: Boolean) {
+    requestedOrientation = if (isOnCaptureScreen && resources.getWindowBreakpoint() is WindowBreakpoint.Small) {
+      ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    } else {
+      ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+    }
+
+    // Hard-cut rotation while capturing (like Pixel Camera) instead of the system's smooth rotate.
+    window.attributes = window.attributes.apply {
+      rotationAnimation = if (isOnCaptureScreen) {
+        WindowManager.LayoutParams.ROTATION_ANIMATION_JUMPCUT
+      } else {
+        WindowManager.LayoutParams.ROTATION_ANIMATION_ROTATE
+      }
+    }
   }
 
   override fun sendAnywayAfterSafetyNumberChangedInBottomSheet(destinations: List<ContactSearchKey.RecipientSearchKey>) {
