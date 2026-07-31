@@ -84,6 +84,7 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   SignalBackupsDisplay(icon(R.drawable.symbol_signal_backups_display_48)),
   Sticker(icon(R.drawable.symbol_sticker_24)),
   Text(icon(R.drawable.symbol_text_24)),
+  TextSquare(icon(R.drawable.symbol_text_square_24)),
   Transfer(icon(R.drawable.symbol_transfer_24)),
   TransferDisplay(icon(R.drawable.symbol_transfer_display_48)),
   Trash(icon(R.drawable.symbol_trash_24)),

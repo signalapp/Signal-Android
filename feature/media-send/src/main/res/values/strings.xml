@@ -53,6 +53,9 @@
   <!-- Content description for button to enable brush mode -->
   <string name="DrawModeColorBar__brush">Brush</string>
 
+  <!-- Content description for the button that cycles the text being edited between styles -->
+  <string name="TextModeColorBar__toggle_between_text_styles">Toggle between text styles</string>
+
   <!-- Label for the button that undoes every edit made to the image, returning it to its original state -->
   <string name="ImageEditorClearAllButton__clear_all">Clear all</string>
 

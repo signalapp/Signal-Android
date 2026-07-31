@@ -301,6 +301,14 @@ internal class ImageController(
     imageEditorState.invalidate()
   }
 
+  /** Cycles the text element through regular, highlight, underline, and outline. */
+  fun nextTextStyle() {
+    val element = textEditingElement ?: selectedElement
+    val renderer = element?.renderer as? MultiLineTextRenderer ?: return
+    renderer.nextMode()
+    imageEditorState.invalidate()
+  }
+
   fun onEntityDown(element: EditorElement?) {
     if (element != null && element.renderer is SelectableRenderer) {
       selectElement(element)

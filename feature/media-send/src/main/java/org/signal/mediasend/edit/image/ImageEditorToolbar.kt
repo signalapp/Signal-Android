@@ -46,9 +46,8 @@ internal fun ImageEditorToolbar(
     // The trash is the only thing on screen during a drag.
     imageEditorController.isUserDraggingElement -> Unit
     imageEditorController.shouldDisplayTextColorBar -> {
-      HSVColorBar(
-        state = imageEditorController.textColorBarState,
-        onColorChanged = imageEditorController::setTextColor,
+      TextModeColorBar(
+        imageEditorController = imageEditorController,
         modifier = modifier
       )
     }
